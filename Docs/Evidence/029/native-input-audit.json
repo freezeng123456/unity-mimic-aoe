@@ -1,0 +1,76 @@
+{
+  "appVersion": "0.2.9",
+  "buildGuid": "4e851ef57c2f460885559d364e1edf6e",
+  "source": {
+    "report": "native-input.json",
+    "events": "native-input-events.jsonl",
+    "freshMatchReport": "native-new-match-quit.json",
+    "freshMatchEvents": "native-new-match-quit-events.jsonl"
+  },
+  "scope": "Bounded native resource-rally smoke audit; not a full-match or idle-state acceptance claim.",
+  "result": "PASS_BOUNDED_NATIVE_SMOKE",
+  "verified": {
+    "eventCount": {"expected": 2919, "observed": 2919},
+    "normalDurationSeconds": {"expected": 216.004, "observed": 216.0039825439453},
+    "normalRun": {"autoplay": false, "seed": 314159, "winner": -1, "maxAge": 3},
+    "paidVillagerProduction": {
+      "paymentCount": 3,
+      "producedVillagerIds": [132, 140, 141],
+      "evidence": [
+        {"time": 7.299995517730713, "kind": "Payment", "entity": 1, "message": "Settler ×1: 100 F / 0 W / 0 C"},
+        {"time": 27.300067901611328, "kind": "Spawn", "entity": 132, "message": "Settler"},
+        {"time": 151.80006408691406, "kind": "Payment", "entity": 1, "message": "Settler ×1: 100 F / 0 W / 0 C"},
+        {"time": 171.80128479003906, "kind": "Spawn", "entity": 140, "message": "Settler"},
+        {"time": 185.9021453857422, "kind": "Payment", "entity": 1, "message": "Settler ×1: 100 F / 0 W / 0 C"},
+        {"time": 205.9033660888672, "kind": "Spawn", "entity": 141, "message": "Settler"}
+      ]
+    },
+    "resourceRally": {
+      "first": {"time": 7.199995517730713, "producer": 1, "resource": 9, "point": {"x": 32.0, "y": 21.0}},
+      "second": {"time": 169.80116271972656, "producer": 1, "resource": 16, "point": {"x": 14.0, "y": 23.0}},
+      "afterPaidTrainingUsesLatestLiveRally": true,
+      "evidence": [
+        {"time": 171.30125427246094, "kind": "RallyAssigned", "entity": 2, "target": 16, "message": "Automatic resource gathering"},
+        {"time": 171.80128479003906, "kind": "RallyAssigned", "entity": 140, "target": 16, "message": "Automatic resource gathering"}
+      ]
+    },
+    "ungarrisonWorkerToMine": {
+      "ungarrison": {"time": 171.30125427246094, "producer": 1, "message": "Released to rally"},
+      "worker": 2,
+      "resource": 16,
+      "gatherCommand": {"time": 171.30125427246094, "entity": 2, "target": 16},
+      "rallyAssigned": {"time": 171.30125427246094, "entity": 2, "target": 16}
+    },
+    "terrainRallyClearsResourceIntent": {
+      "time": 196.7028045654297,
+      "producer": 1,
+      "target": 0,
+      "message": "Location rally set",
+      "nextSpawn": {"time": 205.9033660888672, "entity": 141, "rallyAssignedTarget": 0}
+    },
+    "nonWorkerExplorerResourceFallback": {
+      "entity": 8,
+      "requestedContext": "resource right-click",
+      "acceptedOrder": {"time": 15.100021362304688, "kind": "Command", "message": "Move ×1", "target": 0},
+      "evidence": "native-input-events.jsonl and rally-explorer-resource-move.jpeg",
+      "interpretation": "The explorer received an accepted Move with no entity target; it did not receive Gather."
+    },
+    "linkedGatherSums": {
+      "entity2_target16_coin": 24.78000098466873,
+      "entity140_target16_coin": 24.36000096797943,
+      "entity132_target9_food": 124.8880162537098,
+      "method": "sum of Gather.amount in native-input-events.jsonl grouped by entity and target"
+    },
+    "freshMatchReset": {
+      "report": {"reason": "quit", "time": 1.500000238418579, "winner": -1, "age": 1, "population": 6, "shipments": 0},
+      "player0Resources": {"food": 300.0, "wood": 300.0, "coin": 100.0},
+      "player0Gathered": {"food": 0.0, "wood": 0.0, "coin": 0.0},
+      "evidence": "native-new-match-quit.json"
+    }
+  },
+  "unverifiedOrLimited": {
+    "idleState": "No idle-state assertion is made because the report does not encode a complete native UI idle observation.",
+    "fullMatch": "No full normal-player match, Age III progression, cannon siege, or victory claim is made by this audit."
+  },
+  "conclusion": "The bounded native run verifies three paid villager productions, a live resource-rally change from resource 9 to resource 16 after payment, ungarrison-to-mine behavior, terrain rally reset, linked real gathering, and fresh-match reset. The requested later explorer-resource Move lacks a matching player-0 Command event in the supplied event log and remains unverified rather than inferred."
+}

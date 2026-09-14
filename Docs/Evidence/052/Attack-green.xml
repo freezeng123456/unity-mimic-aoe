@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="23" result="Passed" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.2144284">
+  <test-suite type="TestSuite" id="1000" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="182" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.214428" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1230" name="Frontier.EditMode.dll" fullname="/Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Library/ScriptAssemblies/Frontier.EditMode.dll" runstate="Runnable" testcasecount="182" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.210008" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="96439" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1231" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="176" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.209179" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1232" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="176" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.208731" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1049" name="AttackContinuationTests" fullname="Frontier.Tests.AttackContinuationTests" classname="Frontier.Tests.AttackContinuationTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.053542" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1050" name="HeldCannonIgnoresDeadAngleEnemyWhenAnotherTargetIsShootable" fullname="Frontier.Tests.AttackContinuationTests.HeldCannonIgnoresDeadAngleEnemyWhenAnotherTargetIsShootable" methodname="HeldCannonIgnoresDeadAngleEnemyWhenAnotherTargetIsShootable" classname="Frontier.Tests.AttackContinuationTests" runstate="Runnable" seed="1573151749" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.030792" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1051" name="HeldCannonReleasesRememberedTargetThatMovesInsideDeadAngle" fullname="Frontier.Tests.AttackContinuationTests.HeldCannonReleasesRememberedTargetThatMovesInsideDeadAngle" methodname="HeldCannonReleasesRememberedTargetThatMovesInsideDeadAngle" classname="Frontier.Tests.AttackContinuationTests" runstate="Runnable" seed="292275347" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.006050" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1052" name="HeldMusketeerReleasesRememberedTargetOutsideRangeButStillVisible" fullname="Frontier.Tests.AttackContinuationTests.HeldMusketeerReleasesRememberedTargetOutsideRangeButStillVisible" methodname="HeldMusketeerReleasesRememberedTargetOutsideRangeButStillVisible" classname="Frontier.Tests.AttackContinuationTests" runstate="Runnable" seed="2112984683" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.004984" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1053" name="RepeatingIdenticalDirectAttackPreservesPreparationAndNormalShotSpacing" fullname="Frontier.Tests.AttackContinuationTests.RepeatingIdenticalDirectAttackPreservesPreparationAndNormalShotSpacing" methodname="RepeatingIdenticalDirectAttackPreservesPreparationAndNormalShotSpacing" classname="Frontier.Tests.AttackContinuationTests" runstate="Runnable" seed="1353965325" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.005359" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1054" name="AttackLifecycleTests" fullname="Frontier.Tests.AttackLifecycleTests" classname="Frontier.Tests.AttackLifecycleTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.081150" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1055" name="AttackMoveKillsTwoEncounteredTargetsThenRunsNextWaypoint" fullname="Frontier.Tests.AttackLifecycleTests.AttackMoveKillsTwoEncounteredTargetsThenRunsNextWaypoint" methodname="AttackMoveKillsTwoEncounteredTargetsThenRunsNextWaypoint" classname="Frontier.Tests.AttackLifecycleTests" runstate="Runnable" seed="1530553536" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.058211" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1056" name="ChangingDirectTargetCancelsPreparedShotButRetainsReload" fullname="Frontier.Tests.AttackLifecycleTests.ChangingDirectTargetCancelsPreparedShotButRetainsReload" methodname="ChangingDirectTargetCancelsPreparedShotButRetainsReload" classname="Frontier.Tests.AttackLifecycleTests" runstate="Runnable" seed="1550762251" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.003584" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1057" name="ExplicitAttackStillPursuesOutOfRangeTarget" fullname="Frontier.Tests.AttackLifecycleTests.ExplicitAttackStillPursuesOutOfRangeTarget" methodname="ExplicitAttackStillPursuesOutOfRangeTarget" classname="Frontier.Tests.AttackLifecycleTests" runstate="Runnable" seed="1916505849" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.003801" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1059" name="GunFiresAfterRepeatedAttackCommandsCease" fullname="Frontier.Tests.AttackLifecycleTests.GunFiresAfterRepeatedAttackCommandsCease" methodname="GunFiresAfterRepeatedAttackCommandsCease" classname="Frontier.Tests.AttackLifecycleTests" runstate="Runnable" seed="1956969431" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.007158" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1058" name="HeldCannonFiresAfterOnlyDeadAngleDistractionIsRemoved" fullname="Frontier.Tests.AttackLifecycleTests.HeldCannonFiresAfterOnlyDeadAngleDistractionIsRemoved" methodname="HeldCannonFiresAfterOnlyDeadAngleDistractionIsRemoved" classname="Frontier.Tests.AttackLifecycleTests" runstate="Runnable" seed="1639725532" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.007121" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1060" name="AttackReleaseTests" fullname="Frontier.Tests.AttackReleaseTests" classname="Frontier.Tests.AttackReleaseTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.021575" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1063" name="AlreadyFiredProjectileStillHitsAfterTargetEntersDeadAngle" fullname="Frontier.Tests.AttackReleaseTests.AlreadyFiredProjectileStillHitsAfterTargetEntersDeadAngle" methodname="AlreadyFiredProjectileStillHitsAfterTargetEntersDeadAngle" classname="Frontier.Tests.AttackReleaseTests" runstate="Runnable" seed="429142939" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.005116" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1062" name="ExactMinimumEdgeDistanceRemainsLegal" fullname="Frontier.Tests.AttackReleaseTests.ExactMinimumEdgeDistanceRemainsLegal" methodname="ExactMinimumEdgeDistanceRemainsLegal" classname="Frontier.Tests.AttackReleaseTests" runstate="Runnable" seed="713076159" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.003070" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1064" name="TargetDeathBeforeFireCancelsShotWithoutResettingDeadline" fullname="Frontier.Tests.AttackReleaseTests.TargetDeathBeforeFireCancelsShotWithoutResettingDeadline" methodname="TargetDeathBeforeFireCancelsShotWithoutResettingDeadline" classname="Frontier.Tests.AttackReleaseTests" runstate="Runnable" seed="307190358" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.006379" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1061" name="TargetEnteringMinimumRangeCancelsPreparationAndPreservesDeadline" fullname="Frontier.Tests.AttackReleaseTests.TargetEnteringMinimumRangeCancelsPreparationAndPreservesDeadline" methodname="TargetEnteringMinimumRangeCancelsPreparationAndPreservesDeadline" classname="Frontier.Tests.AttackReleaseTests" runstate="Runnable" seed="1106942167" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.005835" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1074" name="CombatRulesTests" fullname="Frontier.Tests.CombatRulesTests" classname="Frontier.Tests.CombatRulesTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.016997" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1079" name="LethalBuildingDamageReleasesPopulationAndNavigationExactlyOnce" fullname="Frontier.Tests.CombatRulesTests.LethalBuildingDamageReleasesPopulationAndNavigationExactlyOnce" methodname="LethalBuildingDamageReleasesPopulationAndNavigationExactlyOnce" classname="Frontier.Tests.CombatRulesTests" runstate="Runnable" seed="306483931" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.001578" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1077" name="MatchingBonusesUseMaximumThenResistance" fullname="Frontier.Tests.CombatRulesTests.MatchingBonusesUseMaximumThenResistance" methodname="MatchingBonusesUseMaximumThenResistance" classname="Frontier.Tests.CombatRulesTests" runstate="Runnable" seed="1383339738" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.001980" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1075" name="ReissuedAttackCannotBypassCooldown" fullname="Frontier.Tests.CombatRulesTests.ReissuedAttackCannotBypassCooldown" methodname="ReissuedAttackCannotBypassCooldown" classname="Frontier.Tests.CombatRulesTests" runstate="Runnable" seed="1144557598" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.002664" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1078" name="SplashRecomputesEachVictimsBonusAndResistance" fullname="Frontier.Tests.CombatRulesTests.SplashRecomputesEachVictimsBonusAndResistance" methodname="SplashRecomputesEachVictimsBonusAndResistance" classname="Frontier.Tests.CombatRulesTests" runstate="Runnable" seed="520335861" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.001852" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1076" name="TargetKilledBeforeProjectileImpactIsNotDamagedAgain" fullname="Frontier.Tests.CombatRulesTests.TargetKilledBeforeProjectileImpactIsNotDamagedAgain" methodname="TargetKilledBeforeProjectileImpactIsNotDamagedAgain" classname="Frontier.Tests.CombatRulesTests" runstate="Runnable" seed="1248303718" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.007440" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1193" name="ProjectileLifecycleTests" fullname="Frontier.Tests.ProjectileLifecycleTests" classname="Frontier.Tests.ProjectileLifecycleTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.010802" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1196" name="CannonSplashUsesSiegeDamageOnBuildingsAndHalfBaseDamageOnNearbyUnits" fullname="Frontier.Tests.ProjectileLifecycleTests.CannonSplashUsesSiegeDamageOnBuildingsAndHalfBaseDamageOnNearbyUnits" methodname="CannonSplashUsesSiegeDamageOnBuildingsAndHalfBaseDamageOnNearbyUnits" classname="Frontier.Tests.ProjectileLifecycleTests" runstate="Runnable" seed="22781331" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.003787" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1195" name="ReplacingPreparingAttackWithMoveDoesNotResetTheReloadDeadline" fullname="Frontier.Tests.ProjectileLifecycleTests.ReplacingPreparingAttackWithMoveDoesNotResetTheReloadDeadline" methodname="ReplacingPreparingAttackWithMoveDoesNotResetTheReloadDeadline" classname="Frontier.Tests.ProjectileLifecycleTests" runstate="Runnable" seed="132769597" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.002721" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1194" name="TargetEnteringFogAfterFireStillReceivesTheInFlightImpact" fullname="Frontier.Tests.ProjectileLifecycleTests.TargetEnteringFogAfterFireStillReceivesTheInFlightImpact" methodname="TargetEnteringFogAfterFireStillReceivesTheInFlightImpact" classname="Frontier.Tests.ProjectileLifecycleTests" runstate="Runnable" seed="240838278" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.003156" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1213" name="TargetReleaseVisibilityTests" fullname="Frontier.Tests.TargetReleaseVisibilityTests" classname="Frontier.Tests.TargetReleaseVisibilityTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.007150" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1215" name="PreparedShotIsCancelledWhenTargetGarrisonsThroughRealCommand" fullname="Frontier.Tests.TargetReleaseVisibilityTests.PreparedShotIsCancelledWhenTargetGarrisonsThroughRealCommand" methodname="PreparedShotIsCancelledWhenTargetGarrisonsThroughRealCommand" classname="Frontier.Tests.TargetReleaseVisibilityTests" runstate="Runnable" seed="2026211887" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.003420" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1214" name="PreparedShotIsCancelledWhenTargetLeavesVision" fullname="Frontier.Tests.TargetReleaseVisibilityTests.PreparedShotIsCancelledWhenTargetLeavesVision" methodname="PreparedShotIsCancelledWhenTargetLeavesVision" classname="Frontier.Tests.TargetReleaseVisibilityTests" runstate="Runnable" seed="390356893" result="Passed" start-time="2026-09-14 19:08:02Z" end-time="2026-09-14 19:08:02Z" duration="0.002873" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

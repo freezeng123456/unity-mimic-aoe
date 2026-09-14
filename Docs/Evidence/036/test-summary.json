@@ -1,0 +1,10 @@
+{
+  "iteration": "036",
+  "frozenTestSha256": "02990eabf1e7a2f067d3c97e0613dcb9fbdbfe3a3c2cdd95779152b34a495cd5",
+  "oldRuntime": {"runs": ["NonModal-red.xml", "NonModal-red-repeat.xml"], "eachPassed": 1, "eachFailed": 3, "failures": ["Train then ground selection stayed on town", "Cancel then resource rally stayed zero", "Attack-move targeting stayed active after fresh destination click"]},
+  "newRuntime": {"run": "NonModal-green.xml", "passed": 4, "failed": 0},
+  "control": "UI press then drag-out release makes neither a button action nor a world action",
+  "fullEditMode": {"run": "EditMode.xml", "passed": 119, "failed": 0, "durationSeconds": 6.0463308},
+  "fullPlayMode": {"run": "PlayMode.xml", "passed": 141, "failed": 0, "durationSeconds": 33.0559405},
+  "scope": "Scene tests route queued InputSystem device states through UGUI; fixture freezes simulation and explicitly routes virtual devices without OS focus. These are not independent-client or system-focus evidence."
+}

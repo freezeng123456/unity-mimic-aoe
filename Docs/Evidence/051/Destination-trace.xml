@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 18:44:30Z" end-time="2026-09-14 18:44:30Z" duration="0.3919667">
+  <test-suite type="TestSuite" id="1000" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="175" result="Failed" site="Child" start-time="2026-09-14 18:44:30Z" end-time="2026-09-14 18:44:30Z" duration="0.391967" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1221" name="Frontier.EditMode.dll" fullname="/Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Library/ScriptAssemblies/Frontier.EditMode.dll" runstate="Runnable" testcasecount="175" result="Failed" site="Child" start-time="2026-09-14 18:44:30Z" end-time="2026-09-14 18:44:30Z" duration="0.388009" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="57991" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1222" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="169" result="Failed" site="Child" start-time="2026-09-14 18:44:30Z" end-time="2026-09-14 18:44:30Z" duration="0.387383" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1223" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="169" result="Failed" site="Child" start-time="2026-09-14 18:44:30Z" end-time="2026-09-14 18:44:30Z" duration="0.383355" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1074" name="DestinationTraceTests" fullname="Frontier.Tests.DestinationTraceTests" classname="Frontier.Tests.DestinationTraceTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-14 18:44:30Z" end-time="2026-09-14 18:44:30Z" duration="0.380801" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1079" name="FiftyMixedUnitsKeepDistinctReachableGoalsAfterTwoFoundationsAppear" fullname="Frontier.Tests.DestinationTraceTests.FiftyMixedUnitsKeepDistinctReachableGoalsAfterTwoFoundationsAppear" methodname="FiftyMixedUnitsKeepDistinctReachableGoalsAfterTwoFoundationsAppear" classname="Frontier.Tests.DestinationTraceTests" runstate="Runnable" seed="1816562521" result="Failed" start-time="2026-09-14 18:44:30Z" end-time="2026-09-14 18:44:30Z" duration="0.374675" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  169 cannon position=(85.62, 59.18) orders=1 status=Moving path=(86.18, 58.65),(91.10, 65.03) requested=(95.90, 57.30) resolved=(0.00, 0.00) hasResolved=False
+  Expected: 0
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.DestinationTraceTests.FiftyMixedUnitsKeepDistinctReachableGoalsAfterTwoFoundationsAppear () [0x0023e] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/DestinationTraceTests.cs:69
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[TRACE 0.1 169 cannon position=(48.65, 62.78) orders=1 status=Moving path=(48.40, 62.80),(94.00, 59.00),(95.90, 57.30) requested=(95.90, 57.30) resolved=(0.00, 0.00) hasResolved=False
+TRACE 10.1 169 cannon position=(73.14, 60.48) orders=1 status=Moving path=(48.40, 62.80),(94.00, 59.00),(95.90, 57.30) requested=(95.90, 57.30) resolved=(0.00, 0.00) hasResolved=False
+TRACE 20.10004 169 cannon position=(85.70, 59.24) orders=1 status=Moving path=(86.74, 58.31),(86.00, 60.00),(93.00, 59.00),(95.90, 57.30) requested=(95.90, 57.30) resolved=(0.00, 0.00) hasResolved=False
+TRACE 30.10008 169 cannon position=(85.57, 59.02) orders=1 status=Moving path=(86.58, 58.34),(87.00, 60.00),(93.00, 59.00),(95.90, 57.30) requested=(95.90, 57.30) resolved=(0.00, 0.00) hasResolved=False
+TRACE 40.09996 169 cannon position=(86.14, 58.67) orders=1 status=Moving path=(86.37, 58.63),(88.00, 60.00),(93.00, 59.00),(95.90, 57.30) requested=(95.90, 57.30) resolved=(0.00, 0.00) hasResolved=False
+TRACE 50.09981 169 cannon position=(86.21, 58.80) orders=1 status=Moving path=(85.72, 58.90),(90.76, 65.19) requested=(95.90, 57.30) resolved=(0.00, 0.00) hasResolved=False
+TRACE 60.09966 169 cannon position=(86.18, 58.76) orders=1 status=Moving path=(85.71, 58.91),(90.76, 65.20) requested=(95.90, 57.30) resolved=(0.00, 0.00) hasResolved=False
+TRACE 70.0995 169 cannon position=(86.62, 58.49) orders=1 status=Moving path=(86.34, 58.54),(91.20, 64.97) requested=(95.90, 57.30) resolved=(0.00, 0.00) hasResolved=False
+TRACE 80.09935 169 cannon position=(86.23, 58.78) orders=1 status=Moving path=(85.76, 58.93),(90.82, 65.21) requested=(95.90, 57.30) resolved=(0.00, 0.00) hasResolved=False
+TRACE 90.0992 169 cannon position=(85.76, 59.00) orders=1 status=Moving path=(86.56, 58.42),(87.00, 60.00),(93.00, 59.00),(95.90, 57.30) requested=(95.90, 57.30) resolved=(0.00, 0.00) hasResolved=False
+TRACE 100.099 169 cannon position=(85.74, 58.92) orders=1 status=Moving path=(86.56, 58.43),(87.00, 60.00),(93.00, 59.00),(95.90, 57.30) requested=(95.90, 57.30) resolved=(0.00, 0.00) hasResolved=False
+TRACE 110.0989 169 cannon position=(86.21, 58.79) orders=1 status=Moving path=(85.78, 59.00),(90.88, 65.24) requested=(95.90, 57.30) resolved=(0.00, 0.00) hasResolved=False
+FINAL 2 villager position=(29.00, 25.00) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 3 villager position=(30.30, 25.00) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 4 villager position=(31.60, 25.00) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 5 villager position=(29.00, 26.40) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 6 villager position=(30.30, 26.40) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 7 villager position=(31.60, 26.40) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 8 explorer position=(31.00, 32.00) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 130 pike position=(85.93, 54.02) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 131 musketeer position=(81.03, 49.23) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 132 hussar position=(86.00, 50.70) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 133 dragoon position=(89.30, 50.70) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 134 cannon position=(82.02, 55.51) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 135 pike position=(89.11, 54.03) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 136 musketeer position=(82.60, 57.33) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 137 hussar position=(85.83, 57.31) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 138 dragoon position=(87.80, 59.30) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 139 cannon position=(79.32, 47.44) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 140 pike position=(82.70, 47.40) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 141 musketeer position=(85.95, 47.40) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 142 hussar position=(89.14, 47.36) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 143 dragoon position=(92.60, 47.40) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 144 cannon position=(79.16, 50.80) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 145 pike position=(92.60, 50.70) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 146 musketeer position=(79.40, 54.00) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 147 hussar position=(92.35, 54.04) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 148 dragoon position=(79.40, 57.30) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 149 cannon position=(92.51, 57.56) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 150 pike position=(79.34, 60.61) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 151 musketeer position=(82.60, 60.62) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 152 hussar position=(86.00, 60.60) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 153 dragoon position=(89.30, 62.10) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 154 cannon position=(92.66, 60.77) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 155 pike position=(76.09, 44.10) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 156 musketeer position=(79.10, 44.10) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 157 hussar position=(82.61, 44.08) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 158 dragoon position=(85.80, 44.00) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 159 cannon position=(89.17, 44.04) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 160 pike position=(92.60, 44.10) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 161 musketeer position=(95.67, 44.08) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 162 hussar position=(76.10, 47.40) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 163 dragoon position=(95.78, 47.41) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 164 cannon position=(75.91, 50.80) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 165 pike position=(95.82, 50.72) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 166 musketeer position=(76.10, 54.00) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 167 hussar position=(95.90, 54.00) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 168 dragoon position=(76.02, 57.20) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 169 cannon position=(85.62, 59.18) orders=1 status=Moving path=(86.18, 58.65),(91.10, 65.03) requested=(95.90, 57.30) resolved=(0.00, 0.00) hasResolved=False
+FINAL 170 pike position=(75.93, 60.75) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 171 musketeer position=(95.79, 60.61) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 172 hussar position=(75.83, 64.01) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 173 dragoon position=(79.32, 63.84) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 174 cannon position=(82.64, 63.93) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 175 pike position=(86.00, 63.90) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 176 musketeer position=(89.30, 63.90) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 177 hussar position=(92.38, 63.91) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 178 dragoon position=(95.70, 63.97) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 179 cannon position=(72.69, 40.78) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 180 villager position=(82.70, 53.70) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+FINAL 182 villager position=(89.26, 59.90) orders=0 status=Idle path= requested=done resolved=done hasResolved=done
+ADJUST {"schemaVersion":2,"hasEconomy":false,"hasPopulation":false,"economy":{"requestedDelta":{"food":0.0,"wood":0.0,"coin":0.0},"actualDelta":{"food":0.0,"wood":0.0,"coin":0.0},"balanceBefore":{"food":0.0,"wood":0.0,"coin":0.0},"balanceAfter":{"food":0.0,"wood":0.0,"coin":0.0},"hasRepair":false,"healthTarget":0,"hpBefore":0.0,"hpAfter":0.0},"population":{"used":0,"reserved":0,"capacity":0},"time":0.10000000149011612,"kind":"DestinationAdjusted","message":"Move destination (82.70, 50.70) -> (81.20, 49.20)","player":0,"entity":131,"target":0,"visibilityMask":1,"amount":2.1213202476501465,"position":{"x":81.19999694824219,"y":49.20000076293945},"facing":{"x":0.0,"y":1.0}}
+ADJUST {"schemaVersion":2,"hasEconomy":false,"hasPopulation":false,"economy":{"requestedDelta":{"food":0.0,"wood":0.0,"coin":0.0},"actualDelta":{"food":0.0,"wood":0.0,"coin":0.0},"balanceBefore":{"food":0.0,"wood":0.0,"coin":0.0},"balanceAfter":{"food":0.0,"wood":0.0,"coin":0.0},"hasRepair":false,"healthTarget":0,"hpBefore":0.0,"hpAfter":0.0},"population":{"used":0,"reserved":0,"capacity":0},"time":0.10000000149011612,"kind":"DestinationAdjusted","message":"Move destination (82.70, 54.00) -> (82.20, 55.50)","player":0,"entity":134,"target":0,"visibilityMask":1,"amount":1.5811388492584229,"position":{"x":82.19999694824219,"y":55.5},"facing":{"x":0.0,"y":1.0}}
+ADJUST {"schemaVersion":2,"hasEconomy":false,"hasPopulation":false,"economy":{"requestedDelta":{"food":0.0,"wood":0.0,"coin":0.0},"actualDelta":{"food":0.0,"wood":0.0,"coin":0.0},"balanceBefore":{"food":0.0,"wood":0.0,"coin":0.0},"balanceAfter":{"food":0.0,"wood":0.0,"coin":0.0},"hasRepair":false,"healthTarget":0,"hpBefore":0.0,"hpAfter":0.0},"population":{"used":0,"reserved":0,"capacity":0},"time":0.10000000149011612,"kind":"DestinationAdjusted","message":"Move destination (89.30, 57.30) -> (87.80, 59.30)","player":0,"entity":138,"target":0,"visibilityMask":1,"amount":2.5,"position":{"x":87.80000305175781,"y":59.29999923706055},"facing":{"x":0.0,"y":1.0}}
+ADJUST {"schemaVersion":2,"hasEconomy":false,"hasPopulation":false,"economy":{"requestedDelta":{"food":0.0,"wood":0.0,"coin":0.0},"actualDelta":{"food":0.0,"wood":0.0,"coin":0.0},"balanceBefore":{"food":0.0,"wood":0.0,"coin":0.0},"balanceAfter":{"food":0.0,"wood":0.0,"coin":0.0},"hasRepair":false,"healthTarget":0,"hpBefore":0.0,"hpAfter":0.0},"population":{"used":0,"reserved":0,"capacity":0},"time":0.10000000149011612,"kind":"DestinationAdjusted","message":"Move destination (89.30, 60.60) -> (89.30, 62.10)","player":0,"entity":153,"target":0,"visibilityMask":1,"amount":1.5,"position":{"x":89.30000305175781,"y":62.099998474121094},"facing":{"x":0.0,"y":1.0}}
+Saving results to: /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

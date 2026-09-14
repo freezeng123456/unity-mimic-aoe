@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Failed(Child)" total="6" passed="1" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 14:31:00Z" end-time="2026-09-14 14:31:00Z" duration="0.0224362">
+  <test-suite type="TestSuite" id="1000" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="145" result="Failed" site="Child" start-time="2026-09-14 14:31:00Z" end-time="2026-09-14 14:31:00Z" duration="0.022436" total="6" passed="1" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1179" name="Frontier.EditMode.dll" fullname="/Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Library/ScriptAssemblies/Frontier.EditMode.dll" runstate="Runnable" testcasecount="145" result="Failed" site="Child" start-time="2026-09-14 14:31:00Z" end-time="2026-09-14 14:31:00Z" duration="0.019010" total="6" passed="1" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="82547" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1180" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="139" result="Failed" site="Child" start-time="2026-09-14 14:31:00Z" end-time="2026-09-14 14:31:00Z" duration="0.018657" total="6" passed="1" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1181" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="139" result="Failed" site="Child" start-time="2026-09-14 14:31:00Z" end-time="2026-09-14 14:31:00Z" duration="0.018436" total="6" passed="1" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1033" name="CameraPanInputTests" fullname="Frontier.Tests.CameraPanInputTests" classname="Frontier.Tests.CameraPanInputTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-14 14:31:00Z" end-time="2026-09-14 14:31:00Z" duration="0.016307" total="6" passed="1" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1034" name="EdgeBandIsThreePercentOfShortSideClampedToSixteenSixtyFour" fullname="Frontier.Tests.CameraPanInputTests.EdgeBandIsThreePercentOfShortSideClampedToSixteenSixtyFour" methodname="EdgeBandIsThreePercentOfShortSideClampedToSixteenSixtyFour" classname="Frontier.Tests.CameraPanInputTests" runstate="Runnable" seed="140332959" result="Failed" start-time="2026-09-14 14:31:00Z" end-time="2026-09-14 14:31:00Z" duration="0.008031" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: (-1.00, 0.00)
+  But was:  (0.00, 0.00)
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.CameraPanInputTests.EdgeBandIsThreePercentOfShortSideClampedToSixteenSixtyFour () [0x00000] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/CameraPanInputTests.cs:10
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1035" name="FourEdgesAreSymmetricAndCornerDirectionHasUnitLength" fullname="Frontier.Tests.CameraPanInputTests.FourEdgesAreSymmetricAndCornerDirectionHasUnitLength" methodname="FourEdgesAreSymmetricAndCornerDirectionHasUnitLength" classname="Frontier.Tests.CameraPanInputTests" runstate="Runnable" seed="28558792" result="Failed" start-time="2026-09-14 14:31:00Z" end-time="2026-09-14 14:31:00Z" duration="0.000288" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: (-0.71, -0.71)
+  But was:  (-1.00, -1.00)
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.CameraPanInputTests.FourEdgesAreSymmetricAndCornerDirectionHasUnitLength () [0x000f8] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/CameraPanInputTests.cs:20
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1036" name="NormalizedEdgeLocationsMatchAcrossDesktopResolutions" fullname="Frontier.Tests.CameraPanInputTests.NormalizedEdgeLocationsMatchAcrossDesktopResolutions" methodname="NormalizedEdgeLocationsMatchAcrossDesktopResolutions" classname="Frontier.Tests.CameraPanInputTests" runstate="Runnable" seed="1717393345" result="Failed" start-time="2026-09-14 14:31:00Z" end-time="2026-09-14 14:31:00Z" duration="0.000856" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not equal to (0.00, 0.00)
+  But was:  (0.00, 0.00)
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.CameraPanInputTests.NormalizedEdgeLocationsMatchAcrossDesktopResolutions () [0x0005e] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/CameraPanInputTests.cs:25
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1039" name="OutsideUnfocusedAndZeroViewportNeverPan" fullname="Frontier.Tests.CameraPanInputTests.OutsideUnfocusedAndZeroViewportNeverPan" methodname="OutsideUnfocusedAndZeroViewportNeverPan" classname="Frontier.Tests.CameraPanInputTests" runstate="Runnable" seed="376848664" result="Passed" start-time="2026-09-14 14:31:00Z" end-time="2026-09-14 14:31:00Z" duration="0.000932" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1038" name="TenLogicalDesktopPointsInsideOldEightPixelBandStillTrigger" fullname="Frontier.Tests.CameraPanInputTests.TenLogicalDesktopPointsInsideOldEightPixelBandStillTrigger" methodname="TenLogicalDesktopPointsInsideOldEightPixelBandStillTrigger" classname="Frontier.Tests.CameraPanInputTests" runstate="Runnable" seed="2081054048" result="Failed" start-time="2026-09-14 14:31:00Z" end-time="2026-09-14 14:31:00Z" duration="0.000368" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  point (20.00, 360.00)
+  Expected: (-1.00, 0.00)
+  But was:  (0.00, 0.00)
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.CameraPanInputTests.TenLogicalDesktopPointsInsideOldEightPixelBandStillTrigger () [0x001df] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/CameraPanInputTests.cs:40
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1037" name="TriggerBandHonorsMinimumAndMaximumPixels" fullname="Frontier.Tests.CameraPanInputTests.TriggerBandHonorsMinimumAndMaximumPixels" methodname="TriggerBandHonorsMinimumAndMaximumPixels" classname="Frontier.Tests.CameraPanInputTests" runstate="Runnable" seed="279472047" result="Failed" start-time="2026-09-14 14:31:00Z" end-time="2026-09-14 14:31:00Z" duration="0.000145" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: (-1.00, 0.00)
+  But was:  (0.00, 0.00)
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.CameraPanInputTests.TriggerBandHonorsMinimumAndMaximumPixels () [0x00000] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/CameraPanInputTests.cs:31
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[Saving results to: /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

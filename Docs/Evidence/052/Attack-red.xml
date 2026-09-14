@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="9" result="Failed(Child)" total="9" passed="5" failed="4" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 19:06:56Z" end-time="2026-09-14 19:06:57Z" duration="0.1512395">
+  <test-suite type="TestSuite" id="1000" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="182" result="Failed" site="Child" start-time="2026-09-14 19:06:56Z" end-time="2026-09-14 19:06:57Z" duration="0.151240" total="9" passed="5" failed="4" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1230" name="Frontier.EditMode.dll" fullname="/Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Library/ScriptAssemblies/Frontier.EditMode.dll" runstate="Runnable" testcasecount="182" result="Failed" site="Child" start-time="2026-09-14 19:06:56Z" end-time="2026-09-14 19:06:57Z" duration="0.147403" total="9" passed="5" failed="4" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="95086" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1231" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="176" result="Failed" site="Child" start-time="2026-09-14 19:06:56Z" end-time="2026-09-14 19:06:57Z" duration="0.142982" total="9" passed="5" failed="4" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1232" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="176" result="Failed" site="Child" start-time="2026-09-14 19:06:56Z" end-time="2026-09-14 19:06:57Z" duration="0.142382" total="9" passed="5" failed="4" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1049" name="AttackContinuationTests" fullname="Frontier.Tests.AttackContinuationTests" classname="Frontier.Tests.AttackContinuationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-14 19:06:56Z" end-time="2026-09-14 19:06:56Z" duration="0.062939" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1050" name="HeldCannonIgnoresDeadAngleEnemyWhenAnotherTargetIsShootable" fullname="Frontier.Tests.AttackContinuationTests.HeldCannonIgnoresDeadAngleEnemyWhenAnotherTargetIsShootable" methodname="HeldCannonIgnoresDeadAngleEnemyWhenAnotherTargetIsShootable" classname="Frontier.Tests.AttackContinuationTests" runstate="Runnable" seed="1586258366" result="Failed" start-time="2026-09-14 19:06:56Z" end-time="2026-09-14 19:06:56Z" duration="0.032691" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A held cannon must select an eligible target instead of remaining locked on the dead angle
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.AttackContinuationTests.HeldCannonIgnoresDeadAngleEnemyWhenAnotherTargetIsShootable () [0x000d0] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/AttackContinuationTests.cs:27
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1051" name="HeldCannonReleasesRememberedTargetThatMovesInsideDeadAngle" fullname="Frontier.Tests.AttackContinuationTests.HeldCannonReleasesRememberedTargetThatMovesInsideDeadAngle" methodname="HeldCannonReleasesRememberedTargetThatMovesInsideDeadAngle" classname="Frontier.Tests.AttackContinuationTests" runstate="Runnable" seed="394887896" result="Failed" start-time="2026-09-14 19:06:56Z" end-time="2026-09-14 19:06:56Z" duration="0.007019" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Remembered invalid targets must obey the same eligibility as fresh acquisition
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.AttackContinuationTests.HeldCannonReleasesRememberedTargetThatMovesInsideDeadAngle () [0x000fd] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/AttackContinuationTests.cs:36
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1052" name="HeldMusketeerReleasesRememberedTargetOutsideRangeButStillVisible" fullname="Frontier.Tests.AttackContinuationTests.HeldMusketeerReleasesRememberedTargetOutsideRangeButStillVisible" methodname="HeldMusketeerReleasesRememberedTargetOutsideRangeButStillVisible" classname="Frontier.Tests.AttackContinuationTests" runstate="Runnable" seed="425735928" result="Failed" start-time="2026-09-14 19:06:56Z" end-time="2026-09-14 19:06:56Z" duration="0.008380" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.AttackContinuationTests.HeldMusketeerReleasesRememberedTargetOutsideRangeButStillVisible () [0x00120] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/AttackContinuationTests.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1053" name="RepeatingIdenticalDirectAttackPreservesPreparationAndNormalShotSpacing" fullname="Frontier.Tests.AttackContinuationTests.RepeatingIdenticalDirectAttackPreservesPreparationAndNormalShotSpacing" methodname="RepeatingIdenticalDirectAttackPreservesPreparationAndNormalShotSpacing" classname="Frontier.Tests.AttackContinuationTests" runstate="Runnable" seed="1294205804" result="Failed" start-time="2026-09-14 19:06:56Z" end-time="2026-09-14 19:06:56Z" duration="0.008057" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Repeated confirmation of the same attack must not keep cancelling its preparation
+  Expected: greater than or equal to 2
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.AttackContinuationTests.RepeatingIdenticalDirectAttackPreservesPreparationAndNormalShotSpacing () [0x000ad] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/AttackContinuationTests.cs:50
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1054" name="AttackLifecycleTests" fullname="Frontier.Tests.AttackLifecycleTests" classname="Frontier.Tests.AttackLifecycleTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-14 19:06:56Z" end-time="2026-09-14 19:06:57Z" duration="0.074438" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1055" name="AttackMoveKillsTwoEncounteredTargetsThenRunsNextWaypoint" fullname="Frontier.Tests.AttackLifecycleTests.AttackMoveKillsTwoEncounteredTargetsThenRunsNextWaypoint" methodname="AttackMoveKillsTwoEncounteredTargetsThenRunsNextWaypoint" classname="Frontier.Tests.AttackLifecycleTests" runstate="Runnable" seed="963601652" result="Passed" start-time="2026-09-14 19:06:56Z" end-time="2026-09-14 19:06:57Z" duration="0.047206" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1056" name="ChangingDirectTargetCancelsPreparedShotButRetainsReload" fullname="Frontier.Tests.AttackLifecycleTests.ChangingDirectTargetCancelsPreparedShotButRetainsReload" methodname="ChangingDirectTargetCancelsPreparedShotButRetainsReload" classname="Frontier.Tests.AttackLifecycleTests" runstate="Runnable" seed="1323192071" result="Passed" start-time="2026-09-14 19:06:57Z" end-time="2026-09-14 19:06:57Z" duration="0.003772" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1057" name="ExplicitAttackStillPursuesOutOfRangeTarget" fullname="Frontier.Tests.AttackLifecycleTests.ExplicitAttackStillPursuesOutOfRangeTarget" methodname="ExplicitAttackStillPursuesOutOfRangeTarget" classname="Frontier.Tests.AttackLifecycleTests" runstate="Runnable" seed="1191055211" result="Passed" start-time="2026-09-14 19:06:57Z" end-time="2026-09-14 19:06:57Z" duration="0.007160" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1059" name="GunFiresAfterRepeatedAttackCommandsCease" fullname="Frontier.Tests.AttackLifecycleTests.GunFiresAfterRepeatedAttackCommandsCease" methodname="GunFiresAfterRepeatedAttackCommandsCease" classname="Frontier.Tests.AttackLifecycleTests" runstate="Runnable" seed="1785749646" result="Passed" start-time="2026-09-14 19:06:57Z" end-time="2026-09-14 19:06:57Z" duration="0.007368" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1058" name="HeldCannonFiresAfterOnlyDeadAngleDistractionIsRemoved" fullname="Frontier.Tests.AttackLifecycleTests.HeldCannonFiresAfterOnlyDeadAngleDistractionIsRemoved" methodname="HeldCannonFiresAfterOnlyDeadAngleDistractionIsRemoved" classname="Frontier.Tests.AttackLifecycleTests" runstate="Runnable" seed="1595087298" result="Passed" start-time="2026-09-14 19:06:57Z" end-time="2026-09-14 19:06:57Z" duration="0.007477" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Failed(Child)" total="5" passed="2" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 16:23:41Z" end-time="2026-09-14 16:23:41Z" duration="0.0617646">
+  <test-suite type="TestSuite" id="1000" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="161" result="Failed" site="Child" start-time="2026-09-14 16:23:41Z" end-time="2026-09-14 16:23:41Z" duration="0.061765" total="5" passed="2" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1200" name="Frontier.EditMode.dll" fullname="/Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Library/ScriptAssemblies/Frontier.EditMode.dll" runstate="Runnable" testcasecount="161" result="Failed" site="Child" start-time="2026-09-14 16:23:41Z" end-time="2026-09-14 16:23:41Z" duration="0.057998" total="5" passed="2" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="99490" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1201" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="155" result="Failed" site="Child" start-time="2026-09-14 16:23:41Z" end-time="2026-09-14 16:23:41Z" duration="0.057334" total="5" passed="2" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1202" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="155" result="Failed" site="Child" start-time="2026-09-14 16:23:41Z" end-time="2026-09-14 16:23:41Z" duration="0.057054" total="5" passed="2" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1015" name="AiConstructionTests" fullname="Frontier.Tests.AiConstructionTests" classname="Frontier.Tests.AiConstructionTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-09-14 16:23:41Z" end-time="2026-09-14 16:23:41Z" duration="0.055247" total="5" passed="2" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1020" name="ActiveConstructionKeepsItsBuilderWithoutDuplicatePaymentOrReassignment" fullname="Frontier.Tests.AiConstructionTests.ActiveConstructionKeepsItsBuilderWithoutDuplicatePaymentOrReassignment" methodname="ActiveConstructionKeepsItsBuilderWithoutDuplicatePaymentOrReassignment" classname="Frontier.Tests.AiConstructionTests" runstate="Runnable" seed="1220717112" result="Passed" start-time="2026-09-14 16:23:41Z" end-time="2026-09-14 16:23:41Z" duration="0.031010" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1019" name="LostBuilderIsReplacedAtOriginalPaidFoundationAndConstructionFinishes" fullname="Frontier.Tests.AiConstructionTests.LostBuilderIsReplacedAtOriginalPaidFoundationAndConstructionFinishes" methodname="LostBuilderIsReplacedAtOriginalPaidFoundationAndConstructionFinishes" classname="Frontier.Tests.AiConstructionTests" runstate="Runnable" seed="615984171" result="Failed" start-time="2026-09-14 16:23:41Z" end-time="2026-09-14 16:23:41Z" duration="0.014469" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A surviving real villager must resume the existing unfinished foundation
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.AiConstructionTests.LostBuilderIsReplacedAtOriginalPaidFoundationAndConstructionFinishes () [0x000cd] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/AiConstructionTests.cs:47
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1021" name="VisibleRaidPreventsSendingReplacementBuilderIntoDanger" fullname="Frontier.Tests.AiConstructionTests.VisibleRaidPreventsSendingReplacementBuilderIntoDanger" methodname="VisibleRaidPreventsSendingReplacementBuilderIntoDanger" classname="Frontier.Tests.AiConstructionTests" runstate="Runnable" seed="1431553361" result="Passed" start-time="2026-09-14 16:23:41Z" end-time="2026-09-14 16:23:41Z" duration="0.001433" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1018" name="WorkersGatherFromAvailableSourceWhilePaidEconomicBuildingIsUnfinished" fullname="Frontier.Tests.AiConstructionTests.WorkersGatherFromAvailableSourceWhilePaidEconomicBuildingIsUnfinished" classname="Frontier.Tests.AiConstructionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-14 16:23:41Z" end-time="2026-09-14 16:23:41Z" duration="0.002844" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1016" name="WorkersGatherFromAvailableSourceWhilePaidEconomicBuildingIsUnfinished(&quot;farm&quot;,&quot;berry&quot;)" fullname="Frontier.Tests.AiConstructionTests.WorkersGatherFromAvailableSourceWhilePaidEconomicBuildingIsUnfinished(&quot;farm&quot;,&quot;berry&quot;)" methodname="WorkersGatherFromAvailableSourceWhilePaidEconomicBuildingIsUnfinished" classname="Frontier.Tests.AiConstructionTests" runstate="Runnable" seed="1646259789" result="Failed" start-time="2026-09-14 16:23:41Z" end-time="2026-09-14 16:23:41Z" duration="0.001117" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  An unfinished economy building must not attract gatherers away from a working source
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at Frontier.Tests.AiConstructionTests.WorkersGatherFromAvailableSourceWhilePaidEconomicBuildingIsUnfinished (System.String building, System.String resource) [0x0011e] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/AiConstructionTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1017" name="WorkersGatherFromAvailableSourceWhilePaidEconomicBuildingIsUnfinished(&quot;estate&quot;,&quot;mine&quot;)" fullname="Frontier.Tests.AiConstructionTests.WorkersGatherFromAvailableSourceWhilePaidEconomicBuildingIsUnfinished(&quot;estate&quot;,&quot;mine&quot;)" methodname="WorkersGatherFromAvailableSourceWhilePaidEconomicBuildingIsUnfinished" classname="Frontier.Tests.AiConstructionTests" runstate="Runnable" seed="1560456594" result="Failed" start-time="2026-09-14 16:23:41Z" end-time="2026-09-14 16:23:41Z" duration="0.000569" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  An unfinished economy building must not attract gatherers away from a working source
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at Frontier.Tests.AiConstructionTests.WorkersGatherFromAvailableSourceWhilePaidEconomicBuildingIsUnfinished (System.String building, System.String resource) [0x0011e] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/AiConstructionTests.cs:35
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[Saving results to: /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="9" result="Failed(Child)" total="9" passed="2" failed="7" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 07:01:59Z" end-time="2026-09-14 07:02:02Z" duration="2.1766624">
+  <test-suite type="TestSuite" id="1137" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="111" result="Failed" site="Child" start-time="2026-09-14 07:01:59Z" end-time="2026-09-14 07:02:02Z" duration="2.176662" total="9" passed="2" failed="7" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1131" name="Frontier.PlayMode.dll" fullname="/Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Library/ScriptAssemblies/Frontier.PlayMode.dll" runstate="Runnable" testcasecount="111" result="Failed" site="Child" start-time="2026-09-14 07:01:59Z" end-time="2026-09-14 07:02:02Z" duration="2.172618" total="9" passed="2" failed="7" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="29295" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1132" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="111" result="Failed" site="Child" start-time="2026-09-14 07:01:59Z" end-time="2026-09-14 07:02:02Z" duration="2.172181" total="9" passed="2" failed="7" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1133" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="111" result="Failed" site="Child" start-time="2026-09-14 07:01:59Z" end-time="2026-09-14 07:02:02Z" duration="2.171886" total="9" passed="2" failed="7" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1020" name="FocusPauseTests" fullname="Frontier.Tests.FocusPauseTests" classname="Frontier.Tests.FocusPauseTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-09-14 07:01:59Z" end-time="2026-09-14 07:02:02Z" duration="2.168117" total="9" passed="2" failed="7" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1029" name="AutoplayBenchmarkMenuAndResultAreFocusPauseExempt" fullname="Frontier.Tests.FocusPauseTests.AutoplayBenchmarkMenuAndResultAreFocusPauseExempt" methodname="AutoplayBenchmarkMenuAndResultAreFocusPauseExempt" classname="Frontier.Tests.FocusPauseTests" runstate="Runnable" seed="2141050983" result="Passed" start-time="2026-09-14 07:01:59Z" end-time="2026-09-14 07:02:00Z" duration="0.298275" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_REPORT /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20260914-070200-menu_exit.json
+]]></output>
+            </test-case>
+            <test-case id="1023" name="ExistingManualPauseRemainsManualAndPaused" fullname="Frontier.Tests.FocusPauseTests.ExistingManualPauseRemainsManualAndPaused" methodname="ExistingManualPauseRemainsManualAndPaused" classname="Frontier.Tests.FocusPauseTests" runstate="Runnable" seed="304819032" result="Passed" start-time="2026-09-14 07:02:00Z" end-time="2026-09-14 07:02:00Z" duration="0.163991" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1027" name="ExplicitResumeRestoresProgression" fullname="Frontier.Tests.FocusPauseTests.ExplicitResumeRestoresProgression" methodname="ExplicitResumeRestoresProgression" classname="Frontier.Tests.FocusPauseTests" runstate="Runnable" seed="848301797" result="Failed" start-time="2026-09-14 07:02:00Z" end-time="2026-09-14 07:02:00Z" duration="0.333267" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.FocusPauseTests+<ExplicitResumeRestoresProgression>d__10.MoveNext () [0x000c4] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/PlayMode/FocusPauseTests.cs:87
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1021" name="FocusLossFreezesWorldTimeAndProductionGatheringAndShipment" fullname="Frontier.Tests.FocusPauseTests.FocusLossFreezesWorldTimeAndProductionGatheringAndShipment" methodname="FocusLossFreezesWorldTimeAndProductionGatheringAndShipment" classname="Frontier.Tests.FocusPauseTests" runstate="Runnable" seed="1544969216" result="Failed" start-time="2026-09-14 07:02:00Z" end-time="2026-09-14 07:02:01Z" duration="0.499809" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.FocusPauseTests+<FocusLossFreezesWorldTimeAndProductionGatheringAndShipment>d__4.MoveNext () [0x002d6] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/PlayMode/FocusPauseTests.cs:37
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1024" name="FocusLossReplacesHomeAndAgeModalWithoutPaymentOrShipment" fullname="Frontier.Tests.FocusPauseTests.FocusLossReplacesHomeAndAgeModalWithoutPaymentOrShipment" methodname="FocusLossReplacesHomeAndAgeModalWithoutPaymentOrShipment" classname="Frontier.Tests.FocusPauseTests" runstate="Runnable" seed="1085124087" result="Failed" start-time="2026-09-14 07:02:01Z" end-time="2026-09-14 07:02:01Z" duration="0.166263" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.FocusPauseTests+<FocusLossReplacesHomeAndAgeModalWithoutPaymentOrShipment>d__7.MoveNext () [0x000e0] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/PlayMode/FocusPauseTests.cs:60
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1025" name="FocusLossRetainsSelectionAndGroupsButClearsPendingModes" fullname="Frontier.Tests.FocusPauseTests.FocusLossRetainsSelectionAndGroupsButClearsPendingModes" methodname="FocusLossRetainsSelectionAndGroupsButClearsPendingModes" classname="Frontier.Tests.FocusPauseTests" runstate="Runnable" seed="801192939" result="Failed" start-time="2026-09-14 07:02:01Z" end-time="2026-09-14 07:02:01Z" duration="0.133551" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.FocusPauseTests+<FocusLossRetainsSelectionAndGroupsButClearsPendingModes>d__8.MoveNext () [0x0009b] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/PlayMode/FocusPauseTests.cs:69
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1026" name="HeldTrainPressAcrossFocusLossReleaseDoesNotPay" fullname="Frontier.Tests.FocusPauseTests.HeldTrainPressAcrossFocusLossReleaseDoesNotPay" methodname="HeldTrainPressAcrossFocusLossReleaseDoesNotPay" classname="Frontier.Tests.FocusPauseTests" runstate="Runnable" seed="958602967" result="Failed" start-time="2026-09-14 07:02:01Z" end-time="2026-09-14 07:02:01Z" duration="0.233176" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 0.0d +/- 0.0010000000474974513d
+  But was:  100.0d
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.FocusPauseTests+<HeldTrainPressAcrossFocusLossReleaseDoesNotPay>d__9.MoveNext () [0x00131] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/PlayMode/FocusPauseTests.cs:81
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1028" name="PauseXActsAsResumeAndRestartOrMenuCleansState" fullname="Frontier.Tests.FocusPauseTests.PauseXActsAsResumeAndRestartOrMenuCleansState" methodname="PauseXActsAsResumeAndRestartOrMenuCleansState" classname="Frontier.Tests.FocusPauseTests" runstate="Runnable" seed="1668129037" result="Failed" start-time="2026-09-14 07:02:01Z" end-time="2026-09-14 07:02:01Z" duration="0.166635" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.FocusPauseTests+<PauseXActsAsResumeAndRestartOrMenuCleansState>d__11.MoveNext () [0x0009e] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/PlayMode/FocusPauseTests.cs:92
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1022" name="RepeatedFocusLossStaysPausedAndFocusGainDoesNotResume" fullname="Frontier.Tests.FocusPauseTests.RepeatedFocusLossStaysPausedAndFocusGainDoesNotResume" methodname="RepeatedFocusLossStaysPausedAndFocusGainDoesNotResume" classname="Frontier.Tests.FocusPauseTests" runstate="Runnable" seed="2070519807" result="Failed" start-time="2026-09-14 07:02:01Z" end-time="2026-09-14 07:02:02Z" duration="0.166698" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.FocusPauseTests+<RepeatedFocusLossStaysPausedAndFocusGainDoesNotResume>d__5.MoveNext () [0x00084] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/PlayMode/FocusPauseTests.cs:46
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[Saving results to: /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

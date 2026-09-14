@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="83" result="Failed(Child)" total="83" passed="82" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 05:32:20Z" end-time="2026-09-14 05:32:39Z" duration="19.2750768">
+  <test-suite type="TestSuite" id="1105" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="83" result="Failed" site="Child" start-time="2026-09-14 05:32:20Z" end-time="2026-09-14 05:32:39Z" duration="19.275077" total="83" passed="82" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1099" name="Frontier.PlayMode.dll" fullname="/Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Library/ScriptAssemblies/Frontier.PlayMode.dll" runstate="Runnable" testcasecount="83" result="Failed" site="Child" start-time="2026-09-14 05:32:20Z" end-time="2026-09-14 05:32:39Z" duration="19.270739" total="83" passed="82" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="87437" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1100" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="83" result="Failed" site="Child" start-time="2026-09-14 05:32:20Z" end-time="2026-09-14 05:32:39Z" duration="19.270341" total="83" passed="82" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1101" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="83" result="Failed" site="Child" start-time="2026-09-14 05:32:20Z" end-time="2026-09-14 05:32:39Z" duration="19.269808" total="83" passed="82" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1001" name="AnimationLifecycleTests" fullname="Frontier.Tests.AnimationLifecycleTests" classname="Frontier.Tests.AnimationLifecycleTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-09-14 05:32:20Z" end-time="2026-09-14 05:32:20Z" duration="0.254135" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1002" name="ObservedShotDeathPauseAndPoolResetUseEventTime" fullname="Frontier.Tests.AnimationLifecycleTests.ObservedShotDeathPauseAndPoolResetUseEventTime" methodname="ObservedShotDeathPauseAndPoolResetUseEventTime" classname="Frontier.Tests.AnimationLifecycleTests" runstate="Runnable" seed="684267171" result="Passed" start-time="2026-09-14 05:32:20Z" end-time="2026-09-14 05:32:20Z" duration="0.249013" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_REPORT /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20260914-053220-menu_exit.json
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1003" name="CharacterStudyTests" fullname="Frontier.Tests.CharacterStudyTests" classname="Frontier.Tests.CharacterStudyTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-09-14 05:32:20Z" end-time="2026-09-14 05:32:22Z" duration="1.870711" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1004" name="RenderUnitStudyAndPoseSheet" fullname="Frontier.Tests.CharacterStudyTests.RenderUnitStudyAndPoseSheet" methodname="RenderUnitStudyAndPoseSheet" classname="Frontier.Tests.CharacterStudyTests" runstate="Runnable" seed="1550407542" result="Passed" start-time="2026-09-14 05:32:20Z" end-time="2026-09-14 05:32:22Z" duration="1.857219" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1005" name="CombatPresentationTests" fullname="Frontier.Tests.CombatPresentationTests" classname="Frontier.Tests.CombatPresentationTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-14 05:32:22Z" end-time="2026-09-14 05:32:22Z" duration="0.249914" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1008" name="AudioRoutesMeleeAndNoticesAndRejectsPreviouslyHiddenShots" fullname="Frontier.Tests.CombatPresentationTests.AudioRoutesMeleeAndNoticesAndRejectsPreviouslyHiddenShots" methodname="AudioRoutesMeleeAndNoticesAndRejectsPreviouslyHiddenShots" classname="Frontier.Tests.CombatPresentationTests" runstate="Runnable" seed="875597118" result="Passed" start-time="2026-09-14 05:32:22Z" end-time="2026-09-14 05:32:22Z" duration="0.066964" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_REPORT /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20260914-053222-menu_exit.json
+]]></output>
+            </test-case>
+            <test-case id="1007" name="EventTimeVisibilityPauseAndPoolSurviveMatchReset" fullname="Frontier.Tests.CombatPresentationTests.EventTimeVisibilityPauseAndPoolSurviveMatchReset" methodname="EventTimeVisibilityPauseAndPoolSurviveMatchReset" classname="Frontier.Tests.CombatPresentationTests" runstate="Runnable" seed="1105531903" result="Passed" start-time="2026-09-14 05:32:22Z" end-time="2026-09-14 05:32:22Z" duration="0.066267" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1006" name="ProjectileCannotExposeTheHiddenMiddleOfItsFlight" fullname="Frontier.Tests.CombatPresentationTests.ProjectileCannotExposeTheHiddenMiddleOfItsFlight" methodname="ProjectileCannotExposeTheHiddenMiddleOfItsFlight" classname="Frontier.Tests.CombatPresentationTests" runstate="Runnable" seed="263683060" result="Passed" start-time="2026-09-14 05:32:22Z" end-time="2026-09-14 05:32:22Z" duration="0.099851" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1009" name="ExplicitGarrisonInputTests" fullname="Frontier.Tests.ExplicitGarrisonInputTests" classname="Frontier.Tests.ExplicitGarrisonInputTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-09-14 05:32:22Z" end-time="2026-09-14 05:32:26Z" duration="3.249981" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1017" name="AttackBuildAndRestartClearTargetMode" fullname="Frontier.Tests.ExplicitGarrisonInputTests.AttackBuildAndRestartClearTargetMode" methodname="AttackBuildAndRestartClearTargetMode" classname="Frontier.Tests.ExplicitGarrisonInputTests" runstate="Runnable" seed="2048552775" result="Passed" start-time="2026-09-14 05:32:22Z" end-time="2026-09-14 05:32:23Z" duration="0.600993" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1010" name="ExplicitDamagedTownOrderUsesGarrisonAndEntersShelter" fullname="Frontier.Tests.ExplicitGarrisonInputTests.ExplicitDamagedTownOrderUsesGarrisonAndEntersShelter" methodname="ExplicitDamagedTownOrderUsesGarrisonAndEntersShelter" classname="Frontier.Tests.ExplicitGarrisonInputTests" runstate="Runnable" seed="862211061" result="Passed" start-time="2026-09-14 05:32:23Z" end-time="2026-09-14 05:32:23Z" duration="0.198898" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1019" name="HudButtonUsesPointerAndDoesNotOverlapCommonActions" fullname="Frontier.Tests.ExplicitGarrisonInputTests.HudButtonUsesPointerAndDoesNotOverlapCommonActions" methodname="HudButtonUsesPointerAndDoesNotOverlapCommonActions" classname="Frontier.Tests.ExplicitGarrisonInputTests" runstate="Runnable" seed="1968587913" result="Passed" start-time="2026-09-14 05:32:23Z" end-time="2026-09-14 05:32:24Z" duration="0.499922" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1013" name="InvalidBuildingEligibilityKeepsMode" fullname="Frontier.Tests.ExplicitGarrisonInputTests.InvalidBuildingEligibilityKeepsMode" methodname="InvalidBuildingEligibilityKeepsMode" classname="Frontier.Tests.ExplicitGarrisonInputTests" runstate="Runnable" seed="890569562" result="Passed" start-time="2026-09-14 05:32:24Z" end-time="2026-09-14 05:32:24Z" duration="0.299912" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1012" name="InvalidTargetKeepsModeAndDoesNotSelectOrOrderTerrain" fullname="Frontier.Tests.ExplicitGarrisonInputTests.InvalidTargetKeepsModeAndDoesNotSelectOrOrderTerrain" methodname="InvalidTargetKeepsModeAndDoesNotSelectOrOrderTerrain" classname="Frontier.Tests.ExplicitGarrisonInputTests" runstate="Runnable" seed="380356608" result="Passed" start-time="2026-09-14 05:32:24Z" end-time="2026-09-14 05:32:24Z" duration="0.233215" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1018" name="NoEligibleActorKeepsModeAndReportsRejection" fullname="Frontier.Tests.ExplicitGarrisonInputTests.NoEligibleActorKeepsModeAndReportsRejection" methodname="NoEligibleActorKeepsModeAndReportsRejection" classname="Frontier.Tests.ExplicitGarrisonInputTests" runstate="Runnable" seed="949692741" result="Passed" start-time="2026-09-14 05:32:24Z" end-time="2026-09-14 05:32:24Z" duration="0.199899" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1011" name="OrdinaryRightClickOnDamagedTownStillRepairs" fullname="Frontier.Tests.ExplicitGarrisonInputTests.OrdinaryRightClickOnDamagedTownStillRepairs" methodname="OrdinaryRightClickOnDamagedTownStillRepairs" classname="Frontier.Tests.ExplicitGarrisonInputTests" runstate="Runnable" seed="102862668" result="Passed" start-time="2026-09-14 05:32:24Z" end-time="2026-09-14 05:32:24Z" duration="0.166631" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1014" name="OverlappingEnemyDoesNotStealExplicitShelterTarget" fullname="Frontier.Tests.ExplicitGarrisonInputTests.OverlappingEnemyDoesNotStealExplicitShelterTarget" methodname="OverlappingEnemyDoesNotStealExplicitShelterTarget" classname="Frontier.Tests.ExplicitGarrisonInputTests" runstate="Runnable" seed="1721944589" result="Passed" start-time="2026-09-14 05:32:24Z" end-time="2026-09-14 05:32:25Z" duration="0.233121" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1015" name="RightClickEscapeAndGToggleCancelWithoutOrders" fullname="Frontier.Tests.ExplicitGarrisonInputTests.RightClickEscapeAndGToggleCancelWithoutOrders" methodname="RightClickEscapeAndGToggleCancelWithoutOrders" classname="Frontier.Tests.ExplicitGarrisonInputTests" runstate="Runnable" seed="1970840527" result="Passed" start-time="2026-09-14 05:32:25Z" end-time="2026-09-14 05:32:25Z" duration="0.600031" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1016" name="ShiftAppendsGarrisonAfterExistingMove" fullname="Frontier.Tests.ExplicitGarrisonInputTests.ShiftAppendsGarrisonAfterExistingMove" methodname="ShiftAppendsGarrisonAfterExistingMove" classname="Frontier.Tests.ExplicitGarrisonInputTests" runstate="Runnable" seed="125019645" result="Passed" start-time="2026-09-14 05:32:25Z" end-time="2026-09-14 05:32:26Z" duration="0.199754" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1020" name="HomeCityUiTests" fullname="Frontier.Tests.HomeCityUiTests" classname="Frontier.Tests.HomeCityUiTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-09-14 05:32:26Z" end-time="2026-09-14 05:32:30Z" duration="4.001295" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1021" name="AutoplayEliminationResultAcceptsMainMenuPointer" fullname="Frontier.Tests.HomeCityUiTests.AutoplayEliminationResultAcceptsMainMenuPointer" methodname="AutoplayEliminationResultAcceptsMainMenuPointer" classname="Frontier.Tests.HomeCityUiTests" runstate="Runnable" seed="903882153" result="Passed" start-time="2026-09-14 05:32:26Z" end-time="2026-09-14 05:32:26Z" duration="0.166756" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_REPORT /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20260914-053226-match_finished.json
+FRONTIER_PROGRESS t=0 entities=129 age=2/1 winner=0
+FRONTIER_REPORT /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20260914-053226-menu_exit.json
+]]></output>
+            </test-case>
+            <test-case id="1022" name="AutoplayEliminationResultAcceptsPlayAgainPointer" fullname="Frontier.Tests.HomeCityUiTests.AutoplayEliminationResultAcceptsPlayAgainPointer" methodname="AutoplayEliminationResultAcceptsPlayAgainPointer" classname="Frontier.Tests.HomeCityUiTests" runstate="Runnable" seed="1170097728" result="Passed" start-time="2026-09-14 05:32:26Z" end-time="2026-09-14 05:32:26Z" duration="0.166481" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_REPORT /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20260914-053226-match_finished.json
+FRONTIER_PROGRESS t=0 entities=129 age=2/1 winner=0
+FRONTIER_PROGRESS t=0 entities=129 age=1/1 winner=-1
+]]></output>
+            </test-case>
+            <test-case id="1028" name="BatchButtonDisablesForWholeCostAndPopulationThenSingleRemainsAvailable" fullname="Frontier.Tests.HomeCityUiTests.BatchButtonDisablesForWholeCostAndPopulationThenSingleRemainsAvailable" methodname="BatchButtonDisablesForWholeCostAndPopulationThenSingleRemainsAvailable" classname="Frontier.Tests.HomeCityUiTests" runstate="Runnable" seed="2036224044" result="Passed" start-time="2026-09-14 05:32:26Z" end-time="2026-09-14 05:32:26Z" duration="0.266589" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1034" name="ClickCoincidingWithPeriodicActionRebuildIsNotDropped" fullname="Frontier.Tests.HomeCityUiTests.ClickCoincidingWithPeriodicActionRebuildIsNotDropped" methodname="ClickCoincidingWithPeriodicActionRebuildIsNotDropped" classname="Frontier.Tests.HomeCityUiTests" runstate="Runnable" seed="1980271979" result="Passed" start-time="2026-09-14 05:32:26Z" end-time="2026-09-14 05:32:26Z" duration="0.183165" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1031" name="CompletedNextClickThenMoveToCardCannotSendThatCard" fullname="Frontier.Tests.HomeCityUiTests.CompletedNextClickThenMoveToCardCannotSendThatCard" methodname="CompletedNextClickThenMoveToCardCannotSendThatCard" classname="Frontier.Tests.HomeCityUiTests" runstate="Runnable" seed="2139972594" result="Passed" start-time="2026-09-14 05:32:26Z" end-time="2026-09-14 05:32:26Z" duration="0.133231" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1035" name="GroupsRemainAtSamePointWhenLeadingSoldierDies" fullname="Frontier.Tests.HomeCityUiTests.GroupsRemainAtSamePointWhenLeadingSoldierDies" methodname="GroupsRemainAtSamePointWhenLeadingSoldierDies" classname="Frontier.Tests.HomeCityUiTests" runstate="Runnable" seed="1141259147" result="Passed" start-time="2026-09-14 05:32:26Z" end-time="2026-09-14 05:32:27Z" duration="0.216638" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1033" name="HeldUiPressSurvivesPeriodicActionRefresh" fullname="Frontier.Tests.HomeCityUiTests.HeldUiPressSurvivesPeriodicActionRefresh" methodname="HeldUiPressSurvivesPeriodicActionRefresh" classname="Frontier.Tests.HomeCityUiTests" runstate="Runnable" seed="1551174116" result="Passed" start-time="2026-09-14 05:32:27Z" end-time="2026-09-14 05:32:28Z" duration="1.299819" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1036" name="MinimapClickBeforeRebuiltUiCannotClearItsPendingLayout" fullname="Frontier.Tests.HomeCityUiTests.MinimapClickBeforeRebuiltUiCannotClearItsPendingLayout" methodname="MinimapClickBeforeRebuiltUiCannotClearItsPendingLayout" classname="Frontier.Tests.HomeCityUiTests" runstate="Runnable" seed="425325692" result="Passed" start-time="2026-09-14 05:32:28Z" end-time="2026-09-14 05:32:28Z" duration="0.183247" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1029" name="MultiBuildingSelectionCanTrainWhenFirstQueueIsFull" fullname="Frontier.Tests.HomeCityUiTests.MultiBuildingSelectionCanTrainWhenFirstQueueIsFull" methodname="MultiBuildingSelectionCanTrainWhenFirstQueueIsFull" classname="Frontier.Tests.HomeCityUiTests" runstate="Runnable" seed="873420430" result="Passed" start-time="2026-09-14 05:32:28Z" end-time="2026-09-14 05:32:28Z" duration="0.166458" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1025" name="NativeRecordedCardThenNextCoordinatesExplainOneShipmentAndPageTwo" fullname="Frontier.Tests.HomeCityUiTests.NativeRecordedCardThenNextCoordinatesExplainOneShipmentAndPageTwo" methodname="NativeRecordedCardThenNextCoordinatesExplainOneShipmentAndPageTwo" classname="Frontier.Tests.HomeCityUiTests" runstate="Runnable" seed="1752187802" result="Passed" start-time="2026-09-14 05:32:28Z" end-time="2026-09-14 05:32:28Z" duration="0.166764" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1023" name="NextClicksRebuildPagesWithoutSendingAvailableCards" fullname="Frontier.Tests.HomeCityUiTests.NextClicksRebuildPagesWithoutSendingAvailableCards" methodname="NextClicksRebuildPagesWithoutSendingAvailableCards" classname="Frontier.Tests.HomeCityUiTests" runstate="Runnable" seed="8721678" result="Passed" start-time="2026-09-14 05:32:28Z" end-time="2026-09-14 05:32:29Z" duration="0.166503" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1026" name="PressNextReleaseOverCardDoesNotSendEither" fullname="Frontier.Tests.HomeCityUiTests.PressNextReleaseOverCardDoesNotSendEither" methodname="PressNextReleaseOverCardDoesNotSendEither" classname="Frontier.Tests.HomeCityUiTests" runstate="Runnable" seed="944396051" result="Passed" start-time="2026-09-14 05:32:29Z" end-time="2026-09-14 05:32:29Z" duration="0.149896" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1030" name="ReleaseInsideNextThenMoveAwaySameUpdateStillClicksNext" fullname="Frontier.Tests.HomeCityUiTests.ReleaseInsideNextThenMoveAwaySameUpdateStillClicksNext" methodname="ReleaseInsideNextThenMoveAwaySameUpdateStillClicksNext" classname="Frontier.Tests.HomeCityUiTests" runstate="Runnable" seed="20078841" result="Passed" start-time="2026-09-14 05:32:29Z" end-time="2026-09-14 05:32:29Z" duration="0.149863" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1032" name="TwoCompletedNextClicksInOneUpdateReachPageThree" fullname="Frontier.Tests.HomeCityUiTests.TwoCompletedNextClicksInOneUpdateReachPageThree" methodname="TwoCompletedNextClicksInOneUpdateReachPageThree" classname="Frontier.Tests.HomeCityUiTests" runstate="Runnable" seed="1240206553" result="Passed" start-time="2026-09-14 05:32:29Z" end-time="2026-09-14 05:32:29Z" duration="0.151271" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1024" name="UnlockingCardsUnderStationaryPointerDoesNotSendThemWhenNextIsClicked" fullname="Frontier.Tests.HomeCityUiTests.UnlockingCardsUnderStationaryPointerDoesNotSendThemWhenNextIsClicked" methodname="UnlockingCardsUnderStationaryPointerDoesNotSendThemWhenNextIsClicked" classname="Frontier.Tests.HomeCityUiTests" runstate="Runnable" seed="678604097" result="Passed" start-time="2026-09-14 05:32:29Z" end-time="2026-09-14 05:32:29Z" duration="0.183286" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1027" name="VisibleBatchControlPaysReservesAndRefundsWholeBatch" fullname="Frontier.Tests.HomeCityUiTests.VisibleBatchControlPaysReservesAndRefundsWholeBatch" methodname="VisibleBatchControlPaysReservesAndRefundsWholeBatch" classname="Frontier.Tests.HomeCityUiTests" runstate="Runnable" seed="451065108" result="Passed" start-time="2026-09-14 05:32:29Z" end-time="2026-09-14 05:32:30Z" duration="0.233168" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1037" name="ImportedCharacterTests" fullname="Frontier.Tests.ImportedCharacterTests" classname="Frontier.Tests.ImportedCharacterTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-09-14 05:32:30Z" end-time="2026-09-14 05:32:30Z" duration="0.099778" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1038" name="ImportedAxesAndActualArmSurfacesFollowTheGameplayJoint" fullname="Frontier.Tests.ImportedCharacterTests.ImportedAxesAndActualArmSurfacesFollowTheGameplayJoint" methodname="ImportedAxesAndActualArmSurfacesFollowTheGameplayJoint" classname="Frontier.Tests.ImportedCharacterTests" runstate="Runnable" seed="1174856447" result="Passed" start-time="2026-09-14 05:32:30Z" end-time="2026-09-14 05:32:30Z" duration="0.083213" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1039" name="LifecycleTests" fullname="Frontier.Tests.LifecycleTests" classname="Frontier.Tests.LifecycleTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-09-14 05:32:30Z" end-time="2026-09-14 05:32:30Z" duration="0.433251" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1040" name="MatchPauseRestartRebuildsRuntime" fullname="Frontier.Tests.LifecycleTests.MatchPauseRestartRebuildsRuntime" methodname="MatchPauseRestartRebuildsRuntime" classname="Frontier.Tests.LifecycleTests" runstate="Runnable" seed="1255251063" result="Passed" start-time="2026-09-14 05:32:30Z" end-time="2026-09-14 05:32:30Z" duration="0.416556" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_REPORT /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20260914-053230-menu_exit.json
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1041" name="ModalShortcutTests" fullname="Frontier.Tests.ModalShortcutTests" classname="Frontier.Tests.ModalShortcutTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-09-14 05:32:30Z" end-time="2026-09-14 05:32:32Z" duration="1.483535" total="8" passed="7" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1043" name="BuildModalEscapeThenIdleVillagerShortcutUsesFreshKeyboardEdge" fullname="Frontier.Tests.ModalShortcutTests.BuildModalEscapeThenIdleVillagerShortcutUsesFreshKeyboardEdge" methodname="BuildModalEscapeThenIdleVillagerShortcutUsesFreshKeyboardEdge" classname="Frontier.Tests.ModalShortcutTests" runstate="Runnable" seed="724336102" result="Passed" start-time="2026-09-14 05:32:30Z" end-time="2026-09-14 05:32:30Z" duration="0.166680" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1047" name="EscapeAndQueuedRightPointerCannotIssueWorldMove" fullname="Frontier.Tests.ModalShortcutTests.EscapeAndQueuedRightPointerCannotIssueWorldMove" methodname="EscapeAndQueuedRightPointerCannotIssueWorldMove" classname="Frontier.Tests.ModalShortcutTests" runstate="Runnable" seed="97396423" result="Passed" start-time="2026-09-14 05:32:30Z" end-time="2026-09-14 05:32:30Z" duration="0.166483" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1042" name="HomeCityEscapeThenTownShortcutUsesFreshKeyboardEdge" fullname="Frontier.Tests.ModalShortcutTests.HomeCityEscapeThenTownShortcutUsesFreshKeyboardEdge" methodname="HomeCityEscapeThenTownShortcutUsesFreshKeyboardEdge" classname="Frontier.Tests.ModalShortcutTests" runstate="Runnable" seed="144673542" result="Passed" start-time="2026-09-14 05:32:30Z" end-time="2026-09-14 05:32:31Z" duration="0.166569" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1046" name="KeyboardShortcutRemainsIgnoredWhileModalIsOpen" fullname="Frontier.Tests.ModalShortcutTests.KeyboardShortcutRemainsIgnoredWhileModalIsOpen" methodname="KeyboardShortcutRemainsIgnoredWhileModalIsOpen" classname="Frontier.Tests.ModalShortcutTests" runstate="Runnable" seed="588235215" result="Passed" start-time="2026-09-14 05:32:31Z" end-time="2026-09-14 05:32:31Z" duration="0.166624" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1044" name="NativeCloseButtonThenTownShortcutWorksDuringPointerBarrier" fullname="Frontier.Tests.ModalShortcutTests.NativeCloseButtonThenTownShortcutWorksDuringPointerBarrier" methodname="NativeCloseButtonThenTownShortcutWorksDuringPointerBarrier" classname="Frontier.Tests.ModalShortcutTests" runstate="Runnable" seed="468321051" result="Passed" start-time="2026-09-14 05:32:31Z" end-time="2026-09-14 05:32:31Z" duration="0.199831" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1045" name="RealBuildButtonThenFreshGCanEnterGarrisonMode" fullname="Frontier.Tests.ModalShortcutTests.RealBuildButtonThenFreshGCanEnterGarrisonMode" methodname="RealBuildButtonThenFreshGCanEnterGarrisonMode" classname="Frontier.Tests.ModalShortcutTests" runstate="Runnable" seed="74421314" result="Passed" start-time="2026-09-14 05:32:31Z" end-time="2026-09-14 05:32:31Z" duration="0.233189" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1049" name="RealResumeButtonAcceptsFreshKeyButRejectsQueuedRightPointer" fullname="Frontier.Tests.ModalShortcutTests.RealResumeButtonAcceptsFreshKeyButRejectsQueuedRightPointer" methodname="RealResumeButtonAcceptsFreshKeyButRejectsQueuedRightPointer" classname="Frontier.Tests.ModalShortcutTests" runstate="Runnable" seed="148071635" result="Failed" start-time="2026-09-14 05:32:31Z" end-time="2026-09-14 05:32:31Z" duration="0.166633" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.ModalShortcutTests+<RealResumeButtonAcceptsFreshKeyButRejectsQueuedRightPointer>d__12.MoveNext () [0x0013b] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/PlayMode/ModalShortcutTests.cs:106
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1048" name="ShortcutConsumedByOpenModalCannotReviveWhenItCloses" fullname="Frontier.Tests.ModalShortcutTests.ShortcutConsumedByOpenModalCannotReviveWhenItCloses" methodname="ShortcutConsumedByOpenModalCannotReviveWhenItCloses" classname="Frontier.Tests.ModalShortcutTests" runstate="Runnable" seed="615308821" result="Passed" start-time="2026-09-14 05:32:31Z" end-time="2026-09-14 05:32:32Z" duration="0.199843" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1050" name="OrderedInputTests" fullname="Frontier.Tests.OrderedInputTests" classname="Frontier.Tests.OrderedInputTests" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-09-14 05:32:32Z" end-time="2026-09-14 05:32:35Z" duration="3.299838" total="19" passed="19" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1067" name="AllTenControlGroupDigitsRoundTrip" fullname="Frontier.Tests.OrderedInputTests.AllTenControlGroupDigitsRoundTrip" methodname="AllTenControlGroupDigitsRoundTrip" classname="Frontier.Tests.OrderedInputTests" runstate="Runnable" seed="138055897" result="Passed" start-time="2026-09-14 05:32:32Z" end-time="2026-09-14 05:32:32Z" duration="0.749944" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1062" name="AttackKeyBeforeClickUsesThatClickAsAttackMove" fullname="Frontier.Tests.OrderedInputTests.AttackKeyBeforeClickUsesThatClickAsAttackMove" methodname="AttackKeyBeforeClickUsesThatClickAsAttackMove" classname="Frontier.Tests.OrderedInputTests" runstate="Runnable" seed="280243309" result="Passed" start-time="2026-09-14 05:32:32Z" end-time="2026-09-14 05:32:32Z" duration="0.116661" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1064" name="AttackMoveMinimapClickAndReleaseIssuesOneOrder" fullname="Frontier.Tests.OrderedInputTests.AttackMoveMinimapClickAndReleaseIssuesOneOrder" methodname="AttackMoveMinimapClickAndReleaseIssuesOneOrder" classname="Frontier.Tests.OrderedInputTests" runstate="Runnable" seed="1722329793" result="Passed" start-time="2026-09-14 05:32:32Z" end-time="2026-09-14 05:32:33Z" duration="0.116580" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1055" name="BoxThenCommandDigitSavesNewSelection" fullname="Frontier.Tests.OrderedInputTests.BoxThenCommandDigitSavesNewSelection" methodname="BoxThenCommandDigitSavesNewSelection" classname="Frontier.Tests.OrderedInputTests" runstate="Runnable" seed="36826798" result="Passed" start-time="2026-09-14 05:32:33Z" end-time="2026-09-14 05:32:33Z" duration="0.149914" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1051" name="BoxThenRightClickUsesNewSelection" fullname="Frontier.Tests.OrderedInputTests.BoxThenRightClickUsesNewSelection" methodname="BoxThenRightClickUsesNewSelection" classname="Frontier.Tests.OrderedInputTests" runstate="Runnable" seed="1570651859" result="Passed" start-time="2026-09-14 05:32:33Z" end-time="2026-09-14 05:32:33Z" duration="0.116463" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1060" name="EscapeClosingModalDiscardsSameFrameWorldPointer" fullname="Frontier.Tests.OrderedInputTests.EscapeClosingModalDiscardsSameFrameWorldPointer" methodname="EscapeClosingModalDiscardsSameFrameWorldPointer" classname="Frontier.Tests.OrderedInputTests" runstate="Runnable" seed="722147974" result="Passed" start-time="2026-09-14 05:32:33Z" end-time="2026-09-14 05:32:33Z" duration="0.416622" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1058" name="FriendlyUnitDoesNotHideResourceFromWorkerCommand" fullname="Frontier.Tests.OrderedInputTests.FriendlyUnitDoesNotHideResourceFromWorkerCommand" methodname="FriendlyUnitDoesNotHideResourceFromWorkerCommand" classname="Frontier.Tests.OrderedInputTests" runstate="Runnable" seed="1418266856" result="Passed" start-time="2026-09-14 05:32:33Z" end-time="2026-09-14 05:32:33Z" duration="0.116541" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1057" name="FriendlyUnitDoesNotHideTreasureFromExplorerCommand" fullname="Frontier.Tests.OrderedInputTests.FriendlyUnitDoesNotHideTreasureFromExplorerCommand" methodname="FriendlyUnitDoesNotHideTreasureFromExplorerCommand" classname="Frontier.Tests.OrderedInputTests" runstate="Runnable" seed="2088723799" result="Passed" start-time="2026-09-14 05:32:33Z" end-time="2026-09-14 05:32:33Z" duration="0.149934" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1059" name="GuardedTreasureStillRejectsClaimWhenFriendlyUnitOverlaps" fullname="Frontier.Tests.OrderedInputTests.GuardedTreasureStillRejectsClaimWhenFriendlyUnitOverlaps" methodname="GuardedTreasureStillRejectsClaimWhenFriendlyUnitOverlaps" classname="Frontier.Tests.OrderedInputTests" runstate="Runnable" seed="1621642705" result="Passed" start-time="2026-09-14 05:32:33Z" end-time="2026-09-14 05:32:34Z" duration="0.116456" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1068" name="HiddenEnemyCannotBecomeRightClickAttackTarget" fullname="Frontier.Tests.OrderedInputTests.HiddenEnemyCannotBecomeRightClickAttackTarget" methodname="HiddenEnemyCannotBecomeRightClickAttackTarget" classname="Frontier.Tests.OrderedInputTests" runstate="Runnable" seed="844309592" result="Passed" start-time="2026-09-14 05:32:34Z" end-time="2026-09-14 05:32:34Z" duration="0.116622" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1065" name="OpeningHomeCityBlocksLaterPointerAndGroupKeys" fullname="Frontier.Tests.OrderedInputTests.OpeningHomeCityBlocksLaterPointerAndGroupKeys" methodname="OpeningHomeCityBlocksLaterPointerAndGroupKeys" classname="Frontier.Tests.OrderedInputTests" runstate="Runnable" seed="659836311" result="Passed" start-time="2026-09-14 05:32:34Z" end-time="2026-09-14 05:32:34Z" duration="0.116568" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1069" name="RestartDiscardsCapturedEdgesAndControlGroups" fullname="Frontier.Tests.OrderedInputTests.RestartDiscardsCapturedEdgesAndControlGroups" methodname="RestartDiscardsCapturedEdgesAndControlGroups" classname="Frontier.Tests.OrderedInputTests" runstate="Runnable" seed="1943239130" result="Passed" start-time="2026-09-14 05:32:34Z" end-time="2026-09-14 05:32:34Z" duration="0.149853" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1061" name="ResumeButtonDiscardsSameFrameRightClick" fullname="Frontier.Tests.OrderedInputTests.ResumeButtonDiscardsSameFrameRightClick" methodname="ResumeButtonDiscardsSameFrameRightClick" classname="Frontier.Tests.OrderedInputTests" runstate="Runnable" seed="1296894993" result="Passed" start-time="2026-09-14 05:32:34Z" end-time="2026-09-14 05:32:34Z" duration="0.116580" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1052" name="RightClickBeforeBoxKeepsOldActorAndItsOwnPosition" fullname="Frontier.Tests.OrderedInputTests.RightClickBeforeBoxKeepsOldActorAndItsOwnPosition" methodname="RightClickBeforeBoxKeepsOldActorAndItsOwnPosition" classname="Frontier.Tests.OrderedInputTests" runstate="Runnable" seed="742647400" result="Passed" start-time="2026-09-14 05:32:34Z" end-time="2026-09-14 05:32:34Z" duration="0.116487" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1063" name="RightClickOnMinimapIssuesExactlyOneOrder" fullname="Frontier.Tests.OrderedInputTests.RightClickOnMinimapIssuesExactlyOneOrder" methodname="RightClickOnMinimapIssuesExactlyOneOrder" classname="Frontier.Tests.OrderedInputTests" runstate="Runnable" seed="1841983722" result="Passed" start-time="2026-09-14 05:32:34Z" end-time="2026-09-14 05:32:34Z" duration="0.116624" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1056" name="SaveBeforeBoxPreservesPreviousSelection" fullname="Frontier.Tests.OrderedInputTests.SaveBeforeBoxPreservesPreviousSelection" methodname="SaveBeforeBoxPreservesPreviousSelection" classname="Frontier.Tests.OrderedInputTests" runstate="Runnable" seed="497010599" result="Passed" start-time="2026-09-14 05:32:34Z" end-time="2026-09-14 05:32:34Z" duration="0.149925" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1054" name="ShiftReleasedBetweenRightClicksReplacesPreviousQueue" fullname="Frontier.Tests.OrderedInputTests.ShiftReleasedBetweenRightClicksReplacesPreviousQueue" methodname="ShiftReleasedBetweenRightClicksReplacesPreviousQueue" classname="Frontier.Tests.OrderedInputTests" runstate="Runnable" seed="1060527775" result="Passed" start-time="2026-09-14 05:32:34Z" end-time="2026-09-14 05:32:35Z" duration="0.116560" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1066" name="ShiftSelectionUsesEachReleaseSnapshot" fullname="Frontier.Tests.OrderedInputTests.ShiftSelectionUsesEachReleaseSnapshot" methodname="ShiftSelectionUsesEachReleaseSnapshot" classname="Frontier.Tests.OrderedInputTests" runstate="Runnable" seed="1363632258" result="Passed" start-time="2026-09-14 05:32:35Z" end-time="2026-09-14 05:32:35Z" duration="0.116540" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1053" name="TwoShiftRightClicksRetainBothDestinations" fullname="Frontier.Tests.OrderedInputTests.TwoShiftRightClicksRetainBothDestinations" methodname="TwoShiftRightClicksRetainBothDestinations" classname="Frontier.Tests.OrderedInputTests" runstate="Runnable" seed="231387802" result="Passed" start-time="2026-09-14 05:32:35Z" end-time="2026-09-14 05:32:35Z" duration="0.116657" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1070" name="PickingGeometryTests" fullname="Frontier.Tests.PickingGeometryTests" classname="Frontier.Tests.PickingGeometryTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-09-14 05:32:35Z" end-time="2026-09-14 05:32:37Z" duration="2.049874" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1080" name="ConstructionBoundsGrowWithModel" fullname="Frontier.Tests.PickingGeometryTests.ConstructionBoundsGrowWithModel" methodname="ConstructionBoundsGrowWithModel" classname="Frontier.Tests.PickingGeometryTests" runstate="Runnable" seed="494098194" result="Passed" start-time="2026-09-14 05:32:35Z" end-time="2026-09-14 05:32:35Z" duration="0.233434" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1077" name="DeadResourceAndReusedModelDoNotRetainOldLocation" fullname="Frontier.Tests.PickingGeometryTests.DeadResourceAndReusedModelDoNotRetainOldLocation" methodname="DeadResourceAndReusedModelDoNotRetainOldLocation" classname="Frontier.Tests.PickingGeometryTests" runstate="Runnable" seed="1193369830" result="Passed" start-time="2026-09-14 05:32:35Z" end-time="2026-09-14 05:32:35Z" duration="0.299911" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1075" name="FriendlyUnitUnderBuildingVolumeRemainsSelectable" fullname="Frontier.Tests.PickingGeometryTests.FriendlyUnitUnderBuildingVolumeRemainsSelectable" methodname="FriendlyUnitUnderBuildingVolumeRemainsSelectable" classname="Frontier.Tests.PickingGeometryTests" runstate="Runnable" seed="2123789933" result="Passed" start-time="2026-09-14 05:32:35Z" end-time="2026-09-14 05:32:36Z" duration="0.166495" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1079" name="HudPanelBlocksEntityProjectedDirectlyBeneathIt" fullname="Frontier.Tests.PickingGeometryTests.HudPanelBlocksEntityProjectedDirectlyBeneathIt" methodname="HudPanelBlocksEntityProjectedDirectlyBeneathIt" classname="Frontier.Tests.PickingGeometryTests" runstate="Runnable" seed="1455805013" result="Passed" start-time="2026-09-14 05:32:36Z" end-time="2026-09-14 05:32:36Z" duration="0.166658" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1074" name="MineEdgeIsSelectableAtBothZooms" fullname="Frontier.Tests.PickingGeometryTests.MineEdgeIsSelectableAtBothZooms" methodname="MineEdgeIsSelectableAtBothZooms" classname="Frontier.Tests.PickingGeometryTests" runstate="Runnable" seed="1659080806" result="Passed" start-time="2026-09-14 05:32:36Z" end-time="2026-09-14 05:32:36Z" duration="0.199856" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1076" name="PreviouslyVisibleResourceCannotLeakFromExploredFog" fullname="Frontier.Tests.PickingGeometryTests.PreviouslyVisibleResourceCannotLeakFromExploredFog" methodname="PreviouslyVisibleResourceCannotLeakFromExploredFog" classname="Frontier.Tests.PickingGeometryTests" runstate="Runnable" seed="1196673607" result="Passed" start-time="2026-09-14 05:32:36Z" end-time="2026-09-14 05:32:36Z" duration="0.199871" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1078" name="RealGarrisonEntryRemovesOldUnitPickTarget" fullname="Frontier.Tests.PickingGeometryTests.RealGarrisonEntryRemovesOldUnitPickTarget" methodname="RealGarrisonEntryRemovesOldUnitPickTarget" classname="Frontier.Tests.PickingGeometryTests" runstate="Runnable" seed="1901376474" result="Passed" start-time="2026-09-14 05:32:36Z" end-time="2026-09-14 05:32:36Z" duration="0.199894" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1073" name="RightClickCrownOrdersActualWorkerGather" fullname="Frontier.Tests.PickingGeometryTests.RightClickCrownOrdersActualWorkerGather" methodname="RightClickCrownOrdersActualWorkerGather" classname="Frontier.Tests.PickingGeometryTests" runstate="Runnable" seed="511756909" result="Passed" start-time="2026-09-14 05:32:36Z" end-time="2026-09-14 05:32:36Z" duration="0.166619" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1071" name="RoofAndGroundSelectSameBuilding" fullname="Frontier.Tests.PickingGeometryTests.RoofAndGroundSelectSameBuilding" methodname="RoofAndGroundSelectSameBuilding" classname="Frontier.Tests.PickingGeometryTests" runstate="Runnable" seed="1712084634" result="Passed" start-time="2026-09-14 05:32:36Z" end-time="2026-09-14 05:32:37Z" duration="0.199906" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1072" name="TreeCrownIsSelectableAtNearAndFarZoom" fullname="Frontier.Tests.PickingGeometryTests.TreeCrownIsSelectableAtNearAndFarZoom" methodname="TreeCrownIsSelectableAtNearAndFarZoom" classname="Frontier.Tests.PickingGeometryTests" runstate="Runnable" seed="1034430582" result="Passed" start-time="2026-09-14 05:32:37Z" end-time="2026-09-14 05:32:37Z" duration="0.199926" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1081" name="PointerTests" fullname="Frontier.Tests.PointerTests" classname="Frontier.Tests.PointerTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-14 05:32:37Z" end-time="2026-09-14 05:32:38Z" duration="0.749915" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1082" name="DragCompletedWithinOneInputUpdateStillSelectsWorkers" fullname="Frontier.Tests.PointerTests.DragCompletedWithinOneInputUpdateStillSelectsWorkers" methodname="DragCompletedWithinOneInputUpdateStillSelectsWorkers" classname="Frontier.Tests.PointerTests" runstate="Runnable" seed="1877188863" result="Passed" start-time="2026-09-14 05:32:37Z" end-time="2026-09-14 05:32:37Z" duration="0.117262" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[TEST_POINTER_BOUNDS (346.92, 236.25) (390.92, 266.15) screen=640x480 blocked=False
+]]></output>
+            </test-case>
+            <test-case id="1083" name="FastModifierChordSavesAndRestoresControlGroup" fullname="Frontier.Tests.PointerTests.FastModifierChordSavesAndRestoresControlGroup" methodname="FastModifierChordSavesAndRestoresControlGroup" classname="Frontier.Tests.PointerTests" runstate="Runnable" seed="1562188824" result="Passed" start-time="2026-09-14 05:32:37Z" end-time="2026-09-14 05:32:37Z" duration="0.149485" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1084" name="PlacementSuppressesTheMenuClickBeforeAcceptingNextClick" fullname="Frontier.Tests.PointerTests.PlacementSuppressesTheMenuClickBeforeAcceptingNextClick" methodname="PlacementSuppressesTheMenuClickBeforeAcceptingNextClick" classname="Frontier.Tests.PointerTests" runstate="Runnable" seed="340181670" result="Passed" start-time="2026-09-14 05:32:37Z" end-time="2026-09-14 05:32:38Z" duration="0.466546" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1085" name="SimulationDispatchTests" fullname="Frontier.Tests.SimulationDispatchTests" classname="Frontier.Tests.SimulationDispatchTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-14 05:32:38Z" end-time="2026-09-14 05:32:38Z" duration="0.238472" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1086" name="BenchmarkReturnToMenuRestoresTheOpponentForNormalPlay" fullname="Frontier.Tests.SimulationDispatchTests.BenchmarkReturnToMenuRestoresTheOpponentForNormalPlay" methodname="BenchmarkReturnToMenuRestoresTheOpponentForNormalPlay" classname="Frontier.Tests.SimulationDispatchTests" runstate="Runnable" seed="1718184024" result="Passed" start-time="2026-09-14 05:32:38Z" end-time="2026-09-14 05:32:38Z" duration="0.103311" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[BENCHMARK_START units=10 rendered=640x480
+FRONTIER_REPORT /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20260914-053238-menu_exit.json
+BENCHMARK_START units=10 rendered=640x480
+]]></output>
+            </test-case>
+            <test-case id="1087" name="NativeControllerUsesTheSameSessionAsDirectSimulationAndResetsIt" fullname="Frontier.Tests.SimulationDispatchTests.NativeControllerUsesTheSameSessionAsDirectSimulationAndResetsIt" methodname="NativeControllerUsesTheSameSessionAsDirectSimulationAndResetsIt" classname="Frontier.Tests.SimulationDispatchTests" runstate="Runnable" seed="1219218231" result="Passed" start-time="2026-09-14 05:32:38Z" end-time="2026-09-14 05:32:38Z" duration="0.118590" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_REPORT /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20260914-053238-menu_exit.json
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1088" name="SkirmishSetupTests" fullname="Frontier.Tests.SkirmishSetupTests" classname="Frontier.Tests.SkirmishSetupTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-14 05:32:38Z" end-time="2026-09-14 05:32:39Z" duration="1.249893" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1089" name="CaravanViewUsesVisibilityAndRestartReplacesItsState" fullname="Frontier.Tests.SkirmishSetupTests.CaravanViewUsesVisibilityAndRestartReplacesItsState" methodname="CaravanViewUsesVisibilityAndRestartReplacesItsState" classname="Frontier.Tests.SkirmishSetupTests" runstate="Runnable" seed="1286462305" result="Passed" start-time="2026-09-14 05:32:38Z" end-time="2026-09-14 05:32:38Z" duration="0.133366" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1092" name="IllegalConfiguredDeckCannotSilentlyStartWithAnotherDeck" fullname="Frontier.Tests.SkirmishSetupTests.IllegalConfiguredDeckCannotSilentlyStartWithAnotherDeck" methodname="IllegalConfiguredDeckCannotSilentlyStartWithAnotherDeck" classname="Frontier.Tests.SkirmishSetupTests" runstate="Runnable" seed="203932450" result="Passed" start-time="2026-09-14 05:32:38Z" end-time="2026-09-14 05:32:38Z" duration="0.083229" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1091" name="SelectedCivilizationsAgesAndDeckSurviveRestart" fullname="Frontier.Tests.SkirmishSetupTests.SelectedCivilizationsAgesAndDeckSurviveRestart" methodname="SelectedCivilizationsAgesAndDeckSurviveRestart" classname="Frontier.Tests.SkirmishSetupTests" runstate="Runnable" seed="560719763" result="Passed" start-time="2026-09-14 05:32:38Z" end-time="2026-09-14 05:32:38Z" duration="0.100004" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1090" name="UnexploredOutcropsStayHiddenUntilObserved" fullname="Frontier.Tests.SkirmishSetupTests.UnexploredOutcropsStayHiddenUntilObserved" methodname="UnexploredOutcropsStayHiddenUntilObserved" classname="Frontier.Tests.SkirmishSetupTests" runstate="Runnable" seed="985104365" result="Passed" start-time="2026-09-14 05:32:38Z" end-time="2026-09-14 05:32:39Z" duration="0.916529" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1093" name="UnitRigTests" fullname="Frontier.Tests.UnitRigTests" classname="Frontier.Tests.UnitRigTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-14 05:32:39Z" end-time="2026-09-14 05:32:39Z" duration="0.037414" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1097" name="AuthoredRigHoldsWeaponAndRestoresPoseWithoutAccumulation" fullname="Frontier.Tests.UnitRigTests.AuthoredRigHoldsWeaponAndRestoresPoseWithoutAccumulation" classname="Frontier.Tests.UnitRigTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-14 05:32:39Z" end-time="2026-09-14 05:32:39Z" duration="0.020282" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1094" name="AuthoredRigHoldsWeaponAndRestoresPoseWithoutAccumulation(&quot;musketeer&quot;)" fullname="Frontier.Tests.UnitRigTests.AuthoredRigHoldsWeaponAndRestoresPoseWithoutAccumulation(&quot;musketeer&quot;)" methodname="AuthoredRigHoldsWeaponAndRestoresPoseWithoutAccumulation" classname="Frontier.Tests.UnitRigTests" runstate="Runnable" seed="280152557" result="Passed" start-time="2026-09-14 05:32:39Z" end-time="2026-09-14 05:32:39Z" duration="0.002525" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1095" name="AuthoredRigHoldsWeaponAndRestoresPoseWithoutAccumulation(&quot;pike&quot;)" fullname="Frontier.Tests.UnitRigTests.AuthoredRigHoldsWeaponAndRestoresPoseWithoutAccumulation(&quot;pike&quot;)" methodname="AuthoredRigHoldsWeaponAndRestoresPoseWithoutAccumulation" classname="Frontier.Tests.UnitRigTests" runstate="Runnable" seed="2104688653" result="Passed" start-time="2026-09-14 05:32:39Z" end-time="2026-09-14 05:32:39Z" duration="0.000499" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1096" name="AuthoredRigHoldsWeaponAndRestoresPoseWithoutAccumulation(&quot;longbow&quot;)" fullname="Frontier.Tests.UnitRigTests.AuthoredRigHoldsWeaponAndRestoresPoseWithoutAccumulation(&quot;longbow&quot;)" methodname="AuthoredRigHoldsWeaponAndRestoresPoseWithoutAccumulation" classname="Frontier.Tests.UnitRigTests" runstate="Runnable" seed="551381935" result="Passed" start-time="2026-09-14 05:32:39Z" end-time="2026-09-14 05:32:39Z" duration="0.000488" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1098" name="BothBowStringSegmentsConnectStaveTipsToActualDrawingHand" fullname="Frontier.Tests.UnitRigTests.BothBowStringSegmentsConnectStaveTipsToActualDrawingHand" methodname="BothBowStringSegmentsConnectStaveTipsToActualDrawingHand" classname="Frontier.Tests.UnitRigTests" runstate="Runnable" seed="1259908455" result="Passed" start-time="2026-09-14 05:32:39Z" end-time="2026-09-14 05:32:39Z" duration="0.000534" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

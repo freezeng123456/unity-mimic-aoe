@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Failed(Child)" total="6" passed="2" failed="4" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 05:30:39Z" end-time="2026-09-14 05:30:40Z" duration="1.181607">
+  <test-suite type="TestSuite" id="1103" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="81" result="Failed" site="Child" start-time="2026-09-14 05:30:39Z" end-time="2026-09-14 05:30:40Z" duration="1.181607" total="6" passed="2" failed="4" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1097" name="Frontier.PlayMode.dll" fullname="/Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Library/ScriptAssemblies/Frontier.PlayMode.dll" runstate="Runnable" testcasecount="81" result="Failed" site="Child" start-time="2026-09-14 05:30:39Z" end-time="2026-09-14 05:30:40Z" duration="1.176929" total="6" passed="2" failed="4" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="84928" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1098" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="81" result="Failed" site="Child" start-time="2026-09-14 05:30:39Z" end-time="2026-09-14 05:30:40Z" duration="1.176100" total="6" passed="2" failed="4" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1099" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="81" result="Failed" site="Child" start-time="2026-09-14 05:30:39Z" end-time="2026-09-14 05:30:40Z" duration="1.175449" total="6" passed="2" failed="4" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1041" name="ModalShortcutTests" fullname="Frontier.Tests.ModalShortcutTests" classname="Frontier.Tests.ModalShortcutTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-14 05:30:39Z" end-time="2026-09-14 05:30:40Z" duration="1.173785" total="6" passed="2" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1043" name="BuildModalEscapeThenIdleVillagerShortcutUsesFreshKeyboardEdge" fullname="Frontier.Tests.ModalShortcutTests.BuildModalEscapeThenIdleVillagerShortcutUsesFreshKeyboardEdge" methodname="BuildModalEscapeThenIdleVillagerShortcutUsesFreshKeyboardEdge" classname="Frontier.Tests.ModalShortcutTests" runstate="Runnable" seed="341850599" result="Failed" start-time="2026-09-14 05:30:39Z" end-time="2026-09-14 05:30:39Z" duration="0.234317" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 2
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.ModalShortcutTests+<BuildModalEscapeThenIdleVillagerShortcutUsesFreshKeyboardEdge>d__6.MoveNext () [0x000e3] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/PlayMode/ModalShortcutTests.cs:47
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1047" name="EscapeAndQueuedRightPointerCannotIssueWorldMove" fullname="Frontier.Tests.ModalShortcutTests.EscapeAndQueuedRightPointerCannotIssueWorldMove" methodname="EscapeAndQueuedRightPointerCannotIssueWorldMove" classname="Frontier.Tests.ModalShortcutTests" runstate="Runnable" seed="1381462666" result="Passed" start-time="2026-09-14 05:30:39Z" end-time="2026-09-14 05:30:40Z" duration="0.163755" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1042" name="HomeCityEscapeThenTownShortcutUsesFreshKeyboardEdge" fullname="Frontier.Tests.ModalShortcutTests.HomeCityEscapeThenTownShortcutUsesFreshKeyboardEdge" methodname="HomeCityEscapeThenTownShortcutUsesFreshKeyboardEdge" classname="Frontier.Tests.ModalShortcutTests" runstate="Runnable" seed="1835557406" result="Failed" start-time="2026-09-14 05:30:40Z" end-time="2026-09-14 05:30:40Z" duration="0.166621" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected string length 4 but was 8. Strings differ at index 0.
+  Expected: "town"
+  But was:  "villager"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.ModalShortcutTests+<HomeCityEscapeThenTownShortcutUsesFreshKeyboardEdge>d__5.MoveNext () [0x000cc] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/PlayMode/ModalShortcutTests.cs:37
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1046" name="KeyboardShortcutRemainsIgnoredWhileModalIsOpen" fullname="Frontier.Tests.ModalShortcutTests.KeyboardShortcutRemainsIgnoredWhileModalIsOpen" methodname="KeyboardShortcutRemainsIgnoredWhileModalIsOpen" classname="Frontier.Tests.ModalShortcutTests" runstate="Runnable" seed="124792118" result="Passed" start-time="2026-09-14 05:30:40Z" end-time="2026-09-14 05:30:40Z" duration="0.166492" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1044" name="NativeCloseButtonThenTownShortcutWorksDuringPointerBarrier" fullname="Frontier.Tests.ModalShortcutTests.NativeCloseButtonThenTownShortcutWorksDuringPointerBarrier" methodname="NativeCloseButtonThenTownShortcutWorksDuringPointerBarrier" classname="Frontier.Tests.ModalShortcutTests" runstate="Runnable" seed="488660712" result="Failed" start-time="2026-09-14 05:30:40Z" end-time="2026-09-14 05:30:40Z" duration="0.199923" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected string length 4 but was 8. Strings differ at index 0.
+  Expected: "town"
+  But was:  "villager"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.ModalShortcutTests+<NativeCloseButtonThenTownShortcutWorksDuringPointerBarrier>d__7.MoveNext () [0x000fd] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/PlayMode/ModalShortcutTests.cs:57
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1045" name="RealBuildButtonThenFreshGCanEnterGarrisonMode" fullname="Frontier.Tests.ModalShortcutTests.RealBuildButtonThenFreshGCanEnterGarrisonMode" methodname="RealBuildButtonThenFreshGCanEnterGarrisonMode" classname="Frontier.Tests.ModalShortcutTests" runstate="Runnable" seed="1062717053" result="Failed" start-time="2026-09-14 05:30:40Z" end-time="2026-09-14 05:30:40Z" duration="0.233306" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A fresh keyboard shortcut must not be lost by the build-button pointer suppression barrier
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.ModalShortcutTests+<RealBuildButtonThenFreshGCanEnterGarrisonMode>d__8.MoveNext () [0x00130] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/PlayMode/ModalShortcutTests.cs:68
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[Saving results to: /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

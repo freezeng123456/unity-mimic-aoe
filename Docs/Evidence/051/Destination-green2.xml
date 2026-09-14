@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="10" result="Failed(Child)" total="10" passed="8" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 18:46:15Z" end-time="2026-09-14 18:46:23Z" duration="7.9474332">
+  <test-suite type="TestSuite" id="1000" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="175" result="Failed" site="Child" start-time="2026-09-14 18:46:15Z" end-time="2026-09-14 18:46:23Z" duration="7.947433" total="10" passed="8" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1221" name="Frontier.EditMode.dll" fullname="/Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Library/ScriptAssemblies/Frontier.EditMode.dll" runstate="Runnable" testcasecount="175" result="Failed" site="Child" start-time="2026-09-14 18:46:15Z" end-time="2026-09-14 18:46:23Z" duration="7.943230" total="10" passed="8" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="59509" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1222" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="169" result="Failed" site="Child" start-time="2026-09-14 18:46:15Z" end-time="2026-09-14 18:46:23Z" duration="7.942301" total="10" passed="8" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1223" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="169" result="Failed" site="Child" start-time="2026-09-14 18:46:15Z" end-time="2026-09-14 18:46:23Z" duration="7.941642" total="10" passed="8" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1080" name="DynamicDestinationTests" fullname="Frontier.Tests.DynamicDestinationTests" classname="Frontier.Tests.DynamicDestinationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-14 18:46:15Z" end-time="2026-09-14 18:46:15Z" duration="0.507047" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1084" name="BlockedFirstWaypointCompletesBeforeNextShiftWaypointRuns" fullname="Frontier.Tests.DynamicDestinationTests.BlockedFirstWaypointCompletesBeforeNextShiftWaypointRuns" methodname="BlockedFirstWaypointCompletesBeforeNextShiftWaypointRuns" classname="Frontier.Tests.DynamicDestinationTests" runstate="Runnable" seed="484461217" result="Passed" start-time="2026-09-14 18:46:15Z" end-time="2026-09-14 18:46:15Z" duration="0.080354" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1085" name="FiftyMixedUnitsKeepDistinctReachableGoalsAfterTwoFoundationsAppear" fullname="Frontier.Tests.DynamicDestinationTests.FiftyMixedUnitsKeepDistinctReachableGoalsAfterTwoFoundationsAppear" methodname="FiftyMixedUnitsKeepDistinctReachableGoalsAfterTwoFoundationsAppear" classname="Frontier.Tests.DynamicDestinationTests" runstate="Runnable" seed="1239023292" result="Failed" start-time="2026-09-14 18:46:15Z" end-time="2026-09-14 18:46:15Z" duration="0.363375" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  149 cannon position=(88.04, 61.55) orders=1 status=Moving path=(45.60, 62.80),(92.00, 60.00),(92.60, 57.30) requested=(92.60, 57.30); 169 cannon position=(85.46, 59.32) orders=1 status=Moving path=(86.74, 58.31),(86.00, 60.00),(93.00, 59.00),(95.90, 57.30) requested=(95.90, 57.30)
+  Expected: 0
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.DynamicDestinationTests.FiftyMixedUnitsKeepDistinctReachableGoalsAfterTwoFoundationsAppear () [0x00161] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/DynamicDestinationTests.cs:66
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1083" name="PaidBuildingCoveringDestinationAllowsArrivalBesideIt" fullname="Frontier.Tests.DynamicDestinationTests.PaidBuildingCoveringDestinationAllowsArrivalBesideIt" classname="Frontier.Tests.DynamicDestinationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-14 18:46:15Z" end-time="2026-09-14 18:46:15Z" duration="0.057416" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1081" name="PaidBuildingCoveringDestinationAllowsArrivalBesideIt(Move)" fullname="Frontier.Tests.DynamicDestinationTests.PaidBuildingCoveringDestinationAllowsArrivalBesideIt(Move)" methodname="PaidBuildingCoveringDestinationAllowsArrivalBesideIt" classname="Frontier.Tests.DynamicDestinationTests" runstate="Runnable" seed="432832447" result="Passed" start-time="2026-09-14 18:46:15Z" end-time="2026-09-14 18:46:15Z" duration="0.026455" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1082" name="PaidBuildingCoveringDestinationAllowsArrivalBesideIt(AttackMove)" fullname="Frontier.Tests.DynamicDestinationTests.PaidBuildingCoveringDestinationAllowsArrivalBesideIt(AttackMove)" methodname="PaidBuildingCoveringDestinationAllowsArrivalBesideIt" classname="Frontier.Tests.DynamicDestinationTests" runstate="Runnable" seed="223648288" result="Passed" start-time="2026-09-14 18:46:15Z" end-time="2026-09-14 18:46:15Z" duration="0.029368" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1140" name="GroupMovementTests" fullname="Frontier.Tests.GroupMovementTests" classname="Frontier.Tests.GroupMovementTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-14 18:46:15Z" end-time="2026-09-14 18:46:16Z" duration="0.429898" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1141" name="FiftyMixedUnitsCrossOpenGroundToDistinctDestinations" fullname="Frontier.Tests.GroupMovementTests.FiftyMixedUnitsCrossOpenGroundToDistinctDestinations" methodname="FiftyMixedUnitsCrossOpenGroundToDistinctDestinations" classname="Frontier.Tests.GroupMovementTests" runstate="Runnable" seed="1330891905" result="Passed" start-time="2026-09-14 18:46:15Z" end-time="2026-09-14 18:46:15Z" duration="0.138869" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1142" name="GroupResumesAfterDynamicWallIsRemoved" fullname="Frontier.Tests.GroupMovementTests.GroupResumesAfterDynamicWallIsRemoved" methodname="GroupResumesAfterDynamicWallIsRemoved" classname="Frontier.Tests.GroupMovementTests" runstate="Runnable" seed="1959187700" result="Passed" start-time="2026-09-14 18:46:15Z" end-time="2026-09-14 18:46:16Z" duration="0.290191" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1159" name="NavigationStressTests" fullname="Frontier.Tests.NavigationStressTests" classname="Frontier.Tests.NavigationStressTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-14 18:46:16Z" end-time="2026-09-14 18:46:23Z" duration="6.994243" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="1163" name="MixedUnitsCrossOnlyGateAndReachEveryAssignedGoal" fullname="Frontier.Tests.NavigationStressTests.MixedUnitsCrossOnlyGateAndReachEveryAssignedGoal" classname="Frontier.Tests.NavigationStressTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-14 18:46:16Z" end-time="2026-09-14 18:46:22Z" duration="6.610523" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1160" name="MixedUnitsCrossOnlyGateAndReachEveryAssignedGoal(100)" fullname="Frontier.Tests.NavigationStressTests.MixedUnitsCrossOnlyGateAndReachEveryAssignedGoal(100)" methodname="MixedUnitsCrossOnlyGateAndReachEveryAssignedGoal" classname="Frontier.Tests.NavigationStressTests" runstate="Runnable" seed="810291687" result="Passed" start-time="2026-09-14 18:46:16Z" end-time="2026-09-14 18:46:16Z" duration="0.394588" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1161" name="MixedUnitsCrossOnlyGateAndReachEveryAssignedGoal(200)" fullname="Frontier.Tests.NavigationStressTests.MixedUnitsCrossOnlyGateAndReachEveryAssignedGoal(200)" methodname="MixedUnitsCrossOnlyGateAndReachEveryAssignedGoal" classname="Frontier.Tests.NavigationStressTests" runstate="Runnable" seed="1574713552" result="Passed" start-time="2026-09-14 18:46:16Z" end-time="2026-09-14 18:46:17Z" duration="0.941246" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1162" name="MixedUnitsCrossOnlyGateAndReachEveryAssignedGoal(400)" fullname="Frontier.Tests.NavigationStressTests.MixedUnitsCrossOnlyGateAndReachEveryAssignedGoal(400)" methodname="MixedUnitsCrossOnlyGateAndReachEveryAssignedGoal" classname="Frontier.Tests.NavigationStressTests" runstate="Runnable" seed="357558868" result="Failed" start-time="2026-09-14 18:46:17Z" end-time="2026-09-14 18:46:22Z" duration="5.273754" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  1/400 did not arrive: 484 cannon (65.27, 72.57) -> (66.00, 77.20) path 2/3 [(64.78, 70.43),(66.00, 72.00),(66.00, 77.20)] detour=(57.19, 67.79)/0 status=Moving
+  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at Frontier.Tests.NavigationStressTests.Verify (Frontier.World w, System.Collections.Generic.List`1[T] units, System.Collections.Generic.Dictionary`2[TKey,TValue] goals, System.Int32 seconds) [0x00108] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/NavigationStressTests.cs:54
+at Frontier.Tests.NavigationStressTests.MixedUnitsCrossOnlyGateAndReachEveryAssignedGoal (System.Int32 count) [0x00037] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/NavigationStressTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="1164" name="OneHundredFriendlyMixedUnitsPassInOppositeDirections" fullname="Frontier.Tests.NavigationStressTests.OneHundredFriendlyMixedUnitsPassInOppositeDirections" methodname="OneHundredFriendlyMixedUnitsPassInOppositeDirections" classname="Frontier.Tests.NavigationStressTests" runstate="Runnable" seed="123543042" result="Passed" start-time="2026-09-14 18:46:22Z" end-time="2026-09-14 18:46:23Z" duration="0.379630" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="9" result="Passed" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 07:02:58Z" end-time="2026-09-14 07:03:00Z" duration="2.702059">
+  <test-suite type="TestSuite" id="1137" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="111" result="Passed" start-time="2026-09-14 07:02:58Z" end-time="2026-09-14 07:03:00Z" duration="2.702059" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1131" name="Frontier.PlayMode.dll" fullname="/Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Library/ScriptAssemblies/Frontier.PlayMode.dll" runstate="Runnable" testcasecount="111" result="Passed" start-time="2026-09-14 07:02:58Z" end-time="2026-09-14 07:03:00Z" duration="2.697732" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="30610" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1132" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="111" result="Passed" start-time="2026-09-14 07:02:58Z" end-time="2026-09-14 07:03:00Z" duration="2.697324" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1133" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="111" result="Passed" start-time="2026-09-14 07:02:58Z" end-time="2026-09-14 07:03:00Z" duration="2.697028" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1020" name="FocusPauseTests" fullname="Frontier.Tests.FocusPauseTests" classname="Frontier.Tests.FocusPauseTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-09-14 07:02:58Z" end-time="2026-09-14 07:03:00Z" duration="2.693507" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1029" name="AutoplayBenchmarkMenuAndResultAreFocusPauseExempt" fullname="Frontier.Tests.FocusPauseTests.AutoplayBenchmarkMenuAndResultAreFocusPauseExempt" methodname="AutoplayBenchmarkMenuAndResultAreFocusPauseExempt" classname="Frontier.Tests.FocusPauseTests" runstate="Runnable" seed="1806370965" result="Passed" start-time="2026-09-14 07:02:58Z" end-time="2026-09-14 07:02:58Z" duration="0.290440" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_REPORT /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20260914-070258-menu_exit.json
+]]></output>
+            </test-case>
+            <test-case id="1023" name="ExistingManualPauseRemainsManualAndPaused" fullname="Frontier.Tests.FocusPauseTests.ExistingManualPauseRemainsManualAndPaused" methodname="ExistingManualPauseRemainsManualAndPaused" classname="Frontier.Tests.FocusPauseTests" runstate="Runnable" seed="805841533" result="Passed" start-time="2026-09-14 07:02:58Z" end-time="2026-09-14 07:02:58Z" duration="0.164158" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_PAUSE paused=True reason=manual_pause world=0.000000 realtime=1.557174 frame=29
+]]></output>
+            </test-case>
+            <test-case id="1027" name="ExplicitResumeRestoresProgression" fullname="Frontier.Tests.FocusPauseTests.ExplicitResumeRestoresProgression" methodname="ExplicitResumeRestoresProgression" classname="Frontier.Tests.FocusPauseTests" runstate="Runnable" seed="1855813114" result="Passed" start-time="2026-09-14 07:02:58Z" end-time="2026-09-14 07:02:58Z" duration="0.333176" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_PAUSE paused=True reason=focus_lost world=0.000000 realtime=1.723234 frame=39
+FRONTIER_PAUSE paused=False reason=manual_resume world=0.000000 realtime=1.756467 frame=41
+]]></output>
+            </test-case>
+            <test-case id="1021" name="FocusLossFreezesWorldTimeAndProductionGatheringAndShipment" fullname="Frontier.Tests.FocusPauseTests.FocusLossFreezesWorldTimeAndProductionGatheringAndShipment" methodname="FocusLossFreezesWorldTimeAndProductionGatheringAndShipment" classname="Frontier.Tests.FocusPauseTests" runstate="Runnable" seed="1145373273" result="Passed" start-time="2026-09-14 07:02:58Z" end-time="2026-09-14 07:02:59Z" duration="0.666647" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_PAUSE paused=True reason=focus_lost world=0.300000 realtime=2.423102 frame=81
+]]></output>
+            </test-case>
+            <test-case id="1024" name="FocusLossReplacesHomeAndAgeModalWithoutPaymentOrShipment" fullname="Frontier.Tests.FocusPauseTests.FocusLossReplacesHomeAndAgeModalWithoutPaymentOrShipment" methodname="FocusLossReplacesHomeAndAgeModalWithoutPaymentOrShipment" classname="Frontier.Tests.FocusPauseTests" runstate="Runnable" seed="1440126592" result="Passed" start-time="2026-09-14 07:02:59Z" end-time="2026-09-14 07:02:59Z" duration="0.266546" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_PAUSE paused=True reason=focus_lost world=0.000000 realtime=2.756489 frame=101
+FRONTIER_PAUSE paused=False reason=manual_resume world=0.000000 realtime=2.789918 frame=103
+FRONTIER_PAUSE paused=True reason=focus_lost world=0.000000 realtime=2.856488 frame=107
+]]></output>
+            </test-case>
+            <test-case id="1025" name="FocusLossRetainsSelectionAndGroupsButClearsPendingModes" fullname="Frontier.Tests.FocusPauseTests.FocusLossRetainsSelectionAndGroupsButClearsPendingModes" methodname="FocusLossRetainsSelectionAndGroupsButClearsPendingModes" classname="Frontier.Tests.FocusPauseTests" runstate="Runnable" seed="1867725203" result="Passed" start-time="2026-09-14 07:02:59Z" end-time="2026-09-14 07:03:00Z" duration="0.266661" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_PAUSE paused=True reason=focus_lost world=0.000000 realtime=2.990577 frame=115
+FRONTIER_PAUSE paused=False reason=manual_resume world=0.000000 realtime=3.023103 frame=117
+FRONTIER_PAUSE paused=True reason=focus_lost world=0.000000 realtime=3.056431 frame=119
+FRONTIER_PAUSE paused=False reason=manual_resume world=0.000000 realtime=3.089939 frame=121
+FRONTIER_PAUSE paused=True reason=focus_lost world=0.000000 realtime=3.123243 frame=123
+]]></output>
+            </test-case>
+            <test-case id="1026" name="HeldTrainPressAcrossFocusLossReleaseDoesNotPay" fullname="Frontier.Tests.FocusPauseTests.HeldTrainPressAcrossFocusLossReleaseDoesNotPay" methodname="HeldTrainPressAcrossFocusLossReleaseDoesNotPay" classname="Frontier.Tests.FocusPauseTests" runstate="Runnable" seed="241177265" result="Passed" start-time="2026-09-14 07:03:00Z" end-time="2026-09-14 07:03:00Z" duration="0.233105" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_PAUSE paused=True reason=focus_lost world=0.000000 realtime=3.323257 frame=135
+]]></output>
+            </test-case>
+            <test-case id="1028" name="PauseXActsAsResumeAndRestartOrMenuCleansState" fullname="Frontier.Tests.FocusPauseTests.PauseXActsAsResumeAndRestartOrMenuCleansState" methodname="PauseXActsAsResumeAndRestartOrMenuCleansState" classname="Frontier.Tests.FocusPauseTests" runstate="Runnable" seed="1351435373" result="Passed" start-time="2026-09-14 07:03:00Z" end-time="2026-09-14 07:03:00Z" duration="0.299955" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_PAUSE paused=True reason=manual_pause world=0.000000 realtime=3.489995 frame=145
+FRONTIER_PAUSE paused=False reason=manual_resume world=0.000000 realtime=3.540406 frame=148
+FRONTIER_PAUSE paused=True reason=focus_lost world=0.000000 realtime=3.556389 frame=149
+FRONTIER_PAUSE paused=True reason=focus_lost world=0.000000 realtime=3.623086 frame=153
+FRONTIER_REPORT /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20260914-070300-menu_exit.json
+]]></output>
+            </test-case>
+            <test-case id="1022" name="RepeatedFocusLossStaysPausedAndFocusGainDoesNotResume" fullname="Frontier.Tests.FocusPauseTests.RepeatedFocusLossStaysPausedAndFocusGainDoesNotResume" methodname="RepeatedFocusLossStaysPausedAndFocusGainDoesNotResume" classname="Frontier.Tests.FocusPauseTests" runstate="Runnable" seed="728566004" result="Passed" start-time="2026-09-14 07:03:00Z" end-time="2026-09-14 07:03:00Z" duration="0.166609" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_PAUSE paused=True reason=focus_lost world=0.000000 realtime=3.789897 frame=163
+Saving results to: /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

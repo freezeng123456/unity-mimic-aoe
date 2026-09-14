@@ -1,0 +1,55 @@
+{
+  "scope": "Independent audit of one normal native player match; not a Stage B/C/D completion claim.",
+  "build": {"appVersion":"0.2.9","buildGuid":"4e851ef57c2f460885559d364e1edf6e","unity":"6000.6.0f1","platform":"OSXPlayer","device":"Apple M4 Pro","resolution":"2560x1440"},
+  "match": {"report":"native-player-match_finished.json","events":"native-player-match_finished-events.jsonl","autoplay":false,"seed":314159,"reason":"match_finished","winner":1,"timeSeconds":1010.5003051757812,"eventCount":36502,"maxAge":3,"playerAge":3,"opponentAge":3,"playerShipments":4,"playerPopulationAtEnd":0,"resigned":false},
+  "economy": {
+    "playerGathered":{"food":4596.4990234375,"wood":1994.4815673828125,"coin":2694.2119140625},
+    "playerSpent":{"food":4325.0,"wood":1470.0,"coin":1625.0},
+    "playerResourcesAtEnd":{"food":572.119140625,"wood":823.5394287109375,"coin":1168.6383056640625},
+    "playerAgeHistory":["I @ 0s","2 @ 256.8s","3 @ 591.5s"],
+    "opponentAgeHistory":["I @ 0s","2 @ 207.7s","3 @ 711.3s"],
+    "interpretation":"The player reached Age III and retained resources at defeat; the log does not by itself prove efficient or sufficient economic operation."
+  },
+  "shipments": {
+    "sent":[{"time":125.3986587524414,"card":"New Settlers"},{"time":287.9083557128906,"card":"Coin Convoy 2"},{"time":620.5955200195312,"card":"Cannon Support"},{"time":758.9617309570312,"card":"Coin Convoy 3"}],
+    "arrived":[{"time":160.4005889892578,"card":"New Settlers"},{"time":322.9104919433594,"card":"Coin Convoy 2"},{"time":655.5869750976562,"card":"Cannon Support"},{"time":793.9531860351562,"card":"Coin Convoy 3"}],
+    "verifiedCount":"4 sent and 4 arrived"
+  },
+  "artillery": {
+    "cannonSupport":{"arrival":655.5869750976562,"spawnEntity":214},
+    "paidCannon":{"payment":{"time":725.2699584960938,"entity":216,"message":"Field Cannon ×1: 0 F / 100 W / 250 C"},"spawn":{"time":770.3589477539062,"entity":237}},
+    "playerCannonEntities":[214,237],
+    "playerCannonEvents":{"Fire":28,"Impact":23,"Damage":39},
+    "cannonFireTargets":{"enemyHussars":9,"enemyDragoon":3,"enemyMusketeers":8,"enemyPikemen":2,"enemyLongbow":2,"enemySkirmisher":2,"enemyFieldCannon":2},
+    "cannonDamageTargetClasses":["enemyHussars","enemyDragoon","enemyMusketeers","enemyPikemen","enemyLongbow","enemySkirmisher","enemyFieldCannon"],
+    "targetCountSemantics":"The per-target numbers above count Fire events and sum to 28. Impact count is 23 and Damage count is 39; those event classes are intentionally not presented as equal or as the same per-target distribution.",
+    "enemyBuildingDamageByPlayer":false,
+    "note":"All player cannon Fire/Impact/Damage targets in the event log are enemy military units or an enemy Field Cannon. No player damage event targets an enemy building."
+  },
+  "defeat": {
+    "firstTownCenterDeath":{"time":977.5083618164062,"entity":1},
+    "lastPlayerEntityDeath":{"time":1010.5003051757812,"entity":216,"message":"Foundry lost"},
+    "townCenterToLastEntitySeconds":32.991943359375,
+    "naturalElimination":true,
+    "resignEvents":0,
+    "matchEndedEvent":{"time":1010.5003051757812,"winner":1,"message":"All opposing units and buildings eliminated"},
+    "interpretation":"The player had no surviving population when the match ended; the report records natural elimination and no resignation."
+  },
+  "restartCleanup": {
+    "report":"native-player-quit.json",
+    "reason":"quit",
+    "newMatchTimeSeconds":1.1000001430511475,
+    "winner":-1,
+    "playerAge":1,
+    "playerPopulation":6,
+    "playerResources":{"food":300.0,"wood":300.0,"coin":100.0},
+    "playerShipments":0,
+    "interpretation":"This is the fresh match after the result PLAY AGAIN path; it verifies reset state before quitting. The result screenshot is player-result-play-again.jpeg."
+  },
+  "evidenceLimits": {
+    "confirmedByEventLog":["build identity","normal non-autoplay match","natural result","ages","economic totals","four shipment send/arrival pairs","Cannon Support and paid cannon","cannon combat event counts and target classes","no player damage to enemy buildings","TC-to-last-death interval","no resignation","fresh-match reset totals"],
+    "confirmedByScreenshotOr操作记录":["result PLAY AGAIN UI path"],
+    "notProven":["fluent human performance","complete core-loop acceptance","successful player siege","Stage C complete land content","Stage D visual/audio/performance acceptance","why the player lost"],
+    "nextPriority":"In the next normal player combat validation, verify that the player can keep a protected mixed army alive long enough to use the first Cannon Support and paid cannon against an enemy building, with the event log showing at least one player Damage target whose spawned definition is an enemy building."
+  }
+}

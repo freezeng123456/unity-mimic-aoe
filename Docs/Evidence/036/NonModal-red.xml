@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Failed(Child)" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 10:54:41Z" end-time="2026-09-14 10:54:41Z" duration="0.9052369">
+  <test-suite type="TestSuite" id="1174" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="141" result="Failed" site="Child" start-time="2026-09-14 10:54:41Z" end-time="2026-09-14 10:54:41Z" duration="0.905237" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1168" name="Frontier.PlayMode.dll" fullname="/Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Library/ScriptAssemblies/Frontier.PlayMode.dll" runstate="Runnable" testcasecount="141" result="Failed" site="Child" start-time="2026-09-14 10:54:41Z" end-time="2026-09-14 10:54:41Z" duration="0.900804" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="49412" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1169" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="141" result="Failed" site="Child" start-time="2026-09-14 10:54:41Z" end-time="2026-09-14 10:54:41Z" duration="0.899951" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1170" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="141" result="Failed" site="Child" start-time="2026-09-14 10:54:41Z" end-time="2026-09-14 10:54:41Z" duration="0.899150" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1085" name="NonModalPointerTests" fullname="Frontier.Tests.NonModalPointerTests" classname="Frontier.Tests.NonModalPointerTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-14 10:54:41Z" end-time="2026-09-14 10:54:41Z" duration="0.895074" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1088" name="AttackMoveButtonThenFreshGroundClickCreatesOneAttackMove" fullname="Frontier.Tests.NonModalPointerTests.AttackMoveButtonThenFreshGroundClickCreatesOneAttackMove" methodname="AttackMoveButtonThenFreshGroundClickCreatesOneAttackMove" classname="Frontier.Tests.NonModalPointerTests" runstate="Runnable" seed="1590592085" result="Failed" start-time="2026-09-14 10:54:41Z" end-time="2026-09-14 10:54:41Z" duration="0.258840" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A distinct ground click must complete attack-move targeting immediately
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.NonModalPointerTests+<AttackMoveButtonThenFreshGroundClickCreatesOneAttackMove>d__9.MoveNext () [0x00116] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/PlayMode/NonModalPointerTests.cs:73
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1087" name="CancelTrainingThenRightClickResourceSetsRallyAndRefundsOnce" fullname="Frontier.Tests.NonModalPointerTests.CancelTrainingThenRightClickResourceSetsRallyAndRefundsOnce" methodname="CancelTrainingThenRightClickResourceSetsRallyAndRefundsOnce" classname="Frontier.Tests.NonModalPointerTests" runstate="Runnable" seed="1680354511" result="Failed" start-time="2026-09-14 10:54:41Z" end-time="2026-09-14 10:54:41Z" duration="0.231005" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A distinct resource click after cancel must set the rally immediately
+  Expected: 131
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.NonModalPointerTests+<CancelTrainingThenRightClickResourceSetsRallyAndRefundsOnce>d__8.MoveNext () [0x00262] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/PlayMode/NonModalPointerTests.cs:62
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1086" name="TrainThenGroundSelectThenBuildUsesFreshNonModalActions" fullname="Frontier.Tests.NonModalPointerTests.TrainThenGroundSelectThenBuildUsesFreshNonModalActions" methodname="TrainThenGroundSelectThenBuildUsesFreshNonModalActions" classname="Frontier.Tests.NonModalPointerTests" runstate="Runnable" seed="1989659606" result="Failed" start-time="2026-09-14 10:54:41Z" end-time="2026-09-14 10:54:41Z" duration="0.199895" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A distinct ground click after training must select the worker immediately
+  Expected: 131
+  But was:  130
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.NonModalPointerTests+<TrainThenGroundSelectThenBuildUsesFreshNonModalActions>d__7.MoveNext () [0x001c0] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/PlayMode/NonModalPointerTests.cs:44
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1089" name="UiDownMoveToGroundUpDoesNotInvokeButtonOrWorldAction" fullname="Frontier.Tests.NonModalPointerTests.UiDownMoveToGroundUpDoesNotInvokeButtonOrWorldAction" methodname="UiDownMoveToGroundUpDoesNotInvokeButtonOrWorldAction" classname="Frontier.Tests.NonModalPointerTests" runstate="Runnable" seed="1787358315" result="Passed" start-time="2026-09-14 10:54:41Z" end-time="2026-09-14 10:54:41Z" duration="0.199881" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

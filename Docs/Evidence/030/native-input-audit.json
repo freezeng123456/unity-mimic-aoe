@@ -1,0 +1,165 @@
+{
+  "audit": "0.2.10 native input and ledger evidence",
+  "scope": "Two native evidence segments are kept separate; no Unity or GUI run performed for this audit.",
+  "build": {
+    "appVersion": "0.2.10",
+    "ledgerBuildGuid": "c56db36c1c37418eb385b4c2fcd628f4"
+  },
+  "segments": {
+    "nativeInputBeforeRestart": {
+      "source": "NativeInput.log plus named screenshots",
+      "worldAtRestart": 99.499,
+      "evidenceStatus": "log/screenshot evidence only; pre-restart ledger was reset by StartMatch",
+      "shortcuts": [
+        {
+          "key": "T",
+          "keyTime": 31.2831,
+          "context": "town entity 1",
+          "leftDown": 31.3328,
+          "deltaSeconds": 0.0497,
+          "button": "Settler 100F"
+        },
+        {
+          "key": "T",
+          "keyTime": 60.8464,
+          "context": "town entity 1",
+          "leftDown": 60.9154,
+          "deltaSeconds": 0.069,
+          "button": "Settler 100F"
+        },
+        {
+          "key": "V",
+          "keyTime": 68.1733,
+          "context": "worker entity 2",
+          "leftDown": 68.2071,
+          "deltaSeconds": 0.0338,
+          "button": "ATTACK MOVE [A]"
+        },
+        {
+          "key": "T",
+          "keyTime": 81.3857,
+          "context": "town entity 1",
+          "leftDown": 81.695,
+          "deltaSeconds": 0.3093,
+          "button": "Settler 100F"
+        }
+      ],
+      "restart": "RESTART at world 99.499; native-restart-quit.json is a fresh post-restart report at 1.100000s/161 events and must not be combined with this segment."
+    },
+    "nativeLedger": {
+      "source": "NativeLedger.log, native-ledger-quit.json, native-ledger-quit-events.jsonl",
+      "report": {
+        "durationSeconds": 108.39891815185547,
+        "eventCount": 1520,
+        "population": 9,
+        "age": 1,
+        "shipments": 0,
+        "spentFood": 300.0,
+        "gatheredFood": 94.47115325927734,
+        "guardians": 1,
+        "kills": 1,
+        "losses": 0
+      },
+      "payments": [
+        {
+          "time": 12.90001297,
+          "producer": 1,
+          "message": "Settler ×1: 100 F / 0 W / 0 C"
+        },
+        {
+          "time": 31.20008278,
+          "producer": 1,
+          "message": "Settler ×1: 100 F / 0 W / 0 C"
+        },
+        {
+          "time": 70.69949353,
+          "producer": 1,
+          "message": "Settler ×1: 100 F / 0 W / 0 C"
+        }
+      ],
+      "births": [
+        {
+          "time": 32.90007019042969,
+          "entity": 132,
+          "targetResource": 10
+        },
+        {
+          "time": 52.89976501464844,
+          "entity": 134,
+          "targetResource": 10
+        },
+        {
+          "time": 90.69918823242188,
+          "entity": 140,
+          "targetResource": 10
+        }
+      ],
+      "thirdPayment": "Paid at 70.69949340820312; third trained settler entity140 spawned at90.69918823242188 and received Gather resource10 before quit.",
+      "rally": {
+        "time": 23.0000515,
+        "producer": 1,
+        "targetResource": 10,
+        "point": {
+          "x": 35,
+          "y": 21
+        },
+        "result": "entities 132, 134 and 140 receive Gather target 10; event sums are 48.91000712, 35.44300517 and 10.11700141 food respectively."
+      },
+      "thirdClickEvidence": {
+        "failedExtraTap": {
+          "leftDown": [
+            1163,
+            831
+          ],
+          "leftUp": [
+            1342,
+            284
+          ],
+          "result": "empty raycast/no UI hit; ledger-two-jobs-after-extra-click-attempt.jpeg shows only two jobs"
+        },
+        "successfulLaterClick": {
+          "leftDown": [
+            1340,
+            284
+          ],
+          "leftUp": [
+            1342,
+            284
+          ],
+          "time": 86.7255,
+          "button": "Settler 100F"
+        }
+      },
+      "shortcutTiming": [
+        {
+          "key": "T",
+          "keyTime": 28.9012,
+          "leftDown": 28.9581,
+          "deltaSeconds": 0.0569,
+          "button": "Settler 100F"
+        },
+        {
+          "key": "T",
+          "keyTime": 47.0866,
+          "leftDown": 47.1946,
+          "deltaSeconds": 0.108,
+          "button": "Settler 100F"
+        }
+      ]
+    }
+  },
+  "guardian": {
+    "reportedCount": 1,
+    "evidence": "Player 0 Pathfinder entity 8 dealt melee damage to neutral Camp Guardian entity 118; Death at 101.2990265 identifies entity 118 as Camp Guardian. The event stream contains no player-0 attack command immediately linking the kill to one specific issued command, so exact causal input is unresolved; do not attribute it to the extra UI tap."
+  },
+  "limits": [
+    "No full-match outcome is established by these bounded traces.",
+    "The pre-restart population/spending ledger is unavailable after StartMatch reset.",
+    "Timing deltas are key-to-next-left-down observations, not claims that all actions occurred in one frame."
+  ],
+  "rootReview": "Corrected the initial audit omission of entity134 by enumerating all player0 post-start Settler Spawn events; all3 births are now listed and agree with population9.",
+  "processes": {
+    "NativeInput": "exit0",
+    "NativeLedger": "exit0"
+  }
+}

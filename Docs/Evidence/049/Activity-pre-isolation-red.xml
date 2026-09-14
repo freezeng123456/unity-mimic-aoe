@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Failed(Child)" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 17:20:55Z" end-time="2026-09-14 17:20:56Z" duration="0.4071317">
+  <test-suite type="TestSuite" id="1208" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="168" result="Failed" site="Child" start-time="2026-09-14 17:20:55Z" end-time="2026-09-14 17:20:56Z" duration="0.407132" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1202" name="Frontier.PlayMode.dll" fullname="/Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Library/ScriptAssemblies/Frontier.PlayMode.dll" runstate="Runnable" testcasecount="168" result="Failed" site="Child" start-time="2026-09-14 17:20:55Z" end-time="2026-09-14 17:20:56Z" duration="0.402961" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="65452" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1203" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="168" result="Failed" site="Child" start-time="2026-09-14 17:20:55Z" end-time="2026-09-14 17:20:56Z" duration="0.402424" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1204" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="168" result="Failed" site="Child" start-time="2026-09-14 17:20:55Z" end-time="2026-09-14 17:20:56Z" duration="0.402077" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1001" name="ActivityAudioTests" fullname="Frontier.Tests.ActivityAudioTests" classname="Frontier.Tests.ActivityAudioTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-09-14 17:20:55Z" end-time="2026-09-14 17:20:56Z" duration="0.399750" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1004" name="ConstructionAndPaidRepairProduceCuesButUnpaidRepairDoesNot" fullname="Frontier.Tests.ActivityAudioTests.ConstructionAndPaidRepairProduceCuesButUnpaidRepairDoesNot" methodname="ConstructionAndPaidRepairProduceCuesButUnpaidRepairDoesNot" classname="Frontier.Tests.ActivityAudioTests" runstate="Runnable" seed="1613096648" result="Failed" start-time="2026-09-14 17:20:55Z" end-time="2026-09-14 17:20:56Z" duration="0.128484" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.ActivityAudioTests+<ConstructionAndPaidRepairProduceCuesButUnpaidRepairDoesNot>d__14.MoveNext () [0x00133] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/PlayMode/ActivityAudioTests.cs:66
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[FRONTIER_PROGRESS t=0 entities=131 age=1/1 winner=-1
+]]></output>
+            </test-case>
+            <test-case id="1005" name="HiddenOffscreenAndPausedWorkCannotProduceOrReplayCues" fullname="Frontier.Tests.ActivityAudioTests.HiddenOffscreenAndPausedWorkCannotProduceOrReplayCues" methodname="HiddenOffscreenAndPausedWorkCannotProduceOrReplayCues" classname="Frontier.Tests.ActivityAudioTests" runstate="Runnable" seed="1450663424" result="Failed" start-time="2026-09-14 17:20:56Z" end-time="2026-09-14 17:20:56Z" duration="0.065326" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  New work while visible may be heard
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.ActivityAudioTests+<HiddenOffscreenAndPausedWorkCannotProduceOrReplayCues>d__15.MoveNext () [0x0014d] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/PlayMode/ActivityAudioTests.cs:87
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[FRONTIER_PROGRESS t=0 entities=131 age=1/1 winner=-1
+]]></output>
+            </test-case>
+            <test-case id="1006" name="MutingDuringPauseSilencesExistingSourcesAndSurvivesRestart" fullname="Frontier.Tests.ActivityAudioTests.MutingDuringPauseSilencesExistingSourcesAndSurvivesRestart" methodname="MutingDuringPauseSilencesExistingSourcesAndSurvivesRestart" classname="Frontier.Tests.ActivityAudioTests" runstate="Runnable" seed="1328513063" result="Failed" start-time="2026-09-14 17:20:56Z" end-time="2026-09-14 17:20:56Z" duration="0.066613" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The SOUND OFF setting must apply to existing voices, including paused ones
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.ActivityAudioTests+<MutingDuringPauseSilencesExistingSourcesAndSurvivesRestart>d__16.MoveNext () [0x000d6] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/PlayMode/ActivityAudioTests.cs:99
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1002" name="RealMovementProducesStepsAndStoppedUnitIsSilent" fullname="Frontier.Tests.ActivityAudioTests.RealMovementProducesStepsAndStoppedUnitIsSilent" methodname="RealMovementProducesStepsAndStoppedUnitIsSilent" classname="Frontier.Tests.ActivityAudioTests" runstate="Runnable" seed="800115057" result="Failed" start-time="2026-09-14 17:20:56Z" end-time="2026-09-14 17:20:56Z" duration="0.066580" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Actual visible movement needs a footstep cue
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.ActivityAudioTests+<RealMovementProducesStepsAndStoppedUnitIsSilent>d__12.MoveNext () [0x0007e] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/PlayMode/ActivityAudioTests.cs:38
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[FRONTIER_PROGRESS t=0 entities=130 age=1/1 winner=-1
+]]></output>
+            </test-case>
+            <test-case id="1003" name="RealWoodIncomeProducesAWorkCueAndUnfinishedSourceDoesNot" fullname="Frontier.Tests.ActivityAudioTests.RealWoodIncomeProducesAWorkCueAndUnfinishedSourceDoesNot" methodname="RealWoodIncomeProducesAWorkCueAndUnfinishedSourceDoesNot" classname="Frontier.Tests.ActivityAudioTests" runstate="Runnable" seed="1790107868" result="Failed" start-time="2026-09-14 17:20:56Z" end-time="2026-09-14 17:20:56Z" duration="0.066530" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The work cue must accompany actual gathering income
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.ActivityAudioTests+<RealWoodIncomeProducesAWorkCueAndUnfinishedSourceDoesNot>d__13.MoveNext () [0x000d6] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/PlayMode/ActivityAudioTests.cs:50
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@7a3849e09bd0/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[FRONTIER_PROGRESS t=0 entities=131 age=1/1 winner=-1
+Saving results to: /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

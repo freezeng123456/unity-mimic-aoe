@@ -1,0 +1,53 @@
+{
+  "version": "0.2.21",
+  "buildGuid": "be59e1ac33f54c018f6259cf6b8a86dd",
+  "captures": 9,
+  "reports": [
+    {
+      "matchId": "cfff236c9b9046f2ba7f21f4f54e1661",
+      "reason": "menu_exit",
+      "time": 31.800085067749023,
+      "winner": -1,
+      "aiDifficulty": "hard",
+      "aiDecisionSeconds": 0.6000000238418579,
+      "aiArmySeconds": 3.5,
+      "appVersion": "0.2.21",
+      "buildGuid": "be59e1ac33f54c018f6259cf6b8a86dd"
+    },
+    {
+      "matchId": "635349799065401aa172063a471844f7",
+      "reason": "menu_exit",
+      "time": 12.900012969970703,
+      "winner": -1,
+      "aiDifficulty": "easy",
+      "aiDecisionSeconds": 2.4000000953674316,
+      "aiArmySeconds": 14.0,
+      "appVersion": "0.2.21",
+      "buildGuid": "be59e1ac33f54c018f6259cf6b8a86dd"
+    },
+    {
+      "matchId": "1e657d8577f14174b26c9c291125dfbf",
+      "reason": "menu_exit",
+      "time": 11.800008773803711,
+      "winner": -1,
+      "aiDifficulty": "standard",
+      "aiDecisionSeconds": 1.2000000476837158,
+      "aiArmySeconds": 7.0,
+      "appVersion": "0.2.21",
+      "buildGuid": "be59e1ac33f54c018f6259cf6b8a86dd"
+    }
+  ],
+  "checks": {
+    "threeProfilesStarted": true,
+    "hardRestartNewMatchId": true,
+    "hardRetainedAfterRestart": true,
+    "menusRetainSelection": true,
+    "actualReportProfileMatches": true,
+    "noCastShadowsVisuallyObserved": true
+  },
+  "limitations": [
+    "Short native menu/start/restart probes only; no complete match, balance, audio or performance acceptance.",
+    "One F9 immediately after Restart produced no pair; after observing stable match, a new F9 succeeded. No success claimed for missing capture.",
+    "First Hard match ended through Restart; current StartMatch does not persist the interrupted previous match report."
+  ]
+}

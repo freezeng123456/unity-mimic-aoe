@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Failed(Child)" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 16:06:52Z" end-time="2026-09-14 16:06:52Z" duration="0.0984394">
+  <test-suite type="TestSuite" id="1000" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="156" result="Failed" site="Child" start-time="2026-09-14 16:06:52Z" end-time="2026-09-14 16:06:52Z" duration="0.098439" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1193" name="Frontier.EditMode.dll" fullname="/Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Library/ScriptAssemblies/Frontier.EditMode.dll" runstate="Runnable" testcasecount="156" result="Failed" site="Child" start-time="2026-09-14 16:06:52Z" end-time="2026-09-14 16:06:52Z" duration="0.094638" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="79695" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1194" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="150" result="Failed" site="Child" start-time="2026-09-14 16:06:52Z" end-time="2026-09-14 16:06:52Z" duration="0.094134" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1195" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="150" result="Failed" site="Child" start-time="2026-09-14 16:06:52Z" end-time="2026-09-14 16:06:52Z" duration="0.093696" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1057" name="DepletedRallyTests" fullname="Frontier.Tests.DepletedRallyTests" classname="Frontier.Tests.DepletedRallyTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-14 16:06:52Z" end-time="2026-09-14 16:06:52Z" duration="0.091706" total="4" passed="1" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1061" name="DepletedResourceWithoutEligibleReplacementKeepsRememberedMove" fullname="Frontier.Tests.DepletedRallyTests.DepletedResourceWithoutEligibleReplacementKeepsRememberedMove" methodname="DepletedResourceWithoutEligibleReplacementKeepsRememberedMove" classname="Frontier.Tests.DepletedRallyTests" runstate="Runnable" seed="146582644" result="Passed" start-time="2026-09-14 16:06:52Z" end-time="2026-09-14 16:06:52Z" duration="0.044125" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1058" name="FoodBoxExhaustedDuringPaidTrainingAssignsNearestFoodAndActuallyGathers" fullname="Frontier.Tests.DepletedRallyTests.FoodBoxExhaustedDuringPaidTrainingAssignsNearestFoodAndActuallyGathers" methodname="FoodBoxExhaustedDuringPaidTrainingAssignsNearestFoodAndActuallyGathers" classname="Frontier.Tests.DepletedRallyTests" runstate="Runnable" seed="852369964" result="Failed" start-time="2026-09-14 16:06:52Z" end-time="2026-09-14 16:06:52Z" duration="0.015919" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: Gather
+  But was:  Move
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.DepletedRallyTests.FoodBoxExhaustedDuringPaidTrainingAssignsNearestFoodAndActuallyGathers () [0x00063] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/DepletedRallyTests.cs:56
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1059" name="ReplacementSkipsNearerWoodEnemyFarmAndUnfinishedFarm" fullname="Frontier.Tests.DepletedRallyTests.ReplacementSkipsNearerWoodEnemyFarmAndUnfinishedFarm" methodname="ReplacementSkipsNearerWoodEnemyFarmAndUnfinishedFarm" classname="Frontier.Tests.DepletedRallyTests" runstate="Runnable" seed="813554489" result="Failed" start-time="2026-09-14 16:06:52Z" end-time="2026-09-14 16:06:52Z" duration="0.012570" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: Gather
+  But was:  Move
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.DepletedRallyTests.ReplacementSkipsNearerWoodEnemyFarmAndUnfinishedFarm () [0x000e2] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/DepletedRallyTests.cs:71
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1060" name="TerrainRallyClearsResourceIntentEvenWithVisibleReplacement" fullname="Frontier.Tests.DepletedRallyTests.TerrainRallyClearsResourceIntentEvenWithVisibleReplacement" methodname="TerrainRallyClearsResourceIntentEvenWithVisibleReplacement" classname="Frontier.Tests.DepletedRallyTests" runstate="Runnable" seed="68583763" result="Failed" start-time="2026-09-14 16:06:52Z" end-time="2026-09-14 16:06:52Z" duration="0.012399" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.DepletedRallyTests.TerrainRallyClearsResourceIntentEvenWithVisibleReplacement () [0x000f8] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/DepletedRallyTests.cs:81
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[Saving results to: /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

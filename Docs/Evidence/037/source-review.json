@@ -1,0 +1,23 @@
+{
+  "status": "static_checked",
+  "runtime": "Assets/Frontier/Presentation/RtsInput.cs",
+  "before": "work/verification/037/before/RtsInput.cs",
+  "changeScope": {
+    "addedDoubleClickPosition": true,
+    "addedEightPixelSlop": true,
+    "candidateResetHooks": ["UI pointer", "right command", "box selection", "minimap", "keyboard", "target mode", "device reset", "focus/pause/modal", "selection", "group save/recall", "world order"],
+    "otherRulesChanged": false
+  },
+  "testSha256": "e42a72182b6e307bd596ae6d4dbba340809c0cad64e07b77fa9267deeb0488d5",
+  "version": "0.2.16",
+  "dependencies": {
+    "manifestSha256": "b2782941a4c5374c8edf48471950d7b4dade7142c674028b3f3e3c8e832c194b",
+    "packagesLockSha256": "4da8891b705d28b631c3734d49d0cc5e60fb1792a8b149df4c9f898d414d4d21",
+    "inputSystem": "1.20.0"
+  },
+  "meta": {
+    "RtsInput.cs.meta": true,
+    "DoubleClickSelectionTests.cs.meta": true
+  },
+  "limitations": ["Unity green results and native hardware validation were not run or inferred by this review", "before manifest snapshot was not present in the checked work path, so dependency immutability is verified against current locked versions only"]
+}

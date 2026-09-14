@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Failed(Child)" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 18:30:58Z" end-time="2026-09-14 18:30:58Z" duration="0.4850046">
+  <test-suite type="TestSuite" id="1000" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="171" result="Failed" site="Child" start-time="2026-09-14 18:30:58Z" end-time="2026-09-14 18:30:58Z" duration="0.485005" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1215" name="Frontier.EditMode.dll" fullname="/Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Library/ScriptAssemblies/Frontier.EditMode.dll" runstate="Runnable" testcasecount="171" result="Failed" site="Child" start-time="2026-09-14 18:30:58Z" end-time="2026-09-14 18:30:58Z" duration="0.480663" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="45747" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1216" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="165" result="Failed" site="Child" start-time="2026-09-14 18:30:58Z" end-time="2026-09-14 18:30:58Z" duration="0.479936" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1217" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="165" result="Failed" site="Child" start-time="2026-09-14 18:30:58Z" end-time="2026-09-14 18:30:58Z" duration="0.479428" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1074" name="DynamicDestinationTests" fullname="Frontier.Tests.DynamicDestinationTests" classname="Frontier.Tests.DynamicDestinationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-14 18:30:58Z" end-time="2026-09-14 18:30:58Z" duration="0.477396" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1078" name="BlockedFirstWaypointCompletesBeforeNextShiftWaypointRuns" fullname="Frontier.Tests.DynamicDestinationTests.BlockedFirstWaypointCompletesBeforeNextShiftWaypointRuns" methodname="BlockedFirstWaypointCompletesBeforeNextShiftWaypointRuns" classname="Frontier.Tests.DynamicDestinationTests" runstate="Runnable" seed="990975583" result="Failed" start-time="2026-09-14 18:30:58Z" end-time="2026-09-14 18:30:58Z" duration="0.082805" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  130 pike position=(52.00, 58.00) orders=2 status=Moving path=(52.00, 58.00),(52.00, 58.00) requested=(52.00, 60.00)
+  Expected: less than 0.5f
+  But was:  22.3606796f
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.DynamicDestinationTests.BlockedFirstWaypointCompletesBeforeNextShiftWaypointRuns () [0x000fa] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/DynamicDestinationTests.cs:56
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1079" name="FiftyMixedUnitsKeepDistinctReachableGoalsAfterTwoFoundationsAppear" fullname="Frontier.Tests.DynamicDestinationTests.FiftyMixedUnitsKeepDistinctReachableGoalsAfterTwoFoundationsAppear" methodname="FiftyMixedUnitsKeepDistinctReachableGoalsAfterTwoFoundationsAppear" classname="Frontier.Tests.DynamicDestinationTests" runstate="Runnable" seed="898838955" result="Failed" start-time="2026-09-14 18:30:58Z" end-time="2026-09-14 18:30:58Z" duration="0.335669" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  131 musketeer position=(81.00, 51.00) orders=1 status=Moving path=(81.00, 51.00),(81.00, 51.00) requested=(82.70, 50.70); 134 cannon position=(82.94, 54.91) orders=1 status=Moving path=(44.34, 58.93),(82.00, 55.00),(82.70, 54.00) requested=(82.70, 54.00); 138 dragoon position=(91.00, 59.00) orders=1 status=Moving path=(91.00, 59.00),(91.00, 59.00) requested=(89.30, 57.30); 153 dragoon position=(88.98, 60.99) orders=1 status=Moving path=(87.55, 67.39),(89.30, 60.60) requested=(89.30, 60.60)
+  Expected: 0
+  But was:  4
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.DynamicDestinationTests.FiftyMixedUnitsKeepDistinctReachableGoalsAfterTwoFoundationsAppear () [0x00161] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/DynamicDestinationTests.cs:66
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1077" name="PaidBuildingCoveringDestinationAllowsArrivalBesideIt" fullname="Frontier.Tests.DynamicDestinationTests.PaidBuildingCoveringDestinationAllowsArrivalBesideIt" classname="Frontier.Tests.DynamicDestinationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-14 18:30:58Z" end-time="2026-09-14 18:30:58Z" duration="0.052961" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1075" name="PaidBuildingCoveringDestinationAllowsArrivalBesideIt(Move)" fullname="Frontier.Tests.DynamicDestinationTests.PaidBuildingCoveringDestinationAllowsArrivalBesideIt(Move)" methodname="PaidBuildingCoveringDestinationAllowsArrivalBesideIt" classname="Frontier.Tests.DynamicDestinationTests" runstate="Runnable" seed="776573512" result="Failed" start-time="2026-09-14 18:30:58Z" end-time="2026-09-14 18:30:58Z" duration="0.026027" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  130 pike position=(52.00, 58.00) orders=1 status=Moving path=(52.00, 58.00),(52.00, 58.00) requested=(52.00, 60.00)
+  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at Frontier.Tests.DynamicDestinationTests.PaidBuildingCoveringDestinationAllowsArrivalBesideIt (Frontier.OrderKind kind) [0x000ba] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/DynamicDestinationTests.cs:43
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1076" name="PaidBuildingCoveringDestinationAllowsArrivalBesideIt(AttackMove)" fullname="Frontier.Tests.DynamicDestinationTests.PaidBuildingCoveringDestinationAllowsArrivalBesideIt(AttackMove)" methodname="PaidBuildingCoveringDestinationAllowsArrivalBesideIt" classname="Frontier.Tests.DynamicDestinationTests" runstate="Runnable" seed="1375224470" result="Failed" start-time="2026-09-14 18:30:58Z" end-time="2026-09-14 18:30:58Z" duration="0.025513" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  130 pike position=(52.00, 58.00) orders=1 status=Moving path=(52.00, 58.00),(52.00, 58.00) requested=(52.00, 60.00)
+  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at Frontier.Tests.DynamicDestinationTests.PaidBuildingCoveringDestinationAllowsArrivalBesideIt (Frontier.OrderKind kind) [0x000ba] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/DynamicDestinationTests.cs:43
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[Saving results to: /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

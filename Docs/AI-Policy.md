@@ -1,0 +1,23 @@
+# AI Policy · 0.2.26
+
+SkirmishAI uses ordinary World.Issue commands for gameplay changes; strategy observation events are emitted separately. Difficulty is copied into the match from the rule catalog. Nominal decision / army-review intervals are Easy 2.4 / 14 seconds, Standard 1.2 / 7, Hard 0.6 / 3.5, scheduled by the existing 10 Hz simulation. Pausing and match end stop decisions. No difficulty changes gathering, production, combat cooldowns, resource grants or population validation.
+
+Own units and buildings supply economic state. Enemy targets and memory update only when World.IsVisible accepts them; the fixed map's starting positions are scouting priors. Memories retain last observed positions and are cleared when revisited and observed empty. This architecture and tested samples do not establish a formal proof of every possible information-flow boundary.
+
+AiWorkforce forecasts food/wood/coin needs from actual rules, selects resources through World.GatherableResource, accounts for completed banks and avoids resources near visible military threats. Unfinished economic buildings cannot attract gatherers. Total living villagers and presently available workers remain separate counts; garrisoning does not kill a worker or bypass population. AiAgePlan supports the configured age limit including I–V, saving from actual income and pausing to defend. World can reject any requested action.
+
+AiConstruction resumes at most one visible own unattended foundation per decision. It respects current or queued builders and selects a non-garrisoned, non-holding idle worker or one with a single Gather order. It issues ordinary Order/Build to the original foundation, never placing it again or creating construction progress. No replacement is sent when a currently visible non-explorer military unit is within max(12, range+4) of the foundation. This checks the destination area only; route interception and hostile defensive-building coverage remain unverified limitations.
+
+Production, research, shipments, trade, garrison, army composition, regrouping and attack movement share the normal world. Siege reserves protect the cost of cannon production, while automated unit combat acquires legal visible targets and deploys artillery. These mechanisms are implemented in varying detail; mature tactical roles, global planning, robust endgame coverage and balance remain incomplete. Ages IV–V have headless observations, not complete human QA.
+
+The 047 before/after normal-rule samples, including failures and changed winners, are recorded in Iteration-047.md. Seed 314159 and event files aid local investigation but do not establish universal deterministic replay, network synchronization, native player input, audio, visuals, or performance acceptance. Sea combat, multiplayer, campaign and map editor remain later scope.
+
+## 048 endgame patrol (project policy)
+
+Once an active own expedition actually visits the enemy starting area and no valid observed enemy memory remains, AiSearchPlan chooses terrain patrol centers using map dimensions and own soldier positions. Visible threats and existing regroup rules retain priority. In the current 128 map there are49 centers spaced18 units apart. Arrival requires an active own soldier within4 units and current visibility of the point; after90 simulation seconds a point may be deferred and retried next pass. Completion of a pass never declares victory. Standard reviews occur on the existing7-second army interval. Orders use ordinary AttackMove and existing navigation, without strategy queries of hidden enemy coordinates or blocked cells to choose destinations.
+
+Two staged remote-survivor fixtures finish through observed combat. A bounded two-hidden-position comparison retains identical own positions/orders before discovery; two normal seed314159 matches have byte-identical records to0.2.23. These samples do not prove universal noninterference, arbitrary-terrain coverage, deterministic replay or the ability to catch continually fleeing enemies. Combat diversion can consume the waypoint timeout. Native0.2.24 input, audio, visuals and complete human-match QA remain unperformed. See Iteration-048.md.
+
+049 changes activity presentation only. AI code and rule data are unchanged; two normal rule audit samples are byte-identical to0.2.24. The new work record describes completed simulation activity and does not grant resources or issue commands. See Iteration-049.md for the separate audio validation scope.
+
+050 changes worker presentation and work-exit display status. AI code/rule data unchanged; two normal audit sample records are byte-identical to0.2.25. This does not certify native human play or balance.

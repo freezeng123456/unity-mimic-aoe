@@ -1,0 +1,39 @@
+{
+  "source": "work/verification/033/native-autoplay.json and native-autoplay-events.jsonl",
+  "appVersion": "0.2.12",
+  "eventCountReport": 47468,
+  "eventCountParsed": 47468,
+  "reason": "match_finished",
+  "winner": 0,
+  "simulationTime": 1100.37841796875,
+  "simulationSpeed": 8.0,
+  "autoplay": true,
+  "endMessage": "All opposing units and buildings eliminated",
+  "tcDeaths": {"player1TownCenterDeathTime": 999.6029663085938, "player0TownCenterDeathTime": null},
+  "artillery": {
+    "player0": {
+      "fieldCannonEntities": [256,268,279,311,320,328],
+      "fire": 114,
+      "impact": 103,
+      "damage": 131,
+      "attackCancelled": 1,
+      "attackCancelledDetails": [{"time": 845.1406860351562, "entity": 268, "target": 267, "message": "Target inside minimum range"}],
+      "sameEntityFireIntervalSeconds": {"256": {"min": 5.0987548828125, "max": 33.8917236328125}, "268": {"min": 5.0987548828125, "max": 54.586669921875}, "279": {"min": 5.0987548828125, "max": 35.2913818359375}, "311": {"min": 5.0987548828125, "max": 10.197509765625}, "320": {"min": 8.197998046875, "max": 15.6961669921875}, "328": null},
+      "buildingFire": 86,
+      "buildingImpact": 83,
+      "buildingDamageEvents": 85,
+      "buildingDamageTargets": [52,147,148,157,162,176,195,222,248,261,316]
+    },
+    "player1": {
+      "fieldCannonEntities": [247,282,293],
+      "fire": 17,
+      "impact": 17,
+      "damage": 18,
+      "attackCancelled": 0,
+      "buildingDamageEvents": 0
+    }
+  },
+  "ages": {"player0": [214.90391540527344,623.6947631835938], "player1": [207.70347595214844,686.0795288085938]},
+  "shipments": {"sent": 12, "arrived": 11, "earned": 12, "ageRewards": 4},
+  "acceptanceBoundary": "This is an 8x autoplay mirror run. It verifies automated simulation/event behavior and elimination ordering only; it is not evidence of player screen input or human siege control."
+}

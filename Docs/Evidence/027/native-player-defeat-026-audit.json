@@ -1,0 +1,205 @@
+{
+  "build": {
+    "appVersion": "0.2.6",
+    "buildGuid": "1d6f91c80312451fbdd17cde193d5d45",
+    "version": "6000.6.0f1",
+    "platform": "OSXPlayer",
+    "resolution": "2560x1440"
+  },
+  "match": {
+    "reason": "match_finished",
+    "autoplay": false,
+    "simulationSpeed": 1.0,
+    "seed": 314159,
+    "maxAge": 3,
+    "time": 778.1570434570312,
+    "winner": 1,
+    "eventCount": 23999
+  },
+  "resignEvents": 0,
+  "townDeaths": [
+    {
+      "time": 765.8600463867188,
+      "kind": "Death",
+      "player": 0,
+      "entity": 1,
+      "target": 1,
+      "message": "Town Center lost",
+      "amount": 0.0
+    }
+  ],
+  "matchEnded": [
+    {
+      "time": 778.1570434570312,
+      "kind": "MatchEnded",
+      "player": 1,
+      "entity": 0,
+      "target": 0,
+      "message": "All opposing units and buildings eliminated",
+      "amount": 0.0
+    }
+  ],
+  "secondsAfterLastTownDeath": 12.2969970703125,
+  "player0Report": {
+    "civilization": "coast",
+    "age": 2,
+    "kills": 24,
+    "losses": 34,
+    "shipments": 2,
+    "population": 0,
+    "treasures": 2,
+    "guardians": 2,
+    "gathered": {
+      "food": 2147.202880859375,
+      "wood": 670.4786376953125,
+      "coin": 840.5090942382812
+    },
+    "spent": {
+      "food": 2075.0,
+      "wood": 691.4763793945312,
+      "coin": 125.0
+    },
+    "passiveIncome": {
+      "food": 0.0,
+      "wood": 0.0,
+      "coin": 0.0
+    },
+    "tradeIncome": {
+      "food": 0.0,
+      "wood": 0.0,
+      "coin": 0.0
+    },
+    "resources": {
+      "food": 372.07257080078125,
+      "wood": 279.0195007324219,
+      "coin": 815.5057983398438
+    },
+    "refunded": {
+      "food": 0.0,
+      "wood": 0.0,
+      "coin": 0.0
+    },
+    "ageHistory": [
+      "I @ 0s",
+      "2 @ 290.9s"
+    ]
+  },
+  "shipsSent": [
+    {
+      "time": 170.50120544433594,
+      "kind": "ShipmentSent",
+      "player": 0,
+      "entity": 0,
+      "target": 0,
+      "message": "New Settlers",
+      "amount": 0.0
+    },
+    {
+      "time": 332.5110778808594,
+      "kind": "ShipmentSent",
+      "player": 0,
+      "entity": 0,
+      "target": 0,
+      "message": "Musketeer Company",
+      "amount": 0.0
+    }
+  ],
+  "shipsArrived": [
+    {
+      "time": 205.5033416748047,
+      "kind": "ShipmentArrived",
+      "player": 0,
+      "entity": 1,
+      "target": 0,
+      "message": "New Settlers arrived",
+      "amount": 0.0
+    },
+    {
+      "time": 367.5132141113281,
+      "kind": "ShipmentArrived",
+      "player": 0,
+      "entity": 1,
+      "target": 0,
+      "message": "Musketeer Company arrived",
+      "amount": 0.0
+    }
+  ],
+  "buildingsCompleted": [
+    {
+      "time": 126.9986343383789,
+      "kind": "BuildingComplete",
+      "player": 0,
+      "entity": 141,
+      "target": 0,
+      "message": "Manor ready",
+      "amount": 0.0
+    },
+    {
+      "time": 347.1119689941406,
+      "kind": "BuildingComplete",
+      "player": 0,
+      "entity": 163,
+      "target": 0,
+      "message": "Barracks ready",
+      "amount": 0.0
+    },
+    {
+      "time": 557.7108764648438,
+      "kind": "BuildingComplete",
+      "player": 0,
+      "entity": 180,
+      "target": 0,
+      "message": "Manor ready",
+      "amount": 0.0
+    }
+  ],
+  "player0Deaths": {
+    "Food Crate lost": 2,
+    "Wood Crate lost": 2,
+    "Pathfinder lost": 1,
+    "Settler lost": 16,
+    "Musketeer lost": 8,
+    "Barracks lost": 1,
+    "Pikeman lost": 5,
+    "Manor lost": 2,
+    "Town Center lost": 1
+  },
+  "player0FireImpactDamageCounts": {
+    "Fire": 197,
+    "Impact": 90,
+    "Damage": 195
+  },
+  "player0FireByEntity": {
+    "Pathfinder": 16,
+    "Musketeer": 37,
+    "Town Center": 63,
+    "Pikeman": 81
+  },
+  "repairPaymentEvents": {
+    "count": 167,
+    "first": {
+      "time": 713.9727172851562,
+      "kind": "Payment",
+      "player": 0,
+      "entity": 211,
+      "target": 0,
+      "message": "Repair 1: 0 F / 0 W / 0 C",
+      "amount": 0.0
+    },
+    "last": {
+      "time": 724.9700317382812,
+      "kind": "Payment",
+      "player": 0,
+      "entity": 217,
+      "target": 0,
+      "message": "Repair 1: 0 F / 0 W / 0 C",
+      "amount": 0.0
+    }
+  },
+  "limits": [
+    "Fire and Impact are distinct; Damage event amount is not a net HP-loss audit.",
+    "Payment message rounds resource values; it cannot prove a zero-cost repair.",
+    "Restart, menu return, audio and playability require separate evidence.",
+    "An ordinary player defeat with age II only does not accept the full core loop."
+  ]
+}

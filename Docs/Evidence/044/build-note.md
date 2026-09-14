@@ -1,0 +1,1 @@
+第一次Prepare因URP阴影属性setter为internal导致编译失败，改用已核对字段的SerializedObject后成功。首次BuildMac成功，构建过程自动更新URP阴影相关shader prefilter序列化字段，导致构建前后一个asset哈希改变；冻结Unity生成的新资产后再次构建用于交付身份核对。上述失败与第一次成功日志均保留，不冒充首次即通过。

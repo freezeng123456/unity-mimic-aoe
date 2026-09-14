@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="9" result="Failed(Child)" total="9" passed="4" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 10:03:40Z" end-time="2026-09-14 10:03:40Z" duration="0.0490924">
+  <test-suite type="TestSuite" id="1000" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="119" result="Failed" site="Child" start-time="2026-09-14 10:03:40Z" end-time="2026-09-14 10:03:40Z" duration="0.049092" total="9" passed="4" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1146" name="Frontier.EditMode.dll" fullname="/Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Library/ScriptAssemblies/Frontier.EditMode.dll" runstate="Runnable" testcasecount="119" result="Failed" site="Child" start-time="2026-09-14 10:03:40Z" end-time="2026-09-14 10:03:40Z" duration="0.045658" total="9" passed="4" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="84328" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1147" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="113" result="Failed" site="Child" start-time="2026-09-14 10:03:40Z" end-time="2026-09-14 10:03:40Z" duration="0.045252" total="9" passed="4" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1148" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="113" result="Failed" site="Child" start-time="2026-09-14 10:03:40Z" end-time="2026-09-14 10:03:40Z" duration="0.044926" total="9" passed="4" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1041" name="EconomyEvidenceTests" fullname="Frontier.Tests.EconomyEvidenceTests" classname="Frontier.Tests.EconomyEvidenceTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-09-14 10:03:40Z" end-time="2026-09-14 10:03:40Z" duration="0.037332" total="9" passed="4" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1049" name="DeathEvidenceRecordsReleasedReservationWithoutRefund" fullname="Frontier.Tests.EconomyEvidenceTests.DeathEvidenceRecordsReleasedReservationWithoutRefund" methodname="DeathEvidenceRecordsReleasedReservationWithoutRefund" classname="Frontier.Tests.EconomyEvidenceTests" runstate="Runnable" seed="639401105" result="Failed" start-time="2026-09-14 10:03:40Z" end-time="2026-09-14 10:03:40Z" duration="0.019806" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 2
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.EconomyEvidenceTests.DeathEvidenceRecordsReleasedReservationWithoutRefund () [0x0008a] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/EconomyEvidenceTests.cs:152
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1044" name="FullHealthRepairEmitsNoPayment" fullname="Frontier.Tests.EconomyEvidenceTests.FullHealthRepairEmitsNoPayment" methodname="FullHealthRepairEmitsNoPayment" classname="Frontier.Tests.EconomyEvidenceTests" runstate="Runnable" seed="127763924" result="Passed" start-time="2026-09-14 10:03:40Z" end-time="2026-09-14 10:03:40Z" duration="0.007520" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1050" name="HousingDeathSnapshotUsesReducedCapacity" fullname="Frontier.Tests.EconomyEvidenceTests.HousingDeathSnapshotUsesReducedCapacity" methodname="HousingDeathSnapshotUsesReducedCapacity" classname="Frontier.Tests.EconomyEvidenceTests" runstate="Runnable" seed="1159560174" result="Failed" start-time="2026-09-14 10:03:40Z" end-time="2026-09-14 10:03:40Z" duration="0.000483" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 2
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.EconomyEvidenceTests.HousingDeathSnapshotUsesReducedCapacity () [0x00048] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/EconomyEvidenceTests.cs:162
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1045" name="PausingAnAcceptedRepairFreezesTimeHealthAndBalance" fullname="Frontier.Tests.EconomyEvidenceTests.PausingAnAcceptedRepairFreezesTimeHealthAndBalance" methodname="PausingAnAcceptedRepairFreezesTimeHealthAndBalance" classname="Frontier.Tests.EconomyEvidenceTests" runstate="Runnable" seed="1045515484" result="Passed" start-time="2026-09-14 10:03:40Z" end-time="2026-09-14 10:03:40Z" duration="0.000561" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1048" name="RejectedTrainingEmitsNeitherPaymentNorQueue" fullname="Frontier.Tests.EconomyEvidenceTests.RejectedTrainingEmitsNeitherPaymentNorQueue" methodname="RejectedTrainingEmitsNeitherPaymentNorQueue" classname="Frontier.Tests.EconomyEvidenceTests" runstate="Runnable" seed="102184757" result="Passed" start-time="2026-09-14 10:03:40Z" end-time="2026-09-14 10:03:40Z" duration="0.000542" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1042" name="TinyFinalRepairRecordsRealWoodDebitAndHealthChange" fullname="Frontier.Tests.EconomyEvidenceTests.TinyFinalRepairRecordsRealWoodDebitAndHealthChange" methodname="TinyFinalRepairRecordsRealWoodDebitAndHealthChange" classname="Frontier.Tests.EconomyEvidenceTests" runstate="Runnable" seed="1549208708" result="Failed" start-time="2026-09-14 10:03:40Z" end-time="2026-09-14 10:03:40Z" duration="0.000922" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 2
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.EconomyEvidenceTests.AssertBalance (Frontier.Tests.EconomyEvidenceTests+EvidenceEvent e) [0x00000] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/EconomyEvidenceTests.cs:49
+at Frontier.Tests.EconomyEvidenceTests.TinyFinalRepairRecordsRealWoodDebitAndHealthChange () [0x00076] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/EconomyEvidenceTests.cs:70
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1047" name="TrainingAndCancelKeepPaymentReservationAndRefundBoundaries" fullname="Frontier.Tests.EconomyEvidenceTests.TrainingAndCancelKeepPaymentReservationAndRefundBoundaries" methodname="TrainingAndCancelKeepPaymentReservationAndRefundBoundaries" classname="Frontier.Tests.EconomyEvidenceTests" runstate="Runnable" seed="1506154891" result="Failed" start-time="2026-09-14 10:03:40Z" end-time="2026-09-14 10:03:40Z" duration="0.000551" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 2
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.EconomyEvidenceTests.AssertBalance (Frontier.Tests.EconomyEvidenceTests+EvidenceEvent e) [0x00000] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/EconomyEvidenceTests.cs:49
+at Frontier.Tests.EconomyEvidenceTests.TrainingAndCancelKeepPaymentReservationAndRefundBoundaries () [0x00030] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/EconomyEvidenceTests.cs:122
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1043" name="TwoWorkersRecordSequentialClampedFinalRepairsOnceEach" fullname="Frontier.Tests.EconomyEvidenceTests.TwoWorkersRecordSequentialClampedFinalRepairsOnceEach" methodname="TwoWorkersRecordSequentialClampedFinalRepairsOnceEach" classname="Frontier.Tests.EconomyEvidenceTests" runstate="Runnable" seed="1015312207" result="Failed" start-time="2026-09-14 10:03:40Z" end-time="2026-09-14 10:03:40Z" duration="0.000735" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 2
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.EconomyEvidenceTests.AssertBalance (Frontier.Tests.EconomyEvidenceTests+EvidenceEvent e) [0x00000] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/EconomyEvidenceTests.cs:49
+at Frontier.Tests.EconomyEvidenceTests.TwoWorkersRecordSequentialClampedFinalRepairsOnceEach () [0x00088] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/EconomyEvidenceTests.cs:90
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1046" name="UnaffordableRepairDoesNotHealOrDebit" fullname="Frontier.Tests.EconomyEvidenceTests.UnaffordableRepairDoesNotHealOrDebit" methodname="UnaffordableRepairDoesNotHealOrDebit" classname="Frontier.Tests.EconomyEvidenceTests" runstate="Runnable" seed="884733799" result="Passed" start-time="2026-09-14 10:03:40Z" end-time="2026-09-14 10:03:40Z" duration="0.000609" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

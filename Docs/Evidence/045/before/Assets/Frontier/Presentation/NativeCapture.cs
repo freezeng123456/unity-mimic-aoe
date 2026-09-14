@@ -1,0 +1,134 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Security.Cryptography;
+using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.InputSystem;
+
+namespace Frontier
+{
+    [Serializable] public sealed class CaptureMetadata
+    {
+        public int schemaVersion = 1, eventSchemaVersion = SimEvent.CurrentSchemaVersion;
+        public string pngFile, pngSha256, utc, appVersion, buildGuid, unityVersion, matchId, requestMatchId;
+        public int requestFrame, captureFrame, width, height, seed;
+        public float requestWorldTime, worldTime;
+        public bool inMenu, paused, hasPlayer;
+        public Cost resources;
+        public PopulationSnapshot population;
+        public string hudResources, hudMatchId;
+        public int hudUpdatedFrame;
+        public float hudWorldTime;
+        public CaptureCamera camera;
+        public CaptureProduction[] production = Array.Empty<CaptureProduction>();
+
+        // Detached player-owned state; this does not refresh UI or inspect enemy information.
+        public static CaptureMetadata Read(GameController game)
+        {
+            var w = game.World;
+            var result = new CaptureMetadata
+            {
+                utc = DateTime.UtcNow.ToString("O"), appVersion = Application.version,
+                buildGuid = Application.buildGUID, unityVersion = Application.unityVersion,
+                matchId = game.MatchId, captureFrame = Time.frameCount,
+                width = Screen.width, height = Screen.height, inMenu = game.InMenu,
+                paused = game.IsPaused, seed = w?.Seed ?? 0, worldTime = w?.Time ?? 0,
+                hudResources = game.Hud.ResourceSummary, hudUpdatedFrame = game.Hud.ResourceSummaryFrame,
+                hudWorldTime = game.Hud.ResourceSummaryTime, hudMatchId = game.Hud.ResourceSummaryMatchId,
+                camera = new CaptureCamera
+                {
+                    focus = game.Controls.CameraFocus,
+                    pointer = Mouse.current?.position.ReadValue() ?? Vector2.zero,
+                    applicationFocused = Application.isFocused,
+                    orthographicSize = game.GameCamera.orthographicSize
+                }
+            };
+            if (w == null || game.InMenu) return result;
+            result.hasPlayer = true; result.resources = w.Players[0].resources;
+            result.population = PopulationSnapshot.From(w.Players[0]);
+            var buildings = new List<CaptureProduction>();
+            foreach (var e in w.Entities)
+            {
+                if (!e.Alive || e.owner != 0 || e.def.kind != EntityKind.Building) continue;
+                var b = new CaptureProduction
+                {
+                    entity = e.id, definition = e.def.id, position = e.position, hp = e.hp,
+                    construction = e.construction, queue = new CaptureProductionJob[e.queue.Count]
+                };
+                for (int i = 0; i < e.queue.Count; i++)
+                {
+                    var j = e.queue[i];
+                    b.queue[i] = new CaptureProductionJob
+                    { kind = j.kind, item = j.item, count = j.count, population = j.population, elapsed = j.elapsed, duration = j.duration };
+                }
+                buildings.Add(b);
+            }
+            result.production = buildings.ToArray();
+            return result;
+        }
+    }
+    [Serializable] public sealed class CaptureCamera
+    { public Vector2 focus, pointer; public bool applicationFocused; public float orthographicSize; }
+    [Serializable] public sealed class CaptureProduction
+    { public int entity; public string definition; public Vector2 position; public float hp, construction; public CaptureProductionJob[] queue; }
+    [Serializable] public sealed class CaptureProductionJob
+    { public string kind, item; public int count, population; public float elapsed, duration; }
+
+    public sealed class NativeCapture : MonoBehaviour
+    {
+        private GameController game;
+        public bool Busy { get; private set; }
+        public void Initialize(GameController controller) { game = controller; }
+
+        public bool Request()
+        {
+            if (game == null || !isActiveAndEnabled || Busy) return false;
+            // Editor batch mode never resumes WaitForEndOfFrame. No fake success for headless runs.
+            if (Application.isBatchMode || SystemInfo.graphicsDeviceType == GraphicsDeviceType.Null)
+            { Debug.LogWarning("FRONTIER_CAPTURE_UNAVAILABLE no interactive rendered frame"); return false; }
+            Busy = true;
+            StartCoroutine(AtFrameEnd(game.MatchId, Time.frameCount, game.World?.Time ?? 0));
+            return true;
+        }
+
+        private IEnumerator AtFrameEnd(string matchId, int requestFrame, float requestTime)
+        {
+            // A yield cannot occur inside a try block with a catch clause.
+            yield return new WaitForEndOfFrame();
+            Texture2D texture = null;
+            try
+            {
+                if (game == null || game.MatchId != matchId)
+                { Debug.LogWarning("FRONTIER_CAPTURE_CANCELLED session changed before rendering"); yield break; }
+                texture = ScreenCapture.CaptureScreenshotAsTexture();
+                if (texture == null) throw new InvalidOperationException("Screen capture returned no texture");
+                var metadata = CaptureMetadata.Read(game);
+                metadata.requestMatchId = matchId; metadata.requestFrame = requestFrame;
+                metadata.requestWorldTime = requestTime; metadata.width = texture.width; metadata.height = texture.height;
+                byte[] png = texture.EncodeToPNG();
+                if (png == null || png.Length == 0) throw new InvalidOperationException("PNG encoding returned no data");
+                using (var hash = SHA256.Create())
+                    metadata.pngSha256 = BitConverter.ToString(hash.ComputeHash(png)).Replace("-", "").ToLowerInvariant();
+                string stem = "Frontier-" + DateTime.UtcNow.ToString("yyyyMMdd-HHmmss-fff") + "-f" + metadata.captureFrame + "-" + Guid.NewGuid().ToString("N");
+                metadata.pngFile = stem + ".png";
+                string directory = Path.Combine(Application.persistentDataPath, "Captures");
+                Directory.CreateDirectory(directory);
+                // JSON is the completion record. A partial PNG without JSON must not be treated as a valid pair.
+                string path = Path.Combine(directory, stem);
+                File.WriteAllBytes(path + ".png", png);
+                File.WriteAllText(path + ".json", JsonUtility.ToJson(metadata, true));
+                Debug.Log("FRONTIER_CAPTURE_OK " + path + ".json");
+                game.Notify("Screenshot saved to Captures.");
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError("FRONTIER_CAPTURE_FAILED " + ex.GetType().Name + ": " + ex.Message);
+                if (game != null) game.Notify("Screenshot could not be saved.");
+            }
+            finally { if (texture != null) Destroy(texture); Busy = false; }
+        }
+        private void OnDisable() { StopAllCoroutines(); Busy = false; }
+    }
+}

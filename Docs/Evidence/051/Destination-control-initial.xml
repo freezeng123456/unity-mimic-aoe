@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 18:34:29Z" end-time="2026-09-14 18:34:29Z" duration="0.3859383">
+  <test-suite type="TestSuite" id="1000" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="175" result="Failed" site="Child" start-time="2026-09-14 18:34:29Z" end-time="2026-09-14 18:34:29Z" duration="0.385938" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1221" name="Frontier.EditMode.dll" fullname="/Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Library/ScriptAssemblies/Frontier.EditMode.dll" runstate="Runnable" testcasecount="175" result="Failed" site="Child" start-time="2026-09-14 18:34:29Z" end-time="2026-09-14 18:34:29Z" duration="0.381280" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="50023" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1222" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="169" result="Failed" site="Child" start-time="2026-09-14 18:34:29Z" end-time="2026-09-14 18:34:29Z" duration="0.380367" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1223" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="169" result="Failed" site="Child" start-time="2026-09-14 18:34:29Z" end-time="2026-09-14 18:34:29Z" duration="0.379552" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1074" name="DestinationControlTests" fullname="Frontier.Tests.DestinationControlTests" classname="Frontier.Tests.DestinationControlTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-14 18:34:29Z" end-time="2026-09-14 18:34:29Z" duration="0.376489" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1079" name="FiftyMixedUnitsKeepDistinctReachableGoalsAfterTwoFoundationsAppear" fullname="Frontier.Tests.DestinationControlTests.FiftyMixedUnitsKeepDistinctReachableGoalsAfterTwoFoundationsAppear" methodname="FiftyMixedUnitsKeepDistinctReachableGoalsAfterTwoFoundationsAppear" classname="Frontier.Tests.DestinationControlTests" runstate="Runnable" seed="2084636240" result="Failed" start-time="2026-09-14 18:34:29Z" end-time="2026-09-14 18:34:29Z" duration="0.370158" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  131 musketeer position=(81.00, 51.00) orders=1 status=Moving path=(81.00, 51.00),(81.00, 51.00) requested=(82.70, 50.70); 138 dragoon position=(91.00, 59.00) orders=1 status=Moving path=(91.00, 59.00),(91.00, 59.00) requested=(89.30, 57.30); 149 cannon position=(88.53, 59.37) orders=1 status=Moving path=(88.56, 59.30),(95.25, 63.80) requested=(92.60, 57.30)
+  Expected: 2
+  But was:  3
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.DestinationControlTests.FiftyMixedUnitsKeepDistinctReachableGoalsAfterTwoFoundationsAppear () [0x001b7] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/DestinationControlTests.cs:70
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[Saving results to: /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

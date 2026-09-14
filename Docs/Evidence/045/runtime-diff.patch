@@ -1,0 +1,270 @@
+--- 0.2.20/ProjectSettings/ProjectSettings.asset
++++ 0.2.21/ProjectSettings/ProjectSettings.asset
+@@ -149,7 +149,7 @@
+   loadStoreDebugModeEnabled: 0
+   visionOSBundleVersion: 1.0
+   tvOSBundleVersion: 1.0
+-  bundleVersion: 0.2.20
++  bundleVersion: 0.2.21
+   preloadedAssets: []
+   metroInputSource: 0
+   wsaTransparentSwapchain: 0
+--- 0.2.20/Assets/Resources/Rules.json
++++ 0.2.21/Assets/Resources/Rules.json
+@@ -4,6 +4,29 @@
+   "initialXp": 150,
+   "xpIncrease": 75,
+   "constructionRefund": 0.75,
++  "aiDifficulties": [
++    {
++      "id": "easy",
++      "name": "Easy",
++      "description": "Slower reactions and army orders. Same resources, sight and combat rules.",
++      "decisionSeconds": 2.4,
++      "armySeconds": 14
++    },
++    {
++      "id": "standard",
++      "name": "Standard",
++      "description": "Original reaction and army timing. Same resources, sight and combat rules.",
++      "decisionSeconds": 1.2,
++      "armySeconds": 7
++    },
++    {
++      "id": "hard",
++      "name": "Hard",
++      "description": "Faster reactions and army orders. Same resources, sight and combat rules.",
++      "decisionSeconds": 0.6,
++      "armySeconds": 3.5
++    }
++  ],
+   "entities": [
+     {
+       "id": "villager",
+--- 0.2.20/Assets/Frontier/Simulation/MatchSimulation.cs
++++ 0.2.21/Assets/Frontier/Simulation/MatchSimulation.cs
+@@ -12,17 +12,20 @@
+         public const float StepSeconds=.1f;
+         public const int MaxStepsPerFrame=10;
+         public World World { get; }
++        public AiDifficultyProfile Difficulty { get; }
+         public int StepCount { get; private set; }
+         public float LastFrameMs { get; private set; }
+         public bool CatchingUp { get; private set; }
+         readonly List<SkirmishAI> controllers=new List<SkirmishAI>();
+         float accumulator;
+-        public MatchSimulation(World world,params int[] automatedPlayers)
++        public MatchSimulation(World world,params int[] automatedPlayers):this(world,automatedPlayers,"standard"){}
++        public MatchSimulation(World world,int[] automatedPlayers,string difficultyId)
+         {
+             World=world??throw new ArgumentNullException(nameof(world));
++            Difficulty=AiDifficultyProfile.From(world.Rules,difficultyId);
+             var controlled=new HashSet<int>(automatedPlayers??Array.Empty<int>());
+             foreach(int id in controlled)if(id<0||id>=world.Players.Length)throw new ArgumentOutOfRangeException(nameof(automatedPlayers));
+-            for(int id=world.Players.Length-1;id>=0;id--)if(controlled.Contains(id))controllers.Add(new SkirmishAI(world,id));
++            for(int id=world.Players.Length-1;id>=0;id--)if(controlled.Contains(id))controllers.Add(new SkirmishAI(world,id,Difficulty));
+         }
+         public bool Step()
+         {
+--- 0.2.20/Assets/Frontier/Simulation/SkirmishAI.cs
++++ 0.2.21/Assets/Frontier/Simulation/SkirmishAI.cs
+@@ -12,15 +12,18 @@
+         private readonly Vector2 home,enemyStart;
+         private readonly Dictionary<int,Vector2> memory=new Dictionary<int,Vector2>();
+         private float thinkAt,armyAt;
++        public AiDifficultyProfile Difficulty { get; }
+         private bool expedition;
+         private int expeditionSize;
+         private readonly AiWorkforce workforce;
+         private readonly AiAgePlan agePlan;
+         private int rotation,buildSerial;
+-        public SkirmishAI(World world,int player){this.world=world;this.player=player;workforce=new AiWorkforce(world,player);agePlan=new AiAgePlan(world,player);home=player==0?new Vector2(24,28):new Vector2(104,100);enemyStart=new Vector2(128-home.x,128-home.y);}
++        public SkirmishAI(World world,int player):this(world,player,AiDifficultyProfile.From(world.Rules,"standard")){}
++        public SkirmishAI(World world,int player,AiDifficultyProfile difficulty)
++        {this.world=world;this.player=player;Difficulty=difficulty??throw new ArgumentNullException(nameof(difficulty));workforce=new AiWorkforce(world,player);agePlan=new AiAgePlan(world,player);home=player==0?new Vector2(24,28):new Vector2(104,100);enemyStart=new Vector2(128-home.x,128-home.y);}
+         public void Tick(float dt)
+         {
+-            if(world.Paused||world.Winner>=0)return;thinkAt-=dt;if(thinkAt>0)return;thinkAt=1.2f;
++            if(world.Paused||world.Winner>=0)return;thinkAt-=dt;if(thinkAt>0)return;thinkAt=Difficulty.DecisionSeconds;
+             var own=new List<EntityState>();var workers=new List<EntityState>();var army=new List<EntityState>();var enemies=new List<EntityState>();
+             foreach(var e in world.Entities)
+             {
+@@ -119,7 +122,7 @@
+                 }
+             }
+             foreach(var unit in army)if((unit.def.tags&Tags.Explorer)!=0)Explore(unit);
+-            if(world.Time<armyAt)return;armyAt=world.Time+7;
++            if(world.Time<armyAt)return;armyAt=world.Time+Difficulty.ArmySeconds;
+             EntityState threat=enemies.Find(x=>(x.position-home).sqrMagnitude<30*30);
+             var soldiers=army.FindAll(x=>(x.def.tags&Tags.Explorer)==0);
+             Vector2 destination=enemyStart;
+--- 0.2.20/Assets/Frontier/Simulation/Model.cs
++++ 0.2.21/Assets/Frontier/Simulation/Model.cs
+@@ -44,6 +44,8 @@
+     }
+     [Serializable] public class AgeDef { public int age; public string name; public Cost cost; public float time; public Cost economicReward; public string militaryUnit; public int militaryCount; }
+     [Serializable] public class CivDef { public string id,name,description; public bool houseVillager; public bool coinVillager; public int bankLimit=0; public float bankRate=0; public int villagerLimit=99; public Cost startingResources=new Cost(300,300,100); public Cost houseCost=new Cost(0,135,0); }
++    [Serializable] public class AiDifficultyDef
++    { public string id,name,description; public float decisionSeconds,armySeconds; }
+     [Serializable] public class TradeSocketDef { public Vector2 position; public int waypoint; }
+     [Serializable] public class TreasureDef { public string entity; public Vector2 position; public int guards; public Cost crates; public float xp; }
+     [Serializable] public class LandmarkRules
+@@ -57,6 +59,8 @@
+     {
+         public EntityDef[] entities; public TechDef[] techs; public CardDef[] cards; public AgeDef[] ages; public CivDef[] civs;
+         public LandmarkRules landmarks;
++        public AiDifficultyDef[] aiDifficulties=Array.Empty<AiDifficultyDef>();
++        public AiDifficultyDef Difficulty(string id) => Array.Find(aiDifficulties??Array.Empty<AiDifficultyDef>(),x=>x!=null&&x.id==id);
+         public int deckCapacity=8,populationLimit=200; public float initialXp=150,xpIncrease=75,constructionRefund=.75f;
+         public EntityDef Entity(string id) => Array.Find(entities,x=>x.id==id);
+         public TechDef Tech(string id) => Array.Find(techs,x=>x.id==id);
+--- 0.2.20/Assets/Frontier/Presentation/NativeCapture.cs
++++ 0.2.21/Assets/Frontier/Presentation/NativeCapture.cs
+@@ -22,6 +22,8 @@
+         public int hudUpdatedFrame;
+         public float hudWorldTime;
+         public CaptureCamera camera;
++        public string aiDifficulty="";
++        public float aiDecisionSeconds,aiArmySeconds;
+         public CaptureProduction[] production = Array.Empty<CaptureProduction>();
+ 
+         // Detached player-owned state; this does not refresh UI or inspect enemy information.
+@@ -46,6 +48,9 @@
+                 }
+             };
+             if (w == null || game.InMenu) return result;
++            result.aiDifficulty=game.Simulation?.Difficulty.Id??"";
++            result.aiDecisionSeconds=game.Simulation?.Difficulty.DecisionSeconds??0;
++            result.aiArmySeconds=game.Simulation?.Difficulty.ArmySeconds??0;
+             result.hasPlayer = true; result.resources = w.Players[0].resources;
+             result.population = PopulationSnapshot.From(w.Players[0]);
+             var buildings = new List<CaptureProduction>();
+--- 0.2.20/Assets/Frontier/Presentation/FrontierHud.cs
++++ 0.2.21/Assets/Frontier/Presentation/FrontierHud.cs
+@@ -111,17 +111,20 @@
+             Label(menuPanel,"FRONTIER\nRECKONING",new Rect(95,100,960,170),66,gold);
+             Label(menuPanel,"A LAND OF CHOICES",new Rect(100,294,750,40),23,muted);
+             Label(menuPanel,"Build an economy. Advance your age. Call for support.\nLead your army across the frontier.",new Rect(100,350,800,90),23);
+-            var configuration=Panel(menuPanel,"Skirmish configuration",new Rect(980,105,510,620),panelColor);
++            var configuration=Panel(menuPanel,"Skirmish configuration",new Rect(980,85,510,710),panelColor);
+             Label(configuration,"LOCAL SKIRMISH",new Rect(28,25,450,40),26,gold);
+             Button(configuration,"YOU: "+game.Rules.Civ(game.PlayerCivilization).name,new Rect(28,82,454,48),()=>{game.PlayerCivilization=game.PlayerCivilization=="coast"?"river":"coast";ShowMenu();},"Choose a civilization with different housing, settler costs and units.");
+             Button(configuration,"AI: "+game.Rules.Civ(game.OpponentCivilization).name,new Rect(28,138,454,48),()=>{game.OpponentCivilization=game.OpponentCivilization=="coast"?"river":"coast";ShowMenu();});
+             Button(configuration,"ERA LIMIT: "+game.AgeLimit+" / "+game.Rules.ages.Length,new Rect(28,194,454,48),()=>{game.AgeLimit=game.AgeLimit==3?game.Rules.ages.Length:3;ShowMenu();});
+-            Label(configuration,"THE TWO OUTCROPS  ·  SEED "+game.MatchSeed+"\n"+game.Rules.Civ(game.PlayerCivilization).description,new Rect(28,255,450,80),17,muted);
+-            Button(configuration,"PRESET: "+game.DeckPreset.ToUpperInvariant(),new Rect(28,350,220,48),()=>{game.DeckPreset=game.DeckPreset=="economy"?"military":"economy";game.ResetDeckPreset();ShowMenu();});
+-            Button(configuration,"EDIT DECK  "+game.SelectedDeck.Count+"/"+game.Rules.deckCapacity,new Rect(258,350,224,48),()=>ShowDeckEditor(0));
+-            string deckReason=DeckLibrary.Validate(game.Rules,game.PlayerCivilization,game.SelectedDeck);
+-            Button(configuration,"BEGIN SKIRMISH",new Rect(28,421,454,64),()=>{game.Autoplay=false;game.StartMatch();},deckReason,deckReason=="");
+-            Button(configuration,"QUIT",new Rect(28,510,454,44),()=>Application.Quit());
++            var difficulty=game.Rules.Difficulty(game.OpponentDifficulty);
++            Button(configuration,"AI DIFFICULTY: "+(difficulty?.name?.ToUpperInvariant()??"INVALID"),new Rect(28,250,454,48),()=>{game.CycleDifficulty();ShowMenu();},difficulty?.description??game.DifficultyReason);
++            Label(configuration,difficulty?.description??game.DifficultyReason,new Rect(28,308,450,55),17,muted);
++            Label(configuration,"THE TWO OUTCROPS  ·  SEED "+game.MatchSeed+"\n"+game.Rules.Civ(game.PlayerCivilization).description,new Rect(28,376,450,80),17,muted);
++            Button(configuration,"PRESET: "+game.DeckPreset.ToUpperInvariant(),new Rect(28,472,220,48),()=>{game.DeckPreset=game.DeckPreset=="economy"?"military":"economy";game.ResetDeckPreset();ShowMenu();});
++            Button(configuration,"EDIT DECK  "+game.SelectedDeck.Count+"/"+game.Rules.deckCapacity,new Rect(258,472,224,48),()=>ShowDeckEditor(0));
++            string deckReason=DeckLibrary.Validate(game.Rules,game.PlayerCivilization,game.SelectedDeck);if(deckReason=="")deckReason=game.DifficultyReason;
++            Button(configuration,"BEGIN SKIRMISH",new Rect(28,543,454,64),()=>{game.Autoplay=false;game.StartMatch();},deckReason,deckReason=="");
++            Button(configuration,"QUIT",new Rect(28,630,454,44),()=>Application.Quit());
+             Label(menuPanel,"FIVE-ERA LAND GAME · DEVELOPMENT",new Rect(100,665,840,35),23,gold);
+             Label(menuPanel,"Two civilizations · Custom decks · Original project rules\nTrade, treasures and final audiovisual quality are still in development.\nIndependent project. Not affiliated with Age of Empires or its publishers.",new Rect(100,715,820,110),18,muted);
+         }
+--- 0.2.20/Assets/Frontier/Presentation/GameController.cs
++++ 0.2.21/Assets/Frontier/Presentation/GameController.cs
+@@ -23,6 +23,14 @@
+         public string DeckPreset = "economy";
+         public string PlayerCivilization="coast",OpponentCivilization="river";
+         public int AgeLimit=5,MatchSeed=314159;
++        public string OpponentDifficulty="standard";
++        public string DifficultyReason => AiDifficultyProfile.InvalidReason(Rules.Difficulty(OpponentDifficulty));
++        public void CycleDifficulty()
++        {
++            var options=Rules.aiDifficulties;if(options==null||options.Length==0)return;
++            int current=Array.FindIndex(options,d=>d!=null&&d.id==OpponentDifficulty);
++            OpponentDifficulty=options[(current+1)%options.Length]?.id??"";
++        }
+         private readonly Dictionary<string,List<string>> configuredDecks=new Dictionary<string,List<string>>();
+         public List<string> SelectedDeck
+         {
+@@ -79,6 +87,7 @@
+         {
+             string deckError=DeckLibrary.Validate(Rules,PlayerCivilization,SelectedDeck);
+             if(deckError!=""){Notify(deckError);Hud.ShowMenu();return;}
++            if(DifficultyReason!=""){Notify(DifficultyReason);Hud.ShowMenu();return;}
+             // A menu restart ends an already running diagnostic fixture. The CLI
+             // creates its fixture after StartMatch, so its initial mode is retained.
+             if(GetComponent<RuntimeBenchmark>()!=null)ClearBenchmark();
+@@ -86,7 +95,7 @@
+             World=new World(Rules,MatchSeed,PlayerCivilization,OpponentCivilization,AgeLimit);
+             MatchId=Guid.NewGuid().ToString("N");
+             SetDeck(0,DeckPreset); SetDeck(1,"military");
+-            Simulation=new MatchSimulation(World,BenchmarkMode?Array.Empty<int>():Autoplay?new[]{0,1}:new[]{1});
++            Simulation=new MatchSimulation(World,BenchmarkMode?Array.Empty<int>():Autoplay?new[]{0,1}:new[]{1},OpponentDifficulty);
+             InMenu=false;Notice="Explore, gather, build. Earn XP and choose a shipment with H.";noticeUntil=12;
+             View.ResetWorld();Controls.ResetSelection();Controls.Focus(new Vector2(25,25));
+             Hud.ShowGame();
+@@ -177,7 +186,7 @@
+             lastReport=Path.Combine(dir,stem+".json");
+             var samples=new List<float>(frameTimes);samples.Sort();
+             float mean=0;foreach(float f in samples)mean+=f;if(samples.Count>0)mean/=samples.Count;
+-            var report=new MatchReport{matchId=MatchId,eventSchemaVersion=SimEvent.CurrentSchemaVersion,appVersion=Application.version,buildGuid=Application.buildGUID,maxAge=World.MaxAge,version=Application.unityVersion,platform=Application.platform.ToString(),device=SystemInfo.processorType,gpu=SystemInfo.graphicsDeviceName,resolution=Screen.width+"x"+Screen.height,reason=reason,seed=World.Seed,time=World.Time,winner=World.Winner,autoplay=Autoplay,simulationSpeed=Autoplay?SimulationSpeed:1,meanFrameMs=mean,p95FrameMs=samples.Count>0?samples[(int)((samples.Count-1)*.95f)]:0,managedBytes=GC.GetTotalMemory(false),eventCount=World.Events.Count,players=new PlayerReport[2]};
++            var report=new MatchReport{aiDifficulty=Simulation?.Difficulty.Id,aiDecisionSeconds=Simulation?.Difficulty.DecisionSeconds??0,aiArmySeconds=Simulation?.Difficulty.ArmySeconds??0,matchId=MatchId,eventSchemaVersion=SimEvent.CurrentSchemaVersion,appVersion=Application.version,buildGuid=Application.buildGUID,maxAge=World.MaxAge,version=Application.unityVersion,platform=Application.platform.ToString(),device=SystemInfo.processorType,gpu=SystemInfo.graphicsDeviceName,resolution=Screen.width+"x"+Screen.height,reason=reason,seed=World.Seed,time=World.Time,winner=World.Winner,autoplay=Autoplay,simulationSpeed=Autoplay?SimulationSpeed:1,meanFrameMs=mean,p95FrameMs=samples.Count>0?samples[(int)((samples.Count-1)*.95f)]:0,managedBytes=GC.GetTotalMemory(false),eventCount=World.Events.Count,players=new PlayerReport[2]};
+             for(int i=0;i<2;i++){var p=World.Players[i];report.players[i]=new PlayerReport{civilization=p.civilization,age=p.age,gathered=p.gathered,spent=p.spent,kills=p.kills,losses=p.losses,shipments=p.shipsSent,population=p.usedPopulation,passiveIncome=p.passiveIncome,tradeIncome=p.tradeIncome,treasures=p.treasuresClaimed,guardians=p.guardiansDefeated,resources=p.resources,refunded=p.refunded,ageHistory=p.ageHistory.ToArray()};}
+             File.WriteAllText(lastReport,JsonUtility.ToJson(report,true));
+             using(var writer=new StreamWriter(Path.Combine(dir,stem+"-events.jsonl")))foreach(var ev in World.Events)writer.WriteLine(JsonUtility.ToJson(ev));
+@@ -188,7 +197,7 @@
+             Captures.Request();
+         }
+         private void OnApplicationQuit(){SaveReport("quit");}
+-        [Serializable]private class MatchReport {public int eventSchemaVersion;public string matchId,appVersion,buildGuid,version,platform,device,gpu,resolution,reason;public int seed,winner,eventCount,maxAge;public float time,meanFrameMs,p95FrameMs,simulationSpeed;public bool autoplay;public long managedBytes;public PlayerReport[] players;}
++        [Serializable]private class MatchReport {public string aiDifficulty;public float aiDecisionSeconds,aiArmySeconds;public int eventSchemaVersion;public string matchId,appVersion,buildGuid,version,platform,device,gpu,resolution,reason;public int seed,winner,eventCount,maxAge;public float time,meanFrameMs,p95FrameMs,simulationSpeed;public bool autoplay;public long managedBytes;public PlayerReport[] players;}
+         [Serializable]private class PlayerReport {public string civilization;public int age,kills,losses,shipments,population,treasures,guardians;public Cost gathered,spent,passiveIncome,tradeIncome,resources,refunded;public string[] ageHistory;}
+     }
+ }
+--- 0.2.20/Assets/Frontier/Editor/StrategyAudit.cs
++++ 0.2.21/Assets/Frontier/Editor/StrategyAudit.cs
+@@ -9,6 +9,17 @@
+     // bonus income, fog reveals, invulnerability, or post-bootstrap spawning.
+     public static class StrategyAudit
+     {
++        public static void RunDifficultyMatrix()
++        {
++            string originalRoot=Environment.GetEnvironmentVariable("FRONTIER_REPORT_PATH"),originalDifficulty=Environment.GetEnvironmentVariable("FRONTIER_AUDIT_DIFFICULTY");
++            string root=originalRoot??"Builds/DifficultyMatrix";
++            try
++            {
++                foreach(var definition in Catalog.Load().aiDifficulties)
++                {Environment.SetEnvironmentVariable("FRONTIER_REPORT_PATH",Path.Combine(root,definition.id));Environment.SetEnvironmentVariable("FRONTIER_AUDIT_DIFFICULTY",definition.id);Run();}
++            }
++            finally{Environment.SetEnvironmentVariable("FRONTIER_REPORT_PATH",originalRoot);Environment.SetEnvironmentVariable("FRONTIER_AUDIT_DIFFICULTY",originalDifficulty);}
++        }
+         public static void RunMatrix()
+         {
+             string root=Environment.GetEnvironmentVariable("FRONTIER_REPORT_PATH")??"Builds/StrategyMatrix";
+@@ -30,7 +41,8 @@
+             string directory=value("FRONTIER_REPORT_PATH","Builds/StrategyAudit");Directory.CreateDirectory(directory);
+             var world=new World(Catalog.Load(),seed,civ0,civ1,5);
+             for(int player=0;player<2;player++){var p=world.Players[player];p.deck.Clear();p.deck.AddRange(DeckLibrary.Preset(world.Rules,p.civilization,value("FRONTIER_AUDIT_DECK"+player,player==0?"economy":"military")));}
+-            var simulation=new MatchSimulation(world,0,1);float next=0;
++            string difficulty=value("FRONTIER_AUDIT_DIFFICULTY","standard");
++            var simulation=new MatchSimulation(world,new[]{0,1},difficulty);float next=0;
+             using(var snapshots=new StreamWriter(Path.Combine(directory,"snapshots.jsonl")))
+             {
+                 while(world.Time<limit&&world.Winner<0)
+@@ -41,7 +53,7 @@
+                 for(int player=0;player<2;player++)snapshots.WriteLine(JsonUtility.ToJson(Snapshot(world,player)));
+             }
+             world.FlushEconomyLog();using(var events=new StreamWriter(Path.Combine(directory,"events.jsonl")))foreach(var e in world.Events)events.WriteLine(JsonUtility.ToJson(e));
+-            File.WriteAllText(Path.Combine(directory,"result.json"),JsonUtility.ToJson(new Result{seed=seed,civilization0=civ0,civilization1=civ1,seconds=world.Time,winner=world.Winner,age0=world.Players[0].age,age1=world.Players[1].age,events=world.Events.Count},true));
++            File.WriteAllText(Path.Combine(directory,"result.json"),JsonUtility.ToJson(new Result{aiDifficulty=simulation.Difficulty.Id,aiDecisionSeconds=simulation.Difficulty.DecisionSeconds,aiArmySeconds=simulation.Difficulty.ArmySeconds,seed=seed,civilization0=civ0,civilization1=civ1,seconds=world.Time,winner=world.Winner,age0=world.Players[0].age,age1=world.Players[1].age,events=world.Events.Count},true));
+             Debug.Log($"STRATEGY_AUDIT {civ0}/{civ1} t={world.Time} winner={world.Winner} age={world.Players[0].age}/{world.Players[1].age}");
+         }
+         private static EconomySnapshot Snapshot(World w,int player)
+@@ -52,6 +64,6 @@
+             return new EconomySnapshot{time=w.Time,player=player,age=p.age,resources=p.resources,gathered=p.gathered,spent=p.spent,bank=p.passiveIncome,trade=p.tradeIncome,workers=workers.Length,sheltered=workers.Count(e=>e.garrisonedIn!=0),food=on(ResourceKind.Food),wood=on(ResourceKind.Wood),coin=on(ResourceKind.Coin),army=own.Count(e=>e.Military&&(e.def.tags&Tags.Explorer)==0),banks=own.Count(e=>e.def.id=="bank"&&e.Complete),shipments=p.shipsSent,population=p.usedPopulation,queued=string.Join(";",own.SelectMany(e=>e.queue).Select(j=>j.kind+":"+j.item+"x"+j.count))};
+         }
+         [Serializable]private class EconomySnapshot{public float time;public int player,age,workers,sheltered,food,wood,coin,army,banks,shipments,population;public string queued;public Cost resources,gathered,spent,bank,trade;}
+-        [Serializable]private class Result{public int seed,winner,age0,age1,events;public float seconds;public string civilization0,civilization1;public string scope="Headless simulation audit; not native player input, visuals, audio, or performance acceptance";}
++        [Serializable]private class Result{public string aiDifficulty;public float aiDecisionSeconds,aiArmySeconds;public int seed,winner,age0,age1,events;public float seconds;public string civilization0,civilization1;public string scope="Headless simulation audit; not native player input, visuals, audio, or performance acceptance";}
+     }
+ }

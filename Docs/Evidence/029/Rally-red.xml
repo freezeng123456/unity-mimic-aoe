@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="8" result="Failed(Child)" total="8" passed="2" failed="6" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-14 05:45:23Z" end-time="2026-09-14 05:45:23Z" duration="0.1300233">
+  <test-suite type="TestSuite" id="1000" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="102" result="Failed" site="Child" start-time="2026-09-14 05:45:23Z" end-time="2026-09-14 05:45:23Z" duration="0.130023" total="8" passed="2" failed="6" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1126" name="Frontier.EditMode.dll" fullname="/Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Library/ScriptAssemblies/Frontier.EditMode.dll" runstate="Runnable" testcasecount="102" result="Failed" site="Child" start-time="2026-09-14 05:45:23Z" end-time="2026-09-14 05:45:23Z" duration="0.125843" total="8" passed="2" failed="6" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="5181" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1127" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="96" result="Failed" site="Child" start-time="2026-09-14 05:45:23Z" end-time="2026-09-14 05:45:23Z" duration="0.125200" total="8" passed="2" failed="6" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1128" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="96" result="Failed" site="Child" start-time="2026-09-14 05:45:23Z" end-time="2026-09-14 05:45:23Z" duration="0.124645" total="8" passed="2" failed="6" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1102" name="ResourceRallyTests" fullname="Frontier.Tests.ResourceRallyTests" classname="Frontier.Tests.ResourceRallyTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-09-14 05:45:23Z" end-time="2026-09-14 05:45:23Z" duration="0.123153" total="8" passed="2" failed="6" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1103" name="ExplicitResourceRallyAssignsExactTargetAndCreditsGathering" fullname="Frontier.Tests.ResourceRallyTests.ExplicitResourceRallyAssignsExactTargetAndCreditsGathering" methodname="ExplicitResourceRallyAssignsExactTargetAndCreditsGathering" classname="Frontier.Tests.ResourceRallyTests" runstate="Runnable" seed="387504417" result="Failed" start-time="2026-09-14 05:45:23Z" end-time="2026-09-14 05:45:23Z" duration="0.037117" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: Gather
+  But was:  Move
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.ResourceRallyTests.ExplicitResourceRallyAssignsExactTargetAndCreditsGathering () [0x000b3] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/ResourceRallyTests.cs:43
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1109" name="HiddenResourceCommandRejectsWithoutChangingExistingRally" fullname="Frontier.Tests.ResourceRallyTests.HiddenResourceCommandRejectsWithoutChangingExistingRally" methodname="HiddenResourceCommandRejectsWithoutChangingExistingRally" classname="Frontier.Tests.ResourceRallyTests" runstate="Runnable" seed="480242845" result="Failed" start-time="2026-09-14 05:45:23Z" end-time="2026-09-14 05:45:23Z" duration="0.004551" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.ResourceRallyTests.HiddenResourceCommandRejectsWithoutChangingExistingRally () [0x000cc] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/ResourceRallyTests.cs:97
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1108" name="InvalidEnemyTargetRejectsAndPreservesPreviousResourceRally" fullname="Frontier.Tests.ResourceRallyTests.InvalidEnemyTargetRejectsAndPreservesPreviousResourceRally" methodname="InvalidEnemyTargetRejectsAndPreservesPreviousResourceRally" classname="Frontier.Tests.ResourceRallyTests" runstate="Runnable" seed="245531165" result="Failed" start-time="2026-09-14 05:45:23Z" end-time="2026-09-14 05:45:23Z" duration="0.000523" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.ResourceRallyTests.InvalidEnemyTargetRejectsAndPreservesPreviousResourceRally () [0x00098] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/ResourceRallyTests.cs:89
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1107" name="MilitaryProductionAtResourceRallyReceivesDistributedMove" fullname="Frontier.Tests.ResourceRallyTests.MilitaryProductionAtResourceRallyReceivesDistributedMove" methodname="MilitaryProductionAtResourceRallyReceivesDistributedMove" classname="Frontier.Tests.ResourceRallyTests" runstate="Runnable" seed="1819080219" result="Passed" start-time="2026-09-14 05:45:23Z" end-time="2026-09-14 05:45:23Z" duration="0.017471" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1104" name="RallyChangedDuringPaidTrainingUsesLatestProducerIntent" fullname="Frontier.Tests.ResourceRallyTests.RallyChangedDuringPaidTrainingUsesLatestProducerIntent" methodname="RallyChangedDuringPaidTrainingUsesLatestProducerIntent" classname="Frontier.Tests.ResourceRallyTests" runstate="Runnable" seed="1853271701" result="Failed" start-time="2026-09-14 05:45:23Z" end-time="2026-09-14 05:45:23Z" duration="0.011999" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: Gather
+  But was:  Move
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.ResourceRallyTests.RallyChangedDuringPaidTrainingUsesLatestProducerIntent () [0x0022c] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/ResourceRallyTests.cs:56
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1106" name="RemovedResourceRallyFallsBackWithoutHiddenGatherTarget" fullname="Frontier.Tests.ResourceRallyTests.RemovedResourceRallyFallsBackWithoutHiddenGatherTarget" methodname="RemovedResourceRallyFallsBackWithoutHiddenGatherTarget" classname="Frontier.Tests.ResourceRallyTests" runstate="Runnable" seed="1275916503" result="Failed" start-time="2026-09-14 05:45:23Z" end-time="2026-09-14 05:45:23Z" duration="0.011909" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.ResourceRallyTests.RemovedResourceRallyFallsBackWithoutHiddenGatherTarget () [0x000d2] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/ResourceRallyTests.cs:72
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1110" name="ResourceHiddenBeforeBirthFallsBackToRememberedPosition" fullname="Frontier.Tests.ResourceRallyTests.ResourceHiddenBeforeBirthFallsBackToRememberedPosition" methodname="ResourceHiddenBeforeBirthFallsBackToRememberedPosition" classname="Frontier.Tests.ResourceRallyTests" runstate="Runnable" seed="1399058698" result="Failed" start-time="2026-09-14 05:45:23Z" end-time="2026-09-14 05:45:23Z" duration="0.016057" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.ResourceRallyTests.ResourceHiddenBeforeBirthFallsBackToRememberedPosition () [0x0012a] in /Users/zenghang/Documents/Codex/2026-09-14/rts-unity-c-iii-3d-unity/outputs/FrontierReckoning/Assets/Frontier/Tests/EditMode/ResourceRallyTests.cs:111
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1105" name="TerrainRallyClearsPreviousResourceIntent" fullname="Frontier.Tests.ResourceRallyTests.TerrainRallyClearsPreviousResourceIntent" methodname="TerrainRallyClearsPreviousResourceIntent" classname="Frontier.Tests.ResourceRallyTests" runstate="Runnable" seed="1065209037" result="Passed" start-time="2026-09-14 05:45:23Z" end-time="2026-09-14 05:45:23Z" duration="0.016556" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /Users/zenghang/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
