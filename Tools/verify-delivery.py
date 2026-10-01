@@ -4,14 +4,19 @@ import argparse,json,re,sys
 from pathlib import Path
 from datetime import datetime,timezone
 from xml.etree import ElementTree as ET
+from verification_evidence import MANIFEST,verify
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--reports-dir',type=Path);args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--reports-dir',type=Path);parser.add_argument('--require-current-source',action='store_true');args=parser.parse_args()
     root=Path(__file__).resolve().parents[1];reports=args.reports_dir or root/'Builds/Tests';failed=[];missing=[]
     def result(name,state,detail=''):
         print(f'{state:8} {name}'+(f' — {detail}' if detail else ''))
         if state=='FAIL':failed.append(name)
         if state=='NOT RUN':missing.append(name)
+    if args.reports_dir is None and (reports/'latest-run.txt').exists():
+        run=(reports/'latest-run.txt').read_text().strip()
+        if re.fullmatch(r'run-[A-Za-z0-9]+',run):reports=reports/run
+        else:result('Latest test run','FAIL','Invalid latest-run.txt')
     version=root/'ProjectSettings/ProjectVersion.txt'
     result('Editor version','PASS' if version.exists() and '6000.6.0f1' in version.read_text() else 'FAIL',version.read_text().strip() if version.exists() else '')
     try:
@@ -38,6 +43,11 @@ def main():
             if p.is_file() and p.suffix in {'.cs','.asset','.json','.unity','.sh','.py'}:
                 if re.search(r'/Users/[^/\s]+/(Documents|Desktop|Library|Downloads|Projects?)/',p.read_text(errors='replace')):private.append(str(p.relative_to(root)))
     result('Private absolute runtime dependencies','PASS' if not private else 'FAIL',', '.join(private))
+    if (reports/MANIFEST).exists():
+        try:result('Tests match current source','PASS',verify(root,reports))
+        except (OSError,ValueError,KeyError,TypeError,ET.ParseError) as exc:result('Tests match current source','FAIL',str(exc))
+    elif args.require_current_source:result('Tests match current source','NOT RUN','No source-evidence.json; run Tools/test.sh')
+    else:print('UNBOUND  Test reports without source evidence are historical, not current-source verification.')
     for mode in ['EditMode','PlayMode']:
         files=[p for p in reports.glob('*.xml') if mode.lower() in p.name.lower()]
         if not files:result(mode,'NOT RUN',str(reports));continue

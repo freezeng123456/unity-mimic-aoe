@@ -2,6 +2,8 @@
 
 **0.2.29开发工作版本，Unity原生陆战RTS。两种文明、I–V、固定地图、自定义卡组和三档AI已有实现；尚未达到完整陆战或阶段D验收标准。**
 
+2026-10-01恢复开发：已核对完整工程的依赖锁、Assets元数据与原生场景引用，并补齐测试源码/报告哈希证据与独立运行目录；验证工具回归8/8通过。本次尚未重新运行Unity游戏测试、构建或人工整局。历史游戏验证边界仍按下文保留；当前恢复工作见 [Completion-Status.md](Docs/Completion-Status.md)。
+
 本轮修复重复确认同一移动、攻击移动或追击目标时路线被清空后继承旧重试时间的问题。相同意图保留当前路线与准备中的攻击；真正改向立即重新规划，Shift追加仍保留当前路线。实时阴影继续关闭。
 
 EditMode190/190通过；完整PlayMode和新客户端构建尚未在本轮重跑。详见 [Iteration-053.md](Docs/Iteration-053.md)。**本轮未人工启动0.2.29独立客户端**，自动检查不等同于玩家整局、视听或性能验收。
@@ -75,7 +77,7 @@ Unity 工程通过 Hub 打开本目录，使用 **6000.6.0f1**（正式非 LTS �
 - `Docs/Evidence/041`：经验结算回归与0.2.18构建证据，受控原生XP专项尚未完成。
 - `Docs/Full-Scope-Audit.md`和`Docs/Known-Issues.md`：完整目标与未解决范围；历史报告不自动升级为当前版本的验收结果。
 
-在 macOS 运行 `Tools/test.sh` 执行 Unity 测试；`Tools/build-macos.sh` 准备原生场景和 URP 配置并生成客户端。可通过 `UNITY_EDITOR` 指定同版本编辑器，通过 `FRONTIER_BUILD_PATH` 指定输出 app。脚本根据自身位置找到项目，不依赖开发者的私人绝对路径。首次打开需要 Unity 通过 Package Manager 恢复依赖。
+在 macOS 运行 `bash Tools/test.sh` 执行 Unity 测试并生成当前源码证据；`bash Tools/build-macos.sh` 准备原生场景和 URP 配置并生成客户端。可通过 `UNITY_EDITOR` 指定同版本编辑器，通过 `FRONTIER_BUILD_PATH` 指定输出 app。脚本根据自身位置找到项目，不依赖开发者的私人绝对路径。首次打开需要 Unity 通过 Package Manager 恢复依赖并激活可用许可证。详见 [Delivery-Verification.md](Docs/Delivery-Verification.md)。
 
 `Tools/compare-event-logs.py <预期JSONL> <实际JSONL>` 可比较完整事件文件；不承诺跨平台重放。`Tools/build-character.sh` 用 Blender 5.2.1 LTS 再生原创人物源，先审查输出后再替换运行时FBX。
 
