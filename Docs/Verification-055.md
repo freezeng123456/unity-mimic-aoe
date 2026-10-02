@@ -22,7 +22,7 @@
 
 同版原生正常混音、暂停和未暂停主静音各20秒，三个窗口全部通过独立WAV复算，见[Native-Audio-Capture.md](Native-Audio-Capture.md)。这证明实际客户端混音与静音边界，未进行耳听。结算时静音候选被时长与模拟推进判据拒收，仍保留失败记录。
 
-coast B5已在1073.2850模拟秒自然败局，实际III、12付费村民、15Pike+15Musk、2付费炮与6船运成立；严格[coast-iii审计](Evidence/055/NormalPlayer/coast-attempt-005/summary.json)仅缺炮击敌建筑，因此完整B尚未通过。原始match_finished/menu_exit及12组同局F9、菜单/结算图全部保留，未将炮击敌单位升级为建筑伤害。
+coast B5已在1073.2850模拟秒自然败局，实际III、12付费村民、15Pike+15Musk、2付费炮与6船运成立；严格[coast-iii审计](Evidence/055/NormalPlayer/coast-attempt-005/summary.json)仅缺炮击敌建筑，因此B5未通过；后续B10完整结果见下。原始match_finished/menu_exit及12组同局F9、菜单/结算图全部保留，未将炮击敌单位升级为建筑伤害。
 
 River I–V、特色经济/军种/科技/贸易宝藏/攻城，以及活动50/100/200/400单位压力证据仍需独立完成；正常玩家长窗口已由B9最终配对通过，见下。B5[F8完整关联](Evidence/055/Performance/normal-b5-window-001/summary.json)实际197.825666有效秒，全部帧有焦点；逐帧/聚合/596笔内存及实际Spawn/Death前缀独立复核通过。首个145.924秒、B4两个短窗口与B5均未达到单300秒门槛，见[Performance-055.md](Performance-055.md)。
 
@@ -30,6 +30,10 @@ B6 `d57aee12243c4599a9343986d5b2c1ab`中断证据已[封存](Evidence/055/Normal
 
 B7已取得[真实最终审核](Evidence/055/NormalPlayer/coast-attempt-007/summary.json)：match`781c4090a2474a91964105c79eab9e27`在835.6430秒自然败局、双方III、末局存活单位/建筑[0,68]；6付费工、10Pike+5Musk、1付费炮与4船运成立。独立重跑严格coast-iii退出码1，仅缺炮击敌建筑，其余身份/正常开局/支付/生产/自然消灭检查成立，不标完整B通过。两份最终配对F8原始帧与各593笔内存/实际事件前缀复算一致，有效259.774107/135.600574秒均不足300；passed仅指统计/关联校验。
 
-B8的[最终归档](Evidence/055/NormalPlayer/coast-attempt-008/README.md)为259.6066秒menu_exit中断、无自然结算；己方Command/Gather均0，首次真实暂停223.6044秒，只有1名付费工实际出生、另2名排队。B9已974.5091秒自然败局；严格审计缺付费炮出生及炮击敌建筑，不认证B。B10经济卡组正常重试继续。D四档实际规模、400长档及056发布构建/烟测尚未执行，不把已备解析脚本与合成回归当原生结果。
+B8的[最终归档](Evidence/055/NormalPlayer/coast-attempt-008/README.md)为259.6066秒menu_exit中断、无自然结算；己方Command/Gather均0，首次真实暂停223.6044秒，只有1名付费工实际出生、另2名排队。B9已974.5091秒自然败局；严格审计缺付费炮出生及炮击敌建筑，不认证B。B10经济卡组后续完整通过，见下。D四档实际规模、400长档及056发布构建/烟测尚未执行，不把已备解析脚本与合成回归当原生结果。
 
 B9[正常F8最终配对](Evidence/055/Performance/normal-b9-final-001/f8-audit.json)单窗335.999332有效秒、20,003帧全部有效/有焦点，最终report/events、逐帧统计及335笔内存与实际实体计数关联全部通过。明确传入300秒最低时长，状态passed且无失败检查。原初审目录逐字节保留；此项通过不替代B完整路线或D四档规模。
+
+## B完整路线已通过
+
+[B10最终严格审核](Evidence/055/NormalPlayer/coast-attempt-010/summary.json)对应match `f65f503a74b9415e89d0a875e9b0ce2d`、原0.2.31/GUID、coast镜像、Easy、III上限、Economy25、正常1x/无autoplay。17项检查全部true、failedChecks与coverageGaps均空：实际II/III、3付费工、9Musk+5Pike、2付费炮、4船运、正常采集及炮击敌建筑成立。炮186在580.5053–605.9991秒六次命中敌马厩156，每次130，总780。958.612976秒自然败局，败方存活单位/建筑0，无Resign。自然战败是实际结果，完整操作路线通过不表示获胜或平衡结论。C已转入独立河谷五时代路线，D四档规模仍待执行。
