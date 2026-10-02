@@ -1,0 +1,992 @@
+{
+  "generatedAtUtc": "2026-10-02T21:45:46.443463+00:00",
+  "status": "input_flags_observed_recovered_gameplay_effect_unverified",
+  "scope": "Own input/UI/selection/pause records only. No live event journal or hidden enemy state inspected; this is not whole-match or milestone acceptance.",
+  "declaredContext": {
+    "matchId": "7f161abd4f994a1aaf5be762ba4a23f5",
+    "appVersion": "0.2.31",
+    "buildGuid": "128a731d440e4b7a94abfcc74b88fa97",
+    "source": "Root/native-playtest operator context; individual input trace lines do not carry matchId or build GUID."
+  },
+  "snapshot": {
+    "readAtUtc": "2026-10-02T21:40:01.670901+00:00",
+    "sourcePath": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/NativeInput055-B8/Player.log",
+    "snapshotPath": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/InputModifiers055/b9-readtime-20261002T214001670901Z.log",
+    "readBytes": 160610,
+    "readSha256": "b952a6c72e88222af05294743b9597297eb4beeccebdb3890533c7cedced41aa",
+    "sourceSizeBeforeRead": 160610,
+    "sourceSizeAfterRead": 160610,
+    "sourceMtimeNsBeforeRead": 1790977135623482237,
+    "sourceMtimeNsAfterRead": 1790977135623482237,
+    "snapshotHashMatches": true,
+    "scope": "Read-time byte snapshot of an appendable native log; not a claim that the live source remains immutable."
+  },
+  "snapshotReceipt": {
+    "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/InputModifiers055/b9-readtime-20261002T214001670901Z.receipt.json",
+    "bytes": 747,
+    "sha256": "c2ad0521e59f40cf01612b47c13310ede995cda241c666fb307f9c5c9b0a8254"
+  },
+  "extraction": {
+    "sourceLineStart": 1467,
+    "sourceLineEnd": 1615,
+    "allowedPrefixes": [
+      "FRONTIER_INPUT ",
+      "FRONTIER_UI context ",
+      "FRONTIER_UI raycast ",
+      "FRONTIER_PAUSE ",
+      "FRONTIER_SELECTION "
+    ],
+    "selectedLines": 72,
+    "selectedBytes": 5602,
+    "sha256": "005af7fc015c4a7722220c3fff6f1c8f30201e782594750d0e2ccb54cd91fd54",
+    "omittedSourceLines": 77,
+    "lineMap": [
+      {
+        "excerptLine": 1,
+        "sourceLine": 1467,
+        "bytes": 85,
+        "sha256": "c32aa12d689ad644a4422b44ba97f7605355f3e18a36b8e2e24ff6b59a52dd58"
+      },
+      {
+        "excerptLine": 2,
+        "sourceLine": 1468,
+        "bytes": 101,
+        "sha256": "d59f2f145dc795b01773cd2c02610d11727083705c36264c44d091db4506e35e"
+      },
+      {
+        "excerptLine": 3,
+        "sourceLine": 1469,
+        "bytes": 85,
+        "sha256": "a509cb039796ec38246f6f20a5e6b0aa32ee4220e18454231e3497482bbf83d5"
+      },
+      {
+        "excerptLine": 4,
+        "sourceLine": 1470,
+        "bytes": 58,
+        "sha256": "431f3099d5028bc7d4c67171f3379391388a8f60fd5ee50333a31f6bed9017aa"
+      },
+      {
+        "excerptLine": 5,
+        "sourceLine": 1471,
+        "bytes": 83,
+        "sha256": "9495a907148ed3c10e88ce2614041248f90d316b05ca396af5b6b7b07e905149"
+      },
+      {
+        "excerptLine": 6,
+        "sourceLine": 1472,
+        "bytes": 86,
+        "sha256": "7c6b840f3182c95b30b083202e63e34d656da3e86c730a4657dc4e796f524353"
+      },
+      {
+        "excerptLine": 7,
+        "sourceLine": 1484,
+        "bytes": 65,
+        "sha256": "e709906b0b8748804725d3fe3aa589673342c5a9517178d82f29a75f7573e1b0"
+      },
+      {
+        "excerptLine": 8,
+        "sourceLine": 1485,
+        "bytes": 86,
+        "sha256": "d9155df860bd1a6f41c22bbf819c54ee6cc3b4fb69165c1bdbe35127f863cdeb"
+      },
+      {
+        "excerptLine": 9,
+        "sourceLine": 1486,
+        "bytes": 84,
+        "sha256": "75b4b7edf51e82d1cc2737202fec156ff4cc757594702140e9994d2c323173bf"
+      },
+      {
+        "excerptLine": 10,
+        "sourceLine": 1487,
+        "bytes": 65,
+        "sha256": "0a0c11dd86a5354be63a2c4d910fc6244ebd3de75da67ae6a4404f1b16c75404"
+      },
+      {
+        "excerptLine": 11,
+        "sourceLine": 1488,
+        "bytes": 85,
+        "sha256": "0221e39b82a3c13a985daef8a6eb7363115b1f90b7332f51bda37c96c1f0cdaa"
+      },
+      {
+        "excerptLine": 12,
+        "sourceLine": 1489,
+        "bytes": 58,
+        "sha256": "c429b4595c29467ec4221de4b1f2e850d3abf6d44cd22c266a681cb8c1180fef"
+      },
+      {
+        "excerptLine": 13,
+        "sourceLine": 1490,
+        "bytes": 83,
+        "sha256": "f7716d5775fdfc1044b79edf13c3406ee6a2295d5b6dad057748fda6dc000ec4"
+      },
+      {
+        "excerptLine": 14,
+        "sourceLine": 1491,
+        "bytes": 86,
+        "sha256": "06a5814cbea62d9ef1822a7471051b16c09073f94312832b0fa735002691395a"
+      },
+      {
+        "excerptLine": 15,
+        "sourceLine": 1503,
+        "bytes": 65,
+        "sha256": "a4142dcc8eb04d12da1e0f2ff83f037373f895d9f63525fb2ede344f8823456d"
+      },
+      {
+        "excerptLine": 16,
+        "sourceLine": 1504,
+        "bytes": 85,
+        "sha256": "d065fc0e9c670a27e6b7a23e2799cd083363e08e28af9d53414ec8b947a24a71"
+      },
+      {
+        "excerptLine": 17,
+        "sourceLine": 1505,
+        "bytes": 83,
+        "sha256": "9bb7b7f2e51b9f76b8b1c4b0a24cb66ac350f149b9c023d691b8e687de6bdf0e"
+      },
+      {
+        "excerptLine": 18,
+        "sourceLine": 1506,
+        "bytes": 58,
+        "sha256": "993455277530a0cf7fc9bce38bb393c7dfecff42222d333161a0cec9b8ba4188"
+      },
+      {
+        "excerptLine": 19,
+        "sourceLine": 1507,
+        "bytes": 85,
+        "sha256": "0f766d166ec586f25c13bb4bcd0865c1fe2a4a4fde1e3f70d023b3fe4c731014"
+      },
+      {
+        "excerptLine": 20,
+        "sourceLine": 1519,
+        "bytes": 65,
+        "sha256": "5f05444251c5528d9723aae650a64adb571b1cceb76a048514f45712785cb159"
+      },
+      {
+        "excerptLine": 21,
+        "sourceLine": 1520,
+        "bytes": 81,
+        "sha256": "85fcad9c5386cc5feb03834284a4333fb9728814efa8fc4658e66b848a5e5662"
+      },
+      {
+        "excerptLine": 22,
+        "sourceLine": 1521,
+        "bytes": 85,
+        "sha256": "5cb25fccbd563ce9456bb8c3c439e390a3f3dad0c4d0529aad771ae9a561e4c7"
+      },
+      {
+        "excerptLine": 23,
+        "sourceLine": 1522,
+        "bytes": 58,
+        "sha256": "d41e0a0939d672a77823735c6ca376ecc1cdabbca7fbc139a8bb11e8b693872a"
+      },
+      {
+        "excerptLine": 24,
+        "sourceLine": 1523,
+        "bytes": 83,
+        "sha256": "e8b532808835ed6613bf15f739a39e437eb9b24a62579e69c389a0c59ce181ea"
+      },
+      {
+        "excerptLine": 25,
+        "sourceLine": 1524,
+        "bytes": 65,
+        "sha256": "6a4c6725a695c766f1f3efd84d1fee6728d685ebfb103053fe9c8ec6c2fea370"
+      },
+      {
+        "excerptLine": 26,
+        "sourceLine": 1525,
+        "bytes": 65,
+        "sha256": "2a010152531be091a22a79dc316c186e594694ebc9202165b6239239065a7b24"
+      },
+      {
+        "excerptLine": 27,
+        "sourceLine": 1526,
+        "bytes": 65,
+        "sha256": "afac0d0284253b899e95cbd3c751b022a8860e14bcc5ed24ae7483241f9f583a"
+      },
+      {
+        "excerptLine": 28,
+        "sourceLine": 1527,
+        "bytes": 81,
+        "sha256": "7d2a23165ce43fe96e85f1f087bde6a5f078f0f3a5186879b51888390f9e80ac"
+      },
+      {
+        "excerptLine": 29,
+        "sourceLine": 1528,
+        "bytes": 64,
+        "sha256": "1ad7314e96a18b6ed023d8ec54886aac6eadd1d59c335061a05784898efdc8a7"
+      },
+      {
+        "excerptLine": 30,
+        "sourceLine": 1529,
+        "bytes": 86,
+        "sha256": "11325aba2d00b99dced1ebfeac41746591f945abf0e0220458fd387a8623b45c"
+      },
+      {
+        "excerptLine": 31,
+        "sourceLine": 1530,
+        "bytes": 99,
+        "sha256": "1ba58a8d79e02c26be1acffbbe6c41407aef3c2e6c30d9b34e36f48eb9ebcb99"
+      },
+      {
+        "excerptLine": 32,
+        "sourceLine": 1531,
+        "bytes": 86,
+        "sha256": "dc8c1567802eb1dcc9c0c7e8119ec0de8e711e4e0026d84ce5ed33b0f6643922"
+      },
+      {
+        "excerptLine": 33,
+        "sourceLine": 1532,
+        "bytes": 101,
+        "sha256": "58801fd78ecb67384e98e960bd6dc445c0014e0261ea1dcefb2af49b7d6faeb0"
+      },
+      {
+        "excerptLine": 34,
+        "sourceLine": 1533,
+        "bytes": 85,
+        "sha256": "b419cb6796e12a09ba1dec3e2b73628c689474a0695ec5c8f06593d0221c5ff8"
+      },
+      {
+        "excerptLine": 35,
+        "sourceLine": 1534,
+        "bytes": 58,
+        "sha256": "e0acf7119bde647ef8828da890eb338bbe323eb0d2d45d0af50b83fb9be4eb6d"
+      },
+      {
+        "excerptLine": 36,
+        "sourceLine": 1535,
+        "bytes": 83,
+        "sha256": "698aee015f051858ac42c7add2f6dfd5a3aa426a4c03c6a6ad12e2cee4b5f356"
+      },
+      {
+        "excerptLine": 37,
+        "sourceLine": 1536,
+        "bytes": 85,
+        "sha256": "8636cd2fe3abeaac4f547b4a8f91b3dbb95f410d8fc9720cf9399043ea0a023e"
+      },
+      {
+        "excerptLine": 38,
+        "sourceLine": 1548,
+        "bytes": 64,
+        "sha256": "94976ce7c6e103b6cef7f937d11dc06f351a7e194a19ef8c6ad6bf1b97bf5182"
+      },
+      {
+        "excerptLine": 39,
+        "sourceLine": 1549,
+        "bytes": 85,
+        "sha256": "286724a5a3cba2295eaf544e518341f7aecfd4525f5f7c59018e0ebdad15f158"
+      },
+      {
+        "excerptLine": 40,
+        "sourceLine": 1550,
+        "bytes": 58,
+        "sha256": "a816df03b4dba362c7197244ed60f65b8ade67cf0a1bf614db74d78ac090ea23"
+      },
+      {
+        "excerptLine": 41,
+        "sourceLine": 1551,
+        "bytes": 83,
+        "sha256": "a7267dca3fed4a20ee9379fe0ed248c85528b51be934d533afdc96148e3b9aa1"
+      },
+      {
+        "excerptLine": 42,
+        "sourceLine": 1552,
+        "bytes": 85,
+        "sha256": "445547a9f2e45c182c69fdc5f89536c83467f8457a614d2357eccf5ff1e9a98f"
+      },
+      {
+        "excerptLine": 43,
+        "sourceLine": 1564,
+        "bytes": 64,
+        "sha256": "47cd76b5a94797ad490c31892436ab657e9998f5bc2ba864799ef1b16b442f64"
+      },
+      {
+        "excerptLine": 44,
+        "sourceLine": 1565,
+        "bytes": 86,
+        "sha256": "771d2bdc5d1624207e3394ab52314b03c859964c22d9745e04b6efc54fa1f17a"
+      },
+      {
+        "excerptLine": 45,
+        "sourceLine": 1566,
+        "bytes": 84,
+        "sha256": "3a39b3a11ac21ecd744d7deae7c3964d754997e26a4b254e91353203ebbb75bf"
+      },
+      {
+        "excerptLine": 46,
+        "sourceLine": 1567,
+        "bytes": 64,
+        "sha256": "4f28d0ffd64e02028a20fc274c69401d1afe3607b84d158bab9c3901d6635c4d"
+      },
+      {
+        "excerptLine": 47,
+        "sourceLine": 1568,
+        "bytes": 64,
+        "sha256": "9e73c77e45d2d2bcc25ec871278ecb463d5ed2158ae0964b8e7748bdd6746c30"
+      },
+      {
+        "excerptLine": 48,
+        "sourceLine": 1569,
+        "bytes": 64,
+        "sha256": "0476da3df7f25a8a45239fdb9e90f85b7423bc1a6a27cd8c4188fd1434062928"
+      },
+      {
+        "excerptLine": 49,
+        "sourceLine": 1570,
+        "bytes": 64,
+        "sha256": "a52ea2a01551cb9748b36b6d7c4d37cf616707cae3226f824536585c9604bb19"
+      },
+      {
+        "excerptLine": 50,
+        "sourceLine": 1571,
+        "bytes": 64,
+        "sha256": "695fdd995e6f471b729f2de29a92d6b551884a4161019a543059ffa709de24c7"
+      },
+      {
+        "excerptLine": 51,
+        "sourceLine": 1572,
+        "bytes": 81,
+        "sha256": "37b801558138758279334f32daa2ff2146ac585fd2cf405d46f2a6fabcd89a9d"
+      },
+      {
+        "excerptLine": 52,
+        "sourceLine": 1573,
+        "bytes": 66,
+        "sha256": "26fa8e5701decf9c6fc1fbdd14a1f3ca0d66b848159a515c2ae8f8fe45656775"
+      },
+      {
+        "excerptLine": 53,
+        "sourceLine": 1574,
+        "bytes": 86,
+        "sha256": "4a3de020f0f8f9e6196cae551471e23724885863dcfc4fdfc6945230d62cbb16"
+      },
+      {
+        "excerptLine": 54,
+        "sourceLine": 1575,
+        "bytes": 99,
+        "sha256": "6db2900d9ef95559462967295d3a86c66b5a95443a1a389e354ca3e8e13e889d"
+      },
+      {
+        "excerptLine": 55,
+        "sourceLine": 1576,
+        "bytes": 86,
+        "sha256": "2f83c06f155154cc028b662899de10b8e16748b3829b4c8641ed024ad2a9d721"
+      },
+      {
+        "excerptLine": 56,
+        "sourceLine": 1577,
+        "bytes": 101,
+        "sha256": "4c4002a88126dcc084e8943598cfae20801f4014cc86ed07749fa9bc6b3c9bb1"
+      },
+      {
+        "excerptLine": 57,
+        "sourceLine": 1578,
+        "bytes": 85,
+        "sha256": "0ef561b4638a6ee31ec832a4bfef28dbebe0e41c10ee7bc158dc0ecf28c2b86b"
+      },
+      {
+        "excerptLine": 58,
+        "sourceLine": 1579,
+        "bytes": 58,
+        "sha256": "5fb4c3092b2143ea27da775058ae6c54834280525e386d63aab840d1ec31dc05"
+      },
+      {
+        "excerptLine": 59,
+        "sourceLine": 1580,
+        "bytes": 83,
+        "sha256": "491626befabae8a17eb575e25b95f4a451b430ce3861db0977d9345f027f8317"
+      },
+      {
+        "excerptLine": 60,
+        "sourceLine": 1581,
+        "bytes": 85,
+        "sha256": "d5f8c405c4d959b9015213055e3292bb063afef87a776b4dba4dbf01e037a254"
+      },
+      {
+        "excerptLine": 61,
+        "sourceLine": 1593,
+        "bytes": 66,
+        "sha256": "168cc36848484017778acd7cc2694e7ba7325eed8e747a8e685b2d7a56192807"
+      },
+      {
+        "excerptLine": 62,
+        "sourceLine": 1594,
+        "bytes": 85,
+        "sha256": "5da3598d50cd763335be0ce79e37fa4ab46701cf607dbeeb56d410891dda0f67"
+      },
+      {
+        "excerptLine": 63,
+        "sourceLine": 1595,
+        "bytes": 58,
+        "sha256": "3702fa12f6f69d9d08a7a939777a1f915607968c9df3cce3a7e4aef13d0480d7"
+      },
+      {
+        "excerptLine": 64,
+        "sourceLine": 1596,
+        "bytes": 83,
+        "sha256": "4df584c7bdddae6d4527a71cbcd2321ca77347cd848bef04262b95ae2292168a"
+      },
+      {
+        "excerptLine": 65,
+        "sourceLine": 1597,
+        "bytes": 85,
+        "sha256": "d5f8c405c4d959b9015213055e3292bb063afef87a776b4dba4dbf01e037a254"
+      },
+      {
+        "excerptLine": 66,
+        "sourceLine": 1609,
+        "bytes": 66,
+        "sha256": "064c457af3f8c389f097078911792431daae49e9b5265bc8346d0bdae8168f96"
+      },
+      {
+        "excerptLine": 67,
+        "sourceLine": 1610,
+        "bytes": 86,
+        "sha256": "bf0cc5d9f53c2ac001ba4fee6eaa4b88d6f769f88b970bf2fc247bd9a0793cbe"
+      },
+      {
+        "excerptLine": 68,
+        "sourceLine": 1611,
+        "bytes": 84,
+        "sha256": "d4bcdc50a87bf0e2aa55df5f1876fed41e2c62b444844c7c08bbf74d15dda49a"
+      },
+      {
+        "excerptLine": 69,
+        "sourceLine": 1612,
+        "bytes": 86,
+        "sha256": "b4f93c87d48d91a53e0c84264d951a87f14a28ae0e509dae84e02d93f3729cf7"
+      },
+      {
+        "excerptLine": 70,
+        "sourceLine": 1613,
+        "bytes": 99,
+        "sha256": "b068580e62e709855c6705f55c8ca1feee23122a68e63dc1dedc461f34cb7c1a"
+      },
+      {
+        "excerptLine": 71,
+        "sourceLine": 1614,
+        "bytes": 82,
+        "sha256": "fb240d66993042ff939f56657b8bed826dae707997e2ba5a55a5b93f31cf7239"
+      },
+      {
+        "excerptLine": 72,
+        "sourceLine": 1615,
+        "bytes": 82,
+        "sha256": "c9c9018fb3511ee1d569d4cf6772ed91d93bb5f2900226c342540109d870dc05"
+      }
+    ],
+    "scope": "Selected original lines retain exact bytes, order and line endings. Unselected stack trace lines omitted; full appendable log remains a local read-time snapshot in Builds."
+  },
+  "inputObservations": {
+    "inputs": [
+      {
+        "sourceLine": 1467,
+        "kind": "Key",
+        "key": "Escape",
+        "edge": "down",
+        "position": [
+          998.0,
+          625.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18536.5814
+      },
+      {
+        "sourceLine": 1469,
+        "kind": "Left",
+        "key": "None",
+        "edge": "down",
+        "position": [
+          1545.0,
+          502.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18537.4063
+      },
+      {
+        "sourceLine": 1471,
+        "kind": "Left",
+        "key": "None",
+        "edge": "up",
+        "position": [
+          1545.0,
+          502.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18537.4734
+      },
+      {
+        "sourceLine": 1485,
+        "kind": "Right",
+        "key": "None",
+        "edge": "down",
+        "position": [
+          1280.0,
+          723.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18537.5971
+      },
+      {
+        "sourceLine": 1486,
+        "kind": "Right",
+        "key": "None",
+        "edge": "up",
+        "position": [
+          1280.0,
+          723.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18537.6406
+      },
+      {
+        "sourceLine": 1488,
+        "kind": "Left",
+        "key": "None",
+        "edge": "down",
+        "position": [
+          1428.0,
+          563.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18537.7705
+      },
+      {
+        "sourceLine": 1490,
+        "kind": "Left",
+        "key": "None",
+        "edge": "up",
+        "position": [
+          1428.0,
+          563.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18537.8634
+      },
+      {
+        "sourceLine": 1504,
+        "kind": "Left",
+        "key": "None",
+        "edge": "down",
+        "position": [
+          1391.0,
+          626.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18537.9836
+      },
+      {
+        "sourceLine": 1505,
+        "kind": "Left",
+        "key": "None",
+        "edge": "up",
+        "position": [
+          1464.0,
+          525.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18537.9865
+      },
+      {
+        "sourceLine": 1520,
+        "kind": "Key",
+        "key": "G",
+        "edge": "down",
+        "position": [
+          1464.0,
+          525.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18538.5415
+      },
+      {
+        "sourceLine": 1521,
+        "kind": "Left",
+        "key": "None",
+        "edge": "down",
+        "position": [
+          1280.0,
+          725.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18538.6464
+      },
+      {
+        "sourceLine": 1523,
+        "kind": "Left",
+        "key": "None",
+        "edge": "up",
+        "position": [
+          1280.0,
+          725.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18538.6997
+      },
+      {
+        "sourceLine": 1527,
+        "kind": "Key",
+        "key": "T",
+        "edge": "down",
+        "position": [
+          1280.0,
+          725.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18544.7297
+      },
+      {
+        "sourceLine": 1529,
+        "kind": "Key",
+        "key": "Escape",
+        "edge": "down",
+        "position": [
+          1280.0,
+          725.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18545.1629
+      },
+      {
+        "sourceLine": 1531,
+        "kind": "Key",
+        "key": "Escape",
+        "edge": "down",
+        "position": [
+          1280.0,
+          725.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18589.4884
+      },
+      {
+        "sourceLine": 1533,
+        "kind": "Left",
+        "key": "None",
+        "edge": "down",
+        "position": [
+          1780.0,
+          504.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18590.2791
+      },
+      {
+        "sourceLine": 1535,
+        "kind": "Left",
+        "key": "None",
+        "edge": "up",
+        "position": [
+          1780.0,
+          504.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18590.324
+      },
+      {
+        "sourceLine": 1549,
+        "kind": "Left",
+        "key": "None",
+        "edge": "down",
+        "position": [
+          1528.0,
+          535.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18590.4466
+      },
+      {
+        "sourceLine": 1551,
+        "kind": "Left",
+        "key": "None",
+        "edge": "up",
+        "position": [
+          1528.0,
+          535.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18590.4915
+      },
+      {
+        "sourceLine": 1565,
+        "kind": "Right",
+        "key": "None",
+        "edge": "down",
+        "position": [
+          1280.0,
+          723.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18591.0699
+      },
+      {
+        "sourceLine": 1566,
+        "kind": "Right",
+        "key": "None",
+        "edge": "up",
+        "position": [
+          1280.0,
+          723.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18591.124
+      },
+      {
+        "sourceLine": 1572,
+        "kind": "Key",
+        "key": "M",
+        "edge": "down",
+        "position": [
+          1280.0,
+          723.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18604.139
+      },
+      {
+        "sourceLine": 1574,
+        "kind": "Key",
+        "key": "Escape",
+        "edge": "down",
+        "position": [
+          1280.0,
+          723.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18604.6118
+      },
+      {
+        "sourceLine": 1576,
+        "kind": "Key",
+        "key": "Escape",
+        "edge": "down",
+        "position": [
+          1280.0,
+          723.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18624.4046
+      },
+      {
+        "sourceLine": 1578,
+        "kind": "Left",
+        "key": "None",
+        "edge": "down",
+        "position": [
+          1327.0,
+          762.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18625.2075
+      },
+      {
+        "sourceLine": 1580,
+        "kind": "Left",
+        "key": "None",
+        "edge": "up",
+        "position": [
+          1327.0,
+          762.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18625.245
+      },
+      {
+        "sourceLine": 1594,
+        "kind": "Left",
+        "key": "None",
+        "edge": "down",
+        "position": [
+          1327.0,
+          762.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18625.3535
+      },
+      {
+        "sourceLine": 1596,
+        "kind": "Left",
+        "key": "None",
+        "edge": "up",
+        "position": [
+          1327.0,
+          762.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18625.4038
+      },
+      {
+        "sourceLine": 1610,
+        "kind": "Right",
+        "key": "None",
+        "edge": "down",
+        "position": [
+          1419.0,
+          937.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18625.5212
+      },
+      {
+        "sourceLine": 1611,
+        "kind": "Right",
+        "key": "None",
+        "edge": "up",
+        "position": [
+          1419.0,
+          937.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18625.574
+      },
+      {
+        "sourceLine": 1612,
+        "kind": "Key",
+        "key": "Escape",
+        "edge": "down",
+        "position": [
+          1419.0,
+          937.0
+        ],
+        "shift": true,
+        "saveGroup": false,
+        "inputTime": 18635.0305
+      },
+      {
+        "sourceLine": 1614,
+        "kind": "Key",
+        "key": "J",
+        "edge": "down",
+        "position": [
+          1419.0,
+          937.0
+        ],
+        "shift": false,
+        "saveGroup": false,
+        "inputTime": 18737.0691
+      },
+      {
+        "sourceLine": 1615,
+        "kind": "Key",
+        "key": "T",
+        "edge": "down",
+        "position": [
+          1419.0,
+          937.0
+        ],
+        "shift": false,
+        "saveGroup": false,
+        "inputTime": 18757.9631
+      }
+    ],
+    "before": {
+      "firstSourceLine": 1467,
+      "lastSourceLine": 1612,
+      "inputEdgeCount": 31,
+      "allLoggedEdgesShiftTrue": true,
+      "allLoggedEdgesSaveGroupFalse": true
+    },
+    "after": {
+      "inputEdgeCount": 2,
+      "allLoggedEdgesShiftFalse": true,
+      "allLoggedEdgesSaveGroupFalse": true,
+      "lastPauseSourceLine": 1613,
+      "resumeRecordedBeforeTheseInputs": false,
+      "worldCommandExecutionConfirmed": false
+    },
+    "continuousModifierStateProven": false,
+    "modifierHolderOrCauseKnown": false,
+    "operatorReportedIntervention": {
+      "key": "shift+j",
+      "source": "Root relayed native-playtest GUI tool action; not independently reconstructed from native log",
+      "subsequentNativeFlagsObserved": true,
+      "shiftReleaseEventIndependentlyLogged": false
+    }
+  },
+  "staticSources": {
+    "Assets/Frontier/Presentation/DiscreteInputBuffer.cs": {
+      "bytes": 7256,
+      "sha256": "3b6871ddb17ac3b2d7e95ddd39d240124f1b9212c8454b7bee4ec981cdb37f8b",
+      "matchesFrozen055SourceEvidence": true,
+      "ranges": [
+        {
+          "start": 82,
+          "end": 98
+        },
+        {
+          "start": 112,
+          "end": 124
+        }
+      ]
+    },
+    "Assets/Frontier/Presentation/RtsInput.cs": {
+      "bytes": 22429,
+      "sha256": "bb64bcd75fe59f3e3c05d9a45550fc2e3472347d56edfd95ded7549094599fc6",
+      "matchesFrozen055SourceEvidence": true,
+      "ranges": [
+        {
+          "start": 55,
+          "end": 56
+        },
+        {
+          "start": 100,
+          "end": 111
+        },
+        {
+          "start": 205,
+          "end": 220
+        },
+        {
+          "start": 288,
+          "end": 294
+        }
+      ]
+    },
+    "Assets/Frontier/Presentation/FrontierHud.cs": {
+      "bytes": 42822,
+      "sha256": "378db2404311bbce8d319cfa312d765253c3b303b228cc9b4cf09784406bf785",
+      "matchesFrozen055SourceEvidence": true,
+      "ranges": [
+        {
+          "start": 58,
+          "end": 74
+        }
+      ]
+    }
+  },
+  "sourceEvidence": {
+    "path": "Docs/Evidence/055/Tests/source-evidence.json",
+    "sha256": "bf8ca06fcfc8e609e87b7b319bdf98a6ba6d70a4d130576b63cc50117742048b",
+    "sourceFingerprint": "1b45f97f3d90c9b76388419492a83c5622ccb2cf3a365030044403ccd309c1c7"
+  },
+  "interpretation": "Frozen source passes recorded per-edge Shift to additive click/box selection. Logged mixed selection and shift=True are consistent with that mechanism. Flag change is observed only at later logged inputs; exact release time, origin, holder and subsequent gameplay effect are not established."
+}

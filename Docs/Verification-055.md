@@ -24,12 +24,12 @@
 
 coast B5已在1073.2850模拟秒自然败局，实际III、12付费村民、15Pike+15Musk、2付费炮与6船运成立；严格[coast-iii审计](Evidence/055/NormalPlayer/coast-attempt-005/summary.json)仅缺炮击敌建筑，因此完整B尚未通过。原始match_finished/menu_exit及12组同局F9、菜单/结算图全部保留，未将炮击敌单位升级为建筑伤害。
 
-River I–V、特色经济/军种/科技/贸易宝藏/攻城，以及长期逐帧、活动50/100/200/400单位压力证据仍需独立完成。B5[F8完整关联](Evidence/055/Performance/normal-b5-window-001/summary.json)实际197.825666有效秒，全部帧有焦点；逐帧/聚合/596笔内存及实际Spawn/Death前缀独立复核通过。首个145.924秒、B4两个短窗口与B5均未达到单300秒门槛，见[Performance-055.md](Performance-055.md)。
+River I–V、特色经济/军种/科技/贸易宝藏/攻城，以及活动50/100/200/400单位压力证据仍需独立完成；正常玩家长窗口已由B9最终配对通过，见下。B5[F8完整关联](Evidence/055/Performance/normal-b5-window-001/summary.json)实际197.825666有效秒，全部帧有焦点；逐帧/聚合/596笔内存及实际Spawn/Death前缀独立复核通过。首个145.924秒、B4两个短窗口与B5均未达到单300秒门槛，见[Performance-055.md](Performance-055.md)。
 
 B6 `d57aee12243c4599a9343986d5b2c1ab`中断证据已[封存](Evidence/055/NormalPlayer/coast-attempt-006/README.md)：旧NativeInput055日志末次705.3748秒手动暂停后失焦，恢复时sky重新启动客户端在菜单。没有同局自然结束、menu_exit、quit报告或完整events，不能判退出原因/获胜方/败方全消灭；最后F9 664.8847秒仍II+III排队，不当作时代完成。20文件/2,821,359字节、13份原生来源及4组F9按字节校验；F8 258.709919秒仅原始帧初审，无最终账本关联且不足300。B7开始时的过程观察保留，其自然结算及最终严格结果见下。
 
 B7已取得[真实最终审核](Evidence/055/NormalPlayer/coast-attempt-007/summary.json)：match`781c4090a2474a91964105c79eab9e27`在835.6430秒自然败局、双方III、末局存活单位/建筑[0,68]；6付费工、10Pike+5Musk、1付费炮与4船运成立。独立重跑严格coast-iii退出码1，仅缺炮击敌建筑，其余身份/正常开局/支付/生产/自然消灭检查成立，不标完整B通过。两份最终配对F8原始帧与各593笔内存/实际事件前缀复算一致，有效259.774107/135.600574秒均不足300；passed仅指统计/关联校验。
 
-B8的[最终归档](Evidence/055/NormalPlayer/coast-attempt-008/README.md)为259.6066秒menu_exit中断、无自然结算；己方Command/Gather均0，首次真实暂停223.6044秒，只有1名付费工实际出生、另2名排队。B9正常重试继续，不提前认证B。D四档实际规模、400长档及056发布构建/烟测尚未执行，不把已备解析脚本与合成回归当原生结果。
+B8的[最终归档](Evidence/055/NormalPlayer/coast-attempt-008/README.md)为259.6066秒menu_exit中断、无自然结算；己方Command/Gather均0，首次真实暂停223.6044秒，只有1名付费工实际出生、另2名排队。B9已974.5091秒自然败局；严格审计缺付费炮出生及炮击敌建筑，不认证B。B10经济卡组正常重试继续。D四档实际规模、400长档及056发布构建/烟测尚未执行，不把已备解析脚本与合成回归当原生结果。
 
-B9首个[正常F8初审](Evidence/055/Performance/normal-b9-window-001/README.md)单窗335.999332有效秒、20,003帧全部有效/有焦点，13项帧检查全部成立，300秒时长门槛初步成立。对局尚未结束，最终report/events及实际实体计数关联待完成，不标完整性能、B或D通过。
+B9[正常F8最终配对](Evidence/055/Performance/normal-b9-final-001/f8-audit.json)单窗335.999332有效秒、20,003帧全部有效/有焦点，最终report/events、逐帧统计及335笔内存与实际实体计数关联全部通过。明确传入300秒最低时长，状态passed且无失败检查。原初审目录逐字节保留；此项通过不替代B完整路线或D四档规模。

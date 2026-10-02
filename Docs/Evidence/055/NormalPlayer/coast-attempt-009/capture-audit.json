@@ -1,0 +1,127 @@
+{
+  "generatedAtUtc": "2026-10-02T22:04:42.802449+00:00",
+  "status": "passed",
+  "scope": "Exact native JSON/PNG identity, bytes, dimensions and world-time pairing; menu and final image separately viewed without GUI interaction.",
+  "captures": [
+    {
+      "role": "menu",
+      "json": "Frontier-20261002-163158-239-f18180-c256dd02ced94ed199c67fc4834b6bf7.json",
+      "png": "Frontier-20261002-163158-239-f18180-c256dd02ced94ed199c67fc4834b6bf7.png",
+      "worldTime": 0.0,
+      "paused": false,
+      "checks": {
+        "pngFilenameMatches": true,
+        "pngShaMatches": true,
+        "pngDimensionsMatch": true,
+        "versionGuidMatches": true,
+        "inMenuExpected": true,
+        "playerPresenceExpected": true,
+        "matchIdentityExpected": true
+      }
+    },
+    {
+      "role": "opening_paused",
+      "json": "Frontier-20261002-163159-690-f18261-5f54c9a3b0bc40ddbea027cfc3fba805.json",
+      "png": "Frontier-20261002-163159-690-f18261-5f54c9a3b0bc40ddbea027cfc3fba805.png",
+      "worldTime": 1.3000001907348633,
+      "paused": true,
+      "checks": {
+        "pngFilenameMatches": true,
+        "pngShaMatches": true,
+        "pngDimensionsMatch": true,
+        "versionGuidMatches": true,
+        "inMenuExpected": true,
+        "playerPresenceExpected": true,
+        "matchIdentityExpected": true,
+        "hudMatchIdentityMatches": true,
+        "worldTimeWithinMatch": true,
+        "requestWorldMatches": true,
+        "hudWorldMatches": true,
+        "openingExplicitlyPaused": true
+      }
+    },
+    {
+      "role": "midgame_ii",
+      "json": "Frontier-20261002-164009-628-f47396-b0489a2a25734410baff888db2e77dd4.json",
+      "png": "Frontier-20261002-164009-628-f47396-b0489a2a25734410baff888db2e77dd4.png",
+      "worldTime": 352.6123046875,
+      "paused": false,
+      "checks": {
+        "pngFilenameMatches": true,
+        "pngShaMatches": true,
+        "pngDimensionsMatch": true,
+        "versionGuidMatches": true,
+        "inMenuExpected": true,
+        "playerPresenceExpected": true,
+        "matchIdentityExpected": true,
+        "hudMatchIdentityMatches": true,
+        "worldTimeWithinMatch": true,
+        "requestWorldMatches": true,
+        "hudWorldMatches": true
+      }
+    },
+    {
+      "role": "midgame_iii",
+      "json": "Frontier-20261002-214232-905-f511035-afaa85a54e0046b79ba572e1e08935a0.json",
+      "png": "Frontier-20261002-214232-905-f511035-afaa85a54e0046b79ba572e1e08935a0.png",
+      "worldTime": 769.4591674804688,
+      "paused": false,
+      "checks": {
+        "pngFilenameMatches": true,
+        "pngShaMatches": true,
+        "pngDimensionsMatch": true,
+        "versionGuidMatches": true,
+        "inMenuExpected": true,
+        "playerPresenceExpected": true,
+        "matchIdentityExpected": true,
+        "hudMatchIdentityMatches": true,
+        "worldTimeWithinMatch": true,
+        "requestWorldMatches": true,
+        "hudWorldMatches": true
+      }
+    },
+    {
+      "role": "natural_end",
+      "json": "Frontier-20261002-215114-405-f541122-d6b51be5cdff4bb2a8c977202457cd42.json",
+      "png": "Frontier-20261002-215114-405-f541122-d6b51be5cdff4bb2a8c977202457cd42.png",
+      "worldTime": 974.5090942382812,
+      "paused": false,
+      "checks": {
+        "pngFilenameMatches": true,
+        "pngShaMatches": true,
+        "pngDimensionsMatch": true,
+        "versionGuidMatches": true,
+        "inMenuExpected": true,
+        "playerPresenceExpected": true,
+        "matchIdentityExpected": true,
+        "hudMatchIdentityMatches": true,
+        "worldTimeWithinMatch": true,
+        "requestWorldMatches": true,
+        "hudWorldMatches": true,
+        "worldTimeMatchesNaturalEnd": true
+      }
+    }
+  ],
+  "visualRead": {
+    "menu": {
+      "observed": [
+        "Coast Compact vs Coast Compact",
+        "ERA LIMIT 3/5",
+        "EASY",
+        "SEED 314159",
+        "PRESET: MILITARY",
+        "EDIT DECK 25/25"
+      ],
+      "scope": "Visual UI declaration; report/events do not independently log deck configuration."
+    },
+    "naturalEnd": {
+      "observed": [
+        "DEFEAT",
+        "16m 14s",
+        "AGE REACHED 3/3",
+        "SHIPMENTS SENT 5/8"
+      ],
+      "scope": "Result picture alone says elimination or resignation; complete raw event audit independently establishes elimination with no Resign."
+    }
+  }
+}

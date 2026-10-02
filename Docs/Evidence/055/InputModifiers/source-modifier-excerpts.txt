@@ -1,0 +1,104 @@
+Assets/Frontier/Presentation/DiscreteInputBuffer.cs
+sha256=3b6871ddb17ac3b2d7e95ddd39d240124f1b9212c8454b7bee4ec981cdb37f8b
+Lines 82-98
+82:         private static bool Pressed(KeyControl key,InputEventPtr ev)=>key.ReadValueFromEvent(ev,out float value)?value>=.5f:key.isPressed;
+83:         private void Capture(InputEventPtr ev,InputDevice device)
+84:         {
+85:             if(!ev.IsA<StateEvent>()&&!ev.IsA<DeltaStateEvent>())return;
+86:             if(device is Keyboard incomingKeyboard)
+87:             {
+88:                 if(keyboard!=incomingKeyboard)
+89:                 {keyboard=incomingKeyboard;Array.Clear(keyBlocked,0,keyBlocked.Length);for(int i=0;i<Keys.Length;i++)keyDown[i]=keyboard[Keys[i]].isPressed;}
+90:                 shift=Pressed(keyboard.leftShiftKey,ev)||Pressed(keyboard.rightShiftKey,ev);
+91:                 saveGroup=Pressed(keyboard.leftCtrlKey,ev)||Pressed(keyboard.rightCtrlKey,ev)||Pressed(keyboard.leftMetaKey,ev)||Pressed(keyboard.rightMetaKey,ev);
+92:                 for(int i=0;i<Keys.Length;i++)
+93:                 {
+94:                     if(!keyboard[Keys[i]].ReadValueFromEvent(ev,out float value))continue;
+95:                     bool down=value>=.5f;
+96:                     if(!down)keyBlocked[i]=false;else if(!focused)keyBlocked[i]=true;
+97:                     if(focused&&down&&!keyDown[i]&&!keyBlocked[i])Enqueue(new Edge{kind=EdgeKind.Key,key=Keys[i],pressed=true,time=ev.time,shift=shift,saveGroup=saveGroup,position=position});
+98:                     keyDown[i]=down;
+
+Lines 112-124
+112:         {
+113:             if(!button.ReadValueFromEvent(ev,out float value))return;
+114:             bool down=value>=.5f;
+115:             if(!down)blocked=false;else if(!focused)blocked=true;
+116:             if(down==previous)return;previous=down;
+117:             if(!focused||blocked)return;
+118:             Enqueue(new Edge{kind=kind,pressed=down,position=position,time=ev.time,shift=shift,saveGroup=saveGroup});
+119:         }
+120:         private void Enqueue(Edge edge)
+121:         {
+122:             edges.Enqueue(edge);
+123:             if(trace)Debug.LogFormat(LogType.Log,LogOption.NoStacktrace,null,"{0}",$"FRONTIER_INPUT {edge.kind} {edge.key} {(edge.pressed?"down":"up")} p={edge.position} shift={edge.shift} save={edge.saveGroup} t={edge.time:F4}");
+124:         }
+
+Assets/Frontier/Presentation/RtsInput.cs
+sha256=bb64bcd75fe59f3e3c05d9a45550fc2e3472347d56edfd95ded7549094599fc6
+Lines 55-56
+55:         public void Select(EntityState entity,bool append=false)
+56:         {ResetDoubleClick();if(!append)Selected.Clear();if(entity==null)return;if(append&&Selected.Contains(entity.id))Selected.Remove(entity.id);else Selected.Add(entity.id);game.Hud.InvalidateActions();}
+
+Lines 100-111
+100:                 if(edge.kind==EdgeKind.Left&&game.Hud.NeedsUiLayoutAt(edge.position))break;
+101:                 input.TryTake(out edge);
+102:                 if(edge.kind==EdgeKind.Key&&(edge.key==Key.Escape||edge.key==Key.F9))
+103:                 {if(edge.key==Key.F9)game.Capture();else HandleEscape();continue;}
+104:                 if(edge.kind==EdgeKind.Left&&game.Hud.ProcessUiPointer(edge.position,edge.pressed))
+105:                 {ResetDoubleClick();beganWorld=false;beganMinimap=false;Dragging=false;
+106:                     // Newly created UGUI graphics become raycastable after the
+107:                     // canvas render pass. Retain remaining edges for next frame.
+108:                     if(game.Hud.PendingInputLayout)break;continue;}
+109:                 if(!WorldActive||game.Hud.ModalVisible)continue;
+110:                 // The transition barrier prevents pointer click-through. Fresh
+111:                 // keyboard edges can act immediately after a modal has closed.
+
+Lines 205-220
+205:             if(!beganWorld)return;
+206:             DragEnd=pointer;Dragging|=(pointer-DragStart).sqrMagnitude>ClickSlopSquared;
+207:             if(Dragging){ResetDoubleClick();BoxSelect(DragStart,pointer,edge.shift);}
+208:             else
+209:             {
+210:                 var entity=Pick(pointer);
+211:                 // A double click is one nearby, uninterrupted pointer gesture.
+212:                 // Fast selection of another worker must not select the whole economy.
+213:                 double elapsed=edge.time-lastClickTime;
+214:                 if(entity!=null&&entity.owner==0&&lastType==entity.def.id&&elapsed>=0&&elapsed<.3&&(pointer-lastClickPosition).sqrMagnitude<=ClickSlopSquared)
+215:                 {if(!edge.shift)Selected.Clear();foreach(var e in game.World.Entities)if(e.Alive&&e.owner==0&&e.def.id==entity.def.id&&OnScreen(e)&&!Selected.Contains(e.id))Selected.Add(e.id);}
+216:                 else Select(entity,edge.shift);
+217:                 lastType=entity?.owner==0?entity.def.id:null;lastClickTime=edge.time;lastClickPosition=pointer;
+218:             }
+219:             if(inputTrace)Debug.Log($"FRONTIER_SELECTION drag={Dragging} from={DragStart} to={pointer} selected={Selected.Count}");
+220:             Dragging=false;beganWorld=false;game.Hud.InvalidateActions();
+
+Lines 288-294
+288:         private void BoxSelect(Vector2 a,Vector2 b,bool append)
+289:         {
+290:             if(!append)Selected.Clear();var rect=Rect.MinMaxRect(Mathf.Min(a.x,b.x),Mathf.Min(a.y,b.y),Mathf.Max(a.x,b.x),Mathf.Max(a.y,b.y));var found=new List<EntityState>();
+291:             foreach(var e in game.World.Entities)if(e.owner==0&&game.World.IsVisible(0,e))
+292:             {var p=game.GameCamera.WorldToScreenPoint(new Vector3(e.position.x,1,e.position.y));if(p.z>0&&rect.Contains(p))found.Add(e);}
+293:             bool units=found.Exists(e=>e.def.kind==EntityKind.Unit);foreach(var e in found)if((!units||e.def.kind==EntityKind.Unit)&&!Selected.Contains(e.id))Selected.Add(e.id);
+294:         }
+
+Assets/Frontier/Presentation/FrontierHud.cs
+sha256=378db2404311bbce8d319cfa312d765253c3b303b228cc9b4cf09784406bf785
+Lines 58-74
+58:         // not with the next HUD Update. Keep an already-held same-context
+59:         // gesture stable; subsequent gestures wait for new graphics to render.
+60:         internal void EnsureActionContextCurrent()
+61:         {
+62:             if(game.InMenu||game.World==null||actionPanel==null)return;
+63:             var controls=game.Controls;
+64:             controls.Selected.RemoveAll(id=>!game.World.IsVisible(0,game.World.Get(id)));
+65:             var selected=controls.FirstSelected;int id=selected?.id??0;
+66:             bool changed=id!=actionEntity||actionSelection.Count!=controls.Selected.Count;
+67:             if(!changed)for(int i=0;i<actionSelection.Count;i++)if(actionSelection[i]!=controls.Selected[i]){changed=true;break;}
+68:             int key=CurrentActionKey(selected);
+69:             if(!changed&&(key==actionKey||(uiPointer?.IsPressed??false)))return;
+70:             if(changed)uiPointer?.CancelWithin(actionPanel,queuePanel);
+71:             actionEntity=id;actionSelection.Clear();actionSelection.AddRange(controls.Selected);
+72:             actionKey=key;refreshAt=Time.unscaledTime+1;
+73:             RebuildActions(selected);
+74:             if(traceInput)Debug.LogFormat(LogType.Log,LogOption.NoStacktrace,null,"FRONTIER_UI context entity={0} count={1} world={2:F3} frame={3}",id,actionSelection.Count,game.World.Time,Time.frameCount);
+
