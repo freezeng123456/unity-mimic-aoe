@@ -6,7 +6,7 @@
 
 三组正常资源、Standard、16 倍速原生 AI 对局均自然消灭结算：coast/river 990.105 秒（III/II）、river/coast 1942.473 秒（V/IV）、coast/coast 2157.454 秒（V/V）。事件审计确认真实付费训练、船运到达和炮兵对敌建筑伤害。这些是固定地图自动局证据；不替代人工经营、平衡或完整五时代玩家体验。
 
-本轮正常玩家整局、视听与最新规模性能尚未完成；人工输入验收当前受 Mac 锁屏影响。见 [Iteration-054.md](Docs/Iteration-054.md)、[Native-Verification-054.md](Docs/Native-Verification-054.md) 与 [Completion-Status.md](Docs/Completion-Status.md)。0.2.29 的重复移动指令修复已继承，历史结果见 [Iteration-053.md](Docs/Iteration-053.md)。
+Mac 已恢复可操作；两次正常玩家对局均自然败北；第二局完成时代II、两次船运、岗楼、修理与驻军火力，时代III、付费军队和炮兵主动攻城的完整路径仍未通过。详见[Normal-Player-054.md](Docs/Normal-Player-054.md)。本轮已完成当前构建 50/100/200/400 活动单位的单客户端25秒短时诊断，见 [Performance-054.md](Docs/Performance-054.md)；此前锁屏且并行客户端的旧50样本已排除。完整性能、视听及阶段 D 仍开放。开发及验收状态见 [Iteration-054.md](Docs/Iteration-054.md)、[Native-Verification-054.md](Docs/Native-Verification-054.md) 与 [Completion-Status.md](Docs/Completion-Status.md)。0.2.29 的重复移动指令修复已继承，历史结果见 [Iteration-053.md](Docs/Iteration-053.md)。
 
 采集、建造、人口、生产、科技、时代、经验、船运、迷雾、军队和胜负使用统一模拟。两个文明具有实际经济与单位差异；当前数值的 P 项目设定与原作待核查资料分别记录。完整未完成项见 [Full-Scope-Audit.md](Docs/Full-Scope-Audit.md)。
 
@@ -72,6 +72,9 @@ Unity 工程通过 Hub 打开本目录，使用 **6000.6.3f1**（已锁定实际
 - `Docs/Implemented-Numbers-0218.md`：当前项目数值，含独立建造/训练/击杀经验；`Docs/Full-Scope-Audit.md`：完整需求验收状态。
 - `Docs/Asset-Licenses.md`、`Docs/Licenses`：素材与依赖许可全文、来源和哈希。
 - `Docs/Native-Verification-031.md`：封存0.2.11的原生失焦、恢复与新局检查；`Docs/Normal-Player-031.md`：封存0.2.10正常玩家局。
+- [Docs/Playtest-054.md](Docs/Playtest-054.md)：0.2.30客户端启动、基本操作与验证边界。
+- [Docs/Normal-Player-054.md](Docs/Normal-Player-054.md)：当前0.2.30两次正常玩家自然败局，含第二局时代II、船运、修理与驻军的原始事件和配对截图；完整主动攻城仍未通过。
+- [Docs/Performance-054.md](Docs/Performance-054.md)：当前0.2.30在M3 Pro上的50/100/200/400活动单位单客户端短时诊断；不替代长期、全员可见或正常玩家输入性能验收。
 - `Docs/Performance-027.md`：封存0.2.7客户端50/100/200/400活动单位的历史性能诊断；0.2.28未重测该矩阵。
 - `Docs/Evidence/042`：镜头边缘有效红例、规则与场景测试、构建输入和本轮可用原生证据；`Docs/Iteration-042.md`记录实际验证边界。
 - `Docs/Evidence/041`：经验结算回归与0.2.18构建证据，受控原生XP专项尚未完成。

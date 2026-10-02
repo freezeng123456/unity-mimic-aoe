@@ -1,6 +1,6 @@
 # 实际环境与版本
 
-2026-10-02 本轮实际环境：MacBook Pro（Mac15,7），Apple M3 Pro，12 CPU 核、18 GPU 核、36 GB RAM，macOS 27.0（build 26A428），内屏 3456×2234。客户端用 Metal 渲染。内屏物理分辨率与客户端窗口渲染分辨率分别记录；本轮仍在进行的性能测试尚未作为结果列入此文件。
+2026-10-02 本轮实际环境：MacBook Pro（Mac15,7），Apple M3 Pro，12 CPU 核、18 GPU 核、36 GB RAM，macOS 27.0（build 26A428），内屏 3456×2234。客户端用 Metal 渲染。内屏物理分辨率与客户端窗口渲染分辨率分别记录；本轮四档单客户端短时性能诊断已封存于[Performance-054.md](Performance-054.md)，完整阶段D性能验收仍开放。
 
 工程当前固定 Unity **6000.6.3f1**，revision **45d8eee7de74**，与 `ProjectSettings/ProjectVersion.txt` 一致。[官方发布页](https://unity.com/releases/editor/whats-new/6000.6.3f1)记载该版本于 2026-09-24 发布。本轮已实际导入、编译并完成 macOS arm64 构建。`Tools/unity-editor.sh` 严格核对编辑器实际 `-version` 输出与工程固定版本；即使设置 `UNITY_EDITOR`，版本不符也会拒绝运行构建和测试。兼容性依据真实执行结果，不由安装状态单独推出。
 
