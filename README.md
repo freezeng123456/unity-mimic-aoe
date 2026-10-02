@@ -1,12 +1,12 @@
 # 烽岸纪元 · Frontier Reckoning
 
-**0.2.29开发工作版本，Unity原生陆战RTS。两种文明、I–V、固定地图、自定义卡组和三档AI已有实现；尚未达到完整陆战或阶段D验收标准。**
+**0.2.30 可运行开发版本，Unity 原生陆战 RTS。两种文明、I–V、固定地图、自定义卡组和三档 AI 已有实现；完整玩家陆战及阶段 D 验收仍开放。**
 
-2026-10-01恢复开发：已核对完整工程的依赖锁、Assets元数据与原生场景引用，并补齐测试源码/报告哈希证据与独立运行目录；验证工具回归8/8通过。本次尚未重新运行Unity游戏测试、构建或人工整局。历史游戏验证边界仍按下文保留；当前恢复工作见 [Completion-Status.md](Docs/Completion-Status.md)。
+2026-10-02：工程固定 **6000.6.3f1**。本轮修复资源耗尽后村民误选未完工农田/庄园，以及按住队列取消按钮期间生产完成时误取消后继订单。完整 **194/194 EditMode、181/181 PlayMode** 通过，报告与当前源码 SHA-256 绑定；验证工具 **8/8** 通过。macOS arm64 0.2.30 客户端已构建并实际运行，实时阴影继续关闭。
 
-本轮修复重复确认同一移动、攻击移动或追击目标时路线被清空后继承旧重试时间的问题。相同意图保留当前路线与准备中的攻击；真正改向立即重新规划，Shift追加仍保留当前路线。实时阴影继续关闭。
+三组正常资源、Standard、16 倍速原生 AI 对局均自然消灭结算：coast/river 990.105 秒（III/II）、river/coast 1942.473 秒（V/IV）、coast/coast 2157.454 秒（V/V）。事件审计确认真实付费训练、船运到达和炮兵对敌建筑伤害。这些是固定地图自动局证据；不替代人工经营、平衡或完整五时代玩家体验。
 
-EditMode190/190通过；完整PlayMode和新客户端构建尚未在本轮重跑。详见 [Iteration-053.md](Docs/Iteration-053.md)。**本轮未人工启动0.2.29独立客户端**，自动检查不等同于玩家整局、视听或性能验收。
+本轮正常玩家整局、视听与最新规模性能尚未完成；人工输入验收当前受 Mac 锁屏影响。见 [Iteration-054.md](Docs/Iteration-054.md)、[Native-Verification-054.md](Docs/Native-Verification-054.md) 与 [Completion-Status.md](Docs/Completion-Status.md)。0.2.29 的重复移动指令修复已继承，历史结果见 [Iteration-053.md](Docs/Iteration-053.md)。
 
 采集、建造、人口、生产、科技、时代、经验、船运、迷雾、军队和胜负使用统一模拟。两个文明具有实际经济与单位差异；当前数值的 P 项目设定与原作待核查资料分别记录。完整未完成项见 [Full-Scope-Audit.md](Docs/Full-Scope-Audit.md)。
 
@@ -18,11 +18,11 @@ EditMode190/190通过；完整PlayMode和新客户端构建尚未在本轮重跑
 
 ## 启动入口
 
-客户端在独立的 `Frontier Reckoning.app` 中。macOS 双击此 app，选择双方文明、时代上限、AI 难度与卡组后点击 **BEGIN SKIRMISH**。通过 macOS 应用入口启动；不要把 `.app/Contents/MacOS` 内部可执行文件当作常规入口。0.2.28 构建目标为 **macOS Apple silicon / Development / Mono**，未构建 Windows、Linux 或 Intel Mac 客户端，也未做跨机器签名、公证和安装验收。
+客户端在独立的 `Frontier Reckoning.app` 中。macOS 双击此 app，选择双方文明、时代上限、AI 难度与卡组后点击 **BEGIN SKIRMISH**。通过 macOS 应用入口启动；不要把 `.app/Contents/MacOS` 内部可执行文件当作常规入口。0.2.30 构建目标为 **macOS Apple silicon / Development / Mono**，未构建 Windows、Linux 或 Intel Mac 客户端，也未做跨机器签名、公证和安装验收。
 
 默认渲染窗口 2560×1440，在本机 Retina 显示器上对应约 1280×720 点。窗口可调整大小。当前游戏 UI 为英文，下面提供中文操作说明。此版本没有存档功能；关闭、重新开始会结束当前局。
 
-Unity 工程通过 Hub 打开本目录，使用 **6000.6.0f1**（正式非 LTS 版本，已锁定实际依赖并在本机验证）。场景入口为 `Assets/Frontier/Scenes/FrontierSkirmish.unity`，打开后按 Play。场景使用真实 Camera、Light 和 GameController；运行时创建原生 GameObject 网格、Canvas、EventSystem 与 AudioSource。没有网页或浏览器运行依赖。
+Unity 工程通过 Hub 打开本目录，使用 **6000.6.3f1**（已锁定实际依赖并在本机验证）。场景入口为 `Assets/Frontier/Scenes/FrontierSkirmish.unity`，打开后按 Play。场景使用真实 Camera、Light 和 GameController；运行时创建原生 GameObject 网格、Canvas、EventSystem 与 AudioSource。没有网页或浏览器运行依赖。
 
 ## 一局怎样开始
 

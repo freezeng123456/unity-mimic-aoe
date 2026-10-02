@@ -54,8 +54,9 @@ namespace Frontier
             var outline=drag.gameObject.AddComponent<Outline>();outline.effectColor=new Color(.8f,.94f,.6f);outline.effectDistance=new Vector2(1,-1);
         }
         public void InvalidateActions(){actionKey=int.MinValue;refreshAt=0;}
-        // Selection changes are ordered with native input, not with the next HUD
-        // Update. Retain subsequent pointer edges until the new graphics render.
+        // Selection and completed HUD actions are ordered with native input,
+        // not with the next HUD Update. Keep an already-held same-context
+        // gesture stable; subsequent gestures wait for new graphics to render.
         internal void EnsureActionContextCurrent()
         {
             if(game.InMenu||game.World==null||actionPanel==null)return;
@@ -64,10 +65,11 @@ namespace Frontier
             var selected=controls.FirstSelected;int id=selected?.id??0;
             bool changed=id!=actionEntity||actionSelection.Count!=controls.Selected.Count;
             if(!changed)for(int i=0;i<actionSelection.Count;i++)if(actionSelection[i]!=controls.Selected[i]){changed=true;break;}
-            if(!changed)return;
-            uiPointer?.CancelWithin(actionPanel,queuePanel);
+            int key=CurrentActionKey(selected);
+            if(!changed&&(key==actionKey||(uiPointer?.IsPressed??false)))return;
+            if(changed)uiPointer?.CancelWithin(actionPanel,queuePanel);
             actionEntity=id;actionSelection.Clear();actionSelection.AddRange(controls.Selected);
-            actionKey=CurrentActionKey(selected);refreshAt=Time.unscaledTime+1;
+            actionKey=key;refreshAt=Time.unscaledTime+1;
             RebuildActions(selected);
             if(traceInput)Debug.LogFormat(LogType.Log,LogOption.NoStacktrace,null,"FRONTIER_UI context entity={0} count={1} world={2:F3} frame={3}",id,actionSelection.Count,game.World.Time,Time.frameCount);
         }
@@ -277,7 +279,18 @@ namespace Frontier
             add("GROUPS",ShowGroups,"Save and recall selected objects. Ctrl / Command + number also saves.",true);
             if(e.def.kind==EntityKind.Unit)add("GARRISON [G]",()=>game.Controls.BeginGarrison(),"Choose a completed friendly shelter, including a damaged one. Capacity is checked on arrival.",true);
             for(int i=0;i<e.queue.Count&&i<6;i++)
-            {int index=i;var job=e.queue[i];string name=job.kind=="Age"?"Age "+job.item:game.Rules.Entity(job.item)?.name??game.Rules.Tech(job.item)?.name??job.item;Button(queuePanel,name+(job.count>1?" ×"+job.count:"")+"\n"+Mathf.Max(0,job.duration-job.elapsed).ToString("0")+"s",new Rect(i*86,0,80,47),()=>{game.Command(new GameCommand{player=0,kind=CommandKind.CancelQueue,actors=new[]{e.id},index=index});InvalidateActions();},"Click to cancel this unfinished order and refund its paid cost.");}
+            {
+                var job=e.queue[i];string name=job.kind=="Age"?"Age "+job.item:game.Rules.Entity(job.item)?.name??game.Rules.Tech(job.item)?.name??job.item;
+                Button(queuePanel,name+(job.count>1?" ×"+job.count:"")+"\n"+Mathf.Max(0,job.duration-job.elapsed).ToString("0")+"s",new Rect(i*86,0,80,47),()=>{
+                    // Production can finish while this pointer gesture is held.
+                    // Follow the clicked job if it moved forward in the queue;
+                    // a completed job must never cancel its successor.
+                    int index=e.queue.IndexOf(job);
+                    if(index>=0)game.Command(new GameCommand{player=0,kind=CommandKind.CancelQueue,actors=new[]{e.id},index=index});
+                    else game.Notify("This production order has already finished");
+                    InvalidateActions();
+                },"Click to cancel this unfinished order and refund its paid cost.");
+            }
         }
         private int TrainingCount(EntityDef unit)=>(batchTraining||game.Controls.Shift)?Mathf.Max(1,unit.batch):1;
         private EntityState TrainingProducer(EntityState fallback,EntityDef unit,int count)

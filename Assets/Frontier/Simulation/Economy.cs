@@ -204,7 +204,7 @@ namespace Frontier
             {
                 FlushGather(worker.id);worker.orders.Dequeue();worker.status="Resource depleted";
                 EntityState next=null;float best=18*18;
-                foreach(var candidate in Entities)if(candidate.Alive&&(candidate.def.kind==EntityKind.Resource||candidate.owner==worker.owner)&&candidate.def.resource==(r?.def.resource??ResourceKind.None)&&candidate.def.resource!=ResourceKind.None&&(candidate.remaining>0||Sustainable(candidate))&&IsVisible(worker.owner,candidate))
+                foreach(var candidate in Entities)if(candidate.def.resource==(r?.def.resource??ResourceKind.None)&&GatherableResource(worker.owner,candidate))
                 {float dist=(candidate.position-worker.position).sqrMagnitude;if(dist<best){best=dist;next=candidate;}}
                 if(worker.orders.Count==0&&next!=null)worker.orders.Enqueue(new UnitOrder(OrderKind.Gather,next.position,next.id));return;
             }

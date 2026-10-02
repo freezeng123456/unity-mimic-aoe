@@ -18,7 +18,10 @@ def main():
         if re.fullmatch(r'run-[A-Za-z0-9]+',run):reports=reports/run
         else:result('Latest test run','FAIL','Invalid latest-run.txt')
     version=root/'ProjectSettings/ProjectVersion.txt'
-    result('Editor version','PASS' if version.exists() and '6000.6.0f1' in version.read_text() else 'FAIL',version.read_text().strip() if version.exists() else '')
+    version_text=version.read_text() if version.exists() else ''
+    editor=re.search(r'^m_EditorVersion: (\d+\.\d+\.\d+[abfp]\d+)$',version_text,re.M)
+    consistent=editor is not None and re.search(r'^m_EditorVersionWithRevision: '+re.escape(editor.group(1))+r' \([0-9a-f]+\)$',version_text,re.M) is not None
+    result('Editor version','PASS' if consistent else 'FAIL',version_text.strip())
     try:
         manifest=json.loads((root/'Packages/manifest.json').read_text())['dependencies'];lock=json.loads((root/'Packages/packages-lock.json').read_text())['dependencies']
         conflicts=[f'{k}: requested {v}, resolved {lock.get(k,{}).get("version")}' for k,v in manifest.items() if lock.get(k,{}).get('version')!=v]
@@ -26,6 +29,8 @@ def main():
     except (OSError,ValueError,KeyError) as exc:result('Packages','FAIL',str(exc))
     assets=root/'Assets';missing_meta=[str(p.relative_to(root)) for p in assets.rglob('*') if not p.name.startswith('.') and p.suffix!='.meta' and not p.with_name(p.name+'.meta').exists()]
     result('Assets metadata','PASS' if not missing_meta else 'FAIL',', '.join(missing_meta))
+    invalid_order=[str(p.relative_to(root)) for p in assets.rglob('*.cs.meta') if re.search(r'^\s+executionOrder: (?!-?\d+\s*$).+$',p.read_text(errors='replace'),re.M)]
+    result('Script importer execution order','PASS' if not invalid_order else 'FAIL',', '.join(invalid_order))
     guids=set()
     for meta in assets.rglob('*.meta'):
         guids.update(re.findall(r'^guid: ([0-9a-f]{32})$',meta.read_text(errors='replace'),re.M))

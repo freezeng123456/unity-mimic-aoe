@@ -16,6 +16,48 @@ namespace Frontier.Tests
             float food=world.Players[0].resources.food;Steps(100);
             Assert.IsFalse(first.Alive);Assert.Less(second.remaining,second.def.amount);Assert.Greater(world.Players[0].resources.food,food+.01f);
         }
+        // Controlled depletion fixtures isolate automatic gathering recovery. The
+        // foundation has no builder; these are not normal-opening match evidence.
+        EntityState GatherUntilDepletedNearFoundation(string building,string resource,out EntityState foundation)
+        {
+            var kind=world.Rules.Entity(resource).resource;
+            foreach(var e in world.Entities.Where(e=>e.def.resource==kind).ToArray())world.Remove(e);
+            var worker=world.Spawn("villager",0,new Vector2(80,24));
+            var depleted=world.Spawn(resource,-1,new Vector2(81,24));depleted.remaining=.01f;
+            foundation=world.Spawn(building,0,new Vector2(84,24),false);
+            world.Fog.Tick(world.Entities);
+            Assert.IsFalse(world.GatherableResource(0,foundation),"An unfinished economy building cannot supply a work position");
+            Assert.IsTrue(world.Issue(new GameCommand{player=0,kind=CommandKind.Order,actors=new[]{worker.id},order=OrderKind.Gather,target=depleted.id}).accepted);
+            Steps(1);Assert.IsFalse(depleted.Alive,"The original node must be depleted by real gathering");
+            Assert.IsTrue(world.Events.Any(e=>e.kind=="ResourceDepleted"&&e.entity==depleted.id));
+            return worker;
+        }
+        [TestCase("farm","berry")]
+        [TestCase("estate","mine")]
+        public void DepletedNodeSkipsNearerUnfinishedEconomicBuildingAndCreditsCompletedSource(string building,string resource)
+        {
+            var worker=GatherUntilDepletedNearFoundation(building,resource,out var unfinished);
+            var ready=world.Spawn(building,0,new Vector2(91,24));world.Fog.Tick(world.Entities);
+            Assert.IsTrue(world.GatherableResource(0,ready));
+            Steps(1);
+            Assert.IsNotEmpty(worker.orders);Assert.AreEqual(OrderKind.Gather,worker.orders.Peek().kind);
+            Assert.AreEqual(ready.id,worker.orders.Peek().target,"A nearer foundation must not replace the completed same-resource source");
+            Steps(300);world.FlushEconomyLog();
+            Assert.IsFalse(unfinished.Complete);
+            Assert.IsTrue(world.Events.Any(e=>e.kind=="Gather"&&e.entity==worker.id&&e.target==ready.id&&e.amount>0),"Recovery must reach the completed source and credit real resources");
+            Assert.IsFalse(world.Events.Any(e=>e.kind=="Gather"&&e.entity==worker.id&&e.target==unfinished.id));
+        }
+        [TestCase("farm","berry")]
+        [TestCase("estate","mine")]
+        public void DepletedNodeWithOnlyUnfinishedEconomicBuildingLeavesWorkerIdle(string building,string resource)
+        {
+            var worker=GatherUntilDepletedNearFoundation(building,resource,out var unfinished);
+            Steps(1);
+            Assert.IsEmpty(worker.orders,"An unavailable foundation must not attract automatic gathering orders");
+            Assert.AreEqual("Resource depleted",worker.status);
+            Steps(30);Assert.IsEmpty(worker.orders);Assert.IsFalse(unfinished.Complete);
+            Assert.IsFalse(world.Events.Any(e=>e.kind=="Gather"&&e.entity==worker.id&&e.target==unfinished.id));
+        }
         [Test]public void BuildingRefundAndObstacleAreReleasedOnce()
         {
             var worker=world.Entities.First(e=>e.owner==0&&e.Worker);var point=new Vector2(38,35);world.Fog.Reveal(0,point,10);
