@@ -1,14 +1,14 @@
 # 素材来源与许可
 
-核对日期 2026-09-14，适用 0.2.20 开发版本（包含此前原创开发资产）。0.2.17新增本项目编写的OutcropArt.cs原创岩体网格，没有增加外部素材或更换既有字体、FBX及Blender源文件。没有下载、提取或分发《帝国时代》商业素材、源码、卡牌画或界面资源。
+本轮核对日期2026-10-02，适用055 / 0.2.31当前源码；2026-09-14的0.2.20及后续历史增量保留在下文。0.2.17新增本项目编写的OutcropArt.cs原创岩体网格，本轮新增原创几何、程序化动画与合成通知/环境/音乐，没有增加外部素材或更换既有字体、FBX及Blender源文件。没有下载、提取或分发《帝国时代》商业素材、源码、卡牌画或界面资源。当前验证状态见 [Art-Animation-055.md](Art-Animation-055.md)。
 
 ## 本项目制作
 
 | 内容 | 来源 | 用途与范围 | 验收边界 |
 |---|---|---|---|
-| 人物/骑兵/火炮/建筑/资源/地形/商队/宝藏模型 | `Assets/Frontier/Presentation/ProceduralArt.cs` 与 `WorldView.cs` 生成的原创几何 | 本项目开发资产；没有外部商业模型输入 | 功能灰盒，非最终美术 |
+| 人物/骑兵/火炮/建筑/资源/地形/商队/宝藏模型 | `Assets/Frontier/Presentation/ProceduralArt.cs`、`OutcropArt.cs` 与 `WorldView.cs` 的原创几何，火枪手保留本项目制作的FBX | 本项目原创资产；没有外部商业模型输入 | 055新增统一低多边形轮廓；常规距离原生视觉与阶段D验收待验证 |
 | UI、菜单、图形、文案 | 本项目 C# 原生 UGUI 与 LineRenderer | 独立名称、布局、视觉 | 已做部分原生可读性复查，完整本地化未完成 |
-| 枪/炮/近战/命中/提示音 | `EventAudio.cs` 正弦/噪声合成 | 本项目原创开发声音 | 没有正式听觉、环境声、完整动画和混音验收 |
+| 枪/炮/近战/命中/单位活动/分类提示音/环境/音乐 | `EventAudio.cs`、`ActivitySoundClips.cs`、`NoticeSoundClips.cs`、`AmbientAudio.cs` 中的原创正弦/噪声、频率序列与包络合成 | 无外部录音、采样乐器、商业游戏音频或第三方乐谱输入 | 已有声音实现；055原生监听器混音与正常玩家耳听验收待验证 |
 
 | 命中尘土、开火闪光、死亡消散 | `CombatFeedback.cs` 原创程序化几何与共享URP材质 | 固定上限的开发反馈效果 | 自动验证生命周期，未完成原生视觉验收 |
 
@@ -99,3 +99,21 @@ Blend: 138446 bytes，SHA-256 `4e89e50467992dc8fa9ccf61700ce8134c732c255072561e4
 ## 0.2.28 / 052增量
 
 仅项目原创C#战斗指令/自动选敌和测试调整，没有新增模型、图像、音频、字体或外部依赖。既有许可全文保留，实时阴影持续关闭。
+
+## 0.2.29–0.2.30 / 053–054 增量
+
+这些历史迭代增加或修复本项目原创C#运行、输入、HUD、测试和证据，没有更换字体、FBX或Blender源，没有新增第三方美术/音频输入。6000.6.3f1环境中Searcher间接包为4.9.5，直接依赖仍按前表；随附原许可证和第三方声明继续独立适用。0.2.30正常玩家截图、原始事件与诊断报告是本项目原生运行结果，不是本轮055视觉/音频验收结果。
+
+## 0.2.31 / 055 原创视觉、动画与声音增量
+
+| 新增或调整内容 | 可审查来源 | 来源与许可边界 |
+|---|---|---|
+| 人物腰肩/外套/靴/帽与宽队色，马匹/骑手/刀枪，Cannon/Mortar，建筑用途轮廓，F/W/C箱内容 | [ProceduralArt.cs](../Assets/Frontier/Presentation/ProceduralArt.cs) | 本项目手工编写的截面、顶点/三角形、基础几何与纯色材质；未使用下载模型、纹理、扫描或生成式图像。既有火枪手FBX继续按0.2.4原创源记录。 |
+| 程序化步态、坐姿、瞄准/拉弦/挥击/后座/恢复/部署、工作工具、受伤/死亡表现 | [UnitAnimation.cs](../Assets/Frontier/Presentation/UnitAnimation.cs)、[UnitRig.cs](../Assets/Frontier/Presentation/UnitRig.cs)、[WorkerEquipment.cs](../Assets/Frontier/Presentation/WorkerEquipment.cs)，整体姿态沿用WorldView | 本项目编写的刚性枢轴与时间函数；没有第三方动画片段、动作捕捉或外部骨骼资产。实际支持范围及未实现内容见Art-Animation-055。 |
+| 六种战略提示音 | [NoticeSoundClips.cs](../Assets/Frontier/Presentation/NoticeSoundClips.cs) | 原创频率序列、谐波与包络直接生成22050Hz单声道AudioClip，无录音或商业音效输入。 |
+| 环境风床与原创主题音乐 | [AmbientAudio.cs](../Assets/Frontier/Presentation/AmbientAudio.cs) 的AmbientSoundClips | 本项目平滑噪声、四组和弦频率与八音旋律直接合成16秒风声、24秒音乐循环；未引用外部采样文件或现成乐谱。 |
+| URP研究图与原生监听器诊断音频 | FrontierArtStudy055Tests、NativeAudioCapture读取当前模型/AudioListener | 输出来自项目自己运行的渲染/声音；图中文字使用既有Noto字体，仍保留OFL。原始截图/诊断WAV不是新下载素材，也不单独证明正式美术、混音或玩家验收。 |
+
+2026-10-02重新计算：NotoSans-Regular.ttf、FrontierInfantry.fbx、FrontierInfantry.blend的大小与SHA-256均与前文记录一致。055没有新增需另附许可的外部模型、贴图、动画、音乐文件或字体；Unity及各包许可不会因为模型/声音由代码生成而失效。
+
+本页是素材来源和随附许可清单，不单独授予第三方复用本项目原创代码、模型或音乐的许可，也不改变项目所有者的发布授权。字体继续遵守OFL；Unity包与其中第三方组件继续按各自随附全文使用，不能把原创资产来源说明扩展为对引擎、编辑器或所有依赖的通用再分发授权。统一定向67/67与完整214/214 EditMode、210/210 PlayMode已通过，新5组URP图已读审；新原生客户端音频与正常玩家验收仍在进行，不宣称阶段D已通过。

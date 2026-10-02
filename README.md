@@ -1,24 +1,18 @@
 # 烽岸纪元 · Frontier Reckoning
 
-**0.2.30 可运行开发版本，Unity 原生陆战 RTS。两种文明、I–V、固定地图、自定义卡组和三档 AI 已有实现；完整玩家陆战及阶段 D 验收仍开放。**
+**0.2.31，独立Unity原生陆战RTS。原定四个里程碑正在完成最后的玩家整局与规模验收，尚不标记全部通过。**
 
-2026-10-02：工程固定 **6000.6.3f1**。本轮修复资源耗尽后村民误选未完工农田/庄园，以及按住队列取消按钮期间生产完成时误取消后继订单。完整 **194/194 EditMode、181/181 PlayMode** 通过，报告与当前源码 SHA-256 绑定；验证工具 **8/8** 通过。macOS arm64 0.2.30 客户端已构建并实际运行，实时阴影继续关闭。
+工程固定Unity **6000.6.3f1**，URP、两种文明、I–V、固定128×128地图、25张合法卡组、XP和真实船运、战争迷雾、三档AI、银行、贸易、宝藏与炮兵共用同一模拟规则。实时阴影继续关闭，项目使用原创名称、网格、界面与合成音频。
 
-三组正常资源、Standard、16 倍速原生 AI 对局均自然消灭结算：coast/river 990.105 秒（III/II）、river/coast 1942.473 秒（V/IV）、coast/coast 2157.454 秒（V/V）。事件审计确认真实付费训练、船运到达和炮兵对敌建筑伤害。这些是固定地图自动局证据；不替代人工经营、平衡或完整五时代玩家体验。
+当前源码绑定 **214/214 EditMode、210/210 PlayMode**，macOS arm64客户端已实际构建、运行并记录构建GUID。12局正常规则AI矩阵全部自然结束，独立审计逐笔扣费、生产时序、船运、炮击建筑与完全淘汰；这些自动局不替代正常玩家经营。新玩家局的时代III/炮兵路线、river五时代及长期规模证据仍在推进，失败局完整保留，见[四个里程碑状态](Docs/Milestones-055.md)。
 
-Mac 已恢复可操作；两次正常玩家对局均自然败北；第二局完成时代II、两次船运、岗楼、修理与驻军火力，时代III、付费军队和炮兵主动攻城的完整路径仍未通过。详见[Normal-Player-054.md](Docs/Normal-Player-054.md)。本轮已完成当前构建 50/100/200/400 活动单位的单客户端25秒短时诊断，见 [Performance-054.md](Docs/Performance-054.md)；此前锁屏且并行客户端的旧50样本已排除。完整性能、视听及阶段 D 仍开放。开发及验收状态见 [Iteration-054.md](Docs/Iteration-054.md)、[Native-Verification-054.md](Docs/Native-Verification-054.md) 与 [Completion-Status.md](Docs/Completion-Status.md)。0.2.29 的重复移动指令修复已继承，历史结果见 [Iteration-053.md](Docs/Iteration-053.md)。
+本轮更新人物与骑乘姿态、火炮后座、11类建筑和资源箱轮廓，修复驻军人数变化后的按钮反馈及未完工贸易站提前提供视野。原创风声、主题曲和六种战略通知已接入；真实20秒正常混音、暂停与主静音对照均通过WAV复算。美术研究图、原生截图、音频、普通玩家、AI与压力夹具分别记录证明范围，见[验证记录](Docs/Verification-055.md)。
 
-采集、建造、人口、生产、科技、时代、经验、船运、迷雾、军队和胜负使用统一模拟。两个文明具有实际经济与单位差异；当前数值的 P 项目设定与原作待核查资料分别记录。完整未完成项见 [Full-Scope-Audit.md](Docs/Full-Scope-Audit.md)。
-
-0.2.19 扩大镜头边缘滚动的触发区域，并随窗口大小调整；避免按钮和小地图悬停时意外滚屏，补上常驻镜头/小地图操作提示。全量EditMode145/145、PlayMode159/159通过，macOS arm64新客户端已构建并实际运行，四边滚屏、进入黑暗区域下令及村民到达、暂停与返回菜单已取得原生证据。四边原生操作验收结果见 [Iteration-042.md](Docs/Iteration-042.md)。向未探索地面移动、攻击移动和小地图下令已有真实输入回归；完整核心对局仍未验收。
-
-本版包含0.2.18的经验改动：建造、付费训练和击杀使用独立数据参数，付费训练在实际出生后发经验；免费赠送、船运与时代增援不重复发训练经验。相关参数属于明确标注的项目设定，见 [Iteration-041.md](Docs/Iteration-041.md)、[Reference-XP-041.md](Docs/Reference-XP-041.md) 和 [Implemented-Numbers-0218.md](Docs/Implemented-Numbers-0218.md)。0.2.18原生受控经验专项未完成；0.2.19的新独立局已实际验证100F训练扣费、出生后5XP与人口/队列同步，见 [Native-Verification-042.md](Docs/Native-Verification-042.md)。尚未验证完整经验到船运的原生链条。
-
-最近自然正常镜像局040使用封存0.2.17，在653.987秒自然战败，玩家II时代、一船运，没有形成主动军队攻城。首次TC毁后仍有村民时比赛继续；这证明部分失败生命周期，不能称核心主动对局通过。更早版本验证与修订保存在分版本Docs以及 [此前README](Docs/Archive/README-0217.md)。
+[中文试玩说明](Docs/Playtest-055.md) · [完整需求审计](Docs/Full-Scope-Audit.md) · [素材许可](Docs/Asset-Licenses.md)。0.2.30状态保留在[历史README](Docs/Archive/README-0230.md)，不能当作新构建验收。
 
 ## 启动入口
 
-客户端在独立的 `Frontier Reckoning.app` 中。macOS 双击此 app，选择双方文明、时代上限、AI 难度与卡组后点击 **BEGIN SKIRMISH**。通过 macOS 应用入口启动；不要把 `.app/Contents/MacOS` 内部可执行文件当作常规入口。0.2.30 构建目标为 **macOS Apple silicon / Development / Mono**，未构建 Windows、Linux 或 Intel Mac 客户端，也未做跨机器签名、公证和安装验收。
+客户端在独立的 `Frontier Reckoning.app` 中。macOS 双击此 app，选择双方文明、时代上限、AI 难度与卡组后点击 **BEGIN SKIRMISH**。通过 macOS 应用入口启动；不要把 `.app/Contents/MacOS` 内部可执行文件当作常规入口。0.2.31 构建目标为 **macOS Apple silicon / Development / Mono**，未构建 Windows、Linux 或 Intel Mac 客户端，也未做跨机器签名、公证和安装验收。
 
 默认渲染窗口 2560×1440，在本机 Retina 显示器上对应约 1280×720 点。窗口可调整大小。当前游戏 UI 为英文，下面提供中文操作说明。此版本没有存档功能；关闭、重新开始会结束当前局。
 
@@ -56,7 +50,7 @@ Unity 工程通过 Hub 打开本目录，使用 **6000.6.3f1**（已锁定实际
 | 驻扎释放 / 近远程切换 | 所选对象面板上的 UNGARRISON / MELEE MODE、RANGED MODE |
 | 取消 / 暂停 | Esc 先取消放置/攻击/驻扎模式，再关闭面板或暂停；正常单机失焦自动暂停，返回后用 Esc、RESUME 或暂停 X 恢复 |
 | 拆除 | 选己方已完工建筑，DEMOLISH，再在游戏内确认；无退款 |
-| 截图 | F9，保存原生PNG和配套状态JSON到 Captures |
+| 截图 / 性能 / 混音 | F9 保存PNG与状态；F8 保存逐帧和内存样本；F10 保存最长20秒PCM混音 |
 
 **人口显示为“已用 + 队列预留 / 当前上限”。人口不是单位实体数。** 住房被毁不会删除已有单位；已预留生产仍可完成，新生产预留和单位船运会检查上限。被摧毁生产建筑的队列不退款，这是项目规则。
 
@@ -72,9 +66,14 @@ Unity 工程通过 Hub 打开本目录，使用 **6000.6.3f1**（已锁定实际
 - `Docs/Implemented-Numbers-0218.md`：当前项目数值，含独立建造/训练/击杀经验；`Docs/Full-Scope-Audit.md`：完整需求验收状态。
 - `Docs/Asset-Licenses.md`、`Docs/Licenses`：素材与依赖许可全文、来源和哈希。
 - `Docs/Native-Verification-031.md`：封存0.2.11的原生失焦、恢复与新局检查；`Docs/Normal-Player-031.md`：封存0.2.10正常玩家局。
-- [Docs/Playtest-054.md](Docs/Playtest-054.md)：0.2.30客户端启动、基本操作与验证边界。
-- [Docs/Normal-Player-054.md](Docs/Normal-Player-054.md)：当前0.2.30两次正常玩家自然败局，含第二局时代II、船运、修理与驻军的原始事件和配对截图；完整主动攻城仍未通过。
-- [Docs/Performance-054.md](Docs/Performance-054.md)：当前0.2.30在M3 Pro上的50/100/200/400活动单位单客户端短时诊断；不替代长期、全员可见或正常玩家输入性能验收。
+- [Docs/Playtest-055.md](Docs/Playtest-055.md)：当前客户端中文启动与操作说明。
+- [Docs/Milestones-055.md](Docs/Milestones-055.md)：原定A–D逐项验收状态，保留失败与尚未完成项。
+- [Docs/Verification-055.md](Docs/Verification-055.md)：214/214 EditMode、210/210 PlayMode、源码指纹及原生构建。
+- [Docs/AI-Matrix-055.md](Docs/AI-Matrix-055.md)：12局普通规则AI矩阵与逐笔支付、训练、船运和自然淘汰审计。
+- [Docs/Art-Animation-055.md](Docs/Art-Animation-055.md)：原创人物、骑兵、炮兵、11类建筑、资源与程序动画的实际表现。
+- [Docs/Native-Audio-Capture.md](Docs/Native-Audio-Capture.md)：真实混音、暂停与主静音对照；PCM信号证据不等同耳听。
+- [Docs/Performance-055.md](Docs/Performance-055.md)：当前版本逐帧原始样本、暂停/焦点排除和规模验证进度。
+- [Docs/Normal-Player-054.md](Docs/Normal-Player-054.md)、[Docs/Performance-054.md](Docs/Performance-054.md)：封存0.2.30玩家与短规模基线。
 - `Docs/Performance-027.md`：封存0.2.7客户端50/100/200/400活动单位的历史性能诊断；0.2.28未重测该矩阵。
 - `Docs/Evidence/042`：镜头边缘有效红例、规则与场景测试、构建输入和本轮可用原生证据；`Docs/Iteration-042.md`记录实际验证边界。
 - `Docs/Evidence/041`：经验结算回归与0.2.18构建证据，受控原生XP专项尚未完成。
@@ -84,8 +83,8 @@ Unity 工程通过 Hub 打开本目录，使用 **6000.6.3f1**（已锁定实际
 
 `Tools/compare-event-logs.py <预期JSONL> <实际JSONL>` 可比较完整事件文件；不承诺跨平台重放。`Tools/build-character.sh` 用 Blender 5.2.1 LTS 再生原创人物源，先审查输出后再替换运行时FBX。
 
-`Tools/verify-delivery.py --reports-dir <报告目录>` 只检查源码包装、元数据、版本和真实 XML 测试结果；它不能证明游戏已完成。命令行 `-frontierAutoplay -frontierAutoSpeed 8` 用于客户端自动完整对局验证；`-frontierBenchmark 50`（或 100、200、400）是单独压力夹具，提升运行时生命以维持活动数量，与正常对局明确分开。`-frontierInputTrace` 记录鼠标、键盘与 UGUI 按钮事件用于排查输入。
+`Tools/verify-delivery.py --reports-dir <报告目录>` 只检查源码包装、元数据、版本和真实 XML 测试结果；它不能证明游戏已完成。命令行 `-frontierAutoplay -frontierAutoSpeed 8` 用于客户端自动完整对局验证；`-frontierBenchmark 50`（或 100、200、400）与可选 `-frontierBenchmarkSeconds 360` 是单独压力夹具，提升运行时生命以维持活动数量，与正常对局明确分开。`-frontierInputTrace` 记录鼠标、键盘与 UGUI 按钮事件用于排查输入。
 
-客户端自己的 `Reports`、`Captures`、`Benchmarks` 目录位于 Unity 的持久化应用数据目录，即 macOS 用户 Library/Application Support/Frontier Workshop/Frontier Reckoning 下。正常游戏不从验证报告中加载资源或单位。
+客户端自己的 `Reports`、`Captures`、`AudioCaptures`、`PerformanceCaptures`、`Benchmarks` 目录位于 Unity 的持久化应用数据目录，即 macOS 用户 Library/Application Support/Frontier Workshop/Frontier Reckoning 下。正常游戏不从验证报告中加载资源或单位。
 
 源码压缩包排除 Library、Temp、Logs、Builds、obj 等可再生成缓存；客户端另行打包。未实现存档或确定性回放，不宣称具备联网同步能力。独立项目名称、文案、网格、UI 与合成音频均为本项目制作，不隶属于《帝国时代》官方。

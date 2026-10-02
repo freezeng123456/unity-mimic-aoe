@@ -1,0 +1,259 @@
+{
+  "generatedAtUtc": "2026-10-02T12:05:37.188622+00:00",
+  "scope": "Actual native normal player B3 failed coast-iii acceptance attempt; retained, not passed",
+  "appVersion": "0.2.31",
+  "buildGuid": "128a731d440e4b7a94abfcc74b88fa97",
+  "matchId": "62dbc87afc3d4296a932fd41997856aa",
+  "status": "failed",
+  "failedChecks": [
+    "requiredPlayerCoverage"
+  ],
+  "coverageGaps": [
+    "ageIII",
+    "paidCannon",
+    "cannonEnemyBuildingDamage"
+  ],
+  "configurationPairing": {
+    "origin": "Independent B3 pre-match menu capture",
+    "receipt": "Frontier-20261002-114351-906-f93075-3f34c7fa33034e31be3ac463c19951fb.json",
+    "hasIndependentSetupCapture": true,
+    "visuallyReadFromArchivedSetupPng": {
+      "you": "Coast Compact",
+      "ai": "Coast Compact",
+      "eraLimit": "3 / 5",
+      "difficulty": "EASY",
+      "seed": 314159,
+      "preset": "ECONOMY",
+      "deckSize": "25/25"
+    },
+    "scope": "UI screenshot read independently; preset remains an externally declared pairing because report/events/F9 metadata do not log deck configuration."
+  },
+  "incompleteAgeIIIEvidence": {
+    "payment": {
+      "line": 25924,
+      "time": 780.0565795898438,
+      "kind": "Payment",
+      "player": 0,
+      "entity": 1,
+      "target": 0,
+      "message": "Advance to age 3: 1200 F / 0 W / 1000 C",
+      "amount": 0.0
+    },
+    "townCenterDeath": {
+      "line": 26502,
+      "time": 791.6537475585938,
+      "kind": "Death",
+      "player": 0,
+      "entity": 1,
+      "target": 1,
+      "message": "Town Center lost",
+      "amount": 0.0
+    },
+    "ageIIICompletionEvents": [],
+    "catalogUpgradeDurationSeconds": 110,
+    "elapsedPaymentToTownCenterDeathSeconds": 11.59716796875,
+    "creditedAsAgeIII": false,
+    "scope": "Raw payment and town-center death occurred; no player AgeAdvanced III completion. A payment cannot satisfy ageIII coverage."
+  },
+  "nativeCaptures": {
+    "generatedAtUtc": "2026-10-02T12:05:00.125240+00:00",
+    "appVersion": "0.2.31",
+    "buildGuid": "128a731d440e4b7a94abfcc74b88fa97",
+    "matchId": "62dbc87afc3d4296a932fd41997856aa",
+    "captures": {
+      "menu": {
+        "receiptFile": "Frontier-20261002-114351-906-f93075-3f34c7fa33034e31be3ac463c19951fb.json",
+        "receiptSha256": "aded87f6c377d83c5fd848a7bf9f93bbb3ba9db66d26e8b7b0047a8544de9a3b",
+        "pngFile": "Frontier-20261002-114351-906-f93075-3f34c7fa33034e31be3ac463c19951fb.png",
+        "pngSha256": "ad3a0126b8dd11a571860327000109dd663d275abd5b72da7749d27c26a2b848",
+        "width": 3456,
+        "height": 1924,
+        "utc": "2026-10-02T11:43:51.7687230Z",
+        "worldTime": 0.0,
+        "checks": {
+          "exactVersionGuid": true,
+          "pngShaMatches": true,
+          "pngDimensionsMatch": true,
+          "menuNotAssignedToMatch": true
+        },
+        "passed": true
+      },
+      "opening": {
+        "receiptFile": "Frontier-20261002-114409-114-f94080-6c0dc261fde34f8ba6b897f1cdeb1108.json",
+        "receiptSha256": "13efdd72ab8b42d50174e2eb209b17147f62c19b5b1f4509adc9d36a5a22763c",
+        "pngFile": "Frontier-20261002-114409-114-f94080-6c0dc261fde34f8ba6b897f1cdeb1108.png",
+        "pngSha256": "b6b83a39eaa6db97ab5e8fc975148021002e39d52abc8ce32c616b4d340103b8",
+        "width": 3456,
+        "height": 1924,
+        "utc": "2026-10-02T11:44:08.9791660Z",
+        "worldTime": 0.0,
+        "checks": {
+          "exactVersionGuid": true,
+          "pngShaMatches": true,
+          "pngDimensionsMatch": true,
+          "sameLiveRequestHudMatch": true,
+          "captureOutsideMenu": true,
+          "oneRequestCaptureFrame": true,
+          "liveAndHudTimeMatch": true,
+          "sameSeedDifficulty": true,
+          "normalInitialWorld": true
+        },
+        "passed": true
+      },
+      "ending": {
+        "receiptFile": "Frontier-20261002-120126-267-f146198-2ddc5fac42f3417c9aa6441a15de233d.json",
+        "receiptSha256": "40acf4eeef62a55cc5221e706d7fa975c411773c56356d7f6b851894408975f5",
+        "pngFile": "Frontier-20261002-120126-267-f146198-2ddc5fac42f3417c9aa6441a15de233d.png",
+        "pngSha256": "5a453bf86b856c681e45059883a95b44192027f440cfb4ab30704dc3cf727819",
+        "width": 3456,
+        "height": 1924,
+        "utc": "2026-10-02T12:01:26.1312880Z",
+        "worldTime": 810.9490356445312,
+        "checks": {
+          "exactVersionGuid": true,
+          "pngShaMatches": true,
+          "pngDimensionsMatch": true,
+          "sameLiveRequestHudMatch": true,
+          "captureOutsideMenu": true,
+          "oneRequestCaptureFrame": true,
+          "liveAndHudTimeMatch": true,
+          "sameSeedDifficulty": true,
+          "captureAfterNaturalEndAtReportedTime": true,
+          "zeroProductionAndPopulation": true
+        },
+        "passed": true,
+        "visuallyRead": "DEFEAT; 13m30s; age reached YOU 2 / OPPONENT 3; shipments sent 3 / 7",
+        "scope": "Saved PNG read, no GUI operation. This confirms a same-match ending picture; does not prove mouse gestures, sound or performance."
+      }
+    },
+    "passed": true,
+    "scope": "Metadata, hash, dimensions and same-match temporal pairing plus stated saved-PNG readings; capture metadata has no deck fields or ended flag. Menu HUD may retain the previous match but live/menu match is empty."
+  },
+  "menuExitExportAudit": {
+    "foundAtArchive": false,
+    "scope": "No same-match menu_exit file existed in native Reports at final archival check; no other match substituted."
+  },
+  "originCopies": {
+    "20261002-120047-817-62dbc87afc3d4296a932fd41997856aa-match_finished-events.jsonl": {
+      "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261002-120047-817-62dbc87afc3d4296a932fd41997856aa-match_finished-events.jsonl",
+      "sha256": "f6c1f3cb1da4aa4d15f9d101fb5335b6fd1655ba662f555878ddb3791cd44c03",
+      "archivedSha256": "f6c1f3cb1da4aa4d15f9d101fb5335b6fd1655ba662f555878ddb3791cd44c03",
+      "bytesMatch": true
+    },
+    "20261002-120047-817-62dbc87afc3d4296a932fd41997856aa-match_finished.json": {
+      "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261002-120047-817-62dbc87afc3d4296a932fd41997856aa-match_finished.json",
+      "sha256": "59399fa9810659bc7ad8d66bfad712b5d3d0fe07e8cf7bd82663778f756f7e41",
+      "archivedSha256": "59399fa9810659bc7ad8d66bfad712b5d3d0fe07e8cf7bd82663778f756f7e41",
+      "bytesMatch": true
+    },
+    "Frontier-20261002-114351-906-f93075-3f34c7fa33034e31be3ac463c19951fb.json": {
+      "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261002-114351-906-f93075-3f34c7fa33034e31be3ac463c19951fb.json",
+      "sha256": "aded87f6c377d83c5fd848a7bf9f93bbb3ba9db66d26e8b7b0047a8544de9a3b",
+      "archivedSha256": "aded87f6c377d83c5fd848a7bf9f93bbb3ba9db66d26e8b7b0047a8544de9a3b",
+      "bytesMatch": true
+    },
+    "Frontier-20261002-114351-906-f93075-3f34c7fa33034e31be3ac463c19951fb.png": {
+      "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261002-114351-906-f93075-3f34c7fa33034e31be3ac463c19951fb.png",
+      "sha256": "ad3a0126b8dd11a571860327000109dd663d275abd5b72da7749d27c26a2b848",
+      "archivedSha256": "ad3a0126b8dd11a571860327000109dd663d275abd5b72da7749d27c26a2b848",
+      "bytesMatch": true
+    },
+    "Frontier-20261002-114409-114-f94080-6c0dc261fde34f8ba6b897f1cdeb1108.json": {
+      "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261002-114409-114-f94080-6c0dc261fde34f8ba6b897f1cdeb1108.json",
+      "sha256": "13efdd72ab8b42d50174e2eb209b17147f62c19b5b1f4509adc9d36a5a22763c",
+      "archivedSha256": "13efdd72ab8b42d50174e2eb209b17147f62c19b5b1f4509adc9d36a5a22763c",
+      "bytesMatch": true
+    },
+    "Frontier-20261002-114409-114-f94080-6c0dc261fde34f8ba6b897f1cdeb1108.png": {
+      "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261002-114409-114-f94080-6c0dc261fde34f8ba6b897f1cdeb1108.png",
+      "sha256": "b6b83a39eaa6db97ab5e8fc975148021002e39d52abc8ce32c616b4d340103b8",
+      "archivedSha256": "b6b83a39eaa6db97ab5e8fc975148021002e39d52abc8ce32c616b4d340103b8",
+      "bytesMatch": true
+    },
+    "Frontier-20261002-120126-267-f146198-2ddc5fac42f3417c9aa6441a15de233d.json": {
+      "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261002-120126-267-f146198-2ddc5fac42f3417c9aa6441a15de233d.json",
+      "sha256": "40acf4eeef62a55cc5221e706d7fa975c411773c56356d7f6b851894408975f5",
+      "archivedSha256": "40acf4eeef62a55cc5221e706d7fa975c411773c56356d7f6b851894408975f5",
+      "bytesMatch": true
+    },
+    "Frontier-20261002-120126-267-f146198-2ddc5fac42f3417c9aa6441a15de233d.png": {
+      "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261002-120126-267-f146198-2ddc5fac42f3417c9aa6441a15de233d.png",
+      "sha256": "5a453bf86b856c681e45059883a95b44192027f440cfb4ab30704dc3cf727819",
+      "archivedSha256": "5a453bf86b856c681e45059883a95b44192027f440cfb4ab30704dc3cf727819",
+      "bytesMatch": true
+    }
+  },
+  "reproductionCheck": {
+    "status": "failed",
+    "expectedExitCode": 1,
+    "checksAndGapsMatchArchivedSummary": true,
+    "currentParserHashesMatchSnapshots": true,
+    "scope": "Rechecked raw bytes with archived Rules and exact current auditor/DeckLibrary; no gameplay rerun"
+  },
+  "files": {
+    "20261002-120047-817-62dbc87afc3d4296a932fd41997856aa-match_finished-events.jsonl": {
+      "sha256": "f6c1f3cb1da4aa4d15f9d101fb5335b6fd1655ba662f555878ddb3791cd44c03",
+      "bytes": 17830914
+    },
+    "20261002-120047-817-62dbc87afc3d4296a932fd41997856aa-match_finished.json": {
+      "sha256": "59399fa9810659bc7ad8d66bfad712b5d3d0fe07e8cf7bd82663778f756f7e41",
+      "bytes": 3170
+    },
+    "DeckLibrary.cs": {
+      "sha256": "0dc49c90ca098a88df08ecbd0e5ff809774f7a6b02e784fbff1fbc27c105b8f9",
+      "bytes": 1908
+    },
+    "Frontier-20261002-114351-906-f93075-3f34c7fa33034e31be3ac463c19951fb.json": {
+      "sha256": "aded87f6c377d83c5fd848a7bf9f93bbb3ba9db66d26e8b7b0047a8544de9a3b",
+      "bytes": 1374
+    },
+    "Frontier-20261002-114351-906-f93075-3f34c7fa33034e31be3ac463c19951fb.png": {
+      "sha256": "ad3a0126b8dd11a571860327000109dd663d275abd5b72da7749d27c26a2b848",
+      "bytes": 534061
+    },
+    "Frontier-20261002-114409-114-f94080-6c0dc261fde34f8ba6b897f1cdeb1108.json": {
+      "sha256": "13efdd72ab8b42d50174e2eb209b17147f62c19b5b1f4509adc9d36a5a22763c",
+      "bytes": 1779
+    },
+    "Frontier-20261002-114409-114-f94080-6c0dc261fde34f8ba6b897f1cdeb1108.png": {
+      "sha256": "b6b83a39eaa6db97ab5e8fc975148021002e39d52abc8ce32c616b4d340103b8",
+      "bytes": 500110
+    },
+    "Frontier-20261002-120126-267-f146198-2ddc5fac42f3417c9aa6441a15de233d.json": {
+      "sha256": "40acf4eeef62a55cc5221e706d7fa975c411773c56356d7f6b851894408975f5",
+      "bytes": 1602
+    },
+    "Frontier-20261002-120126-267-f146198-2ddc5fac42f3417c9aa6441a15de233d.png": {
+      "sha256": "5a453bf86b856c681e45059883a95b44192027f440cfb4ab30704dc3cf727819",
+      "bytes": 625936
+    },
+    "README.md": {
+      "sha256": "cae8ac66e16399f986d51851de30b7589bffa089c442d7c96722d5b693e1e02e",
+      "bytes": 4196
+    },
+    "Rules.json": {
+      "sha256": "a438291dbb42e0996485fb069031b24a95b5323d9d180135a0aba44cb272c064",
+      "bytes": 61482
+    },
+    "audit_ai_matrix.py": {
+      "sha256": "283d010fb3606df53bdb3d862912b808fcf2adb7fcb1c8b62db5e643a250df2b",
+      "bytes": 26043
+    },
+    "capture-audit.json": {
+      "sha256": "97dd995c03a090328c88d5083ef81f0d34ed93a796631eca5da7fcf196f05be7",
+      "bytes": 3216
+    },
+    "summary.json": {
+      "sha256": "2fcb6279d72bc35fd29d289be082324ce0512cf54d589501a9fbc26d6ddffcc9",
+      "bytes": 135087
+    },
+    "verify_performance.py": {
+      "sha256": "8b00461377c2e2b4cd0b6d66b00363151a66bfe4cdba703e0bea24d34594a57a",
+      "bytes": 22486
+    },
+    "verify_player.py": {
+      "sha256": "ab6a75fee4eb2ab39d960784af6b1bebcd2f0514f53717e3cd6ee8397279f0ce",
+      "bytes": 27803
+    }
+  }
+}

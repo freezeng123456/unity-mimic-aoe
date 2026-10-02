@@ -1,0 +1,98 @@
+{
+  "generatedAtUtc": "2026-10-02T11:05:00.221035+00:00",
+  "scope": "Targeted EditMode diagnostics; no native player claim. Full source-bound suite is recorded separately by root.",
+  "targetedSourceFingerprintCapturedBeforeAndAfter": false,
+  "redCause": "Paid unfinished trading post supplied completed vision; actual unique red test failed Expected not Visible / was Visible.",
+  "initialGreenFailure": "New verifier assertion compared XP progress directly; legal token rollover resets progress. Fixed test to sum positive Trade route delivery Experience ledger; runtime XP rules unchanged.",
+  "runs": [
+    {
+      "id": "red",
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "result": "Failed(Child)",
+      "startTimeUtc": "2026-10-02 10:57:28Z",
+      "endTimeUtc": "2026-10-02 10:57:28Z",
+      "durationSeconds": 0.0442691,
+      "files": [
+        {
+          "sourcePath": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Regression055/LandmarksRed/EditMode.xml",
+          "archivePath": "red/EditMode.xml",
+          "sha256": "5560fe166c231f489da2678d5c410a1ac4cad761c989e2ce121bc92220f4ab4a"
+        },
+        {
+          "sourcePath": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Regression055/LandmarksRed/EditMode.log",
+          "archivePath": "red/EditMode.log",
+          "sha256": "e3ddf3f8c26ed74accf2c105d16b62544c1c8b18e33bdbd211dc294283b8aaaf"
+        }
+      ],
+      "failures": [
+        {
+          "test": "Frontier.Tests.LandmarkLifecycleTests.UnfinishedTradingPostDoesNotProvideVision",
+          "message": "  A paid foundation must not supply the completed Trading Post's vision\n  Expected: not equal to Visible\n  But was:  Visible\n",
+          "stack": "at Frontier.Tests.LandmarkLifecycleTests.UnfinishedTradingPostDoesNotProvideVision () [0x00048] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/LandmarkLifecycleTests.cs:32\n"
+        }
+      ]
+    },
+    {
+      "id": "green-initial",
+      "total": 19,
+      "passed": 18,
+      "failed": 1,
+      "result": "Failed(Child)",
+      "startTimeUtc": "2026-10-02 11:00:10Z",
+      "endTimeUtc": "2026-10-02 11:00:12Z",
+      "durationSeconds": 1.4324898,
+      "files": [
+        {
+          "sourcePath": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Regression055/LandmarksGreen/EditMode.xml",
+          "archivePath": "green-initial/EditMode.xml",
+          "sha256": "100913c9200691e4b39c5a49cb04f42a04210c1837ac817f451acc5187d2eb9c"
+        },
+        {
+          "sourcePath": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Regression055/LandmarksGreen/EditMode.log",
+          "archivePath": "green-initial/EditMode.log",
+          "sha256": "f058ab3daa3dc07d27b17f34262760004184529114b72a23e4268d4b2d044352"
+        }
+      ],
+      "failures": [
+        {
+          "test": "Frontier.Tests.LandmarkLifecycleTests.AllPaidResourceModesAndReturnToXpCreditSeparateLedgers",
+          "message": "  Expected: 150.0d +/- 0.0010000000474974513d\n  But was:  0.0d\n",
+          "stack": "at Frontier.Tests.LandmarkLifecycleTests.AllPaidResourceModesAndReturnToXpCreditSeparateLedgers () [0x00449] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/LandmarkLifecycleTests.cs:82\n"
+        }
+      ]
+    },
+    {
+      "id": "green-final",
+      "total": 19,
+      "passed": 19,
+      "failed": 0,
+      "result": "Passed",
+      "startTimeUtc": "2026-10-02 11:01:28Z",
+      "endTimeUtc": "2026-10-02 11:01:29Z",
+      "durationSeconds": 1.4207668,
+      "files": [
+        {
+          "sourcePath": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Regression055/LandmarksGreen2/EditMode.xml",
+          "archivePath": "green-final/EditMode.xml",
+          "sha256": "a3fbd99b45e20db0c5ffcae9879acd4e72733567fe5d5d5076af64113b76201f"
+        },
+        {
+          "sourcePath": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Regression055/LandmarksGreen2/EditMode.log",
+          "archivePath": "green-final/EditMode.log",
+          "sha256": "d122dda3461314992e328d272036e5aa6597feccb5a81d5a1aeaae9fa6561be5"
+        }
+      ],
+      "failures": []
+    }
+  ],
+  "landmarkSourcesAtArchiveForFinalFullRun": {
+    "Assets/Frontier/Simulation/Landmarks.cs": "219b8057c59de325716e3a8dcbf79f1d3d586cfde271af75c784c25cdcf18789",
+    "Assets/Frontier/Simulation/World.cs": "a1865889ddbe93c9371492f22c2ec6b63bd0b1b149d330490a1b8a125388ad22",
+    "Assets/Frontier/Simulation/Visibility.cs": "3c03092c7c441e3994fff45b6d6e6ba0d1371cb4ae9552f2f74c7f829a6dc1c3",
+    "Assets/Frontier/Tests/EditMode/LandmarkLifecycleTests.cs": "5e14c30b3faca890da6f17103e3d161bbd5d85d947a180038c8354049cb687c1",
+    "Assets/Frontier/Tests/EditMode/LandmarkObservationTests.cs": "69780b19bbf897467d11385d580a894638def76afa8956e6778621ee4eaf8fde"
+  },
+  "sourceHashScope": "Hashes collected after targeted green for handoff; not presented as a pre/post fingerprint of the red or targeted run."
+}

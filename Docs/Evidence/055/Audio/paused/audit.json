@@ -1,0 +1,86 @@
+{
+  "generatedAtUTC": "2026-10-02T11:11:26.562673+00:00",
+  "expectation": "Stable paused silence, not proof of audible normal mix",
+  "listeningVerdict": "not performed",
+  "auditorSha256": "5ec8bc741be6aa971c308f265968883e79ca6f3fb04e5c42b400d22776d10488",
+  "capture": {
+    "receiptFile": "Frontier-Audio-20261002-110956-588-3c785896f52543a7a4d782dee8f5347d.json",
+    "receiptSha256": "ffc66c37d4904752b37d6b5d0032173f890990b67188e48d4144c511c653a4ce",
+    "wavFile": "Frontier-Audio-20261002-110956-588-3c785896f52543a7a4d782dee8f5347d.wav",
+    "identity": {
+      "appVersion": "0.2.31",
+      "buildGuid": "128a731d440e4b7a94abfcc74b88fa97",
+      "unityVersion": "6000.6.3f1",
+      "platform": "OSXPlayer",
+      "matchId": "9f0d7b0c338243b4a3c57107db5e1019",
+      "autoplay": false,
+      "benchmarkMode": false,
+      "simulationSpeed": 1.0
+    },
+    "checks": {
+      "schemaVersion": true,
+      "exactNativeBuild": true,
+      "explicitSingleSession": true,
+      "nativeDspDataReceived": true,
+      "listenerAttachment": true,
+      "boundedSourcePools": true,
+      "wavHash": true,
+      "pcmDimensions": true,
+      "captureDuration": true,
+      "floatAndPcmMetricsMatch": true,
+      "finiteUnclippedSignal": true,
+      "noDroppedOrChangedFormat": true,
+      "durationTruncationIsFrameAligned": true,
+      "monotonicWindow": true,
+      "utcWindow": true,
+      "renderFrameWindow": true,
+      "acceptedStopReason": true,
+      "scopeMetadataTypes": true,
+      "normalPlayerScopeOrExplicitDiagnostic": true,
+      "boundedStateTimeline": true,
+      "requestedSignalContent": true
+    },
+    "passed": true,
+    "failedChecks": [],
+    "wav": {
+      "sampleRate": 48000,
+      "channels": 2,
+      "frames": 960000,
+      "samples": 1920000,
+      "audioSeconds": 20.0,
+      "pcm16Peak": 0.0,
+      "pcm16Rms": 0.0,
+      "nonzeroSamples": 0,
+      "bytes": 3840044,
+      "sha256": "b476b1b4f3437b8c0e22e3a2a7f9b27e19f8d85e1d7af6aa675b4cb7354b86ce"
+    },
+    "floatMix": {
+      "peak": 0.0,
+      "rms": 0.0
+    },
+    "wallSeconds": 20.00588687500003,
+    "worldTimeRange": [
+      11.700008392333984,
+      11.700008392333984
+    ],
+    "eventAudioPlayedRange": [
+      0,
+      0
+    ],
+    "stateChanges": [
+      {
+        "realtime": 108.55681225113378,
+        "worldTime": 11.700008392333984,
+        "paused": true,
+        "muted": false,
+        "focused": true,
+        "inMenu": false,
+        "musicEnabled": true,
+        "environmentSoundEnabled": true
+      }
+    ],
+    "scope": "WAV and native receipt consistency only. Nonzero PCM proves signal data, not audible quality, speaker output, cue recognition, fog behavior or a listening verdict."
+  },
+  "allStatesPaused": true,
+  "noWorldAdvance": true
+}
