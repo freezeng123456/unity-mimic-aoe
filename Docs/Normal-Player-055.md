@@ -2,7 +2,7 @@
 
 本轮独立macOS arm64客户端，Unity6000.6.3f1，build GUID `128a731d440e4b7a94abfcc74b88fa97`，源指纹`1b45f97f3d90c9b76388419492a83c5622ccb2cf3a365030044403ccd309c1c7`。玩家通过实际游戏窗口的鼠标/键盘操作，普通初始库存与真实资源箱，1倍速、autoplay=false、benchmark=false。没有免费资源、规则费用变更或削弱AI。
 
-coast镜像前四局使用Easy、时代上限III、合法25张经济预设；第五至第八局使用合法25张军备预设，仍为Easy及III上限。第七局已自然败局并严格审核，仍缺敌建筑炮击；第八局在259.6066秒主动返回菜单中断，第九局正常重试进行中，不提前作验收结论。菜单配置图和F9状态按同版本/GUID绑定；重开的配置继承明确说明，不把其他对局的结算图替换过来。
+coast镜像前四局使用Easy、时代上限III、合法25张经济预设；第五至第九局使用合法25张军备预设。第十局回到经济25卡，已完成正常I–III、付费炮出生、炮击敌建筑与自然结算，17项严格检查全部通过，B完成。河谷C1在B通过后开始，River镜像/Easy/V上限/经济25卡，仍在进行，不提前认证C。菜单配置图和F9状态按同版本/GUID绑定；先前失败与中断保持原结果。
 
 ## 已归档尝试
 
@@ -16,6 +16,8 @@ coast镜像前四局使用Easy、时代上限III、合法25张经济预设；第
 | `d57aee12243c4599a9343986d5b2c1ab` | 独立军备25卡菜单/开局/两进展F9；最后同局画面664.8847秒为II、III已排队；旧日志最后暂停705.3748秒后失焦 | 环境恢复时旧进程已不在，sky重新启动客户端回菜单；无同局match_finished/menu_exit/quit或完整events，不推断退出原因/自然战败/III完成。中断未验收，见[第六次归档](Evidence/055/NormalPlayer/coast-attempt-006/summary.json) |
 | `781c4090a2474a91964105c79eab9e27` | 实际III、6付费工、10Pike+5Musk、1付费炮、2Manor/Barracks/Foundry及4船运；27击杀/39损失 | 835.6430秒自然失败，双方III，末局存活单位/建筑[0,68]，无Resign；严格仅缺炮击敌建筑，不通过B。见[第七次审计](Evidence/055/NormalPlayer/coast-attempt-007/summary.json) |
 | `6cf241946653492ea782b2f968b5e229` | 己方Command/Gather均0；3次付费村民排队，仅1名实际出生、另2名未完成 | 259.6066秒menu_exit，非自然结算；首次实际暂停在223.6044秒。中断未验收，见[第八次归档](Evidence/055/NormalPlayer/coast-attempt-008/README.md) |
+| `7f161abd4f994a1aaf5be762ba4a23f5` | 实际III、16付费工、5Pike+5Longbow、5船运；100W250C炮已付费但Foundry在39.09秒后被毁，未满45秒生产 | 974.5091秒自然败局；缺付费炮出生及敌建筑炮击，B9未通过。见[第九次审计](Evidence/055/NormalPlayer/coast-attempt-009/summary.json) |
+| `f65f503a74b9415e89d0a875e9b0ce2d` | 经济25卡、实际III、3付费工、9Musk+5Pike、2付费炮、4船运；炮186六次命中敌Stable156，共780伤害 | **B通过**：17项检查全部true，958.6130秒自然败局、败方全灭、无Resign。见[第十次审计](Evidence/055/NormalPlayer/coast-attempt-010/summary.json) |
 
 首局菜单与结算有对应F9。第二局Play Again沿用首局配置，没有独立新setup或同局结算F9；原始match_finished与menu_exit各自完整JSON/JSONL保留。缺图如实保留，不因其他对局有图而补作本局证据。
 
@@ -33,7 +35,9 @@ B7两份F8均已与本局最终报告/Spawn-Death完整配对：[第一窗口](E
 
 B8开局F9明确paused=false，第一次实际暂停直到223.6044秒；全局己方Command/Gather为0，259.6066秒通过RETURN TO MENU中断，不能称自然战败。正常扣费的3个村民作业只有1个实际出生，2个仍在队列。B9已改操作等待间隔，现场观察到7名工人实际Gather、付费队列和TC资源集结点成功；这些过程观察不作完整B或长性能验收。
 
-B9 `7f161abd4f994a1aaf5be762ba4a23f5` 的[首个F8窗口初审](Evidence/055/Performance/normal-b9-window-001/README.md)已独立复算：20,003帧全部有效/有焦点，单窗335.999332有效秒，300秒时长门槛初步成立。对局仍进行中，最终report/events及实际实体计数关联待完成，不标完整性能、B或D通过。
+B9 `7f161abd4f994a1aaf5be762ba4a23f5` 的[最终F8审计](Evidence/055/Performance/normal-b9-final-001/f8-audit.json)已完整配对：20,003帧全部有效/有焦点，单窗335.999332有效秒，明确300秒最低时长通过，335笔内存与最终事件前缀全部一致。原初审六文件保持原字节。B9对局本身仍失败，正常长性能通过不替代D规模。
+
+B10的[完整归档](Evidence/055/NormalPlayer/coast-attempt-010/README.md)含33,001条事件、8组同局F9与保全输入日志。III在402.215332秒实际完成；付费炮186/236分别在508.121796/796.752502秒出生。炮186在577.206116秒收到对敌马厩156的Attack命令，580.505310–605.999084秒六次各130攻城伤害，全部付款/生产/目标身份已关联。目标F9在585.204163秒显示1850/1980，是首炮命中后、第二炮命中前；后续命中由原始事件证明，不倒填进该截图。
 
 ## 输入排查与证明边界
 
