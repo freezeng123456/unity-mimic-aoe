@@ -29,7 +29,7 @@ namespace Frontier
             Navigation=new GridNavigation();Fog=new Visibility();
             Players=new[]{new PlayerState{id=0,civilization=civ0},new PlayerState{id=1,civilization=civ1}};
             if(Rules.Civ(civ0)==null||Rules.Civ(civ1)==null)throw new ArgumentException("Unknown civilization");
-            InitializeEconomy();InitializeMap();InitializeLandmarks();Fog.Tick(Entities);RebuildSpatial();
+            InitializeEconomy();InitializeMap();InitializeLandmarks();Fog.Tick(Entities);RecordLandmarkDiscoveries();RebuildSpatial();
             Emit("MatchStarted",-1,0,$"Seed {Seed}; age cap {MaxAge}; {civ0} vs {civ1}; project rules P v0.2");
         }
         private void InitializeMap()
@@ -172,7 +172,7 @@ namespace Frontier
             RebuildSpatial();
             var sw=System.Diagnostics.Stopwatch.StartNew();TickMovementCombat(dt);LastCombatMs=Mathf.Max(0,(float)sw.Elapsed.TotalMilliseconds-LastNavigationMs);
             sw.Restart();TickEconomy(dt);TickLandmarks(dt);LastEconomyMs=(float)sw.Elapsed.TotalMilliseconds;
-            if(Time>=fogAt){fogAt=Time+.4f;Fog.Tick(Entities);}
+            if(Time>=fogAt){fogAt=Time+.4f;Fog.Tick(Entities);RecordLandmarkDiscoveries();}
             for(int p=0;p<2;p++)
             {
                 bool remains=false;foreach(var e in Entities)if(e.Alive&&e.owner==p&&e.def.kind!=EntityKind.Resource){remains=true;break;}

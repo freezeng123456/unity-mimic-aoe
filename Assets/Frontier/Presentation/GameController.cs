@@ -15,6 +15,8 @@ namespace Frontier
         public NativeCapture Captures { get; private set; }
         public string MatchId { get; private set; } = "";
         public EventAudio Audio { get; private set; }
+        public AmbientAudio Ambience { get; private set; }
+        public bool EnvironmentSoundEnabled = true, MusicEnabled = true;
         public Camera GameCamera { get; private set; }
         public bool InMenu { get; private set; } = true;
         public bool IsPaused => World != null && World.Paused;
@@ -74,6 +76,11 @@ namespace Frontier
             Hud=gameObject.AddComponent<FrontierHud>();Hud.Initialize(this);
             Captures=gameObject.AddComponent<NativeCapture>();Captures.Initialize(this);
             Audio=gameObject.AddComponent<EventAudio>();Audio.Initialize(this);
+            var ambienceRoot=new GameObject("Original ambience");ambienceRoot.transform.SetParent(transform,false);
+            Ambience=ambienceRoot.AddComponent<AmbientAudio>();Ambience.Initialize(this);
+            var audioCapture=GameCamera.GetComponent<NativeAudioCapture>()??GameCamera.gameObject.AddComponent<NativeAudioCapture>();
+            audioCapture.Initialize(this);
+            gameObject.AddComponent<NativePerformanceCapture>().Initialize(this);
             Controls.Focus(new Vector2(25,25));
         }
         private void Start()
@@ -86,7 +93,12 @@ namespace Frontier
             if(Array.IndexOf(args,"-frontierAutoplay")>=0) {Autoplay=true;int index=Array.IndexOf(args,"-frontierAutoSpeed");if(index>=0&&index+1<args.Length&&float.TryParse(args[index+1],out float speed))SimulationSpeed=Mathf.Clamp(speed,1,16);StartMatch();}
             else Hud.ShowMenu();
             int benchmarkIndex=Array.IndexOf(args,"-frontierBenchmark");
-            if(benchmarkIndex>=0&&benchmarkIndex+1<args.Length&&int.TryParse(args[benchmarkIndex+1],out int count)){BenchmarkMode=true;StartMatch();gameObject.AddComponent<RuntimeBenchmark>().Initialize(this,count);}
+            if(benchmarkIndex>=0&&benchmarkIndex+1<args.Length&&int.TryParse(args[benchmarkIndex+1],out int count))
+            {
+                float duration=25;
+                if(float.TryParse(Arg("-frontierBenchmarkSeconds"),System.Globalization.NumberStyles.Float,System.Globalization.CultureInfo.InvariantCulture,out float seconds)&&!float.IsNaN(seconds)&&!float.IsInfinity(seconds))duration=seconds;
+                BenchmarkMode=true;StartMatch();gameObject.AddComponent<RuntimeBenchmark>().Initialize(this,count,duration);
+            }
         }
         public void StartMatch()
         {

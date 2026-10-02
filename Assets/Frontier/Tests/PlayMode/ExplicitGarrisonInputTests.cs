@@ -21,6 +21,69 @@ namespace Frontier.Tests
         }
         private IEnumerator Begin()
         {yield return Press(Key.G);Assert.IsTrue(InGarrisonMode,"G must enter a visible targeting mode");}
+        private IEnumerator OrderShelterAndSelectTown(EntityState actor)
+        {
+            game.Controls.Select(actor);yield return Ready();yield return Begin();
+            yield return Click(ScreenPoint(town.position));
+            Assert.AreEqual(OrderKind.Garrison,actor.orders.Single().kind);
+            yield return Click(ScreenPoint(town.position));
+            Assert.AreEqual(town.id,game.Controls.FirstSelected.id);
+        }
+        private void EnterShelter(EntityState actor)
+        {
+            for(int i=0;i<50&&actor.garrisonedIn==0;i++)game.World.Tick(.1f);
+            Assert.AreEqual(town.id,actor.garrisonedIn,"The real ordered movement must reach the shelter");
+        }
+        private void DelayPeriodicActions()
+        {
+            // Isolate event-driven refresh from the one-second polling fallback.
+            // Input, simulation and HUD Update still use their normal paths.
+            typeof(FrontierHud).GetField("refreshAt",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic)
+                .SetValue(game.Hud,Time.unscaledTime+10);
+        }
+        private Button AssertUngarrison(int count)
+        {
+            var button=FindButton("UNGARRISON");
+            Assert.AreEqual("UNGARRISON "+count,button.GetComponentInChildren<Text>().text,"Action and shelter detail must agree before periodic polling");
+            Assert.AreEqual(count>0,button.interactable);
+            Assert.IsTrue(session.GetComponentsInChildren<Text>().Any(t=>t.text.Contains("Sheltered "+count+"/"+town.def.garrison)));
+            return button;
+        }
+        [UnityTest] public IEnumerator ShelterArrivalAndNativeReleaseRefreshActionsBeforePeriodicPolling()
+        {
+            yield return Prepare();yield return OrderShelterAndSelectTown(worker);
+            AssertUngarrison(0);DelayPeriodicActions();EnterShelter(worker);yield return Ready();
+            var release=AssertUngarrison(1);DelayPeriodicActions();
+            yield return Click(ButtonCenter(release));
+            Assert.AreEqual(0,worker.garrisonedIn);Assert.IsEmpty(town.occupants);AssertUngarrison(0);
+            Assert.AreEqual(1,game.World.Events.Count(e=>e.kind=="Ungarrison"&&e.entity==town.id));
+        }
+        [UnityTest] public IEnumerator DisabledUngarrisonHeldDuringArrivalRequiresFreshClick()
+        {
+            yield return Prepare();yield return OrderShelterAndSelectTown(worker);
+            var disabled=AssertUngarrison(0);DelayPeriodicActions();var point=ButtonCenter(disabled);
+            InputSystem.QueueStateEvent(mouse,new MouseState{position=point}.WithButton(MouseButton.Left));yield return Ready();
+            EnterShelter(worker);yield return Ready();
+            Assert.AreSame(disabled,FindButton("UNGARRISON"),"An existing disabled gesture must not bind to a newly enabled action");
+            Assert.IsFalse(disabled.interactable);Assert.IsTrue(disabled.gameObject.activeInHierarchy);
+            InputSystem.QueueStateEvent(mouse,new MouseState{position=point});yield return Ready();
+            Assert.AreEqual(town.id,worker.garrisonedIn);Assert.AreEqual(0,game.World.Events.Count(e=>e.kind=="Ungarrison"&&e.entity==town.id));
+            var release=AssertUngarrison(1);yield return Click(ButtonCenter(release));
+            Assert.AreEqual(0,worker.garrisonedIn);AssertUngarrison(0);
+        }
+        [UnityTest] public IEnumerator HeldUngarrisonSurvivesAnotherArrivalAndReleasesCurrentGarrison()
+        {
+            yield return Prepare();yield return OrderShelterAndSelectTown(worker);EnterShelter(worker);yield return Ready();
+            var incoming=SpawnHere("villager",0,site+Vector2.left*5);
+            yield return OrderShelterAndSelectTown(incoming);var release=AssertUngarrison(1);DelayPeriodicActions();var point=ButtonCenter(release);
+            InputSystem.QueueStateEvent(mouse,new MouseState{position=point}.WithButton(MouseButton.Left));yield return Ready();
+            EnterShelter(incoming);yield return Ready();
+            Assert.AreSame(release,FindButton("UNGARRISON"),"A same-town held action must keep its original pointer capture");
+            Assert.IsTrue(release.gameObject.activeInHierarchy);Assert.AreEqual(2,town.occupants.Count);
+            InputSystem.QueueStateEvent(mouse,new MouseState{position=point});yield return Ready();
+            Assert.AreEqual(0,worker.garrisonedIn);Assert.AreEqual(0,incoming.garrisonedIn);Assert.IsEmpty(town.occupants);AssertUngarrison(0);
+            Assert.AreEqual(1,game.World.Events.Count(e=>e.kind=="Ungarrison"&&e.entity==town.id));
+        }
         [UnityTest] public IEnumerator ExplicitDamagedTownOrderUsesGarrisonAndEntersShelter()
         {
             yield return Prepare();yield return Begin();yield return Click(ScreenPoint(town.position));

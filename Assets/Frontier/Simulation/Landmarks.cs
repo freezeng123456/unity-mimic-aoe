@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,12 +6,21 @@ namespace Frontier
 {
     public sealed class TradeSocketState { public int entity,waypoint; }
     public sealed class TreasureState { public int entity; public TreasureDef definition; public readonly List<int> guards=new List<int>(); }
+    [Serializable] public sealed class LandmarkReachabilityObservation
+    {
+        public int seed,player,entity,openingTown,routeSocket,nearestSocket,camp,waypoint=-1,pathNodes;
+        public string objectType,origin="First legal Town Center villager production exit",socketAssociation="Nearest route socket by authored position; observation only";
+        public Vector2 from,position;public float radius;public bool openingExitAvailable,startWalkable,destinationWalkable,reachable;
+    }
+    [Serializable] public sealed class LandmarkDiscoveryObservation
+    {public int seed,player,entity;public string objectType;public Vector2 position;}
     public partial class World
     {
         public readonly List<TradeSocketState> TradeSockets=new List<TradeSocketState>();
         public readonly List<TreasureState> Treasures=new List<TreasureState>();
         public Vector2 CaravanPosition {get;private set;}
         private int caravanWaypoint=1,caravanDirection=1;
+        private readonly HashSet<int>[] discoveredLandmarks={new HashSet<int>(),new HashSet<int>()};
         public static bool Guardian(EntityState e)=>e!=null&&(e.def.tags&Tags.Guardian)!=0;
         public static bool Treasure(EntityState e)=>e!=null&&e.def.id.StartsWith("treasure_");
         private void InitializeLandmarks()
@@ -32,6 +42,51 @@ namespace Frontier
                 Emit("TreasurePlaced",-1,e.id,"Guarded camp: "+definition.guards);
             }
             if(rules.route.Length>0)CaravanPosition=rules.route[0];
+            RecordOpeningLandmarkReachability();
+        }
+        private void RecordOpeningLandmarkReachability()
+        {
+            // These are actual navigation queries on the authored opening, not
+            // rewards, visibility grants or a claim of randomized map coverage.
+            float radius=Rules.Entity("villager").radius;
+            for(int player=0;player<Players.Length;player++)
+            {
+                var town=Entities.Find(e=>e.Alive&&e.owner==player&&e.def.id=="town");
+                var points=new List<Vector2>();bool exit=town!=null&&FindSpawnPositions(town,1,radius,out points);
+                Vector2 from=exit?points[0]:town?.position??Vector2.zero;
+                foreach(var site in TradeSockets)Observe(Get(site.entity),site.entity,0,site.waypoint);
+                foreach(var treasure in Treasures)
+                {Observe(Get(treasure.entity),0,treasure.entity,-1);foreach(int guard in treasure.guards)Observe(Get(guard),0,treasure.entity,-1);}
+                void Observe(EntityState entity,int socket,int camp,int waypoint)
+                {
+                    int nearest=0;float distance=float.MaxValue;
+                    foreach(var site in TradeSockets){var candidate=Get(site.entity);float delta=(candidate.position-entity.position).sqrMagnitude;if(delta<distance){distance=delta;nearest=candidate.id;}}
+                    bool startWalkable=exit&&Navigation.IsWalkable(from,radius),destinationWalkable=Navigation.IsWalkable(entity.position,radius);
+                    var path=startWalkable&&destinationWalkable?Navigation.FindPath(from,entity.position,radius):new List<Vector2>();
+                    bool reachable=path.Count>0&&(path[path.Count-1]-entity.position).sqrMagnitude<.0001f;
+                    var observation=new LandmarkReachabilityObservation{seed=Seed,player=player,entity=entity.id,openingTown=town?.id??0,
+                        routeSocket=socket,nearestSocket=nearest,camp=camp,waypoint=waypoint,objectType=entity.def.id,
+                        from=from,position=entity.position,radius=radius,openingExitAvailable=exit,startWalkable=startWalkable,
+                        destinationWalkable=destinationWalkable,reachable=reachable,pathNodes=path.Count};
+                    Emit("LandmarkReachability",player,entity.id,JsonUtility.ToJson(observation),reachable?1:0,socket,entity.position);
+                }
+            }
+        }
+        private void RecordLandmarkDiscoveries()
+        {
+            if(Rules.landmarks==null)return;
+            foreach(var entity in Entities)
+            {
+                if(!entity.Alive||(entity.def.id!="trade_socket"&&entity.def.id!="trade_post"&&!Treasure(entity)&&!Guardian(entity)))continue;
+                for(int player=0;player<Players.Length;player++)
+                {
+                    // Own-entity shortcuts in IsVisible are not discovery. The
+                    // fog cell itself must be currently visible to this player.
+                    if(Fog.At(player,entity.position)!=VisibilityState.Visible||!discoveredLandmarks[player].Add(entity.id))continue;
+                    var observation=new LandmarkDiscoveryObservation{seed=Seed,player=player,entity=entity.id,objectType=entity.def.id,position=entity.position};
+                    Emit("LandmarkDiscovered",player,entity.id,JsonUtility.ToJson(observation),0,0,entity.position);
+                }
+            }
         }
         public EntityState SocketAt(Vector2 point)
         {foreach(var socket in TradeSockets){var e=Get(socket.entity);if(e!=null&&(e.position-point).sqrMagnitude<.01f)return e;}return null;}

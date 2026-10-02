@@ -12,7 +12,7 @@ namespace Frontier
         public void Tick(List<EntityState> entities)
         {
             for(int p=0;p<cells.GetLength(0);p++)for(int x=0;x<width;x++)for(int y=0;y<height;y++)if(cells[p,x,y]==VisibilityState.Visible)cells[p,x,y]=VisibilityState.Explored;
-            foreach(var e in entities)if(e.Alive&&e.owner>=0&&e.owner<cells.GetLength(0)&&e.garrisonedIn==0&&e.def.vision>0)Reveal(e.owner,e.position,Mathf.CeilToInt(e.def.vision));
+            foreach(var e in entities)if(e.Alive&&e.owner>=0&&e.owner<cells.GetLength(0)&&e.garrisonedIn==0&&e.def.vision>0&&(e.def.id!="trade_post"||e.Complete))Reveal(e.owner,e.position,Mathf.CeilToInt(e.def.vision));
         }
         public VisibilityState At(int player,Vector2 point)
         {

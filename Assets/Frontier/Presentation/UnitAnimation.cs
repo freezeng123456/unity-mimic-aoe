@@ -53,7 +53,7 @@ namespace Frontier
             bool mounted=rig.LeftHorseLeg!=null,gun=rig.Barrel!=null;
             if(gun)
             {
-                if(rig.Barrel!=null){rig.Barrel.localPosition+=Vector3.back*recoil*.32f;rig.Barrel.localRotation*=Quaternion.Euler(pose.deployed?0:pose.state==UnitPoseState.Deploying?12*(1-pose.actionPhase):12,0,0);}
+                if(rig.Barrel!=null){rig.Barrel.localPosition-=(rig.Barrel.localRotation*Vector3.up)*recoil*rig.ArtilleryRecoil;rig.Barrel.localRotation*=Quaternion.Euler(pose.deployed?0:pose.state==UnitPoseState.Deploying?rig.ArtilleryTravelTilt*(1-pose.actionPhase):rig.ArtilleryTravelTilt,0,0);}
                 if(pose.moving){Rotate(rig.LeftWheel,0,pose.locomotionPhase*57,0);Rotate(rig.RightWheel,0,pose.locomotionPhase*57,0);}
                 return;
             }
@@ -64,6 +64,7 @@ namespace Frontier
                 {
                     Rotate(rig.LeftHorseLeg,stride*24,0,0);Rotate(rig.RearRightHorseLeg,stride*24,0,0);
                     Rotate(rig.RightHorseLeg,-stride*24,0,0);Rotate(rig.RearLeftHorseLeg,-stride*24,0,0);
+                    Rotate(rig.HorseHead,stride*3,0,0);Rotate(rig.HorseTail,0,stride*12,0);
                 }
             }
             if(pose.state==UnitPoseState.Gather||pose.state==UnitPoseState.Build||pose.state==UnitPoseState.Repair)
@@ -106,6 +107,13 @@ namespace Frontier
                 else if(pose.bow){Arm(rig,true,new Vector3(-.22f,1.1f,.35f));Arm(rig,false,new Vector3(-.12f,1.15f,.14f));WeaponRotation(rig,Quaternion.Euler(0,0,-12));}
                 else{Arm(rig,false,new Vector3(.2f,.96f,.35f));Arm(rig,true,new Vector3(.17f,1.36f+load*.12f,.4f));WeaponRotation(rig,Quaternion.Euler(-65,0,0));}
             }
+            else if(mounted)
+            {
+                // Keep the seated leg pose and reins hand while the horse walks.
+                Arm(rig,true,new Vector3(-.2f,1.04f,.45f));
+                Arm(rig,false,new Vector3(.24f,1.10f,.26f));
+                WeaponRotation(rig,pose.melee?Quaternion.Euler(15,0,-16):Quaternion.Euler(-28,0,0));
+            }
             else
             {Rotate(rig.RightShoulder,-18,0,-6);Rotate(rig.LeftShoulder,-12,0,6);}
             if(rig.BowStringUpper!=null)
@@ -139,7 +147,7 @@ namespace Frontier
                 Arm(rig,true,new Vector3(-.26f,pick?.88f:1.08f,.35f));
             }
         }
-        private static float RiderHeight(UnitRig rig)=>rig.LeftHorseLeg!=null?1.15f:0;
+        private static float RiderHeight(UnitRig rig)=>rig.LeftHorseLeg!=null?rig.RiderSeatHeight:0;
         // Rigid two-link arm: solve actual geometry, then place the weapon in model space.
         // Target coordinates are authored in the standing figure's frame; riders inherit their seat offset.
         private static void Arm(UnitRig rig,bool left,Vector3 target)

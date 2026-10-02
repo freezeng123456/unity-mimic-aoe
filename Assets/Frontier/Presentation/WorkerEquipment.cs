@@ -8,7 +8,6 @@ namespace Frontier
     public sealed class WorkerEquipment:MonoBehaviour
     {
         readonly Dictionary<WorkerTool,GameObject> models=new Dictionary<WorkerTool,GameObject>();
-        readonly List<Mesh> ownedMeshes=new List<Mesh>();
         Transform basket;
         public WorkerTool CurrentTool { get; private set; }=(WorkerTool)(-1);
         static readonly Color Wood=new Color(.32f,.19f,.09f),Steel=new Color(.43f,.48f,.49f),Wicker=new Color(.65f,.44f,.21f);
@@ -28,7 +27,7 @@ namespace Frontier
             for(int ring=0;ring<3;ring++)for(int j=0;j<8;j++){int a=ring*8+j,b=ring*8+(j+1)%8;triangles.AddRange(new[]{a,b,a+8,b,b+8,a+8});}
             for(int j=1;j<7;j++)triangles.AddRange(new[]{24,24+j,24+j+1});
             for(int i=0;i<triangles.Count;i+=3){int swap=triangles[i];triangles[i]=triangles[i+1];triangles[i+1]=swap;}
-            Remember(ProceduralArt.MeshPart(basket,"Basket body",vertices.ToArray(),triangles.ToArray(),Wicker));
+            ProceduralArt.MeshPart(basket,"Basket body",vertices.ToArray(),triangles.ToArray(),Wicker);
             // Angular handle stays joined to the hand at local origin.
             Segment(basket,new Vector3(-.24f,-.2f,0),new Vector3(-.14f,-.02f,0));
             Segment(basket,new Vector3(-.14f,-.02f,0),new Vector3(.14f,-.02f,0));
@@ -47,16 +46,14 @@ namespace Frontier
             // concave underside. No center fan across empty space.
             for(int i=0;i<capTriangles.Length;i+=3){int a=capTriangles[i],b=capTriangles[i+1],c=capTriangles[i+2];faces.AddRange(new[]{a,b,c,c+n,b+n,a+n});}
             for(int i=0;i<n;i++){int j=(i+1)%n;faces.AddRange(new[]{i,i+n,j,j,i+n,j+n});}
-            Remember(ProceduralArt.MeshPart(parent,name,vertices,faces.ToArray(),color));
+            ProceduralArt.MeshPart(parent,name,vertices,faces.ToArray(),color);
         }
 
-        void Remember(GameObject go){ownedMeshes.Add(go.GetComponent<MeshFilter>().sharedMesh);}
         public void Show(WorkerTool tool)
         {
             if(CurrentTool==tool)return;
             foreach(var pair in models)pair.Value.SetActive(pair.Key==tool);CurrentTool=tool;
         }
         public void KeepBasketUpright(Quaternion rotation){if(basket!=null)basket.rotation=rotation;}
-        void OnDestroy(){foreach(var mesh in ownedMeshes)if(mesh!=null)Destroy(mesh);ownedMeshes.Clear();}
     }
 }

@@ -74,7 +74,12 @@ namespace Frontier
             if(traceInput)Debug.LogFormat(LogType.Log,LogOption.NoStacktrace,null,"FRONTIER_UI context entity={0} count={1} world={2:F3} frame={3}",id,actionSelection.Count,game.World.Time,Time.frameCount);
         }
         private int CurrentActionKey(EntityState selected)
-        {var p=game.World.Players[0];return(selected?.id??0)*10000+p.age*100+p.technologies.Count*10+(selected?.queue.Count??0);}
+        {
+            var p=game.World.Players[0];int key=(selected?.id??0)*10000+p.age*100+p.technologies.Count*10+(selected?.queue.Count??0);
+            // Arrival and release change the Ungarrison count and availability.
+            // The existing pointer-capture guard still defers same-context rebuilds.
+            return unchecked(key*397+(selected?.occupants.Count??0));
+        }
         private RectTransform Rect(Transform parent,string name,Rect r,bool bottom=false)
         {
             MarkUiLayoutDirty();var go=new GameObject(name,typeof(RectTransform));var t=(RectTransform)go.transform;t.SetParent(parent,false);t.anchorMin=t.anchorMax=bottom?Vector2.zero:new Vector2(0,1);t.pivot=bottom?Vector2.zero:new Vector2(0,1);t.anchoredPosition=new Vector2(r.x,bottom?r.y:-r.y);t.sizeDelta=new Vector2(r.width,r.height);return t;
@@ -410,12 +415,14 @@ namespace Frontier
         }
         public void ShowPause(bool paused)
         {
-            if(!paused){CloseModal();return;}var box=Modal("MATCH PAUSED",435,()=>game.TogglePause());
+            if(!paused){CloseModal();return;}var box=Modal("MATCH PAUSED",525,()=>game.TogglePause());
             string reason=game.PausedForFocusLoss?"Paused when you left the game window. Resume when ready.":"Simulation time is stopped. The cursor is free.";
             Label(box,reason,new Rect(25,83,800,50),20);
             Button(box,"RESUME",new Rect(25,150,397,65),()=>game.TogglePause());Button(box,"RESTART",new Rect(443,150,397,65),()=>game.StartMatch());
             Button(box,game.Muted?"SOUND: OFF":"SOUND: ON",new Rect(25,240,397,65),()=>{game.Muted=!game.Muted;ShowPause(true);});Button(box,"RESIGN",new Rect(443,240,397,65),()=>{CloseModal();game.Resign();});
-            Button(box,"RETURN TO MENU",new Rect(25,331,815,65),()=>game.ReturnToMenu());
+            Button(box,game.EnvironmentSoundEnabled?"ENVIRONMENT: ON":"ENVIRONMENT: OFF",new Rect(25,330,397,65),()=>{game.EnvironmentSoundEnabled=!game.EnvironmentSoundEnabled;ShowPause(true);},"Enable or disable environmental sounds. SOUND controls all audio.");
+            Button(box,game.MusicEnabled?"MUSIC: ON":"MUSIC: OFF",new Rect(443,330,397,65),()=>{game.MusicEnabled=!game.MusicEnabled;ShowPause(true);},"Enable or disable music. SOUND controls all audio.");
+            Button(box,"RETURN TO MENU",new Rect(25,421,815,65),()=>game.ReturnToMenu());
         }
         public void ShowResult()
         {
