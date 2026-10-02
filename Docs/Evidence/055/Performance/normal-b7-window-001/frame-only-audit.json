@@ -1,0 +1,94 @@
+{
+  "generatedAtUtc": "2026-10-02T16:23:07.951098+00:00",
+  "status": "pending_associated_match_report",
+  "scope": "Completed native raw-frame window only. Same-match final report/events not available; cannot complete entity-count reconstruction or normal full-match acceptance.",
+  "captureIdentity": {
+    "appVersion": "0.2.31",
+    "buildGuid": "128a731d440e4b7a94abfcc74b88fa97",
+    "matchId": "781c4090a2474a91964105c79eab9e27",
+    "currentMatchId": "781c4090a2474a91964105c79eab9e27",
+    "platform": "OSXPlayer",
+    "unityVersion": "6000.6.3f1",
+    "resolution": "2560x1440",
+    "utcStart": "2026-10-02T15:43:26.3363480Z",
+    "utcEnd": "2026-10-02T15:53:26.3457480Z",
+    "worldTimeStart": 367.9132385253906,
+    "worldTimeEnd": 627.7937622070312,
+    "stopReason": "wall_clock_limit",
+    "autoplay": false,
+    "benchmark": false,
+    "simulationSpeed": 1.0,
+    "singleSession": true,
+    "truncated": false
+  },
+  "frameAudit": {
+    "checks": {
+      "captureBoundsFiniteAndOrdered": true,
+      "allFrameDurationsFiniteAndNonnegative": true,
+      "rawDurationFitsWallEnvelope": true,
+      "eligibleDurationFitsWallEnvelope": true,
+      "frameCountMatches": true,
+      "eligibleFlagsMatchRecomputation": true,
+      "rawFrameStateAndOrderValid": true,
+      "includedFramesMatch": true,
+      "excludedFramesMatch": true,
+      "allFramesFocusedMatches": true,
+      "meanMatches": true,
+      "floorP95Matches": true,
+      "floorP99Matches": true
+    },
+    "issues": [],
+    "computed": {
+      "totalFrames": 28973,
+      "includedFrames": 9683,
+      "excludedFrames": 19290,
+      "eligibleUnpausedSeconds": 259.7741071071625,
+      "rawFrameIntervalSeconds": 599.999647842412,
+      "sampledWallSeconds": 599.9890698749999,
+      "wallEndpointToleranceSeconds": 0.25,
+      "worldAdvancedSeconds": 259.8805236816406,
+      "wallSeconds": 600.0092450409999,
+      "meanFrameMs": 26.82785415649414,
+      "p95FrameMs": 74.99562072753906,
+      "p99FrameMs": 87.30738067626953,
+      "allFramesFocused": true
+    },
+    "excludedReasonCounts": {
+      "ineligibleStateOrTransition": 19290,
+      "pauseCurrentOrPrevious": 19290,
+      "pauseChangedEvent": 15
+    },
+    "reasonCountScope": "Reasons overlap; their counts are not a sum of excludedFrames",
+    "wallEnvelopeScope": "Summed intervals are bounded by capture realtime with a fixed 0.25-second endpoint phase allowance. The lower bound uses the last sampled realtime, admitting an unsampled stop interval. No individual delta is required to equal a LateUpdate realtime difference; the allowance cannot grow with a frame duration."
+  },
+  "memoryInternalAudit": {
+    "samples": 593,
+    "hasStartAndEnd": true,
+    "firstWorldMatchesCaptureStart": true,
+    "lastWorldMatchesCaptureEnd": true,
+    "allInternalChecksPassed": true,
+    "scope": "Only internal recorded values checked; final Spawn/Death journal unavailable. No actual entity-count or viewport unobstructed visibility proof."
+  },
+  "minimumEligibleUnpausedSeconds": {
+    "required": 300,
+    "actual": 259.7741071071625,
+    "frameWindowMet": false,
+    "finalAssociatedReportValidated": false
+  },
+  "sources": {
+    "Frontier-Performance-20261002-155326-356-b6c57e19139748eb893f0bffaadde4f5.json": {
+      "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/PerformanceCaptures/Frontier-Performance-20261002-155326-356-b6c57e19139748eb893f0bffaadde4f5.json",
+      "bytes": 7142917,
+      "sha256": "be8ae621770dfc3eaa98a066ae0258df6f10cd6a1b789b10abbcc5313f2c5023",
+      "copiedBytesMatchSource": true,
+      "sourceUnchangedDuringCopy": true
+    },
+    "verify_performance.py": {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/verify_performance.py",
+      "bytes": 22853,
+      "sha256": "887cc94de3515f4be01acdb1085f30b4f198c235b23296bb6c2f6aeb3daaf5cc",
+      "copiedBytesMatchSource": true,
+      "sourceUnchangedDuringCopy": true
+    }
+  }
+}
