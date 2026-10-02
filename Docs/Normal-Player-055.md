@@ -2,7 +2,7 @@
 
 本轮独立macOS arm64客户端，Unity6000.6.3f1，build GUID `128a731d440e4b7a94abfcc74b88fa97`，源指纹`1b45f97f3d90c9b76388419492a83c5622ccb2cf3a365030044403ccd309c1c7`。玩家通过实际游戏窗口的鼠标/键盘操作，普通初始库存与真实资源箱，1倍速、autoplay=false、benchmark=false。没有免费资源、规则费用变更或削弱AI。
 
-coast镜像前四局使用Easy、时代上限III、合法25张经济预设；第五至第七局使用合法25张军备预设，仍为Easy及III上限。第七局已自然败局并严格审核，仍缺敌建筑炮击；第八局正常Coast镜像/Easy/III/军备25、1x重试正在进行，不提前作验收结论。菜单配置图和F9状态按同版本/GUID绑定；重开的配置继承明确说明，不把其他对局的结算图替换过来。
+coast镜像前四局使用Easy、时代上限III、合法25张经济预设；第五至第八局使用合法25张军备预设，仍为Easy及III上限。第七局已自然败局并严格审核，仍缺敌建筑炮击；第八局在259.6066秒主动返回菜单中断，第九局正常重试进行中，不提前作验收结论。菜单配置图和F9状态按同版本/GUID绑定；重开的配置继承明确说明，不把其他对局的结算图替换过来。
 
 ## 已归档尝试
 
@@ -15,6 +15,7 @@ coast镜像前四局使用Easy、时代上限III、合法25张经济预设；第
 | `145add218156473c9a2872545115abe3` | 军备25卡、实际III、12付费村民、15Pike+15Musk、2门付费炮与另1门船运炮；6次船运、55击杀/82损失 | 1073.2850模拟秒自然失败，双方III，败方存活单位/建筑0；三炮仅伤害敌单位，敌建筑炮击0，仅缺cannonEnemyBuildingDamage，不通过B。见[第五次审计](Evidence/055/NormalPlayer/coast-attempt-005/summary.json) |
 | `d57aee12243c4599a9343986d5b2c1ab` | 独立军备25卡菜单/开局/两进展F9；最后同局画面664.8847秒为II、III已排队；旧日志最后暂停705.3748秒后失焦 | 环境恢复时旧进程已不在，sky重新启动客户端回菜单；无同局match_finished/menu_exit/quit或完整events，不推断退出原因/自然战败/III完成。中断未验收，见[第六次归档](Evidence/055/NormalPlayer/coast-attempt-006/summary.json) |
 | `781c4090a2474a91964105c79eab9e27` | 实际III、6付费工、10Pike+5Musk、1付费炮、2Manor/Barracks/Foundry及4船运；27击杀/39损失 | 835.6430秒自然失败，双方III，末局存活单位/建筑[0,68]，无Resign；严格仅缺炮击敌建筑，不通过B。见[第七次审计](Evidence/055/NormalPlayer/coast-attempt-007/summary.json) |
+| `6cf241946653492ea782b2f968b5e229` | 己方Command/Gather均0；3次付费村民排队，仅1名实际出生、另2名未完成 | 259.6066秒menu_exit，非自然结算；首次实际暂停在223.6044秒。中断未验收，见[第八次归档](Evidence/055/NormalPlayer/coast-attempt-008/README.md) |
 
 首局菜单与结算有对应F9。第二局Play Again沿用首局配置，没有独立新setup或同局结算F9；原始match_finished与menu_exit各自完整JSON/JSONL保留。缺图如实保留，不因其他对局有图而补作本局证据。
 
@@ -28,9 +29,13 @@ coast镜像前四局使用Easy、时代上限III、合法25张经济预设；第
 
 第七局已完整自然结算：197.2028秒付II、287.3083秒完成，482.2202秒付III、592.3024秒完成；628.4936秒付100W250C训练Cannon223、673.5826秒实际出生。最终严格审核无事件/付款异常、自然结算及败方全部淘汰均成立，但`cannonEnemyBuildingDamage`仍为false，835.6430秒自然战败不转作B通过。原始最终报告/events与菜单/进展配对按本局身份归档，不用别局结算截图替代。
 
-B7两份F8均已与本局最终报告/Spawn-Death完整配对：[第一窗口](Evidence/055/Performance/normal-b7-window-001/summary.json)有效259.774107秒，全帧聚焦；[第二窗口](Evidence/055/Performance/normal-b7-window-002/summary.json)有效135.600574秒，allFramesFocused=false。身份/统计/实际实体计数审核通过，但两份均未指定300秒门槛且各自不足300秒，不拼接为长窗口。B8/C正常操作由native_player独占，进行中观察不作最终验收。
+B7两份F8均已与本局最终报告/Spawn-Death完整配对：[第一窗口](Evidence/055/Performance/normal-b7-window-001/summary.json)有效259.774107秒，全帧聚焦；[第二窗口](Evidence/055/Performance/normal-b7-window-002/summary.json)有效135.600574秒，allFramesFocused=false。身份/统计/实际实体计数审核通过，但两份均未指定300秒门槛且各自不足300秒，不拼接为长窗口。
+
+B8开局F9明确paused=false，第一次实际暂停直到223.6044秒；全局己方Command/Gather为0，259.6066秒通过RETURN TO MENU中断，不能称自然战败。正常扣费的3个村民作业只有1个实际出生，2个仍在队列。B9已改操作等待间隔，现场观察到7名工人实际Gather、付费队列和TC资源集结点成功；这些过程观察不作完整B或长性能验收。
 
 ## 输入排查与证明边界
+
+恢复/关闭面板后的[输入时序诊断](Evidence/055/InputTiming/README.md)绑定B8原始己方输入摘录及冻结RtsInput源码：四次世界指针动作距Escape恢复仅19.2/50.0/105.7/133.1毫秒，均在0.22秒屏障内，与实际Command/Gather为0相符。后续每次恢复或关闭面板后等待700毫秒再操作世界，并确认真实暂停/Orders/Gather状态。这解释B8的对应动作，不推广为全部旧失败或固定坐标偏移；没有修改游戏源码。
 
 工具操作曾遇窗口失焦自动暂停、全屏状态下`noWindowsAvailable`以及状态需重新读取提示。标准Window菜单恢复窗口模式后工具坐标点击恢复；此时客户端实际渲染3456×1924。并未证明普通鼠标在全屏同样失败。原生窗口/暂停/焦点以具体F9和逐帧报告为准，不把全部截图写成默认2560×1440。
 

@@ -1,0 +1,55 @@
+{
+  "generatedAtUtc": "2026-10-02T16:37:30.262870+00:00",
+  "appVersion": "0.2.31",
+  "buildGuid": "128a731d440e4b7a94abfcc74b88fa97",
+  "sourceFingerprint": "1b45f97f3d90c9b76388419492a83c5622ccb2cf3a365030044403ccd309c1c7",
+  "nativeTrace": {
+    "path": "Docs/Evidence/055/NormalPlayer/coast-attempt-008/native-input-b8-trace-only.txt",
+    "bytes": 7048,
+    "sha256": "42ee500f85aa1284b626df6b21c0797af25924b0c1d116a25a560cc58e78205f"
+  },
+  "inputSource": {
+    "path": "Assets/Frontier/Presentation/RtsInput.cs",
+    "sha256": "bb64bcd75fe59f3e3c05d9a45550fc2e3472347d56edfd95ded7549094599fc6"
+  },
+  "pointerBarrierSeconds": 0.22,
+  "cases": [
+    {
+      "case": "first_drag",
+      "escapeTraceLine": 17,
+      "pointerTraceLine": 19,
+      "escapeEventTime": 335.502,
+      "pointerEventTime": 335.5212,
+      "deltaSeconds": 0.0192,
+      "withinPoint22Seconds": true
+    },
+    {
+      "case": "first_resource_right",
+      "escapeTraceLine": 17,
+      "pointerTraceLine": 22,
+      "escapeEventTime": 335.502,
+      "pointerEventTime": 335.552,
+      "deltaSeconds": 0.05,
+      "withinPoint22Seconds": true
+    },
+    {
+      "case": "second_drag",
+      "escapeTraceLine": 28,
+      "pointerTraceLine": 56,
+      "escapeEventTime": 349.0689,
+      "pointerEventTime": 349.1746,
+      "deltaSeconds": 0.1057,
+      "withinPoint22Seconds": true
+    },
+    {
+      "case": "second_resource_right",
+      "escapeTraceLine": 28,
+      "pointerTraceLine": 60,
+      "escapeEventTime": 349.0689,
+      "pointerEventTime": 349.202,
+      "deltaSeconds": 0.1331,
+      "withinPoint22Seconds": true
+    }
+  ],
+  "scope": "Arithmetic audit of preserved B8 own input timestamps and frozen source. The ended B8 ledger independently records no player Command/Gather. These timestamps support the transition-barrier explanation; they do not reconstruct every rendered frame or diagnose all prior native attempts. GUI calls now wait 700ms after resuming or closing a modal before world pointer actions; this is an operator change, not a gameplay-source change."
+}
