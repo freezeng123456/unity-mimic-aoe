@@ -1,11 +1,13 @@
 """Temporary synthetic parser fixtures; never native gameplay or gesture evidence."""
 import base64
 import copy
+import gzip
 import hashlib
 import json
 from pathlib import Path
 import tempfile
 import unittest
+import zlib
 
 import verify_player as verifier
 
@@ -152,6 +154,48 @@ class PlayerVerifierTests(unittest.TestCase):
         with self.assertRaises(ValueError):self.audit()
         self.make();self.path.write_text('{"matchId":"a","matchId":"b"}')
         with self.assertRaises(ValueError):self.audit()
+
+    def test_exact_gzip_fallback_preserves_full_coast_and_river_audit(self):
+        for river in (False, True):
+            with self.subTest(river=river):
+                self.make(river); raw=self.events.read_bytes(); baseline=self.audit()
+                compressed=self.events.with_suffix('.jsonl.gz')
+                compressed.write_bytes(gzip.compress(raw,mtime=0));self.events.unlink()
+                result=self.audit();self.assertEqual('passed',result['status'],result['failedChecks'])
+                for key in baseline:
+                    if key not in ('generatedAtUTC','sources'):
+                        self.assertEqual(baseline[key],result[key],key)
+                self.assertEqual(str(compressed.resolve()),result['sources']['events']['path'])
+                self.assertEqual(hashlib.sha256(compressed.read_bytes()).hexdigest(),result['sources']['events']['sha256'])
+                self.assertEqual(raw,gzip.decompress(compressed.read_bytes()))
+
+    def test_gzip_damage_is_rejected_instead_of_accepting_a_partial_journal(self):
+        self.make(); compressed=self.events.with_suffix('.jsonl.gz')
+        encoded=gzip.compress(self.events.read_bytes(),mtime=0);self.events.unlink()
+        corrupt_crc=bytearray(encoded);corrupt_crc[-8]^=1
+        for damaged in (encoded[:-8],bytes(corrupt_crc),b'not gzip'):
+            with self.subTest(damage=len(damaged)):
+                compressed.write_bytes(damaged)
+                with self.assertRaises((OSError,EOFError,zlib.error)):self.audit()
+
+    def test_gzip_stream_keeps_strict_json_and_identity_checks(self):
+        for mutate in ('duplicate','nonfinite','boolean'):
+            with self.subTest(mutate=mutate):
+                self.make(); texts=self.events.read_text().splitlines()
+                if mutate=='duplicate':texts[0]=texts[0][:-1]+',"time":0}'
+                elif mutate=='nonfinite':texts[0]=texts[0].replace('"time": 0.0','"time": NaN')
+                else:
+                    row=json.loads(texts[0]);row['entity']=True;texts[0]=json.dumps(row)
+                self.events.with_suffix('.jsonl.gz').write_bytes(gzip.compress(('\n'.join(texts)+'\n').encode(),mtime=0));self.events.unlink()
+                with self.assertRaises(ValueError):self.audit()
+
+    def test_gzip_fallback_requires_exact_basename_and_prefers_existing_raw(self):
+        self.make();raw=self.events.read_bytes()
+        self.events.with_suffix('.jsonl.gz').write_bytes(b'not gzip')
+        self.assertEqual('passed',self.audit()['status'])
+        self.events.unlink();self.events.with_suffix('.jsonl.gz').unlink()
+        (self.root/'other-events.jsonl.gz').write_bytes(gzip.compress(raw,mtime=0))
+        with self.assertRaises(OSError):self.audit()
 
 
 if __name__=='__main__':unittest.main()

@@ -10,6 +10,7 @@ import argparse
 import bisect
 import collections
 import datetime
+import gzip
 import hashlib
 import json
 import math
@@ -17,6 +18,7 @@ import pathlib
 import re
 import shutil
 import struct
+import zlib
 
 
 # Delta time is measured at Unity's frame boundary; realtime is sampled in
@@ -185,7 +187,7 @@ def entity_timeline(event_path, rules):
     state = {key: 0 for key in COUNT_KEYS}
     entities, alive, changes, issues = {}, set(), [], []
     count, last_time = 0, -1
-    with event_path.open() as stream:
+    with (gzip.open(event_path, "rt", encoding="utf-8") if event_path.suffix == ".gz" else event_path.open()) as stream:
         for line, text in enumerate(stream, 1):
             if not text.strip():
                 continue
@@ -277,6 +279,9 @@ def main():
     if args.min_unpaused_seconds is not None and (not math.isfinite(args.min_unpaused_seconds) or args.min_unpaused_seconds < 0) or args.min_eligible_frames is not None and args.min_eligible_frames < 0:
         parser.error("Minimum duration and sample count must be finite and nonnegative")
     events_path = args.events or args.match_report.with_name(args.match_report.stem + "-events.jsonl")
+    compressed_events = events_path.with_suffix(".jsonl.gz")
+    if args.events is None and not events_path.is_file() and compressed_events.is_file():
+        events_path = compressed_events
     try:
         report = strict_json(args.report.read_text()); match = strict_json(args.match_report.read_text()); rules = strict_json(args.rules.read_text())
         frames = frame_audit(report)
@@ -298,7 +303,7 @@ def main():
             "positiveWorldAdvance": computed["worldAdvancedSeconds"] > 0,
             "captureTimesValid": computed["wallSeconds"] >= 0 and report["worldTimeStart"] >= 0 and report["worldTimeEnd"] <= match["time"] + .15,
             "matchEventCountMatches": event_count == match["eventCount"], "matchEventIdentitiesValid": not event_issues,
-            "associatedEventFilenameMatches": events_path.name == args.match_report.stem + "-events.jsonl",
+            "associatedEventFilenameMatches": events_path.name in (args.match_report.stem + "-events.jsonl", args.match_report.stem + "-events.jsonl.gz"),
             "captureWithinEventCoverage": final_event_time >= report["worldTimeEnd"] - .0001,
             **frames["checks"], **memories["checks"]}
         requirements = {}
@@ -330,7 +335,7 @@ def main():
         print(json.dumps({"output": str(output.resolve()), "status": summary["status"], "computed": computed,
             "failedChecks": [key for key, value in checks.items() if not value], "requirements": requirements}, ensure_ascii=False))
         return 0 if passed else 1
-    except (OSError, ValueError, KeyError, TypeError, OverflowError, struct.error) as error:
+    except (OSError, EOFError, zlib.error, ValueError, KeyError, TypeError, OverflowError, struct.error) as error:
         parser.exit(2, "Cannot audit performance evidence: " + str(error) + "\n")
 
 

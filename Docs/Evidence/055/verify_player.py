@@ -13,8 +13,9 @@ from pathlib import Path
 import re
 import shutil
 import struct
+import zlib
 
-from audit_ai_matrix import scan_events, reference, source
+from audit_ai_matrix import open_lines, scan_events, reference, source
 from verify_performance import strict_json
 
 RESOURCES = ("food", "wood", "coin")
@@ -244,18 +245,22 @@ def audit_player(report_path, rules_path, guid, version, match_id, scenario, dec
         raise ValueError("Explicit supported scenario and deck preset are required")
     report = strict_json(report_path.read_text()); rules = strict_json(rules_path.read_text())
     event_path = report_path.with_name(report_path.stem + "-events.jsonl")
+    compressed_events = event_path.with_suffix(".jsonl.gz")
+    if not event_path.is_file() and compressed_events.is_file():
+        event_path = compressed_events
     sources = {"report": source(report_path), "events": source(event_path), "rules": source(rules_path),
                "auditor": source(Path(__file__)), "scanEvents": source(Path(__file__).with_name("audit_ai_matrix.py")),
                "strictParser": source(Path(__file__).with_name("verify_performance.py")),
                "deckPresetSource": source(Path(__file__).resolve().parents[3] / "Assets/Frontier/Simulation/DeckLibrary.cs")}
     rows = []
-    for line, text in enumerate(event_path.read_text().splitlines(), 1):
-        if not text.strip(): continue
-        event = strict_json(text)
-        # Death.target is killerOwner and may be -1, not an entity ID.
-        if type(event.get("schemaVersion")) is not int or event["schemaVersion"] != 2 or not all(type(event.get(k)) is int for k in ("player", "entity", "target")) or event["player"] not in (-1,0,1) or event["entity"] < 0 or event["target"] < -1 or not finite(event.get("time")) or event["time"] < 0 or not finite(event.get("amount")):
-            raise ValueError("Malformed event identity, schema or numeric fields at line " + str(line))
-        rows.append((line, event))
+    with open_lines(event_path) as stream:
+        for line, text in enumerate(stream, 1):
+            if not text.strip(): continue
+            event = strict_json(text)
+            # Death.target is killerOwner and may be -1, not an entity ID.
+            if type(event.get("schemaVersion")) is not int or event["schemaVersion"] != 2 or not all(type(event.get(k)) is int for k in ("player", "entity", "target")) or event["player"] not in (-1,0,1) or event["entity"] < 0 or event["target"] < -1 or not finite(event.get("time")) or event["time"] < 0 or not finite(event.get("amount")):
+                raise ValueError("Malformed event identity, schema or numeric fields at line " + str(line))
+            rows.append((line, event))
     civilizations = [p["civilization"] for p in report["players"]]
     civs = {c["id"]: c for c in rules["civs"]}
     if len(civilizations) != 2 or not all(c in civs for c in civilizations): raise ValueError("Invalid report civilizations")
@@ -329,7 +334,7 @@ def main():
                 if dst.exists() and source(dst)["sha256"] != info["sha256"]: raise ValueError("Archive has conflicting bytes: "+str(dst))
                 if not dst.exists(): shutil.copyfile(src,dst)
                 info["archivedPath"]=str(dst.resolve())
-    except (OSError,ValueError,KeyError,TypeError,IndexError) as error:
+    except (OSError,EOFError,zlib.error,ValueError,KeyError,TypeError,IndexError) as error:
         result={"status":"failed","error":type(error).__name__+": "+str(error),"scope":"Parsing/audit failed; no native gameplay acceptance inferred"}
     args.output.parent.mkdir(parents=True,exist_ok=True)
     partial=args.output.with_suffix(args.output.suffix+".partial"); partial.write_text(json.dumps(result,indent=2,ensure_ascii=False,allow_nan=False)+"\n"); partial.replace(args.output)

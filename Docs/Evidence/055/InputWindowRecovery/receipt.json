@@ -1,0 +1,92 @@
+{
+  "generatedAtUtc": "2026-10-02T13:05:09.377105+00:00",
+  "scope": "Completed menu coordinate-input recovery observation only; no live match hidden-state inspection, no permanent focus/fullscreen fix claim",
+  "sourceLog": {
+    "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/NativeInput055/Player.log",
+    "bytesAtRead": 7928,
+    "sha256AtRead": "15e92bd80d788e1d54f11c79fae3228cf68304b15f463cc2bde806c994717ca8",
+    "scope": "Live log may continue to append; this records one read, not a immutable whole-log copy",
+    "prefixThroughLine": 53,
+    "prefixBytes": 3402,
+    "prefixSha256": "057a6ae0a8d648075d3689cd2a73e865923353650e8534ff93abf7eec39d0bc6"
+  },
+  "excerpt": {
+    "file": "native-menu-input-excerpt.txt",
+    "originalLineStart": 41,
+    "originalLineEnd": 53,
+    "bytes": 1076,
+    "sha256": "473f3b4ff9633c4d7f88dec8d0ac5342a72a310574c1c67a159360e3e8ba0779",
+    "copiedBytesMatchSelectedSourceLines": true
+  },
+  "launch": {
+    "application": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/macOS/Frontier Reckoning.app",
+    "executable": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/macOS/Frontier Reckoning.app/Contents/MacOS/Frontier Reckoning",
+    "arguments": [
+      "-screen-fullscreen",
+      "0",
+      "-screen-width",
+      "2560",
+      "-screen-height",
+      "1440",
+      "-frontierInputTrace",
+      "-logFile",
+      "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/NativeInput055/Player.log"
+    ],
+    "source": "Root operator-provided exact launch context; shell session 89235"
+  },
+  "runtimeIdentityAtArchive": {
+    "appVersion": "0.2.31",
+    "buildGuid": [
+      "128a731d440e4b7a94abfcc74b88fa97"
+    ],
+    "plistSha256": "52e180fae06c50ed3ca5c3ee39206987ff85a34723aa84dfcd787109bed20aa3",
+    "bootConfigSha256": "04bffe7aa479ba9b9f67905fdea841cad41c7df7bb4cd5bbc6e18d089152f845",
+    "runtimeDllSha256": "fbf38cb9886ca2844bf64078e48fa78f40612d5995dec5e99e0efd45e317a4bf"
+  },
+  "observedGuiRecord": {
+    "firstCoordinateClick": {
+      "x": 1950,
+      "y": 460,
+      "result": "noWindowsAvailable; no corresponding native input trace asserted"
+    },
+    "recoverySequence": [
+      "AX Window > Fullscreen: enter",
+      "fresh app state query",
+      "AX Window > Fullscreen: exit",
+      "fresh app state query",
+      "first subsequent same-coordinate click: hover only",
+      "second subsequent same-coordinate click: native input and UI action confirmed"
+    ],
+    "successfulCoordinateClick": {
+      "screenX": 1950,
+      "screenY": 460,
+      "unityInputX": 1950,
+      "unityInputY": 1044,
+      "unityRealtimeDown": 122.3563,
+      "unityRealtimeUp": 122.3743,
+      "raycastObject": "AI: River League",
+      "actionFrame": 5072,
+      "worldTime": 0.0,
+      "visibleOutcome": "AI River League cycled to Coast Compact"
+    },
+    "source": "Root completed GUI record; trace proves only the successful native delivery and menu action. Log alone does not prove the earlier absent action or window toggle sequence."
+  },
+  "nativeTraceChecks": {
+    "leftDownPresent": true,
+    "leftUpPresent": true,
+    "raycastMatchedAiRiver": true,
+    "uiDownAndUpPresent": true,
+    "uiActionAndClickPresent": true
+  },
+  "limitations": [
+    "No source changes made or source bug attribution established",
+    "One observed recovery sequence; no claim all fullscreen or focus issues are permanently fixed",
+    "Coordinates belong to this window geometry and must not be hard-coded into game source",
+    "CLI trace is menu-only and contains no match hidden-state inspection"
+  ],
+  "documentation": {
+    "file": "README.md",
+    "bytes": 2160,
+    "sha256": "9c2b0c52a25f02850c43b30a41901e9b5fa9802a72704f6da462dfdf2170114c"
+  }
+}

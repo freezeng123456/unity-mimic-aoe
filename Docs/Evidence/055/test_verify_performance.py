@@ -1,9 +1,15 @@
 """Controlled verifier regression inputs; never native gameplay/performance evidence."""
 import copy
+import contextlib
+import gzip
+import hashlib
+import io
 import json
 from pathlib import Path
+import sys
 import tempfile
 import unittest
+from unittest import mock
 
 import verify_performance as verifier
 
@@ -132,6 +138,58 @@ class PerformanceVerifierTests(unittest.TestCase):
     def test_boolean_count_cannot_pass_as_one_entity_or_memory_byte(self):
         changes, report = self.timeline(); report["memory"][0]["playerUnits0"] = True
         self.assertFalse(verifier.memory_audit(report, changes)["checks"]["memoryCountsAndBoundsValid"])
+
+    def gzip_cli_fixture(self):
+        temporary=tempfile.TemporaryDirectory();self.addCleanup(temporary.cleanup)
+        root=Path(temporary.name);guid='1'*32;match_id='2'*32
+        match_path=root/(match_id+'-match_finished.json');events=match_path.with_name(match_path.stem+'-events.jsonl')
+        rules=root/'Rules.json';rules.write_text(json.dumps({'entities':[{'name':'Worker','kind':0},{'name':'Post','kind':1}]}))
+        rows=[{'time':0,'kind':'Spawn','message':'Worker','player':0,'entity':1},
+              {'time':0,'kind':'Spawn','message':'Post','player':0,'entity':2},
+              {'time':20.1,'kind':'Gather','message':'Food','player':0,'entity':1}]
+        events.write_text(''.join(json.dumps(e)+'\n' for e in rows))
+        match_path.write_text(json.dumps(dict(buildGuid=guid,matchId=match_id,appVersion='0.2.31',platform='OSXPlayer',version='6000.6.3f1',autoplay=False,simulationSpeed=1,time=21,eventCount=len(rows))))
+        capture=self.frames();capture.update(buildGuid=guid,matchId=match_id,currentMatchId=match_id,appVersion='0.2.31',platform='OSXPlayer',unityVersion='6000.6.3f1',autoplay=False,simulationSpeed=1,benchmark=False,singleSession=True,truncated=False,schemaVersion=1,gc0=0,gc1=0,gc2=0,cpu='synthetic',gpu='synthetic',resolution='1x1',utcStart='fixture',utcEnd='fixture',stopReason='fixture')
+        sample=dict(realtime=10,worldTime=20,managedBytes=100,unityAllocatedBytes=200,livingUnits=1,playerUnits0=1,playerUnits1=0,neutralUnits=0,livingBuildings=1,totalEntities=2,viewportVisibleUnitCenters=1)
+        capture['memory']=[sample,{**sample,'realtime':11.1,'worldTime':20.1}]
+        capture_path=root/'performance.json';capture_path.write_text(json.dumps(capture))
+        base=['verify_performance.py',str(capture_path),'--match-report',str(match_path),'--rules',str(rules),'--build-guid',guid,'--match-id',match_id,'--app-version','0.2.31']
+        return root,events,base
+
+    def run_cli_fixture(self,base,archive,extra=()):
+        argv=base+['--archive-dir',str(archive),'--output',str(archive/'summary.json')]+list(extra)
+        with mock.patch.object(sys,'argv',argv),contextlib.redirect_stdout(io.StringIO()),contextlib.redirect_stderr(io.StringIO()):
+            result=verifier.main()
+        return result,json.loads((archive/'summary.json').read_text())
+
+    def test_exact_gzip_fallback_preserves_complete_performance_cli_audit(self):
+        root,events,base=self.gzip_cli_fixture()
+        status,baseline=self.run_cli_fixture(base,root/'raw');self.assertEqual(0,status)
+        raw=events.read_bytes();compressed=events.with_suffix('.jsonl.gz');compressed.write_bytes(gzip.compress(raw,mtime=0));events.unlink()
+        status,result=self.run_cli_fixture(base,root/'compressed');self.assertEqual(0,status)
+        for key in baseline:
+            if key not in ('generatedAtUtc','sources'):
+                self.assertEqual(baseline[key],result[key],key)
+        self.assertEqual(hashlib.sha256(compressed.read_bytes()).hexdigest(),result['sources']['events']['sha256'])
+        self.assertEqual(compressed.name,Path(result['sources']['events']['archivedPath']).name)
+        self.assertEqual(raw,gzip.decompress(compressed.read_bytes()))
+
+    def test_gzip_damage_and_duplicate_json_are_rejected_by_performance_reader(self):
+        root,events,base=self.gzip_cli_fixture();raw=events.read_bytes();encoded=gzip.compress(raw,mtime=0);compressed=events.with_suffix('.jsonl.gz');events.unlink()
+        corrupt_crc=bytearray(encoded);corrupt_crc[-8]^=1
+        for damaged in (encoded[:-8],bytes(corrupt_crc),b'not gzip'):
+            with self.subTest(damage=len(damaged)):
+                compressed.write_bytes(damaged)
+                with self.assertRaises(SystemExit) as error:self.run_cli_fixture(base,root/'bad')
+                self.assertEqual(2,error.exception.code)
+        text=raw.decode().splitlines();text[0]=text[0][:-1]+',"entity":1}'
+        compressed.write_bytes(gzip.compress(('\n'.join(text)+'\n').encode(),mtime=0))
+        with self.assertRaises(ValueError):verifier.entity_timeline(compressed,{'entities':[{'name':'Worker','kind':0}]})
+
+    def test_explicit_gzip_journal_cannot_bypass_associated_basename(self):
+        root,events,base=self.gzip_cli_fixture();other=root/'other-events.jsonl.gz';other.write_bytes(gzip.compress(events.read_bytes(),mtime=0))
+        status,result=self.run_cli_fixture(base,root/'wrong',['--events',str(other)])
+        self.assertEqual(1,status);self.assertFalse(result['checks']['associatedEventFilenameMatches'])
 
 
 if __name__ == "__main__":
