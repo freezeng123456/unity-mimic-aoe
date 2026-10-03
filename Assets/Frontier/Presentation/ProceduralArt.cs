@@ -64,24 +64,24 @@ namespace Frontier
             }
             var part=MeshPart(parent,name,vertices.ToArray(),triangles.ToArray(),color).transform;part.localPosition=position;return part;
         }
-        public static Transform BuildEntity(EntityState e,Transform parent)
+        public static Transform BuildEntity(EntityState e,Transform parent,string civilization=null,int age=1)
         {
             var root=new GameObject(e.def.name).transform;root.SetParent(parent,false);
             Color team=e.owner==0?Blue:e.owner==1?Red:new Color(.4f,.43f,.24f);
             if(e.def.kind==EntityKind.Resource){Resource(root,e);return root;}
-            if(e.def.kind==EntityKind.Building){Building(root,e,team);return root;}
+            if(e.def.kind==EntityKind.Building){DetailedArchitecture.Build(root,e,team,civilization,age);return root;}
             var rig=root.gameObject.AddComponent<UnitRig>();
-            if(e.def.id=="caravan"){CargoCaravan(root,rig,team);rig.CaptureInitialPose();return root;}
+            if(e.def.id=="caravan"){CargoCaravan(root,rig,team);DetailedUnits.Refine(root,rig,e,team);rig.CaptureInitialPose();return root;}
             bool horse=(e.def.tags&Tags.Cavalry)!=0;
             bool gun=(e.def.tags&Tags.Artillery)!=0;
             Color wood=new Color(.24f,.15f,.085f), iron=new Color(.19f,.22f,.22f);
             if(gun)
             {
                 Artillery(root,rig,e.def.id=="mortar",team,e.def.id=="culverin");
-                rig.CaptureInitialPose();return root;
+                DetailedUnits.Refine(root,rig,e,team);rig.CaptureInitialPose();return root;
             }
             if(e.def.id=="musketeer")
-            {AuthoredInfantry.Attach(root,rig,team);Equip(e,rig,false);rig.CaptureInitialPose();return root;}
+            {AuthoredInfantry.Attach(root,rig,team);Equip(e,rig,false);DetailedUnits.Refine(root,rig,e,team);rig.CaptureInitialPose();return root;}
             rig.RiderSeatHeight=.95f;float riderY=horse?rig.RiderSeatHeight:0;
             if(horse)
             {
@@ -122,6 +122,7 @@ namespace Frontier
             Equip(e,rig,horse);
             ExpansionEquipment(root,e,rig,team,riderY);
             ClassicEquipment(root,e,rig,team,riderY);
+            DetailedUnits.Refine(root,rig,e,team);
             rig.CaptureInitialPose();
             return root;
         }
@@ -581,6 +582,7 @@ namespace Frontier
         }
         private static void Resource(Transform root,EntityState e)
         {
+            if(DetailedEnvironment.TryBuild(root,e))return;
             Color wood=new Color(.3f,.22f,.12f);
             if(e.def.id=="trade_socket"){for(int x=-1;x<=1;x+=2)for(int z=-1;z<=1;z+=2)Part(root,"Site marker",PrimitiveType.Cylinder,new Vector3(x*1.8f,.35f,z*1.8f),new Vector3(.18f,.35f,.18f),new Color(.65f,.56f,.28f));return;}
             if(World.Treasure(e)){Part(root,"Treasure chest",PrimitiveType.Cube,new Vector3(0,.5f,0),new Vector3(1.2f,.8f,.8f),wood);Part(root,"Brass lid",PrimitiveType.Cube,new Vector3(0,.96f,0),new Vector3(1.3f,.2f,.9f),new Color(.77f,.61f,.24f));Part(root,"Cache marker",PrimitiveType.Cylinder,new Vector3(0,1.6f,0),new Vector3(.08f,.65f,.08f),wood);return;}

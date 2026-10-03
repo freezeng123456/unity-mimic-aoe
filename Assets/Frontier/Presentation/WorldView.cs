@@ -41,12 +41,9 @@ namespace Frontier
             }
             mesh.SetVertices(vertices);mesh.SetTriangles(triangles,0);mesh.SetColors(colors);mesh.RecalculateNormals();
             var ground=new GameObject("Ground");ground.transform.SetParent(terrain,false);ground.AddComponent<MeshFilter>().sharedMesh=mesh;
-            var groundMat=new Material(Shader.Find("Universal Render Pipeline/Lit"));groundMat.SetFloat("_Smoothness",0);
-            var terrainTexture=new Texture2D(128,128,TextureFormat.RGB24,false);var texels=new Color[128*128];
-            for(int z=0;z<128;z++)for(int x=0;x<128;x++){float v=Mathf.PerlinNoise(x*.07f,z*.07f);Color c=Color.Lerp(new Color(.29f,.37f,.18f),new Color(.48f,.47f,.28f),v);float path=Mathf.Abs(x-(18+z*.88f+Mathf.Sin(z*.1f)*4));if(path<2.3f)c=Color.Lerp(c,new Color(.56f,.49f,.32f),.8f);texels[z*128+x]=c;}
-            terrainTexture.SetPixels(texels);terrainTexture.Apply();groundMat.mainTexture=terrainTexture;
-            var uv=new Vector2[vertices.Count];for(int i=0;i<uv.Length;i++)uv[i]=new Vector2(vertices[i].x/128,vertices[i].z/128);mesh.uv=uv;
-            ground.AddComponent<MeshRenderer>().sharedMaterial=groundMat;
+            ground.AddComponent<ProceduralMeshLifetime>().OwnedMesh=mesh;
+            var uv=new Vector2[vertices.Count];for(int i=0;i<uv.Length;i++)uv[i]=new Vector2(vertices[i].x/128,vertices[i].z/128);mesh.uv=uv;mesh.RecalculateTangents();
+            ground.AddComponent<MeshRenderer>().sharedMaterial=LandscapePresentation.GroundMaterial();
             fogTexture=new Texture2D(128,128,TextureFormat.RGBA32,false);fogTexture.filterMode=FilterMode.Bilinear;fogTexture.wrapMode=TextureWrapMode.Clamp;
             Minimap=new Texture2D(128,128,TextureFormat.RGBA32,false);Minimap.filterMode=FilterMode.Point;
             var fog=GameObject.CreatePrimitive(PrimitiveType.Quad);fog.name="Three-state visibility surface";fog.transform.SetParent(terrain,false);fog.transform.position=new Vector3(64,.08f,64);fog.transform.rotation=Quaternion.Euler(90,0,0);fog.transform.localScale=new Vector3(128,128,1);Destroy(fog.GetComponent<Collider>());
@@ -59,6 +56,16 @@ namespace Frontier
         {
             combatFeedback.Bind(game.World,0,effectsRoot);animationEventCursor=game.World?.Events.Count??0;
             foreach(var visual in visuals.Values)Release(visual);visuals.Clear();
+            // Building variants are tied to a match's civilizations and ages.
+            // Do not retain whole previous towns when switching civilizations.
+            var oldBuildingKeys=new List<string>();
+            foreach(var entry in pool)
+            {
+                if(entry.Value.Count==0||entry.Value.Peek().architecture==null)continue;
+                while(entry.Value.Count>0)Destroy(entry.Value.Pop().root.gameObject);
+                oldBuildingKeys.Add(entry.Key);
+            }
+            foreach(string key in oldBuildingKeys)pool.Remove(key);
             ClearOutcrops();
             foreach(var line in projectiles)line.gameObject.SetActive(false);
             foreach(var line in rallyFlags)line.gameObject.SetActive(false);
@@ -81,7 +88,12 @@ namespace Frontier
             foreach(var mesh in outcropMeshes)if(mesh!=null)Destroy(mesh);outcropMeshes.Clear();
             foreach(var rock in rocks)if(rock!=null)Destroy(rock);rocks.Clear();
         }
-        private void OnDestroy(){ClearOutcrops();}
+        private void OnDestroy()
+        {
+            ClearOutcrops();
+            if(fogTexture!=null)Destroy(fogTexture);if(Minimap!=null)Destroy(Minimap);
+            if(fogMaterial!=null)Destroy(fogMaterial);if(lineMaterial!=null)Destroy(lineMaterial);
+        }
         private void CreateTradeViews()
         {
             var route=game.World.Rules.landmarks.route;var vertices=new List<Vector3>();var indices=new List<int>();
@@ -92,34 +104,50 @@ namespace Frontier
                 indices.AddRange(new[]{n,n+2,n+1,n,n+3,n+2});
             }
             tradeRoad=ProceduralArt.MeshPart(terrain,"Caravan road",vertices.ToArray(),indices.ToArray(),new Color(.52f,.43f,.27f)).transform;
+            var roadMesh=tradeRoad.GetComponent<MeshFilter>().sharedMesh;roadMesh.uv=vertices.ConvertAll(v=>new Vector2(v.x,v.z)).ToArray();roadMesh.RecalculateTangents();
+            tradeRoad.GetComponent<Renderer>().sharedMaterial=LandscapePresentation.RoadMaterial();
             caravan=new GameObject("Neutral caravan").transform;caravan.SetParent(terrain,false);var start=game.World.CaravanPosition;caravan.position=new Vector3(start.x,0,start.y);
-            Color wood=new Color(.33f,.21f,.11f);ProceduralArt.Part(caravan,"Wagon bed",PrimitiveType.Cube,new Vector3(0,.8f,0),new Vector3(1.5f,.3f,2.2f),wood);
-            ProceduralArt.Part(caravan,"Canvas cover",PrimitiveType.Cube,new Vector3(0,1.4f,0),new Vector3(1.45f,1,1.9f),new Color(.73f,.66f,.48f));
-            foreach(float x in new[]{-.85f,.85f})foreach(float z in new[]{-.7f,.7f}){var wheel=ProceduralArt.Part(caravan,"Wagon wheel",PrimitiveType.Cylinder,new Vector3(x,.48f,z),new Vector3(.85f,.09f,.85f),wood);wheel.transform.localRotation=Quaternion.Euler(0,0,90);}
+            LandscapePresentation.BuildNeutralCaravan(caravan);
             caravan.gameObject.SetActive(false);
         }
         private void Release(EntityVisual visual)
         {
-            visual.root.gameObject.SetActive(false);if(!pool.TryGetValue(visual.key,out var stack)){stack=new Stack<EntityVisual>();pool[visual.key]=stack;}stack.Push(visual);
+            visual.root.gameObject.SetActive(false);if(!pool.TryGetValue(visual.key,out var stack)){stack=new Stack<EntityVisual>();pool[visual.key]=stack;}
+            if(visual.architecture!=null&&stack.Count>=8){Destroy(visual.root.gameObject);return;}stack.Push(visual);
         }
         private EntityVisual Acquire(EntityState entity)
         {
-            string key=entity.def.id+"_"+entity.owner;EntityVisual v;
+            string key=VisualKey(entity);EntityVisual v;
             if(pool.TryGetValue(key,out var stack)&&stack.Count>0)v=stack.Pop();
             else
             {
                 var root=new GameObject("Entity "+entity.id).transform;root.SetParent(entityRoot,false);
-                var model=ProceduralArt.BuildEntity(entity,root);
+                var player=entity.owner>=0&&entity.owner<game.World.Players.Length?game.World.Players[entity.owner]:null;
+                var model=ProceduralArt.BuildEntity(entity,root,player?.civilization,player?.age??1);
+                var architecture=model.GetComponent<ArchitectureModel>();
                 var circle=NewLine("Selection",.055f,root);circle.useWorldSpace=false;circle.loop=true;circle.positionCount=32;
                 float radius=entity.def.kind==EntityKind.Building?Mathf.Max(entity.def.width,entity.def.depth)*.7f:entity.def.radius+ .35f;
                 for(int i=0;i<32;i++)circle.SetPosition(i,new Vector3(Mathf.Sin(i*Mathf.PI/16)*radius,.12f,Mathf.Cos(i*Mathf.PI/16)*radius));
-                var health=new GameObject("Health").transform;health.SetParent(root,false);health.localPosition=new Vector3(0,entity.def.kind==EntityKind.Building?5:2.8f,0);
+                var health=new GameObject("Health").transform;health.SetParent(root,false);health.localPosition=new Vector3(0,architecture!=null?architecture.LocalBounds.max.y+.35f:2.8f,0);
                 ProceduralArt.Part(health,"Health backing",PrimitiveType.Cube,Vector3.zero,new Vector3(1.65f,.16f,.035f),new Color(.12f,.15f,.12f));
                 var bar=ProceduralArt.Part(health,"Health remaining",PrimitiveType.Cube,new Vector3(0,0,-.04f),new Vector3(1.55f,.11f,.045f),new Color(.3f,.74f,.34f)).transform;
-                v=new EntityVisual{key=key,root=root,model=model,circle=circle,health=health,bar=bar,rig=model.GetComponent<UnitRig>()};
+                v=new EntityVisual{key=key,root=root,model=model,circle=circle,health=health,bar=bar,rig=model.GetComponent<UnitRig>(),architecture=architecture};
             }
             v.root.gameObject.SetActive(true);v.root.name="Entity "+entity.id;v.root.position=new Vector3(entity.position.x,0,entity.position.y);v.model.localScale=Vector3.one;v.model.localPosition=Vector3.zero;
             v.firedAt=v.hurtAt=v.deathAt=-1000;v.pickReady=false;v.pickRootPosition=v.root.position;v.facing=entity.facing.sqrMagnitude>.001f?Quaternion.LookRotation(new Vector3(entity.facing.x,0,entity.facing.y)):Quaternion.identity;v.model.rotation=v.facing;v.rig?.RestoreInitialPose();return v;
+        }
+        private string VisualKey(EntityState entity)
+        {
+            string key=entity.def.id+"_"+entity.owner;
+            if(entity.def.kind!=EntityKind.Building)return key;
+            var player=entity.owner>=0&&entity.owner<game.World.Players.Length?game.World.Players[entity.owner]:null;
+            return key+"_"+DetailedArchitecture.CivilizationFor(entity,player?.civilization)+"_"+(player?.age??1);
+        }
+        private bool MatchesBuildingVariant(EntityVisual visual,EntityState entity)
+        {
+            var player=entity.owner>=0&&entity.owner<game.World.Players.Length?game.World.Players[entity.owner]:null;
+            return visual.architecture!=null&&visual.architecture.Age==(player?.age??1)
+                &&visual.architecture.Civilization==DetailedArchitecture.CivilizationFor(entity,player?.civilization);
         }
         private void LateUpdate()
         {
@@ -136,10 +164,15 @@ namespace Frontier
                     if(!entity.Alive){Release(visual);visuals.Remove(entity.id);}else visual.root.gameObject.SetActive(false);
                     continue;
                 }
+                // Refresh only visible models. Age changes do not reveal a hidden opponent.
+                if(entity.def.kind==EntityKind.Building&&!MatchesBuildingVariant(visual,entity))
+                {visual.root.gameObject.SetActive(false);Destroy(visual.root.gameObject);visual=Acquire(entity);visuals[entity.id]=visual;}
                 visual.root.gameObject.SetActive(true);if(!world.Paused)visual.root.position=Vector3.Lerp(visual.root.position,new Vector3(entity.position.x,0,entity.position.y),.55f);
                 if((visual.root.position-new Vector3(entity.position.x,0,entity.position.y)).sqrMagnitude>16)visual.root.position=new Vector3(entity.position.x,0,entity.position.y);
                 if(!world.Paused&&world.Time-visual.firedAt>=.22f&&entity.def.kind==EntityKind.Unit&&entity.facing.sqrMagnitude>.01f)visual.facing=Quaternion.Slerp(visual.facing,Quaternion.LookRotation(new Vector3(entity.facing.x,0,entity.facing.y)),.35f);
-                visual.model.localScale=Vector3.one*(entity.Complete?1:Mathf.Lerp(.2f,1,entity.construction));
+                visual.model.localScale=Vector3.one;
+                if(visual.architecture!=null&&visual.constructionStage!=visual.architecture.ConstructionStage(entity.construction))
+                {visual.architecture.SetConstruction(entity.construction);visual.constructionStage=visual.architecture.ConstructionStage(entity.construction);visual.pickReady=false;}
                 // Units use their projected selection radius. Only static building/resource
                 // models need this envelope; do not enumerate animated unit renderers.
                 if(entity.def.kind!=EntityKind.Unit)
@@ -263,7 +296,7 @@ namespace Frontier
         private static void SetRing(LineRenderer line,Vector2 p,float radius){for(int i=0;i<line.positionCount;i++)line.SetPosition(i,new Vector3(p.x+Mathf.Sin(i*Mathf.PI/16)*radius,.16f,p.y+Mathf.Cos(i*Mathf.PI/16)*radius));}
         public bool TryGetPickBounds(int id,out Bounds bounds)
         {if(visuals.TryGetValue(id,out var v)&&v.pickReady&&v.root.gameObject.activeInHierarchy){bounds=v.pickBounds;return true;}bounds=default;return false;}
-        private class EntityVisual {public string key;public Transform root,model,health,bar;public UnitRig rig;public Quaternion facing;public float firedAt=-1000,hurtAt=-1000,deathAt=-1000;public LineRenderer circle;public Bounds pickBounds;public Vector3 pickScale,pickRootPosition;public bool pickReady;}
+        private class EntityVisual {public string key;public Transform root,model,health,bar;public UnitRig rig;public ArchitectureModel architecture;public int constructionStage=-1;public Quaternion facing;public float firedAt=-1000,hurtAt=-1000,deathAt=-1000;public LineRenderer circle;public Bounds pickBounds;public Vector3 pickScale,pickRootPosition;public bool pickReady;}
         private class PulseVisual {public LineRenderer line;public Vector2 point;public float time;}
     }
 }

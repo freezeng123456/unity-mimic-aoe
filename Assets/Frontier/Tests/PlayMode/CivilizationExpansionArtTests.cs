@@ -42,7 +42,9 @@ namespace Frontier.Tests
         public void NewBuildingsRetainTheirDistinctStructuralSilhouettes(string id,string landmark)
         {
             var model=ProceduralArt.BuildEntity(Entity(id),root.transform);var detail=model.GetComponentsInChildren<Transform>().Single(t=>t.name==landmark);
-            Assert.Greater(detail.GetComponentsInChildren<Renderer>().Length,0);Assert.Greater(model.GetComponentsInChildren<Renderer>().Length,15);
+            Assert.Greater(detail.GetComponentsInChildren<Renderer>().Length,0);
+            Assert.That(model.GetComponentsInChildren<Renderer>().Length,Is.InRange(4,16),"Detailed sections are material-batched");
+            Assert.Greater(model.GetComponentsInChildren<MeshFilter>().Sum(f=>f.sharedMesh.vertexCount),1000,"Landmark structure must have real modeled details");
             foreach(var mesh in model.GetComponentsInChildren<MeshFilter>())Assert.Greater(mesh.sharedMesh.vertexCount,0);
         }
     }

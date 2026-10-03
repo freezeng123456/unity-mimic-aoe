@@ -54,7 +54,9 @@ namespace Frontier.Tests
         {
             var model=ProceduralArt.BuildEntity(Entity("mosque"),root.transform);var dome=model.GetComponentsInChildren<Transform>().Single(t=>t.name=="Mosque central dome");
             Assert.Greater(dome.GetComponent<MeshFilter>().sharedMesh.bounds.size.y,.5f);var cap=model.GetComponentsInChildren<Transform>().Single(t=>t.name=="Pointed minaret cap");
-            Assert.Greater(cap.position.y,dome.GetComponent<MeshFilter>().sharedMesh.bounds.max.y);Assert.Greater(model.GetComponentsInChildren<Renderer>().Length,15);
+            Assert.Greater(cap.GetComponent<Renderer>().bounds.max.y,dome.GetComponent<Renderer>().bounds.max.y);
+            Assert.That(model.GetComponentsInChildren<Renderer>().Length,Is.InRange(4,16),"Detailed sections are material-batched");
+            Assert.Greater(model.GetComponentsInChildren<MeshFilter>().Sum(f=>f.sharedMesh.vertexCount),1500,"Dome, arcade and minaret require real geometry");
         }
     }
 }

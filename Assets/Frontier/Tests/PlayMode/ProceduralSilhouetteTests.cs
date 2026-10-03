@@ -99,7 +99,7 @@ namespace Frontier.Tests
             var imported=stage.GetComponentsInChildren<MeshFilter>(true).Where(f=>f.GetComponent<ProceduralMeshLifetime>()==null&&f.name.Contains("Skin")).Select(f=>f.sharedMesh).ToArray();Assert.IsNotEmpty(imported);
             stage.SetActive(false);yield return null;foreach(var mesh in owned)Assert.IsTrue(mesh!=null,"Pool deactivation must retain authored meshes");
             stage.SetActive(true);yield return null;Object.Destroy(stage);yield return null;yield return null;
-            foreach(var mesh in owned)Assert.IsTrue(mesh==null,"Each unique generated mesh must be released with its model");
+            foreach(var mesh in owned)Assert.IsTrue(mesh==null,"Each unique generated mesh must be released with its model: "+(mesh!=null?mesh.name:"released"));
             foreach(var mesh in imported)Assert.IsTrue(mesh!=null,"Shared FBX asset meshes must survive model teardown");
             stage=null;
         }

@@ -21,14 +21,14 @@ namespace Frontier.Editor
             if(renderer==null){renderer=ScriptableObject.CreateInstance<UniversalRendererData>();AssetDatabase.CreateAsset(renderer,"Assets/Frontier/Settings/FrontierRenderer.asset");}
             var pipeline=AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>("Assets/Frontier/Settings/FrontierURP.asset");
             if(pipeline==null){pipeline=UniversalRenderPipelineAsset.Create(renderer);AssetDatabase.CreateAsset(pipeline,"Assets/Frontier/Settings/FrontierURP.asset");}
-            pipeline.msaaSampleCount=2;pipeline.shadowDistance=0;pipeline.renderScale=1;pipeline.supportsHDR=false;
+            pipeline.msaaSampleCount=2;pipeline.shadowDistance=90;pipeline.shadowCascadeCount=2;pipeline.renderScale=1;pipeline.supportsHDR=false;
             // URP 17.6 exposes these setters only inside its assembly; persist editor settings explicitly.
             var pipelineSettings=new SerializedObject(pipeline);
             foreach(string property in new[]{"m_MainLightShadowsSupported","m_AdditionalLightShadowsSupported","m_SoftShadowsSupported","m_AnyShadowsSupported"})
-            {var setting=pipelineSettings.FindProperty(property);if(setting==null)throw new InvalidOperationException("Missing URP setting: "+property);setting.boolValue=false;}
+            {var setting=pipelineSettings.FindProperty(property);if(setting==null)throw new InvalidOperationException("Missing URP setting: "+property);setting.boolValue=property!="m_AdditionalLightShadowsSupported";}
             pipelineSettings.ApplyModifiedPropertiesWithoutUndo();
             GraphicsSettings.defaultRenderPipeline=pipeline;QualitySettings.renderPipeline=pipeline;
-            QualitySettings.shadows=UnityEngine.ShadowQuality.Disable;QualitySettings.shadowDistance=0;QualitySettings.vSyncCount=0;
+            QualitySettings.shadows=UnityEngine.ShadowQuality.All;QualitySettings.shadowDistance=90;QualitySettings.vSyncCount=0;
             PlayerSettings.companyName="Frontier Workshop";PlayerSettings.productName="Frontier Reckoning";
             PlayerSettings.defaultScreenWidth=2560;PlayerSettings.defaultScreenHeight=1440;PlayerSettings.fullScreenMode=FullScreenMode.Windowed;
             PlayerSettings.runInBackground=true;PlayerSettings.resizableWindow=true;PlayerSettings.colorSpace=ColorSpace.Linear;
@@ -40,8 +40,8 @@ namespace Frontier.Editor
             if(shaders!=null)foreach(string name in new[]{"Frontier/Fog","Universal Render Pipeline/Lit","Universal Render Pipeline/Unlit"}){var shader=Shader.Find(name);bool found=false;for(int i=0;i<shaders.arraySize;i++)if(shaders.GetArrayElementAtIndex(i).objectReferenceValue==shader)found=true;if(!found&&shader!=null){int i=shaders.arraySize;shaders.InsertArrayElementAtIndex(i);shaders.GetArrayElementAtIndex(i).objectReferenceValue=shader;}}
             graphics.ApplyModifiedPropertiesWithoutUndo();
             var scene=EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
-            var camera=new GameObject("Strategy Camera");camera.tag="MainCamera";var cam=camera.AddComponent<Camera>();cam.orthographic=true;cam.orthographicSize=26;camera.AddComponent<AudioListener>();camera.AddComponent<UniversalAdditionalCameraData>().renderShadows=false;camera.transform.SetPositionAndRotation(new Vector3(24,50,-14),Quaternion.Euler(50,0,0));
-            var sun=new GameObject("Late afternoon sun");var light=sun.AddComponent<Light>();light.type=LightType.Directional;light.intensity=1.8f;light.color=new Color(1,.92f,.75f);light.shadows=LightShadows.None;sun.transform.rotation=Quaternion.Euler(50,-35,0);
+            var camera=new GameObject("Strategy Camera");camera.tag="MainCamera";var cam=camera.AddComponent<Camera>();cam.orthographic=true;cam.orthographicSize=26;camera.AddComponent<AudioListener>();camera.AddComponent<UniversalAdditionalCameraData>().renderShadows=true;camera.transform.SetPositionAndRotation(new Vector3(24,50,-14),Quaternion.Euler(50,0,0));
+            var sun=new GameObject("Late afternoon sun");var light=sun.AddComponent<Light>();light.type=LightType.Directional;light.intensity=1.55f;light.color=new Color(1,.96f,.87f);light.shadows=LightShadows.Soft;light.shadowStrength=.7f;light.shadowBias=.03f;light.shadowNormalBias=.2f;sun.transform.rotation=Quaternion.Euler(50,-35,0);
             RenderSettings.ambientMode=AmbientMode.Flat;RenderSettings.ambientLight=new Color(.57f,.63f,.65f);RenderSettings.fog=false;
             new GameObject("Frontier Session").AddComponent<GameController>();
             EditorSceneManager.SaveScene(scene,ScenePath);EditorBuildSettings.scenes=new[]{new EditorBuildSettingsScene(ScenePath,true)};

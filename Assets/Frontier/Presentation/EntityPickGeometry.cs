@@ -6,10 +6,13 @@ namespace Frontier
     {
         public static Bounds WorldBounds(Transform model)
         {
-            var renderers=model.GetComponentsInChildren<Renderer>(true);
-            if(renderers.Length==0)return new Bounds(model.position,Vector3.zero);
-            var bounds=renderers[0].bounds;
-            for(int i=1;i<renderers.Length;i++)bounds.Encapsulate(renderers[i].bounds);
+            var renderers=model.GetComponentsInChildren<Renderer>();
+            var bounds=new Bounds(model.position,Vector3.zero);bool found=false;
+            foreach(var renderer in renderers)
+            {
+                if(!renderer.enabled)continue;
+                if(!found){bounds=renderer.bounds;found=true;}else bounds.Encapsulate(renderer.bounds);
+            }
             return bounds;
         }
         public static bool RayHits(Bounds bounds,Ray ray)=>bounds.IntersectRay(ray);
