@@ -2,7 +2,7 @@
 
 本轮独立macOS arm64客户端，Unity6000.6.3f1，build GUID `128a731d440e4b7a94abfcc74b88fa97`，源指纹`1b45f97f3d90c9b76388419492a83c5622ccb2cf3a365030044403ccd309c1c7`。玩家通过实际游戏窗口的鼠标/键盘操作，普通初始库存与真实资源箱，1倍速、autoplay=false、benchmark=false。没有免费资源、规则费用变更或削弱AI。
 
-coast镜像前四局使用Easy、时代上限III、合法25张经济预设；第五至第九局使用合法25张军备预设。第十局回到经济25卡，已完成正常I–III、付费炮出生、炮击敌建筑与自然结算，17项严格检查全部通过，B完成。河谷C1/C2已自然战败并完整归档：C1为River镜像/Easy/V上限/经济25卡，1486.584106秒、六项覆盖缺口；C2为River对Coast/Easy/V上限/军备25卡，1081.682983秒、十项覆盖缺口。C3为River镜像/Easy/V上限/军备25卡，1781.212158秒自然败局，实际达到V，唯一缺口为炮击敌建筑。C4为River对Coast/Easy/V上限/军备25卡，994.504211秒自然败局；严格16/17检查、16/19覆盖，付费炮击建筑与Cargo Ledgers成立，仅缺Age IV、Age V、特殊兵种。四局均正常1x/无autoplay，不跨局拼接成C通过；C5正在进行，尚未验收。菜单配置图和F9状态按同版本/GUID绑定；先前失败与中断保持原结果。
+coast镜像前四局使用Easy、时代上限III、合法25张经济预设；第五至第九局使用合法25张军备预设。第十局回到经济25卡，已完成正常I–III、付费炮出生、炮击敌建筑与自然结算，17项严格检查全部通过，B完成。河谷C1/C2已自然战败并完整归档：C1为River镜像/Easy/V上限/经济25卡，1486.584106秒、六项覆盖缺口；C2为River对Coast/Easy/V上限/军备25卡，1081.682983秒、十项覆盖缺口。C3为River镜像/Easy/V上限/军备25卡，1781.212158秒自然败局，实际达到V，唯一缺口为炮击敌建筑。C4为River对Coast/Easy/V上限/军备25卡，994.504211秒自然败局；严格16/17检查、16/19覆盖，付费炮击建筑与Cargo Ledgers成立，仅缺Age IV、Age V、特殊兵种。C5为River镜像/Easy/V上限/军备25卡，1661.541382秒自然败局，严格16/17检查、18/19覆盖，仅缺 `ageV`。五局均正常1x/无autoplay，不跨局拼接成C通过；C6正由root执行，尚未判定；最终0.2.32尚未启动。菜单配置图和F9状态按同版本/GUID绑定；先前失败与中断保持原结果。
 
 ## 已归档尝试
 
@@ -22,6 +22,7 @@ coast镜像前四局使用Easy、时代上限III、合法25张经济预设；第
 | C2 `0b725a5116d2415f855f4443c4023e0e` | River对Coast/Easy/V/军备25，实际III、16付费工/15Musk/5Pike/两银行、75W与100XP宝藏；IV付款后TC毁 | 1081.682983秒自然败局；16/17严格检查、十项必需覆盖缺口。船运炮不计付费生产，不通过C。见[C2归档](Evidence/055/NormalPlayer/river-attempt-002/README.md) |
 | C3 `8fb300efbc1a4169a953d9dab2b7caad` | River镜像/Easy/V/军备25，实际I–V、银行/特色兵/科技/贸易/宝藏、8付费炮 | 1781.212158秒自然败局；16/17检查、18/19覆盖，仅缺炮击敌建筑。见[C3归档](Evidence/055/NormalPlayer/river-attempt-003/README.md) |
 | C4 `b4250e2ab6664083ad919de284cc0afb` | River对Coast/Easy/V/军备25，实际III、付费炮对敌Manor六次各130伤害、Cargo Ledgers与贸易 | 994.504211秒自然败局；16/17检查、16/19覆盖，仅缺IV/V/特殊兵种。见[C4归档](Evidence/055/NormalPlayer/river-attempt-004/README.md) |
+| C5 `d69b5316feda422f8a27d23545e13c5b` | River镜像/Easy/V/军备25，实际IV、同一老Musk及新生兵科技属性、付费炮对敌Foundry两次各130伤害 | 1661.541382秒自然败局；16/17检查、18/19覆盖，仅缺ageV。见[C5归档](Evidence/055/NormalPlayer/river-attempt-005/README.md) |
 
 首局菜单与结算有对应F9。第二局Play Again沿用首局配置，没有独立新setup或同局结算F9；原始match_finished与menu_exit各自完整JSON/JSONL保留。缺图如实保留，不因其他对局有图而补作本局证据。
 
@@ -85,4 +86,12 @@ II/III/IV/V分别于194.102646/679.481140/1192.056030/1638.447021秒实际完成
 
 Foundry224在684.479919秒付100W250C，炮238于729.568909秒真实出生；783.055847秒Attack明确指向敌Manor156，800.651550–826.145325秒六条Damage各130 Siege，总780，见[独立炮击核验](Evidence/055/NormalPlayer/river-attempt-004/cannon-building-audit.json)。F9在784.655457秒仍显示Moving、803.050964秒显示Reloading；六次命中以原始Damage为准，不用Attack接受提示代替。初始TC801.351379秒被毁，重建TC249于867.335266秒完成，未达IV/V。
 
-Cargo Ledgers343.911774秒付费、389.014526秒完成，是本局唯一付费科技；不声称Veteran Musketeer升级。贸易站切Coin后18次交付共900C，另六次XP交付共270XP；银行产币570.5、两宝藏成立。65文件共59,908,543字节、16组F9、双冻结日志和两组终局报告/events完整保留；receipt SHA为 `cc28fc8e47999c072aeb04a0df04af0f4e8536ac70daebbaea547a14f8647e59`，完整性与文件SHA核验通过。C4失败状态保持；C5正在进行，尚未验收。
+Cargo Ledgers343.911774秒付费、389.014526秒完成，是本局唯一付费科技；不声称Veteran Musketeer升级。贸易站切Coin后18次交付共900C，另六次XP交付共270XP；银行产币570.5、两宝藏成立。65文件共59,908,543字节、16组F9、双冻结日志和两组终局报告/events完整保留；receipt SHA为 `cc28fc8e47999c072aeb04a0df04af0f4e8536ac70daebbaea547a14f8647e59`，完整性与文件SHA核验通过。C4失败状态保持；C5已1661.541382秒自然败局，严格16/17检查、18/19覆盖，仅缺 `ageV`；C6正由root执行，尚未判定；最终0.2.32尚未启动。
+
+## River C5：科技与建筑炮击成立，仅缺V
+
+[C5完整归档](Evidence/055/NormalPlayer/river-attempt-005/README.md)绑定 `d69b5316feda422f8a27d23545e13c5b`、原0.2.31/GUID。River镜像/Easy/V/Military25，1661.541382秒自然败局，唯一MatchEnded原行79380、无Resign，最终存活单位及建筑[0,95]；严格16/17检查、18/19覆盖仅缺 `ageV`，V未付款也未完成。
+
+老Musk173在825.245544/838.142395秒两张单选图均由原始UI context关联，HP200/200、ATK24变为HP240/240、ATK29；科技836.342834秒完成，173在338.111420秒出生、918.922668秒死亡。新Musk256在科技后840.941711秒付款、866.935364秒出生，874.833435秒单选图显示HP240/240、ATK29。F9 JSON没有selectedEntity字段，ID来自冻结输入上下文及出生/死亡链。
+
+付费炮261于881.931702秒出生，对敌Foundry239在978.008240/983.106995秒两次各130 Siege伤害，共260。IV于1153.465454秒完成；五名付费Carab、Cargo Ledgers、贸易与银行均同局成立。67文件共127,494,066字节、17组F9、双冻结日志和79,417条事件已保全；[receipt](Evidence/055/NormalPlayer/river-attempt-005/archive-receipt.json) SHA为 `299eacd347eb2e951df0804e0a143de562adda1d1dfff469b08cee383bc026d0`。C5失败保持，C6正由root执行，尚未判定；最终0.2.32尚未启动，不跨局拼接覆盖。
