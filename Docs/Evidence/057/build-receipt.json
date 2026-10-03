@@ -1,0 +1,31 @@
+{
+  "appVersion": "0.3.0",
+  "bundleBuildNumber": "0",
+  "buildGuid": "e6f13b0328df478cb19cb1bc3989dc5b",
+  "sourceFingerprint": "538daf84e551da74bfc1be2cb9ee6d8726016fa1ec440c90363aa06ed7af0b2f",
+  "sourceCommit": "d7bc04b93b256a13d4bdfa7c9633a010a19428df",
+  "compiledRuntimeSha256": {
+    "Contents/Info.plist": "0b63113e9654f08c1586dd454344e0e4bcddbe21881dd5418a3d20c132dd481d",
+    "Contents/MacOS/Frontier Reckoning": "f7e38c73256fa5cd0f8de0c58c956ca9a918465757dc0da93f0652e29fc05b99",
+    "Contents/Resources/Data/Managed/Frontier.Runtime.dll": "fef3724c273579efa0dad50bc0c74873664014582d6d50bfecede3600b638ada"
+  },
+  "bundleFileCount": 299,
+  "bundleFileBytes": 173180719,
+  "recordedAtUtc": "2026-10-03T16:49:13.763675+00:00",
+  "unityVersion": "6000.6.3f1",
+  "unityRevision": "45d8eee7de74",
+  "platform": "macOS Apple silicon",
+  "architecture": "arm64",
+  "buildOptions": "Development / Mono",
+  "buildMethod": "Frontier.Editor.BuildTools.BuildMac (direct; existing scene retained; no Prepare)",
+  "buildLog": "Build.log",
+  "tests": "Tests/source-evidence.json",
+  "nativeSmoke": "Native/README.md",
+  "verification": "Fresh 254/254 EditMode and 226/226 PlayMode tests passed on the recorded source fingerprint. The final normal-rule four-civilization matrix has 16/16 natural endings with stable sources. Direct macOS arm64 build succeeded with exit 0. Native observations are documented separately in Native/README.md.",
+  "limitations": [
+    "This content version changes simulation, rules, AI, UI and models; historical .31/.32 A-D evidence is retained but is not relabelled as .3 acceptance.",
+    "AI matrix uses one fixed map, seed 314159, Standard difficulty, economy versus military decks; it is not statistical balance evidence or native manual I-V acceptance. Native completed games explicitly use 16x autoplay.",
+    "The matrix has reward-spawned Guild Culverins but no paid AI workshop completion; paid production and workforce gating are covered by mechanism tests.",
+    "Development / Mono for tested macOS arm64. Other platforms and cross-machine signing/notarization/install are unverified. Additional maps, neutral factions, scenarios, later civilizations, saves, networking and naval combat are not included in 0.3.0."
+  ]
+}

@@ -1,14 +1,14 @@
 # 烽岸纪元 · Frontier Reckoning
 
-原创 Unity 陆战即时战略游戏：海岸与河谷两种文明、五个时代、25张卡组与XP船运、银行、贸易路线、守卫宝藏和炮兵攻城，配有原创模型、动画与音频。使用本项目规则和数值，与 Age of Empires 及其发行商无关联。
+原创 Unity 陆战即时战略游戏：海岸盟约、河谷商邦、远驿盟市、山岭工联四种文明，五个时代、25张卡组与XP船运、银行、实车贸易、工坊制造、守卫宝藏和炮兵攻城，配有原创模型、动画与音频。使用本项目规则和数值，与 Age of Empires 及其发行商无关联。
 
-**原定 A–D 四个里程碑已全部通过。** 当前交付版本为 **0.2.32，macOS Apple silicon**；新版本完整424项测试、独立构建、菜单/开局/采集/退出检查和客户端ZIP内容核验均通过。详见[完成状态](Docs/Completion-Status.md)。
+**当前内容版本为 0.3.0，macOS Apple silicon。** 本批加入两个文明、六种特色战斗单位、商车、驿馆和工坊，并为四文明提供三套卡组预设与每次晋级的三条路线。实现内容见[内容扩充](Docs/Content-Expansion-057.md)，独立验证见[完成状态](Docs/Completion-Status.md)。原定 A–D 的历史验收保留在 055/056，不冒充本版实战。
 
 ## 启动与操作
 
-解压 `Frontier-Reckoning-0.2.32-macOS-arm64.zip`，打开 `Frontier Reckoning.app`，选择文明、时代上限、难度及卡组，点击 **BEGIN SKIRMISH**。交付目录同时提供 Unity 源码ZIP、中文试玩说明与 `manifest.json`；后者记录实际打包提交和文件SHA。
+解压 `Frontier-Reckoning-0.3.0-macOS-arm64.zip`，打开 `Frontier Reckoning.app`，选择文明、时代上限、难度及卡组，点击 **BEGIN SKIRMISH**。交付目录同时提供 Unity 源码ZIP、中文试玩说明与 `manifest.json`；后者记录实际打包提交和文件SHA。
 
-源码通过 Unity Hub 使用 **Unity 6000.6.3f1** 打开；主场景为 `Assets/Frontier/Scenes/FrontierSkirmish.unity`。完整说明见[中文试玩指南](Docs/Playtest-056.md)。
+源码通过 Unity Hub 使用 **Unity 6000.6.3f1** 打开；主场景为 `Assets/Frontier/Scenes/FrontierSkirmish.unity`。完整说明见[中文试玩指南](Docs/Playtest-057.md)。
 
 | 操作 | 功能 |
 |---|---|
@@ -16,6 +16,7 @@
 | 右键 | 按目标移动、攻击、采集、施工或修理 |
 | T / V / M / F | 城镇中心 / 空闲村民 / 逐个军队单位 / 聚焦选择 |
 | B / H | 村民建造 / 主城船运 |
+| R后左键 | 显式修理；用于工坊维修或工程兵修炮 |
 | A后左键 / J / S | 攻击移动或攻击 / 原地守卫 / 停止 |
 | G后点己方建筑 | 驻军；选建筑点击 UNGARRISON 撤出 |
 | Ctrl或Command + 数字 / 数字 | 保存编组 / 召回编组 |
@@ -25,7 +26,16 @@
 
 正常玩家局失焦会自动暂停，回来后手动恢复。目前没有存档。F9截图、F8性能采样及F10混音采集用于观察和留证，不改变资源、AI或速度。
 
-## 验证与版本来源
+## 本批文明扩充
+
+| 文明 | 新玩法 | 特色部队 |
+|---|---|---|
+| 远驿盟市 | 商车每次先支付60食物，到达己方驿馆才收入钱币；护商和拦截产生实际经济风险 | 护商卫士、道路骑哨、车队火铳手 |
+| 山岭工联 | 村民放弃采集并在工坊制造；预制件加速付费建筑施工 | 野战工兵、工联猎炮、盾枪卫士 |
+
+各文明有48–50张合法可选卡牌，一套卡组最多25张；经济、军事、科技三套预设可以直接试玩。时代II–V每次三选一，共48个文明晋级选项。当前仍为原有固定陆图；新地图、中立势力、场景和下一批文明属于后续内容。
+
+## 历史验收与版本来源
 
 | 范围 | 已验证结果 |
 |---|---|
@@ -42,6 +52,8 @@ C1–C6失败结果原样保留，不跨局拼接。C7缺少单独终局F9和菜
 - [里程碑与历史](Docs/Milestones-055.md) · [0.2.31验证索引](Docs/Verification-055.md) · [0.2.32证据](Docs/Evidence/056/README.md)
 - [性能实测](Docs/Performance-055.md) · [原创美术与动画](Docs/Art-Animation-055.md) · [资源许可](Docs/Asset-Licenses.md)
 - [开发合同](Docs/Development-Contract.md) · [已知限制](Docs/Known-Issues.md) · [GitHub PR #1](https://github.com/freezeng123456/unity-mimic-aoe/pull/1)
+
+0.3.0 修改了游戏规则、AI、输入和模型，因此使用全新的[057验证记录](Docs/Evidence/057/README.md)，不适用0.2.32的仅文字差异等价结论。
 
 ## 交付边界
 

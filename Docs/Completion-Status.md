@@ -1,45 +1,48 @@
-# 完成状态与交付证据 — 0.2.32
+# 完成状态与交付证据 — 0.3.0
 
-2026-10-03，原定 **A–D 四个里程碑全部通过**，0.2.32的完整回归、独立构建、原生菜单/开局/采集/退出及客户端ZIP核验通过。范围以[开发合同](Development-Contract.md)为准。源码包、中文指南与最终提交清单由已保存的打包程序在干净提交后生成；实际交付身份以输出目录的 `manifest.json` 为准。
+2026-10-04，首批内容扩展已经实现：文明从 2 个增加到 4 个，新增远驿盟市的付费商路、山岭工联的工坊制造，以及配套兵种、卡牌、晋级路线、AI 和外观。当前源码通过 **254 EditMode＋226 PlayMode，共 480 项测试**；四文明最终矩阵 **16／16 局自然结束**。
 
-## 原定里程碑：0.2.31完整原生证据
+这次完成的是已授权内容计划的第一阶段。新增地图、中立势力、任务场景和第二批两个文明尚未实现。原 A–D 四个里程碑的结论和 0.2.32 交付记录完整保留在[历史完成状态](Completion-Status-056.md)，不把旧版完整人工对局、音频或性能记录改称 0.3.0 的验收。
 
-| 里程碑 | 结果与证据 |
-|---|---|
-| A：基础RTS | 通过。Unity/URP独立工程，选择、命令、采集、建造、人口、生产、战斗、修理和驻军均有原生记录；群体导航有绑定源码的自动回归。 |
-| B：海岸镜像I–III完整局 | 通过。[B10](Evidence/055/NormalPlayer/coast-attempt-010/summary.json)正常1x、Economy25、autoplay=false，严格17/17；付费炮186对敌马厩156六次各130伤害。958.612976秒自然战败，无Resign、败方清零。 |
-| C：河谷I–V与文明差异 | 通过。[C7](Evidence/055/NormalPlayer/river-attempt-007/summary.json)同局17/17检查、19/19覆盖，2528.415771秒自然获胜；I–V、银行、特色兵、付费科技、炮击敌建筑、宝藏、贸易XP及资源交付全部成立。 |
-| D：原创视听与规模 | 通过。原创人物/骑兵/火炮、11类建筑、程序动画；正常/暂停/主静音各20秒真实混音。50/100/200/400活动规模核验通过，正常与400长窗各自满足300有效秒。 |
+## 已实现内容
 
-正常玩家B9单窗335.999332有效秒，400单位单窗317.674076有效秒，两窗独立核验，不相加。详见[性能实测](Performance-055.md)；不推导400单位无遮挡同屏或通用FPS保证。
+| 内容 | 当前状态 |
+| --- | --- |
+| 四文明 | 海岸盟约、河谷商邦、远驿盟市、山岭工联；原两文明的庄园赠工、金币村民和银行保留 |
+| 远驿盟市 | 驿馆、付费装货并实际到站结算的商车；护商卫士、驿骑、镖队射手替代部分通用兵种 |
+| 山岭工联 | 工人参与的工坊制造、付费施工预制件；战地工兵修炮、反炮猎炮、可架盾的盾枪卫士 |
+| 发展路线 | 四文明每次晋级 II–V 三选一，共 48 项；各新兵有 III–V 升级链 |
+| 卡牌与预设 | 共 109 张定义，合法牌池 48／48／50／50 张；每文明有 25 张的经济、军事、科技预设 |
+| 美术与操作 | 新建筑和兵种轮廓、货物与车轮、盾牌展开、工兵修理动作；文明选择、卡组翻页及新命令入口 |
 
-C7 `cd717dda89684d87b979629d3fbdf1a9` 使用River镜像/Easy/V/Military25，正常1x且无autoplay。116,739条事件中唯一MatchEnded，败方存活单位/建筑为0，无Resign；24组原生F9及真实胜利JPEG均保全。97文件共220,994,877字节，[归档receipt](Evidence/055/NormalPlayer/river-attempt-007/archive-receipt.json) SHA256为 `73304c7dcf6d9541950b34479ece0ff691f39642d48b996833ad8dd3ba44027e`，全部96成员bytes/SHA及集合已独立复核。
+完整规则、数值和限制见[首批内容说明](Content-Expansion-057.md)。43 个实体包含资源和建筑；145 项科技包含 44 项兵种等级、48 项晋级制度及 53 项其他科技，不能把这些数量理解成同等数量的独立玩法系统。
 
-同一老Musk221升级前后由200HP/24ATK变为240HP/29ATK；新付费Musk290在科技完成后出生，并显示240HP/29ATK。原始截图、输入上下文和付费/出生/死亡链关联见[科技专项审核](Evidence/055/NormalPlayer/river-attempt-007/technology-visual-audit.json)。付费炮261对敌贸易站179的130伤害与原图1648→1518血量一致。
+## 本版验证及边界
 
-C7终局尾部Escape直接返回菜单，缺少终局F9及菜单前Player-ended副本；[偏差记录](Evidence/055/NormalPlayer/river-attempt-007/end-capture-deviation.json)如实保留。实际胜利JPEG、完整冻结日志、两份终局报告/事件及返回菜单F9共同支持自然结算，没有伪造缺失文件。C1–C6原失败结论不变，详见[里程碑历史](Milestones-055.md)。
+| 验证层 | 已有证据 | 能支持的结论 |
+| --- | --- | --- |
+| 源码与自动回归 | [Tests/source-evidence.json](Evidence/057/Tests/source-evidence.json)，254＋226 全部通过，无失败、跳过或不确定项 | 373 个纳入指纹的项目文件与本轮规则、机制、AI、UI、动画回归证据一致 |
+| 普通规则 AI 矩阵 | [最终 16 局矩阵](Evidence/057/Matrix/matrix.json)和[修复前后对照](Evidence/057/AI-Comparison.md) | 四文明有序组合各一次，均自然结算；每局唯一 MatchEnded、零 Resign、败方单位／建筑清零 |
+| 独立客户端构建 | [构建回执](Evidence/057/build-receipt.json)、[Build.log](Evidence/057/Build.log) | 0.3.0 macOS arm64 Development／Mono 构建成功，实际应用为 299 文件、173,180,719 字节 |
+| 原生客户端 | [Native 记录](Evidence/057/Native/README.md) | 两个新文明双向对局使用 **16x autoplay** 自然结束；普通 1x 手动开局检查单独记录，不算完整人工 I–V 对局 |
+| 打包身份 | [客户端全文件清单](Evidence/057/client-bundle-manifest.json)及交付目录的 `manifest.json` | 以实际生成的清单为准，绑定应用、ZIP、源码及最终提交；打包不增加玩法验收结论 |
 
-## 0.2.32独立验证与来源
+矩阵使用同一固定陆图、seed `314159`、Standard 难度、时代上限 V；这些样本不支持统计平衡、多地图适应性或每文明完整 I–V 的结论。山岭在本轮矩阵最高到 IV；远驿有 1 次到 V。
 
-| 项目 | 0.2.31验收基线 | 0.2.32交付客户端 |
-|---|---|---|
-| 源码提交 | `50d303b76519a3a9b448c27cd2cdeb22779a1e5d` | `59a66b64c027224289761ad6bb409e8e41804fee`；最终文档/证据提交由外部manifest记录 |
-| 源码指纹 | `1b45f97f3d90c9b76388419492a83c5622ccb2cf3a365030044403ccd309c1c7` | `7340a04ba7f4d10c35a4dde158a8c517e0205e875daacc1a58005dcb61730adf` |
-| 构建GUID | `128a731d440e4b7a94abfcc74b88fa97` | `947f7c0c0da44ec3a806c2dcb69ca04e` |
-| Unity全量测试 | 214 EditMode + 210 PlayMode通过 | 新一轮214 + 210通过，424唯一测试身份一致，无跳过/不确定项 |
-| 构建 | macOS arm64，Development / Mono | 新建299文件、173,040,973字节；Unity6000.6.3f1直接BuildMac成功 |
-| 原生验证 | 完整B/C对局、视听与性能 | 独立菜单→普通开局→实际采集→返回菜单→正常QUIT |
+矩阵实际记录 469 次付费装货和 469 次交货、14 份预制件完成及 12 次使用，此外记录盾阵命令和工程兵实际修理付款。五种新兵有真实付费训练完成；**猎炮付费 AI 排队／完成均为 0，18 次出生来自奖励**。工坊付费猎炮、人工约束和人口预约由机制测试覆盖，不能据奖励出生声称 AI 已验证自主生产猎炮。详细统计和逐局范围见[AI 对照](Evidence/057/AI-Comparison.md)。
 
-仅 `FrontierHud.cs` 两处菜单文字和 `ProjectSettings.asset` 的bundleVersion改变，其他355个清单文件逐字节一致。源码规则、AI、资源和BuildTools保持原字节；[等价审核](Evidence/056/release-equivalence.json)核对准确差异、新XML时间/内容、完整测试身份、新GUID和runtime SHA。新完整测试在11:53:40Z/11:54:55Z结束，原始五文件见[056/Tests](Evidence/056/Tests/source-evidence.json)。
+远驿初轮暴露出贸易耗粮妨碍村民和军队生产的问题，本轮修复了贸易预算和空车启停。原 pilot、修复前完整矩阵和旧测试都保留；它们有不同源码指纹，不能混入最终矩阵或重复计作独立样本。
 
-macOS营销版本为0.2.32，内部构建号沿用冻结设置 `buildNumber.Standalone=0`。初始核验脚本误把这两个字段视作同一版本，现已按固定基线设置纠正，18项工具测试通过；[诊断记录](Evidence/056/build-number-review.json)保留原假设与实际plist字节，源码及客户端没有因此改动。
+## 版本身份
 
-新客户端普通检查 `fd093483132f4bff991d9082260fd7a4` 持续27.400068秒、1x、autoplay=false，实际采得46.799976食物，随后主动回菜单并正常退出。这是启动/操作检查，不是自然整局；证据见[NativeSmoke](Evidence/056/NativeSmoke/README.md)和[新构建回执](Evidence/056/build-receipt.json)。
+| 项目 | 当前值 |
+| --- | --- |
+| 核心源码提交 | `d7bc04b93b256a13d4bdfa7c9633a010a19428df` |
+| 源码指纹 | `538daf84e551da74bfc1be2cb9ee6d8726016fa1ec440c90363aa06ed7af0b2f` |
+| Unity 构建 GUID | `e6f13b0328df478cb19cb1bc3989dc5b` |
+| 应用／内部构建号 | `0.3.0`／`0` |
+| Unity | `6000.6.3f1`，revision `45d8eee7de74` |
 
-## 交付文件
+最终证据和文档可能晚于核心源码提交。交付源码包由[既有打包器](Evidence/055/package_delivery.py)以 `--evidence-set 057` 核对干净 HEAD、全部已提交 Git blob 与本次 373 文件源码指纹；最终提交和各文件 SHA 以仓库外 `manifest.json` 为准，避免文档引用包含自身的提交号。
 
-交付目录 `outputs/frontier-reckoning-0.2.32` 包含客户端ZIP、Unity源码ZIP、`试玩说明.md`及`manifest.json`。客户端ZIP SHA256为 `f3ec2180ef38c602db43cc5a1db001cf162ec4634cc066704c02492eb16e9fef`；其299个应用文件和全部618个归档文件已经按bytes/SHA/Unix mode、目录集合、CRC、版本和GUID核验，见[客户端清单](Evidence/056/client-bundle-manifest.json)。
-
-最终源码包通过[打包程序](Evidence/055/package_delivery.py)绑定打包时实际clean HEAD，核对每个已提交Git blob及357个测试源码SHA。交付manifest保存在Git仓库外，记录最终提交、各包大小/SHA和这些内容检查；不要求受跟踪文档嵌入包含自身的提交号。
-
-**0.2.31 acceptance evidence retained; 0.2.32 menu/version-only delta separately verified.** 支持范围仍为测试过的macOS arm64开发构建，其他平台、存档、联网、战役、海战和编辑器不属于此次退出条件。详见[已知限制](Known-Issues.md)。
+本版没有新的正常对局／400 单位长窗性能或音频质量验收。旧 055／056 记录继续作为历史证据保存。当前平台、操作和玩法限制见[Known-Issues](Known-Issues.md)，本版证据入口见[057 索引](Evidence/057/README.md)。

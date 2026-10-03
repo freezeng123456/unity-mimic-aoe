@@ -44,7 +44,7 @@
 
 | 新兵种 | 训练建筑 | 用途与限制 |
 |---|---|---|
-| Caravan Escort | Barracks | 矛盾护卫，对骑兵有额外伤害；移动较慢，需防远程步兵 |
+| Caravan Escort | Barracks | 长矛护卫，对骑兵有额外伤害；移动较慢，需防远程步兵 |
 | Road Outrider | Stable | 快速侦察和拦截，对炮兵有额外伤害；不适合硬碰重骑和长枪 |
 | Convoy Gunner | Barracks | 对重步兵有效，射程只有 10；需要掩护以免被骑兵贴身 |
 
