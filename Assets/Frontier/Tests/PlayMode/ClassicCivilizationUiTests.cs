@@ -29,26 +29,39 @@ namespace Frontier.Tests
                 game.PlayerCivilization=civilization.id;game.Hud.ShowMenu();yield return Ready();
                 var summary=session.GetComponentsInChildren<Text>().Single(t=>t.text.StartsWith("THE TWO OUTCROPS  ·  SEED "));
                 StringAssert.EndsWith(civilization.description,summary.text);
-                int fittedSize=summary.cachedTextGenerator.fontSizeUsedForBestFit;Assert.That(fittedSize,Is.InRange(14,17),civilization.id);
-                // Generate the entire text without clipping at the actual chosen size.
-                // A Truncate flag alone could hide the description and falsely pass.
-                var settings=summary.GetGenerationSettings(summary.rectTransform.rect.size);
-                settings.resizeTextForBestFit=false;settings.fontSize=fittedSize;settings.verticalOverflow=VerticalWrapMode.Overflow;
-                using(var completeText=new TextGenerator())
+                // UGUI passes pixelsPerUnit as scaleFactor and divides generated
+                // vertices by it. Best-fit returns a pixel size, not the logical
+                // fontSize: a small batch GameView can legitimately return 6.
+                // Check both that GameView scale and native 1600-wide scale 1.
+                foreach(float pixelScale in new[]{summary.pixelsPerUnit,1f}.Distinct())
                 {
-                    Assert.IsTrue(completeText.Populate(summary.text,settings),civilization.id);
-                    Assert.Greater(completeText.lineCount,1,civilization.id);
-                    var vertices=completeText.verts;Assert.Greater(vertices.Count,4,civilization.id);
-                    float bottom=float.PositiveInfinity,top=float.NegativeInfinity;
-                    for(int i=0;i<vertices.Count-4;i++){float y=vertices[i].position.y/summary.pixelsPerUnit;bottom=Mathf.Min(bottom,y);top=Mathf.Max(top,y);}
-                    Assert.GreaterOrEqual(bottom,summary.rectTransform.rect.yMin-.5f,civilization.id+" complete description exceeds its 80-unit region");
-                    Assert.LessOrEqual(top,summary.rectTransform.rect.yMax+.5f,civilization.id);
-                    float renderedBottom=summary.rectTransform.TransformPoint(new Vector3(0,bottom,0)).y;
-                    foreach(string button in new[]{"PRESET:","EDIT DECK"})
+                    var settings=summary.GetGenerationSettings(summary.rectTransform.rect.size);settings.scaleFactor=pixelScale;
+                    string context=civilization.id+" at pixel scale "+pixelScale;
+                    using(var fittedText=new TextGenerator())using(var completeText=new TextGenerator())
                     {
-                        var buttonRect=(RectTransform)FindButton(button).transform;
-                        float buttonTop=buttonRect.TransformPoint(new Vector3(0,buttonRect.rect.yMax,0)).y;
-                        Assert.Greater(renderedBottom,buttonTop,civilization.id+" overlaps "+button);
+                        Assert.IsTrue(fittedText.Populate(summary.text,settings),context);
+                        int fittedPixels=fittedText.fontSizeUsedForBestFit;
+                        // Integer pixel rasterization rounds the logical bounds.
+                        Assert.That(fittedPixels,Is.InRange(Mathf.Max(1,Mathf.FloorToInt(14*pixelScale)),Mathf.CeilToInt(17*pixelScale)),context);
+                        // Reproduce the chosen pixel font at scale 1 so it is not
+                        // scaled twice, then remove clipping to expose hidden text.
+                        settings.resizeTextForBestFit=false;settings.fontSize=fittedPixels;
+                        settings.generationExtents*=pixelScale;settings.scaleFactor=1;settings.verticalOverflow=VerticalWrapMode.Overflow;
+                        Assert.IsTrue(completeText.Populate(summary.text,settings),context);
+                        Assert.AreEqual(completeText.characterCountVisible,fittedText.characterCountVisible,context+" truncates the description");
+                        Assert.Greater(completeText.lineCount,1,context);
+                        var vertices=completeText.verts;Assert.Greater(vertices.Count,0,context);
+                        float bottom=float.PositiveInfinity,top=float.NegativeInfinity;
+                        foreach(var vertex in vertices){float y=vertex.position.y/pixelScale;bottom=Mathf.Min(bottom,y);top=Mathf.Max(top,y);}
+                        Assert.GreaterOrEqual(bottom,summary.rectTransform.rect.yMin-.5f,context+" complete description exceeds its 80-unit region");
+                        Assert.LessOrEqual(top,summary.rectTransform.rect.yMax+.5f,context);
+                        float renderedBottom=summary.rectTransform.TransformPoint(new Vector3(0,bottom,0)).y;
+                        foreach(string button in new[]{"PRESET:","EDIT DECK"})
+                        {
+                            var buttonRect=(RectTransform)FindButton(button).transform;
+                            float buttonTop=buttonRect.TransformPoint(new Vector3(0,buttonRect.rect.yMax,0)).y;
+                            Assert.Greater(renderedBottom,buttonTop,context+" overlaps "+button);
+                        }
                     }
                 }
             }
