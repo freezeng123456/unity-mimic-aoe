@@ -13,6 +13,12 @@ namespace Frontier
         private readonly int[] parents,visited,closed;
         private int search;
         private readonly List<Node> heap=new List<Node>(2048);
+        // All actors of the same radius share the static clearance graph until
+        // an obstacle changes. A sealed route must not flood the same half-map
+        // once per soldier on every retry. Dynamic ally filters stay per query.
+        private readonly Dictionary<float,ClearanceGraph> clearanceGraphs=new Dictionary<float,ClearanceGraph>();
+        private sealed class ClearanceGraph
+        {public int version;public bool[] walkable;public int[] component;}
         private static readonly int[] Dx={1,-1,0,0,1,1,-1,-1},Dy={0,0,1,-1,1,-1,1,-1};
         public GridNavigation(int w=128,int h=128){Width=w;Height=h;blocked=new bool[w*h];costs=new float[w*h];parents=new int[w*h];visited=new int[w*h];closed=new int[w*h];}
         private bool Inside(int x,int y)=>x>=0&&y>=0&&x<Width&&y<Height;
@@ -68,8 +74,10 @@ namespace Frontier
             if(PathClearLine(start,end,radius,extraWalkable)){output.Add(start);output.Add(end);return output;}
             // Fractional positions near a wall can round into an obstructed cell.
             // Both endpoints must connect to walkable graph nodes without crossing it.
-            int s=ConnectedNode(start,radius,extraWalkable),g=ConnectedNode(end,radius,extraWalkable);
+            var graph=Clearance(radius);
+            int s=ConnectedNode(start,radius,extraWalkable,graph),g=ConnectedNode(end,radius,extraWalkable,graph);
             if(s<0||g<0)return output;
+            if(graph.component[s]!=graph.component[g])return output;
             int sx=s%Width,sy=s/Width,gx=g%Width,gy=g/Width;
             search++;if(search==int.MaxValue){Array.Clear(visited,0,visited.Length);Array.Clear(closed,0,closed.Length);search=1;}
             heap.Clear();costs[s]=0;visited[s]=search;parents[s]=-1;Push(s,Heuristic(sx,sy,gx,gy));bool found=false;
@@ -80,8 +88,8 @@ namespace Frontier
                 for(int i=0;i<8;i++)
                 {
                     int nx=x+Dx[i],ny=y+Dy[i];if(!Inside(nx,ny))continue;int next=nx+ny*Width;
-                    if(closed[next]==search||!PathWalkable(new Vector2(nx,ny),radius,extraWalkable))continue;
-                    if(i>=4&&(!PathWalkable(new Vector2(x+Dx[i],y),radius,extraWalkable)||!PathWalkable(new Vector2(x,y+Dy[i]),radius,extraWalkable)))continue;
+                    if(closed[next]==search||!NodeWalkable(nx,ny,graph,extraWalkable))continue;
+                    if(i>=4&&(!NodeWalkable(x+Dx[i],y,graph,extraWalkable)||!NodeWalkable(x,y+Dy[i],graph,extraWalkable)))continue;
                     if(extraWalkable!=null&&!PathClearLine(new Vector2(x,y),new Vector2(nx,ny),radius,extraWalkable))continue;
                     float score=costs[current]+(i<4?1:1.41421356f);
                     if(visited[next]!=search||score<costs[next]){visited[next]=search;costs[next]=score;parents[next]=current;Push(next,score+Heuristic(nx,ny,gx,gy));}
@@ -95,7 +103,35 @@ namespace Frontier
             {int next=anchor+1;while(next+1<reverse.Count&&PathClearLine(reverse[anchor],reverse[next+1],radius,extraWalkable))next++;output.Add(reverse[next]);anchor=next;}
             return output;
         }
-        private int ConnectedNode(Vector2 point,float radius,Func<Vector2,bool> extraWalkable)
+        private ClearanceGraph Clearance(float radius)
+        {
+            if(clearanceGraphs.TryGetValue(radius,out var graph)&&graph.version==Version)return graph;
+            int count=Width*Height;
+            if(graph==null)graph=new ClearanceGraph{walkable=new bool[count],component=new int[count]};
+            Array.Clear(graph.component,0,count);
+            for(int i=0;i<count;i++)graph.walkable[i]=IsWalkable(new Vector2(i%Width,i/Width),radius);
+            var queue=new int[count];int label=0;
+            for(int root=0;root<count;root++)
+            {
+                if(!graph.walkable[root]||graph.component[root]!=0)continue;
+                label++;int head=0,tail=0;queue[tail++]=root;graph.component[root]=label;
+                while(head<tail)
+                {
+                    int current=queue[head++],x=current%Width,y=current/Width;
+                    for(int direction=0;direction<8;direction++)
+                    {
+                        int nx=x+Dx[direction],ny=y+Dy[direction];if(!Inside(nx,ny))continue;int next=nx+ny*Width;
+                        if(!graph.walkable[next]||graph.component[next]!=0)continue;
+                        if(direction>=4&&(!graph.walkable[x+Dx[direction]+y*Width]||!graph.walkable[x+(y+Dy[direction])*Width]))continue;
+                        graph.component[next]=label;queue[tail++]=next;
+                    }
+                }
+            }
+            graph.version=Version;clearanceGraphs[radius]=graph;return graph;
+        }
+        private bool NodeWalkable(int x,int y,ClearanceGraph graph,Func<Vector2,bool> extraWalkable)
+        {return graph.walkable[x+y*Width]&&(extraWalkable==null||extraWalkable(new Vector2(x,y)));}
+        private int ConnectedNode(Vector2 point,float radius,Func<Vector2,bool> extraWalkable,ClearanceGraph graph)
         {
             int cx=Mathf.RoundToInt(point.x),cy=Mathf.RoundToInt(point.y),best=-1;float distance=float.MaxValue;
             for(int ring=0;ring<=3;ring++)
@@ -104,7 +140,7 @@ namespace Frontier
                 {
                     if(!Inside(x,y)||Mathf.Max(Mathf.Abs(x-cx),Mathf.Abs(y-cy))!=ring)continue;
                     var node=new Vector2(x,y);float d=(node-point).sqrMagnitude;
-                    if(d<distance&&PathWalkable(node,radius,extraWalkable)&&PathClearLine(point,node,radius,extraWalkable)){distance=d;best=x+y*Width;}
+                    if(d<distance&&NodeWalkable(x,y,graph,extraWalkable)&&PathClearLine(point,node,radius,extraWalkable)){distance=d;best=x+y*Width;}
                 }
                 if(best>=0)return best;
             }
