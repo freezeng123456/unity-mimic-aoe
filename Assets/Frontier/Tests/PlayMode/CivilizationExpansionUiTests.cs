@@ -12,21 +12,28 @@ namespace Frontier.Tests
     // Public UI actions travel through actual InputSystem pointer/key events.
     public sealed class CivilizationExpansionUiTests : NativeInputFixture
     {
+        private IEnumerator SelectMenuCivilization(CivDef civ,bool opponent=false)
+        {
+            yield return Click(ButtonCenter(FindButton(opponent?"AI:":"YOU:")));
+            int index=System.Array.FindIndex(game.Rules.civs,c=>c.id==civ.id);Assert.GreaterOrEqual(index,0);
+            for(int page=0;page<index/4;page++)
+            {var next=FindButton("NEXT ");Assert.IsTrue(next.interactable,"Civilization must be reachable by the visible page control");yield return Click(ButtonCenter(next));}
+            string panel=opponent?"CHOOSE OPPONENT CIVILIZATION":"CHOOSE YOUR CIVILIZATION";
+            var choice=session.GetComponentsInChildren<Button>().Single(b=>b.name.Contains(civ.name.ToUpperInvariant())&&b.transform.parent.name==panel);
+            yield return Click(ButtonCenter(choice));
+        }
         [UnityTest] public IEnumerator CivilizationMenuSelectsEveryCatalogEntryAndKeepsLegalDecks()
         {
             game.ReturnToMenu();yield return Ready();
             foreach(var civ in game.Rules.civs)
             {
-                yield return Click(ButtonCenter(FindButton("YOU:")));
-                var choice=session.GetComponentsInChildren<Button>().Single(b=>b.name.Contains(civ.name.ToUpperInvariant())&&b.transform.parent.name=="CHOOSE YOUR CIVILIZATION");
-                yield return Click(ButtonCenter(choice));
+                yield return SelectMenuCivilization(civ);
                 Assert.AreEqual(civ.id,game.PlayerCivilization);
                 Assert.AreEqual("",DeckLibrary.Validate(game.Rules,civ.id,game.SelectedDeck));
                 Assert.IsTrue(FindButton("YOU:").name.Contains(civ.name));
             }
-            yield return Click(ButtonCenter(FindButton("AI:")));
             var opponent=game.Rules.Civ("highland");
-            yield return Click(ButtonCenter(session.GetComponentsInChildren<Button>().Single(b=>b.name.Contains(opponent.name.ToUpperInvariant())&&b.transform.parent.name=="CHOOSE OPPONENT CIVILIZATION")));
+            yield return SelectMenuCivilization(opponent,true);
             Assert.AreEqual("highland",game.OpponentCivilization);
         }
         [UnityTest] public IEnumerator TechnologyPresetAndLaterDeckPagesAreReachableWithoutChangingCards()

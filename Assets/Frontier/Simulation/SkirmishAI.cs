@@ -40,7 +40,8 @@ namespace Frontier
             foreach(var e in own)foreach(var j in e.queue)if(j.kind=="Age")advancing=true;
             construction.ResumeOne(own,workers,enemies);
             if(town==null&&workers.Count>0)Build(own,workers,"town");
-            int workerGoal=Math.Min(world.Rules.Civ(p.civilization).villagerLimit,p.age==1?12:p.age==2?24:p.age==3?34:42);
+            int workerGoal=Math.Min(world.WorkerLimit(player),p.age==1?12:p.age==2?24:p.age==3?34:42);
+            var workerDefinition=world.WorkerDefinition(player);bool paidWorkers=world.AutoRecruitSeconds(player)<=0;
             bool underAttack=enemies.Exists(e=>e.Military&&(e.def.tags&Tags.Explorer)==0&&(e.position-home).sqrMagnitude<34*34);
             bool rangedRaid=enemies.Exists(e=>(e.def.tags&Tags.Infantry)!=0&&e.def.range>=16&&(e.position-home).sqrMagnitude<40*40);
             bool investWorkers=workers.Count<workerGoal&&(!underAttack||soldierCount>=6||workers.Count<12);
@@ -52,15 +53,16 @@ namespace Frontier
                 var next=world.Rules.Age(p.age+1);
                 if(p.age<world.MaxAge&&next!=null&&world.CanAfford(player,next.cost)&&saveForAge)
                     Send(new GameCommand{kind=CommandKind.AdvanceAge,actors=new[]{town.id},choice=agePlan.ChooseBranch(underAttack)});
-                else if(investWorkers&&!saveForAge)Send(new GameCommand{kind=CommandKind.Train,actors=new[]{town.id},item="villager"});
+                else if(paidWorkers&&investWorkers&&!saveForAge)Send(new GameCommand{kind=CommandKind.Train,actors=new[]{town.id},item=workerDefinition.id});
             }
-            Cost workerReserve=town!=null&&town.Complete&&town.queue.Count==0&&investWorkers&&!saveForAge?world.UnitCost(player,world.Rules.Entity("villager")):new Cost();
+            Cost workerReserve=paidWorkers&&town!=null&&town.Complete&&town.queue.Count==0&&investWorkers&&!saveForAge?world.UnitCost(player,workerDefinition):new Cost();
             bool firstBank=p.age>=2&&world.CountingHouseLimit(player)>0&&Find(own,"bank")==null&&!saveForAge&&!underAttack;
             Cost bankReserve=firstBank?world.EntityCost(player,world.Rules.Entity("bank")):new Cost();
             string specialBuilding=civilizationEconomy.Building;
-            bool firstSpecial=p.age>=2&&specialBuilding!=""&&Find(own,specialBuilding)==null&&!saveForAge&&!underAttack;
+            bool firstSpecial=specialBuilding!=""&&p.age>=world.UnitAge(player,world.Rules.Entity(specialBuilding))&&Find(own,specialBuilding)==null&&!saveForAge&&!underAttack;
             Cost specialReserve=firstSpecial?world.EntityCost(player,world.Rules.Entity(specialBuilding)):new Cost();
             if(p.populationCap-p.usedPopulation-p.reservedPopulation<5&&!Unfinished(own,"house")&&p.populationCap<world.Rules.populationLimit)Build(own,workers,"house");
+            if(firstSpecial&&p.age<2&&CanSpend(specialReserve,workerReserve))Build(own,workers,specialBuilding);
             if(p.age>=2)
             {
                 if(Find(own,"barracks")==null)Build(own,workers,"barracks");
@@ -70,9 +72,10 @@ namespace Frontier
                 else if(Find(own,"market")==null)Build(own,workers,"market");
                 else if(Find(own,"stable")==null&&workers.Count>=16)Build(own,workers,"stable");
                 else if(world.CountingHouseLimit(player)>0&&!saveForAge&&!underAttack&&own.FindAll(x=>x.def.id=="bank").Count<Math.Min(world.CountingHouseLimit(player),p.age))Build(own,workers,"bank");
-                if(p.age>=3&&Find(own,"foundry")==null)Build(own,workers,"foundry");
+                if(p.age>=world.UnitAge(player,world.Rules.Entity("foundry"))&&Find(own,"foundry")==null)Build(own,workers,"foundry");
             }
             foreach(var e in own)if(e.def.garrison>0&&e.occupants.Count>0&&enemies.Find(x=>(x.position-e.position).sqrMagnitude<24*24)==null)Send(new GameCommand{kind=CommandKind.Ungarrison,actors=new[]{e.id}});
+            Cost civilizationResearchReserve=civilizationEconomy.TechnologyReserve(own,saveForAge,underAttack);
             civilizationEconomy.Tick(own,workers,enemies,workerReserve+bankReserve+agePlan.Reserve,saveForAge,underAttack);
             workforce.Assign(workers,EconomyTarget(own,workers,enemies,saveForAge,investWorkers,firstBank),enemies);
             EnsureSustainableEconomy(own,workers,p);
@@ -87,7 +90,7 @@ namespace Frontier
                     if(world.ShipmentReason(player,id)!="")continue;var card=world.Rules.Card(id);
                     float score=card.repeatable?0:8;score+=card.age*2;
                     if(card.unit=="cannon"&&p.age>=3)score+=40;
-                    else if(card.unit=="villager"&&workers.Count<workerGoal)score+=20;
+                    else if(!string.IsNullOrEmpty(card.unit)&&(world.Rules.Entity(card.unit).tags&Tags.Villager)!=0&&workers.Count<workerGoal)score+=20;
                     else if(!string.IsNullOrEmpty(card.unit)&&soldierCount<12)score+=15;
                     if(card.tech=="bank_charter"&&world.CountingHouseLimit(player)>0)score+=15;
                     if(saveForAge){var need=world.Rules.Age(p.age+1).cost;score+=Math.Min(card.crates.food,Math.Max(0,need.food-p.resources.food))*.04f+Math.Min(card.crates.coin,Math.Max(0,need.coin-p.resources.coin))*.04f;}
@@ -105,7 +108,7 @@ namespace Frontier
                 if(!producer.Complete||producer.queue.Count>0)continue;
                 bool artillery=producer.def.id=="foundry";
                 var choices=new List<EntityDef>();foreach(var d in world.Rules.entities)
-                    if(d.kind==EntityKind.Unit&&!d.civilian&&d.producer==producer.def.id&&!d.id.Equals("villager")&&world.EntityAvailable(player,d)&&d.age<=p.age)choices.Add(d);
+                    if(d.kind==EntityKind.Unit&&!d.civilian&&d.producer==producer.def.id&&(d.tags&Tags.Villager)==0&&world.EntityAvailable(player,d)&&world.UnitAge(player,d)<=p.age)choices.Add(d);
                 if(artillery)choices.Sort((a,b)=>(a.id=="cannon"?0:1).CompareTo(b.id=="cannon"?0:1));
                 else choices.Sort((a,b)=>CounterScore(b,enemies).CompareTo(CounterScore(a,enemies)));
                 if(p.age>=2&&(!saveForAge||underAttack))for(int i=0;i<choices.Count;i++)
@@ -115,7 +118,7 @@ namespace Frontier
                     for(int n=batch;n>=1;n--)
                     {
                         var cost=world.UnitCost(player,d)*n;
-                        if(!CanSpend(cost,workerReserve+bankReserve+specialReserve+agePlan.Reserve+(artillery?new Cost():siegeReserve)))continue;
+                        if(!CanSpend(cost,workerReserve+bankReserve+specialReserve+civilizationResearchReserve+agePlan.Reserve+(artillery?new Cost():siegeReserve)))continue;
                         var result=Send(new GameCommand{kind=CommandKind.Train,actors=new[]{producer.id},item=d.id,count=n});
                         if(result.accepted){rotation++;queued=true;break;}
                     }
@@ -127,7 +130,7 @@ namespace Frontier
                     if(world.ProductionReason(player,producer,t.id,true)!="")continue;
                     // Unit upgrades need a meaningful existing force; economy can invest sooner.
                     if(t.units!=null&&t.units.Length>0&&world.UnitCountIncludingProduction(player,t.units[0])<4)continue;
-                    if(!CanSpend(t.cost,workerReserve+bankReserve+specialReserve+siegeReserve))continue;
+                    if(!CanSpend(t.cost,workerReserve+bankReserve+specialReserve+civilizationResearchReserve+siegeReserve))continue;
                     Send(new GameCommand{kind=CommandKind.Research,actors=new[]{producer.id},item=t.id});break;
                 }
             }
@@ -202,24 +205,24 @@ namespace Frontier
         private Cost EconomyTarget(List<EntityState> own,List<EntityState> workers,List<EntityState> visible,bool save,bool recruit,bool firstBank)
         {
             var p=world.Players[player];Cost target=new Cost();
-            var settler=world.Rules.Entity("villager");
-            if(recruit)target+=world.UnitCost(player,settler)*(60/settler.time);
+            var settler=world.WorkerDefinition(player);
+            if(recruit&&world.AutoRecruitSeconds(player)<=0)target+=world.UnitCost(player,settler)*(60/settler.time);
             if((save||p.age==1)&&p.age<world.MaxAge)target+=world.Rules.Age(p.age+1).cost;
             int free=p.populationCap-p.usedPopulation-p.reservedPopulation;
             if(free<12&&p.populationCap<world.Rules.populationLimit)target+=world.EntityCost(player,world.Rules.Entity("house"));
             if(Find(own,"barracks")==null)target+=world.EntityCost(player,world.Rules.Entity("barracks"));
-            else if(p.age>=2&&civilizationEconomy.Building!=""&&Find(own,civilizationEconomy.Building)==null)target+=world.EntityCost(player,world.Rules.Entity(civilizationEconomy.Building));
+            else if(civilizationEconomy.Building!=""&&p.age>=world.UnitAge(player,world.Rules.Entity(civilizationEconomy.Building))&&Find(own,civilizationEconomy.Building)==null)target+=world.EntityCost(player,world.Rules.Entity(civilizationEconomy.Building));
             else if(firstBank)target+=world.EntityCost(player,world.Rules.Entity("bank"));
             else if(p.age>=2&&Find(own,"market")==null)target+=world.EntityCost(player,world.Rules.Entity("market"));
             else if(p.age>=2&&workers.Count>=16&&Find(own,"stable")==null)target+=world.EntityCost(player,world.Rules.Entity("stable"));
-            if(p.age>=3&&Find(own,"foundry")==null)target+=world.EntityCost(player,world.Rules.Entity("foundry"));
+            if(p.age>=world.UnitAge(player,world.Rules.Entity("foundry"))&&Find(own,"foundry")==null)target+=world.EntityCost(player,world.Rules.Entity("foundry"));
             if(!save)foreach(var producer in own)
             {
                 if(producer.def.kind!=EntityKind.Building||producer.def.id=="town")continue;
                 EntityDef candidate=null;float score=float.MinValue;
                 foreach(var d in world.Rules.entities)
                 {
-                    if(d.kind!=EntityKind.Unit||d.civilian||d.producer!=producer.def.id||d.age>p.age||!world.EntityAvailable(player,d))continue;
+                    if(d.kind!=EntityKind.Unit||d.civilian||(d.tags&Tags.Villager)!=0||d.producer!=producer.def.id||world.UnitAge(player,d)>p.age||!world.EntityAvailable(player,d))continue;
                     float value=CounterScore(d,visible);if(value>score){score=value;candidate=d;}
                 }
                 if(candidate!=null)target+=world.UnitCost(player,candidate)*(60/candidate.time);
@@ -262,14 +265,16 @@ namespace Frontier
         private float CounterScore(EntityDef unit,List<EntityState> visible)
         {
             float score=unit.id=="musketeer"?35:unit.id=="hussar"?25:20;
-            if(unit.id=="escort"||unit.id=="shield_guard")score=38;
+            if(unit.id=="escort"||unit.id=="shield_guard"||unit.id=="janissary")score=38;
+            if(unit.id=="cuirassier")score=38;
+            if(unit.id=="abus")score=36;
             if(unit.id=="convoy_gunner")score=36;
             if(unit.id=="outrider")score=30;
             if(unit.repairArtillery)score=world.UnitCountIncludingProduction(player,"cannon")+world.UnitCountIncludingProduction(player,"culverin")>0?40:8;
             foreach(var enemy in visible)
             {
                 if(!enemy.Military||(enemy.def.tags&Tags.Explorer)!=0)continue;
-                if(unit.id=="hussar"&&(enemy.def.tags&Tags.LightInfantry)!=0)score+=18;
+                if((unit.id=="hussar"||unit.id=="cuirassier")&&(enemy.def.tags&Tags.LightInfantry)!=0)score+=18;
                 foreach(var bonus in unit.bonuses)if((bonus.tags&enemy.def.tags)!=0)score+=8*(bonus.multiplier-1);
             }
             return score-world.UnitCountIncludingProduction(player,unit.id)*5;

@@ -69,6 +69,8 @@ namespace Frontier
             {
                 case "coast":return id=="settlers"||id=="card_coast_manor_frames"||id=="coast_bow_patrol";
                 case "river":return id=="bankers"||id=="river_coin"||id=="reserve_carabineer";
+                case "france":return id=="france_coureurs_1"||id=="card_france_hunting_parties"||id=="france_cuirassiers_3";
+                case "ottoman":return id=="ottoman_settlers_1"||id=="card_ottoman_millet_support"||id=="ottoman_janissaries_2"||id=="ottoman_abus_2";
                 case "wayfarer":return id=="wayfarer_cargo_wagons"||id=="card_wayfarer_cargo_bonds"||id=="wayfarer_escort_patrol";
                 case "highland":return id=="card_highland_standard_jigs"||id=="highland_engineer_team"||id=="highland_culverin_battery";
                 default:return false;

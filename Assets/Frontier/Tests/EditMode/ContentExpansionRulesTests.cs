@@ -5,9 +5,9 @@ namespace Frontier.Tests
 {
     public sealed class ContentExpansionRulesTests
     {
-        [Test] public void FourCivilizationsHaveSubstantialLegalPoolsAndDistinctCompletePresets()
+        [Test] public void SixCivilizationsHaveSubstantialLegalPoolsAndDistinctCompletePresets()
         {
-            var r=Catalog.Load();CollectionAssert.AreEquivalent(new[]{"coast","river","wayfarer","highland"},r.civs.Select(c=>c.id));
+            var r=Catalog.Load();CollectionAssert.AreEqual(new[]{"coast","river","france","ottoman","wayfarer","highland"},r.civs.Select(c=>c.id));
             foreach(var civ in r.civs)
             {
                 var available=DeckLibrary.Available(r,civ.id);Assert.That(available.Count,Is.InRange(40,50),civ.id);
@@ -32,7 +32,7 @@ namespace Frontier.Tests
                 bool reward=card.crates.food+card.crates.wood+card.crates.coin>0;
                 if(!string.IsNullOrEmpty(card.unit))
                 {
-                    var u=r.Entity(card.unit);Assert.NotNull(u,card.id);Assert.LessOrEqual(u.age,card.age,card.id);Assert.Greater(card.count,0,card.id);reward=true;
+                    var u=r.Entity(card.unit);Assert.NotNull(u,card.id);Assert.LessOrEqual(RequiredAge(r,card.civilization,u),card.age,card.id);Assert.Greater(card.count,0,card.id);reward=true;
                     if(!string.IsNullOrEmpty(card.civilization))Assert.IsTrue(DeckLibrary.EntityAllowed(r,card.civilization,u.id),card.id);
                 }
                 if(!string.IsNullOrEmpty(card.tech))
@@ -50,7 +50,7 @@ namespace Frontier.Tests
             {
                 Assert.IsFalse(DeckLibrary.Available(r,"wayfarer").Any(c=>c.id==id),id);
                 Assert.IsNotEmpty(DeckLibrary.Validate(r,"wayfarer",new[]{id}),id);
-                Assert.IsTrue(DeckLibrary.CardAllowed(r,"coast",r.Card(id)),id+" still belongs in existing coast pool");
+                Assert.AreEqual(id!="skirmishers"&&id!="reserve_skirmisher",DeckLibrary.CardAllowed(r,"coast",r.Card(id)),id+" respects British longbow replacement");
                 Assert.IsTrue(DeckLibrary.CardAllowed(r,"river",r.Card(id)),id+" still belongs in existing river pool");
             }
             Assert.IsFalse(DeckLibrary.CardAllowed(r,"highland",r.Card("reserve_pike")));
@@ -58,8 +58,8 @@ namespace Frontier.Tests
         }
         [Test] public void EveryAdvancementOffersThreeFactionSpecificPermanentChoices()
         {
-            var r=Catalog.Load();Assert.AreEqual(48,r.ageChoices.Length);
-            Assert.AreEqual(48,r.ageChoices.Select(x=>x.id).Distinct().Count());
+            var r=Catalog.Load();Assert.AreEqual(72,r.ageChoices.Length);
+            Assert.AreEqual(72,r.ageChoices.Select(x=>x.id).Distinct().Count());
             foreach(var civ in r.civs)for(int age=2;age<=5;age++)
             {
                 var choices=r.ageChoices.Where(x=>x.civilization==civ.id&&x.age==age).ToArray();Assert.AreEqual(3,choices.Length,civ.id+age);
@@ -71,7 +71,7 @@ namespace Frontier.Tests
                     if(!string.IsNullOrEmpty(choice.unit))
                     {
                         Assert.IsTrue(DeckLibrary.EntityAllowed(r,civ.id,choice.unit),choice.id);
-                        Assert.LessOrEqual(r.Entity(choice.unit).age,age);Assert.Greater(choice.count,0);
+                        Assert.LessOrEqual(RequiredAge(r,civ.id,r.Entity(choice.unit)),age);Assert.Greater(choice.count,0);
                     }
                     else Assert.Greater(choice.crates.food+choice.crates.wood+choice.crates.coin,0,choice.id);
                 }
@@ -120,6 +120,12 @@ namespace Frontier.Tests
                 var highland=DeckLibrary.Preset(r,"highland",preset);
                 CollectionAssert.IsSubsetOf(new[]{"card_highland_standard_jigs","highland_engineer_team","highland_culverin_battery"},highland);
             }
+        }
+        private static int RequiredAge(RuleCatalog rules,string civilization,EntityDef unit)
+        {
+            var civ=string.IsNullOrEmpty(civilization)?null:rules.Civ(civilization);
+            var age=civ?.unitAges?.FirstOrDefault(x=>x.unit==unit.id);
+            return age==null?unit.age:age.age;
         }
     }
 }

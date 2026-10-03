@@ -37,7 +37,7 @@ namespace Frontier
             var p=P(player);var d=Rules.Entity(id);
             if(p==null||d==null||d.kind!=EntityKind.Building)return "Unknown building";
             if(!EntityAvailable(player,d))return "Unavailable to this civilization";
-            if(p.age<d.age)return "Requires age "+d.age;
+            if(p.age<UnitAge(player,d))return "Requires age "+UnitAge(player,d);
             if(!CanAfford(player,EntityCost(player,d)))return "Need "+EntityCost(player,d);
             if(id=="trade_post"&&(SocketAt(point)==null||TradingPostAt(SocketAt(point).id)!=null))return "Place on an empty trade route site";
             if(Fog.At(player,point)!=VisibilityState.Visible)return "Build inside current vision";
@@ -75,8 +75,9 @@ namespace Frontier
             {
                 var d=Rules.Entity(item);if(d==null||d.kind!=EntityKind.Unit)return "Unknown unit";
                 if(d.producer!=b.def.id)return "Requires "+d.producer;
-                if(p.age<d.age)return "Requires age "+d.age;
+                if(p.age<UnitAge(player,d))return "Requires age "+UnitAge(player,d);
                 if(!EntityAvailable(player,d))return "Civilization requirement";
+                if((d.tags&Tags.Villager)!=0&&AutoRecruitSeconds(player)>0)return "Settlers are recruited automatically by town centers";
                 count=Mathf.Clamp(count,1,d.batch);
                 if(UnitLimitReason(player,d,count)!="")return UnitLimitReason(player,d,count);
                 if(!CanAfford(player,UnitCost(player,d)*count))return "Need "+(UnitCost(player,d)*count);
@@ -94,6 +95,13 @@ namespace Frontier
         {
             var p=P(c.player);if(p==null)return CommandResult.Fail("Invalid player");
             var b=c.actors!=null&&c.actors.Length>0?Get(c.actors[0]):null;
+            if(c.kind==CommandKind.ToggleRecruitment)
+            {
+                if(b==null||!b.Alive||b.owner!=c.player||!b.Complete||b.def.id!="town"||AutoRecruitSeconds(c.player)<=0)return CommandResult.Fail("Select your completed automatic recruiting town center");
+                b.autoRecruitPaused=!b.autoRecruitPaused;
+                Emit("AutoRecruitmentToggled",c.player,b.id,b.autoRecruitPaused?"Paused":"Recruiting");
+                return CommandResult.Ok(b.autoRecruitPaused?"Automatic settlers paused":"Automatic settlers resumed");
+            }
             if(c.kind==CommandKind.Build)
             {
                 c.point=BuildPoint(c.player,c.item,c.point);
@@ -184,6 +192,7 @@ namespace Frontier
                         else Repair(e,target,dt);
                     }
                 }
+                TickAutoRecruitment(e,dt);
                 if(e.Complete&&e.queue.Count>0)TickProduction(e,dt);
                 if(e.Complete&&e.def.id=="bank")
                 {float amount=CountingHouseRate(e.owner)*dt;Credit(e.owner,ResourceKind.Coin,amount,e.id,e.id,"BankIncome");}
@@ -196,7 +205,7 @@ namespace Frontier
                 if(b.Complete)
                 {
                     RecomputePopulationCap(b.owner);AwardXp(b.owner,b.def.buildXp,b.id,"Building completed");Emit("BuildingComplete",b.owner,b.id,b.def.name+" ready");
-                    if(b.def.id=="house"&&Rules.Civ(Players[b.owner].civilization).houseVillager)b.queue.Add(new ProductionJob{kind="Gift",item="villager",count=1,duration=0});
+                    if(b.def.id=="house"&&Rules.Civ(Players[b.owner].civilization).houseVillager)b.queue.Add(new ProductionJob{kind="Gift",item=WorkerDefinition(b.owner).id,count=1,duration=0});
                 }
             }
             foreach(var p in Players)if(p.shipments.Count>0)
@@ -391,6 +400,6 @@ namespace Frontier
         public float Speed(EntityState e)
         {float factor=1;var p=P(e.owner);if(p!=null)foreach(var id in p.technologies){var t=Rules.Tech(id);if(t!=null&&Applies(t,e))factor+=t.speed;}return e.def.speed*factor;}
         public float GatherRate(EntityState worker,EntityState resource)
-        {float factor=1;foreach(var id in Players[worker.owner].technologies){var t=Rules.Tech(id);if(t!=null&&Applies(t,worker)&&(t.resource==ResourceKind.None||t.resource==resource.def.resource))factor+=t.gather;}return resource.def.gatherRate*factor;}
+        {float factor=1;foreach(var id in Players[worker.owner].technologies){var t=Rules.Tech(id);if(t!=null&&Applies(t,worker)&&(t.resource==ResourceKind.None||t.resource==resource.def.resource))factor+=t.gather;}float mine=resource.def.id=="mine"?Rules.Civ(Players[worker.owner].civilization).mineGatherMultiplier:1;return resource.def.gatherRate*factor*worker.def.gatherMultiplier*mine;}
     }
 }

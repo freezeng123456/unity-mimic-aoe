@@ -39,7 +39,7 @@ namespace Frontier
             {
                 Vector2 b=p==0?new Vector2(24,28):new Vector2(104,100);float s=p==0?1:-1;
                 Spawn("town",p,b);
-                for(int i=0;i<6;i++)Spawn("villager",p,b+new Vector2(5+i%3*1.3f,-3+i/3*1.4f)*s);
+                for(int i=0;i<Rules.Civ(Players[p].civilization).startingWorkers;i++)Spawn(WorkerDefinition(p).id,p,b+new Vector2(5+i%3*1.3f,-3+i/3*1.4f)*s);
                 Spawn("explorer",p,b+new Vector2(7,4)*s);
                 Spawn("berry",-1,b+new Vector2(8,-7)*s);Spawn("berry",-1,b+new Vector2(11,-7)*s);
                 for(int i=0;i<5;i++)Spawn("deer",-1,b+new Vector2(-8+i*1.8f,9+i%2*1.8f)*s);

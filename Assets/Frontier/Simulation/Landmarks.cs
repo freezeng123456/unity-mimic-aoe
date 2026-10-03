@@ -48,9 +48,9 @@ namespace Frontier
         {
             // These are actual navigation queries on the authored opening, not
             // rewards, visibility grants or a claim of randomized map coverage.
-            float radius=Rules.Entity("villager").radius;
             for(int player=0;player<Players.Length;player++)
             {
+                float radius=WorkerDefinition(player).radius;
                 var town=Entities.Find(e=>e.Alive&&e.owner==player&&e.def.id=="town");
                 var points=new List<Vector2>();bool exit=town!=null&&FindSpawnPositions(town,1,radius,out points);
                 Vector2 from=exit?points[0]:town?.position??Vector2.zero;

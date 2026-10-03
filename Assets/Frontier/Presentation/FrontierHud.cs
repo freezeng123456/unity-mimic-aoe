@@ -78,7 +78,7 @@ namespace Frontier
             var p=game.World.Players[0];int key=(selected?.id??0)*10000+p.age*100+p.technologies.Count*10+(selected?.queue.Count??0);
             // Arrival and release change the Ungarrison count and availability.
             // The existing pointer-capture guard still defers same-context rebuilds.
-            return unchecked((key*397+(selected?.occupants.Count??0))*31+(selected?.shielded==true?1:0));
+            return unchecked(((key*397+(selected?.occupants.Count??0))*31+(selected?.shielded==true?1:0))*31+(selected?.autoRecruitPaused==true?1:0));
         }
         private RectTransform Rect(Transform parent,string name,Rect r,bool bottom=false)
         {
@@ -133,7 +133,7 @@ namespace Frontier
             Button(configuration,"BEGIN SKIRMISH",new Rect(28,543,454,64),()=>{game.Autoplay=false;game.StartMatch();},deckReason,deckReason=="");
             Button(configuration,"QUIT",new Rect(28,630,454,44),()=>Application.Quit());
             Label(menuPanel,"FIVE-ERA LAND GAME",new Rect(100,665,840,35),23,gold);
-            Label(menuPanel,game.Rules.civs.Length+" civilizations · Custom decks · Civilization age paths\nBanks · Merchant caravans · Staffed workshops · Guarded treasures\nIndependent project. Not affiliated with Age of Empires or its publishers.",new Rect(100,715,820,110),18,muted);
+            Label(menuPanel,game.Rules.civs.Length+" civilizations · British · Dutch · French · Ottomans\nManors · Banks · Coureurs · Free settlers · Trade · Workshops\nIndependent project. Not affiliated with Age of Empires or its publishers.",new Rect(100,715,820,110),18,muted);
         }
         private void ShowCivilizations(bool opponent,int page)
         {
@@ -238,7 +238,8 @@ namespace Frontier
             {
                 selection.text=game.Controls.Selected.Count>1?game.Controls.Selected.Count+" SELECTED  ·  "+selected.def.name:selected.def.name.ToUpperInvariant();
                 details.text=$"HP {selected.hp:0}/{w.MaxHp(selected):0}     ATK {w.Attack(selected):0}     RANGE {(selected.forceMelee?1.4f:selected.def.range):0.#}     POP {selected.def.population}\n{selected.status}  ·  Orders {selected.orders.Count}";
-                if(selected.def.id=="caravan")details.text+="\n"+CaravanSummary(selected);
+                if(selected.owner==0&&selected.def.id=="town"&&w.AutoRecruitSeconds(0)>0)details.text+="\n"+AutoRecruitSummary(selected);
+                else if(selected.def.id=="caravan")details.text+="\n"+CaravanSummary(selected);
                 else if(selected.def.id=="workshop")details.text+=$"\nArtisans in place: {w.AssignedArtisans(selected)} · Prefabs: {p.prefabCharges}";
                 else if(selected.def.shieldAbility)details.text+="\nShield: "+(selected.shieldReadyAt>w.Time?"CHANGING STANCE · "+(selected.shieldReadyAt-w.Time).ToString("0.0")+"s":selected.shielded?"BRACED · movement folds shield":"FOLDED · mobile");
                 else if(selected.def.resource!=ResourceKind.None)details.text+=$"\n{selected.def.resource}: {(World.Sustainable(selected)?"sustainable":selected.remaining.ToString("0"))}  ·  {selected.def.gatherRate:0.##}/s per settler";
@@ -270,7 +271,7 @@ namespace Frontier
                 add("HOLD [J]",()=>game.Controls.IssueOrder(OrderKind.Hold,Vector2.zero),"Defend this position without chasing.",true);
                 if(e.Worker)add("BUILD [B]",ShowBuildMenu,"Choose a building. Shift placement queues construction.",true);
                 add("FOCUS [F]",()=>game.Controls.Focus(e.position),"Center the camera on selection.",true);
-                if(e.def.meleeDamage>0&&e.def.range>2)add(e.forceMelee?"RANGED MODE":"MELEE MODE",()=>{game.Command(new GameCommand{player=0,kind=CommandKind.ToggleMode,actors=game.Controls.Selected.ToArray()});},"Switch the selected unit's preferred combat mode.",true);
+                if(!e.Worker&&e.def.meleeDamage>0&&e.def.range>2)add(e.forceMelee?"RANGED MODE":"MELEE MODE",()=>{game.Command(new GameCommand{player=0,kind=CommandKind.ToggleMode,actors=game.Controls.Selected.ToArray()});},"Switch the selected unit's preferred combat mode.",true);
             }
             if(e.def.kind==EntityKind.Building)
             {
@@ -278,16 +279,20 @@ namespace Frontier
                 bool supportsBatch=false;
                 foreach(var d in game.Rules.entities)if(d.kind==EntityKind.Unit&&d.producer==e.def.id&&game.World.EntityAvailable(0,d))
                 {
+                    // Automatic Ottoman settlers use their own visible timer and
+                    // toggle. A second paid train button would misstate their economy.
+                    if((d.tags&Tags.Villager)!=0&&game.World.AutoRecruitSeconds(0)>0)continue;
                     supportsBatch|=d.batch>1;var unit=d;int count=TrainingCount(unit);
                     var producer=TrainingProducer(e,unit,count);string reason=game.World.ProductionReason(0,producer,unit.id,false,count);
                     add(d.name+(count>1?" ×"+count:"")+"\n"+ShortCost(game.World.UnitCost(0,d)*count),()=>{
                         int requested=TrainingCount(unit);var chosen=TrainingProducer(e,unit,requested);
                         game.Command(new GameCommand{player=0,kind=CommandKind.Train,actors=new[]{chosen.id},item=unit.id,count=requested});InvalidateActions();
-                    },d.description+"\n"+count+" unit(s), "+(count*d.population)+" population, "+d.time+"s.\n"+(count*d.trainXp).ToString("0.#")+" XP on completed training. "+reason,reason=="");
+                    },d.description+"\nAge "+game.World.UnitAge(0,d)+" · "+count+" unit(s), "+(count*d.population)+" population, "+d.time+"s.\n"+(count*d.trainXp).ToString("0.#")+" XP on completed training. "+reason,reason=="");
                 }
                 if(supportsBatch)add(batchTraining?"TRAIN: BATCH":"TRAIN: SINGLE",()=>{batchTraining=!batchTraining;InvalidateActions();},"Choose one unit or the allowed batch per click. Shift also requests a batch. Costs and population are paid for the whole batch.",true);
                 if(e.def.id=="trade_post")for(int mode=0;mode<4;mode++){int chosen=mode;string label=mode==0?"XP":((ResourceKind)mode).ToString();add((mode==(int)e.tradeMode?"[ACTIVE] ":"")+label,()=>{game.Command(new GameCommand{player=0,kind=CommandKind.TradeMode,actors=new[]{e.id},index=chosen});InvalidateActions();},"Choose the reward paid when the caravan reaches this site.",mode==0||game.World.Players[0].technologies.Contains("cargo_ledgers"));}
                 if(e.def.id=="town")add("ADVANCE AGE",ShowAgeChoices,"Queue the next age with a governor reward. "+game.World.AgeReason(0,e),game.World.AgeReason(0,e)=="");
+                if(e.def.id=="town"&&game.World.AutoRecruitSeconds(0)>0)add(e.autoRecruitPaused?"AUTO SETTLERS: OFF":"AUTO SETTLERS: ON",()=>{game.Command(new GameCommand{player=0,kind=CommandKind.ToggleRecruitment,actors=new[]{e.id}});InvalidateActions();},"Free recruitment at each town center. Toggle to pause or resume. Worker limit, housing, safe exits and mosque technologies still apply.",true);
                 if(e.def.id=="workshop")add("MANUFACTURE",()=>ShowManufacture(e,0),"Assign settlers by right-clicking this workshop. Orders need artisans physically working here.",true);
                 if(Array.Exists(game.Rules.techs,t=>t.building==e.def.id&&(string.IsNullOrEmpty(t.civilization)||t.civilization==game.World.Players[0].civilization)))add("TECHNOLOGIES",()=>ShowTechnologies(e,0),"Research upgrades for current and future units.",true);
                 if(e.def.garrison>0)add("UNGARRISON "+e.occupants.Count,()=>game.Command(new GameCommand{player=0,kind=CommandKind.Ungarrison,actors=new[]{e.id}}),"Release sheltered units at a safe exit.",e.occupants.Count>0);
@@ -301,6 +306,7 @@ namespace Frontier
             add("GROUPS",ShowGroups,"Save and recall selected objects. Ctrl / Command + number also saves.",true);
             if(e.def.kind==EntityKind.Unit)add("GARRISON [G]",()=>game.Controls.BeginGarrison(),"Choose a completed friendly shelter, including a damaged one. Capacity is checked on arrival.",true);
             if(e.Worker||e.def.repairArtillery)add("REPAIR [R]",()=>game.Controls.BeginRepair(),e.Worker?"Choose a damaged friendly building. Use this to repair a workshop instead of manufacturing.":"Choose damaged friendly artillery to repair.",true);
+            if(e.Worker&&e.def.meleeDamage>0&&e.def.range>2)add(e.forceMelee?"RANGED MODE":"MELEE MODE",()=>game.Command(new GameCommand{player=0,kind=CommandKind.ToggleMode,actors=game.Controls.Selected.ToArray()}),"Switch the selected worker's preferred combat mode.",true);
             if(e.def.id=="caravan")add("TRADE ROUTE",()=>ShowCaravanRoutes(e,0),"Choose a completed waystation. The cart loads paid cargo at a nearby town and earns coin only on arrival. Move / Stop abandons cargo without refund.",true);
             if(e.def.shieldAbility)add(e.shielded?"FOLD SHIELD":"BRACE SHIELD",()=>{game.Command(new GameCommand{player=0,kind=CommandKind.ToggleShield,actors=game.Controls.Selected.ToArray()});InvalidateActions();},"Changing stance takes 2 seconds. Bracing protects against ranged fire and prevents movement; moving or pursuing an attack folds the shield first.",game.World.Time>=e.shieldReadyAt);
             for(int i=0;i<e.queue.Count&&i<6;i++)
@@ -342,7 +348,7 @@ namespace Frontier
             if(game.Controls.FirstSelected==null||!game.Controls.Selected.Exists(id=>game.World.Get(id)?.Worker==true)){game.Notify("Select settlers before opening the building menu");return;}
             var box=Modal("CONSTRUCTION",640);int n=0;var p=game.World.Players[0];
             foreach(var d in game.Rules.entities)if(d.kind==EntityKind.Building&&game.World.EntityAvailable(0,d))
-            {var def=d;int i=n++;Button(box,d.name+"  ·  "+ShortCost(game.World.EntityCost(0,d))+"\nAge "+d.age+"  ·  "+d.time+"s",new Rect(25+(i%3)*275,90+(i/3)*133,265,117),()=>{CloseModal();game.Controls.BeginBuild(def.id);},d.description,p.age>=d.age);}
+            {var def=d;int i=n++;int age=game.World.UnitAge(0,d);Button(box,d.name+"  ·  "+ShortCost(game.World.EntityCost(0,d))+"\nAge "+age+"  ·  "+d.time+"s",new Rect(25+(i%3)*275,90+(i/3)*133,265,117),()=>{CloseModal();game.Controls.BeginBuild(def.id);},d.description,p.age>=age);}
         }
         public void ShowGroups()
         {
@@ -385,6 +391,8 @@ namespace Frontier
             if(t.manufactureSpeed!=0)parts.Add("manufacture +"+(t.manufactureSpeed*100).ToString("0")+"%");
             if(t.buildSpeed!=0)parts.Add("construction +"+(t.buildSpeed*100).ToString("0")+"%");
             if(t.trainSpeed!=0)parts.Add("training +"+(t.trainSpeed*100).ToString("0")+"%");
+            if(t.villagerLimit!=0)parts.Add("settler limit +"+t.villagerLimit);
+            if(t.autoVillagerSpeed!=0)parts.Add("automatic settlers +"+(t.autoVillagerSpeed*100).ToString("0")+"% speed");
             return string.Join(", ",parts);
         }
         private string CardSummary(CardDef card)
@@ -404,7 +412,9 @@ namespace Frontier
             text+=$"Resistance: melee {d.meleeResist*100:0}% / ranged {d.rangedResist*100:0}% / siege {d.siegeResist*100:0}%\n\n";
             text+="Target bonuses (highest matching bonus applies):\n";foreach(var bonus in d.bonuses)text+=bonus.tags+" ×"+bonus.multiplier.ToString("0.##")+"    ";
             if(d.bonuses.Length==0)text+="None";
-            text+="\n\nCost: "+(entity.owner>=0?w.UnitCost(entity.owner,d).ToString():d.cost.ToString())+"    Time "+d.time+"s    Age "+d.age;
+            if(d.meleeBonuses.Length>0){text+="\nMelee-only bonuses: ";foreach(var bonus in d.meleeBonuses)text+=bonus.tags+" ×"+bonus.multiplier.ToString("0.##")+"    ";}
+            if(d.meleeSplash>0)text+="\nMelee area radius: "+d.meleeSplash.ToString("0.##");
+            text+="\n\nCost: "+(entity.owner>=0?w.UnitCost(entity.owner,d).ToString():d.cost.ToString())+"    Time "+d.time+"s    Age "+(entity.owner>=0?w.UnitAge(entity.owner,d):d.age);
             if(entity.owner==0){text+="\nActive matching upgrades: ";foreach(var id in w.Players[entity.owner].technologies){var t=game.Rules.Tech(id);if((t.units==null||t.units.Length==0||Array.IndexOf(t.units,d.id)>=0)&&(t.tags==Tags.None||(t.tags&d.tags)!=0))text+=t.name+" ("+TechSummary(t)+")  ";}}
             Label(box,text,new Rect(25,90,815,485),18);
         }
@@ -448,6 +458,12 @@ namespace Frontier
             if(cart.routeLeg==0)return "No trade route · choose TRADE ROUTE to begin";
             string leg=cart.routeLeg==1?"Travelling to town / loading":cart.routeLeg==2?"Paid cargo outbound":"Returning to town";
             return leg+" · Cargo paid: "+(cart.cargoPaid.food+cart.cargoPaid.wood+cart.cargoPaid.coin>0?ShortCost(cart.cargoPaid):"none");
+        }
+        private string AutoRecruitSummary(EntityState town)
+        {
+            var w=game.World;int workers=0;foreach(var e in w.Entities)if(e.Alive&&e.owner==town.owner&&e.Worker)workers++;
+            float seconds=w.AutoRecruitSeconds(town.owner);string reason=w.AutoRecruitReason(town);
+            return "Free settlers: "+Mathf.Min(town.autoRecruitElapsed,seconds).ToString("0.0")+"/"+seconds.ToString("0.0")+"s · Workers "+workers+"/"+w.WorkerLimit(town.owner)+"\n"+(reason==""?"Recruiting automatically":reason);
         }
         private void ShowCaravanRoutes(EntityState cart,int page)
         {

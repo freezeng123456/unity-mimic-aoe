@@ -12,18 +12,21 @@ namespace Frontier
         readonly int player;
         float manufactureAt;
         public AiCivilizationEconomy(World world,int player){this.world=world;this.player=player;}
-        public string Building=>world.Players[player].civilization=="wayfarer"?"waystation":world.Players[player].civilization=="highland"?"workshop":"";
+        public string Building=>world.Players[player].civilization=="wayfarer"?"waystation":world.Players[player].civilization=="highland"?"workshop":world.Players[player].civilization=="ottoman"?"mosque":"";
         public static bool CanReassign(EntityState worker)=>worker.Alive&&worker.Worker&&worker.garrisonedIn==0&&!worker.hold&&worker.orders.Count<=1&&(worker.orders.Count==0||worker.orders.Peek().kind==OrderKind.Gather);
         public void Tick(List<EntityState> own,List<EntityState> workers,List<EntityState> visible,Cost reserve,bool saving,bool underAttack)
         {
             if(world.Paused||world.Winner>=0)return;
             if(Building=="waystation")Trade(own,visible,reserve,saving,underAttack);
             if(Building=="workshop")Manufacture(own,workers,visible,reserve,saving,underAttack);
+            if(Building=="mosque"&&!saving&&!underAttack)ResearchMosque(own,reserve);
         }
         public Cost Forecast(List<EntityState> own,bool saving)
         {
             if(saving)return new Cost();
-            var p=world.Players[player];if(p.age<2)return new Cost();
+            var p=world.Players[player];
+            if(Building=="mosque")return NextMosqueTechnology(own)?.cost??new Cost();
+            if(p.age<2)return new Cost();
             if(Building=="waystation")
             {
                 if(p.resources.coin>=TradeCoinTarget(own))return new Cost();
@@ -34,6 +37,36 @@ namespace Frontier
                 foreach(var recipe in world.Rules.manufactureRecipes)
                     if(string.IsNullOrEmpty(recipe.requires)||p.technologies.Contains(recipe.requires))return recipe.cost;
             return new Cost();
+        }
+        // Free settlers still need a paid infrastructure economy. Keep mosque
+        // investment visible to gathering and other military queues so repeated
+        // recruitment cannot consume every wood/coin increment first.
+        public Cost TechnologyReserve(List<EntityState> own,bool saving,bool underAttack)
+            =>saving||underAttack?new Cost():NextMosqueTechnology(own)?.cost??new Cost();
+        TechDef NextMosqueTechnology(List<EntityState> own)
+        {
+            if(Building!="mosque"||!own.Exists(e=>e.Alive&&e.Complete&&e.def.id=="mosque"&&e.queue.Count==0))return null;
+            var p=world.Players[player];int workers=0;
+            foreach(var e in own)if(e.Alive&&e.Worker)workers++;
+            bool needLimit=workers>=world.WorkerLimit(player)-4;
+            TechDef speed=null,limit=null;
+            foreach(var t in world.Rules.techs)
+            {
+                if(t.building!="mosque"||t.age>p.age||p.technologies.Contains(t.id)||
+                    !string.IsNullOrEmpty(t.civilization)&&t.civilization!=p.civilization||
+                    !string.IsNullOrEmpty(t.requires)&&!p.technologies.Contains(t.requires))continue;
+                bool pending=own.Exists(e=>e.queue.Exists(j=>j.kind=="Research"&&j.item==t.id))||p.shipments.Exists(s=>world.Rules.Card(s.card)?.tech==t.id);
+                if(pending)continue;
+                if(t.villagerLimit>0&&limit==null)limit=t;
+                if(t.autoVillagerSpeed>0&&speed==null)speed=t;
+            }
+            return needLimit&&limit!=null?limit:speed;
+        }
+        void ResearchMosque(List<EntityState> own,Cost reserve)
+        {
+            var upgrade=NextMosqueTechnology(own);if(upgrade==null||!CanSpend(upgrade.cost,reserve))return;
+            var mosque=own.Find(e=>e.Alive&&e.Complete&&e.def.id=="mosque"&&e.queue.Count==0);
+            if(world.ProductionReason(player,mosque,upgrade.id,true)=="")Send(new GameCommand{kind=CommandKind.Research,actors=new[]{mosque.id},item=upgrade.id});
         }
         void Trade(List<EntityState> own,List<EntityState> visible,Cost reserve,bool saving,bool underAttack)
         {
@@ -84,7 +117,7 @@ namespace Frontier
                 if(!producer.Alive||!producer.Complete||producer.def.kind!=EntityKind.Building||producer.queue.Count>0)continue;
                 foreach(var unit in world.Rules.entities)
                 {
-                    if(unit.kind!=EntityKind.Unit||unit.civilian||(unit.tags&Tags.Villager)!=0||unit.producer!=producer.def.id||unit.age>p.age||!world.EntityAvailable(player,unit))continue;
+                    if(unit.kind!=EntityKind.Unit||unit.civilian||(unit.tags&Tags.Villager)!=0||unit.producer!=producer.def.id||world.UnitAge(player,unit)>p.age||!world.EntityAvailable(player,unit))continue;
                     float food=world.UnitCost(player,unit).food;if(food>0)minimum=Mathf.Min(minimum,food);
                 }
             }
@@ -101,7 +134,7 @@ namespace Frontier
                 if(!producer.Alive||!producer.Complete||producer.def.kind!=EntityKind.Building)continue;
                 float largest=0;
                 foreach(var unit in world.Rules.entities)
-                    if(unit.kind==EntityKind.Unit&&!unit.civilian&&(unit.tags&Tags.Villager)==0&&unit.producer==producer.def.id&&unit.age<=p.age&&world.EntityAvailable(player,unit))
+                    if(unit.kind==EntityKind.Unit&&!unit.civilian&&(unit.tags&Tags.Villager)==0&&unit.producer==producer.def.id&&world.UnitAge(player,unit)<=p.age&&world.EntityAvailable(player,unit))
                         largest=Mathf.Max(largest,world.UnitCost(player,unit).coin);
                 target+=largest*2;
             }

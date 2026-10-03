@@ -33,6 +33,9 @@ namespace Frontier
             string civ=Players[player].civilization;
             if(civ=="wayfarer")return unit=="pike"?"escort":unit=="hussar"?"outrider":unit=="skirmisher"?"convoy_gunner":"";
             if(civ=="highland"&&unit=="pike")return "shield_guard";
+            if(civ=="coast"&&unit=="skirmisher")return "longbow";
+            if(civ=="river")return unit=="musketeer"?"skirmisher":unit=="dragoon"?"carabineer":"";
+            if(civ=="ottoman")return unit=="pike"||unit=="musketeer"?"janissary":unit=="skirmisher"?"abus":"";
             return "";
         }
         private AgeChoiceDef ResolveAgeChoice(int player,int age,string id)

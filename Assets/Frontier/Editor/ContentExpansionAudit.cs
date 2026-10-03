@@ -11,12 +11,12 @@ using UnityEngine;
 
 namespace Frontier.Editor
 {
-    // Four-civilization normal-rule simulation. This does not certify visuals,
+    // Civilization normal-rule simulation. This does not certify visuals,
     // native interaction, performance or statistical balance. Every unsuccessful
     // or timed-out case is preserved and listed, never silently retried in place.
     public static class ContentExpansionAudit
     {
-        static readonly string[] Keys={"FRONTIER_REPORT_PATH","FRONTIER_AUDIT_CIV0","FRONTIER_AUDIT_CIV1","FRONTIER_AUDIT_DECK0","FRONTIER_AUDIT_DECK1","FRONTIER_AUDIT_SEED","FRONTIER_AUDIT_LIMIT","FRONTIER_AUDIT_DIFFICULTY"};
+        static readonly string[] Keys={"FRONTIER_REPORT_PATH","FRONTIER_AUDIT_CIV0","FRONTIER_AUDIT_CIV1","FRONTIER_AUDIT_DECK0","FRONTIER_AUDIT_DECK1","FRONTIER_AUDIT_SEED","FRONTIER_AUDIT_LIMIT","FRONTIER_AUDIT_DIFFICULTY","FRONTIER_AUDIT_CIVS"};
         public static void Run()=>Execute(false);
         public static void RunPilot()=>Execute(true);
         static void Execute(bool pilot)
@@ -30,16 +30,29 @@ namespace Frontier.Editor
             float limit=3600;if(!string.IsNullOrEmpty(prior["FRONTIER_AUDIT_LIMIT"]))limit=float.Parse(prior["FRONTIER_AUDIT_LIMIT"],CultureInfo.InvariantCulture);
             if(float.IsNaN(limit)||float.IsInfinity(limit)||limit<=0)throw new ArgumentOutOfRangeException("FRONTIER_AUDIT_LIMIT");
             var rules=Catalog.Load();var cases=new List<Case>();
-            string[] civs={"coast","river","wayfarer","highland"};
+            // No selector means the entire authored catalog (currently six,
+            // hence 36 ordered matchups). CIVS selects a comma-separated subset;
+            // CIV0 and CIV1 together select exactly one ordered case. These do
+            // not bypass current-source passing tests or natural-end criteria.
+            bool single=!string.IsNullOrEmpty(prior["FRONTIER_AUDIT_CIV0"])||!string.IsNullOrEmpty(prior["FRONTIER_AUDIT_CIV1"]);
+            bool subset=!string.IsNullOrEmpty(prior["FRONTIER_AUDIT_CIVS"]);
+            if(single&&(string.IsNullOrEmpty(prior["FRONTIER_AUDIT_CIV0"])||string.IsNullOrEmpty(prior["FRONTIER_AUDIT_CIV1"])))throw new ArgumentException("Single-case audit requires both FRONTIER_AUDIT_CIV0 and FRONTIER_AUDIT_CIV1");
+            if(single&&subset)throw new ArgumentException("Use either CIVS or CIV0/CIV1, not both");
+            string[] civs=single?new[]{prior["FRONTIER_AUDIT_CIV0"],prior["FRONTIER_AUDIT_CIV1"]}.Distinct().ToArray():
+                subset?prior["FRONTIER_AUDIT_CIVS"].Split(',').Select(c=>c.Trim()).ToArray():
+                pilot?new[]{"france","ottoman"}:rules.civs.Select(c=>c.id).ToArray();
+            if(civs.Length==0||civs.Any(string.IsNullOrEmpty)||civs.Distinct().Count()!=civs.Length)throw new ArgumentException("Civilization selection must be nonempty and contain no duplicates");
             foreach(var civ in civs)if(rules.Civ(civ)==null)throw new InvalidOperationException("Missing civilization: "+civ);
+            if(pilot&&!single&&civs.Length!=2)throw new ArgumentException("Pilot requires exactly two civilizations");
             foreach(var a in civs)foreach(var b in civs)
             {
-                if(pilot&&!(a=="wayfarer"&&b=="highland"||a=="highland"&&b=="wayfarer"))continue;
+                if(single&&(a!=prior["FRONTIER_AUDIT_CIV0"]||b!=prior["FRONTIER_AUDIT_CIV1"]))continue;
+                if(pilot&&!single&&a==b)continue;
                 var deck0=DeckLibrary.Preset(rules,a,"economy").ToArray();var deck1=DeckLibrary.Preset(rules,b,"military").ToArray();
                 if(DeckLibrary.Validate(rules,a,deck0)!=""||DeckLibrary.Validate(rules,b,deck1)!="")throw new InvalidOperationException("Invalid authored deck for "+a+" / "+b);
                 cases.Add(new Case{id=a+"-vs-"+b,civilization0=a,civilization1=b,deck0=deck0,deck1=deck1});
             }
-            var manifest=new Matrix{pilot=pilot,appVersion=Application.version,unityVersion=Application.unityVersion,startedUtc=DateTime.UtcNow.ToString("o"),limit=limit,cases=cases.ToArray(),sourcesBefore=Sources(project)};
+            var manifest=new Matrix{pilot=pilot,selectedCivilizations=civs,selection=single?"single_pair":subset?"subset":pilot?"pilot":"all_catalog",appVersion=Application.version,unityVersion=Application.unityVersion,startedUtc=DateTime.UtcNow.ToString("o"),limit=limit,cases=cases.ToArray(),sourcesBefore=Sources(project)};
             manifest.sourceFingerprintBefore=Fingerprint(manifest.sourcesBefore);
             manifest.testReceipt=RequireCurrentTests(project,manifest.sourceFingerprintBefore);
             File.WriteAllText(Path.Combine(directory,"catalog-loaded.json"),JsonUtility.ToJson(rules,true));
@@ -100,6 +113,13 @@ namespace Frontier.Editor
                     {p.engineerPaidRepairs++;p.repairedHp+=e.economy.hpAfter-e.economy.hpBefore;}
                 }
                 if(e.kind=="AgeRouteChosen")p.ageRoutes.Add(e.message);
+                if(e.kind=="AutomaticWorkerProduced")p.automaticWorkersProduced+=(int)e.amount;
+                if(e.kind=="Technology")
+                {
+                    var technology=rules.Tech(e.message.Split(' ')[0]);
+                    if(technology!=null&&technology.villagerLimit>0)p.workerLimitTechnologies++;
+                    if(technology!=null&&technology.autoVillagerSpeed>0)p.autoWorkerSpeedTechnologies++;
+                }
                 if(e.kind=="Spawn"&&entityTypes.TryGetValue(e.entity,out string spawned)&&rules.Entity(spawned).civilization==p.civilization)p.specialistSpawns++;
                 if(e.kind=="Damage"&&entityTypes.TryGetValue(e.entity,out string damaging)&&rules.Entity(damaging).civilization==p.civilization){p.specialistDamageEvents++;p.specialistDamage+=e.amount;}
                 if(e.kind=="CaravanRoute")p.caravanRoutes++;
@@ -116,6 +136,7 @@ namespace Frontier.Editor
                 {
                     string id=e.message.Split(' ')[0];var definition=rules.Entity(id);
                     if(definition!=null&&definition.civilization==p.civilization)p.specialistUnitsQueued+=(int)e.amount;
+                    if(definition!=null&&(definition.tags&Tags.Villager)!=0)p.paidWorkersQueued+=(int)e.amount;
                 }
             }
             result.eventKinds=counts.OrderBy(pair=>pair.Key,StringComparer.Ordinal).Select(pair=>new Count{kind=pair.Key,count=pair.Value}).ToArray();
@@ -159,13 +180,14 @@ namespace Frontier.Editor
             public string scope="Normal-rule AI strategy and content coverage; not native UI, visuals, audio, performance or statistical balance";
             public string map="Fixed authored map; seed is reproducibility, not a multi-map sample";
             public string status="running",appVersion,unityVersion,startedUtc,finishedUtc,sourceFingerprintBefore,sourceFingerprintAfter,catalogSha256;
+            public string selection;public string[] selectedCivilizations;
             public bool pilot,sourcesStable;public int seed=314159,maxAge=5;public float limit;public string difficulty="standard";
             public Source[] sourcesBefore,sourcesAfter;public Source testReceipt;public Case[] cases;
         }
         [Serializable]sealed class Case{public string id,civilization0,civilization1,status="pending",startedUtc,finishedUtc,error;public string[] deck0,deck1;public double wallSeconds;public Result result;public Observation observations;public Source[] files;}
         [Serializable]sealed class Result{public int winner,age0,age1,events;public float seconds;public string civilization0,civilization1;}
         [Serializable]sealed class Observation{public int events,naturalEnds,resigns;public Count[] eventKinds;public PlayerObservation[] players;}
-        [Serializable]sealed class PlayerObservation{public string civilization;public int payments,caravanRoutes,paidCargoLoads,deliveries,lostCargo,manufactureQueued,manufactureCompleted,prefabsUsed,shieldChanges,artisanAssignments,engineerRepairOrders,engineerPaidRepairs,specialistUnitsQueued,specialistSpawns,specialistDamageEvents;public float deliveredCoin,repairedHp,specialistDamage;public List<string> ageRoutes=new List<string>();}
+        [Serializable]sealed class PlayerObservation{public string civilization;public int paidWorkersQueued,automaticWorkersProduced,workerLimitTechnologies,autoWorkerSpeedTechnologies;public int payments,caravanRoutes,paidCargoLoads,deliveries,lostCargo,manufactureQueued,manufactureCompleted,prefabsUsed,shieldChanges,artisanAssignments,engineerRepairOrders,engineerPaidRepairs,specialistUnitsQueued,specialistSpawns,specialistDamageEvents;public float deliveredCoin,repairedHp,specialistDamage;public List<string> ageRoutes=new List<string>();}
         [Serializable]sealed class Count{public string kind;public int count;}
         [Serializable]sealed class Source{public string path,sha256;}
         [Serializable]sealed class TestEvidence{public string sourceFingerprint;public TestReports reports;}

@@ -16,7 +16,7 @@ namespace Frontier
         public void Tick(EntityState town,int workers,int soldiers,int visibleRaiders,bool advancing)
         {
             if(world.Paused||world.Winner>=0)return;
-            var p=world.Players[player];int required=p.age==1?12:p.age==2?20:p.age==3?30:38;
+            var p=world.Players[player];int required=Math.Min(world.WorkerLimit(player),p.age==1?12:p.age==2?20:p.age==3?30:38);
             if(TargetAge>0)
             {
                 if(advancing||p.age>=TargetAge){End(town,"Age study queued or completed",0);return;}
@@ -50,6 +50,8 @@ namespace Frontier
             string civ=world.Players[player].civilization;
             string preferred=civ=="coast"?(underAttack?"militia":"homestead"):
                 civ=="river"?(underAttack?"contracts":"banking"):
+                civ=="france"?(underAttack?"cavalry":"homesteads"):
+                civ=="ottoman"?(underAttack?"janissaries":"administration"):
                 civ=="wayfarer"?(underAttack?"armed":world.Players[player].age==1?"safe":"distant"):
                 civ=="highland"?(underAttack?"fortress":world.Players[player].age==1?"civil":"ordnance"):"";
             foreach(var choice in choices)

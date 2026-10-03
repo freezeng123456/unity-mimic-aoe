@@ -260,8 +260,26 @@ namespace Frontier
             float damage=(melee?e.def.meleeDamage:e.def.damage)*factor;float baseDamage=damage;DamageKind baseKind=kind;
             if(target.def.kind==EntityKind.Building&&e.def.siegeDamage>0){damage=e.def.siegeDamage*(e.def.damage>0?Attack(e)/Mathf.Max(1,e.forceMelee?e.def.meleeDamage:e.def.damage):1);kind=DamageKind.Siege;}
             float multiplier=1;foreach(var bonus in e.def.bonuses)if((bonus.tags&target.def.tags)!=0)multiplier=Mathf.Max(multiplier,bonus.multiplier);
+            if(kind==DamageKind.Melee)foreach(var bonus in e.def.meleeBonuses)if((bonus.tags&target.def.tags)!=0)multiplier=Mathf.Max(multiplier,bonus.multiplier);
             damage*=multiplier;
-            if(melee||e.def.projectileSpeed<=0)ApplyDamage(target,damage,kind,e.owner,e.id);
+            if(melee||e.def.projectileSpeed<=0)
+            {
+                var impact=target.position;
+                ApplyDamage(target,damage,kind,e.owner,e.id);
+                if(e.def.meleeSplash>0&&kind==DamageKind.Melee)
+                {
+                    var victims=new List<EntityState>();
+                    foreach(var other in Nearby(impact,e.def.meleeSplash))
+                        if(other.id!=target.id&&other.garrisonedIn==0&&(other.owner>=0||Guardian(other))&&other.owner!=e.owner&&other.def.kind==EntityKind.Unit)victims.Add(other);
+                    foreach(var other in victims)
+                    {
+                        float bonus=1;foreach(var b in e.def.bonuses)if((b.tags&other.def.tags)!=0)bonus=Mathf.Max(bonus,b.multiplier);
+                        foreach(var b in e.def.meleeBonuses)if((b.tags&other.def.tags)!=0)bonus=Mathf.Max(bonus,b.multiplier);
+                        ApplyDamage(other,baseDamage*bonus*.5f,DamageKind.Melee,e.owner,e.id);
+                    }
+                    if(victims.Count>0)Emit("MeleeAreaHit",e.owner,e.id,"Nearby enemies struck",victims.Count,target.id,impact);
+                }
+            }
             else Projectiles.Add(new ProjectileState{source=e.id,target=target.id,owner=e.owner,start=e.position,end=target.position,firedAt=Time,hitAt=Time+Mathf.Max(.08f,Vector2.Distance(e.position,target.position)/e.def.projectileSpeed),damage=damage,baseDamage=baseDamage,siegeDamage=e.def.siegeDamage*factor,baseKind=baseKind,splash=e.def.splash,kind=kind});
             Emit("Fire",e.owner,e.id,kind.ToString(),damage,target.id);e.status="Reloading";
         }

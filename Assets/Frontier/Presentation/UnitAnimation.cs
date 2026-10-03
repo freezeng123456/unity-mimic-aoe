@@ -8,7 +8,7 @@ namespace Frontier
         public UnitPoseState state;
         public WorkerTool tool;
         public bool moving,melee,bow,polearm,deployed,reloading;
-        public bool shielded,loadedCargo;
+        public bool shielded,loadedCargo,sweepingMelee;
         public float locomotionPhase,actionPhase,hurt,death;
     }
     // Read-only pose evaluation. Event times come from the incremental presentation
@@ -19,8 +19,9 @@ namespace Frontier
         {
             var pose=new AnimationPose{state=UnitPoseState.Idle};if(entity==null)return pose;
             pose.melee=entity.shotMelee||entity.forceMelee||entity.def.damageKind==DamageKind.Melee;
-            pose.bow=entity.def.id=="longbow";pose.polearm=entity.def.id=="pike"||entity.def.id=="escort"||entity.def.id=="shield_guard";pose.deployed=entity.isDeployed;
+            pose.bow=entity.def.id=="longbow";pose.polearm=entity.def.id=="pike"||entity.def.id=="escort"||entity.def.id=="shield_guard"||entity.def.id=="halberdier";pose.deployed=entity.isDeployed;
             pose.shielded=entity.shielded;pose.loadedCargo=entity.cargoPaid.food+entity.cargoPaid.wood+entity.cargoPaid.coin>0;
+            pose.sweepingMelee=entity.def.meleeSplash>0;
             pose.hurt=Mathf.Clamp01(1-(time-hurtAt)/.2f);
             if(!entity.Alive){pose.state=UnitPoseState.Death;pose.death=Mathf.Clamp01((time-deathAt)/.65f);return pose;}
             bool moving=(entity.status=="Moving"||entity.def.id=="caravan")&&(entity.position-entity.previousPosition).sqrMagnitude>.0001f;
@@ -45,13 +46,15 @@ namespace Frontier
                 float began=entity.attackReadyAt-Mathf.Max(entity.def.period,entity.def.windup+.1f)+entity.def.windup;
                 pose.actionPhase=Mathf.InverseLerp(began,entity.attackReadyAt,time);
             }
-            if(entity.Worker&&(pose.state==UnitPoseState.PreparingAttack||pose.state==UnitPoseState.Fire||pose.state==UnitPoseState.Reloading))pose.tool=WorkerTool.Axe;
+            if(entity.Worker&&(entity.def.id!="coureur"||pose.melee)&&(pose.state==UnitPoseState.PreparingAttack||pose.state==UnitPoseState.Fire||pose.state==UnitPoseState.Reloading))pose.tool=WorkerTool.Axe;
             return pose;
         }
         public static void Apply(UnitRig rig,AnimationPose pose)
         {
             if(rig==null)return;rig.RestoreInitialPose();rig.WorkerEquipment?.Show(pose.tool);
             if(rig.RepairWeapon!=null)rig.RepairWeapon.gameObject.SetActive(pose.tool==WorkerTool.None);
+            if(rig.WorkerFirearm!=null)rig.WorkerFirearm.gameObject.SetActive(pose.tool==WorkerTool.None);
+            if(rig.MeleeWeapon!=null){rig.Weapon.gameObject.SetActive(!pose.melee);rig.MeleeWeapon.gameObject.SetActive(pose.melee);}
             if(rig.Cargo!=null)rig.Cargo.gameObject.SetActive(pose.loadedCargo);
             if(rig.Shield!=null&&rig.Shield.name=="Folding pavise")
             {rig.Shield.localPosition=pose.shielded?new Vector3(0,.68f,.51f):new Vector3(-.48f,.90f,.06f);rig.Shield.localRotation=Quaternion.Euler(0,pose.shielded?0:65,0);}
@@ -89,8 +92,8 @@ namespace Frontier
                 else if(pose.melee)
                 {
                     float swing=pose.state==UnitPoseState.Fire?pose.actionPhase:0;
-                    Arm(rig,false,new Vector3(.24f,1.48f-.5f*swing,.3f));
-                    WeaponRotation(rig,Quaternion.Euler(Mathf.Lerp(20,125,swing),0,-20));
+                    Arm(rig,false,new Vector3(.24f+(pose.sweepingMelee?.3f*Mathf.Sin(swing*Mathf.PI):0),1.48f-.5f*swing,.3f));
+                    WeaponRotation(rig,Quaternion.Euler(Mathf.Lerp(20,125,swing),pose.sweepingMelee?Mathf.Lerp(-40,40,swing):0,-20));
                 }
                 else if(pose.bow)
                 {
