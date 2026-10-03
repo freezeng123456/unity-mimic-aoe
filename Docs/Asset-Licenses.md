@@ -1,8 +1,26 @@
 # 素材来源与许可
 
-本轮核对日期2026-10-02，适用055 / 0.2.31当前源码；2026-09-14的0.2.20及后续历史增量保留在下文。0.2.17新增本项目编写的OutcropArt.cs原创岩体网格，本轮新增原创几何、程序化动画与合成通知/环境/音乐，没有增加外部素材或更换既有字体、FBX及Blender源文件。没有下载、提取或分发《帝国时代》商业素材、源码、卡牌画或界面资源。当前验证状态见 [Art-Animation-055.md](Art-Animation-055.md)。
+本轮核对日期：2026-10-04，适用 060 / 0.4.0 视觉改造。新增建筑、单位细节、资源、地面和程序材质均由本项目代码制作；未导入《帝国时代》商业模型、纹理、源码、卡牌画、音频或界面资源。既有 Noto 字体、原创火枪手 FBX / Blender 源文件与第三方许可保留。下文带版本号的记录属于历史来源说明，不能作为本轮美术或原生运行验收结果。当前状态见 [Model-Upgrade-060](Model-Upgrade-060.md) 与 [Known-Issues](Known-Issues.md)。
 
-## 本项目制作
+## 0.4.0 / 060 原创视觉资产与程序材质
+
+| 新增或调整内容 | 可审查来源 | 来源与许可边界 |
+| --- | --- | --- |
+| 14 类建筑、六文明样式、时代附件与施工分组 | [DetailedArchitecture.cs](../Assets/Frontier/Presentation/DetailedArchitecture.cs)、[ArchitecturalGeometry.cs](../Assets/Frontier/Presentation/ArchitecturalGeometry.cs)、[ArchitectureModel.cs](../Assets/Frontier/Presentation/ArchitectureModel.cs) | 本项目编写的顶点/三角形、截面旋转体、屋面、门窗、拱廊和合并网格；不是导入、提取或重新贴色的商业游戏模型。专属建筑按其文明归一化，组合测试数量不表示同数目的独立原作资产。 |
+| 建筑砖石、灰泥、瓦/石板、木材、金属、玻璃、布和土地表面 | [ArchitecturalMaterials.cs](../Assets/Frontier/Presentation/ArchitecturalMaterials.cs) | 原创周期函数、砖缝/纹理规则与法线计算生成 256px 颜色/法线贴图，配合 URP 参数；没有外部照片、扫描、商业纹理或生成式位图输入。材质算法的原创来源不替代 Unity/URP 使用许可。 |
+| 人物、坐骑、炮械和货车细节及颜色图集 | [DetailedUnits.cs](../Assets/Frontier/Presentation/DetailedUnits.cs)、既有 [ProceduralArt.cs](../Assets/Frontier/Presentation/ProceduralArt.cs)、[AuthoredInfantry.cs](../Assets/Frontier/Presentation/AuthoredInfantry.cs) | 原创衣身、面部、装备、马具、炮管和车辆网格，按关节/显隐组合并；共享颜色图集由代码生成。继续使用 0.2.4 的原创火枪手 FBX，不引入第三方骨骼或动画片段。 |
+| 树木、矿石、浆果、鹿、货箱与环境道具 | [DetailedEnvironment.cs](../Assets/Frontier/Presentation/DetailedEnvironment.cs) | 本项目手工编写的分叉、截面、枝叶、矿脉和分类货物几何；未使用下载植物包、动物模型或扫描资产。 |
+| 草地/裸土表面、中立贸易车 | [LandscapePresentation.cs](../Assets/Frontier/Presentation/LandscapePresentation.cs)、[WorldView.cs](../Assets/Frontier/Presentation/WorldView.cs) | 原创噪声与纹理函数生成 1024px 地面颜色/法线图，中立车辆使用原创合并几何；不复制外部地图、地表图或车辆模型。 |
+| URP 建筑、时代、施工、单位与环境检查图 | ArchitectureReview060Tests、DetailedModelStudy060Tests 与各图来源回执 | 图像来自项目自己的网格、材质和 URP 实际渲染；文字沿用既有 Noto 字体及 OFL。检查图不是参考图、概念图，也不单独证明普通对局、人工操作或渲染性能。 |
+
+《帝国时代 III：决定版》官方美术访谈与截图只作为外部观察参考，来源和具体观察见 [Architecture-References-060](Architecture-References-060.md)。官方图片不进入运行时资产或作为本项目原创图像分发；六文明建筑语言是本项目的设计方向，不宣称获得商业资产授权、逐个复刻原作国家模型或得到原作方认可。
+
+2026-10-04 重新计算，`NotoSans-Regular.ttf`、`FrontierInfantry.fbx`、`SourceAssets/Characters/Infantry024/FrontierInfantry.blend` 的文件大小与 SHA-256 均与下文原记录一致。FBX 本轮只调整 Unity importer 的可读设置以支持运行时合批，未替换 FBX 文件。实际锁定的 URP 17.6.0、Input System 1.20.0、UGUI 2.6.0、Test Framework 1.8.0 继续沿用；随附许可全文、字体归属与第三方声明不变。
+
+本轮主方向光启用软阴影，仍使用现有 URP；这项表现设置不引入新的外部资产，也不改变引擎或依赖许可。最终原生构建、性能与图审状态由 060 验收记录单独说明。
+
+
+## 本项目制作（055 历史清单）
 
 | 内容 | 来源 | 用途与范围 | 验收边界 |
 |---|---|---|---|

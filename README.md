@@ -2,11 +2,11 @@
 
 独立 Unity 陆战即时战略游戏：英国、荷兰、法国、奥斯曼四个经典文明核心玩法，加上远驿盟市、山岭工联两个原创文明，共六文明。五个时代、25张卡组与XP船运、银行、实车贸易、工坊制造、守卫宝藏和炮兵攻城，配有原创模型、动画与音频。使用本项目规则和候选数值，与 Age of Empires 及其发行商无关联。
 
-**当前源码版本为 0.3.2，目标平台 macOS Apple silicon。** 本轮 287 EditMode＋246 PlayMode，共 **533 项测试通过**。新增框选部队后定点攻击、换靶、追击与炮兵改令验证；8 个混编机动场景全部到达。共享静态地形通行/连通信息后，封路计算峰值约251→9ms、400人首次寻路305→183ms，后者仍有峰值限制。本机200/400单位短时原生压力场景已检查，不替代普通整局和窄口冷启动峰值。详情见[机动验收](Docs/Maneuver-059.md)与[完成状态](Docs/Completion-Status.md)。六文明内容及旧矩阵保留在[0.3.1记录](Docs/Completion-Status-058.md)。
+**当前源码版本为 0.4.0，目标平台 macOS Apple silicon。** 本轮重做六文明建筑轮廓与细节、单位装备、资源道具、地面和主光阴影，**580 项完整测试通过**。15张实际URP检查图与原生基地/交战截图分别归档；本机200/400人短时压力样本中，400人P95为16.97ms、P99为32.53ms，均值和内存成本高于0.3.2，仍需优化长帧。见[建模改造](Docs/Model-Upgrade-060.md)、[完成状态](Docs/Completion-Status.md)和[060证据](Docs/Evidence/060/README.md)。指定攻击、追击、炮兵改令测试再次通过；原8场机动记录保留在[059验收](Docs/Maneuver-059.md)。
 
 ## 启动与操作
 
-0.3.2已重新构建，客户端为 `Frontier-Reckoning-0.3.2-macOS-arm64.zip`。解压打开 `Frontier Reckoning.app`，选择文明、时代上限、难度及卡组，点击 **BEGIN SKIRMISH**。本版原生压力样本与旧版本自动对战分别归档，实际包身份以交付目录的 `manifest.json` 为准。
+0.4.0已重新构建，客户端为 `Frontier-Reckoning-0.4.0-macOS-arm64.zip`。解压打开 `Frontier Reckoning.app`，选择文明、时代上限、难度及卡组，点击 **BEGIN SKIRMISH**。ZIP含许可证与中文指南，版本、构建身份及SHA以交付目录的 `manifest.json` 为准。
 
 源码通过 Unity Hub 使用 **Unity 6000.6.3f1** 打开；主场景为 `Assets/Frontier/Scenes/FrontierSkirmish.unity`。完整说明见[0.3.1 中文试玩指南](Docs/Playtest-058.md)。
 
@@ -63,4 +63,4 @@ C1–C6失败结果原样保留，不跨局拼接。C7缺少单独终局F9和菜
 
 ## 交付边界
 
-目标为macOS arm64、Development / Mono、URP。初构建完成两局16x自动原生对战；最终构建已完成菜单回查，未进行最终GUID的完整对局。原生鼠标工具返回noWindowsAvailable，普通1x手动开局与原生按钮点击没有完成；PlayMode的点击回归另行记录。Windows、Linux、Intel Mac及跨机器签名、公证和安装尚未验证；存档、联网、战役、海战、地图编辑器与确定性回放不在本次范围内。旧性能结果适用于记录的版本、设备与场景，不代表本版或通用帧率保证。
+macOS arm64、Development/Mono、URP。新客户端完成16×自动整局及8×交战观察，原生左键选择、滚轮、快捷键和截图操作有效；本版尚未完成1×人工完整对局。指定攻击与换靶由InputSystem开火/伤害回归验证。Windows、Linux、Intel Mac及跨机器签名、公证尚未验证；存档、联网、战役、海战、地图编辑器与确定性回放尚未实现。580项测试不替代长期实战与美术评审，25秒压力样本也不构成通用60FPS保证。
