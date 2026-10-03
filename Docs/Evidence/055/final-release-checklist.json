@@ -1,20 +1,20 @@
 {
   "schema": 1,
-  "generatedAtUtc": "2026-10-02T12:01:46.640662+00:00",
+  "generatedAtUtc": "2026-10-03T06:09:10.419331+00:00",
   "scope": "Snapshot and executable maintainer checklist for the original A–D contract. Pending player runs or later captures are not presumed complete; update this checklist only from their preserved evidence.",
   "contract": "Docs/Development-Contract.md: A–D stages and original native completion gate; Stage-C-Implementation.md/Landmarks-Implementation.md detail the existing C scope.",
   "identity": {
     "appVersion": "0.2.31",
     "buildGuid": "128a731d440e4b7a94abfcc74b88fa97",
     "sourceFingerprint": "1b45f97f3d90c9b76388419492a83c5622ccb2cf3a365030044403ccd309c1c7",
-    "observedHead": "50d303b76519a3a9b448c27cd2cdeb22779a1e5d",
+    "observedHead": "f201771be36853d627bcfbe1b97b036f33282c3f",
     "headScope": "Observed HEAD, not the future packaging commit. Docs are still being finalized; packaging requires committing all files and recording the resulting actual HEAD."
   },
   "milestones": [
     {
       "id": "A",
       "required": "Unity/URP project; camera, selection, commands, construction, population, production, gathering, basic combat and group navigation, with actual native runtime inspection.",
-      "current": "Implemented and source-bound regression verified; current native menu and ordinary economy/input evidence exist. Final native review remains part of B/C closeout, not a demand to manually repeat every automatic boundary test.",
+      "current": "Passed: 424 source-bound Unity regressions, native independent build and actual ordinary operation retained in B10 and C1-C3 archives.",
       "evidence": [
         "Docs/Evidence/055/Tests",
         "Docs/Evidence/055/Menu",
@@ -23,30 +23,31 @@
       ],
       "closeout": [
         "Retain current native operation observations/F9 identity and actual navigation/production behavior in the B/C playtest record; report any remaining observed interaction failure."
-      ]
+      ],
+      "status": "passed"
     },
     {
       "id": "B",
       "required": "Normal coast mirror 1v1, I–III, legal deck/XP/actual shipments, fog and AI, menu to natural resolution; player must actually gather/build/advance/organize army/fight and cause cannon damage to an enemy building.",
-      "status": "pending",
-      "preservedAttempt": "Docs/Evidence/055/NormalPlayer/coast-attempt-001/summary.json",
-      "attemptStatus": "failed",
+      "status": "passed",
+      "preservedAttempt": "Docs/Evidence/055/NormalPlayer/coast-attempt-010/summary.json",
+      "attemptStatus": "passed",
       "actualPlayerCoverage": {
         "ageII": true,
-        "ageIII": false,
+        "ageIII": true,
         "ageIV": false,
         "ageV": false,
         "paidWorkers": true,
-        "paidMilitary": false,
-        "paidCannon": false,
-        "cannonEnemyBuildingDamage": false,
+        "paidMilitary": true,
+        "paidCannon": true,
+        "cannonEnemyBuildingDamage": true,
         "gathered": true,
         "shipmentArrived": true,
         "paidBank": false,
         "bankIncome": false,
         "specialUnit": false,
         "paidTechnology": false,
-        "treasure": false,
+        "treasure": true,
         "paidTradePost": false,
         "tradeXP": false,
         "resourceMode": false,
@@ -57,7 +58,8 @@
         "Independently audit paid worker/military/cannon completion, actual shipment arrival and Cannon→enemy Building Damage; preserve failures and timeouts.",
         "Keep natural MatchEnded/no Resign and loser zero living units/buildings; TC death alone is insufficient. Record settlement and restart/menu navigation. Natural defeat may qualify if the required player path was genuinely completed."
       ],
-      "latestUnarchivedNativeFailureObservedByCLI": {
+      "current": "B10 normal coast mirror/Easy/III/Economy25, natural defeat958.612976 seconds,17/17 strict checks passed; paid workers/military/cannons, shipments and cannon enemy-building damage completed. Earlier failures unchanged.",
+      "historicalB3Observation": {
         "matchId": "62dbc87afc3d4296a932fd41997856aa",
         "version": "0.2.31",
         "buildGuid": "128a731d440e4b7a94abfcc74b88fa97",
@@ -70,7 +72,7 @@
         "ageIIIQueuedAt": 780.0565795898438,
         "townDiedAt": 791.6537475585938,
         "requiredCannonPathCompleted": false,
-        "archiveScope": "Observed raw already-ended B3 report/events; root/presentation owns subsequent durable archival. It remains a failure of the complete III/cannon path and does not close B.",
+        "archiveScope": "Historical observation at the earlier checklist snapshot; now archived unchanged under Docs/Evidence/055/NormalPlayer/coast-attempt-003. Not the current B result.",
         "sources": [
           {
             "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261002-120047-817-62dbc87afc3d4296a932fd41997856aa-match_finished.json",
@@ -87,7 +89,7 @@
       "id": "C",
       "required": "After B, second civilization and I–V; real coin-worker/house/bank differences, feature unit, paid upgrade behavior, trade/treasure, siege and AI.",
       "status": "pending_native_player",
-      "current": "Rules/lifecycle/source-bound tests and 12 bounded ordinary-rule Editor AI matches exist. No archived completed native river-V player route yet.",
+      "current": "C1/C2/C3 naturally ended and are fully archived failures. C3 reachedV and passed18/19 coverage items; sole gap cannonEnemyBuildingDamage. C4 normal player attempt ongoing, no final conclusion; no cross-match coverage union.",
       "evidence": [
         "Docs/Stage-C-Implementation.md",
         "Docs/Evidence/055/Landmarks/receipt.json",
@@ -98,13 +100,51 @@
         "Verify ordinary payments/production and actual BankIncome, River Carabineer, representative paid technology applied to current/future units, real guard removal/Claim/crate gathering, paid Trading Post with XP and at least one legal resource delivery, and player cannon damage to enemy buildings.",
         "Use the existing rules/upgrade/lifecycle tests for the wider matrix; do not require all technologies or every trade mode to be clicked in one player match.",
         "Keep AI coverage gaps coast/Easy V and river/Standard V, fixed-map scope and non-statistical balance limitations explicit; their earlier natural endings are not evidence of a code defect."
+      ],
+      "preservedAttempts": [
+        {
+          "path": "Docs/Evidence/055/NormalPlayer/river-attempt-001/summary.json",
+          "status": "failed"
+        },
+        {
+          "path": "Docs/Evidence/055/NormalPlayer/river-attempt-002/summary.json",
+          "status": "failed"
+        },
+        {
+          "path": "Docs/Evidence/055/NormalPlayer/river-attempt-003/summary.json",
+          "status": "failed"
+        }
+      ],
+      "latestArchivedCoverage": {
+        "ageII": true,
+        "ageIII": true,
+        "ageIV": true,
+        "ageV": true,
+        "paidWorkers": true,
+        "paidMilitary": true,
+        "paidCannon": true,
+        "cannonEnemyBuildingDamage": false,
+        "gathered": true,
+        "shipmentArrived": true,
+        "paidBank": true,
+        "bankIncome": true,
+        "specialUnit": true,
+        "paidTechnology": true,
+        "treasure": true,
+        "paidTradePost": true,
+        "tradeXP": true,
+        "resourceMode": true,
+        "resourceTradeDelivery": true
+      },
+      "coverageGaps": [
+        "cannonEnemyBuildingDamage"
       ]
     },
     {
       "id": "D",
       "required": "Formal original art, animation, audio and broader scale validation.",
-      "status": "partial",
-      "current": "Original silhouette/geometry and animation coverage, 5 strategy/study image pairs, actual normal nonzero and pause/master-mute PCM windows are preserved. Longer ordinary input and current 50/100/200/400 scope still open.",
+      "status": "passed",
+      "current": "Original art/animation and actual20-second normal/pause/master-mute windows preserved; normal B9 one335.999332 eligible-second window and actual50/100/200/400-unit fixtures passed. 400attempt002 one317.674076 eligible-second window passed. Earlier short/defocused failures retained.",
       "audio": {
         "normal-mix": {
           "path": "Docs/Evidence/055/Audio/normal-mix/audit.json",
@@ -156,6 +196,19 @@
         }
       ],
       "normalPerformance": {
+        "path": "Docs/Evidence/055/Performance/normal-b9-final-001/f8-audit.json",
+        "parserStatus": "passed",
+        "eligibleUnpausedSeconds": 335.999332113266,
+        "meetsCurrent055Planned300SecondWindow": true,
+        "scope": "One actual normal-player window, not a sum of shorter windows."
+      },
+      "closeout": [
+        "Inspect ordinary native screenshots and actual work/combat/death/deployment against current art/animation and HUD readability; isolated study diagrams do not replace the normal client.",
+        "Keep audio lifecycle and nonzero/silence signal proof paired to actual captures. Do not label a waveform audit as subjective listening.",
+        "Complete the currently adopted 055 performance plan: at least 300 eligible normal-player seconds, current 50/100/200/400 activity fixtures and at least 300 eligible seconds for the 400 diagnostic window; explicit parameters, valid focus/pause intervals, real resolution, unit counts, frame quantiles and memory/GC. These numeric windows are the documented bounded 055 plan, not a new claim that the original D contract specified them.",
+        "Report viewport-center counts only for their actual metric; a diagnostic fixture does not prove player economy, natural victory, or visibility of every model."
+      ],
+      "historicalShortNormalPerformance": {
         "path": "Docs/Evidence/055/Performance/normal-short/summary.json",
         "parserStatus": "passed",
         "eligibleUnpausedSeconds": 145.92413636302948,
@@ -163,12 +216,33 @@
         "explicitDurationRequirements": {},
         "meetsCurrent055Planned300SecondWindow": false
       },
-      "closeout": [
-        "Inspect ordinary native screenshots and actual work/combat/death/deployment against current art/animation and HUD readability; isolated study diagrams do not replace the normal client.",
-        "Keep audio lifecycle and nonzero/silence signal proof paired to actual captures. Do not label a waveform audit as subjective listening.",
-        "Complete the currently adopted 055 performance plan: at least 300 eligible normal-player seconds, current 50/100/200/400 activity fixtures and at least 300 eligible seconds for the 400 diagnostic window; explicit parameters, valid focus/pause intervals, real resolution, unit counts, frame quantiles and memory/GC. These numeric windows are the documented bounded 055 plan, not a new claim that the original D contract specified them.",
-        "Report viewport-center counts only for their actual metric; a diagnostic fixture does not prove player economy, natural victory, or visibility of every model."
-      ]
+      "scalePerformance": [
+        {
+          "path": "Docs/Evidence/055/Performance/scale-050-attempt-001/scale-summary.json",
+          "status": "passed",
+          "unitsRequested": 50,
+          "eligibleUnpausedSeconds": 18.94739351463318
+        },
+        {
+          "path": "Docs/Evidence/055/Performance/scale-100-attempt-001/scale-summary.json",
+          "status": "passed",
+          "unitsRequested": 100,
+          "eligibleUnpausedSeconds": 18.349424613952635
+        },
+        {
+          "path": "Docs/Evidence/055/Performance/scale-200-attempt-001/scale-summary.json",
+          "status": "passed",
+          "unitsRequested": 200,
+          "eligibleUnpausedSeconds": 18.49022881889343
+        },
+        {
+          "path": "Docs/Evidence/055/Performance/scale-400-attempt-002/scale-summary.json",
+          "status": "passed",
+          "unitsRequested": 400,
+          "eligibleUnpausedSeconds": 317.6740762023926
+        }
+      ],
+      "preservedFailedScaleAttempt": "Docs/Evidence/055/Performance/scale-400-attempt-001/scale-summary.json"
     }
   ],
   "prohibitedExtraGates": [
@@ -210,7 +284,7 @@
     ]
   },
   "menuOnlyFutureReleasePolicy": {
-    "currentDecision": "Do not change menus/version until the .31 B/C evidence is complete.",
+    "currentDecision": "A/B/D complete; C4 pending. Keep .31 source frozen until full C acceptance; prepare independent .32 menu/version-only release per Docs/Evidence/056/README.md after C.",
     "requiredIfChanged": [
       "Preserve .31 raw native evidence, GUID 128a731d440e4b7a94abfcc74b88fa97, source fingerprint, test XMLs, build receipt and complete client bundle manifest as a frozen evidence set.",
       "For any menu/version edit, record the actual changed files and patch. Rerun full source-bound tests, build separately, and create a new version/GUID/client-bundle manifest/build receipt; do not overwrite .31 identity.",
@@ -237,8 +311,8 @@
       "command": "python3 Docs/Evidence/055/verify_player.py <coast-match_finished.json> --build-guid 128a731d440e4b7a94abfcc74b88fa97 --app-version 0.2.31 --match-id <actual-id> --scenario coast-iii --deck-preset economy --menu-capture <paired-menu-F9.json> --output <new-audit.json>"
     },
     {
-      "purpose": "New C evidence, replace explicit placeholders with actual archived sources",
-      "command": "python3 Docs/Evidence/055/verify_player.py <river-match_finished.json> --build-guid 128a731d440e4b7a94abfcc74b88fa97 --app-version 0.2.31 --match-id <actual-id> --scenario river-v --deck-preset economy --menu-capture <paired-menu-F9.json> --output <new-audit.json>"
+      "purpose": "C normal-player evidence; use actual archived sources and the publicly observed Military25 preset of C2/C3/C4",
+      "command": "python3 Docs/Evidence/055/verify_player.py <river-match_finished.json> --build-guid 128a731d440e4b7a94abfcc74b88fa97 --app-version 0.2.31 --match-id <actual-id> --scenario river-v --deck-preset military --menu-capture <paired-menu-F9.json> --output <new-audit.json>"
     },
     {
       "purpose": "After all evidence/status files are finalized and committed; creates source ZIP/guide/manifest and verifies pre-existing client ZIP",
@@ -344,6 +418,22 @@
     },
     {
       "path": "Docs/Evidence/055/AiMatrix/summary.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/coast-attempt-010/summary.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/river-attempt-003/summary.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/Performance/normal-b9-final-001/f8-audit.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/Performance/scale-400-attempt-002/scale-summary.json",
       "exists": true
     }
   ],

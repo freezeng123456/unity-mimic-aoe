@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "generatedAtUtc": "2026-10-03T03:21:13.395287+00:00",
+  "status": "passed",
+  "scope": "Completed native scale pressure diagnostic; not normal-player, natural-match or whole-viewport evidence",
+  "normalPlayerCapture": false,
+  "unitsRequested": 50,
+  "version": "0.2.31",
+  "buildGuid": "128a731d440e4b7a94abfcc74b88fa97",
+  "matchId": "da34bd23a0094176b1db461c19a6d6f3",
+  "sourceFingerprint": "1b45f97f3d90c9b76388419492a83c5622ccb2cf3a365030044403ccd309c1c7",
+  "checks": {
+    "frozen357SourceMatches055Tests": true,
+    "nonzeroExplicitNativeGuid": true,
+    "bundleRuntimeMatchesReceipt": true,
+    "sameVersionGuidAndMatch": true,
+    "sameUnityAndResolution": true,
+    "completedExitReport": true,
+    "explicitDiagnosticMode": true,
+    "requestedDurationAndWarmup": true,
+    "initialAndEndingActiveUnitsMatchRequested": true,
+    "fixtureStableActualEventCounts": true,
+    "allMemorySnapshotsShowRequestedActualUnits": true,
+    "benchmarkMetricsFiniteAndSamplesPositive": true,
+    "automaticSavedScreenshotCompleted": true,
+    "existingF8AuditorPassedAsDiagnostic": true,
+    "sourceAndRuntimeUnchangedDuringArchive": true,
+    "rawInputsUnchangedDuringArchive": true,
+    "archivesMatchRawInputBytes": true
+  },
+  "benchmark": {
+    "initialActiveUnits": 50,
+    "endingActiveUnits": 50,
+    "seed": 314159,
+    "memoryMb": 36864,
+    "samples": 1187,
+    "gc0": 41,
+    "gc1": 41,
+    "gc2": 41,
+    "appVersion": "0.2.31",
+    "buildGuid": "128a731d440e4b7a94abfcc74b88fa97",
+    "matchId": "da34bd23a0094176b1db461c19a6d6f3",
+    "unity": "6000.6.3f1",
+    "resolution": "2560x1440",
+    "cpu": "Apple M3 Pro",
+    "gpu": "Apple M3 Pro",
+    "build": "Development / Mono / macOS arm64",
+    "focusedAtSave": true,
+    "fixture": "Mixed combat and repeated group movement; elevated runtime HP keeps the requested active-unit count stable. Not a normal match. 60 fps cap, vSync off.",
+    "durationSeconds": 25.0,
+    "warmupSeconds": 5.0,
+    "meanFrameMs": 16.86349105834961,
+    "p95Ms": 17.509204864501953,
+    "p99Ms": 17.609495162963867,
+    "simulationPerRenderedFrameMs": 0.0553576834499836,
+    "navigationPerTickSampleMs": 0.044783324003219604,
+    "combatPerTickSampleMs": 0.05019117891788483,
+    "economyPerTickSampleMs": 0.02319120615720749,
+    "managedBytes": 7499776,
+    "managedGrowthBytes": 3923968,
+    "unityAllocatedBytes": 120607021
+  },
+  "f8AuditFile": "f8-audit.json",
+  "f8Computed": {
+    "totalFrames": 3847,
+    "includedFrames": 1127,
+    "excludedFrames": 2720,
+    "eligibleUnpausedSeconds": 18.94739351463318,
+    "rawFrameIntervalSeconds": 64.77495099067677,
+    "sampledWallSeconds": 64.769810125,
+    "wallEndpointToleranceSeconds": 0.25,
+    "worldAdvancedSeconds": 19.000062465667725,
+    "wallSeconds": 64.78659495800001,
+    "meanFrameMs": 16.812238693237305,
+    "p95FrameMs": 17.534914016723633,
+    "p99FrameMs": 17.60716438293457,
+    "allFramesFocused": false
+  },
+  "sources": {
+    "benchmark": {
+      "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Benchmarks/units-50.json",
+      "sha256": "f68f9cf42902a75611b0464ab562249bbb6b93ca045c4bffa012df4cd36ea29e",
+      "archivedPath": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-050-attempt-001/units-50.json",
+      "archiveHashMatches": true
+    },
+    "screenshotMetadata": {
+      "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261003-031858-613-f1336-515419201c18489c8bd85239086c24c6.json",
+      "sha256": "80427bc68df65e6949678fe994e2d5f8adb3c98e66a69fb167c942016de9a79f",
+      "archivedPath": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-050-attempt-001/Frontier-20261003-031858-613-f1336-515419201c18489c8bd85239086c24c6.json",
+      "archiveHashMatches": true
+    },
+    "screenshotPng": {
+      "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261003-031858-613-f1336-515419201c18489c8bd85239086c24c6.png",
+      "sha256": "35e7bdfcfafd180ed52038dc61851ad215fe3b63d8aeed07cbcaa2e56912327a",
+      "archivedPath": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-050-attempt-001/Frontier-20261003-031858-613-f1336-515419201c18489c8bd85239086c24c6.png",
+      "archiveHashMatches": true
+    },
+    "buildReceipt": {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/build-receipt.json",
+      "sha256": "9218690cdc8b77154299f0638334ac86d33d9cff45c10812fcb7ddbe9f115aca",
+      "archivedPath": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-050-attempt-001/build-receipt.json",
+      "archiveHashMatches": true
+    },
+    "sourceEvidence": {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Tests/source-evidence.json",
+      "sha256": "bf8ca06fcfc8e609e87b7b319bdf98a6ba6d70a4d130576b63cc50117742048b",
+      "archivedPath": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-050-attempt-001/source-evidence.json",
+      "archiveHashMatches": true
+    },
+    "wrapper": {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/archive_scale_capture.py",
+      "sha256": "bbcad6c0049341b056f58955b2f6947fda522f5da1248af23ba7498701d68050",
+      "archivedPath": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-050-attempt-001/archive_scale_capture.py",
+      "archiveHashMatches": true
+    },
+    "clientLog": {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Scale055/units-050-attempt-001.log",
+      "sha256": "62b6534fb02aab10b1dbc91c3e5506067b986c6c0605262330f0edebb2c2cebb",
+      "archivedPath": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-050-attempt-001/units-050-attempt-001.log",
+      "archiveHashMatches": true
+    }
+  },
+  "visibilityScope": "Actual alive unit counts include both owners. viewportVisibleUnitCenters is only 0..alive range checked by F8 auditor; neither proves every unit unobstructed, outside HUD, on screen, or all400 rendered at once.",
+  "warmupScope": "Benchmark reports its built-in excluded warmup. F8 is separately started/stopped by the operator; no benchmark raw per-frame file exists to independently recompute benchmark mean or warmup timing.",
+  "failedChecks": []
+}

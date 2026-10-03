@@ -2,7 +2,7 @@
 
 本轮独立macOS arm64客户端，Unity6000.6.3f1，build GUID `128a731d440e4b7a94abfcc74b88fa97`，源指纹`1b45f97f3d90c9b76388419492a83c5622ccb2cf3a365030044403ccd309c1c7`。玩家通过实际游戏窗口的鼠标/键盘操作，普通初始库存与真实资源箱，1倍速、autoplay=false、benchmark=false。没有免费资源、规则费用变更或削弱AI。
 
-coast镜像前四局使用Easy、时代上限III、合法25张经济预设；第五至第九局使用合法25张军备预设。第十局回到经济25卡，已完成正常I–III、付费炮出生、炮击敌建筑与自然结算，17项严格检查全部通过，B完成。河谷C1在B通过后开始，River镜像/Easy/V上限/经济25卡，仍在进行，不提前认证C。菜单配置图和F9状态按同版本/GUID绑定；先前失败与中断保持原结果。
+coast镜像前四局使用Easy、时代上限III、合法25张经济预设；第五至第九局使用合法25张军备预设。第十局回到经济25卡，已完成正常I–III、付费炮出生、炮击敌建筑与自然结算，17项严格检查全部通过，B完成。河谷C1/C2已自然战败并完整归档：C1为River镜像/Easy/V上限/经济25卡，1486.584106秒、六项覆盖缺口；C2为River对Coast/Easy/V上限/军备25卡，1081.682983秒、十项覆盖缺口。C3为River镜像/Easy/V上限/军备25卡，1781.212158秒自然败局，实际达到V，唯一缺口为炮击敌建筑。三局均正常1x/无autoplay，不跨局拼接成C通过；C4正在继续验收，尚无最终结论。菜单配置图和F9状态按同版本/GUID绑定；先前失败与中断保持原结果。
 
 ## 已归档尝试
 
@@ -18,6 +18,9 @@ coast镜像前四局使用Easy、时代上限III、合法25张经济预设；第
 | `6cf241946653492ea782b2f968b5e229` | 己方Command/Gather均0；3次付费村民排队，仅1名实际出生、另2名未完成 | 259.6066秒menu_exit，非自然结算；首次实际暂停在223.6044秒。中断未验收，见[第八次归档](Evidence/055/NormalPlayer/coast-attempt-008/README.md) |
 | `7f161abd4f994a1aaf5be762ba4a23f5` | 实际III、16付费工、5Pike+5Longbow、5船运；100W250C炮已付费但Foundry在39.09秒后被毁，未满45秒生产 | 974.5091秒自然败局；缺付费炮出生及敌建筑炮击，B9未通过。见[第九次审计](Evidence/055/NormalPlayer/coast-attempt-009/summary.json) |
 | `f65f503a74b9415e89d0a875e9b0ce2d` | 经济25卡、实际III、3付费工、9Musk+5Pike、2付费炮、4船运；炮186六次命中敌Stable156，共780伤害 | **B通过**：17项检查全部true，958.6130秒自然败局、败方全灭、无Resign。见[第十次审计](Evidence/055/NormalPlayer/coast-attempt-010/summary.json) |
+| C1 `1498f3a84f374c0498900c25a6177872` | River镜像/Easy/V/经济25，实际III、付费银行/Carabineer/科技/炮击及两宝藏领取 | 1486.584106秒自然败局；16/17严格检查、六项必需覆盖缺口，不通过C。见[C1归档](Evidence/055/NormalPlayer/river-attempt-001/README.md) |
+| C2 `0b725a5116d2415f855f4443c4023e0e` | River对Coast/Easy/V/军备25，实际III、16付费工/15Musk/5Pike/两银行、75W与100XP宝藏；IV付款后TC毁 | 1081.682983秒自然败局；16/17严格检查、十项必需覆盖缺口。船运炮不计付费生产，不通过C。见[C2归档](Evidence/055/NormalPlayer/river-attempt-002/README.md) |
+| C3 `8fb300efbc1a4169a953d9dab2b7caad` | River镜像/Easy/V/军备25，实际I–V、银行/特色兵/科技/贸易/宝藏、8付费炮 | 1781.212158秒自然败局；16/17检查、18/19覆盖，仅缺炮击敌建筑。见[C3归档](Evidence/055/NormalPlayer/river-attempt-003/README.md) |
 
 首局菜单与结算有对应F9。第二局Play Again沿用首局配置，没有独立新setup或同局结算F9；原始match_finished与menu_exit各自完整JSON/JSONL保留。缺图如实保留，不因其他对局有图而补作本局证据。
 
@@ -52,3 +55,25 @@ B4之后菜单又出现坐标操作`noWindowsAvailable`，AX窗口元素和键�
 `verify_player.py`独立审核逐笔请求/实际扣费/库存余额、生产最短时间与实际完成、单位及建筑身份、资源采集、经验/船运、时代、炮兵敌建筑伤害，以及自然消灭时败方所有存活单位/建筑。river追加银行收入、付费Carabineer/科技、宝藏和至少两种真实贸易收入。报告缺少卡组字段，菜单图与操作记录说明声明的DeckLibrary合法预设，不制造不存在的deck事件。
 
 这些事件不单独证明每一种Shift手势、所有遮挡/出口组合或听觉品质；对应规则、输入自动化、视觉、音频和性能证据各自说明边界。封存0.2.30第三次尝试在`Evidence/055/NormalPlayer/attempt-003`，GUID不同，保持历史失败标签。
+
+## River C1：保留已完成覆盖与缺口
+
+[同局严格审计](Evidence/055/NormalPlayer/river-attempt-001/summary.json)对应 `1498f3a84f374c0498900c25a6177872`、原0.2.31/GUID，共53,782事件。17项检查中16项成立，`requiredPlayerCoverage`失败；缺口为`ageIV`、`ageV`、`paidTradePost`、`tradeXP`、`resourceMode`、`resourceTradeDelivery`。已成立的真实覆盖包括II/III、付费工/步兵/炮、炮击敌建筑、采集和船运、付费银行与被动币、Carabineer、付费科技及两次宝藏领取。自然败局与覆盖不足均保留，不能当作C通过。
+
+末局己方累计采食约5069、木2474、币1090，银行产币3182.5；对手同期采食约13251、木7731、币6401。下一次操作参考将优先持续补工与保护采集，不能仅凭更早到III推断经济足够支撑IV/V。原始账本与画面/输入证据分别说明，不用后者补造缺失事件。
+
+## River C2：自然败局与未完成的IV
+
+[C2严格审计](Evidence/055/NormalPlayer/river-attempt-002/summary.json)对应 `0b725a5116d2415f855f4443c4023e0e`、原0.2.31/GUID、River对Coast、Easy、V上限、Military25。49,623条事件、唯一MatchEnded、无Resign，1081.682983秒自然败局；末局存活单位及建筑为[0,73]。17项检查中16项成立，仅requiredPlayerCoverage失败。
+
+十缺口为 `paidCannon`、`cannonEnemyBuildingDamage`、`ageIV`、`ageV`、`specialUnit`、`paidTechnology`、`paidTradePost`、`tradeXP`、`resourceMode`、`resourceTradeDelivery`。已完成16付费工、15Musk、5Pike、两银行及两类宝藏奖励；IV付款998.003357秒、TC被毁1045.491821秒，相隔47.488464秒，未满130秒，不能当作IV完成。Cannon Support生成的炮288不计付费训练；Hussar Reserves只有发送记录，没有到达记录。
+
+[完整归档](Evidence/055/NormalPlayer/river-attempt-002/README.md)共39文件、70,299,829字节，含两组最终report/events、6组F9及完整输入日志。离线独立核对所有文件SHA并重跑归档账本审计，仍为16/17及相同十缺口；receipt SHA为 `1013cf80503cc10254e62f61951aae36785d7cac16eb603cc1c63571bbe4ca97`。C1/C2均保持原始失败状态。
+
+## River C3：完整I–V与单项攻城缺口
+
+[C3完整归档](Evidence/055/NormalPlayer/river-attempt-003/README.md)对应 `8fb300efbc1a4169a953d9dab2b7caad`，River镜像/Easy/V/Military25、原0.2.31/GUID。1781.212158秒自然败局、90,759条事件、唯一MatchEnded、无Resign，终局双方时代V、败方全灭。严格16/17检查及18/19覆盖成立，仅缺 `cannonEnemyBuildingDamage`。
+
+II/III/IV/V分别于194.102646/679.481140/1192.056030/1638.447021秒实际完成。19付费工、15Musk、20Pike、8炮、10Carabineer、4银行、付费贸易站、科技和宝藏均已成立；贸易站三次40XP交付后切Food并实际交付九次75F。独立扫描153次我方炮伤害全部命中敌单位，无敌建筑伤害。
+
+73文件共147,020,138字节、20组F9、两份冻结日志、完整终局report/events已校验SHA；receipt SHA为 `8afbbbea487a0b28b09baff51f9ddaa93218ac1d987bc5058936daba34e2ee48`。科技截图旧兵群与新兵均显示240HP上限/ATK29；此前单兵为200HP/ATK24，但前后选中的旧兵ID不同，不写成同一单位配对。C3保留原始失败结论，C4继续独立正常玩家验收。
