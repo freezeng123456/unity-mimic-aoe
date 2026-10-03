@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "recordedAtUtc": "2026-10-03T11:59:47.533900+00:00",
+  "scope": "Read-only observation of actual frozen .31 and fresh .32 plists plus a Docs-only verifier assumption correction. This is not a formal release-equivalence result or native smoke acceptance.",
+  "baseline": {
+    "commit": "50d303b76519a3a9b448c27cd2cdeb22779a1e5d",
+    "settingsPath": "ProjectSettings/ProjectSettings.asset",
+    "settingsSha256": "4f4007c04b8ed1e0f514a8acb7e2ddb92511450d72c06de3a0a8c46695f86237",
+    "setting": "buildNumber.Standalone",
+    "value": "0",
+    "sourceLines": [
+      174,
+      175
+    ],
+    "derivation": "verify_app receives the Standalone build number parsed from old_files[SETTINGS], after the fixed357-file baseline source-manifest/hash verification. Exact approved source delta permits only bundleVersion change in settings."
+  },
+  "actualPlists": [
+    {
+      "appPath": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/macOS/Frontier Reckoning.app",
+      "plistRelativePath": "Contents/Info.plist",
+      "bytes": 1536,
+      "sha256": "52e180fae06c50ed3ca5c3ee39206987ff85a34723aa84dfcd787109bed20aa3",
+      "CFBundleShortVersionString": "0.2.31",
+      "CFBundleVersion": "0",
+      "buildGuidFromBootConfig": "128a731d440e4b7a94abfcc74b88fa97"
+    },
+    {
+      "appPath": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/macOS-0.2.32/Frontier Reckoning.app",
+      "plistRelativePath": "Contents/Info.plist",
+      "bytes": 1536,
+      "sha256": "ab19cb47b68f3ddc90ad1526b05c2792247b154a1e47aceb3859dd3fa4efd027",
+      "CFBundleShortVersionString": "0.2.32",
+      "CFBundleVersion": "0",
+      "buildGuidFromBootConfig": "947f7c0c0da44ec3a806c2dcb69ca04e"
+    }
+  ],
+  "newRuntimeDllSha256": "ae73f6d91b84d39aa497c4fc7073b3f8561dd94bf5ebea9dfbb002d0fb5bdf9c",
+  "correction": {
+    "before": "Required both CFBundleShortVersionString and CFBundleVersion to equal0.2.32.",
+    "after": "CFBundleShortVersionString must equal0.2.32; CFBundleVersion must equal the frozen baseline Standalone build number0. Version, new GUID, runtime hashes and DLL-change checks remain enforced.",
+    "sourceOrBuiltAppEdited": false,
+    "formalReleaseEquivalenceExecuted": false,
+    "unityRerun": false
+  },
+  "failureHistory": {
+    "rootInitialAssertion": "Root reported the pre-receipt version assertion failed when inspecting actual .32 CFBundleVersion0. This diagnostic records the incorrect verifier assumption; it does not relabel that assertion or any earlier failed probe as passed.",
+    "rootInitialAssertionOutputArtifact": "No separate output artifact was supplied for the root assertion; do not fabricate a stack trace or claim it was a completed formal equivalence run.",
+    "existingProbeFiles": [
+      {
+        "path": "Docs/Evidence/056/release-equivalence-pre-release-probe.json",
+        "bytes": 425,
+        "sha256": "479a54b6f0b180d445194467813cca8719d9244298b6fac9859117c43a54d75c",
+        "unchangedFromHEAD": true
+      }
+    ]
+  },
+  "controlledTests": {
+    "command": [
+      "python3",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "Docs/Evidence/056",
+      "-p",
+      "test_verify_release_equivalence.py",
+      "-v"
+    ],
+    "exitCode": 0,
+    "passed": 18,
+    "total": 18,
+    "newCase": "test_client_plist_version_and_baseline_build_number accepts .32/0 and rejects build number1, build number0.2.32 and old short version even when the controlled receipt hash is updated to match the altered plist.",
+    "output": "test_added_and_removed_source_files_are_rejected (test_verify_release_equivalence.ReleaseEquivalenceToolTests) ... ok\ntest_buildtools_version_assignment_is_rejected (test_verify_release_equivalence.ReleaseEquivalenceToolTests) ... ok\ntest_client_identity_and_zero_old_duplicate_guid_rejected (test_verify_release_equivalence.ReleaseEquivalenceToolTests) ... ok\ntest_client_old_dll_and_changed_runtime_bytes_rejected (test_verify_release_equivalence.ReleaseEquivalenceToolTests) ... ok\ntest_client_plist_version_and_baseline_build_number (test_verify_release_equivalence.ReleaseEquivalenceToolTests) ... ok\ntest_duplicate_json_and_nonfinite_constants_rejected (test_verify_release_equivalence.ReleaseEquivalenceToolTests) ... ok\ntest_end_to_end_temporary_fixture_using_real_old_357_bytes (test_verify_release_equivalence.ReleaseEquivalenceToolTests) ... ok\ntest_exact_two_file_replacement (test_verify_release_equivalence.ReleaseEquivalenceToolTests) ... ok\ntest_hud_extra_logic_is_rejected (test_verify_release_equivalence.ReleaseEquivalenceToolTests) ... ok\ntest_new_full_tests_accept_fresh_and_reject_old_xml_reuse (test_verify_release_equivalence.ReleaseEquivalenceToolTests) ... ok\ntest_old_native_versions_and_guids_remain_old (test_verify_release_equivalence.ReleaseEquivalenceToolTests) ... ok\ntest_output_guard_preserves_source_receipts_and_old_evidence (test_verify_release_equivalence.ReleaseEquivalenceToolTests) ... ok\ntest_replacement_requires_unique_old_literal (test_verify_release_equivalence.ReleaseEquivalenceToolTests) ... ok\ntest_rules_change_is_rejected (test_verify_release_equivalence.ReleaseEquivalenceToolTests) ... ok\ntest_source_schema_boolean_is_rejected (test_verify_release_equivalence.ReleaseEquivalenceToolTests) ... ok\ntest_tests_recorded_before_run_end_is_rejected (test_verify_release_equivalence.ReleaseEquivalenceToolTests) ... ok\ntest_wrong_version_or_unapproved_copy_is_rejected (test_verify_release_equivalence.ReleaseEquivalenceToolTests) ... ok\ntest_xml_complete_cases_and_duplicate_or_skipped_case (test_verify_release_equivalence.ReleaseEquivalenceToolTests) ... ok\n\n----------------------------------------------------------------------\nRan 18 tests in 5.264s\n\nOK\n",
+    "scope": "Temporary controlled fixtures, including real frozen baseline source bytes in the existing fixture test; no actual Unity run or formal release audit."
+  },
+  "toolFiles": {
+    "verify_release_equivalence.py": {
+      "bytes": 22743,
+      "sha256": "6e942fb8834eef160546dea6badfea7f820005c8db3ce1fad2ee0a35ea1067f7"
+    },
+    "test_verify_release_equivalence.py": {
+      "bytes": 17429,
+      "sha256": "c4071d599e3f2efe35ecab3c3b88a11b4d318f124e81402b39aec6dd9ff6930d"
+    }
+  }
+}

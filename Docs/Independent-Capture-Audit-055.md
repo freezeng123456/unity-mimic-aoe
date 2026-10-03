@@ -37,3 +37,17 @@ coastIII要求玩家II/III、付费工人/军队/炮、炮击敌建筑、真实�
 | NativeAudioCapture.cs | `549c38ae5125689854a5548461c1b99fe11b4728c857ca0308a59d2203d80f09` |
 
 这里只记录本审查直接阅读的三个运行时文件；它不是整个工程的冻结指纹。全量来源以`Evidence/055/Tests/source-evidence.json`与构建回执为准。可变Docs auditor的SHA会由每份独立摘要记录，不借旧脚本通过值代表新脚本。
+
+## 2026-10-03 原生C7独立核验补充
+
+2026-10-03，原定 **A–D 四个里程碑均已通过**。[C7同局严格审计](Evidence/055/NormalPlayer/river-attempt-007/summary.json)通过17/17检查、19/19覆盖：River镜像/Easy/V上限/Military25，正常1倍速、autoplay=false，2528.415771秒自然获胜，实际完成I–V、付费经济/军队/科技、银行、贸易、宝藏与炮击敌建筑。C1–C6分别保留6/10/1/3/1/2项缺口及失败结论，不跨局拼接覆盖。原生验收属于冻结0.2.31；0.2.32独立发布前核验已通过，见[056记录](Evidence/056/README.md)；源码包待最终干净提交后生成，不将旧GUID观察改称新版本实测。
+
+C7终局采样存在明确偏差：观测工具尾部的Escape在VICTORY弹窗出现后直接返回主菜单，没有终局F9或菜单前Player-ended副本。真实sky胜利截图、完整冻结Player-menu.log、match_finished/menu_exit原始报告及事件和返回菜单F9均已保全；未伪造缺失文件。
+
+同一老Musk221在860.536926/990.505188秒的原始单选图由冻结输入上下文与出生/死亡链关联，HP200/200、ATK24变为HP240/240、ATK29；Veteran Musk988.505676秒完成。科技后另行付费的新Musk290于1104.277466秒出生，1111.775635秒原图显示HP240/240、ATK29。19项[科技专项核验](Evidence/055/NormalPlayer/river-attempt-007/technology-visual-audit.json)全部通过；1110.575928秒空选择图不作为新兵属性证明。F9元数据没有selectedEntity字段，ID来自输入上下文和事件链。
+
+付费炮261于987.505920秒出生，1039.293335秒对敌贸易站179造成130 Siege伤害；同目标F9生命1648→1518与Fire/Damage及付费来源一致，命中结论不由Attack提示代替。
+
+完整归档97文件共220,994,877字节，含24组原生F9、真实sky胜利图及完整冻结输入日志；[receipt](Evidence/055/NormalPlayer/river-attempt-007/archive-receipt.json) SHA为 `73304c7dcf6d9541950b34479ece0ff691f39642d48b996833ad8dd3ba44027e`。root独立复核全部96成员bytes/SHA及文件集合。
+
+F9元数据不含selectedEntity；单位ID必须结合冻结输入上下文及出生/死亡事件关联，不能仅由截图像素或卡片数值推断。以上实际证据不改写本文最初的只读方法审查范围。

@@ -212,13 +212,22 @@ def receipt_identity(receipt, version, source_fp):
     return guid
 
 
-def verify_app(app, old_receipt, new_receipt, current_fp):
+def standalone_build_number(settings):
+    blocks = re.findall(rb"(?m)^  buildNumber:\r?\n((?:    [^\r\n]*\r?\n)*)", settings)
+    require(len(blocks) == 1, "Baseline settings must contain one buildNumber block")
+    numbers = re.findall(rb"(?m)^    Standalone: ([0-9]+)\r?$", blocks[0])
+    require(len(numbers) == 1, "Baseline settings must contain one Standalone build number")
+    return numbers[0].decode("ascii")
+
+
+def verify_app(app, old_receipt, new_receipt, current_fp, expected_build_number):
     guid = receipt_identity(new_receipt, NEW_VERSION, current_fp)
     require(guid != OLD_GUID, "New client reused the .31 GUID")
     plist_path = app / "Contents/Info.plist"
     plist = plistlib.loads(plist_path.read_bytes())
-    require(plist.get("CFBundleShortVersionString") == NEW_VERSION
-            and plist.get("CFBundleVersion") == NEW_VERSION, "Actual client plist version is not .32")
+    require(plist.get("CFBundleShortVersionString") == NEW_VERSION, "Actual client plist version is not .32")
+    require(plist.get("CFBundleVersion") == expected_build_number,
+            "Actual client plist build number differs from frozen baseline Standalone setting")
     boot_path = app / "Contents/Resources/Data/boot.config"
     boot = boot_path.read_bytes()
     guid_lines = [line for line in boot.splitlines() if line.startswith(b"build-guid=")]
@@ -239,6 +248,7 @@ def verify_app(app, old_receipt, new_receipt, current_fp):
     require(runtime[dll] != old_receipt.get("compiledRuntimeSha256", {}).get(dll),
             "New client kept the old runtime DLL despite the approved HUD literal change")
     return {"appPath": str(app), "appVersionFromPlist": NEW_VERSION, "buildGuidFromBootConfig": guid,
+            "buildNumberFromPlist": plist["CFBundleVersion"], "expectedBuildNumberFromBaselineSettings": expected_build_number,
             "bootConfigSha256": sha(boot), "receiptRuntimeFiles": files}
 
 
@@ -327,13 +337,14 @@ def audit(args):
     require(all(old_bundle.get("bundleFiles", {}).get(name, {}).get("sha256") == digest
                 for name, digest in old_receipt["compiledRuntimeSha256"].items()),
             "Old receipt compiled hashes differ from the archived bundle file manifest")
-    client = verify_app(args.app.resolve(), old_receipt, new_receipt, current_fp)
+    build_number = standalone_build_number(old_files[SETTINGS])
+    client = verify_app(args.app.resolve(), old_receipt, new_receipt, current_fp, build_number)
     native = old_native_inventory(old_dir, client["buildGuidFromBootConfig"])
     # An archive can be produced later by the distribution driver; this audit reads the actual .app.
     require(read_current(root) == current, "Source changed during release equivalence audit")
     require(git(root, "rev-parse", "HEAD").decode().strip() == head, "HEAD changed during release equivalence audit")
     require(all(path.read_bytes() == data for path, data in input_bytes.items()), "Evidence input changed during audit")
-    require(verify_app(args.app.resolve(), old_receipt, new_receipt, current_fp) == client,
+    require(verify_app(args.app.resolve(), old_receipt, new_receipt, current_fp, build_number) == client,
             "Native client changed during release equivalence audit")
     require(old_native_inventory(old_dir, client["buildGuidFromBootConfig"]) == native,
             "Old native identity inventory changed during release equivalence audit")

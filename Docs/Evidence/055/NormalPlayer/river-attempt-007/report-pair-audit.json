@@ -1,0 +1,38 @@
+{
+  "generatedAtUtc": "2026-10-03T11:51:22.698442+00:00",
+  "checks": {
+    "sameMatchId": true,
+    "eventFilesByteIdentical": true,
+    "onlyReasonAndManagedBytesDiffer": true,
+    "eventCountMatches": true
+  },
+  "status": "passed",
+  "differences": {
+    "managedBytes": {
+      "match_finished": 35340288,
+      "menu_exit": 26509312
+    },
+    "reason": {
+      "match_finished": "match_finished",
+      "menu_exit": "menu_exit"
+    }
+  },
+  "sources": {
+    "20261003-113916-806-cd717dda89684d87b979629d3fbdf1a9-match_finished.json": {
+      "bytes": 3313,
+      "sha256": "5428ca1a2f8092d02f66c85f96055b07aa89cd57a8258860b82c12305849208a"
+    },
+    "20261003-113921-407-cd717dda89684d87b979629d3fbdf1a9-menu_exit.json": {
+      "bytes": 3308,
+      "sha256": "630ebcf69f6a0ef37c05b65340454430d227f292151b19cf8dbc4d17d362fb86"
+    },
+    "20261003-113916-806-cd717dda89684d87b979629d3fbdf1a9-match_finished-events.jsonl": {
+      "bytes": 74602441,
+      "sha256": "ab855e1bb3d1f1790658e1f64744d49077128dba82166bc6d746818032b11c0d"
+    },
+    "20261003-113921-407-cd717dda89684d87b979629d3fbdf1a9-menu_exit-events.jsonl": {
+      "bytes": 74602441,
+      "sha256": "ab855e1bb3d1f1790658e1f64744d49077128dba82166bc6d746818032b11c0d"
+    }
+  }
+}

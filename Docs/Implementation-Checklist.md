@@ -1,4 +1,4 @@
-> **历史记录：0.1.3。** 本文保留早期实现状态，不是当前功能或验收清单；当前范围、缺口与阶段验收请查 [Full-Scope-Audit.md](Full-Scope-Audit.md)，0.2.11 验证请查 [Iteration-031.md](Iteration-031.md)。
+> **历史记录：0.1.3。** 以下早期状态原样保留，不是当前验收结论。2026-10-03冻结0.2.31的原定A–D已通过；当前结果见[Milestones-055.md](Milestones-055.md)和[C7同局审计](Evidence/055/NormalPlayer/river-attempt-007/summary.json)，版本衔接见[Full-Scope-Audit.md](Full-Scope-Audit.md)。
 
 # 实现与验收清单 · 0.1.3
 

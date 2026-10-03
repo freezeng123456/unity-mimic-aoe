@@ -1,24 +1,45 @@
-# 原定四个里程碑交付状态
+# 完成状态与交付证据 — 0.2.32
 
-2026-10-03，当前冻结开发版本0.2.31，macOS arm64 Development/Mono，Unity6000.6.3f1。原定退出条件以[开发合同](Development-Contract.md) A–D为准；详细证据见[本轮里程碑](Milestones-055.md)及[验证记录](Verification-055.md)。A/B/D已通过；C1–C6失败证据已归档，C4严格16/17检查、16/19覆盖，仅缺Age IV、Age V、特殊兵种；C5已1661.541382秒自然败局，严格16/17检查、18/19覆盖，仅缺 `ageV`；[C6](Evidence/055/NormalPlayer/river-attempt-006/README.md)已1367.213257秒自然败局，严格16/17检查、17/19覆盖，仅缺 `ageIV`、`ageV`；C7正由river_strategy操作GUI，尚未判定；最终0.2.32尚未启动，不声明全部完成。
+2026-10-03，原定 **A–D 四个里程碑全部通过**，0.2.32的完整回归、独立构建、原生菜单/开局/采集/退出及客户端ZIP核验通过。范围以[开发合同](Development-Contract.md)为准。源码包、中文指南与最终提交清单由已保存的打包程序在干净提交后生成；实际交付身份以输出目录的 `manifest.json` 为准。
 
-## 已完成并核验
+## 原定里程碑：0.2.31完整原生证据
 
-- 完整214/214 EditMode、210/210 PlayMode与357份Assets/Packages/ProjectSettings/Tools源码绑定，测试前后指纹一致；独立构建、菜单运行和GUID已有原生回执。
-- 镜头、选择、命令、资源、建造、人口、生产、经验、船运、战斗与导航共用统一规则。两种文明、五时代、专属经济与军种、科技、贸易、宝藏和三档AI已实现并回归。
-- 修复驻军人数变化后的撤出按钮状态，以及未完成贸易站提前提供视野；未给玩家免费资源或改变AI成本。
-- 12局正常规则AI矩阵全部自然结束，覆盖三档难度、双文明正反顺序及两种镜像。逐事件核验支付、生产时间、船运、炮兵建筑伤害及败者全部淘汰；固定地图，不宣称多地图或统计平衡结论。
-- 原创人物、骑兵、炮兵、11类建筑、资源箱与程序动画已更新，5组同版URP研究图有SHA回执。视觉与网格生命周期定向检查完成。
-- 正常有声混音、暂停全零、未暂停主静音全零各20秒，真实WAV与原始状态全部通过独立复算。没有耳听结论。
-- 正常玩家B10 coast镜像完整路线已通过：经济25卡、1倍速、实际III、3付费工/14步兵/2炮/4船运；付费炮186六次命中敌马厩156、每次130伤害。958.6130秒自然败局，败方全部淘汰。17项严格检查全部通过，见[完整审计](Evidence/055/NormalPlayer/coast-attempt-010/summary.json)。先前失败和中断均保留原结果。
-- B9单个正常F8窗口335.999332有效秒、20,003帧全部有效/聚焦，最终report/events及335笔内存关联全部通过，明确满足300秒最低时长。
-- D四档50/100/200/400实际活动单位均在冻结0.2.31单客户端、无并行Editor下完成；400 attempt-002单F8窗口317.674076有效秒、13,153帧全部有效/聚焦，明确满足300秒要求。单位/事件/内存、F9、同局menu_exit、版本/GUID/源码及runtime核验全部通过，见[性能实测](Performance-055.md)。400首次失焦仅182.717415有效秒的失败证据完整保留。
+| 里程碑 | 结果与证据 |
+|---|---|
+| A：基础RTS | 通过。Unity/URP独立工程，选择、命令、采集、建造、人口、生产、战斗、修理和驻军均有原生记录；群体导航有绑定源码的自动回归。 |
+| B：海岸镜像I–III完整局 | 通过。[B10](Evidence/055/NormalPlayer/coast-attempt-010/summary.json)正常1x、Economy25、autoplay=false，严格17/17；付费炮186对敌马厩156六次各130伤害。958.612976秒自然战败，无Resign、败方清零。 |
+| C：河谷I–V与文明差异 | 通过。[C7](Evidence/055/NormalPlayer/river-attempt-007/summary.json)同局17/17检查、19/19覆盖，2528.415771秒自然获胜；I–V、银行、特色兵、付费科技、炮击敌建筑、宝藏、贸易XP及资源交付全部成立。 |
+| D：原创视听与规模 | 通过。原创人物/骑兵/火炮、11类建筑、程序动画；正常/暂停/主静音各20秒真实混音。50/100/200/400活动规模核验通过，正常与400长窗各自满足300有效秒。 |
 
-## 当前收口工作
+正常玩家B9单窗335.999332有效秒，400单位单窗317.674076有效秒，两窗独立核验，不相加。详见[性能实测](Performance-055.md)；不推导400单位无遮挡同屏或通用FPS保证。
 
-1. [C6](Evidence/055/NormalPlayer/river-attempt-006/README.md)已1367.213257秒自然败局，严格16/17检查、17/19覆盖，仅缺 `ageIV`、`ageV`；C7正由river_strategy操作GUI，尚未判定；最终0.2.32尚未启动。C1在1486.584106秒自然败局并保留六项覆盖缺口；[C2](Evidence/055/NormalPlayer/river-attempt-002/README.md)在1081.682983秒自然败局，IV付款后TC被毁，保留十项缺口。[C3](Evidence/055/NormalPlayer/river-attempt-003/README.md)在1781.212158秒自然败局，实际达到V，严格16/17检查与18/19覆盖成立，仅缺炮击敌建筑。73文件、20组F9、两份冻结日志和终局账本已完整归档及复核；[C4](Evidence/055/NormalPlayer/river-attempt-004/README.md)在994.504211秒自然败局，严格16/17检查、16/19覆盖；付费炮击敌建筑与Cargo Ledgers成立，缺 `ageIV`、`ageV`、`specialUnit`。65文件、16组F9、两份冻结日志和36,218条事件已完整归档；[C5](Evidence/055/NormalPlayer/river-attempt-005/README.md)在1661.541382秒自然败局，严格16/17检查、18/19覆盖仅缺ageV；同一老Musk前后及新生Musk科技属性、付费炮261对敌Foundry239两次各130伤害均已核验。67文件、17组F9、双冻结日志及79,417事件已归档；C6的63文件、11组F9、双冻结日志及60,226条事件已完整复核，付费炮256对敌Farm266共390伤害，同一老Musk162与新生Musk263科技关联成立。六局原始失败结果均保留，不跨局拼接成完整通过。
-2. 最终0.2.32尚未启动；C完成后再执行独立回归、构建、菜单smoke与最终打包，并同步最终README、规则/许可/实测文档与源代码、客户端、中文说明、提交和文件SHA清单。
+C7 `cd717dda89684d87b979629d3fbdf1a9` 使用River镜像/Easy/V/Military25，正常1x且无autoplay。116,739条事件中唯一MatchEnded，败方存活单位/建筑为0，无Resign；24组原生F9及真实胜利JPEG均保全。97文件共220,994,877字节，[归档receipt](Evidence/055/NormalPlayer/river-attempt-007/archive-receipt.json) SHA256为 `73304c7dcf6d9541950b34479ece0ff691f39642d48b996833ad8dd3ba44027e`，全部96成员bytes/SHA及集合已独立复核。
 
-跨机器签名、公证、其他平台、海战、联网、战役、编辑器及存档是明确后续范围，不能追加为四个原定里程碑的完成门槛。低多边形原创表现和程序动画是当前选定实现；声学信号、实际原生画面与自动回归分别说明其证明范围。全部400单位无遮挡同屏、物理扬声器和所有硬件性能也不由本机样本推断。
+同一老Musk221升级前后由200HP/24ATK变为240HP/29ATK；新付费Musk290在科技完成后出生，并显示240HP/29ATK。原始截图、输入上下文和付费/出生/死亡链关联见[科技专项审核](Evidence/055/NormalPlayer/river-attempt-007/technology-visual-audit.json)。付费炮261对敌贸易站179的130伤害与原图1648→1518血量一致。
 
-0.2.30原始交付状态保留在[历史记录](Archive/Completion-Status-0230.md)，其中跨机器和耳听等扩展检查不倒推改变原定A–D。
+C7终局尾部Escape直接返回菜单，缺少终局F9及菜单前Player-ended副本；[偏差记录](Evidence/055/NormalPlayer/river-attempt-007/end-capture-deviation.json)如实保留。实际胜利JPEG、完整冻结日志、两份终局报告/事件及返回菜单F9共同支持自然结算，没有伪造缺失文件。C1–C6原失败结论不变，详见[里程碑历史](Milestones-055.md)。
+
+## 0.2.32独立验证与来源
+
+| 项目 | 0.2.31验收基线 | 0.2.32交付客户端 |
+|---|---|---|
+| 源码提交 | `50d303b76519a3a9b448c27cd2cdeb22779a1e5d` | `59a66b64c027224289761ad6bb409e8e41804fee`；最终文档/证据提交由外部manifest记录 |
+| 源码指纹 | `1b45f97f3d90c9b76388419492a83c5622ccb2cf3a365030044403ccd309c1c7` | `7340a04ba7f4d10c35a4dde158a8c517e0205e875daacc1a58005dcb61730adf` |
+| 构建GUID | `128a731d440e4b7a94abfcc74b88fa97` | `947f7c0c0da44ec3a806c2dcb69ca04e` |
+| Unity全量测试 | 214 EditMode + 210 PlayMode通过 | 新一轮214 + 210通过，424唯一测试身份一致，无跳过/不确定项 |
+| 构建 | macOS arm64，Development / Mono | 新建299文件、173,040,973字节；Unity6000.6.3f1直接BuildMac成功 |
+| 原生验证 | 完整B/C对局、视听与性能 | 独立菜单→普通开局→实际采集→返回菜单→正常QUIT |
+
+仅 `FrontierHud.cs` 两处菜单文字和 `ProjectSettings.asset` 的bundleVersion改变，其他355个清单文件逐字节一致。源码规则、AI、资源和BuildTools保持原字节；[等价审核](Evidence/056/release-equivalence.json)核对准确差异、新XML时间/内容、完整测试身份、新GUID和runtime SHA。新完整测试在11:53:40Z/11:54:55Z结束，原始五文件见[056/Tests](Evidence/056/Tests/source-evidence.json)。
+
+macOS营销版本为0.2.32，内部构建号沿用冻结设置 `buildNumber.Standalone=0`。初始核验脚本误把这两个字段视作同一版本，现已按固定基线设置纠正，18项工具测试通过；[诊断记录](Evidence/056/build-number-review.json)保留原假设与实际plist字节，源码及客户端没有因此改动。
+
+新客户端普通检查 `fd093483132f4bff991d9082260fd7a4` 持续27.400068秒、1x、autoplay=false，实际采得46.799976食物，随后主动回菜单并正常退出。这是启动/操作检查，不是自然整局；证据见[NativeSmoke](Evidence/056/NativeSmoke/README.md)和[新构建回执](Evidence/056/build-receipt.json)。
+
+## 交付文件
+
+交付目录 `outputs/frontier-reckoning-0.2.32` 包含客户端ZIP、Unity源码ZIP、`试玩说明.md`及`manifest.json`。客户端ZIP SHA256为 `f3ec2180ef38c602db43cc5a1db001cf162ec4634cc066704c02492eb16e9fef`；其299个应用文件和全部618个归档文件已经按bytes/SHA/Unix mode、目录集合、CRC、版本和GUID核验，见[客户端清单](Evidence/056/client-bundle-manifest.json)。
+
+最终源码包通过[打包程序](Evidence/055/package_delivery.py)绑定打包时实际clean HEAD，核对每个已提交Git blob及357个测试源码SHA。交付manifest保存在Git仓库外，记录最终提交、各包大小/SHA和这些内容检查；不要求受跟踪文档嵌入包含自身的提交号。
+
+**0.2.31 acceptance evidence retained; 0.2.32 menu/version-only delta separately verified.** 支持范围仍为测试过的macOS arm64开发构建，其他平台、存档、联网、战役、海战和编辑器不属于此次退出条件。详见[已知限制](Known-Issues.md)。

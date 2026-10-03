@@ -1,6 +1,6 @@
 # 烽岸纪元 · 0.2.31
 
-独立原创 Unity 陆战 RTS，使用本项目规则和数值。当前客户端面向 Apple silicon Mac，四个原定里程碑的最新结果见 [Milestones-055.md](Milestones-055.md)。
+独立原创 Unity 陆战 RTS，使用本项目规则和数值。当前客户端面向 Apple silicon Mac，原定A–D均已通过；[C7](Evidence/055/NormalPlayer/river-attempt-007/README.md)在同一正常河谷局完成全部覆盖并自然获胜。完整证据见[Milestones-055.md](Milestones-055.md)。
 
 ## 启动
 
@@ -43,6 +43,6 @@
 
 **F9** 保存当前帧及对应状态回执。**F10** 可保存最长20秒的实际游戏混音，**F8** 可保存最长10分钟的逐帧/内存样本；这些观察工具不会改变资源、AI或模拟速度。普通玩家对局、自动AI对局和压力夹具的记录分别标明，不互相代替。
 
-本轮全量测试、客户端完整对局、音频与性能的最终数字将随验收写入 [Verification-055.md](Verification-055.md) 和同版本证据目录。现有0.2.30包保留为历史基线，不能当成新客户端结果。
+本轮214/214 EditMode、210/210 PlayMode、B10/C7原生整局、实际混音及四档规模证据见[Verification-055.md](Verification-055.md)。本指南和原生验收绑定0.2.31；0.2.32独立发布前核验已通过，见[056记录](Evidence/056/README.md)；源码包待最终干净提交后生成；历史包与旧GUID不冒充新客户端观察。
 
 开发分支：[GitHub PR #1](https://github.com/freezeng123456/unity-mimic-aoe/pull/1)。

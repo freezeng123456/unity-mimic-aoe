@@ -1,0 +1,2134 @@
+{
+  "schema": 1,
+  "recordedAtUtc": "2026-10-03T12:10:13.764448+00:00",
+  "status": "passed",
+  "scope": "Exact approved two-file source delta, fresh source-bound full Unity tests and independent native client identity. No new .32 gameplay, audio, performance or rendered-menu acceptance is inferred.",
+  "baselineCommit": "50d303b76519a3a9b448c27cd2cdeb22779a1e5d",
+  "currentHeadObserved": "59a66b64c027224289761ad6bb409e8e41804fee",
+  "source": {
+    "fileCount": 357,
+    "changedFileCount": 2,
+    "unchangedFileCount": 355,
+    "changedFiles": [
+      {
+        "path": "Assets/Frontier/Presentation/FrontierHud.cs",
+        "oldSha256": "378db2404311bbce8d319cfa312d765253c3b303b228cc9b4cf09784406bf785",
+        "newSha256": "24e0b29d5973bd67ec983e22768a47b8e14dbc05e44bca88c4ebdbdb4e9b1c6d",
+        "exactApprovedBytes": true
+      },
+      {
+        "path": "ProjectSettings/ProjectSettings.asset",
+        "oldSha256": "4f4007c04b8ed1e0f514a8acb7e2ddb92511450d72c06de3a0a8c46695f86237",
+        "newSha256": "ea35dabb44c0af941ac12231892792152de962ec0a659a911cd16fb1b5ff977c",
+        "exactApprovedBytes": true
+      }
+    ],
+    "buildToolsBytesUnchanged": true
+  },
+  "approvedReplacements": {
+    "Assets/Frontier/Presentation/FrontierHud.cs": [
+      [
+        "\"FIVE-ERA LAND GAME · DEVELOPMENT\"",
+        "\"FIVE-ERA LAND GAME\""
+      ],
+      [
+        "\"Two civilizations · Custom decks · Original project rules\\nTrade, treasures and final audiovisual quality are still in development.\\nIndependent project. Not affiliated with Age of Empires or its publishers.\"",
+        "\"Two civilizations · Custom decks · Original project rules\\nBanks · Trade routes · Guarded treasures · Original visuals and audio\\nIndependent project. Not affiliated with Age of Empires or its publishers.\""
+      ]
+    ],
+    "ProjectSettings/ProjectSettings.asset": [
+      [
+        "  bundleVersion: 0.2.31\n",
+        "  bundleVersion: 0.2.32\n"
+      ]
+    ]
+  },
+  "oldRelease": {
+    "appVersion": "0.2.31",
+    "buildGuid": "128a731d440e4b7a94abfcc74b88fa97",
+    "sourceFingerprint": "1b45f97f3d90c9b76388419492a83c5622ccb2cf3a365030044403ccd309c1c7",
+    "tests": {
+      "EditMode": {
+        "passed": 214,
+        "sha256": "ae603b75cdf8e2d8256710b8d1aeb4410a74038d212ae6faec5a28a31f63d33f",
+        "startedAt": "2026-10-02T11:02:58+00:00",
+        "finishedAt": "2026-10-02T11:03:12+00:00",
+        "testCaseInventorySha256": "5018c56d15217f092cb9dc9982fc0b454c9d6782a8e84a79f344afc520ca9a1d"
+      },
+      "PlayMode": {
+        "passed": 210,
+        "sha256": "e391e76cedc6b627c9b15bd671d25250d7726ccb36b4d4aed36fb1f5cf01a6fa",
+        "startedAt": "2026-10-02T11:03:21+00:00",
+        "finishedAt": "2026-10-02T11:04:26+00:00",
+        "testCaseInventorySha256": "293d1ecf2340e4a9790e49e6be4b15dd6c9496d410ff26140c0763130a170def"
+      }
+    },
+    "nativeIdentityRecords": [
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Audio/ended-muted-candidate/Frontier-Audio-20261002-112753-453-b00d622b64164172873c2482ac1a36f4.json",
+        "bytes": 2130,
+        "sha256": "47682333266b79a4aebc8ce48b8c59f5fa0fce6327c596d91d091566f2b57d64",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Audio/master-muted/Frontier-Audio-20261002-112913-349-a33f649b3d404733ba34b94e55f15878.json",
+        "bytes": 2146,
+        "sha256": "749a1d32ef725bd8c3cf09977269d8b5bdae09a3ae26289b42a06837dbadbc37",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Audio/normal-mix/Frontier-Audio-20261002-111106-053-65d524259914498a8f1bd0e71436bfa9.json",
+        "bytes": 2179,
+        "sha256": "54d746b1a623111901f0d99fe891d1caa1fe3d5801045c3bc09e1c532fcec659",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Audio/paused/Frontier-Audio-20261002-110956-588-3c785896f52543a7a4d782dee8f5347d.json",
+        "bytes": 2146,
+        "sha256": "ffc66c37d4904752b37d6b5d0032173f890990b67188e48d4144c511c653a4ce",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/InputTiming/transition-window-audit.json",
+        "bytes": 2064,
+        "sha256": "15eb58d6daca481b24a801beb6025bccb5ed9d1493f618b9b9fdb8bd39932fa3",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Menu/Frontier-20261002-110806-236-f929-02be847909d243669ca70129909a5d5a.json",
+        "bytes": 1278,
+        "sha256": "dc92cbd0e8f3769051e4136932503ff32232bc79db8f8821023421aaaec5e744",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/attempt-003/20261002-103051-085-91311172a2df4d3987ff11860a1a08fc-match_finished.json",
+        "bytes": 3131,
+        "sha256": "32a9d4523fd186e46a315a222c357afbbc1d6f2b788895fe371dd77dccb6e16b",
+        "appVersion": "0.2.30",
+        "buildGuid": "21261224be4f40e692a3629fc4cc42fe"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/attempt-003/20261002-103141-750-91311172a2df4d3987ff11860a1a08fc-quit.json",
+        "bytes": 3121,
+        "sha256": "5dd8746a69c1b81afe6b2b4f5b59fd18543e5d11377d640258f3157245cef3f0",
+        "appVersion": "0.2.30",
+        "buildGuid": "21261224be4f40e692a3629fc4cc42fe"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/attempt-003/Frontier-20261002-102803-137-f21713-fdb6e4d5d83842309d2505c1e6b60fba.json",
+        "bytes": 2104,
+        "sha256": "ed703c22e4383d6a52895d57f2649d4a5978083b127be3b823bf4ecf1650e13e",
+        "appVersion": "0.2.30",
+        "buildGuid": "21261224be4f40e692a3629fc4cc42fe"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/attempt-003/Frontier-20261002-103141-355-f26962-f9509d6c8cde48d1861c517c2ab6835f.json",
+        "bytes": 1601,
+        "sha256": "c9592fd11495a21b9b984cd414079c31051e6b0cb3a89090c708840cc4e5b7aa",
+        "appVersion": "0.2.30",
+        "buildGuid": "21261224be4f40e692a3629fc4cc42fe"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/attempt-003/archive-receipt.json",
+        "bytes": 1909,
+        "sha256": "fdef662f3277085d3f02194cdb0a5a17a1558bec18b2a9e033a4aa91268406c6",
+        "appVersion": null,
+        "buildGuid": "21261224be4f40e692a3629fc4cc42fe"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-001/20261002-112736-744-9f0d7b0c338243b4a3c57107db5e1019-match_finished.json",
+        "bytes": 3119,
+        "sha256": "6a38cd0bd08aeff6c7469b8c1c26c2b0f2146524185f8f16be2aeed550a315b5",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-001/Frontier-20261002-110854-267-f3779-84a6e6987e87433489426b6a6c071d6d.json",
+        "bytes": 1281,
+        "sha256": "1519515ae84489f30a3358b4b2c938cf0f20bbafb8f767bb4757f28586c0060a",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-001/Frontier-20261002-112754-174-f54190-2d2c7bec17324213b719164f865a0467.json",
+        "bytes": 1598,
+        "sha256": "060511d232d704aa087da0efead5c290d4c69718357d9c875a59ff0865cd4572",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-001/archive-receipt.json",
+        "bytes": 2205,
+        "sha256": "71711d2dc23f6da8f292e5d2bfd640a4a89ca722d5b5408e13fad9286f3752ca",
+        "appVersion": null,
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-002/20261002-114322-602-0d281a3fa942437fabb6798fe2acf664-match_finished.json",
+        "bytes": 3149,
+        "sha256": "ecc8d293846284e1290f599a0fd39a0d4ce033562e29dba7abb239c9ec8a9c27",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-002/20261002-114324-957-0d281a3fa942437fabb6798fe2acf664-menu_exit.json",
+        "bytes": 3144,
+        "sha256": "c787ad7823d70ee9da53719179bc539f05930edc6412fbea99705836e3a9f3e1",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-002/Frontier-20261002-110854-267-f3779-84a6e6987e87433489426b6a6c071d6d.json",
+        "bytes": 1281,
+        "sha256": "1519515ae84489f30a3358b4b2c938cf0f20bbafb8f767bb4757f28586c0060a",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-002/archive-receipt.json",
+        "bytes": 7228,
+        "sha256": "ddc877efceebb02ba9a646a4687c4eadbf473c83e359a0a559f5c0f1310fae76",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-003/20261002-120047-817-62dbc87afc3d4296a932fd41997856aa-match_finished.json",
+        "bytes": 3170,
+        "sha256": "59399fa9810659bc7ad8d66bfad712b5d3d0fe07e8cf7bd82663778f756f7e41",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-003/Frontier-20261002-114351-906-f93075-3f34c7fa33034e31be3ac463c19951fb.json",
+        "bytes": 1374,
+        "sha256": "aded87f6c377d83c5fd848a7bf9f93bbb3ba9db66d26e8b7b0047a8544de9a3b",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-003/Frontier-20261002-114409-114-f94080-6c0dc261fde34f8ba6b897f1cdeb1108.json",
+        "bytes": 1779,
+        "sha256": "13efdd72ab8b42d50174e2eb209b17147f62c19b5b1f4509adc9d36a5a22763c",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-003/Frontier-20261002-120126-267-f146198-2ddc5fac42f3417c9aa6441a15de233d.json",
+        "bytes": 1602,
+        "sha256": "40acf4eeef62a55cc5221e706d7fa975c411773c56356d7f6b851894408975f5",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-003/archive-receipt.json",
+        "bytes": 12225,
+        "sha256": "67c2114a12f4e5503817b1fbf0c8d71216f807eff915d42ff4ff5f49123de640",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-003/capture-audit.json",
+        "bytes": 3216,
+        "sha256": "97dd995c03a090328c88d5083ef81f0d34ed93a796631eca5da7fcf196f05be7",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-004/20261002-125310-048-fd3381d7dfee44cfb12332568c767c10-match_finished.json",
+        "bytes": 3196,
+        "sha256": "b472860f5a40d6c2646938da5955f8c9a938a4c920a90d249e6875088bd6ce54",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-004/20261002-125310-698-fd3381d7dfee44cfb12332568c767c10-menu_exit.json",
+        "bytes": 3190,
+        "sha256": "10aa987bf770a284378980a1ddc27e5b0de876e5374aeb9a05941200be262602",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-004/Frontier-20261002-114351-906-f93075-3f34c7fa33034e31be3ac463c19951fb.json",
+        "bytes": 1374,
+        "sha256": "aded87f6c377d83c5fd848a7bf9f93bbb3ba9db66d26e8b7b0047a8544de9a3b",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-004/Frontier-20261002-120144-191-f147255-3c722d1ddb484a55af2685ab8099a7be.json",
+        "bytes": 1828,
+        "sha256": "4eabaa37f54da30a757c4b195f5a9627b39c6b9adc5fdf0cb59d96f0d3dd45ba",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-004/Frontier-20261002-123337-398-f247498-b623f9b619cf4c47af9e2b0428a8b4d8.json",
+        "bytes": 2666,
+        "sha256": "d9e0b097255be054c148e19910ee0c097eccf3b5e16fc7e61ffda42f15633d73",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-004/Frontier-20261002-124416-441-f281152-9bb65172c511459891c565d67b1da038.json",
+        "bytes": 3497,
+        "sha256": "a0f393f763c45c4064594d1b44548dc33a4eeef13ddd87edeff07b7efbe6bc21",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-004/Frontier-20261002-124649-714-f290264-ff30fb50fae449cbac9e9a33fbed1174.json",
+        "bytes": 2942,
+        "sha256": "35159efd67c9a464637ed26c41fd0ab3b6ec61d2e526e0903b550f99f28a7dd6",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-004/Frontier-20261002-125122-798-f301222-6a0cc8dbd52b41c59eae4d1131fa6722.json",
+        "bytes": 2404,
+        "sha256": "b6e55a74b03ea0916164e9896110e4e99f8b26336e8bea6b5ef3de301e376960",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-004/Frontier-20261002-125329-683-f303916-06c8b6df937e48e3831e5c61db97c233.json",
+        "bytes": 1351,
+        "sha256": "3e284cd8e73d8e43c63739a9a42a8bb1348e47fa5e330f832bf23be6748b02de",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-004/archive-receipt.json",
+        "bytes": 24122,
+        "sha256": "d2ca78fa8c4ac4fbea392a3c2beeb36be27c6323fdbe6aacef54033b0fd3cbcf",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-004/capture-audit.json",
+        "bytes": 6234,
+        "sha256": "76bad977ea84dbe935b42560994e42c774806ae46671398fd78890958d88d9a8",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-005/20261002-142202-941-145add218156473c9a2872545115abe3-match_finished.json",
+        "bytes": 3205,
+        "sha256": "30a6a93dd64a6190275690385f020bb9a85d107a6f4669ef714114e903da439a",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-005/20261002-142203-851-145add218156473c9a2872545115abe3-menu_exit.json",
+        "bytes": 3200,
+        "sha256": "5d6c9c6b1490cca8034b0e778c70d0627ea2540cb5b16d9702c93d203b43dacb",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-005/Frontier-20261002-130457-257-f9344-291d656133a24ff4a24cebd3f5b58927.json",
+        "bytes": 1281,
+        "sha256": "c0f75c49680bbbb174bed0866cec7fc89ef1c015de70b2730df4d7866a650fb5",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-005/Frontier-20261002-130514-179-f10345-fd039aeaefbf427e93ef320b9c7a4d68.json",
+        "bytes": 1765,
+        "sha256": "aba263594344c905150bb4c7e834c3de4b6e1e1fac2d94296f5ee77f6c9b6cf9",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-005/Frontier-20261002-130747-708-f19018-7556c4cbb3db461592b53e9cf61eb593.json",
+        "bytes": 1823,
+        "sha256": "5de50e2f82bd3af2592f766c931182412ee2c20774a760a4f11952f025cba674",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-005/Frontier-20261002-131647-936-f41484-2752f469bedf412597f6dad35ed9d100.json",
+        "bytes": 3695,
+        "sha256": "54964b7d9db1777d4ed8ad90d0bcdcca569c08317aff5626d39c5d949d05aeb3",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-005/Frontier-20261002-132207-817-f56961-2e0c1aad31ca4e6d9514bbc78da8417a.json",
+        "bytes": 2909,
+        "sha256": "b9bcf3947a58736f30f9c320ab225b264e797d6a67d33aa29968f1f9c617ddc7",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-005/Frontier-20261002-133318-013-f96917-bf3825789c6248dd8d4df52e9e55b76b.json",
+        "bytes": 3169,
+        "sha256": "e2b2f730d8f8a62070481e280703a1aa3626dc9e9c600bd0e4b0fbaaa1a282a5",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-005/Frontier-20261002-134031-769-f122820-c89360e87b7246768609200b07f5fa2e.json",
+        "bytes": 3740,
+        "sha256": "0bed3cfc81d7518c147d8cf35059128fb12bb495791a82e731f7dc0e42fa0553",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-005/Frontier-20261002-134112-066-f125227-1ce9a2a0a21444f9992935401017e787.json",
+        "bytes": 3715,
+        "sha256": "939326b85c0eb9b0a9994f4301b28df93b2bf00b00029d26d68c80410e099cbb",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-005/Frontier-20261002-134703-728-f146183-15a7a8f1a0e94430b842d4a70a339523.json",
+        "bytes": 3724,
+        "sha256": "9be8eb12c6eaa403d43d37a344ba34081e04b040596988b084ed415a61b58005",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-005/Frontier-20261002-135731-614-f183663-77426a1383b64f818c5b095050924afd.json",
+        "bytes": 3185,
+        "sha256": "feddc8aa4d60ed4b933be75f06eb39a77c5ec7ae6a2f02da57ee3da6063beff8",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-005/Frontier-20261002-141049-779-f231326-910570a53dce468984d293413549c19b.json",
+        "bytes": 3450,
+        "sha256": "917997deb1128f96703a977b98425b5688f60823fccab6db1f6d19a7d57bd77e",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-005/Frontier-20261002-141657-139-f253253-e43147597d984f309b8b2fb46caca435.json",
+        "bytes": 2649,
+        "sha256": "a11bc1addd95c108c0e4987f1b44db28dd8ed3136e2c7bb46eeb0c402f1a1418",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-005/Frontier-20261002-142203-531-f271518-c403db1cea8d47eaabe562464fcab12a.json",
+        "bytes": 1588,
+        "sha256": "183dea10fb62c7a5f60aea385e44a0671208da8024bf09d87e246572ff3ad0cb",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-005/archive-receipt.json",
+        "bytes": 26824,
+        "sha256": "db9ea356df8be3742eebbd70974cd66e35d86ddf0c46e2544ea132683ca0016e",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-005/capture-audit.json",
+        "bytes": 13138,
+        "sha256": "29f67c784a5318a4e83800a2298f576e902c490198dbfadbb4835be5b15eb134",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-006/Frontier-20261002-142413-245-f279266-9935406f91514ae69b7437f8f6f7ae18.json",
+        "bytes": 1337,
+        "sha256": "5716b64fbae0272420b158dce3c56670727e06231db588e25cda4e7a47809cfb",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-006/Frontier-20261002-142415-059-f279368-a5c02e27f19e48658eb6300d858ce9da.json",
+        "bytes": 1814,
+        "sha256": "93e33833fee8272275a240eaae908cc21dac1b59e4e604f37f4466bd7ec34d37",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-006/Frontier-20261002-150044-650-f409972-ee274b5750344c00a865070b56151365.json",
+        "bytes": 2654,
+        "sha256": "d9f334c8b182ef4d3bf779d718ce6709b60fa55da109699fd977a69fa2187bf0",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-006/Frontier-20261002-150513-945-f426005-be3d02d5e7d84282aae1ff3c866d273e.json",
+        "bytes": 2916,
+        "sha256": "d97e2c6ccb2e23ab6347ae9d0a3f3c00d3b093b65ed8336b7775a55437cf712e",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-007/20261002-162202-453-781c4090a2474a91964105c79eab9e27-match_finished.json",
+        "bytes": 3183,
+        "sha256": "28c15261458ba34fb20a3d113cfdd5a41b620d138254561bb03e7c07e1b71ab3",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-007/20261002-162208-540-781c4090a2474a91964105c79eab9e27-menu_exit.json",
+        "bytes": 3178,
+        "sha256": "4769a714a07260cde197e47412c428ac6e4109e1dae6019066ad45aa83fa22fd",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-007/Frontier-20261002-152842-784-f3967-3146912b95dd46eb81b2b734990cc6df.json",
+        "bytes": 1281,
+        "sha256": "c70e7f492985053d550431fe83c63aba19d8e46e8066394ed3b45780b3a18b62",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-007/Frontier-20261002-152856-321-f4561-06847491408d46c19f4e96f565e11053.json",
+        "bytes": 1806,
+        "sha256": "0cfbe62cd00b7cefb8ffdb95ec9b1ef7c7e77addc340802ad0395a8636c98a1e",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-007/Frontier-20261002-154034-311-f41456-d65e01dd3cf64d67ba51ec2672eb625a.json",
+        "bytes": 2377,
+        "sha256": "6260ea4863ffedf22391c54f963f54f717f1c94c482b38aa9098f550babbb121",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-007/Frontier-20261002-154745-440-f64591-03e51732939b4f8b9871d0c2b1e71bf5.json",
+        "bytes": 2914,
+        "sha256": "7e7cd1674a1b82c9110df9605d50e0be4e954b4dc8872433ed1c602509c95bb1",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-007/Frontier-20261002-155158-059-f76184-0ab9d003b1984eda8dfd6939ed8f7bf5.json",
+        "bytes": 2924,
+        "sha256": "02566b50af3babbd89e127592003256dece88118a49bb382026c04babda2ba09",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-007/Frontier-20261002-155639-696-f86660-10b77047bb4c481a85f548f525afe6e6.json",
+        "bytes": 2644,
+        "sha256": "f895f76c089b386fbb99ea62d909e08583d7b0d8a46627920a9a8a067b604550",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-008/20261002-163139-373-6cf241946653492ea782b2f968b5e229-menu_exit.json",
+        "bytes": 3000,
+        "sha256": "c435076bb86cd719b6004e0318c2e79d5877a8783ba04b659113017e2e66e50e",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-008/Frontier-20261002-162624-237-f4542-620719c6316844469e6b723c3bcc2697.json",
+        "bytes": 1281,
+        "sha256": "dd122dd147487fac9604ba08b5d4bbc4010d3a0be350c2f882c2d8b3589ebf36",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-008/Frontier-20261002-162634-257-f5132-da07e2a18a1a4372b3ad1ebe0331ef6a.json",
+        "bytes": 1762,
+        "sha256": "eebb664ff181a0512a5f72b29c7161f752cc927952fd202a9a8ce9d35d086ab3",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-008/Frontier-20261002-163139-350-f17060-c33d035acf854df49dc2b3dfcd60e898.json",
+        "bytes": 2346,
+        "sha256": "d43d0600df4a9960ff6e8af147f3b2582d068711e1e12980154d89bcf89d8828",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-009/055-build-receipt.json",
+        "bytes": 1260,
+        "sha256": "9218690cdc8b77154299f0638334ac86d33d9cff45c10812fcb7ddbe9f115aca",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-009/20261002-215105-240-7f161abd4f994a1aaf5be762ba4a23f5-match_finished.json",
+        "bytes": 3207,
+        "sha256": "843aede8fffd4d2723246a2fbe96a02dc1acf23b7ac7ef56265d221f0c94c33b",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-009/Frontier-20261002-163158-239-f18180-c256dd02ced94ed199c67fc4834b6bf7.json",
+        "bytes": 1334,
+        "sha256": "6844dd3518b5414b749f7f354651d4de4e0d2ce548976563ab9aa44193896cc8",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-009/Frontier-20261002-163159-690-f18261-5f54c9a3b0bc40ddbea027cfc3fba805.json",
+        "bytes": 1810,
+        "sha256": "5ff17675958a60ff9d72fee1191ed541576bf04676d5108e61dfb073995c691e",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-009/Frontier-20261002-164009-628-f47396-b0489a2a25734410baff888db2e77dd4.json",
+        "bytes": 3153,
+        "sha256": "abf2ad6dfe76827959a97bab7bcb15120d6fe516e60ff4c5f74cb4d4fc305476",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-009/Frontier-20261002-214232-905-f511035-afaa85a54e0046b79ba572e1e08935a0.json",
+        "bytes": 2928,
+        "sha256": "0df452a1191679dee5784620a8e676c0f8c12777e712bc0874178df988d86887",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-009/Frontier-20261002-215114-405-f541122-d6b51be5cdff4bb2a8c977202457cd42.json",
+        "bytes": 1588,
+        "sha256": "dd7261ced1886ddb0063ab05a8fcfad49d7a6885562c3c249faca6d0ee91ed1d",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-009/frozen-identity-audit.json",
+        "bytes": 1179,
+        "sha256": "4c127c13639c05fb4d16edb0c73a225c71ec38d1d5096d28bf1ef40e8fe1a4b7",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-010/055-build-receipt.json",
+        "bytes": 1260,
+        "sha256": "9218690cdc8b77154299f0638334ac86d33d9cff45c10812fcb7ddbe9f115aca",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-010/20261002-223907-212-f65f503a74b9415e89d0a875e9b0ce2d-match_finished.json",
+        "bytes": 3200,
+        "sha256": "1ab8c8df0e7fcd2e31c5703cb290e4f52e3d2690b03eaf77d758dabc228611ba",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-010/Frontier-20261002-215433-951-f552980-8527f5f55dfb46288a3e2ebb870425bb.json",
+        "bytes": 1337,
+        "sha256": "ac6e6abb662f07552b0fd64877849bf4fbd37a01f1bfbd27b4b1f963b429e005",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-010/Frontier-20261002-215450-532-f553964-da8968b1aaa0400bbce1614bacbef7d2.json",
+        "bytes": 1814,
+        "sha256": "8ddb95c337d5a55e6df0c594f583ebc7caf6b095b2cb68cc94fa9e09bf053373",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-010/Frontier-20261002-221102-159-f611844-337e794840aa4dc79ded5923584f4925.json",
+        "bytes": 2660,
+        "sha256": "4db8002eee606e12434f183b326173a485189e72801c214c1c7e64bb0c99d9cf",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-010/Frontier-20261002-221409-821-f623024-5291247cb242495d8fa0af267a738ae5.json",
+        "bytes": 2391,
+        "sha256": "839b4768861a3747b9d16a15485412f823dedbeb8c3c3389031e5e879d46dc81",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-010/Frontier-20261002-222011-781-f644604-a0056f34501a4773bb0b49a79f03c9b0.json",
+        "bytes": 2646,
+        "sha256": "e54230acf80e4b64cb89eee0f2f3b776a82514c83b2e5f17f27c21f2e69751c7",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-010/Frontier-20261002-222236-089-f653150-207570e0c6af4786af085672f23af502.json",
+        "bytes": 2673,
+        "sha256": "e8064d2958bbcd3db93887c5d4d77e7a2ab32b95d4478deb017f178cbfffed6d",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-010/Frontier-20261002-222256-090-f654333-2534f5f4c1c445eca406b0bb9b5c99e0.json",
+        "bytes": 2673,
+        "sha256": "c8b89ae2f59344b89674051794efbeaf4ee23e0ce20cea7ecaa775b76a24f024",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-010/Frontier-20261002-223939-011-f713946-53a287c25eeb42d39739acbfc890efad.json",
+        "bytes": 1586,
+        "sha256": "0e0f5fda00e46d86574f0706f2c46f4988cd5ff396c84fd86ad5115c8040570c",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/coast-attempt-010/frozen-identity-audit.json",
+        "bytes": 1152,
+        "sha256": "7969bc45593e7ec172a7379bc50932c8196acbbb9041a52f2f6042c792ece49f",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-001/055-build-receipt.json",
+        "bytes": 1260,
+        "sha256": "9218690cdc8b77154299f0638334ac86d33d9cff45c10812fcb7ddbe9f115aca",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-001/20261003-031148-893-1498f3a84f374c0498900c25a6177872-match_finished.json",
+        "bytes": 3252,
+        "sha256": "263a82489d117759cb675513d8a49edc03fe56932ae8ab1ddc071b0b72d0c5a5",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-001/20261003-031608-829-1498f3a84f374c0498900c25a6177872-menu_exit.json",
+        "bytes": 3247,
+        "sha256": "26864a132c14b66fcdf9080ce33351ded625f21f83e6a01ba359368f55663433",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-001/Frontier-20261002-224151-685-f721843-809eb84d5fed40028665d181f62ee556.json",
+        "bytes": 1337,
+        "sha256": "bfbda487508efb681bc756bd6eec0b689225b845d5626783d1506b2cb25ee8d6",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-001/Frontier-20261002-224206-923-f722750-d09dfbbc70bc4a62a40860394c367688.json",
+        "bytes": 1337,
+        "sha256": "9c1fb78924cd90ea0001d642cb9545a0e807cd2e9e91143c1a51fe9653897f40",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-001/Frontier-20261002-224207-876-f722799-56f8c05f50b44cc5865018d88ee93b2b.json",
+        "bytes": 1814,
+        "sha256": "6569291dbc7bbdccd29bd922de1d5453b46c8632e001afe691a8d402c9cf82f0",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-001/Frontier-20261002-224923-123-f748665-47e48deaa70147e7865c4b5513b9597a.json",
+        "bytes": 2112,
+        "sha256": "69c2f5acc1363ce8e4232e8a49c1e27f97a75baac26156abbe8e3eba0feff086",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-001/Frontier-20261002-225224-211-f759442-a10281a21d9d4b1da607435ab98ed35b.json",
+        "bytes": 2633,
+        "sha256": "2a1d090b2cd30d1e04ed992ad9cfd39a93960b16591f38a8b061d2e4aa5b3661",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-001/Frontier-20261002-225243-206-f760569-81bb7907a1f6494ab1b2b03fc7a52c0f.json",
+        "bytes": 2637,
+        "sha256": "6dce54957c532122ab943cea555e790231f8c19052cbbbcfcf372a773b2de199",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-001/Frontier-20261002-225417-571-f766196-e52fd180b2a94be680f8982948b718de.json",
+        "bytes": 2659,
+        "sha256": "e36840cff2db8ea63685f7c2e98e90637ddd0af77dc694e4f20a589a1954d7ba",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-001/Frontier-20261002-230429-944-f802699-3ab30681d3a6400786769fdc158624ee.json",
+        "bytes": 2922,
+        "sha256": "db8aa4a569b0e32dc8463e6c3636426c0ad7127538f0033f86de83b3d7088fee",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-001/Frontier-20261002-230702-624-f811798-48a844fbfde541a9b9ce8040b7231359.json",
+        "bytes": 3175,
+        "sha256": "073ce249f1f8d1964e83b07c624649aeaac56f69dd5a5e8d1ca0359ef7ae89de",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-001/Frontier-20261002-230733-057-f813605-13d0fbdd9cf942dfa736e5aa4ef8a327.json",
+        "bytes": 3177,
+        "sha256": "103ff2993ccb687555ca93c099786deec8545c7575cd07a692d682ab7a48b2e1",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-001/Frontier-20261002-231205-469-f829542-065a17ed81334a94bf2825158a9b2a9f.json",
+        "bytes": 3982,
+        "sha256": "ddb79b46f08f5ce3302cda271feb3ccc3cc8f871f1c9c5134f194ba593769ded",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-001/Frontier-20261002-231603-700-f843573-697fdf13caf04410b0da594a5540066d.json",
+        "bytes": 3183,
+        "sha256": "6f4e930aaa65be9200d32eed385af0905bc9074f02a401343f63e833d55ad99a",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-001/Frontier-20261002-231637-977-f845616-84688bbc47ca4f19b1911c7688eb8a70.json",
+        "bytes": 3465,
+        "sha256": "90fdd836f8c8399d6c18e9cce94e4caa3fba0f320d8b96cc0af71586394f1c3b",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-001/Frontier-20261002-231851-604-f853581-78370aaaf5894df8957aae9f605c9895.json",
+        "bytes": 4768,
+        "sha256": "76fc78ddb236086475f2b42c51b047511c6a961c6c62a9590b25857b304068f6",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-001/Frontier-20261002-231930-912-f855924-842ef4ea70824f768b63df3886e32d29.json",
+        "bytes": 4773,
+        "sha256": "299d80677638a727278c19a8d78e426aa18812985920cdf8fa736393af29928c",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-001/Frontier-20261002-232129-542-f862925-5ff9d09b65e240f2adc3290ef10e920a.json",
+        "bytes": 4288,
+        "sha256": "5937bdb7a0ac9747c6f62ce48a46eb414aa06e343da7322b5439b423d667a313",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-001/Frontier-20261002-232214-433-f865564-a18a783df86c4876b0d8ccae2b81445a.json",
+        "bytes": 4004,
+        "sha256": "a9201920a5442cad2b0f39d2a58fbee5b8e5180b13ff2dbdaa6546c6642cc075",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-001/frozen-identity-audit.json",
+        "bytes": 613,
+        "sha256": "8f7ebc06015e52885f50c335a0ea00b4b8657b8bd21c86d1a75249baf6e8b11e",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-002/055-build-receipt.json",
+        "bytes": 1260,
+        "sha256": "9218690cdc8b77154299f0638334ac86d33d9cff45c10812fcb7ddbe9f115aca",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-002/20261003-041837-445-0b725a5116d2415f855f4443c4023e0e-match_finished.json",
+        "bytes": 3230,
+        "sha256": "5e32827b79f47ce8c56dc0bb738c0b9e3d94bb624f8280161636147d5626eb14",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-002/20261003-041847-108-0b725a5116d2415f855f4443c4023e0e-menu_exit.json",
+        "bytes": 3225,
+        "sha256": "dd5a3f3788ff5f2cc688ab20f75ec015ce3838d2b2fd28994dbfd94772ebf7d4",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-002/Frontier-20261003-034413-738-f2109-648a39e357294fb48e437f1e388cd048.json",
+        "bytes": 1281,
+        "sha256": "63aa59cdb2a9b99e3902ce57a201f735de5321f60d77c9e1b7b0a774c7528433",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-002/Frontier-20261003-034415-043-f2175-6f7f58ff383646d9b8197093d1cd8175.json",
+        "bytes": 1806,
+        "sha256": "a37384cc9f335757e68b46979998247f7df9327a1a1b760014aa4ff3f4488c15",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-002/Frontier-20261003-034731-091-f13737-47021ce3ecd14f338311fd6ef4cf69c2.json",
+        "bytes": 2364,
+        "sha256": "9c78139b30efbf1590a5514871baf14c3309c9ba763604948877522d7b4a6c9f",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-002/Frontier-20261003-035856-064-f53380-c9787c6c160d4f57a37bb7bf6cac1f0f.json",
+        "bytes": 2910,
+        "sha256": "3a8d0a6d1b92cc97699cf5bef6e436769af7aa5b1dfb64136a2febe3a5f70c01",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-002/Frontier-20261003-040426-322-f73072-058e005237c44dae96e4e01de7114644.json",
+        "bytes": 3407,
+        "sha256": "e8936a2094585a7ecfd0a13bdd7a6486ebb5cfb0e0cdd309f0ecd29c27be445c",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-002/Frontier-20261003-041847-072-f124360-49505cd5f7ae49a3abb0e4eee16fe42d.json",
+        "bytes": 1612,
+        "sha256": "7a1cf101b30402eef2b5c03ccc9f85dba2078fcf1e30f8a75cd6f019029c4b03",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-002/frozen-identity-audit.json",
+        "bytes": 612,
+        "sha256": "329b4e8866fb501700151714a182e6235461e6b96cb2aa3cc50c8ff2b1bbbc10",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/055-build-receipt.json",
+        "bytes": 1260,
+        "sha256": "9218690cdc8b77154299f0638334ac86d33d9cff45c10812fcb7ddbe9f115aca",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/20261003-054153-740-8fb300efbc1a4169a953d9dab2b7caad-match_finished.json",
+        "bytes": 3344,
+        "sha256": "2f0e3d5fc6b3dc4d38d2e5b69cf50bcb451d87fde9274c948643b79d1b97144e",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/20261003-054457-232-8fb300efbc1a4169a953d9dab2b7caad-menu_exit.json",
+        "bytes": 3339,
+        "sha256": "01fbeb079e6bb462cdf32257059c2ae67089623c8ab1a505a16edaae9e7cb604",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/Frontier-20261003-041929-566-f126866-5855988223674d9da68fd641bb5888ff.json",
+        "bytes": 1366,
+        "sha256": "0b7ef8af68ac1a1ed67e07546180308e88b3dd7eb881f61f01cc6aa83edd83ab",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/Frontier-20261003-041946-793-f127884-8b680bdd2027476fa173b491e4c910a3.json",
+        "bytes": 2862,
+        "sha256": "8ee04b689a90ed39695b4d1b08afa2de1e5c6d2f89c7bf61223c82b2e9e1652d",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/Frontier-20261003-043019-829-f165576-4999e6447573404d8d1588caada2860c.json",
+        "bytes": 2962,
+        "sha256": "d94778fb5da87a9e324ccf56a9531db541cd2cb11395b7f0098fd06c143174a2",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/Frontier-20261003-043044-708-f167051-9ddda87eb4824d68a824ef3f4c2c9336.json",
+        "bytes": 2964,
+        "sha256": "8aa2bf72fb3f0f3c30a8af91e036c5059f3399c9481b8d560aa70cda709f7a18",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/Frontier-20261003-043755-152-f192644-e735f471062f4bbf85543926721201c2.json",
+        "bytes": 2959,
+        "sha256": "973c2ff7184380e342245f2ae174cafdbf993362211e1ad77c5fe6dc2bf004d5",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/Frontier-20261003-043928-549-f198210-85ef99beab664463938e30a525352563.json",
+        "bytes": 2645,
+        "sha256": "759bf26f1d5338caec301505d0aaa4bb7b00fa240fc99e8792cbb19484db417d",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/Frontier-20261003-045031-067-f237615-2e23f8c0fcff44e5b97d3c8efc957ecb.json",
+        "bytes": 3163,
+        "sha256": "9f92be21262eef3ca9b74186b25a1243ce78e1be9f767b59d7aac9bb2031e09e",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/Frontier-20261003-045413-969-f250891-855a4921db934c568404fd3b3bdcbbe9.json",
+        "bytes": 4458,
+        "sha256": "ca9a18e1e4c4d39241df04c5827d5d75190d4bf5c740f3738fb06995d1ac6345",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/Frontier-20261003-045447-441-f252875-dc5ac5f4c6194f6cba3d614d6672a344.json",
+        "bytes": 4211,
+        "sha256": "6b7d813a1c2d0ab42fdbc8b0bb6e9268ec808f1dbf340dd430ce8b563317fdc0",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/Frontier-20261003-045627-307-f258807-991ab280e4134daba162cd61058f121d.json",
+        "bytes": 3680,
+        "sha256": "0233b2e51c19f4ef054ac8c51ed4736f48f6031a903ac793825fd13033fc4edb",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/Frontier-20261003-045749-153-f263666-c1be96f69436415590d1b41123f493dd.json",
+        "bytes": 3721,
+        "sha256": "13e3f354827caba84981c75037176a418b2084c76a2e17bc3867b94d49918040",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/Frontier-20261003-045832-039-f266211-b9e22e80a29443dc8110ced3f66d7b07.json",
+        "bytes": 3693,
+        "sha256": "9c17a1e0f3ccd23c1b4def2ebb6b53dc462beccaf79c7742d9cbfcdf5144d4fa",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/Frontier-20261003-050123-311-f276396-e866ddbc569c4b93bc5498822f1771d9.json",
+        "bytes": 4484,
+        "sha256": "e4ef4eca1e715aecf93d47056c9cd6575aca2cbe72bb07f14b14dfaa3f94d950",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/Frontier-20261003-050307-690-f282617-deb6184afa734795b8d83c5ac0c169b4.json",
+        "bytes": 4198,
+        "sha256": "1a571ac7bb987be16d6b22ff00bbce44da14879e6cfa14bfcfd8fc52098b60b8",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/Frontier-20261003-050656-060-f296205-0eddbb0c9b2245c985bc9243747e8579.json",
+        "bytes": 4728,
+        "sha256": "76239663df034c1632b1731249aa42668d580fc8e381eb9db6d534317d54e5c0",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/Frontier-20261003-051213-608-f315085-50d856d4402d47f6b9f37ed7cd2a5270.json",
+        "bytes": 6055,
+        "sha256": "0f25f08e6774f5ee9096d822cafd6dd0f9cfb831c0db350e2d11a39eefa1447f",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/Frontier-20261003-052801-887-f371493-7253e844dbb24d24b705a3427a644a64.json",
+        "bytes": 6055,
+        "sha256": "86ebc5553346c786c3613871a03d9b45423587a524258741049df5c50f06bfb7",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/Frontier-20261003-053534-612-f398380-508b363d32394c0585d35f5dd3f196c7.json",
+        "bytes": 4482,
+        "sha256": "87a1f8ada7ff9fc37fa8f98ae0431d55e973f25b295d0cea9e1f70c704987856",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/Frontier-20261003-054203-696-f421350-8f52213dcd064181969955b2e32758a8.json",
+        "bytes": 1585,
+        "sha256": "3113a42dfbdc4577a303ae84230d4890cd260566dcec19716fe08e191ecfb9f3",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/Frontier-20261003-054458-093-f431671-e4697b67d45f4d1ab7363d2b101c412c.json",
+        "bytes": 1337,
+        "sha256": "91d75e2ac022c7e4b457c936e2f503b588c82765dc56e9da391adf556465cb9b",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-003/archive-receipt.json",
+        "bytes": 13328,
+        "sha256": "8afbbbea487a0b28b09baff51f9ddaa93218ac1d987bc5058936daba34e2ee48",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-004/055-build-receipt.json",
+        "bytes": 1260,
+        "sha256": "9218690cdc8b77154299f0638334ac86d33d9cff45c10812fcb7ddbe9f115aca",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-004/20261003-063507-915-b4250e2ab6664083ad919de284cc0afb-match_finished.json",
+        "bytes": 3233,
+        "sha256": "be27c2ac9e0c6c6211e91b41daf8079ebc257b48826ee1708e83d94be49e4631",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-004/20261003-063556-035-b4250e2ab6664083ad919de284cc0afb-menu_exit.json",
+        "bytes": 3228,
+        "sha256": "b79944e42d374e8c425a077fb67590841484c3540cc983cc5bef8ca40d3080ad",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-004/Frontier-20261003-054706-655-f439321-74109ea7b5cb44edb8611676f1b7a998.json",
+        "bytes": 1338,
+        "sha256": "a7fe571bff512dc51ac5abb4efdd5f69de39acbef223dc24a6aab63cee8c6517",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-004/Frontier-20261003-054720-934-f440168-9f3b8ff2f56a4e118002efbfb998afe9.json",
+        "bytes": 1814,
+        "sha256": "91fbab749d8f60aef19e5239d6bb3bf3933c05f868d355cb99794b0bc51d58be",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-004/Frontier-20261003-055030-248-f451386-0e497de687214d5b97597efc187543ba.json",
+        "bytes": 2116,
+        "sha256": "6f6b9378828d2561da19cc36808d6b094ea93d52cd3ab0c50ea6e3124b2780a5",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-004/Frontier-20261003-060201-114-f492463-64bba3f6386343178445aae94b4b4e4d.json",
+        "bytes": 2956,
+        "sha256": "93a62d28ce61f9182a691342df9a9d73fe66c653b1c797e221304327cabd5e11",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-004/Frontier-20261003-061111-735-f525220-d969c479c3ce41289449a2df7b783008.json",
+        "bytes": 2414,
+        "sha256": "fe628286f521d43ef249c89909aea9c15514ea66cda66f4e35abe29164e1c51e",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-004/Frontier-20261003-061538-311-f541053-272f6796f1ef4cd3b783c1f03dfeca36.json",
+        "bytes": 3213,
+        "sha256": "4fb4abd5609db64bd1367ec46b4d48ac16cfb7e00c860fb9e382cd288f31afa6",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-004/Frontier-20261003-061621-999-f543640-7e9c1d9c84e14464b482ca066078e0ca.json",
+        "bytes": 3188,
+        "sha256": "856b9caa4ac233379e2aaaecaea062ff9a1e0fdaf36702917f277a2740fed6c2",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-004/Frontier-20261003-061738-379-f548158-693c1f1d04a949b4935e34b93dae8b3a.json",
+        "bytes": 2913,
+        "sha256": "86b6c6adb2005bb6cdac25d6770b40f726f22491e9eb64a6bc4b5c6c5fccf94b",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-004/Frontier-20261003-062145-201-f562830-9f1841867b1345419a6a88a3e18d88dd.json",
+        "bytes": 2938,
+        "sha256": "1df1c0ab8b35f5cf923c16e0bbba04fa9d3bafec0a2a297b54c9eca3c5c3b42d",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-004/Frontier-20261003-062223-229-f565087-3ed5dbd0a9d74d9caa732f1630c5a8c6.json",
+        "bytes": 2938,
+        "sha256": "121899a0c6aa217c28e919cc051be7d9d5f54802598696521195618bc539f88a",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-004/Frontier-20261003-062252-349-f566814-1b219783633c4935aab8e6a3da5b4477.json",
+        "bytes": 2940,
+        "sha256": "9bc216bec14d5c32e1bf48e8551e5b7b4219ae59c0b6996db2a9a5d4ab792663",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-004/Frontier-20261003-062538-114-f576670-b2037778d210430dbbeddfe5ea3760f2.json",
+        "bytes": 3478,
+        "sha256": "f672cd6c01b11a94e02ab3a27dc34d2249c86730840bfec051fcebd7e6c23917",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-004/Frontier-20261003-062556-519-f577747-8b93d16b6abf4075953200e2f452288e.json",
+        "bytes": 2964,
+        "sha256": "c46d625c315172d9945f638303aa154f6733909f0de1a45e85cf7583779fe395",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-004/Frontier-20261003-063445-232-f609155-716c95be6e6e465ca390ca7f873da957.json",
+        "bytes": 1851,
+        "sha256": "d9fcfb8f33dd136e1c1cae9d67f210c02b14b73b9f739831cbbe2082f188b6a8",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-004/Frontier-20261003-063525-645-f611543-8791e70cdc32413a9cfe2689766f3412.json",
+        "bytes": 1611,
+        "sha256": "560771ac1cff27591dd15816e593e249c8caee7d8bfe240f309d17497cae0b77",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-004/Frontier-20261003-063557-467-f613428-cc2051205d5d44c98bc47a9e0d889aa0.json",
+        "bytes": 1364,
+        "sha256": "e83465811cc9a6fb458e6a9c34ab523a758fbcb3e271509d6a377c80ee9b3fb7",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-004/archive-receipt.json",
+        "bytes": 11757,
+        "sha256": "cc28fc8e47999c072aeb04a0df04af0f4e8536ac70daebbaea547a14f8647e59",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-005/055-build-receipt.json",
+        "bytes": 1260,
+        "sha256": "9218690cdc8b77154299f0638334ac86d33d9cff45c10812fcb7ddbe9f115aca",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-005/20261003-081035-834-d69b5316feda422f8a27d23545e13c5b-match_finished.json",
+        "bytes": 3298,
+        "sha256": "6a3b9bba5d01adc0e20cd2909c197bb7892aa8a705398fad222e97900b4c3790",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-005/20261003-081203-427-d69b5316feda422f8a27d23545e13c5b-menu_exit.json",
+        "bytes": 3293,
+        "sha256": "f891219f58eab58b1bd6be87176d4f4fb966e4056d48b70ff3d57ba79616417e",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-005/Frontier-20261003-063821-899-f622021-076601c824544cdc9d3287e41505b653.json",
+        "bytes": 1365,
+        "sha256": "2430516f4aff2fc92e979496256b5437c59a20940ee252d1868f0f25b6116d7b",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-005/Frontier-20261003-063847-334-f623528-2a9ecc2ec45343d295b84c11aa69441d.json",
+        "bytes": 2846,
+        "sha256": "32ca45d3b534e5c091d19371cb783c5dd113ffb081157b26e8a894e85e61e4a2",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-005/Frontier-20261003-065718-005-f689624-86d2ea870f32455d85b8fabe249918f3.json",
+        "bytes": 2963,
+        "sha256": "6cc53dd2d7c9fdb6ce4701e82c97da39f7418309a5b2834d9d68d1fe3d8e2d2d",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-005/Frontier-20261003-070406-903-f713946-c57b52613296462683bd9196a4c4582e.json",
+        "bytes": 3503,
+        "sha256": "fa1251558fb189055cf343501aa30cddecf9ac776b13457567317ad218e14543",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-005/Frontier-20261003-071123-254-f739904-cb74faf9f3b34047a166740c67c60c17.json",
+        "bytes": 4509,
+        "sha256": "dd91d49527752e86d4df3e180855a11d7922ee2c6f84274e06f9979b8013842d",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-005/Frontier-20261003-071450-093-f752156-b1ea8dbfaf2d4425929c75c94895a541.json",
+        "bytes": 4235,
+        "sha256": "11711a0fee1664d6e814a5a2b0c9e4cc26c33c6886726b7b93c5b2962052c389",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-005/Frontier-20261003-071956-551-f770435-45d31c25b42b4068bc76c996d3897aef.json",
+        "bytes": 4307,
+        "sha256": "6bfc628322edafad03399da2894db130210267cbcee80a9739af08e8a9653ae0",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-005/Frontier-20261003-072026-626-f772222-1436100252ea4af0a7ac8639799845e5.json",
+        "bytes": 4008,
+        "sha256": "cdb0c6c68754adb0120c96ad424bb3aa1c9781bea2eba3515bb4b60719c5f721",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-005/Frontier-20261003-072219-823-f778960-899d4aa33414430985f0a13f97cb14c2.json",
+        "bytes": 4777,
+        "sha256": "35ec9c968c72ad538ce0a63d816596b11c9a0bf9ad8aa322de60e522305cfd50",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-005/Frontier-20261003-072257-257-f781184-7b6547416dee41768fc83954f8d70cd6.json",
+        "bytes": 4802,
+        "sha256": "ad760af055b1d438440969f98d1ca536c754e296a7c3a67e51de33b3118f489a",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-005/Frontier-20261003-072710-648-f796233-b6bb66caddea4996ba090bbc1a67be58.json",
+        "bytes": 5037,
+        "sha256": "ff376dcd7c12361b2dc019a2102f2900696a3c9e5ce78e3e78a888eb00c3208a",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-005/Frontier-20261003-072733-398-f797580-dc426f73a2c04af68e1ca7833a09419a.json",
+        "bytes": 5054,
+        "sha256": "c3ee3a13c2f73df5700992c464ac1f55529c2b7a532fdc1fab016acbf51241b4",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-005/Frontier-20261003-072928-339-f804425-0c578c782a60460eb51f35c421a892e0.json",
+        "bytes": 4749,
+        "sha256": "f33f366ae2705e92f9821362810d86ad3c38afc4ee21c63f95124ef0f58e7b4a",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-005/Frontier-20261003-073316-867-f818025-e59bc6c162c343838046fa6fcf1c5c9b.json",
+        "bytes": 4766,
+        "sha256": "4102e3b55a6cc373ee68a4b95702570a4f64b7880b206393650a77e03318d94a",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-005/Frontier-20261003-073738-674-f833599-eccc2c95d19e4fa996f2e47f676a834a.json",
+        "bytes": 4765,
+        "sha256": "20b25b7e1d031fe0ba5562e2b59ed9a0758a7bcbb5ec27d67f6189553e853869",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-005/Frontier-20261003-081058-030-f952417-14326f7d2987435ca2faf6e58455ce24.json",
+        "bytes": 1590,
+        "sha256": "201428349393cafd7eaf249b53b98d7cae81a3b63c474ce91a021f028ead08d1",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-005/Frontier-20261003-081204-423-f956325-caea6d1f49f94933abe8677439448873.json",
+        "bytes": 1338,
+        "sha256": "78019bfcec9a4b60009feacf87d6fb5cd91cae45e69221a9577fffd17c89ae1c",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-005/archive-receipt.json",
+        "bytes": 12068,
+        "sha256": "299eacd347eb2e951df0804e0a143de562adda1d1dfff469b08cee383bc026d0",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-006/055-build-receipt.json",
+        "bytes": 1260,
+        "sha256": "9218690cdc8b77154299f0638334ac86d33d9cff45c10812fcb7ddbe9f115aca",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-006/20261003-092107-193-7558b19fc9984578a313082b633c6630-match_finished.json",
+        "bytes": 3247,
+        "sha256": "3219e445a1a593abfc6dbbc1e3af3a58f7ee89f4c780f730f5e9cbd863d16336",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-006/20261003-092155-226-7558b19fc9984578a313082b633c6630-menu_exit.json",
+        "bytes": 3242,
+        "sha256": "d65f287bbcd2672384d392d1a5779995a207db33829804fcd849f695d40b9541",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-006/Frontier-20261003-081347-210-f962441-875032a5f2cd4487af47e9cf86321c9c.json",
+        "bytes": 1338,
+        "sha256": "df75fd22cbd76d1b9ed87fe258f279249c102698a38e213dbc611f535f854df7",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-006/Frontier-20261003-081349-148-f962548-52c3fd757cd44e93b1b30db6e4583a7b.json",
+        "bytes": 1814,
+        "sha256": "e928439faa0b188d2beb9650a87944fa1c07a489780de8fecdf67c0d1f244f4d",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-006/Frontier-20261003-081953-987-f984314-854dac5d404f4ac290fd367a33948f93.json",
+        "bytes": 2396,
+        "sha256": "fa82ae4eb0c3cedbc3f054b4c87ffa7093674a3cc8912f8470f6b9644aada29a",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-006/Frontier-20261003-083209-615-f1028130-0ab065e37a02408b840d47ab47da9e32.json",
+        "bytes": 2964,
+        "sha256": "27dd88522c0513fe745fec0e8d0a4072c6290d6a2314f286ea3eb3574224e276",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-006/Frontier-20261003-083930-316-f1054362-e0f9197278dc4cc5b9b6d3005a43c6b0.json",
+        "bytes": 3178,
+        "sha256": "18d98a9ea5ac889ae044f1bd2b4fc90449a5b59a1f65f628580d1ecedd6c75e5",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-006/Frontier-20261003-084653-809-f1080710-649b324e79ad4bc3a6455e4fae91f27b.json",
+        "bytes": 4014,
+        "sha256": "cae67561bab9e50e6e119d8a1ec8bc066a738950c76f53884fee8eb4961a63f2",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-006/Frontier-20261003-085053-883-f1095018-9c2498f3f2c84dd0847a64a566495a4c.json",
+        "bytes": 3705,
+        "sha256": "c5945816697be51bc2d8907a5c6f331302af54814b034017608f89c4f24a71ca",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-006/Frontier-20261003-090208-774-f1135245-bfb0533a45724c2f87af01333819f4cc.json",
+        "bytes": 4247,
+        "sha256": "cd6eb7adacae41c1745d9c1155280bfbad853e389ce6a618b8762905204bf525",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-006/Frontier-20261003-090305-410-f1138623-2f1d0d806ff8457991e2e37b18d31720.json",
+        "bytes": 4222,
+        "sha256": "a70b9672749b3ae2bc7fe54ff33e2b7f9b671a428fa4b221e398ffab835410e1",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-006/Frontier-20261003-092137-398-f1204818-edf4d40722a940268add50a81b84d986.json",
+        "bytes": 1597,
+        "sha256": "a959433a2a8da3769ed363a8e0e8a61e9f27b2e6a26b2e91a69a72ea3c154d52",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-006/Frontier-20261003-092156-140-f1205909-cd523f0373c94dd9831dcb4c4babd9cb.json",
+        "bytes": 1342,
+        "sha256": "75d10cdfe4d0a535b652a6a529074739a4801b94f8c692c4dc5ed3c3655ed8b2",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-006/archive-receipt.json",
+        "bytes": 10891,
+        "sha256": "a09a6581238f86db4f55ef882e8a754e94b0f82daf616c046019d9ca387127ee",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/055-build-receipt.json",
+        "bytes": 2244,
+        "sha256": "67f796846d04be02f401d95e43a99299249dc7e256bbecf049e4f39c5691ee5d",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/20261003-113916-806-cd717dda89684d87b979629d3fbdf1a9-match_finished.json",
+        "bytes": 3313,
+        "sha256": "5428ca1a2f8092d02f66c85f96055b07aa89cd57a8258860b82c12305849208a",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/20261003-113921-407-cd717dda89684d87b979629d3fbdf1a9-menu_exit.json",
+        "bytes": 3308,
+        "sha256": "630ebcf69f6a0ef37c05b65340454430d227f292151b19cf8dbc4d17d362fb86",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-092247-728-f1208992-9c3c2c3d21c84c5cb3ac5ebefc7180f3.json",
+        "bytes": 1342,
+        "sha256": "7ab5793950e54d7dbba4b5fb9c821322160adaa2b0f5797a7b2cab02c6ea5f4b",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-092249-827-f1209109-2711e46deee6478c890f8f99c19e99b3.json",
+        "bytes": 1819,
+        "sha256": "482c23c41b5d5a18052e4bcbc794eda87552fa35c33a51798c75455ea6e22f4b",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-092500-200-f1216867-4ecb2ad2605646368c47539d026eff1f.json",
+        "bytes": 2391,
+        "sha256": "34da2caca57d8a879db8aab6c66c8f4a6d192799811cd1f3caa064b193f2afe4",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-093323-632-f1246733-f863f23d52d4455f8aa74849ca1c246d.json",
+        "bytes": 2709,
+        "sha256": "1f38865bcef504b82f7dbaa33a318fbd7efb72f734184d9ada6b2e94f330a0eb",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-093856-040-f1266501-f6c15e7c83174db9a33addb8920fd153.json",
+        "bytes": 2959,
+        "sha256": "c5032286cad08090eedb863ecf23f8d02dbe6f954a3594e48da2602dcc8efc7a",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-093931-017-f1268572-c54eda32425149b19a4fbf56ebc1fb6b.json",
+        "bytes": 2977,
+        "sha256": "693f307c8bc8afa943144a289149aeed8e918c6064bcec0fad2d058596bac691",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-094102-041-f1273972-528ce38b8967478a8e845689e6f3fa59.json",
+        "bytes": 2977,
+        "sha256": "58abca8613b149e36aff2249b917181ed3876a889e8d437e9f50d3c33d2b8c56",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-094502-312-f1288268-bf9e083f356a4cd0a946a7a3247ea044.json",
+        "bytes": 2953,
+        "sha256": "45349ed7a1370f26bdedc1c27dac4a64a0852ed30b9bcfe1990c1f9be98a898c",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-094931-140-f1304263-7fd6406347394344a7ec5ea5f6e0bc39.json",
+        "bytes": 2940,
+        "sha256": "abc716f16d7d5f31415ae10bfb1651c45240dd5fa1dec5dd325e26752263a2ce",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-095844-715-f1337227-a01798e4fffb4712a9c83a9cf57899ed.json",
+        "bytes": 4264,
+        "sha256": "92c45875f1b75dbfcba016efb245e8d90beeec05babbca9950f1818e8d34fa46",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-095939-831-f1340498-4ac303abbc2f4e55b464a56f278ff8fc.json",
+        "bytes": 4833,
+        "sha256": "435dbe413835096568dad63901bb7bd519c757b4fd346e86075695af6691208e",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-102401-827-f1381744-1002c8a44f534ac190b647f07e431f36.json",
+        "bytes": 5336,
+        "sha256": "bea041228fa11dc6da34023d71d84a35cf419de1182bc64a1c6698ffe609c885",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-102529-588-f1386951-9af9abbb38e64f3d968e7fb5c3c8ffdb.json",
+        "bytes": 5588,
+        "sha256": "5bed222dd0aa4c64cd9ae88336c36ca5302e3315f64a80b87e91e18d8eaaa320",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-102656-019-f1392085-9bd300707bee47b3af527290564adc22.json",
+        "bytes": 5107,
+        "sha256": "b9191006a52a0ac3f9e38b9395d422a9e819bb6491c0940130158ff1230bf484",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-102719-777-f1393484-c98cd7bbfbd74212b49e9f79dde42a6f.json",
+        "bytes": 4565,
+        "sha256": "278e8bce1e3a329a1a5e09534cfb9f9ebcb9350db742b17ba4ebaa0c594ae10c",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-103102-660-f1406760-8056abd2742a4dacb199575c2ef43f66.json",
+        "bytes": 5326,
+        "sha256": "e2773ef25b200dcb0e11f74b77b76b32f09c53df90a946508945d091985e2839",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-103135-038-f1408689-9ff2ad7a9d184361a6074a43216fc145.json",
+        "bytes": 5339,
+        "sha256": "5ca4865f79044143c6bd97f49eb4565d2703595137c2f97eceac1a5a2089ef7b",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-103213-638-f1410990-1012e908e3ec41da995966746d2b45d0.json",
+        "bytes": 5312,
+        "sha256": "d779342320b9ac64e54224e18106b1070d872ae401857608b010d71a9599076d",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-104159-328-f1445814-010d361dcc5e498f8539e9799d30dbbd.json",
+        "bytes": 5826,
+        "sha256": "c81bc85248c33bdcb07f369c91d102d8e2373dec5ce9e618e14c7b0a1e4db5b8",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-104637-225-f1462365-aa74fca56bc54bda8fc152681a563278.json",
+        "bytes": 5553,
+        "sha256": "4c2c222e8eadb188c4a244df2494c17b39117b06b88356219c4b59a11e82a7ac",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-105257-715-f1484964-6bdb7231c0e14cf39814903cd8ceed9f.json",
+        "bytes": 6093,
+        "sha256": "d2f7e328c320990f415f0c1293e6497f1ead008d8f6a74b1d792a8a9d524e49a",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-105321-999-f1486408-4450dab8713d4de2bcc48e48036d7099.json",
+        "bytes": 6089,
+        "sha256": "34c27ce9a07c3a12a5660672cfdd6985bcd59593f6fc855fd578e918af9b096e",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-110237-451-f1519437-db38d67eff2143768a9b6c615ee75161.json",
+        "bytes": 5819,
+        "sha256": "e78da8fb4081e1e6d8517895c11b8015f75491bd4c631370ce93785175eeaa19",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-113933-192-f1651086-8ca5435fbef44691a75902ecf368f35b.json",
+        "bytes": 1369,
+        "sha256": "085988f2a0f2ce283aa957caf34eb7788ef89233ec929ec7a38e2b2fef2289b4",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/archive-receipt.json",
+        "bytes": 17515,
+        "sha256": "73304c7dcf6d9541950b34479ece0ff691f39642d48b996833ad8dd3ba44027e",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/NormalPlayer/river-attempt-007/technology-visual-audit.json",
+        "bytes": 52336,
+        "sha256": "11e87aec0e24ba1a781242374716a5ac7d60165ac608f6a7c11dc3cf9f270afe",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/normal-b4-window-001/20261002-125310-048-fd3381d7dfee44cfb12332568c767c10-match_finished.json",
+        "bytes": 3196,
+        "sha256": "b472860f5a40d6c2646938da5955f8c9a938a4c920a90d249e6875088bd6ce54",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/normal-b4-window-001/Frontier-Performance-20261002-121632-332-5eaa37eb5049440898a7195eafb0673c.json",
+        "bytes": 7705690,
+        "sha256": "24e1fda0530a004a8684fb9b1451dd5735ccd908e5eb00254fe8d4ae8fd4031b",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/normal-b4-window-002/20261002-125310-048-fd3381d7dfee44cfb12332568c767c10-match_finished.json",
+        "bytes": 3196,
+        "sha256": "b472860f5a40d6c2646938da5955f8c9a938a4c920a90d249e6875088bd6ce54",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/normal-b4-window-002/Frontier-Performance-20261002-123601-396-6da606ac652846cf8df6400f253c4059.json",
+        "bytes": 7694329,
+        "sha256": "a099fafe840397ca925b8a68cd3bcfcdcf45d9bd864fa87e45de2e0b9a7e4355",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/normal-b5-window-001/20261002-142202-941-145add218156473c9a2872545115abe3-match_finished.json",
+        "bytes": 3205,
+        "sha256": "30a6a93dd64a6190275690385f020bb9a85d107a6f4669ef714114e903da439a",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/normal-b5-window-001/Frontier-Performance-20261002-134009-289-5d792cdc9d01426696d7fe0643632251.json",
+        "bytes": 8828907,
+        "sha256": "efb26389bfc133610c076ee665a06c98b3091c7e3faa9b103310379ba4ca74b7",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/normal-b6-window-001/Frontier-Performance-20261002-150150-438-c5391af178be49e089f280bb890ba33a.json",
+        "bytes": 8879303,
+        "sha256": "7f3ad6f699eb6fe3b72572df872d8ac62e448b40529762d0b897b27566bc9f60",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/normal-b7-window-001/20261002-162202-453-781c4090a2474a91964105c79eab9e27-match_finished.json",
+        "bytes": 3183,
+        "sha256": "28c15261458ba34fb20a3d113cfdd5a41b620d138254561bb03e7c07e1b71ab3",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/normal-b7-window-001/Frontier-Performance-20261002-155326-356-b6c57e19139748eb893f0bffaadde4f5.json",
+        "bytes": 7142917,
+        "sha256": "be8ae621770dfc3eaa98a066ae0258df6f10cd6a1b789b10abbcc5313f2c5023",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/normal-b7-window-002/20261002-162202-453-781c4090a2474a91964105c79eab9e27-match_finished.json",
+        "bytes": 3183,
+        "sha256": "28c15261458ba34fb20a3d113cfdd5a41b620d138254561bb03e7c07e1b71ab3",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/normal-b7-window-002/Frontier-Performance-20261002-160639-601-6e20a995775946939eee1e656633962a.json",
+        "bytes": 7070847,
+        "sha256": "272290b3f3093d63e18495d035ebc43a92820fcd8af4274b33e2e52d13d44402",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/normal-b9-final-001/055-build-receipt.json",
+        "bytes": 1260,
+        "sha256": "9218690cdc8b77154299f0638334ac86d33d9cff45c10812fcb7ddbe9f115aca",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/normal-b9-final-001/20261002-215105-240-7f161abd4f994a1aaf5be762ba4a23f5-match_finished.json",
+        "bytes": 3207,
+        "sha256": "843aede8fffd4d2723246a2fbe96a02dc1acf23b7ac7ef56265d221f0c94c33b",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/normal-b9-final-001/Frontier-Performance-20261002-164113-027-cc8075cd77464c35a52858642f15c364.json",
+        "bytes": 5136591,
+        "sha256": "08e5fc1e79e12dced3ba35f83c467229723a1c3499fc10b46e0b67f76940f8ba",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/normal-b9-final-001/archive-receipt.json",
+        "bytes": 6136,
+        "sha256": "7cb5f8cedd17813a13342b6520d4ed26781ed886ab1972ccc7c4a8b5e57921f7",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/normal-b9-final-001/frozen-identity-audit.json",
+        "bytes": 1179,
+        "sha256": "4c127c13639c05fb4d16edb0c73a225c71ec38d1d5096d28bf1ef40e8fe1a4b7",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/normal-b9-window-001/Frontier-Performance-20261002-164113-027-cc8075cd77464c35a52858642f15c364.json",
+        "bytes": 5136591,
+        "sha256": "08e5fc1e79e12dced3ba35f83c467229723a1c3499fc10b46e0b67f76940f8ba",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/normal-short/20261002-112736-744-9f0d7b0c338243b4a3c57107db5e1019-match_finished.json",
+        "bytes": 3119,
+        "sha256": "6a38cd0bd08aeff6c7469b8c1c26c2b0f2146524185f8f16be2aeed550a315b5",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/normal-short/Frontier-Performance-20261002-112421-101-0a697a6270f64f2d9e872611004d9a7e.json",
+        "bytes": 7550182,
+        "sha256": "a4bc65dc8cc18f6a009d30fdc3db5d65cccf3e75535d1e01cc65bcfc7fbce4ae",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-050-attempt-001/20261003-032048-402-da34bd23a0094176b1db461c19a6d6f3-menu_exit.json",
+        "bytes": 2896,
+        "sha256": "18b5738e91d81cdf7d288f66631670dac30f7dc8856eb2c305f9b1e70dc61139",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-050-attempt-001/Frontier-20261003-031858-613-f1336-515419201c18489c8bd85239086c24c6.json",
+        "bytes": 1547,
+        "sha256": "80427bc68df65e6949678fe994e2d5f8adb3c98e66a69fb167c942016de9a79f",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-050-attempt-001/Frontier-Performance-20261003-031944-316-da576b6c99fa47bab45b1f6e9e716b75.json",
+        "bytes": 945596,
+        "sha256": "256f960aa9a087739d5a03a23e6bef5624b518e4572aa5fc9884aa87c52a0df3",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-050-attempt-001/build-receipt.json",
+        "bytes": 1260,
+        "sha256": "9218690cdc8b77154299f0638334ac86d33d9cff45c10812fcb7ddbe9f115aca",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-050-attempt-001/scale-summary.json",
+        "bytes": 6707,
+        "sha256": "a16150d193a468a0f16474871a058387b231959d984a3f7e496e8c29b2a587c9",
+        "appVersion": null,
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-050-attempt-001/units-50.json",
+        "bytes": 1132,
+        "sha256": "f68f9cf42902a75611b0464ab562249bbb6b93ca045c4bffa012df4cd36ea29e",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-100-attempt-001/20261003-032329-954-fc76cd19184d47768cbc76cb7fcc9518-menu_exit.json",
+        "bytes": 2899,
+        "sha256": "546dd3ccedced4f79a33b82b5c7ef940626c76199d2742d8d5e12992c097e3ae",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-100-attempt-001/Frontier-20261003-032234-684-f1345-58d6c399236348e7a906b3253bb2de18.json",
+        "bytes": 1549,
+        "sha256": "25b38be7b4988faa98fdad604fad20bec39e657e070169dcedfb4eaed9434299",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-100-attempt-001/Frontier-Performance-20261003-032253-988-31eba6d8477240c8861c0ec65b683710.json",
+        "bytes": 561919,
+        "sha256": "9af1e06a39fde1c25a88f8525c7c4b958b5bbb7d78097adfcc3e76692716d943",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-100-attempt-001/build-receipt.json",
+        "bytes": 1260,
+        "sha256": "9218690cdc8b77154299f0638334ac86d33d9cff45c10812fcb7ddbe9f115aca",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-100-attempt-001/scale-summary.json",
+        "bytes": 6717,
+        "sha256": "be83c00d07b5b04acfaa03dccea137a46143bfc9051bc188ffc93c6b31ae41ac",
+        "appVersion": null,
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-100-attempt-001/units-100.json",
+        "bytes": 1135,
+        "sha256": "82f410950e03595f6019587225b45319dbbed5e2e0b718a01f0faadb9d52b3c7",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-200-attempt-001/20261003-032537-258-5c92c5c51ea4444fa3df09f685e7dc5d-menu_exit.json",
+        "bytes": 2900,
+        "sha256": "8cc4666d917002c0c38849f6ce2c7bce38517e2a7d71ab92c62ac755f26fb612",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-200-attempt-001/Frontier-20261003-032448-385-f1335-b144c205534c4a889c10ea0f2b249c54.json",
+        "bytes": 1549,
+        "sha256": "abf07aa87225e13bc8d7a1041c375b9e6193d1bb240d47084bc998d1b4186a01",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-200-attempt-001/Frontier-Performance-20261003-032509-639-5b8abbd8a0704aaab9452ce66b140274.json",
+        "bytes": 589422,
+        "sha256": "5458a8498aec2594b403d77642c5c5377527d14a91355f6bfb80e62df3e95a9f",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-200-attempt-001/build-receipt.json",
+        "bytes": 1260,
+        "sha256": "9218690cdc8b77154299f0638334ac86d33d9cff45c10812fcb7ddbe9f115aca",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-200-attempt-001/scale-summary.json",
+        "bytes": 6719,
+        "sha256": "35dc8fa67f91a912b4c393a13f2b287473570d0bf52c4ed32548fa6d12cf9458",
+        "appVersion": null,
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-200-attempt-001/units-200.json",
+        "bytes": 1139,
+        "sha256": "bd734d5cac3fedb37e420d01bf5a5071e3992922cd874cbf027f6dd5f6a02d54",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-400-attempt-001/20261003-033507-145-04bb279d7ae340fc9808dfceae57b739-menu_exit.json",
+        "bytes": 2902,
+        "sha256": "3ff8d65dd46425b3398d341c0dbcacb445baa6889bead1538c4605c6c9b015b2",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-400-attempt-001/Frontier-20261003-033254-118-f16021-453088444f684ea882229d20c9ac0ed9.json",
+        "bytes": 1581,
+        "sha256": "21156bd54881bc7a5601db91b5fe4eb5fb4344cd4435f2e8a40329d59146561c",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-400-attempt-001/Frontier-Performance-20261003-033221-553-c4196332109b4c248ef954596fc1b22a.json",
+        "bytes": 3692478,
+        "sha256": "032b55632d8f9c9877e5dc86276739ce0755a60e37fb4622e3238ac76ec9986e",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-400-attempt-001/build-receipt.json",
+        "bytes": 1260,
+        "sha256": "9218690cdc8b77154299f0638334ac86d33d9cff45c10812fcb7ddbe9f115aca",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-400-attempt-001/compressed-events-receipt.json",
+        "bytes": 11471,
+        "sha256": "a5a1fecd31deb4c090cadf71069893713c470be064e2ab3c3bdf24de2f8c9f9e",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-400-attempt-001/scale-summary.json",
+        "bytes": 6768,
+        "sha256": "d575d2f0081f9ccdd5b352683aa7eb8fc36746bd0b34a7009019f2a640ff00e5",
+        "appVersion": null,
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-400-attempt-001/units-400.json",
+        "bytes": 1139,
+        "sha256": "f0aaa90257ead938b2fa159b6209e5c7872d50e3e52ab21b22ed47dcf0eab30d",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-400-attempt-002/20261003-034255-660-e61920e74b1f467c97052ffb138fcdc6-menu_exit.json",
+        "bytes": 2901,
+        "sha256": "84a8b1a2c110be8e2568d2c328914ec9dcc4b189822b7ba8593838eb49e8efe3",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-400-attempt-002/Frontier-20261003-034224-256-f14448-479d9e7d56814fe5a58681715878c96e.json",
+        "bytes": 1581,
+        "sha256": "9dfb82ef9f7b3aea40b645ebdc18f794d77796b1db9555598e9a42a7cbf9b85e",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-400-attempt-002/Frontier-Performance-20261003-034153-772-0296596ce49347a7855cfb77fca1cdab.json",
+        "bytes": 3403046,
+        "sha256": "3ef12afe1d06341f7b76cb23eb7e489a6e233c18c90bb1c678ba820b489607f8",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-400-attempt-002/build-receipt.json",
+        "bytes": 1260,
+        "sha256": "9218690cdc8b77154299f0638334ac86d33d9cff45c10812fcb7ddbe9f115aca",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-400-attempt-002/compressed-events-receipt.json",
+        "bytes": 11460,
+        "sha256": "f42725fe7dead08a924ef6fafd3935d7def9acd762b241333aa82a3cbcb97938",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-400-attempt-002/scale-summary.json",
+        "bytes": 6714,
+        "sha256": "1c5977a9d61a53f857596562c41dd5eab00dc2030b0eb443c72e96587e802a75",
+        "appVersion": null,
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-400-attempt-002/units-400.json",
+        "bytes": 1140,
+        "sha256": "33627b0e8b394b2f9caeabf479baae1119603cea623ad49972b1101f75065f3e",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-preparation.json",
+        "bytes": 1440,
+        "sha256": "c9603feb047d33d9123ccc10c927f41628a9a1c678c9afcddafdfc33b28eca0c",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/build-receipt.json",
+        "bytes": 2567,
+        "sha256": "df212923b026187b8c8c780f446b07edc7def1852126c9bb3b1bcca337e27412",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      },
+      {
+        "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/client-bundle-manifest.json",
+        "bytes": 215912,
+        "sha256": "847b57e23e0368d84fd2308d76ae42e48b272ffff7d1c56f95bab6379f4b90c2",
+        "appVersion": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97"
+      }
+    ]
+  },
+  "newRelease": {
+    "appVersion": "0.2.32",
+    "buildGuid": "947f7c0c0da44ec3a806c2dcb69ca04e",
+    "sourceFingerprint": "7340a04ba7f4d10c35a4dde158a8c517e0205e875daacc1a58005dcb61730adf",
+    "tests": {
+      "EditMode": {
+        "passed": 214,
+        "sha256": "028141a0aac48c8636f64965b969b3a1da4d3d7c9038159ffa5f12859d70e447",
+        "startedAt": "2026-10-03T11:53:27+00:00",
+        "finishedAt": "2026-10-03T11:53:40+00:00",
+        "testCaseInventorySha256": "5018c56d15217f092cb9dc9982fc0b454c9d6782a8e84a79f344afc520ca9a1d"
+      },
+      "PlayMode": {
+        "passed": 210,
+        "sha256": "8d9ea6b5086282d630a6987717e63c59f254b8f4052cda5b072b58ccff6bac71",
+        "startedAt": "2026-10-03T11:53:49+00:00",
+        "finishedAt": "2026-10-03T11:54:55+00:00",
+        "testCaseInventorySha256": "293d1ecf2340e4a9790e49e6be4b15dd6c9496d410ff26140c0763130a170def"
+      }
+    },
+    "client": {
+      "appPath": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/macOS-0.2.32/Frontier Reckoning.app",
+      "appVersionFromPlist": "0.2.32",
+      "buildGuidFromBootConfig": "947f7c0c0da44ec3a806c2dcb69ca04e",
+      "buildNumberFromPlist": "0",
+      "expectedBuildNumberFromBaselineSettings": "0",
+      "bootConfigSha256": "5074d0ae5ba2ba7c556c59cb326d5a6bed2b91a227a472f893f1e644361807ea",
+      "receiptRuntimeFiles": {
+        "Contents/Info.plist": {
+          "bytes": 1536,
+          "sha256": "ab19cb47b68f3ddc90ad1526b05c2792247b154a1e47aceb3859dd3fa4efd027"
+        },
+        "Contents/MacOS/Frontier Reckoning": {
+          "bytes": 35151,
+          "sha256": "d224cfd291b5622df450eda03569fe6cb84e1e934042be815000381e64a02f74"
+        },
+        "Contents/Resources/Data/Managed/Frontier.Runtime.dll": {
+          "bytes": 281088,
+          "sha256": "ae73f6d91b84d39aa497c4fc7073b3f8561dd94bf5ebea9dfbb002d0fb5bdf9c"
+        }
+      }
+    }
+  },
+  "evidenceFiles": [
+    {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Tests/source-evidence.json",
+      "bytes": 45255,
+      "sha256": "bf8ca06fcfc8e609e87b7b319bdf98a6ba6d70a4d130576b63cc50117742048b"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/056/Tests/source-evidence.json",
+      "bytes": 45255,
+      "sha256": "ba80f46fd6b4c1d03d304cd0d1b7f92559287f7f3d756393e3ab48a7d6790165"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/build-receipt.json",
+      "bytes": 2567,
+      "sha256": "df212923b026187b8c8c780f446b07edc7def1852126c9bb3b1bcca337e27412"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/056/build-receipt.json",
+      "bytes": 2289,
+      "sha256": "99e0fced7c1069a0bb098b6388e87ddad041c67b4d8f1b9c6bafcf97e3f74393"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/client-bundle-manifest.json",
+      "bytes": 215912,
+      "sha256": "847b57e23e0368d84fd2308d76ae42e48b272ffff7d1c56f95bab6379f4b90c2"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Tests/EditMode.xml",
+      "bytes": 173518,
+      "sha256": "ae603b75cdf8e2d8256710b8d1aeb4410a74038d212ae6faec5a28a31f63d33f"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Tests/PlayMode.xml",
+      "bytes": 189244,
+      "sha256": "e391e76cedc6b627c9b15bd671d25250d7726ccb36b4d4aed36fb1f5cf01a6fa"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/056/Tests/EditMode.xml",
+      "bytes": 173515,
+      "sha256": "028141a0aac48c8636f64965b969b3a1da4d3d7c9038159ffa5f12859d70e447"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/056/Tests/PlayMode.xml",
+      "bytes": 189236,
+      "sha256": "8d9ea6b5086282d630a6987717e63c59f254b8f4052cda5b072b58ccff6bac71"
+    }
+  ],
+  "continuity": "055 native observations retain their recorded versions and GUIDs. Exact source continuity supports use as prior gameplay/feature evidence; it does not turn them into observations of the .32 client. Root must separately archive the new menu/start/exit smoke and distribution manifest."
+}

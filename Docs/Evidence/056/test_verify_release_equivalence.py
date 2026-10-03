@@ -18,7 +18,8 @@ class ReleaseEquivalenceToolTests(unittest.TestCase):
         files = {
             verifier.HUD: (verifier.REPLACEMENTS[verifier.HUD][0][0] + "\n"
                            + verifier.REPLACEMENTS[verifier.HUD][1][0] + "\nvoid Logic() {}\n").encode(),
-            verifier.SETTINGS: verifier.REPLACEMENTS[verifier.SETTINGS][0][0].encode(),
+            verifier.SETTINGS: (verifier.REPLACEMENTS[verifier.SETTINGS][0][0]
+                                + "  buildNumber:\n    Standalone: 0\n    iPhone: 0\n").encode(),
             "Assets/Frontier/Editor/BuildTools.cs": b"void Prepare() { Metadata(); }\n",
             "Assets/Resources/Rules/units.json": b'{"cost":100}\n',
         }
@@ -156,7 +157,7 @@ class ReleaseEquivalenceToolTests(unittest.TestCase):
             item = path / name
             item.parent.mkdir(parents=True, exist_ok=True)
             if name.endswith("Info.plist"):
-                item.write_bytes(plistlib.dumps({"CFBundleVersion": verifier.NEW_VERSION,
+                item.write_bytes(plistlib.dumps({"CFBundleVersion": "0",
                                                 "CFBundleShortVersionString": verifier.NEW_VERSION}))
             else:
                 item.write_bytes(b"new controlled client bytes")
@@ -169,16 +170,41 @@ class ReleaseEquivalenceToolTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             app = Path(directory)
             old, new, fp = self.app(app)
-            self.assertEqual(verifier.verify_app(app, old, new, fp)["buildGuidFromBootConfig"], new["buildGuid"])
+            self.assertEqual(verifier.verify_app(app, old, new, fp, "0")["buildGuidFromBootConfig"], new["buildGuid"])
             for guid in ("0" * 32, verifier.OLD_GUID, "2" * 32):
                 with self.subTest(guid=guid):
                     modified = copy.deepcopy(new)
                     modified["buildGuid"] = guid
                     with self.assertRaises(ValueError):
-                        verifier.verify_app(app, old, modified, fp)
+                        verifier.verify_app(app, old, modified, fp, "0")
             (app / "Contents/Resources/Data/boot.config").write_text("build-guid=" + new["buildGuid"] + "\n" * 2 + "build-guid=" + new["buildGuid"] + "\n")
             with self.assertRaisesRegex(ValueError, "duplicate"):
-                verifier.verify_app(app, old, new, fp)
+                verifier.verify_app(app, old, new, fp, "0")
+
+    def test_client_plist_version_and_baseline_build_number(self):
+        with tempfile.TemporaryDirectory() as directory:
+            app = Path(directory)
+            old, new, fp = self.app(app)
+            build_number = verifier.standalone_build_number(self.baseline()[verifier.SETTINGS])
+            self.assertEqual(build_number, "0")
+            accepted = verifier.verify_app(app, old, new, fp, build_number)
+            self.assertEqual(accepted["buildNumberFromPlist"], "0")
+            plist_name = "Contents/Info.plist"
+            for field, value, error in (
+                ("CFBundleVersion", "1", "build number differs"),
+                ("CFBundleVersion", verifier.NEW_VERSION, "build number differs"),
+                ("CFBundleShortVersionString", verifier.OLD_VERSION, "version is not .32"),
+            ):
+                with self.subTest(field=field, value=value):
+                    plist = {"CFBundleVersion": "0", "CFBundleShortVersionString": verifier.NEW_VERSION}
+                    plist[field] = value
+                    (app / plist_name).write_bytes(plistlib.dumps(plist))
+                    # Keep the receipt hash consistent: version/build-number validation
+                    # must reject the wrong value independently of runtime hash checks.
+                    changed = copy.deepcopy(new)
+                    changed["compiledRuntimeSha256"][plist_name] = verifier.sha((app / plist_name).read_bytes())
+                    with self.assertRaisesRegex(ValueError, error):
+                        verifier.verify_app(app, old, changed, fp, build_number)
 
     def test_client_old_dll_and_changed_runtime_bytes_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -186,11 +212,11 @@ class ReleaseEquivalenceToolTests(unittest.TestCase):
             old, new, fp = self.app(app)
             old["compiledRuntimeSha256"][verifier.RUNTIME_FILES[-1]] = new["compiledRuntimeSha256"][verifier.RUNTIME_FILES[-1]]
             with self.assertRaisesRegex(ValueError, "old runtime DLL"):
-                verifier.verify_app(app, old, new, fp)
+                verifier.verify_app(app, old, new, fp, "0")
             old["compiledRuntimeSha256"][verifier.RUNTIME_FILES[-1]] = verifier.sha(b"old dll")
             (app / verifier.RUNTIME_FILES[-1]).write_bytes(b"tampered")
             with self.assertRaisesRegex(ValueError, "runtime bytes differ"):
-                verifier.verify_app(app, old, new, fp)
+                verifier.verify_app(app, old, new, fp, "0")
 
     def test_old_native_versions_and_guids_remain_old(self):
         with tempfile.TemporaryDirectory() as directory:
