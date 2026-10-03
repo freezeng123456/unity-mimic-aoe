@@ -21,6 +21,38 @@ namespace Frontier.Tests
         private bool HasText(string text)=>session.GetComponentsInChildren<Text>().Any(t=>t.text.Contains(text));
         private string[] Actions()=>session.GetComponentsInChildren<Button>().Where(b=>b.transform.parent.name=="Context actions").Select(b=>b.name).ToArray();
 
+        [UnityTest] public IEnumerator EveryCivilizationSummaryFitsFullyAboveDeckButtons()
+        {
+            game.ReturnToMenu();yield return Ready();
+            foreach(var civilization in game.Rules.civs)
+            {
+                game.PlayerCivilization=civilization.id;game.Hud.ShowMenu();yield return Ready();
+                var summary=session.GetComponentsInChildren<Text>().Single(t=>t.text.StartsWith("THE TWO OUTCROPS  ·  SEED "));
+                StringAssert.EndsWith(civilization.description,summary.text);
+                int fittedSize=summary.cachedTextGenerator.fontSizeUsedForBestFit;Assert.That(fittedSize,Is.InRange(14,17),civilization.id);
+                // Generate the entire text without clipping at the actual chosen size.
+                // A Truncate flag alone could hide the description and falsely pass.
+                var settings=summary.GetGenerationSettings(summary.rectTransform.rect.size);
+                settings.resizeTextForBestFit=false;settings.fontSize=fittedSize;settings.verticalOverflow=VerticalWrapMode.Overflow;
+                using(var completeText=new TextGenerator())
+                {
+                    Assert.IsTrue(completeText.Populate(summary.text,settings),civilization.id);
+                    Assert.Greater(completeText.lineCount,1,civilization.id);
+                    var vertices=completeText.verts;Assert.Greater(vertices.Count,4,civilization.id);
+                    float bottom=float.PositiveInfinity,top=float.NegativeInfinity;
+                    for(int i=0;i<vertices.Count-4;i++){float y=vertices[i].position.y/summary.pixelsPerUnit;bottom=Mathf.Min(bottom,y);top=Mathf.Max(top,y);}
+                    Assert.GreaterOrEqual(bottom,summary.rectTransform.rect.yMin-.5f,civilization.id+" complete description exceeds its 80-unit region");
+                    Assert.LessOrEqual(top,summary.rectTransform.rect.yMax+.5f,civilization.id);
+                    float renderedBottom=summary.rectTransform.TransformPoint(new Vector3(0,bottom,0)).y;
+                    foreach(string button in new[]{"PRESET:","EDIT DECK"})
+                    {
+                        var buttonRect=(RectTransform)FindButton(button).transform;
+                        float buttonTop=buttonRect.TransformPoint(new Vector3(0,buttonRect.rect.yMax,0)).y;
+                        Assert.Greater(renderedBottom,buttonTop,civilization.id+" overlaps "+button);
+                    }
+                }
+            }
+        }
         [UnityTest] public IEnumerator ClassicCivilizationsOccupyFirstPageAndOriginalCivsRemainReachable()
         {
             game.ReturnToMenu();yield return Ready();yield return Click(ButtonCenter(FindButton("YOU:")));
