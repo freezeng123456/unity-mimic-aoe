@@ -2,11 +2,11 @@
 
 独立 Unity 陆战即时战略游戏：英国、荷兰、法国、奥斯曼四个经典文明核心玩法，加上远驿盟市、山岭工联两个原创文明，共六文明。五个时代、25张卡组与XP船运、银行、实车贸易、工坊制造、守卫宝藏和炮兵攻城，配有原创模型、动画与音频。使用本项目规则和候选数值，与 Age of Empires 及其发行商无关联。
 
-**当前源码版本为 0.3.1，目标平台 macOS Apple silicon。** 本轮 284 项 EditMode＋243 项 PlayMode，共 **527 项测试通过**。法国猎民、胸甲骑近战范围伤害、奥斯曼免费招工与清真寺研究、荷兰长戟兵及经典阵容已实现；原36组合矩阵35局自然结束、1局山岭内战超时，所有涉及四经典文明的32组均自然结束；山岭同组独立延长观察在3652.01秒自然结束，原35/36结果保留。初构建已完成法奥双向16x自动整局；最终源码仅修订菜单排版并新增布局回归，最终客户端已重新构建，1600×1000菜单回查确认奥斯曼简介完整且不遮挡卡组按钮；初对局与最终菜单分别归档。实现范围见[经典文明说明](Docs/Classic-Civilizations-058.md)，验证进度见[完成状态](Docs/Completion-Status.md)。
+**当前源码版本为 0.3.2，目标平台 macOS Apple silicon。** 本轮 287 EditMode＋246 PlayMode，共 **533 项测试通过**。新增框选部队后定点攻击、换靶、追击与炮兵改令验证；8 个混编机动场景全部到达。共享静态地形通行/连通信息后，封路计算峰值约251→9ms、400人首次寻路305→183ms，后者仍有峰值限制。本机200/400单位短时原生压力场景已检查，不替代普通整局和窄口冷启动峰值。详情见[机动验收](Docs/Maneuver-059.md)与[完成状态](Docs/Completion-Status.md)。六文明内容及旧矩阵保留在[0.3.1记录](Docs/Completion-Status-058.md)。
 
 ## 启动与操作
 
-菜单修订后的0.3.1客户端已重新构建并核对app/ZIP身份，初构建的两局自动对战不改称最终包实战。客户端包为 `Frontier-Reckoning-0.3.1-macOS-arm64.zip`，解压并打开 `Frontier Reckoning.app`，选择文明、时代上限、难度及卡组，点击 **BEGIN SKIRMISH**。实际包名、提交和文件SHA以最终交付目录的 `manifest.json` 为准。
+0.3.2已重新构建，客户端为 `Frontier-Reckoning-0.3.2-macOS-arm64.zip`。解压打开 `Frontier Reckoning.app`，选择文明、时代上限、难度及卡组，点击 **BEGIN SKIRMISH**。本版原生压力样本与旧版本自动对战分别归档，实际包身份以交付目录的 `manifest.json` 为准。
 
 源码通过 Unity Hub 使用 **Unity 6000.6.3f1** 打开；主场景为 `Assets/Frontier/Scenes/FrontierSkirmish.unity`。完整说明见[0.3.1 中文试玩指南](Docs/Playtest-058.md)。
 

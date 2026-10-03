@@ -1,0 +1,15 @@
+{
+  "status": "rejected",
+  "version": "0.3.2 candidate with collinear A-star path simplification",
+  "editMode": {
+    "passed": 285,
+    "failed": 2,
+    "total": 287
+  },
+  "playMode": "not run because EditMode failed",
+  "failures": [
+    "DynamicDestinationTests.FiftyMixedUnitsKeepDistinctReachableGoalsAfterTwoFoundationsAppear",
+    "NavigationStressTests.MixedUnitsCrossOnlyGateAndReachEveryAssignedGoal(400)"
+  ],
+  "action": "Removed collinear simplification; preserved static clearance/connectivity cache. Original tests and thresholds retained."
+}
