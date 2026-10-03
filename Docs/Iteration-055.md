@@ -1,6 +1,6 @@
 # 0.2.31 — 原定四个里程碑收口
 
-更新2026-10-03。当前Unity6000.6.3f1、macOS arm64 Development/Mono。本文记录实现与实际验收；[Milestones-055.md](Milestones-055.md)已确认A/B/D通过，C1–C5失败已归档，C4严格16/17检查、16/19覆盖，仅缺IV/V/特殊兵种；C5已1661.541382秒自然败局，严格16/17检查、18/19覆盖，仅缺 `ageV`；C6正由root执行，尚未判定；最终0.2.32尚未启动，不能把本轮自动化、构建或开局状态叫作全部完成。
+更新2026-10-03。当前Unity6000.6.3f1、macOS arm64 Development/Mono。本文记录实现与实际验收；[Milestones-055.md](Milestones-055.md)已确认A/B/D通过，C1–C6失败已归档，C4严格16/17检查、16/19覆盖，仅缺IV/V/特殊兵种；C5已1661.541382秒自然败局，严格16/17检查、18/19覆盖，仅缺 `ageV`；[C6](Evidence/055/NormalPlayer/river-attempt-006/README.md)已1367.213257秒自然败局，严格16/17检查、17/19覆盖，仅缺 `ageIV`、`ageV`；C7正由river_strategy操作GUI，尚未判定；最终0.2.32尚未启动，不能把本轮自动化、构建或开局状态叫作全部完成。
 
 ## 最终实现范围
 
@@ -23,7 +23,7 @@
 
 B1/B2/B3均自然战败，保留原始报告、事件及已有配对F9。B3完成2名付费村民、5Pike+5Musk、2Manor/Barracks、3船运；III支付后TC毁，升级未完成，因此该局未通过B；后续B10完整结果见下。工具全屏输入经标准Window菜单恢复窗口后可用，当前采用同一UI工具调用结束前暂停，避免分析/上下文压缩让对局继续走钟。详见[正常玩家](Normal-Player-055.md)。
 
-B10已958.612976秒自然结算，正常coast I–III完整路线严格通过：3付费工、14付费步兵、2付费炮、4船运，炮186对敌马厩156六次130伤害。C1已1486.584106秒自然败局，银行、付费Carabineer/科技、两宝藏与付费炮击敌建筑成立；严格审核六缺口为IV、V、付费贸易站、XP贸易、资源模式、实际资源交付。[C2](Evidence/055/NormalPlayer/river-attempt-002/README.md)为River对Coast、Easy、V上限、Military25，1081.682983秒自然败局，严格16/17但有十项覆盖缺口；IV付费后TC毁而未完成，船运炮不当付费炮。[C3](Evidence/055/NormalPlayer/river-attempt-003/README.md)1781.212158秒自然败局，I–V及银行/特色单位/科技/贸易/宝藏实际完成，16/17检查和18/19覆盖成立，仅缺炮击敌建筑；八门付费炮有153次敌单位伤害，敌建筑伤害为0。73文件、20组F9和冻结日志已归档复核。[C4](Evidence/055/NormalPlayer/river-attempt-004/README.md)为River对Coast/Easy/V/Military25，994.504211秒自然败局；严格16/17检查、16/19覆盖，仅缺 `ageIV`、`ageV`、`specialUnit`。付费炮238对敌Manor156六次各130伤害、Cargo Ledgers付费完成成立；65文件、16组F9及36,218条事件已完整归档。C1–C5失败结果均保留，不跨局拼接；[C5](Evidence/055/NormalPlayer/river-attempt-005/README.md)在1661.541382秒自然败局，严格16/17检查、18/19覆盖，仅缺ageV；同一老Musk前后/新生Musk科技属性、付费炮261对敌Foundry239两次各130伤害均成立，67文件、17组F9及79,417事件已归档。C6正由root执行，尚未判定；最终0.2.32尚未启动。
+B10已958.612976秒自然结算，正常coast I–III完整路线严格通过：3付费工、14付费步兵、2付费炮、4船运，炮186对敌马厩156六次130伤害。C1已1486.584106秒自然败局，银行、付费Carabineer/科技、两宝藏与付费炮击敌建筑成立；严格审核六缺口为IV、V、付费贸易站、XP贸易、资源模式、实际资源交付。[C2](Evidence/055/NormalPlayer/river-attempt-002/README.md)为River对Coast、Easy、V上限、Military25，1081.682983秒自然败局，严格16/17但有十项覆盖缺口；IV付费后TC毁而未完成，船运炮不当付费炮。[C3](Evidence/055/NormalPlayer/river-attempt-003/README.md)1781.212158秒自然败局，I–V及银行/特色单位/科技/贸易/宝藏实际完成，16/17检查和18/19覆盖成立，仅缺炮击敌建筑；八门付费炮有153次敌单位伤害，敌建筑伤害为0。73文件、20组F9和冻结日志已归档复核。[C4](Evidence/055/NormalPlayer/river-attempt-004/README.md)为River对Coast/Easy/V/Military25，994.504211秒自然败局；严格16/17检查、16/19覆盖，仅缺 `ageIV`、`ageV`、`specialUnit`。付费炮238对敌Manor156六次各130伤害、Cargo Ledgers付费完成成立；65文件、16组F9及36,218条事件已完整归档。C1–C6失败结果均保留，不跨局拼接；[C5](Evidence/055/NormalPlayer/river-attempt-005/README.md)在1661.541382秒自然败局，严格16/17检查、18/19覆盖，仅缺ageV；同一老Musk前后/新生Musk科技属性、付费炮261对敌Foundry239两次各130伤害均成立，67文件、17组F9及79,417事件已归档。[C6](Evidence/055/NormalPlayer/river-attempt-006/README.md)已1367.213257秒自然败局，严格16/17检查、17/19覆盖，仅缺 `ageIV`、`ageV`；C7正由river_strategy操作GUI，尚未判定；最终0.2.32尚未启动。
 
 D现已通过：50/100/200/400单客户端活动单位四档均完整归档，400 attempt-002单F8窗口317.674076有效秒；B9正常玩家单335.999332有效秒独立最终关联通过。两个长窗口分别满足300秒要求，不相加短窗口。400首次失焦仅182.717415有效秒的失败及此前所有短窗口保留，详见[性能实测](Performance-055.md)；不推导全400无遮挡同屏或固定FPS。
 

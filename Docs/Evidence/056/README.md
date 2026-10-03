@@ -30,7 +30,7 @@ After root's fresh tests and build, run from the project root:
 
 ```sh
 python3 Docs/Evidence/056/verify_release_equivalence.py \
-  --app 'Builds/macOS/Frontier Reckoning.app' \
+  --app 'Builds/macOS-0.2.32/Frontier Reckoning.app' \
   --output Docs/Evidence/056/release-equivalence.json
 ```
 

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generatedAtUtc": "2026-10-03T08:31:05.315381+00:00",
+  "generatedAtUtc": "2026-10-03T09:44:31.358732+00:00",
   "scope": "Snapshot and executable maintainer checklist for the original A–D contract. Pending player runs or later captures are not presumed complete; update this checklist only from their preserved evidence.",
   "contract": "Docs/Development-Contract.md: A–D stages and original native completion gate; Stage-C-Implementation.md/Landmarks-Implementation.md detail the existing C scope.",
   "identity": {
@@ -14,7 +14,7 @@
     {
       "id": "A",
       "required": "Unity/URP project; camera, selection, commands, construction, population, production, gathering, basic combat and group navigation, with actual native runtime inspection.",
-      "current": "Passed: 424 source-bound Unity regressions, native independent build and actual ordinary operation retained in B10 and C1-C5 archives.",
+      "current": "Passed: 424 source-bound Unity regressions, native independent build and actual ordinary operation retained in B10 and C1-C6 archives.",
       "evidence": [
         "Docs/Evidence/055/Tests",
         "Docs/Evidence/055/Menu",
@@ -89,7 +89,7 @@
       "id": "C",
       "required": "After B, second civilization and I–V; real coin-worker/house/bank differences, feature unit, paid upgrade behavior, trade/treasure, siege and AI.",
       "status": "pending_native_player",
-      "current": "C1-C5 naturally ended and remain archived failures. C5:16/17 strict checks,18/19 coverage, only ageV missing; same old/new Musketeer technology pixels and paid cannon enemy-Foundry damage verified. Root is playing C6; no outcome is assumed. Final .32 work has not started; no cross-match coverage union.",
+      "current": "C1-C6 naturally ended and remain archived failures with 6/10/1/3/1/2 coverage gaps. C6: 1367.213257 seconds, 16/17 strict checks, 17/19 coverage, only ageIV/ageV missing; paid cannon 256 hit enemy Farm 266 for 390 damage and same old Musketeer 162/new 263 technology associations passed. C7 is being played through GUI by river_strategy; no outcome is assumed. Final .32 work has not started; no cross-match coverage union.",
       "evidence": [
         "Docs/Stage-C-Implementation.md",
         "Docs/Evidence/055/Landmarks/receipt.json",
@@ -146,12 +146,45 @@
           "archiveReceipt": "Docs/Evidence/055/NormalPlayer/river-attempt-005/archive-receipt.json",
           "archiveReceiptSha256": "299eacd347eb2e951df0804e0a143de562adda1d1dfff469b08cee383bc026d0",
           "technologyVisualAuditStatus": "passed"
+        },
+        {
+          "path": "Docs/Evidence/055/NormalPlayer/river-attempt-006/summary.json",
+          "status": "failed",
+          "matchId": "7558b19fc9984578a313082b633c6630",
+          "naturalEndSeconds": 1367.2132568359375,
+          "strictChecksPassed": 16,
+          "strictChecksTotal": 17,
+          "coveragePassed": 17,
+          "coverageTotal": 19,
+          "coverageGaps": [
+            "ageIV",
+            "ageV"
+          ],
+          "archiveReceipt": "Docs/Evidence/055/NormalPlayer/river-attempt-006/archive-receipt.json",
+          "archiveReceiptSha256": "a09a6581238f86db4f55ef882e8a754e94b0f82daf616c046019d9ca387127ee",
+          "archiveFiles": 63,
+          "archiveBytes": 94778838,
+          "f9Pairs": 11,
+          "rawEventCount": 60226,
+          "paidCannonEnemyBuildingDamage": {
+            "sourceEntity": 256,
+            "targetEntity": 266,
+            "targetDefinition": "farm",
+            "hits": 3,
+            "totalDamage": 390
+          },
+          "technologyVisualAuditStatus": "passed",
+          "technologyEntities": {
+            "sameOld": 162,
+            "new": 263
+          },
+          "frozenSourceRuntimeAudit": "Corrected 357-source/3-runtime audit and independent root reread passed; original failed hardcoded-fingerprint comparison probe retained."
         }
       ],
       "latestArchivedCoverage": {
         "ageII": true,
         "ageIII": true,
-        "ageIV": true,
+        "ageIV": false,
         "ageV": false,
         "paidWorkers": true,
         "paidMilitary": true,
@@ -170,13 +203,14 @@
         "resourceTradeDelivery": true
       },
       "coverageGaps": [
+        "ageIV",
         "ageV"
       ],
-      "latestArchivedAttempt": "C5",
+      "latestArchivedAttempt": "C6",
       "activeAttempt": {
-        "label": "C6",
+        "label": "C7",
         "status": "in_progress_unverified",
-        "scope": "Root-reported ongoing native attempt; no live C6 reports/logs/captures read for this status update."
+        "scope": "Root-reported ongoing native GUI attempt operated by river_strategy; no live C7 reports/logs/captures read for this status update."
       }
     },
     {
@@ -323,7 +357,7 @@
     ]
   },
   "menuOnlyFutureReleasePolicy": {
-    "currentDecision": "A/B/D complete; C1-C5 archived failures, C5 only ageV missing. Root is playing C6, not yet accepted. Final .32 source edits, fresh tests/build and smoke have not started. Keep .31 frozen until complete C acceptance.",
+    "currentDecision": "A/B/D complete; C1-C6 archived failures with 6/10/1/3/1/2 coverage gaps. C6 lacks only ageIV/ageV. River_strategy is playing C7 through GUI, not yet accepted. Final .32 source edits, fresh tests/build and smoke have not started. Keep .31 frozen until complete C acceptance.",
     "requiredIfChanged": [
       "Preserve .31 raw native evidence, GUID 128a731d440e4b7a94abfcc74b88fa97, source fingerprint, test XMLs, build receipt and complete client bundle manifest as a frozen evidence set.",
       "For any menu/version edit, record the actual changed files and patch. Rerun full source-bound tests, build separately, and create a new version/GUID/client-bundle manifest/build receipt; do not overwrite .31 identity.",
@@ -350,7 +384,7 @@
       "command": "python3 Docs/Evidence/055/verify_player.py <coast-match_finished.json> --build-guid 128a731d440e4b7a94abfcc74b88fa97 --app-version 0.2.31 --match-id <actual-id> --scenario coast-iii --deck-preset economy --menu-capture <paired-menu-F9.json> --output <new-audit.json>"
     },
     {
-      "purpose": "C normal-player evidence; use actual archived sources and the publicly observed Military25 preset of C2/C3/C4/C5",
+      "purpose": "C normal-player evidence; use actual archived sources and the publicly observed Military25 preset of C2/C3/C4/C5/C6",
       "command": "python3 Docs/Evidence/055/verify_player.py <river-match_finished.json> --build-guid 128a731d440e4b7a94abfcc74b88fa97 --app-version 0.2.31 --match-id <actual-id> --scenario river-v --deck-preset military --menu-capture <paired-menu-F9.json> --output <new-audit.json>"
     },
     {
@@ -493,6 +527,26 @@
     },
     {
       "path": "Docs/Evidence/055/NormalPlayer/river-attempt-005/visual-and-technology-audit.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/river-attempt-006/summary.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/river-attempt-006/archive-receipt.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/river-attempt-006/visual-and-technology-audit.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/river-attempt-006/cannon-building-audit.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/river-attempt-006/frozen-build-audit-corrected.json",
       "exists": true
     }
   ],

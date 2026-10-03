@@ -1,0 +1,1096 @@
+{
+  "generatedAtUtc": "2026-10-03T09:39:10.086555+00:00",
+  "status": "passed",
+  "checks": {
+    "sameOldEntity162SingleSelected": true,
+    "aliveAndFramesOrdered": true,
+    "oldBirthPreTechnologyPostOrder": true,
+    "newPaidAndBornAfterTechnology": true,
+    "newEntity263DifferentFromOld": true,
+    "allPaidMusketeers": true,
+    "technologyAppliedAndCompletedTogether": true,
+    "actualPixelsReadBaseOldThenUpgradedOldAndNew": true
+  },
+  "technology": {
+    "definition": "veteran_musketeer",
+    "payment": {
+      "line": 23837,
+      "time": 725.0700073242188,
+      "kind": "Payment",
+      "player": 0,
+      "entity": 148,
+      "target": 0,
+      "message": "Veteran Musketeer: 100 F / 0 W / 100 C",
+      "amount": 0.0
+    },
+    "completion": {
+      "line": 25773,
+      "time": 765.1602172851562,
+      "kind": "ResearchComplete",
+      "player": 0,
+      "entity": 148,
+      "target": 0,
+      "message": "Veteran Musketeer",
+      "amount": 0.0
+    },
+    "applied": {
+      "line": 25772,
+      "time": 765.1602172851562,
+      "kind": "Technology",
+      "player": 0,
+      "entity": 0,
+      "target": 0,
+      "message": "veteran_musketeer applied once to matching current and future entities",
+      "amount": 0.0
+    }
+  },
+  "unitContextAssociations": [
+    {
+      "capture": "Frontier-20261003-083930-316-f1054362-e0f9197278dc4cc5b9b6d3005a43c6b0.json",
+      "captureSourceLine": 13083,
+      "captureWorldTime": 574.3068237304688,
+      "captureFrame": 1054362,
+      "requestFrame": 1054362,
+      "latestPrecedingContext": {
+        "sourceLine": 13058,
+        "raw": "FRONTIER_UI context entity=162 count=1 world=547.014 frame=1050927",
+        "entity": 162,
+        "count": 1,
+        "worldTimeRounded": 547.014,
+        "frame": 1050927
+      },
+      "sourceSpawn": {
+        "line": 5130,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": true,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 20,
+            "reserved": 0,
+            "capacity": 30
+          },
+          "time": 250.20606994628906,
+          "kind": "Spawn",
+          "message": "Musketeer",
+          "player": 0,
+          "entity": 162,
+          "target": 0,
+          "visibilityMask": 1,
+          "amount": 0.0,
+          "position": {
+            "x": 31.25,
+            "y": 34.031089782714844
+          },
+          "facing": {
+            "x": 0.0,
+            "y": 1.0
+          }
+        },
+        "definition": {
+          "id": "musketeer",
+          "name": "Musketeer",
+          "description": "Heavy infantry with ranged attack.",
+          "producer": "barracks",
+          "civilization": "",
+          "kind": 0,
+          "tags": 3,
+          "cost": {
+            "food": 75,
+            "wood": 0,
+            "coin": 25
+          },
+          "hp": 200,
+          "radius": 0.4,
+          "width": 1,
+          "depth": 1,
+          "speed": 4,
+          "vision": 18,
+          "damage": 24,
+          "meleeDamage": 12,
+          "siegeDamage": 10,
+          "range": 12,
+          "minRange": 0,
+          "period": 3,
+          "windup": 0.35,
+          "projectileSpeed": 30,
+          "splash": 0,
+          "damageKind": 1,
+          "meleeResist": 0,
+          "rangedResist": 0,
+          "siegeResist": 0,
+          "time": 26,
+          "population": 1,
+          "capacity": 0,
+          "age": 2,
+          "batch": 5,
+          "garrison": 0,
+          "deploy": false,
+          "bonuses": [],
+          "resource": 0,
+          "amount": 0,
+          "gatherRate": 0,
+          "buildXp": 0,
+          "trainXp": 5,
+          "killXp": 10
+        }
+      },
+      "death": {
+        "line": 45180,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": true,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 35,
+            "reserved": 0,
+            "capacity": 60
+          },
+          "time": 1146.167236328125,
+          "kind": "Death",
+          "message": "Musketeer lost",
+          "player": 0,
+          "entity": 162,
+          "target": 1,
+          "visibilityMask": 3,
+          "amount": 0.0,
+          "position": {
+            "x": 33.00999450683594,
+            "y": 40.0157585144043
+          },
+          "facing": {
+            "x": 0.9508843421936035,
+            "y": 0.3095462918281555
+          }
+        }
+      },
+      "paidTraining": {
+        "definition": "musketeer",
+        "payment": {
+          "line": 4537,
+          "time": 224.20448303222656,
+          "kind": "Payment",
+          "player": 0,
+          "entity": 148,
+          "target": 0,
+          "message": "Musketeer ×5: 375 F / 0 W / 125 C",
+          "amount": 0.0
+        },
+        "queue": {
+          "line": 4538,
+          "time": 224.20448303222656,
+          "kind": "ProductionQueued",
+          "player": 0,
+          "entity": 148,
+          "target": 0,
+          "message": "musketeer ×5",
+          "amount": 5.0
+        },
+        "spawn": {
+          "line": 5130,
+          "time": 250.20606994628906,
+          "kind": "Spawn",
+          "player": 0,
+          "entity": 162,
+          "target": 0,
+          "message": "Musketeer",
+          "amount": 0.0
+        },
+        "completion": {
+          "line": 5131,
+          "time": 250.20606994628906,
+          "kind": "Experience",
+          "player": 0,
+          "entity": 148,
+          "target": 0,
+          "message": "Unit trained",
+          "amount": 5.0
+        }
+      },
+      "interveningTrace": [
+        {
+          "sourceLine": 13059,
+          "raw": "FRONTIER_INPUT Right None down p=(950.00, 959.00) shift=False save=False t=17697.7025"
+        },
+        {
+          "sourceLine": 13060,
+          "raw": "FRONTIER_INPUT Right None up p=(950.00, 959.00) shift=False save=False t=17697.7467"
+        },
+        {
+          "sourceLine": 13061,
+          "raw": "FRONTIER_INPUT Left None down p=(1610.00, 194.00) shift=False save=False t=17697.8632"
+        },
+        {
+          "sourceLine": 13062,
+          "raw": "FRONTIER_UI raycast p=(1610.00, 194.00) hit=GROUPS frame=1050943"
+        },
+        {
+          "sourceLine": 13063,
+          "raw": "FRONTIER_UI down object=GROUPS p=(1610.00, 194.00) press= over=GROUPS world=547.313 frame=1050943"
+        },
+        {
+          "sourceLine": 13064,
+          "raw": "FRONTIER_INPUT Left None up p=(1610.00, 194.00) shift=False save=False t=17697.9108"
+        },
+        {
+          "sourceLine": 13065,
+          "raw": "FRONTIER_UI raycast p=(1610.00, 194.00) hit=GROUPS frame=1050946"
+        },
+        {
+          "sourceLine": 13066,
+          "raw": "FRONTIER_UI up object=GROUPS p=(1610.00, 194.00) press=GROUPS over=GROUPS world=547.413 frame=1050946"
+        },
+        {
+          "sourceLine": 13067,
+          "raw": "FRONTIER_UI action=GROUPS world=547.413 frame=1050946"
+        },
+        {
+          "sourceLine": 13068,
+          "raw": "FRONTIER_UI click object=GROUPS p=(1610.00, 194.00) press=GROUPS over=GROUPS world=547.413 frame=1050946"
+        },
+        {
+          "sourceLine": 13069,
+          "raw": "FRONTIER_INPUT Left None down p=(1380.00, 872.00) shift=False save=False t=17698.7964"
+        },
+        {
+          "sourceLine": 13070,
+          "raw": "FRONTIER_UI raycast p=(1380.00, 872.00) hit=SAVE 3 frame=1050999"
+        },
+        {
+          "sourceLine": 13071,
+          "raw": "FRONTIER_UI down object=SAVE 3 p=(1380.00, 872.00) press= over=SAVE 3 world=548.213 frame=1050999"
+        },
+        {
+          "sourceLine": 13072,
+          "raw": "FRONTIER_INPUT Left None up p=(1380.00, 872.00) shift=False save=False t=17698.8388"
+        },
+        {
+          "sourceLine": 13073,
+          "raw": "FRONTIER_UI raycast p=(1380.00, 872.00) hit=SAVE 3 frame=1051001"
+        },
+        {
+          "sourceLine": 13074,
+          "raw": "FRONTIER_UI up object=SAVE 3 p=(1380.00, 872.00) press=SAVE 3 over=SAVE 3 world=548.313 frame=1051001"
+        },
+        {
+          "sourceLine": 13075,
+          "raw": "FRONTIER_UI action=SAVE 3 world=548.313 frame=1051001"
+        },
+        {
+          "sourceLine": 13076,
+          "raw": "FRONTIER_UI click object=SAVE 3 p=(1380.00, 872.00) press= over=SAVE 3 world=548.313 frame=1051001"
+        },
+        {
+          "sourceLine": 13077,
+          "raw": "FRONTIER_INPUT Key Escape down p=(1380.00, 872.00) shift=False save=False t=17724.0654"
+        },
+        {
+          "sourceLine": 13078,
+          "raw": "FRONTIER_PAUSE paused=True reason=manual_pause world=573.507000 realtime=17724.074482 frame=1052500"
+        },
+        {
+          "sourceLine": 13079,
+          "raw": "FRONTIER_INPUT Key Escape down p=(1380.00, 872.00) shift=False save=False t=17754.5202"
+        },
+        {
+          "sourceLine": 13080,
+          "raw": "FRONTIER_PAUSE paused=False reason=manual_resume world=573.507000 realtime=17754.524304 frame=1054313"
+        },
+        {
+          "sourceLine": 13081,
+          "raw": "FRONTIER_INPUT Key J down p=(1380.00, 872.00) shift=False save=False t=17755.3341"
+        },
+        {
+          "sourceLine": 13082,
+          "raw": "FRONTIER_INPUT Key F9 down p=(1380.00, 872.00) shift=False save=False t=17755.3494"
+        }
+      ],
+      "aliveAtCapture": true,
+      "contextFrameNotLaterThanCapture": true,
+      "scope": "Selected ID is from frozen native input context; F9 JSON has no selectedEntity field."
+    },
+    {
+      "capture": "Frontier-20261003-084653-809-f1080710-649b324e79ad4bc3a6455e4fae91f27b.json",
+      "captureSourceLine": 13466,
+      "captureWorldTime": 773.4581909179688,
+      "captureFrame": 1080710,
+      "requestFrame": 1080710,
+      "latestPrecedingContext": {
+        "sourceLine": 13464,
+        "raw": "FRONTIER_UI context entity=162 count=1 world=772.658 frame=1080662",
+        "entity": 162,
+        "count": 1,
+        "worldTimeRounded": 772.658,
+        "frame": 1080662
+      },
+      "sourceSpawn": {
+        "line": 5130,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": true,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 20,
+            "reserved": 0,
+            "capacity": 30
+          },
+          "time": 250.20606994628906,
+          "kind": "Spawn",
+          "message": "Musketeer",
+          "player": 0,
+          "entity": 162,
+          "target": 0,
+          "visibilityMask": 1,
+          "amount": 0.0,
+          "position": {
+            "x": 31.25,
+            "y": 34.031089782714844
+          },
+          "facing": {
+            "x": 0.0,
+            "y": 1.0
+          }
+        },
+        "definition": {
+          "id": "musketeer",
+          "name": "Musketeer",
+          "description": "Heavy infantry with ranged attack.",
+          "producer": "barracks",
+          "civilization": "",
+          "kind": 0,
+          "tags": 3,
+          "cost": {
+            "food": 75,
+            "wood": 0,
+            "coin": 25
+          },
+          "hp": 200,
+          "radius": 0.4,
+          "width": 1,
+          "depth": 1,
+          "speed": 4,
+          "vision": 18,
+          "damage": 24,
+          "meleeDamage": 12,
+          "siegeDamage": 10,
+          "range": 12,
+          "minRange": 0,
+          "period": 3,
+          "windup": 0.35,
+          "projectileSpeed": 30,
+          "splash": 0,
+          "damageKind": 1,
+          "meleeResist": 0,
+          "rangedResist": 0,
+          "siegeResist": 0,
+          "time": 26,
+          "population": 1,
+          "capacity": 0,
+          "age": 2,
+          "batch": 5,
+          "garrison": 0,
+          "deploy": false,
+          "bonuses": [],
+          "resource": 0,
+          "amount": 0,
+          "gatherRate": 0,
+          "buildXp": 0,
+          "trainXp": 5,
+          "killXp": 10
+        }
+      },
+      "death": {
+        "line": 45180,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": true,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 35,
+            "reserved": 0,
+            "capacity": 60
+          },
+          "time": 1146.167236328125,
+          "kind": "Death",
+          "message": "Musketeer lost",
+          "player": 0,
+          "entity": 162,
+          "target": 1,
+          "visibilityMask": 3,
+          "amount": 0.0,
+          "position": {
+            "x": 33.00999450683594,
+            "y": 40.0157585144043
+          },
+          "facing": {
+            "x": 0.9508843421936035,
+            "y": 0.3095462918281555
+          }
+        }
+      },
+      "paidTraining": {
+        "definition": "musketeer",
+        "payment": {
+          "line": 4537,
+          "time": 224.20448303222656,
+          "kind": "Payment",
+          "player": 0,
+          "entity": 148,
+          "target": 0,
+          "message": "Musketeer ×5: 375 F / 0 W / 125 C",
+          "amount": 0.0
+        },
+        "queue": {
+          "line": 4538,
+          "time": 224.20448303222656,
+          "kind": "ProductionQueued",
+          "player": 0,
+          "entity": 148,
+          "target": 0,
+          "message": "musketeer ×5",
+          "amount": 5.0
+        },
+        "spawn": {
+          "line": 5130,
+          "time": 250.20606994628906,
+          "kind": "Spawn",
+          "player": 0,
+          "entity": 162,
+          "target": 0,
+          "message": "Musketeer",
+          "amount": 0.0
+        },
+        "completion": {
+          "line": 5131,
+          "time": 250.20606994628906,
+          "kind": "Experience",
+          "player": 0,
+          "entity": 148,
+          "target": 0,
+          "message": "Unit trained",
+          "amount": 5.0
+        }
+      },
+      "interveningTrace": [
+        {
+          "sourceLine": 13465,
+          "raw": "FRONTIER_INPUT Key F9 down p=(1600.00, 984.00) shift=False save=False t=18198.8506"
+        }
+      ],
+      "aliveAtCapture": true,
+      "contextFrameNotLaterThanCapture": true,
+      "scope": "Selected ID is from frozen native input context; F9 JSON has no selectedEntity field."
+    },
+    {
+      "capture": "Frontier-20261003-085053-883-f1095018-9c2498f3f2c84dd0847a64a566495a4c.json",
+      "captureSourceLine": 13699,
+      "captureWorldTime": 846.1404418945312,
+      "captureFrame": 1095018,
+      "requestFrame": 1095018,
+      "latestPrecedingContext": {
+        "sourceLine": 13697,
+        "raw": "FRONTIER_UI context entity=263 count=1 world=846.140 frame=1095017",
+        "entity": 263,
+        "count": 1,
+        "worldTimeRounded": 846.14,
+        "frame": 1095017
+      },
+      "sourceSpawn": {
+        "line": 30818,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": true,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 44,
+            "reserved": 0,
+            "capacity": 50
+          },
+          "time": 832.1438598632812,
+          "kind": "Spawn",
+          "message": "Musketeer",
+          "player": 0,
+          "entity": 263,
+          "target": 0,
+          "visibilityMask": 3,
+          "amount": 0.0,
+          "position": {
+            "x": 34.75,
+            "y": 34.031089782714844
+          },
+          "facing": {
+            "x": 0.0,
+            "y": 1.0
+          }
+        },
+        "definition": {
+          "id": "musketeer",
+          "name": "Musketeer",
+          "description": "Heavy infantry with ranged attack.",
+          "producer": "barracks",
+          "civilization": "",
+          "kind": 0,
+          "tags": 3,
+          "cost": {
+            "food": 75,
+            "wood": 0,
+            "coin": 25
+          },
+          "hp": 200,
+          "radius": 0.4,
+          "width": 1,
+          "depth": 1,
+          "speed": 4,
+          "vision": 18,
+          "damage": 24,
+          "meleeDamage": 12,
+          "siegeDamage": 10,
+          "range": 12,
+          "minRange": 0,
+          "period": 3,
+          "windup": 0.35,
+          "projectileSpeed": 30,
+          "splash": 0,
+          "damageKind": 1,
+          "meleeResist": 0,
+          "rangedResist": 0,
+          "siegeResist": 0,
+          "time": 26,
+          "population": 1,
+          "capacity": 0,
+          "age": 2,
+          "batch": 5,
+          "garrison": 0,
+          "deploy": false,
+          "bonuses": [],
+          "resource": 0,
+          "amount": 0,
+          "gatherRate": 0,
+          "buildXp": 0,
+          "trainXp": 5,
+          "killXp": 10
+        }
+      },
+      "death": {
+        "line": 44308,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": true,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 41,
+            "reserved": 0,
+            "capacity": 60
+          },
+          "time": 1132.7705078125,
+          "kind": "Death",
+          "message": "Musketeer lost",
+          "player": 0,
+          "entity": 263,
+          "target": 1,
+          "visibilityMask": 3,
+          "amount": 0.0,
+          "position": {
+            "x": 35.20293426513672,
+            "y": 39.87660598754883
+          },
+          "facing": {
+            "x": 0.885026216506958,
+            "y": 0.46554118394851685
+          }
+        }
+      },
+      "paidTraining": {
+        "definition": "musketeer",
+        "payment": {
+          "line": 29403,
+          "time": 806.1502075195312,
+          "kind": "Payment",
+          "player": 0,
+          "entity": 148,
+          "target": 0,
+          "message": "Musketeer ×5: 375 F / 0 W / 125 C",
+          "amount": 0.0
+        },
+        "queue": {
+          "line": 29404,
+          "time": 806.1502075195312,
+          "kind": "ProductionQueued",
+          "player": 0,
+          "entity": 148,
+          "target": 0,
+          "message": "musketeer ×5",
+          "amount": 5.0
+        },
+        "spawn": {
+          "line": 30818,
+          "time": 832.1438598632812,
+          "kind": "Spawn",
+          "player": 0,
+          "entity": 263,
+          "target": 0,
+          "message": "Musketeer",
+          "amount": 0.0
+        },
+        "completion": {
+          "line": 30819,
+          "time": 832.1438598632812,
+          "kind": "Experience",
+          "player": 0,
+          "entity": 148,
+          "target": 0,
+          "message": "Unit trained",
+          "amount": 5.0
+        }
+      },
+      "interveningTrace": [
+        {
+          "sourceLine": 13698,
+          "raw": "FRONTIER_INPUT Key F9 down p=(1538.00, 670.00) shift=False save=False t=18438.9222"
+        }
+      ],
+      "aliveAtCapture": true,
+      "contextFrameNotLaterThanCapture": true,
+      "scope": "Selected ID is from frozen native input context; F9 JSON has no selectedEntity field."
+    }
+  ],
+  "carabineerContext": {
+    "capture": "Frontier-20261003-090305-410-f1138623-2f1d0d806ff8457991e2e37b18d31720.json",
+    "captureSourceLine": 14057,
+    "captureWorldTime": 961.4122924804688,
+    "captureFrame": 1138623,
+    "requestFrame": 1138623,
+    "latestPrecedingContext": {
+      "sourceLine": 14056,
+      "raw": "FRONTIER_UI context entity=274 count=1 world=961.412 frame=1138623",
+      "entity": 274,
+      "count": 1,
+      "worldTimeRounded": 961.412,
+      "frame": 1138623
+    },
+    "sourceSpawn": {
+      "line": 35144,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 50,
+          "reserved": 0,
+          "capacity": 60
+        },
+        "time": 945.8161010742188,
+        "kind": "Spawn",
+        "message": "River Carabineer",
+        "player": 0,
+        "entity": 274,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 29.5,
+          "y": 49.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      },
+      "definition": {
+        "id": "carabineer",
+        "name": "River Carabineer",
+        "description": "River light cavalry: one population and short firing range; counters mounted troops.",
+        "producer": "stable",
+        "civilization": "river",
+        "kind": 0,
+        "tags": 40,
+        "cost": {
+          "food": 40,
+          "coin": 70
+        },
+        "hp": 145,
+        "radius": 0.65,
+        "width": 1,
+        "depth": 1,
+        "speed": 7.0,
+        "vision": 18,
+        "damage": 15,
+        "meleeDamage": 0,
+        "siegeDamage": 10,
+        "range": 12,
+        "minRange": 0,
+        "period": 2.5,
+        "windup": 0.35,
+        "projectileSpeed": 30,
+        "splash": 0,
+        "damageKind": 1,
+        "meleeResist": 0,
+        "rangedResist": 0,
+        "siegeResist": 0,
+        "time": 28,
+        "population": 1,
+        "capacity": 0,
+        "age": 3,
+        "batch": 5,
+        "garrison": 0,
+        "deploy": false,
+        "bonuses": [
+          {
+            "tags": 16,
+            "multiplier": 3
+          }
+        ],
+        "resource": 0,
+        "amount": 0,
+        "gatherRate": 0,
+        "buildXp": 0,
+        "trainXp": 6,
+        "killXp": 11
+      }
+    },
+    "death": {
+      "line": 40953,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 52,
+          "reserved": 0,
+          "capacity": 60
+        },
+        "time": 1066.2867431640625,
+        "kind": "Death",
+        "message": "River Carabineer lost",
+        "player": 0,
+        "entity": 274,
+        "target": 1,
+        "visibilityMask": 3,
+        "amount": 0.0,
+        "position": {
+          "x": 80.10977172851562,
+          "y": 116.97457885742188
+        },
+        "facing": {
+          "x": 0.7823237776756287,
+          "y": -0.622871994972229
+        }
+      }
+    },
+    "paidTraining": {
+      "definition": "carabineer",
+      "payment": {
+        "line": 33986,
+        "time": 917.8229370117188,
+        "kind": "Payment",
+        "player": 0,
+        "entity": 270,
+        "target": 0,
+        "message": "River Carabineer ×5: 200 F / 0 W / 350 C",
+        "amount": 0.0
+      },
+      "queue": {
+        "line": 33987,
+        "time": 917.8229370117188,
+        "kind": "ProductionQueued",
+        "player": 0,
+        "entity": 270,
+        "target": 0,
+        "message": "carabineer ×5",
+        "amount": 5.0
+      },
+      "spawn": {
+        "line": 35144,
+        "time": 945.8161010742188,
+        "kind": "Spawn",
+        "player": 0,
+        "entity": 274,
+        "target": 0,
+        "message": "River Carabineer",
+        "amount": 0.0
+      },
+      "completion": {
+        "line": 35145,
+        "time": 945.8161010742188,
+        "kind": "Experience",
+        "player": 0,
+        "entity": 270,
+        "target": 0,
+        "message": "Unit trained",
+        "amount": 6.0
+      }
+    },
+    "interveningTrace": [],
+    "aliveAtCapture": true,
+    "contextFrameNotLaterThanCapture": true,
+    "scope": "Selected ID is from frozen native input context; F9 JSON has no selectedEntity field."
+  },
+  "visualReadings": [
+    {
+      "capture": "Frontier-20261003-081347-210-f962441-875032a5f2cd4487af47e9cf86321c9c.json",
+      "png": "Frontier-20261003-081347-210-f962441-875032a5f2cd4487af47e9cf86321c9c.png",
+      "worldTime": 0.0,
+      "reading": "Opening menu: River mirror, Easy, era limit5, seed314159, Military25/25.",
+      "provenance": "Original archived PNG inspected with view_image; no edited or generated pixels."
+    },
+    {
+      "capture": "Frontier-20261003-083930-316-f1054362-e0f9197278dc4cc5b9b6d3005a43c6b0.json",
+      "png": "Frontier-20261003-083930-316-f1054362-e0f9197278dc4cc5b9b6d3005a43c6b0.png",
+      "worldTime": 574.3068237304688,
+      "reading": "Single Musketeer at09:34: HP200/200, ATK24, RANGE12, POP1, Holding/Orders0.",
+      "provenance": "Original archived PNG inspected with view_image; no edited or generated pixels."
+    },
+    {
+      "capture": "Frontier-20261003-084653-809-f1080710-649b324e79ad4bc3a6455e4fae91f27b.json",
+      "png": "Frontier-20261003-084653-809-f1080710-649b324e79ad4bc3a6455e4fae91f27b.png",
+      "worldTime": 773.4581909179688,
+      "reading": "Single old Musketeer at12:53: HP240/240, ATK29, RANGE12, POP1, Holding/Orders0.",
+      "provenance": "Original archived PNG inspected with view_image; no edited or generated pixels."
+    },
+    {
+      "capture": "Frontier-20261003-085053-883-f1095018-9c2498f3f2c84dd0847a64a566495a4c.json",
+      "png": "Frontier-20261003-085053-883-f1095018-9c2498f3f2c84dd0847a64a566495a4c.png",
+      "worldTime": 846.1404418945312,
+      "reading": "Single new Musketeer at14:06: HP240/240, ATK29, RANGE12, POP1, Idle/Orders0.",
+      "provenance": "Original archived PNG inspected with view_image; no edited or generated pixels."
+    },
+    {
+      "capture": "Frontier-20261003-090208-774-f1135245-bfb0533a45724c2f87af01333819f4cc.json",
+      "png": "Frontier-20261003-090208-774-f1135245-bfb0533a45724c2f87af01333819f4cc.png",
+      "worldTime": 957.8131713867188,
+      "reading": "At15:57 no unit is selected; enemy Farm has a reduced health bar and Attack order accepted remains visible. This is after the cannon death and third impact; the toast/bar alone does not quantify damage.",
+      "provenance": "Original archived PNG inspected with view_image; no edited or generated pixels."
+    },
+    {
+      "capture": "Frontier-20261003-090305-410-f1138623-2f1d0d806ff8457991e2e37b18d31720.json",
+      "png": "Frontier-20261003-090305-410-f1138623-2f1d0d806ff8457991e2e37b18d31720.png",
+      "worldTime": 961.4122924804688,
+      "reading": "Single River Carabineer at16:01: HP145/145, ATK15, RANGE12, POP1, Idle/Orders0. Five friendly cavalry are visible.",
+      "provenance": "Original archived PNG inspected with view_image; no edited or generated pixels."
+    },
+    {
+      "capture": "Frontier-20261003-092137-398-f1204818-edf4d40722a940268add50a81b84d986.json",
+      "png": "Frontier-20261003-092137-398-f1204818-edf4d40722a940268add50a81b84d986.png",
+      "worldTime": 1367.2132568359375,
+      "reading": "DEFEAT22m47s; player kills/losses65/84, age3 versus4, shipments8 versus10. Raw MatchEnded/noResign resolves the generic elimination-or-resignation label.",
+      "provenance": "Original archived PNG inspected with view_image; no edited or generated pixels."
+    }
+  ],
+  "ruleValues": {
+    "baseHP": 200,
+    "baseAttack": 24,
+    "healthBonus": 0.2,
+    "attackBonus": 0.2,
+    "expectedMaxHP": 240.0,
+    "expectedAttackBeforeDisplayRounding": 28.799999999999997
+  },
+  "scope": "Seven original images visually read; all11 F9 pairs byte/metadata checked. Same-ID162 single selection is established by input context and alive intervals, not the group3 label alone. New263 is separately paid/born after technology. No cross-match substitution."
+}

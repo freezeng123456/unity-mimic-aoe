@@ -16,7 +16,7 @@ B：先一个文明的镜像 1V1，I-III，合法卡组/XP/真实船运、可见
 C：B 验证后，第二文明及 I-V、科技/特色单位/银行差异、贸易与宝藏、完整攻城和 AI；全部验收才称完整陆战。
 D：正式美术/动画/音频与更广规模验证，随后再讨论海战/联网/编辑器。
 
-当前验收快照（2026-10-03）：A/B/D已通过；C1–C5历史失败保留。[C5](Evidence/055/NormalPlayer/river-attempt-005/README.md)1661.541382秒自然败局，严格16/17检查、18/19覆盖，仅缺ageV；同一老Musk/新生Musk科技属性与付费炮击建筑已核验。C6正由root执行，尚未判定；最终0.2.32尚未启动。此快照不改动上述退出条件，完整状态见[Milestones-055.md](Milestones-055.md)。
+当前验收快照（2026-10-03）：A/B/D已通过；C1–C6历史失败保留。[C5](Evidence/055/NormalPlayer/river-attempt-005/README.md)1661.541382秒自然败局，严格16/17检查、18/19覆盖，仅缺ageV；同一老Musk/新生Musk科技属性与付费炮击建筑已核验。[C6](Evidence/055/NormalPlayer/river-attempt-006/README.md)已1367.213257秒自然败局，严格16/17检查、17/19覆盖，仅缺 `ageIV`、`ageV`；C7正由river_strategy操作GUI，尚未判定；最终0.2.32尚未启动。此快照不改动上述退出条件，完整状态见[Milestones-055.md](Milestones-055.md)。
 
 ## 初始实施规则（全部 P，待研究追踪）
 P01：10 Hz 固定模拟步长，表现按渲染帧更新；不宣称跨平台确定性。暂停不推进模拟时间。

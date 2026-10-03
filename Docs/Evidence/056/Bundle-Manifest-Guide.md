@@ -7,7 +7,7 @@
 ```bash
 FR_PROJECT='/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project'
 python3 "$FR_PROJECT/Docs/Evidence/056/build_client_bundle_manifest.py" \
-  --app "$FR_PROJECT/Builds/macOS/Frontier Reckoning.app" \
+  --app "$FR_PROJECT/Builds/macOS-0.2.32/Frontier Reckoning.app" \
   --client '/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.2.32/Frontier-Reckoning-0.2.32-macOS-arm64.zip' \
   --receipt "$FR_PROJECT/Docs/Evidence/056/build-receipt.json" \
   --source-evidence "$FR_PROJECT/Docs/Evidence/056/Tests/source-evidence.json" \

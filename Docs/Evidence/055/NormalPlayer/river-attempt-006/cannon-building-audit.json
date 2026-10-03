@@ -1,0 +1,4511 @@
+{
+  "generatedAtUtc": "2026-10-03T09:39:10.086555+00:00",
+  "status": "passed",
+  "checks": {
+    "threePositiveEnemyBuildingHits": true,
+    "sourceIsPaidCannon256": true,
+    "targetIsEnemyFarm266": true,
+    "damageTotals390": true,
+    "canonicalLinesMatch": true,
+    "lastFireBeforeDeathLastImpactAfterDeath": true
+  },
+  "sourceEvents": "20261003-092107-193-7558b19fc9984578a313082b633c6630-match_finished-events.jsonl",
+  "paidCannon": {
+    "definition": "cannon",
+    "payment": {
+      "line": 27155,
+      "time": 778.9568481445312,
+      "kind": "Payment",
+      "player": 0,
+      "entity": 237,
+      "target": 0,
+      "message": "Field Cannon ×5: 0 F / 500 W / 1250 C",
+      "amount": 0.0
+    },
+    "queue": {
+      "line": 27156,
+      "time": 778.9568481445312,
+      "kind": "ProductionQueued",
+      "player": 0,
+      "entity": 237,
+      "target": 0,
+      "message": "cannon ×5",
+      "amount": 5.0
+    },
+    "spawn": {
+      "line": 30421,
+      "time": 824.0458374023438,
+      "kind": "Spawn",
+      "player": 0,
+      "entity": 256,
+      "target": 0,
+      "message": "Field Cannon",
+      "amount": 0.0
+    },
+    "completion": {
+      "line": 30422,
+      "time": 824.0458374023438,
+      "kind": "Experience",
+      "player": 0,
+      "entity": 237,
+      "target": 0,
+      "message": "Unit trained",
+      "amount": 18.0
+    }
+  },
+  "sourceSpawn": {
+    "line": 30421,
+    "event": {
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": true,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 26,
+        "reserved": 5,
+        "capacity": 50
+      },
+      "time": 824.0458374023438,
+      "kind": "Spawn",
+      "message": "Field Cannon",
+      "player": 0,
+      "entity": 256,
+      "target": 0,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 44.5,
+        "y": 17.0
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 1.0
+      }
+    },
+    "definition": {
+      "id": "cannon",
+      "name": "Field Cannon",
+      "description": "Deployed artillery with splash damage.",
+      "producer": "foundry",
+      "civilization": "",
+      "kind": 0,
+      "tags": 64,
+      "cost": {
+        "food": 0,
+        "wood": 100,
+        "coin": 250
+      },
+      "hp": 220,
+      "radius": 0.75,
+      "width": 1,
+      "depth": 1,
+      "speed": 2.5,
+      "vision": 18,
+      "damage": 70,
+      "meleeDamage": 0,
+      "siegeDamage": 130,
+      "range": 20,
+      "minRange": 4,
+      "period": 5,
+      "windup": 0.35,
+      "projectileSpeed": 25,
+      "splash": 3,
+      "damageKind": 2,
+      "meleeResist": 0,
+      "rangedResist": 0,
+      "siegeResist": 0,
+      "time": 45,
+      "population": 4,
+      "capacity": 0,
+      "age": 3,
+      "batch": 5,
+      "garrison": 0,
+      "deploy": true,
+      "bonuses": [
+        {
+          "tags": 1,
+          "multiplier": 2
+        },
+        {
+          "tags": 3,
+          "multiplier": 2
+        }
+      ],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 0,
+      "trainXp": 18,
+      "killXp": 35
+    }
+  },
+  "targetSpawn": {
+    "line": 31567,
+    "event": {
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": true,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 32,
+        "reserved": 0,
+        "capacity": 60
+      },
+      "time": 852.4389038085938,
+      "kind": "Spawn",
+      "message": "Farm",
+      "player": 1,
+      "entity": 266,
+      "target": 0,
+      "visibilityMask": 2,
+      "amount": 0.0,
+      "position": {
+        "x": 96.0,
+        "y": 111.0
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 1.0
+      }
+    },
+    "definition": {
+      "id": "farm",
+      "name": "Farm",
+      "description": "Infinite food field.",
+      "producer": "",
+      "civilization": "",
+      "kind": 1,
+      "tags": 256,
+      "cost": {
+        "wood": 300
+      },
+      "hp": 1200,
+      "radius": 0.4,
+      "width": 3,
+      "depth": 3,
+      "speed": 0,
+      "vision": 18,
+      "damage": 0,
+      "meleeDamage": 0,
+      "siegeDamage": 0,
+      "range": 1,
+      "minRange": 0,
+      "period": 2,
+      "windup": 0.35,
+      "projectileSpeed": 30,
+      "splash": 0,
+      "damageKind": 0,
+      "meleeResist": 0,
+      "rangedResist": 0,
+      "siegeResist": 0,
+      "time": 50,
+      "population": 0,
+      "capacity": 0,
+      "age": 2,
+      "batch": 1,
+      "garrison": 0,
+      "deploy": false,
+      "bonuses": [],
+      "resource": 1,
+      "amount": -1,
+      "gatherRate": 0.5,
+      "buildXp": 45,
+      "trainXp": 0,
+      "killXp": 45
+    }
+  },
+  "attackOrders": [
+    {
+      "line": 35548,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 954.1140747070312,
+        "kind": "Command",
+        "message": "Attack ×1",
+        "player": 0,
+        "entity": 256,
+        "target": 266,
+        "visibilityMask": 3,
+        "amount": 1.0,
+        "position": {
+          "x": 91.83708953857422,
+          "y": 116.67035675048828
+        },
+        "facing": {
+          "x": 0.5917933583259583,
+          "y": -0.8060896992683411
+        }
+      }
+    }
+  ],
+  "fires": [
+    {
+      "line": 35217,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 947.2157592773438,
+        "kind": "Fire",
+        "message": "Siege",
+        "player": 0,
+        "entity": 256,
+        "target": 266,
+        "visibilityMask": 3,
+        "amount": 130.0,
+        "position": {
+          "x": 91.83708953857422,
+          "y": 116.67035675048828
+        },
+        "facing": {
+          "x": 0.5917933583259583,
+          "y": -0.8060896992683411
+        }
+      }
+    },
+    {
+      "line": 35452,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 952.3145141601562,
+        "kind": "Fire",
+        "message": "Siege",
+        "player": 0,
+        "entity": 256,
+        "target": 266,
+        "visibilityMask": 3,
+        "amount": 130.0,
+        "position": {
+          "x": 91.83708953857422,
+          "y": 116.67035675048828
+        },
+        "facing": {
+          "x": 0.5917933583259583,
+          "y": -0.8060896992683411
+        }
+      }
+    },
+    {
+      "line": 35700,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 957.4132690429688,
+        "kind": "Fire",
+        "message": "Siege",
+        "player": 0,
+        "entity": 256,
+        "target": 266,
+        "visibilityMask": 3,
+        "amount": 130.0,
+        "position": {
+          "x": 91.83708953857422,
+          "y": 116.67035675048828
+        },
+        "facing": {
+          "x": 0.5917933583259583,
+          "y": -0.8060896992683411
+        }
+      }
+    }
+  ],
+  "positiveBuildingDamage": [
+    {
+      "line": 35232,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 947.5156860351562,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 256,
+        "target": 266,
+        "visibilityMask": 3,
+        "amount": 130.0,
+        "position": {
+          "x": 96.0,
+          "y": 111.0
+        },
+        "facing": {
+          "x": 0.5917933583259583,
+          "y": -0.8060896992683411
+        }
+      },
+      "sourceSpawnLine": 30421,
+      "targetSpawnLine": 31567,
+      "targetOwner": 1,
+      "targetDefinition": "farm",
+      "targetKind": 1
+    },
+    {
+      "line": 35466,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 952.6144409179688,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 256,
+        "target": 266,
+        "visibilityMask": 3,
+        "amount": 130.0,
+        "position": {
+          "x": 96.0,
+          "y": 111.0
+        },
+        "facing": {
+          "x": 0.5917933583259583,
+          "y": -0.8060896992683411
+        }
+      },
+      "sourceSpawnLine": 30421,
+      "targetSpawnLine": 31567,
+      "targetOwner": 1,
+      "targetDefinition": "farm",
+      "targetKind": 1
+    },
+    {
+      "line": 35716,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 957.7131958007812,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 256,
+        "target": 266,
+        "visibilityMask": 3,
+        "amount": 130.0,
+        "position": {
+          "x": 96.0,
+          "y": 111.0
+        },
+        "facing": {
+          "x": 0.5917933583259583,
+          "y": -0.8060896992683411
+        }
+      },
+      "sourceSpawnLine": 30421,
+      "targetSpawnLine": 31567,
+      "targetOwner": 1,
+      "targetDefinition": "farm",
+      "targetKind": 1
+    }
+  ],
+  "sourceDeath": {
+    "line": 35712,
+    "event": {
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": true,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 50,
+        "reserved": 0,
+        "capacity": 60
+      },
+      "time": 957.6132202148438,
+      "kind": "Death",
+      "message": "Field Cannon lost",
+      "player": 0,
+      "entity": 256,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 91.83708953857422,
+        "y": 116.67035675048828
+      },
+      "facing": {
+        "x": 0.5917933583259583,
+        "y": -0.8060896992683411
+      }
+    }
+  },
+  "allPlayerCannonDamage": [
+    {
+      "line": 29156,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 802.9509887695312,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 231,
+        "visibilityMask": 3,
+        "amount": 140.0,
+        "position": {
+          "x": 36.122596740722656,
+          "y": 40.25007629394531
+        },
+        "facing": {
+          "x": 0.6352527737617493,
+          "y": 0.772304356098175
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 21846,
+      "targetOwner": 1,
+      "targetDefinition": "musketeer",
+      "targetKind": 0
+    },
+    {
+      "line": 29654,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 810.1492309570312,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 219,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 44.14070129394531,
+          "y": 44.593353271484375
+        },
+        "facing": {
+          "x": 0.749723494052887,
+          "y": 0.6617512702941895
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 21179,
+      "targetOwner": 1,
+      "targetDefinition": "cannon",
+      "targetKind": 0
+    },
+    {
+      "line": 29655,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 810.1492309570312,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 233,
+        "visibilityMask": 3,
+        "amount": 35.0,
+        "position": {
+          "x": 42.711700439453125,
+          "y": 42.060611724853516
+        },
+        "facing": {
+          "x": 0.749723494052887,
+          "y": 0.6617512702941895
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 22611,
+      "targetOwner": 1,
+      "targetDefinition": "carabineer",
+      "targetKind": 0
+    },
+    {
+      "line": 29950,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 815.2479858398438,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 219,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 44.14070129394531,
+          "y": 44.593353271484375
+        },
+        "facing": {
+          "x": 0.749723494052887,
+          "y": 0.6617512702941895
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 21179,
+      "targetOwner": 1,
+      "targetDefinition": "cannon",
+      "targetKind": 0
+    },
+    {
+      "line": 29951,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 815.2479858398438,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 233,
+        "visibilityMask": 3,
+        "amount": 35.0,
+        "position": {
+          "x": 42.711700439453125,
+          "y": 42.060611724853516
+        },
+        "facing": {
+          "x": 0.749723494052887,
+          "y": 0.6617512702941895
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 22611,
+      "targetOwner": 1,
+      "targetDefinition": "carabineer",
+      "targetKind": 0
+    },
+    {
+      "line": 30244,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 820.3467407226562,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 219,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 44.14070129394531,
+          "y": 44.593353271484375
+        },
+        "facing": {
+          "x": 0.749723494052887,
+          "y": 0.6617512702941895
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 21179,
+      "targetOwner": 1,
+      "targetDefinition": "cannon",
+      "targetKind": 0
+    },
+    {
+      "line": 30245,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 820.3467407226562,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 233,
+        "visibilityMask": 3,
+        "amount": 35.0,
+        "position": {
+          "x": 42.711700439453125,
+          "y": 42.060611724853516
+        },
+        "facing": {
+          "x": 0.749723494052887,
+          "y": 0.6617512702941895
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 22611,
+      "targetOwner": 1,
+      "targetDefinition": "carabineer",
+      "targetKind": 0
+    },
+    {
+      "line": 30518,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 825.4454956054688,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 219,
+        "visibilityMask": 2,
+        "amount": 70.0,
+        "position": {
+          "x": 45.144615173339844,
+          "y": 45.33811569213867
+        },
+        "facing": {
+          "x": 0.9895793199539185,
+          "y": 0.14398860931396484
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 21179,
+      "targetOwner": 1,
+      "targetDefinition": "cannon",
+      "targetKind": 0
+    },
+    {
+      "line": 30728,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 830.5442504882812,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 243,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 47.547264099121094,
+          "y": 40.042877197265625
+        },
+        "facing": {
+          "x": 0.8978463411331177,
+          "y": 0.44030889868736267
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 24655,
+      "targetOwner": 1,
+      "targetDefinition": "cannon",
+      "targetKind": 0
+    },
+    {
+      "line": 30729,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 830.5442504882812,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 234,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 44.87767028808594,
+          "y": 39.34080505371094
+        },
+        "facing": {
+          "x": 0.8978463411331177,
+          "y": 0.44030889868736267
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 23222,
+      "targetOwner": 1,
+      "targetDefinition": "musketeer",
+      "targetKind": 0
+    },
+    {
+      "line": 30730,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 830.5442504882812,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 248,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 45.69523620605469,
+          "y": 41.058006286621094
+        },
+        "facing": {
+          "x": 0.8978463411331177,
+          "y": 0.44030889868736267
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 25806,
+      "targetOwner": 1,
+      "targetDefinition": "skirmisher",
+      "targetKind": 0
+    },
+    {
+      "line": 30795,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 832.0438842773438,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 257,
+        "target": 243,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 47.547264099121094,
+          "y": 40.042877197265625
+        },
+        "facing": {
+          "x": 0.6318300366401672,
+          "y": 0.7751069664955139
+        }
+      },
+      "sourceSpawnLine": 30423,
+      "targetSpawnLine": 24655,
+      "targetOwner": 1,
+      "targetDefinition": "cannon",
+      "targetKind": 0
+    },
+    {
+      "line": 30796,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 832.0438842773438,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 257,
+        "target": 234,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 44.87767028808594,
+          "y": 39.34080505371094
+        },
+        "facing": {
+          "x": 0.6318300366401672,
+          "y": 0.7751069664955139
+        }
+      },
+      "sourceSpawnLine": 30423,
+      "targetSpawnLine": 23222,
+      "targetOwner": 1,
+      "targetDefinition": "musketeer",
+      "targetKind": 0
+    },
+    {
+      "line": 30797,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 832.0438842773438,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 257,
+        "target": 248,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 45.69523620605469,
+          "y": 41.058006286621094
+        },
+        "facing": {
+          "x": 0.6318300366401672,
+          "y": 0.7751069664955139
+        }
+      },
+      "sourceSpawnLine": 30423,
+      "targetSpawnLine": 25806,
+      "targetOwner": 1,
+      "targetDefinition": "skirmisher",
+      "targetKind": 0
+    },
+    {
+      "line": 30807,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 832.1438598632812,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 256,
+        "target": 243,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 47.547264099121094,
+          "y": 40.042877197265625
+        },
+        "facing": {
+          "x": 0.5221596360206604,
+          "y": 0.8528478145599365
+        }
+      },
+      "sourceSpawnLine": 30421,
+      "targetSpawnLine": 24655,
+      "targetOwner": 1,
+      "targetDefinition": "cannon",
+      "targetKind": 0
+    },
+    {
+      "line": 30808,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 832.1438598632812,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 256,
+        "target": 234,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 44.87767028808594,
+          "y": 39.34080505371094
+        },
+        "facing": {
+          "x": 0.5221596360206604,
+          "y": 0.8528478145599365
+        }
+      },
+      "sourceSpawnLine": 30421,
+      "targetSpawnLine": 23222,
+      "targetOwner": 1,
+      "targetDefinition": "musketeer",
+      "targetKind": 0
+    },
+    {
+      "line": 30830,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 832.2438354492188,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 260,
+        "target": 243,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 47.547264099121094,
+          "y": 40.042877197265625
+        },
+        "facing": {
+          "x": 0.7984946370124817,
+          "y": 0.602001965045929
+        }
+      },
+      "sourceSpawnLine": 30429,
+      "targetSpawnLine": 24655,
+      "targetOwner": 1,
+      "targetDefinition": "cannon",
+      "targetKind": 0
+    },
+    {
+      "line": 30880,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 833.6434936523438,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 258,
+        "target": 251,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 40.7621955871582,
+          "y": 29.070178985595703
+        },
+        "facing": {
+          "x": 0.7673689723014832,
+          "y": 0.6412056684494019
+        }
+      },
+      "sourceSpawnLine": 30425,
+      "targetSpawnLine": 26065,
+      "targetOwner": 1,
+      "targetDefinition": "carabineer",
+      "targetKind": 0
+    },
+    {
+      "line": 30944,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 835.3430786132812,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 249,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 40.525184631347656,
+          "y": 36.669307708740234
+        },
+        "facing": {
+          "x": 0.8958118557929993,
+          "y": 0.4444334805011749
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 26013,
+      "targetOwner": 1,
+      "targetDefinition": "dragoon",
+      "targetKind": 0
+    },
+    {
+      "line": 30947,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 835.3430786132812,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 252,
+        "visibilityMask": 3,
+        "amount": 35.0,
+        "position": {
+          "x": 41.42951965332031,
+          "y": 34.81261444091797
+        },
+        "facing": {
+          "x": 0.8958118557929993,
+          "y": 0.4444334805011749
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 26067,
+      "targetOwner": 1,
+      "targetDefinition": "carabineer",
+      "targetKind": 0
+    },
+    {
+      "line": 31016,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 836.8427124023438,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 257,
+        "target": 252,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 41.42951965332031,
+          "y": 34.81261444091797
+        },
+        "facing": {
+          "x": 0.5265096426010132,
+          "y": 0.8501691818237305
+        }
+      },
+      "sourceSpawnLine": 30423,
+      "targetSpawnLine": 26067,
+      "targetOwner": 1,
+      "targetDefinition": "carabineer",
+      "targetKind": 0
+    },
+    {
+      "line": 31020,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 836.9426879882812,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 256,
+        "target": 252,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 41.42951965332031,
+          "y": 34.81261444091797
+        },
+        "facing": {
+          "x": 0.3558262288570404,
+          "y": 0.9345521330833435
+        }
+      },
+      "sourceSpawnLine": 30421,
+      "targetSpawnLine": 26067,
+      "targetOwner": 1,
+      "targetDefinition": "carabineer",
+      "targetKind": 0
+    },
+    {
+      "line": 31380,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 847.3401489257812,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 257,
+        "target": 233,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 42.711700439453125,
+          "y": 42.060611724853516
+        },
+        "facing": {
+          "x": 0.39306727051734924,
+          "y": 0.9195097088813782
+        }
+      },
+      "sourceSpawnLine": 30423,
+      "targetSpawnLine": 22611,
+      "targetOwner": 1,
+      "targetDefinition": "carabineer",
+      "targetKind": 0
+    },
+    {
+      "line": 35232,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 947.5156860351562,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 256,
+        "target": 266,
+        "visibilityMask": 3,
+        "amount": 130.0,
+        "position": {
+          "x": 96.0,
+          "y": 111.0
+        },
+        "facing": {
+          "x": 0.5917933583259583,
+          "y": -0.8060896992683411
+        }
+      },
+      "sourceSpawnLine": 30421,
+      "targetSpawnLine": 31567,
+      "targetOwner": 1,
+      "targetDefinition": "farm",
+      "targetKind": 1
+    },
+    {
+      "line": 35466,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 952.6144409179688,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 256,
+        "target": 266,
+        "visibilityMask": 3,
+        "amount": 130.0,
+        "position": {
+          "x": 96.0,
+          "y": 111.0
+        },
+        "facing": {
+          "x": 0.5917933583259583,
+          "y": -0.8060896992683411
+        }
+      },
+      "sourceSpawnLine": 30421,
+      "targetSpawnLine": 31567,
+      "targetOwner": 1,
+      "targetDefinition": "farm",
+      "targetKind": 1
+    },
+    {
+      "line": 35716,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 957.7131958007812,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 256,
+        "target": 266,
+        "visibilityMask": 3,
+        "amount": 130.0,
+        "position": {
+          "x": 96.0,
+          "y": 111.0
+        },
+        "facing": {
+          "x": 0.5917933583259583,
+          "y": -0.8060896992683411
+        }
+      },
+      "sourceSpawnLine": 30421,
+      "targetSpawnLine": 31567,
+      "targetOwner": 1,
+      "targetDefinition": "farm",
+      "targetKind": 1
+    },
+    {
+      "line": 38820,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1030.79541015625,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 260,
+        "target": 281,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 43.04600524902344,
+          "y": 41.58912658691406
+        },
+        "facing": {
+          "x": 0.6587831974029541,
+          "y": 0.7523328065872192
+        }
+      },
+      "sourceSpawnLine": 30429,
+      "targetSpawnLine": 36274,
+      "targetOwner": 1,
+      "targetDefinition": "carabineer",
+      "targetKind": 0
+    },
+    {
+      "line": 38831,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1030.995361328125,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 281,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 43.04600524902344,
+          "y": 41.58912658691406
+        },
+        "facing": {
+          "x": 0.8021588325500488,
+          "y": 0.5971107482910156
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 36274,
+      "targetOwner": 1,
+      "targetDefinition": "carabineer",
+      "targetKind": 0
+    },
+    {
+      "line": 38851,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1031.395263671875,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 259,
+        "target": 281,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 43.04600524902344,
+          "y": 41.58912658691406
+        },
+        "facing": {
+          "x": 0.5419730544090271,
+          "y": 0.8403959274291992
+        }
+      },
+      "sourceSpawnLine": 30427,
+      "targetSpawnLine": 36274,
+      "targetOwner": 1,
+      "targetDefinition": "carabineer",
+      "targetKind": 0
+    },
+    {
+      "line": 39046,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1035.4942626953125,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 260,
+        "target": 287,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 36.003021240234375,
+          "y": 34.024166107177734
+        },
+        "facing": {
+          "x": 0.6320362687110901,
+          "y": 0.7749388217926025
+        }
+      },
+      "sourceSpawnLine": 30429,
+      "targetSpawnLine": 37958,
+      "targetOwner": 1,
+      "targetDefinition": "hussar",
+      "targetKind": 0
+    },
+    {
+      "line": 39059,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1035.6942138671875,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 287,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 36.003021240234375,
+          "y": 34.024166107177734
+        },
+        "facing": {
+          "x": 0.9138885140419006,
+          "y": 0.40596532821655273
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 37958,
+      "targetOwner": 1,
+      "targetDefinition": "hussar",
+      "targetKind": 0
+    },
+    {
+      "line": 39077,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1036.0941162109375,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 259,
+        "target": 287,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 36.003021240234375,
+          "y": 34.024166107177734
+        },
+        "facing": {
+          "x": 0.3785012662410736,
+          "y": 0.9256008267402649
+        }
+      },
+      "sourceSpawnLine": 30427,
+      "targetSpawnLine": 37958,
+      "targetOwner": 1,
+      "targetDefinition": "hussar",
+      "targetKind": 0
+    },
+    {
+      "line": 39080,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1036.194091796875,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 258,
+        "target": 287,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 36.003021240234375,
+          "y": 34.024166107177734
+        },
+        "facing": {
+          "x": 0.1822250932455063,
+          "y": 0.9832568764686584
+        }
+      },
+      "sourceSpawnLine": 30425,
+      "targetSpawnLine": 37958,
+      "targetOwner": 1,
+      "targetDefinition": "hussar",
+      "targetKind": 0
+    },
+    {
+      "line": 39315,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1040.992919921875,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 260,
+        "target": 280,
+        "visibilityMask": 3,
+        "amount": 140.0,
+        "position": {
+          "x": 42.214454650878906,
+          "y": 41.93061065673828
+        },
+        "facing": {
+          "x": 0.6245349049568176,
+          "y": 0.7809968590736389
+        }
+      },
+      "sourceSpawnLine": 30429,
+      "targetSpawnLine": 35865,
+      "targetOwner": 1,
+      "targetDefinition": "musketeer",
+      "targetKind": 0
+    },
+    {
+      "line": 39318,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1040.992919921875,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 260,
+        "target": 247,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 42.823665618896484,
+          "y": 43.7773551940918
+        },
+        "facing": {
+          "x": 0.6245349049568176,
+          "y": 0.7809968590736389
+        }
+      },
+      "sourceSpawnLine": 30429,
+      "targetSpawnLine": 25804,
+      "targetOwner": 1,
+      "targetDefinition": "skirmisher",
+      "targetKind": 0
+    },
+    {
+      "line": 39319,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1040.992919921875,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 260,
+        "target": 283,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 40.261695861816406,
+          "y": 43.46229553222656
+        },
+        "facing": {
+          "x": 0.6245349049568176,
+          "y": 0.7809968590736389
+        }
+      },
+      "sourceSpawnLine": 30429,
+      "targetSpawnLine": 37030,
+      "targetOwner": 1,
+      "targetDefinition": "musketeer",
+      "targetKind": 0
+    },
+    {
+      "line": 39342,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1041.2928466796875,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 259,
+        "target": 273,
+        "visibilityMask": 3,
+        "amount": 140.0,
+        "position": {
+          "x": 37.5739860534668,
+          "y": 32.85838317871094
+        },
+        "facing": {
+          "x": 0.5522601008415222,
+          "y": 0.8336718082427979
+        }
+      },
+      "sourceSpawnLine": 30427,
+      "targetSpawnLine": 34038,
+      "targetOwner": 1,
+      "targetDefinition": "pike",
+      "targetKind": 0
+    },
+    {
+      "line": 39344,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1041.2928466796875,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 258,
+        "target": 273,
+        "visibilityMask": 3,
+        "amount": 140.0,
+        "position": {
+          "x": 37.5739860534668,
+          "y": 32.85838317871094
+        },
+        "facing": {
+          "x": 0.3581705093383789,
+          "y": 0.9336562156677246
+        }
+      },
+      "sourceSpawnLine": 30425,
+      "targetSpawnLine": 34038,
+      "targetOwner": 1,
+      "targetDefinition": "pike",
+      "targetKind": 0
+    },
+    {
+      "line": 39988,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1051.990234375,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 289,
+        "visibilityMask": 3,
+        "amount": 140.0,
+        "position": {
+          "x": 29.21422576904297,
+          "y": 49.150089263916016
+        },
+        "facing": {
+          "x": -0.08399607241153717,
+          "y": 0.9964661002159119
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 38039,
+      "targetOwner": 1,
+      "targetDefinition": "pike",
+      "targetKind": 0
+    },
+    {
+      "line": 39989,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1051.990234375,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 288,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 29.162065505981445,
+          "y": 49.8160400390625
+        },
+        "facing": {
+          "x": -0.08399607241153717,
+          "y": 0.9964661002159119
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 38037,
+      "targetOwner": 1,
+      "targetDefinition": "pike",
+      "targetKind": 0
+    },
+    {
+      "line": 40043,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1052.7900390625,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 260,
+        "target": 247,
+        "visibilityMask": 3,
+        "amount": 140.0,
+        "position": {
+          "x": 42.823665618896484,
+          "y": 43.7773551940918
+        },
+        "facing": {
+          "x": 0.7518620491027832,
+          "y": 0.6593205332756042
+        }
+      },
+      "sourceSpawnLine": 30429,
+      "targetSpawnLine": 25804,
+      "targetOwner": 1,
+      "targetDefinition": "skirmisher",
+      "targetKind": 0
+    },
+    {
+      "line": 40069,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1053.18994140625,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 259,
+        "target": 289,
+        "visibilityMask": 3,
+        "amount": 140.0,
+        "position": {
+          "x": 29.21422576904297,
+          "y": 49.150089263916016
+        },
+        "facing": {
+          "x": -0.06681617349386215,
+          "y": 0.9977652430534363
+        }
+      },
+      "sourceSpawnLine": 30427,
+      "targetSpawnLine": 38039,
+      "targetOwner": 1,
+      "targetDefinition": "pike",
+      "targetKind": 0
+    },
+    {
+      "line": 40072,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1053.18994140625,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 259,
+        "target": 288,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 29.162065505981445,
+          "y": 49.8160400390625
+        },
+        "facing": {
+          "x": -0.06681617349386215,
+          "y": 0.9977652430534363
+        }
+      },
+      "sourceSpawnLine": 30427,
+      "targetSpawnLine": 38037,
+      "targetOwner": 1,
+      "targetDefinition": "pike",
+      "targetKind": 0
+    },
+    {
+      "line": 40168,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1054.6895751953125,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 258,
+        "target": 288,
+        "visibilityMask": 3,
+        "amount": 140.0,
+        "position": {
+          "x": 29.162065505981445,
+          "y": 49.8160400390625
+        },
+        "facing": {
+          "x": 0.15641707181930542,
+          "y": 0.9876910448074341
+        }
+      },
+      "sourceSpawnLine": 30425,
+      "targetSpawnLine": 38037,
+      "targetOwner": 1,
+      "targetDefinition": "pike",
+      "targetKind": 0
+    },
+    {
+      "line": 40348,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1057.388916015625,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 285,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 46.13573455810547,
+          "y": 45.92722702026367
+        },
+        "facing": {
+          "x": 0.9101967215538025,
+          "y": 0.4141762852668762
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 37538,
+      "targetOwner": 1,
+      "targetDefinition": "cannon",
+      "targetKind": 0
+    },
+    {
+      "line": 42424,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1094.579833984375,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 260,
+        "target": 311,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 57.9376220703125,
+          "y": 52.854774475097656
+        },
+        "facing": {
+          "x": 0.7183272242546082,
+          "y": 0.6957053542137146
+        }
+      },
+      "sourceSpawnLine": 30429,
+      "targetSpawnLine": 41559,
+      "targetOwner": 1,
+      "targetDefinition": "dragoon",
+      "targetKind": 0
+    },
+    {
+      "line": 42425,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1094.579833984375,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 260,
+        "target": 310,
+        "visibilityMask": 3,
+        "amount": 35.0,
+        "position": {
+          "x": 58.603328704833984,
+          "y": 51.81493377685547
+        },
+        "facing": {
+          "x": 0.7183272242546082,
+          "y": 0.6957053542137146
+        }
+      },
+      "sourceSpawnLine": 30429,
+      "targetSpawnLine": 41557,
+      "targetOwner": 1,
+      "targetDefinition": "dragoon",
+      "targetKind": 0
+    },
+    {
+      "line": 42427,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1094.579833984375,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 259,
+        "target": 311,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 57.9376220703125,
+          "y": 52.854774475097656
+        },
+        "facing": {
+          "x": 0.8128893971443176,
+          "y": 0.5824181437492371
+        }
+      },
+      "sourceSpawnLine": 30427,
+      "targetSpawnLine": 41559,
+      "targetOwner": 1,
+      "targetDefinition": "dragoon",
+      "targetKind": 0
+    },
+    {
+      "line": 42428,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1094.579833984375,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 259,
+        "target": 310,
+        "visibilityMask": 3,
+        "amount": 35.0,
+        "position": {
+          "x": 58.603328704833984,
+          "y": 51.81493377685547
+        },
+        "facing": {
+          "x": 0.8128893971443176,
+          "y": 0.5824181437492371
+        }
+      },
+      "sourceSpawnLine": 30427,
+      "targetSpawnLine": 41557,
+      "targetOwner": 1,
+      "targetDefinition": "dragoon",
+      "targetKind": 0
+    },
+    {
+      "line": 42463,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1094.979736328125,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 311,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 57.9376220703125,
+          "y": 52.854774475097656
+        },
+        "facing": {
+          "x": 0.9084689021110535,
+          "y": 0.4179523289203644
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 41559,
+      "targetOwner": 1,
+      "targetDefinition": "dragoon",
+      "targetKind": 0
+    },
+    {
+      "line": 42464,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1094.979736328125,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 310,
+        "visibilityMask": 3,
+        "amount": 35.0,
+        "position": {
+          "x": 58.603328704833984,
+          "y": 51.81493377685547
+        },
+        "facing": {
+          "x": 0.9084689021110535,
+          "y": 0.4179523289203644
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 41557,
+      "targetOwner": 1,
+      "targetDefinition": "dragoon",
+      "targetKind": 0
+    },
+    {
+      "line": 42475,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1095.2796630859375,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 258,
+        "target": 311,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 57.9376220703125,
+          "y": 52.854774475097656
+        },
+        "facing": {
+          "x": 0.8682103157043457,
+          "y": 0.4961964190006256
+        }
+      },
+      "sourceSpawnLine": 30425,
+      "targetSpawnLine": 41559,
+      "targetOwner": 1,
+      "targetDefinition": "dragoon",
+      "targetKind": 0
+    },
+    {
+      "line": 42478,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1095.2796630859375,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 258,
+        "target": 310,
+        "visibilityMask": 3,
+        "amount": 35.0,
+        "position": {
+          "x": 58.603328704833984,
+          "y": 51.81493377685547
+        },
+        "facing": {
+          "x": 0.8682103157043457,
+          "y": 0.4961964190006256
+        }
+      },
+      "sourceSpawnLine": 30425,
+      "targetSpawnLine": 41557,
+      "targetOwner": 1,
+      "targetDefinition": "dragoon",
+      "targetKind": 0
+    },
+    {
+      "line": 42680,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1099.57861328125,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 259,
+        "target": 310,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 57.66263198852539,
+          "y": 51.47569274902344
+        },
+        "facing": {
+          "x": 0.8490262031555176,
+          "y": 0.5283506512641907
+        }
+      },
+      "sourceSpawnLine": 30427,
+      "targetSpawnLine": 41557,
+      "targetOwner": 1,
+      "targetDefinition": "dragoon",
+      "targetKind": 0
+    },
+    {
+      "line": 42702,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1100.0784912109375,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 310,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 57.66263198852539,
+          "y": 51.47569274902344
+        },
+        "facing": {
+          "x": 0.9406993985176086,
+          "y": 0.3392413258552551
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 41557,
+      "targetOwner": 1,
+      "targetDefinition": "dragoon",
+      "targetKind": 0
+    },
+    {
+      "line": 42944,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1104.77734375,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 259,
+        "target": 230,
+        "visibilityMask": 3,
+        "amount": 140.0,
+        "position": {
+          "x": 49.15623092651367,
+          "y": 59.1506462097168
+        },
+        "facing": {
+          "x": 0.25273069739341736,
+          "y": 0.9675366282463074
+        }
+      },
+      "sourceSpawnLine": 30427,
+      "targetSpawnLine": 21844,
+      "targetOwner": 1,
+      "targetDefinition": "musketeer",
+      "targetKind": 0
+    },
+    {
+      "line": 44383,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1133.6702880859375,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 259,
+        "target": 314,
+        "visibilityMask": 3,
+        "amount": 140.0,
+        "position": {
+          "x": 37.34990692138672,
+          "y": 41.005958557128906
+        },
+        "facing": {
+          "x": 0.8610811829566956,
+          "y": 0.5084674954414368
+        }
+      },
+      "sourceSpawnLine": 30427,
+      "targetSpawnLine": 42287,
+      "targetOwner": 1,
+      "targetDefinition": "pike",
+      "targetKind": 0
+    },
+    {
+      "line": 44565,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1137.0694580078125,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 293,
+        "visibilityMask": 3,
+        "amount": 140.0,
+        "position": {
+          "x": 45.81277847290039,
+          "y": 44.33673095703125
+        },
+        "facing": {
+          "x": 0.9379602074623108,
+          "y": 0.346743106842041
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 39183,
+      "targetOwner": 1,
+      "targetDefinition": "musketeer",
+      "targetKind": 0
+    },
+    {
+      "line": 44566,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1137.0694580078125,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 294,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 46.27446365356445,
+          "y": 43.55882263183594
+        },
+        "facing": {
+          "x": 0.9379602074623108,
+          "y": 0.346743106842041
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 39185,
+      "targetOwner": 1,
+      "targetDefinition": "musketeer",
+      "targetKind": 0
+    },
+    {
+      "line": 44753,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1139.6688232421875,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 259,
+        "target": 318,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 35.25356674194336,
+          "y": 42.60737228393555
+        },
+        "facing": {
+          "x": 0.7142773866653442,
+          "y": 0.6998627185821533
+        }
+      },
+      "sourceSpawnLine": 30427,
+      "targetSpawnLine": 43326,
+      "targetOwner": 1,
+      "targetDefinition": "hussar",
+      "targetKind": 0
+    },
+    {
+      "line": 44760,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1139.768798828125,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 258,
+        "target": 318,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 35.25356674194336,
+          "y": 42.60737228393555
+        },
+        "facing": {
+          "x": 0.7169963717460632,
+          "y": 0.6970769166946411
+        }
+      },
+      "sourceSpawnLine": 30425,
+      "targetSpawnLine": 43326,
+      "targetOwner": 1,
+      "targetDefinition": "hussar",
+      "targetKind": 0
+    },
+    {
+      "line": 44923,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1142.168212890625,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 293,
+        "visibilityMask": 3,
+        "amount": 140.0,
+        "position": {
+          "x": 45.881561279296875,
+          "y": 44.04006576538086
+        },
+        "facing": {
+          "x": 0.9390177726745605,
+          "y": 0.3438686430454254
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 39183,
+      "targetOwner": 1,
+      "targetDefinition": "musketeer",
+      "targetKind": 0
+    },
+    {
+      "line": 44926,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1142.168212890625,
+        "kind": "Damage",
+        "message": "Siege",
+        "player": 0,
+        "entity": 255,
+        "target": 294,
+        "visibilityMask": 3,
+        "amount": 70.0,
+        "position": {
+          "x": 43.47924041748047,
+          "y": 43.423866271972656
+        },
+        "facing": {
+          "x": 0.9390177726745605,
+          "y": 0.3438686430454254
+        }
+      },
+      "sourceSpawnLine": 28912,
+      "targetSpawnLine": 39185,
+      "targetOwner": 1,
+      "targetDefinition": "musketeer",
+      "targetKind": 0
+    }
+  ],
+  "interpretation": "Three paid-cannon hits total390. The first two Damage records precede the explicit954.114075s Attack command. The third projectile was fired before the cannon died and hit after its death. Exact damage comes from raw records, not the already reduced Farm bar or a toast."
+}

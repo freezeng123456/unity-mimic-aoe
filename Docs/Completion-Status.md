@@ -1,6 +1,6 @@
 # 原定四个里程碑交付状态
 
-2026-10-03，当前冻结开发版本0.2.31，macOS arm64 Development/Mono，Unity6000.6.3f1。原定退出条件以[开发合同](Development-Contract.md) A–D为准；详细证据见[本轮里程碑](Milestones-055.md)及[验证记录](Verification-055.md)。A/B/D已通过；C1–C5失败证据已归档，C4严格16/17检查、16/19覆盖，仅缺Age IV、Age V、特殊兵种；C5已1661.541382秒自然败局，严格16/17检查、18/19覆盖，仅缺 `ageV`；C6正由root执行，尚未判定；最终0.2.32尚未启动，不声明全部完成。
+2026-10-03，当前冻结开发版本0.2.31，macOS arm64 Development/Mono，Unity6000.6.3f1。原定退出条件以[开发合同](Development-Contract.md) A–D为准；详细证据见[本轮里程碑](Milestones-055.md)及[验证记录](Verification-055.md)。A/B/D已通过；C1–C6失败证据已归档，C4严格16/17检查、16/19覆盖，仅缺Age IV、Age V、特殊兵种；C5已1661.541382秒自然败局，严格16/17检查、18/19覆盖，仅缺 `ageV`；[C6](Evidence/055/NormalPlayer/river-attempt-006/README.md)已1367.213257秒自然败局，严格16/17检查、17/19覆盖，仅缺 `ageIV`、`ageV`；C7正由river_strategy操作GUI，尚未判定；最终0.2.32尚未启动，不声明全部完成。
 
 ## 已完成并核验
 
@@ -16,7 +16,7 @@
 
 ## 当前收口工作
 
-1. C6正由root执行，尚未判定；最终0.2.32尚未启动。C1在1486.584106秒自然败局并保留六项覆盖缺口；[C2](Evidence/055/NormalPlayer/river-attempt-002/README.md)在1081.682983秒自然败局，IV付款后TC被毁，保留十项缺口。[C3](Evidence/055/NormalPlayer/river-attempt-003/README.md)在1781.212158秒自然败局，实际达到V，严格16/17检查与18/19覆盖成立，仅缺炮击敌建筑。73文件、20组F9、两份冻结日志和终局账本已完整归档及复核；[C4](Evidence/055/NormalPlayer/river-attempt-004/README.md)在994.504211秒自然败局，严格16/17检查、16/19覆盖；付费炮击敌建筑与Cargo Ledgers成立，缺 `ageIV`、`ageV`、`specialUnit`。65文件、16组F9、两份冻结日志和36,218条事件已完整归档；[C5](Evidence/055/NormalPlayer/river-attempt-005/README.md)在1661.541382秒自然败局，严格16/17检查、18/19覆盖仅缺ageV；同一老Musk前后及新生Musk科技属性、付费炮261对敌Foundry239两次各130伤害均已核验。67文件、17组F9、双冻结日志及79,417事件已归档。五局原始失败结果均保留，不跨局拼接成完整通过。
+1. [C6](Evidence/055/NormalPlayer/river-attempt-006/README.md)已1367.213257秒自然败局，严格16/17检查、17/19覆盖，仅缺 `ageIV`、`ageV`；C7正由river_strategy操作GUI，尚未判定；最终0.2.32尚未启动。C1在1486.584106秒自然败局并保留六项覆盖缺口；[C2](Evidence/055/NormalPlayer/river-attempt-002/README.md)在1081.682983秒自然败局，IV付款后TC被毁，保留十项缺口。[C3](Evidence/055/NormalPlayer/river-attempt-003/README.md)在1781.212158秒自然败局，实际达到V，严格16/17检查与18/19覆盖成立，仅缺炮击敌建筑。73文件、20组F9、两份冻结日志和终局账本已完整归档及复核；[C4](Evidence/055/NormalPlayer/river-attempt-004/README.md)在994.504211秒自然败局，严格16/17检查、16/19覆盖；付费炮击敌建筑与Cargo Ledgers成立，缺 `ageIV`、`ageV`、`specialUnit`。65文件、16组F9、两份冻结日志和36,218条事件已完整归档；[C5](Evidence/055/NormalPlayer/river-attempt-005/README.md)在1661.541382秒自然败局，严格16/17检查、18/19覆盖仅缺ageV；同一老Musk前后及新生Musk科技属性、付费炮261对敌Foundry239两次各130伤害均已核验。67文件、17组F9、双冻结日志及79,417事件已归档；C6的63文件、11组F9、双冻结日志及60,226条事件已完整复核，付费炮256对敌Farm266共390伤害，同一老Musk162与新生Musk263科技关联成立。六局原始失败结果均保留，不跨局拼接成完整通过。
 2. 最终0.2.32尚未启动；C完成后再执行独立回归、构建、菜单smoke与最终打包，并同步最终README、规则/许可/实测文档与源代码、客户端、中文说明、提交和文件SHA清单。
 
 跨机器签名、公证、其他平台、海战、联网、战役、编辑器及存档是明确后续范围，不能追加为四个原定里程碑的完成门槛。低多边形原创表现和程序动画是当前选定实现；声学信号、实际原生画面与自动回归分别说明其证明范围。全部400单位无遮挡同屏、物理扬声器和所有硬件性能也不由本机样本推断。
