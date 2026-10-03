@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generatedAtUtc": "2026-10-03T06:09:10.419331+00:00",
+  "generatedAtUtc": "2026-10-03T06:56:51.187267+00:00",
   "scope": "Snapshot and executable maintainer checklist for the original A–D contract. Pending player runs or later captures are not presumed complete; update this checklist only from their preserved evidence.",
   "contract": "Docs/Development-Contract.md: A–D stages and original native completion gate; Stage-C-Implementation.md/Landmarks-Implementation.md detail the existing C scope.",
   "identity": {
@@ -14,7 +14,7 @@
     {
       "id": "A",
       "required": "Unity/URP project; camera, selection, commands, construction, population, production, gathering, basic combat and group navigation, with actual native runtime inspection.",
-      "current": "Passed: 424 source-bound Unity regressions, native independent build and actual ordinary operation retained in B10 and C1-C3 archives.",
+      "current": "Passed: 424 source-bound Unity regressions, native independent build and actual ordinary operation retained in B10 and C1-C4 archives.",
       "evidence": [
         "Docs/Evidence/055/Tests",
         "Docs/Evidence/055/Menu",
@@ -89,7 +89,7 @@
       "id": "C",
       "required": "After B, second civilization and I–V; real coin-worker/house/bank differences, feature unit, paid upgrade behavior, trade/treasure, siege and AI.",
       "status": "pending_native_player",
-      "current": "C1/C2/C3 naturally ended and are fully archived failures. C3 reachedV and passed18/19 coverage items; sole gap cannonEnemyBuildingDamage. C4 normal player attempt ongoing, no final conclusion; no cross-match coverage union.",
+      "current": "C1/C2/C3/C4 naturally ended and remain fully archived failures. C4 has 16/17 strict checks and 16/19 coverage: paid Field Cannon enemy-building damage and Cargo Ledgers are confirmed; only ageIV, ageV and specialUnit are missing. C5 is in progress and has not been accepted; no cross-match coverage union.",
       "evidence": [
         "Docs/Stage-C-Implementation.md",
         "Docs/Evidence/055/Landmarks/receipt.json",
@@ -113,22 +113,39 @@
         {
           "path": "Docs/Evidence/055/NormalPlayer/river-attempt-003/summary.json",
           "status": "failed"
+        },
+        {
+          "path": "Docs/Evidence/055/NormalPlayer/river-attempt-004/summary.json",
+          "status": "failed",
+          "matchId": "b4250e2ab6664083ad919de284cc0afb",
+          "naturalEndSeconds": 994.5042114257812,
+          "strictChecksPassed": 16,
+          "strictChecksTotal": 17,
+          "coveragePassed": 16,
+          "coverageTotal": 19,
+          "coverageGaps": [
+            "ageIV",
+            "ageV",
+            "specialUnit"
+          ],
+          "archiveReceipt": "Docs/Evidence/055/NormalPlayer/river-attempt-004/archive-receipt.json",
+          "archiveReceiptSha256": "cc28fc8e47999c072aeb04a0df04af0f4e8536ac70daebbaea547a14f8647e59"
         }
       ],
       "latestArchivedCoverage": {
         "ageII": true,
         "ageIII": true,
-        "ageIV": true,
-        "ageV": true,
+        "ageIV": false,
+        "ageV": false,
         "paidWorkers": true,
         "paidMilitary": true,
         "paidCannon": true,
-        "cannonEnemyBuildingDamage": false,
+        "cannonEnemyBuildingDamage": true,
         "gathered": true,
         "shipmentArrived": true,
         "paidBank": true,
         "bankIncome": true,
-        "specialUnit": true,
+        "specialUnit": false,
         "paidTechnology": true,
         "treasure": true,
         "paidTradePost": true,
@@ -137,8 +154,16 @@
         "resourceTradeDelivery": true
       },
       "coverageGaps": [
-        "cannonEnemyBuildingDamage"
-      ]
+        "ageIV",
+        "ageV",
+        "specialUnit"
+      ],
+      "latestArchivedAttempt": "C4",
+      "activeAttempt": {
+        "label": "C5",
+        "status": "in_progress_unverified",
+        "scope": "Root-reported ongoing native attempt; no live reports or logs read for this document update."
+      }
     },
     {
       "id": "D",
@@ -284,7 +309,7 @@
     ]
   },
   "menuOnlyFutureReleasePolicy": {
-    "currentDecision": "A/B/D complete; C4 pending. Keep .31 source frozen until full C acceptance; prepare independent .32 menu/version-only release per Docs/Evidence/056/README.md after C.",
+    "currentDecision": "A/B/D complete; C1-C4 archived failures and C5 in progress, not accepted. Keep .31 source frozen until full C acceptance; prepare independent .32 menu/version-only release per Docs/Evidence/056/README.md after C.",
     "requiredIfChanged": [
       "Preserve .31 raw native evidence, GUID 128a731d440e4b7a94abfcc74b88fa97, source fingerprint, test XMLs, build receipt and complete client bundle manifest as a frozen evidence set.",
       "For any menu/version edit, record the actual changed files and patch. Rerun full source-bound tests, build separately, and create a new version/GUID/client-bundle manifest/build receipt; do not overwrite .31 identity.",
@@ -434,6 +459,14 @@
     },
     {
       "path": "Docs/Evidence/055/Performance/scale-400-attempt-002/scale-summary.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/river-attempt-004/summary.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/river-attempt-004/archive-receipt.json",
       "exists": true
     }
   ],

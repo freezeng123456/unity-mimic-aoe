@@ -1,0 +1,224 @@
+{
+  "generatedAtUtc": "2026-10-03T06:44:52.587299+00:00",
+  "status": "passed",
+  "visualReadings": [
+    {
+      "capture": "Frontier-20261003-054706-655-f439321-74109ea7b5cb44edb8611676f1b7a998.json",
+      "png": "Frontier-20261003-054706-655-f439321-74109ea7b5cb44edb8611676f1b7a998.png",
+      "worldTime": 0.0,
+      "reading": "Opening menu: River League versus Coast Compact, Easy, age cap 5, seed 314159, Military 25/25.",
+      "provenance": "Archived original image visually inspected"
+    },
+    {
+      "capture": "Frontier-20261003-060201-114-f492463-64bba3f6386343178445aae94b4b4e4d.json",
+      "png": "Frontier-20261003-060201-114-f492463-64bba3f6386343178445aae94b4b4e4d.png",
+      "worldTime": 338.6114501953125,
+      "reading": "Paused at 5:38, Age II, Town Center selected, HP 3488/3500 and no sheltered settlers.",
+      "provenance": "Archived original image visually inspected"
+    },
+    {
+      "capture": "Frontier-20261003-061111-735-f525220-d969c479c3ce41289449a2df7b783008.json",
+      "png": "Frontier-20261003-061111-735-f525220-d969c479c3ce41289449a2df7b783008.png",
+      "worldTime": 474.9197692871094,
+      "reading": "At 7:54, Trading Post selected, [ACTIVE] Coin, Caravan delivery: Coin and Trade delivery mode changed.",
+      "provenance": "Archived original image visually inspected"
+    },
+    {
+      "capture": "Frontier-20261003-061738-379-f548158-693c1f1d04a949b4935e34b93dae8b3a.json",
+      "png": "Frontier-20261003-061738-379-f548158-693c1f1d04a949b4935e34b93dae8b3a.png",
+      "worldTime": 653.5874633789062,
+      "reading": "Age III at 10:53; Reached age 3 message, Town Center HP 2354/3500 and five sheltered/firing settlers.",
+      "provenance": "Archived original image visually inspected"
+    },
+    {
+      "capture": "Frontier-20261003-062538-114-f576670-b2037778d210430dbbeddfe5ea3760f2.json",
+      "png": "Frontier-20261003-062538-114-f576670-b2037778d210430dbbeddfe5ea3760f2.png",
+      "worldTime": 784.6554565429688,
+      "reading": "At 13:04, single Field Cannon selected, HP 220/220, ATK 70, RANGE 20, POP 4, Moving and Orders 1. Enemy buildings visible; this image alone does not yet prove a hit.",
+      "provenance": "Archived original image visually inspected"
+    },
+    {
+      "capture": "Frontier-20261003-062556-519-f577747-8b93d16b6abf4075953200e2f452288e.json",
+      "png": "Frontier-20261003-062556-519-f577747-8b93d16b6abf4075953200e2f452288e.png",
+      "worldTime": 803.0509643554688,
+      "reading": "At 13:23, the Field Cannon is Reloading with Orders 1 and remains HP 220/220. A visible enemy Manor has a partially reduced health bar. Exact target identity and damage amount are established by raw events, not pixel inference.",
+      "provenance": "Archived original image visually inspected"
+    },
+    {
+      "capture": "Frontier-20261003-063525-645-f611543-8791e70cdc32413a9cfe2689766f3412.json",
+      "png": "Frontier-20261003-063525-645-f611543-8791e70cdc32413a9cfe2689766f3412.png",
+      "worldTime": 994.5042114257812,
+      "reading": "DEFEAT at 16m 34s; player kills/losses 29/48, ages 3 versus 4, shipments 6 versus 9. Generic elimination-or-resignation overlay wording is disambiguated by the raw natural MatchEnded/no-Resign audit.",
+      "provenance": "Archived original image visually inspected"
+    }
+  ],
+  "cannonCaptureContexts": [
+    {
+      "capture": "Frontier-20261003-062538-114-f576670-b2037778d210430dbbeddfe5ea3760f2.json",
+      "captureSourceLine": 7257,
+      "captureWorldTime": 784.6554565429688,
+      "latestPrecedingContext": {
+        "sourceLine": 7247,
+        "raw": "FRONTIER_UI context entity=238 count=1 world=782.256 frame=575863",
+        "entity": 238,
+        "count": 1,
+        "worldTimeRounded": 782.256,
+        "frame": 575863
+      },
+      "paidCannon": {
+        "definition": "cannon",
+        "payment": {
+          "line": 21579,
+          "time": 684.4799194335938,
+          "kind": "Payment",
+          "player": 0,
+          "entity": 224,
+          "target": 0,
+          "message": "Field Cannon ×1: 0 F / 100 W / 250 C",
+          "amount": 0.0
+        },
+        "queue": {
+          "line": 21580,
+          "time": 684.4799194335938,
+          "kind": "ProductionQueued",
+          "player": 0,
+          "entity": 224,
+          "target": 0,
+          "message": "cannon ×1",
+          "amount": 1.0
+        },
+        "spawn": {
+          "line": 23415,
+          "time": 729.5689086914062,
+          "kind": "Spawn",
+          "player": 0,
+          "entity": 238,
+          "target": 0,
+          "message": "Field Cannon",
+          "amount": 0.0
+        },
+        "completion": {
+          "line": 23416,
+          "time": 729.5689086914062,
+          "kind": "Experience",
+          "player": 0,
+          "entity": 224,
+          "target": 0,
+          "message": "Unit trained",
+          "amount": 18.0
+        }
+      },
+      "aliveAtCapture": true
+    },
+    {
+      "capture": "Frontier-20261003-062556-519-f577747-8b93d16b6abf4075953200e2f452288e.json",
+      "captureSourceLine": 7270,
+      "captureWorldTime": 803.0509643554688,
+      "latestPrecedingContext": {
+        "sourceLine": 7247,
+        "raw": "FRONTIER_UI context entity=238 count=1 world=782.256 frame=575863",
+        "entity": 238,
+        "count": 1,
+        "worldTimeRounded": 782.256,
+        "frame": 575863
+      },
+      "paidCannon": {
+        "definition": "cannon",
+        "payment": {
+          "line": 21579,
+          "time": 684.4799194335938,
+          "kind": "Payment",
+          "player": 0,
+          "entity": 224,
+          "target": 0,
+          "message": "Field Cannon ×1: 0 F / 100 W / 250 C",
+          "amount": 0.0
+        },
+        "queue": {
+          "line": 21580,
+          "time": 684.4799194335938,
+          "kind": "ProductionQueued",
+          "player": 0,
+          "entity": 224,
+          "target": 0,
+          "message": "cannon ×1",
+          "amount": 1.0
+        },
+        "spawn": {
+          "line": 23415,
+          "time": 729.5689086914062,
+          "kind": "Spawn",
+          "player": 0,
+          "entity": 238,
+          "target": 0,
+          "message": "Field Cannon",
+          "amount": 0.0
+        },
+        "completion": {
+          "line": 23416,
+          "time": 729.5689086914062,
+          "kind": "Experience",
+          "player": 0,
+          "entity": 224,
+          "target": 0,
+          "message": "Unit trained",
+          "amount": 18.0
+        }
+      },
+      "aliveAtCapture": true
+    }
+  ],
+  "paidTechnologies": [
+    {
+      "definition": "cargo_ledgers",
+      "payment": {
+        "line": 8489,
+        "time": 343.9117736816406,
+        "kind": "Payment",
+        "player": 0,
+        "entity": 159,
+        "target": 0,
+        "message": "Cargo Ledgers: 0 F / 200 W / 150 C",
+        "amount": 0.0
+      },
+      "completion": {
+        "line": 10345,
+        "time": 389.0145263671875,
+        "kind": "ResearchComplete",
+        "player": 0,
+        "entity": 159,
+        "target": 0,
+        "message": "Cargo Ledgers",
+        "amount": 0.0
+      },
+      "applied": {
+        "line": 10344,
+        "time": 389.0145263671875,
+        "kind": "Technology",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "message": "cargo_ledgers applied once to matching current and future entities",
+        "amount": 0.0
+      }
+    }
+  ],
+  "technologyScope": "Only Cargo Ledgers completed as a paid player technology in C4. No Veteran Musketeer completion or before/after upgraded-Musketeer proof is claimed.",
+  "tradeMode": [
+    {
+      "line": 14172,
+      "time": 474.9197692871094,
+      "kind": "TradeMode",
+      "player": 0,
+      "entity": 159,
+      "target": 0,
+      "message": "Coin",
+      "amount": 0.0
+    }
+  ],
+  "tradeXpDeliveries": 6,
+  "tradeXpTotal": 270.0,
+  "resourceDeliveries": 18,
+  "resourceDeliveryTotal": 900.0,
+  "limitations": "Seven original images were visually interpreted; all sixteen pairs received byte/hash/dimension/identity/time checks. F9 JSON has no selectedEntity field; cannon associations use the preceding native input context and raw birth/death chronology. Menu matchId/requestMatchId are empty; hidden HUD identity/time may retain an earlier match."
+}

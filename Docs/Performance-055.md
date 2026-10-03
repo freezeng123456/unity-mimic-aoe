@@ -2,6 +2,8 @@
 
 本版F8只观察真实渲染帧、模拟耗时、内存与实体数，不改变资源、命令、AI或游戏速度。报告必须与明确的原生match report/events、版本及build GUID配对。诊断夹具另行标记，不冒充普通对局。
 
+当前整体状态（2026-10-03）：A/B/D已通过；[C4](Evidence/055/NormalPlayer/river-attempt-004/README.md)自然败局，严格16/17检查、16/19覆盖，仅缺Age IV、Age V、特殊兵种，C5正在进行尚未验收。C4原始账本确认炮击建筑及Cargo Ledgers，但其结果不改变下列历史F8统计，也不与其他局拼接成C通过。
+
 ## 首个正常玩家样本
 
 [normal-short/summary.json](Evidence/055/Performance/normal-short/summary.json) 对应原生match `9f0d7b0c338243b4a3c57107db5e1019`，GUID`128a731d440e4b7a94abfcc74b88fa97`，0.2.31、2560×1440、1倍速、autoplay=false。墙钟600.018秒达到录制上限，原始30,872帧全部保留；其中6,062有效帧、145.924秒有焦点且未暂停。24,810帧因暂停/失焦或相邻过渡排除，`allFramesFocused=false`。因此这份记录不能满足本轮计划的300秒有效运行门槛。

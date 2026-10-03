@@ -1,6 +1,6 @@
 # 0.2.31 验证进度
 
-截至2026-10-03本次更新，A/B/D已通过，C1/C2/C3失败结果已归档，C4正在进行。三次失败的六项/十项/一项必需覆盖缺口与后续进度见文末；未声明C或全部里程碑完成。最终客户端证据以版本、build GUID及完整源码指纹绑定，不能拿旧0.2.30测试代表新源码。
+截至2026-10-03本次更新，A/B/D已通过，C1–C4失败结果已归档，C5正在进行尚未验收。四次失败的六项/十项/一项/三项必需覆盖缺口与后续进度见文末；未声明C或全部里程碑完成。最终客户端证据以版本、build GUID及完整源码指纹绑定，不能拿旧0.2.30测试代表新源码。
 
 ## 已完成的针对性检查
 
@@ -24,7 +24,7 @@
 
 coast B5已在1073.2850模拟秒自然败局，实际III、12付费村民、15Pike+15Musk、2付费炮与6船运成立；严格[coast-iii审计](Evidence/055/NormalPlayer/coast-attempt-005/summary.json)仅缺炮击敌建筑，因此B5未通过；后续B10完整结果见下。原始match_finished/menu_exit及12组同局F9、菜单/结算图全部保留，未将炮击敌单位升级为建筑伤害。
 
-River完整路线由C4继续验收，C1/C2/C3已归档失败及各自缺口见文末；C3已实际达到V，仅缺炮击敌建筑。50/100/200/400活动单位压力证据及400长窗口现已完成，见D段；正常玩家长窗口由B9独立最终配对通过。B5[F8完整关联](Evidence/055/Performance/normal-b5-window-001/summary.json)实际197.825666有效秒，全部帧有焦点；逐帧/聚合/596笔内存及实际Spawn/Death前缀独立复核通过。首个145.924秒、B4两个短窗口与B5均未达到单300秒门槛，见[Performance-055.md](Performance-055.md)。
+River完整路线由C5继续验收，尚无最终结论；C1–C4已归档失败及各自缺口见文末。C3达到V但缺炮击建筑；C4炮击建筑成立但缺IV/V/特殊兵种，各局不合并。50/100/200/400活动单位压力证据及400长窗口现已完成，见D段；正常玩家长窗口由B9独立最终配对通过。B5[F8完整关联](Evidence/055/Performance/normal-b5-window-001/summary.json)实际197.825666有效秒，全部帧有焦点；逐帧/聚合/596笔内存及实际Spawn/Death前缀独立复核通过。首个145.924秒、B4两个短窗口与B5均未达到单300秒门槛，见[Performance-055.md](Performance-055.md)。
 
 B6 `d57aee12243c4599a9343986d5b2c1ab`中断证据已[封存](Evidence/055/NormalPlayer/coast-attempt-006/README.md)：旧NativeInput055日志末次705.3748秒手动暂停后失焦，恢复时sky重新启动客户端在菜单。没有同局自然结束、menu_exit、quit报告或完整events，不能判退出原因/获胜方/败方全消灭；最后F9 664.8847秒仍II+III排队，不当作时代完成。20文件/2,821,359字节、13份原生来源及4组F9按字节校验；F8 258.709919秒仅原始帧初审，无最终账本关联且不足300。B7开始时的过程观察保留，其自然结算及最终严格结果见下。
 
@@ -56,7 +56,7 @@ B9[正常F8最终配对](Evidence/055/Performance/normal-b9-final-001/f8-audit.j
 
 I–V实际完成，付费工/军/炮、银行被动币、Carabineer、付费科技、宝藏、贸易站、XP贸易及Food实际交付均成立。八门付费炮出生，但153次我方炮伤害全部命中敌单位。科技原图与输入/出生链单独绑定，旧兵群和新兵均有升级状态；不把不同选中单位写成同一单位前后对照。
 
-独立核对73文件共147,020,138字节和全部SHA；receipt SHA为 `8afbbbea487a0b28b09baff51f9ddaa93218ac1d987bc5058936daba34e2ee48`。20组F9、两份冻结日志、357源码及3项runtime身份通过。C3仍为失败，C4继续正常玩家验收，不跨局拼接成C通过。
+独立核对73文件共147,020,138字节和全部SHA；receipt SHA为 `8afbbbea487a0b28b09baff51f9ddaa93218ac1d987bc5058936daba34e2ee48`。20组F9、两份冻结日志、357源码及3项runtime身份通过。C3仍为失败；后续C4另列如下，不跨局拼接成C通过。
 
 ## D四档规模与长窗口已通过
 
@@ -65,3 +65,11 @@ I–V实际完成，付费工/军/炮、银行被动币、Carabineer、付费科
 [50](Evidence/055/Performance/scale-050-attempt-001/scale-summary.json)、[100](Evidence/055/Performance/scale-100-attempt-001/scale-summary.json)、[200](Evidence/055/Performance/scale-200-attempt-001/scale-summary.json)、[400通过档](Evidence/055/Performance/scale-400-attempt-002/scale-summary.json)的初末实际存活数、双方数量、真实Spawn/Death前缀、全部内存计数、自动F9和同局menu_exit报告匹配；357项冻结源码、compiled runtime、版本及GUID与055receipt一致。每档真实按F8后等自动保存，再正常返回菜单/QUIT，不称为自然对局。
 
 [400首次失败](Evidence/055/Performance/scale-400-attempt-001/scale-summary.json)只182.717415有效秒，因失焦未达300秒，所有原始证据保留。第二次通过周期性公开GUI点击HUD静态文字维持前台，未改采样器、源码或规则。D的原创视觉/动画/音频与更广规模条件现已满足，完整实测和内存/GC见[Performance-055.md](Performance-055.md)；这不证明全400无遮挡同屏、固定FPS、跨设备性能或C完整路线。
+
+## C4原生河谷第四局
+
+[C4完整归档](Evidence/055/NormalPlayer/river-attempt-004/README.md)对应 `b4250e2ab6664083ad919de284cc0afb`、原0.2.31/GUID，River对Coast/Easy/V/Military25。994.504211秒自然败局、败方全灭、无Resign；36,218条事件和两组最终报告配对一致。严格16/17检查、16/19覆盖，仅 `ageIV`、`ageV`、`specialUnit` 失败。
+
+付费炮238（729.568909秒出生）对敌Manor156在800.651550–826.145325秒造成六次各130 Siege伤害，原始命令、支付/出生和目标身份均已关联。Cargo Ledgers389.014526秒完成，`paidTechnology`成立；没有本局Veteran Musketeer升级证据。贸易、银行和宝藏均按C4账本独立通过。
+
+65文件共59,908,543字节、16组F9、两份冻结日志、357源文件和3项runtime已通过归档核验；[receipt](Evidence/055/NormalPlayer/river-attempt-004/archive-receipt.json) SHA为 `cc28fc8e47999c072aeb04a0df04af0f4e8536ac70daebbaea547a14f8647e59`。C4仍失败；C5正在进行，尚未验收，也不跨局拼接覆盖。
