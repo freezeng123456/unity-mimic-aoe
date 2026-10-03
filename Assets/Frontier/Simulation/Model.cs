@@ -8,8 +8,8 @@ namespace Frontier
     public enum ResourceKind { None, Food, Wood, Coin }
     public enum DamageKind { Melee, Ranged, Siege }
     [Flags] public enum Tags { None=0, Infantry=1, HeavyInfantry=2, LightInfantry=4, Cavalry=8, HeavyCavalry=16, LightCavalry=32, Artillery=64, Villager=128, Building=256, Explorer=512, Guardian=1024 }
-    public enum OrderKind { Move, Attack, AttackMove, Gather, Build, Repair, Garrison, Stop, Hold, Claim }
-    public enum CommandKind { Order, Build, Train, CancelQueue, CancelBuilding, Research, AdvanceAge, Ship, Rally, Ungarrison, ToggleMode, Demolish, Resign, TradeMode }
+    public enum OrderKind { Move, Attack, AttackMove, Gather, Build, Repair, Garrison, Stop, Hold, Claim, Manufacture }
+    public enum CommandKind { Order, Build, Train, CancelQueue, CancelBuilding, Research, AdvanceAge, Ship, Rally, Ungarrison, ToggleMode, Demolish, Resign, TradeMode, TradeRoute, Manufacture, ToggleShield }
     [Serializable] public struct Cost
     {
         public float food, wood, coin;
@@ -22,6 +22,8 @@ namespace Frontier
     [Serializable] public class EntityDef
     {
         public string id, name, description, producer, civilization="";
+        public string[] excludedCivilizations=Array.Empty<string>();
+        public bool civilian,repairArtillery,shieldAbility;
         public EntityKind kind; public Tags tags; public Cost cost;
         public float hp=100, radius=.4f, width=1, depth=1, speed=4, vision=18;
         public float damage=0, meleeDamage=0, siegeDamage=0, range=1, minRange=0, period=2, windup=.35f, projectileSpeed=30, splash=0;
@@ -37,13 +39,16 @@ namespace Frontier
         public string id,name,description,building,requires="",civilization=""; public int age=1; public Cost cost; public float time=30;
         public Tags tags; public float attack=0,health=0,gather=0,speed=0; public ResourceKind resource;
         public string[] units=Array.Empty<string>(); public int bankLimit; public float bankIncome;
+        public float caravanProfit,manufactureSpeed,buildSpeed,trainSpeed;
     }
     [Serializable] public class CardDef
     {
         public string id,name,description,civilization="",unit="",tech=""; public int age=1,count=0; public bool repeatable=false; public Cost crates; public float travel=35;
     }
     [Serializable] public class AgeDef { public int age; public string name; public Cost cost; public float time; public Cost economicReward; public string militaryUnit; public int militaryCount; }
-    [Serializable] public class CivDef { public string id,name,description; public bool houseVillager; public bool coinVillager; public int bankLimit=0; public float bankRate=0; public int villagerLimit=99; public Cost startingResources=new Cost(300,300,100); public Cost houseCost=new Cost(0,135,0); }
+    [Serializable] public class CivDef { public string id,name,description; public bool houseVillager; public bool coinVillager; public bool caravanTrade,manufacturing; public int bankLimit=0; public float bankRate=0; public int villagerLimit=99; public Cost startingResources=new Cost(300,300,100); public Cost houseCost=new Cost(0,135,0); }
+    [Serializable] public class AgeChoiceDef { public string id,civilization,name,description,tech,unit; public int age,count; public Cost crates; }
+    [Serializable] public class ManufactureRecipeDef { public string id,name,description,requires; public Cost cost; public float time=40; public int prefabs=1; }
     [Serializable] public class AiDifficultyDef
     { public string id,name,description; public float decisionSeconds,armySeconds; }
     [Serializable] public class TradeSocketDef { public Vector2 position; public int waypoint; }
@@ -58,6 +63,8 @@ namespace Frontier
     [Serializable] public class RuleCatalog
     {
         public EntityDef[] entities; public TechDef[] techs; public CardDef[] cards; public AgeDef[] ages; public CivDef[] civs;
+        public AgeChoiceDef[] ageChoices=Array.Empty<AgeChoiceDef>();
+        public ManufactureRecipeDef[] manufactureRecipes=Array.Empty<ManufactureRecipeDef>();
         public LandmarkRules landmarks;
         public AiDifficultyDef[] aiDifficulties=Array.Empty<AiDifficultyDef>();
         public AiDifficultyDef Difficulty(string id) => Array.Find(aiDifficulties??Array.Empty<AiDifficultyDef>(),x=>x!=null&&x.id==id);
@@ -82,7 +89,7 @@ namespace Frontier
     }
     public class RewardJob { public Cost crates; public string unit=""; public int count; public string waiting=""; }
     public class ShipmentJob { public string card; public float elapsed; public string waiting=""; }
-    public enum WorkKind { None,Gather,Build,Repair }
+    public enum WorkKind { None,Gather,Build,Repair,Manufacture }
     public struct WorkActivity
     {
         public WorkKind kind;public int target;public ResourceKind resource;public float time;
@@ -95,6 +102,10 @@ namespace Frontier
         public Vector2 progressGoal,detour;public float progressDistance=float.MaxValue,progressAt,detourUntil;
         public Vector2 pathGoal; public bool isDeployed,shotMelee; public float nextEconomyLog; public Cost paidConstruction;
         public int attackTarget,garrisonedIn,rallyTarget,pathVersion=-1; public bool hold,dead,forceMelee;
+        public int routeTown,routeStation,routeLeg;
+        public float routeDistance,shieldReadyAt;
+        public Cost cargoPaid;
+        public bool shielded;
         public readonly Queue<UnitOrder> orders=new Queue<UnitOrder>();
         public readonly List<Vector2> path=new List<Vector2>(); public bool pathAvoidsAllies;
         public int pathIndex;
@@ -105,19 +116,20 @@ namespace Frontier
         public WorkActivity work;
         public bool IsWorkingAt(float time)
         {
-            if(!Alive||!Worker||garrisonedIn!=0||work.kind==WorkKind.None||Mathf.Abs(work.time-time)>.0001f||orders.Count==0)return false;
+            if(!Alive||(!Worker&&!def.repairArtillery)||garrisonedIn!=0||work.kind==WorkKind.None||Mathf.Abs(work.time-time)>.0001f||orders.Count==0)return false;
             var order=orders.Peek();
             return order.target==work.target&&(work.kind==WorkKind.Gather&&order.kind==OrderKind.Gather
-                ||work.kind==WorkKind.Build&&order.kind==OrderKind.Build||work.kind==WorkKind.Repair&&order.kind==OrderKind.Repair);
+                ||work.kind==WorkKind.Build&&order.kind==OrderKind.Build||work.kind==WorkKind.Repair&&order.kind==OrderKind.Repair||work.kind==WorkKind.Manufacture&&order.kind==OrderKind.Manufacture);
         }
         public bool Alive => !dead && hp>0;
         public bool Complete => construction>=1;
         public bool Worker => (def.tags & Tags.Villager)!=0;
-        public bool Military => def.kind==EntityKind.Unit && !Worker;
+        public bool Military => def.kind==EntityKind.Unit && !Worker && !def.civilian;
     }
     public class PlayerState
     {
         public int id,age=1,usedPopulation,reservedPopulation,populationCap,shipmentTokens,xpLevels;
+        public int prefabCharges;
         public string civilization; public Cost resources; public float xp; public bool resigned;
         public readonly HashSet<string> technologies=new HashSet<string>();
         public readonly HashSet<string> sentCards=new HashSet<string>(); public readonly List<string> deck=new List<string>();

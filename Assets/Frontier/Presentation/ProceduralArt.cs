@@ -71,12 +71,13 @@ namespace Frontier
             if(e.def.kind==EntityKind.Resource){Resource(root,e);return root;}
             if(e.def.kind==EntityKind.Building){Building(root,e,team);return root;}
             var rig=root.gameObject.AddComponent<UnitRig>();
+            if(e.def.id=="caravan"){CargoCaravan(root,rig,team);rig.CaptureInitialPose();return root;}
             bool horse=(e.def.tags&Tags.Cavalry)!=0;
             bool gun=(e.def.tags&Tags.Artillery)!=0;
             Color wood=new Color(.24f,.15f,.085f), iron=new Color(.19f,.22f,.22f);
             if(gun)
             {
-                Artillery(root,rig,e.def.id=="mortar",team);
+                Artillery(root,rig,e.def.id=="mortar",team,e.def.id=="culverin");
                 rig.CaptureInitialPose();return root;
             }
             if(e.def.id=="musketeer")
@@ -87,6 +88,8 @@ namespace Frontier
                 Horse(root,rig,team);
             }
             Color coat=e.Worker?new Color(.69f,.57f,.36f):team;
+            if(e.def.civilization=="wayfarer")coat=new Color(.21f,.23f,.40f);
+            else if(e.def.civilization=="highland")coat=new Color(.37f,.39f,.33f);
             if((e.def.tags&Tags.Explorer)!=0)coat=new Color(.33f,.39f,.25f);
             Section(root,"Tailored coat",new Vector3(0,1.025f+riderY,0),new Vector2(.40f,.30f),new Vector2(.65f,.42f),.55f,coat);
             Section(root,"Coat skirts",new Vector3(0,.72f+riderY,0),new Vector2(.62f,.40f),new Vector2(.40f,.30f),.32f,coat);
@@ -112,6 +115,7 @@ namespace Frontier
                 Section(x<0?rig.LeftHand:rig.RightHand,"Hand",Vector3.zero,new Vector2(.17f,.18f),new Vector2(.16f,.17f),.18f,new Color(.77f,.59f,.4f));
             }
             Equip(e,rig,horse);
+            ExpansionEquipment(root,e,rig,team,riderY);
             rig.CaptureInitialPose();
             return root;
         }
@@ -151,16 +155,17 @@ namespace Frontier
             Section(root,"Saddle leather",new Vector3(0,1.42f,-.07f),new Vector2(.52f,.56f),new Vector2(.48f,.48f),.13f,dark);
             foreach(float x in new[]{-.15f,.15f})Beam(root,"Reins",new Vector3(-.20f,rig.RiderSeatHeight+1.04f,.45f),new Vector3(x,1.54f,.91f),.035f,.035f,dark);
         }
-        private static void Artillery(Transform root,UnitRig rig,bool mortar,Color team)
+        private static void Artillery(Transform root,UnitRig rig,bool mortar,Color team,bool culverin=false)
         {
             Color wood=new Color(.29f,.18f,.10f),iron=new Color(.19f,.22f,.22f),rim=new Color(.40f,.43f,.40f);
             rig.Carriage=Part(root,mortar?"Mortar bed":"Cannon carriage",PrimitiveType.Cube,new Vector3(0,mortar?.30f:.55f,-.20f),new Vector3(mortar?1.05f:1.15f,.28f,mortar?1.15f:1.8f),wood).transform;
             if(!mortar)foreach(float x in new[]{-.34f,.34f})Beam(root,"Carriage cheek",new Vector3(x,.57f,-.68f),new Vector3(x,.96f,.32f),.20f,.27f,wood);
             else Section(root,"Mortar turntable",new Vector3(0,.57f,.10f),new Vector2(.87f,.86f),new Vector2(.70f,.72f),.23f,iron);
-            rig.Barrel=Tube(root,"Barrel",new Vector3(0,mortar?.94f:1.02f,mortar?.24f:.35f),mortar?.70f:.40f,mortar?.82f:2.05f,mortar?.09f:.07f,iron);
+            rig.Barrel=Tube(root,"Barrel",new Vector3(0,mortar?.94f:1.02f,mortar?.24f:culverin?.65f:.35f),mortar?.70f:culverin?.29f:.40f,mortar?.82f:culverin?3.3f:2.05f,mortar?.09f:culverin?.055f:.07f,iron);
             rig.Barrel.localRotation=Quaternion.Euler(mortar?35:78,0,0);rig.ArtilleryTravelTilt=mortar?18:12;rig.ArtilleryRecoil=mortar?.14f:.30f;
-            Tube(rig.Barrel,"Muzzle ring",new Vector3(0,mortar?.37f:.97f,0),mortar?.78f:.49f,.14f,.08f,rim);
-            Section(rig.Barrel,"Breech",new Vector3(0,mortar?-.40f:-.97f,0),new Vector2(mortar?.60f:.48f,mortar?.60f:.48f),new Vector2(mortar?.60f:.48f,mortar?.60f:.48f),.13f,iron);
+            Tube(rig.Barrel,"Muzzle ring",new Vector3(0,mortar?.37f:culverin?1.57f:.97f,0),mortar?.78f:culverin?.37f:.49f,.14f,culverin?.055f:.08f,rim);
+            Section(rig.Barrel,"Breech",new Vector3(0,mortar?-.40f:culverin?-1.57f:-.97f,0),new Vector2(mortar?.60f:culverin?.37f:.48f,mortar?.60f:culverin?.37f:.48f),new Vector2(mortar?.60f:culverin?.37f:.48f,mortar?.60f:culverin?.37f:.48f),.13f,iron);
+            if(culverin){Part(root,"Range sight",PrimitiveType.Cube,new Vector3(.27f,1.3f,-.73f),new Vector3(.06f,.38f,.06f),rim);Beam(root,"Extended split trail",new Vector3(-.32f,.53f,-.55f),new Vector3(-.52f,.25f,-1.8f),.19f,.23f,wood);Beam(root,"Extended split trail",new Vector3(.32f,.53f,-.55f),new Vector3(.52f,.25f,-1.8f),.19f,.23f,wood);}
             var wheels=new List<Transform>();float diameter=mortar?.65f:1.12f;
             foreach(float x in new[]{mortar?-.65f:-.72f,mortar?.65f:.72f})
             {
@@ -177,7 +182,7 @@ namespace Frontier
         {
             Color wood=new Color(.24f,.15f,.085f),iron=new Color(.19f,.22f,.22f);
             rig.WeaponPivot=Pivot(e.def.id=="longbow"?rig.LeftHand:rig.RightHand,"Weapon pivot",Vector3.zero);
-            if(e.def.id=="pike")
+            if(e.def.id=="pike"||e.def.id=="escort"||e.def.id=="shield_guard")
             {
                 rig.Weapon=Part(rig.WeaponPivot,"Pike shaft",PrimitiveType.Cylinder,new Vector3(0,.9f,0),new Vector3(.055f,1.5f,.055f),wood).transform;
                 MeshPart(rig.WeaponPivot,"Pike steel head",new[]{new Vector3(-.08f,2.35f,0),new Vector3(.08f,2.35f,0),new Vector3(0,2.8f,0),new Vector3(0,2.4f,.07f)},new[]{0,2,1,0,3,2,1,2,3,0,1,3},iron);
@@ -198,7 +203,7 @@ namespace Frontier
                 rig.BowStringUpper=Part(rig.Weapon,"Upper bow string",PrimitiveType.Cube,new Vector3(0,.44f,-.24f),new Vector3(.014f,.88f,.014f),new Color(.8f,.72f,.52f)).transform;
                 rig.BowStringLower=Part(rig.Weapon,"Lower bow string",PrimitiveType.Cube,new Vector3(0,-.44f,-.24f),new Vector3(.014f,.88f,.014f),new Color(.8f,.72f,.52f)).transform;
             }
-            else if(e.def.id=="hussar")
+            else if(e.def.id=="hussar"||e.def.id=="outrider")
             {
                 rig.Weapon=Pivot(rig.WeaponPivot,"Hussar sabre",Vector3.zero);
                 var outline=new[]{new Vector2(-.055f,.08f),new Vector2(.065f,.08f),new Vector2(.07f,.75f),new Vector2(.20f,1.15f),new Vector2(.07f,1.05f),new Vector2(-.055f,.77f)};
@@ -212,10 +217,12 @@ namespace Frontier
             else if(!e.Worker)
             {
                 rig.Weapon=Pivot(rig.WeaponPivot,horse?(e.def.id=="carabineer"?"Short carbine":"Dragoon musket"):"Musket",Vector3.zero);
-                float length=e.def.id=="carabineer"?.78f:e.def.id=="dragoon"?1.12f:.96f;
+                float length=e.def.id=="carabineer"?.78f:e.def.id=="convoy_gunner"?.62f:e.def.id=="dragoon"?1.12f:.96f;
                 Part(rig.Weapon,"Wooden stock",PrimitiveType.Cube,new Vector3(0,0,-.14f),new Vector3(.14f,.17f,.58f),wood);
                 Part(rig.Weapon,"Gun barrel",PrimitiveType.Cylinder,new Vector3(0,.065f,length*.5f),new Vector3(.075f,length*.5f,.075f),iron).transform.localRotation=Quaternion.Euler(90,0,0);
                 Part(rig.Weapon,"Gun lock",PrimitiveType.Cube,new Vector3(.085f,.06f,.08f),new Vector3(.08f,.10f,.16f),new Color(.62f,.55f,.34f));
+                if(e.def.id=="convoy_gunner")Tube(rig.Weapon,"Wide brass muzzle",new Vector3(0,.065f,length),.15f,.19f,.035f,new Color(.62f,.43f,.23f)).localRotation=Quaternion.Euler(90,0,0);
+                if(e.def.repairArtillery){rig.WorkerEquipment=rig.gameObject.AddComponent<WorkerEquipment>();rig.WorkerEquipment.Initialize(rig);rig.RepairWeapon=rig.Weapon;}
             }
             else
             {
@@ -223,12 +230,93 @@ namespace Frontier
                 rig.WorkerEquipment.Initialize(rig);
             }
         }
+        private static void ExpansionEquipment(Transform root,EntityState e,UnitRig rig,Color team,float riderY)
+        {
+            Color copper=new Color(.64f,.43f,.24f),leather=new Color(.28f,.19f,.12f),steel=new Color(.39f,.43f,.41f);
+            if(e.def.civilization=="wayfarer")
+            {
+                Section(root,"Copper shoulder clasp",new Vector3(.24f,1.31f+riderY,.15f),new Vector2(.18f,.17f),new Vector2(.14f,.14f),.10f,copper);
+                Part(root,"Indigo travel scarf",PrimitiveType.Cube,new Vector3(-.21f,1.10f+riderY,-.24f),new Vector3(.22f,.60f,.05f),new Color(.19f,.21f,.39f));
+                Part(root,"Copper belt buckle",PrimitiveType.Cube,new Vector3(0,.87f+riderY,.238f),new Vector3(.20f,.16f,.04f),copper);
+                if(e.def.id=="outrider")
+                {foreach(float x in new[]{-.49f,.49f})Part(root,"Road saddlebag",PrimitiveType.Cube,new Vector3(x,1.10f,-.35f),new Vector3(.32f,.39f,.45f),leather);Part(root,"Outrider pennant",PrimitiveType.Cube,new Vector3(-.19f,1.65f,-.31f),new Vector3(.34f,.24f,.045f),team);}
+                if(e.def.id=="escort")
+                {rig.Shield=Pivot(root,"Copper round escort shield",new Vector3(-.43f,1,.10f));var disc=Tube(rig.Shield,"Shield rim",Vector3.zero,.76f,.12f,.08f,copper);disc.localRotation=Quaternion.Euler(90,0,0);Part(rig.Shield,"Shield face",PrimitiveType.Cylinder,Vector3.zero,new Vector3(.64f,.05f,.64f),team).transform.localRotation=Quaternion.Euler(90,0,0);}
+                if(e.def.id=="convoy_gunner")
+                {for(int i=0;i<4;i++)Part(root,"Copper powder flask",PrimitiveType.Cylinder,new Vector3(-.20f+i*.13f,1.02f,.25f),new Vector3(.065f,.12f,.065f),copper);}
+            }
+            if(e.def.id=="field_engineer")
+            {
+                var rack=Pivot(root,"Engineer tool frame",new Vector3(0,1.02f,-.33f));
+                foreach(float x in new[]{-.24f,.24f})Beam(rack,"Backpack frame upright",new Vector3(x,-.33f,0),new Vector3(x,.56f,0),.055f,.07f,leather);
+                Part(rack,"Rolled engineering plans",PrimitiveType.Cylinder,new Vector3(0,-.20f,-.12f),new Vector3(.21f,.29f,.21f),new Color(.79f,.72f,.54f)).transform.localRotation=Quaternion.Euler(0,0,90);
+                Beam(rack,"Spanner shaft",new Vector3(-.13f,-.12f,0),new Vector3(-.13f,.64f,0),.065f,.07f,steel);
+                Part(rack,"Spanner fork left",PrimitiveType.Cube,new Vector3(-.19f,.64f,0),new Vector3(.065f,.17f,.09f),steel);
+                Part(rack,"Spanner fork right",PrimitiveType.Cube,new Vector3(-.07f,.64f,0),new Vector3(.065f,.17f,.09f),steel);
+                Beam(rack,"Heavy mallet handle",new Vector3(.13f,-.12f,0),new Vector3(.13f,.43f,0),.065f,.07f,leather);
+                Part(rack,"Heavy mallet head",PrimitiveType.Cube,new Vector3(.13f,.45f,0),new Vector3(.33f,.17f,.19f),steel);
+                Part(root,"Guild leather apron",PrimitiveType.Cube,new Vector3(0,.93f,.25f),new Vector3(.42f,.65f,.06f),leather);
+            }
+            if(e.def.shieldAbility)
+            {
+                rig.Shield=Pivot(root,"Folding pavise",new Vector3(-.48f,.90f,.06f));
+                Part(rig.Shield,"Square shield board",PrimitiveType.Cube,Vector3.zero,new Vector3(.83f,1.23f,.13f),new Color(.32f,.36f,.31f));
+                foreach(float x in new[]{-.40f,.40f})Part(rig.Shield,"Iron edge rail",PrimitiveType.Cube,new Vector3(x,0,-.015f),new Vector3(.065f,1.3f,.17f),steel);
+                foreach(float y in new[]{-.59f,.59f})Part(rig.Shield,"Iron cross rail",PrimitiveType.Cube,new Vector3(0,y,-.015f),new Vector3(.85f,.065f,.17f),steel);
+                Part(rig.Shield,"Guild shield insignia",PrimitiveType.Cube,new Vector3(0,0,.085f),new Vector3(.18f,.80f,.035f),team);
+                Beam(rig.Shield,"Pavise kickstand",new Vector3(0,.45f,-.10f),new Vector3(0,-.55f,-.38f),.07f,.10f,leather);
+            }
+        }
+        private static void CargoCaravan(Transform root,UnitRig rig,Color team)
+        {
+            Color wood=new Color(.31f,.20f,.12f),copper=new Color(.64f,.43f,.24f),indigo=new Color(.21f,.23f,.40f);
+            rig.Carriage=Part(root,"Freight chassis",PrimitiveType.Cube,new Vector3(0,.65f,0),new Vector3(1.25f,.22f,1.85f),wood).transform;
+            for(int x=-1;x<=1;x+=2)Part(root,"Freight side board",PrimitiveType.Cube,new Vector3(x*.58f,.95f,0),new Vector3(.10f,.50f,1.85f),indigo);
+            rig.Cargo=Pivot(root,"Paid cargo crates",Vector3.zero);
+            for(int i=0;i<3;i++){var crate=Part(rig.Cargo,"Bound cargo chest",PrimitiveType.Cube,new Vector3(0,.97f,(i-1)*.51f),new Vector3(1.0f,.47f,.45f),wood).transform;Part(crate,"Copper cargo band",PrimitiveType.Cube,new Vector3(0,.025f,-.51f),new Vector3(.14f,.95f,.055f),copper);}
+            var wheels=new List<Transform>();foreach(float x in new[]{-.72f,.72f})foreach(float z in new[]{-.60f,.60f})
+            {var wheel=Pivot(root,"Freight wheel",new Vector3(x,.40f,z));wheel.localRotation=Quaternion.Euler(0,0,90);Tube(wheel,"Freight iron rim",Vector3.zero,.76f,.16f,.055f,copper);for(int i=0;i<4;i++)Part(wheel,"Freight spoke",PrimitiveType.Cube,Vector3.zero,new Vector3(.67f,.13f,.055f),wood).transform.localRotation=Quaternion.Euler(0,i*45,0);wheels.Add(wheel);}
+            rig.CartWheels=wheels.ToArray();
+            Part(root,"Merchant flagstaff",PrimitiveType.Cylinder,new Vector3(.51f,1.58f,-.73f),new Vector3(.05f,.72f,.05f),wood);
+            Part(root,"Merchant route banner",PrimitiveType.Cube,new Vector3(.72f,2.08f,-.73f),new Vector3(.42f,.32f,.045f),team);
+            foreach(float x in new[]{-.41f,.41f})Beam(root,"Freight pulling shaft",new Vector3(x,.64f,.50f),new Vector3(x,.50f,1.43f),.08f,.10f,wood);
+        }
+        private static void Waystation(Transform root,float w,float d,Color team)
+        {
+            Color plaster=new Color(.71f,.61f,.44f),indigo=new Color(.21f,.23f,.40f),wood=new Color(.31f,.20f,.12f),copper=new Color(.64f,.43f,.24f);
+            var court=Pivot(root,"Open caravan courtyard",Vector3.zero);
+            Part(court,"Courtyard paving",PrimitiveType.Cube,new Vector3(0,.38f,0),new Vector3(w*1.8f,.12f,d*1.8f),new Color(.59f,.53f,.40f));
+            Hall(root,"Rear lodging range",w*.94f,d*.26f,1.7f,new Vector3(0,0,d*.67f),plaster,indigo,team,RoofForm.Flat);
+            Hall(root,"West courtyard lodge",w*.27f,d*.61f,1.4f,new Vector3(-w*.67f,0,-d*.18f),plaster,indigo,team,RoofForm.Flat);
+            Awning(root,w*.30f,d*.65f,1.64f,new Vector3(w*.60f,0,-d*.22f),indigo,wood);
+            for(int i=0;i<3;i++)Part(root,"Waystation freight chest",PrimitiveType.Cube,new Vector3(w*.60f,.69f,-d*.52f+i*.63f),new Vector3(.75f,.57f,.49f),wood);
+            foreach(float x in new[]{-w*.28f,w*.28f})Part(root,"Copper gateway post",PrimitiveType.Cube,new Vector3(x,1.30f,-d*.94f),new Vector3(.14f,1.9f,.16f),copper);
+            Part(root,"Route sign lintel",PrimitiveType.Cube,new Vector3(0,2.18f,-d*.94f),new Vector3(w*.77f,.25f,.18f),indigo);Flag(root,w,2.58f,team);
+        }
+        private static void Workshop(Transform root,float w,float d,Color team)
+        {
+            Color stone=new Color(.44f,.46f,.42f),wood=new Color(.29f,.20f,.13f),steel=new Color(.26f,.31f,.30f);
+            Part(root,"Heavy stone workshop base",PrimitiveType.Cube,new Vector3(0,.50f,0),new Vector3(w*1.96f,.52f,d*1.96f),stone);
+            Hall(root,"Guild fabrication hall",w*.68f,d*.80f,1.70f,new Vector3(-w*.27f,.22f,d*.10f),stone,new Color(.26f,.31f,.30f),team,RoofForm.Shed);
+            var crane=Pivot(root,"Workshop loading crane",new Vector3(w*.64f,0,-d*.54f));
+            Beam(crane,"Crane upright",new Vector3(0,.50f,0),new Vector3(0,3.32f,0),.19f,.22f,wood);
+            Beam(crane,"Crane boom",new Vector3(0,3.18f,0),new Vector3(-1.27f,3.18f,-.36f),.17f,.19f,wood);
+            Beam(crane,"Diagonal crane brace",new Vector3(0,2.02f,0),new Vector3(-.84f,3.18f,-.24f),.11f,.13f,steel);
+            Beam(crane,"Suspended crane cable",new Vector3(-1.1f,3.17f,-.31f),new Vector3(-1.1f,1.47f,-.31f),.035f,.035f,steel);
+            Part(crane,"Crane hook",PrimitiveType.Cube,new Vector3(-1.05f,1.44f,-.31f),new Vector3(.18f,.10f,.06f),steel);
+            var stock=Pivot(root,"Prefab storage stack",new Vector3(w*.61f,.64f,d*.41f));
+            for(int i=0;i<4;i++)Part(stock,"Prepared framing panel",PrimitiveType.Cube,new Vector3(0,.12f+i*.17f,0),new Vector3(.85f,.11f,1.13f),wood);
+            Part(root,"Outdoor assembly bench",PrimitiveType.Cube,new Vector3(.12f,1.0f,-d*.83f),new Vector3(1.37f,.18f,.59f),wood);
+            Tube(root,"Unfinished counter gun barrel",new Vector3(.12f,1.25f,-d*.83f),.24f,1.47f,.045f,steel).localRotation=Quaternion.Euler(0,0,90);
+        }
         private static Transform Pivot(Transform parent,string name,Vector3 position){var t=new GameObject(name).transform;t.SetParent(parent,false);t.localPosition=position;return t;}
         private static void Building(Transform root,EntityState e,Color team)
         {
             float w=e.def.width*.44f,d=e.def.depth*.44f;
             Color plaster=new Color(.69f,.64f,.48f),wood=new Color(.31f,.21f,.13f),roof=new Color(.38f,.24f,.16f),stone=new Color(.47f,.48f,.42f);
             Part(root,"Foundation",PrimitiveType.Cube,new Vector3(0,.18f,0),new Vector3(w*2+.25f,.36f,d*2+.25f),new Color(.39f,.38f,.31f));
+            if(e.def.id=="waystation"){Waystation(root,w,d,team);return;}
+            if(e.def.id=="workshop"){Workshop(root,w,d,team);return;}
             if(e.def.id=="farm")
             {
                 Part(root,"Tilled field",PrimitiveType.Cube,new Vector3(0,.38f,0),new Vector3(w*1.9f,.10f,d*1.9f),wood);

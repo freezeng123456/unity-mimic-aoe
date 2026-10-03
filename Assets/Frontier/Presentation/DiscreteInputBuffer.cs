@@ -21,7 +21,7 @@ namespace Frontier
             public Key key;
             public double time;
         }
-        private static readonly Key[] Keys={Key.Escape,Key.F9,Key.A,Key.S,Key.J,Key.H,Key.B,Key.G,Key.V,Key.Period,Key.T,Key.M,Key.F,
+        private static readonly Key[] Keys={Key.Escape,Key.F9,Key.A,Key.S,Key.J,Key.H,Key.B,Key.G,Key.R,Key.V,Key.Period,Key.T,Key.M,Key.F,
             Key.Digit0,Key.Digit1,Key.Digit2,Key.Digit3,Key.Digit4,Key.Digit5,Key.Digit6,Key.Digit7,Key.Digit8,Key.Digit9};
         private readonly Queue<Edge> edges=new Queue<Edge>();
         private readonly bool[] keyDown=new bool[Keys.Length];

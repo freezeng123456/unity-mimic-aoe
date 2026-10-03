@@ -43,6 +43,32 @@ namespace Frontier
             if(coverage>bestCoverage+.02f){bestCoverage=coverage;progressAt=world.Time;}
             if(world.Time-progressAt>150)End(town,"Age savings stalled; rebuild economy",30);
         }
+        public string ChooseBranch(bool underAttack)
+        {
+            var choices=world.AgeChoices(player,world.Players[player].age+1);
+            string selected=underAttack?"military":"economic";float best=float.MinValue;
+            string civ=world.Players[player].civilization;
+            string preferred=civ=="coast"?(underAttack?"militia":"homestead"):
+                civ=="river"?(underAttack?"contracts":"banking"):
+                civ=="wayfarer"?(underAttack?"armed":world.Players[player].age==1?"safe":"distant"):
+                civ=="highland"?(underAttack?"fortress":world.Players[player].age==1?"civil":"ordnance"):"";
+            foreach(var choice in choices)
+            {
+                float score=0;var unit=world.Rules.Entity(choice.unit);
+                if(unit!=null)score+=underAttack?(unit.kind==EntityKind.Unit&&!unit.civilian&&(unit.tags&Tags.Villager)==0?40:0):((unit.tags&Tags.Villager)!=0?30:5);
+                float crates=choice.crates.food+choice.crates.wood+choice.crates.coin;
+                score+=crates*(underAttack?.003f:.015f);
+                // Route IDs are authored civilization choices. Prefer the civ's
+                // economic path in peace and military path in observed danger.
+                string id=choice.id??"";
+                if(underAttack&&(id.Contains("military")||id.Contains("defense")||id.Contains("armed")||id.Contains("arsenal")))score+=30;
+                if(!underAttack&&(id.Contains("economic")||id.Contains("trade")||id.Contains("civil")||id.Contains("bank")||id.Contains("manor")))score+=30;
+                if(!string.IsNullOrEmpty(choice.tech))score+=8;
+                if(preferred!=""&&id.Contains("_"+preferred+"_"))score+=100;
+                if(score>best){best=score;selected=choice.id;}
+            }
+            return selected;
+        }
         private float Coverage()
         {
             var cost=world.Rules.Age(TargetAge).cost;var r=world.Players[player].resources;

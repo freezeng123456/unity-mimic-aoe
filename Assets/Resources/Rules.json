@@ -172,7 +172,11 @@
       "gatherRate": 0,
       "buildXp": 0,
       "trainXp": 5,
-      "killXp": 10
+      "killXp": 10,
+      "excludedCivilizations": [
+        "wayfarer",
+        "highland"
+      ]
     },
     {
       "id": "musketeer",
@@ -271,7 +275,10 @@
       "gatherRate": 0,
       "buildXp": 0,
       "trainXp": 6,
-      "killXp": 12
+      "killXp": 12,
+      "excludedCivilizations": [
+        "wayfarer"
+      ]
     },
     {
       "id": "hussar",
@@ -318,7 +325,10 @@
       "gatherRate": 0,
       "buildXp": 0,
       "trainXp": 10,
-      "killXp": 20
+      "killXp": 20,
+      "excludedCivilizations": [
+        "wayfarer"
+      ]
     },
     {
       "id": "dragoon",
@@ -1458,6 +1468,452 @@
       "buildXp": 0,
       "trainXp": 0,
       "killXp": 0
+    },
+    {
+      "id": "waystation",
+      "name": "Waystation",
+      "description": "Trade depot. Trains cargo caravans and links to the nearest completed friendly town at least 12 units away. No depot-to-depot trade.",
+      "producer": "",
+      "civilization": "wayfarer",
+      "kind": 1,
+      "tags": 256,
+      "cost": {
+        "wood": 250
+      },
+      "hp": 1700,
+      "radius": 0.4,
+      "width": 4,
+      "depth": 4,
+      "speed": 0,
+      "vision": 18,
+      "damage": 0,
+      "meleeDamage": 0,
+      "siegeDamage": 0,
+      "range": 1,
+      "minRange": 0,
+      "period": 2,
+      "windup": 0.35,
+      "projectileSpeed": 30,
+      "splash": 0,
+      "damageKind": 0,
+      "meleeResist": 0,
+      "rangedResist": 0,
+      "siegeResist": 0,
+      "time": 50,
+      "population": 0,
+      "capacity": 0,
+      "age": 2,
+      "batch": 1,
+      "garrison": 0,
+      "deploy": false,
+      "bonuses": [],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 30,
+      "trainXp": 0,
+      "killXp": 30
+    },
+    {
+      "id": "caravan",
+      "name": "Cargo Caravan",
+      "description": "Civilian freight wagon. Pays 60 food at departure; arrival earns coin from capped straight-line route distance. Rerouting, manual movement or destruction loses the paid cargo. Cannot gather, build or fight.",
+      "producer": "waystation",
+      "civilization": "wayfarer",
+      "kind": 0,
+      "tags": 0,
+      "cost": {
+        "wood": 100,
+        "coin": 75
+      },
+      "hp": 240,
+      "radius": 0.7,
+      "width": 1,
+      "depth": 1,
+      "speed": 3.8,
+      "vision": 15,
+      "damage": 0,
+      "meleeDamage": 0,
+      "siegeDamage": 0,
+      "range": 0,
+      "minRange": 0,
+      "period": 3,
+      "windup": 0.35,
+      "projectileSpeed": 0,
+      "splash": 0,
+      "damageKind": 0,
+      "meleeResist": 0,
+      "rangedResist": 0,
+      "siegeResist": 0,
+      "time": 30,
+      "population": 2,
+      "capacity": 0,
+      "age": 2,
+      "batch": 1,
+      "garrison": 0,
+      "deploy": false,
+      "bonuses": [],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 0,
+      "trainXp": 8,
+      "killXp": 18,
+      "civilian": true
+    },
+    {
+      "id": "escort",
+      "name": "Caravan Escort",
+      "description": "Shield-and-spear guard. Strong against cavalry; slow and vulnerable to ranged infantry.",
+      "producer": "barracks",
+      "civilization": "wayfarer",
+      "kind": 0,
+      "tags": 3,
+      "cost": {
+        "food": 65,
+        "wood": 40
+      },
+      "hp": 210,
+      "radius": 0.4,
+      "width": 1,
+      "depth": 1,
+      "speed": 3.7,
+      "vision": 18,
+      "damage": 17,
+      "meleeDamage": 17,
+      "siegeDamage": 10,
+      "range": 1,
+      "minRange": 0,
+      "period": 2,
+      "windup": 0.35,
+      "projectileSpeed": 0,
+      "splash": 0,
+      "damageKind": 0,
+      "meleeResist": 0.1,
+      "rangedResist": 0.1,
+      "siegeResist": 0,
+      "time": 25,
+      "population": 1,
+      "capacity": 0,
+      "age": 2,
+      "batch": 5,
+      "garrison": 0,
+      "deploy": false,
+      "bonuses": [
+        {
+          "tags": 8,
+          "multiplier": 3
+        }
+      ],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 0,
+      "trainXp": 5,
+      "killXp": 10,
+      "excludedCivilizations": []
+    },
+    {
+      "id": "outrider",
+      "name": "Road Outrider",
+      "description": "Fast scout and light interceptor. High vision and a bonus against artillery; fragile against heavy cavalry and pikes.",
+      "producer": "stable",
+      "civilization": "wayfarer",
+      "kind": 0,
+      "tags": 40,
+      "cost": {
+        "food": 85,
+        "coin": 55
+      },
+      "hp": 220,
+      "radius": 0.65,
+      "width": 1,
+      "depth": 1,
+      "speed": 7,
+      "vision": 26,
+      "damage": 20,
+      "meleeDamage": 20,
+      "siegeDamage": 10,
+      "range": 1,
+      "minRange": 0,
+      "period": 2,
+      "windup": 0.35,
+      "projectileSpeed": 0,
+      "splash": 0,
+      "damageKind": 0,
+      "meleeResist": 0,
+      "rangedResist": 0,
+      "siegeResist": 0,
+      "time": 28,
+      "population": 2,
+      "capacity": 0,
+      "age": 2,
+      "batch": 5,
+      "garrison": 0,
+      "deploy": false,
+      "bonuses": [
+        {
+          "tags": 64,
+          "multiplier": 2
+        }
+      ],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 0,
+      "trainXp": 10,
+      "killXp": 20,
+      "excludedCivilizations": []
+    },
+    {
+      "id": "convoy_gunner",
+      "name": "Convoy Gunner",
+      "description": "Short-range caravan marksman. Strong against heavy infantry but must close to ten range; vulnerable to cavalry.",
+      "producer": "barracks",
+      "civilization": "wayfarer",
+      "kind": 0,
+      "tags": 5,
+      "cost": {
+        "food": 70,
+        "coin": 40
+      },
+      "hp": 150,
+      "radius": 0.4,
+      "width": 1,
+      "depth": 1,
+      "speed": 4.2,
+      "vision": 18,
+      "damage": 26,
+      "meleeDamage": 7,
+      "siegeDamage": 10,
+      "range": 10,
+      "minRange": 0,
+      "period": 3,
+      "windup": 0.35,
+      "projectileSpeed": 30,
+      "splash": 0,
+      "damageKind": 1,
+      "meleeResist": 0,
+      "rangedResist": 0,
+      "siegeResist": 0,
+      "time": 27,
+      "population": 1,
+      "capacity": 0,
+      "age": 2,
+      "batch": 5,
+      "garrison": 0,
+      "deploy": false,
+      "bonuses": [
+        {
+          "tags": 2,
+          "multiplier": 1.6
+        }
+      ],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 0,
+      "trainXp": 6,
+      "killXp": 12,
+      "excludedCivilizations": []
+    },
+    {
+      "id": "workshop",
+      "name": "Guild Workshop",
+      "description": "Assigned settlers at the workshop manufacture culverins and paid construction prefabs instead of gathering; unstaffed manufacture stops.",
+      "producer": "",
+      "civilization": "highland",
+      "kind": 1,
+      "tags": 256,
+      "cost": {
+        "wood": 250,
+        "coin": 100
+      },
+      "hp": 1900,
+      "radius": 0.4,
+      "width": 4,
+      "depth": 4,
+      "speed": 0,
+      "vision": 18,
+      "damage": 0,
+      "meleeDamage": 0,
+      "siegeDamage": 0,
+      "range": 1,
+      "minRange": 0,
+      "period": 2,
+      "windup": 0.35,
+      "projectileSpeed": 30,
+      "splash": 0,
+      "damageKind": 0,
+      "meleeResist": 0,
+      "rangedResist": 0,
+      "siegeResist": 0,
+      "time": 60,
+      "population": 0,
+      "capacity": 0,
+      "age": 2,
+      "batch": 1,
+      "garrison": 8,
+      "deploy": false,
+      "bonuses": [],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 45,
+      "trainXp": 0,
+      "killXp": 45,
+      "garrisonAttackLimit": 0
+    },
+    {
+      "id": "field_engineer",
+      "name": "Field Engineer",
+      "description": "Military engineer who repairs allied artillery for resources. Cannot gather or construct; weak in direct combat.",
+      "producer": "barracks",
+      "civilization": "highland",
+      "kind": 0,
+      "tags": 5,
+      "cost": {
+        "food": 60,
+        "wood": 50
+      },
+      "hp": 160,
+      "radius": 0.4,
+      "width": 1,
+      "depth": 1,
+      "speed": 4,
+      "vision": 18,
+      "damage": 10,
+      "meleeDamage": 7,
+      "siegeDamage": 12,
+      "range": 10,
+      "minRange": 0,
+      "period": 3,
+      "windup": 0.35,
+      "projectileSpeed": 30,
+      "splash": 0,
+      "damageKind": 1,
+      "meleeResist": 0,
+      "rangedResist": 0,
+      "siegeResist": 0,
+      "time": 25,
+      "population": 1,
+      "capacity": 0,
+      "age": 2,
+      "batch": 5,
+      "garrison": 0,
+      "deploy": false,
+      "bonuses": [],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 0,
+      "trainXp": 5,
+      "killXp": 10,
+      "repairArtillery": true
+    },
+    {
+      "id": "culverin",
+      "name": "Guild Culverin",
+      "description": "Long-range counter-artillery gun. Requires staffed workshop production; no splash and weak against infantry or buildings.",
+      "producer": "workshop",
+      "civilization": "highland",
+      "kind": 0,
+      "tags": 64,
+      "cost": {
+        "wood": 150,
+        "coin": 300
+      },
+      "hp": 220,
+      "radius": 0.75,
+      "width": 1,
+      "depth": 1,
+      "speed": 2.1,
+      "vision": 28,
+      "damage": 35,
+      "meleeDamage": 0,
+      "siegeDamage": 30,
+      "range": 26,
+      "minRange": 6,
+      "period": 6,
+      "windup": 0.35,
+      "projectileSpeed": 25,
+      "splash": 0,
+      "damageKind": 2,
+      "meleeResist": 0,
+      "rangedResist": 0,
+      "siegeResist": 0,
+      "time": 55,
+      "population": 4,
+      "capacity": 0,
+      "age": 3,
+      "batch": 3,
+      "garrison": 0,
+      "deploy": true,
+      "bonuses": [
+        {
+          "tags": 64,
+          "multiplier": 5
+        }
+      ],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 0,
+      "trainXp": 18,
+      "killXp": 35
+    },
+    {
+      "id": "shield_guard",
+      "name": "Pavise Guard",
+      "description": "Heavy spear guard. Raise shields for ranged protection at the cost of movement; exposed to artillery and flanking.",
+      "producer": "barracks",
+      "civilization": "highland",
+      "kind": 0,
+      "tags": 3,
+      "cost": {
+        "food": 75,
+        "wood": 45
+      },
+      "hp": 230,
+      "radius": 0.4,
+      "width": 1,
+      "depth": 1,
+      "speed": 3.4,
+      "vision": 18,
+      "damage": 18,
+      "meleeDamage": 18,
+      "siegeDamage": 10,
+      "range": 1,
+      "minRange": 0,
+      "period": 2.2,
+      "windup": 0.35,
+      "projectileSpeed": 0,
+      "splash": 0,
+      "damageKind": 0,
+      "meleeResist": 0,
+      "rangedResist": 0.1,
+      "siegeResist": 0,
+      "time": 29,
+      "population": 1,
+      "capacity": 0,
+      "age": 2,
+      "batch": 5,
+      "garrison": 0,
+      "deploy": false,
+      "bonuses": [
+        {
+          "tags": 8,
+          "multiplier": 2.5
+        }
+      ],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 0,
+      "trainXp": 5,
+      "killXp": 10,
+      "excludedCivilizations": [],
+      "shieldAbility": true
     }
   ],
   "techs": [
@@ -2167,6 +2623,1622 @@
         "coin": 150
       },
       "time": 45
+    },
+    {
+      "id": "veteran_escort",
+      "name": "Veteran Caravan Escort",
+      "civilization": "wayfarer",
+      "age": 3,
+      "description": "Improves current, queued and future Caravan Escort.",
+      "building": "barracks",
+      "cost": {
+        "food": 100,
+        "coin": 100
+      },
+      "time": 40,
+      "requires": "",
+      "units": [
+        "escort"
+      ],
+      "attack": 0.2,
+      "health": 0.2
+    },
+    {
+      "id": "guard_escort",
+      "name": "Guard Caravan Escort",
+      "civilization": "wayfarer",
+      "age": 4,
+      "description": "Improves current, queued and future Caravan Escort.",
+      "building": "barracks",
+      "cost": {
+        "food": 300,
+        "coin": 300
+      },
+      "time": 55,
+      "requires": "veteran_escort",
+      "units": [
+        "escort"
+      ],
+      "attack": 0.3,
+      "health": 0.3
+    },
+    {
+      "id": "imperial_escort",
+      "name": "Imperial Caravan Escort",
+      "civilization": "wayfarer",
+      "age": 5,
+      "description": "Improves current, queued and future Caravan Escort.",
+      "building": "barracks",
+      "cost": {
+        "food": 600,
+        "coin": 600
+      },
+      "time": 70,
+      "requires": "guard_escort",
+      "units": [
+        "escort"
+      ],
+      "attack": 0.5,
+      "health": 0.5
+    },
+    {
+      "id": "veteran_outrider",
+      "name": "Veteran Road Outrider",
+      "civilization": "wayfarer",
+      "age": 3,
+      "description": "Improves current, queued and future Road Outrider.",
+      "building": "stable",
+      "cost": {
+        "food": 100,
+        "coin": 100
+      },
+      "time": 40,
+      "requires": "",
+      "units": [
+        "outrider"
+      ],
+      "attack": 0.2,
+      "health": 0.2
+    },
+    {
+      "id": "guard_outrider",
+      "name": "Guard Road Outrider",
+      "civilization": "wayfarer",
+      "age": 4,
+      "description": "Improves current, queued and future Road Outrider.",
+      "building": "stable",
+      "cost": {
+        "food": 300,
+        "coin": 300
+      },
+      "time": 55,
+      "requires": "veteran_outrider",
+      "units": [
+        "outrider"
+      ],
+      "attack": 0.3,
+      "health": 0.3
+    },
+    {
+      "id": "imperial_outrider",
+      "name": "Imperial Road Outrider",
+      "civilization": "wayfarer",
+      "age": 5,
+      "description": "Improves current, queued and future Road Outrider.",
+      "building": "stable",
+      "cost": {
+        "food": 600,
+        "coin": 600
+      },
+      "time": 70,
+      "requires": "guard_outrider",
+      "units": [
+        "outrider"
+      ],
+      "attack": 0.5,
+      "health": 0.5
+    },
+    {
+      "id": "veteran_convoy_gunner",
+      "name": "Veteran Convoy Gunner",
+      "civilization": "wayfarer",
+      "age": 3,
+      "description": "Improves current, queued and future Convoy Gunner.",
+      "building": "barracks",
+      "cost": {
+        "food": 100,
+        "coin": 100
+      },
+      "time": 40,
+      "requires": "",
+      "units": [
+        "convoy_gunner"
+      ],
+      "attack": 0.2,
+      "health": 0.2
+    },
+    {
+      "id": "guard_convoy_gunner",
+      "name": "Guard Convoy Gunner",
+      "civilization": "wayfarer",
+      "age": 4,
+      "description": "Improves current, queued and future Convoy Gunner.",
+      "building": "barracks",
+      "cost": {
+        "food": 300,
+        "coin": 300
+      },
+      "time": 55,
+      "requires": "veteran_convoy_gunner",
+      "units": [
+        "convoy_gunner"
+      ],
+      "attack": 0.3,
+      "health": 0.3
+    },
+    {
+      "id": "imperial_convoy_gunner",
+      "name": "Imperial Convoy Gunner",
+      "civilization": "wayfarer",
+      "age": 5,
+      "description": "Improves current, queued and future Convoy Gunner.",
+      "building": "barracks",
+      "cost": {
+        "food": 600,
+        "coin": 600
+      },
+      "time": 70,
+      "requires": "guard_convoy_gunner",
+      "units": [
+        "convoy_gunner"
+      ],
+      "attack": 0.5,
+      "health": 0.5
+    },
+    {
+      "id": "veteran_field_engineer",
+      "name": "Veteran Field Engineer",
+      "civilization": "highland",
+      "age": 3,
+      "description": "Improves current, queued and future Field Engineer.",
+      "building": "barracks",
+      "cost": {
+        "food": 100,
+        "coin": 100
+      },
+      "time": 40,
+      "requires": "",
+      "units": [
+        "field_engineer"
+      ],
+      "attack": 0.2,
+      "health": 0.2
+    },
+    {
+      "id": "guard_field_engineer",
+      "name": "Guard Field Engineer",
+      "civilization": "highland",
+      "age": 4,
+      "description": "Improves current, queued and future Field Engineer.",
+      "building": "barracks",
+      "cost": {
+        "food": 300,
+        "coin": 300
+      },
+      "time": 55,
+      "requires": "veteran_field_engineer",
+      "units": [
+        "field_engineer"
+      ],
+      "attack": 0.3,
+      "health": 0.3
+    },
+    {
+      "id": "imperial_field_engineer",
+      "name": "Imperial Field Engineer",
+      "civilization": "highland",
+      "age": 5,
+      "description": "Improves current, queued and future Field Engineer.",
+      "building": "barracks",
+      "cost": {
+        "food": 600,
+        "coin": 600
+      },
+      "time": 70,
+      "requires": "guard_field_engineer",
+      "units": [
+        "field_engineer"
+      ],
+      "attack": 0.5,
+      "health": 0.5
+    },
+    {
+      "id": "veteran_culverin",
+      "name": "Veteran Guild Culverin",
+      "civilization": "highland",
+      "age": 3,
+      "description": "Improves current, queued and future Guild Culverin.",
+      "building": "workshop",
+      "cost": {
+        "food": 100,
+        "coin": 100
+      },
+      "time": 40,
+      "requires": "",
+      "units": [
+        "culverin"
+      ],
+      "attack": 0.2,
+      "health": 0.2
+    },
+    {
+      "id": "guard_culverin",
+      "name": "Guard Guild Culverin",
+      "civilization": "highland",
+      "age": 4,
+      "description": "Improves current, queued and future Guild Culverin.",
+      "building": "workshop",
+      "cost": {
+        "food": 300,
+        "coin": 300
+      },
+      "time": 55,
+      "requires": "veteran_culverin",
+      "units": [
+        "culverin"
+      ],
+      "attack": 0.3,
+      "health": 0.3
+    },
+    {
+      "id": "imperial_culverin",
+      "name": "Imperial Guild Culverin",
+      "civilization": "highland",
+      "age": 5,
+      "description": "Improves current, queued and future Guild Culverin.",
+      "building": "workshop",
+      "cost": {
+        "food": 600,
+        "coin": 600
+      },
+      "time": 70,
+      "requires": "guard_culverin",
+      "units": [
+        "culverin"
+      ],
+      "attack": 0.5,
+      "health": 0.5
+    },
+    {
+      "id": "veteran_shield_guard",
+      "name": "Veteran Pavise Guard",
+      "civilization": "highland",
+      "age": 3,
+      "description": "Improves current, queued and future Pavise Guard.",
+      "building": "barracks",
+      "cost": {
+        "food": 100,
+        "coin": 100
+      },
+      "time": 40,
+      "requires": "",
+      "units": [
+        "shield_guard"
+      ],
+      "attack": 0.2,
+      "health": 0.2
+    },
+    {
+      "id": "guard_shield_guard",
+      "name": "Guard Pavise Guard",
+      "civilization": "highland",
+      "age": 4,
+      "description": "Improves current, queued and future Pavise Guard.",
+      "building": "barracks",
+      "cost": {
+        "food": 300,
+        "coin": 300
+      },
+      "time": 55,
+      "requires": "veteran_shield_guard",
+      "units": [
+        "shield_guard"
+      ],
+      "attack": 0.3,
+      "health": 0.3
+    },
+    {
+      "id": "imperial_shield_guard",
+      "name": "Imperial Pavise Guard",
+      "civilization": "highland",
+      "age": 5,
+      "description": "Improves current, queued and future Pavise Guard.",
+      "building": "barracks",
+      "cost": {
+        "food": 600,
+        "coin": 600
+      },
+      "time": 70,
+      "requires": "guard_shield_guard",
+      "units": [
+        "shield_guard"
+      ],
+      "attack": 0.5,
+      "health": 0.5
+    },
+    {
+      "id": "wayfarer_cargo_bonds",
+      "name": "Cargo Bonds",
+      "civilization": "wayfarer",
+      "age": 2,
+      "description": "Completed caravan trips earn 15% more profit; principal and transit risk are unchanged.",
+      "building": "waystation",
+      "cost": {
+        "wood": 150,
+        "coin": 100
+      },
+      "time": 45,
+      "requires": "",
+      "caravanProfit": 0.15
+    },
+    {
+      "id": "wayfarer_reinforced_axles",
+      "name": "Reinforced Axles",
+      "civilization": "wayfarer",
+      "age": 2,
+      "description": "Caravans gain 25% base health and 10% base speed.",
+      "building": "waystation",
+      "cost": {
+        "food": 100,
+        "wood": 150
+      },
+      "time": 45,
+      "requires": "",
+      "units": [
+        "caravan"
+      ],
+      "health": 0.25,
+      "speed": 0.1
+    },
+    {
+      "id": "wayfarer_route_offices",
+      "name": "Route Offices",
+      "civilization": "wayfarer",
+      "age": 3,
+      "description": "Completed caravan trips earn another 20% profit.",
+      "building": "waystation",
+      "cost": {
+        "wood": 250,
+        "coin": 250
+      },
+      "time": 45,
+      "requires": "wayfarer_cargo_bonds",
+      "caravanProfit": 0.2
+    },
+    {
+      "id": "wayfarer_dispatch_network",
+      "name": "Dispatch Network",
+      "civilization": "wayfarer",
+      "age": 4,
+      "description": "All unit training is 15% faster; caravan profit rises by 15%.",
+      "building": "waystation",
+      "cost": {
+        "wood": 400,
+        "coin": 400
+      },
+      "time": 45,
+      "requires": "wayfarer_route_offices",
+      "trainSpeed": 0.15,
+      "caravanProfit": 0.15
+    },
+    {
+      "id": "highland_standard_jigs",
+      "name": "Standard Jigs",
+      "civilization": "highland",
+      "age": 2,
+      "description": "Unlocks paid construction prefab orders and raises staffed manufacture speed by 15%.",
+      "building": "workshop",
+      "cost": {
+        "food": 100,
+        "wood": 150
+      },
+      "time": 45,
+      "requires": "",
+      "manufactureSpeed": 0.15
+    },
+    {
+      "id": "highland_guild_tools",
+      "name": "Guild Tools",
+      "civilization": "highland",
+      "age": 3,
+      "description": "Staffed manufacture is another 20% faster. Workers still leave resource gathering.",
+      "building": "workshop",
+      "cost": {
+        "wood": 250,
+        "coin": 200
+      },
+      "time": 45,
+      "requires": "highland_standard_jigs",
+      "manufactureSpeed": 0.2
+    },
+    {
+      "id": "highland_field_assembly",
+      "name": "Field Assembly",
+      "civilization": "highland",
+      "age": 3,
+      "description": "Settler construction is 20% faster; field engineers gain 15% base health.",
+      "building": "workshop",
+      "cost": {
+        "food": 200,
+        "coin": 150
+      },
+      "time": 45,
+      "requires": "",
+      "units": [
+        "field_engineer"
+      ],
+      "health": 0.15,
+      "buildSpeed": 0.2
+    },
+    {
+      "id": "highland_precision_bores",
+      "name": "Precision Bores",
+      "civilization": "highland",
+      "age": 4,
+      "description": "Culverins gain 15% base attack; does not add splash damage.",
+      "building": "workshop",
+      "cost": {
+        "wood": 300,
+        "coin": 400
+      },
+      "time": 45,
+      "requires": "",
+      "units": [
+        "culverin"
+      ],
+      "attack": 0.15
+    },
+    {
+      "id": "charter_coast_homestead_2",
+      "name": "Homestead Expansion 2",
+      "civilization": "coast",
+      "age": 2,
+      "description": "Settlers gather all resources 4% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "gather": 0.04,
+      "resource": 0,
+      "tags": 128
+    },
+    {
+      "id": "charter_coast_militia_2",
+      "name": "Local Defence 2",
+      "civilization": "coast",
+      "age": 2,
+      "description": "All unit training is 5% faster; militia reinforce the town.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "trainSpeed": 0.05
+    },
+    {
+      "id": "charter_coast_bowguard_2",
+      "name": "Longbow Command 2",
+      "civilization": "coast",
+      "age": 2,
+      "description": "Longbows gain 5% base attack; bow guards arrive.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "longbow"
+      ],
+      "attack": 0.05
+    },
+    {
+      "id": "charter_coast_homestead_3",
+      "name": "Homestead Expansion 3",
+      "civilization": "coast",
+      "age": 3,
+      "description": "Settlers gather all resources 5% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "gather": 0.05,
+      "resource": 0,
+      "tags": 128
+    },
+    {
+      "id": "charter_coast_militia_3",
+      "name": "Local Defence 3",
+      "civilization": "coast",
+      "age": 3,
+      "description": "All unit training is 6% faster; militia reinforce the town.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "trainSpeed": 0.06
+    },
+    {
+      "id": "charter_coast_bowguard_3",
+      "name": "Longbow Command 3",
+      "civilization": "coast",
+      "age": 3,
+      "description": "Longbows gain 7% base attack; bow guards arrive.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "longbow"
+      ],
+      "attack": 0.07
+    },
+    {
+      "id": "charter_coast_homestead_4",
+      "name": "Homestead Expansion 4",
+      "civilization": "coast",
+      "age": 4,
+      "description": "Settlers gather all resources 6% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "gather": 0.06,
+      "resource": 0,
+      "tags": 128
+    },
+    {
+      "id": "charter_coast_militia_4",
+      "name": "Local Defence 4",
+      "civilization": "coast",
+      "age": 4,
+      "description": "All unit training is 8% faster; militia reinforce the town.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "trainSpeed": 0.08
+    },
+    {
+      "id": "charter_coast_bowguard_4",
+      "name": "Longbow Command 4",
+      "civilization": "coast",
+      "age": 4,
+      "description": "Longbows gain 9% base attack; bow guards arrive.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "longbow"
+      ],
+      "attack": 0.09
+    },
+    {
+      "id": "charter_coast_homestead_5",
+      "name": "Homestead Expansion 5",
+      "civilization": "coast",
+      "age": 5,
+      "description": "Settlers gather all resources 8% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "gather": 0.08,
+      "resource": 0,
+      "tags": 128
+    },
+    {
+      "id": "charter_coast_militia_5",
+      "name": "Local Defence 5",
+      "civilization": "coast",
+      "age": 5,
+      "description": "All unit training is 10% faster; militia reinforce the town.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "trainSpeed": 0.1
+    },
+    {
+      "id": "charter_coast_bowguard_5",
+      "name": "Longbow Command 5",
+      "civilization": "coast",
+      "age": 5,
+      "description": "Longbows gain 12% base attack; bow guards arrive.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "longbow"
+      ],
+      "attack": 0.12
+    },
+    {
+      "id": "charter_river_banking_2",
+      "name": "Banking Houses 2",
+      "civilization": "river",
+      "age": 2,
+      "description": "Completed banks produce 8% more base coin income.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "bankIncome": 0.08
+    },
+    {
+      "id": "charter_river_commerce_2",
+      "name": "Commercial Expansion 2",
+      "civilization": "river",
+      "age": 2,
+      "description": "Settlers gather coin 5% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "gather": 0.05,
+      "resource": 3,
+      "tags": 128
+    },
+    {
+      "id": "charter_river_contracts_2",
+      "name": "Contract Army 2",
+      "civilization": "river",
+      "age": 2,
+      "description": "Cavalry gain 5% base health; mounted troops arrive.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "carabineer",
+        "hussar",
+        "dragoon"
+      ],
+      "health": 0.05
+    },
+    {
+      "id": "charter_river_banking_3",
+      "name": "Banking Houses 3",
+      "civilization": "river",
+      "age": 3,
+      "description": "Completed banks produce 10% more base coin income.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "bankIncome": 0.1
+    },
+    {
+      "id": "charter_river_commerce_3",
+      "name": "Commercial Expansion 3",
+      "civilization": "river",
+      "age": 3,
+      "description": "Settlers gather coin 6% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "gather": 0.06,
+      "resource": 3,
+      "tags": 128
+    },
+    {
+      "id": "charter_river_contracts_3",
+      "name": "Contract Army 3",
+      "civilization": "river",
+      "age": 3,
+      "description": "Cavalry gain 7% base health; mounted troops arrive.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "carabineer",
+        "hussar",
+        "dragoon"
+      ],
+      "health": 0.07
+    },
+    {
+      "id": "charter_river_banking_4",
+      "name": "Banking Houses 4",
+      "civilization": "river",
+      "age": 4,
+      "description": "Completed banks produce 12% more base coin income.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "bankIncome": 0.12
+    },
+    {
+      "id": "charter_river_commerce_4",
+      "name": "Commercial Expansion 4",
+      "civilization": "river",
+      "age": 4,
+      "description": "Settlers gather coin 8% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "gather": 0.08,
+      "resource": 3,
+      "tags": 128
+    },
+    {
+      "id": "charter_river_contracts_4",
+      "name": "Contract Army 4",
+      "civilization": "river",
+      "age": 4,
+      "description": "Cavalry gain 9% base health; mounted troops arrive.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "carabineer",
+        "hussar",
+        "dragoon"
+      ],
+      "health": 0.09
+    },
+    {
+      "id": "charter_river_banking_5",
+      "name": "Banking Houses 5",
+      "civilization": "river",
+      "age": 5,
+      "description": "Completed banks produce 15% more base coin income.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "bankIncome": 0.15
+    },
+    {
+      "id": "charter_river_commerce_5",
+      "name": "Commercial Expansion 5",
+      "civilization": "river",
+      "age": 5,
+      "description": "Settlers gather coin 10% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "gather": 0.1,
+      "resource": 3,
+      "tags": 128
+    },
+    {
+      "id": "charter_river_contracts_5",
+      "name": "Contract Army 5",
+      "civilization": "river",
+      "age": 5,
+      "description": "Cavalry gain 12% base health; mounted troops arrive.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "carabineer",
+        "hussar",
+        "dragoon"
+      ],
+      "health": 0.12
+    },
+    {
+      "id": "charter_wayfarer_safe_2",
+      "name": "Protected Caravans 2",
+      "civilization": "wayfarer",
+      "age": 2,
+      "description": "Caravans gain 10% base health; extra freight wagons arrive.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "caravan"
+      ],
+      "health": 0.1
+    },
+    {
+      "id": "charter_wayfarer_distant_2",
+      "name": "Distant Markets 2",
+      "civilization": "wayfarer",
+      "age": 2,
+      "description": "Completed freight trips earn 10% more base profit; routes remain vulnerable.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "caravanProfit": 0.1
+    },
+    {
+      "id": "charter_wayfarer_armed_2",
+      "name": "Armed Companies 2",
+      "civilization": "wayfarer",
+      "age": 2,
+      "description": "Specialist escorts gain 5% base attack; guards arrive.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "escort",
+        "outrider",
+        "convoy_gunner"
+      ],
+      "attack": 0.05
+    },
+    {
+      "id": "charter_wayfarer_safe_3",
+      "name": "Protected Caravans 3",
+      "civilization": "wayfarer",
+      "age": 3,
+      "description": "Caravans gain 12% base health; extra freight wagons arrive.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "caravan"
+      ],
+      "health": 0.12
+    },
+    {
+      "id": "charter_wayfarer_distant_3",
+      "name": "Distant Markets 3",
+      "civilization": "wayfarer",
+      "age": 3,
+      "description": "Completed freight trips earn 12% more base profit; routes remain vulnerable.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "caravanProfit": 0.12
+    },
+    {
+      "id": "charter_wayfarer_armed_3",
+      "name": "Armed Companies 3",
+      "civilization": "wayfarer",
+      "age": 3,
+      "description": "Specialist escorts gain 7% base attack; guards arrive.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "escort",
+        "outrider",
+        "convoy_gunner"
+      ],
+      "attack": 0.07
+    },
+    {
+      "id": "charter_wayfarer_safe_4",
+      "name": "Protected Caravans 4",
+      "civilization": "wayfarer",
+      "age": 4,
+      "description": "Caravans gain 15% base health; extra freight wagons arrive.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "caravan"
+      ],
+      "health": 0.15
+    },
+    {
+      "id": "charter_wayfarer_distant_4",
+      "name": "Distant Markets 4",
+      "civilization": "wayfarer",
+      "age": 4,
+      "description": "Completed freight trips earn 15% more base profit; routes remain vulnerable.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "caravanProfit": 0.15
+    },
+    {
+      "id": "charter_wayfarer_armed_4",
+      "name": "Armed Companies 4",
+      "civilization": "wayfarer",
+      "age": 4,
+      "description": "Specialist escorts gain 9% base attack; guards arrive.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "escort",
+        "outrider",
+        "convoy_gunner"
+      ],
+      "attack": 0.09
+    },
+    {
+      "id": "charter_wayfarer_safe_5",
+      "name": "Protected Caravans 5",
+      "civilization": "wayfarer",
+      "age": 5,
+      "description": "Caravans gain 20% base health; extra freight wagons arrive.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "caravan"
+      ],
+      "health": 0.2
+    },
+    {
+      "id": "charter_wayfarer_distant_5",
+      "name": "Distant Markets 5",
+      "civilization": "wayfarer",
+      "age": 5,
+      "description": "Completed freight trips earn 20% more base profit; routes remain vulnerable.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "caravanProfit": 0.2
+    },
+    {
+      "id": "charter_wayfarer_armed_5",
+      "name": "Armed Companies 5",
+      "civilization": "wayfarer",
+      "age": 5,
+      "description": "Specialist escorts gain 12% base attack; guards arrive.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "escort",
+        "outrider",
+        "convoy_gunner"
+      ],
+      "attack": 0.12
+    },
+    {
+      "id": "charter_highland_civil_2",
+      "name": "Civil Engineering 2",
+      "civilization": "highland",
+      "age": 2,
+      "description": "Settler construction is 10% faster; building timber arrives.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "buildSpeed": 0.1
+    },
+    {
+      "id": "charter_highland_ordnance_2",
+      "name": "Field Ordnance 2",
+      "civilization": "highland",
+      "age": 2,
+      "description": "Staffed manufacture is 10% faster; specialists arrive.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "manufactureSpeed": 0.1
+    },
+    {
+      "id": "charter_highland_fortress_2",
+      "name": "Defensive Works 2",
+      "civilization": "highland",
+      "age": 2,
+      "description": "Pavise guards and towers gain 8% base health.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "shield_guard",
+        "tower"
+      ],
+      "health": 0.08
+    },
+    {
+      "id": "charter_highland_civil_3",
+      "name": "Civil Engineering 3",
+      "civilization": "highland",
+      "age": 3,
+      "description": "Settler construction is 12% faster; building timber arrives.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "buildSpeed": 0.12
+    },
+    {
+      "id": "charter_highland_ordnance_3",
+      "name": "Field Ordnance 3",
+      "civilization": "highland",
+      "age": 3,
+      "description": "Staffed manufacture is 12% faster; specialists arrive.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "manufactureSpeed": 0.12
+    },
+    {
+      "id": "charter_highland_fortress_3",
+      "name": "Defensive Works 3",
+      "civilization": "highland",
+      "age": 3,
+      "description": "Pavise guards and towers gain 10% base health.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "shield_guard",
+        "tower"
+      ],
+      "health": 0.1
+    },
+    {
+      "id": "charter_highland_civil_4",
+      "name": "Civil Engineering 4",
+      "civilization": "highland",
+      "age": 4,
+      "description": "Settler construction is 15% faster; building timber arrives.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "buildSpeed": 0.15
+    },
+    {
+      "id": "charter_highland_ordnance_4",
+      "name": "Field Ordnance 4",
+      "civilization": "highland",
+      "age": 4,
+      "description": "Staffed manufacture is 15% faster; specialists arrive.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "manufactureSpeed": 0.15
+    },
+    {
+      "id": "charter_highland_fortress_4",
+      "name": "Defensive Works 4",
+      "civilization": "highland",
+      "age": 4,
+      "description": "Pavise guards and towers gain 12% base health.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "shield_guard",
+        "tower"
+      ],
+      "health": 0.12
+    },
+    {
+      "id": "charter_highland_civil_5",
+      "name": "Civil Engineering 5",
+      "civilization": "highland",
+      "age": 5,
+      "description": "Settler construction is 20% faster; building timber arrives.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "buildSpeed": 0.2
+    },
+    {
+      "id": "charter_highland_ordnance_5",
+      "name": "Field Ordnance 5",
+      "civilization": "highland",
+      "age": 5,
+      "description": "Staffed manufacture is 20% faster; specialists arrive.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "manufactureSpeed": 0.2
+    },
+    {
+      "id": "charter_highland_fortress_5",
+      "name": "Defensive Works 5",
+      "civilization": "highland",
+      "age": 5,
+      "description": "Pavise guards and towers gain 15% base health.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "shield_guard",
+        "tower"
+      ],
+      "health": 0.15
+    },
+    {
+      "id": "coast_timber_rights",
+      "name": "Timber Rights",
+      "civilization": "coast",
+      "age": 1,
+      "description": "Settlers gather wood 10% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "gather": 0.1,
+      "resource": 2,
+      "tags": 128
+    },
+    {
+      "id": "coast_manor_frames",
+      "name": "Manor Frames",
+      "civilization": "coast",
+      "age": 2,
+      "description": "Construction is 15% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "buildSpeed": 0.15
+    },
+    {
+      "id": "coast_bow_strings",
+      "name": "Seasoned Bowstrings",
+      "civilization": "coast",
+      "age": 2,
+      "description": "Longbow guards gain 10% base attack.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "longbow"
+      ],
+      "attack": 0.1
+    },
+    {
+      "id": "coast_coastal_mustering",
+      "name": "Coastal Mustering",
+      "civilization": "coast",
+      "age": 3,
+      "description": "All unit training is 15% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "trainSpeed": 0.15
+    },
+    {
+      "id": "coast_bow_shields",
+      "name": "Bowmen Bucklers",
+      "civilization": "coast",
+      "age": 3,
+      "description": "Longbow guards gain 15% base health.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "longbow"
+      ],
+      "health": 0.15
+    },
+    {
+      "id": "coast_orchards",
+      "name": "Orchard Tenures",
+      "civilization": "coast",
+      "age": 4,
+      "description": "Settlers gather food 12% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "gather": 0.12,
+      "resource": 1,
+      "tags": 128
+    },
+    {
+      "id": "river_quay_lumber",
+      "name": "Quay Lumber",
+      "civilization": "river",
+      "age": 1,
+      "description": "Settlers gather wood 10% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "gather": 0.1,
+      "resource": 2,
+      "tags": 128
+    },
+    {
+      "id": "river_mint_scales",
+      "name": "Mint Scales",
+      "civilization": "river",
+      "age": 2,
+      "description": "Settlers gather coin 10% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "gather": 0.1,
+      "resource": 3,
+      "tags": 128
+    },
+    {
+      "id": "river_bank_vaults",
+      "name": "Bank Vaults",
+      "civilization": "river",
+      "age": 2,
+      "description": "Counting houses gain 30% base health.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "bank"
+      ],
+      "health": 0.3
+    },
+    {
+      "id": "river_riding_school",
+      "name": "Riding School",
+      "civilization": "river",
+      "age": 3,
+      "description": "Carabineers gain 10% base speed.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "carabineer"
+      ],
+      "speed": 0.1
+    },
+    {
+      "id": "river_carbine_stock",
+      "name": "Carbine Stocks",
+      "civilization": "river",
+      "age": 3,
+      "description": "Carabineers gain 10% base attack.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "carabineer"
+      ],
+      "attack": 0.1
+    },
+    {
+      "id": "river_contract_offices",
+      "name": "Contract Offices",
+      "civilization": "river",
+      "age": 3,
+      "description": "All unit training is 15% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "trainSpeed": 0.15
+    },
+    {
+      "id": "river_clearing_houses",
+      "name": "Clearing Houses",
+      "civilization": "river",
+      "age": 4,
+      "description": "Completed banks gain 15% base coin income.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "bankIncome": 0.15
+    },
+    {
+      "id": "river_mortgage_bricks",
+      "name": "Mortgage Bricks",
+      "civilization": "river",
+      "age": 4,
+      "description": "Construction is 20% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "buildSpeed": 0.2
+    },
+    {
+      "id": "river_river_rations",
+      "name": "River Rations",
+      "civilization": "river",
+      "age": 2,
+      "description": "Settlers gather food 10% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "gather": 0.1,
+      "resource": 1,
+      "tags": 128
+    },
+    {
+      "id": "wayfarer_roadside_granaries",
+      "name": "Roadside Granaries",
+      "civilization": "wayfarer",
+      "age": 1,
+      "description": "Settlers gather food 10% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "gather": 0.1,
+      "resource": 1,
+      "tags": 128
+    },
+    {
+      "id": "wayfarer_depot_frames",
+      "name": "Depot Frames",
+      "civilization": "wayfarer",
+      "age": 2,
+      "description": "Construction is 15% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "buildSpeed": 0.15
+    },
+    {
+      "id": "wayfarer_escort_shields",
+      "name": "Escort Shields",
+      "civilization": "wayfarer",
+      "age": 2,
+      "description": "Caravan escorts gain 20% base health.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "escort"
+      ],
+      "health": 0.2
+    },
+    {
+      "id": "wayfarer_powder_flasks",
+      "name": "Powder Flasks",
+      "civilization": "wayfarer",
+      "age": 2,
+      "description": "Convoy gunners gain 10% base attack.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "convoy_gunner"
+      ],
+      "attack": 0.1
+    },
+    {
+      "id": "wayfarer_relay_saddles",
+      "name": "Relay Saddles",
+      "civilization": "wayfarer",
+      "age": 3,
+      "description": "Road outriders gain 10% base speed.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "outrider"
+      ],
+      "speed": 0.1
+    },
+    {
+      "id": "wayfarer_convoy_muster",
+      "name": "Convoy Muster",
+      "civilization": "wayfarer",
+      "age": 3,
+      "description": "All unit training is 15% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "trainSpeed": 0.15
+    },
+    {
+      "id": "wayfarer_customs_agreements",
+      "name": "Customs Agreements",
+      "civilization": "wayfarer",
+      "age": 3,
+      "description": "Caravans gain 15% more base profit per successful trip.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "caravanProfit": 0.15
+    },
+    {
+      "id": "wayfarer_wagon_screens",
+      "name": "Wagon Screens",
+      "civilization": "wayfarer",
+      "age": 3,
+      "description": "Caravans gain 25% base health.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "caravan"
+      ],
+      "health": 0.25
+    },
+    {
+      "id": "wayfarer_road_patrols",
+      "name": "Road Patrols",
+      "civilization": "wayfarer",
+      "age": 4,
+      "description": "Escorts and convoy gunners gain 10% base speed.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "escort",
+        "convoy_gunner"
+      ],
+      "speed": 0.1
+    },
+    {
+      "id": "highland_slope_lumber",
+      "name": "Slope Lumber",
+      "civilization": "highland",
+      "age": 1,
+      "description": "Settlers gather wood 10% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "gather": 0.1,
+      "resource": 2,
+      "tags": 128
+    },
+    {
+      "id": "highland_tempered_shields",
+      "name": "Tempered Shields",
+      "civilization": "highland",
+      "age": 2,
+      "description": "Pavise guards gain 15% base health.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "shield_guard"
+      ],
+      "health": 0.15
+    },
+    {
+      "id": "highland_engineer_kits",
+      "name": "Engineer Kits",
+      "civilization": "highland",
+      "age": 2,
+      "description": "Field engineers gain 25% base health.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "field_engineer"
+      ],
+      "health": 0.25
+    },
+    {
+      "id": "highland_mine_survey",
+      "name": "Mine Survey",
+      "civilization": "highland",
+      "age": 2,
+      "description": "Settlers gather coin 10% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "gather": 0.1,
+      "resource": 3,
+      "tags": 128
+    },
+    {
+      "id": "highland_workshop_shifts",
+      "name": "Workshop Shifts",
+      "civilization": "highland",
+      "age": 3,
+      "description": "Staffed manufacture is 15% faster; assigned workers still cannot gather.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "manufactureSpeed": 0.15
+    },
+    {
+      "id": "highland_mobile_cranes",
+      "name": "Mobile Cranes",
+      "civilization": "highland",
+      "age": 3,
+      "description": "Artillery move 10% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "tags": 64,
+      "speed": 0.1
+    },
+    {
+      "id": "highland_bastion_plans",
+      "name": "Bastion Plans",
+      "civilization": "highland",
+      "age": 3,
+      "description": "Towers gain 20% base health.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "tower"
+      ],
+      "health": 0.2
+    },
+    {
+      "id": "highland_guild_conscription",
+      "name": "Guild Conscription",
+      "civilization": "highland",
+      "age": 3,
+      "description": "All unit training is 15% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "trainSpeed": 0.15
+    },
+    {
+      "id": "highland_reinforced_carriages",
+      "name": "Reinforced Carriages",
+      "civilization": "highland",
+      "age": 4,
+      "description": "Culverins gain 20% base health.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "units": [
+        "culverin"
+      ],
+      "health": 0.2
+    },
+    {
+      "id": "coast_common_fields",
+      "name": "Common Fields",
+      "civilization": "coast",
+      "age": 5,
+      "description": "Settlers gather all resources 8% faster.",
+      "building": "",
+      "cost": {},
+      "time": 45,
+      "requires": "",
+      "tags": 128,
+      "gather": 0.08,
+      "resource": 0
     }
   ],
   "cards": [
@@ -2650,6 +4722,747 @@
       "civilization": "river",
       "age": 4,
       "travel": 35
+    },
+    {
+      "id": "dispatch_survival",
+      "name": "Foraging Manuals",
+      "civilization": "river",
+      "age": 1,
+      "description": "Grants Foraging Manuals technology; does not stack with normal research.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "survival"
+    },
+    {
+      "id": "dispatch_steel",
+      "name": "Mining Manuals",
+      "civilization": "",
+      "age": 2,
+      "description": "Grants Mining Manuals technology; does not stack with normal research.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "steel"
+    },
+    {
+      "id": "dispatch_sawmills",
+      "name": "Saw Pit Plans",
+      "civilization": "",
+      "age": 2,
+      "description": "Grants Saw Pit Plans technology; does not stack with normal research.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "sawmills"
+    },
+    {
+      "id": "dispatch_crop_rotation",
+      "name": "Crop Rotation Plans",
+      "civilization": "",
+      "age": 3,
+      "description": "Grants Crop Rotation Plans technology; does not stack with normal research.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "crop_rotation"
+    },
+    {
+      "id": "dispatch_deep_mining",
+      "name": "Deep Mine Plans",
+      "civilization": "",
+      "age": 4,
+      "description": "Grants Deep Mine Plans technology; does not stack with normal research.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "deep_mining"
+    },
+    {
+      "id": "dispatch_drill",
+      "name": "Drill Instructors",
+      "civilization": "",
+      "age": 3,
+      "description": "Grants Drill Instructors technology; does not stack with normal research.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "drill"
+    },
+    {
+      "id": "dispatch_cargo_ledgers",
+      "name": "Trade Ledgers",
+      "civilization": "",
+      "age": 2,
+      "description": "Grants Trade Ledgers technology; does not stack with normal research.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "cargo_ledgers"
+    },
+    {
+      "id": "card_coast_timber_rights",
+      "name": "Timber Rights",
+      "civilization": "coast",
+      "age": 1,
+      "description": "Settlers gather wood 10% faster.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "coast_timber_rights"
+    },
+    {
+      "id": "card_coast_manor_frames",
+      "name": "Manor Frames",
+      "civilization": "coast",
+      "age": 2,
+      "description": "Construction is 15% faster.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "coast_manor_frames"
+    },
+    {
+      "id": "card_coast_bow_strings",
+      "name": "Seasoned Bowstrings",
+      "civilization": "coast",
+      "age": 2,
+      "description": "Longbow guards gain 10% base attack.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "coast_bow_strings"
+    },
+    {
+      "id": "card_coast_coastal_mustering",
+      "name": "Coastal Mustering",
+      "civilization": "coast",
+      "age": 3,
+      "description": "All unit training is 15% faster.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "coast_coastal_mustering"
+    },
+    {
+      "id": "card_coast_bow_shields",
+      "name": "Bowmen Bucklers",
+      "civilization": "coast",
+      "age": 3,
+      "description": "Longbow guards gain 15% base health.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "coast_bow_shields"
+    },
+    {
+      "id": "card_coast_orchards",
+      "name": "Orchard Tenures",
+      "civilization": "coast",
+      "age": 4,
+      "description": "Settlers gather food 12% faster.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "coast_orchards"
+    },
+    {
+      "id": "card_river_quay_lumber",
+      "name": "Quay Lumber",
+      "civilization": "river",
+      "age": 1,
+      "description": "Settlers gather wood 10% faster.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "river_quay_lumber"
+    },
+    {
+      "id": "card_river_mint_scales",
+      "name": "Mint Scales",
+      "civilization": "river",
+      "age": 2,
+      "description": "Settlers gather coin 10% faster.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "river_mint_scales"
+    },
+    {
+      "id": "card_river_bank_vaults",
+      "name": "Bank Vaults",
+      "civilization": "river",
+      "age": 2,
+      "description": "Counting houses gain 30% base health.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "river_bank_vaults"
+    },
+    {
+      "id": "card_river_riding_school",
+      "name": "Riding School",
+      "civilization": "river",
+      "age": 3,
+      "description": "Carabineers gain 10% base speed.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "river_riding_school"
+    },
+    {
+      "id": "card_river_carbine_stock",
+      "name": "Carbine Stocks",
+      "civilization": "river",
+      "age": 3,
+      "description": "Carabineers gain 10% base attack.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "river_carbine_stock"
+    },
+    {
+      "id": "card_river_contract_offices",
+      "name": "Contract Offices",
+      "civilization": "river",
+      "age": 3,
+      "description": "All unit training is 15% faster.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "river_contract_offices"
+    },
+    {
+      "id": "card_river_clearing_houses",
+      "name": "Clearing Houses",
+      "civilization": "river",
+      "age": 4,
+      "description": "Completed banks gain 15% base coin income.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "river_clearing_houses"
+    },
+    {
+      "id": "card_river_mortgage_bricks",
+      "name": "Mortgage Bricks",
+      "civilization": "river",
+      "age": 4,
+      "description": "Construction is 20% faster.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "river_mortgage_bricks"
+    },
+    {
+      "id": "card_river_river_rations",
+      "name": "River Rations",
+      "civilization": "river",
+      "age": 2,
+      "description": "Settlers gather food 10% faster.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "river_river_rations"
+    },
+    {
+      "id": "card_wayfarer_roadside_granaries",
+      "name": "Roadside Granaries",
+      "civilization": "wayfarer",
+      "age": 1,
+      "description": "Settlers gather food 10% faster.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "wayfarer_roadside_granaries"
+    },
+    {
+      "id": "card_wayfarer_depot_frames",
+      "name": "Depot Frames",
+      "civilization": "wayfarer",
+      "age": 2,
+      "description": "Construction is 15% faster.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "wayfarer_depot_frames"
+    },
+    {
+      "id": "card_wayfarer_escort_shields",
+      "name": "Escort Shields",
+      "civilization": "wayfarer",
+      "age": 2,
+      "description": "Caravan escorts gain 20% base health.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "wayfarer_escort_shields"
+    },
+    {
+      "id": "card_wayfarer_powder_flasks",
+      "name": "Powder Flasks",
+      "civilization": "wayfarer",
+      "age": 2,
+      "description": "Convoy gunners gain 10% base attack.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "wayfarer_powder_flasks"
+    },
+    {
+      "id": "card_wayfarer_relay_saddles",
+      "name": "Relay Saddles",
+      "civilization": "wayfarer",
+      "age": 3,
+      "description": "Road outriders gain 10% base speed.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "wayfarer_relay_saddles"
+    },
+    {
+      "id": "card_wayfarer_convoy_muster",
+      "name": "Convoy Muster",
+      "civilization": "wayfarer",
+      "age": 3,
+      "description": "All unit training is 15% faster.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "wayfarer_convoy_muster"
+    },
+    {
+      "id": "card_wayfarer_customs_agreements",
+      "name": "Customs Agreements",
+      "civilization": "wayfarer",
+      "age": 3,
+      "description": "Caravans gain 15% more base profit per successful trip.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "wayfarer_customs_agreements"
+    },
+    {
+      "id": "card_wayfarer_wagon_screens",
+      "name": "Wagon Screens",
+      "civilization": "wayfarer",
+      "age": 3,
+      "description": "Caravans gain 25% base health.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "wayfarer_wagon_screens"
+    },
+    {
+      "id": "card_wayfarer_road_patrols",
+      "name": "Road Patrols",
+      "civilization": "wayfarer",
+      "age": 4,
+      "description": "Escorts and convoy gunners gain 10% base speed.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "wayfarer_road_patrols"
+    },
+    {
+      "id": "card_highland_slope_lumber",
+      "name": "Slope Lumber",
+      "civilization": "highland",
+      "age": 1,
+      "description": "Settlers gather wood 10% faster.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "highland_slope_lumber"
+    },
+    {
+      "id": "card_highland_tempered_shields",
+      "name": "Tempered Shields",
+      "civilization": "highland",
+      "age": 2,
+      "description": "Pavise guards gain 15% base health.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "highland_tempered_shields"
+    },
+    {
+      "id": "card_highland_engineer_kits",
+      "name": "Engineer Kits",
+      "civilization": "highland",
+      "age": 2,
+      "description": "Field engineers gain 25% base health.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "highland_engineer_kits"
+    },
+    {
+      "id": "card_highland_mine_survey",
+      "name": "Mine Survey",
+      "civilization": "highland",
+      "age": 2,
+      "description": "Settlers gather coin 10% faster.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "highland_mine_survey"
+    },
+    {
+      "id": "card_highland_workshop_shifts",
+      "name": "Workshop Shifts",
+      "civilization": "highland",
+      "age": 3,
+      "description": "Staffed manufacture is 15% faster; assigned workers still cannot gather.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "highland_workshop_shifts"
+    },
+    {
+      "id": "card_highland_mobile_cranes",
+      "name": "Mobile Cranes",
+      "civilization": "highland",
+      "age": 3,
+      "description": "Artillery move 10% faster.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "highland_mobile_cranes"
+    },
+    {
+      "id": "card_highland_bastion_plans",
+      "name": "Bastion Plans",
+      "civilization": "highland",
+      "age": 3,
+      "description": "Towers gain 20% base health.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "highland_bastion_plans"
+    },
+    {
+      "id": "card_highland_guild_conscription",
+      "name": "Guild Conscription",
+      "civilization": "highland",
+      "age": 3,
+      "description": "All unit training is 15% faster.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "highland_guild_conscription"
+    },
+    {
+      "id": "card_highland_reinforced_carriages",
+      "name": "Reinforced Carriages",
+      "civilization": "highland",
+      "age": 4,
+      "description": "Culverins gain 20% base health.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "highland_reinforced_carriages"
+    },
+    {
+      "id": "card_wayfarer_cargo_bonds",
+      "name": "Cargo Bonds Dispatch",
+      "civilization": "wayfarer",
+      "age": 2,
+      "description": "Completed caravan trips earn 15% more profit; principal and transit risk are unchanged.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "wayfarer_cargo_bonds"
+    },
+    {
+      "id": "card_wayfarer_reinforced_axles",
+      "name": "Reinforced Axles Dispatch",
+      "civilization": "wayfarer",
+      "age": 2,
+      "description": "Caravans gain 25% base health and 10% base speed.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "wayfarer_reinforced_axles"
+    },
+    {
+      "id": "card_wayfarer_route_offices",
+      "name": "Route Offices Dispatch",
+      "civilization": "wayfarer",
+      "age": 3,
+      "description": "Completed caravan trips earn another 20% profit.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "wayfarer_route_offices"
+    },
+    {
+      "id": "card_wayfarer_dispatch_network",
+      "name": "Dispatch Network Dispatch",
+      "civilization": "wayfarer",
+      "age": 4,
+      "description": "All unit training is 15% faster; caravan profit rises by 15%.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "wayfarer_dispatch_network"
+    },
+    {
+      "id": "card_highland_standard_jigs",
+      "name": "Standard Jigs Dispatch",
+      "civilization": "highland",
+      "age": 2,
+      "description": "Unlocks paid construction prefab orders and raises staffed manufacture speed by 15%.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "highland_standard_jigs"
+    },
+    {
+      "id": "card_highland_guild_tools",
+      "name": "Guild Tools Dispatch",
+      "civilization": "highland",
+      "age": 3,
+      "description": "Staffed manufacture is another 20% faster. Workers still leave resource gathering.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "highland_guild_tools"
+    },
+    {
+      "id": "card_highland_field_assembly",
+      "name": "Field Assembly Dispatch",
+      "civilization": "highland",
+      "age": 3,
+      "description": "Settler construction is 20% faster; field engineers gain 15% base health.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "highland_field_assembly"
+    },
+    {
+      "id": "card_highland_precision_bores",
+      "name": "Precision Bores Dispatch",
+      "civilization": "highland",
+      "age": 4,
+      "description": "Culverins gain 15% base attack; does not add splash damage.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "highland_precision_bores"
+    },
+    {
+      "id": "coast_bow_patrol",
+      "name": "Bow Patrol",
+      "civilization": "coast",
+      "age": 2,
+      "description": "3 Longbow Guard arrive; normal population and delivery space limits apply.",
+      "travel": 35,
+      "repeatable": false,
+      "unit": "longbow",
+      "count": 3
+    },
+    {
+      "id": "coast_bow_regiment",
+      "name": "Bow Regiment",
+      "civilization": "coast",
+      "age": 4,
+      "description": "10 Longbow Guard arrive; normal population and delivery space limits apply.",
+      "travel": 35,
+      "repeatable": false,
+      "unit": "longbow",
+      "count": 10
+    },
+    {
+      "id": "river_coin_settlers",
+      "name": "Coin Settler Delegation",
+      "civilization": "river",
+      "age": 1,
+      "description": "2 Settler arrive; normal population and delivery space limits apply.",
+      "travel": 35,
+      "repeatable": false,
+      "unit": "villager",
+      "count": 2
+    },
+    {
+      "id": "river_carbine_patrol",
+      "name": "Carbine Patrol",
+      "civilization": "river",
+      "age": 3,
+      "description": "4 River Carabineer arrive; normal population and delivery space limits apply.",
+      "travel": 35,
+      "repeatable": false,
+      "unit": "carabineer",
+      "count": 4
+    },
+    {
+      "id": "river_carbine_regiment",
+      "name": "Carbine Regiment",
+      "civilization": "river",
+      "age": 4,
+      "description": "10 River Carabineer arrive; normal population and delivery space limits apply.",
+      "travel": 35,
+      "repeatable": false,
+      "unit": "carabineer",
+      "count": 10
+    },
+    {
+      "id": "wayfarer_founders",
+      "name": "Trade Founders",
+      "civilization": "wayfarer",
+      "age": 1,
+      "description": "2 Settler arrive; normal population and delivery space limits apply.",
+      "travel": 35,
+      "repeatable": false,
+      "unit": "villager",
+      "count": 2
+    },
+    {
+      "id": "wayfarer_cargo_wagons",
+      "name": "Cargo Wagons",
+      "civilization": "wayfarer",
+      "age": 2,
+      "description": "2 Cargo Caravan arrive; normal population and delivery space limits apply.",
+      "travel": 35,
+      "repeatable": false,
+      "unit": "caravan",
+      "count": 2
+    },
+    {
+      "id": "wayfarer_escort_patrol",
+      "name": "Escort Patrol",
+      "civilization": "wayfarer",
+      "age": 2,
+      "description": "4 Caravan Escort arrive; normal population and delivery space limits apply.",
+      "travel": 35,
+      "repeatable": false,
+      "unit": "escort",
+      "count": 4
+    },
+    {
+      "id": "wayfarer_outrider_patrol",
+      "name": "Outrider Patrol",
+      "civilization": "wayfarer",
+      "age": 2,
+      "description": "2 Road Outrider arrive; normal population and delivery space limits apply.",
+      "travel": 35,
+      "repeatable": false,
+      "unit": "outrider",
+      "count": 2
+    },
+    {
+      "id": "wayfarer_gunner_patrol",
+      "name": "Gunner Patrol",
+      "civilization": "wayfarer",
+      "age": 2,
+      "description": "4 Convoy Gunner arrive; normal population and delivery space limits apply.",
+      "travel": 35,
+      "repeatable": false,
+      "unit": "convoy_gunner",
+      "count": 4
+    },
+    {
+      "id": "wayfarer_escort_reserves",
+      "name": "Escort Reserves",
+      "civilization": "wayfarer",
+      "age": 3,
+      "description": "7 Caravan Escort arrive; normal population and delivery space limits apply.",
+      "travel": 35,
+      "repeatable": false,
+      "unit": "escort",
+      "count": 7
+    },
+    {
+      "id": "wayfarer_outrider_reserves",
+      "name": "Outrider Reserves",
+      "civilization": "wayfarer",
+      "age": 3,
+      "description": "4 Road Outrider arrive; normal population and delivery space limits apply.",
+      "travel": 35,
+      "repeatable": false,
+      "unit": "outrider",
+      "count": 4
+    },
+    {
+      "id": "wayfarer_gunner_reserves",
+      "name": "Gunner Reserves",
+      "civilization": "wayfarer",
+      "age": 3,
+      "description": "7 Convoy Gunner arrive; normal population and delivery space limits apply.",
+      "travel": 35,
+      "repeatable": false,
+      "unit": "convoy_gunner",
+      "count": 7
+    },
+    {
+      "id": "wayfarer_wagon_train",
+      "name": "Wagon Train",
+      "civilization": "wayfarer",
+      "age": 4,
+      "description": "4 Cargo Caravan arrive; normal population and delivery space limits apply.",
+      "travel": 35,
+      "repeatable": false,
+      "unit": "caravan",
+      "count": 4
+    },
+    {
+      "id": "wayfarer_armed_convoy",
+      "name": "Armed Convoy",
+      "civilization": "wayfarer",
+      "age": 4,
+      "description": "11 Convoy Gunner arrive; normal population and delivery space limits apply.",
+      "travel": 35,
+      "repeatable": false,
+      "unit": "convoy_gunner",
+      "count": 11
+    },
+    {
+      "id": "highland_guild_apprentices",
+      "name": "Guild Apprentices",
+      "civilization": "highland",
+      "age": 1,
+      "description": "2 Settler arrive; normal population and delivery space limits apply.",
+      "travel": 35,
+      "repeatable": false,
+      "unit": "villager",
+      "count": 2
+    },
+    {
+      "id": "highland_engineer_team",
+      "name": "Engineer Team",
+      "civilization": "highland",
+      "age": 2,
+      "description": "3 Field Engineer arrive; normal population and delivery space limits apply.",
+      "travel": 35,
+      "repeatable": false,
+      "unit": "field_engineer",
+      "count": 3
+    },
+    {
+      "id": "highland_pavise_patrol",
+      "name": "Pavise Patrol",
+      "civilization": "highland",
+      "age": 2,
+      "description": "4 Pavise Guard arrive; normal population and delivery space limits apply.",
+      "travel": 35,
+      "repeatable": false,
+      "unit": "shield_guard",
+      "count": 4
+    },
+    {
+      "id": "highland_pavise_reserves",
+      "name": "Pavise Reserves",
+      "civilization": "highland",
+      "age": 3,
+      "description": "7 Pavise Guard arrive; normal population and delivery space limits apply.",
+      "travel": 35,
+      "repeatable": false,
+      "unit": "shield_guard",
+      "count": 7
+    },
+    {
+      "id": "highland_culverin_battery",
+      "name": "Culverin Battery",
+      "civilization": "highland",
+      "age": 3,
+      "description": "1 Guild Culverin arrive; normal population and delivery space limits apply.",
+      "travel": 35,
+      "repeatable": false,
+      "unit": "culverin",
+      "count": 1
+    },
+    {
+      "id": "highland_culverin_regiment",
+      "name": "Culverin Regiment",
+      "civilization": "highland",
+      "age": 4,
+      "description": "2 Guild Culverin arrive; normal population and delivery space limits apply.",
+      "travel": 35,
+      "repeatable": false,
+      "unit": "culverin",
+      "count": 2
+    },
+    {
+      "id": "wayfarer_foraging_manuals",
+      "name": "Foraging Manuals",
+      "civilization": "wayfarer",
+      "age": 1,
+      "description": "Grants Foraging Tools. Does not stack with normal research.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "survival"
+    },
+    {
+      "id": "highland_foraging_manuals",
+      "name": "Foraging Manuals",
+      "civilization": "highland",
+      "age": 1,
+      "description": "Grants Foraging Tools. Does not stack with normal research.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "survival"
+    },
+    {
+      "id": "card_coast_common_fields",
+      "name": "Common Fields",
+      "civilization": "coast",
+      "age": 5,
+      "description": "Settlers gather all resources 8% faster.",
+      "travel": 35,
+      "repeatable": false,
+      "tech": "coast_common_fields"
     }
   ],
   "ages": [
@@ -2750,6 +5563,36 @@
         "wood": 100
       },
       "villagerLimit": 50
+    },
+    {
+      "id": "wayfarer",
+      "name": "Wayfarer Cities",
+      "description": "Invest in vulnerable freight routes. Escorts, road outriders and short-range convoy gunners replace pikes, hussars and skirmishers.",
+      "caravanTrade": true,
+      "startingResources": {
+        "food": 300,
+        "wood": 350,
+        "coin": 150
+      },
+      "houseCost": {
+        "wood": 100
+      },
+      "villagerLimit": 85
+    },
+    {
+      "id": "highland",
+      "name": "Highland Guild",
+      "description": "Assign settlers to workshops instead of gathering. Manufacture prefabs and counter-artillery; engineers and pavise guards protect a slow army.",
+      "manufacturing": true,
+      "startingResources": {
+        "food": 300,
+        "wood": 350,
+        "coin": 100
+      },
+      "houseCost": {
+        "wood": 100
+      },
+      "villagerLimit": 85
     }
   ],
   "landmarks": {
@@ -2894,5 +5737,588 @@
         "xp": 0
       }
     ]
-  }
+  },
+  "manufactureRecipes": [
+    {
+      "id": "construction_prefab",
+      "name": "Construction Prefab",
+      "description": "Pay 100 wood and staff the workshop to produce one stored prefab. Your next tower, barracks, stable, foundry, waystation or workshop still costs full price and begins with 30% construction progress.",
+      "requires": "highland_standard_jigs",
+      "cost": {
+        "wood": 100
+      },
+      "time": 35,
+      "prefabs": 1
+    }
+  ],
+  "ageChoices": [
+    {
+      "id": "coast_homestead_2",
+      "name": "Homestead Expansion",
+      "civilization": "coast",
+      "age": 2,
+      "description": "Settlers gather all resources 4% faster.",
+      "tech": "charter_coast_homestead_2",
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "wood": 100
+      }
+    },
+    {
+      "id": "coast_militia_2",
+      "name": "Local Defence",
+      "civilization": "coast",
+      "age": 2,
+      "description": "All unit training is 5% faster; militia reinforce the town.",
+      "tech": "charter_coast_militia_2",
+      "unit": "pike",
+      "count": 2,
+      "crates": {}
+    },
+    {
+      "id": "coast_bowguard_2",
+      "name": "Longbow Command",
+      "civilization": "coast",
+      "age": 2,
+      "description": "Longbows gain 5% base attack; bow guards arrive.",
+      "tech": "charter_coast_bowguard_2",
+      "unit": "longbow",
+      "count": 2,
+      "crates": {}
+    },
+    {
+      "id": "coast_homestead_3",
+      "name": "Homestead Expansion",
+      "civilization": "coast",
+      "age": 3,
+      "description": "Settlers gather all resources 5% faster.",
+      "tech": "charter_coast_homestead_3",
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "wood": 200
+      }
+    },
+    {
+      "id": "coast_militia_3",
+      "name": "Local Defence",
+      "civilization": "coast",
+      "age": 3,
+      "description": "All unit training is 6% faster; militia reinforce the town.",
+      "tech": "charter_coast_militia_3",
+      "unit": "musketeer",
+      "count": 3,
+      "crates": {}
+    },
+    {
+      "id": "coast_bowguard_3",
+      "name": "Longbow Command",
+      "civilization": "coast",
+      "age": 3,
+      "description": "Longbows gain 7% base attack; bow guards arrive.",
+      "tech": "charter_coast_bowguard_3",
+      "unit": "longbow",
+      "count": 3,
+      "crates": {}
+    },
+    {
+      "id": "coast_homestead_4",
+      "name": "Homestead Expansion",
+      "civilization": "coast",
+      "age": 4,
+      "description": "Settlers gather all resources 6% faster.",
+      "tech": "charter_coast_homestead_4",
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "wood": 350
+      }
+    },
+    {
+      "id": "coast_militia_4",
+      "name": "Local Defence",
+      "civilization": "coast",
+      "age": 4,
+      "description": "All unit training is 8% faster; militia reinforce the town.",
+      "tech": "charter_coast_militia_4",
+      "unit": "musketeer",
+      "count": 5,
+      "crates": {}
+    },
+    {
+      "id": "coast_bowguard_4",
+      "name": "Longbow Command",
+      "civilization": "coast",
+      "age": 4,
+      "description": "Longbows gain 9% base attack; bow guards arrive.",
+      "tech": "charter_coast_bowguard_4",
+      "unit": "longbow",
+      "count": 5,
+      "crates": {}
+    },
+    {
+      "id": "coast_homestead_5",
+      "name": "Homestead Expansion",
+      "civilization": "coast",
+      "age": 5,
+      "description": "Settlers gather all resources 8% faster.",
+      "tech": "charter_coast_homestead_5",
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "wood": 700
+      }
+    },
+    {
+      "id": "coast_militia_5",
+      "name": "Local Defence",
+      "civilization": "coast",
+      "age": 5,
+      "description": "All unit training is 10% faster; militia reinforce the town.",
+      "tech": "charter_coast_militia_5",
+      "unit": "musketeer",
+      "count": 8,
+      "crates": {}
+    },
+    {
+      "id": "coast_bowguard_5",
+      "name": "Longbow Command",
+      "civilization": "coast",
+      "age": 5,
+      "description": "Longbows gain 12% base attack; bow guards arrive.",
+      "tech": "charter_coast_bowguard_5",
+      "unit": "longbow",
+      "count": 8,
+      "crates": {}
+    },
+    {
+      "id": "river_banking_2",
+      "name": "Banking Houses",
+      "civilization": "river",
+      "age": 2,
+      "description": "Completed banks produce 8% more base coin income.",
+      "tech": "charter_river_banking_2",
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "wood": 100
+      }
+    },
+    {
+      "id": "river_commerce_2",
+      "name": "Commercial Expansion",
+      "civilization": "river",
+      "age": 2,
+      "description": "Settlers gather coin 5% faster.",
+      "tech": "charter_river_commerce_2",
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "coin": 150
+      }
+    },
+    {
+      "id": "river_contracts_2",
+      "name": "Contract Army",
+      "civilization": "river",
+      "age": 2,
+      "description": "Cavalry gain 5% base health; mounted troops arrive.",
+      "tech": "charter_river_contracts_2",
+      "unit": "hussar",
+      "count": 1,
+      "crates": {}
+    },
+    {
+      "id": "river_banking_3",
+      "name": "Banking Houses",
+      "civilization": "river",
+      "age": 3,
+      "description": "Completed banks produce 10% more base coin income.",
+      "tech": "charter_river_banking_3",
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "wood": 200
+      }
+    },
+    {
+      "id": "river_commerce_3",
+      "name": "Commercial Expansion",
+      "civilization": "river",
+      "age": 3,
+      "description": "Settlers gather coin 6% faster.",
+      "tech": "charter_river_commerce_3",
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "coin": 300
+      }
+    },
+    {
+      "id": "river_contracts_3",
+      "name": "Contract Army",
+      "civilization": "river",
+      "age": 3,
+      "description": "Cavalry gain 7% base health; mounted troops arrive.",
+      "tech": "charter_river_contracts_3",
+      "unit": "carabineer",
+      "count": 3,
+      "crates": {}
+    },
+    {
+      "id": "river_banking_4",
+      "name": "Banking Houses",
+      "civilization": "river",
+      "age": 4,
+      "description": "Completed banks produce 12% more base coin income.",
+      "tech": "charter_river_banking_4",
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "wood": 350
+      }
+    },
+    {
+      "id": "river_commerce_4",
+      "name": "Commercial Expansion",
+      "civilization": "river",
+      "age": 4,
+      "description": "Settlers gather coin 8% faster.",
+      "tech": "charter_river_commerce_4",
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "coin": 600
+      }
+    },
+    {
+      "id": "river_contracts_4",
+      "name": "Contract Army",
+      "civilization": "river",
+      "age": 4,
+      "description": "Cavalry gain 9% base health; mounted troops arrive.",
+      "tech": "charter_river_contracts_4",
+      "unit": "carabineer",
+      "count": 5,
+      "crates": {}
+    },
+    {
+      "id": "river_banking_5",
+      "name": "Banking Houses",
+      "civilization": "river",
+      "age": 5,
+      "description": "Completed banks produce 15% more base coin income.",
+      "tech": "charter_river_banking_5",
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "wood": 700
+      }
+    },
+    {
+      "id": "river_commerce_5",
+      "name": "Commercial Expansion",
+      "civilization": "river",
+      "age": 5,
+      "description": "Settlers gather coin 10% faster.",
+      "tech": "charter_river_commerce_5",
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "coin": 1200
+      }
+    },
+    {
+      "id": "river_contracts_5",
+      "name": "Contract Army",
+      "civilization": "river",
+      "age": 5,
+      "description": "Cavalry gain 12% base health; mounted troops arrive.",
+      "tech": "charter_river_contracts_5",
+      "unit": "carabineer",
+      "count": 8,
+      "crates": {}
+    },
+    {
+      "id": "wayfarer_safe_2",
+      "name": "Protected Caravans",
+      "civilization": "wayfarer",
+      "age": 2,
+      "description": "Caravans gain 10% base health; extra freight wagons arrive.",
+      "tech": "charter_wayfarer_safe_2",
+      "unit": "caravan",
+      "count": 1,
+      "crates": {}
+    },
+    {
+      "id": "wayfarer_distant_2",
+      "name": "Distant Markets",
+      "civilization": "wayfarer",
+      "age": 2,
+      "description": "Completed freight trips earn 10% more base profit; routes remain vulnerable.",
+      "tech": "charter_wayfarer_distant_2",
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "coin": 100
+      }
+    },
+    {
+      "id": "wayfarer_armed_2",
+      "name": "Armed Companies",
+      "civilization": "wayfarer",
+      "age": 2,
+      "description": "Specialist escorts gain 5% base attack; guards arrive.",
+      "tech": "charter_wayfarer_armed_2",
+      "unit": "escort",
+      "count": 2,
+      "crates": {}
+    },
+    {
+      "id": "wayfarer_safe_3",
+      "name": "Protected Caravans",
+      "civilization": "wayfarer",
+      "age": 3,
+      "description": "Caravans gain 12% base health; extra freight wagons arrive.",
+      "tech": "charter_wayfarer_safe_3",
+      "unit": "caravan",
+      "count": 1,
+      "crates": {}
+    },
+    {
+      "id": "wayfarer_distant_3",
+      "name": "Distant Markets",
+      "civilization": "wayfarer",
+      "age": 3,
+      "description": "Completed freight trips earn 12% more base profit; routes remain vulnerable.",
+      "tech": "charter_wayfarer_distant_3",
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "coin": 200
+      }
+    },
+    {
+      "id": "wayfarer_armed_3",
+      "name": "Armed Companies",
+      "civilization": "wayfarer",
+      "age": 3,
+      "description": "Specialist escorts gain 7% base attack; guards arrive.",
+      "tech": "charter_wayfarer_armed_3",
+      "unit": "convoy_gunner",
+      "count": 3,
+      "crates": {}
+    },
+    {
+      "id": "wayfarer_safe_4",
+      "name": "Protected Caravans",
+      "civilization": "wayfarer",
+      "age": 4,
+      "description": "Caravans gain 15% base health; extra freight wagons arrive.",
+      "tech": "charter_wayfarer_safe_4",
+      "unit": "caravan",
+      "count": 2,
+      "crates": {}
+    },
+    {
+      "id": "wayfarer_distant_4",
+      "name": "Distant Markets",
+      "civilization": "wayfarer",
+      "age": 4,
+      "description": "Completed freight trips earn 15% more base profit; routes remain vulnerable.",
+      "tech": "charter_wayfarer_distant_4",
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "coin": 400
+      }
+    },
+    {
+      "id": "wayfarer_armed_4",
+      "name": "Armed Companies",
+      "civilization": "wayfarer",
+      "age": 4,
+      "description": "Specialist escorts gain 9% base attack; guards arrive.",
+      "tech": "charter_wayfarer_armed_4",
+      "unit": "escort",
+      "count": 5,
+      "crates": {}
+    },
+    {
+      "id": "wayfarer_safe_5",
+      "name": "Protected Caravans",
+      "civilization": "wayfarer",
+      "age": 5,
+      "description": "Caravans gain 20% base health; extra freight wagons arrive.",
+      "tech": "charter_wayfarer_safe_5",
+      "unit": "caravan",
+      "count": 2,
+      "crates": {}
+    },
+    {
+      "id": "wayfarer_distant_5",
+      "name": "Distant Markets",
+      "civilization": "wayfarer",
+      "age": 5,
+      "description": "Completed freight trips earn 20% more base profit; routes remain vulnerable.",
+      "tech": "charter_wayfarer_distant_5",
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "coin": 800
+      }
+    },
+    {
+      "id": "wayfarer_armed_5",
+      "name": "Armed Companies",
+      "civilization": "wayfarer",
+      "age": 5,
+      "description": "Specialist escorts gain 12% base attack; guards arrive.",
+      "tech": "charter_wayfarer_armed_5",
+      "unit": "convoy_gunner",
+      "count": 8,
+      "crates": {}
+    },
+    {
+      "id": "highland_civil_2",
+      "name": "Civil Engineering",
+      "civilization": "highland",
+      "age": 2,
+      "description": "Settler construction is 10% faster; building timber arrives.",
+      "tech": "charter_highland_civil_2",
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "wood": 150
+      }
+    },
+    {
+      "id": "highland_ordnance_2",
+      "name": "Field Ordnance",
+      "civilization": "highland",
+      "age": 2,
+      "description": "Staffed manufacture is 10% faster; specialists arrive.",
+      "tech": "charter_highland_ordnance_2",
+      "unit": "field_engineer",
+      "count": 2,
+      "crates": {}
+    },
+    {
+      "id": "highland_fortress_2",
+      "name": "Defensive Works",
+      "civilization": "highland",
+      "age": 2,
+      "description": "Pavise guards and towers gain 8% base health.",
+      "tech": "charter_highland_fortress_2",
+      "unit": "shield_guard",
+      "count": 2,
+      "crates": {}
+    },
+    {
+      "id": "highland_civil_3",
+      "name": "Civil Engineering",
+      "civilization": "highland",
+      "age": 3,
+      "description": "Settler construction is 12% faster; building timber arrives.",
+      "tech": "charter_highland_civil_3",
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "wood": 300
+      }
+    },
+    {
+      "id": "highland_ordnance_3",
+      "name": "Field Ordnance",
+      "civilization": "highland",
+      "age": 3,
+      "description": "Staffed manufacture is 12% faster; specialists arrive.",
+      "tech": "charter_highland_ordnance_3",
+      "unit": "culverin",
+      "count": 1,
+      "crates": {}
+    },
+    {
+      "id": "highland_fortress_3",
+      "name": "Defensive Works",
+      "civilization": "highland",
+      "age": 3,
+      "description": "Pavise guards and towers gain 10% base health.",
+      "tech": "charter_highland_fortress_3",
+      "unit": "shield_guard",
+      "count": 3,
+      "crates": {}
+    },
+    {
+      "id": "highland_civil_4",
+      "name": "Civil Engineering",
+      "civilization": "highland",
+      "age": 4,
+      "description": "Settler construction is 15% faster; building timber arrives.",
+      "tech": "charter_highland_civil_4",
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "wood": 500
+      }
+    },
+    {
+      "id": "highland_ordnance_4",
+      "name": "Field Ordnance",
+      "civilization": "highland",
+      "age": 4,
+      "description": "Staffed manufacture is 15% faster; specialists arrive.",
+      "tech": "charter_highland_ordnance_4",
+      "unit": "culverin",
+      "count": 2,
+      "crates": {}
+    },
+    {
+      "id": "highland_fortress_4",
+      "name": "Defensive Works",
+      "civilization": "highland",
+      "age": 4,
+      "description": "Pavise guards and towers gain 12% base health.",
+      "tech": "charter_highland_fortress_4",
+      "unit": "shield_guard",
+      "count": 5,
+      "crates": {}
+    },
+    {
+      "id": "highland_civil_5",
+      "name": "Civil Engineering",
+      "civilization": "highland",
+      "age": 5,
+      "description": "Settler construction is 20% faster; building timber arrives.",
+      "tech": "charter_highland_civil_5",
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "wood": 1000
+      }
+    },
+    {
+      "id": "highland_ordnance_5",
+      "name": "Field Ordnance",
+      "civilization": "highland",
+      "age": 5,
+      "description": "Staffed manufacture is 20% faster; specialists arrive.",
+      "tech": "charter_highland_ordnance_5",
+      "unit": "culverin",
+      "count": 3,
+      "crates": {}
+    },
+    {
+      "id": "highland_fortress_5",
+      "name": "Defensive Works",
+      "civilization": "highland",
+      "age": 5,
+      "description": "Pavise guards and towers gain 15% base health.",
+      "tech": "charter_highland_fortress_5",
+      "unit": "shield_guard",
+      "count": 8,
+      "crates": {}
+    }
+  ]
 }

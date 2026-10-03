@@ -8,6 +8,7 @@ namespace Frontier
         public UnitPoseState state;
         public WorkerTool tool;
         public bool moving,melee,bow,polearm,deployed,reloading;
+        public bool shielded,loadedCargo;
         public float locomotionPhase,actionPhase,hurt,death;
     }
     // Read-only pose evaluation. Event times come from the incremental presentation
@@ -18,10 +19,11 @@ namespace Frontier
         {
             var pose=new AnimationPose{state=UnitPoseState.Idle};if(entity==null)return pose;
             pose.melee=entity.shotMelee||entity.forceMelee||entity.def.damageKind==DamageKind.Melee;
-            pose.bow=entity.def.id=="longbow";pose.polearm=entity.def.id=="pike";pose.deployed=entity.isDeployed;
+            pose.bow=entity.def.id=="longbow";pose.polearm=entity.def.id=="pike"||entity.def.id=="escort"||entity.def.id=="shield_guard";pose.deployed=entity.isDeployed;
+            pose.shielded=entity.shielded;pose.loadedCargo=entity.cargoPaid.food+entity.cargoPaid.wood+entity.cargoPaid.coin>0;
             pose.hurt=Mathf.Clamp01(1-(time-hurtAt)/.2f);
             if(!entity.Alive){pose.state=UnitPoseState.Death;pose.death=Mathf.Clamp01((time-deathAt)/.65f);return pose;}
-            bool moving=entity.status=="Moving"&&(entity.position-entity.previousPosition).sqrMagnitude>.0001f;
+            bool moving=(entity.status=="Moving"||entity.def.id=="caravan")&&(entity.position-entity.previousPosition).sqrMagnitude>.0001f;
             pose.moving=moving;pose.locomotionPhase=time*Mathf.Max(.5f,entity.def.speed)*2.2f+entity.id*.6f;
             pose.reloading=entity.fireAt<0&&time<entity.attackReadyAt;
             if(time-firedAt>=0&&time-firedAt<.22f)
@@ -33,7 +35,7 @@ namespace Frontier
             else if(moving)pose.state=UnitPoseState.Move;
             else if(entity.IsWorkingAt(time))
             {
-                pose.state=entity.work.kind==WorkKind.Gather?UnitPoseState.Gather:entity.work.kind==WorkKind.Build?UnitPoseState.Build:UnitPoseState.Repair;
+                pose.state=entity.work.kind==WorkKind.Gather?UnitPoseState.Gather:entity.work.kind==WorkKind.Build||entity.work.kind==WorkKind.Manufacture?UnitPoseState.Build:UnitPoseState.Repair;
                 pose.tool=entity.work.kind!=WorkKind.Gather?WorkerTool.Hammer:workTarget?.def.id=="tree"?WorkerTool.Axe:workTarget?.def.id=="mine"?WorkerTool.Pick:WorkerTool.Basket;
                 pose.actionPhase=Mathf.Repeat(time*(pose.tool==WorkerTool.Hammer?1.3f:pose.tool==WorkerTool.Pick?.85f:1.1f)+entity.id*.13f,1);
             }
@@ -49,6 +51,11 @@ namespace Frontier
         public static void Apply(UnitRig rig,AnimationPose pose)
         {
             if(rig==null)return;rig.RestoreInitialPose();rig.WorkerEquipment?.Show(pose.tool);
+            if(rig.RepairWeapon!=null)rig.RepairWeapon.gameObject.SetActive(pose.tool==WorkerTool.None);
+            if(rig.Cargo!=null)rig.Cargo.gameObject.SetActive(pose.loadedCargo);
+            if(rig.Shield!=null&&rig.Shield.name=="Folding pavise")
+            {rig.Shield.localPosition=pose.shielded?new Vector3(0,.68f,.51f):new Vector3(-.48f,.90f,.06f);rig.Shield.localRotation=Quaternion.Euler(0,pose.shielded?0:65,0);}
+            foreach(var wheel in rig.CartWheels)if(pose.moving)Rotate(wheel,0,pose.locomotionPhase*57,0);
             float stride=Mathf.Sin(pose.locomotionPhase),recoil=pose.state==UnitPoseState.Fire?Mathf.Sin(pose.actionPhase*Mathf.PI):0;
             bool mounted=rig.LeftHorseLeg!=null,gun=rig.Barrel!=null;
             if(gun)

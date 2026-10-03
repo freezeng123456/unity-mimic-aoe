@@ -11,6 +11,8 @@ namespace Frontier
             for(int i=0;i<count;i++)
             {
                 var e=Entities[i];if(!e.Alive||!e.Complete||e.garrisonedIn!=0||e.def.kind==EntityKind.Resource)continue;
+                if(e.def.shieldAbility&&Time<e.shieldReadyAt){e.status=e.shielded?"Deploying shield":"Lowering shield";continue;}
+                if(e.def.civilian&&e.routeLeg>0){TickCaravan(e,dt);continue;}
                 if(Guardian(e)&&Vector2.Distance(e.position,e.origin)>Rules.landmarks.guardLeash)
                 {e.attackTarget=0;e.fireAt=-1;e.orders.Clear();MoveTowardsTarget(e,e.origin,dt);continue;}
                 if(e.fireAt>=0)
@@ -19,9 +21,9 @@ namespace Frontier
                     else {e.status="Preparing attack";continue;}
                 }
                 UnitOrder order=e.orders.Count>0?e.orders.Peek():null;
-                if(order!=null&&(order.kind==OrderKind.Gather||order.kind==OrderKind.Build||order.kind==OrderKind.Repair||order.kind==OrderKind.Garrison||order.kind==OrderKind.Claim))
+                if(order!=null&&(order.kind==OrderKind.Gather||order.kind==OrderKind.Build||order.kind==OrderKind.Repair||order.kind==OrderKind.Garrison||order.kind==OrderKind.Claim||order.kind==OrderKind.Manufacture))
                 {
-                    var target=Get(order.target);if(target==null||!target.Alive){if(order.kind!=OrderKind.Gather){e.orders.Dequeue();e.status="Target lost";}continue;}
+                    var target=Get(order.target);if(target==null||!target.Alive||target.garrisonedIn!=0){if(order.kind!=OrderKind.Gather){e.orders.Dequeue();e.status="Target lost";}continue;}
                     if(order.kind==OrderKind.Garrison&&EdgeDistance(e,target)<=1.5f)
                     {
                         if(target.occupants.Count<target.def.garrison){e.garrisonedIn=target.id;e.orders.Clear();e.path.Clear();target.occupants.Add(e.id);e.status="Garrisoned";Emit("Garrison",e.owner,e.id,"Entered "+target.def.name,0,target.id);}
@@ -67,6 +69,9 @@ namespace Frontier
                     }
                     if(e.def.kind==EntityKind.Unit&&!e.hold&&(!e.Worker||order!=null&&order.kind==OrderKind.Attack))
                     {
+                        // An explicit attack may require pursuit; stationary auto-fire
+                        // remains braced because ToggleShield sets hold=true.
+                        if(e.shielded){e.shielded=false;e.shieldReadyAt=Time+2;e.status="Lowering shield";continue;}
                         Vector2 goal=WorkPoint(enemy,e);
                         if(distance<e.def.minRange)goal=e.position+(e.position-enemy.position).normalized*(e.def.minRange+2);
                         else if(range>2)goal=enemy.position+(e.position-enemy.position).normalized*(range*.8f+enemy.def.radius);
@@ -134,7 +139,7 @@ namespace Frontier
         }
         private void MoveCore(EntityState e,Vector2 goal,float dt)
         {
-            if(e.def.kind!=EntityKind.Unit)return;
+            if(e.def.kind!=EntityKind.Unit||e.shielded||Time<e.shieldReadyAt)return;
             e.isDeployed=false;e.deployUntil=0;
             Vector2 requestedGoal=goal;
             if((e.progressGoal-requestedGoal).sqrMagnitude>4){e.progressGoal=requestedGoal;e.progressDistance=float.MaxValue;e.progressAt=Time;e.detourUntil=0;}
@@ -264,6 +269,7 @@ namespace Frontier
         {
             if(target==null||!target.Alive||target.garrisonedIn!=0)return;
             float resistance=kind==DamageKind.Melee?target.def.meleeResist:kind==DamageKind.Ranged?target.def.rangedResist:target.def.siegeResist;
+            if(kind==DamageKind.Ranged&&target.shielded&&Time>=target.shieldReadyAt)resistance+=.35f;
             float damage=Mathf.Max(0,raw)*(1-Mathf.Clamp01(resistance));
             Emit("Damage",owner,source,kind.ToString(),damage,target.id,target.position);
             if(damage>=target.hp){Remove(target,owner);return;}target.hp-=damage;

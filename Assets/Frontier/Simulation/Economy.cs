@@ -19,7 +19,7 @@ namespace Frontier
             foreach(var p in Players)
             {
                 p.resources=Rules.Civ(p.civilization).startingResources;p.populationCap=0;
-                foreach(var card in Rules.cards)if(p.deck.Count<Rules.deckCapacity&&(string.IsNullOrEmpty(card.civilization)||card.civilization==p.civilization))p.deck.Add(card.id);
+                p.deck.AddRange(DeckLibrary.Preset(Rules,p.civilization,"economy"));
                 p.ageHistory.Add("I @ 0s");Emit("StartingResources",p.id,0,"Configured opening: "+p.resources);
             }
         }
@@ -36,7 +36,7 @@ namespace Frontier
         {
             var p=P(player);var d=Rules.Entity(id);
             if(p==null||d==null||d.kind!=EntityKind.Building)return "Unknown building";
-            if(!string.IsNullOrEmpty(d.civilization)&&d.civilization!=p.civilization)return "Unavailable to this civilization";
+            if(!EntityAvailable(player,d))return "Unavailable to this civilization";
             if(p.age<d.age)return "Requires age "+d.age;
             if(!CanAfford(player,EntityCost(player,d)))return "Need "+EntityCost(player,d);
             if(id=="trade_post"&&(SocketAt(point)==null||TradingPostAt(SocketAt(point).id)!=null))return "Place on an empty trade route site";
@@ -66,6 +66,7 @@ namespace Frontier
                 if(t.building!=b.def.id)return "Requires "+t.building;
                 if(p.age<t.age)return "Requires age "+t.age;
                 if(!string.IsNullOrEmpty(t.civilization)&&t.civilization!=p.civilization)return "Civilization requirement";
+                if(t.units!=null&&t.units.Length>0&&!Array.Exists(t.units,id=>EntityAvailable(player,Rules.Entity(id))))return "No available units use this technology";
                 if(p.technologies.Contains(item)||TechnologyQueued(player,item))return "Already completed or queued";
                 if(!string.IsNullOrEmpty(t.requires)&&!p.technologies.Contains(t.requires))return "Requires "+t.requires;
                 if(!CanAfford(player,t.cost))return "Need "+t.cost;
@@ -75,7 +76,7 @@ namespace Frontier
                 var d=Rules.Entity(item);if(d==null||d.kind!=EntityKind.Unit)return "Unknown unit";
                 if(d.producer!=b.def.id)return "Requires "+d.producer;
                 if(p.age<d.age)return "Requires age "+d.age;
-                if(!string.IsNullOrEmpty(d.civilization)&&d.civilization!=p.civilization)return "Civilization requirement";
+                if(!EntityAvailable(player,d))return "Civilization requirement";
                 count=Mathf.Clamp(count,1,d.batch);
                 if(UnitLimitReason(player,d,count)!="")return UnitLimitReason(player,d,count);
                 if(!CanAfford(player,UnitCost(player,d)*count))return "Need "+(UnitCost(player,d)*count);
@@ -100,7 +101,7 @@ namespace Frontier
                 var workers=new List<EntityState>();foreach(int id in c.actors){var w=Get(id);if(w!=null&&w.Alive&&w.owner==c.player&&w.Worker&&w.garrisonedIn==0)workers.Add(w);}
                 if(workers.Count==0)return CommandResult.Fail("Select villagers to construct");
                 var d=Rules.Entity(c.item);var cost=EntityCost(c.player,d);Pay(c.player,cost,workers[0].id,"Foundation "+d.name);
-                var placed=Spawn(c.item,c.player,c.point,false);placed.paidConstruction=cost;
+                var placed=Spawn(c.item,c.player,c.point,false);placed.paidConstruction=cost;ApplyPrefab(placed);
                 foreach(var w in workers){if(!c.append){w.orders.Clear();w.path.Clear();w.fireAt=-1;}w.orders.Enqueue(new UnitOrder(OrderKind.Build,c.point,placed.id));}
                 return CommandResult.Ok("Construction started: "+d.name);
             }
@@ -136,7 +137,7 @@ namespace Frontier
             if(c.kind==CommandKind.AdvanceAge)
             {
                 string ageReason=AgeReason(c.player,b);if(ageReason!="")return CommandResult.Fail(ageReason);
-                if(c.choice!="economic"&&c.choice!="military")return CommandResult.Fail("Choose a governor reward");
+                if(ResolveAgeChoice(c.player,p.age+1,c.choice)==null)return CommandResult.Fail("Choose a valid civilization age route");
                 var a=Rules.Age(p.age+1);if(a==null)return CommandResult.Fail("Age undefined");if(!CanAfford(c.player,a.cost))return CommandResult.Fail("Need "+a.cost);
                 Pay(c.player,a.cost,b.id,"Advance to age "+a.age);b.queue.Add(new ProductionJob{item=a.age.ToString(),kind="Age",paid=a.cost,duration=a.time,choice=c.choice});return CommandResult.Ok("Age advancement queued");
             }
@@ -165,13 +166,18 @@ namespace Frontier
             for(int i=0;i<originalCount;i++)
             {
                 var e=Entities[i];if(!e.Alive||e.garrisonedIn!=0)continue;
-                if(e.Worker&&e.orders.Count>0)
+                if((e.Worker||e.def.repairArtillery)&&e.orders.Count>0)
                 {
                     var o=e.orders.Peek();var target=Get(o.target);
                     if(o.kind==OrderKind.Gather)Gather(e,o,dt);
+                    else if(o.kind==OrderKind.Manufacture)
+                    {
+                        if(target==null||!target.Alive||!target.Complete){e.orders.Dequeue();e.status="Workshop lost";continue;}
+                        if(EdgeDistance(e,target)<=1.5f){e.status=target.queue.Count>0?"Manufacturing":"Workshop awaiting orders";if(dt>0&&target.queue.Count>0)e.work=new WorkActivity{kind=WorkKind.Manufacture,target=target.id,time=Time};}
+                    }
                     else if(o.kind==OrderKind.Build||o.kind==OrderKind.Repair)
                     {
-                        if(target==null||!target.Alive){e.orders.Dequeue();e.status="Target lost";continue;}
+                        if(target==null||!target.Alive||target.garrisonedIn!=0){e.orders.Dequeue();e.status="Target lost";continue;}
                         if(EdgeDistance(e,target)>1.5f)continue;
                         if(o.kind==OrderKind.Build)
                         {if(target.Complete){e.orders.Dequeue();e.status="Idle";continue;}builders.TryGetValue(target.id,out float n);builders[target.id]=n+1;e.status="Constructing";buildWorkers.Add(e.id);if(dt>0)e.work=new WorkActivity{kind=WorkKind.Build,target=target.id,time=Time};}
@@ -185,7 +191,7 @@ namespace Frontier
             foreach(var pair in builders)
             {
                 var b=Get(pair.Key);if(b==null||!b.Alive||b.Complete)continue;
-                float speed=1+.5f*(Mathf.Min(8,pair.Value)-1),delta=dt*speed/Mathf.Max(1,b.def.time);
+                float speed=(1+.5f*(Mathf.Min(8,pair.Value)-1))*CivilizationFactor(b.owner,t=>t.buildSpeed),delta=dt*speed/Mathf.Max(1,b.def.time);
                 b.construction=Mathf.Min(1,b.construction+delta);b.hp=Mathf.Min(MaxHp(b),b.hp+delta*MaxHp(b)*.95f);
                 if(b.Complete)
                 {
@@ -248,13 +254,27 @@ namespace Frontier
         }
         private void TickProduction(EntityState b,float dt)
         {
-            var j=b.queue[0];j.elapsed=Mathf.Min(j.duration,j.elapsed+dt);if(j.elapsed<j.duration)return;
+            var j=b.queue[0];
+            if(b.def.id=="workshop"&&(j.kind=="Train"||j.kind=="Manufacture"))
+            {
+                int artisans=AssignedArtisans(b);if(artisans==0){b.status="Assign settlers to manufacture";return;}
+                dt*=(.5f+.5f*artisans)*CivilizationFactor(b.owner,t=>t.manufactureSpeed);
+            }
+            if(j.kind=="Train")dt*=CivilizationFactor(b.owner,t=>t.trainSpeed);
+            j.elapsed=Mathf.Min(j.duration,j.elapsed+dt);if(j.elapsed<j.duration)return;
+            if(j.kind=="Manufacture"){Players[b.owner].prefabCharges+=j.count;b.queue.RemoveAt(0);Emit("ManufactureComplete",b.owner,b.id,j.item,j.count);b.status="Prefabrication kit ready";return;}
             if(j.kind=="Research"){ApplyTechnology(b.owner,j.item);b.queue.RemoveAt(0);Emit("ResearchComplete",b.owner,b.id,Rules.Tech(j.item).name);return;}
             if(j.kind=="Age")
             {
                 int age=int.Parse(j.item);var a=Rules.Age(age);var p=P(b.owner);p.age=age;p.ageHistory.Add(age+" @ "+Time.ToString("0.0")+"s");b.queue.RemoveAt(0);AwardXp(p.id,100,b.id,"Age advancement");Emit("AgeAdvanced",p.id,b.id,"Reached age "+age);
-                if(j.choice=="economic")p.rewards.Add(new RewardJob{crates=a.economicReward});
-                else if(!string.IsNullOrEmpty(a.militaryUnit))p.rewards.Add(new RewardJob{unit=a.militaryUnit,count=a.militaryCount});return;
+                var choice=ResolveAgeChoice(p.id,age,j.choice);
+                if(choice!=null)
+                {
+                    if(!string.IsNullOrEmpty(choice.tech))ApplyTechnology(p.id,choice.tech);
+                    if(choice.crates.food+choice.crates.wood+choice.crates.coin>0)p.rewards.Add(new RewardJob{crates=choice.crates});
+                    if(!string.IsNullOrEmpty(choice.unit)&&EntityAvailable(p.id,Rules.Entity(choice.unit)))p.rewards.Add(new RewardJob{unit=choice.unit,count=choice.count});
+                    Emit("AgeRouteChosen",p.id,b.id,choice.id);
+                }return;
             }
             var d=Rules.Entity(j.item);if(d==null){b.queue.RemoveAt(0);return;}
             var owner=P(b.owner);
@@ -341,7 +361,7 @@ namespace Frontier
         {var p=P(e.owner);if(p==null)return;if(e.def.kind==EntityKind.Unit)p.usedPopulation+=e.def.population;if(e.Complete)RecomputePopulationCap(e.owner);}
         public void OnEntityRemoved(EntityState e)
         {
-            FlushGather(e.id);var p=P(e.owner);if(p==null)return;
+            CancelCaravan(e,"Caravan destroyed");FlushGather(e.id);var p=P(e.owner);if(p==null)return;
             if(e.def.kind==EntityKind.Unit)p.usedPopulation=Mathf.Max(0,p.usedPopulation-e.def.population);
             foreach(var j in e.queue)p.reservedPopulation=Mathf.Max(0,p.reservedPopulation-j.population);e.queue.Clear();RecomputePopulationCap(e.owner);
         }

@@ -107,6 +107,9 @@ namespace Frontier
             if(c.kind==CommandKind.ToggleMode)
             {int n=0;foreach(int id in c.actors){var e=Get(id);if(e!=null&&e.Alive&&e.owner==c.player&&e.def.meleeDamage>0&&e.def.range>2){e.forceMelee=!e.forceMelee;n++;}}return n>0?CommandResult.Ok("Combat mode changed"):CommandResult.Fail("No mode-switching units selected");}
             if(c.kind==CommandKind.TradeMode)return SetTradeMode(c);
+            if(c.kind==CommandKind.TradeRoute)return SetCaravanRoute(c);
+            if(c.kind==CommandKind.Manufacture)return StartManufacture(c);
+            if(c.kind==CommandKind.ToggleShield)return ToggleShield(c);
             if(c.kind==CommandKind.Order)return IssueOrders(c);
             if(c.kind==CommandKind.Rally)return SetRally(c);
             if(c.kind==CommandKind.Ungarrison)
@@ -123,18 +126,24 @@ namespace Frontier
             foreach(int id in c.actors){var e=Get(id);if(e!=null&&e.Alive&&e.owner==c.player&&e.def.kind==EntityKind.Unit&&e.garrisonedIn==0){actors.Add(e);spacing=Mathf.Max(spacing,e.def.radius*4+.3f);}}
             if(actors.Count==0)return CommandResult.Fail("Select mobile units");
             var target=Get(c.target);
-            bool targeted=c.order==OrderKind.Attack||c.order==OrderKind.Gather||c.order==OrderKind.Build||c.order==OrderKind.Repair||c.order==OrderKind.Garrison||c.order==OrderKind.Claim;
+            bool targeted=c.order==OrderKind.Attack||c.order==OrderKind.Gather||c.order==OrderKind.Build||c.order==OrderKind.Repair||c.order==OrderKind.Garrison||c.order==OrderKind.Claim||c.order==OrderKind.Manufacture;
             if(targeted&&(target==null||!IsVisible(c.player,target)))return CommandResult.Fail("Target is not currently visible");
             if(c.order==OrderKind.Claim){string reason=TreasureReason(c.player,target);if(reason!="")return CommandResult.Fail(reason);}
             if(c.order==OrderKind.Attack&&(target.owner==c.player||target.def.kind==EntityKind.Resource))return CommandResult.Fail("Choose an enemy");
             if((c.order==OrderKind.Build||c.order==OrderKind.Repair||c.order==OrderKind.Garrison)&&target.owner!=c.player)return CommandResult.Fail("Choose your own building");
+            if(c.order==OrderKind.Manufacture&&(target.owner!=c.player||target.def.id!="workshop"||!target.Complete||!Rules.Civ(Players[c.player].civilization).manufacturing))return CommandResult.Fail("Choose your completed workshop");
             if(c.order==OrderKind.Gather&&!(target.def.resource!=ResourceKind.None&&(target.def.kind==EntityKind.Resource||target.owner==c.player)))return CommandResult.Fail("Choose a resource");
             if(c.order==OrderKind.Garrison&&(target.def.garrison<=0||!target.Complete))return CommandResult.Fail("This building cannot garrison units");
             bool needsSlots=!targeted&&(c.order==OrderKind.Move||c.order==OrderKind.AttackMove);
             var slots=needsSlots?Navigation.FormationSlots(c.point,actors.Count,spacing):null;if(needsSlots&&slots.Count<actors.Count)return CommandResult.Fail("No room for this formation");int accepted=0;
             for(int i=0;i<actors.Count;i++)
             {
-                var e=actors[i];if(c.order==OrderKind.Claim&&(e.def.tags&Tags.Explorer)==0)continue;if((c.order==OrderKind.Gather||c.order==OrderKind.Build||c.order==OrderKind.Repair)&&!e.Worker)continue;
+                var e=actors[i];if(c.order==OrderKind.Claim&&(e.def.tags&Tags.Explorer)==0)continue;
+                if((c.order==OrderKind.Gather||c.order==OrderKind.Build||c.order==OrderKind.Manufacture)&&!e.Worker)continue;
+                if(c.order==OrderKind.Repair&&!(e.Worker&&target.def.kind==EntityKind.Building||e.def.repairArtillery&&(target.def.tags&Tags.Artillery)!=0))continue;
+                if(e.def.civilian&&(c.order==OrderKind.Attack||c.order==OrderKind.AttackMove))continue;
+                CancelCaravan(e,"Manual order");
+                if(e.shielded&&c.order!=OrderKind.Hold&&c.order!=OrderKind.Attack){e.shielded=false;e.shieldReadyAt=Time+2;}
                 var previous=e.orders.Count>0?e.orders.Peek():null;
                 var requested=targeted?target.position:needsSlots?slots[i]:c.point;
                 bool sameTravel=!c.append&&SameTravelIntent(previous,c.order,requested,c.target);
