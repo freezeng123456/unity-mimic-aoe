@@ -132,8 +132,8 @@ namespace Frontier
             string deckReason=DeckLibrary.Validate(game.Rules,game.PlayerCivilization,game.SelectedDeck);if(deckReason=="")deckReason=game.DifficultyReason;
             Button(configuration,"BEGIN SKIRMISH",new Rect(28,543,454,64),()=>{game.Autoplay=false;game.StartMatch();},deckReason,deckReason=="");
             Button(configuration,"QUIT",new Rect(28,630,454,44),()=>Application.Quit());
-            Label(menuPanel,"FIVE-ERA LAND GAME · DEVELOPMENT",new Rect(100,665,840,35),23,gold);
-            Label(menuPanel,"Two civilizations · Custom decks · Original project rules\nTrade, treasures and final audiovisual quality are still in development.\nIndependent project. Not affiliated with Age of Empires or its publishers.",new Rect(100,715,820,110),18,muted);
+            Label(menuPanel,"FIVE-ERA LAND GAME",new Rect(100,665,840,35),23,gold);
+            Label(menuPanel,"Two civilizations · Custom decks · Original project rules\nBanks · Trade routes · Guarded treasures · Original visuals and audio\nIndependent project. Not affiliated with Age of Empires or its publishers.",new Rect(100,715,820,110),18,muted);
         }
         private void ShowDeckEditor(int page)
         {
