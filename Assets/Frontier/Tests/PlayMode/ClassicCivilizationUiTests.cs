@@ -53,7 +53,7 @@ namespace Frontier.Tests
                         var vertices=completeText.verts;Assert.Greater(vertices.Count,0,context);
                         float bottom=float.PositiveInfinity,top=float.NegativeInfinity;
                         foreach(var vertex in vertices){float y=vertex.position.y/pixelScale;bottom=Mathf.Min(bottom,y);top=Mathf.Max(top,y);}
-                        Assert.GreaterOrEqual(bottom,summary.rectTransform.rect.yMin-.5f,context+" complete description exceeds its 80-unit region");
+                        Assert.GreaterOrEqual(bottom,summary.rectTransform.rect.yMin-.5f,context+" complete description exceeds its "+summary.rectTransform.rect.height+"-unit region");
                         Assert.LessOrEqual(top,summary.rectTransform.rect.yMax+.5f,context);
                         float renderedBottom=summary.rectTransform.TransformPoint(new Vector3(0,bottom,0)).y;
                         foreach(string button in new[]{"PRESET:","EDIT DECK"})

@@ -126,14 +126,14 @@ namespace Frontier
             var difficulty=game.Rules.Difficulty(game.OpponentDifficulty);
             Button(configuration,"AI DIFFICULTY: "+(difficulty?.name?.ToUpperInvariant()??"INVALID"),new Rect(28,250,454,48),()=>{game.CycleDifficulty();ShowMenu();},difficulty?.description??game.DifficultyReason);
             Label(configuration,difficulty?.description??game.DifficultyReason,new Rect(28,308,450,55),17,muted);
-            var civilizationSummary=Label(configuration,"THE TWO OUTCROPS  ·  SEED "+game.MatchSeed+"\n"+game.Rules.Civ(game.PlayerCivilization).description,new Rect(28,376,450,80),17,muted);
+            var civilizationSummary=Label(configuration,"THE TWO OUTCROPS  ·  SEED "+game.MatchSeed+"\n"+game.Rules.Civ(game.PlayerCivilization).description,new Rect(28,376,450,104),17,muted);
             civilizationSummary.resizeTextForBestFit=true;civilizationSummary.resizeTextMinSize=14;civilizationSummary.resizeTextMaxSize=17;
             civilizationSummary.horizontalOverflow=HorizontalWrapMode.Wrap;civilizationSummary.verticalOverflow=VerticalWrapMode.Truncate;
-            Button(configuration,"PRESET: "+game.DeckPreset.ToUpperInvariant(),new Rect(28,472,220,48),()=>{string[] presets={"economy","military","technology"};game.DeckPreset=presets[(Array.IndexOf(presets,game.DeckPreset)+1)%presets.Length];game.ResetDeckPreset();ShowMenu();},"Economy, military and technology plans use different cards. Edit any preset before play.");
-            Button(configuration,"EDIT DECK  "+game.SelectedDeck.Count+"/"+game.Rules.deckCapacity,new Rect(258,472,224,48),()=>ShowDeckEditor(0));
+            Button(configuration,"PRESET: "+game.DeckPreset.ToUpperInvariant(),new Rect(28,496,220,48),()=>{string[] presets={"economy","military","technology"};game.DeckPreset=presets[(Array.IndexOf(presets,game.DeckPreset)+1)%presets.Length];game.ResetDeckPreset();ShowMenu();},"Economy, military and technology plans use different cards. Edit any preset before play.");
+            Button(configuration,"EDIT DECK  "+game.SelectedDeck.Count+"/"+game.Rules.deckCapacity,new Rect(258,496,224,48),()=>ShowDeckEditor(0));
             string deckReason=DeckLibrary.Validate(game.Rules,game.PlayerCivilization,game.SelectedDeck);if(deckReason=="")deckReason=game.DifficultyReason;
-            Button(configuration,"BEGIN SKIRMISH",new Rect(28,543,454,64),()=>{game.Autoplay=false;game.StartMatch();},deckReason,deckReason=="");
-            Button(configuration,"QUIT",new Rect(28,630,454,44),()=>Application.Quit());
+            Button(configuration,"BEGIN SKIRMISH",new Rect(28,567,454,64),()=>{game.Autoplay=false;game.StartMatch();},deckReason,deckReason=="");
+            Button(configuration,"QUIT",new Rect(28,654,454,44),()=>Application.Quit());
             Label(menuPanel,"FIVE-ERA LAND GAME",new Rect(100,665,840,35),23,gold);
             Label(menuPanel,game.Rules.civs.Length+" civilizations · British · Dutch · French · Ottomans\nManors · Banks · Coureurs · Free settlers · Trade · Workshops\nIndependent project. Not affiliated with Age of Empires or its publishers.",new Rect(100,715,820,110),18,muted);
         }
