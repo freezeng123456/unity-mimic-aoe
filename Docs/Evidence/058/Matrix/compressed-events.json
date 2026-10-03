@@ -1,0 +1,582 @@
+{
+  "schema": 1,
+  "note": "Lossless gzip archive. Original matrix and reports are unchanged. Decompress to rawPath before checking their original event hashes; every archive round trip was compared byte-for-byte.",
+  "files": [
+    {
+      "rawPath": "coast-vs-coast/events.jsonl",
+      "rawBytes": 29926468,
+      "rawSha256": "2cfb2ece989f450abffdbd6f42f79fd6df15954c81a01c08ec1b0c549a0a2f8e",
+      "gzipPath": "coast-vs-coast/events.jsonl.gz",
+      "gzipBytes": 1647779,
+      "gzipSha256": "d98c280aaae6e2280597813e610ed37eff4c62fb3f4490ed6e3e1231309fb66e"
+    },
+    {
+      "rawPath": "coast-vs-coast/snapshots.jsonl",
+      "rawBytes": 36712,
+      "rawSha256": "6395f994e47073a534e0a13007bf966f16c183d306c5ad8ae1bfa80a706491ba",
+      "gzipPath": "coast-vs-coast/snapshots.jsonl.gz",
+      "gzipBytes": 5831,
+      "gzipSha256": "3cd8010947d8a87897f608381edb2589b1d4589dddde99ba5c042c19a6934926"
+    },
+    {
+      "rawPath": "coast-vs-france/events.jsonl",
+      "rawBytes": 35664849,
+      "rawSha256": "66eb1708b45afe763a37e8da76d25cafc067b6d6e539586728fa4e3cb165e41e",
+      "gzipPath": "coast-vs-france/events.jsonl.gz",
+      "gzipBytes": 1972213,
+      "gzipSha256": "1727b412afd894b92baf0db736f40c88122323e54246240d72a69e8369f9dde9"
+    },
+    {
+      "rawPath": "coast-vs-france/snapshots.jsonl",
+      "rawBytes": 42639,
+      "rawSha256": "879bedecb90070106c9fcc5399ea1cfe7419ce69a20b3c07817ef485f333763b",
+      "gzipPath": "coast-vs-france/snapshots.jsonl.gz",
+      "gzipBytes": 6712,
+      "gzipSha256": "d03adbc6be2d7658b714403e77e9046b50a9c5e37b95a8d24d1dec2f02be094f"
+    },
+    {
+      "rawPath": "coast-vs-highland/events.jsonl",
+      "rawBytes": 90951745,
+      "rawSha256": "526bf89259b587007df41bb6c26ba783b922930815d2d50f0580b1c75fff19a9",
+      "gzipPath": "coast-vs-highland/events.jsonl.gz",
+      "gzipBytes": 6424829,
+      "gzipSha256": "5f04cfe8125ef9773cfad1c55fd4dff0d4e688378a2ddc4f871e68004e5f3a45"
+    },
+    {
+      "rawPath": "coast-vs-highland/snapshots.jsonl",
+      "rawBytes": 81475,
+      "rawSha256": "416a80ac2d5fc8d98ae9f883c4a0f37c9999369a1e274bbc32c13bc156e22f66",
+      "gzipPath": "coast-vs-highland/snapshots.jsonl.gz",
+      "gzipBytes": 11884,
+      "gzipSha256": "243e54e88c554d8d5e6eb402c8e38a8cd7b52e2fc88903e9782131599258118a"
+    },
+    {
+      "rawPath": "coast-vs-ottoman/events.jsonl",
+      "rawBytes": 28178890,
+      "rawSha256": "51f2dbf54325e0c7aed5ccccf55a97b5affb091a65f38f3b8c4a1c422b6dab9e",
+      "gzipPath": "coast-vs-ottoman/events.jsonl.gz",
+      "gzipBytes": 1452450,
+      "gzipSha256": "91c2cd75e3f4d7aed6a3a187b2ee3b94a977d231f2c086492a93932dd2c73d4c"
+    },
+    {
+      "rawPath": "coast-vs-ottoman/snapshots.jsonl",
+      "rawBytes": 37250,
+      "rawSha256": "5c5b03c6e0fe573be81ece1a45fbe6b5b5aee7b90997cbc2a606b6d82387eed8",
+      "gzipPath": "coast-vs-ottoman/snapshots.jsonl.gz",
+      "gzipBytes": 5934,
+      "gzipSha256": "2a8304bf373ca39ea88c7f8caf0407948e950e8ef285f22ddc667cd30db39dcc"
+    },
+    {
+      "rawPath": "coast-vs-river/events.jsonl",
+      "rawBytes": 85445863,
+      "rawSha256": "e3484cc2bfb841f660f01e7cb2b82a7f22ade57846f72e83885e275e99e3c157",
+      "gzipPath": "coast-vs-river/events.jsonl.gz",
+      "gzipBytes": 5973368,
+      "gzipSha256": "2ded65f3e674390ce347b6ddbc3d836f6c42df4810941d3035c8921be89c0f94"
+    },
+    {
+      "rawPath": "coast-vs-river/snapshots.jsonl",
+      "rawBytes": 81943,
+      "rawSha256": "a74a8da6f6ba04de3cc7702ac3f44b7f81e6f600f78d8962e2908915f919a7fb",
+      "gzipPath": "coast-vs-river/snapshots.jsonl.gz",
+      "gzipBytes": 13076,
+      "gzipSha256": "3313ae82133ee09da3254f757b10cfe2aeb7f940b8cc2c1084ce6b6eb4d2d0c9"
+    },
+    {
+      "rawPath": "coast-vs-wayfarer/events.jsonl",
+      "rawBytes": 31076237,
+      "rawSha256": "444d2374375fa2fd8a622b2d9ea5bdbcec42341249c000107cc9e2a6fd3956c2",
+      "gzipPath": "coast-vs-wayfarer/events.jsonl.gz",
+      "gzipBytes": 1614055,
+      "gzipSha256": "ef9752116e92d79f24ed5b0b6263e02b6890f492d3a5b49938f0a57d5699f76b"
+    },
+    {
+      "rawPath": "coast-vs-wayfarer/snapshots.jsonl",
+      "rawBytes": 40123,
+      "rawSha256": "96120cc51d448bdcd830b33a4b81f6323a360400dd427b31903dd4781f659e2c",
+      "gzipPath": "coast-vs-wayfarer/snapshots.jsonl.gz",
+      "gzipBytes": 6453,
+      "gzipSha256": "2780b8df009a2ca9adb8be9d93d5c8b27886fda54053b80d48697b67e72e442f"
+    },
+    {
+      "rawPath": "france-vs-coast/events.jsonl",
+      "rawBytes": 44967385,
+      "rawSha256": "d7b96ebef8956f75ecdb33f536784d745dc610d0efdbbb55c4ff73d975a0040e",
+      "gzipPath": "france-vs-coast/events.jsonl.gz",
+      "gzipBytes": 2808332,
+      "gzipSha256": "c1150e6afe750f0af08000d8303b4509b745d816feed77799b078b3474cacdcb"
+    },
+    {
+      "rawPath": "france-vs-coast/snapshots.jsonl",
+      "rawBytes": 50626,
+      "rawSha256": "af12fb262916d05c75ddd7ce2f802827ed045169c3458f171421d836106c8dbc",
+      "gzipPath": "france-vs-coast/snapshots.jsonl.gz",
+      "gzipBytes": 7951,
+      "gzipSha256": "ec049f5e0f4cd4405c1df2b7cc76a8582b5d3d15bc73b1944e4fa72a3001929f"
+    },
+    {
+      "rawPath": "france-vs-france/events.jsonl",
+      "rawBytes": 29945392,
+      "rawSha256": "81136af47a6715d4711aa72bbb46e3c7f4bc60a7e38ec8eab33f09fdc3fc13c4",
+      "gzipPath": "france-vs-france/events.jsonl.gz",
+      "gzipBytes": 1487291,
+      "gzipSha256": "440c69d9be026b5109f9e34964316167d06d1f44f1adfdd2700665de76715b44"
+    },
+    {
+      "rawPath": "france-vs-france/snapshots.jsonl",
+      "rawBytes": 39467,
+      "rawSha256": "887a001ee4f617f7ce0c592734e5917b8b4590b8d49a66dbe654793fea657966",
+      "gzipPath": "france-vs-france/snapshots.jsonl.gz",
+      "gzipBytes": 5992,
+      "gzipSha256": "a0a9cfeda506e384285eded97fdea9394ec99e55c1b38eb5eb3bd3fbc6e52f3d"
+    },
+    {
+      "rawPath": "france-vs-highland/events.jsonl",
+      "rawBytes": 32219806,
+      "rawSha256": "d113d31723212ad8f00df034b932e4828ba8d14a9b5819ace1bb8d05592bcb13",
+      "gzipPath": "france-vs-highland/events.jsonl.gz",
+      "gzipBytes": 1556283,
+      "gzipSha256": "a768a07030fbb65a1783d98fa20aec8055dac89431b52cb5131d8d5d1729c56e"
+    },
+    {
+      "rawPath": "france-vs-highland/snapshots.jsonl",
+      "rawBytes": 42714,
+      "rawSha256": "2fe5c17cd7618016cab9aad9ce22b916cecd30d110d728a9fd0e6e6cb7ceda44",
+      "gzipPath": "france-vs-highland/snapshots.jsonl.gz",
+      "gzipBytes": 6699,
+      "gzipSha256": "10e7c2d678e08ecdadc1aa56a3952118831d80857922c18759d7e2bf4ab3acd3"
+    },
+    {
+      "rawPath": "france-vs-ottoman/events.jsonl",
+      "rawBytes": 27682785,
+      "rawSha256": "e5125da8b4989aa8cc45ee620fbc327e5e47ec72da2ab302335b176548363b77",
+      "gzipPath": "france-vs-ottoman/events.jsonl.gz",
+      "gzipBytes": 1228004,
+      "gzipSha256": "fcf46ebd3b30124ff4d4e657d7eda864aed9a2986cca6a63a6f7f36f5abeea6f"
+    },
+    {
+      "rawPath": "france-vs-ottoman/snapshots.jsonl",
+      "rawBytes": 38448,
+      "rawSha256": "729289f400e3decc6c271b84764a2b660d53db9357dd32fc0667d231c530f220",
+      "gzipPath": "france-vs-ottoman/snapshots.jsonl.gz",
+      "gzipBytes": 6054,
+      "gzipSha256": "c4b0dcccc725651ebf6d920e72ae7e2d4a6cfacd703f44422d6cc5fedfc63e91"
+    },
+    {
+      "rawPath": "france-vs-river/events.jsonl",
+      "rawBytes": 46358390,
+      "rawSha256": "f9f72a076860d9df6d1884f49ecdc4433ae4ee0a44338fef8d4813c4e90513f4",
+      "gzipPath": "france-vs-river/events.jsonl.gz",
+      "gzipBytes": 2941376,
+      "gzipSha256": "dcc8ad7c9fb4e8cf800dcd51967c46eeaf3fd6da5e5b690ff612ef9d95e50dbe"
+    },
+    {
+      "rawPath": "france-vs-river/snapshots.jsonl",
+      "rawBytes": 51533,
+      "rawSha256": "3c3136901b86d21475c0528038471a094e241855d7899e30076ab2aa0ec81d92",
+      "gzipPath": "france-vs-river/snapshots.jsonl.gz",
+      "gzipBytes": 8739,
+      "gzipSha256": "8e0a00fd6625a13ead3f346d06222919deed89a628f50eb2cedef7763daec741"
+    },
+    {
+      "rawPath": "france-vs-wayfarer/events.jsonl",
+      "rawBytes": 43078768,
+      "rawSha256": "1634fc2ad0ed6628813da66547f84b766c1678079a55f17d0ca043075ca09dde",
+      "gzipPath": "france-vs-wayfarer/events.jsonl.gz",
+      "gzipBytes": 2556955,
+      "gzipSha256": "08b2de2f4819acf1b05ce8b793572caa7ee0902ddc45e5694acea40466e53359"
+    },
+    {
+      "rawPath": "france-vs-wayfarer/snapshots.jsonl",
+      "rawBytes": 51264,
+      "rawSha256": "1698fc3f2a33a589abf830399e4c8a4fa9b688b2bd073c37a4a4310344358e21",
+      "gzipPath": "france-vs-wayfarer/snapshots.jsonl.gz",
+      "gzipBytes": 8407,
+      "gzipSha256": "c9688cadb9fa1db17a2b0fdabb3db6d07d7b8cde0fbe79fb42ad526571f4ce01"
+    },
+    {
+      "rawPath": "highland-vs-coast/events.jsonl",
+      "rawBytes": 28148338,
+      "rawSha256": "918c197f8192d2354c37fc00e35cbdbc9e7b40a9bfee78812b6c737c7262279e",
+      "gzipPath": "highland-vs-coast/events.jsonl.gz",
+      "gzipBytes": 1555778,
+      "gzipSha256": "6171425df51c26077ada50c0520420e8f9ce8f6b38cab5d8f0d123aeebda88d1"
+    },
+    {
+      "rawPath": "highland-vs-coast/snapshots.jsonl",
+      "rawBytes": 34673,
+      "rawSha256": "73a5cd8bdb4cbd18801c87c8228d84e748d10ec42e79ae9667f744883444a372",
+      "gzipPath": "highland-vs-coast/snapshots.jsonl.gz",
+      "gzipBytes": 5719,
+      "gzipSha256": "c19ad66dca053c1c061b8b0c7c27f5524e7460d703ea2384d0dada082c28e8d4"
+    },
+    {
+      "rawPath": "highland-vs-france/events.jsonl",
+      "rawBytes": 16780830,
+      "rawSha256": "d3df998827a6e5fbbffb17b2fde9162282e264f1e51ad96106a7418fbad83475",
+      "gzipPath": "highland-vs-france/events.jsonl.gz",
+      "gzipBytes": 484814,
+      "gzipSha256": "4f4c6051bcdbaf6c6dad2ba0beeba368b2560b7c5d95d6add9e3c7b9a8500973"
+    },
+    {
+      "rawPath": "highland-vs-france/snapshots.jsonl",
+      "rawBytes": 32386,
+      "rawSha256": "0091a2e941ef23c82a3cb0e5b93e758aaffc939a68165caddc98035977c2a563",
+      "gzipPath": "highland-vs-france/snapshots.jsonl.gz",
+      "gzipBytes": 4266,
+      "gzipSha256": "dba42434aafdbb4a61dabf8eacda537e05d7fdc076d7bb2d11d25bc64bff2e81"
+    },
+    {
+      "rawPath": "highland-vs-highland/events.jsonl",
+      "rawBytes": 149661201,
+      "rawSha256": "e92c8b19f066c9f420d3fe43ac5abb99645c2999d06796374a7f764c848a84fd",
+      "gzipPath": "highland-vs-highland/events.jsonl.gz",
+      "gzipBytes": 11315969,
+      "gzipSha256": "427fb4645a43ceb785f35958a6a6504e397e69e18504fbe052a753c8f51ced42"
+    },
+    {
+      "rawPath": "highland-vs-highland/snapshots.jsonl",
+      "rawBytes": 123011,
+      "rawSha256": "e54ee2fc7613a15dfb59cb766a972e84d3f7137294804539eeeec5532d0efd29",
+      "gzipPath": "highland-vs-highland/snapshots.jsonl.gz",
+      "gzipBytes": 17706,
+      "gzipSha256": "39abf5522cc3ca792eddcafe9107e14134a0937f91e2c40cabd8e333ff888e39"
+    },
+    {
+      "rawPath": "highland-vs-ottoman/events.jsonl",
+      "rawBytes": 26010050,
+      "rawSha256": "13af69572780b358740594906ccd78742d8be5af554e8150a63c4d96351a16e8",
+      "gzipPath": "highland-vs-ottoman/events.jsonl.gz",
+      "gzipBytes": 1130461,
+      "gzipSha256": "7c4f7d60fc71f3afeb82a6847f1688e0b5d46fa1883fc40f166d9d59b9f5f649"
+    },
+    {
+      "rawPath": "highland-vs-ottoman/snapshots.jsonl",
+      "rawBytes": 35069,
+      "rawSha256": "544961adbec8ba9c70d3c9c2ee01dd20b967672f4ebbc1655adb59eed13c8c78",
+      "gzipPath": "highland-vs-ottoman/snapshots.jsonl.gz",
+      "gzipBytes": 5376,
+      "gzipSha256": "9bd69e4f42e131a23ea35f82001f44726f4b25e0f5c770eef54e499d447b474e"
+    },
+    {
+      "rawPath": "highland-vs-river/events.jsonl",
+      "rawBytes": 37754079,
+      "rawSha256": "d18a259382c3a4afc827df8641616eb729a7ab89580687e98152bd694efed036",
+      "gzipPath": "highland-vs-river/events.jsonl.gz",
+      "gzipBytes": 1921312,
+      "gzipSha256": "096bc2e3e04c2abf47ca06aff043bc17c542b2ef222a9c77375164fc14f64302"
+    },
+    {
+      "rawPath": "highland-vs-river/snapshots.jsonl",
+      "rawBytes": 48521,
+      "rawSha256": "c480512b0254780f552d4ba0d4eb3d903cab1dd692e84a20f88171221378bb24",
+      "gzipPath": "highland-vs-river/snapshots.jsonl.gz",
+      "gzipBytes": 8131,
+      "gzipSha256": "64eec70a9783c59e7ba5eca86c7511dd58b3cf3400bce5fa53bd34838f533eba"
+    },
+    {
+      "rawPath": "highland-vs-wayfarer/events.jsonl",
+      "rawBytes": 33815449,
+      "rawSha256": "10da905add54de1a69c2c014c4c0321a54c51a33c32f8eebc5ebdb464d515ff5",
+      "gzipPath": "highland-vs-wayfarer/events.jsonl.gz",
+      "gzipBytes": 1614218,
+      "gzipSha256": "f3c19149d87076196e945cedd6601b686b47bfceb187da98c59bdced782f02ca"
+    },
+    {
+      "rawPath": "highland-vs-wayfarer/snapshots.jsonl",
+      "rawBytes": 44195,
+      "rawSha256": "5147e48c4bd1e50be6e83eff4167552f76ab4d86ba4b0ee7c87c7d341b87f9d1",
+      "gzipPath": "highland-vs-wayfarer/snapshots.jsonl.gz",
+      "gzipBytes": 7167,
+      "gzipSha256": "9577ef77fc1dfe600b6e8fd2d1d3d906ad190c50ec42416b7759bb76f7f0d223"
+    },
+    {
+      "rawPath": "ottoman-vs-coast/events.jsonl",
+      "rawBytes": 42286181,
+      "rawSha256": "bfebacd31b924792b96c3254fae0042f21162595f6b8affa151849edeae9746b",
+      "gzipPath": "ottoman-vs-coast/events.jsonl.gz",
+      "gzipBytes": 2546756,
+      "gzipSha256": "e0d9adc6440f5a26feeb4fcc5d21e0a193f12937def23fd19483baa756bd6f89"
+    },
+    {
+      "rawPath": "ottoman-vs-coast/snapshots.jsonl",
+      "rawBytes": 49237,
+      "rawSha256": "5ae7ea4824157dc9f1c0c03d912380b9de476acde255392ac50be3f687eddbcc",
+      "gzipPath": "ottoman-vs-coast/snapshots.jsonl.gz",
+      "gzipBytes": 7689,
+      "gzipSha256": "17eb8eda469d55ce50a3c6697c8110c5928342265f652ea321f2286f6010be21"
+    },
+    {
+      "rawPath": "ottoman-vs-france/events.jsonl",
+      "rawBytes": 27677969,
+      "rawSha256": "6b80c92fbeff6cdd99d65af7ab64da4adb7c836edc74ea083f0ce088b837aa9a",
+      "gzipPath": "ottoman-vs-france/events.jsonl.gz",
+      "gzipBytes": 1276922,
+      "gzipSha256": "9dc8bf75614b57b0a9adba88cbc7b8759211a7efdb13be923b719db8d9a3360d"
+    },
+    {
+      "rawPath": "ottoman-vs-france/snapshots.jsonl",
+      "rawBytes": 39461,
+      "rawSha256": "e00b91a2190a7a9de5fd7291dd7d40757f2727c898302de3d41755df11d848a2",
+      "gzipPath": "ottoman-vs-france/snapshots.jsonl.gz",
+      "gzipBytes": 6375,
+      "gzipSha256": "fb26d3d1bb332211133e26b2cb724a7f2f8e74cdee953572330f4ea61d53901a"
+    },
+    {
+      "rawPath": "ottoman-vs-highland/events.jsonl",
+      "rawBytes": 38762594,
+      "rawSha256": "d56103f72f6b66f5ddac3301912dc19fb841005107d044348ecd4d35ccba2053",
+      "gzipPath": "ottoman-vs-highland/events.jsonl.gz",
+      "gzipBytes": 2039026,
+      "gzipSha256": "709d380d866b5d78ce97f1b2ccefef0711853ba6306e79190f7e9a762aeac4e4"
+    },
+    {
+      "rawPath": "ottoman-vs-highland/snapshots.jsonl",
+      "rawBytes": 49129,
+      "rawSha256": "dec5090b0f1e20c128b88a664df30ebb60b2e1e877f12a9e310934036ffd2e5e",
+      "gzipPath": "ottoman-vs-highland/snapshots.jsonl.gz",
+      "gzipBytes": 7677,
+      "gzipSha256": "882143e6fe8c21b701f12edf88b044f9d92b6ad45d7c650c50a4549edcd6d41f"
+    },
+    {
+      "rawPath": "ottoman-vs-ottoman/events.jsonl",
+      "rawBytes": 125650844,
+      "rawSha256": "04407198aa3ece2b6c4258eea7cdb2edabb0778a25b897b68b338799373dca3d",
+      "gzipPath": "ottoman-vs-ottoman/events.jsonl.gz",
+      "gzipBytes": 9439544,
+      "gzipSha256": "0d40df166bad60fb2c2dc02d5e11cb8f055363a319522936c36813c6399d2bc6"
+    },
+    {
+      "rawPath": "ottoman-vs-ottoman/snapshots.jsonl",
+      "rawBytes": 97440,
+      "rawSha256": "7afbaa0cba1b3e0f1d98ce440a62e90d5d7575f27090175ce8925fd3a8d2dbf8",
+      "gzipPath": "ottoman-vs-ottoman/snapshots.jsonl.gz",
+      "gzipBytes": 14500,
+      "gzipSha256": "41a06297c6131de2925d4195e2f061c1e17093b6b54094f701adb366b5566b7e"
+    },
+    {
+      "rawPath": "ottoman-vs-river/events.jsonl",
+      "rawBytes": 64232691,
+      "rawSha256": "a7b7f0ad79ecf8aba016bdf03efcef3b093cdb17af434df2f9a178156b0e4017",
+      "gzipPath": "ottoman-vs-river/events.jsonl.gz",
+      "gzipBytes": 4316770,
+      "gzipSha256": "f722dbc93dba6ba7fe658cfb8ff231dccf7a5c066c358b7b0a7b7571a97e9110"
+    },
+    {
+      "rawPath": "ottoman-vs-river/snapshots.jsonl",
+      "rawBytes": 64504,
+      "rawSha256": "dc5a0e130eca42d5c4263007db1053f944f73fcf41ed6e34c08ea52d76e367c6",
+      "gzipPath": "ottoman-vs-river/snapshots.jsonl.gz",
+      "gzipBytes": 10845,
+      "gzipSha256": "178449c9b3af1387d708226720712434ebd6ea1cd13544e3951bcc5086b32ce8"
+    },
+    {
+      "rawPath": "ottoman-vs-wayfarer/events.jsonl",
+      "rawBytes": 47680232,
+      "rawSha256": "fe0b7fe71dfc28c1fc55f27bc43d835212abc56cce6ca6d8b181a2986cf35c10",
+      "gzipPath": "ottoman-vs-wayfarer/events.jsonl.gz",
+      "gzipBytes": 3053466,
+      "gzipSha256": "654a00ba4c33985e8b165dc18de38a45a2a5eea81512f2a327dd2174e75479b4"
+    },
+    {
+      "rawPath": "ottoman-vs-wayfarer/snapshots.jsonl",
+      "rawBytes": 52150,
+      "rawSha256": "d5cf13a0b91fba696389e665aa7e4f6bb607029a38bb8839a5bfc21083083aae",
+      "gzipPath": "ottoman-vs-wayfarer/snapshots.jsonl.gz",
+      "gzipBytes": 8432,
+      "gzipSha256": "3c3aa23e4f1291427cd68f9b477b312a9cf77af9d2faed67e8f6136aeec48828"
+    },
+    {
+      "rawPath": "river-vs-coast/events.jsonl",
+      "rawBytes": 28685405,
+      "rawSha256": "b3fe83298e311238da5f66eb63fa2e9f058d88d502c0a71c1586e953e16ce835",
+      "gzipPath": "river-vs-coast/events.jsonl.gz",
+      "gzipBytes": 1523698,
+      "gzipSha256": "223047a45aed15090cafb3435522837980d821988234465532acc739651a1398"
+    },
+    {
+      "rawPath": "river-vs-coast/snapshots.jsonl",
+      "rawBytes": 35929,
+      "rawSha256": "90da99cc17a807d588f1be1dbb40067de7c9bd6f68b80bd5c30002c332d7aaa0",
+      "gzipPath": "river-vs-coast/snapshots.jsonl.gz",
+      "gzipBytes": 5918,
+      "gzipSha256": "af26b5bb21642a3c51e68783a3ee6e0a03439b2cfe092b908b96c42e2aeff341"
+    },
+    {
+      "rawPath": "river-vs-france/events.jsonl",
+      "rawBytes": 131109952,
+      "rawSha256": "5ce526073aa53e1c874c6416cf4d16055b9da808524e9b19c6681b895a2e5ee4",
+      "gzipPath": "river-vs-france/events.jsonl.gz",
+      "gzipBytes": 9754267,
+      "gzipSha256": "8e336b90abf42dad3101f5d9783add57d9a5bc71d9c35109185bd3845593ebd9"
+    },
+    {
+      "rawPath": "river-vs-france/snapshots.jsonl",
+      "rawBytes": 108722,
+      "rawSha256": "34df9ce8dba3864a293e8cd5b22f4d96ab0ef2efc55102de8bcc6e22836080b4",
+      "gzipPath": "river-vs-france/snapshots.jsonl.gz",
+      "gzipBytes": 17117,
+      "gzipSha256": "0827d68824842f5c84eb053468142ab01b4a65a50b04a403c8ccf2c41785802a"
+    },
+    {
+      "rawPath": "river-vs-highland/events.jsonl",
+      "rawBytes": 33769276,
+      "rawSha256": "6a4396cccf27e66cf8242d4cae6db37b3da840b6a9b49d10c42592d5fa838fa7",
+      "gzipPath": "river-vs-highland/events.jsonl.gz",
+      "gzipBytes": 1697614,
+      "gzipSha256": "e771db9dd64185b9b7b45c135f1360a979aedbcf4f33df33c593ab3cb5c40f62"
+    },
+    {
+      "rawPath": "river-vs-highland/snapshots.jsonl",
+      "rawBytes": 43352,
+      "rawSha256": "6fa5f600d2d9aa3765ccb92d99aacd0d37e30c8804c7fcac65abc646d1ea8d45",
+      "gzipPath": "river-vs-highland/snapshots.jsonl.gz",
+      "gzipBytes": 7082,
+      "gzipSha256": "b8752dd9a4187556f6a6bb3f89daf3aac9f5eb3919877c00de185d3545a59392"
+    },
+    {
+      "rawPath": "river-vs-ottoman/events.jsonl",
+      "rawBytes": 37127116,
+      "rawSha256": "ab0489cfa91391240127c7fa9bf3bd3f823b29ff12f6f1048999daf384f10b9e",
+      "gzipPath": "river-vs-ottoman/events.jsonl.gz",
+      "gzipBytes": 2036550,
+      "gzipSha256": "f4f2c3e6b75be9fdffb46e9c5467771b91bfc49de596e73b7c585495a8fe826a"
+    },
+    {
+      "rawPath": "river-vs-ottoman/snapshots.jsonl",
+      "rawBytes": 44883,
+      "rawSha256": "bb208faeb201f3c6cc33c049b756b9e4a8c4807646c2d8d20374b2e1db0cc9db",
+      "gzipPath": "river-vs-ottoman/snapshots.jsonl.gz",
+      "gzipBytes": 7284,
+      "gzipSha256": "bdca12be4b3490400e40c33acbaa54d467527883ea931f4b74e716d49c43b196"
+    },
+    {
+      "rawPath": "river-vs-river/events.jsonl",
+      "rawBytes": 139043416,
+      "rawSha256": "4b77ac05d8fb671ad8b8fec7370265b68c35f94c3f5e2e8e986ba56210c03773",
+      "gzipPath": "river-vs-river/events.jsonl.gz",
+      "gzipBytes": 10446156,
+      "gzipSha256": "d79b44e41f82c554d28861a902f73cb7e180bc98d23210275cc4fa8706887db8"
+    },
+    {
+      "rawPath": "river-vs-river/snapshots.jsonl",
+      "rawBytes": 110417,
+      "rawSha256": "fc224aa1d357eb1eb6e78ec1c6cba40dc0a81889f25784ba090b70cd1b382cbf",
+      "gzipPath": "river-vs-river/snapshots.jsonl.gz",
+      "gzipBytes": 18142,
+      "gzipSha256": "447cd46dde71c9422ad1f7b2889d02e45f61841bd08c13f1dd9cc439e870b561"
+    },
+    {
+      "rawPath": "river-vs-wayfarer/events.jsonl",
+      "rawBytes": 92720580,
+      "rawSha256": "184c903100067c1ba9e69e9c01605d15bffc11135a822084896d95b6f83275ae",
+      "gzipPath": "river-vs-wayfarer/events.jsonl.gz",
+      "gzipBytes": 6528554,
+      "gzipSha256": "6d930a02a326c95b45163b0354d1447bac2d743c88ee5f373be9043df53b0bdc"
+    },
+    {
+      "rawPath": "river-vs-wayfarer/snapshots.jsonl",
+      "rawBytes": 86545,
+      "rawSha256": "adc17a6f6b72456f15ef9c1021409246dcf9fcc57c136a21a6cdf39098c0af53",
+      "gzipPath": "river-vs-wayfarer/snapshots.jsonl.gz",
+      "gzipBytes": 14085,
+      "gzipSha256": "82bdc8febd287e27e48188598faf49178b339b16880e10097fa2ad0f25e8ad9b"
+    },
+    {
+      "rawPath": "wayfarer-vs-coast/events.jsonl",
+      "rawBytes": 21918368,
+      "rawSha256": "e9b9529920f0b213ceaf656fa4fd93e87993ed32b4a2ab3dd8d352c0dc0fcf99",
+      "gzipPath": "wayfarer-vs-coast/events.jsonl.gz",
+      "gzipBytes": 1178037,
+      "gzipSha256": "558921a3accfc22d991677b814b3edfc71f4b3dfcefa447e6656738ffe18b713"
+    },
+    {
+      "rawPath": "wayfarer-vs-coast/snapshots.jsonl",
+      "rawBytes": 28541,
+      "rawSha256": "64d0293aea6b74096dbbca6d8d9691d67bba744edc6168547a3ee9fb3ce05b4d",
+      "gzipPath": "wayfarer-vs-coast/snapshots.jsonl.gz",
+      "gzipBytes": 4360,
+      "gzipSha256": "40456f58233eb516ea43830c099bd31be0fa35d98658175b9b3f31f26f529bf9"
+    },
+    {
+      "rawPath": "wayfarer-vs-france/events.jsonl",
+      "rawBytes": 62223577,
+      "rawSha256": "938cd007d6f9e2d421a60841ddc17f807d851e444746dae1bfb937ed6582ee72",
+      "gzipPath": "wayfarer-vs-france/events.jsonl.gz",
+      "gzipBytes": 4289398,
+      "gzipSha256": "3b226838e28eb8c3e36ac1a667924fe8292d50730bdd837b5be2a9491bf1af2a"
+    },
+    {
+      "rawPath": "wayfarer-vs-france/snapshots.jsonl",
+      "rawBytes": 66217,
+      "rawSha256": "2db89ec28fe38004768f0e5ed25103abad66afe3f78666bd2332797a8201ae5d",
+      "gzipPath": "wayfarer-vs-france/snapshots.jsonl.gz",
+      "gzipBytes": 10798,
+      "gzipSha256": "6a2cbfbd5628d4e3561b291495dd4789306e71228284c54152238a24eb3a321c"
+    },
+    {
+      "rawPath": "wayfarer-vs-highland/events.jsonl",
+      "rawBytes": 33213312,
+      "rawSha256": "6c9a33889e75556c8a171f191e2d8471bee84b233c33f21bb220cce3689c5a1b",
+      "gzipPath": "wayfarer-vs-highland/events.jsonl.gz",
+      "gzipBytes": 1718463,
+      "gzipSha256": "6a627cf1e4370ba340448a391d01aabd55c94c17730f7859f2f74d3293bcb952"
+    },
+    {
+      "rawPath": "wayfarer-vs-highland/snapshots.jsonl",
+      "rawBytes": 43448,
+      "rawSha256": "7f690c34d8c43157975e116c35b4ae36c5db22f2718311f9ff5d50474eb0223b",
+      "gzipPath": "wayfarer-vs-highland/snapshots.jsonl.gz",
+      "gzipBytes": 6841,
+      "gzipSha256": "6069965a1ac6fa2d4e756adab665daef6b4779ee8051975ac730fd242b834d32"
+    },
+    {
+      "rawPath": "wayfarer-vs-ottoman/events.jsonl",
+      "rawBytes": 35860979,
+      "rawSha256": "3b1bc680569ae7a5406c2dab6cfd9496c7d870086712da4ee58b4b3254ce68c6",
+      "gzipPath": "wayfarer-vs-ottoman/events.jsonl.gz",
+      "gzipBytes": 1948313,
+      "gzipSha256": "eca5ed5acf67b20c284cf3ca0c665dd1e2fca8c29b471bfb8209ce78585e6345"
+    },
+    {
+      "rawPath": "wayfarer-vs-ottoman/snapshots.jsonl",
+      "rawBytes": 45008,
+      "rawSha256": "72df957391cbb064fc6c5287435ddc3f36912d40ff911b51aefbacde96284889",
+      "gzipPath": "wayfarer-vs-ottoman/snapshots.jsonl.gz",
+      "gzipBytes": 7221,
+      "gzipSha256": "bb57a17540832f53402cf9aa8bb8ede1ee4df61614236f643242715fcb8e6be0"
+    },
+    {
+      "rawPath": "wayfarer-vs-river/events.jsonl",
+      "rawBytes": 53827550,
+      "rawSha256": "5ee33c0c17673054d16f2adf0cdff3698cf341d92b6e382ff9614b97d25698b2",
+      "gzipPath": "wayfarer-vs-river/events.jsonl.gz",
+      "gzipBytes": 3418132,
+      "gzipSha256": "9c8e0bbb3f47c1408495d09dd783f7cbd4379fac2fb607bab53d5fd5da9adacc"
+    },
+    {
+      "rawPath": "wayfarer-vs-river/snapshots.jsonl",
+      "rawBytes": 59961,
+      "rawSha256": "05a996acee02dc297e12839b3d69bce7257df2279c9dfa10e458e16b9ce3b2f9",
+      "gzipPath": "wayfarer-vs-river/snapshots.jsonl.gz",
+      "gzipBytes": 10212,
+      "gzipSha256": "a0795238f83373ca229b8820c1e384bbb912042aacaff53309e536ba426be3ca"
+    },
+    {
+      "rawPath": "wayfarer-vs-wayfarer/events.jsonl",
+      "rawBytes": 62917688,
+      "rawSha256": "ce926eda2e309a45fe5c6890b0d1057f3885a92a339d25702cf1913f390776cb",
+      "gzipPath": "wayfarer-vs-wayfarer/events.jsonl.gz",
+      "gzipBytes": 4265006,
+      "gzipSha256": "e9a2621335844ff7ec87a2480282a347148571b2bd2237a15f013603cf69b4d6"
+    },
+    {
+      "rawPath": "wayfarer-vs-wayfarer/snapshots.jsonl",
+      "rawBytes": 67504,
+      "rawSha256": "e8f16fe7c22d9af20cd92554cea8b2640de3363e60e0686e9ec1709df7d3fa73",
+      "gzipPath": "wayfarer-vs-wayfarer/snapshots.jsonl.gz",
+      "gzipBytes": 10644,
+      "gzipSha256": "1d617cd43069281fecfa70adfd191ea21794439d2be95b63562193d9a46704ec"
+    }
+  ]
+}
