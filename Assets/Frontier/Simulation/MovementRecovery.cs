@@ -14,7 +14,7 @@ namespace Frontier
         // This query does not mutate the shared building/navigation grid.
         private bool TryAllyRecovery(EntityState unit,Vector2 goal)
         {
-            recoveryDiscs.Clear();recoveryStart=unit.position;
+            var navigation=NavigationFor(unit);recoveryDiscs.Clear();recoveryStart=unit.position;
             foreach(var other in Nearby(unit.position,16))
             {
                 if(!StationaryAlly(unit,other))continue;
@@ -23,10 +23,10 @@ namespace Frontier
             }
             if(recoveryDiscs.Count==0)return false;
             if(recoveryFilter==null)recoveryFilter=RecoveryPointFree;
-            var route=Navigation.FindPath(unit.position,goal,unit.def.radius,recoveryFilter);
+            var route=navigation.FindPath(unit.position,goal,unit.def.radius,recoveryFilter);
             if(route.Count<2||(route[route.Count-1]-goal).sqrMagnitude>.0001f)return false;
             unit.path.Clear();unit.path.AddRange(route);unit.pathIndex=1;unit.pathGoal=goal;
-            unit.pathVersion=Navigation.Version;unit.pathRetryAt=Time+1.2f;unit.pathAvoidsAllies=true;
+            unit.pathVersion=navigation.Version;unit.pathRetryAt=Time+1.2f;unit.pathAvoidsAllies=true;
             return true;
         }
         private bool RecoveryPointFree(Vector2 point)

@@ -7,7 +7,7 @@ namespace Frontier
     public enum EntityKind { Unit, Building, Resource }
     public enum ResourceKind { None, Food, Wood, Coin }
     public enum DamageKind { Melee, Ranged, Siege }
-    [Flags] public enum Tags { None=0, Infantry=1, HeavyInfantry=2, LightInfantry=4, Cavalry=8, HeavyCavalry=16, LightCavalry=32, Artillery=64, Villager=128, Building=256, Explorer=512, Guardian=1024 }
+    [Flags] public enum Tags { None=0, Infantry=1, HeavyInfantry=2, LightInfantry=4, Cavalry=8, HeavyCavalry=16, LightCavalry=32, Artillery=64, Villager=128, Building=256, Explorer=512, Guardian=1024, Naval=2048 }
     public enum OrderKind { Move, Attack, AttackMove, Gather, Build, Repair, Garrison, Stop, Hold, Claim, Manufacture }
     public enum CommandKind { Order, Build, Train, CancelQueue, CancelBuilding, Research, AdvanceAge, Ship, Rally, Ungarrison, ToggleMode, Demolish, Resign, TradeMode, TradeRoute, Manufacture, ToggleShield, ToggleRecruitment }
     [Serializable] public struct Cost
@@ -23,7 +23,7 @@ namespace Frontier
     {
         public string id, name, description, producer, civilization="";
         public string[] excludedCivilizations=Array.Empty<string>();
-        public bool civilian,repairArtillery,shieldAbility;
+        public bool civilian,repairArtillery,shieldAbility,waterborne,fishingBoat;
         public float gatherMultiplier=1,meleeSplash;
         public EntityKind kind; public Tags tags; public Cost cost;
         public float hp=100, radius=.4f, width=1, depth=1, speed=4, vision=18;
@@ -132,7 +132,7 @@ namespace Frontier
         public WorkActivity work;
         public bool IsWorkingAt(float time)
         {
-            if(!Alive||(!Worker&&!def.repairArtillery)||garrisonedIn!=0||work.kind==WorkKind.None||Mathf.Abs(work.time-time)>.0001f||orders.Count==0)return false;
+            if(!Alive||(!Worker&&!def.repairArtillery&&!def.fishingBoat)||garrisonedIn!=0||work.kind==WorkKind.None||Mathf.Abs(work.time-time)>.0001f||orders.Count==0)return false;
             var order=orders.Peek();
             return order.target==work.target&&(work.kind==WorkKind.Gather&&order.kind==OrderKind.Gather
                 ||work.kind==WorkKind.Build&&order.kind==OrderKind.Build||work.kind==WorkKind.Repair&&order.kind==OrderKind.Repair||work.kind==WorkKind.Manufacture&&order.kind==OrderKind.Manufacture);

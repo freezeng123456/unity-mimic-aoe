@@ -257,7 +257,7 @@ namespace Frontier
                 var actor=game.World.Get(id);OrderKind kind=OrderKind.Move;
                 if(target!=null)
                 {
-                    if(resource){if(actor.Worker)kind=OrderKind.Gather;}
+                    if(resource){if(game.World.CanGather(actor,target))kind=OrderKind.Gather;}
                     else if(World.Treasure(target)){if((actor.def.tags&Tags.Explorer)!=0)kind=OrderKind.Claim;}
                     else if(target.owner==1||World.Guardian(target))kind=OrderKind.Attack;
                     else if(target.owner==0&&target.def.kind==EntityKind.Building)
@@ -270,9 +270,25 @@ namespace Frontier
         }
         public Vector2 GroundPoint(Vector2 screen)
         {
-            var ray=game.GameCamera.ScreenPointToRay(screen);var plane=new Plane(Vector3.up,Vector3.zero);if(plane.Raycast(ray,out float enter)){var p=ray.GetPoint(enter);return new Vector2(Mathf.Clamp(p.x,1,126),Mathf.Clamp(p.z,1,126));}return CameraFocus;
+            var ray=game.GameCamera.ScreenPointToRay(screen);var plane=new Plane(Vector3.up,Vector3.zero);
+            if(!plane.Raycast(ray,out float enter))return CameraFocus;
+            // Resolve actual elevated bridge surfaces before the base plane. A
+            // boat-only selection targets the water channel beneath the deck.
+            bool boatsOnly=Selected.Count>0&&Selected.TrueForAll(id=>game.World?.Get(id)?.def.waterborne==true);
+            if(game.World?.MapId==MapTopology.River&&!boatsOnly)
+            {
+                float[] edges={MapTopology.RiverMinX-MapTopology.BridgeRampLength,MapTopology.RiverMinX,MapTopology.RiverMaxX,MapTopology.RiverMaxX+MapTopology.BridgeRampLength};
+                foreach(float z in new[]{MapTopology.BridgeSouth,MapTopology.BridgeNorth})for(int i=0;i<3;i++)
+                {
+                    float x0=edges[i],x1=edges[i+1],y0=MapTopology.GroundHeight(new Vector2(x0,z)),y1=MapTopology.GroundHeight(new Vector2(x1,z));
+                    var bridgePlane=new Plane(new Vector3(x0,y0,z-MapTopology.BridgeHalfWidth),new Vector3(x0,y0,z+MapTopology.BridgeHalfWidth),new Vector3(x1,y1,z+MapTopology.BridgeHalfWidth));
+                    if(!bridgePlane.Raycast(ray,out float t)||t>=enter)continue;var hit=ray.GetPoint(t);
+                    if(hit.x>=x0-.001f&&hit.x<=x1+.001f&&Mathf.Abs(hit.z-z)<=MapTopology.BridgeHalfWidth)enter=t;
+                }
+            }
+            var p=ray.GetPoint(enter);return new Vector2(Mathf.Clamp(p.x,1,126),Mathf.Clamp(p.z,1,126));
         }
-        private bool OnScreen(EntityState entity){var p=game.GameCamera.WorldToViewportPoint(new Vector3(entity.position.x,1,entity.position.y));return p.z>0&&p.x>0&&p.x<1&&p.y>0&&p.y<1;}
+        private bool OnScreen(EntityState entity){var p=game.GameCamera.WorldToViewportPoint(new Vector3(entity.position.x,game.World.SurfaceHeight(entity.position,entity.def.waterborne)+1,entity.position.y));return p.z>0&&p.x>0&&p.x<1&&p.y>0&&p.y<1;}
         private EntityState Pick(Vector2 screen,bool command=false,bool shelter=false,bool repair=false)
         {
             EntityState best=null;float score=float.MaxValue;int bestRank=int.MaxValue;var point=GroundPoint(screen);var ray=game.GameCamera.ScreenPointToRay(screen);
@@ -281,7 +297,7 @@ namespace Frontier
             foreach(var e in game.World.Entities)
             {
                 if(!game.World.IsVisible(0,e)||e.def.id=="trade_socket"&&game.World.TradingPostAt(e.id)!=null)continue;
-                var projected=game.GameCamera.WorldToScreenPoint(new Vector3(e.position.x,e.def.kind==EntityKind.Unit?1:0,e.position.y));if(projected.z<0)continue;
+                var projected=game.GameCamera.WorldToScreenPoint(new Vector3(e.position.x,game.World.SurfaceHeight(e.position,e.def.waterborne)+(e.def.kind==EntityKind.Unit?1:0),e.position.y));if(projected.z<0)continue;
                 float d=Vector2.Distance(screen,projected);float threshold=e.def.kind==EntityKind.Unit?Mathf.Max(13,Screen.height/game.GameCamera.orthographicSize*.35f):20;
                 bool visualHit=false;
                 if(e.def.kind!=EntityKind.Unit&&game.View.TryGetPickBounds(e.id,out var bounds))visualHit=EntityPickGeometry.RayHits(bounds,ray);
@@ -291,7 +307,7 @@ namespace Frontier
                 if(command)
                 {
                     bool enemy=e.owner==1||World.Guardian(e);
-                    bool resource=workers&&e.def.resource!=ResourceKind.None&&(e.def.kind==EntityKind.Resource||e.owner==0);
+                    bool resource=Selected.Exists(id=>game.World.CanGather(game.World.Get(id),e));
                     bool treasure=explorers&&World.Treasure(e);
                     bool building=e.owner==0&&e.def.kind==EntityKind.Building&&(e.def.garrison>0||workers&&(!e.Complete||e.hp<game.World.MaxHp(e)-1||e.def.id=="workshop"));
                     rank=enemy?0:resource||treasure||building?1:e.owner==0&&e.def.kind==EntityKind.Unit?3:2;
@@ -309,7 +325,7 @@ namespace Frontier
         {
             if(!append)Selected.Clear();var rect=Rect.MinMaxRect(Mathf.Min(a.x,b.x),Mathf.Min(a.y,b.y),Mathf.Max(a.x,b.x),Mathf.Max(a.y,b.y));var found=new List<EntityState>();
             foreach(var e in game.World.Entities)if(e.owner==0&&game.World.IsVisible(0,e))
-            {var p=game.GameCamera.WorldToScreenPoint(new Vector3(e.position.x,1,e.position.y));if(p.z>0&&rect.Contains(p))found.Add(e);}
+            {var p=game.GameCamera.WorldToScreenPoint(new Vector3(e.position.x,game.World.SurfaceHeight(e.position,e.def.waterborne)+1,e.position.y));if(p.z>0&&rect.Contains(p))found.Add(e);}
             bool units=found.Exists(e=>e.def.kind==EntityKind.Unit);foreach(var e in found)if((!units||e.def.kind==EntityKind.Unit)&&!Selected.Contains(e.id))Selected.Add(e.id);
         }
     }

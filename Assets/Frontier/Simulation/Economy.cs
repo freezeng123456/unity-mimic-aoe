@@ -41,7 +41,10 @@ namespace Frontier
             if(!CanAfford(player,EntityCost(player,d)))return "Need "+EntityCost(player,d);
             if(id=="trade_post"&&(SocketAt(point)==null||TradingPostAt(SocketAt(point).id)!=null))return "Place on an empty trade route site";
             if(Fog.At(player,point)!=VisibilityState.Visible)return "Build inside current vision";
-            if(!Navigation.IsAreaFree(point,d.width+1,d.depth+1))return "Blocked footprint or map boundary";
+            if(BridgeFootprintOverlaps(point,d.width,d.depth))return "Keep bridge decks and approaches clear";
+            if(id=="dock"){var shore=DockPlacementReason(point);if(shore!="")return shore;}
+            float margin=id=="dock"?0:1;
+            if(!Navigation.IsAreaFree(point,d.width+margin,d.depth+margin))return "Blocked footprint or map boundary";
             int banks=0;
             foreach(var e in Entities)
             {
@@ -77,6 +80,7 @@ namespace Frontier
                 if(d.producer!=b.def.id)return "Requires "+d.producer;
                 if(p.age<UnitAge(player,d))return "Requires age "+UnitAge(player,d);
                 if(!EntityAvailable(player,d))return "Civilization requirement";
+                if(d.waterborne&&MapId!="river")return "River vessels require a river map";
                 if((d.tags&Tags.Villager)!=0&&AutoRecruitSeconds(player)>0)return "Settlers are recruited automatically by town centers";
                 count=Mathf.Clamp(count,1,d.batch);
                 if(UnitLimitReason(player,d,count)!="")return UnitLimitReason(player,d,count);
@@ -106,7 +110,7 @@ namespace Frontier
             {
                 c.point=BuildPoint(c.player,c.item,c.point);
                 var reason=CanBuild(c.player,c.item,c.point);if(reason!="")return CommandResult.Fail(reason);
-                var workers=new List<EntityState>();foreach(int id in c.actors){var w=Get(id);if(w!=null&&w.Alive&&w.owner==c.player&&w.Worker&&w.garrisonedIn==0)workers.Add(w);}
+                var workers=new List<EntityState>();foreach(int id in c.actors){var w=Get(id);if(w!=null&&w.Alive&&w.owner==c.player&&w.Worker&&!w.def.waterborne&&w.garrisonedIn==0)workers.Add(w);}
                 if(workers.Count==0)return CommandResult.Fail("Select villagers to construct");
                 var d=Rules.Entity(c.item);var cost=EntityCost(c.player,d);Pay(c.player,cost,workers[0].id,"Foundation "+d.name);
                 var placed=Spawn(c.item,c.player,c.point,false);placed.paidConstruction=cost;ApplyPrefab(placed);
@@ -174,7 +178,7 @@ namespace Frontier
             for(int i=0;i<originalCount;i++)
             {
                 var e=Entities[i];if(!e.Alive||e.garrisonedIn!=0)continue;
-                if((e.Worker||e.def.repairArtillery)&&e.orders.Count>0)
+                if((e.Worker||e.def.repairArtillery||e.def.fishingBoat)&&e.orders.Count>0)
                 {
                     var o=e.orders.Peek();var target=Get(o.target);
                     if(o.kind==OrderKind.Gather)Gather(e,o,dt);
@@ -219,13 +223,14 @@ namespace Frontier
             {
                 FlushGather(worker.id);worker.orders.Dequeue();worker.status="Resource depleted";
                 EntityState next=null;float best=18*18;
-                foreach(var candidate in Entities)if(candidate.def.resource==(r?.def.resource??ResourceKind.None)&&GatherableResource(worker.owner,candidate))
+                foreach(var candidate in Entities)if(candidate.def.resource==(r?.def.resource??ResourceKind.None)&&GatherableResource(worker.owner,candidate)&&CanGather(worker,candidate))
                 {float dist=(candidate.position-worker.position).sqrMagnitude;if(dist<best){best=dist;next=candidate;}}
                 if(worker.orders.Count==0&&next!=null)worker.orders.Enqueue(new UnitOrder(OrderKind.Gather,next.position,next.id));return;
             }
+            if(!GatheringDomainAllowed(worker,r)){FlushGather(worker.id);worker.orders.Dequeue();worker.status="Resource unavailable";return;}
             if(!r.Complete){worker.status="Waiting for completion";return;}
             if(EdgeDistance(worker,r)>1.5f)return;
-            int atPoint=0;foreach(var e in Nearby(r.position,3.2f))if(e.Worker&&e.orders.Count>0&&e.orders.Peek().kind==OrderKind.Gather&&e.orders.Peek().target==r.id&&e.id<worker.id)atPoint++;
+            int atPoint=0;foreach(var e in Nearby(r.position,3.2f))if((e.Worker||e.def.fishingBoat)&&e.orders.Count>0&&e.orders.Peek().kind==OrderKind.Gather&&e.orders.Peek().target==r.id&&e.id<worker.id)atPoint++;
             if(atPoint>=8){worker.status="Waiting for a work position";return;}
             float amount=GatherRate(worker,r)*dt;if(!Sustainable(r))amount=Mathf.Min(r.remaining,amount);
             if(amount<=0)return;
@@ -289,7 +294,7 @@ namespace Frontier
             var owner=P(b.owner);
             if(j.kind=="Gift"&&UnitLimitReason(b.owner,d,j.count)!=""){b.status=UnitLimitReason(b.owner,d,j.count);return;}
             if(j.kind=="Gift"&&owner.usedPopulation+owner.reservedPopulation+d.population*j.count>Mathf.Min(owner.populationCap,Rules.populationLimit)){b.status="Reward waiting for housing";return;}
-            if(!FindSpawnPositions(b,j.count,d.radius,out var points)){b.status="Production exit blocked";return;}
+            if(!FindSpawnPositions(b,j.count,d,out var points)){b.status="Production exit blocked";return;}
             b.queue.RemoveAt(0);owner.reservedPopulation=Mathf.Max(0,owner.reservedPopulation-j.population);
             var produced=new List<EntityState>();
             foreach(var point in points)

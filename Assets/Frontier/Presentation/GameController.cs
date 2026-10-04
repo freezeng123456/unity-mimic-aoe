@@ -26,6 +26,8 @@ namespace Frontier
         public string PlayerCivilization="coast",OpponentCivilization="river";
         public int AgeLimit=5,MatchSeed=314159;
         public string OpponentDifficulty="standard";
+        public string SelectedMap=MapTopology.Frontier;
+        public string MapName=>SelectedMap==MapTopology.River?"RIVER CROSSINGS":"THE TWO OUTCROPS";
         public string DifficultyReason => AiDifficultyProfile.InvalidReason(Rules.Difficulty(OpponentDifficulty));
         public void CycleDifficulty()
         {
@@ -87,6 +89,7 @@ namespace Frontier
         {
             var args=Environment.GetCommandLineArgs();
             string Arg(string key){int i=Array.IndexOf(args,key);return i>=0&&i+1<args.Length?args[i+1]:null;}
+            if(Arg("-frontierMap")==MapTopology.River)SelectedMap=MapTopology.River;
             if(Rules.Civ(Arg("-frontierPlayerCiv"))!=null)PlayerCivilization=Arg("-frontierPlayerCiv");
             if(Rules.Civ(Arg("-frontierOpponentCiv"))!=null)OpponentCivilization=Arg("-frontierOpponentCiv");
             if(int.TryParse(Arg("-frontierMaxAge"),out int ages))AgeLimit=Mathf.Clamp(ages,1,Rules.ages.Length);
@@ -97,7 +100,7 @@ namespace Frontier
             {
                 float duration=25;
                 if(float.TryParse(Arg("-frontierBenchmarkSeconds"),System.Globalization.NumberStyles.Float,System.Globalization.CultureInfo.InvariantCulture,out float seconds)&&!float.IsNaN(seconds)&&!float.IsInfinity(seconds))duration=seconds;
-                BenchmarkMode=true;StartMatch();gameObject.AddComponent<RuntimeBenchmark>().Initialize(this,count,duration);
+                BenchmarkMode=true;SelectedMap=MapTopology.Frontier;StartMatch();gameObject.AddComponent<RuntimeBenchmark>().Initialize(this,count,duration);
             }
         }
         public void StartMatch()
@@ -109,7 +112,7 @@ namespace Frontier
             // creates its fixture after StartMatch, so its initial mode is retained.
             if(GetComponent<RuntimeBenchmark>()!=null)ClearBenchmark();
             PausedForFocusLoss=false;audioCursor=0;frameTimes.Clear();nextTelemetry=0;Audio.ResetMatch();
-            World=new World(Rules,MatchSeed,PlayerCivilization,OpponentCivilization,AgeLimit);
+            World=new World(Rules,MatchSeed,PlayerCivilization,OpponentCivilization,AgeLimit,SelectedMap);
             MatchId=Guid.NewGuid().ToString("N");
             SetDeck(0,DeckPreset); SetDeck(1,"military");
             Simulation=new MatchSimulation(World,BenchmarkMode?Array.Empty<int>():Autoplay?new[]{0,1}:new[]{1},OpponentDifficulty);
@@ -204,7 +207,7 @@ namespace Frontier
             lastReport=Path.Combine(dir,stem+".json");
             var samples=new List<float>(frameTimes);samples.Sort();
             float mean=0;foreach(float f in samples)mean+=f;if(samples.Count>0)mean/=samples.Count;
-            var report=new MatchReport{aiDifficulty=Simulation?.Difficulty.Id,aiDecisionSeconds=Simulation?.Difficulty.DecisionSeconds??0,aiArmySeconds=Simulation?.Difficulty.ArmySeconds??0,matchId=MatchId,eventSchemaVersion=SimEvent.CurrentSchemaVersion,appVersion=Application.version,buildGuid=Application.buildGUID,maxAge=World.MaxAge,version=Application.unityVersion,platform=Application.platform.ToString(),device=SystemInfo.processorType,gpu=SystemInfo.graphicsDeviceName,resolution=Screen.width+"x"+Screen.height,reason=reason,seed=World.Seed,time=World.Time,winner=World.Winner,autoplay=Autoplay,simulationSpeed=Autoplay?SimulationSpeed:1,meanFrameMs=mean,p95FrameMs=samples.Count>0?samples[(int)((samples.Count-1)*.95f)]:0,managedBytes=GC.GetTotalMemory(false),eventCount=World.Events.Count,players=new PlayerReport[2]};
+            var report=new MatchReport{mapId=World.MapId,aiDifficulty=Simulation?.Difficulty.Id,aiDecisionSeconds=Simulation?.Difficulty.DecisionSeconds??0,aiArmySeconds=Simulation?.Difficulty.ArmySeconds??0,matchId=MatchId,eventSchemaVersion=SimEvent.CurrentSchemaVersion,appVersion=Application.version,buildGuid=Application.buildGUID,maxAge=World.MaxAge,version=Application.unityVersion,platform=Application.platform.ToString(),device=SystemInfo.processorType,gpu=SystemInfo.graphicsDeviceName,resolution=Screen.width+"x"+Screen.height,reason=reason,seed=World.Seed,time=World.Time,winner=World.Winner,autoplay=Autoplay,simulationSpeed=Autoplay?SimulationSpeed:1,meanFrameMs=mean,p95FrameMs=samples.Count>0?samples[(int)((samples.Count-1)*.95f)]:0,managedBytes=GC.GetTotalMemory(false),eventCount=World.Events.Count,players=new PlayerReport[2]};
             for(int i=0;i<2;i++){var p=World.Players[i];report.players[i]=new PlayerReport{civilization=p.civilization,age=p.age,gathered=p.gathered,spent=p.spent,kills=p.kills,losses=p.losses,shipments=p.shipsSent,population=p.usedPopulation,passiveIncome=p.passiveIncome,tradeIncome=p.tradeIncome,treasures=p.treasuresClaimed,guardians=p.guardiansDefeated,resources=p.resources,refunded=p.refunded,ageHistory=p.ageHistory.ToArray()};}
             File.WriteAllText(lastReport,JsonUtility.ToJson(report,true));
             using(var writer=new StreamWriter(Path.Combine(dir,stem+"-events.jsonl")))foreach(var ev in World.Events)writer.WriteLine(JsonUtility.ToJson(ev));
@@ -215,7 +218,7 @@ namespace Frontier
             Captures.Request();
         }
         private void OnApplicationQuit(){SaveReport("quit");}
-        [Serializable]private class MatchReport {public string aiDifficulty;public float aiDecisionSeconds,aiArmySeconds;public int eventSchemaVersion;public string matchId,appVersion,buildGuid,version,platform,device,gpu,resolution,reason;public int seed,winner,eventCount,maxAge;public float time,meanFrameMs,p95FrameMs,simulationSpeed;public bool autoplay;public long managedBytes;public PlayerReport[] players;}
+        [Serializable]private class MatchReport {public string mapId,aiDifficulty;public float aiDecisionSeconds,aiArmySeconds;public int eventSchemaVersion;public string matchId,appVersion,buildGuid,version,platform,device,gpu,resolution,reason;public int seed,winner,eventCount,maxAge;public float time,meanFrameMs,p95FrameMs,simulationSpeed;public bool autoplay;public long managedBytes;public PlayerReport[] players;}
         [Serializable]private class PlayerReport {public string civilization;public int age,kills,losses,shipments,population,treasures,guardians;public Cost gathered,spent,passiveIncome,tradeIncome,resources,refunded;public string[] ageHistory;}
     }
 }

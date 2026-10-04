@@ -126,16 +126,18 @@ namespace Frontier
             var difficulty=game.Rules.Difficulty(game.OpponentDifficulty);
             Button(configuration,"AI DIFFICULTY: "+(difficulty?.name?.ToUpperInvariant()??"INVALID"),new Rect(28,250,454,48),()=>{game.CycleDifficulty();ShowMenu();},difficulty?.description??game.DifficultyReason);
             Label(configuration,difficulty?.description??game.DifficultyReason,new Rect(28,308,450,55),17,muted);
-            var civilizationSummary=Label(configuration,"THE TWO OUTCROPS  ·  SEED "+game.MatchSeed+"\n"+game.Rules.Civ(game.PlayerCivilization).description,new Rect(28,376,450,104),17,muted);
+            Button(configuration,"MAP: "+game.MapName,new Rect(28,367,454,44),()=>{game.SelectedMap=game.SelectedMap==MapTopology.River?MapTopology.Frontier:MapTopology.River;ShowMenu();},"River Crossings adds two bridges, shoreline docks, fishing boats and gunboats.");
+            var civilizationSummary=Label(configuration,"SEED "+game.MatchSeed+" · "+game.Rules.Civ(game.PlayerCivilization).description,new Rect(28,418,450,96),17,muted);
+            civilizationSummary.gameObject.name="Civilization summary";
             civilizationSummary.resizeTextForBestFit=true;civilizationSummary.resizeTextMinSize=14;civilizationSummary.resizeTextMaxSize=17;
             civilizationSummary.horizontalOverflow=HorizontalWrapMode.Wrap;civilizationSummary.verticalOverflow=VerticalWrapMode.Truncate;
-            Button(configuration,"PRESET: "+game.DeckPreset.ToUpperInvariant(),new Rect(28,496,220,48),()=>{string[] presets={"economy","military","technology"};game.DeckPreset=presets[(Array.IndexOf(presets,game.DeckPreset)+1)%presets.Length];game.ResetDeckPreset();ShowMenu();},"Economy, military and technology plans use different cards. Edit any preset before play.");
-            Button(configuration,"EDIT DECK  "+game.SelectedDeck.Count+"/"+game.Rules.deckCapacity,new Rect(258,496,224,48),()=>ShowDeckEditor(0));
+            Button(configuration,"PRESET: "+game.DeckPreset.ToUpperInvariant(),new Rect(28,520,220,48),()=>{string[] presets={"economy","military","technology"};game.DeckPreset=presets[(Array.IndexOf(presets,game.DeckPreset)+1)%presets.Length];game.ResetDeckPreset();ShowMenu();},"Economy, military and technology plans use different cards. Edit any preset before play.");
+            Button(configuration,"EDIT DECK  "+game.SelectedDeck.Count+"/"+game.Rules.deckCapacity,new Rect(258,520,224,48),()=>ShowDeckEditor(0));
             string deckReason=DeckLibrary.Validate(game.Rules,game.PlayerCivilization,game.SelectedDeck);if(deckReason=="")deckReason=game.DifficultyReason;
-            Button(configuration,"BEGIN SKIRMISH",new Rect(28,567,454,64),()=>{game.Autoplay=false;game.StartMatch();},deckReason,deckReason=="");
+            Button(configuration,"BEGIN SKIRMISH",new Rect(28,584,454,58),()=>{game.Autoplay=false;game.StartMatch();},deckReason,deckReason=="");
             Button(configuration,"QUIT",new Rect(28,654,454,44),()=>Application.Quit());
-            Label(menuPanel,"FIVE-ERA LAND GAME",new Rect(100,665,840,35),23,gold);
-            Label(menuPanel,game.Rules.civs.Length+" civilizations · British · Dutch · French · Ottomans\nManors · Banks · Coureurs · Free settlers · Trade · Workshops\nIndependent project. Not affiliated with Age of Empires or its publishers.",new Rect(100,715,820,110),18,muted);
+            Label(menuPanel,"FIVE-ERA FRONTIER",new Rect(100,665,840,35),23,gold);
+            Label(menuPanel,game.Rules.civs.Length+" civilizations · British · Dutch · French · Ottomans\nManors · Banks · Trade · Workshops · Rivers · Docks\nIndependent project. Not affiliated with Age of Empires or its publishers.",new Rect(100,715,820,110),18,muted);
         }
         private void ShowCivilizations(bool opponent,int page)
         {
@@ -349,7 +351,7 @@ namespace Frontier
             game.Controls.CancelTargetMode();
             if(game.Controls.FirstSelected==null||!game.Controls.Selected.Exists(id=>game.World.Get(id)?.Worker==true)){game.Notify("Select settlers before opening the building menu");return;}
             var box=Modal("CONSTRUCTION",640);int n=0;var p=game.World.Players[0];
-            foreach(var d in game.Rules.entities)if(d.kind==EntityKind.Building&&game.World.EntityAvailable(0,d))
+            foreach(var d in game.Rules.entities)if(d.kind==EntityKind.Building&&game.World.EntityAvailable(0,d)&&(d.id!="dock"||game.World.MapId==MapTopology.River))
             {var def=d;int i=n++;int age=game.World.UnitAge(0,d);Button(box,d.name+"  ·  "+ShortCost(game.World.EntityCost(0,d))+"\nAge "+age+"  ·  "+d.time+"s",new Rect(25+(i%3)*275,90+(i/3)*133,265,117),()=>{CloseModal();game.Controls.BeginBuild(def.id);},d.description,p.age>=age);}
         }
         public void ShowGroups()

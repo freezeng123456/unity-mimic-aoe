@@ -19,7 +19,7 @@ namespace Frontier
         public Texture2D Minimap { get; private set; }
         private Color32[] fogPixels=new Color32[128*128],mapPixels=new Color32[128*128];
         private float nextFog;
-        private Material fogMaterial,lineMaterial;
+        private Material fogMaterial,bridgeFogMaterial,lineMaterial;
         private LineRenderer preview;
         private List<GameObject> rocks=new List<GameObject>();
         private readonly List<Mesh> outcropMeshes=new List<Mesh>();
@@ -67,6 +67,9 @@ namespace Frontier
             }
             foreach(string key in oldBuildingKeys)pool.Remove(key);
             ClearOutcrops();
+            if(riverTerrain!=null)Destroy(riverTerrain.gameObject);
+            riverTerrain=WaterPresentation.BuildTerrain(terrain,game.World);
+            AddBridgeFog();
             foreach(var line in projectiles)line.gameObject.SetActive(false);
             foreach(var line in rallyFlags)line.gameObject.SetActive(false);
             foreach(var p in pulses)Destroy(p.line.gameObject);pulses.Clear();preview.gameObject.SetActive(false);nextFog=0;
@@ -83,6 +86,7 @@ namespace Frontier
                 rocks.Add(rock);
             }
         }
+        private Transform riverTerrain;
         private void ClearOutcrops()
         {
             foreach(var mesh in outcropMeshes)if(mesh!=null)Destroy(mesh);outcropMeshes.Clear();
@@ -92,21 +96,51 @@ namespace Frontier
         {
             ClearOutcrops();
             if(fogTexture!=null)Destroy(fogTexture);if(Minimap!=null)Destroy(Minimap);
-            if(fogMaterial!=null)Destroy(fogMaterial);if(lineMaterial!=null)Destroy(lineMaterial);
+            if(fogMaterial!=null)Destroy(fogMaterial);if(bridgeFogMaterial!=null)Destroy(bridgeFogMaterial);if(lineMaterial!=null)Destroy(lineMaterial);
+        }
+        private void AddBridgeFog()
+        {
+            if(riverTerrain==null)return;
+            if(bridgeFogMaterial==null)
+            {
+                bridgeFogMaterial=new Material(fogMaterial){name="World-space bridge visibility"};
+                bridgeFogMaterial.SetFloat("_WorldSpace",1);
+            }
+            foreach(Transform crossing in riverTerrain)
+            {
+                if(!crossing.name.StartsWith("Raised crossing"))continue;
+                foreach(var source in crossing.GetComponentsInChildren<MeshFilter>())
+                {
+                    var overlay=new GameObject("Bridge visibility overlay");overlay.transform.SetParent(source.transform,false);
+                    // Share geometry with its owning bridge; the overlay never owns or destroys the mesh.
+                    overlay.AddComponent<MeshFilter>().sharedMesh=source.sharedMesh;
+                    var renderer=overlay.AddComponent<MeshRenderer>();var materials=new Material[source.sharedMesh.subMeshCount];
+                    for(int i=0;i<materials.Length;i++)materials[i]=bridgeFogMaterial;renderer.sharedMaterials=materials;
+                    renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;renderer.receiveShadows=false;
+                }
+            }
         }
         private void CreateTradeViews()
         {
-            var route=game.World.Rules.landmarks.route;var vertices=new List<Vector3>();var indices=new List<int>();
+            var route=game.World.TradeRoute;var vertices=new List<Vector3>();var indices=new List<int>();
             for(int i=1;i<route.Length;i++)
             {
-                var a=route[i-1];var b=route[i];var direction=(b-a).normalized;var side=new Vector2(-direction.y,direction.x)*.6f;int n=vertices.Count;
-                foreach(var point in new[]{a-side,b-side,b+side,a+side})vertices.Add(new Vector3(point.x,.025f,point.y));
-                indices.AddRange(new[]{n,n+2,n+1,n,n+3,n+2});
+                var start=route[i-1];var end=route[i];var direction=(end-start).normalized;var side=new Vector2(-direction.y,direction.x)*.6f;
+                int pieces=game.World.MapId==MapTopology.River?Mathf.CeilToInt(Vector2.Distance(start,end)*2):1;
+                for(int piece=0;piece<pieces;piece++)
+                {
+                    var a=Vector2.Lerp(start,end,piece/(float)pieces);var b=Vector2.Lerp(start,end,(piece+1)/(float)pieces);
+                    // Timber decks and ramps already provide the road surface.
+                    if(game.World.IsBridgeApproach((a+b)*.5f))continue;
+                    int n=vertices.Count;
+                    foreach(var point in new[]{a-side,b-side,b+side,a+side})vertices.Add(new Vector3(point.x,game.World.SurfaceHeight(point)+.025f,point.y));
+                    indices.AddRange(new[]{n,n+2,n+1,n,n+3,n+2});
+                }
             }
             tradeRoad=ProceduralArt.MeshPart(terrain,"Caravan road",vertices.ToArray(),indices.ToArray(),new Color(.52f,.43f,.27f)).transform;
             var roadMesh=tradeRoad.GetComponent<MeshFilter>().sharedMesh;roadMesh.uv=vertices.ConvertAll(v=>new Vector2(v.x,v.z)).ToArray();roadMesh.RecalculateTangents();
             tradeRoad.GetComponent<Renderer>().sharedMaterial=LandscapePresentation.RoadMaterial();
-            caravan=new GameObject("Neutral caravan").transform;caravan.SetParent(terrain,false);var start=game.World.CaravanPosition;caravan.position=new Vector3(start.x,0,start.y);
+            caravan=new GameObject("Neutral caravan").transform;caravan.SetParent(terrain,false);var caravanStart=game.World.CaravanPosition;caravan.position=new Vector3(caravanStart.x,0,caravanStart.y);
             LandscapePresentation.BuildNeutralCaravan(caravan);
             caravan.gameObject.SetActive(false);
         }
@@ -133,18 +167,21 @@ namespace Frontier
                 var bar=ProceduralArt.Part(health,"Health remaining",PrimitiveType.Cube,new Vector3(0,0,-.04f),new Vector3(1.55f,.11f,.045f),new Color(.3f,.74f,.34f)).transform;
                 v=new EntityVisual{key=key,root=root,model=model,circle=circle,health=health,bar=bar,rig=model.GetComponent<UnitRig>(),architecture=architecture};
             }
-            v.root.gameObject.SetActive(true);v.root.name="Entity "+entity.id;v.root.position=new Vector3(entity.position.x,0,entity.position.y);v.model.localScale=Vector3.one;v.model.localPosition=Vector3.zero;
-            v.firedAt=v.hurtAt=v.deathAt=-1000;v.pickReady=false;v.pickRootPosition=v.root.position;v.facing=entity.facing.sqrMagnitude>.001f?Quaternion.LookRotation(new Vector3(entity.facing.x,0,entity.facing.y)):Quaternion.identity;v.model.rotation=v.facing;v.rig?.RestoreInitialPose();return v;
+            v.root.gameObject.SetActive(true);v.root.name="Entity "+entity.id;v.root.position=EntityPosition(entity);v.model.localScale=Vector3.one;v.model.localPosition=Vector3.zero;
+            v.firedAt=v.hurtAt=v.deathAt=-1000;v.pickReady=false;v.pickRootPosition=v.root.position;v.facing=entity.facing.sqrMagnitude>.001f?Quaternion.LookRotation(new Vector3(entity.facing.x,0,entity.facing.y)):Quaternion.identity;if(entity.def.id=="dock"){var direction=game.World.DockWaterDirection(entity.position);v.facing=Quaternion.Euler(0,-Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg,0);}
+            v.model.rotation=v.facing;v.rig?.RestoreInitialPose();return v;
         }
         private string VisualKey(EntityState entity)
         {
             string key=entity.def.id+"_"+entity.owner;
-            if(entity.def.kind!=EntityKind.Building)return key;
+            if(entity.def.kind!=EntityKind.Building||entity.def.id=="dock")return key;
             var player=entity.owner>=0&&entity.owner<game.World.Players.Length?game.World.Players[entity.owner]:null;
             return key+"_"+DetailedArchitecture.CivilizationFor(entity,player?.civilization)+"_"+(player?.age??1);
         }
+        private Vector3 EntityPosition(EntityState entity)=>new Vector3(entity.position.x,game.World.SurfaceHeight(entity.position,entity.def.waterborne),entity.position.y);
         private bool MatchesBuildingVariant(EntityVisual visual,EntityState entity)
         {
+            if(entity.def.id=="dock")return visual.architecture!=null;
             var player=entity.owner>=0&&entity.owner<game.World.Players.Length?game.World.Players[entity.owner]:null;
             return visual.architecture!=null&&visual.architecture.Age==(player?.age??1)
                 &&visual.architecture.Civilization==DetailedArchitecture.CivilizationFor(entity,player?.civilization);
@@ -167,8 +204,8 @@ namespace Frontier
                 // Refresh only visible models. Age changes do not reveal a hidden opponent.
                 if(entity.def.kind==EntityKind.Building&&!MatchesBuildingVariant(visual,entity))
                 {visual.root.gameObject.SetActive(false);Destroy(visual.root.gameObject);visual=Acquire(entity);visuals[entity.id]=visual;}
-                visual.root.gameObject.SetActive(true);if(!world.Paused)visual.root.position=Vector3.Lerp(visual.root.position,new Vector3(entity.position.x,0,entity.position.y),.55f);
-                if((visual.root.position-new Vector3(entity.position.x,0,entity.position.y)).sqrMagnitude>16)visual.root.position=new Vector3(entity.position.x,0,entity.position.y);
+                visual.root.gameObject.SetActive(true);if(!world.Paused)visual.root.position=Vector3.Lerp(visual.root.position,EntityPosition(entity),.55f);
+                if((visual.root.position-EntityPosition(entity)).sqrMagnitude>16)visual.root.position=EntityPosition(entity);
                 if(!world.Paused&&world.Time-visual.firedAt>=.22f&&entity.def.kind==EntityKind.Unit&&entity.facing.sqrMagnitude>.01f)visual.facing=Quaternion.Slerp(visual.facing,Quaternion.LookRotation(new Vector3(entity.facing.x,0,entity.facing.y)),.35f);
                 visual.model.localScale=Vector3.one;
                 if(visual.architecture!=null&&visual.constructionStage!=visual.architecture.ConstructionStage(entity.construction))
@@ -190,9 +227,9 @@ namespace Frontier
             }
             if(Time.unscaledTime>=nextFog){nextFog=Time.unscaledTime+.35f;UpdateFog(world);}
             UpdateProjectiles(world);UpdateRallyFlags(world);combatFeedback.Tick();UpdatePreview();
-            if(caravan!=null){var p=world.CaravanPosition;caravan.gameObject.SetActive(world.Fog.At(0,p)==VisibilityState.Visible);var delta=new Vector3(p.x,0,p.y)-caravan.position;if(delta.sqrMagnitude>.00001f)caravan.rotation=Quaternion.LookRotation(delta);caravan.position=new Vector3(p.x,0,p.y);}
+            if(caravan!=null){var p=world.CaravanPosition;caravan.gameObject.SetActive(world.Fog.At(0,p)==VisibilityState.Visible);var delta=new Vector3(p.x,world.SurfaceHeight(p),p.y)-caravan.position;if(delta.sqrMagnitude>.00001f)caravan.rotation=Quaternion.LookRotation(delta);caravan.position=new Vector3(p.x,world.SurfaceHeight(p),p.y);}
             for(int i=pulses.Count-1;i>=0;i--)
-            {var pulse=pulses[i];float elapsed=Time.unscaledTime-pulse.time;if(elapsed>1){Destroy(pulse.line.gameObject);pulses.RemoveAt(i);continue;}SetRing(pulse.line,pulse.point,.5f+elapsed*1.3f);}
+            {var pulse=pulses[i];float elapsed=Time.unscaledTime-pulse.time;if(elapsed>1){Destroy(pulse.line.gameObject);pulses.RemoveAt(i);continue;}SetRing(pulse.line,pulse.point,.5f+elapsed*1.3f,pulse.waterborne);}
         }
         private void ConsumeAnimationEvents(World world)
         {
@@ -223,8 +260,8 @@ namespace Frontier
                 var flag=rallyFlags[used++];flag.gameObject.SetActive(true);flag.positionCount=5;
                 // This is the player's remembered destination, not a query of a
                 // hidden target. It remains a valid intention marker in the fog.
-                Vector2 p=building.rally;flag.SetPosition(0,new Vector3(p.x,.15f,p.y));flag.SetPosition(1,new Vector3(p.x,3,p.y));
-                flag.SetPosition(2,new Vector3(p.x+1.15f,2.6f,p.y));flag.SetPosition(3,new Vector3(p.x,2.2f,p.y));flag.SetPosition(4,new Vector3(p.x,3,p.y));
+                Vector2 p=building.rally;float y=world.SurfaceHeight(p,building.def.id=="dock");flag.SetPosition(0,new Vector3(p.x,y+.15f,p.y));flag.SetPosition(1,new Vector3(p.x,y+3,p.y));
+                flag.SetPosition(2,new Vector3(p.x+1.15f,y+2.6f,p.y));flag.SetPosition(3,new Vector3(p.x,y+2.2f,p.y));flag.SetPosition(4,new Vector3(p.x,y+3,p.y));
                 TintLine(flag,building.rallyTarget==0?new Color(.95f,.79f,.3f):new Color(.3f,.92f,.8f));
             }
             for(int i=used;i<rallyFlags.Count;i++)rallyFlags[i].gameObject.SetActive(false);
@@ -249,7 +286,7 @@ namespace Frontier
             {
                 var visibility=world.Fog.At(0,new Vector2(x,y));int i=y*128+x;
                 fogPixels[i]=new Color32(12,21,25,(byte)(visibility==VisibilityState.Visible?0:visibility==VisibilityState.Explored?170:252));
-                mapPixels[i]=visibility==VisibilityState.Unexplored?new Color32(12,22,27,255):visibility==VisibilityState.Explored?new Color32(44,53,43,255):new Color32(87,103,57,255);
+                mapPixels[i]=visibility==VisibilityState.Unexplored?new Color32(12,22,27,255):world.IsWater(new Vector2(x,y))?(world.IsBridge(new Vector2(x,y))?new Color32(133,111,73,255):visibility==VisibilityState.Explored?new Color32(26,55,64,255):new Color32(45,106,127,255)):visibility==VisibilityState.Explored?new Color32(44,53,43,255):new Color32(87,103,57,255);
             }
             foreach(var e in world.Entities)
             {
@@ -267,7 +304,8 @@ namespace Frontier
             int used=0;foreach(var p in world.Projectiles)
             {
                 float t=Mathf.InverseLerp(p.firedAt,p.hitAt,world.Time);var target=world.Get(p.target);Vector2 end=target!=null&&world.IsVisible(0,target)?target.position:p.end;
-                Vector3 start=new Vector3(p.start.x,1.25f,p.start.y),finish=new Vector3(end.x,.8f,end.y);Vector3 pos=Vector3.Lerp(start,finish,t);pos.y+=Mathf.Sin(t*Mathf.PI)*(p.splash>0?1.5f:.15f);
+                var source=world.Get(p.source);
+                Vector3 start=new Vector3(p.start.x,world.SurfaceHeight(p.start,source?.def.waterborne??false)+(source?.def.id=="gunboat"?.83f:1.25f),p.start.y),finish=new Vector3(end.x,world.SurfaceHeight(end,target?.def.waterborne??false)+.8f,end.y);Vector3 pos=Vector3.Lerp(start,finish,t);pos.y+=Mathf.Sin(t*Mathf.PI)*(p.splash>0?1.5f:.15f);
                 Vector3 tail=pos-(finish-start).normalized*(p.splash>0?.65f:.4f);
                 if(world.Fog.At(0,new Vector2(pos.x,pos.z))!=VisibilityState.Visible||world.Fog.At(0,new Vector2(tail.x,tail.z))!=VisibilityState.Visible)continue;
                 while(projectiles.Count<=used)projectiles.Add(NewLine("Projectile",.055f));var line=projectiles[used++];line.gameObject.SetActive(true);line.positionCount=2;
@@ -280,23 +318,32 @@ namespace Frontier
             var id=game.Controls.BuildingToPlace;preview.gameObject.SetActive(!string.IsNullOrEmpty(id));if(string.IsNullOrEmpty(id))return;
             var d=game.Rules.Entity(id);var p=game.World.BuildPoint(0,id,game.Controls.GroundMouse);bool valid=game.World.CanBuild(0,id,p)=="";
             TintLine(preview,valid?new Color(.5f,1,.35f):new Color(1,.22f,.12f));
-            preview.SetPosition(0,new Vector3(p.x-d.width/2,.2f,p.y-d.depth/2));preview.SetPosition(1,new Vector3(p.x+d.width/2,.2f,p.y-d.depth/2));preview.SetPosition(2,new Vector3(p.x+d.width/2,.2f,p.y+d.depth/2));preview.SetPosition(3,new Vector3(p.x-d.width/2,.2f,p.y+d.depth/2));
+            var corners=new[]{new Vector2(p.x-d.width/2,p.y-d.depth/2),new Vector2(p.x+d.width/2,p.y-d.depth/2),new Vector2(p.x+d.width/2,p.y+d.depth/2),new Vector2(p.x-d.width/2,p.y+d.depth/2)};
+            for(int i=0;i<corners.Length;i++)preview.SetPosition(i,new Vector3(corners[i].x,game.World.SurfaceHeight(corners[i])+.2f,corners[i].y));
         }
         public void Pulse(Vector2 point,int target,bool attack)
         {
-            if(game.World==null)return;if(target!=0){var e=game.World.Get(target);if(e!=null)point=e.position;}
+            if(game.World==null)return;bool waterborne=game.Controls.FirstSelected?.def.waterborne??false;
+            if(target!=0){var e=game.World.Get(target);if(e!=null){point=e.position;waterborne=e.def.waterborne;}}
             var line=NewLine("Order acknowledged",.08f);line.loop=true;line.positionCount=32;TintLine(line,attack?new Color(1,.33f,.1f):new Color(.92f,.83f,.4f));
-            pulses.Add(new PulseVisual{line=line,point=point,time=Time.unscaledTime});
+            pulses.Add(new PulseVisual{line=line,point=point,time=Time.unscaledTime,waterborne=waterborne});
         }
         private void TintLine(LineRenderer line,Color color){line.startColor=line.endColor=color;terrainTint.SetColor("_BaseColor",color);line.SetPropertyBlock(terrainTint);}
         private LineRenderer NewLine(string name,float width,Transform parent=null)
         {
             var go=new GameObject(name);go.transform.SetParent(parent??effectsRoot,false);var line=go.AddComponent<LineRenderer>();line.sharedMaterial=lineMaterial;line.widthMultiplier=width;line.useWorldSpace=true;line.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;line.receiveShadows=false;return line;
         }
-        private static void SetRing(LineRenderer line,Vector2 p,float radius){for(int i=0;i<line.positionCount;i++)line.SetPosition(i,new Vector3(p.x+Mathf.Sin(i*Mathf.PI/16)*radius,.16f,p.y+Mathf.Cos(i*Mathf.PI/16)*radius));}
+        private void SetRing(LineRenderer line,Vector2 p,float radius,bool waterborne)
+        {
+            for(int i=0;i<line.positionCount;i++)
+            {
+                var point=p+new Vector2(Mathf.Sin(i*Mathf.PI/16),Mathf.Cos(i*Mathf.PI/16))*radius;
+                line.SetPosition(i,new Vector3(point.x,game.World.SurfaceHeight(point,waterborne)+.16f,point.y));
+            }
+        }
         public bool TryGetPickBounds(int id,out Bounds bounds)
         {if(visuals.TryGetValue(id,out var v)&&v.pickReady&&v.root.gameObject.activeInHierarchy){bounds=v.pickBounds;return true;}bounds=default;return false;}
         private class EntityVisual {public string key;public Transform root,model,health,bar;public UnitRig rig;public ArchitectureModel architecture;public int constructionStage=-1;public Quaternion facing;public float firedAt=-1000,hurtAt=-1000,deathAt=-1000;public LineRenderer circle;public Bounds pickBounds;public Vector3 pickScale,pickRootPosition;public bool pickReady;}
-        private class PulseVisual {public LineRenderer line;public Vector2 point;public float time;}
+        private class PulseVisual {public LineRenderer line;public Vector2 point;public float time;public bool waterborne;}
     }
 }

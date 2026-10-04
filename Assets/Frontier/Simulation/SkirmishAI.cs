@@ -20,11 +20,12 @@ namespace Frontier
         private readonly AiConstruction construction;
         private readonly AiSearchPlan search;
         private readonly AiCivilizationEconomy civilizationEconomy;
+        private readonly AiWaterEconomy waterEconomy;
         private bool searchingLastReview;
         private int rotation,buildSerial;
         public SkirmishAI(World world,int player):this(world,player,AiDifficultyProfile.From(world.Rules,"standard")){}
         public SkirmishAI(World world,int player,AiDifficultyProfile difficulty)
-        {this.world=world;this.player=player;Difficulty=difficulty??throw new ArgumentNullException(nameof(difficulty));workforce=new AiWorkforce(world,player);agePlan=new AiAgePlan(world,player);construction=new AiConstruction(world,player);civilizationEconomy=new AiCivilizationEconomy(world,player);home=player==0?new Vector2(24,28):new Vector2(104,100);enemyStart=new Vector2(128-home.x,128-home.y);search=new AiSearchPlan(world,player,enemyStart);}
+        {this.world=world;this.player=player;Difficulty=difficulty??throw new ArgumentNullException(nameof(difficulty));workforce=new AiWorkforce(world,player);agePlan=new AiAgePlan(world,player);construction=new AiConstruction(world,player);civilizationEconomy=new AiCivilizationEconomy(world,player);waterEconomy=new AiWaterEconomy(world,player);home=player==0?new Vector2(24,28):new Vector2(104,100);enemyStart=new Vector2(128-home.x,128-home.y);search=new AiSearchPlan(world,player,enemyStart);}
         public void Tick(float dt)
         {
             if(world.Paused||world.Winner>=0)return;thinkAt-=dt;if(thinkAt>0)return;thinkAt=Difficulty.DecisionSeconds;
@@ -32,7 +33,7 @@ namespace Frontier
             foreach(var e in world.Entities)
             {
                 if(!e.Alive)continue;
-                if(e.owner==player){own.Add(e);if(e.Worker)workers.Add(e);else if(e.Military)army.Add(e);}
+                if(e.owner==player){own.Add(e);if(e.Worker)workers.Add(e);else if(e.Military&&!e.def.waterborne)army.Add(e);}
                 else if(e.owner>=0&&e.def.kind!=EntityKind.Resource&&world.IsVisible(player,e)){enemies.Add(e);memory[e.id]=e.position;}
             }
             int soldierCount=army.FindAll(e=>(e.def.tags&Tags.Explorer)==0).Count;
@@ -77,6 +78,8 @@ namespace Frontier
             foreach(var e in own)if(e.def.garrison>0&&e.occupants.Count>0&&enemies.Find(x=>(x.position-e.position).sqrMagnitude<24*24)==null)Send(new GameCommand{kind=CommandKind.Ungarrison,actors=new[]{e.id}});
             Cost civilizationResearchReserve=civilizationEconomy.TechnologyReserve(own,saveForAge,underAttack);
             civilizationEconomy.Tick(own,workers,enemies,workerReserve+bankReserve+agePlan.Reserve,saveForAge,underAttack);
+            bool riverInvestment=workers.Count>=12&&soldierCount>=4&&own.Exists(e=>e.def.id=="barracks"&&e.Complete);
+            waterEconomy.Tick(own,workers,enemies,workerReserve+bankReserve+specialReserve+agePlan.Reserve,saveForAge||!riverInvestment,underAttack);
             workforce.Assign(workers,EconomyTarget(own,workers,enemies,saveForAge,investWorkers,firstBank),enemies);
             EnsureSustainableEconomy(own,workers,p);
             if(p.age>=2&&!underAttack&&!saveForAge&&workers.Count>=16)InvestInRoute(own,workers);
@@ -108,7 +111,7 @@ namespace Frontier
                 if(!producer.Complete||producer.queue.Count>0)continue;
                 bool artillery=producer.def.id=="foundry";
                 var choices=new List<EntityDef>();foreach(var d in world.Rules.entities)
-                    if(d.kind==EntityKind.Unit&&!d.civilian&&d.producer==producer.def.id&&(d.tags&Tags.Villager)==0&&world.EntityAvailable(player,d)&&world.UnitAge(player,d)<=p.age)choices.Add(d);
+                    if(d.kind==EntityKind.Unit&&!d.civilian&&!d.waterborne&&d.producer==producer.def.id&&(d.tags&Tags.Villager)==0&&world.EntityAvailable(player,d)&&world.UnitAge(player,d)<=p.age)choices.Add(d);
                 if(artillery)choices.Sort((a,b)=>(a.id=="cannon"?0:1).CompareTo(b.id=="cannon"?0:1));
                 else choices.Sort((a,b)=>CounterScore(b,enemies).CompareTo(CounterScore(a,enemies)));
                 if(p.age>=2&&(!saveForAge||underAttack))for(int i=0;i<choices.Count;i++)
@@ -222,7 +225,7 @@ namespace Frontier
                 EntityDef candidate=null;float score=float.MinValue;
                 foreach(var d in world.Rules.entities)
                 {
-                    if(d.kind!=EntityKind.Unit||d.civilian||(d.tags&Tags.Villager)!=0||d.producer!=producer.def.id||world.UnitAge(player,d)>p.age||!world.EntityAvailable(player,d))continue;
+                    if(d.kind!=EntityKind.Unit||d.civilian||d.waterborne||(d.tags&Tags.Villager)!=0||d.producer!=producer.def.id||world.UnitAge(player,d)>p.age||!world.EntityAvailable(player,d))continue;
                     float value=CounterScore(d,visible);if(value>score){score=value;candidate=d;}
                 }
                 if(candidate!=null)target+=world.UnitCost(player,candidate)*(60/candidate.time);
@@ -230,7 +233,7 @@ namespace Frontier
             if(Find(own,"town")==null)target+=world.EntityCost(player,world.Rules.Entity("town"));
             // Keep a modest infrastructure reserve when the next army is already funded.
             if(p.age>=2)target.wood+=world.EntityCost(player,world.Rules.Entity("house")).wood;
-            return target+civilizationEconomy.Forecast(own,save);
+            return target+civilizationEconomy.Forecast(own,save)+waterEconomy.Forecast(own,save);
         }
         private void EnsureSustainableEconomy(List<EntityState> ownEconomy,List<EntityState> workers,PlayerState p)
         {

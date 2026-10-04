@@ -34,7 +34,7 @@ namespace Frontier
             if(available.Count==0)return;
             foreach(var resource in world.Entities)
             {
-                if(!world.GatherableResource(player,resource))continue;
+                if(resource.def.waterborne||!world.GatherableResource(player,resource))continue;
                 bool threatened=false;
                 foreach(var enemy in visibleEnemies)
                 {

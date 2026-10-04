@@ -24,10 +24,11 @@ namespace Frontier.Tests
         [UnityTest] public IEnumerator EveryCivilizationSummaryFitsFullyAboveDeckButtons()
         {
             game.ReturnToMenu();yield return Ready();
-            foreach(var civilization in game.Rules.civs)
+            foreach(string map in new[]{MapTopology.Frontier,MapTopology.River})foreach(var civilization in game.Rules.civs)
             {
+                game.SelectedMap=map;
                 game.PlayerCivilization=civilization.id;game.Hud.ShowMenu();yield return Ready();
-                var summary=session.GetComponentsInChildren<Text>().Single(t=>t.text.StartsWith("THE TWO OUTCROPS  ·  SEED "));
+                var summary=session.GetComponentsInChildren<Text>().Single(t=>t.name=="Civilization summary");
                 StringAssert.EndsWith(civilization.description,summary.text);
                 // UGUI passes pixelsPerUnit as scaleFactor and divides generated
                 // vertices by it. Best-fit returns a pixel size, not the logical

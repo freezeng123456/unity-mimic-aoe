@@ -28,8 +28,8 @@ namespace Frontier
             var rules=Rules.landmarks;if(rules==null)return;
             foreach(var socket in rules.sockets)
             {
-                var e=Spawn("trade_socket",-1,socket.position);TradeSockets.Add(new TradeSocketState{entity=e.id,waypoint=socket.waypoint});
-                Emit("TradeSocket",-1,e.id,"Route waypoint "+socket.waypoint);
+                var e=Spawn("trade_socket",-1,MapSocketPosition(socket));TradeSockets.Add(new TradeSocketState{entity=e.id,waypoint=MapSocketWaypoint(socket)});
+                Emit("TradeSocket",-1,e.id,"Route waypoint "+MapSocketWaypoint(socket));
             }
             foreach(var definition in rules.treasures)
             {
@@ -41,7 +41,7 @@ namespace Frontier
                 }
                 Emit("TreasurePlaced",-1,e.id,"Guarded camp: "+definition.guards);
             }
-            if(rules.route.Length>0)CaravanPosition=rules.route[0];
+            if(TradeRoute.Length>0)CaravanPosition=TradeRoute[0];
             RecordOpeningLandmarkReachability();
         }
         private void RecordOpeningLandmarkReachability()
@@ -147,7 +147,7 @@ namespace Frontier
                 Emit("TreasureClaimed",explorer.owner,treasure.id,"Treasure secured; collect any reward crates",state.definition.xp,explorer.id);
                 Remove(treasure);explorer.orders.Dequeue();explorer.status="Idle";
             }
-            var route=Rules.landmarks.route;if(route.Length<2)return;
+            var route=TradeRoute;if(route.Length<2)return;
             float remaining=Mathf.Max(0,Rules.landmarks.caravanSpeed)*dt;int safety=0;
             while(remaining>0&&safety++<64)
             {

@@ -8,7 +8,7 @@ namespace Frontier
     {
         public readonly int Width,Height;
         public int Version {get;private set;}=1;
-        private readonly bool[] blocked;
+        private readonly bool[] blocked,terrainBlocked;
         private readonly float[] costs;
         private readonly int[] parents,visited,closed;
         private int search;
@@ -20,7 +20,7 @@ namespace Frontier
         private sealed class ClearanceGraph
         {public int version;public bool[] walkable;public int[] component;}
         private static readonly int[] Dx={1,-1,0,0,1,1,-1,-1},Dy={0,0,1,-1,1,-1,1,-1};
-        public GridNavigation(int w=128,int h=128){Width=w;Height=h;blocked=new bool[w*h];costs=new float[w*h];parents=new int[w*h];visited=new int[w*h];closed=new int[w*h];}
+        public GridNavigation(int w=128,int h=128){Width=w;Height=h;blocked=new bool[w*h];terrainBlocked=new bool[w*h];costs=new float[w*h];parents=new int[w*h];visited=new int[w*h];closed=new int[w*h];}
         private bool Inside(int x,int y)=>x>=0&&y>=0&&x<Width&&y<Height;
         public bool IsWalkable(Vector2 point,float radius=.4f)
         {
@@ -28,7 +28,7 @@ namespace Frontier
             int x0=Mathf.FloorToInt(point.x-radius+.5f),x1=Mathf.FloorToInt(point.x+radius+.5f),y0=Mathf.FloorToInt(point.y-radius+.5f),y1=Mathf.FloorToInt(point.y+radius+.5f);
             for(int y=y0;y<=y1;y++)for(int x=x0;x<=x1;x++)
             {
-                if(!Inside(x,y))return false;if(!blocked[x+y*Width])continue;
+                if(!Inside(x,y))return false;if(!blocked[x+y*Width]&&!terrainBlocked[x+y*Width])continue;
                 float dx=Mathf.Max(0,Mathf.Abs(point.x-x)-.5f),dy=Mathf.Max(0,Mathf.Abs(point.y-y)-.5f);
                 if(dx*dx+dy*dy<radius*radius+.00001f)return false;
             }
@@ -42,6 +42,23 @@ namespace Frontier
             for(int y=y0;y<=y1;y++)for(int x=x0;x<=x1;x++)if(Inside(x,y)&&blocked[x+y*Width]!=value){blocked[x+y*Width]=value;changed=true;}
             if(changed)Version++;
         }
+        // Terrain and placed obstacles are independent layers: demolishing a
+        // building or releasing a temporary blockade cannot erase a riverbank.
+        public void SetTerrainBlocked(Vector2 point,float radius,bool value)
+        {
+            bool changed=false;var footprint=BlockedFootprint(point,radius);
+            for(int y=Mathf.CeilToInt(footprint.yMin);y<=Mathf.FloorToInt(footprint.yMax);y++)
+                for(int x=Mathf.CeilToInt(footprint.xMin);x<=Mathf.FloorToInt(footprint.xMax);x++)
+                    if(Inside(x,y)&&terrainBlocked[x+y*Width]!=value){terrainBlocked[x+y*Width]=value;changed=true;}
+            if(changed)Version++;
+        }
+        public void ConfigureTerrain(Func<Vector2,bool> isBlocked)
+        {
+            bool changed=false;
+            for(int y=0;y<Height;y++)for(int x=0;x<Width;x++)
+            {int i=x+y*Width;bool value=isBlocked(new Vector2(x,y));if(terrainBlocked[i]!=value){terrainBlocked[i]=value;changed=true;}}
+            if(changed)Version++;
+        }
         // Static obstacles occupy complete grid cells. Expose their actual
         // outer edges so presentation does not interpret the input as a disc.
         public static Rect BlockedFootprint(Vector2 point,float radius)
@@ -52,7 +69,7 @@ namespace Frontier
         public bool IsAreaFree(Vector2 center,float width,float depth)
         {
             if(center.x-width*.5f<1||center.y-depth*.5f<1||center.x+width*.5f>Width-2||center.y+depth*.5f>Height-2)return false;
-            for(int y=Mathf.FloorToInt(center.y-depth*.5f);y<=Mathf.CeilToInt(center.y+depth*.5f);y++)for(int x=Mathf.FloorToInt(center.x-width*.5f);x<=Mathf.CeilToInt(center.x+width*.5f);x++)if(!Inside(x,y)||blocked[x+y*Width])return false;
+            for(int y=Mathf.FloorToInt(center.y-depth*.5f);y<=Mathf.CeilToInt(center.y+depth*.5f);y++)for(int x=Mathf.FloorToInt(center.x-width*.5f);x<=Mathf.CeilToInt(center.x+width*.5f);x++)if(!Inside(x,y)||blocked[x+y*Width]||terrainBlocked[x+y*Width])return false;
             return true;
         }
         public Vector2 NearestWalkable(Vector2 point,float radius=.4f)

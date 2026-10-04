@@ -68,6 +68,7 @@ namespace Frontier
         {
             var root=new GameObject(e.def.name).transform;root.SetParent(parent,false);
             Color team=e.owner==0?Blue:e.owner==1?Red:new Color(.4f,.43f,.24f);
+            if(WaterPresentation.TryBuildEntity(root,e,team))return root;
             if(e.def.kind==EntityKind.Resource){Resource(root,e);return root;}
             if(e.def.kind==EntityKind.Building){DetailedArchitecture.Build(root,e,team,civilization,age);return root;}
             var rig=root.gameObject.AddComponent<UnitRig>();

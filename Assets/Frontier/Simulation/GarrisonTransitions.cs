@@ -7,11 +7,11 @@ namespace Frontier
     {
         private readonly List<EntityState> pendingEvacuations=new List<EntityState>();
         private float nextEvacuation;
-        private bool PositionOccupied(Vector2 point,float radius,HashSet<int> ignored=null,bool reserveMoves=false)
+        private bool PositionOccupied(Vector2 point,float radius,HashSet<int> ignored=null,bool reserveMoves=false,bool waterborne=false)
         {
             foreach(var other in Entities)
             {
-                if(!other.Alive||other.garrisonedIn!=0||other.def.kind==EntityKind.Building||ignored!=null&&ignored.Contains(other.id))continue;
+                if(!other.Alive||other.garrisonedIn!=0||other.def.waterborne!=waterborne||other.def.kind==EntityKind.Building||ignored!=null&&ignored.Contains(other.id))continue;
                 float clearance=radius+other.def.radius+.15f;
                 if((other.position-point).sqrMagnitude<clearance*clearance)return true;
                 if(reserveMoves)foreach(var order in other.orders)
@@ -21,13 +21,25 @@ namespace Frontier
         }
         private void AssignAutomaticRally(List<EntityState> group,Vector2 destination)
         {
-            if(group.Count==0)return;float radius=0,spacing=1.8f;var ignored=new HashSet<int>();
+            if(group.Count==0)return;
+            // Production is normally homogeneous; grouping also keeps a future
+            // mixed reward from forcing one movement domain into the other.
+            for(int domain=0;domain<2;domain++)
+            {
+                var matching=group.FindAll(unit=>unit.def.waterborne==(domain==1));
+                if(matching.Count>0)AssignAutomaticRallyDomain(matching,destination);
+            }
+        }
+        private void AssignAutomaticRallyDomain(List<EntityState> group,Vector2 destination)
+        {
+            float radius=0,spacing=1.8f;var ignored=new HashSet<int>();
+            bool waterborne=group[0].def.waterborne;var navigation=NavigationFor(group[0]);
             foreach(var unit in group){ignored.Add(unit.id);radius=Mathf.Max(radius,unit.def.radius);spacing=Mathf.Max(spacing,unit.def.radius*4+.3f);}
             // This runs once at arrival/release, never per unit per rendered frame.
             // Existing units and their queued endpoints reserve occupied landing slots.
             var slots=new List<Vector2>();
-            foreach(var p in Navigation.FormationSlots(destination,Mathf.Min(1024,group.Count+Entities.Count*4),spacing))
-            {if(!PositionOccupied(p,radius,ignored,true))slots.Add(p);if(slots.Count==group.Count)break;}
+            foreach(var p in navigation.FormationSlots(destination,Mathf.Min(1024,group.Count+Entities.Count*4),spacing))
+            {if(navigation.IsWalkable(p,radius)&&!PositionOccupied(p,radius,ignored,true,waterborne))slots.Add(p);if(slots.Count==group.Count)break;}
             foreach(var unit in group)
             {
                 unit.orders.Clear();unit.path.Clear();unit.pathIndex=0;unit.fireAt=-1;unit.attackTarget=0;unit.hold=false;

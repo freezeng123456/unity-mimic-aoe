@@ -22,7 +22,7 @@ namespace Frontier
         public int hudUpdatedFrame;
         public float hudWorldTime;
         public CaptureCamera camera;
-        public string aiDifficulty="";
+        public string aiDifficulty="",mapId="";
         public float aiDecisionSeconds,aiArmySeconds;
         public CaptureProduction[] production = Array.Empty<CaptureProduction>();
 
@@ -48,6 +48,7 @@ namespace Frontier
                 }
             };
             if (w == null || game.InMenu) return result;
+            result.mapId=w.MapId;
             result.aiDifficulty=game.Simulation?.Difficulty.Id??"";
             result.aiDecisionSeconds=game.Simulation?.Difficulty.DecisionSeconds??0;
             result.aiArmySeconds=game.Simulation?.Difficulty.ArmySeconds??0;

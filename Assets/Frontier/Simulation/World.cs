@@ -23,14 +23,16 @@ namespace Frontier
         private readonly Dictionary<int,List<EntityState>> spatial=new Dictionary<int,List<EntityState>>();
         private int nextId=1;
         private float fogAt;
-        public World(RuleCatalog rules,int seed=314159,string civ0="coast",string civ1="coast",int maxAge=3)
+        public World(RuleCatalog rules,int seed=314159,string civ0="coast",string civ1="coast",int maxAge=3,string mapId="frontier")
         {
             Rules=rules??throw new ArgumentNullException(nameof(rules));Seed=seed;MaxAge=Mathf.Clamp(maxAge,1,rules.ages.Length);
-            Navigation=new GridNavigation();Fog=new Visibility();
+            MapId=mapId??MapTopology.Frontier;if(MapId!=MapTopology.Frontier&&MapId!=MapTopology.River)throw new ArgumentException("Unknown map: "+MapId);
+            Navigation=new GridNavigation();WaterNavigation=new GridNavigation();Fog=new Visibility();
+            TradeRoute=MapTradeRoute();InitializeNavigationTerrain();
             Players=new[]{new PlayerState{id=0,civilization=civ0},new PlayerState{id=1,civilization=civ1}};
             if(Rules.Civ(civ0)==null||Rules.Civ(civ1)==null)throw new ArgumentException("Unknown civilization");
             InitializeEconomy();InitializeMap();InitializeLandmarks();Fog.Tick(Entities);RecordLandmarkDiscoveries();RebuildSpatial();
-            Emit("MatchStarted",-1,0,$"Seed {Seed}; age cap {MaxAge}; {civ0} vs {civ1}; project rules P v0.2");
+            Emit("MatchStarted",-1,0,$"Seed {Seed}; map {MapId}; age cap {MaxAge}; {civ0} vs {civ1}; project rules P v0.2");
         }
         private void InitializeMap()
         {
@@ -50,13 +52,14 @@ namespace Frontier
                 for(int i=0;i<9;i++)Spawn("tree",-1,b+new Vector2(17+i%3*2.1f,19+i/3*2.1f)*s);
                 for(int i=0;i<5;i++)Spawn("deer",-1,b+new Vector2(9+i*2,25)*s);
             }
-            for(int y=42;y<=86;y+=4)
+            if(MapId==MapTopology.Frontier)for(int y=42;y<=86;y+=4)
             {
                 if(y>=58&&y<=70)continue;
                 var o=new Vector3(64,y,1.8f);TerrainObstacles.Add(o);Navigation.SetBlocked(new Vector2(o.x,o.y),o.z,true);
             }
             Spawn("mine",-1,new Vector2(53,66));Spawn("mine",-1,new Vector2(75,62));
             for(int i=0;i<8;i++)Spawn("tree",-1,new Vector2(30+i*2.5f,73));
+            if(MapId==MapTopology.River)foreach(float z in new[]{22f,55f,73f,106f})Spawn("fish",-1,new Vector2(64,z));
         }
         public EntityState Get(int id)=>byId.TryGetValue(id,out var e)?e:null;
         public EntityState Spawn(string definition,int owner,Vector2 position,bool complete=true)
@@ -75,7 +78,7 @@ namespace Frontier
             // Grid ownership is disjoint because construction validates the footprint.
             for(float x=e.position.x-e.def.width*.5f+.5f;x<e.position.x+e.def.width*.5f;x+=1)
                 for(float z=e.position.y-e.def.depth*.5f+.5f;z<e.position.y+e.def.depth*.5f;z+=1)
-                    Navigation.SetBlocked(new Vector2(x,z),.45f,blocked);
+                    {Navigation.SetBlocked(new Vector2(x,z),.45f,blocked);WaterNavigation.SetBlocked(new Vector2(x,z),.45f,blocked);}
         }
         public void Remove(EntityState e,int killerOwner=-1)
         {
@@ -122,8 +125,8 @@ namespace Frontier
         }
         private CommandResult IssueOrders(GameCommand c)
         {
-            var actors=new List<EntityState>();float spacing=1.8f;
-            foreach(int id in c.actors){var e=Get(id);if(e!=null&&e.Alive&&e.owner==c.player&&e.def.kind==EntityKind.Unit&&e.garrisonedIn==0){actors.Add(e);spacing=Mathf.Max(spacing,e.def.radius*4+.3f);}}
+            var actors=new List<EntityState>();
+            foreach(int id in c.actors){var e=Get(id);if(e!=null&&e.Alive&&e.owner==c.player&&e.def.kind==EntityKind.Unit&&e.garrisonedIn==0){actors.Add(e);}}
             if(actors.Count==0)return CommandResult.Fail("Select mobile units");
             var target=Get(c.target);
             bool targeted=c.order==OrderKind.Attack||c.order==OrderKind.Gather||c.order==OrderKind.Build||c.order==OrderKind.Repair||c.order==OrderKind.Garrison||c.order==OrderKind.Claim||c.order==OrderKind.Manufacture;
@@ -135,11 +138,31 @@ namespace Frontier
             if(c.order==OrderKind.Gather&&!(target.def.resource!=ResourceKind.None&&(target.def.kind==EntityKind.Resource||target.owner==c.player)))return CommandResult.Fail("Choose a resource");
             if(c.order==OrderKind.Garrison&&(target.def.garrison<=0||!target.Complete))return CommandResult.Fail("This building cannot garrison units");
             bool needsSlots=!targeted&&(c.order==OrderKind.Move||c.order==OrderKind.AttackMove);
-            var slots=needsSlots?Navigation.FormationSlots(c.point,actors.Count,spacing):null;if(needsSlots&&slots.Count<actors.Count)return CommandResult.Fail("No room for this formation");int accepted=0;
+            // Resolve both channels before mutating any order. Mixed selections
+            // keep independent spacing and cannot partially accept a failed move.
+            var slots=needsSlots?new Vector2[actors.Count]:null;
+            if(needsSlots)
+            {
+                for(int domain=0;domain<2;domain++)
+                {
+                    var indices=new List<int>();float domainSpacing=1.8f;
+                    for(int i=0;i<actors.Count;i++)if(actors[i].def.waterborne==(domain==1))
+                    {indices.Add(i);domainSpacing=Mathf.Max(domainSpacing,actors[i].def.radius*4+.3f);}
+                    if(indices.Count==0)continue;
+                    var navigation=domain==1?WaterNavigation:Navigation;
+                    var points=navigation.FormationSlots(c.point,indices.Count,domainSpacing);
+                    if(points.Count<indices.Count)return CommandResult.Fail("No room for this formation in its movement channel");
+                    for(int i=0;i<indices.Count;i++)slots[indices[i]]=points[i];
+                }
+            }
+            int accepted=0;
             for(int i=0;i<actors.Count;i++)
             {
                 var e=actors[i];if(c.order==OrderKind.Claim&&(e.def.tags&Tags.Explorer)==0)continue;
-                if((c.order==OrderKind.Gather||c.order==OrderKind.Build||c.order==OrderKind.Manufacture)&&!e.Worker)continue;
+                if(c.order==OrderKind.Gather&&!CanGather(e,target))continue;
+                if((c.order==OrderKind.Build||c.order==OrderKind.Manufacture)&&(!e.Worker||e.def.waterborne))continue;
+                if(c.order==OrderKind.Garrison&&e.def.waterborne)continue;
+                if(c.order==OrderKind.Attack&&!CanAttackTarget(e,target))continue;
                 if(c.order==OrderKind.Repair&&!(e.Worker&&target.def.kind==EntityKind.Building||e.def.repairArtillery&&(target.def.tags&Tags.Artillery)!=0))continue;
                 if(e.def.civilian&&(c.order==OrderKind.Attack||c.order==OrderKind.AttackMove))continue;
                 CancelCaravan(e,"Manual order");
@@ -158,7 +181,7 @@ namespace Frontier
                 else {e.hold=false;e.orders.Enqueue(sameTravel?previous:new UnitOrder(c.order,requested,c.target));e.status=c.order.ToString();}
                 accepted++;
             }
-            if(accepted==0)return CommandResult.Fail("That order requires villagers");
+            if(accepted==0)return CommandResult.Fail("No selected unit can perform that order");
             Emit("Command",c.player,actors[0].id,c.order+" ×"+accepted,accepted,c.target);return CommandResult.Ok(c.order+" order accepted");
         }
         private static bool SameTravelIntent(UnitOrder previous,OrderKind kind,Vector2 point,int target)
@@ -203,7 +226,7 @@ namespace Frontier
         {
             var delta=worker.position-target.position;if(delta.sqrMagnitude<.01f)delta=Vector2.right;
             float reach=target.def.kind==EntityKind.Building?Mathf.Max(target.def.width,target.def.depth)*.5f+worker.def.radius+.85f:target.def.radius+worker.def.radius+.45f;
-            return Navigation.NearestWalkable(target.position+delta.normalized*reach,worker.def.radius);
+            return NavigationFor(worker).NearestWalkable(target.position+delta.normalized*reach,worker.def.radius);
         }
         public float EdgeDistance(EntityState a,EntityState b)
         {

@@ -23,7 +23,7 @@ namespace Frontier
                 UnitOrder order=e.orders.Count>0?e.orders.Peek():null;
                 if(order!=null&&(order.kind==OrderKind.Gather||order.kind==OrderKind.Build||order.kind==OrderKind.Repair||order.kind==OrderKind.Garrison||order.kind==OrderKind.Claim||order.kind==OrderKind.Manufacture))
                 {
-                    var target=Get(order.target);if(target==null||!target.Alive||target.garrisonedIn!=0){if(order.kind!=OrderKind.Gather){e.orders.Dequeue();e.status="Target lost";}continue;}
+                    var target=Get(order.target);if(e.def.waterborne&&order.kind==OrderKind.Garrison){e.orders.Dequeue();e.status="Cannot garrison a ship";continue;}if(target==null||!target.Alive||target.garrisonedIn!=0){if(order.kind!=OrderKind.Gather){e.orders.Dequeue();e.status="Target lost";}continue;}
                     if(order.kind==OrderKind.Garrison&&EdgeDistance(e,target)<=1.5f)
                     {
                         if(target.occupants.Count<target.def.garrison){e.garrisonedIn=target.id;e.orders.Clear();e.path.Clear();target.occupants.Add(e.id);e.status="Garrisoned";Emit("Garrison",e.owner,e.id,"Entered "+target.def.name,0,target.id);}
@@ -44,7 +44,7 @@ namespace Frontier
                 if(order!=null&&order.kind==OrderKind.Attack)
                 {
                     enemy=Get(order.target);
-                    if(enemy==null||!enemy.Alive||!Observes(e,enemy)){e.orders.Dequeue();e.attackTarget=0;e.status="Target lost";continue;}
+                    if(enemy==null||!enemy.Alive||!Observes(e,enemy)||!CanAttackTarget(e,enemy)){e.orders.Dequeue();e.attackTarget=0;e.status="Target lost";continue;}
                 }
                 else
                 {
@@ -55,7 +55,7 @@ namespace Frontier
                 }
                 if(enemy!=null&&HasFirepower(e))
                 {
-                    float distance=EdgeDistance(e,enemy);bool melee=(e.forceMelee||distance<1.5f)&&e.def.meleeDamage>0;
+                    float distance=EdgeDistance(e,enemy);bool melee=UsesMelee(e,enemy,distance);
                     float range=melee?1.4f:e.def.range;
                     if(distance>=e.def.minRange&&distance<=range+.1f)
                     {
@@ -111,9 +111,12 @@ namespace Frontier
         }
         private bool CanStationaryAutoTarget(EntityState actor,EntityState target)
         {
-            if(!actor.hold&&actor.def.kind!=EntityKind.Building)return true;
+            if(!CanAttackTarget(actor,target))return false;
+            // A different channel cannot be chased indefinitely. Auto-fire only
+            // chooses a cross-channel target already in effective weapon range.
+            if(actor.def.waterborne==target.def.waterborne&&!actor.hold&&actor.def.kind!=EntityKind.Building)return true;
             float distance=EdgeDistance(actor,target);
-            bool melee=(actor.forceMelee||distance<1.5f)&&actor.def.meleeDamage>0;
+            bool melee=UsesMelee(actor,target,distance);
             float range=melee?1.4f:actor.def.range;
             return distance>=actor.def.minRange&&distance<=range+.1f;
         }
@@ -140,7 +143,7 @@ namespace Frontier
         private void MoveCore(EntityState e,Vector2 goal,float dt)
         {
             if(e.def.kind!=EntityKind.Unit||e.shielded||Time<e.shieldReadyAt)return;
-            e.isDeployed=false;e.deployUntil=0;
+            var navigation=NavigationFor(e);e.isDeployed=false;e.deployUntil=0;
             Vector2 requestedGoal=goal;
             if((e.progressGoal-requestedGoal).sqrMagnitude>4){e.progressGoal=requestedGoal;e.progressDistance=float.MaxValue;e.progressAt=Time;e.detourUntil=0;}
             if(e.detourUntil>Time&&(e.position-e.detour).sqrMagnitude>1)goal=e.detour;
@@ -164,13 +167,13 @@ namespace Frontier
                     Vector2 forward=(requestedGoal-e.position).normalized,side=new Vector2(-forward.y,forward.x);float best=float.MaxValue;Vector2 chosen=e.position;
                     foreach(int sign in new[]{-1,1})
                     {
-                        Vector2 detourCandidate=Navigation.NearestWalkable(e.position+side*(sign*7)+forward*4,e.def.radius);
+                        Vector2 detourCandidate=navigation.NearestWalkable(e.position+side*(sign*7)+forward*4,e.def.radius);
                         // Recovery is a local maneuver. A point across a wall can
                         // be walkable but would send the actor back through the gate.
-                        if(!Navigation.ClearLine(e.position,detourCandidate,e.def.radius))continue;
+                        if(!navigation.ClearLine(e.position,detourCandidate,e.def.radius))continue;
                         float score=Vector2.Distance(detourCandidate,requestedGoal);
-                        foreach(var other in Nearby(detourCandidate,4))if(other.id!=e.id&&other.def.kind==EntityKind.Unit)score+=8*Mathf.Max(0,4-Vector2.Distance(detourCandidate,other.position));
-                        if(Navigation.IsWalkable(detourCandidate,e.def.radius)&&score<best){best=score;chosen=detourCandidate;}
+                        foreach(var other in Nearby(detourCandidate,4))if(other.id!=e.id&&other.def.kind==EntityKind.Unit&&other.def.waterborne==e.def.waterborne)score+=8*Mathf.Max(0,4-Vector2.Distance(detourCandidate,other.position));
+                        if(navigation.IsWalkable(detourCandidate,e.def.radius)&&score<best){best=score;chosen=detourCandidate;}
                     }
                     if(best<float.MaxValue){e.detour=chosen;e.detourUntil=Time+6;goal=chosen;e.pathVersion=-1;}
                     }
@@ -178,11 +181,11 @@ namespace Frontier
                 }
             }
             if((e.position-goal).sqrMagnitude<.2f*.2f){e.path.Clear();return;}
-            bool routeOccluded=e.pathIndex<e.path.Count&&!Navigation.ClearLine(e.position,e.path[e.pathIndex],e.def.radius);
-            if(e.pathVersion!=Navigation.Version||(e.pathGoal-goal).sqrMagnitude>4||routeOccluded||e.pathIndex>=e.path.Count&&Time>=e.pathRetryAt)
+            bool routeOccluded=e.pathIndex<e.path.Count&&!navigation.ClearLine(e.position,e.path[e.pathIndex],e.def.radius);
+            if(e.pathVersion!=navigation.Version||(e.pathGoal-goal).sqrMagnitude>4||routeOccluded||e.pathIndex>=e.path.Count&&Time>=e.pathRetryAt)
             {
-                e.path.Clear();e.path.AddRange(Navigation.FindPath(e.position,goal,e.def.radius));e.pathIndex=e.path.Count>1?1:0;
-                e.pathGoal=goal;e.pathVersion=Navigation.Version;e.pathRetryAt=Time+1.2f;e.pathAvoidsAllies=false;
+                e.path.Clear();e.path.AddRange(navigation.FindPath(e.position,goal,e.def.radius));e.pathIndex=e.path.Count>1?1:0;
+                e.pathGoal=goal;e.pathVersion=navigation.Version;e.pathRetryAt=Time+1.2f;e.pathAvoidsAllies=false;
                 // A new route has a different remaining length. Comparing it to
                 // the earlier straight-line baseline falsely triggers recovery.
                 e.progressDistance=float.MaxValue;e.progressAt=Time;
@@ -191,16 +194,16 @@ namespace Frontier
             Vector2 waypoint=e.path[e.pathIndex],to=waypoint-e.position;
             // Avoidance can move an actor past a corner without touching its exact
             // waypoint. Take the next visible leg instead of orbiting an occupied corner.
-            while(e.pathIndex<e.path.Count-1&&Navigation.ClearLine(e.position,e.path[e.pathIndex+1],e.def.radius)&&(!e.pathAvoidsAllies||AllySegmentFree(e,e.position,e.path[e.pathIndex+1]))){e.pathIndex++;waypoint=e.path[e.pathIndex];to=waypoint-e.position;}
+            while(e.pathIndex<e.path.Count-1&&navigation.ClearLine(e.position,e.path[e.pathIndex+1],e.def.radius)&&(!e.pathAvoidsAllies||AllySegmentFree(e,e.position,e.path[e.pathIndex+1]))){e.pathIndex++;waypoint=e.path[e.pathIndex];to=waypoint-e.position;}
             Vector2 velocity=ChooseVelocity(e,to,goal,dt);float maxStep=Speed(e)*dt;
             Vector2 move=Vector2.ClampMagnitude(velocity*dt,maxStep),candidate=e.position+move;
             bool walked=false;
-            if(Navigation.IsWalkable(candidate,e.def.radius)){e.position=candidate;walked=true;}
+            if(navigation.IsWalkable(candidate,e.def.radius)){e.position=candidate;walked=true;}
             else
             {
                 Vector2 xOnly=e.position+new Vector2(move.x,0),zOnly=e.position+new Vector2(0,move.y);
-                if(Navigation.IsWalkable(xOnly,e.def.radius)&&(xOnly-e.position).sqrMagnitude>.0001f){e.position=xOnly;walked=true;}
-                else if(Navigation.IsWalkable(zOnly,e.def.radius)){e.position=zOnly;walked=true;}
+                if(navigation.IsWalkable(xOnly,e.def.radius)&&(xOnly-e.position).sqrMagnitude>.0001f){e.position=xOnly;walked=true;}
+                else if(navigation.IsWalkable(zOnly,e.def.radius)){e.position=zOnly;walked=true;}
             }
             if(walked&&(e.position-e.previousPosition).sqrMagnitude>.0001f){e.facing=(e.position-e.previousPosition).normalized;e.stuckFor=0;e.status="Moving";}
             else
@@ -212,15 +215,16 @@ namespace Frontier
         private static readonly float[] steeringAngles={0,30,-30,60,-60,90,-90,120,-120,180};
         private Vector2 ChooseVelocity(EntityState e,Vector2 to,Vector2 goal,float dt)
         {
+            var navigation=NavigationFor(e);
             float speed=Mathf.Min(Speed(e),to.magnitude/Mathf.Max(.001f,dt));Vector2 forward=to.normalized;
-            movementNeighbors.Clear();foreach(var other in Nearby(e.position,3.5f))if(other.id!=e.id&&other.def.kind==EntityKind.Unit&&other.garrisonedIn==0)movementNeighbors.Add(other);
+            movementNeighbors.Clear();foreach(var other in Nearby(e.position,3.5f))if(other.id!=e.id&&other.def.kind==EntityKind.Unit&&other.garrisonedIn==0&&other.def.waterborne==e.def.waterborne)movementNeighbors.Add(other);
             if(movementNeighbors.Count==0)return forward*speed;
             Vector2 best=Vector2.zero;float bestScore=float.MaxValue;float distance=to.magnitude;Vector2 steeringGoal=e.position+to;
             foreach(float angle in steeringAngles)
             {
                 float radians=angle*Mathf.Deg2Rad;Vector2 direction=new Vector2(forward.x*Mathf.Cos(radians)-forward.y*Mathf.Sin(radians),forward.x*Mathf.Sin(radians)+forward.y*Mathf.Cos(radians));
                 Vector2 velocity=direction*speed,step=e.position+velocity*dt;
-                if(!Navigation.IsWalkable(step,e.def.radius))continue;
+                if(!navigation.IsWalkable(step,e.def.radius))continue;
                 // Do not score a projection beyond a nearby corner: doing so made
                 // units orbit the waypoint instead of completing the safe turn.
                 Vector2 predicted=e.position+velocity*Mathf.Min(.45f,distance/Mathf.Max(.001f,speed));
@@ -248,8 +252,8 @@ namespace Frontier
         }
         private void Fire(EntityState e)
         {
-            var target=Get(e.attackTarget);if(target==null||!target.Alive||!Observes(e,target)||target.garrisonedIn!=0||!HasFirepower(e))return;
-            bool melee=e.shotMelee&&e.def.meleeDamage>0;float range=melee?1.5f:e.def.range;
+            var target=Get(e.attackTarget);if(target==null||!target.Alive||!Observes(e,target)||target.garrisonedIn!=0||!HasFirepower(e)||!CanAttackTarget(e,target))return;
+            bool melee=e.shotMelee&&e.def.meleeDamage>0&&e.def.waterborne==target.def.waterborne;float range=melee?1.5f:e.def.range;
             float distance=EdgeDistance(e,target);
             // A target can cross the inner boundary while the weapon is preparing.
             // Abort only this pending shot; the already committed reload stays spent.
@@ -270,7 +274,7 @@ namespace Frontier
                 {
                     var victims=new List<EntityState>();
                     foreach(var other in Nearby(impact,e.def.meleeSplash))
-                        if(other.id!=target.id&&other.garrisonedIn==0&&(other.owner>=0||Guardian(other))&&other.owner!=e.owner&&other.def.kind==EntityKind.Unit)victims.Add(other);
+                        if(other.id!=target.id&&other.garrisonedIn==0&&(other.owner>=0||Guardian(other))&&other.owner!=e.owner&&other.def.kind==EntityKind.Unit&&other.def.waterborne==e.def.waterborne)victims.Add(other);
                     foreach(var other in victims)
                     {
                         float bonus=1;foreach(var b in e.def.bonuses)if((b.tags&other.def.tags)!=0)bonus=Mathf.Max(bonus,b.multiplier);

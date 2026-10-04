@@ -53,7 +53,9 @@ namespace Frontier
                 else continue;
                 if(world.Time-ev.time>=duration||!CanDisplay(world,observer,ev)||active.Count>=Capacity)continue;
                 var effect=pool.Count>0?pool.Pop():Create();effect.start=ev.time;effect.duration=duration;effect.scale=scale;
-                effect.origin=new Vector3(ev.position.x,ev.kind=="Fire"?1.2f:.6f,ev.position.y);
+                var entity=world.Get(ev.kind=="Impact"?ev.target:ev.entity);
+                float height=world.SurfaceHeight(ev.position,entity?.def.waterborne??false);
+                effect.origin=new Vector3(ev.position.x,height+(ev.kind=="Fire"?(entity?.def.id=="gunboat"?.83f:1.2f):.6f),ev.position.y);
                 effect.go.transform.SetParent(parent,false);effect.go.transform.position=effect.origin;
                 effect.go.transform.localScale=scale*Mathf.Clamp01(1-(world.Time-ev.time)/duration);
                 effect.tint.SetColor("_BaseColor",color);effect.renderer.SetPropertyBlock(effect.tint);
