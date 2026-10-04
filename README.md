@@ -2,13 +2,13 @@
 
 独立 Unity 陆战即时战略游戏：英国、荷兰、法国、奥斯曼四个经典文明核心玩法，加上远驿盟市、山岭工联两个原创文明，共六文明。五个时代、25张卡组与XP船运、银行、实车贸易、工坊制造、守卫宝藏和炮兵攻城，配有原创模型、动画与音频。使用本项目规则和候选数值，与 Age of Empires 及其发行商无关联。
 
-**当前源码版本为 0.5.0，目标平台 macOS Apple silicon。** 新增可选河图、双桥、码头、捕鱼船与炮艇；原陆图保留。**633 项完整测试通过**，400名混编陆军双向过桥与12艘船桥下通行全部到达。原生8倍速英荷河图AI对局自然结束，双方均到时代V，实际付费建码头、造船、捕鱼并交战。见[河流玩法](Docs/Rivers-061.md)、[完成状态](Docs/Completion-Status.md)和[061证据](Docs/Evidence/061/README.md)。本版尚未重做原生规模帧率测试；400人集中导航仍有约208ms单步峰值。旧模型和性能记录保持[060身份](Docs/Completion-Status-060.md)。
+**当前源码版本为 0.6.0，目标平台 macOS Apple silicon。** 本轮新增蜿蜒河谷、热带河湾、支流汇合、河口四张地图，连同旧陆图与直河图共六张固定布局。水域、岸高、斜桥、港位、鱼点与 AI 航路统一使用 MapLayout；河岸采用连续岸坡与材质混合，港区有岸仓与伸水栈桥，船有厚船舷、船员工作动作和尾流。实现见[曲河玩法](Docs/Rivers-063.md)，最新测试、来源指纹、机动与原生记录见[完成状态](Docs/Completion-Status.md)和[063证据](Docs/Evidence/063/README.md)。旧版验收仍保留原版本身份。
 
 ## 启动与操作
 
-0.5.0已重新构建，客户端为 `Frontier-Reckoning-0.5.0-macOS-arm64.zip`。解压打开 `Frontier Reckoning.app`，选择文明、时代上限、难度、地图及卡组，点击 **BEGIN SKIRMISH**。**MAP: RIVER CROSSINGS** 开启河流内容；II时代村民按B可沿岸建River Dock，再训练Fishing Boat或Gunboat。ZIP含许可证与中文指南，版本、构建身份及SHA以交付目录的 `manifest.json` 为准。
+客户端为 `Frontier-Reckoning-0.6.0-macOS-arm64.zip`。解压打开 `Frontier Reckoning.app`，选择文明、时代上限、难度、地图及卡组，点击 **BEGIN SKIRMISH**。地图按钮循环六图；选择 **Winding River Valley** 看本轮精修河谷，或选择 **Tropical River Bay / Confluence Rivers / River Estuary**。II时代村民按B可沿岸建River Dock，再训练Fishing Boat或Gunboat。ZIP含许可证与中文指南，版本、构建身份及SHA以交付目录的 `manifest.json` 为准。
 
-源码通过 Unity Hub 使用 **Unity 6000.6.3f1** 打开；主场景为 `Assets/Frontier/Scenes/FrontierSkirmish.unity`。完整说明见[0.3.1 中文试玩指南](Docs/Playtest-058.md)。
+源码通过 Unity Hub 使用 **Unity 6000.6.3f1** 打开；主场景为 `Assets/Frontier/Scenes/FrontierSkirmish.unity`。本轮操作见[0.6.0 中文试玩指南](Docs/Playtest-063.md)。
 
 | 操作 | 功能 |
 |---|---|
@@ -39,7 +39,7 @@
 
 各文明有45–50张合法可选卡牌，一套卡组最多25张；经济、军事、科技三套预设可直接选择。时代II–V每次三选一，共72个文明晋级选项。规则共有54个实体、206项科技和148张卡定义；其中包含资源、建筑、升级等级和路线条目，不能将条目数当作同等数量的独立系统。
 
-本项目实现经典文明的核心机制，不等于《帝国时代 III》的完整国家内容或商业游戏内容量。工厂、英国火箭、荷兰Envoy、法国Native Scout、奥斯曼巨炮、完整政治家/革命、全套皇家卫队与治疗、完整官方卡池尚未实现。现有两张固定地图；更多地形、中立势力和单人场景仍待后续，数值未经广泛对战平衡验证。
+本项目实现经典文明的核心机制，不等于《帝国时代 III》的完整国家内容或商业游戏内容量。工厂、英国火箭、荷兰Envoy、法国Native Scout、奥斯曼巨炮、完整政治家/革命、全套皇家卫队与治疗、完整官方卡池尚未实现。现有六张固定地图；随机地图、中立势力和单人场景仍待后续，数值未经广泛对战平衡验证。
 
 ## 历史验收与版本来源
 
@@ -63,4 +63,4 @@ C1–C6失败结果原样保留，不跨局拼接。C7缺少单独终局F9和菜
 
 ## 交付边界
 
-macOS arm64、Development/Mono、URP。本版完成8×正常经济AI河图整局；普通1×窗口检查未进行完整经营并最终战败，不作为人工整局验收。指定攻击与换靶由InputSystem开火/伤害回归验证。Windows、Linux、Intel Mac及跨机器签名、公证尚未验证；存档、联网、战役、运输船、可毁桥、完整海战和地图编辑器尚未实现。633项测试不替代长期实战、平衡与美术评审，CPU机动测试不构成通用60FPS保证。
+macOS arm64、Development/Mono、URP。编辑器受控截图、自动输入、隔离经济/机动和原生客户端各有独立记录，不相互冒充。原生规模帧率是具体机器、分辨率、镜头与短窗的样本，不能推断所有400单位始终在镜头内，也不构成通用60FPS保证。Windows、Linux、Intel Mac及跨机器签名、公证尚未验证；存档、联网、战役、运输船、可毁桥、完整海战和地图编辑器尚未实现。完整验收和剩余性能限制见[完成状态](Docs/Completion-Status.md)。

@@ -1,0 +1,936 @@
+{
+  "schema": 1,
+  "generatedAtUtc": "2026-10-04T16:24:48.644580+00:00",
+  "extractionOnlyNoTestsRerun": true,
+  "sourceFingerprint": "f634abbf679f22bc9fcf5d50921a65519eedd7668ef6bf241cf6505238d31dd8",
+  "sourceEvidenceRecordedAtUtc": "2026-10-04T16:15:08.494257+00:00",
+  "sourceEvidence": {
+    "originalFile": "Builds/Tests/run-NDU0sLQ9/source-evidence.json",
+    "archivedFile": "Docs/Evidence/063/Tests/source-evidence.json",
+    "sha256": "22e4688a194adab894d4d7c695a426cdcafb4ec81ec694d24e53b5db7862a393"
+  },
+  "finalSuite": {
+    "total": 732,
+    "passed": 732,
+    "failed": 0,
+    "skipped": 0,
+    "reports": {
+      "EditMode": {
+        "originalFile": "Builds/Tests/run-NDU0sLQ9/EditMode.xml",
+        "archivedFile": "Docs/Evidence/063/Tests/EditMode.xml",
+        "sha256": "b5152ad292984c994f0a948d20109e43e0f284174b8ff258e3540c2d6a13b03b",
+        "result": "Passed",
+        "total": 407,
+        "passed": 407,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "startTimeUtc": "2026-10-04 16:10:58Z",
+        "endTimeUtc": "2026-10-04 16:12:51Z",
+        "durationSeconds": 112.3361668
+      },
+      "PlayMode": {
+        "originalFile": "Builds/Tests/run-NDU0sLQ9/PlayMode.xml",
+        "archivedFile": "Docs/Evidence/063/Tests/PlayMode.xml",
+        "sha256": "8b1b3b9863081c94d8696ab11c0e1541c01411c0389211e7ba987f2305aac7d4",
+        "result": "Passed",
+        "total": 325,
+        "passed": 325,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "startTimeUtc": "2026-10-04 16:13:00Z",
+        "endTimeUtc": "2026-10-04 16:15:06Z",
+        "durationSeconds": 126.237338
+      }
+    }
+  },
+  "frozenSourceSpotChecks": {
+    "maneuver": {
+      "file": "Assets/Frontier/Tests/EditMode/CurvedManeuver063Tests.cs",
+      "sha256": "480baa5bc267617d6f71a89411042114e300c11d3ede4639a9dde9394a9d699d",
+      "matchesFinalSourceEvidence": true
+    },
+    "economy": {
+      "file": "Assets/Frontier/Tests/EditMode/WaterEconomy063Tests.cs",
+      "sha256": "fafda6575f2bcc35875af483dd5a8144e563527e11c8e494865c67476d30db67",
+      "matchesFinalSourceEvidence": true
+    },
+    "recovery": {
+      "file": "Assets/Frontier/Simulation/MovementRecovery.cs",
+      "sha256": "ec5e9b74f02ef50bedac5b6a80da355488d1f81f042c758c9a60dbe521b66028",
+      "matchesFinalSourceEvidence": true
+    }
+  },
+  "measurementDefinitions": {
+    "time": "Simulation time in seconds; maneuver output rounded to 0.1 second",
+    "tick": "Stopwatch measurement of World.Tick(0.1) in Unity EditMode, excluding test assertions and rendering; not native frame duration or FPS",
+    "tickPercentile": "Sorted tick samples; nearest-rank index ceil(p * sampleCount) - 1",
+    "fineAttempts": "Actual fine graph FindPath calls",
+    "fineFailures": "Fine result too short or not reaching exact goal",
+    "fineDeferredOccurrences": "Cumulative recovery attempts deferred while a queued actor waits or a per-tick fine slot is unavailable; repeated waits can count repeatedly",
+    "fineQueuePeakLength": null,
+    "fineQueuePeakLengthNote": "Queue peak length is not emitted in the original XML",
+    "finePeakQueryMs": "Stopwatch around fine graph FindPath; fine navigation initialization and memo clear occur before this timer; total tick includes their cost",
+    "fineScheduling": "FIFO requests bound to the current order; at most one fine query slot per simulation tick",
+    "printedEconomyBalances": "Rounded inventory snapshots printed before the isolated final work tick; not cumulative fishing earnings",
+    "actualEconomyLedgerAssertions": "Passed source assertions over actual delta verify dock -200 wood and boat -70 wood within 0.001; XML does not print those ledger events",
+    "fishingAmount": "Exact numeric fish credit is not printed; null is intentional. Passed assertions verify positive credit and equality with fish depletion and food inventory gain within 0.01"
+  },
+  "maneuverFixture": {
+    "source": {
+      "file": "Assets/Frontier/Tests/EditMode/CurvedManeuver063Tests.cs",
+      "sha256": "480baa5bc267617d6f71a89411042114e300c11d3ede4639a9dde9394a9d699d",
+      "matchesFinalSourceEvidence": true
+    },
+    "seed": 314159,
+    "tickSimulationSeconds": 0.1,
+    "maximumSimulationSeconds": 240,
+    "assignedGoalDistanceStrictlyLessThanMeters": 1,
+    "controlledCombat": "Rule copy sets damage, meleeDamage and siegeDamage to zero",
+    "authoredActors": "Original entities except towns removed; mixed pike/musketeer/hussar/dragoon/cannon formations and 12 fishing boats/gunboats directly spawned for this navigation test",
+    "orders": "Ordinary public Move commands in both directions; no speed grants, teleport or injected route",
+    "passedAssertions": [
+      "Every actor within < 1 meter of its own assigned goal",
+      "Every land actor crosses a bridge and every ship passes beneath a bridge",
+      "Every tick respects actor-radius walkability and exact static navigation sweep",
+      "Every tick stays within movement speed and continuous surface-height bounds",
+      "Land enters water only on bridges; ships remain on water"
+    ],
+    "coverageLimit": "This fixture isolates navigation, not combat balance or full moving-ally hard collision, and does not measure native rendering performance"
+  },
+  "peacefulEconomyFixture": {
+    "source": {
+      "file": "Assets/Frontier/Tests/EditMode/WaterEconomy063Tests.cs",
+      "sha256": "fafda6575f2bcc35875af483dd5a8144e563527e11c8e494865c67476d30db67",
+      "matchesFinalSourceEvidence": true
+    },
+    "seed": 314159,
+    "maximumAge": 2,
+    "maximumSimulationSeconds": 1400,
+    "tickSimulationSeconds": 0.1,
+    "originalOpeningsIntact": true,
+    "resourcesHpOrEntitiesGranted": false,
+    "opponent": "Original coast opening, no AI",
+    "isolation": "Public Hold orders suppress player-0 land military attacks except explorers; workers, explorers, boats, resource accounts and AI age progression remain normal",
+    "completion": "First positive Gather event from a physical player-0 fishing boat while winner = -1, followed by paid ledger and dock completion assertions",
+    "incomeVerification": "After the successful original opening, public Stop orders isolate other gatherers for one normal TickEconomy(0.1); actual gathered-food increase must be > 0 and equal fish depletion and stock increase",
+    "coverageLimit": "Peaceful economy fixture; not proof of successful fishing under active enemy combat. Logged balance/time precede the isolated income-verification tick"
+  },
+  "maneuvers": [
+    {
+      "fullname": "Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(\"winding\",200)",
+      "result": "Passed",
+      "sourceReport": {
+        "file": "Builds/Tests/run-NDU0sLQ9/EditMode.xml",
+        "sha256": "b5152ad292984c994f0a948d20109e43e0f284174b8ff258e3540c2d6a13b03b",
+        "archive": "Docs/Evidence/063/Tests/EditMode.xml"
+      },
+      "rawOutput": "Curved maneuver: map=winding; land=200; landArrived=200; ships=12; shipsArrived=12; crossed=212; simSeconds=131.8; peakPlanarStep=0.60001; peakHeightStep=0.21333; peakTickMs=133.9648; tickP95Ms=6.9650; tickP99Ms=9.7298\nFine recovery: coarseAttempts=123; attempts=0; failures=0; deferred=0; peakQueryMs=0\n",
+      "map": "winding",
+      "landUnits": 200,
+      "landArrived": 200,
+      "ships": 12,
+      "shipsArrived": 12,
+      "actorsVisitedBridge": 212,
+      "arrivalSimulationSeconds": 131.8,
+      "tickP95Ms": 6.965,
+      "tickP99Ms": 9.7298,
+      "maxTickMs": 133.9648,
+      "peakPlanarStepMeters": 0.60001,
+      "peakHeightStepMeters": 0.21333,
+      "fineRecovery": {
+        "coarseAttempts": 123,
+        "attempts": 0,
+        "failures": 0,
+        "deferredOccurrences": 0,
+        "peakQueryMs": 0.0
+      }
+    },
+    {
+      "fullname": "Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(\"winding\",400)",
+      "result": "Passed",
+      "sourceReport": {
+        "file": "Builds/Tests/run-NDU0sLQ9/EditMode.xml",
+        "sha256": "b5152ad292984c994f0a948d20109e43e0f284174b8ff258e3540c2d6a13b03b",
+        "archive": "Docs/Evidence/063/Tests/EditMode.xml"
+      },
+      "rawOutput": "Curved maneuver: map=winding; land=400; landArrived=400; ships=12; shipsArrived=12; crossed=412; simSeconds=145.6; peakPlanarStep=0.60001; peakHeightStep=0.21333; peakTickMs=267.4085; tickP95Ms=18.0066; tickP99Ms=25.1503\nFine recovery: coarseAttempts=645; attempts=1; failures=0; deferred=0; peakQueryMs=22.6488\n",
+      "map": "winding",
+      "landUnits": 400,
+      "landArrived": 400,
+      "ships": 12,
+      "shipsArrived": 12,
+      "actorsVisitedBridge": 412,
+      "arrivalSimulationSeconds": 145.6,
+      "tickP95Ms": 18.0066,
+      "tickP99Ms": 25.1503,
+      "maxTickMs": 267.4085,
+      "peakPlanarStepMeters": 0.60001,
+      "peakHeightStepMeters": 0.21333,
+      "fineRecovery": {
+        "coarseAttempts": 645,
+        "attempts": 1,
+        "failures": 0,
+        "deferredOccurrences": 0,
+        "peakQueryMs": 22.6488
+      }
+    },
+    {
+      "fullname": "Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(\"tropical\",200)",
+      "result": "Passed",
+      "sourceReport": {
+        "file": "Builds/Tests/run-NDU0sLQ9/EditMode.xml",
+        "sha256": "b5152ad292984c994f0a948d20109e43e0f284174b8ff258e3540c2d6a13b03b",
+        "archive": "Docs/Evidence/063/Tests/EditMode.xml"
+      },
+      "rawOutput": "Curved maneuver: map=tropical; land=200; landArrived=200; ships=12; shipsArrived=12; crossed=212; simSeconds=146.0; peakPlanarStep=0.60001; peakHeightStep=0.21333; peakTickMs=124.2836; tickP95Ms=6.9368; tickP99Ms=17.4029\nFine recovery: coarseAttempts=139; attempts=0; failures=0; deferred=0; peakQueryMs=0\n",
+      "map": "tropical",
+      "landUnits": 200,
+      "landArrived": 200,
+      "ships": 12,
+      "shipsArrived": 12,
+      "actorsVisitedBridge": 212,
+      "arrivalSimulationSeconds": 146.0,
+      "tickP95Ms": 6.9368,
+      "tickP99Ms": 17.4029,
+      "maxTickMs": 124.2836,
+      "peakPlanarStepMeters": 0.60001,
+      "peakHeightStepMeters": 0.21333,
+      "fineRecovery": {
+        "coarseAttempts": 139,
+        "attempts": 0,
+        "failures": 0,
+        "deferredOccurrences": 0,
+        "peakQueryMs": 0.0
+      }
+    },
+    {
+      "fullname": "Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(\"tropical\",400)",
+      "result": "Passed",
+      "sourceReport": {
+        "file": "Builds/Tests/run-NDU0sLQ9/EditMode.xml",
+        "sha256": "b5152ad292984c994f0a948d20109e43e0f284174b8ff258e3540c2d6a13b03b",
+        "archive": "Docs/Evidence/063/Tests/EditMode.xml"
+      },
+      "rawOutput": "Curved maneuver: map=tropical; land=400; landArrived=400; ships=12; shipsArrived=12; crossed=412; simSeconds=92.8; peakPlanarStep=0.60001; peakHeightStep=0.21333; peakTickMs=250.4232; tickP95Ms=22.1359; tickP99Ms=91.4738\nFine recovery: coarseAttempts=639; attempts=40; failures=0; deferred=11; peakQueryMs=100.9489\n",
+      "map": "tropical",
+      "landUnits": 400,
+      "landArrived": 400,
+      "ships": 12,
+      "shipsArrived": 12,
+      "actorsVisitedBridge": 412,
+      "arrivalSimulationSeconds": 92.8,
+      "tickP95Ms": 22.1359,
+      "tickP99Ms": 91.4738,
+      "maxTickMs": 250.4232,
+      "peakPlanarStepMeters": 0.60001,
+      "peakHeightStepMeters": 0.21333,
+      "fineRecovery": {
+        "coarseAttempts": 639,
+        "attempts": 40,
+        "failures": 0,
+        "deferredOccurrences": 11,
+        "peakQueryMs": 100.9489
+      }
+    },
+    {
+      "fullname": "Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(\"tributaries\",200)",
+      "result": "Passed",
+      "sourceReport": {
+        "file": "Builds/Tests/run-NDU0sLQ9/EditMode.xml",
+        "sha256": "b5152ad292984c994f0a948d20109e43e0f284174b8ff258e3540c2d6a13b03b",
+        "archive": "Docs/Evidence/063/Tests/EditMode.xml"
+      },
+      "rawOutput": "Curved maneuver: map=tributaries; land=200; landArrived=200; ships=12; shipsArrived=12; crossed=212; simSeconds=69.1; peakPlanarStep=0.60001; peakHeightStep=0.21333; peakTickMs=181.3093; tickP95Ms=9.5220; tickP99Ms=12.0633\nFine recovery: coarseAttempts=191; attempts=0; failures=0; deferred=0; peakQueryMs=0\n",
+      "map": "tributaries",
+      "landUnits": 200,
+      "landArrived": 200,
+      "ships": 12,
+      "shipsArrived": 12,
+      "actorsVisitedBridge": 212,
+      "arrivalSimulationSeconds": 69.1,
+      "tickP95Ms": 9.522,
+      "tickP99Ms": 12.0633,
+      "maxTickMs": 181.3093,
+      "peakPlanarStepMeters": 0.60001,
+      "peakHeightStepMeters": 0.21333,
+      "fineRecovery": {
+        "coarseAttempts": 191,
+        "attempts": 0,
+        "failures": 0,
+        "deferredOccurrences": 0,
+        "peakQueryMs": 0.0
+      }
+    },
+    {
+      "fullname": "Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(\"tributaries\",400)",
+      "result": "Passed",
+      "sourceReport": {
+        "file": "Builds/Tests/run-NDU0sLQ9/EditMode.xml",
+        "sha256": "b5152ad292984c994f0a948d20109e43e0f284174b8ff258e3540c2d6a13b03b",
+        "archive": "Docs/Evidence/063/Tests/EditMode.xml"
+      },
+      "rawOutput": "Curved maneuver: map=tributaries; land=400; landArrived=400; ships=12; shipsArrived=12; crossed=412; simSeconds=96.5; peakPlanarStep=0.60001; peakHeightStep=0.21333; peakTickMs=331.8045; tickP95Ms=21.5957; tickP99Ms=31.4511\nFine recovery: coarseAttempts=740; attempts=6; failures=0; deferred=0; peakQueryMs=27.9933\n",
+      "map": "tributaries",
+      "landUnits": 400,
+      "landArrived": 400,
+      "ships": 12,
+      "shipsArrived": 12,
+      "actorsVisitedBridge": 412,
+      "arrivalSimulationSeconds": 96.5,
+      "tickP95Ms": 21.5957,
+      "tickP99Ms": 31.4511,
+      "maxTickMs": 331.8045,
+      "peakPlanarStepMeters": 0.60001,
+      "peakHeightStepMeters": 0.21333,
+      "fineRecovery": {
+        "coarseAttempts": 740,
+        "attempts": 6,
+        "failures": 0,
+        "deferredOccurrences": 0,
+        "peakQueryMs": 27.9933
+      }
+    },
+    {
+      "fullname": "Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(\"estuary\",200)",
+      "result": "Passed",
+      "sourceReport": {
+        "file": "Builds/Tests/run-NDU0sLQ9/EditMode.xml",
+        "sha256": "b5152ad292984c994f0a948d20109e43e0f284174b8ff258e3540c2d6a13b03b",
+        "archive": "Docs/Evidence/063/Tests/EditMode.xml"
+      },
+      "rawOutput": "Curved maneuver: map=estuary; land=200; landArrived=200; ships=12; shipsArrived=12; crossed=212; simSeconds=56.1; peakPlanarStep=0.60001; peakHeightStep=0.21333; peakTickMs=120.0329; tickP95Ms=7.3086; tickP99Ms=8.9930\nFine recovery: coarseAttempts=83; attempts=0; failures=0; deferred=0; peakQueryMs=0\n",
+      "map": "estuary",
+      "landUnits": 200,
+      "landArrived": 200,
+      "ships": 12,
+      "shipsArrived": 12,
+      "actorsVisitedBridge": 212,
+      "arrivalSimulationSeconds": 56.1,
+      "tickP95Ms": 7.3086,
+      "tickP99Ms": 8.993,
+      "maxTickMs": 120.0329,
+      "peakPlanarStepMeters": 0.60001,
+      "peakHeightStepMeters": 0.21333,
+      "fineRecovery": {
+        "coarseAttempts": 83,
+        "attempts": 0,
+        "failures": 0,
+        "deferredOccurrences": 0,
+        "peakQueryMs": 0.0
+      }
+    },
+    {
+      "fullname": "Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(\"estuary\",400)",
+      "result": "Passed",
+      "sourceReport": {
+        "file": "Builds/Tests/run-NDU0sLQ9/EditMode.xml",
+        "sha256": "b5152ad292984c994f0a948d20109e43e0f284174b8ff258e3540c2d6a13b03b",
+        "archive": "Docs/Evidence/063/Tests/EditMode.xml"
+      },
+      "rawOutput": "Curved maneuver: map=estuary; land=400; landArrived=400; ships=12; shipsArrived=12; crossed=412; simSeconds=82.1; peakPlanarStep=0.60001; peakHeightStep=0.21333; peakTickMs=821.5150; tickP95Ms=82.2178; tickP99Ms=193.6682\nFine recovery: coarseAttempts=672; attempts=126; failures=0; deferred=932; peakQueryMs=143.2219\n",
+      "map": "estuary",
+      "landUnits": 400,
+      "landArrived": 400,
+      "ships": 12,
+      "shipsArrived": 12,
+      "actorsVisitedBridge": 412,
+      "arrivalSimulationSeconds": 82.1,
+      "tickP95Ms": 82.2178,
+      "tickP99Ms": 193.6682,
+      "maxTickMs": 821.515,
+      "peakPlanarStepMeters": 0.60001,
+      "peakHeightStepMeters": 0.21333,
+      "fineRecovery": {
+        "coarseAttempts": 672,
+        "attempts": 126,
+        "failures": 0,
+        "deferredOccurrences": 932,
+        "peakQueryMs": 143.2219
+      }
+    }
+  ],
+  "peacefulEconomies": [
+    {
+      "fullname": "Frontier.Tests.WaterEconomy063Tests.PeacefulOpeningAiPaysForSurveyConstructionAndFishingOnEveryNewMap(\"winding\",\"coast\")",
+      "result": "Passed",
+      "sourceReport": {
+        "file": "Builds/Tests/run-NDU0sLQ9/EditMode.xml",
+        "sha256": "b5152ad292984c994f0a948d20109e43e0f284174b8ff258e3540c2d6a13b03b",
+        "archive": "Docs/Evidence/063/Tests/EditMode.xml"
+      },
+      "rawOutput": "winding/coast: t=418.5, age=2, resources=56 F / 148 W / 52 C, winner=-1; dock at (41.00, 25.00): Idle; fishing_boat at (50.34, 21.97): Gathering Food\n",
+      "map": "winding",
+      "civilization": "coast",
+      "firstFishingSimulationTimeSeconds": 418.5,
+      "age": 2,
+      "winner": -1,
+      "printedResourceBalanceRounded": {
+        "food": 56,
+        "wood": 148,
+        "coin": 52
+      },
+      "dock": {
+        "position": {
+          "x": 41.0,
+          "z": 25.0
+        },
+        "status": "Idle"
+      },
+      "fishingBoat": {
+        "position": {
+          "x": 50.34,
+          "z": 21.97
+        },
+        "status": "Gathering Food"
+      },
+      "paymentVerification": {
+        "evidenceKind": "Passed frozen-source assertions over actual Payment economy ledger",
+        "assertionSource": {
+          "file": "Assets/Frontier/Tests/EditMode/WaterEconomy063Tests.cs",
+          "sha256": "fafda6575f2bcc35875af483dd5a8144e563527e11c8e494865c67476d30db67",
+          "matchesFinalSourceEvidence": true
+        },
+        "dockActualDeltaWoodAsserted": -200,
+        "boatActualDeltaWoodAsserted": -70,
+        "comparisonToleranceWood": 0.001,
+        "numericPaymentLedgerPrintedInXml": false,
+        "normalPhysicalDockCompletionAsserted": true
+      },
+      "fishingIncomeVerification": {
+        "evidenceKind": "Passed frozen-source assertions after public Stop isolation and normal TickEconomy(0.1)",
+        "assertionSource": {
+          "file": "Assets/Frontier/Tests/EditMode/WaterEconomy063Tests.cs",
+          "sha256": "fafda6575f2bcc35875af483dd5a8144e563527e11c8e494865c67476d30db67",
+          "matchesFinalSourceEvidence": true
+        },
+        "creditedFoodAmount": null,
+        "numericCreditPrintedInXml": false,
+        "positiveActualGatheredFoodCreditAsserted": true,
+        "gatheredCreditEqualsFishDepletionAndFoodBalanceIncreaseAsserted": true,
+        "comparisonToleranceFood": 0.01,
+        "physicalFishTargetAndCurrentGatherOrderAsserted": true
+      }
+    },
+    {
+      "fullname": "Frontier.Tests.WaterEconomy063Tests.PeacefulOpeningAiPaysForSurveyConstructionAndFishingOnEveryNewMap(\"tropical\",\"coast\")",
+      "result": "Passed",
+      "sourceReport": {
+        "file": "Builds/Tests/run-NDU0sLQ9/EditMode.xml",
+        "sha256": "b5152ad292984c994f0a948d20109e43e0f284174b8ff258e3540c2d6a13b03b",
+        "archive": "Docs/Evidence/063/Tests/EditMode.xml"
+      },
+      "rawOutput": "tropical/coast: t=415.1, age=2, resources=98 F / 146 W / 30 C, winner=-1; dock at (41.00, 25.00): Idle; fishing_boat at (51.68, 21.52): Gathering Food\n",
+      "map": "tropical",
+      "civilization": "coast",
+      "firstFishingSimulationTimeSeconds": 415.1,
+      "age": 2,
+      "winner": -1,
+      "printedResourceBalanceRounded": {
+        "food": 98,
+        "wood": 146,
+        "coin": 30
+      },
+      "dock": {
+        "position": {
+          "x": 41.0,
+          "z": 25.0
+        },
+        "status": "Idle"
+      },
+      "fishingBoat": {
+        "position": {
+          "x": 51.68,
+          "z": 21.52
+        },
+        "status": "Gathering Food"
+      },
+      "paymentVerification": {
+        "evidenceKind": "Passed frozen-source assertions over actual Payment economy ledger",
+        "assertionSource": {
+          "file": "Assets/Frontier/Tests/EditMode/WaterEconomy063Tests.cs",
+          "sha256": "fafda6575f2bcc35875af483dd5a8144e563527e11c8e494865c67476d30db67",
+          "matchesFinalSourceEvidence": true
+        },
+        "dockActualDeltaWoodAsserted": -200,
+        "boatActualDeltaWoodAsserted": -70,
+        "comparisonToleranceWood": 0.001,
+        "numericPaymentLedgerPrintedInXml": false,
+        "normalPhysicalDockCompletionAsserted": true
+      },
+      "fishingIncomeVerification": {
+        "evidenceKind": "Passed frozen-source assertions after public Stop isolation and normal TickEconomy(0.1)",
+        "assertionSource": {
+          "file": "Assets/Frontier/Tests/EditMode/WaterEconomy063Tests.cs",
+          "sha256": "fafda6575f2bcc35875af483dd5a8144e563527e11c8e494865c67476d30db67",
+          "matchesFinalSourceEvidence": true
+        },
+        "creditedFoodAmount": null,
+        "numericCreditPrintedInXml": false,
+        "positiveActualGatheredFoodCreditAsserted": true,
+        "gatheredCreditEqualsFishDepletionAndFoodBalanceIncreaseAsserted": true,
+        "comparisonToleranceFood": 0.01,
+        "physicalFishTargetAndCurrentGatherOrderAsserted": true
+      }
+    },
+    {
+      "fullname": "Frontier.Tests.WaterEconomy063Tests.PeacefulOpeningAiPaysForSurveyConstructionAndFishingOnEveryNewMap(\"tributaries\",\"coast\")",
+      "result": "Passed",
+      "sourceReport": {
+        "file": "Builds/Tests/run-NDU0sLQ9/EditMode.xml",
+        "sha256": "b5152ad292984c994f0a948d20109e43e0f284174b8ff258e3540c2d6a13b03b",
+        "archive": "Docs/Evidence/063/Tests/EditMode.xml"
+      },
+      "rawOutput": "tributaries/coast: t=426.9, age=2, resources=114 F / 116 W / 75 C, winner=-1; dock at (41.00, 25.00): Idle; fishing_boat at (50.34, 21.97): Gathering Food\n",
+      "map": "tributaries",
+      "civilization": "coast",
+      "firstFishingSimulationTimeSeconds": 426.9,
+      "age": 2,
+      "winner": -1,
+      "printedResourceBalanceRounded": {
+        "food": 114,
+        "wood": 116,
+        "coin": 75
+      },
+      "dock": {
+        "position": {
+          "x": 41.0,
+          "z": 25.0
+        },
+        "status": "Idle"
+      },
+      "fishingBoat": {
+        "position": {
+          "x": 50.34,
+          "z": 21.97
+        },
+        "status": "Gathering Food"
+      },
+      "paymentVerification": {
+        "evidenceKind": "Passed frozen-source assertions over actual Payment economy ledger",
+        "assertionSource": {
+          "file": "Assets/Frontier/Tests/EditMode/WaterEconomy063Tests.cs",
+          "sha256": "fafda6575f2bcc35875af483dd5a8144e563527e11c8e494865c67476d30db67",
+          "matchesFinalSourceEvidence": true
+        },
+        "dockActualDeltaWoodAsserted": -200,
+        "boatActualDeltaWoodAsserted": -70,
+        "comparisonToleranceWood": 0.001,
+        "numericPaymentLedgerPrintedInXml": false,
+        "normalPhysicalDockCompletionAsserted": true
+      },
+      "fishingIncomeVerification": {
+        "evidenceKind": "Passed frozen-source assertions after public Stop isolation and normal TickEconomy(0.1)",
+        "assertionSource": {
+          "file": "Assets/Frontier/Tests/EditMode/WaterEconomy063Tests.cs",
+          "sha256": "fafda6575f2bcc35875af483dd5a8144e563527e11c8e494865c67476d30db67",
+          "matchesFinalSourceEvidence": true
+        },
+        "creditedFoodAmount": null,
+        "numericCreditPrintedInXml": false,
+        "positiveActualGatheredFoodCreditAsserted": true,
+        "gatheredCreditEqualsFishDepletionAndFoodBalanceIncreaseAsserted": true,
+        "comparisonToleranceFood": 0.01,
+        "physicalFishTargetAndCurrentGatherOrderAsserted": true
+      }
+    },
+    {
+      "fullname": "Frontier.Tests.WaterEconomy063Tests.PeacefulOpeningAiPaysForSurveyConstructionAndFishingOnEveryNewMap(\"estuary\",\"coast\")",
+      "result": "Passed",
+      "sourceReport": {
+        "file": "Builds/Tests/run-NDU0sLQ9/EditMode.xml",
+        "sha256": "b5152ad292984c994f0a948d20109e43e0f284174b8ff258e3540c2d6a13b03b",
+        "archive": "Docs/Evidence/063/Tests/EditMode.xml"
+      },
+      "rawOutput": "estuary/coast: t=435.9, age=2, resources=124 F / 208 W / 45 C, winner=-1; dock at (44.00, 25.00): Idle; fishing_boat at (51.21, 22.74): Gathering Food\n",
+      "map": "estuary",
+      "civilization": "coast",
+      "firstFishingSimulationTimeSeconds": 435.9,
+      "age": 2,
+      "winner": -1,
+      "printedResourceBalanceRounded": {
+        "food": 124,
+        "wood": 208,
+        "coin": 45
+      },
+      "dock": {
+        "position": {
+          "x": 44.0,
+          "z": 25.0
+        },
+        "status": "Idle"
+      },
+      "fishingBoat": {
+        "position": {
+          "x": 51.21,
+          "z": 22.74
+        },
+        "status": "Gathering Food"
+      },
+      "paymentVerification": {
+        "evidenceKind": "Passed frozen-source assertions over actual Payment economy ledger",
+        "assertionSource": {
+          "file": "Assets/Frontier/Tests/EditMode/WaterEconomy063Tests.cs",
+          "sha256": "fafda6575f2bcc35875af483dd5a8144e563527e11c8e494865c67476d30db67",
+          "matchesFinalSourceEvidence": true
+        },
+        "dockActualDeltaWoodAsserted": -200,
+        "boatActualDeltaWoodAsserted": -70,
+        "comparisonToleranceWood": 0.001,
+        "numericPaymentLedgerPrintedInXml": false,
+        "normalPhysicalDockCompletionAsserted": true
+      },
+      "fishingIncomeVerification": {
+        "evidenceKind": "Passed frozen-source assertions after public Stop isolation and normal TickEconomy(0.1)",
+        "assertionSource": {
+          "file": "Assets/Frontier/Tests/EditMode/WaterEconomy063Tests.cs",
+          "sha256": "fafda6575f2bcc35875af483dd5a8144e563527e11c8e494865c67476d30db67",
+          "matchesFinalSourceEvidence": true
+        },
+        "creditedFoodAmount": null,
+        "numericCreditPrintedInXml": false,
+        "positiveActualGatheredFoodCreditAsserted": true,
+        "gatheredCreditEqualsFishDepletionAndFoodBalanceIncreaseAsserted": true,
+        "comparisonToleranceFood": 0.01,
+        "physicalFishTargetAndCurrentGatherOrderAsserted": true
+      }
+    },
+    {
+      "fullname": "Frontier.Tests.WaterEconomy063Tests.PeacefulOpeningAiPaysForSurveyConstructionAndFishingOnEveryNewMap(\"winding\",\"river\")",
+      "result": "Passed",
+      "sourceReport": {
+        "file": "Builds/Tests/run-NDU0sLQ9/EditMode.xml",
+        "sha256": "b5152ad292984c994f0a948d20109e43e0f284174b8ff258e3540c2d6a13b03b",
+        "archive": "Docs/Evidence/063/Tests/EditMode.xml"
+      },
+      "rawOutput": "winding/river: t=454.5, age=2, resources=187 F / 52 W / 143 C, winner=-1; dock at (41.00, 25.00): Idle; fishing_boat at (50.34, 21.97): Gathering Food\n",
+      "map": "winding",
+      "civilization": "river",
+      "firstFishingSimulationTimeSeconds": 454.5,
+      "age": 2,
+      "winner": -1,
+      "printedResourceBalanceRounded": {
+        "food": 187,
+        "wood": 52,
+        "coin": 143
+      },
+      "dock": {
+        "position": {
+          "x": 41.0,
+          "z": 25.0
+        },
+        "status": "Idle"
+      },
+      "fishingBoat": {
+        "position": {
+          "x": 50.34,
+          "z": 21.97
+        },
+        "status": "Gathering Food"
+      },
+      "paymentVerification": {
+        "evidenceKind": "Passed frozen-source assertions over actual Payment economy ledger",
+        "assertionSource": {
+          "file": "Assets/Frontier/Tests/EditMode/WaterEconomy063Tests.cs",
+          "sha256": "fafda6575f2bcc35875af483dd5a8144e563527e11c8e494865c67476d30db67",
+          "matchesFinalSourceEvidence": true
+        },
+        "dockActualDeltaWoodAsserted": -200,
+        "boatActualDeltaWoodAsserted": -70,
+        "comparisonToleranceWood": 0.001,
+        "numericPaymentLedgerPrintedInXml": false,
+        "normalPhysicalDockCompletionAsserted": true
+      },
+      "fishingIncomeVerification": {
+        "evidenceKind": "Passed frozen-source assertions after public Stop isolation and normal TickEconomy(0.1)",
+        "assertionSource": {
+          "file": "Assets/Frontier/Tests/EditMode/WaterEconomy063Tests.cs",
+          "sha256": "fafda6575f2bcc35875af483dd5a8144e563527e11c8e494865c67476d30db67",
+          "matchesFinalSourceEvidence": true
+        },
+        "creditedFoodAmount": null,
+        "numericCreditPrintedInXml": false,
+        "positiveActualGatheredFoodCreditAsserted": true,
+        "gatheredCreditEqualsFishDepletionAndFoodBalanceIncreaseAsserted": true,
+        "comparisonToleranceFood": 0.01,
+        "physicalFishTargetAndCurrentGatherOrderAsserted": true
+      }
+    },
+    {
+      "fullname": "Frontier.Tests.WaterEconomy063Tests.PeacefulOpeningAiPaysForSurveyConstructionAndFishingOnEveryNewMap(\"winding\",\"france\")",
+      "result": "Passed",
+      "sourceReport": {
+        "file": "Builds/Tests/run-NDU0sLQ9/EditMode.xml",
+        "sha256": "b5152ad292984c994f0a948d20109e43e0f284174b8ff258e3540c2d6a13b03b",
+        "archive": "Docs/Evidence/063/Tests/EditMode.xml"
+      },
+      "rawOutput": "winding/france: t=435.3, age=2, resources=670 F / 343 W / 141 C, winner=-1; dock at (41.00, 25.00): Idle; fishing_boat at (50.34, 21.97): Gathering Food\n",
+      "map": "winding",
+      "civilization": "france",
+      "firstFishingSimulationTimeSeconds": 435.3,
+      "age": 2,
+      "winner": -1,
+      "printedResourceBalanceRounded": {
+        "food": 670,
+        "wood": 343,
+        "coin": 141
+      },
+      "dock": {
+        "position": {
+          "x": 41.0,
+          "z": 25.0
+        },
+        "status": "Idle"
+      },
+      "fishingBoat": {
+        "position": {
+          "x": 50.34,
+          "z": 21.97
+        },
+        "status": "Gathering Food"
+      },
+      "paymentVerification": {
+        "evidenceKind": "Passed frozen-source assertions over actual Payment economy ledger",
+        "assertionSource": {
+          "file": "Assets/Frontier/Tests/EditMode/WaterEconomy063Tests.cs",
+          "sha256": "fafda6575f2bcc35875af483dd5a8144e563527e11c8e494865c67476d30db67",
+          "matchesFinalSourceEvidence": true
+        },
+        "dockActualDeltaWoodAsserted": -200,
+        "boatActualDeltaWoodAsserted": -70,
+        "comparisonToleranceWood": 0.001,
+        "numericPaymentLedgerPrintedInXml": false,
+        "normalPhysicalDockCompletionAsserted": true
+      },
+      "fishingIncomeVerification": {
+        "evidenceKind": "Passed frozen-source assertions after public Stop isolation and normal TickEconomy(0.1)",
+        "assertionSource": {
+          "file": "Assets/Frontier/Tests/EditMode/WaterEconomy063Tests.cs",
+          "sha256": "fafda6575f2bcc35875af483dd5a8144e563527e11c8e494865c67476d30db67",
+          "matchesFinalSourceEvidence": true
+        },
+        "creditedFoodAmount": null,
+        "numericCreditPrintedInXml": false,
+        "positiveActualGatheredFoodCreditAsserted": true,
+        "gatheredCreditEqualsFishDepletionAndFoodBalanceIncreaseAsserted": true,
+        "comparisonToleranceFood": 0.01,
+        "physicalFishTargetAndCurrentGatherOrderAsserted": true
+      }
+    },
+    {
+      "fullname": "Frontier.Tests.WaterEconomy063Tests.PeacefulOpeningAiPaysForSurveyConstructionAndFishingOnEveryNewMap(\"winding\",\"ottoman\")",
+      "result": "Passed",
+      "sourceReport": {
+        "file": "Builds/Tests/run-NDU0sLQ9/EditMode.xml",
+        "sha256": "b5152ad292984c994f0a948d20109e43e0f284174b8ff258e3540c2d6a13b03b",
+        "archive": "Docs/Evidence/063/Tests/EditMode.xml"
+      },
+      "rawOutput": "winding/ottoman: t=560.1, age=2, resources=66 F / 39 W / 89 C, winner=-1; dock at (41.00, 25.00): Idle; fishing_boat at (50.34, 21.97): Gathering Food\n",
+      "map": "winding",
+      "civilization": "ottoman",
+      "firstFishingSimulationTimeSeconds": 560.1,
+      "age": 2,
+      "winner": -1,
+      "printedResourceBalanceRounded": {
+        "food": 66,
+        "wood": 39,
+        "coin": 89
+      },
+      "dock": {
+        "position": {
+          "x": 41.0,
+          "z": 25.0
+        },
+        "status": "Idle"
+      },
+      "fishingBoat": {
+        "position": {
+          "x": 50.34,
+          "z": 21.97
+        },
+        "status": "Gathering Food"
+      },
+      "paymentVerification": {
+        "evidenceKind": "Passed frozen-source assertions over actual Payment economy ledger",
+        "assertionSource": {
+          "file": "Assets/Frontier/Tests/EditMode/WaterEconomy063Tests.cs",
+          "sha256": "fafda6575f2bcc35875af483dd5a8144e563527e11c8e494865c67476d30db67",
+          "matchesFinalSourceEvidence": true
+        },
+        "dockActualDeltaWoodAsserted": -200,
+        "boatActualDeltaWoodAsserted": -70,
+        "comparisonToleranceWood": 0.001,
+        "numericPaymentLedgerPrintedInXml": false,
+        "normalPhysicalDockCompletionAsserted": true
+      },
+      "fishingIncomeVerification": {
+        "evidenceKind": "Passed frozen-source assertions after public Stop isolation and normal TickEconomy(0.1)",
+        "assertionSource": {
+          "file": "Assets/Frontier/Tests/EditMode/WaterEconomy063Tests.cs",
+          "sha256": "fafda6575f2bcc35875af483dd5a8144e563527e11c8e494865c67476d30db67",
+          "matchesFinalSourceEvidence": true
+        },
+        "creditedFoodAmount": null,
+        "numericCreditPrintedInXml": false,
+        "positiveActualGatheredFoodCreditAsserted": true,
+        "gatheredCreditEqualsFishDepletionAndFoodBalanceIncreaseAsserted": true,
+        "comparisonToleranceFood": 0.01,
+        "physicalFishTargetAndCurrentGatherOrderAsserted": true
+      }
+    },
+    {
+      "fullname": "Frontier.Tests.WaterEconomy063Tests.PeacefulOpeningAiPaysForSurveyConstructionAndFishingOnEveryNewMap(\"winding\",\"wayfarer\")",
+      "result": "Passed",
+      "sourceReport": {
+        "file": "Builds/Tests/run-NDU0sLQ9/EditMode.xml",
+        "sha256": "b5152ad292984c994f0a948d20109e43e0f284174b8ff258e3540c2d6a13b03b",
+        "archive": "Docs/Evidence/063/Tests/EditMode.xml"
+      },
+      "rawOutput": "winding/wayfarer: t=513.3, age=2, resources=157 F / 132 W / 445 C, winner=-1; dock at (41.00, 25.00): Idle; fishing_boat at (50.34, 21.97): Gathering Food\n",
+      "map": "winding",
+      "civilization": "wayfarer",
+      "firstFishingSimulationTimeSeconds": 513.3,
+      "age": 2,
+      "winner": -1,
+      "printedResourceBalanceRounded": {
+        "food": 157,
+        "wood": 132,
+        "coin": 445
+      },
+      "dock": {
+        "position": {
+          "x": 41.0,
+          "z": 25.0
+        },
+        "status": "Idle"
+      },
+      "fishingBoat": {
+        "position": {
+          "x": 50.34,
+          "z": 21.97
+        },
+        "status": "Gathering Food"
+      },
+      "paymentVerification": {
+        "evidenceKind": "Passed frozen-source assertions over actual Payment economy ledger",
+        "assertionSource": {
+          "file": "Assets/Frontier/Tests/EditMode/WaterEconomy063Tests.cs",
+          "sha256": "fafda6575f2bcc35875af483dd5a8144e563527e11c8e494865c67476d30db67",
+          "matchesFinalSourceEvidence": true
+        },
+        "dockActualDeltaWoodAsserted": -200,
+        "boatActualDeltaWoodAsserted": -70,
+        "comparisonToleranceWood": 0.001,
+        "numericPaymentLedgerPrintedInXml": false,
+        "normalPhysicalDockCompletionAsserted": true
+      },
+      "fishingIncomeVerification": {
+        "evidenceKind": "Passed frozen-source assertions after public Stop isolation and normal TickEconomy(0.1)",
+        "assertionSource": {
+          "file": "Assets/Frontier/Tests/EditMode/WaterEconomy063Tests.cs",
+          "sha256": "fafda6575f2bcc35875af483dd5a8144e563527e11c8e494865c67476d30db67",
+          "matchesFinalSourceEvidence": true
+        },
+        "creditedFoodAmount": null,
+        "numericCreditPrintedInXml": false,
+        "positiveActualGatheredFoodCreditAsserted": true,
+        "gatheredCreditEqualsFishDepletionAndFoodBalanceIncreaseAsserted": true,
+        "comparisonToleranceFood": 0.01,
+        "physicalFishTargetAndCurrentGatherOrderAsserted": true
+      }
+    },
+    {
+      "fullname": "Frontier.Tests.WaterEconomy063Tests.PeacefulOpeningAiPaysForSurveyConstructionAndFishingOnEveryNewMap(\"winding\",\"highland\")",
+      "result": "Passed",
+      "sourceReport": {
+        "file": "Builds/Tests/run-NDU0sLQ9/EditMode.xml",
+        "sha256": "b5152ad292984c994f0a948d20109e43e0f284174b8ff258e3540c2d6a13b03b",
+        "archive": "Docs/Evidence/063/Tests/EditMode.xml"
+      },
+      "rawOutput": "winding/highland: t=610.5, age=2, resources=53 F / 18 W / 62 C, winner=-1; dock at (37.00, 103.00): Idle; fishing_boat at (47.01, 106.61): Gathering Food\n",
+      "map": "winding",
+      "civilization": "highland",
+      "firstFishingSimulationTimeSeconds": 610.5,
+      "age": 2,
+      "winner": -1,
+      "printedResourceBalanceRounded": {
+        "food": 53,
+        "wood": 18,
+        "coin": 62
+      },
+      "dock": {
+        "position": {
+          "x": 37.0,
+          "z": 103.0
+        },
+        "status": "Idle"
+      },
+      "fishingBoat": {
+        "position": {
+          "x": 47.01,
+          "z": 106.61
+        },
+        "status": "Gathering Food"
+      },
+      "paymentVerification": {
+        "evidenceKind": "Passed frozen-source assertions over actual Payment economy ledger",
+        "assertionSource": {
+          "file": "Assets/Frontier/Tests/EditMode/WaterEconomy063Tests.cs",
+          "sha256": "fafda6575f2bcc35875af483dd5a8144e563527e11c8e494865c67476d30db67",
+          "matchesFinalSourceEvidence": true
+        },
+        "dockActualDeltaWoodAsserted": -200,
+        "boatActualDeltaWoodAsserted": -70,
+        "comparisonToleranceWood": 0.001,
+        "numericPaymentLedgerPrintedInXml": false,
+        "normalPhysicalDockCompletionAsserted": true
+      },
+      "fishingIncomeVerification": {
+        "evidenceKind": "Passed frozen-source assertions after public Stop isolation and normal TickEconomy(0.1)",
+        "assertionSource": {
+          "file": "Assets/Frontier/Tests/EditMode/WaterEconomy063Tests.cs",
+          "sha256": "fafda6575f2bcc35875af483dd5a8144e563527e11c8e494865c67476d30db67",
+          "matchesFinalSourceEvidence": true
+        },
+        "creditedFoodAmount": null,
+        "numericCreditPrintedInXml": false,
+        "positiveActualGatheredFoodCreditAsserted": true,
+        "gatheredCreditEqualsFishDepletionAndFoodBalanceIncreaseAsserted": true,
+        "comparisonToleranceFood": 0.01,
+        "physicalFishTargetAndCurrentGatherOrderAsserted": true
+      }
+    }
+  ],
+  "recordedRecovery": {
+    "fullname": "Frontier.Tests.CurvedManeuver063Tests.RecordedEstuaryFormationAllowsCannonToLeaveThroughABodyClearCorridor",
+    "result": "Passed",
+    "sourceReport": {
+      "file": "Builds/Tests/run-NDU0sLQ9/EditMode.xml",
+      "sha256": "b5152ad292984c994f0a948d20109e43e0f284174b8ff258e3540c2d6a13b03b",
+      "archive": "Docs/Evidence/063/Tests/EditMode.xml"
+    },
+    "rawOutput": "Recorded estuary recovery: 414 entities; arrived after 27.2 simulation seconds\nFine recovery: coarseAttempts=3; attempts=2; failures=0; deferred=0; peakQueryMs=23.4932\n",
+    "entities": 414,
+    "arrivalSimulationSeconds": 27.2,
+    "fineRecovery": {
+      "coarseAttempts": 3,
+      "attempts": 2,
+      "failures": 0,
+      "deferredOccurrences": 0,
+      "peakQueryMs": 23.4932
+    },
+    "fixture": {
+      "file": "Assets/Frontier/Tests/EditMode/Fixtures/estuary-formation-recovery420.json",
+      "sha256": "19cbb5c2e97a47181283d2623e822ee27b40dc025f4d7a4679f845b261253781"
+    },
+    "passedAssertions": [
+      "Public Stop then Move to recorded goal",
+      "Exact static sweep, speed and height bounds each tick",
+      "No motion of parked allies",
+      "Exact swept physical-body clearance against every parked ally",
+      "Orders empty and assigned goal distance < 1 meter within 240 simulated seconds"
+    ]
+  },
+  "archiveVerification": "../Tests/hash-verification.json"
+}

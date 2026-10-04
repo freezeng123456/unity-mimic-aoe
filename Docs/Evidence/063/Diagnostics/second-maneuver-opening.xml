@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="46" result="Failed(Child)" total="46" passed="41" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-04 13:02:10Z" end-time="2026-10-04 13:02:52Z" duration="41.6603217">
+  <test-suite type="TestSuite" id="1000" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="392" result="Failed" site="Child" start-time="2026-10-04 13:02:10Z" end-time="2026-10-04 13:02:52Z" duration="41.660322" total="46" passed="41" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1485" name="Frontier.EditMode.dll" fullname="/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Library/ScriptAssemblies/Frontier.EditMode.dll" runstate="Runnable" testcasecount="392" result="Failed" site="Child" start-time="2026-10-04 13:02:10Z" end-time="2026-10-04 13:02:52Z" duration="41.655183" total="46" passed="41" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="16034" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1486" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="386" result="Failed" site="Child" start-time="2026-10-04 13:02:10Z" end-time="2026-10-04 13:02:52Z" duration="41.653741" total="46" passed="41" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1487" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="386" result="Failed" site="Child" start-time="2026-10-04 13:02:10Z" end-time="2026-10-04 13:02:52Z" duration="41.652662" total="46" passed="41" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1169" name="CurvedManeuver063Tests" fullname="Frontier.Tests.CurvedManeuver063Tests" classname="Frontier.Tests.CurvedManeuver063Tests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-04 13:02:10Z" end-time="2026-10-04 13:02:50Z" duration="39.682799" total="8" passed="3" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="1178" name="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges" fullname="Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges" classname="Frontier.Tests.CurvedManeuver063Tests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-04 13:02:10Z" end-time="2026-10-04 13:02:50Z" duration="39.680619" total="8" passed="3" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1170" name="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;winding&quot;,200)" fullname="Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;winding&quot;,200)" methodname="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges" classname="Frontier.Tests.CurvedManeuver063Tests" runstate="Runnable" seed="361505455" result="Failed" start-time="2026-10-04 13:02:10Z" end-time="2026-10-04 13:02:13Z" duration="3.010503" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  winding: 1/212 actors did not arrive within 240 simulation seconds: 248/cannon (43.62, 46.30) -> (20.40, 60.70) Moving
+  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges (System.String map, System.Int32 count) [0x00749] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/CurvedManeuver063Tests.cs:81
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[Curved maneuver: map=winding; land=200; landArrived=199; ships=12; shipsArrived=12; crossed=212; simSeconds=240.0; peakPlanarStep=0.60000; peakHeightStep=0.21333; peakTickMs=137.8425; tickP95Ms=3.3857; tickP99Ms=4.8356
+]]></output>
+              </test-case>
+              <test-case id="1171" name="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;winding&quot;,400)" fullname="Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;winding&quot;,400)" methodname="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges" classname="Frontier.Tests.CurvedManeuver063Tests" runstate="Runnable" seed="1265474792" result="Failed" start-time="2026-10-04 13:02:13Z" end-time="2026-10-04 13:02:18Z" duration="5.242848" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  winding: 1/412 actors did not arrive within 240 simulation seconds: 453/cannon (44.20, 76.26) -> (43.50, 80.50) Moving
+  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges (System.String map, System.Int32 count) [0x00749] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/CurvedManeuver063Tests.cs:81
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[Curved maneuver: map=winding; land=400; landArrived=399; ships=12; shipsArrived=12; crossed=412; simSeconds=240.0; peakPlanarStep=0.60001; peakHeightStep=0.21333; peakTickMs=261.1177; tickP95Ms=9.1051; tickP99Ms=12.2265
+]]></output>
+              </test-case>
+              <test-case id="1172" name="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;tropical&quot;,200)" fullname="Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;tropical&quot;,200)" methodname="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges" classname="Frontier.Tests.CurvedManeuver063Tests" runstate="Runnable" seed="587785872" result="Passed" start-time="2026-10-04 13:02:18Z" end-time="2026-10-04 13:02:20Z" duration="2.151886" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Curved maneuver: map=tropical; land=200; landArrived=200; ships=12; shipsArrived=12; crossed=212; simSeconds=67.0; peakPlanarStep=0.60001; peakHeightStep=0.21333; peakTickMs=121.6121; tickP95Ms=4.3045; tickP99Ms=5.2500
+]]></output>
+              </test-case>
+              <test-case id="1173" name="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;tropical&quot;,400)" fullname="Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;tropical&quot;,400)" methodname="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges" classname="Frontier.Tests.CurvedManeuver063Tests" runstate="Runnable" seed="583300245" result="Passed" start-time="2026-10-04 13:02:20Z" end-time="2026-10-04 13:02:26Z" duration="5.253231" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Curved maneuver: map=tropical; land=400; landArrived=400; ships=12; shipsArrived=12; crossed=412; simSeconds=114.0; peakPlanarStep=0.60001; peakHeightStep=0.21333; peakTickMs=246.8992; tickP95Ms=11.2605; tickP99Ms=29.0912
+]]></output>
+              </test-case>
+              <test-case id="1174" name="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;tributaries&quot;,200)" fullname="Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;tributaries&quot;,200)" methodname="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges" classname="Frontier.Tests.CurvedManeuver063Tests" runstate="Runnable" seed="2067857229" result="Failed" start-time="2026-10-04 13:02:26Z" end-time="2026-10-04 13:02:30Z" duration="4.013595" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  tributaries: 1/212 actors did not arrive within 240 simulation seconds: 305/cannon (43.51, 46.45) -> (33.60, 47.50) Moving
+  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges (System.String map, System.Int32 count) [0x00749] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/CurvedManeuver063Tests.cs:81
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[Curved maneuver: map=tributaries; land=200; landArrived=199; ships=12; shipsArrived=12; crossed=212; simSeconds=240.0; peakPlanarStep=0.60000; peakHeightStep=0.21333; peakTickMs=129.4727; tickP95Ms=4.1474; tickP99Ms=5.5767
+]]></output>
+              </test-case>
+              <test-case id="1175" name="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;tributaries&quot;,400)" fullname="Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;tributaries&quot;,400)" methodname="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges" classname="Frontier.Tests.CurvedManeuver063Tests" runstate="Runnable" seed="996132733" result="Failed" start-time="2026-10-04 13:02:30Z" end-time="2026-10-04 13:02:41Z" duration="11.593784" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  tributaries: 3/412 actors did not arrive within 240 simulation seconds: 425/cannon (28.21, 73.72) -> (23.70, 80.50) Moving; 495/cannon (31.64, 67.54) -> (20.40, 87.10) Moving; 515/cannon (120.60, 69.60) -> (53.40, 54.10) Route blocked; retrying
+  Expected: 0
+  But was:  3
+]]></message>
+                  <stack-trace><![CDATA[at Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges (System.String map, System.Int32 count) [0x00749] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/CurvedManeuver063Tests.cs:81
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[Curved maneuver: map=tributaries; land=400; landArrived=397; ships=12; shipsArrived=12; crossed=411; simSeconds=240.0; peakPlanarStep=0.60000; peakHeightStep=0.21333; peakTickMs=285.9168; tickP95Ms=13.7811; tickP99Ms=47.9146
+]]></output>
+              </test-case>
+              <test-case id="1176" name="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;estuary&quot;,200)" fullname="Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;estuary&quot;,200)" methodname="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges" classname="Frontier.Tests.CurvedManeuver063Tests" runstate="Runnable" seed="1179497635" result="Passed" start-time="2026-10-04 13:02:41Z" end-time="2026-10-04 13:02:43Z" duration="2.083575" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Curved maneuver: map=estuary; land=200; landArrived=200; ships=12; shipsArrived=12; crossed=212; simSeconds=57.7; peakPlanarStep=0.60001; peakHeightStep=0.21333; peakTickMs=121.9125; tickP95Ms=4.2544; tickP99Ms=5.3402
+]]></output>
+              </test-case>
+              <test-case id="1177" name="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;estuary&quot;,400)" fullname="Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;estuary&quot;,400)" methodname="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges" classname="Frontier.Tests.CurvedManeuver063Tests" runstate="Runnable" seed="1347080013" result="Failed" start-time="2026-10-04 13:02:43Z" end-time="2026-10-04 13:02:50Z" duration="6.325193" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  estuary: 1/412 actors did not arrive within 240 simulation seconds: 485/cannon (82.66, 83.68) -> (7.20, 77.20) Moving
+  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[at Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges (System.String map, System.Int32 count) [0x00749] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/CurvedManeuver063Tests.cs:81
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[Curved maneuver: map=estuary; land=400; landArrived=399; ships=12; shipsArrived=12; crossed=411; simSeconds=240.0; peakPlanarStep=0.60001; peakHeightStep=0.21333; peakTickMs=224.5261; tickP95Ms=9.5437; tickP99Ms=26.0758
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1282" name="MapLayout063Tests" fullname="Frontier.Tests.MapLayout063Tests" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" testcasecount="27" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.250909" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1304" name="AuthoredTradeRouteNeverCutsAcrossWaterOrTheSideOfARamp" fullname="Frontier.Tests.MapLayout063Tests.AuthoredTradeRouteNeverCutsAcrossWaterOrTheSideOfARamp" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.015360" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1300" name="AuthoredTradeRouteNeverCutsAcrossWaterOrTheSideOfARamp(&quot;winding&quot;)" fullname="Frontier.Tests.MapLayout063Tests.AuthoredTradeRouteNeverCutsAcrossWaterOrTheSideOfARamp(&quot;winding&quot;)" methodname="AuthoredTradeRouteNeverCutsAcrossWaterOrTheSideOfARamp" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="858674684" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.003042" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1301" name="AuthoredTradeRouteNeverCutsAcrossWaterOrTheSideOfARamp(&quot;tropical&quot;)" fullname="Frontier.Tests.MapLayout063Tests.AuthoredTradeRouteNeverCutsAcrossWaterOrTheSideOfARamp(&quot;tropical&quot;)" methodname="AuthoredTradeRouteNeverCutsAcrossWaterOrTheSideOfARamp" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="1211514514" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.007215" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1302" name="AuthoredTradeRouteNeverCutsAcrossWaterOrTheSideOfARamp(&quot;tributaries&quot;)" fullname="Frontier.Tests.MapLayout063Tests.AuthoredTradeRouteNeverCutsAcrossWaterOrTheSideOfARamp(&quot;tributaries&quot;)" methodname="AuthoredTradeRouteNeverCutsAcrossWaterOrTheSideOfARamp" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="881249840" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.002140" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1303" name="AuthoredTradeRouteNeverCutsAcrossWaterOrTheSideOfARamp(&quot;estuary&quot;)" fullname="Frontier.Tests.MapLayout063Tests.AuthoredTradeRouteNeverCutsAcrossWaterOrTheSideOfARamp(&quot;estuary&quot;)" methodname="AuthoredTradeRouteNeverCutsAcrossWaterOrTheSideOfARamp" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="1145168805" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.002144" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1309" name="BothBanksHaveAuthoredHarborSitesAndDirectionsIntoWater" fullname="Frontier.Tests.MapLayout063Tests.BothBanksHaveAuthoredHarborSitesAndDirectionsIntoWater" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.001825" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1305" name="BothBanksHaveAuthoredHarborSitesAndDirectionsIntoWater(&quot;winding&quot;)" fullname="Frontier.Tests.MapLayout063Tests.BothBanksHaveAuthoredHarborSitesAndDirectionsIntoWater(&quot;winding&quot;)" methodname="BothBanksHaveAuthoredHarborSitesAndDirectionsIntoWater" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="360025336" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.000768" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1306" name="BothBanksHaveAuthoredHarborSitesAndDirectionsIntoWater(&quot;tropical&quot;)" fullname="Frontier.Tests.MapLayout063Tests.BothBanksHaveAuthoredHarborSitesAndDirectionsIntoWater(&quot;tropical&quot;)" methodname="BothBanksHaveAuthoredHarborSitesAndDirectionsIntoWater" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="1006654247" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.000042" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1307" name="BothBanksHaveAuthoredHarborSitesAndDirectionsIntoWater(&quot;tributaries&quot;)" fullname="Frontier.Tests.MapLayout063Tests.BothBanksHaveAuthoredHarborSitesAndDirectionsIntoWater(&quot;tributaries&quot;)" methodname="BothBanksHaveAuthoredHarborSitesAndDirectionsIntoWater" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="2095095917" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.000035" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1308" name="BothBanksHaveAuthoredHarborSitesAndDirectionsIntoWater(&quot;estuary&quot;)" fullname="Frontier.Tests.MapLayout063Tests.BothBanksHaveAuthoredHarborSitesAndDirectionsIntoWater(&quot;estuary&quot;)" methodname="BothBanksHaveAuthoredHarborSitesAndDirectionsIntoWater" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="1454918326" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.000043" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1294" name="BridgeCoordinatesDeckRampsAndFootprintsUseOneOrientedDefinition" fullname="Frontier.Tests.MapLayout063Tests.BridgeCoordinatesDeckRampsAndFootprintsUseOneOrientedDefinition" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.001407" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1290" name="BridgeCoordinatesDeckRampsAndFootprintsUseOneOrientedDefinition(&quot;winding&quot;)" fullname="Frontier.Tests.MapLayout063Tests.BridgeCoordinatesDeckRampsAndFootprintsUseOneOrientedDefinition(&quot;winding&quot;)" methodname="BridgeCoordinatesDeckRampsAndFootprintsUseOneOrientedDefinition" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="589330659" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.000701" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1291" name="BridgeCoordinatesDeckRampsAndFootprintsUseOneOrientedDefinition(&quot;tropical&quot;)" fullname="Frontier.Tests.MapLayout063Tests.BridgeCoordinatesDeckRampsAndFootprintsUseOneOrientedDefinition(&quot;tropical&quot;)" methodname="BridgeCoordinatesDeckRampsAndFootprintsUseOneOrientedDefinition" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="1436825004" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.000050" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1292" name="BridgeCoordinatesDeckRampsAndFootprintsUseOneOrientedDefinition(&quot;tributaries&quot;)" fullname="Frontier.Tests.MapLayout063Tests.BridgeCoordinatesDeckRampsAndFootprintsUseOneOrientedDefinition(&quot;tributaries&quot;)" methodname="BridgeCoordinatesDeckRampsAndFootprintsUseOneOrientedDefinition" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="1339654235" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.000060" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1293" name="BridgeCoordinatesDeckRampsAndFootprintsUseOneOrientedDefinition(&quot;estuary&quot;)" fullname="Frontier.Tests.MapLayout063Tests.BridgeCoordinatesDeckRampsAndFootprintsUseOneOrientedDefinition(&quot;estuary&quot;)" methodname="BridgeCoordinatesDeckRampsAndFootprintsUseOneOrientedDefinition" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="1201500545" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.000046" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1299" name="LandAndWaterNavigationConnectEachNewMapWithoutDomainLeaks" fullname="Frontier.Tests.MapLayout063Tests.LandAndWaterNavigationConnectEachNewMapWithoutDomainLeaks" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.116488" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1295" name="LandAndWaterNavigationConnectEachNewMapWithoutDomainLeaks(&quot;winding&quot;)" fullname="Frontier.Tests.MapLayout063Tests.LandAndWaterNavigationConnectEachNewMapWithoutDomainLeaks(&quot;winding&quot;)" methodname="LandAndWaterNavigationConnectEachNewMapWithoutDomainLeaks" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="1677413142" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.029368" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1296" name="LandAndWaterNavigationConnectEachNewMapWithoutDomainLeaks(&quot;tropical&quot;)" fullname="Frontier.Tests.MapLayout063Tests.LandAndWaterNavigationConnectEachNewMapWithoutDomainLeaks(&quot;tropical&quot;)" methodname="LandAndWaterNavigationConnectEachNewMapWithoutDomainLeaks" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="879198524" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.028227" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1297" name="LandAndWaterNavigationConnectEachNewMapWithoutDomainLeaks(&quot;tributaries&quot;)" fullname="Frontier.Tests.MapLayout063Tests.LandAndWaterNavigationConnectEachNewMapWithoutDomainLeaks(&quot;tributaries&quot;)" methodname="LandAndWaterNavigationConnectEachNewMapWithoutDomainLeaks" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="2061468443" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.035644" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1298" name="LandAndWaterNavigationConnectEachNewMapWithoutDomainLeaks(&quot;estuary&quot;)" fullname="Frontier.Tests.MapLayout063Tests.LandAndWaterNavigationConnectEachNewMapWithoutDomainLeaks(&quot;estuary&quot;)" methodname="LandAndWaterNavigationConnectEachNewMapWithoutDomainLeaks" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="1482872094" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.022511" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1284" name="LegacyBoundsBridgeRampsAndBankDirectionsRemainExact" fullname="Frontier.Tests.MapLayout063Tests.LegacyBoundsBridgeRampsAndBankDirectionsRemainExact" methodname="LegacyBoundsBridgeRampsAndBankDirectionsRemainExact" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="691785503" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.001654" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1283" name="MapRegistryHasDistinctNamesAndRejectsUnknownLayouts" fullname="Frontier.Tests.MapLayout063Tests.MapRegistryHasDistinctNamesAndRejectsUnknownLayouts" methodname="MapRegistryHasDistinctNamesAndRejectsUnknownLayouts" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="1151352294" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.000788" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1289" name="RiversAreCurvedDenselySampledAndHaveSafeBedAndSpawns" fullname="Frontier.Tests.MapLayout063Tests.RiversAreCurvedDenselySampledAndHaveSafeBedAndSpawns" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.004111" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1285" name="RiversAreCurvedDenselySampledAndHaveSafeBedAndSpawns(&quot;winding&quot;)" fullname="Frontier.Tests.MapLayout063Tests.RiversAreCurvedDenselySampledAndHaveSafeBedAndSpawns(&quot;winding&quot;)" methodname="RiversAreCurvedDenselySampledAndHaveSafeBedAndSpawns" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="1107717941" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.001784" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1286" name="RiversAreCurvedDenselySampledAndHaveSafeBedAndSpawns(&quot;tropical&quot;)" fullname="Frontier.Tests.MapLayout063Tests.RiversAreCurvedDenselySampledAndHaveSafeBedAndSpawns(&quot;tropical&quot;)" methodname="RiversAreCurvedDenselySampledAndHaveSafeBedAndSpawns" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="1319029025" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.000434" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1287" name="RiversAreCurvedDenselySampledAndHaveSafeBedAndSpawns(&quot;tributaries&quot;)" fullname="Frontier.Tests.MapLayout063Tests.RiversAreCurvedDenselySampledAndHaveSafeBedAndSpawns(&quot;tributaries&quot;)" methodname="RiversAreCurvedDenselySampledAndHaveSafeBedAndSpawns" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="1832366113" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.000620" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1288" name="RiversAreCurvedDenselySampledAndHaveSafeBedAndSpawns(&quot;estuary&quot;)" fullname="Frontier.Tests.MapLayout063Tests.RiversAreCurvedDenselySampledAndHaveSafeBedAndSpawns(&quot;estuary&quot;)" methodname="RiversAreCurvedDenselySampledAndHaveSafeBedAndSpawns" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="423542555" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.000356" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1315" name="SlantedBridgeHeightDiscontinuitiesCannotBeCrossedThroughPartialRailingCells" fullname="Frontier.Tests.MapLayout063Tests.SlantedBridgeHeightDiscontinuitiesCannotBeCrossedThroughPartialRailingCells" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.105946" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1310" name="SlantedBridgeHeightDiscontinuitiesCannotBeCrossedThroughPartialRailingCells(&quot;winding&quot;,73.52f,32.01f,73.12f,32.01f)" fullname="Frontier.Tests.MapLayout063Tests.SlantedBridgeHeightDiscontinuitiesCannotBeCrossedThroughPartialRailingCells(&quot;winding&quot;,73.52f,32.01f,73.12f,32.01f)" methodname="SlantedBridgeHeightDiscontinuitiesCannotBeCrossedThroughPartialRailingCells" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="888729806" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.019328" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1311" name="SlantedBridgeHeightDiscontinuitiesCannotBeCrossedThroughPartialRailingCells(&quot;tropical&quot;,69.61f,34.98f,70.01f,35.02f)" fullname="Frontier.Tests.MapLayout063Tests.SlantedBridgeHeightDiscontinuitiesCannotBeCrossedThroughPartialRailingCells(&quot;tropical&quot;,69.61f,34.98f,70.01f,35.02f)" methodname="SlantedBridgeHeightDiscontinuitiesCannotBeCrossedThroughPartialRailingCells" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="2135972639" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.025405" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1312" name="SlantedBridgeHeightDiscontinuitiesCannotBeCrossedThroughPartialRailingCells(&quot;tropical&quot;,73.73f,98.17f,74.09f,98.01f)" fullname="Frontier.Tests.MapLayout063Tests.SlantedBridgeHeightDiscontinuitiesCannotBeCrossedThroughPartialRailingCells(&quot;tropical&quot;,73.73f,98.17f,74.09f,98.01f)" methodname="SlantedBridgeHeightDiscontinuitiesCannotBeCrossedThroughPartialRailingCells" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="832041160" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.019096" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1313" name="SlantedBridgeHeightDiscontinuitiesCannotBeCrossedThroughPartialRailingCells(&quot;tributaries&quot;,41.6f,46,42,46)" fullname="Frontier.Tests.MapLayout063Tests.SlantedBridgeHeightDiscontinuitiesCannotBeCrossedThroughPartialRailingCells(&quot;tributaries&quot;,41.6f,46,42,46)" methodname="SlantedBridgeHeightDiscontinuitiesCannotBeCrossedThroughPartialRailingCells" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="1716875230" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.028277" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1314" name="SlantedBridgeHeightDiscontinuitiesCannotBeCrossedThroughPartialRailingCells(&quot;estuary&quot;,47.7f,65.07f,48.04f,64.86f)" fullname="Frontier.Tests.MapLayout063Tests.SlantedBridgeHeightDiscontinuitiesCannotBeCrossedThroughPartialRailingCells(&quot;estuary&quot;,47.7f,65.07f,48.04f,64.86f)" methodname="SlantedBridgeHeightDiscontinuitiesCannotBeCrossedThroughPartialRailingCells" classname="Frontier.Tests.MapLayout063Tests" runstate="Runnable" seed="1676039508" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.012711" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1316" name="MapOpening063Tests" fullname="Frontier.Tests.MapOpening063Tests" classname="Frontier.Tests.MapOpening063Tests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:52Z" duration="1.687984" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1321" name="EveryCivilizationOpeningKeepsLaborResourcesAndTreasureOnUsableLand" fullname="Frontier.Tests.MapOpening063Tests.EveryCivilizationOpeningKeepsLaborResourcesAndTreasureOnUsableLand" classname="Frontier.Tests.MapOpening063Tests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:51Z" duration="0.950490" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1317" name="EveryCivilizationOpeningKeepsLaborResourcesAndTreasureOnUsableLand(&quot;winding&quot;)" fullname="Frontier.Tests.MapOpening063Tests.EveryCivilizationOpeningKeepsLaborResourcesAndTreasureOnUsableLand(&quot;winding&quot;)" methodname="EveryCivilizationOpeningKeepsLaborResourcesAndTreasureOnUsableLand" classname="Frontier.Tests.MapOpening063Tests" runstate="Runnable" seed="722671179" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.238496" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1318" name="EveryCivilizationOpeningKeepsLaborResourcesAndTreasureOnUsableLand(&quot;tropical&quot;)" fullname="Frontier.Tests.MapOpening063Tests.EveryCivilizationOpeningKeepsLaborResourcesAndTreasureOnUsableLand(&quot;tropical&quot;)" methodname="EveryCivilizationOpeningKeepsLaborResourcesAndTreasureOnUsableLand" classname="Frontier.Tests.MapOpening063Tests" runstate="Runnable" seed="1301698003" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:50Z" duration="0.234816" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1319" name="EveryCivilizationOpeningKeepsLaborResourcesAndTreasureOnUsableLand(&quot;tributaries&quot;)" fullname="Frontier.Tests.MapOpening063Tests.EveryCivilizationOpeningKeepsLaborResourcesAndTreasureOnUsableLand(&quot;tributaries&quot;)" methodname="EveryCivilizationOpeningKeepsLaborResourcesAndTreasureOnUsableLand" classname="Frontier.Tests.MapOpening063Tests" runstate="Runnable" seed="38021329" result="Passed" start-time="2026-10-04 13:02:50Z" end-time="2026-10-04 13:02:51Z" duration="0.298583" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1320" name="EveryCivilizationOpeningKeepsLaborResourcesAndTreasureOnUsableLand(&quot;estuary&quot;)" fullname="Frontier.Tests.MapOpening063Tests.EveryCivilizationOpeningKeepsLaborResourcesAndTreasureOnUsableLand(&quot;estuary&quot;)" methodname="EveryCivilizationOpeningKeepsLaborResourcesAndTreasureOnUsableLand" classname="Frontier.Tests.MapOpening063Tests" runstate="Runnable" seed="590171913" result="Passed" start-time="2026-10-04 13:02:51Z" end-time="2026-10-04 13:02:51Z" duration="0.177751" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1326" name="TradeCaravanPhysicallyCompletesTwoReturnTripsWithoutWadingOrJumpingAcrossRamps" fullname="Frontier.Tests.MapOpening063Tests.TradeCaravanPhysicallyCompletesTwoReturnTripsWithoutWadingOrJumpingAcrossRamps" classname="Frontier.Tests.MapOpening063Tests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-04 13:02:51Z" end-time="2026-10-04 13:02:52Z" duration="0.736839" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1322" name="TradeCaravanPhysicallyCompletesTwoReturnTripsWithoutWadingOrJumpingAcrossRamps(&quot;winding&quot;)" fullname="Frontier.Tests.MapOpening063Tests.TradeCaravanPhysicallyCompletesTwoReturnTripsWithoutWadingOrJumpingAcrossRamps(&quot;winding&quot;)" methodname="TradeCaravanPhysicallyCompletesTwoReturnTripsWithoutWadingOrJumpingAcrossRamps" classname="Frontier.Tests.MapOpening063Tests" runstate="Runnable" seed="1749189757" result="Passed" start-time="2026-10-04 13:02:51Z" end-time="2026-10-04 13:02:51Z" duration="0.185071" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1323" name="TradeCaravanPhysicallyCompletesTwoReturnTripsWithoutWadingOrJumpingAcrossRamps(&quot;tropical&quot;)" fullname="Frontier.Tests.MapOpening063Tests.TradeCaravanPhysicallyCompletesTwoReturnTripsWithoutWadingOrJumpingAcrossRamps(&quot;tropical&quot;)" methodname="TradeCaravanPhysicallyCompletesTwoReturnTripsWithoutWadingOrJumpingAcrossRamps" classname="Frontier.Tests.MapOpening063Tests" runstate="Runnable" seed="125017503" result="Passed" start-time="2026-10-04 13:02:51Z" end-time="2026-10-04 13:02:51Z" duration="0.182223" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1324" name="TradeCaravanPhysicallyCompletesTwoReturnTripsWithoutWadingOrJumpingAcrossRamps(&quot;tributaries&quot;)" fullname="Frontier.Tests.MapOpening063Tests.TradeCaravanPhysicallyCompletesTwoReturnTripsWithoutWadingOrJumpingAcrossRamps(&quot;tributaries&quot;)" methodname="TradeCaravanPhysicallyCompletesTwoReturnTripsWithoutWadingOrJumpingAcrossRamps" classname="Frontier.Tests.MapOpening063Tests" runstate="Runnable" seed="1432743662" result="Passed" start-time="2026-10-04 13:02:51Z" end-time="2026-10-04 13:02:51Z" duration="0.197153" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1325" name="TradeCaravanPhysicallyCompletesTwoReturnTripsWithoutWadingOrJumpingAcrossRamps(&quot;estuary&quot;)" fullname="Frontier.Tests.MapOpening063Tests.TradeCaravanPhysicallyCompletesTwoReturnTripsWithoutWadingOrJumpingAcrossRamps(&quot;estuary&quot;)" methodname="TradeCaravanPhysicallyCompletesTwoReturnTripsWithoutWadingOrJumpingAcrossRamps" classname="Frontier.Tests.MapOpening063Tests" runstate="Runnable" seed="424681861" result="Passed" start-time="2026-10-04 13:02:51Z" end-time="2026-10-04 13:02:52Z" duration="0.171073" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1347" name="NavigationSweep063Tests" fullname="Frontier.Tests.NavigationSweep063Tests" classname="Frontier.Tests.NavigationSweep063Tests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-04 13:02:52Z" end-time="2026-10-04 13:02:52Z" duration="0.002919" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1349" name="ClearLineKeepsARealClearanceBeyondTheRoundedCellCorner" fullname="Frontier.Tests.NavigationSweep063Tests.ClearLineKeepsARealClearanceBeyondTheRoundedCellCorner" methodname="ClearLineKeepsARealClearanceBeyondTheRoundedCellCorner" classname="Frontier.Tests.NavigationSweep063Tests" runstate="Runnable" seed="246335890" result="Passed" start-time="2026-10-04 13:02:52Z" end-time="2026-10-04 13:02:52Z" duration="0.000353" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1348" name="ClearLineRejectsCornerGrazeBetweenFormerSamplingPositions" fullname="Frontier.Tests.NavigationSweep063Tests.ClearLineRejectsCornerGrazeBetweenFormerSamplingPositions" methodname="ClearLineRejectsCornerGrazeBetweenFormerSamplingPositions" classname="Frontier.Tests.NavigationSweep063Tests" runstate="Runnable" seed="1097490902" result="Passed" start-time="2026-10-04 13:02:52Z" end-time="2026-10-04 13:02:52Z" duration="0.000242" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1350" name="SmoothedPathsDetourAroundAGrazedCornerAndRemainLegalThroughout" fullname="Frontier.Tests.NavigationSweep063Tests.SmoothedPathsDetourAroundAGrazedCornerAndRemainLegalThroughout" methodname="SmoothedPathsDetourAroundAGrazedCornerAndRemainLegalThroughout" classname="Frontier.Tests.NavigationSweep063Tests" runstate="Runnable" seed="327645011" result="Passed" start-time="2026-10-04 13:02:52Z" end-time="2026-10-04 13:02:52Z" duration="0.001306" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

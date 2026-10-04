@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="25" result="Failed(Child)" total="25" passed="17" failed="8" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-04 12:55:22Z" end-time="2026-10-04 12:55:34Z" duration="12.0932015">
+  <test-suite type="TestSuite" id="1000" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="379" result="Failed" site="Child" start-time="2026-10-04 12:55:22Z" end-time="2026-10-04 12:55:34Z" duration="12.093202" total="25" passed="17" failed="8" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1468" name="Frontier.EditMode.dll" fullname="/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Library/ScriptAssemblies/Frontier.EditMode.dll" runstate="Runnable" testcasecount="379" result="Failed" site="Child" start-time="2026-10-04 12:55:22Z" end-time="2026-10-04 12:55:34Z" duration="12.088090" total="25" passed="17" failed="8" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="15404" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1469" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="373" result="Failed" site="Child" start-time="2026-10-04 12:55:22Z" end-time="2026-10-04 12:55:34Z" duration="12.086700" total="25" passed="17" failed="8" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1470" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="373" result="Failed" site="Child" start-time="2026-10-04 12:55:22Z" end-time="2026-10-04 12:55:34Z" duration="12.085631" total="25" passed="17" failed="8" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1169" name="CurvedManeuver063Tests" fullname="Frontier.Tests.CurvedManeuver063Tests" classname="Frontier.Tests.CurvedManeuver063Tests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-04 12:55:22Z" end-time="2026-10-04 12:55:31Z" duration="8.585929" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="1178" name="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges" fullname="Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges" classname="Frontier.Tests.CurvedManeuver063Tests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-04 12:55:22Z" end-time="2026-10-04 12:55:31Z" duration="8.580397" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1170" name="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;winding&quot;,200)" fullname="Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;winding&quot;,200)" methodname="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges" classname="Frontier.Tests.CurvedManeuver063Tests" runstate="Runnable" seed="1190694012" result="Failed" start-time="2026-10-04 12:55:22Z" end-time="2026-10-04 12:55:23Z" duration="1.321705" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[winding: 315/musketeer jumped a bridge edge: distance=0.40000 height=0.23134 at step 61: (73.52, 32.01) -> (73.12, 32.01)]]></message>
+                  <stack-trace><![CDATA[at Frontier.Tests.CurvedManeuver063Tests+<>c__DisplayClass0_0.<MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges>g__Fail|5 (Frontier.EntityState actor, System.Int32 step, System.String reason) [0x00000] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/CurvedManeuver063Tests.cs:91
+at Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges (System.String map, System.Int32 count) [0x00519] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/CurvedManeuver063Tests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1171" name="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;winding&quot;,400)" fullname="Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;winding&quot;,400)" methodname="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges" classname="Frontier.Tests.CurvedManeuver063Tests" runstate="Runnable" seed="224672423" result="Failed" start-time="2026-10-04 12:55:23Z" end-time="2026-10-04 12:55:24Z" duration="0.642905" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[winding: 489/pike jumped a bridge edge: distance=0.40000 height=0.20552 at step 47: (73.62, 32.02) -> (73.22, 32.02)]]></message>
+                  <stack-trace><![CDATA[at Frontier.Tests.CurvedManeuver063Tests+<>c__DisplayClass0_0.<MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges>g__Fail|5 (Frontier.EntityState actor, System.Int32 step, System.String reason) [0x00000] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/CurvedManeuver063Tests.cs:91
+at Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges (System.String map, System.Int32 count) [0x00519] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/CurvedManeuver063Tests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1172" name="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;tropical&quot;,200)" fullname="Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;tropical&quot;,200)" methodname="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges" classname="Frontier.Tests.CurvedManeuver063Tests" runstate="Runnable" seed="827619779" result="Failed" start-time="2026-10-04 12:55:24Z" end-time="2026-10-04 12:55:26Z" duration="1.533399" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[tropical: 192/musketeer jumped a bridge edge: distance=0.40000 height=0.91601 at step 132: (69.61, 34.98) -> (70.01, 35.02)]]></message>
+                  <stack-trace><![CDATA[at Frontier.Tests.CurvedManeuver063Tests+<>c__DisplayClass0_0.<MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges>g__Fail|5 (Frontier.EntityState actor, System.Int32 step, System.String reason) [0x00000] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/CurvedManeuver063Tests.cs:91
+at Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges (System.String map, System.Int32 count) [0x00519] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/CurvedManeuver063Tests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1173" name="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;tropical&quot;,400)" fullname="Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;tropical&quot;,400)" methodname="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges" classname="Frontier.Tests.CurvedManeuver063Tests" runstate="Runnable" seed="1727911664" result="Failed" start-time="2026-10-04 12:55:26Z" end-time="2026-10-04 12:55:27Z" duration="1.021878" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[tropical: 441/pike jumped a bridge edge: distance=0.40000 height=0.76400 at step 95: (73.73, 98.17) -> (74.09, 98.01)]]></message>
+                  <stack-trace><![CDATA[at Frontier.Tests.CurvedManeuver063Tests+<>c__DisplayClass0_0.<MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges>g__Fail|5 (Frontier.EntityState actor, System.Int32 step, System.String reason) [0x00000] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/CurvedManeuver063Tests.cs:91
+at Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges (System.String map, System.Int32 count) [0x00519] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/CurvedManeuver063Tests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1174" name="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;tributaries&quot;,200)" fullname="Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;tributaries&quot;,200)" methodname="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges" classname="Frontier.Tests.CurvedManeuver063Tests" runstate="Runnable" seed="1196917638" result="Failed" start-time="2026-10-04 12:55:27Z" end-time="2026-10-04 12:55:28Z" duration="1.893189" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[tributaries: 202/musketeer jumped a bridge edge: distance=0.40000 height=0.24108 at step 61: (41.60, 46.00) -> (42.00, 46.00)]]></message>
+                  <stack-trace><![CDATA[at Frontier.Tests.CurvedManeuver063Tests+<>c__DisplayClass0_0.<MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges>g__Fail|5 (Frontier.EntityState actor, System.Int32 step, System.String reason) [0x00000] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/CurvedManeuver063Tests.cs:91
+at Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges (System.String map, System.Int32 count) [0x00519] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/CurvedManeuver063Tests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1175" name="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;tributaries&quot;,400)" fullname="Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;tributaries&quot;,400)" methodname="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges" classname="Frontier.Tests.CurvedManeuver063Tests" runstate="Runnable" seed="1916471445" result="Failed" start-time="2026-10-04 12:55:28Z" end-time="2026-10-04 12:55:29Z" duration="0.652292" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[tributaries: 316/pike jumped a bridge edge: distance=0.40000 height=0.21968 at step 46: (41.47, 45.93) -> (41.87, 45.94)]]></message>
+                  <stack-trace><![CDATA[at Frontier.Tests.CurvedManeuver063Tests+<>c__DisplayClass0_0.<MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges>g__Fail|5 (Frontier.EntityState actor, System.Int32 step, System.String reason) [0x00000] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/CurvedManeuver063Tests.cs:91
+at Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges (System.String map, System.Int32 count) [0x00519] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/CurvedManeuver063Tests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1176" name="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;estuary&quot;,200)" fullname="Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;estuary&quot;,200)" methodname="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges" classname="Frontier.Tests.CurvedManeuver063Tests" runstate="Runnable" seed="1428681225" result="Failed" start-time="2026-10-04 12:55:29Z" end-time="2026-10-04 12:55:30Z" duration="1.181068" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[estuary: 207/musketeer jumped a bridge edge: distance=0.40000 height=0.20434 at step 33: (47.70, 65.07) -> (48.04, 64.86)]]></message>
+                  <stack-trace><![CDATA[at Frontier.Tests.CurvedManeuver063Tests+<>c__DisplayClass0_0.<MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges>g__Fail|5 (Frontier.EntityState actor, System.Int32 step, System.String reason) [0x00000] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/CurvedManeuver063Tests.cs:91
+at Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges (System.String map, System.Int32 count) [0x00519] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/CurvedManeuver063Tests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="1177" name="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;estuary&quot;,400)" fullname="Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges(&quot;estuary&quot;,400)" methodname="MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges" classname="Frontier.Tests.CurvedManeuver063Tests" runstate="Runnable" seed="774526411" result="Failed" start-time="2026-10-04 12:55:30Z" end-time="2026-10-04 12:55:31Z" duration="0.328095" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[estuary: 281/pike jumped a bridge edge: distance=0.40000 height=0.29912 at step 12: (48.04, 65.07) -> (48.38, 64.87)]]></message>
+                  <stack-trace><![CDATA[at Frontier.Tests.CurvedManeuver063Tests+<>c__DisplayClass0_0.<MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges>g__Fail|5 (Frontier.EntityState actor, System.Int32 step, System.String reason) [0x00000] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/CurvedManeuver063Tests.cs:91
+at Frontier.Tests.CurvedManeuver063Tests.MixedArmiesCrossBothWaysAsTwelveShipsPassUnderTheCurvedMapBridges (System.String map, System.Int32 count) [0x00519] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/CurvedManeuver063Tests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1441" name="WaterNavigation061Tests" fullname="Frontier.Tests.WaterNavigation061Tests" classname="Frontier.Tests.WaterNavigation061Tests" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-10-04 12:55:31Z" end-time="2026-10-04 12:55:34Z" duration="3.486306" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1446" name="BridgeOccupantsDoNotPushOrReserveTheBoatChannel" fullname="Frontier.Tests.WaterNavigation061Tests.BridgeOccupantsDoNotPushOrReserveTheBoatChannel" methodname="BridgeOccupantsDoNotPushOrReserveTheBoatChannel" classname="Frontier.Tests.WaterNavigation061Tests" runstate="Runnable" seed="1413588749" result="Passed" start-time="2026-10-04 12:55:31Z" end-time="2026-10-04 12:55:31Z" duration="0.019590" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1456" name="BridgeRampSideBarriersCannotBeCrossedOrClearedByDynamicRelease" fullname="Frontier.Tests.WaterNavigation061Tests.BridgeRampSideBarriersCannotBeCrossedOrClearedByDynamicRelease" methodname="BridgeRampSideBarriersCannotBeCrossedOrClearedByDynamicRelease" classname="Frontier.Tests.WaterNavigation061Tests" runstate="Runnable" seed="1084262452" result="Passed" start-time="2026-10-04 12:55:31Z" end-time="2026-10-04 12:55:31Z" duration="0.022550" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1451" name="CrossChannelMeleeAndShipGarrisonAreRejectedWithoutDiscardingMove" fullname="Frontier.Tests.WaterNavigation061Tests.CrossChannelMeleeAndShipGarrisonAreRejectedWithoutDiscardingMove" methodname="CrossChannelMeleeAndShipGarrisonAreRejectedWithoutDiscardingMove" classname="Frontier.Tests.WaterNavigation061Tests" runstate="Runnable" seed="2077887260" result="Passed" start-time="2026-10-04 12:55:31Z" end-time="2026-10-04 12:55:31Z" duration="0.012823" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1442" name="DefaultMapStaysLandAndRiverAddsFourLegalFishWithoutMutatingSharedRules" fullname="Frontier.Tests.WaterNavigation061Tests.DefaultMapStaysLandAndRiverAddsFourLegalFishWithoutMutatingSharedRules" methodname="DefaultMapStaysLandAndRiverAddsFourLegalFishWithoutMutatingSharedRules" classname="Frontier.Tests.WaterNavigation061Tests" runstate="Runnable" seed="2101031744" result="Passed" start-time="2026-10-04 12:55:31Z" end-time="2026-10-04 12:55:31Z" duration="0.035361" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1443" name="ExactBankEdgesAndBridgeHeightsMatchBothNavigationChannels" fullname="Frontier.Tests.WaterNavigation061Tests.ExactBankEdgesAndBridgeHeightsMatchBothNavigationChannels" methodname="ExactBankEdgesAndBridgeHeightsMatchBothNavigationChannels" classname="Frontier.Tests.WaterNavigation061Tests" runstate="Runnable" seed="1971539862" result="Passed" start-time="2026-10-04 12:55:31Z" end-time="2026-10-04 12:55:31Z" duration="0.012846" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1450" name="FailedMixedMovePreservesEveryActorsExistingOrderAtomically" fullname="Frontier.Tests.WaterNavigation061Tests.FailedMixedMovePreservesEveryActorsExistingOrderAtomically" methodname="FailedMixedMovePreservesEveryActorsExistingOrderAtomically" classname="Frontier.Tests.WaterNavigation061Tests" runstate="Runnable" seed="143824566" result="Passed" start-time="2026-10-04 12:55:31Z" end-time="2026-10-04 12:55:31Z" duration="0.017786" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1453" name="GunboatBombardsBankBuildingThenRetargetsSpecificLandSoldier" fullname="Frontier.Tests.WaterNavigation061Tests.GunboatBombardsBankBuildingThenRetargetsSpecificLandSoldier" methodname="GunboatBombardsBankBuildingThenRetargetsSpecificLandSoldier" classname="Frontier.Tests.WaterNavigation061Tests" runstate="Runnable" seed="428177450" result="Passed" start-time="2026-10-04 12:55:31Z" end-time="2026-10-04 12:55:31Z" duration="0.020789" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1444" name="LandArmyCrossesByBridgeOnEveryTickInsteadOfWadingOrTeleporting" fullname="Frontier.Tests.WaterNavigation061Tests.LandArmyCrossesByBridgeOnEveryTickInsteadOfWadingOrTeleporting" methodname="LandArmyCrossesByBridgeOnEveryTickInsteadOfWadingOrTeleporting" classname="Frontier.Tests.WaterNavigation061Tests" runstate="Runnable" seed="1676033672" result="Passed" start-time="2026-10-04 12:55:31Z" end-time="2026-10-04 12:55:31Z" duration="0.018718" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1459" name="MixedArmyPassesBothWaysWhileTwelveShipsUseTheUnderpass" fullname="Frontier.Tests.WaterNavigation061Tests.MixedArmyPassesBothWaysWhileTwelveShipsUseTheUnderpass" classname="Frontier.Tests.WaterNavigation061Tests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-04 12:55:31Z" end-time="2026-10-04 12:55:34Z" duration="3.172205" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1457" name="MixedArmyPassesBothWaysWhileTwelveShipsUseTheUnderpass(200)" fullname="Frontier.Tests.WaterNavigation061Tests.MixedArmyPassesBothWaysWhileTwelveShipsUseTheUnderpass(200)" methodname="MixedArmyPassesBothWaysWhileTwelveShipsUseTheUnderpass" classname="Frontier.Tests.WaterNavigation061Tests" runstate="Runnable" seed="2130850224" result="Passed" start-time="2026-10-04 12:55:31Z" end-time="2026-10-04 12:55:32Z" duration="0.761054" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[River maneuver: land=200; landArrived=200; ships=12; shipsArrived=12; crossed=212; simSeconds=50.0; peakPlanarStep=0.60001; peakHeightStep=0.24000; peakTickMs=69.5637
+]]></output>
+              </test-case>
+              <test-case id="1458" name="MixedArmyPassesBothWaysWhileTwelveShipsUseTheUnderpass(400)" fullname="Frontier.Tests.WaterNavigation061Tests.MixedArmyPassesBothWaysWhileTwelveShipsUseTheUnderpass(400)" methodname="MixedArmyPassesBothWaysWhileTwelveShipsUseTheUnderpass" classname="Frontier.Tests.WaterNavigation061Tests" runstate="Runnable" seed="1915256669" result="Passed" start-time="2026-10-04 12:55:32Z" end-time="2026-10-04 12:55:34Z" duration="2.410554" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[River maneuver: land=400; landArrived=400; ships=12; shipsArrived=12; crossed=412; simSeconds=84.0; peakPlanarStep=0.60001; peakHeightStep=0.24000; peakTickMs=122.5402
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1449" name="MixedLandAndWaterSelectionGetsIndependentLegalDestinations" fullname="Frontier.Tests.WaterNavigation061Tests.MixedLandAndWaterSelectionGetsIndependentLegalDestinations" methodname="MixedLandAndWaterSelectionGetsIndependentLegalDestinations" classname="Frontier.Tests.WaterNavigation061Tests" runstate="Runnable" seed="2092283661" result="Passed" start-time="2026-10-04 12:55:34Z" end-time="2026-10-04 12:55:34Z" duration="0.019428" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1455" name="NeutralCaravanCrossesOnlyTheAuthoredBridgeAndTradeSocketsStayReachable" fullname="Frontier.Tests.WaterNavigation061Tests.NeutralCaravanCrossesOnlyTheAuthoredBridgeAndTradeSocketsStayReachable" methodname="NeutralCaravanCrossesOnlyTheAuthoredBridgeAndTradeSocketsStayReachable" classname="Frontier.Tests.WaterNavigation061Tests" runstate="Runnable" seed="65511385" result="Passed" start-time="2026-10-04 12:55:34Z" end-time="2026-10-04 12:55:34Z" duration="0.049628" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1447" name="ReleasingDynamicBlocksAndDemolishingBuildingsCannotEraseWaterTerrain" fullname="Frontier.Tests.WaterNavigation061Tests.ReleasingDynamicBlocksAndDemolishingBuildingsCannotEraseWaterTerrain" methodname="ReleasingDynamicBlocksAndDemolishingBuildingsCannotEraseWaterTerrain" classname="Frontier.Tests.WaterNavigation061Tests" runstate="Runnable" seed="1667824106" result="Passed" start-time="2026-10-04 12:55:34Z" end-time="2026-10-04 12:55:34Z" duration="0.013501" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1445" name="ShipsSailUnderBothBridgesAndNeverLeaveTheWater" fullname="Frontier.Tests.WaterNavigation061Tests.ShipsSailUnderBothBridgesAndNeverLeaveTheWater" methodname="ShipsSailUnderBothBridgesAndNeverLeaveTheWater" classname="Frontier.Tests.WaterNavigation061Tests" runstate="Runnable" seed="276686945" result="Passed" start-time="2026-10-04 12:55:34Z" end-time="2026-10-04 12:55:34Z" duration="0.022609" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1452" name="ShoreMusketUsesRangedShotEvenBesideShipAndForceMeleeCannotAttackIt" fullname="Frontier.Tests.WaterNavigation061Tests.ShoreMusketUsesRangedShotEvenBesideShipAndForceMeleeCannotAttackIt" methodname="ShoreMusketUsesRangedShotEvenBesideShipAndForceMeleeCannotAttackIt" classname="Frontier.Tests.WaterNavigation061Tests" runstate="Runnable" seed="1188549493" result="Passed" start-time="2026-10-04 12:55:34Z" end-time="2026-10-04 12:55:34Z" duration="0.013302" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1448" name="TerrainChangesInvalidatePreviouslyCachedClearanceComponents" fullname="Frontier.Tests.WaterNavigation061Tests.TerrainChangesInvalidatePreviouslyCachedClearanceComponents" methodname="TerrainChangesInvalidatePreviouslyCachedClearanceComponents" classname="Frontier.Tests.WaterNavigation061Tests" runstate="Runnable" seed="1920483125" result="Passed" start-time="2026-10-04 12:55:34Z" end-time="2026-10-04 12:55:34Z" duration="0.012503" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1454" name="WatchtowerAutoFireDamagesEnemyBoatButMeleeDoesNotChaseIt" fullname="Frontier.Tests.WaterNavigation061Tests.WatchtowerAutoFireDamagesEnemyBoatButMeleeDoesNotChaseIt" methodname="WatchtowerAutoFireDamagesEnemyBoatButMeleeDoesNotChaseIt" classname="Frontier.Tests.WaterNavigation061Tests" runstate="Runnable" seed="59604833" result="Passed" start-time="2026-10-04 12:55:34Z" end-time="2026-10-04 12:55:34Z" duration="0.016623" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

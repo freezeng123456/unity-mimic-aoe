@@ -1,0 +1,240 @@
+{
+  "schema": "curved-river-study-visual-verification-063",
+  "verifiedAtUtc": "2026-10-04T16:22:29.669195Z",
+  "status": "passed_with_nonblocking_observations",
+  "sourceDirectory": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-curves-063/Studies",
+  "evidenceDirectory": "Docs/Evidence/063/Studies",
+  "referenceRevision": "4f6f0e81e478c905f9229dd4b4cae948e062e79a",
+  "referenceRevisionMatchesCurrentHead": true,
+  "sourceFingerprint": "f634abbf679f22bc9fcf5d50921a65519eedd7668ef6bf241cf6505238d31dd8",
+  "sourceInventoryFile": "source-inventory-water-063.json",
+  "sourceInventorySha256": "aa2688a4111174466bec81b92705cbb4c7f1647bcab7f6e0c5169927461d28ed",
+  "sourceInventoryFingerprintRecomputed": true,
+  "listedSourceFilesChecked": 475,
+  "listedSourceFilesMatchCurrentWorkingTree": true,
+  "sourceState": "Working tree including uncommitted files; excludes only temporary Unity InitTestScene GUID fixtures and standard hidden/cache files; no clean-commit claim.",
+  "imageCount": 10,
+  "copiedFileCount": 21,
+  "allPngHashesMatchTheirMetadata": true,
+  "allMetadataUsesCommonSourceFingerprint": true,
+  "allMetadataUsesCommonInventorySha256": true,
+  "allMetadataReferencesCurrentCodeRevision": true,
+  "allCopiedFilesReadBackAndHashVerified": true,
+  "visualReview": {
+    "method": "Human-visible inspection of all 10 original 2048x1400 images using view_image at original resolution.",
+    "captureType": "Controlled Unity Editor PlayMode WorldView rendered through GameCamera and URP.",
+    "result": "No new blocking visual defect observed. Curved banks and material transitions are continuous; the tributary confluence has no visible coplanar triangle artifacts or false internal bank edge. Harbor structures face the water, boat hull thickness is readable, and no definite boat/deck penetration was observed.",
+    "limitations": [
+      "Entities are fixture-spawned and repositioned; vision is revealed and AI is disabled.",
+      "These captures are not native-client screenshots or manually played matches.",
+      "Static images do not establish continuous navigation clearance, paid construction, balance or runtime frame-time performance."
+    ],
+    "knownNonblockingObservations": [
+      {
+        "severity": "nonblocking_polish",
+        "image": "estuary-01-landscape.png",
+        "pixel": [
+          1100,
+          355
+        ],
+        "observation": "The northern right bank makes a sharp corner where the widened estuary narrows; the bank is continuous but less rounded than adjacent curves. This existed in the earlier reviewed study; no source change was made."
+      },
+      {
+        "severity": "capture_limitation",
+        "image": "tributaries-02-harbor.png",
+        "observation": "The foreground bridge occludes the two boats and part of the pier, limiting this image as a harbor presentation."
+      },
+      {
+        "severity": "capture_limitation",
+        "image": "winding-03-bridge-underpass.png",
+        "observation": "The bridge deck largely occludes the central gunboat; static pixels alone do not demonstrate the full underpass clearance."
+      }
+    ],
+    "recommendedDisplayImages": [
+      "winding-02-harbor.png",
+      "tributaries-01-landscape.png"
+    ]
+  },
+  "images": [
+    {
+      "file": "winding-01-landscape.png",
+      "pngSha256": "ba9e406c5cfb74adc594e14043980a8d53efde3c2137d96916a118d6a5e0547e",
+      "metadataFile": "winding-01-landscape.json",
+      "metadataSha256": "4ff0327cda86bbd6f99d04a201b46b1f78ab0f8813c4d3097aae523c0e45e701",
+      "mapId": "winding",
+      "dimensions": [
+        2048,
+        1400
+      ],
+      "recordedAtUtc": "2026-10-04T16:13:43.2671240Z",
+      "sourceFingerprint": "f634abbf679f22bc9fcf5d50921a65519eedd7668ef6bf241cf6505238d31dd8",
+      "sourceInventorySha256": "aa2688a4111174466bec81b92705cbb4c7f1647bcab7f6e0c5169927461d28ed",
+      "referenceRevision": "4f6f0e81e478c905f9229dd4b4cae948e062e79a",
+      "pngHashMatchesMetadata": true,
+      "copiedReadbackHashMatches": true,
+      "visualInspection": "No new blocking visual defect observed in the original image."
+    },
+    {
+      "file": "winding-02-harbor.png",
+      "pngSha256": "3d24cababc57bffe8df1b6f27083d32c5b86c095c107b2452f759f214002f811",
+      "metadataFile": "winding-02-harbor.json",
+      "metadataSha256": "84db10b6c9ca120d3d7c1653ccd32f2a944185d3fa72f4658d2d47736f2e35a9",
+      "mapId": "winding",
+      "dimensions": [
+        2048,
+        1400
+      ],
+      "recordedAtUtc": "2026-10-04T16:13:44.1789580Z",
+      "sourceFingerprint": "f634abbf679f22bc9fcf5d50921a65519eedd7668ef6bf241cf6505238d31dd8",
+      "sourceInventorySha256": "aa2688a4111174466bec81b92705cbb4c7f1647bcab7f6e0c5169927461d28ed",
+      "referenceRevision": "4f6f0e81e478c905f9229dd4b4cae948e062e79a",
+      "pngHashMatchesMetadata": true,
+      "copiedReadbackHashMatches": true,
+      "visualInspection": "No new blocking visual defect observed in the original image."
+    },
+    {
+      "file": "winding-03-bridge-underpass.png",
+      "pngSha256": "c6c5793f890079b6184c0e048736eeb3c50c5f42ae88388678e821bf556e6db8",
+      "metadataFile": "winding-03-bridge-underpass.json",
+      "metadataSha256": "1c3475e4bf510a43b5338b546f5e6d4485e56631542212239835c034a11ad719",
+      "mapId": "winding",
+      "dimensions": [
+        2048,
+        1400
+      ],
+      "recordedAtUtc": "2026-10-04T16:13:45.1120440Z",
+      "sourceFingerprint": "f634abbf679f22bc9fcf5d50921a65519eedd7668ef6bf241cf6505238d31dd8",
+      "sourceInventorySha256": "aa2688a4111174466bec81b92705cbb4c7f1647bcab7f6e0c5169927461d28ed",
+      "referenceRevision": "4f6f0e81e478c905f9229dd4b4cae948e062e79a",
+      "pngHashMatchesMetadata": true,
+      "copiedReadbackHashMatches": true,
+      "visualInspection": "No new blocking visual defect observed in the original image."
+    },
+    {
+      "file": "winding-04-naval-combat.png",
+      "pngSha256": "5dc0f4e6cb53191f8d7f77d8b1c033fe41fdda857872032ce6b2c11c2626e92a",
+      "metadataFile": "winding-04-naval-combat.json",
+      "metadataSha256": "45c0adf069c1e745dc1f7481f5086828a866a4a45bbfc49d41fbcc3700ef3dad",
+      "mapId": "winding",
+      "dimensions": [
+        2048,
+        1400
+      ],
+      "recordedAtUtc": "2026-10-04T16:13:46.0234440Z",
+      "sourceFingerprint": "f634abbf679f22bc9fcf5d50921a65519eedd7668ef6bf241cf6505238d31dd8",
+      "sourceInventorySha256": "aa2688a4111174466bec81b92705cbb4c7f1647bcab7f6e0c5169927461d28ed",
+      "referenceRevision": "4f6f0e81e478c905f9229dd4b4cae948e062e79a",
+      "pngHashMatchesMetadata": true,
+      "copiedReadbackHashMatches": true,
+      "visualInspection": "No new blocking visual defect observed in the original image."
+    },
+    {
+      "file": "tropical-01-landscape.png",
+      "pngSha256": "8d538057417f6843e76e307a52e30a1da6f7f203f0be219cb0a96d502b83c789",
+      "metadataFile": "tropical-01-landscape.json",
+      "metadataSha256": "f649575ddbf1c8dca4da54ae059de1ccad0066d2a0d621464e586d850a7e7866",
+      "mapId": "tropical",
+      "dimensions": [
+        2048,
+        1400
+      ],
+      "recordedAtUtc": "2026-10-04T16:13:46.9598210Z",
+      "sourceFingerprint": "f634abbf679f22bc9fcf5d50921a65519eedd7668ef6bf241cf6505238d31dd8",
+      "sourceInventorySha256": "aa2688a4111174466bec81b92705cbb4c7f1647bcab7f6e0c5169927461d28ed",
+      "referenceRevision": "4f6f0e81e478c905f9229dd4b4cae948e062e79a",
+      "pngHashMatchesMetadata": true,
+      "copiedReadbackHashMatches": true,
+      "visualInspection": "No new blocking visual defect observed in the original image."
+    },
+    {
+      "file": "tropical-02-harbor.png",
+      "pngSha256": "e723a9a09f292169a14dbbe21265f904cbadbc93c7fe6fd372bc1a8ec7b20cf3",
+      "metadataFile": "tropical-02-harbor.json",
+      "metadataSha256": "435765ea058ce591dc622a4e7ecc82cc16237465c08ef1f40a44573f4d928641",
+      "mapId": "tropical",
+      "dimensions": [
+        2048,
+        1400
+      ],
+      "recordedAtUtc": "2026-10-04T16:13:47.8683850Z",
+      "sourceFingerprint": "f634abbf679f22bc9fcf5d50921a65519eedd7668ef6bf241cf6505238d31dd8",
+      "sourceInventorySha256": "aa2688a4111174466bec81b92705cbb4c7f1647bcab7f6e0c5169927461d28ed",
+      "referenceRevision": "4f6f0e81e478c905f9229dd4b4cae948e062e79a",
+      "pngHashMatchesMetadata": true,
+      "copiedReadbackHashMatches": true,
+      "visualInspection": "No new blocking visual defect observed in the original image."
+    },
+    {
+      "file": "tributaries-01-landscape.png",
+      "pngSha256": "a1e1599864d03507b6c647fd887f8c74b8a7e7270d76597e05dba0a2eff95f31",
+      "metadataFile": "tributaries-01-landscape.json",
+      "metadataSha256": "612b2f5395b3a716feb6aefb1361ba017130ddd2e235a8d68bc0c94406b055ea",
+      "mapId": "tributaries",
+      "dimensions": [
+        2048,
+        1400
+      ],
+      "recordedAtUtc": "2026-10-04T16:13:49.1385130Z",
+      "sourceFingerprint": "f634abbf679f22bc9fcf5d50921a65519eedd7668ef6bf241cf6505238d31dd8",
+      "sourceInventorySha256": "aa2688a4111174466bec81b92705cbb4c7f1647bcab7f6e0c5169927461d28ed",
+      "referenceRevision": "4f6f0e81e478c905f9229dd4b4cae948e062e79a",
+      "pngHashMatchesMetadata": true,
+      "copiedReadbackHashMatches": true,
+      "visualInspection": "No new blocking visual defect observed in the original image."
+    },
+    {
+      "file": "tributaries-02-harbor.png",
+      "pngSha256": "bf89b538237a766db207eb019e8ea0d1a6ff79efcadf287dac82480711749fce",
+      "metadataFile": "tributaries-02-harbor.json",
+      "metadataSha256": "a69caf61fed3d3b78a77f2cfba9f4900f266df58312450c9986c5bea56782bf6",
+      "mapId": "tributaries",
+      "dimensions": [
+        2048,
+        1400
+      ],
+      "recordedAtUtc": "2026-10-04T16:13:50.0487560Z",
+      "sourceFingerprint": "f634abbf679f22bc9fcf5d50921a65519eedd7668ef6bf241cf6505238d31dd8",
+      "sourceInventorySha256": "aa2688a4111174466bec81b92705cbb4c7f1647bcab7f6e0c5169927461d28ed",
+      "referenceRevision": "4f6f0e81e478c905f9229dd4b4cae948e062e79a",
+      "pngHashMatchesMetadata": true,
+      "copiedReadbackHashMatches": true,
+      "visualInspection": "No new blocking visual defect observed in the original image."
+    },
+    {
+      "file": "estuary-01-landscape.png",
+      "pngSha256": "0748465b08d52f157b1868f5bb2420df676b997c7d9af64983f86198faa14a6f",
+      "metadataFile": "estuary-01-landscape.json",
+      "metadataSha256": "b5aeaa00815e4d1bb15c65aad12c464e5311461a0fac01fbc9e1e0ca3f4b02a8",
+      "mapId": "estuary",
+      "dimensions": [
+        2048,
+        1400
+      ],
+      "recordedAtUtc": "2026-10-04T16:13:50.9731980Z",
+      "sourceFingerprint": "f634abbf679f22bc9fcf5d50921a65519eedd7668ef6bf241cf6505238d31dd8",
+      "sourceInventorySha256": "aa2688a4111174466bec81b92705cbb4c7f1647bcab7f6e0c5169927461d28ed",
+      "referenceRevision": "4f6f0e81e478c905f9229dd4b4cae948e062e79a",
+      "pngHashMatchesMetadata": true,
+      "copiedReadbackHashMatches": true,
+      "visualInspection": "No new blocking visual defect observed in the original image."
+    },
+    {
+      "file": "estuary-02-harbor.png",
+      "pngSha256": "5f5231337fa76dc4f3964abbb978a1969a1b18e0cad5c85b9a2d47e4c727d859",
+      "metadataFile": "estuary-02-harbor.json",
+      "metadataSha256": "d633d825b5fa21e2980d87448cf23cc7282dba2ad95ae4e12bbc3bc87a38510f",
+      "mapId": "estuary",
+      "dimensions": [
+        2048,
+        1400
+      ],
+      "recordedAtUtc": "2026-10-04T16:13:51.8613490Z",
+      "sourceFingerprint": "f634abbf679f22bc9fcf5d50921a65519eedd7668ef6bf241cf6505238d31dd8",
+      "sourceInventorySha256": "aa2688a4111174466bec81b92705cbb4c7f1647bcab7f6e0c5169927461d28ed",
+      "referenceRevision": "4f6f0e81e478c905f9229dd4b4cae948e062e79a",
+      "pngHashMatchesMetadata": true,
+      "copiedReadbackHashMatches": true,
+      "visualInspection": "No new blocking visual defect observed in the original image."
+    }
+  ]
+}
