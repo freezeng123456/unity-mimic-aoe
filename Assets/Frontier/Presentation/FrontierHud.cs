@@ -562,7 +562,8 @@ namespace Frontier
         public void ShowResult()
         {
             ResultVisible=true;var w=game.World;var box=Modal(w.Winner==0?"VICTORY":"DEFEAT",610);
-            Label(box,"Complete elimination or resignation · "+((int)w.Time/60)+"m "+((int)w.Time%60)+"s\nStatistics below are accumulated from this match's simulation.",new Rect(25,84,825,65),19,muted);
+            string resultReason=w.MapObjective.mode!="elimination"&&w.MapObjective.reason!=""?w.MapObjective.reason:"Elimination or resignation";
+            Label(box,resultReason+" · "+((int)w.Time/60)+"m "+((int)w.Time%60)+"s\nStatistics below are accumulated from this match's simulation.",new Rect(25,84,825,65),19,muted);
             Label(box,"                           YOU                         OPPONENT",new Rect(25,180,820,40),19,gold);
             var a=w.Players[0];var b=w.Players[1];
             Label(box,$"FOOD GATHERED          {a.gathered.food:0}                         {b.gathered.food:0}\nWOOD GATHERED          {a.gathered.wood:0}                         {b.gathered.wood:0}\nCOIN GATHERED           {a.gathered.coin:0}                         {b.gathered.coin:0}\nKILLS / LOSSES             {a.kills}/{a.losses}                         {b.kills}/{b.losses}\nAGE REACHED              {a.age}                            {b.age}\nSHIPMENTS SENT          {a.shipsSent}                            {b.shipsSent}",new Rect(25,227,820,240),22);

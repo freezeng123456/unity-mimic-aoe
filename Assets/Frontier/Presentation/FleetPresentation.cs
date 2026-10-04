@@ -61,6 +61,7 @@ namespace Frontier
             deck.Quad(new Vector3(.25f,2.02f,stern),new Vector3(.25f,1.7f,stern),new Vector3(.73f,1.73f,stern),new Vector3(.73f,1.99f,stern),cloth);
             deck.Quad(new Vector3(.73f,1.99f,stern),new Vector3(.73f,1.73f,stern),new Vector3(.25f,1.7f,stern),new Vector3(.25f,2.02f,stern),cloth);
             hull.Create(root,role+" original hull and deck");deck.Create(root,role+" role fittings and crew");BuildWake(root,motion,length);
+            motion.HullLength=length;motion.Capture();
             rig.CaptureInitialPose();
         }
     }

@@ -176,6 +176,48 @@ namespace Frontier.Tests
                 .SelectMany(f=>f.sharedMesh.vertices.Select(v=>model.InverseTransformPoint(f.transform.TransformPoint(v)))).ToArray();
         static Bounds VertexBounds(Vector3[] points)
         {Assert.IsNotEmpty(points);var bounds=new Bounds(points[0],Vector3.zero);foreach(var point in points)bounds.Encapsulate(point);return bounds;}
+        [UnityTest] public IEnumerator MovingTransportUpdatesItsRenderedWakeThenStopsItOnHoldAndDeath()
+            =>FleetWakeLifecycle("transport_ship");
+        [UnityTest] public IEnumerator MovingFrigateUpdatesItsRenderedWakeThenStopsItOnHoldAndDeath()
+            =>FleetWakeLifecycle("frigate");
+        [UnityTest] public IEnumerator MovingMonitorUpdatesItsRenderedWakeThenStopsItOnHoldAndDeath()
+            =>FleetWakeLifecycle("monitor");
+        IEnumerator FleetWakeLifecycle(string definition)
+        {
+            yield return ShoreFixture();game.World.Remove(ship);game.World.Remove(passenger);
+            var boat=SpawnHere(definition,0,new Vector2(64,22));game.Controls.Focus(new Vector2(64,26));yield return Ready();
+            var visual=session.transform.Find("Simulation Entity Views/Entity "+boat.id);Assert.IsNotNull(visual);
+            var motion=visual.GetComponentInChildren<BoatPresentationMotion>();Assert.IsNotNull(motion);Assert.IsNotNull(motion.Wake);
+            var rig=motion.GetComponent<UnitRig>();Assert.IsNotNull(rig);
+            Assert.IsFalse(motion.Wake.enabled,"A stationary newly built fleet visual has no moving wake");
+            var properties=new MaterialPropertyBlock();int phase=Shader.PropertyToID("_Phase");
+            Vector2 start=boat.position;Vector3 renderedStart=visual.position;int applications=rig.PoseApplicationCount;
+            yield return SelectByPointer(boat);
+            var destination=ScreenPoint(new Vector2(64,33),game.World.SurfaceHeight(new Vector2(64,33),true));AssertWorldPoint(destination);
+            yield return Click(destination,MouseButton.Right);Assert.AreEqual(OrderKind.Move,boat.orders.Peek().kind);
+            float previousPhase=-1;
+            for(int sample=0;sample<3;sample++)
+            {
+                game.World.Tick(.1f);yield return Ready();
+                Assert.AreEqual("Moving",boat.status);Assert.IsTrue(motion.Wake.enabled&&motion.Wake.gameObject.activeInHierarchy,"WorldView must animate the actual moving boat's wake");
+                motion.Wake.GetPropertyBlock(properties);float current=properties.GetFloat(phase);
+                Assert.AreEqual(game.World.Time,current,.0001f,"Wake shader receives this real simulation tick, not a default phase");
+                Assert.Greater(current,previousPhase);previousPhase=current;
+            }
+            Assert.Greater(Vector2.Distance(start,boat.position),.5f,"Normal Move must change the actual simulation position");
+            Assert.Greater(Vector3.Distance(renderedStart,visual.position),.2f,"Normal WorldView updates must move the rendered root");
+            Assert.Greater(rig.PoseApplicationCount,applications,"The regression must pass through normal WorldView pose application");
+            Assert.IsTrue(game.World.Issue(new GameCommand{player=0,kind=CommandKind.Order,actors=new[]{boat.id},order=OrderKind.Hold}).accepted);
+            game.World.Tick(.1f);yield return Ready();Assert.AreEqual("Holding",boat.status);Assert.IsFalse(motion.Wake.enabled,"Holding must stop the trail");
+            motion.Wake.GetPropertyBlock(properties);Assert.AreEqual(previousPhase,properties.GetFloat(phase),.0001f,"A disabled idle trail must not advance its shader phase");
+            yield return Click(destination,MouseButton.Right);game.World.Tick(.1f);yield return Ready();
+            Assert.IsTrue(motion.Wake.enabled);motion.Wake.GetPropertyBlock(properties);float lastMovingPhase=properties.GetFloat(phase);
+            Assert.AreEqual(game.World.Time,lastMovingPhase,.0001f);Assert.Greater(lastMovingPhase,previousPhase);
+            game.World.Remove(boat);yield return Ready();
+            Assert.IsNotNull(motion,"The ordinary death presentation remains visible before its expiry");
+            Assert.IsFalse(motion.Wake.enabled,"Death must suppress a previously active moving wake");
+            motion.Wake.GetPropertyBlock(properties);Assert.AreEqual(lastMovingPhase,properties.GetFloat(phase),.0001f,"Death does not write a new moving phase");
+        }
         [UnityTest] public IEnumerator ThreeFleetRolesHaveDifferentRealHullAndWeaponGeometryAndRemainPickable()
         {
             yield return ShoreFixture();game.World.Remove(ship);game.World.Remove(passenger);
