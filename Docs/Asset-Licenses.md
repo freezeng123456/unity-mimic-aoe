@@ -1,8 +1,23 @@
 # 素材来源与许可
 
-本轮核对日期：2026-10-04，适用 060 / 0.4.0 视觉改造。新增建筑、单位细节、资源、地面和程序材质均由本项目代码制作；未导入《帝国时代》商业模型、纹理、源码、卡牌画、音频或界面资源。既有 Noto 字体、原创火枪手 FBX / Blender 源文件与第三方许可保留。下文带版本号的记录属于历史来源说明，不能作为本轮美术或原生运行验收结果。当前状态见 [Model-Upgrade-060](Model-Upgrade-060.md) 与 [Known-Issues](Known-Issues.md)。
+本轮核对日期：2026-10-05，适用 064 / 0.7.0 候选。新增工业重炮、工厂马车与砖砌工厂均由既有原创几何代码扩展；没有新增下载模型、商业游戏素材、外部纹理、动画或音频。既有 Noto 字体、原创火枪手 FBX / Blender 源文件、Unity 依赖及随附许可继续沿用。下文带版本号的记录保留各自历史身份，不能作为 0.7.0 的美术或原生运行验收结果。当前范围见 [Classic-Industry-064](Classic-Industry-064.md) 与 [Known-Issues](Known-Issues.md)。
+
+## 0.7.0 / 064 原创工业资产增量
+
+| 新增或调整内容 | 可审查来源 | 来源与许可边界 |
+| --- | --- | --- |
+| Heavy Cannon、Rocket、Great Bombard 的车架、车轮、炮管或火箭导轨 | [ProceduralArt.cs](../Assets/Frontier/Presentation/ProceduralArt.cs) 的 `IndustrialArtillery`，沿用 [DetailedUnits.cs](../Assets/Frontier/Presentation/DetailedUnits.cs) 的合批与共享材质路径 | 本项目编写的几何、枢轴与颜色；没有下载炮械模型、商业纹理、第三方骨骼或动画片段。 |
+| 工厂马车、机械货箱、飞轮货物、牵引杆与队色牌 | [ProceduralArt.cs](../Assets/Frontier/Presentation/ProceduralArt.cs) 的 `FactoryWagon` | 沿用原创基础几何与车辆表现；模型不是外部素材包或商业游戏资源的提取、改色。 |
+| 砖砌工厂、锯齿屋顶、烟囱与外置飞轮 | [DetailedArchitecture.cs](../Assets/Frontier/Presentation/DetailedArchitecture.cs) 的 `Factory`，沿用 ArchitecturalGeometry / ArchitecturalMaterials | 本项目生成的建筑网格与程序材质，没有新增照片、扫描或下载贴图。 |
+| 工业动作、存读档、AI 与呈现优化代码 | UnitRig、UnitAnimation、WorldView、RtsInput 与 Simulation 下的本项目 C# | 原创运行逻辑与现有资产处理，不引入新外部依赖或另行授权的美术输入。 |
+
+本候选没有替换字体、FBX、Blender 源文件或 Package Manager 依赖；这些资产的来源、历史哈希记录、许可全文与第三方声明保持原有适用范围。本次不把历史哈希核对日期改写为新日期，也不将原创几何来源说明扩大为对 Unity 或其他依赖的额外授权。
+
+工厂与存档功能已实现，最终冷启动原生存读档、工业视觉/操作及本版性能验收仍待完成。本节仅说明资产来源，不宣称新的正常对局、测试数量或原生 FPS 已通过。
 
 ## 0.4.0 / 060 原创视觉资产与程序材质
+
+以下保留 2026-10-04 的 060 / 0.4.0 来源记录。新增建筑、单位细节、资源、地面和程序材质均由本项目代码制作；未导入《帝国时代》商业模型、纹理、源码、卡牌画、音频或界面资源。对应视觉改造说明见 [Model-Upgrade-060](Model-Upgrade-060.md)。
 
 | 新增或调整内容 | 可审查来源 | 来源与许可边界 |
 | --- | --- | --- |

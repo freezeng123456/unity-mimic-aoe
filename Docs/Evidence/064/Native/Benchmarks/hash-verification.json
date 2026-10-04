@@ -1,0 +1,345 @@
+{
+  "schema": 1,
+  "recordedAtUtc": "2026-10-04T20:40:27.145988+00:00",
+  "scope": "Final native high-HP mixed-unit benchmark fixtures only. Metadata/provenance validation; no universal frame-rate, long-run-memory, normal-match, continuous-focus or Release claim.",
+  "sourceDirectory": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.7.0/Native/Benchmarks",
+  "excludedSourceSubdirectories": [
+    "Pilots"
+  ],
+  "appVersion": "0.7.0",
+  "buildGuid": "48cbcf92c92f409c945f83eeb9b8d500",
+  "runtimeCommit": "5cce74ccf7222133af9bad633923f452b100bfb2",
+  "sourceFingerprint": "8342b85bf835fd48d5c4dfc8f612ed64770fc5b7d026d96c4f539caaa96d79b0",
+  "runtimeBenchmarkSource": {
+    "file": "Assets/Frontier/Presentation/RuntimeBenchmark.cs",
+    "sha256": "8b9551af743bcda216e045c81d5a32b9dc9ada4f5b23d6951968a84edade99ce",
+    "matchesFinalTestSourceEvidence": true,
+    "timingSemantics": "elapsedActive includes warmup; samples start at >=10 and report saves at >=90. Thus nominal measurement is 80 seconds within a 90-second active run.",
+    "endPauseSemantics": "Save writes report first, then pauses the world and requests F9. End F9 paused=true is after measured activity, not an observed interruption during it."
+  },
+  "reportChecks": [
+    {
+      "reportFile": "map-winding-units-200.json",
+      "focusProofFile": "200-focus.json",
+      "matchId": "ba15782dd5d1411b912d676094557c9f",
+      "initialLandUnits": 200,
+      "initialShips": 12,
+      "initialActiveUnits": 212,
+      "endingActiveUnits": 212,
+      "nominalActiveDurationSecondsIncludingWarmup": 90,
+      "warmupSeconds": 10,
+      "nominalMeasuredSeconds": 80,
+      "reportedActiveSeconds": 90.00871276855469,
+      "activeSecondsMinusWarmup": 80.00871276855469,
+      "simulationSeconds": 88.99921417236328,
+      "measuredSimulationSteps": 800,
+      "sampleCount": 4766,
+      "p95Ms": 17.06308937072754,
+      "p99Ms": 17.582590103149414,
+      "maxMeasuredFrameMs": 49.73500442504883,
+      "maxIncludingWarmupFrameMs": 2700.04052734375,
+      "framesOver50Ms": 0,
+      "framesOver100Ms": 0,
+      "pausedFrames": 0,
+      "pausedSeconds": 0,
+      "cameraRelevantAtEnd": {
+        "landCenters": 129,
+        "shipCenters": 4
+      },
+      "visibleAtEnd": {
+        "land": 200,
+        "ships": 10
+      },
+      "focusVerification": {
+        "warmupF9True": true,
+        "reportSaveTrue": true,
+        "endF9True": true,
+        "operatorReportsNoFocusChangingCallsDuringMeasurement": true,
+        "continuousFocusInstrumented": false
+      },
+      "rawPerFrameSeriesAvailable": false,
+      "quantilesRecomputedByThisAudit": false,
+      "captures": [
+        {
+          "role": "warmup",
+          "json": "Frontier-20261004-203212-092-f3-22a803e0d69741368ba7b45bb45a9d13.json",
+          "png": "Frontier-20261004-203212-092-f3-22a803e0d69741368ba7b45bb45a9d13.png",
+          "frame": 3,
+          "worldTime": 2.9999992847442627,
+          "paused": false,
+          "applicationFocused": true,
+          "identityHudFrameWorldPngHashAndDimensionsPassed": true,
+          "endImageVisuallyReviewed": false
+        },
+        {
+          "role": "end",
+          "json": "Frontier-20261004-203336-894-f4986-a4fe77fd0e734be6ae89aee290a76e0a.json",
+          "png": "Frontier-20261004-203336-894-f4986-a4fe77fd0e734be6ae89aee290a76e0a.png",
+          "frame": 4986,
+          "worldTime": 88.99921417236328,
+          "paused": true,
+          "applicationFocused": true,
+          "identityHudFrameWorldPngHashAndDimensionsPassed": true,
+          "endImageVisuallyReviewed": true
+        }
+      ]
+    },
+    {
+      "reportFile": "map-winding-units-400.json",
+      "focusProofFile": "400-focus.json",
+      "matchId": "3df7ee91fe5d47c9bf64cfbf83037c21",
+      "initialLandUnits": 400,
+      "initialShips": 12,
+      "initialActiveUnits": 412,
+      "endingActiveUnits": 412,
+      "nominalActiveDurationSecondsIncludingWarmup": 90,
+      "warmupSeconds": 10,
+      "nominalMeasuredSeconds": 80,
+      "reportedActiveSeconds": 90.00532531738281,
+      "activeSecondsMinusWarmup": 80.00532531738281,
+      "simulationSeconds": 87.69923400878906,
+      "measuredSimulationSteps": 800,
+      "sampleCount": 4467,
+      "p95Ms": 32.54671096801758,
+      "p99Ms": 33.58300018310547,
+      "maxMeasuredFrameMs": 116.47895812988281,
+      "maxIncludingWarmupFrameMs": 3477.839111328125,
+      "framesOver50Ms": 13,
+      "framesOver100Ms": 1,
+      "pausedFrames": 0,
+      "pausedSeconds": 0,
+      "cameraRelevantAtEnd": {
+        "landCenters": 242,
+        "shipCenters": 4
+      },
+      "visibleAtEnd": {
+        "land": 399,
+        "ships": 11
+      },
+      "focusVerification": {
+        "warmupF9True": true,
+        "reportSaveTrue": true,
+        "endF9True": true,
+        "operatorReportsNoFocusChangingCallsDuringMeasurement": true,
+        "continuousFocusInstrumented": false
+      },
+      "rawPerFrameSeriesAvailable": false,
+      "quantilesRecomputedByThisAudit": false,
+      "captures": [
+        {
+          "role": "warmup",
+          "json": "Frontier-20261004-203443-646-f3-e953d4362f0640939761a1f4a72ad597.json",
+          "png": "Frontier-20261004-203443-646-f3-e953d4362f0640939761a1f4a72ad597.png",
+          "frame": 3,
+          "worldTime": 2.9999992847442627,
+          "paused": false,
+          "applicationFocused": true,
+          "identityHudFrameWorldPngHashAndDimensionsPassed": true,
+          "endImageVisuallyReviewed": false
+        },
+        {
+          "role": "end",
+          "json": "Frontier-20261004-203606-795-f4513-22254c105e8f4271bf686fafba4a7718.json",
+          "png": "Frontier-20261004-203606-795-f4513-22254c105e8f4271bf686fafba4a7718.png",
+          "frame": 4513,
+          "worldTime": 87.69923400878906,
+          "paused": true,
+          "applicationFocused": true,
+          "identityHudFrameWorldPngHashAndDimensionsPassed": true,
+          "endImageVisuallyReviewed": true
+        }
+      ]
+    }
+  ],
+  "sanitization": {
+    "method": "Remove complete lines matching licensing or credential patterns, and complete PEM private-key blocks. Preserve all other bytes and line endings. Raw logs remain local; archive includes only sanitized logs.",
+    "licensingRegex": "(?i)(licens(?:ing|e|es|ed)|entitlement|serial(?: number)?\\s*[:=]|signature\\s*[:=])",
+    "credentialRegex": "(?i)(access[ _-]?token|refresh[ _-]?token|id[ _-]?token|authorization|bearer\\s|api[ _-]?key|client[ _-]?secret|password|credential|(?:^|[\\s\\\"\\x27?&])(?:token|secret|sessionkey)\\s*[:=]|-----BEGIN .*PRIVATE KEY-----|github_pat_[A-Za-z0-9_]+|gh[pousr]_[A-Za-z0-9]+|sk-[A-Za-z0-9_-]{16,}|eyJ[A-Za-z0-9_-]{10,}\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+)",
+    "logs": {
+      "200": {
+        "rawFile": "200.log",
+        "rawBytes": 10690,
+        "rawSha256": "8e4d17812585151493db32291033da14c6f672933e934e1af64a3a4dad00ec59",
+        "rawLines": 111,
+        "sanitized": {
+          "file": "200.sanitized.log",
+          "bytes": 10690,
+          "sha256": "8e4d17812585151493db32291033da14c6f672933e934e1af64a3a4dad00ec59"
+        },
+        "removedLines": [],
+        "removedLineCount": 0,
+        "remainingLicensingMatches": 0,
+        "remainingCredentialMatches": 0,
+        "benchmarkAndCaptureMarkers": [
+          {
+            "sourceLine": 39,
+            "text": "BENCHMARK_START units=200 rendered=1600x1000"
+          },
+          {
+            "sourceLine": 51,
+            "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-203212-092-f3-22a803e0d69741368ba7b45bb45a9d13.json"
+          },
+          {
+            "sourceLine": 63,
+            "text": "BENCHMARK_SAVED /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Benchmarks/map-winding-units-200.json"
+          },
+          {
+            "sourceLine": 75,
+            "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-203336-894-f4986-a4fe77fd0e734be6ae89aee290a76e0a.json"
+          },
+          {
+            "sourceLine": 87,
+            "text": "FRONTIER_REPORT /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261004-203435-563-ba15782dd5d1411b912d676094557c9f-quit.json"
+          }
+        ],
+        "exitTelemetry": {
+          "prematurelyFinalizedSourceLines": [
+            99,
+            100,
+            106,
+            107,
+            108,
+            109
+          ],
+          "memoryLeaksSourceLines": [
+            111
+          ],
+          "interpretation": "Observed exit telemetry retained. No cause or confirmed runtime-memory-leak diagnosis is established by this log."
+        }
+      },
+      "400": {
+        "rawFile": "400.log",
+        "rawBytes": 10690,
+        "rawSha256": "e4348dc57d7f120943acf8989330ecf4c1cf4be0f3773a942ad0328160106dd2",
+        "rawLines": 111,
+        "sanitized": {
+          "file": "400.sanitized.log",
+          "bytes": 10690,
+          "sha256": "e4348dc57d7f120943acf8989330ecf4c1cf4be0f3773a942ad0328160106dd2"
+        },
+        "removedLines": [],
+        "removedLineCount": 0,
+        "remainingLicensingMatches": 0,
+        "remainingCredentialMatches": 0,
+        "benchmarkAndCaptureMarkers": [
+          {
+            "sourceLine": 39,
+            "text": "BENCHMARK_START units=400 rendered=1600x1000"
+          },
+          {
+            "sourceLine": 51,
+            "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-203443-646-f3-e953d4362f0640939761a1f4a72ad597.json"
+          },
+          {
+            "sourceLine": 63,
+            "text": "BENCHMARK_SAVED /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Benchmarks/map-winding-units-400.json"
+          },
+          {
+            "sourceLine": 75,
+            "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-203606-795-f4513-22254c105e8f4271bf686fafba4a7718.json"
+          },
+          {
+            "sourceLine": 87,
+            "text": "FRONTIER_REPORT /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261004-203722-817-3df7ee91fe5d47c9bf64cfbf83037c21-quit.json"
+          }
+        ],
+        "exitTelemetry": {
+          "prematurelyFinalizedSourceLines": [
+            99,
+            105,
+            106,
+            107,
+            108,
+            109
+          ],
+          "memoryLeaksSourceLines": [
+            111
+          ],
+          "interpretation": "Observed exit telemetry retained. No cause or confirmed runtime-memory-leak diagnosis is established by this log."
+        }
+      }
+    }
+  },
+  "artifacts": [
+    {
+      "file": "200-focus.json",
+      "bytes": 649,
+      "sha256": "4981824f1b890948f7200fe8f5032b22d66c2aaffc7ce2f03e04957f060fff8a"
+    },
+    {
+      "file": "200.sanitized.log",
+      "bytes": 10690,
+      "sha256": "8e4d17812585151493db32291033da14c6f672933e934e1af64a3a4dad00ec59"
+    },
+    {
+      "file": "400-focus.json",
+      "bytes": 649,
+      "sha256": "4e4c3d7aae0012cd7dd085aea5aee6e9c083e7631e8ffca84b30547d63211b5b"
+    },
+    {
+      "file": "400.sanitized.log",
+      "bytes": 10690,
+      "sha256": "e4348dc57d7f120943acf8989330ecf4c1cf4be0f3773a942ad0328160106dd2"
+    },
+    {
+      "file": "Frontier-20261004-203212-092-f3-22a803e0d69741368ba7b45bb45a9d13.json",
+      "bytes": 1574,
+      "sha256": "23556af2defc08c074b2062b1fe94d011fb0351198e63fd4820d9ed78d9515bb"
+    },
+    {
+      "file": "Frontier-20261004-203212-092-f3-22a803e0d69741368ba7b45bb45a9d13.png",
+      "bytes": 1428807,
+      "sha256": "6bdf859160f4d4a5004abf6e52e4202e9748332e83bc730295455d33af2a58d5"
+    },
+    {
+      "file": "Frontier-20261004-203336-894-f4986-a4fe77fd0e734be6ae89aee290a76e0a.json",
+      "bytes": 1582,
+      "sha256": "491ff748c83b6ed18162fbd3fa5535546bdb6239a71bab7ebe8a01f63c1ae195"
+    },
+    {
+      "file": "Frontier-20261004-203336-894-f4986-a4fe77fd0e734be6ae89aee290a76e0a.png",
+      "bytes": 1641603,
+      "sha256": "e7d26cc6c243fa73c0e4902934bac2ed72424d7b09cf7a2c08ee96fb8139140a"
+    },
+    {
+      "file": "Frontier-20261004-203443-646-f3-e953d4362f0640939761a1f4a72ad597.json",
+      "bytes": 1574,
+      "sha256": "3dee686e6829f8c50732c336f5aaaf171daf3a0d1a6e7ed0d8653f04ccd91d14"
+    },
+    {
+      "file": "Frontier-20261004-203443-646-f3-e953d4362f0640939761a1f4a72ad597.png",
+      "bytes": 1545915,
+      "sha256": "fbacd139e0299c405d7061933dbfb154b16a3305fb2aac2303e8f20d4746764d"
+    },
+    {
+      "file": "Frontier-20261004-203606-795-f4513-22254c105e8f4271bf686fafba4a7718.json",
+      "bytes": 1582,
+      "sha256": "57613786d45e5c2f1038cf08f7f8ee5de2488f8a5a667a40d9dc4a9a4069500b"
+    },
+    {
+      "file": "Frontier-20261004-203606-795-f4513-22254c105e8f4271bf686fafba4a7718.png",
+      "bytes": 1818785,
+      "sha256": "8c616f1eaf6b956339edd3776cfdd439995802a86453c8a8a6730ffd172ce8a7"
+    },
+    {
+      "file": "map-winding-units-200.json",
+      "bytes": 2872,
+      "sha256": "365e03570bb64488c81073922acbd02160deab10074cda77f5a77946361a2339"
+    },
+    {
+      "file": "map-winding-units-400.json",
+      "bytes": 2870,
+      "sha256": "ca3493e65fb2630b6bdad2f8fb85791d677fea054df2cfe0976b0ea712d1e1a4"
+    }
+  ],
+  "limitations": [
+    "Only warmup and end/report-save focus samples are instrumented; no continuous focus stream exists.",
+    "Aggregate JSON does not include raw per-frame series; this audit does not independently recompute reported quantiles or long-frame counts.",
+    "Requested active count is total living fixture units, not every unit in the viewport; end camera counts are disclosed.",
+    "High runtime HP and direct fixture armies are controlled inputs, not paid ordinary armies or a normal-opening match.",
+    "Measured statistics cover roughly 80 seconds after 10 seconds of warmup, not a 300-second or 20–40-minute run.",
+    "GC and memory deltas include warmup; absent render-thread counter is unavailable, not zero work.",
+    "Both logs retain prematurely-finalized-thread and MemoryLeaks exit telemetry; no resolved-cause or leak-free claim."
+  ],
+  "manifestPolicy": "Raw JSON and PNG files are byte-exact copies of final root files. Logs are sanitized snapshots; raw logs and Pilots remain local. Receipt and README are not included in their own hash list."
+}
