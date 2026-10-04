@@ -15,6 +15,14 @@ namespace Frontier
         private readonly List<EntityState> resources=new List<EntityState>();
         private readonly Dictionary<int,int> assigned=new Dictionary<int,int>();
         public AiWorkforce(World world,int player){this.world=world;this.player=player;}
+        public AiWorkforceSnapshot CaptureState()=>new AiWorkforceSnapshot{rebalanceAt=rebalanceAt};
+        public void RestoreState(AiWorkforceSnapshot state)
+        {
+            AiSaveValidation.Require(state!=null&&AiSaveValidation.Clock(state.rebalanceAt),"workforce clock");
+            rebalanceAt=state.rebalanceAt;
+            // Available workers and resource occupancy are rebuilt before each decision.
+            available.Clear();resources.Clear();assigned.Clear();
+        }
         public bool HasSafeSource(ResourceKind kind)=>resources.Exists(e=>e.def.resource==kind);
         public void Assign(List<EntityState> workers,Cost target,List<EntityState> visibleEnemies)
         {

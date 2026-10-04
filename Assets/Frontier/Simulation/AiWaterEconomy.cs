@@ -13,6 +13,13 @@ namespace Frontier
         private int surveyor;
         private float patrolAt;
         public AiWaterEconomy(World world,int player){this.world=world;this.player=player;}
+        public AiWaterEconomySnapshot CaptureState()=>new AiWaterEconomySnapshot{surveyor=surveyor,patrolAt=patrolAt};
+        public void RestoreState(AiWaterEconomySnapshot state)
+        {
+            // A surveyor may have died since the last decision; the next normal survey validates it.
+            AiSaveValidation.Require(state!=null&&state.surveyor>=0&&AiSaveValidation.Clock(state.patrolAt),"water economy state");
+            surveyor=state.surveyor;patrolAt=state.patrolAt;
+        }
         public void Tick(List<EntityState> own,List<EntityState> workers,List<EntityState> visibleEnemies,Cost reserve,bool saving,bool underAttack)
         {
             if(!world.Layout.HasWater||world.Paused||world.Winner>=0)return;

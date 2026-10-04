@@ -38,6 +38,7 @@ namespace Frontier
             if(p==null||d==null||d.kind!=EntityKind.Building)return "Unknown building";
             if(!EntityAvailable(player,d))return "Unavailable to this civilization";
             if(p.age<UnitAge(player,d))return "Requires age "+UnitAge(player,d);
+            var industry=IndustrialBuildingReason(player,id);if(industry!="")return industry;
             if(!CanAfford(player,EntityCost(player,d)))return "Need "+EntityCost(player,d);
             if(id=="trade_post"&&(SocketAt(point)==null||TradingPostAt(SocketAt(point).id)!=null))return "Place on an empty trade route site";
             if(Fog.At(player,point)!=VisibilityState.Visible)return "Build inside current vision";
@@ -79,6 +80,7 @@ namespace Frontier
         {
             if(b==null||!b.Alive||b.owner!=player||b.def.kind!=EntityKind.Building||!b.Complete)return "Select a completed production building";
             var p=P(player);
+            if(!research&&b.def.id=="factory")return "Use factory artillery mode";
             if(b.queue.Count>=6)return "Production queue full";
             if(research)
             {
@@ -115,6 +117,7 @@ namespace Frontier
         public CommandResult HandleEconomicCommand(GameCommand c)
         {
             var p=P(c.player);if(p==null)return CommandResult.Fail("Invalid player");
+            if(TryHandleIndustrialCommand(c,out var industrialResult))return industrialResult;
             var b=c.actors!=null&&c.actors.Length>0?Get(c.actors[0]):null;
             if(c.kind==CommandKind.ToggleRecruitment)
             {
@@ -187,7 +190,7 @@ namespace Frontier
                 if(!card.repeatable&&p.sentCards.Contains(card.id))return ("Already sent this match");
                 if(p.shipmentTokens<=0)return ("Earn XP for a shipment opportunity");
                 if(!string.IsNullOrEmpty(card.tech)&&(p.technologies.Contains(card.tech)||TechnologyQueued(player,card.tech)))return ("This technology is already active or pending");
-            return "";
+            return IndustrialShipmentReason(player,card);
         }
         public void TickEconomy(float dt)
         {
@@ -209,7 +212,7 @@ namespace Frontier
                         if(target==null||!target.Alive||target.garrisonedIn!=0){e.orders.Dequeue();e.status="Target lost";continue;}
                         if(EdgeDistance(e,target)>1.5f)continue;
                         if(o.kind==OrderKind.Build)
-                        {if(target.Complete){e.orders.Dequeue();e.status="Idle";continue;}builders.TryGetValue(target.id,out float n);builders[target.id]=n+1;e.status="Constructing";buildWorkers.Add(e.id);if(dt>0)e.work=new WorkActivity{kind=WorkKind.Build,target=target.id,time=Time};}
+                        {if(target.Complete||target.def.id=="factory"){e.orders.Dequeue();e.status="Idle";continue;}builders.TryGetValue(target.id,out float n);builders[target.id]=n+1;e.status="Constructing";buildWorkers.Add(e.id);if(dt>0)e.work=new WorkActivity{kind=WorkKind.Build,target=target.id,time=Time};}
                         else Repair(e,target,dt);
                     }
                 }
@@ -229,6 +232,7 @@ namespace Frontier
                     if(b.def.id=="house"&&Rules.Civ(Players[b.owner].civilization).houseVillager)b.queue.Add(new ProductionJob{kind="Gift",item=WorkerDefinition(b.owner).id,count=1,duration=0});
                 }
             }
+            TickIndustrialEconomy(dt);
             foreach(var p in Players)if(p.shipments.Count>0)
             {var s=p.shipments[0];var card=Rules.Card(s.card);s.elapsed=Mathf.Min(card.travel,s.elapsed+dt);if(s.elapsed>=card.travel)Deliver(p,s,card);}
             foreach(var p in Players)if(p.rewards.Count>0)DeliverReward(p);
@@ -268,13 +272,21 @@ namespace Frontier
         {
             if(!gatherLog.TryGetValue(source,out float amount)||amount<=0)return;
             var e=Get(source);gatherLogTarget.TryGetValue(source,out int target);
-            Emit(incomeKinds.TryGetValue(source,out string incomeKind)?incomeKind:"Gather",e?.owner??-1,source,incomeKind=="BankIncome"?"Coin":Get(target)?.def.resource.ToString()??"Coin",amount,target);gatherLog[source]=0;
+            Emit(incomeKinds.TryGetValue(source,out string incomeKind)?incomeKind:"Gather",e?.owner??-1,source,incomeKind=="BankIncome"?"Coin":incomeKind=="FactoryIncome"?e?.factoryMode??"Unknown":Get(target)?.def.resource.ToString()??"Coin",amount,target);gatherLog[source]=0;
         }
-        public void FlushEconomyLog(){foreach(int id in new List<int>(gatherLog.Keys))FlushGather(id);}
+        public void FlushEconomyLog()
+        {
+            // A cold checkpoint reconstructs the income buckets by source ID.
+            // Explicit report flushes use the same order regardless of when a
+            // worker first started gathering in the live session.
+            var sources=new List<int>(gatherLog.Keys);sources.Sort();foreach(int id in sources)FlushGather(id);
+        }
         private void Repair(EntityState worker,EntityState target,float dt)
         {
             if(!target.Complete||target.hp>=MaxHp(target)-.01f){worker.orders.Dequeue();worker.status="Idle";return;}
-            float heal=Mathf.Min(18*dt,MaxHp(target)-target.hp);Cost cost=EntityCost(worker.owner,target.def)*(heal/MaxHp(target)*.5f);
+            float heal=Mathf.Min(18*dt,MaxHp(target)-target.hp);var repairValue=target.def.repairCost;
+            if(repairValue.food<=0&&repairValue.wood<=0&&repairValue.coin<=0)repairValue=EntityCost(worker.owner,target.def);
+            Cost cost=repairValue*(heal/MaxHp(target)*.5f);
             if(!CanAfford(worker.owner,cost)){worker.status="Repair needs resources";return;}
             float hpBefore=target.hp;
             var payment=Pay(worker.owner,cost,worker.id,"Repair "+target.id,target.id);
@@ -356,6 +368,7 @@ namespace Frontier
         }
         private void Deliver(PlayerState p,ShipmentJob shipment,CardDef card)
         {
+            var industry=IndustrialShipmentReason(p.id,card,true);if(industry!=""){shipment.waiting=industry;return;}
             EntityState receiver=FindReceiver(p.id);
             if(receiver==null){shipment.waiting="Need a town center or watchtower";return;}
             var d=string.IsNullOrEmpty(card.unit)?null:Rules.Entity(card.unit);

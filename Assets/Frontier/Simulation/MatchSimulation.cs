@@ -27,6 +27,25 @@ namespace Frontier
             foreach(int id in controlled)if(id<0||id>=world.Players.Length)throw new ArgumentOutOfRangeException(nameof(automatedPlayers));
             for(int id=world.Players.Length-1;id>=0;id--)if(controlled.Contains(id))controllers.Add(new SkirmishAI(world,id,Difficulty));
         }
+        public MatchSimulationSnapshot CaptureState()
+        {
+            var saved=new AiSnapshot[controllers.Count];for(int i=0;i<saved.Length;i++)saved[i]=controllers[i].CaptureState();
+            return new MatchSimulationSnapshot{difficultyId=Difficulty.Id,stepCount=StepCount,accumulator=accumulator,controllers=saved};
+        }
+        public static MatchSimulation Restore(World world,MatchSimulationSnapshot state)
+        {
+            AiSaveValidation.Require(world!=null&&state!=null,"missing simulation");
+            AiSaveValidation.Require(state.stepCount>=0&&AiSaveValidation.Clock(state.accumulator)&&state.accumulator<=2,"simulation step or accumulator");
+            AiSaveValidation.Require(world.Rules.Difficulty(state.difficultyId)!=null,"unknown difficulty");
+            AiSaveValidation.Require(state.controllers!=null&&state.controllers.Length<=world.Players.Length,"controller collection");
+            var players=new HashSet<int>();
+            foreach(var saved in state.controllers)AiSaveValidation.Require(saved!=null&&saved.player>=0&&saved.player<world.Players.Length&&players.Add(saved.player),"duplicate or invalid controller player");
+            var result=new MatchSimulation(world,Array.Empty<int>(),state.difficultyId){StepCount=state.stepCount,accumulator=state.accumulator};
+            // Array order in an external save cannot change the native descending dispatch contract.
+            for(int id=world.Players.Length-1;id>=0;id--)
+                foreach(var saved in state.controllers)if(saved.player==id)result.controllers.Add(SkirmishAI.Restore(world,saved,result.Difficulty));
+            return result;
+        }
         public bool Step()
         {
             if(World.Paused||World.Winner>=0)return false;

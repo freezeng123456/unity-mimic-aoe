@@ -6,9 +6,11 @@ using EdgeKind = Frontier.DiscreteInputBuffer.EdgeKind;
 
 namespace Frontier
 {
+    [System.Serializable] public sealed class ControlGroupSnapshot {public int number;public int[] actors;}
     public sealed class RtsInput : MonoBehaviour
     {
         private GameController game;
+        private World groundWorld;private Camera groundCamera;private Vector2 groundPointer,groundResult;private Matrix4x4 groundView,groundProjection;private Rect groundPixelRect;private bool groundCached,groundBoatsOnly;
         public readonly List<int> Selected=new List<int>();
         private readonly Dictionary<int,List<int>> groups=new Dictionary<int,List<int>>();
         public Vector2 CameraFocus {get;private set;}
@@ -42,6 +44,26 @@ namespace Frontier
         public void Initialize(GameController controller)
         {game=controller;inputTrace=System.Array.IndexOf(System.Environment.GetCommandLineArgs(),"-frontierInputTrace")>=0;input=new DiscreteInputBuffer(inputTrace);}
         public void Focus(Vector2 point){ResetDoubleClick();CameraFocus=new Vector2(Mathf.Clamp(point.x,7,121),Mathf.Clamp(point.y,7,121));UpdateCamera();}
+        public void RestoreCamera(Vector2 focus,float size)
+        {ResetDoubleClick();zoom=Mathf.Clamp(size,12,47);Focus(focus);groundCached=false;}
+        public ControlGroupSnapshot[] CaptureGroups()
+        {
+            var result=new List<ControlGroupSnapshot>();for(int number=0;number<10;number++)if(groups.TryGetValue(number,out var members))result.Add(new ControlGroupSnapshot{number=number,actors=members.ToArray()});return result.ToArray();
+        }
+        public void RestoreGroups(System.Collections.Generic.IEnumerable<ControlGroupSnapshot> snapshots)
+        {
+            groups.Clear();if(snapshots==null||game.World==null)return;
+            foreach(var snapshot in snapshots)
+            {
+                if(snapshot==null||snapshot.number<0||snapshot.number>9||snapshot.actors==null)continue;
+                var members=new List<int>();foreach(int id in snapshot.actors){var e=game.World.Get(id);if(e!=null&&e.Alive&&e.owner==0&&game.World.IsVisible(0,e)&&!members.Contains(id))members.Add(id);}groups[snapshot.number]=members;
+            }
+        }
+        public void RestoreSelection(System.Collections.Generic.IEnumerable<int> members)
+        {
+            ResetSelection();if(members==null||game.World==null)return;
+            foreach(int id in members){var e=game.World.Get(id);if(e!=null&&e.Alive&&e.owner>=-1&&e.owner<game.World.Players.Length&&game.World.IsVisible(0,e)&&!Selected.Contains(id))Selected.Add(id);}game.Hud?.InvalidateActions();
+        }
         public void ResetSelection(){ResetDoubleClick();Selected.Clear();groups.Clear();BuildingToPlace="";AttackMode=false;GarrisonMode=false;RepairMode=false;Dragging=false;beganWorld=false;beganMinimap=false;input?.Clear();game?.Hud?.CancelUiPointer();}
         private void UpdateCamera()
         {
@@ -53,6 +75,8 @@ namespace Frontier
         {
             get{if(game.World==null)return null;foreach(int id in Selected){var e=game.World.Get(id);if(e!=null&&e.Alive)return e;}return null;}
         }
+        public void PruneInvisibleSelection()
+        {if(game.World==null)return;for(int i=Selected.Count-1;i>=0;i--)if(!game.World.IsVisible(0,game.World.Get(Selected[i])))Selected.RemoveAt(i);}
         public void Select(EntityState entity,bool append=false)
         {ResetDoubleClick();if(!append)Selected.Clear();if(entity==null)return;if(append&&Selected.Contains(entity.id))Selected.Remove(entity.id);else Selected.Add(entity.id);game.Hud.InvalidateActions();}
         public void SaveGroup(int number)
@@ -118,13 +142,13 @@ namespace Frontier
                 // The transition barrier prevents pointer click-through. Fresh
                 // keyboard edges can act immediately after a modal has closed.
                 if(edge.kind!=EdgeKind.Key&&Time.unscaledTime<suppressUntil)continue;
-                Selected.RemoveAll(id=>!game.World.IsVisible(0,game.World.Get(id)));
+                PruneInvisibleSelection();
                 if(edge.kind==EdgeKind.Key)ProcessKey(edge);
                 else if(edge.kind==EdgeKind.Right&&edge.pressed)ProcessRight(edge);
                 else if(edge.kind==EdgeKind.Left)ProcessPointer(edge);
             }
             if(!WorldActive){beganWorld=false;beganMinimap=false;Dragging=false;return;}
-            Selected.RemoveAll(id=>!game.World.IsVisible(0,game.World.Get(id)));
+            PruneInvisibleSelection();
             var mouse=Mouse.current;var keys=Keyboard.current;if(mouse==null||keys==null)return;
             Vector2 pointer=mouse.position.ReadValue();DragEnd=pointer;
             if(!game.Hud.ModalVisible&&Time.unscaledTime>=suppressUntil)
@@ -142,7 +166,7 @@ namespace Frontier
             }
             if(pan.sqrMagnitude>0)Focus(CameraFocus+pan*Time.unscaledDeltaTime*30*(zoom/26));lastMouse=pointer;
             if(!game.Hud.BlocksWorldInput(pointer)){float scroll=mouse.scroll.ReadValue().y;if(Mathf.Abs(scroll)>.01f){zoom=Mathf.Clamp(zoom-scroll*.018f,12,47);UpdateCamera();}}
-            GroundMouse=GroundPoint(pointer);
+            GroundMouse=HoverGroundPoint(pointer);
         }
         private void HandleEscape()
         {
@@ -274,7 +298,7 @@ namespace Frontier
             if(!plane.Raycast(ray,out float enter))return CameraFocus;
             // Resolve actual elevated bridge surfaces before the base plane. A
             // boat-only selection targets the water channel beneath the deck.
-            bool boatsOnly=Selected.Count>0&&Selected.TrueForAll(id=>game.World?.Get(id)?.def.waterborne==true);
+            bool boatsOnly=OnlySelectedBoats();
             if(game.World?.Layout.HasWater==true&&game.World.MapId!=MapTopology.River)
             {
                 // Carved banks are lower than the old y=0 plane. Solve against
@@ -293,19 +317,29 @@ namespace Frontier
             {
                 foreach(var bridge in game.World.Layout.Bridges)
                 {
-                    float[] edges={-bridge.HalfLength-bridge.RampLength,-bridge.HalfLength,bridge.HalfLength,bridge.HalfLength+bridge.RampLength};
                     for(int i=0;i<3;i++)
                     {
+                        float a=i==0?-bridge.HalfLength-bridge.RampLength:i==1?-bridge.HalfLength:bridge.HalfLength;
+                        float b=i==0?-bridge.HalfLength:i==1?bridge.HalfLength:bridge.HalfLength+bridge.RampLength;
                         Vector3 Point(float across,float along)
                         {var p=bridge.Point(across,along);float height=bridge.Height*Mathf.Clamp01((bridge.HalfLength+bridge.RampLength-Mathf.Abs(across))/bridge.RampLength);return new Vector3(p.x,height,p.y);}
-                        var bridgePlane=new Plane(Point(edges[i],-bridge.HalfWidth),Point(edges[i],bridge.HalfWidth),Point(edges[i+1],bridge.HalfWidth));
+                        var bridgePlane=new Plane(Point(a,-bridge.HalfWidth),Point(a,bridge.HalfWidth),Point(b,bridge.HalfWidth));
                         if(!bridgePlane.Raycast(ray,out float t)||t>=enter)continue;
                         var hit=ray.GetPoint(t);var local=bridge.Local(new Vector2(hit.x,hit.z));
-                        if(local.x>=edges[i]-.001f&&local.x<=edges[i+1]+.001f&&Mathf.Abs(local.y)<=bridge.HalfWidth)enter=t;
+                        if(local.x>=a-.001f&&local.x<=b+.001f&&Mathf.Abs(local.y)<=bridge.HalfWidth)enter=t;
                     }
                 }
             }
             var p=ray.GetPoint(enter);return new Vector2(Mathf.Clamp(p.x,1,126),Mathf.Clamp(p.z,1,126));
+        }
+        private bool OnlySelectedBoats()
+        {if(Selected.Count==0)return false;foreach(int id in Selected)if(game.World?.Get(id)?.def.waterborne!=true)return false;return true;}
+        private Vector2 HoverGroundPoint(Vector2 pointer)
+        {
+            var camera=game.GameCamera;var view=camera.worldToCameraMatrix;var projection=camera.projectionMatrix;var rect=camera.pixelRect;bool boats=OnlySelectedBoats();
+            if(!groundCached||groundWorld!=game.World||groundCamera!=camera||!pointer.Equals(groundPointer)||!view.Equals(groundView)||!projection.Equals(groundProjection)||!rect.Equals(groundPixelRect)||boats!=groundBoatsOnly)
+            {groundResult=GroundPoint(pointer);groundWorld=game.World;groundCamera=camera;groundPointer=pointer;groundView=view;groundProjection=projection;groundPixelRect=rect;groundBoatsOnly=boats;groundCached=true;}
+            return groundResult;
         }
         private bool OnScreen(EntityState entity){var p=game.GameCamera.WorldToViewportPoint(new Vector3(entity.position.x,game.World.SurfaceHeight(entity.position,entity.def.waterborne)+1,entity.position.y));return p.z>0&&p.x>0&&p.x<1&&p.y>0&&p.y<1;}
         private EntityState Pick(Vector2 screen,bool command=false,bool shelter=false,bool repair=false)

@@ -51,12 +51,12 @@ namespace Frontier
         }
         public static void Apply(UnitRig rig,AnimationPose pose)
         {
-            if(rig==null)return;rig.RestoreInitialPose();rig.WorkerEquipment?.Show(pose.tool);
-            if(rig.RepairWeapon!=null)rig.RepairWeapon.gameObject.SetActive(pose.tool==WorkerTool.None);
-            if(rig.WorkerFirearm!=null)rig.WorkerFirearm.gameObject.SetActive(pose.tool==WorkerTool.None);
-            if(rig.MeleeWeapon!=null){rig.Weapon.gameObject.SetActive(!pose.melee);rig.MeleeWeapon.gameObject.SetActive(pose.melee);}
-            if(rig.Cargo!=null)rig.Cargo.gameObject.SetActive(pose.loadedCargo);
-            if(rig.Shield!=null&&rig.Shield.name=="Folding pavise")
+            if(rig==null||!rig.BeginPose(pose))return;rig.WorkerEquipment?.Show(pose.tool);
+            SetActive(rig.RepairWeapon,pose.tool==WorkerTool.None);
+            SetActive(rig.WorkerFirearm,pose.tool==WorkerTool.None);
+            if(rig.MeleeWeapon!=null){SetActive(rig.Weapon,!pose.melee);SetActive(rig.MeleeWeapon,pose.melee);}
+            SetActive(rig.Cargo,pose.loadedCargo);
+            if(rig.Shield!=null&&rig.FoldingPavise)
             {rig.Shield.localPosition=pose.shielded?new Vector3(0,.68f,.51f):new Vector3(-.48f,.90f,.06f);rig.Shield.localRotation=Quaternion.Euler(0,pose.shielded?0:65,0);}
             foreach(var wheel in rig.CartWheels)if(pose.moving)Rotate(wheel,0,pose.locomotionPhase*57,0);
             float stride=Mathf.Sin(pose.locomotionPhase),recoil=pose.state==UnitPoseState.Fire?Mathf.Sin(pose.actionPhase*Mathf.PI):0;
@@ -134,6 +134,14 @@ namespace Frontier
                 StringSegment(rig.BowStringLower,new Vector3(0,-.88f,-.24f),nock);
             }
         }
+        internal static bool SameRigPose(AnimationPose a,AnimationPose b)
+        {
+            return a.state==b.state&&a.tool==b.tool&&a.moving==b.moving&&a.melee==b.melee&&a.bow==b.bow&&a.polearm==b.polearm&&a.deployed==b.deployed&&a.reloading==b.reloading&&a.shielded==b.shielded&&a.loadedCargo==b.loadedCargo&&a.sweepingMelee==b.sweepingMelee
+                &&(!a.moving||a.locomotionPhase==b.locomotionPhase)
+                &&((!a.reloading&&(a.state==UnitPoseState.Idle||a.state==UnitPoseState.Move||a.state==UnitPoseState.Death))||a.actionPhase==b.actionPhase);
+        }
+        private static void SetActive(Transform part,bool active)
+        {if(part!=null&&part.gameObject.activeSelf!=active)part.gameObject.SetActive(active);}
         private static void WorkerPose(UnitRig rig,AnimationPose pose)
         {
             float lift=.5f-.5f*Mathf.Cos(pose.actionPhase*Mathf.PI*2);

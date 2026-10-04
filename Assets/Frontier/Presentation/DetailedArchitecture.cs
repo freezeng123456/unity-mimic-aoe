@@ -52,7 +52,7 @@ namespace Frontier
                     case "stable": Stable();break;case "foundry": Foundry();break;case "market": Market();break;
                     case "tower": Tower();break;case "farm": Farm();break;case "bank": Bank();break;
                     case "estate": Estate();break;case "trade_post": TradePost();break;
-                    case "waystation": Waystation();break;case "workshop": Workshop();break;case "mosque": Mosque();break;
+                    case "waystation": Waystation();break;case "workshop": Workshop();break;case "mosque": Mosque();break;case "factory": Factory();break;
                     default: House();break;
                 }
                 var model=root.gameObject.AddComponent<ArchitectureModel>();model.Civilization=civ;model.Age=age;
@@ -286,6 +286,26 @@ namespace Frontier
                 Awning(new Vector3(-w*.52f,1.59f,d*.0f),w*.29f,d*.47f);
                 for(int i=0;i<3;i++){Crate(new Vector3(w*.53f,.24f,-d*.23f+i*.42f),.39f,.30f,.33f);Barrel(new Vector3(-w*.52f,.24f,d*.40f-i*.38f),.14f,.42f);}
                 Flag(new Vector3(w*.71f,2.35f,d*.52f));
+            }
+            void Factory()
+            {
+                Hall(new Vector3(-w*.20f,0,d*.09f),w*.67f,d*.82f,2.45f,false,false);
+                Hall(new Vector3(w*.63f,0,-d*.23f),w*.22f,d*.48f,1.62f,false);
+                for(int i=0;i<3;i++)
+                {
+                    var p=new Vector3(-w*.20f,2.82f,-d*.57f+i*d*.55f);
+                    roof.Box(p,new Vector3(w*1.43f,.10f,d*.43f),roofMat,Quaternion.Euler(-15,0,0));
+                    detail.Box(p+new Vector3(0,-.15f,-d*.22f),new Vector3(w*1.30f,.30f,.065f),glass);
+                }
+                Chimney(new Vector3(w*.67f,.23f,d*.58f),.50f,4.65f);
+                Chimney(new Vector3(w*.22f,2.59f,d*.65f),.27f,1.35f);
+                var machinery=new ArchitecturalGeometry();var center=new Vector3(w*.67f,.77f,-d*.83f);
+                machinery.Lathe(center,new[]{new Vector2(.42f,-.06f),new Vector2(.42f,.06f)},iron,20,Quaternion.Euler(90,0,0));
+                for(int i=0;i<8;i++)
+                {float angle=i*Mathf.PI/4;machinery.Beam(center,center+new Vector3(Mathf.Cos(angle)*.40f,Mathf.Sin(angle)*.40f,0),.045f,.055f,brass);}
+                Feature(machinery,"Factory external flywheel and drive",3);
+                for(int i=0;i<3;i++)Crate(new Vector3(-w*.52f+i*.46f,.25f,-d*.90f),.39f,.40f,.29f);
+                Flag(new Vector3(-w*.71f,3.20f,d*.62f));
             }
             void Workshop()
             {

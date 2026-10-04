@@ -13,6 +13,16 @@ namespace Frontier
         public bool Saving=>TargetAge>0&&saving;
         public Cost Reserve=>Saving?world.Rules.Age(TargetAge).cost:new Cost();
         public AiAgePlan(World world,int player){this.world=world;this.player=player;}
+        public AiAgePlanSnapshot CaptureState()=>new AiAgePlanSnapshot{targetAge=TargetAge,saving=saving,retryAt=retryAt,resumeAt=resumeAt,progressAt=progressAt,bestCoverage=bestCoverage};
+        public void RestoreState(AiAgePlanSnapshot state)
+        {
+            AiSaveValidation.Require(state!=null,"missing age plan");
+            AiSaveValidation.Require(state.targetAge==0||state.targetAge>=2&&state.targetAge<=world.MaxAge,"age target");
+            AiSaveValidation.Require(!state.saving||state.targetAge>0,"age savings without a target");
+            AiSaveValidation.Require(AiSaveValidation.Clock(state.retryAt)&&AiSaveValidation.Clock(state.resumeAt)&&AiSaveValidation.Clock(state.progressAt)&&
+                SnapshotCodec.Finite(state.bestCoverage)&&state.bestCoverage>=0&&state.bestCoverage<=3.001f,"age plan clocks or coverage");
+            TargetAge=state.targetAge;saving=state.saving;retryAt=state.retryAt;resumeAt=state.resumeAt;progressAt=state.progressAt;bestCoverage=state.bestCoverage;
+        }
         public void Tick(EntityState town,int workers,int soldiers,int visibleRaiders,bool advancing)
         {
             if(world.Paused||world.Winner>=0)return;

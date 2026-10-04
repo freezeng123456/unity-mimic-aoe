@@ -27,6 +27,14 @@ namespace Frontier
                 points.Add(new Vector2(1+(x+.5f)*(world.Navigation.Width-2)/columns,1+(y+.5f)*(world.Navigation.Height-2)/rows));
             processed=new bool[points.Count];
         }
+        public AiSearchSnapshot CaptureState()=>new AiSearchSnapshot{visitedStart=visitedStart,processed=(bool[])processed.Clone(),current=current,pass=pass,revision=Revision,selectedAt=selectedAt};
+        public void RestoreState(AiSearchSnapshot state)
+        {
+            AiSaveValidation.Require(state!=null&&state.processed!=null&&state.processed.Length==processed.Length,"search terrain mask");
+            AiSaveValidation.Require(state.current>=-1&&state.current<points.Count&&state.pass>=0&&state.revision>=0&&AiSaveValidation.Clock(state.selectedAt),"search progress");
+            AiSaveValidation.Require(state.visitedStart||state.current==-1,"search before observing the enemy start");
+            Array.Copy(state.processed,processed,processed.Length);visitedStart=state.visitedStart;current=state.current;pass=state.pass;Revision=state.revision;selectedAt=state.selectedAt;
+        }
         private bool Active(EntityState unit)=>unit.Alive&&unit.owner==player&&unit.Military&&unit.garrisonedIn==0;
         public void ObserveStart(List<EntityState> soldiers)
         {

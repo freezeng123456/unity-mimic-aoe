@@ -9,6 +9,18 @@ namespace Frontier
         private readonly int width,height;
         private readonly VisibilityState[,,] cells;
         public Visibility(int width=128,int height=128,int players=2){this.width=width;this.height=height;cells=new VisibilityState[players,width,height];}
+        public int[] CaptureState()
+        {
+            var state=new int[cells.Length];int i=0;
+            for(int p=0;p<cells.GetLength(0);p++)for(int x=0;x<width;x++)for(int y=0;y<height;y++)state[i++]=(int)cells[p,x,y];
+            return state;
+        }
+        public void RestoreState(int[] state)
+        {
+            if(state==null||state.Length!=cells.Length)throw new System.ArgumentException("Invalid visibility state");
+            foreach(int value in state)if(value<0||value>2)throw new System.ArgumentException("Invalid visibility cell");
+            int i=0;for(int p=0;p<cells.GetLength(0);p++)for(int x=0;x<width;x++)for(int y=0;y<height;y++)cells[p,x,y]=(VisibilityState)state[i++];
+        }
         public void Tick(List<EntityState> entities)
         {
             for(int p=0;p<cells.GetLength(0);p++)for(int x=0;x<width;x++)for(int y=0;y<height;y++)if(cells[p,x,y]==VisibilityState.Visible)cells[p,x,y]=VisibilityState.Explored;

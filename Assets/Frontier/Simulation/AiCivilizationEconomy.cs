@@ -12,6 +12,12 @@ namespace Frontier
         readonly int player;
         float manufactureAt;
         public AiCivilizationEconomy(World world,int player){this.world=world;this.player=player;}
+        public AiCivilizationEconomySnapshot CaptureState()=>new AiCivilizationEconomySnapshot{manufactureAt=manufactureAt};
+        public void RestoreState(AiCivilizationEconomySnapshot state)
+        {
+            AiSaveValidation.Require(state!=null&&AiSaveValidation.Clock(state.manufactureAt),"manufacturing clock");
+            manufactureAt=state.manufactureAt;
+        }
         public string Building=>world.Players[player].civilization=="wayfarer"?"waystation":world.Players[player].civilization=="highland"?"workshop":world.Players[player].civilization=="ottoman"?"mosque":"";
         public static bool CanReassign(EntityState worker)=>worker.Alive&&worker.Worker&&worker.garrisonedIn==0&&!worker.hold&&worker.orders.Count<=1&&(worker.orders.Count==0||worker.orders.Peek().kind==OrderKind.Gather);
         public void Tick(List<EntityState> own,List<EntityState> workers,List<EntityState> visible,Cost reserve,bool saving,bool underAttack)

@@ -46,6 +46,9 @@ namespace Frontier
         {
             // Every preset includes the defining economic mechanism and one specialist force.
             if(CoreCard(card.id,civilization))return -100;
+            // Industrial play needs the real, once-only wagon shipment in a
+            // finite deck. Never mistake its civilian wagon for military aid.
+            if(card.unit=="factory_wagon")return -75;
             var unit=string.IsNullOrEmpty(card.unit)?null:rules.Entity(card.unit);
             var tech=string.IsNullOrEmpty(card.tech)?null:rules.Tech(card.tech);
             bool military=unit!=null&&(unit.tags&Tags.Villager)==0&&!unit.civilian;

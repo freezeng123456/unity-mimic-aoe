@@ -2471,6 +2471,289 @@
       "trainXp": 0,
       "killXp": 0,
       "waterborne": true
+    },
+    {
+      "id": "factory",
+      "name": "Factory",
+      "description": "Industrial shipment building: a delivered factory wagon starts a timed foundation. Choose food, wood, coin or your civilization's heavy artillery. Resource modes and artillery are exclusive. Project balance P.",
+      "producer": "",
+      "civilization": "",
+      "kind": 1,
+      "tags": 256,
+      "cost": {
+        "food": 0,
+        "wood": 0,
+        "coin": 0
+      },
+      "hp": 4000,
+      "radius": 0.4,
+      "width": 4,
+      "depth": 4,
+      "speed": 0,
+      "vision": 18,
+      "damage": 0,
+      "meleeDamage": 0,
+      "siegeDamage": 0,
+      "range": 1,
+      "minRange": 0,
+      "period": 2,
+      "windup": 0.35,
+      "projectileSpeed": 30,
+      "splash": 0,
+      "damageKind": 0,
+      "meleeResist": 0,
+      "rangedResist": 0,
+      "siegeResist": 0,
+      "time": 60,
+      "population": 0,
+      "capacity": 0,
+      "age": 4,
+      "batch": 1,
+      "garrison": 0,
+      "deploy": false,
+      "bonuses": [],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 5.5,
+      "buildXp": 80,
+      "trainXp": 0,
+      "killXp": 80,
+      "garrisonAttackLimit": 0,
+      "excludedCivilizations": [
+        "wayfarer",
+        "highland"
+      ],
+      "repairCost": {
+        "wood": 1000
+      }
+    },
+    {
+      "id": "factory_wagon",
+      "name": "Factory Wagon",
+      "description": "One-use industrial shipment wagon. Select it to construct a factory inside current vision; the foundation takes time and the wagon is consumed. Cannot gather, attack or train.",
+      "producer": "",
+      "civilization": "",
+      "kind": 0,
+      "tags": 0,
+      "cost": {
+        "food": 0,
+        "wood": 0,
+        "coin": 0
+      },
+      "hp": 300,
+      "radius": 0.6,
+      "width": 1,
+      "depth": 1,
+      "speed": 3.5,
+      "vision": 14,
+      "damage": 0,
+      "meleeDamage": 0,
+      "siegeDamage": 0,
+      "range": 1,
+      "minRange": 0,
+      "period": 5,
+      "windup": 0.35,
+      "projectileSpeed": 25,
+      "splash": 3,
+      "damageKind": 2,
+      "meleeResist": 0,
+      "rangedResist": 0,
+      "siegeResist": 0,
+      "time": 0,
+      "population": 0,
+      "capacity": 0,
+      "age": 4,
+      "batch": 1,
+      "garrison": 0,
+      "deploy": false,
+      "bonuses": [],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 0,
+      "trainXp": 0,
+      "killXp": 30,
+      "excludedCivilizations": [
+        "wayfarer",
+        "highland"
+      ],
+      "civilian": true
+    },
+    {
+      "id": "heavy_cannon",
+      "name": "Heavy Cannon",
+      "description": "Factory-exclusive industrial artillery. While producing it the factory earns no resources; completion waits for housing and a safe exit. Numeric combat balance P.",
+      "producer": "factory",
+      "civilization": "",
+      "kind": 0,
+      "tags": 64,
+      "cost": {
+        "food": 0,
+        "wood": 0,
+        "coin": 0
+      },
+      "hp": 480,
+      "radius": 0.95,
+      "width": 1,
+      "depth": 1,
+      "speed": 1.9,
+      "vision": 26,
+      "damage": 105,
+      "meleeDamage": 0,
+      "siegeDamage": 225,
+      "range": 24,
+      "minRange": 6,
+      "period": 6.5,
+      "windup": 0.35,
+      "projectileSpeed": 25,
+      "splash": 4,
+      "damageKind": 2,
+      "meleeResist": 0,
+      "rangedResist": 0.5,
+      "siegeResist": 0,
+      "time": 95,
+      "population": 7,
+      "capacity": 0,
+      "age": 4,
+      "batch": 1,
+      "garrison": 0,
+      "deploy": true,
+      "bonuses": [
+        {
+          "tags": 1,
+          "multiplier": 2
+        }
+      ],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 0,
+      "trainXp": 30,
+      "killXp": 60,
+      "excludedCivilizations": [
+        "coast",
+        "ottoman",
+        "wayfarer",
+        "highland"
+      ],
+      "repairCost": {
+        "wood": 200,
+        "coin": 500
+      }
+    },
+    {
+      "id": "rocket",
+      "name": "Rocket",
+      "description": "Factory-exclusive industrial artillery. While producing it the factory earns no resources; completion waits for housing and a safe exit. Numeric combat balance P.",
+      "producer": "factory",
+      "civilization": "coast",
+      "kind": 0,
+      "tags": 64,
+      "cost": {
+        "food": 0,
+        "wood": 0,
+        "coin": 0
+      },
+      "hp": 300,
+      "radius": 0.9,
+      "width": 1,
+      "depth": 1,
+      "speed": 2.4,
+      "vision": 28,
+      "damage": 90,
+      "meleeDamage": 0,
+      "siegeDamage": 150,
+      "range": 26,
+      "minRange": 6,
+      "period": 5.5,
+      "windup": 0.35,
+      "projectileSpeed": 45,
+      "splash": 3,
+      "damageKind": 2,
+      "meleeResist": 0,
+      "rangedResist": 0.5,
+      "siegeResist": 0,
+      "time": 90,
+      "population": 6,
+      "capacity": 0,
+      "age": 4,
+      "batch": 1,
+      "garrison": 0,
+      "deploy": true,
+      "bonuses": [
+        {
+          "tags": 1,
+          "multiplier": 2
+        }
+      ],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 0,
+      "trainXp": 30,
+      "killXp": 60,
+      "excludedCivilizations": [],
+      "repairCost": {
+        "wood": 100,
+        "coin": 500
+      }
+    },
+    {
+      "id": "great_bombard",
+      "name": "Great Bombard",
+      "description": "Factory-exclusive industrial artillery. While producing it the factory earns no resources; completion waits for housing and a safe exit. Numeric combat balance P.",
+      "producer": "factory",
+      "civilization": "ottoman",
+      "kind": 0,
+      "tags": 64,
+      "cost": {
+        "food": 0,
+        "wood": 0,
+        "coin": 0
+      },
+      "hp": 600,
+      "radius": 1.05,
+      "width": 1,
+      "depth": 1,
+      "speed": 1.5,
+      "vision": 26,
+      "damage": 135,
+      "meleeDamage": 0,
+      "siegeDamage": 300,
+      "range": 24,
+      "minRange": 6,
+      "period": 7,
+      "windup": 0.35,
+      "projectileSpeed": 25,
+      "splash": 4.5,
+      "damageKind": 2,
+      "meleeResist": 0,
+      "rangedResist": 0.5,
+      "siegeResist": 0,
+      "time": 95,
+      "population": 7,
+      "capacity": 0,
+      "age": 4,
+      "batch": 1,
+      "garrison": 0,
+      "deploy": true,
+      "bonuses": [
+        {
+          "tags": 1,
+          "multiplier": 2
+        }
+      ],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 0,
+      "trainXp": 30,
+      "killXp": 60,
+      "excludedCivilizations": [],
+      "repairCost": {
+        "wood": 100,
+        "coin": 600
+      }
     }
   ],
   "techs": [
@@ -5750,6 +6033,124 @@
         "abus"
       ],
       "attack": 0.12
+    },
+    {
+      "id": "factory_cannery",
+      "name": "Cannery",
+      "description": "Factory production upgrade. Applies to current and future factories; payment and production balance P.",
+      "building": "factory",
+      "age": 4,
+      "cost": {
+        "food": 250,
+        "wood": 250,
+        "coin": 0
+      },
+      "time": 45,
+      "resource": 1,
+      "factoryIncome": 0.3,
+      "factoryArtillerySpeed": 0
+    },
+    {
+      "id": "factory_water_power",
+      "name": "Water Power",
+      "description": "Factory production upgrade. Applies to current and future factories; payment and production balance P.",
+      "building": "factory",
+      "age": 4,
+      "cost": {
+        "food": 250,
+        "wood": 250,
+        "coin": 0
+      },
+      "time": 45,
+      "resource": 2,
+      "factoryIncome": 0.3,
+      "factoryArtillerySpeed": 0
+    },
+    {
+      "id": "factory_steam_power",
+      "name": "Steam Power",
+      "description": "Factory production upgrade. Applies to current and future factories; payment and production balance P.",
+      "building": "factory",
+      "age": 4,
+      "cost": {
+        "food": 250,
+        "wood": 250,
+        "coin": 0
+      },
+      "time": 45,
+      "resource": 3,
+      "factoryIncome": 0.3,
+      "factoryArtillerySpeed": 0
+    },
+    {
+      "id": "factory_mass_production",
+      "name": "Mass Production",
+      "description": "Factory production upgrade. Applies to current and future factories; payment and production balance P.",
+      "building": "factory",
+      "age": 4,
+      "cost": {
+        "food": 250,
+        "wood": 250,
+        "coin": 0
+      },
+      "time": 45,
+      "resource": 0,
+      "factoryIncome": 0,
+      "factoryArtillerySpeed": 0.3
+    },
+    {
+      "id": "imperial_heavy_cannon",
+      "name": "Imperial Heavy Cannon",
+      "description": "Adds 50% base health and attack to current and future factory artillery. Numeric balance P.",
+      "building": "factory",
+      "civilization": "",
+      "age": 5,
+      "cost": {
+        "food": 1000,
+        "coin": 1000
+      },
+      "time": 60,
+      "units": [
+        "heavy_cannon"
+      ],
+      "health": 0.5,
+      "attack": 0.5
+    },
+    {
+      "id": "imperial_rocket",
+      "name": "Imperial Rocket",
+      "description": "Adds 50% base health and attack to current and future factory artillery. Numeric balance P.",
+      "building": "factory",
+      "civilization": "coast",
+      "age": 5,
+      "cost": {
+        "food": 1000,
+        "coin": 1000
+      },
+      "time": 60,
+      "units": [
+        "rocket"
+      ],
+      "health": 0.5,
+      "attack": 0.5
+    },
+    {
+      "id": "imperial_great_bombard",
+      "name": "Imperial Great Bombard",
+      "description": "Adds 50% base health and attack to current and future factory artillery. Numeric balance P.",
+      "building": "factory",
+      "civilization": "ottoman",
+      "age": 5,
+      "cost": {
+        "food": 1000,
+        "coin": 1000
+      },
+      "time": 60,
+      "units": [
+        "great_bombard"
+      ],
+      "health": 0.5,
+      "attack": 0.5
     }
   ],
   "cards": [
@@ -7387,6 +7788,32 @@
       "repeatable": false,
       "unit": "halberdier",
       "count": 8
+    },
+    {
+      "id": "factory_wagon",
+      "name": "Factory Wagon",
+      "description": "One factory wagon, sent once in the Industrial Age. Factories, delivered wagons and in-flight wagons share a limit of two. Requires timed construction; no immediate completed factory. Project adaptation P.",
+      "civilization": "",
+      "age": 4,
+      "count": 1,
+      "crates": {},
+      "repeatable": false,
+      "unit": "factory_wagon",
+      "tech": "",
+      "travel": 40
+    },
+    {
+      "id": "robber_barons",
+      "name": "Robber Barons",
+      "description": "One factory wagon, sent once in the Industrial Age. Factories, delivered wagons and in-flight wagons share a limit of two. Requires timed construction; no immediate completed factory. Project adaptation P.",
+      "civilization": "",
+      "age": 4,
+      "count": 1,
+      "crates": {},
+      "repeatable": false,
+      "unit": "factory_wagon",
+      "tech": "",
+      "travel": 40
     }
   ],
   "ages": [

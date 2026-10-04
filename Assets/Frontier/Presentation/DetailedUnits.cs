@@ -15,6 +15,10 @@ namespace Frontier
         static readonly Dictionary<Color,int> palette=new Dictionary<Color,int>();
         static Texture2D atlas;static Material material;
 
+        // Merge authored industrial geometry without applying the ordinary
+        // cannon silhouette to rocket rails or the larger bronze bombard.
+        public static void BakeAuthored(Transform root,UnitRig rig)=>Bake(root,rig);
+
         public static void Refine(Transform root,UnitRig rig,EntityState e,Color team)
         {
             if(e.def.id=="caravan")Freight(root,rig);

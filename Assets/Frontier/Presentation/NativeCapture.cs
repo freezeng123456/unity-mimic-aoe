@@ -11,7 +11,7 @@ namespace Frontier
 {
     [Serializable] public sealed class CaptureMetadata
     {
-        public int schemaVersion = 1, eventSchemaVersion = SimEvent.CurrentSchemaVersion;
+        public int schemaVersion = 2, eventSchemaVersion = SimEvent.CurrentSchemaVersion;
         public string pngFile, pngSha256, utc, appVersion, buildGuid, unityVersion, matchId, requestMatchId;
         public int requestFrame, captureFrame, width, height, seed;
         public float requestWorldTime, worldTime;
@@ -61,7 +61,8 @@ namespace Frontier
                 var b = new CaptureProduction
                 {
                     entity = e.id, definition = e.def.id, position = e.position, hp = e.hp,
-                    construction = e.construction, queue = new CaptureProductionJob[e.queue.Count]
+                    construction = e.construction, factoryMode=e.def.id=="factory"?e.factoryMode:"",
+                    factoryElapsed=e.def.id=="factory"?e.factoryElapsed:0, queue = new CaptureProductionJob[e.queue.Count]
                 };
                 for (int i = 0; i < e.queue.Count; i++)
                 {
@@ -78,7 +79,7 @@ namespace Frontier
     [Serializable] public sealed class CaptureCamera
     { public Vector2 focus, pointer; public bool applicationFocused; public float orthographicSize; }
     [Serializable] public sealed class CaptureProduction
-    { public int entity; public string definition; public Vector2 position; public float hp, construction; public CaptureProductionJob[] queue; }
+    { public int entity; public string definition,factoryMode; public Vector2 position; public float hp, construction,factoryElapsed; public CaptureProductionJob[] queue; }
     [Serializable] public sealed class CaptureProductionJob
     { public string kind, item; public int count, population; public float elapsed, duration; }
 

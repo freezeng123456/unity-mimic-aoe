@@ -61,6 +61,46 @@ namespace Frontier
         public bool BenchmarkMode;
         public float LastSimulationFrameMs;
         public MatchSimulation Simulation { get; private set; }
+        private string saveDirectoryOverride=null;
+        public string SaveDirectory=>saveDirectoryOverride??Path.Combine(Application.persistentDataPath,"Saves");
+        public string SaveSlotLabel(int slot)
+        {
+            string path=MatchSaveStore.SlotPath(SaveDirectory,slot);if(!File.Exists(path))return "SLOT "+slot+" · EMPTY";
+            try{var save=MatchSaveStore.Read(path);return "SLOT "+slot+" · "+MapTopology.Name(save.world.mapId)+" · "+((int)save.world.time/60)+":"+((int)save.world.time%60).ToString("00");}
+            catch(Exception){return "SLOT "+slot+" · UNREADABLE";}
+        }
+        public bool SaveMatch(int slot)
+        {
+            if(World==null||Simulation==null||BenchmarkMode){Notify("Start a normal match before saving");return false;}
+            try
+            {
+                MatchSaveStore.Write(MatchSaveStore.SlotPath(SaveDirectory,slot),new SavedMatch{matchId=MatchId,appVersion=Application.version,
+                    world=World.CaptureState(),simulation=Simulation.CaptureState(),cameraPosition=GameCamera.transform.position,cameraSize=GameCamera.orthographicSize,
+                    cameraFocus=Controls.CameraFocus,selection=Controls.Selected.ToArray(),groups=Controls.CaptureGroups(),
+                    muted=Muted,environmentSound=EnvironmentSoundEnabled,music=MusicEnabled,autoplay=Autoplay,simulationSpeed=SimulationSpeed});
+                Notify("Saved to slot "+slot);Debug.Log("FRONTIER_SAVE slot="+slot+" match="+MatchId+" time="+World.Time);return true;
+            }
+            catch(Exception error){Notify("Save failed: "+error.Message);Debug.LogWarning("FRONTIER_SAVE_FAILED "+error.Message);return false;}
+        }
+        public bool LoadMatch(int slot)
+        {
+            try
+            {
+                var saved=MatchSaveStore.Read(MatchSaveStore.SlotPath(SaveDirectory,slot),Application.version);
+                var restored=Frontier.World.Restore(Rules,saved.world);var simulation=MatchSimulation.Restore(restored,saved.simulation);
+                // Validate and reconstruct before replacing the current game.
+                if(World!=null)SaveReport("load_exit");ClearBenchmark();Audio.ResetMatch();World=restored;Simulation=simulation;MatchId=saved.matchId;
+                PlayerCivilization=World.Players[0].civilization;OpponentCivilization=World.Players[1].civilization;AgeLimit=World.MaxAge;
+                SelectedMap=World.MapId;MatchSeed=World.Seed;OpponentDifficulty=Simulation.Difficulty.Id;
+                configuredDecks[PlayerCivilization]=new List<string>(World.Players[0].deck);
+                Autoplay=saved.autoplay;SimulationSpeed=saved.simulationSpeed;Muted=saved.muted;EnvironmentSoundEnabled=saved.environmentSound;MusicEnabled=saved.music;
+                InMenu=false;PausedForFocusLoss=false;audioCursor=World.Events.Count;frameTimes.Clear();nextTelemetry=World.Time+60;LastSimulationFrameMs=0;
+                View.ResetWorld();Controls.ResetSelection();Controls.RestoreCamera(saved.cameraFocus,saved.cameraSize);Controls.RestoreSelection(saved.selection);Controls.RestoreGroups(saved.groups);
+                Controls.ClearTransientInput();Hud.ShowGame();World.Paused=true;Audio.PauseAll(true);Hud.ShowPause(true);
+                Notify("Loaded slot "+slot+" · resume when ready");Debug.Log("FRONTIER_LOAD slot="+slot+" match="+MatchId+" time="+World.Time);return true;
+            }
+            catch(Exception error){Notify("Load failed: "+error.Message);Debug.LogWarning("FRONTIER_LOAD_FAILED "+error.Message);return false;}
+        }
         private float noticeUntil;
         private int audioCursor;
         private float nextTelemetry;

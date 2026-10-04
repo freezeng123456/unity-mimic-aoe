@@ -164,6 +164,7 @@ namespace Frontier
                 var e=actors[i];if(c.order==OrderKind.Claim&&(e.def.tags&Tags.Explorer)==0)continue;
                 if(c.order==OrderKind.Gather&&!CanGather(e,target))continue;
                 if((c.order==OrderKind.Build||c.order==OrderKind.Manufacture)&&(!e.Worker||e.def.waterborne))continue;
+                if(c.order==OrderKind.Build&&target.def.id=="factory")continue;
                 if(c.order==OrderKind.Garrison&&e.def.waterborne)continue;
                 if(c.order==OrderKind.Attack&&!CanAttackTarget(e,target))continue;
                 if(c.order==OrderKind.Repair&&!(e.Worker&&target.def.kind==EntityKind.Building||e.def.repairArtillery&&(target.def.tags&Tags.Artillery)!=0))continue;

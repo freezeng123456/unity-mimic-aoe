@@ -26,6 +26,34 @@ namespace Frontier
         public SkirmishAI(World world,int player):this(world,player,AiDifficultyProfile.From(world.Rules,"standard")){}
         public SkirmishAI(World world,int player,AiDifficultyProfile difficulty)
         {this.world=world;this.player=player;Difficulty=difficulty??throw new ArgumentNullException(nameof(difficulty));workforce=new AiWorkforce(world,player);agePlan=new AiAgePlan(world,player);construction=new AiConstruction(world,player);civilizationEconomy=new AiCivilizationEconomy(world,player);waterEconomy=new AiWaterEconomy(world,player);home=player==0?new Vector2(24,28):new Vector2(104,100);enemyStart=new Vector2(128-home.x,128-home.y);search=new AiSearchPlan(world,player,enemyStart);}
+        public AiSnapshot CaptureState()
+        {
+            var remembered=new List<IntPointSnapshot>();
+            // Equal-distance targets and removal of stale sightings depend on this original order.
+            foreach(var item in memory)remembered.Add(new IntPointSnapshot{id=item.Key,point=item.Value});
+            return new AiSnapshot{player=player,thinkAt=thinkAt,armyAt=armyAt,expedition=expedition,expeditionSize=expeditionSize,
+                searchingLastReview=searchingLastReview,rotation=rotation,buildSerial=buildSerial,memory=remembered.ToArray(),
+                agePlan=agePlan.CaptureState(),workforce=workforce.CaptureState(),search=search.CaptureState(),
+                waterEconomy=waterEconomy.CaptureState(),civilizationEconomy=civilizationEconomy.CaptureState()};
+        }
+        internal static SkirmishAI Restore(World world,AiSnapshot state,AiDifficultyProfile difficulty)
+        {
+            AiSaveValidation.Require(world!=null&&state!=null&&difficulty!=null,"missing controller");
+            AiSaveValidation.Require(state.player>=0&&state.player<world.Players.Length,"controller player");
+            AiSaveValidation.Require(AiSaveValidation.Clock(state.thinkAt)&&state.thinkAt<=difficulty.DecisionSeconds+MatchSimulation.StepSeconds&&
+                AiSaveValidation.Clock(state.armyAt)&&state.expeditionSize>=0&&state.rotation>=0&&state.buildSerial>=0,"controller clocks or army state");
+            AiSaveValidation.Require(state.memory!=null&&state.memory.Length<100000,"enemy memory");
+            var result=new SkirmishAI(world,state.player,difficulty);var ids=new HashSet<int>();
+            foreach(var item in state.memory)
+            {
+                AiSaveValidation.Require(item!=null&&item.id>0&&ids.Add(item.id)&&SnapshotCodec.Finite(item.point),"enemy memory entry");
+                result.memory.Add(item.id,item.point);
+            }
+            result.agePlan.RestoreState(state.agePlan);result.workforce.RestoreState(state.workforce);result.search.RestoreState(state.search);
+            result.waterEconomy.RestoreState(state.waterEconomy);result.civilizationEconomy.RestoreState(state.civilizationEconomy);
+            result.thinkAt=state.thinkAt;result.armyAt=state.armyAt;result.expedition=state.expedition;result.expeditionSize=state.expeditionSize;
+            result.searchingLastReview=state.searchingLastReview;result.rotation=state.rotation;result.buildSerial=state.buildSerial;return result;
+        }
         public void Tick(float dt)
         {
             if(world.Paused||world.Winner>=0)return;thinkAt-=dt;if(thinkAt>0)return;thinkAt=Difficulty.DecisionSeconds;
@@ -36,6 +64,7 @@ namespace Frontier
                 if(e.owner==player){own.Add(e);if(e.Worker)workers.Add(e);else if(e.Military&&!e.def.waterborne)army.Add(e);}
                 else if(e.owner>=0&&e.def.kind!=EntityKind.Resource&&world.IsVisible(player,e)){enemies.Add(e);memory[e.id]=e.position;}
             }
+            DevelopIndustry(own,enemies);
             int soldierCount=army.FindAll(e=>(e.def.tags&Tags.Explorer)==0).Count;
             var p=world.Players[player];var town=Find(own,"town");bool advancing=false;
             foreach(var e in own)foreach(var j in e.queue)if(j.kind=="Age")advancing=true;
@@ -62,7 +91,9 @@ namespace Frontier
             string specialBuilding=civilizationEconomy.Building;
             bool firstSpecial=specialBuilding!=""&&p.age>=world.UnitAge(player,world.Rules.Entity(specialBuilding))&&Find(own,specialBuilding)==null&&!saveForAge&&!underAttack;
             Cost specialReserve=firstSpecial?world.EntityCost(player,world.Rules.Entity(specialBuilding)):new Cost();
-            if(p.populationCap-p.usedPopulation-p.reservedPopulation<5&&!Unfinished(own,"house")&&p.populationCap<world.Rules.populationLimit)Build(own,workers,"house");
+            var factoryArtillery=world.FactoryArtilleryDefinition(player);
+            int housingMargin=factoryArtillery!=null&&own.Exists(e=>e.def.id=="factory")?Math.Max(5,factoryArtillery.population):5;
+            if(p.populationCap-p.usedPopulation-p.reservedPopulation<housingMargin&&!Unfinished(own,"house")&&p.populationCap<world.Rules.populationLimit)Build(own,workers,"house");
             if(firstSpecial&&p.age<2&&CanSpend(specialReserve,workerReserve))Build(own,workers,specialBuilding);
             if(p.age>=2)
             {
@@ -80,7 +111,9 @@ namespace Frontier
             civilizationEconomy.Tick(own,workers,enemies,workerReserve+bankReserve+agePlan.Reserve,saveForAge,underAttack);
             bool riverInvestment=workers.Count>=12&&soldierCount>=4&&own.Exists(e=>e.def.id=="barracks"&&e.Complete);
             waterEconomy.Tick(own,workers,enemies,workerReserve+bankReserve+specialReserve+agePlan.Reserve,saveForAge||!riverInvestment,underAttack);
-            workforce.Assign(workers,EconomyTarget(own,workers,enemies,saveForAge,investWorkers,firstBank),enemies);
+            var economyTarget=EconomyTarget(own,workers,enemies,saveForAge,investWorkers,firstBank);
+            ChooseFactoryProduction(own,army,economyTarget,dt);
+            workforce.Assign(workers,economyTarget,enemies);
             EnsureSustainableEconomy(own,workers,p);
             if(p.age>=2&&!underAttack&&!saveForAge&&workers.Count>=16)InvestInRoute(own,workers);
             foreach(var post in own)if(post.def.id=="trade_post"&&post.Complete&&p.technologies.Contains("cargo_ledgers"))
@@ -96,6 +129,12 @@ namespace Frontier
                     else if(!string.IsNullOrEmpty(card.unit)&&(world.Rules.Entity(card.unit).tags&Tags.Villager)!=0&&workers.Count<workerGoal)score+=20;
                     else if(!string.IsNullOrEmpty(card.unit)&&soldierCount<12)score+=15;
                     if(card.tech=="bank_charter"&&world.CountingHouseLimit(player)>0)score+=15;
+                    if(card.unit=="factory_wagon"&&p.age>=4&&world.ClassicIndustryAvailable(player))
+                    {
+                        int industry=own.FindAll(e=>e.Alive&&(e.def.id=="factory"||e.def.id=="factory_wagon")).Count;
+                        foreach(var pending in p.shipments)if(world.Rules.Card(pending.card)?.unit=="factory_wagon")industry++;
+                        score+=underAttack?(industry==0?20:10):(industry==0?70:35);
+                    }
                     if(saveForAge){var need=world.Rules.Age(p.age+1).cost;score+=Math.Min(card.crates.food,Math.Max(0,need.food-p.resources.food))*.04f+Math.Min(card.crates.coin,Math.Max(0,need.coin-p.resources.coin))*.04f;}
                     if(score>best){best=score;chosen=card;}
                 }
@@ -154,7 +193,7 @@ namespace Frontier
                     if(observedEmpty){removeId=pair.Key;continue;}
                     float dist=(pair.Value-home).sqrMagnitude;if(dist<nearest){nearest=dist;destination=pair.Value;knownTarget=true;}
                 }
-                if(removeId!=0)memory.Remove(removeId);
+                if(removeId!=0)ForgetMemory(removeId);
                 int muster=p.age<=2?6:p.age==3?10:14;
                 Vector2 rally=home+new Vector2(player==0?10:-10,player==0?10:-10);
                 int assembled=soldiers.FindAll(e=>(e.position-rally).sqrMagnitude<22*22).Count;
@@ -172,6 +211,71 @@ namespace Frontier
                 if(civilizationEconomy.Support(unit,army,enemies))continue;
                 bool newOrder=refreshSearch||unit.orders.Count==0||unit.orders.Peek().kind!=OrderKind.AttackMove||(unit.orders.Peek().point-destination).sqrMagnitude>18*18;
                 if(newOrder)Send(new GameCommand{kind=CommandKind.Order,actors=new[]{unit.id},order=OrderKind.AttackMove,point=destination+new Vector2((unit.id%5-2)*1.3f,((unit.id/5)%5-2)*1.3f)});
+            }
+        }
+        private void ForgetMemory(int id)
+        {
+            if(!memory.Remove(id))return;
+            // A checkpoint retains entries, not Dictionary's deleted slots.
+            // Compact after removal so later sightings append in the same order
+            // in both the live controller and a controller restored from JSON.
+            var retained=new List<KeyValuePair<int,Vector2>>(memory);memory.Clear();
+            foreach(var item in retained)memory.Add(item.Key,item.Value);
+        }
+        private void DevelopIndustry(List<EntityState> own,List<EntityState> visibleEnemies)
+        {
+            if(!world.ClassicIndustryAvailable(player)||world.Players[player].age<4)return;
+            foreach(var wagon in own)
+            {
+                if(!wagon.Alive||wagon.def.id!="factory_wagon"||wagon.garrisonedIn!=0||wagon.orders.Count>0)continue;
+                bool built=false;
+                // Search current vision around the home, then the delivered wagon;
+                // CanBuild still owns terrain, foundations, limits and fog authority.
+                for(int center=0;center<2&&!built;center++)for(int ring=0;ring<5&&!built;ring++)for(int n=0;n<20;n++)
+                {
+                    float angle=(n+buildSerial)*Mathf.PI*2/20;
+                    Vector2 point=(center==0?home:wagon.position)+new Vector2(Mathf.Cos(angle),Mathf.Sin(angle))*(10+ring*5);
+                    point=new Vector2(Mathf.Round(point.x),Mathf.Round(point.y));
+                    if(visibleEnemies.Exists(enemy=>enemy.Military&&world.IsVisible(player,enemy)&&
+                        (enemy.position-point).sqrMagnitude<Mathf.Pow(Mathf.Max(12,enemy.def.range+4),2)))continue;
+                    if(world.CanBuild(player,"factory",point)!=""||world.IndustrialDeploymentReason(player,point,wagon.id)!="")continue;
+                    if(!Send(new GameCommand{kind=CommandKind.Build,actors=new[]{wagon.id},item="factory",point=point}).accepted)continue;
+                    buildSerial+=3;built=true;break;
+                }
+            }
+        }
+        private void ChooseFactoryProduction(List<EntityState> own,List<EntityState> army,Cost target,float dt)
+        {
+            var artillery=world.FactoryArtilleryDefinition(player);if(artillery==null||world.Players[player].age<4)return;
+            var factories=own.FindAll(e=>e.def.id=="factory"&&e.Complete&&e.garrisonedIn==0);
+            factories.Sort((a,b)=>a.id.CompareTo(b.id));if(factories.Count==0)return;
+            var p=world.Players[player];var resources=p.resources;
+            string resource="food";float deficit=target.food-resources.food;
+            if(target.wood-resources.wood>deficit){resource="wood";deficit=target.wood-resources.wood;}
+            if(target.coin-resources.coin>deficit)resource="coin";
+            // Housing must not wait behind food or the next age's savings while a ready gun holds its progress.
+            if(p.populationCap-p.usedPopulation-p.reservedPopulation<artillery.population&&p.populationCap<world.Rules.populationLimit&&
+                resources.wood<world.EntityCost(player,world.Rules.Entity("house")).wood)resource="wood";
+            int guards=army.FindAll(e=>e.Complete&&e.garrisonedIn==0&&!e.def.civilian&&(e.def.tags&(Tags.Explorer|Tags.Artillery))==0).Count;
+            int guns=own.FindAll(e=>e.def.id==artillery.id).Count;
+            Vector2 rally=world.Navigation.NearestWalkable(home+new Vector2(player==0?10:-10,player==0?10:-10),artillery.radius);
+            for(int i=0;i<factories.Count;i++)
+            {
+                var factory=factories[i];if(factory.queue.Count>0)continue;
+                string wanted=i>0&&guards>=6&&guns<2?"artillery":resource;
+                if(factory.factoryMode=="artillery"&&wanted!="artillery"&&factory.factoryElapsed>0)
+                {
+                    bool justProduced=false;
+                    // A gun can already have started its next cycle before this scheduled review.
+                    // Only a real output since the preceding review releases that commitment.
+                    float since=world.Time-Mathf.Max(Difficulty.DecisionSeconds,dt)-MatchSimulation.StepSeconds-.001f;
+                    for(int n=world.Events.Count-1;n>=0&&world.Events[n].time>=since;n--)
+                        if(world.Events[n].kind=="FactoryArtilleryProduced"&&world.Events[n].entity==factory.id){justProduced=true;break;}
+                    if(!justProduced)continue;
+                }
+                if(factory.factoryMode!=wanted)Send(new GameCommand{kind=CommandKind.FactoryMode,actors=new[]{factory.id},item=wanted});
+                if(wanted=="artillery"&&(factory.rallyTarget!=0||(factory.rally-rally).sqrMagnitude>.01f))
+                    Send(new GameCommand{kind=CommandKind.Rally,actors=new[]{factory.id},point=rally});
             }
         }
         private void Explore(EntityState unit)

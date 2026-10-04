@@ -72,12 +72,15 @@ namespace Frontier
             if(e.def.kind==EntityKind.Resource){Resource(root,e);return root;}
             if(e.def.kind==EntityKind.Building){DetailedArchitecture.Build(root,e,team,civilization,age);return root;}
             var rig=root.gameObject.AddComponent<UnitRig>();
+            if(e.def.id=="factory_wagon"){FactoryWagon(root,rig,team);DetailedUnits.BakeAuthored(root,rig);rig.CaptureInitialPose();return root;}
             if(e.def.id=="caravan"){CargoCaravan(root,rig,team);DetailedUnits.Refine(root,rig,e,team);rig.CaptureInitialPose();return root;}
             bool horse=(e.def.tags&Tags.Cavalry)!=0;
             bool gun=(e.def.tags&Tags.Artillery)!=0;
             Color wood=new Color(.24f,.15f,.085f), iron=new Color(.19f,.22f,.22f);
             if(gun)
             {
+                if(e.def.id=="rocket"||e.def.id=="heavy_cannon"||e.def.id=="great_bombard")
+                {IndustrialArtillery(root,rig,e.def.id,team);DetailedUnits.BakeAuthored(root,rig);rig.CaptureInitialPose();return root;}
                 Artillery(root,rig,e.def.id=="mortar",team,e.def.id=="culverin");
                 DetailedUnits.Refine(root,rig,e,team);rig.CaptureInitialPose();return root;
             }
@@ -186,6 +189,62 @@ namespace Frontier
             }
             rig.LeftWheel=wheels[0];rig.RightWheel=wheels[1];
             Part(root,"Team carriage panel",PrimitiveType.Cube,new Vector3(0,mortar?.46f:.75f,-.67f),new Vector3(.92f,.22f,.14f),team);
+        }
+        private static void FactoryWagon(Transform root,UnitRig rig,Color team)
+        {
+            Color wood=new Color(.34f,.23f,.15f),iron=new Color(.20f,.23f,.24f),canvas=new Color(.77f,.72f,.59f);
+            rig.Carriage=Part(root,"Factory wagon flatbed",PrimitiveType.Cube,new Vector3(0,.67f,0),new Vector3(1.30f,.19f,1.80f),wood).transform;
+            var wheels=new List<Transform>();
+            foreach(float x in new[]{-.73f,.73f})foreach(float z in new[]{-.59f,.59f})
+            {
+                var wheel=Pivot(root,"Factory wagon wheel",new Vector3(x,.40f,z));wheel.localRotation=Quaternion.Euler(0,0,90);
+                Tube(wheel,"Wagon wheel rim",Vector3.zero,.77f,.16f,.065f,iron);
+                for(int i=0;i<4;i++)Part(wheel,"Wagon spoke",PrimitiveType.Cube,Vector3.zero,new Vector3(.65f,.11f,.05f),wood).transform.localRotation=Quaternion.Euler(0,i*45,0);
+                wheels.Add(wheel);
+            }
+            rig.CartWheels=wheels.ToArray();
+            Part(root,"Crated factory machinery",PrimitiveType.Cube,new Vector3(0,1.05f,-.18f),new Vector3(1.1f,.62f,1.08f),canvas);
+            foreach(float z in new[]{-.53f,.19f})Part(root,"Machinery shipping strap",PrimitiveType.Cube,new Vector3(0,1.065f,z),new Vector3(1.13f,.65f,.055f),iron);
+            Tube(root,"Exposed flywheel cargo",new Vector3(0,1.54f,-.12f),.64f,.14f,.08f,iron).localRotation=Quaternion.Euler(90,0,0);
+            Part(root,"Industrial team plate",PrimitiveType.Cube,new Vector3(0,1.10f,-.75f),new Vector3(.63f,.27f,.06f),team);
+            foreach(float x in new[]{-.42f,.42f})Beam(root,"Wagon drawbar",new Vector3(x,.66f,.48f),new Vector3(x,.44f,1.28f),.075f,.09f,wood);
+        }
+        private static void IndustrialArtillery(Transform root,UnitRig rig,string id,Color team)
+        {
+            bool rocket=id=="rocket",bombard=id=="great_bombard";
+            Color wood=new Color(.30f,.20f,.13f),metal=bombard?new Color(.61f,.44f,.23f):new Color(.24f,.27f,.27f);
+            float width=bombard?1.46f:1.18f,length=bombard?2.42f:rocket?1.70f:2.10f;
+            rig.Carriage=Part(root,rocket?"Rocket launch carriage":bombard?"Bombard reinforced bed":"Heavy cannon carriage",PrimitiveType.Cube,new Vector3(0,.53f,-.24f),new Vector3(width,.25f,length),wood).transform;
+            var wheels=new List<Transform>();float diameter=bombard?1.17f:rocket?.98f:1.30f;
+            foreach(float x in new[]{-width*.63f,width*.63f})foreach(float z in bombard?new[]{-.70f,.49f}:new[]{-.14f})
+            {
+                var wheel=Pivot(root,"Industrial artillery wheel",new Vector3(x,diameter*.5f,z));wheel.localRotation=Quaternion.Euler(0,0,90);
+                Tube(wheel,"Bound iron wheel rim",Vector3.zero,diameter,.19f,.075f,metal);
+                for(int i=0;i<6;i++)Part(wheel,"Industrial wheel spoke",PrimitiveType.Cube,Vector3.zero,new Vector3(diameter*.85f,.11f,.06f),wood).transform.localRotation=Quaternion.Euler(0,i*30,0);
+                wheels.Add(wheel);
+            }
+            rig.CartWheels=wheels.ToArray();rig.ArtilleryTravelTilt=rocket?15:8;rig.ArtilleryRecoil=rocket?.11f:bombard?.43f:.34f;
+            if(rocket)
+            {
+                rig.Barrel=Pivot(root,"Twin rocket rails",new Vector3(0,1.04f,.17f));rig.Barrel.localRotation=Quaternion.Euler(65,0,0);
+                foreach(float x in new[]{-.33f,.33f})
+                {
+                    Part(rig.Barrel,"Steel launch guide",PrimitiveType.Cube,new Vector3(x,0,0),new Vector3(.10f,2.0f,.09f),metal);
+                    Tube(rig.Barrel,"Rocket casing",new Vector3(x,.55f,.14f),.17f,.67f,.035f,new Color(.59f,.37f,.20f));
+                    Section(rig.Barrel,"Rocket nose",new Vector3(x,.95f,.14f),new Vector2(.17f,.17f),new Vector2(.025f,.025f),.20f,metal);
+                    Part(rig.Barrel,"Rocket stabilizer",PrimitiveType.Cube,new Vector3(x,.17f,.14f),new Vector3(.30f,.18f,.045f),metal);
+                }
+            }
+            else
+            {
+                float tubeLength=bombard?3.20f:2.72f,diameterTube=bombard?.77f:.52f;
+                rig.Barrel=Tube(root,bombard?"Great bronze bombard barrel":"Heavy iron cannon barrel",new Vector3(0,bombard?1.14f:1.17f,.45f),diameterTube,tubeLength,.10f,metal);
+                rig.Barrel.localRotation=Quaternion.Euler(79,0,0);
+                Tube(rig.Barrel,"Reinforced muzzle ring",new Vector3(0,tubeLength*.47f,0),diameterTube+.15f,.20f,.11f,metal);
+                Section(rig.Barrel,"Closed artillery breech",new Vector3(0,-tubeLength*.50f,0),new Vector2(diameterTube,diameterTube),new Vector2(diameterTube,diameterTube),.14f,metal);
+                foreach(float x in new[]{-width*.32f,width*.32f})Beam(root,"Reinforced carriage cheek",new Vector3(x,.60f,-.88f),new Vector3(x,1.12f,.27f),.17f,.23f,wood);
+            }
+            Part(root,"Industrial artillery team panel",PrimitiveType.Cube,new Vector3(0,.75f,-length*.54f),new Vector3(width*.73f,.27f,.07f),team);
         }
         private static void Equip(EntityState e,UnitRig rig,bool horse)
         {

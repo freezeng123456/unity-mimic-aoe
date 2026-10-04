@@ -31,6 +31,22 @@ namespace Frontier
         private UiPointerDispatcher uiPointer;
         private float refreshAt;
         private readonly List<RaycastResult> hits=new List<RaycastResult>();
+        private PointerEventData hoverPointer;
+        private EventSystem hoverEventSystem;
+        private struct ResourceDisplay
+        {
+            public Cost amount;public float xp,threshold;public int used,reserved,capacity,age,shipments;
+            public bool Same(ResourceDisplay b)=>amount.food==b.amount.food&&amount.wood==b.amount.wood&&amount.coin==b.amount.coin&&xp==b.xp&&threshold==b.threshold&&used==b.used&&reserved==b.reserved&&capacity==b.capacity&&age==b.age&&shipments==b.shipments;
+        }
+        private ResourceDisplay lastResources;
+        private Text lastResourceLabel,lastClockLabel;
+        private int lastClockSeconds=-1,lastIdle=-1;
+        private void RaycastHover(Vector2 pointer)
+        {
+            hits.Clear();var current=EventSystem.current;if(current==null)return;
+            if(hoverPointer==null||hoverEventSystem!=current){hoverEventSystem=current;hoverPointer=new PointerEventData(current);}
+            hoverPointer.Reset();hoverPointer.position=pointer;current.RaycastAll(hoverPointer,hits);
+        }
         internal bool PendingInputLayout=>uiLayoutDirty;
         internal bool InputLayoutReady=>!uiLayoutDirty||Time.frameCount>uiLayoutFrame;
         private void MarkUiLayoutDirty(){uiLayoutDirty=true;uiLayoutFrame=Time.frameCount;}
@@ -61,7 +77,7 @@ namespace Frontier
         {
             if(game.InMenu||game.World==null||actionPanel==null)return;
             var controls=game.Controls;
-            controls.Selected.RemoveAll(id=>!game.World.IsVisible(0,game.World.Get(id)));
+            controls.PruneInvisibleSelection();
             var selected=controls.FirstSelected;int id=selected?.id??0;
             bool changed=id!=actionEntity||actionSelection.Count!=controls.Selected.Count;
             if(!changed)for(int i=0;i<actionSelection.Count;i++)if(actionSelection[i]!=controls.Selected[i]){changed=true;break;}
@@ -78,7 +94,7 @@ namespace Frontier
             var p=game.World.Players[0];int key=(selected?.id??0)*10000+p.age*100+p.technologies.Count*10+(selected?.queue.Count??0);
             // Arrival and release change the Ungarrison count and availability.
             // The existing pointer-capture guard still defers same-context rebuilds.
-            return unchecked(((key*397+(selected?.occupants.Count??0))*31+(selected?.shielded==true?1:0))*31+(selected?.autoRecruitPaused==true?1:0));
+            return unchecked((((key*397+(selected?.occupants.Count??0))*31+(selected?.shielded==true?1:0))*31+(selected?.autoRecruitPaused==true?1:0))*31+(selected?.factoryMode?.GetHashCode()??0));
         }
         private RectTransform Rect(Transform parent,string name,Rect r,bool bottom=false)
         {
@@ -136,6 +152,7 @@ namespace Frontier
             string deckReason=DeckLibrary.Validate(game.Rules,game.PlayerCivilization,game.SelectedDeck);if(deckReason=="")deckReason=game.DifficultyReason;
             Button(configuration,"BEGIN SKIRMISH",new Rect(28,584,454,58),()=>{game.Autoplay=false;game.StartMatch();},deckReason,deckReason=="");
             Button(configuration,"QUIT",new Rect(28,654,454,44),()=>Application.Quit());
+            Button(menuPanel,"LOAD SAVED MATCH",new Rect(100,555,454,58),()=>ShowSaveSlots(false),"Continue a local match, including AI and production progress.");
             Label(menuPanel,"FIVE-ERA FRONTIER",new Rect(100,665,840,35),23,gold);
             Label(menuPanel,game.Rules.civs.Length+" civilizations · British · Dutch · French · Ottomans\nManors · Banks · Trade · Workshops · Rivers · Docks\nIndependent project. Not affiliated with Age of Empires or its publishers.",new Rect(100,715,820,110),18,muted);
         }
@@ -205,13 +222,12 @@ namespace Frontier
         public bool BlocksWorldInput(Vector2 pointer)
         {
             if(game.InMenu||ModalVisible||game.IsPaused||ResultVisible)return true;
-            hits.Clear();if(EventSystem.current==null)return false;EventSystem.current.RaycastAll(new PointerEventData(EventSystem.current){position=pointer},hits);return hits.Count>0;
+            RaycastHover(pointer);return hits.Count>0;
         }
         public bool BlocksCameraEdgePan(Vector2 pointer)
         {
             if(game.InMenu||ModalVisible||game.IsPaused||ResultVisible||TryMinimapPoint(pointer,out _))return true;
-            hits.Clear();if(EventSystem.current==null)return false;
-            EventSystem.current.RaycastAll(new PointerEventData(EventSystem.current){position=pointer},hits);
+            RaycastHover(pointer);
             // Passive HUD panels may touch a whole screen edge. Only controls
             // and the minimap own hover; otherwise top/bottom panning is lost.
             foreach(var hit in hits)if(hit.gameObject.GetComponentInParent<Button>()!=null)return true;
@@ -229,10 +245,16 @@ namespace Frontier
             if(game.InMenu||game.World==null||gamePanel==null)return;
             EnsureActionContextCurrent();
             var w=game.World;var p=w.Players[0];int idle=0;foreach(var e in w.Entities)if(e.Alive&&e.owner==0&&e.Worker&&e.garrisonedIn==0&&e.orders.Count==0)idle++;
-            resources.text=$"FOOD  {p.resources.food:0}     WOOD  {p.resources.wood:0}     COIN  {p.resources.coin:0}     POP  {p.usedPopulation}+{p.reservedPopulation}/{p.populationCap}     AGE  {p.age}     XP  {p.xp:0}/{w.Rules.initialXp+w.Rules.xpIncrease*p.xpLevels:0}     SHIP  {p.shipmentTokens}";
+            var display=new ResourceDisplay{amount=p.resources,xp=p.xp,threshold=w.Rules.initialXp+w.Rules.xpIncrease*p.xpLevels,used=p.usedPopulation,reserved=p.reservedPopulation,capacity=p.populationCap,age=p.age,shipments=p.shipmentTokens};
+            if(lastResourceLabel!=resources||!display.Same(lastResources))
+            {
+                resources.text=$"FOOD  {p.resources.food:0}     WOOD  {p.resources.wood:0}     COIN  {p.resources.coin:0}     POP  {p.usedPopulation}+{p.reservedPopulation}/{p.populationCap}     AGE  {p.age}     XP  {p.xp:0}/{display.threshold:0}     SHIP  {p.shipmentTokens}";
+                lastResources=display;lastResourceLabel=resources;
+            }
             ResourceSummaryFrame=Time.frameCount;ResourceSummaryTime=w.Time;ResourceSummaryMatchId=game.MatchId;
             UpdateHomeCity();
-            clockLabel.text=$"{(int)w.Time/60:00}:{(int)w.Time%60:00}   IDLE {idle}";
+            if(lastClockLabel!=clockLabel||lastClockSeconds!=(int)w.Time||lastIdle!=idle)
+            {clockLabel.text=$"{(int)w.Time/60:00}:{(int)w.Time%60:00}   IDLE {idle}";lastClockLabel=clockLabel;lastClockSeconds=(int)w.Time;lastIdle=idle;}
             orders.text=game.Controls.BuildingToPlace!=""?"PLACING  "+game.Rules.Entity(game.Controls.BuildingToPlace).name:game.Controls.RepairMode?"REPAIR [R] — CHOOSE A DAMAGED FRIENDLY TARGET":game.Controls.GarrisonMode?"GARRISON [G] — CHOOSE A FRIENDLY SHELTER":game.Controls.AttackMode?"ATTACK MOVE — CHOOSE DESTINATION":"[V] Idle settler     [T] Town center     [M] Military     [B] Build";
             notice.text=game.Notice;
             help.text=Help;
@@ -245,6 +267,7 @@ namespace Frontier
                 if(selected.owner==0&&selected.def.id=="town"&&w.AutoRecruitSeconds(0)>0)details.text+="\n"+AutoRecruitSummary(selected);
                 else if(selected.def.id=="caravan")details.text+="\n"+CaravanSummary(selected);
                 else if(selected.def.id=="workshop")details.text+=$"\nArtisans in place: {w.AssignedArtisans(selected)} · Prefabs: {p.prefabCharges}";
+                else if(selected.def.id=="factory")details.text+="\nProduction: "+selected.factoryMode.ToUpperInvariant()+" · "+selected.factoryElapsed.ToString("0.0")+"s";
                 else if(selected.def.shieldAbility)details.text+="\nShield: "+(selected.shieldReadyAt>w.Time?"CHANGING STANCE · "+(selected.shieldReadyAt-w.Time).ToString("0.0")+"s":selected.shielded?"BRACED · movement folds shield":"FOLDED · mobile");
                 else if(selected.def.resource!=ResourceKind.None)details.text+=$"\n{selected.def.resource}: {(World.Sustainable(selected)?"sustainable":selected.remaining.ToString("0"))}  ·  {selected.def.gatherRate:0.##}/s per settler";
                 else if(selected.def.garrisonAttackLimit>0)details.text+=$"\nSheltered {selected.occupants.Count}/{selected.def.garrison} · Firing settlers {w.GarrisonFirepowerCount(selected)}/{selected.def.garrisonAttackLimit}";
@@ -274,6 +297,7 @@ namespace Frontier
                 add("STOP [S]",()=>game.Controls.IssueOrder(OrderKind.Stop,Vector2.zero),"Stop orders. Attack cooldown continues.",true);
                 add("HOLD [J]",()=>game.Controls.IssueOrder(OrderKind.Hold,Vector2.zero),"Defend this position without chasing.",true);
                 if(e.Worker)add("BUILD [B]",ShowBuildMenu,"Choose a building. Shift placement queues construction.",true);
+                if(e.def.id=="factory_wagon")add("BUILD FACTORY",()=>game.Controls.BeginBuild("factory"),"Place an industrial factory in current vision. This wagon is consumed when the foundation is placed.",true);
                 add("FOCUS [F]",()=>game.Controls.Focus(e.position),"Center the camera on selection.",true);
                 if(!e.Worker&&e.def.meleeDamage>0&&e.def.range>2)add(e.forceMelee?"RANGED MODE":"MELEE MODE",()=>{game.Command(new GameCommand{player=0,kind=CommandKind.ToggleMode,actors=game.Controls.Selected.ToArray()});},"Switch the selected unit's preferred combat mode.",true);
             }
@@ -281,7 +305,7 @@ namespace Frontier
             {
                 if(!e.Complete){add("CANCEL BUILD",()=>game.Command(new GameCommand{player=0,kind=CommandKind.CancelBuilding,actors=new[]{e.id}}),"Refund 75% of the original construction cost.",true);return;}
                 bool supportsBatch=false;
-                foreach(var d in game.Rules.entities)if(d.kind==EntityKind.Unit&&d.producer==e.def.id&&game.World.EntityAvailable(0,d))
+                foreach(var d in game.Rules.entities)if(e.def.id!="factory"&&d.kind==EntityKind.Unit&&d.producer==e.def.id&&game.World.EntityAvailable(0,d))
                 {
                     // Automatic Ottoman settlers use their own visible timer and
                     // toggle. A second paid train button would misstate their economy.
@@ -294,6 +318,10 @@ namespace Frontier
                     },d.description+"\nAge "+game.World.UnitAge(0,d)+" · "+count+" unit(s), "+(count*d.population)+" population, "+d.time+"s.\n"+(count*d.trainXp).ToString("0.#")+" XP on completed training. "+reason,reason=="");
                 }
                 if(supportsBatch)add(batchTraining?"TRAIN: BATCH":"TRAIN: SINGLE",()=>{batchTraining=!batchTraining;InvalidateActions();},"Choose one unit or the allowed batch per click. Shift also requests a batch. Costs and population are paid for the whole batch.",true);
+                if(e.def.id=="factory")foreach(string mode in new[]{"food","wood","coin","artillery"})
+                {
+                    string chosen=mode;add((e.factoryMode==mode?"[ACTIVE] ":"")+mode.ToUpperInvariant(),()=>{game.Command(new GameCommand{player=0,kind=CommandKind.FactoryMode,actors=new[]{e.id},item=chosen});InvalidateActions();},"Produce resources or civilization artillery. Changing modes resets artillery progress. Research pauses production.",true);
+                }
                 if(e.def.id=="trade_post")for(int mode=0;mode<4;mode++){int chosen=mode;string label=mode==0?"XP":((ResourceKind)mode).ToString();add((mode==(int)e.tradeMode?"[ACTIVE] ":"")+label,()=>{game.Command(new GameCommand{player=0,kind=CommandKind.TradeMode,actors=new[]{e.id},index=chosen});InvalidateActions();},"Choose the reward paid when the caravan reaches this site.",mode==0||game.World.Players[0].technologies.Contains("cargo_ledgers"));}
                 if(e.def.id=="town")add("ADVANCE AGE",ShowAgeChoices,"Queue the next age with a governor reward. "+game.World.AgeReason(0,e),game.World.AgeReason(0,e)=="");
                 if(e.def.id=="town"&&game.World.AutoRecruitSeconds(0)>0)add(e.autoRecruitPaused?"AUTO SETTLERS: OFF":"AUTO SETTLERS: ON",()=>{game.Command(new GameCommand{player=0,kind=CommandKind.ToggleRecruitment,actors=new[]{e.id}});InvalidateActions();},"Free recruitment at each town center. Toggle to pause or resume. Worker limit, housing, safe exits and mosque technologies still apply.",true);
@@ -349,9 +377,10 @@ namespace Frontier
         public void ShowBuildMenu()
         {
             game.Controls.CancelTargetMode();
-            if(game.Controls.FirstSelected==null||!game.Controls.Selected.Exists(id=>game.World.Get(id)?.Worker==true)){game.Notify("Select settlers before opening the building menu");return;}
+            bool worker=game.Controls.Selected.Exists(id=>game.World.Get(id)?.Worker==true),wagon=game.Controls.Selected.Exists(id=>game.World.Get(id)?.def.id=="factory_wagon");
+            if(game.Controls.FirstSelected==null||(!worker&&!wagon)){game.Notify("Select settlers or a factory wagon before opening the building menu");return;}
             var box=Modal("CONSTRUCTION",640);int n=0;var p=game.World.Players[0];
-            foreach(var d in game.Rules.entities)if(d.kind==EntityKind.Building&&game.World.EntityAvailable(0,d)&&(d.id!="dock"||game.World.Layout.HasWater))
+            foreach(var d in game.Rules.entities)if(d.kind==EntityKind.Building&&game.World.EntityAvailable(0,d)&&(d.id!="dock"||game.World.Layout.HasWater)&&(d.id=="factory"?wagon:worker))
             {var def=d;int i=n++;int age=game.World.UnitAge(0,d);Button(box,d.name+"  ·  "+ShortCost(game.World.EntityCost(0,d))+"\nAge "+age+"  ·  "+d.time+"s",new Rect(25+(i%3)*275,90+(i/3)*133,265,117),()=>{CloseModal();game.Controls.BeginBuild(def.id);},d.description,p.age>=age);}
         }
         public void ShowGroups()
@@ -500,14 +529,27 @@ namespace Frontier
         }
         public void ShowPause(bool paused)
         {
-            if(!paused){CloseModal();return;}var box=Modal("MATCH PAUSED",525,()=>game.TogglePause());
+            if(!paused){CloseModal();return;}var box=Modal("MATCH PAUSED",610,()=>game.TogglePause());
             string reason=game.PausedForFocusLoss?"Paused when you left the game window. Resume when ready.":"Simulation time is stopped. The cursor is free.";
             Label(box,reason,new Rect(25,83,800,50),20);
             Button(box,"RESUME",new Rect(25,150,397,65),()=>game.TogglePause());Button(box,"RESTART",new Rect(443,150,397,65),()=>game.StartMatch());
             Button(box,game.Muted?"SOUND: OFF":"SOUND: ON",new Rect(25,240,397,65),()=>{game.Muted=!game.Muted;ShowPause(true);});Button(box,"RESIGN",new Rect(443,240,397,65),()=>{CloseModal();game.Resign();});
             Button(box,game.EnvironmentSoundEnabled?"ENVIRONMENT: ON":"ENVIRONMENT: OFF",new Rect(25,330,397,65),()=>{game.EnvironmentSoundEnabled=!game.EnvironmentSoundEnabled;ShowPause(true);},"Enable or disable environmental sounds. SOUND controls all audio.");
             Button(box,game.MusicEnabled?"MUSIC: ON":"MUSIC: OFF",new Rect(443,330,397,65),()=>{game.MusicEnabled=!game.MusicEnabled;ShowPause(true);},"Enable or disable music. SOUND controls all audio.");
-            Button(box,"RETURN TO MENU",new Rect(25,421,815,65),()=>game.ReturnToMenu());
+            Button(box,"SAVE MATCH",new Rect(25,421,397,65),()=>ShowSaveSlots(true));Button(box,"LOAD MATCH",new Rect(443,421,397,65),()=>ShowSaveSlots(false));
+            Button(box,"RETURN TO MENU",new Rect(25,511,815,65),()=>game.ReturnToMenu());
+        }
+        public void ShowSaveSlots(bool saving)
+        {
+            void Back(){if(game.InMenu){CloseModal();game.Hud.ShowMenu();}else game.Hud.ShowPause(true);}
+            var box=Modal(saving?"SAVE MATCH":"LOAD MATCH",510,Back);
+            Label(box,saving?"Choose a slot. Saving to an occupied slot replaces that checkpoint.":"Choose a checkpoint. The loaded match starts paused.",new Rect(25,80,800,55),18,muted);
+            for(int i=1;i<=3;i++)
+            {
+                int slot=i;bool exists=System.IO.File.Exists(MatchSaveStore.SlotPath(game.SaveDirectory,slot));
+                Button(box,game.SaveSlotLabel(slot),new Rect(25,145+(slot-1)*90,815,70),()=>{if(saving){game.SaveMatch(slot);ShowSaveSlots(true);}else game.LoadMatch(slot);},"",saving||exists);
+            }
+            Button(box,"BACK",new Rect(25,425,815,60),Back);
         }
         public void ShowResult()
         {

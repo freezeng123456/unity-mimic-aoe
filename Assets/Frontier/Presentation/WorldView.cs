@@ -24,6 +24,12 @@ namespace Frontier
         private List<GameObject> rocks=new List<GameObject>();
         private readonly List<Mesh> outcropMeshes=new List<Mesh>();
         private MaterialPropertyBlock terrainTint;
+        public const float OffscreenPoseInterval=.2f;
+        public float LastFrameMs { get; private set; }
+        public float LastFogMs { get; private set; }
+        public int LastPoseApplications { get; private set; }
+        public int LastOffscreenPoseSkips { get; private set; }
+        public int LastCameraRelevantUnits { get; private set; }
         public void Initialize(GameController controller)
         {
             game=controller;terrainTint=new MaterialPropertyBlock();terrain=new GameObject("Authored Frontier Terrain").transform;terrain.SetParent(transform);
@@ -172,7 +178,7 @@ namespace Frontier
                 v=new EntityVisual{key=key,root=root,model=model,circle=circle,health=health,bar=bar,rig=model.GetComponent<UnitRig>(),boatMotion=model.GetComponent<BoatPresentationMotion>(),architecture=architecture};
             }
             v.root.gameObject.SetActive(true);v.root.name="Entity "+entity.id;v.root.position=EntityPosition(entity);v.model.localScale=Vector3.one;v.model.localPosition=Vector3.zero;
-            v.firedAt=v.hurtAt=v.deathAt=-1000;v.pickReady=false;v.pickRootPosition=v.root.position;v.facing=entity.facing.sqrMagnitude>.001f?Quaternion.LookRotation(new Vector3(entity.facing.x,0,entity.facing.y)):Quaternion.identity;if(entity.def.id=="dock"){var direction=game.World.DockWaterDirection(entity.position);v.facing=Quaternion.Euler(0,-Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg,0);}
+            v.firedAt=v.hurtAt=v.deathAt=-1000;v.pickReady=false;v.pickRootPosition=v.root.position;v.poseSeen=false;v.nextOffscreenPose=0;v.ringTintReady=false;v.healthFraction=-1;v.facing=entity.facing.sqrMagnitude>.001f?Quaternion.LookRotation(new Vector3(entity.facing.x,0,entity.facing.y)):Quaternion.identity;if(entity.def.id=="dock"){var direction=game.World.DockWaterDirection(entity.position);v.facing=Quaternion.Euler(0,-Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg,0);}
             v.model.rotation=v.facing;v.rig?.RestoreInitialPose();return v;
         }
         private string VisualKey(EntityState entity)
@@ -192,6 +198,8 @@ namespace Frontier
         }
         private void LateUpdate()
         {
+            LastFrameMs=LastFogMs=0;LastPoseApplications=LastOffscreenPoseSkips=LastCameraRelevantUnits=0;
+            long started=System.Diagnostics.Stopwatch.GetTimestamp();
             if(game.World!=null)WaterPresentation.Tick(game.World);
             var world=game.World;if(game.InMenu||world==null)return;ConsumeAnimationEvents(world);
             foreach(var entity in world.Entities)
@@ -209,10 +217,10 @@ namespace Frontier
                 // Refresh only visible models. Age changes do not reveal a hidden opponent.
                 if(entity.def.kind==EntityKind.Building&&!MatchesBuildingVariant(visual,entity))
                 {visual.root.gameObject.SetActive(false);Destroy(visual.root.gameObject);visual=Acquire(entity);visuals[entity.id]=visual;}
-                visual.root.gameObject.SetActive(true);if(!world.Paused)visual.root.position=Vector3.Lerp(visual.root.position,EntityPosition(entity),.55f);
-                if((visual.root.position-EntityPosition(entity)).sqrMagnitude>16)visual.root.position=EntityPosition(entity);
+                SetActive(visual.root.gameObject,true);var targetPosition=EntityPosition(entity);
+                if(!world.Paused&&!visual.root.position.Equals(targetPosition))visual.root.position=Vector3.Lerp(visual.root.position,targetPosition,.55f);
+                if((visual.root.position-targetPosition).sqrMagnitude>16)visual.root.position=targetPosition;
                 if(!world.Paused&&world.Time-visual.firedAt>=.22f&&entity.def.kind==EntityKind.Unit&&entity.facing.sqrMagnitude>.01f)visual.facing=Quaternion.Slerp(visual.facing,Quaternion.LookRotation(new Vector3(entity.facing.x,0,entity.facing.y)),.35f);
-                visual.model.localScale=Vector3.one;
                 if(visual.architecture!=null&&visual.constructionStage!=visual.architecture.ConstructionStage(entity.construction))
                 {visual.architecture.SetConstruction(entity.construction);visual.constructionStage=visual.architecture.ConstructionStage(entity.construction);visual.pickReady=false;}
                 // Units use their projected selection radius. Only static building/resource
@@ -225,16 +233,42 @@ namespace Frontier
                     else visual.pickBounds.center+=visual.root.position-visual.pickRootPosition;
                     visual.pickRootPosition=visual.root.position;
                 }
-                bool selected=game.Controls.Selected.Contains(entity.id);visual.circle.gameObject.SetActive(selected);TintLine(visual.circle,entity.owner==1?new Color(1,.4f,.25f):new Color(.8f,.87f,.4f));
-                visual.health.gameObject.SetActive(selected||entity.hp<world.MaxHp(entity)*.97f||!entity.Complete);
-                visual.health.rotation=game.GameCamera.transform.rotation;float health=Mathf.Clamp01(entity.hp/world.MaxHp(entity));visual.bar.localScale=new Vector3(1.55f*health,.11f,.045f);visual.bar.localPosition=new Vector3((health-1)*.775f,0,-.04f);
-                if(entity.def.kind==EntityKind.Unit)ApplyPose(visual,entity,world);
+                bool selected=game.Controls.Selected.Contains(entity.id);SetActive(visual.circle.gameObject,selected);
+                if(selected&&(!visual.ringTintReady||visual.ringTintOwner!=entity.owner))
+                {TintLine(visual.circle,entity.owner==1?new Color(1,.4f,.25f):new Color(.8f,.87f,.4f));visual.ringTintReady=true;visual.ringTintOwner=entity.owner;}
+                float maxHp=world.MaxHp(entity);bool showHealth=selected||entity.hp<maxHp*.97f||!entity.Complete;SetActive(visual.health.gameObject,showHealth);
+                if(showHealth)
+                {
+                    var cameraRotation=game.GameCamera.transform.rotation;if(!visual.health.rotation.Equals(cameraRotation))visual.health.rotation=cameraRotation;
+                    float health=Mathf.Clamp01(entity.hp/maxHp);
+                    if(health!=visual.healthFraction){visual.bar.localScale=new Vector3(1.55f*health,.11f,.045f);visual.bar.localPosition=new Vector3((health-1)*.775f,0,-.04f);visual.healthFraction=health;}
+                }
+                if(entity.def.kind==EntityKind.Unit)
+                {
+                    // Fog eligibility remains simulation-owned. Only the rate of
+                    // bones outside a generous camera border is reduced; roots,
+                    // orders, visibility and hit geometry still update normally.
+                    bool relevant=selected||CameraContainsAnimation(game.GameCamera,visual.root.position+Vector3.up);
+                    if(relevant)LastCameraRelevantUnits++;
+                    if(relevant||!visual.poseSeen||Time.unscaledTime>=visual.nextOffscreenPose)
+                    {int count=visual.rig?.PoseApplicationCount??0;ApplyPose(visual,entity,world);LastPoseApplications+=(visual.rig?.PoseApplicationCount??0)-count;visual.poseSeen=true;visual.nextOffscreenPose=Time.unscaledTime+OffscreenPoseInterval;}
+                    else LastOffscreenPoseSkips++;
+                }
             }
-            if(Time.unscaledTime>=nextFog){nextFog=Time.unscaledTime+.35f;UpdateFog(world);}
+            if(Time.unscaledTime>=nextFog){nextFog=Time.unscaledTime+.35f;long fogStarted=System.Diagnostics.Stopwatch.GetTimestamp();UpdateFog(world);LastFogMs=(float)((System.Diagnostics.Stopwatch.GetTimestamp()-fogStarted)*1000.0/System.Diagnostics.Stopwatch.Frequency);}
             UpdateProjectiles(world);UpdateRallyFlags(world);combatFeedback.Tick();UpdatePreview();
             if(caravan!=null){var p=world.CaravanPosition;caravan.gameObject.SetActive(world.Fog.At(0,p)==VisibilityState.Visible);var delta=new Vector3(p.x,world.SurfaceHeight(p),p.y)-caravan.position;if(delta.sqrMagnitude>.00001f)caravan.rotation=Quaternion.LookRotation(delta);caravan.position=new Vector3(p.x,world.SurfaceHeight(p),p.y);}
             for(int i=pulses.Count-1;i>=0;i--)
             {var pulse=pulses[i];float elapsed=Time.unscaledTime-pulse.time;if(elapsed>1){Destroy(pulse.line.gameObject);pulses.RemoveAt(i);continue;}SetRing(pulse.line,pulse.point,.5f+elapsed*1.3f,pulse.waterborne);}
+            LastFrameMs=(float)((System.Diagnostics.Stopwatch.GetTimestamp()-started)*1000.0/System.Diagnostics.Stopwatch.Frequency);
+        }
+        private static void SetActive(GameObject part,bool active){if(part.activeSelf!=active)part.SetActive(active);}
+        private static bool CameraContainsAnimation(Camera camera,Vector3 point)
+        {
+            var p=camera.WorldToViewportPoint(point);
+            // The border covers mounted figures, hulls and shadows before their
+            // center enters the actual viewport. Re-entry applies this frame.
+            return p.z>0&&p.x>-.15f&&p.x<1.15f&&p.y>-.15f&&p.y<1.15f;
         }
         private void ConsumeAnimationEvents(World world)
         {
@@ -276,8 +310,8 @@ namespace Frontier
             var pose=UnitAnimation.Evaluate(entity,world.Time,visual.firedAt,visual.hurtAt,visual.deathAt,world.Get(entity.work.target));UnitAnimation.Apply(visual.rig,pose);
             visual.boatMotion?.Apply(pose,world.Time);
             float bob=pose.moving?Mathf.Abs(Mathf.Sin(pose.locomotionPhase))*.035f:0;
-            visual.model.localPosition=new Vector3(0,bob-pose.death*.28f,0);
-            visual.model.rotation=visual.facing*Quaternion.Euler(pose.hurt*-9,0,pose.death*84);
+            var position=new Vector3(0,bob-pose.death*.28f,0);if(!visual.model.localPosition.Equals(position))visual.model.localPosition=position;
+            var rotation=visual.facing*Quaternion.Euler(pose.hurt*-9,0,pose.death*84);if(!visual.model.rotation.Equals(rotation))visual.model.rotation=rotation;
         }
         private void UpdateFog(World world)
         {
@@ -362,7 +396,7 @@ namespace Frontier
             }
             bounds=default;return false;
         }
-        private class EntityVisual {public string key;public Transform root,model,health,bar;public UnitRig rig;public BoatPresentationMotion boatMotion;public ArchitectureModel architecture;public int constructionStage=-1;public Quaternion facing;public float firedAt=-1000,hurtAt=-1000,deathAt=-1000;public LineRenderer circle;public Bounds pickBounds;public Vector3 pickScale,pickRootPosition;public bool pickReady;}
+        private class EntityVisual {public string key;public Transform root,model,health,bar;public UnitRig rig;public BoatPresentationMotion boatMotion;public ArchitectureModel architecture;public int constructionStage=-1;public Quaternion facing;public float firedAt=-1000,hurtAt=-1000,deathAt=-1000,nextOffscreenPose,healthFraction=-1;public LineRenderer circle;public Bounds pickBounds;public Vector3 pickScale,pickRootPosition;public bool pickReady,poseSeen,ringTintReady;public int ringTintOwner;}
         private class PulseVisual {public LineRenderer line;public Vector2 point;public float time;public bool waterborne;}
     }
 }

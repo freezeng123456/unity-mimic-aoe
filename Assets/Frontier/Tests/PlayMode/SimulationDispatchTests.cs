@@ -19,7 +19,7 @@ namespace Frontier.Tests
                 const BindingFlags flags=BindingFlags.Instance|BindingFlags.NonPublic;
                 void Set(string name,object value)=>typeof(RuntimeBenchmark).GetField(name,flags).SetValue(fixture,value);
                 T Get<T>(string name)=>(T)typeof(RuntimeBenchmark).GetField(name,flags).GetValue(fixture);
-                void Update()=>typeof(RuntimeBenchmark).GetMethod("Update",flags).Invoke(fixture,null);
+                void Update(){typeof(RuntimeBenchmark).GetMethod("Update",flags).Invoke(fixture,null);typeof(RuntimeBenchmark).GetMethod("LateUpdate",flags).Invoke(fixture,null);}
                 Set("elapsedActive",24.9f);Set("lastFrameAt",Time.unscaledTime-1);
                 game.TogglePause();Update();
                 Assert.AreEqual(24.9f,Get<float>("elapsedActive"));Assert.IsFalse(Get<bool>("saved"),"Paused time must not complete the run");

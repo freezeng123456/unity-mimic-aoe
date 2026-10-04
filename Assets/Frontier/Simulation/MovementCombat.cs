@@ -21,6 +21,7 @@ namespace Frontier
                     else {e.status="Preparing attack";continue;}
                 }
                 UnitOrder order=e.orders.Count>0?e.orders.Peek():null;
+                if(order!=null&&order.kind==OrderKind.DeployFactory){TickFactoryDeployment(e,order,dt);continue;}
                 if(order!=null&&(order.kind==OrderKind.Gather||order.kind==OrderKind.Build||order.kind==OrderKind.Repair||order.kind==OrderKind.Garrison||order.kind==OrderKind.Claim||order.kind==OrderKind.Manufacture))
                 {
                     var target=Get(order.target);if(e.def.waterborne&&order.kind==OrderKind.Garrison){e.orders.Dequeue();e.status="Cannot garrison a ship";continue;}if(target==null||!target.Alive||target.garrisonedIn!=0){if(order.kind!=OrderKind.Gather){e.orders.Dequeue();e.status="Target lost";}continue;}

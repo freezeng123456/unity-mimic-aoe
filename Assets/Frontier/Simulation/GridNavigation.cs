@@ -21,6 +21,14 @@ namespace Frontier
         {public int version;public bool[] walkable;public int[] component;}
         private static readonly int[] Dx={1,-1,0,0,1,1,-1,-1},Dy={0,0,1,-1,1,-1,1,-1};
         public GridNavigation(int w=128,int h=128){Width=w;Height=h;blocked=new bool[w*h];terrainBlocked=new bool[w*h];costs=new float[w*h];parents=new int[w*h];visited=new int[w*h];closed=new int[w*h];}
+        public NavigationSnapshot CaptureState()=>new NavigationSnapshot{width=Width,height=Height,version=Version,blocked=(bool[])blocked.Clone(),terrain=(bool[])terrainBlocked.Clone()};
+        public void RestoreState(NavigationSnapshot state)
+        {
+            if(state==null||state.width!=Width||state.height!=Height||state.version<1||state.blocked?.Length!=blocked.Length||state.terrain?.Length!=terrainBlocked.Length)
+                throw new ArgumentException("Invalid navigation state");
+            Array.Copy(state.blocked,blocked,blocked.Length);Array.Copy(state.terrain,terrainBlocked,terrainBlocked.Length);
+            Version=state.version;clearanceGraphs.Clear();heap.Clear();search=0;Array.Clear(visited,0,visited.Length);Array.Clear(closed,0,closed.Length);
+        }
         private bool Inside(int x,int y)=>x>=0&&y>=0&&x<Width&&y<Height;
         public bool IsWalkable(Vector2 point,float radius=.4f)
         {

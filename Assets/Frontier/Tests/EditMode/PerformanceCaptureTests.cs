@@ -39,5 +39,18 @@ namespace Frontier.Tests
             Assert.That(report.p95FrameMs, Is.Zero);
             Assert.That(report.p99FrameMs, Is.Zero);
         }
+        [Test] public void MissingProfilerCountersAndNoStepFramesDoNotCreateFalseZeroSamplesOrStaleSimulationCost()
+        {
+            var report=new PerformanceCaptureReport{totalFrames=3,frames=new[]
+            {
+                new PerformanceFrame{frameMs=10,focused=true,eligibleInterval=true,simulationMs=999,simulationSteps=0,worldViewMs=2},
+                new PerformanceFrame{frameMs=20,focused=true,eligibleInterval=true,simulationMs=4,simulationSteps=2,worldViewMs=6,gcAllocatedInFrameBytes=400,allocationCounterAvailable=true,mainThreadSampleMs=12,mainThreadCounterAvailable=true,renderThreadSampleMs=-1},
+                new PerformanceFrame{frameMs=1000,focused=false,simulationMs=900,simulationSteps=10,gcAllocatedInFrameBytes=90000,allocationCounterAvailable=true}
+            }};
+            NativePerformanceCapture.Summarize(report);
+            Assert.AreEqual(2,report.includedFrames);Assert.AreEqual(2,report.simulationSteps);Assert.AreEqual(2,report.meanSimulationFrameMs);Assert.AreEqual(4,report.meanWorldViewMs);
+            Assert.AreEqual(1,report.allocationCounterSamples);Assert.AreEqual(400,report.meanAllocatedInFrameBytes);Assert.AreEqual(1,report.mainThreadCounterSamples);Assert.AreEqual(12,report.meanMainThreadSampleMs);
+            Assert.AreEqual(0,report.renderThreadCounterSamples);Assert.AreEqual(-1,report.meanRenderThreadSampleMs);
+        }
     }
 }

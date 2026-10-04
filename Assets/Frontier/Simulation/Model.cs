@@ -8,8 +8,8 @@ namespace Frontier
     public enum ResourceKind { None, Food, Wood, Coin }
     public enum DamageKind { Melee, Ranged, Siege }
     [Flags] public enum Tags { None=0, Infantry=1, HeavyInfantry=2, LightInfantry=4, Cavalry=8, HeavyCavalry=16, LightCavalry=32, Artillery=64, Villager=128, Building=256, Explorer=512, Guardian=1024, Naval=2048 }
-    public enum OrderKind { Move, Attack, AttackMove, Gather, Build, Repair, Garrison, Stop, Hold, Claim, Manufacture }
-    public enum CommandKind { Order, Build, Train, CancelQueue, CancelBuilding, Research, AdvanceAge, Ship, Rally, Ungarrison, ToggleMode, Demolish, Resign, TradeMode, TradeRoute, Manufacture, ToggleShield, ToggleRecruitment }
+    public enum OrderKind { Move, Attack, AttackMove, Gather, Build, Repair, Garrison, Stop, Hold, Claim, Manufacture, DeployFactory }
+    public enum CommandKind { Order, Build, Train, CancelQueue, CancelBuilding, Research, AdvanceAge, Ship, Rally, Ungarrison, ToggleMode, Demolish, Resign, TradeMode, TradeRoute, Manufacture, ToggleShield, ToggleRecruitment, FactoryMode }
     [Serializable] public struct Cost
     {
         public float food, wood, coin;
@@ -25,7 +25,7 @@ namespace Frontier
         public string[] excludedCivilizations=Array.Empty<string>();
         public bool civilian,repairArtillery,shieldAbility,waterborne,fishingBoat;
         public float gatherMultiplier=1,meleeSplash;
-        public EntityKind kind; public Tags tags; public Cost cost;
+        public EntityKind kind; public Tags tags; public Cost cost,repairCost;
         public float hp=100, radius=.4f, width=1, depth=1, speed=4, vision=18;
         public float damage=0, meleeDamage=0, siegeDamage=0, range=1, minRange=0, period=2, windup=.35f, projectileSpeed=30, splash=0;
         public DamageKind damageKind; public float meleeResist=0, rangedResist=0, siegeResist=0;
@@ -42,6 +42,7 @@ namespace Frontier
         public Tags tags; public float attack=0,health=0,gather=0,speed=0; public ResourceKind resource;
         public string[] units=Array.Empty<string>(); public int bankLimit; public float bankIncome;
         public float caravanProfit,manufactureSpeed,buildSpeed,trainSpeed;
+        public float factoryIncome,factoryArtillerySpeed;
         public int villagerLimit; public float autoVillagerSpeed;
     }
     [Serializable] public class CardDef
@@ -89,7 +90,7 @@ namespace Frontier
         public CivDef Civ(string id) => Array.Find(civs,x=>x.id==id);
         public AgeDef Age(int n) => Array.Find(ages,x=>x.age==n);
     }
-    public class UnitOrder
+    [Serializable] public class UnitOrder
     {
         public OrderKind kind; public Vector2 point; public int target; public float elapsed;
         // Preserve the command's original point while navigation resolves a taken endpoint.
@@ -97,20 +98,20 @@ namespace Frontier
         public int destinationVersion,destinationCursor;public float destinationRetryAt;
         public UnitOrder(OrderKind k,Vector2 p,int t=0) {kind=k;point=p;target=t;}
     }
-    public class ProductionJob
+    [Serializable] public class ProductionJob
     {
         public string item,kind; public int count=1,population; public Cost paid; public float elapsed,duration; public string choice="";
     }
-    public class RewardJob { public Cost crates; public string unit=""; public int count; public string waiting=""; }
-    public class ShipmentJob { public string card; public float elapsed; public string waiting=""; }
+    [Serializable] public class RewardJob { public Cost crates; public string unit=""; public int count; public string waiting=""; }
+    [Serializable] public class ShipmentJob { public string card; public float elapsed; public string waiting=""; }
     public enum WorkKind { None,Gather,Build,Repair,Manufacture }
-    public struct WorkActivity
+    [Serializable] public struct WorkActivity
     {
         public WorkKind kind;public int target;public ResourceKind resource;public float time;
     }
-    public class EntityState
+    [Serializable] public class EntityState
     {
-        public int id,owner; public EntityDef def; public Vector2 position,previousPosition,origin,facing=Vector2.up,rally;
+        public int id,owner; [NonSerialized] public EntityDef def; public Vector2 position,previousPosition,origin,facing=Vector2.up,rally;
         public ResourceKind tradeMode,rallyResource;
         public float hp,construction=1,remaining,attackReadyAt,fireAt=-1,deployUntil,scanAt,stuckFor,pathRetryAt;
         public Vector2 recoveryProgressPosition;public float recoveryProgressAt;
@@ -123,6 +124,8 @@ namespace Frontier
         public bool shielded;
         public float autoRecruitElapsed;
         public bool autoRecruitPaused;
+        public string factoryMode="food";
+        public float factoryElapsed;
         public readonly Queue<UnitOrder> orders=new Queue<UnitOrder>();
         public readonly List<Vector2> path=new List<Vector2>(); public bool pathAvoidsAllies;
         public int pathIndex;
@@ -143,7 +146,7 @@ namespace Frontier
         public bool Worker => (def.tags & Tags.Villager)!=0;
         public bool Military => def.kind==EntityKind.Unit && !Worker && !def.civilian;
     }
-    public class PlayerState
+    [Serializable] public class PlayerState
     {
         public int id,age=1,usedPopulation,reservedPopulation,populationCap,shipmentTokens,xpLevels;
         public int prefabCharges;
@@ -176,7 +179,7 @@ namespace Frontier
         public PopulationSnapshot population;
         public float time; public string kind,message; public int player,entity,target,visibilityMask; public float amount; public Vector2 position,facing;
     }
-    public class ProjectileState
+    [Serializable] public class ProjectileState
     {
         public float baseDamage,siegeDamage; public DamageKind baseKind;
         public int source,target,owner; public Vector2 start,end; public float firedAt,hitAt,damage,splash; public DamageKind kind;
