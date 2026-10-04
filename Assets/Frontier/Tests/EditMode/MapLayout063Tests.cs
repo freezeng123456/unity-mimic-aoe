@@ -10,7 +10,7 @@ namespace Frontier.Tests
         private static readonly string[] NewMaps={MapTopology.Winding,MapTopology.Tropical,MapTopology.Tributaries,MapTopology.Estuary};
         [Test] public void MapRegistryHasDistinctNamesAndRejectsUnknownLayouts()
         {
-            Assert.AreEqual(6,MapTopology.All.Length);Assert.AreEqual(6,MapTopology.All.Distinct().Count());
+            Assert.AreEqual(6,MapTopology.Authored.Length);Assert.AreEqual(9,MapTopology.All.Length);Assert.AreEqual(9,MapTopology.All.Distinct().Count());
             foreach(var map in MapTopology.All){Assert.IsTrue(MapTopology.IsValid(map));Assert.IsNotEmpty(MapTopology.Name(map));Assert.AreEqual(MapTopology.IsRiverMap(map),MapLayout.Create(map).HasWater);}
             Assert.IsFalse(MapTopology.IsValid(null));Assert.IsFalse(MapTopology.IsValid("unknown"));Assert.Throws<ArgumentException>(()=>MapLayout.Create("unknown"));
         }

@@ -19,6 +19,7 @@ namespace Frontier
         public bool AttackMode;
         public bool GarrisonMode;
         public bool RepairMode;
+        public bool EmbarkMode,DisembarkMode,DockRepairMode;
         public bool Dragging {get;private set;}
         public Vector2 DragStart {get;private set;}
         public Vector2 DragEnd {get;private set;}
@@ -56,7 +57,7 @@ namespace Frontier
             foreach(var snapshot in snapshots)
             {
                 if(snapshot==null||snapshot.number<0||snapshot.number>9||snapshot.actors==null)continue;
-                var members=new List<int>();foreach(int id in snapshot.actors){var e=game.World.Get(id);if(e!=null&&e.Alive&&e.owner==0&&game.World.IsVisible(0,e)&&!members.Contains(id))members.Add(id);}groups[snapshot.number]=members;
+                var members=new List<int>();foreach(int id in snapshot.actors){var e=game.World.Get(id);if(e!=null&&e.Alive&&e.owner==0&&!members.Contains(id))members.Add(id);}groups[snapshot.number]=members;
             }
         }
         public void RestoreSelection(System.Collections.Generic.IEnumerable<int> members)
@@ -64,7 +65,7 @@ namespace Frontier
             ResetSelection();if(members==null||game.World==null)return;
             foreach(int id in members){var e=game.World.Get(id);if(e!=null&&e.Alive&&e.owner>=-1&&e.owner<game.World.Players.Length&&game.World.IsVisible(0,e)&&!Selected.Contains(id))Selected.Add(id);}game.Hud?.InvalidateActions();
         }
-        public void ResetSelection(){ResetDoubleClick();Selected.Clear();groups.Clear();BuildingToPlace="";AttackMode=false;GarrisonMode=false;RepairMode=false;Dragging=false;beganWorld=false;beganMinimap=false;input?.Clear();game?.Hud?.CancelUiPointer();}
+        public void ResetSelection(){ResetDoubleClick();Selected.Clear();groups.Clear();BuildingToPlace="";AttackMode=false;GarrisonMode=false;RepairMode=false;EmbarkMode=false;DisembarkMode=false;DockRepairMode=false;Dragging=false;beganWorld=false;beganMinimap=false;input?.Clear();game?.Hud?.CancelUiPointer();}
         private void UpdateCamera()
         {
             if(game.GameCamera==null)return;
@@ -89,11 +90,11 @@ namespace Frontier
         public void RecallGroup(int number)
         {
             ResetDoubleClick();
-            if(!groups.TryGetValue(number,out var group))return;Selected.Clear();foreach(int id in group){var e=game.World.Get(id);if(e!=null&&e.Alive&&e.owner==0)Selected.Add(id);}
+            if(!groups.TryGetValue(number,out var group))return;Selected.Clear();foreach(int id in group){var e=game.World.Get(id);if(e!=null&&e.Alive&&e.owner==0&&game.World.IsVisible(0,e))Selected.Add(id);}
             game.Hud.InvalidateActions();if(FirstSelected!=null)Focus(FirstSelected.position);
         }
         public void BeginBuild(string id){SuppressWorldInput();CancelTargetMode();BuildingToPlace=id;game.Notify("Place "+game.Rules.Entity(id).name+". Right click or Esc cancels.");}
-        public void CancelTargetMode(){ResetDoubleClick();BuildingToPlace="";AttackMode=false;GarrisonMode=false;RepairMode=false;}
+        public void CancelTargetMode(){ResetDoubleClick();BuildingToPlace="";AttackMode=false;GarrisonMode=false;RepairMode=false;EmbarkMode=false;DisembarkMode=false;DockRepairMode=false;}
         public void BeginAttackMove(){CancelTargetMode();AttackMode=true;game.Notify("Attack move: choose a destination");}
         public void BeginGarrison()
         {
@@ -102,6 +103,9 @@ namespace Frontier
             if(!mobile){game.Notify("Select mobile units before choosing a shelter");return;}
             CancelTargetMode();GarrisonMode=true;game.Notify("Garrison: choose a completed friendly shelter. G / right click / Esc cancels.");
         }
+        public void BeginEmbark(){CancelTargetMode();EmbarkMode=true;game.Notify("Board: choose your troop transport. Right click or Esc cancels.");}
+        public void BeginDisembark(){CancelTargetMode();DisembarkMode=true;game.Notify("Unload: choose an open land shore. Right click or Esc cancels.");}
+        public void BeginDockRepair(){CancelTargetMode();DockRepairMode=true;game.Notify("Harbor repair: choose your completed dock. Right click or Esc cancels.");}
         public void BeginRepair()
         {
             if(RepairMode){CancelTargetMode();game.Notify("Repair targeting cancelled");return;}
@@ -114,7 +118,7 @@ namespace Frontier
         {ResetDoubleClick();game.Command(new GameCommand{player=0,kind=CommandKind.Order,actors=Selected.ToArray(),order=kind,point=point,target=target,append=append});}
         public void MinimapOrder(Vector2 point,bool right)=>MinimapOrder(point,right,Shift);
         private void MinimapOrder(Vector2 point,bool right,bool append)
-        {ResetDoubleClick();if(right)ContextOrder(point,null,append);else if(RepairMode)game.Notify("Repair: choose a visible damaged friendly target");else if(GarrisonMode)game.Notify("Garrison: choose a visible shelter in the world view");else if(AttackMode){IssueOrder(OrderKind.AttackMove,point,0,append);AttackMode=false;}else Focus(point);}
+        {ResetDoubleClick();if(right)ContextOrder(point,null,append);else if(DisembarkMode){var r=game.Command(new GameCommand{player=0,kind=CommandKind.Disembark,actors=Selected.ToArray(),point=point});if(r.accepted)CancelTargetMode();}else if(EmbarkMode||DockRepairMode)game.Notify("Choose a visible transport or friendly harbor in the world view");else if(RepairMode)game.Notify("Repair: choose a visible damaged friendly target");else if(GarrisonMode)game.Notify("Garrison: choose a visible shelter in the world view");else if(AttackMode){IssueOrder(OrderKind.AttackMove,point,0,append);AttackMode=false;}else Focus(point);}
         private bool WorldActive=>!game.InMenu&&game.World!=null&&!game.IsPaused&&game.World.Winner<0;
         // UI and world clicks consume the same native edge stream. A later hover
         // position cannot retarget a completed UGUI click. UI transitions still
@@ -170,7 +174,7 @@ namespace Frontier
         }
         private void HandleEscape()
         {
-            if(BuildingToPlace!=""||AttackMode||GarrisonMode||RepairMode){CancelTargetMode();game.Notify("Targeting cancelled");}
+            if(BuildingToPlace!=""||AttackMode||GarrisonMode||RepairMode||EmbarkMode||DisembarkMode||DockRepairMode){CancelTargetMode();game.Notify("Targeting cancelled");}
             else if(game.Hud.ResultVisible)game.ReturnToMenu();
             else if(game.IsPaused)game.TogglePause();
             else if(game.Hud.ModalVisible)game.Hud.CloseModal();
@@ -203,7 +207,7 @@ namespace Frontier
         private void ProcessRight(Edge edge)
         {
             ResetDoubleClick();beganWorld=false;beganMinimap=false;Dragging=false;
-            if(BuildingToPlace!=""||AttackMode||GarrisonMode||RepairMode){CancelTargetMode();return;}
+            if(BuildingToPlace!=""||AttackMode||GarrisonMode||RepairMode||EmbarkMode||DisembarkMode||DockRepairMode){CancelTargetMode();return;}
             if(game.Hud.TryMinimapPoint(edge.position,out var mini)){MinimapOrder(mini,true,edge.shift);return;}
             if(!game.Hud.BlocksWorldInput(edge.position))ContextOrder(GroundPoint(edge.position),Pick(edge.position,true),edge.shift);
         }
@@ -221,6 +225,12 @@ namespace Frontier
                     if(r.accepted&&!edge.shift)BuildingToPlace="";beganWorld=false;return;
                 }
                 if(AttackMode){var target=Pick(pointer,true);IssueOrder(target!=null&&(target.owner==1||World.Guardian(target))?OrderKind.Attack:OrderKind.AttackMove,point,target?.id??0,edge.shift);AttackMode=false;beganWorld=false;return;}
+                if(EmbarkMode||DisembarkMode||DockRepairMode)
+                {
+                    var target=Pick(pointer,true,true);var command=EmbarkMode?CommandKind.Embark:DisembarkMode?CommandKind.Disembark:CommandKind.DockRepair;
+                    var result=game.Command(new GameCommand{player=0,kind=command,actors=Selected.ToArray(),target=target?.id??0,point=command==CommandKind.Embark?Vector2.zero:point,append=edge.shift});
+                    if(result.accepted)CancelTargetMode();beganWorld=false;return;
+                }
                 if(RepairMode)
                 {
                     var target=Pick(pointer,true,false,true);var actors=new List<int>();
@@ -284,13 +294,15 @@ namespace Frontier
                     if(resource){if(game.World.CanGather(actor,target))kind=OrderKind.Gather;}
                     else if(World.Treasure(target)){if((actor.def.tags&Tags.Explorer)!=0)kind=OrderKind.Claim;}
                     else if(target.owner==1||World.Guardian(target))kind=OrderKind.Attack;
+                    else if(target.owner==0&&target.def.transportShip&&!actor.def.waterborne)kind=OrderKind.Embark;
+                    else if(target.owner==0&&target.def.id=="dock"&&actor.def.waterborne&&actor.hp<game.World.MaxHp(actor)-1)kind=OrderKind.DockRepair;
                     else if(target.owner==0&&target.def.kind==EntityKind.Building)
                     {if(actor.Worker&&!target.Complete)kind=OrderKind.Build;else if(actor.Worker&&target.Complete&&target.def.id=="workshop")kind=OrderKind.Manufacture;else if(actor.Worker&&target.hp<game.World.MaxHp(target)-1)kind=OrderKind.Repair;else if(target.Complete&&target.def.garrison>0)kind=OrderKind.Garrison;}
                     else if(target.owner==0&&actor.def.repairArtillery&&(target.def.tags&Tags.Artillery)!=0&&target.hp<game.World.MaxHp(target)-1)kind=OrderKind.Repair;
                 }
                 if(!groups.TryGetValue(kind,out var actors)){actors=new List<int>();groups.Add(kind,actors);kinds.Add(kind);}actors.Add(id);
             }
-            foreach(var kind in kinds)game.Command(new GameCommand{player=0,kind=CommandKind.Order,actors=groups[kind].ToArray(),order=kind,point=target?.position??point,target=kind==OrderKind.Move?0:target?.id??0,append=append});
+            foreach(var kind in kinds)game.Command(new GameCommand{player=0,kind=kind==OrderKind.Embark?CommandKind.Embark:kind==OrderKind.DockRepair?CommandKind.DockRepair:CommandKind.Order,actors=groups[kind].ToArray(),order=kind,point=kind==OrderKind.Embark?Vector2.zero:target?.position??point,target=kind==OrderKind.Move?0:target?.id??0,append=append});
         }
         public Vector2 GroundPoint(Vector2 screen)
         {

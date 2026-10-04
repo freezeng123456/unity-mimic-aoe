@@ -4,10 +4,32 @@ namespace Frontier
 {
     public partial class World
     {
+        public Vector2 OpeningTownPosition(int player)
+        {
+            if(player<0||player>=Layout.Starts.Length)throw new System.ArgumentOutOfRangeException(nameof(player));
+            return Layout.Starts[player].Town;
+        }
+        private void InitializeGeneratedMap()
+        {
+            // Seeded anchors describe geography, while the normal placement
+            // contract checks actual civilization sizes and existing actors.
+            for(int player=0;player<Players.Length;player++)
+            {
+                var start=Layout.Starts[player];
+                Spawn("town",player,MapLandPosition("town",start.Town,player));
+                string worker=WorkerDefinition(player).id;
+                for(int i=0;i<Rules.Civ(Players[player].civilization).startingWorkers;i++)
+                    Spawn(worker,player,MapLandPosition(worker,start.WorkerPoint(i),player));
+                Spawn("explorer",player,MapLandPosition("explorer",start.Explorer,player));
+                foreach(var anchor in start.Resources)
+                    Spawn(anchor.Definition,anchor.Owned?player:-1,MapLandPosition(anchor.Definition,anchor.Position,player));
+            }
+            foreach(var point in Layout.FishPoints)Spawn("fish",-1,point);
+        }
         // New authored banks can intersect the old expansion-resource coordinates.
         // Resolve opening placement once; Spawn itself remains an explicit contract
         // for rewards, production, tests and gameplay, and never silently teleports.
-        private Vector2 MapLandPosition(string definition,Vector2 desired)
+        private Vector2 MapLandPosition(string definition,Vector2 desired,int homePlayer=-1)
         {
             if(MapId==MapTopology.Frontier||MapId==MapTopology.River)return desired;
             var d=Rules.Entity(definition);
@@ -18,6 +40,8 @@ namespace Frontier
             {
                 if(p.x-width*.5f<2||p.y-depth*.5f<2||p.x+width*.5f>126||p.y+depth*.5f>126)return false;
                 if(Layout.BridgeFootprintOverlaps(p,width+1,depth+1))return false;
+                if(Layout.Generated&&homePlayer>=0&&!Layout.InStartingRegion(homePlayer,p))return false;
+                if(Layout.Generated&&d.id!="town"&&MapGeneration.ProtectedShore(Layout,p,d.radius+4))return false;
                 if(!Navigation.IsAreaFree(p,width,depth))return false;
                 foreach(var v in new[]{Vector2.zero,new Vector2(-width*.5f,-depth*.5f),new Vector2(width*.5f,-depth*.5f),new Vector2(-width*.5f,depth*.5f),new Vector2(width*.5f,depth*.5f)})
                     if(IsWater(p+v))return false;
@@ -45,7 +69,8 @@ namespace Frontier
                 for(int y=-ring;y<=ring;y++)for(int x=-ring;x<=ring;x++)
                 {
                     if(Mathf.Max(Mathf.Abs(x),Mathf.Abs(y))!=ring)continue;
-                    var p=desired+new Vector2(x,y);float distance=x*x+y*y;
+                    var offset=new Vector2(x,y)*(Layout.Generated&&homePlayer==1?-1:1);
+                    var p=desired+offset;float distance=x*x+y*y;
                     if(distance<best&&Legal(p)){closest=p;best=distance;}
                 }
                 if(best<float.MaxValue&&ring*ring>best)return closest;

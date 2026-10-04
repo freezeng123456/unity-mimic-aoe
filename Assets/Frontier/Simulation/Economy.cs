@@ -190,6 +190,8 @@ namespace Frontier
                 if(!card.repeatable&&p.sentCards.Contains(card.id))return ("Already sent this match");
                 if(p.shipmentTokens<=0)return ("Earn XP for a shipment opportunity");
                 if(!string.IsNullOrEmpty(card.tech)&&(p.technologies.Contains(card.tech)||TechnologyQueued(player,card.tech)))return ("This technology is already active or pending");
+            if(Rules.Entity(card.unit)?.waterborne==true)
+            {if(!Layout.HasWater)return "Naval shipment needs water";if(FindNavalReceiver(player)==null)return "Build a completed harbor for this shipment";}
             return IndustrialShipmentReason(player,card);
         }
         public void TickEconomy(float dt)
@@ -351,16 +353,19 @@ namespace Frontier
         {
             EntityState receiver=null;foreach(var e in Entities)if(e.Alive&&e.owner==player&&e.Complete&&(e.def.id=="town"||e.def.id=="tower")){receiver=e;if(e.def.id=="town")break;}return receiver;
         }
+        private EntityState FindNavalReceiver(int player)
+        {foreach(var e in Entities)if(e.Alive&&e.Complete&&e.owner==player&&e.def.id=="dock")return e;return null;}
         private void DeliverReward(PlayerState p)
         {
-            var reward=p.rewards[0];var receiver=FindReceiver(p.id);
-            if(receiver==null){reward.waiting="Age reward needs a town center or watchtower";return;}
-            var d=Rules.Entity(reward.unit);
+            var reward=p.rewards[0];var d=Rules.Entity(reward.unit);
+            var receiver=d?.waterborne==true?FindNavalReceiver(p.id):FindReceiver(p.id);
+            if(receiver==null){reward.waiting=d?.waterborne==true?"Naval reward needs a completed harbor":"Age reward needs a town center or watchtower";return;}
             if(d!=null)
             {
                 if(UnitLimitReason(p.id,d,reward.count)!=""){reward.waiting=UnitLimitReason(p.id,d,reward.count);return;}
                 if(p.usedPopulation+p.reservedPopulation+d.population*reward.count>Mathf.Min(p.populationCap,Rules.populationLimit)){reward.waiting="Age reward needs housing";return;}
-                if(!FindSpawnPositions(receiver,reward.count,d.radius,out var positions)){reward.waiting="Age reward arrival blocked";return;}
+                if(d.waterborne){receiver=FindNavalReceiver(p.id);if(receiver==null){reward.waiting="Naval reward needs a completed harbor";return;}}
+                if(!FindSpawnPositions(receiver,reward.count,d,out var positions)){reward.waiting="Age reward arrival blocked";return;}
                 foreach(var point in positions)Spawn(d.id,p.id,point);
             }
             else if(!SpawnCrates(p.id,receiver.position,reward.crates)){reward.waiting="Age reward crate landing blocked";return;}
@@ -369,14 +374,15 @@ namespace Frontier
         private void Deliver(PlayerState p,ShipmentJob shipment,CardDef card)
         {
             var industry=IndustrialShipmentReason(p.id,card,true);if(industry!=""){shipment.waiting=industry;return;}
-            EntityState receiver=FindReceiver(p.id);
-            if(receiver==null){shipment.waiting="Need a town center or watchtower";return;}
             var d=string.IsNullOrEmpty(card.unit)?null:Rules.Entity(card.unit);
+            EntityState receiver=d?.waterborne==true?FindNavalReceiver(p.id):FindReceiver(p.id);
+            if(receiver==null){shipment.waiting=d?.waterborne==true?"Naval shipment needs a completed harbor":"Need a town center or watchtower";return;}
             if(d!=null)
             {
                 if(UnitLimitReason(p.id,d,card.count)!=""){shipment.waiting=UnitLimitReason(p.id,d,card.count);return;}
                 if(p.usedPopulation+p.reservedPopulation+d.population*card.count>Mathf.Min(p.populationCap,Rules.populationLimit)){shipment.waiting="Waiting for population capacity";return;}
-                if(!FindSpawnPositions(receiver,card.count,d.radius,out var positions)){shipment.waiting="Arrival area blocked";return;}
+                if(d.waterborne){receiver=FindNavalReceiver(p.id);if(receiver==null){shipment.waiting="Naval shipment needs a completed harbor";return;}}
+                if(!FindSpawnPositions(receiver,card.count,d,out var positions)){shipment.waiting="Arrival area blocked";return;}
                 foreach(var point in positions)Spawn(d.id,p.id,point);
             }
             else if(!SpawnCrates(p.id,receiver.position,card.crates)){shipment.waiting="Crate landing area blocked";return;}

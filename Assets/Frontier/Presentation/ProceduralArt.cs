@@ -73,7 +73,7 @@ namespace Frontier
             if(e.def.kind==EntityKind.Building){DetailedArchitecture.Build(root,e,team,civilization,age);return root;}
             var rig=root.gameObject.AddComponent<UnitRig>();
             if(e.def.id=="factory_wagon"){FactoryWagon(root,rig,team);DetailedUnits.BakeAuthored(root,rig);rig.CaptureInitialPose();return root;}
-            if(e.def.id=="caravan"){CargoCaravan(root,rig,team);DetailedUnits.Refine(root,rig,e,team);rig.CaptureInitialPose();return root;}
+            if(e.def.id=="caravan"||e.def.id=="objective_cart"){CargoCaravan(root,rig,team);DetailedUnits.Refine(root,rig,e,team);rig.CaptureInitialPose();return root;}
             bool horse=(e.def.tags&Tags.Cavalry)!=0;
             bool gun=(e.def.tags&Tags.Artillery)!=0;
             Color wood=new Color(.24f,.15f,.085f), iron=new Color(.19f,.22f,.22f);
@@ -99,6 +99,9 @@ namespace Frontier
             else if(e.def.id=="janissary")coat=new Color(.76f,.71f,.56f);
             else if(e.def.id=="abus")coat=new Color(.46f,.25f,.19f);
             else if(e.def.id=="spahi")coat=new Color(.45f,.22f,.19f);
+            if(e.def.id=="ally_river_guard")coat=new Color(.25f,.43f,.38f);
+            else if(e.def.id=="ally_highland_guard")coat=new Color(.42f,.35f,.24f);
+            else if(e.def.id=="ally_coastal_guard")coat=new Color(.22f,.30f,.42f);
             if((e.def.tags&Tags.Explorer)!=0)coat=new Color(.33f,.39f,.25f);
             Section(root,"Tailored coat",new Vector3(0,1.025f+riderY,0),new Vector2(.40f,.30f),new Vector2(.65f,.42f),.55f,coat);
             Section(root,"Coat skirts",new Vector3(0,.72f+riderY,0),new Vector2(.62f,.40f),new Vector2(.40f,.30f),.32f,coat);
@@ -250,7 +253,7 @@ namespace Frontier
         {
             Color wood=new Color(.24f,.15f,.085f),iron=new Color(.19f,.22f,.22f);
             rig.WeaponPivot=Pivot(e.def.id=="longbow"?rig.LeftHand:rig.RightHand,"Weapon pivot",Vector3.zero);
-            if(e.def.id=="pike"||e.def.id=="escort"||e.def.id=="shield_guard"||e.def.id=="halberdier")
+            if(e.def.id=="pike"||e.def.id=="escort"||e.def.id=="shield_guard"||e.def.id=="halberdier"||e.def.id=="ally_highland_guard")
             {
                 rig.Weapon=Part(rig.WeaponPivot,"Pike shaft",PrimitiveType.Cylinder,new Vector3(0,.9f,0),new Vector3(.055f,1.5f,.055f),wood).transform;
                 MeshPart(rig.WeaponPivot,"Pike steel head",new[]{new Vector3(-.08f,2.35f,0),new Vector3(.08f,2.35f,0),new Vector3(0,2.8f,0),new Vector3(0,2.4f,.07f)},new[]{0,2,1,0,3,2,1,2,3,0,1,3},iron);

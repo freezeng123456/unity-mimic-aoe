@@ -25,7 +25,7 @@ namespace Frontier
         private int rotation,buildSerial;
         public SkirmishAI(World world,int player):this(world,player,AiDifficultyProfile.From(world.Rules,"standard")){}
         public SkirmishAI(World world,int player,AiDifficultyProfile difficulty)
-        {this.world=world;this.player=player;Difficulty=difficulty??throw new ArgumentNullException(nameof(difficulty));workforce=new AiWorkforce(world,player);agePlan=new AiAgePlan(world,player);construction=new AiConstruction(world,player);civilizationEconomy=new AiCivilizationEconomy(world,player);waterEconomy=new AiWaterEconomy(world,player);home=player==0?new Vector2(24,28):new Vector2(104,100);enemyStart=new Vector2(128-home.x,128-home.y);search=new AiSearchPlan(world,player,enemyStart);}
+        {this.world=world;this.player=player;Difficulty=difficulty??throw new ArgumentNullException(nameof(difficulty));workforce=new AiWorkforce(world,player);agePlan=new AiAgePlan(world,player);construction=new AiConstruction(world,player);civilizationEconomy=new AiCivilizationEconomy(world,player);waterEconomy=new AiWaterEconomy(world,player);home=world.OpeningTownPosition(player);enemyStart=world.OpeningTownPosition(1-player);search=new AiSearchPlan(world,player,enemyStart);}
         public AiSnapshot CaptureState()
         {
             var remembered=new List<IntPointSnapshot>();
@@ -118,6 +118,7 @@ namespace Frontier
             if(p.age>=2&&!underAttack&&!saveForAge&&workers.Count>=16)InvestInRoute(own,workers);
             foreach(var post in own)if(post.def.id=="trade_post"&&post.Complete&&p.technologies.Contains("cargo_ledgers"))
             {var wanted=p.resources.food<500?ResourceKind.Food:p.resources.coin<500?ResourceKind.Coin:ResourceKind.Wood;if(post.tradeMode!=wanted)Send(new GameCommand{kind=CommandKind.TradeMode,actors=new[]{post.id},index=(int)wanted});}
+            if(p.age>=2&&!underAttack&&!saveForAge)UseNeutralSettlement(own,workerReserve+bankReserve+specialReserve+civilizationResearchReserve+agePlan.Reserve);
             if(p.shipmentTokens>0)
             {
                 CardDef chosen=null;float best=-10000;
@@ -179,7 +180,7 @@ namespace Frontier
             foreach(var unit in army)if((unit.def.tags&Tags.Explorer)!=0)Explore(unit);
             if(world.Time<armyAt)return;armyAt=world.Time+Difficulty.ArmySeconds;
             EntityState threat=enemies.Find(x=>(x.position-home).sqrMagnitude<30*30);
-            var soldiers=army.FindAll(x=>(x.def.tags&Tags.Explorer)==0);
+            var soldiers=army.FindAll(x=>x.garrisonedIn==0&&(x.def.tags&Tags.Explorer)==0);
             search.ObserveStart(soldiers);int previousSearchRevision=search.Revision;bool searchActive=false;
             Vector2 destination=enemyStart;
             if(threat!=null)destination=threat.position;
@@ -204,13 +205,34 @@ namespace Frontier
                 if(!expedition)destination=rally;
                 else if(!knownTarget)searchActive=search.TryDestination(soldiers,out destination);
             }
+            if(world.TryAiObjectiveDestination(player,out var objectiveDestination)){destination=objectiveDestination;searchActive=false;}
             bool refreshSearch=searchActive&&(!searchingLastReview||search.Revision!=previousSearchRevision);searchingLastReview=searchActive;
             foreach(var unit in soldiers)
             {
-                if(unit.hp<world.MaxHp(unit)*.22f&&enemies.Count>soldiers.Count){if(unit.orders.Count==0||unit.orders.Peek().kind!=OrderKind.Move)Send(new GameCommand{kind=CommandKind.Order,actors=new[]{unit.id},order=OrderKind.Move,point=home});continue;}
+                if(unit.orders.Count>0&&unit.orders.Peek().kind==OrderKind.Embark)continue;
+                if(unit.hp<world.MaxHp(unit)*.22f&&enemies.Count>soldiers.Count){if(unit.orders.Count==0||unit.orders.Peek().kind!=OrderKind.Move)Send(new GameCommand{kind=CommandKind.Order,actors=new[]{unit.id},order=OrderKind.Move,point=waterEconomy.LandArmyDestination(unit,home)});continue;}
                 if(civilizationEconomy.Support(unit,army,enemies))continue;
-                bool newOrder=refreshSearch||unit.orders.Count==0||unit.orders.Peek().kind!=OrderKind.AttackMove||(unit.orders.Peek().point-destination).sqrMagnitude>18*18;
-                if(newOrder)Send(new GameCommand{kind=CommandKind.Order,actors=new[]{unit.id},order=OrderKind.AttackMove,point=destination+new Vector2((unit.id%5-2)*1.3f,((unit.id/5)%5-2)*1.3f)});
+                Vector2 landDestination=waterEconomy.LandArmyDestination(unit,destination);
+                bool newOrder=refreshSearch||unit.orders.Count==0||unit.orders.Peek().kind!=OrderKind.AttackMove||(unit.orders.Peek().point-landDestination).sqrMagnitude>18*18;
+                if(newOrder)Send(new GameCommand{kind=CommandKind.Order,actors=new[]{unit.id},order=OrderKind.AttackMove,point=waterEconomy.LandArmyDestination(unit,landDestination+new Vector2((unit.id%5-2)*1.3f,((unit.id/5)%5-2)*1.3f))});
+            }
+        }
+        private void UseNeutralSettlement(List<EntityState> own,Cost reserve)
+        {
+            foreach(var state in world.NeutralAllies)
+            {
+                var site=world.Get(state.site);if(!world.IsVisible(player,site))continue;
+                var definition=world.NeutralDefinition(state.id);
+                if(world.NeutralCommandReason(player,state.site,CommandKind.NeutralAlliance)==""&&CanSpend(definition.allianceCost,reserve))
+                {Send(new GameCommand{kind=CommandKind.NeutralAlliance,target=state.site});return;}
+                if(state.owner!=player)continue;
+                int units=own.FindAll(e=>e.Alive&&e.def.id==definition.unit).Count;
+                var tech=world.Rules.Tech(definition.tech);
+                if(units>=3&&world.NeutralCommandReason(player,state.site,CommandKind.NeutralResearch)==""&&CanSpend(tech.cost,reserve))
+                {Send(new GameCommand{kind=CommandKind.NeutralResearch,target=state.site});return;}
+                var unit=world.Rules.Entity(definition.unit);
+                if(units<5&&world.NeutralCommandReason(player,state.site,CommandKind.NeutralRecruit)==""&&CanSpend(world.UnitCost(player,unit),reserve))
+                {Send(new GameCommand{kind=CommandKind.NeutralRecruit,target=state.site});return;}
             }
         }
         private void ForgetMemory(int id)
@@ -285,17 +307,18 @@ namespace Frontier
             foreach(var state in world.Treasures)
             {
                 var treasure=world.Get(state.entity);if(!world.IsVisible(player,treasure))continue;
+                if(world.Layout.RequiresTransport&&world.Layout.LandRegion(unit.position)!=world.Layout.LandRegion(treasure.position))continue;
                 bool guarded=state.guards.Exists(id=>world.IsVisible(player,world.Get(id)));
                 if(guarded&&unit.hp<world.MaxHp(unit)*.35f)continue;
                 float d=(treasure.position-unit.position).sqrMagnitude;if(d<nearest){nearest=d;chosen=state;}
             }
             if(chosen!=null)
             {
-                var treasure=world.Get(chosen.entity);var guard=chosen.guards.ConvertAll(world.Get).Find(e=>world.IsVisible(player,e));
+                var treasure=world.Get(chosen.entity);var guard=chosen.guards.ConvertAll(world.Get).Find(e=>world.IsVisible(player,e)&&(!world.Layout.RequiresTransport||world.Layout.LandRegion(unit.position)==world.Layout.LandRegion(e.position)));
                 if(guard!=null){Send(new GameCommand{kind=CommandKind.Order,actors=new[]{unit.id},order=OrderKind.Attack,target=guard.id});return;}
                 if(world.TreasureReason(player,treasure)==""){Send(new GameCommand{kind=CommandKind.Order,actors=new[]{unit.id},order=OrderKind.Claim,target=treasure.id});return;}
             }
-            if(unit.orders.Count==0){Vector2 point=(unit.position-enemyStart).sqrMagnitude>200?enemyStart:new Vector2(64,64);Send(new GameCommand{kind=CommandKind.Order,actors=new[]{unit.id},order=OrderKind.Move,point=point});}
+            if(unit.orders.Count==0){Vector2 point=(unit.position-enemyStart).sqrMagnitude>200?enemyStart:new Vector2(64,64);point=waterEconomy.LandArmyDestination(unit,point);Send(new GameCommand{kind=CommandKind.Order,actors=new[]{unit.id},order=OrderKind.Move,point=point});}
         }
         private void InvestInRoute(List<EntityState> own,List<EntityState> workers)
         {

@@ -8,8 +8,8 @@ namespace Frontier
     public enum ResourceKind { None, Food, Wood, Coin }
     public enum DamageKind { Melee, Ranged, Siege }
     [Flags] public enum Tags { None=0, Infantry=1, HeavyInfantry=2, LightInfantry=4, Cavalry=8, HeavyCavalry=16, LightCavalry=32, Artillery=64, Villager=128, Building=256, Explorer=512, Guardian=1024, Naval=2048 }
-    public enum OrderKind { Move, Attack, AttackMove, Gather, Build, Repair, Garrison, Stop, Hold, Claim, Manufacture, DeployFactory }
-    public enum CommandKind { Order, Build, Train, CancelQueue, CancelBuilding, Research, AdvanceAge, Ship, Rally, Ungarrison, ToggleMode, Demolish, Resign, TradeMode, TradeRoute, Manufacture, ToggleShield, ToggleRecruitment, FactoryMode }
+    public enum OrderKind { Move, Attack, AttackMove, Gather, Build, Repair, Garrison, Stop, Hold, Claim, Manufacture, DeployFactory, Embark, Disembark, TransportBerth, DockRepair }
+    public enum CommandKind { Order, Build, Train, CancelQueue, CancelBuilding, Research, AdvanceAge, Ship, Rally, Ungarrison, ToggleMode, Demolish, Resign, TradeMode, TradeRoute, Manufacture, ToggleShield, ToggleRecruitment, FactoryMode, Embark, Disembark, DockRepair, NeutralAlliance, NeutralRecruit, NeutralResearch }
     [Serializable] public struct Cost
     {
         public float food, wood, coin;
@@ -23,7 +23,8 @@ namespace Frontier
     {
         public string id, name, description, producer, civilization="";
         public string[] excludedCivilizations=Array.Empty<string>();
-        public bool civilian,repairArtillery,shieldAbility,waterborne,fishingBoat;
+        public bool civilian,repairArtillery,shieldAbility,waterborne,fishingBoat,transportShip;
+        public int transportCapacity;
         public float gatherMultiplier=1,meleeSplash;
         public EntityKind kind; public Tags tags; public Cost cost,repairCost;
         public float hp=100, radius=.4f, width=1, depth=1, speed=4, vision=18;
@@ -42,7 +43,7 @@ namespace Frontier
         public Tags tags; public float attack=0,health=0,gather=0,speed=0; public ResourceKind resource;
         public string[] units=Array.Empty<string>(); public int bankLimit; public float bankIncome;
         public float caravanProfit,manufactureSpeed,buildSpeed,trainSpeed;
-        public float factoryIncome,factoryArtillerySpeed;
+        public float factoryIncome,factoryArtillerySpeed,navalRepair;
         public int villagerLimit; public float autoVillagerSpeed;
     }
     [Serializable] public class CardDef
@@ -81,6 +82,8 @@ namespace Frontier
         public AgeChoiceDef[] ageChoices=Array.Empty<AgeChoiceDef>();
         public ManufactureRecipeDef[] manufactureRecipes=Array.Empty<ManufactureRecipeDef>();
         public LandmarkRules landmarks;
+        public NeutralAllyDef[] neutralAllies=Array.Empty<NeutralAllyDef>();
+        public MapObjectiveDef[] mapObjectives=Array.Empty<MapObjectiveDef>();
         public AiDifficultyDef[] aiDifficulties=Array.Empty<AiDifficultyDef>();
         public AiDifficultyDef Difficulty(string id) => Array.Find(aiDifficulties??Array.Empty<AiDifficultyDef>(),x=>x!=null&&x.id==id);
         public int deckCapacity=8,populationLimit=200; public float initialXp=150,xpIncrease=75,constructionRefund=.75f;
@@ -158,7 +161,7 @@ namespace Frontier
         public readonly Dictionary<int,Vector2> enemyMemory=new Dictionary<int,Vector2>();
         public Cost gathered,spent,refunded,passiveIncome,tradeIncome; public int kills,losses,trained,shipsSent,treasuresClaimed,guardiansDefeated; public readonly List<string> ageHistory=new List<string>();
     }
-    public class GameCommand
+    [Serializable] public class GameCommand
     {
         public int player; public CommandKind kind; public int[] actors=Array.Empty<int>(); public OrderKind order;
         public Vector2 point; public int target,index,count=1; public string item="",choice=""; public bool append;

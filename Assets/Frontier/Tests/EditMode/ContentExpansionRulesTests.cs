@@ -10,7 +10,8 @@ namespace Frontier.Tests
             var r=Catalog.Load();CollectionAssert.AreEqual(new[]{"coast","river","france","ottoman","wayfarer","highland"},r.civs.Select(c=>c.id));
             foreach(var civ in r.civs)
             {
-                var available=DeckLibrary.Available(r,civ.id);Assert.That(available.Count,Is.InRange(40,50),civ.id);
+                var available=DeckLibrary.Available(r,civ.id);Assert.That(available.Count,Is.InRange(43,53),civ.id);
+                CollectionAssert.IsSubsetOf(new[]{"naval_transport","naval_frigate","naval_monitor"},available.Select(c=>c.id),civ.id+" needs the shared harbor support cards");
                 var presets=new[]{"economy","military","technology"}.Select(name=>DeckLibrary.Preset(r,civ.id,name)).ToArray();
                 foreach(var deck in presets)
                 {

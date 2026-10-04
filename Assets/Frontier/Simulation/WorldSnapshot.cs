@@ -27,7 +27,7 @@ namespace Frontier
     [Serializable] public sealed class SocketSnapshot {public int entity,waypoint;}
     [Serializable] public sealed class WorldSnapshot
     {
-        public const int CurrentSchema=1;
+        public const int CurrentSchema=2;
         public int schema=CurrentSchema,seed,maxAge,winner,nextId,caravanWaypoint,caravanDirection;
         public string rulesHash,mapId;public float time,fogAt,nextEvacuation;public bool paused;
         public PlayerSnapshot[] players;public EntitySnapshot[] entities;
@@ -36,6 +36,7 @@ namespace Frontier
         public SocketSnapshot[] sockets;public TreasureSnapshot[] treasures;
         public Vector2 caravanPosition;public int[] discoveries0,discoveries1,pendingEvacuations,fineRecoveryQueue;
         public IncomeSnapshot[] incomes;
+        public NeutralAllianceState[] neutralAllies;public MapObjectiveState mapObjective;
     }
     public static class SnapshotCodec
     {
@@ -61,7 +62,7 @@ namespace Frontier
                 players=new PlayerSnapshot[Players.Length],entities=new EntitySnapshot[Entities.Count],events=Events.ToArray(),
                 projectiles=Projectiles.ToArray(),terrainObstacles=TerrainObstacles.ToArray(),landNavigation=Navigation.CaptureState(),
                 waterNavigation=WaterNavigation.CaptureState(),visibility=Fog.CaptureState(),caravanPosition=CaravanPosition,
-                caravanWaypoint=caravanWaypoint,caravanDirection=caravanDirection};
+                caravanWaypoint=caravanWaypoint,caravanDirection=caravanDirection,neutralAllies=CaptureNeutralAllies(),mapObjective=CaptureMapObjective()};
             for(int i=0;i<Players.Length;i++)
             {
                 var p=Players[i];snapshot.players[i]=new PlayerSnapshot{state=p,technologies=new List<string>(p.technologies).ToArray(),sentCards=new List<string>(p.sentCards).ToArray(),
@@ -116,6 +117,7 @@ namespace Frontier
             foreach(int id in s.fineRecoveryQueue)
             {var e=world.Get(id);var request=new FineRecoveryRequest{unit=e,order=e.orders.Count>0?e.orders.Peek():null};world.pendingFineRecoveries.Add(id,request);world.pendingFineRecoveryQueue.Enqueue(request);}
             foreach(var item in s.incomes){world.gatherLog[item.source]=item.amount;world.gatherLogTarget[item.source]=item.target;world.incomeKinds[item.source]=item.kind;}
+            world.RestoreNeutralAllies(s.neutralAllies);world.RestoreMapObjective(s.mapObjective);
             world.RebuildSpatial();return world;
         }
         public static void ValidateSnapshot(RuleCatalog rules,WorldSnapshot s)
@@ -158,15 +160,18 @@ namespace Frontier
                 }
             }
             Require(s.nextId>max&&s.nextId<int.MaxValue,"next entity id");
+            ValidateTransportSnapshot(rules,s.entities);
+            ValidateNeutralAlliesSnapshot(rules,s.neutralAllies,s.entities,s.players);
+            ValidateMapObjectiveSnapshot(rules,s.mapObjective,s.entities,s.mapId,s.winner,s.seed);
             Require(s.events!=null&&s.projectiles!=null&&s.terrainObstacles!=null&&s.visibility?.Length==32768&&s.sockets!=null&&s.treasures!=null&&s.incomes!=null,"world collections");
             Require(s.discoveries0!=null&&s.discoveries1!=null&&s.pendingEvacuations!=null&&s.fineRecoveryQueue!=null,"world queues");
             foreach(var saved in s.entities){var e=saved.state;Require(e.garrisonedIn==0||ids.Contains(e.garrisonedIn),"garrison reference");foreach(int id in saved.occupants)Require(ids.Contains(id),"occupant reference");}
             foreach(int id in s.pendingEvacuations)Require(ids.Contains(id),"evacuation reference");
             var recoveryIds=new HashSet<int>();foreach(int id in s.fineRecoveryQueue)Require(ids.Contains(id)&&recoveryIds.Add(id),"recovery queue");
             foreach(var t in s.treasures)Require(t!=null&&ids.Contains(t.entity)&&t.definition>=0&&t.definition<(rules.landmarks?.treasures?.Length??0)&&t.guards!=null,"treasure");
-            foreach(var socket in s.sockets)Require(socket!=null&&ids.Contains(socket.entity)&&socket.waypoint>=0&&socket.waypoint<(MapLayout.Create(s.mapId).HasWater?MapLayout.Create(s.mapId).TradeRoute.Length:rules.landmarks.route.Length),"trade socket");
+            foreach(var socket in s.sockets)Require(socket!=null&&ids.Contains(socket.entity)&&socket.waypoint>=0&&socket.waypoint<(MapLayout.Create(s.mapId,s.seed).HasWater?MapLayout.Create(s.mapId,s.seed).TradeRoute.Length:rules.landmarks.route.Length),"trade socket");
             Require(SnapshotCodec.Finite(s.caravanPosition)&&(s.caravanDirection==1||s.caravanDirection==-1),"caravan");
-            int routeLength=MapLayout.Create(s.mapId).HasWater?MapLayout.Create(s.mapId).TradeRoute.Length:rules.landmarks?.route?.Length??0;
+            int routeLength=MapLayout.Create(s.mapId,s.seed).HasWater?MapLayout.Create(s.mapId,s.seed).TradeRoute.Length:rules.landmarks?.route?.Length??0;
             Require(routeLength<2||s.caravanWaypoint>=0&&s.caravanWaypoint<routeLength,"caravan waypoint");
         }
     }

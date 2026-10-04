@@ -11,7 +11,7 @@ namespace Frontier
 {
     [Serializable] public sealed class CaptureMetadata
     {
-        public int schemaVersion = 2, eventSchemaVersion = SimEvent.CurrentSchemaVersion;
+        public int schemaVersion = 3, eventSchemaVersion = SimEvent.CurrentSchemaVersion;
         public string pngFile, pngSha256, utc, appVersion, buildGuid, unityVersion, matchId, requestMatchId;
         public int requestFrame, captureFrame, width, height, seed;
         public float requestWorldTime, worldTime;
@@ -25,6 +25,9 @@ namespace Frontier
         public string aiDifficulty="",mapId="";
         public float aiDecisionSeconds,aiArmySeconds;
         public CaptureProduction[] production = Array.Empty<CaptureProduction>();
+        public bool generatedTerrain,requiresTransport;public int mapGeneratorVersion;
+        public MapObjectiveState objective;public CaptureUnit[] units=Array.Empty<CaptureUnit>();
+        public CaptureNeutralService[] neutralServices=Array.Empty<CaptureNeutralService>();
 
         // Detached player-owned state; this does not refresh UI or inspect enemy information.
         public static CaptureMetadata Read(GameController game)
@@ -48,7 +51,8 @@ namespace Frontier
                 }
             };
             if (w == null || game.InMenu) return result;
-            result.mapId=w.MapId;
+            result.mapId=w.MapId;result.generatedTerrain=w.Layout.Generated;result.requiresTransport=w.Layout.RequiresTransport;result.mapGeneratorVersion=w.Layout.Generated?MapGeneration.Version:0;
+            result.objective=SnapshotCodec.Clone(w.MapObjective);
             result.aiDifficulty=game.Simulation?.Difficulty.Id??"";
             result.aiDecisionSeconds=game.Simulation?.Difficulty.DecisionSeconds??0;
             result.aiArmySeconds=game.Simulation?.Difficulty.ArmySeconds??0;
@@ -73,9 +77,17 @@ namespace Frontier
                 buildings.Add(b);
             }
             result.production = buildings.ToArray();
+            var units=new List<CaptureUnit>();foreach(var unit in w.Entities)if(unit.Alive&&unit.owner==0&&unit.def.kind==EntityKind.Unit)
+            {var order=unit.orders.Count>0?unit.orders.Peek():null;units.Add(new CaptureUnit{entity=unit.id,definition=unit.def.id,status=unit.status,position=unit.position,hp=unit.hp,garrisonedIn=unit.garrisonedIn,cargo=unit.occupants.ToArray(),load=unit.def.transportShip?w.TransportLoad(unit):0,capacity=unit.def.transportCapacity,order=order?.kind.ToString()??"",target=order?.target??0,destination=order?.point??unit.position});}result.units=units.ToArray();
+            var neutral=new List<CaptureNeutralService>();foreach(var state in w.NeutralAllies)if(w.IsVisible(0,w.Get(state.site)))
+            {var job=state.owner==0&&state.jobs.Count>0?state.jobs[0]:null;neutral.Add(new CaptureNeutralService{id=state.id,site=state.site,owner=state.owner,claimant=state.claimant,contested=state.contested,claimProgress=state.claimant==0?state.claimProgress:0,service=job?.kind??"",item=job?.item??"",elapsed=job?.elapsed??0,duration=job?.duration??0});}result.neutralServices=neutral.ToArray();
             return result;
         }
     }
+    [Serializable] public sealed class CaptureUnit
+    {public int entity,garrisonedIn,load,capacity,target;public string definition,status,order;public Vector2 position,destination;public float hp;public int[] cargo;}
+    [Serializable] public sealed class CaptureNeutralService
+    {public string id,service,item;public int site,owner,claimant;public bool contested;public float claimProgress,elapsed,duration;}
     [Serializable] public sealed class CaptureCamera
     { public Vector2 focus, pointer; public bool applicationFocused; public float orthographicSize; }
     [Serializable] public sealed class CaptureProduction

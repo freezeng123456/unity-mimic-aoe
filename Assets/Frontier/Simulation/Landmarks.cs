@@ -31,9 +31,11 @@ namespace Frontier
                 var e=Spawn("trade_socket",-1,MapSocketPosition(socket));TradeSockets.Add(new TradeSocketState{entity=e.id,waypoint=MapSocketWaypoint(socket)});
                 Emit("TradeSocket",-1,e.id,"Route waypoint "+MapSocketWaypoint(socket));
             }
+            int treasureIndex=0;
             foreach(var definition in rules.treasures)
             {
-                var e=Spawn(definition.entity,-1,MapLandPosition(definition.entity,definition.position));var treasure=new TreasureState{entity=e.id,definition=definition};Treasures.Add(treasure);
+                Vector2 desired=Layout.Generated&&Layout.ObjectiveSites.Length>0?Layout.ObjectiveSites[treasureIndex%Layout.ObjectiveSites.Length]:definition.position;treasureIndex++;
+                var e=Spawn(definition.entity,-1,MapLandPosition(definition.entity,desired));var treasure=new TreasureState{entity=e.id,definition=definition};Treasures.Add(treasure);
                 for(int i=0;i<definition.guards;i++)
                 {
                     var offset=new Vector2(i%2==0?-2.5f:2.5f,2.5f+i/2*1.5f);

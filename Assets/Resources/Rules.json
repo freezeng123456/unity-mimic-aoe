@@ -2282,7 +2282,7 @@
     {
       "id": "dock",
       "name": "River Dock",
-      "description": "Build on the riverbank. Trains fishing boats and gunboats through its water-side exit.",
+      "description": "Shoreline harbor. Builds fishing boats, gunboats and transports; later eras unlock frigates and monitors. Ships repair at a paid docking berth.",
       "producer": "",
       "civilization": "",
       "kind": 1,
@@ -2373,7 +2373,11 @@
       "excludedCivilizations": [],
       "civilian": true,
       "waterborne": true,
-      "fishingBoat": true
+      "fishingBoat": true,
+      "repairCost": {
+        "wood": 70,
+        "coin": 0
+      }
     },
     {
       "id": "gunboat",
@@ -2422,7 +2426,11 @@
       "trainXp": 18,
       "killXp": 35,
       "waterborne": true,
-      "civilian": false
+      "civilian": false,
+      "repairCost": {
+        "wood": 150,
+        "coin": 100
+      }
     },
     {
       "id": "fish",
@@ -2470,7 +2478,11 @@
       "buildXp": 0,
       "trainXp": 0,
       "killXp": 0,
-      "waterborne": true
+      "waterborne": true,
+      "repairCost": {
+        "wood": 0,
+        "coin": 0
+      }
     },
     {
       "id": "factory",
@@ -2754,6 +2766,370 @@
         "wood": 100,
         "coin": 600
       }
+    },
+    {
+      "id": "transport_ship",
+      "name": "Troop Transport",
+      "description": "Unarmed transport. Carries 14 population slots of friendly land units. Board at a reachable shore and choose an open landing. Sinking loses all passengers. Project rules P.",
+      "producer": "dock",
+      "civilization": "",
+      "kind": 0,
+      "tags": 2048,
+      "cost": {
+        "wood": 200,
+        "coin": 75
+      },
+      "hp": 650,
+      "radius": 1.05,
+      "width": 1,
+      "depth": 1,
+      "speed": 3.2,
+      "vision": 22,
+      "damage": 0,
+      "meleeDamage": 0,
+      "siegeDamage": 0,
+      "range": 0,
+      "minRange": 0,
+      "period": 3,
+      "windup": 0.35,
+      "projectileSpeed": 25,
+      "splash": 0,
+      "damageKind": 1,
+      "meleeResist": 0,
+      "rangedResist": 0,
+      "siegeResist": 0,
+      "time": 45,
+      "population": 3,
+      "capacity": 0,
+      "age": 2,
+      "batch": 1,
+      "garrison": 0,
+      "deploy": false,
+      "bonuses": [],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 0,
+      "trainXp": 20,
+      "killXp": 40,
+      "waterborne": true,
+      "civilian": true,
+      "transportShip": true,
+      "transportCapacity": 14,
+      "repairCost": {
+        "wood": 200,
+        "coin": 75
+      }
+    },
+    {
+      "id": "frigate",
+      "name": "Frigate",
+      "description": "Heavy fleet fighter. Durable broadside batteries excel against naval vessels. Slower and more expensive than a gunboat. Project rules P.",
+      "producer": "dock",
+      "civilization": "",
+      "kind": 0,
+      "tags": 2048,
+      "cost": {
+        "wood": 350,
+        "coin": 250
+      },
+      "hp": 1200,
+      "radius": 1.25,
+      "width": 1,
+      "depth": 1,
+      "speed": 2.9,
+      "vision": 22,
+      "damage": 52,
+      "meleeDamage": 0,
+      "siegeDamage": 65,
+      "range": 15,
+      "minRange": 0,
+      "period": 3.6,
+      "windup": 0.6,
+      "projectileSpeed": 25,
+      "splash": 1.25,
+      "damageKind": 1,
+      "meleeResist": 0,
+      "rangedResist": 0,
+      "siegeResist": 0,
+      "time": 65,
+      "population": 5,
+      "capacity": 0,
+      "age": 3,
+      "batch": 1,
+      "garrison": 0,
+      "deploy": false,
+      "bonuses": [
+        {
+          "tags": 2048,
+          "multiplier": 1.6
+        }
+      ],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 0,
+      "trainXp": 35,
+      "killXp": 60,
+      "waterborne": true,
+      "civilian": false,
+      "repairCost": {
+        "wood": 350,
+        "coin": 250
+      }
+    },
+    {
+      "id": "monitor",
+      "name": "Bombardment Monitor",
+      "description": "Slow siege vessel with long range, minimum range and a heavy reload. Effective against shore buildings; vulnerable to nearby fleet attackers. Project rules P.",
+      "producer": "dock",
+      "civilization": "",
+      "kind": 0,
+      "tags": 2048,
+      "cost": {
+        "wood": 400,
+        "coin": 350
+      },
+      "hp": 850,
+      "radius": 1.2,
+      "width": 1,
+      "depth": 1,
+      "speed": 2.2,
+      "vision": 22,
+      "damage": 28,
+      "meleeDamage": 0,
+      "siegeDamage": 220,
+      "range": 27,
+      "minRange": 7,
+      "period": 7.0,
+      "windup": 1.0,
+      "projectileSpeed": 19,
+      "splash": 1.7,
+      "damageKind": 1,
+      "meleeResist": 0,
+      "rangedResist": 0,
+      "siegeResist": 0,
+      "time": 80,
+      "population": 6,
+      "capacity": 0,
+      "age": 4,
+      "batch": 1,
+      "garrison": 0,
+      "deploy": false,
+      "bonuses": [],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 0,
+      "trainXp": 40,
+      "killXp": 65,
+      "waterborne": true,
+      "civilian": false,
+      "repairCost": {
+        "wood": 400,
+        "coin": 350
+      }
+    },
+    {
+      "id": "objective_cart",
+      "name": "Chartered Caravan",
+      "description": "Objective wagon. Needs a nearby friendly military escort to advance. Destruction or the deadline loses the escort objective.",
+      "producer": "",
+      "civilization": "",
+      "kind": 0,
+      "tags": 0,
+      "cost": {},
+      "hp": 600,
+      "radius": 0.7,
+      "width": 1,
+      "depth": 1,
+      "speed": 2.8,
+      "vision": 15,
+      "damage": 0,
+      "meleeDamage": 0,
+      "siegeDamage": 0,
+      "range": 0,
+      "minRange": 0,
+      "period": 3,
+      "windup": 0.35,
+      "projectileSpeed": 0,
+      "splash": 0,
+      "damageKind": 0,
+      "meleeResist": 0,
+      "rangedResist": 0,
+      "siegeResist": 0,
+      "time": 30,
+      "population": 0,
+      "capacity": 0,
+      "age": 1,
+      "batch": 1,
+      "garrison": 0,
+      "deploy": false,
+      "bonuses": [],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 0,
+      "trainXp": 0,
+      "killXp": 18,
+      "civilian": true
+    },
+    {
+      "id": "ally_river_guard",
+      "name": "River Guild Marksman",
+      "description": "Original riverbank merchants' allied marksman. Recruited through a paid settlement treaty, never a normal barracks.",
+      "producer": "",
+      "civilization": "",
+      "kind": 0,
+      "tags": 5,
+      "cost": {
+        "food": 70,
+        "coin": 70
+      },
+      "hp": 180,
+      "radius": 0.42,
+      "width": 1,
+      "depth": 1,
+      "speed": 4.2,
+      "vision": 20,
+      "damage": 19,
+      "meleeDamage": 0,
+      "siegeDamage": 10,
+      "range": 16,
+      "minRange": 0,
+      "period": 3,
+      "windup": 0.35,
+      "projectileSpeed": 25,
+      "splash": 0,
+      "damageKind": 1,
+      "meleeResist": 0,
+      "rangedResist": 0,
+      "siegeResist": 0,
+      "time": 28,
+      "population": 1,
+      "capacity": 0,
+      "age": 2,
+      "batch": 1,
+      "garrison": 0,
+      "deploy": false,
+      "bonuses": [],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 0,
+      "trainXp": 8,
+      "killXp": 16,
+      "waterborne": false,
+      "civilian": false,
+      "repairCost": {}
+    },
+    {
+      "id": "ally_highland_guard",
+      "name": "Highland Covenant Guard",
+      "description": "Original mountain allies' resilient spear guard. Strong against cavalry; close combat requires reaching the target.",
+      "producer": "",
+      "civilization": "",
+      "kind": 0,
+      "tags": 3,
+      "cost": {
+        "food": 100,
+        "coin": 40
+      },
+      "hp": 260,
+      "radius": 0.42,
+      "width": 1,
+      "depth": 1,
+      "speed": 4.4,
+      "vision": 20,
+      "damage": 20,
+      "meleeDamage": 0,
+      "siegeDamage": 26,
+      "range": 1.5,
+      "minRange": 0,
+      "period": 1.8,
+      "windup": 0.35,
+      "projectileSpeed": 0,
+      "splash": 0,
+      "damageKind": 0,
+      "meleeResist": 0,
+      "rangedResist": 0,
+      "siegeResist": 0,
+      "time": 32,
+      "population": 1,
+      "capacity": 0,
+      "age": 2,
+      "batch": 1,
+      "garrison": 0,
+      "deploy": false,
+      "bonuses": [
+        {
+          "tags": 8,
+          "multiplier": 3
+        }
+      ],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 0,
+      "trainXp": 8,
+      "killXp": 16,
+      "waterborne": false,
+      "civilian": false,
+      "repairCost": {}
+    },
+    {
+      "id": "ally_coastal_guard",
+      "name": "Coastal League Gunner",
+      "description": "Original coastal sailors' gunner. Shorter ranged fire and anti-artillery training give the third settlement a distinct role.",
+      "producer": "",
+      "civilization": "",
+      "kind": 0,
+      "tags": 1,
+      "cost": {
+        "food": 60,
+        "coin": 100
+      },
+      "hp": 210,
+      "radius": 0.42,
+      "width": 1,
+      "depth": 1,
+      "speed": 4.4,
+      "vision": 20,
+      "damage": 22,
+      "meleeDamage": 0,
+      "siegeDamage": 10,
+      "range": 12,
+      "minRange": 0,
+      "period": 3,
+      "windup": 0.35,
+      "projectileSpeed": 25,
+      "splash": 0,
+      "damageKind": 1,
+      "meleeResist": 0,
+      "rangedResist": 0,
+      "siegeResist": 0,
+      "time": 35,
+      "population": 1,
+      "capacity": 0,
+      "age": 2,
+      "batch": 1,
+      "garrison": 0,
+      "deploy": false,
+      "bonuses": [
+        {
+          "tags": 64,
+          "multiplier": 2
+        }
+      ],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 0,
+      "trainXp": 8,
+      "killXp": 16,
+      "waterborne": false,
+      "civilian": false,
+      "repairCost": {}
     }
   ],
   "techs": [
@@ -6151,6 +6527,95 @@
       ],
       "health": 0.5,
       "attack": 0.5
+    },
+    {
+      "id": "naval_hullwork",
+      "name": "Reinforced Hulls",
+      "description": "All vessels gain 20% maximum health. Existing health preserves its proportion. Project rules P.",
+      "building": "dock",
+      "age": 3,
+      "cost": {
+        "wood": 200,
+        "coin": 200
+      },
+      "time": 45,
+      "tags": 2048,
+      "health": 0.2
+    },
+    {
+      "id": "naval_gunnery",
+      "name": "Fleet Gunnery",
+      "description": "Naval weapons deal 15% more damage. Project rules P.",
+      "building": "dock",
+      "age": 3,
+      "cost": {
+        "food": 150,
+        "coin": 250
+      },
+      "time": 50,
+      "tags": 2048,
+      "attack": 0.15
+    },
+    {
+      "id": "careening",
+      "name": "Careening Crews",
+      "description": "Paid harbor repairs restore health 25% faster; resource cost per health is unchanged. Project rules P.",
+      "building": "dock",
+      "age": 2,
+      "cost": {
+        "wood": 150,
+        "coin": 100
+      },
+      "time": 35,
+      "navalRepair": 0.25
+    },
+    {
+      "id": "ally_river_logistics",
+      "name": "River Guild Logistics",
+      "description": "Allied River Guild Marksmen move 15% faster. A paid settlement service. Project rules P.",
+      "building": "",
+      "age": 2,
+      "cost": {
+        "food": 150,
+        "coin": 150
+      },
+      "time": 35,
+      "units": [
+        "ally_river_guard"
+      ],
+      "speed": 0.15
+    },
+    {
+      "id": "ally_highland_drill",
+      "name": "Highland Covenant Drill",
+      "description": "Allied Highland Covenant Guards gain 20% maximum health. A paid settlement service. Project rules P.",
+      "building": "",
+      "age": 2,
+      "cost": {
+        "food": 200,
+        "coin": 100
+      },
+      "time": 40,
+      "units": [
+        "ally_highland_guard"
+      ],
+      "health": 0.2
+    },
+    {
+      "id": "ally_coastal_scopes",
+      "name": "Coastal League Sights",
+      "description": "Allied Coastal League Gunners deal 20% more damage. A paid settlement service. Project rules P.",
+      "building": "",
+      "age": 2,
+      "cost": {
+        "wood": 100,
+        "coin": 200
+      },
+      "time": 40,
+      "units": [
+        "ally_coastal_guard"
+      ],
+      "attack": 0.2
     }
   ],
   "cards": [
@@ -7814,6 +8279,39 @@
       "unit": "factory_wagon",
       "tech": "",
       "travel": 40
+    },
+    {
+      "id": "naval_transport",
+      "name": "Chartered Transport",
+      "description": "One Troop Transport delivered through a completed harbor. Requires available housing and a clear water launch. Project rules P.",
+      "civilization": "",
+      "age": 2,
+      "unit": "transport_ship",
+      "count": 1,
+      "travel": 45,
+      "repeatable": false
+    },
+    {
+      "id": "naval_frigate",
+      "name": "Fleet Reinforcement",
+      "description": "One Frigate delivered through a completed harbor. Requires available housing and a clear water launch. Project rules P.",
+      "civilization": "",
+      "age": 3,
+      "unit": "frigate",
+      "count": 1,
+      "travel": 45,
+      "repeatable": false
+    },
+    {
+      "id": "naval_monitor",
+      "name": "Coastal Siege Support",
+      "description": "One Bombardment Monitor delivered through a completed harbor. Requires available housing and a clear water launch. Project rules P.",
+      "civilization": "",
+      "age": 4,
+      "unit": "monitor",
+      "count": 1,
+      "travel": 45,
+      "repeatable": false
     }
   ],
   "ages": [
@@ -8996,6 +9494,74 @@
       "unit": "abus",
       "count": 4,
       "crates": {}
+    }
+  ],
+  "neutralAllies": [
+    {
+      "id": "river_guild",
+      "name": "Riverbank Merchants",
+      "socketIndex": 0,
+      "unit": "ally_river_guard",
+      "tech": "ally_river_logistics",
+      "allianceCost": {
+        "wood": 100,
+        "coin": 100
+      },
+      "allianceSeconds": 8,
+      "controlRadius": 9,
+      "lossSeconds": 15
+    },
+    {
+      "id": "highland_covenant",
+      "name": "Highland Covenant",
+      "socketIndex": 1,
+      "unit": "ally_highland_guard",
+      "tech": "ally_highland_drill",
+      "allianceCost": {
+        "food": 150,
+        "coin": 100
+      },
+      "allianceSeconds": 10,
+      "controlRadius": 9,
+      "lossSeconds": 15
+    },
+    {
+      "id": "coastal_league",
+      "name": "Coastal League",
+      "socketIndex": 2,
+      "unit": "ally_coastal_guard",
+      "tech": "ally_coastal_scopes",
+      "allianceCost": {
+        "wood": 150,
+        "coin": 100
+      },
+      "allianceSeconds": 10,
+      "controlRadius": 9,
+      "lossSeconds": 15
+    }
+  ],
+  "mapObjectives": [
+    {
+      "id": "capture_harbor",
+      "name": "Capture the Harbor",
+      "holdSeconds": 90,
+      "deadline": 900,
+      "radius": 9
+    },
+    {
+      "id": "defend_bridge",
+      "name": "Defend the Bridge",
+      "holdSeconds": 180,
+      "deadline": 600,
+      "radius": 9,
+      "failureSeconds": 15
+    },
+    {
+      "id": "escort_caravan",
+      "name": "Escort the Caravan",
+      "deadline": 600,
+      "radius": 9,
+      "escortUnit": "objective_cart"
     }
   ]
 }

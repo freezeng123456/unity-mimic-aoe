@@ -35,10 +35,19 @@ namespace Frontier
                 return scoreA!=scoreB?scoreA.CompareTo(scoreB):a.age!=b.age?a.age.CompareTo(b.age):string.CompareOrdinal(a.id,b.id);
             });
             var result=new List<string>();for(int i=0;i<Math.Min(rules.deckCapacity,cards.Count);i++)result.Add(cards[i].id);
+            // New specialist reinforcements must not crowd every opening option
+            // out of a finite military or technology preset.
+            if(result.Count>0&&!result.Exists(id=>rules.Card(id).age==1))
+            {
+                var opening=cards.Find(card=>card.age==1);if(opening!=null)result[result.Count-1]=opening.id;
+            }
             // Keep a late-game option even in economy and technology decks with many early upgrades.
             if(result.Count>0&&!result.Exists(id=>rules.Card(id).age==5))
             {
-                var late=cards.Find(card=>card.age==5);if(late!=null)result[result.Count-1]=late.id;
+                var late=cards.Find(card=>card.age==5);
+                int replace=result.FindLastIndex(id=>rules.Card(id).age!=1);
+                if(replace<0&&result.Count>1)replace=result.Count-1;
+                if(late!=null&&replace>=0)result[replace]=late.id;
             }
             return result;
         }

@@ -19,7 +19,7 @@ namespace Frontier
         public float selectedAt;
     }
     [Serializable] public sealed class AiWaterEconomySnapshot
-    { public int surveyor;public float patrolAt; }
+    { public int surveyor;public float patrolAt;public AiNavalOperationsSnapshot navalOperations; }
     [Serializable] public sealed class AiCivilizationEconomySnapshot
     { public float manufactureAt; }
     [Serializable] public sealed class AiSnapshot

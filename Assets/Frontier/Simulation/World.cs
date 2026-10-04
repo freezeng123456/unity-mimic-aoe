@@ -28,16 +28,17 @@ namespace Frontier
         {
             Rules=rules??throw new ArgumentNullException(nameof(rules));Seed=seed;MaxAge=Mathf.Clamp(maxAge,1,rules.ages.Length);
             MapId=mapId??MapTopology.Frontier;if(!MapTopology.IsValid(MapId))throw new ArgumentException("Unknown map: "+MapId);
-            Layout=MapLayout.Create(MapId);
+            Layout=MapLayout.Create(MapId,Seed);
             Navigation=new GridNavigation();WaterNavigation=new GridNavigation();Fog=new Visibility();
             TradeRoute=MapTradeRoute();InitializeNavigationTerrain();
             Players=new[]{new PlayerState{id=0,civilization=civ0},new PlayerState{id=1,civilization=civ1}};
             if(Rules.Civ(civ0)==null||Rules.Civ(civ1)==null)throw new ArgumentException("Unknown civilization");
-            InitializeEconomy();InitializeMap();InitializeLandmarks();Fog.Tick(Entities);RecordLandmarkDiscoveries();RebuildSpatial();
+            InitializeEconomy();InitializeMap();InitializeLandmarks();InitializeNeutralAllies();Fog.Tick(Entities);RecordLandmarkDiscoveries();RebuildSpatial();
             Emit("MatchStarted",-1,0,$"Seed {Seed}; map {MapId}; age cap {MaxAge}; {civ0} vs {civ1}; project rules P v0.2");
         }
         private void InitializeMap()
         {
+            if(Layout.Generated){InitializeGeneratedMap();return;}
             EntityState Place(string definition,int owner,Vector2 position)=>Spawn(definition,owner,MapLandPosition(definition,position));
             // Mirrored resources, two outcrop walls with a narrow middle passage and wide flanks.
             for(int p=0;p<2;p++)
@@ -91,7 +92,8 @@ namespace Frontier
             if(e.owner>=0&&e.def.kind!=EntityKind.Resource)Players[e.owner].losses++;
             if(killerOwner>=0&&killerOwner<2&&e.owner!=killerOwner&&e.def.kind!=EntityKind.Resource)
             {if(Guardian(e))Players[killerOwner].guardiansDefeated++;else Players[killerOwner].kills++;AwardXp(killerOwner,e.def.killXp,e.id,"Combat bounty");}
-            if(e.occupants.Count>0)EvacuateDestroyedBuilding(e);
+            bool removedTransport=HandleTransportRemoval(e,killerOwner);
+            if(e.occupants.Count>0&&!removedTransport)EvacuateDestroyedBuilding(e);
             Emit("Death",e.owner,e.id,e.def.name+" lost",0,killerOwner);
         }
         public bool IsVisible(int player,EntityState e)=>e!=null&&e.Alive&&e.garrisonedIn==0&&Fog.IsVisible(player,e);
@@ -107,15 +109,19 @@ namespace Frontier
         public CommandResult Issue(GameCommand c)
         {
             if(c==null||c.player<0||c.player>=2)return CommandResult.Fail("Invalid player");
+            if(!System.Enum.IsDefined(typeof(CommandKind),c.kind)||!SnapshotCodec.Finite(c.point))return CommandResult.Fail("Invalid command or destination");
+            c.actors??=Array.Empty<int>();
             if(Winner>=0)return CommandResult.Fail("Match has ended");
             if(Paused)return CommandResult.Fail("Resume before issuing orders");
-            if(c.kind==CommandKind.Resign){Players[c.player].resigned=true;Winner=1-c.player;Emit("Resign",c.player,0,"Player resigned");return CommandResult.Ok("Resigned");}
+            if(c.kind==CommandKind.Resign){Players[c.player].resigned=true;Winner=1-c.player;FinalizeMapObjectiveForMatchEnd();Emit("Resign",c.player,0,"Player resigned");return CommandResult.Ok("Resigned");}
             if(c.kind==CommandKind.ToggleMode)
             {int n=0;foreach(int id in c.actors){var e=Get(id);if(e!=null&&e.Alive&&e.owner==c.player&&e.def.meleeDamage>0&&e.def.range>2){e.forceMelee=!e.forceMelee;n++;}}return n>0?CommandResult.Ok("Combat mode changed"):CommandResult.Fail("No mode-switching units selected");}
             if(c.kind==CommandKind.TradeMode)return SetTradeMode(c);
             if(c.kind==CommandKind.TradeRoute)return SetCaravanRoute(c);
             if(c.kind==CommandKind.Manufacture)return StartManufacture(c);
             if(c.kind==CommandKind.ToggleShield)return ToggleShield(c);
+            if(TryHandleNavalTransportCommand(c,out var navalResult))return navalResult;
+            if(c.kind==CommandKind.NeutralAlliance||c.kind==CommandKind.NeutralRecruit||c.kind==CommandKind.NeutralResearch)return IssueNeutralCommand(c);
             if(c.kind==CommandKind.Order)return IssueOrders(c);
             if(c.kind==CommandKind.Rally)return SetRally(c);
             if(c.kind==CommandKind.Ungarrison)
@@ -128,6 +134,8 @@ namespace Frontier
         }
         private CommandResult IssueOrders(GameCommand c)
         {
+            if(!System.Enum.IsDefined(typeof(OrderKind),c.order))return CommandResult.Fail("Invalid order");
+            if(c.order==OrderKind.Embark||c.order==OrderKind.Disembark||c.order==OrderKind.TransportBerth||c.order==OrderKind.DockRepair)return CommandResult.Fail("Use the transport or harbor command");
             var actors=new List<EntityState>();
             foreach(int id in c.actors){var e=Get(id);if(e!=null&&e.Alive&&e.owner==c.player&&e.def.kind==EntityKind.Unit&&e.garrisonedIn==0){actors.Add(e);}}
             if(actors.Count==0)return CommandResult.Fail("Select mobile units");
@@ -139,7 +147,7 @@ namespace Frontier
             if((c.order==OrderKind.Build||c.order==OrderKind.Repair||c.order==OrderKind.Garrison)&&target.owner!=c.player)return CommandResult.Fail("Choose your own building");
             if(c.order==OrderKind.Manufacture&&(target.owner!=c.player||target.def.id!="workshop"||!target.Complete||!Rules.Civ(Players[c.player].civilization).manufacturing))return CommandResult.Fail("Choose your completed workshop");
             if(c.order==OrderKind.Gather&&!(target.def.resource!=ResourceKind.None&&(target.def.kind==EntityKind.Resource||target.owner==c.player)))return CommandResult.Fail("Choose a resource");
-            if(c.order==OrderKind.Garrison&&(target.def.garrison<=0||!target.Complete))return CommandResult.Fail("This building cannot garrison units");
+            if(c.order==OrderKind.Garrison&&(target.def.kind!=EntityKind.Building||target.def.garrison<=0||!target.Complete))return CommandResult.Fail("This building cannot garrison units");
             bool needsSlots=!targeted&&(c.order==OrderKind.Move||c.order==OrderKind.AttackMove);
             // Resolve both channels before mutating any order. Mixed selections
             // keep independent spacing and cannot partially accept a failed move.
@@ -208,12 +216,14 @@ namespace Frontier
             Time+=dt;foreach(var e in Entities)e.previousPosition=e.position;TickEvacuations();
             RebuildSpatial();
             var sw=System.Diagnostics.Stopwatch.StartNew();TickMovementCombat(dt);LastCombatMs=Mathf.Max(0,(float)sw.Elapsed.TotalMilliseconds-LastNavigationMs);
-            sw.Restart();TickEconomy(dt);TickLandmarks(dt);LastEconomyMs=(float)sw.Elapsed.TotalMilliseconds;
+            TickTransportCargo();
+            sw.Restart();TickEconomy(dt);TickLandmarks(dt);TickNeutralAllies(dt);TickMapObjectives(dt);LastEconomyMs=(float)sw.Elapsed.TotalMilliseconds;
             if(Time>=fogAt){fogAt=Time+.4f;Fog.Tick(Entities);RecordLandmarkDiscoveries();}
+            if(Winner>=0)return;
             for(int p=0;p<2;p++)
             {
                 bool remains=false;foreach(var e in Entities)if(e.Alive&&e.owner==p&&e.def.kind!=EntityKind.Resource){remains=true;break;}
-                if(!remains){Winner=1-p;Emit("MatchEnded",Winner,0,"All opposing units and buildings eliminated");break;}
+                if(!remains){Winner=1-p;FinalizeMapObjectiveForMatchEnd();Emit("MatchEnded",Winner,0,"All opposing units and buildings eliminated");break;}
             }
         }
         private void RebuildSpatial()

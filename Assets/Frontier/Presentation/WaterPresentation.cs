@@ -6,7 +6,7 @@ namespace Frontier
 {
     // Water art is a read-only view of the river map. It has no physics colliders,
     // pathfinding blockers, gathering authority or independently moving vessels.
-    public static class WaterPresentation
+    public static partial class WaterPresentation
     {
         public const float WaterLevel = MapTopology.WaterHeight;
         public const float BridgeDeckHeight = MapTopology.BridgeHeight;
@@ -124,6 +124,7 @@ namespace Frontier
                 case "dock":BuildDock(root,team);return true;
                 case "fishing_boat":BuildBoat(root,team,false);return true;
                 case "gunboat":BuildBoat(root,team,true);return true;
+                case "transport_ship":case "frigate":case "monitor":BuildFleetVessel(root,team,entity.def.id);return true;
                 case "fish":BuildFish(root);return true;
                 default:return false;
             }

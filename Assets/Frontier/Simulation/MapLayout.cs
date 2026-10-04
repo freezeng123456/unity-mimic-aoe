@@ -57,9 +57,14 @@ namespace Frontier
         }
     }
 
-    public sealed class MapLayout
+    public sealed partial class MapLayout
     {
         public readonly string Id;
+        public readonly int Seed;
+        public readonly bool Generated,RequiresTransport;
+        public readonly MapStartLayout[] Starts;
+        public readonly Vector2[] NeutralSites,ObjectiveSites,IslandLandingSites;
+        public readonly Vector2[][] LandingSites;
         public readonly bool HasWater;
         public readonly float WaterHeight;
         public readonly RiverChannel[] Channels;
@@ -71,13 +76,17 @@ namespace Frontier
         private readonly float[] shore;
         private readonly Vector2[] nearestCenter;
         private static readonly Dictionary<string,MapLayout> layouts=new Dictionary<string,MapLayout>();
-        private MapLayout(string id,RiverChannel[] channels,BridgeSpan[] bridges,Vector2[] fish,Vector2[] patrol,Vector2[] trade)
+        internal MapLayout(string id,RiverChannel[] channels,BridgeSpan[] bridges,Vector2[] fish,Vector2[] patrol,Vector2[] trade,
+            int seed=0,MapStartLayout[] starts=null,Vector2[] neutral=null,Vector2[] objectives=null,bool requiresTransport=false)
         {
+            Seed=seed;Generated=MapTopology.IsGenerated(id);RequiresTransport=requiresTransport;
+            Starts=starts??MapGeneration.AuthoredStarts();NeutralSites=neutral??Array.Empty<Vector2>();ObjectiveSites=objectives??Array.Empty<Vector2>();
             Id=id;HasWater=channels.Length>0;WaterHeight=id==MapTopology.Frontier?0:id==MapTopology.River?MapTopology.WaterHeight:-.4f;Channels=channels;Bridges=bridges;FishPoints=fish;PatrolPoints=patrol;TradeRoute=trade;
             if(HasWater&&id!=MapTopology.River)
             {
                 shore=new float[Resolution*Resolution];nearestCenter=new Vector2[shore.Length];
-                for(int z=0;z<Resolution;z++)for(int x=0;x<Resolution;x++)
+                if(Generated)MapGeneration.BuildShoreCache(Channels,shore,nearestCenter,Resolution,Cell);
+                else for(int z=0;z<Resolution;z++)for(int x=0;x<Resolution;x++)
                 {
                     int index=x+z*Resolution;Vector2 point=new Vector2(x*Cell,z*Cell);float best=float.MaxValue;Vector2 center=Vector2.zero;
                     foreach(var channel in Channels)for(int i=0;i<channel.Centers.Length-1;i++)
@@ -92,12 +101,16 @@ namespace Frontier
             }
             DockSites=id==MapTopology.River?new[]{new[]{new Vector2(55,28),new Vector2(55,100)},new[]{new Vector2(73,100),new Vector2(73,28)}}:
                 HasWater?new[]{BankSites(0),BankSites(1)}:new[]{Array.Empty<Vector2>(),Array.Empty<Vector2>()};
+            if(Generated){DockSites[1]=MapGeneration.Mirror(DockSites[0]);LandingSites=MapGeneration.Landings(this);IslandLandingSites=RequiresTransport?MapGeneration.IslandLandings(this):Array.Empty<Vector2>();}
+            else{LandingSites=new[]{Array.Empty<Vector2>(),Array.Empty<Vector2>()};IslandLandingSites=Array.Empty<Vector2>();}
         }
         public static MapLayout Create(string id)
         {
             if(!MapTopology.IsValid(id))throw new ArgumentException("Unknown map: "+id);
+            if(MapTopology.IsGenerated(id))return Create(id,314159);
             lock(layouts){if(!layouts.TryGetValue(id,out var layout)){layout=Build(id);layouts.Add(id,layout);}return layout;}
         }
+        public static MapLayout Create(string id,int seed)=>MapTopology.IsGenerated(id)?MapGeneration.Create(id,seed):Create(id);
         private float CachedShore(Vector2 point)
         {
             float px=Mathf.Clamp(point.x/Cell,0,Resolution-1),py=Mathf.Clamp(point.y/Cell,0,Resolution-1);
@@ -143,7 +156,7 @@ namespace Frontier
         }
         private Vector2[] BankSites(int player)
         {
-            var output=new List<Vector2>();float preferred=player==0?25:103;
+            var output=new List<Vector2>();float preferred=Generated?Starts[player].Town.y:player==0?25:103;
             // Pick integer building centers after testing every cell of the
             // same 4x4 footprint used by construction. Curved shores therefore
             // do not yield deceptively legal-looking, unbuildable AI targets.
@@ -153,6 +166,7 @@ namespace Frontier
                 for(int z=12;z<=116;z++)for(int x=12;x<=116;x++)
                 {
                     var point=new Vector2(x,z);float distance=SignedBankDistance(point);if(distance<2.6f||distance>4.4f||IsWater(point)||BridgeFootprintOverlaps(point,8,8))continue;
+                    if(Generated&&!InStartingRegion(player,point))continue;
                     Vector2 direction=WaterDirection(point);if(player==0?direction.x<.25f:direction.x>-.25f)continue;
                     if(!HarborLandClear(point,direction))continue;
                     Vector2 front=point+direction*5,side=new Vector2(-direction.y,direction.x)*1.5f;
@@ -176,7 +190,26 @@ namespace Frontier
                     Vector2 point=new Vector2(x,y),delta=point-center;
                     if(Mathf.Abs(Vector2.Dot(delta,direction))>=2+projection-.0001f||Mathf.Abs(Vector2.Dot(delta,side))>=2+projection-.0001f)continue;
                     if(IsWater(point)||IsBridgeApproach(point)||IsBridgeSideBarrier(point))return false;
+                    if(Generated)
+                    {
+                        if(IsBridgeSideBarrierCell(point))return false;
+                        foreach(var start in Starts)
+                            if(Mathf.Abs(point.x-start.Town.x)<=3&&Mathf.Abs(point.y-start.Town.y)<=3)return false;
+                    }
                 }
+            if(Generated)
+            {
+                // The quay occupies complete cells too. Its far tip can clear
+                // the mesh while an intervening rotated cell hits a railing.
+                Vector2 quay=center+direction*3.5f;float quayExtent=1.5f*(Mathf.Abs(direction.x)+Mathf.Abs(direction.y));
+                for(int y=Mathf.CeilToInt(quay.y-quayExtent-.5f+.0001f);y<=Mathf.FloorToInt(quay.y+quayExtent+.5f-.0001f);y++)
+                    for(int x=Mathf.CeilToInt(quay.x-quayExtent-.5f+.0001f);x<=Mathf.FloorToInt(quay.x+quayExtent+.5f-.0001f);x++)
+                    {
+                        var p=new Vector2(x,y);var delta=p-quay;
+                        if(Mathf.Abs(Vector2.Dot(delta,direction))>=1.5f+projection-.0001f||Mathf.Abs(Vector2.Dot(delta,side))>=1.5f+projection-.0001f)continue;
+                        if(IsBridgeApproach(p)||!IsWater(p)&&IsBridgeSideBarrierCell(p))return false;
+                    }
+            }
             return true;
         }
         private static MapLayout Build(string id)
@@ -223,7 +256,7 @@ namespace Frontier
             var trade=new[]{new Vector2(18,66),id==MapTopology.Tributaries?new Vector2(30,52):new Vector2(25,78),crossing.Point(-mouth,0),crossing.Point(-crossing.HalfLength,0),crossing.Center,crossing.Point(crossing.HalfLength,0),crossing.Point(mouth,0),new Vector2(108,72),new Vector2(111,53)};
             return new MapLayout(id,channels,bridges.ToArray(),fish.ToArray(),new[]{CenterAt(main,24),CenterAt(main,104)},trade);
         }
-        private static Vector2 CenterAt(RiverChannel channel,float z)
+        internal static Vector2 CenterAt(RiverChannel channel,float z)
         {
             for(int i=0;i<channel.Centers.Length-1;i++)
             {
@@ -231,7 +264,7 @@ namespace Frontier
             }
             return channel.Centers[channel.Centers.Length/2];
         }
-        private static BridgeSpan BridgeAt(RiverChannel channel,float z)
+        internal static BridgeSpan BridgeAt(RiverChannel channel,float z)
         {
             Vector2 center=CenterAt(channel,z),tangent=(CenterAt(channel,z+1)-CenterAt(channel,z-1)).normalized;
             Vector2 across=new Vector2(tangent.y,-tangent.x);if(across.x<0)across=-across;
@@ -242,7 +275,7 @@ namespace Frontier
             // a curved bank. The deck still spans every water cell under it.
             return new BridgeSpan(center,across,width+2,4.8f,9,3.2f);
         }
-        private static RiverChannel Sample(Vector2[] points,float[] widths)
+        internal static RiverChannel Sample(Vector2[] points,float[] widths)
         {
             var output=new List<Vector2>();var halfWidths=new List<float>();
             for(int i=0;i<points.Length-1;i++)

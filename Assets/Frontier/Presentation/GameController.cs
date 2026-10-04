@@ -27,6 +27,7 @@ namespace Frontier
         public int AgeLimit=5,MatchSeed=314159;
         public string OpponentDifficulty="standard";
         public string SelectedMap=MapTopology.Frontier;
+        public string SelectedObjective="elimination";
         public string MapName=>MapTopology.Name(SelectedMap);
         public void CycleMap()
         {
@@ -66,7 +67,7 @@ namespace Frontier
         public string SaveSlotLabel(int slot)
         {
             string path=MatchSaveStore.SlotPath(SaveDirectory,slot);if(!File.Exists(path))return "SLOT "+slot+" · EMPTY";
-            try{var save=MatchSaveStore.Read(path);return "SLOT "+slot+" · "+MapTopology.Name(save.world.mapId)+" · "+((int)save.world.time/60)+":"+((int)save.world.time%60).ToString("00");}
+            try{var save=MatchSaveStore.Read(path);if(save.appVersion!=Application.version)return "SLOT "+slot+" · REQUIRES GAME "+save.appVersion;return "SLOT "+slot+" · "+MapTopology.Name(save.world.mapId)+" · "+((int)save.world.time/60)+":"+((int)save.world.time%60).ToString("00");}
             catch(Exception){return "SLOT "+slot+" · UNREADABLE";}
         }
         public bool SaveMatch(int slot)
@@ -91,7 +92,7 @@ namespace Frontier
                 // Validate and reconstruct before replacing the current game.
                 if(World!=null)SaveReport("load_exit");ClearBenchmark();Audio.ResetMatch();World=restored;Simulation=simulation;MatchId=saved.matchId;
                 PlayerCivilization=World.Players[0].civilization;OpponentCivilization=World.Players[1].civilization;AgeLimit=World.MaxAge;
-                SelectedMap=World.MapId;MatchSeed=World.Seed;OpponentDifficulty=Simulation.Difficulty.Id;
+                SelectedMap=World.MapId;SelectedObjective=World.MapObjective.mode;MatchSeed=World.Seed;OpponentDifficulty=Simulation.Difficulty.Id;
                 configuredDecks[PlayerCivilization]=new List<string>(World.Players[0].deck);
                 Autoplay=saved.autoplay;SimulationSpeed=saved.simulationSpeed;Muted=saved.muted;EnvironmentSoundEnabled=saved.environmentSound;MusicEnabled=saved.music;
                 InMenu=false;PausedForFocusLoss=false;audioCursor=World.Events.Count;frameTimes.Clear();nextTelemetry=World.Time+60;LastSimulationFrameMs=0;
@@ -137,6 +138,8 @@ namespace Frontier
             if(MapTopology.IsValid(Arg("-frontierMap")))SelectedMap=Arg("-frontierMap");
             if(Rules.Civ(Arg("-frontierPlayerCiv"))!=null)PlayerCivilization=Arg("-frontierPlayerCiv");
             if(Rules.Civ(Arg("-frontierOpponentCiv"))!=null)OpponentCivilization=Arg("-frontierOpponentCiv");
+            if(int.TryParse(Arg("-frontierSeed"),out int seed))MatchSeed=seed;
+            if(Arg("-frontierObjective")!=null)SelectedObjective=Arg("-frontierObjective");
             if(int.TryParse(Arg("-frontierMaxAge"),out int ages))AgeLimit=Mathf.Clamp(ages,1,Rules.ages.Length);
             if(Array.IndexOf(args,"-frontierAutoplay")>=0) {Autoplay=true;int index=Array.IndexOf(args,"-frontierAutoSpeed");if(index>=0&&index+1<args.Length&&float.TryParse(args[index+1],out float speed))SimulationSpeed=Mathf.Clamp(speed,1,16);StartMatch();}
             else Hud.ShowMenu();
@@ -158,11 +161,13 @@ namespace Frontier
             if(GetComponent<RuntimeBenchmark>()!=null)ClearBenchmark();
             PausedForFocusLoss=false;audioCursor=0;frameTimes.Clear();nextTelemetry=0;Audio.ResetMatch();
             World=new World(Rules,MatchSeed,PlayerCivilization,OpponentCivilization,AgeLimit,SelectedMap);
+            var objective=World.ConfigureMapObjective(SelectedObjective);
+            if(!objective.accepted){Notify(objective.reason);World=null;InMenu=true;Hud.ShowMenu();return;}
             MatchId=Guid.NewGuid().ToString("N");
             SetDeck(0,DeckPreset); SetDeck(1,"military");
             Simulation=new MatchSimulation(World,BenchmarkMode?Array.Empty<int>():Autoplay?new[]{0,1}:new[]{1},OpponentDifficulty);
             InMenu=false;Notice="Explore, gather, build. Earn XP and choose a shipment with H.";noticeUntil=12;
-            View.ResetWorld();Controls.ResetSelection();Controls.Focus(new Vector2(25,25));
+            View.ResetWorld();Controls.ResetSelection();Controls.Focus(World.OpeningTownPosition(0));
             Hud.ShowGame();
         }
         private void SetDeck(int player,string preset)

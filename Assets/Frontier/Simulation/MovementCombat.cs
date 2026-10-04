@@ -21,13 +21,14 @@ namespace Frontier
                     else {e.status="Preparing attack";continue;}
                 }
                 UnitOrder order=e.orders.Count>0?e.orders.Peek():null;
+                if(order!=null&&TickNavalTransportOrder(e,order,dt))continue;
                 if(order!=null&&order.kind==OrderKind.DeployFactory){TickFactoryDeployment(e,order,dt);continue;}
                 if(order!=null&&(order.kind==OrderKind.Gather||order.kind==OrderKind.Build||order.kind==OrderKind.Repair||order.kind==OrderKind.Garrison||order.kind==OrderKind.Claim||order.kind==OrderKind.Manufacture))
                 {
                     var target=Get(order.target);if(e.def.waterborne&&order.kind==OrderKind.Garrison){e.orders.Dequeue();e.status="Cannot garrison a ship";continue;}if(target==null||!target.Alive||target.garrisonedIn!=0){if(order.kind!=OrderKind.Gather){e.orders.Dequeue();e.status="Target lost";}continue;}
                     if(order.kind==OrderKind.Garrison&&EdgeDistance(e,target)<=1.5f)
                     {
-                        if(target.occupants.Count<target.def.garrison){e.garrisonedIn=target.id;e.orders.Clear();e.path.Clear();target.occupants.Add(e.id);e.status="Garrisoned";Emit("Garrison",e.owner,e.id,"Entered "+target.def.name,0,target.id);}
+                        if(target.def.kind==EntityKind.Building&&target.owner==e.owner&&target.occupants.Count<target.def.garrison){e.garrisonedIn=target.id;e.orders.Clear();e.path.Clear();target.occupants.Add(e.id);e.status="Garrisoned";Emit("Garrison",e.owner,e.id,"Entered "+target.def.name,0,target.id);}
                         else {e.status="Garrison full";e.orders.Dequeue();}continue;
                     }
                     if(EdgeDistance(e,target)>1.35f)MoveTowardsTarget(e,WorkPoint(target,e),dt);
@@ -103,7 +104,7 @@ namespace Frontier
                     var impact=target.position;ApplyDamage(target,p.damage,p.kind,p.owner,p.source);
                     if(p.splash>0)
                     {
-                        var victims=new List<EntityState>();foreach(var candidate in Nearby(impact,p.splash))if(candidate.id!=target.id&&(candidate.owner>=0||Guardian(candidate))&&candidate.owner!=p.owner&&candidate.def.kind!=EntityKind.Resource)victims.Add(candidate);
+                        var victims=new List<EntityState>();foreach(var candidate in Nearby(impact,p.splash))if(candidate.garrisonedIn==0&&candidate.id!=target.id&&(candidate.owner>=0||Guardian(candidate))&&candidate.owner!=p.owner&&candidate.def.kind!=EntityKind.Resource)victims.Add(candidate);
                         foreach(var other in victims)
                         {
                             var shooter=Get(p.source);DamageKind splashKind=p.baseKind;
@@ -165,6 +166,14 @@ namespace Frontier
             if(e.def.kind!=EntityKind.Unit||e.shielded||Time<e.shieldReadyAt)return;
             var navigation=NavigationFor(e);e.isDeployed=false;e.deployUntil=0;
             Vector2 requestedGoal=goal;
+            if(!e.def.waterborne&&Layout.RequiresTransport)
+            {
+                int originRegion=Layout.LandRegion(e.position),goalRegion=Layout.LandRegion(navigation.NearestWalkable(goal,e.def.radius));
+                // Separate islands require boarding. Ally avoidance cannot turn
+                // a disconnected land command into a path across open water.
+                if(originRegion>0&&goalRegion>0&&originRegion!=goalRegion)
+                {e.path.Clear();e.pathIndex=0;e.status="Transport required";return;}
+            }
             if((e.progressGoal-requestedGoal).sqrMagnitude>4){e.progressGoal=requestedGoal;e.progressDistance=float.MaxValue;e.progressAt=Time;e.detourUntil=0;e.recoveryProgressPosition=e.position;e.recoveryProgressAt=Time;}
             if((e.position-e.recoveryProgressPosition).sqrMagnitude>=4){e.recoveryProgressPosition=e.position;e.recoveryProgressAt=Time;}
             bool positionStalled=Time-e.recoveryProgressAt>2;
@@ -331,7 +340,7 @@ namespace Frontier
             if(damage>=target.hp){Remove(target,owner);return;}target.hp-=damage;
             if(target.Worker&&target.orders.Count>0&&target.orders.Peek().kind==OrderKind.Gather)
             {
-                EntityState shelter=null;float best=22*22;foreach(var building in Entities)if(building.Alive&&building.Complete&&building.owner==target.owner&&building.def.garrison>building.occupants.Count){float distance=(building.position-target.position).sqrMagnitude;if(distance<best){best=distance;shelter=building;}}
+                EntityState shelter=null;float best=22*22;foreach(var building in Entities)if(building.Alive&&building.Complete&&building.def.kind==EntityKind.Building&&building.owner==target.owner&&building.def.garrison>building.occupants.Count){float distance=(building.position-target.position).sqrMagnitude;if(distance<best){best=distance;shelter=building;}}
                 if(shelter!=null){target.orders.Clear();target.path.Clear();target.orders.Enqueue(new UnitOrder(OrderKind.Garrison,shelter.position,shelter.id));}
             }
         }

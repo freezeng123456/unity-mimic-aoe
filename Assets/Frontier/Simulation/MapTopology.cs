@@ -8,9 +8,13 @@ namespace Frontier
     public static class MapTopology
     {
         public const string Frontier="frontier",River="river",Winding="winding",Tropical="tropical",Tributaries="tributaries",Estuary="estuary";
-        public static readonly string[] All={Frontier,River,Winding,Tropical,Tributaries,Estuary};
+        public const string GeneratedRiver="generated_river",GeneratedDelta="generated_delta",GeneratedStrait="generated_strait";
+        public static readonly string[] Authored={Frontier,River,Winding,Tropical,Tributaries,Estuary};
+        public static readonly string[] Generated={GeneratedRiver,GeneratedDelta,GeneratedStrait};
+        public static readonly string[] All={Frontier,River,Winding,Tropical,Tributaries,Estuary,GeneratedRiver,GeneratedDelta,GeneratedStrait};
+        public static bool IsGenerated(string id)=>id==GeneratedRiver||id==GeneratedDelta||id==GeneratedStrait;
         public static bool IsValid(string id)=>id==Frontier||IsRiverMap(id);
-        public static bool IsRiverMap(string id)=>id==River||id==Winding||id==Tropical||id==Tributaries||id==Estuary;
+        public static bool IsRiverMap(string id)=>id==River||id==Winding||id==Tropical||id==Tributaries||id==Estuary||IsGenerated(id);
         public static string Name(string id)
         {
             switch(id)
@@ -18,6 +22,7 @@ namespace Frontier
                 case Frontier:return "Frontier Plains";case River:return "River Crossing";
                 case Winding:return "Winding River Valley";case Tropical:return "Tropical River Bay";
                 case Tributaries:return "Confluence Rivers";case Estuary:return "River Estuary";
+                case GeneratedRiver:return "Seeded River Valley";case GeneratedDelta:return "Seeded Braided Delta";case GeneratedStrait:return "Seeded Island Straits";
                 default:return id??"";
             }
         }
@@ -69,12 +74,26 @@ namespace Frontier
         }
         private Vector2 MapSocketPosition(TradeSocketDef socket)
         {
+            if(Layout.Generated)
+            {
+                int index=Array.IndexOf(Rules.landmarks.sockets,socket);
+                return Layout.NeutralSites[Mathf.Clamp(index,0,Layout.NeutralSites.Length-1)];
+            }
             if(MapId==MapTopology.River)return socket.waypoint==2?new Vector2(81,67):socket.position;
             if(!Layout.HasWater)return socket.position;
             // Three sockets remain on bank stretches, beyond either ramp mouth.
             int waypoint=MapSocketWaypoint(socket);return TradeRoute[waypoint]+new Vector2(0,3);
         }
-        private int MapSocketWaypoint(TradeSocketDef socket)=>MapId==MapTopology.River?(socket.waypoint==2?4:socket.waypoint==3?5:socket.waypoint):Layout.HasWater?(socket.waypoint<=1?1:socket.waypoint==2?TradeRoute.Length-3:TradeRoute.Length-1):socket.waypoint;
+        private int MapSocketWaypoint(TradeSocketDef socket)
+        {
+            if(Layout.Generated)
+            {
+                Vector2 point=MapSocketPosition(socket);int closest=0;float distance=float.MaxValue;
+                for(int i=0;i<TradeRoute.Length;i++){float candidate=(point-TradeRoute[i]).sqrMagnitude;if(candidate<distance){distance=candidate;closest=i;}}
+                return closest;
+            }
+            return MapId==MapTopology.River?(socket.waypoint==2?4:socket.waypoint==3?5:socket.waypoint):Layout.HasWater?(socket.waypoint<=1?1:socket.waypoint==2?TradeRoute.Length-3:TradeRoute.Length-1):socket.waypoint;
+        }
         public bool CanAttackTarget(EntityState actor,EntityState target)
         {
             if(actor==null||target==null||!actor.Alive||!target.Alive||target.def.kind==EntityKind.Resource||actor.def.civilian||actor.def.damage<=0)return false;

@@ -7,14 +7,14 @@ using UnityEngine.UI;
 
 namespace Frontier
 {
-    public sealed class FrontierHud : MonoBehaviour
+    public sealed partial class FrontierHud : MonoBehaviour
     {
         private GameController game;
         private Canvas canvas;
         private Transform root,gamePanel,menuPanel,modal;
         private Transform actionPanel,queuePanel;
         private RectTransform minimapRect;
-        private Text resources,selection,details,notice,help,orders,clockLabel,homeTransit,homeTitle;
+        private Text resources,selection,details,notice,help,orders,clockLabel,homeTransit,homeTitle,objectiveLabel;
         public string ResourceSummary => resources != null ? resources.text : "";
         public int ResourceSummaryFrame { get; private set; } = -1;
         public float ResourceSummaryTime { get; private set; }
@@ -142,7 +142,7 @@ namespace Frontier
             var difficulty=game.Rules.Difficulty(game.OpponentDifficulty);
             Button(configuration,"AI DIFFICULTY: "+(difficulty?.name?.ToUpperInvariant()??"INVALID"),new Rect(28,250,454,48),()=>{game.CycleDifficulty();ShowMenu();},difficulty?.description??game.DifficultyReason);
             Label(configuration,difficulty?.description??game.DifficultyReason,new Rect(28,308,450,55),17,muted);
-            Button(configuration,"MAP: "+game.MapName,new Rect(28,367,454,44),()=>{game.CycleMap();ShowMenu();},"Choose outcrops, river crossings, a winding valley, tropical river bend, tributaries or an estuary. River maps support shoreline docks, fishing and naval combat.");
+            Button(configuration,"MAP: "+game.MapName,new Rect(28,367,454,44),()=>{game.CycleMap();ShowMenu();},"Choose six authored maps or seeded river, delta and strait terrain. MAP, SEED & OBJECTIVES shows a preview and mission rules.");
             var civilizationSummary=Label(configuration,"SEED "+game.MatchSeed+" · "+game.Rules.Civ(game.PlayerCivilization).description,new Rect(28,418,450,96),17,muted);
             civilizationSummary.gameObject.name="Civilization summary";
             civilizationSummary.resizeTextForBestFit=true;civilizationSummary.resizeTextMinSize=14;civilizationSummary.resizeTextMaxSize=17;
@@ -153,6 +153,7 @@ namespace Frontier
             Button(configuration,"BEGIN SKIRMISH",new Rect(28,584,454,58),()=>{game.Autoplay=false;game.StartMatch();},deckReason,deckReason=="");
             Button(configuration,"QUIT",new Rect(28,654,454,44),()=>Application.Quit());
             Button(menuPanel,"LOAD SAVED MATCH",new Rect(100,555,454,58),()=>ShowSaveSlots(false),"Continue a local match, including AI and production progress.");
+            Button(menuPanel,"MAP, SEED & OBJECTIVES",new Rect(585,555,420,58),ShowMapOptions,"Preview terrain, enter a seed and choose a map objective.");
             Label(menuPanel,"FIVE-ERA FRONTIER",new Rect(100,665,840,35),23,gold);
             Label(menuPanel,game.Rules.civs.Length+" civilizations · British · Dutch · French · Ottomans\nManors · Banks · Trade · Workshops · Rivers · Docks\nIndependent project. Not affiliated with Age of Empires or its publishers.",new Rect(100,715,820,110),18,muted);
         }
@@ -197,6 +198,7 @@ namespace Frontier
             queuePanel=Rect(bottom,"Production queue",new Rect(213,145,530,48));
             actionPanel=Rect(bottom,"Context actions",new Rect(757,14,807,180));
             orders=Label(gamePanel,"",new Rect(22,82,610,32),17,gold);
+            objectiveLabel=Label(gamePanel,"",new Rect(22,122,770,74),17,gold);objectiveLabel.raycastTarget=false;
             Label(gamePanel,"CAMERA: arrow keys / pointer near window edge\nMINIMAP: left click to view / right click to move",new Rect(840,80,735,54),15,muted);
             var messagePanel=Panel(gamePanel,"Events",new Rect(222,226,1100,38),new Color(.07f,.12f,.13f,.87f),true);messagePanel.GetComponent<Image>().raycastTarget=false;
             notice=Label(messagePanel,"",new Rect(12,8,1070,27),17,gold);
@@ -254,8 +256,8 @@ namespace Frontier
             ResourceSummaryFrame=Time.frameCount;ResourceSummaryTime=w.Time;ResourceSummaryMatchId=game.MatchId;
             UpdateHomeCity();
             if(lastClockLabel!=clockLabel||lastClockSeconds!=(int)w.Time||lastIdle!=idle)
-            {clockLabel.text=$"{(int)w.Time/60:00}:{(int)w.Time%60:00}   IDLE {idle}";lastClockLabel=clockLabel;lastClockSeconds=(int)w.Time;lastIdle=idle;}
-            orders.text=game.Controls.BuildingToPlace!=""?"PLACING  "+game.Rules.Entity(game.Controls.BuildingToPlace).name:game.Controls.RepairMode?"REPAIR [R] — CHOOSE A DAMAGED FRIENDLY TARGET":game.Controls.GarrisonMode?"GARRISON [G] — CHOOSE A FRIENDLY SHELTER":game.Controls.AttackMode?"ATTACK MOVE — CHOOSE DESTINATION":"[V] Idle settler     [T] Town center     [M] Military     [B] Build";
+            {UpdateExpansionPanels();if(objectiveLabel!=null)objectiveLabel.text=ObjectiveSummary();clockLabel.text=$"{(int)w.Time/60:00}:{(int)w.Time%60:00}   IDLE {idle}";lastClockLabel=clockLabel;lastClockSeconds=(int)w.Time;lastIdle=idle;}
+            orders.text=game.Controls.EmbarkMode?"BOARD — CHOOSE YOUR TROOP TRANSPORT":game.Controls.DisembarkMode?"UNLOAD — CHOOSE AN OPEN LAND SHORE":game.Controls.DockRepairMode?"HARBOR REPAIR — CHOOSE YOUR COMPLETED DOCK":game.Controls.BuildingToPlace!=""?"PLACING  "+game.Rules.Entity(game.Controls.BuildingToPlace).name:game.Controls.RepairMode?"REPAIR [R] — CHOOSE A DAMAGED FRIENDLY TARGET":game.Controls.GarrisonMode?"GARRISON [G] — CHOOSE A FRIENDLY SHELTER":game.Controls.AttackMode?"ATTACK MOVE — CHOOSE DESTINATION":"[V] Idle settler     [T] Town center     [M] Military     [B] Build";
             notice.text=game.Notice;
             help.text=Help;
             var selected=game.Controls.FirstSelected;
@@ -264,7 +266,8 @@ namespace Frontier
             {
                 selection.text=game.Controls.Selected.Count>1?game.Controls.Selected.Count+" SELECTED  ·  "+selected.def.name:selected.def.name.ToUpperInvariant();
                 details.text=$"HP {selected.hp:0}/{w.MaxHp(selected):0}     ATK {w.Attack(selected):0}     RANGE {(selected.forceMelee?1.4f:selected.def.range):0.#}     POP {selected.def.population}\n{selected.status}  ·  Orders {selected.orders.Count}";
-                if(selected.owner==0&&selected.def.id=="town"&&w.AutoRecruitSeconds(0)>0)details.text+="\n"+AutoRecruitSummary(selected);
+                if(selected.def.transportShip)details.text+="\nCargo "+w.TransportLoad(selected)+"/"+selected.def.transportCapacity+" population slots · "+selected.occupants.Count+" passengers";
+                else if(selected.owner==0&&selected.def.id=="town"&&w.AutoRecruitSeconds(0)>0)details.text+="\n"+AutoRecruitSummary(selected);
                 else if(selected.def.id=="caravan")details.text+="\n"+CaravanSummary(selected);
                 else if(selected.def.id=="workshop")details.text+=$"\nArtisans in place: {w.AssignedArtisans(selected)} · Prefabs: {p.prefabCharges}";
                 else if(selected.def.id=="factory")details.text+="\nProduction: "+selected.factoryMode.ToUpperInvariant()+" · "+selected.factoryElapsed.ToString("0.0")+"s";
@@ -290,6 +293,7 @@ namespace Frontier
         {
             ClearChildren(actionPanel);ClearChildren(queuePanel);if(e==null)return;int n=0;
             Action<string,Action,string,bool> add=(title,click,tooltip,enabled)=>{int i=n++;Button(actionPanel,title,new Rect((i%5)*162,(i/5)*57,155,50),click,tooltip,enabled);};
+            if(e.def.id=="trade_socket"&&game.World.NeutralAt(e.id)!=null){add("SETTLEMENT",()=>ShowNeutralSettlement(e.id),"Negotiate a paid treaty, recruit allies and research their technology.",true);add("DETAILS",()=>ShowObjectDetails(e),"Read settlement attributes.",true);return;}
             if(e.owner!=0){add("DETAILS",()=>ShowObjectDetails(e),"Read attributes, resistances and counters.",true);return;}
             if(e.def.kind==EntityKind.Unit)
             {
@@ -322,6 +326,7 @@ namespace Frontier
                 {
                     string chosen=mode;add((e.factoryMode==mode?"[ACTIVE] ":"")+mode.ToUpperInvariant(),()=>{game.Command(new GameCommand{player=0,kind=CommandKind.FactoryMode,actors=new[]{e.id},item=chosen});InvalidateActions();},"Produce resources or civilization artillery. Changing modes resets artillery progress. Research pauses production.",true);
                 }
+                if(e.def.id=="trade_post"){var socket=game.World.SocketAt(e.position);if(socket!=null&&game.World.NeutralAt(socket.id)!=null)add("SETTLEMENT",()=>ShowNeutralSettlement(socket.id),"Negotiate, recruit allies or research their settlement technology.",true);}
                 if(e.def.id=="trade_post")for(int mode=0;mode<4;mode++){int chosen=mode;string label=mode==0?"XP":((ResourceKind)mode).ToString();add((mode==(int)e.tradeMode?"[ACTIVE] ":"")+label,()=>{game.Command(new GameCommand{player=0,kind=CommandKind.TradeMode,actors=new[]{e.id},index=chosen});InvalidateActions();},"Choose the reward paid when the caravan reaches this site.",mode==0||game.World.Players[0].technologies.Contains("cargo_ledgers"));}
                 if(e.def.id=="town")add("ADVANCE AGE",ShowAgeChoices,"Queue the next age with a governor reward. "+game.World.AgeReason(0,e),game.World.AgeReason(0,e)=="");
                 if(e.def.id=="town"&&game.World.AutoRecruitSeconds(0)>0)add(e.autoRecruitPaused?"AUTO SETTLERS: OFF":"AUTO SETTLERS: ON",()=>{game.Command(new GameCommand{player=0,kind=CommandKind.ToggleRecruitment,actors=new[]{e.id}});InvalidateActions();},"Free recruitment at each town center. Toggle to pause or resume. Worker limit, housing, safe exits and mosque technologies still apply.",true);
@@ -336,9 +341,12 @@ namespace Frontier
             if(e.def.kind==EntityKind.Unit)n=5;
             add("DETAILS",()=>ShowObjectDetails(e),"Read attributes, resistances and counters.",true);
             add("GROUPS",ShowGroups,"Save and recall selected objects. Ctrl / Command + number also saves.",true);
-            if(e.def.kind==EntityKind.Unit)add("GARRISON [G]",()=>game.Controls.BeginGarrison(),"Choose a completed friendly shelter, including a damaged one. Capacity is checked on arrival.",true);
+            if(e.def.kind==EntityKind.Unit&&!e.def.waterborne)add("GARRISON [G]",()=>game.Controls.BeginGarrison(),"Choose a completed friendly shelter, including a damaged one. Capacity is checked on arrival.",true);
             if(e.Worker||e.def.repairArtillery)add("REPAIR [R]",()=>game.Controls.BeginRepair(),e.Worker?"Choose a damaged friendly building. Use this to repair a workshop instead of manufacturing.":"Choose damaged friendly artillery to repair.",true);
             if(e.Worker&&e.def.meleeDamage>0&&e.def.range>2)add(e.forceMelee?"RANGED MODE":"MELEE MODE",()=>game.Command(new GameCommand{player=0,kind=CommandKind.ToggleMode,actors=game.Controls.Selected.ToArray()}),"Switch the selected worker's preferred combat mode.",true);
+            if(e.def.transportShip){add("UNLOAD",()=>game.Controls.BeginDisembark(),"Choose a reachable open land shore. The ship sails to a water berth before passengers disembark.",e.occupants.Count>0);add("PASSENGERS",()=>ShowTransportCargo(e),"Read passengers and population capacity.",true);}
+            if(e.def.waterborne)add("HARBOR REPAIR",()=>game.Controls.BeginDockRepair(),"Choose your completed harbor. Ship approaches its berth; health is restored only after wood and coin payment.",e.hp<game.World.MaxHp(e));
+            if(e.def.kind==EntityKind.Unit&&!e.def.waterborne)add("BOARD SHIP",()=>game.Controls.BeginEmbark(),"Choose your troop transport. Units and ship approach a reachable loading shore.",true);
             if(e.def.id=="caravan")add("TRADE ROUTE",()=>ShowCaravanRoutes(e,0),"Choose a completed waystation. The cart loads paid cargo at a nearby town and earns coin only on arrival. Move / Stop abandons cargo without refund.",true);
             if(e.def.shieldAbility)add(e.shielded?"FOLD SHIELD":"BRACE SHIELD",()=>{game.Command(new GameCommand{player=0,kind=CommandKind.ToggleShield,actors=game.Controls.Selected.ToArray()});InvalidateActions();},"Changing stance takes 2 seconds. Bracing protects against ranged fire and prevents movement; moving or pursuing an attack folds the shield first.",game.World.Time>=e.shieldReadyAt);
             for(int i=0;i<e.queue.Count&&i<6;i++)
@@ -373,7 +381,7 @@ namespace Frontier
             CloseModal();var dim=Panel(root,"Modal dim",new Rect(0,0,1600,900),new Color(.025f,.05f,.06f,.78f));Fill(dim);modal=dim;
             var box=Panel(dim,title,new Rect(365,95,870,height),background);Label(box,title,new Rect(25,22,740,40),29,gold);Button(box,"X",new Rect(798,15,48,43),()=>{if(onClose!=null)onClose();else{CloseModal();if(game.InMenu)ShowMenu();}});return box;
         }
-        public void CloseModal(){MarkUiLayoutDirty();homeTransit=null;homeTitle=null;homeButtons.Clear();homeCards.Clear();if(modal!=null){modal.gameObject.SetActive(false);Destroy(modal.gameObject);modal=null;}Help="";}
+        public void CloseModal(){neutralModalSite=-1;neutralModalSignature="";MarkUiLayoutDirty();homeTransit=null;homeTitle=null;homeButtons.Clear();homeCards.Clear();if(modal!=null){modal.gameObject.SetActive(false);Destroy(modal.gameObject);modal=null;}Help="";}
         public void ShowBuildMenu()
         {
             game.Controls.CancelTargetMode();

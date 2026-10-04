@@ -44,7 +44,7 @@ namespace Frontier
             if(ev.kind=="Fire")
             {
                 var source=game.World.Get(ev.entity);
-                category=ev.message=="Melee"?SoundCategory.Melee:source!=null&&(source.def.tags&Tags.Artillery)!=0?SoundCategory.Cannon:SoundCategory.Gun;
+                category=ev.message=="Melee"?SoundCategory.Melee:source!=null&&(source.def.tags&(Tags.Artillery|Tags.Naval))!=0?SoundCategory.Cannon:SoundCategory.Gun;
             }
             else if(ev.kind=="Impact")category=SoundCategory.Impact;
             else if(NoticeSoundClips.TryClassify(ev.kind,out noticeCue))category=SoundCategory.Notice;
