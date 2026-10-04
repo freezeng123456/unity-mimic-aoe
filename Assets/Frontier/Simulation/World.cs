@@ -7,6 +7,7 @@ namespace Frontier
     public partial class World
     {
         public readonly RuleCatalog Rules;
+        public readonly MapLayout Layout;
         public readonly PlayerState[] Players;
         public readonly List<EntityState> Entities=new List<EntityState>();
         public readonly List<SimEvent> Events=new List<SimEvent>();
@@ -26,7 +27,8 @@ namespace Frontier
         public World(RuleCatalog rules,int seed=314159,string civ0="coast",string civ1="coast",int maxAge=3,string mapId="frontier")
         {
             Rules=rules??throw new ArgumentNullException(nameof(rules));Seed=seed;MaxAge=Mathf.Clamp(maxAge,1,rules.ages.Length);
-            MapId=mapId??MapTopology.Frontier;if(MapId!=MapTopology.Frontier&&MapId!=MapTopology.River)throw new ArgumentException("Unknown map: "+MapId);
+            MapId=mapId??MapTopology.Frontier;if(!MapTopology.IsValid(MapId))throw new ArgumentException("Unknown map: "+MapId);
+            Layout=MapLayout.Create(MapId);
             Navigation=new GridNavigation();WaterNavigation=new GridNavigation();Fog=new Visibility();
             TradeRoute=MapTradeRoute();InitializeNavigationTerrain();
             Players=new[]{new PlayerState{id=0,civilization=civ0},new PlayerState{id=1,civilization=civ1}};
@@ -36,30 +38,31 @@ namespace Frontier
         }
         private void InitializeMap()
         {
+            EntityState Place(string definition,int owner,Vector2 position)=>Spawn(definition,owner,MapLandPosition(definition,position));
             // Mirrored resources, two outcrop walls with a narrow middle passage and wide flanks.
             for(int p=0;p<2;p++)
             {
                 Vector2 b=p==0?new Vector2(24,28):new Vector2(104,100);float s=p==0?1:-1;
-                Spawn("town",p,b);
-                for(int i=0;i<Rules.Civ(Players[p].civilization).startingWorkers;i++)Spawn(WorkerDefinition(p).id,p,b+new Vector2(5+i%3*1.3f,-3+i/3*1.4f)*s);
-                Spawn("explorer",p,b+new Vector2(7,4)*s);
-                Spawn("berry",-1,b+new Vector2(8,-7)*s);Spawn("berry",-1,b+new Vector2(11,-7)*s);
-                for(int i=0;i<5;i++)Spawn("deer",-1,b+new Vector2(-8+i*1.8f,9+i%2*1.8f)*s);
-                Spawn("mine",-1,b+new Vector2(-10,-5)*s);
-                for(int i=0;i<18;i++)Spawn("tree",-1,b+new Vector2(-14+i%6*2.2f,-12-i/6*2.2f)*s);
-                Spawn("crate_food",p,b+new Vector2(5,1)*s);Spawn("crate_wood",p,b+new Vector2(5,3)*s);
-                Spawn("mine",-1,b+new Vector2(22,7)*s);
-                for(int i=0;i<9;i++)Spawn("tree",-1,b+new Vector2(17+i%3*2.1f,19+i/3*2.1f)*s);
-                for(int i=0;i<5;i++)Spawn("deer",-1,b+new Vector2(9+i*2,25)*s);
+                Place("town",p,b);
+                for(int i=0;i<Rules.Civ(Players[p].civilization).startingWorkers;i++)Place(WorkerDefinition(p).id,p,b+new Vector2(5+i%3*1.3f,-3+i/3*1.4f)*s);
+                Place("explorer",p,b+new Vector2(7,4)*s);
+                Place("berry",-1,b+new Vector2(8,-7)*s);Place("berry",-1,b+new Vector2(11,-7)*s);
+                for(int i=0;i<5;i++)Place("deer",-1,b+new Vector2(-8+i*1.8f,9+i%2*1.8f)*s);
+                Place("mine",-1,b+new Vector2(-10,-5)*s);
+                for(int i=0;i<18;i++)Place("tree",-1,b+new Vector2(-14+i%6*2.2f,-12-i/6*2.2f)*s);
+                Place("crate_food",p,b+new Vector2(5,1)*s);Place("crate_wood",p,b+new Vector2(5,3)*s);
+                Place("mine",-1,b+new Vector2(22,7)*s);
+                for(int i=0;i<9;i++)Place("tree",-1,b+new Vector2(17+i%3*2.1f,19+i/3*2.1f)*s);
+                for(int i=0;i<5;i++)Place("deer",-1,b+new Vector2(9+i*2,25)*s);
             }
             if(MapId==MapTopology.Frontier)for(int y=42;y<=86;y+=4)
             {
                 if(y>=58&&y<=70)continue;
                 var o=new Vector3(64,y,1.8f);TerrainObstacles.Add(o);Navigation.SetBlocked(new Vector2(o.x,o.y),o.z,true);
             }
-            Spawn("mine",-1,new Vector2(53,66));Spawn("mine",-1,new Vector2(75,62));
-            for(int i=0;i<8;i++)Spawn("tree",-1,new Vector2(30+i*2.5f,73));
-            if(MapId==MapTopology.River)foreach(float z in new[]{22f,55f,73f,106f})Spawn("fish",-1,new Vector2(64,z));
+            Place("mine",-1,new Vector2(53,66));Place("mine",-1,new Vector2(75,62));
+            for(int i=0;i<8;i++)Place("tree",-1,new Vector2(30+i*2.5f,73));
+            if(Layout.HasWater)foreach(var point in Layout.FishPoints)Spawn("fish",-1,point);
         }
         public EntityState Get(int id)=>byId.TryGetValue(id,out var e)?e:null;
         public EntityState Spawn(string definition,int owner,Vector2 position,bool complete=true)
@@ -75,10 +78,10 @@ namespace Frontier
         }
         private void SetBuildingObstacle(EntityState e,bool blocked)
         {
-            // Grid ownership is disjoint because construction validates the footprint.
-            for(float x=e.position.x-e.def.width*.5f+.5f;x<e.position.x+e.def.width*.5f;x+=1)
-                for(float z=e.position.y-e.def.depth*.5f+.5f;z<e.position.y+e.def.depth*.5f;z+=1)
-                    {Navigation.SetBlocked(new Vector2(x,z),.45f,blocked);WaterNavigation.SetBlocked(new Vector2(x,z),.45f,blocked);}
+            // Both channels consume the same rotated warehouse/quay footprint.
+            // Their authored terrain layer remains separate when a dock is removed.
+            foreach(var cell in BuildingFootprintCells(e.def,e.position))
+            {Navigation.SetBlocked(cell,0,blocked);WaterNavigation.SetBlocked(cell,0,blocked);}
         }
         public void Remove(EntityState e,int killerOwner=-1)
         {
@@ -196,6 +199,7 @@ namespace Frontier
             // the failed/exhausted-route retry clock or an earlier recovery detour.
             unit.path.Clear();unit.pathIndex=0;unit.pathVersion=-1;unit.pathRetryAt=Time;
             unit.pathAvoidsAllies=false;unit.detourUntil=0;unit.progressDistance=float.MaxValue;unit.progressAt=Time;unit.stuckFor=0;
+            unit.recoveryProgressPosition=unit.position;unit.recoveryProgressAt=Time;
         }
         public void Tick(float dt=.1f)
         {
@@ -230,6 +234,7 @@ namespace Frontier
         }
         public float EdgeDistance(EntityState a,EntityState b)
         {
+            if(b.def.id=="dock")return a.Worker&&!a.def.waterborne?DockLandEdgeDistance(a,b):Mathf.Max(0,BuildingFootprintDistance(b.def,b.position,a.position)-a.def.radius);
             if(b.def.kind==EntityKind.Building){Vector2 q=new Vector2(Mathf.Max(0,Mathf.Abs(a.position.x-b.position.x)-b.def.width*.5f),Mathf.Max(0,Mathf.Abs(a.position.y-b.position.y)-b.def.depth*.5f));return Mathf.Max(0,q.magnitude-a.def.radius);}
             return Mathf.Max(0,Vector2.Distance(a.position,b.position)-a.def.radius-b.def.radius);
         }

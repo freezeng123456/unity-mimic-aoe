@@ -15,7 +15,7 @@ namespace Frontier
         public AiWaterEconomy(World world,int player){this.world=world;this.player=player;}
         public void Tick(List<EntityState> own,List<EntityState> workers,List<EntityState> visibleEnemies,Cost reserve,bool saving,bool underAttack)
         {
-            if(world.MapId!="river"||world.Paused||world.Winner>=0)return;
+            if(!world.Layout.HasWater||world.Paused||world.Winner>=0)return;
             var dock=own.Find(e=>e.Alive&&e.def.id=="dock");
             AssignFishing(own,visibleEnemies);
             CommandFleet(own,visibleEnemies);
@@ -35,7 +35,7 @@ namespace Frontier
         }
         public Cost Forecast(List<EntityState> own,bool saving)
         {
-            if(world.MapId!="river"||world.Players[player].age<2||saving)return new Cost();
+            if(!world.Layout.HasWater||world.Players[player].age<2||saving)return new Cost();
             if(!own.Exists(e=>e.Alive&&e.def.id=="dock"))return world.EntityCost(player,world.Rules.Entity("dock"));
             var dock=own.Find(e=>e.Alive&&e.def.id=="dock");
             if(world.UnitCountIncludingProduction(player,"fishing_boat")<2&&dock!=null&&NearestFish(dock.position,new List<EntityState>())!=null)return world.UnitCost(player,world.Rules.Entity("fishing_boat"));
@@ -47,27 +47,26 @@ namespace Frontier
             // require current vision. A settler must physically survey the bank.
             EntityState worker=world.Get(surveyor);
             if(worker==null||!worker.Alive||worker.owner!=player||worker.garrisonedIn!=0||!worker.Worker||worker.def.waterborne)worker=null;
-            float shoreX=player==0?55:73,preferredY=player==0?28:100;
+            var sites=world.Layout.DockSites[player];if(sites.Length==0)return;
             if(worker==null)
             {
                 float best=float.MaxValue;
                 foreach(var candidate in workers)
                 {
                     if(!AiCivilizationEconomy.CanReassign(candidate))continue;
-                    float d=(candidate.position-new Vector2(shoreX,preferredY)).sqrMagnitude;
+                    float d=(candidate.position-sites[0]).sqrMagnitude;
                     if(d<best){best=d;worker=candidate;}
                 }
                 if(worker==null)return;surveyor=worker.id;
             }
-            for(int step=0;step<13;step++)
+            foreach(var point in sites)
             {
-                int offset=step==0?0:(step+1)/2*(step%2==1?1:-1);
-                Vector2 point=new Vector2(shoreX,preferredY+offset*4);
                 if(world.DockPlacementReason(point)!="")continue;
                 if(world.Fog.At(player,point)!=VisibilityState.Visible)
                 {
-                    if(worker.orders.Count==0||worker.orders.Peek().kind==OrderKind.Gather)
-                        Send(new GameCommand{kind=CommandKind.Order,actors=new[]{worker.id},order=OrderKind.Move,point=point+new Vector2(player==0?-4:4,0)});
+                    Vector2 survey=world.Navigation.NearestWalkable(point-world.DockWaterDirection(point)*4,worker.def.radius);
+                    if(worker.orders.Count==0||worker.orders.Peek().kind==OrderKind.Gather||worker.orders.Peek().kind==OrderKind.Move&&(worker.orders.Peek().point-survey).sqrMagnitude>1)
+                        Send(new GameCommand{kind=CommandKind.Order,actors=new[]{worker.id},order=OrderKind.Move,point=survey});
                     return;
                 }
                 if(world.CanBuild(player,"dock",point)!="")continue;
@@ -81,10 +80,7 @@ namespace Frontier
             foreach(var fish in world.Entities)
             {
                 if(fish.def.id!="fish"||!world.GatherableResource(player,fish))continue;
-                bool dangerous=false;
-                foreach(var enemy in enemies)
-                    if(world.IsVisible(player,enemy)&&enemy.Military&&(enemy.position-fish.position).sqrMagnitude<Mathf.Pow(Mathf.Max(8,enemy.def.range+3),2)){dangerous=true;break;}
-                if(dangerous)continue;
+                if(Threatened(fish.position,enemies))continue;
                 float distance=(fish.position-point).sqrMagnitude;
                 if(distance<nearest){nearest=distance;chosen=fish;}
             }
@@ -95,10 +91,53 @@ namespace Frontier
             foreach(var boat in own)
             {
                 if(!boat.Alive||!boat.def.fishingBoat)continue;
-                if(boat.orders.Count>0&&boat.orders.Peek().kind==OrderKind.Gather&&world.CanGather(boat,world.Get(boat.orders.Peek().target)))continue;
+                bool dangerousGather=false;
+                if(boat.orders.Count>0&&boat.orders.Peek().kind==OrderKind.Gather)
+                {
+                    var current=world.Get(boat.orders.Peek().target);
+                    dangerousGather=current!=null&&current.Alive&&Threatened(current.position,enemies);
+                    if(world.CanGather(boat,current)&&!dangerousGather&&!Threatened(boat.position,enemies))continue;
+                }
                 var fish=NearestFish(boat.position,enemies);
-                if(fish!=null)Send(new GameCommand{kind=CommandKind.Order,actors=new[]{boat.id},order=OrderKind.Gather,target=fish.id});
+                if(fish!=null)
+                {
+                    if(boat.orders.Count==0||boat.orders.Peek().kind!=OrderKind.Gather||boat.orders.Peek().target!=fish.id)
+                        Send(new GameCommand{kind=CommandKind.Order,actors=new[]{boat.id},order=OrderKind.Gather,target=fish.id});
+                }
+                else if(dangerousGather||Threatened(boat.position,enemies))RetreatFishingBoat(boat,own,enemies);
             }
+        }
+
+        private bool Threatened(Vector2 point,List<EntityState> enemies)
+        {
+            foreach(var enemy in enemies)
+                if(world.IsVisible(player,enemy)&&enemy.Military&&enemy.def.damage>0&&(enemy.def.waterborne||!enemy.forceMelee&&enemy.def.range>2)&&
+                    (enemy.position-point).sqrMagnitude<Mathf.Pow(Mathf.Max(8,enemy.def.range+4),2))return true;
+            return false;
+        }
+
+        private void RetreatFishingBoat(EntityState boat,List<EntityState> own,List<EntityState> enemies)
+        {
+            Vector2 goal=Vector2.zero;float best=float.MaxValue;
+            var candidates=new List<Vector2>(world.Layout.PatrolPoints);
+            foreach(var dock in own)
+                if(dock.Alive&&dock.Complete&&dock.def.id=="dock")
+                {
+                    var direction=world.DockWaterDirection(dock.position);
+                    if(direction!=Vector2.zero)candidates.Add(dock.position+direction*(World.DockQuayLength+boat.def.radius+1.5f));
+                }
+            foreach(var candidate in candidates)
+            {
+                if(Threatened(candidate,enemies)||!world.NavigationFor(boat).IsWalkable(candidate,boat.def.radius))continue;
+                float distance=(candidate-boat.position).sqrMagnitude;if(distance<best){goal=candidate;best=distance;}
+            }
+            if(best==float.MaxValue)
+            {
+                if(boat.orders.Count>0)Send(new GameCommand{kind=CommandKind.Order,actors=new[]{boat.id},order=OrderKind.Stop});
+                return;
+            }
+            if(boat.orders.Count==0||boat.orders.Peek().kind!=OrderKind.Move||(boat.orders.Peek().point-goal).sqrMagnitude>1)
+                Send(new GameCommand{kind=CommandKind.Order,actors=new[]{boat.id},order=OrderKind.Move,point=goal});
         }
         private void CommandFleet(List<EntityState> own,List<EntityState> enemies)
         {
@@ -124,8 +163,16 @@ namespace Frontier
                 }
                 else if(boat.orders.Count==0)
                 {
-                    Vector2 patrol=new Vector2(64,boat.position.y<64?100:28);
-                    Send(new GameCommand{kind=CommandKind.Order,actors=new[]{boat.id},order=OrderKind.AttackMove,point=patrol});
+                    // Follow authored channel points, including branch heads
+                    // and river mouths, without projecting patrols onto land.
+                    Vector2 patrol=boat.position;float farthest=-1;
+                    foreach(var candidate in world.Layout.PatrolPoints)
+                    {
+                        if(!world.NavigationFor(boat).IsWalkable(candidate,boat.def.radius))continue;
+                        float distance=(candidate-boat.position).sqrMagnitude;
+                        if(distance>farthest){farthest=distance;patrol=candidate;}
+                    }
+                    if(farthest>4)Send(new GameCommand{kind=CommandKind.Order,actors=new[]{boat.id},order=OrderKind.AttackMove,point=patrol});
                 }
             }
         }

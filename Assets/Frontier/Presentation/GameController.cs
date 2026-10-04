@@ -27,7 +27,12 @@ namespace Frontier
         public int AgeLimit=5,MatchSeed=314159;
         public string OpponentDifficulty="standard";
         public string SelectedMap=MapTopology.Frontier;
-        public string MapName=>SelectedMap==MapTopology.River?"RIVER CROSSINGS":"THE TWO OUTCROPS";
+        public string MapName=>MapTopology.Name(SelectedMap);
+        public void CycleMap()
+        {
+            int current=Array.IndexOf(MapTopology.All,SelectedMap);
+            SelectedMap=MapTopology.All[(current+1)%MapTopology.All.Length];
+        }
         public string DifficultyReason => AiDifficultyProfile.InvalidReason(Rules.Difficulty(OpponentDifficulty));
         public void CycleDifficulty()
         {
@@ -89,7 +94,7 @@ namespace Frontier
         {
             var args=Environment.GetCommandLineArgs();
             string Arg(string key){int i=Array.IndexOf(args,key);return i>=0&&i+1<args.Length?args[i+1]:null;}
-            if(Arg("-frontierMap")==MapTopology.River)SelectedMap=MapTopology.River;
+            if(MapTopology.IsValid(Arg("-frontierMap")))SelectedMap=Arg("-frontierMap");
             if(Rules.Civ(Arg("-frontierPlayerCiv"))!=null)PlayerCivilization=Arg("-frontierPlayerCiv");
             if(Rules.Civ(Arg("-frontierOpponentCiv"))!=null)OpponentCivilization=Arg("-frontierOpponentCiv");
             if(int.TryParse(Arg("-frontierMaxAge"),out int ages))AgeLimit=Mathf.Clamp(ages,1,Rules.ages.Length);
@@ -100,7 +105,7 @@ namespace Frontier
             {
                 float duration=25;
                 if(float.TryParse(Arg("-frontierBenchmarkSeconds"),System.Globalization.NumberStyles.Float,System.Globalization.CultureInfo.InvariantCulture,out float seconds)&&!float.IsNaN(seconds)&&!float.IsInfinity(seconds))duration=seconds;
-                BenchmarkMode=true;SelectedMap=MapTopology.Frontier;StartMatch();gameObject.AddComponent<RuntimeBenchmark>().Initialize(this,count,duration);
+                BenchmarkMode=true;if(!MapTopology.IsValid(Arg("-frontierMap")))SelectedMap=MapTopology.Frontier;StartMatch();gameObject.AddComponent<RuntimeBenchmark>().Initialize(this,count,duration);
             }
         }
         public void StartMatch()

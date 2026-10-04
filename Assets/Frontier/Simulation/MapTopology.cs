@@ -7,7 +7,20 @@ namespace Frontier
     // edges. Rendering and interaction consume these same physical bounds.
     public static class MapTopology
     {
-        public const string Frontier="frontier",River="river";
+        public const string Frontier="frontier",River="river",Winding="winding",Tropical="tropical",Tributaries="tributaries",Estuary="estuary";
+        public static readonly string[] All={Frontier,River,Winding,Tropical,Tributaries,Estuary};
+        public static bool IsValid(string id)=>id==Frontier||IsRiverMap(id);
+        public static bool IsRiverMap(string id)=>id==River||id==Winding||id==Tropical||id==Tributaries||id==Estuary;
+        public static string Name(string id)
+        {
+            switch(id)
+            {
+                case Frontier:return "Frontier Plains";case River:return "River Crossing";
+                case Winding:return "Winding River Valley";case Tropical:return "Tropical River Bay";
+                case Tributaries:return "Confluence Rivers";case Estuary:return "River Estuary";
+                default:return id??"";
+            }
+        }
         public const float RiverMinX=57.5f,RiverMaxX=70.5f,WaterHeight=.02f;
         public const float BridgeSouth=40,BridgeNorth=88,BridgeHalfWidth=4.5f;
         public const float BridgeHeight=3.2f,BridgeRampLength=8;
@@ -39,27 +52,29 @@ namespace Frontier
         public readonly Vector2[] TradeRoute;
         public GridNavigation NavigationFor(EntityDef definition)=>definition!=null&&definition.waterborne?WaterNavigation:Navigation;
         public GridNavigation NavigationFor(EntityState entity)=>NavigationFor(entity?.def);
-        public bool IsWater(Vector2 point)=>MapId==MapTopology.River&&MapTopology.IsWater(point);
-        public bool IsBridge(Vector2 point)=>MapId==MapTopology.River&&MapTopology.IsBridge(point);
-        public bool IsBridgeApproach(Vector2 point)=>MapId==MapTopology.River&&MapTopology.IsBridgeApproach(point);
-        public bool BridgeFootprintOverlaps(Vector2 center,float width,float depth)
-        {
-            if(MapId!=MapTopology.River||center.x+width*.5f<MapTopology.RiverMinX-MapTopology.BridgeRampLength||center.x-width*.5f>MapTopology.RiverMaxX+MapTopology.BridgeRampLength)return false;
-            return Mathf.Abs(center.y-MapTopology.BridgeSouth)<=MapTopology.BridgeHalfWidth+depth*.5f||Mathf.Abs(center.y-MapTopology.BridgeNorth)<=MapTopology.BridgeHalfWidth+depth*.5f;
-        }
-        public float SurfaceHeight(Vector2 point,bool waterborne=false)=>MapId==MapTopology.River?(waterborne?MapTopology.WaterHeight:MapTopology.GroundHeight(point)):0;
+        public bool IsWater(Vector2 point)=>Layout.IsWater(point);
+        public bool IsBridge(Vector2 point)=>Layout.IsBridge(point);
+        public bool IsBridgeApproach(Vector2 point)=>Layout.IsBridgeApproach(point);
+        public bool BridgeFootprintOverlaps(Vector2 center,float width,float depth)=>Layout.BridgeFootprintOverlaps(center,width,depth);
+        public float SurfaceHeight(Vector2 point,bool waterborne=false)=>Layout.HasWater?(waterborne?Layout.WaterHeight:Layout.GroundHeight(point)):0;
         private void InitializeNavigationTerrain()
         {
-            Navigation.ConfigureTerrain(point=>IsWater(point)&&!IsBridge(point)||MapId==MapTopology.River&&MapTopology.IsBridgeSideBarrier(point));
+            Navigation.ConfigureTerrain(point=>IsWater(point)&&!IsBridge(point)||Layout.IsBridgeSideBarrierCell(point));
             WaterNavigation.ConfigureTerrain(point=>!IsWater(point));
         }
         private Vector2[] MapTradeRoute()
         {
-            if(MapId==MapTopology.River)return new[]{new Vector2(18,76),new Vector2(44,76),new Vector2(47,88),new Vector2(81,88),new Vector2(81,64),new Vector2(84,52),new Vector2(110,52)};
+            if(Layout.HasWater)return (Vector2[])Layout.TradeRoute.Clone();
             return Rules.landmarks?.route==null?Array.Empty<Vector2>():(Vector2[])Rules.landmarks.route.Clone();
         }
-        private Vector2 MapSocketPosition(TradeSocketDef socket)=>MapId==MapTopology.River&&socket.waypoint==2?new Vector2(81,67):socket.position;
-        private int MapSocketWaypoint(TradeSocketDef socket)=>MapId==MapTopology.River?(socket.waypoint==2?4:socket.waypoint==3?5:socket.waypoint):socket.waypoint;
+        private Vector2 MapSocketPosition(TradeSocketDef socket)
+        {
+            if(MapId==MapTopology.River)return socket.waypoint==2?new Vector2(81,67):socket.position;
+            if(!Layout.HasWater)return socket.position;
+            // Three sockets remain on bank stretches, beyond either ramp mouth.
+            int waypoint=MapSocketWaypoint(socket);return TradeRoute[waypoint]+new Vector2(0,3);
+        }
+        private int MapSocketWaypoint(TradeSocketDef socket)=>MapId==MapTopology.River?(socket.waypoint==2?4:socket.waypoint==3?5:socket.waypoint):Layout.HasWater?(socket.waypoint<=1?1:socket.waypoint==2?TradeRoute.Length-3:TradeRoute.Length-1):socket.waypoint;
         public bool CanAttackTarget(EntityState actor,EntityState target)
         {
             if(actor==null||target==null||!actor.Alive||!target.Alive||target.def.kind==EntityKind.Resource||actor.def.civilian||actor.def.damage<=0)return false;

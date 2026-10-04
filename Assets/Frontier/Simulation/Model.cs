@@ -113,6 +113,7 @@ namespace Frontier
         public int id,owner; public EntityDef def; public Vector2 position,previousPosition,origin,facing=Vector2.up,rally;
         public ResourceKind tradeMode,rallyResource;
         public float hp,construction=1,remaining,attackReadyAt,fireAt=-1,deployUntil,scanAt,stuckFor,pathRetryAt;
+        public Vector2 recoveryProgressPosition;public float recoveryProgressAt;
         public Vector2 progressGoal,detour;public float progressDistance=float.MaxValue,progressAt,detourUntil;
         public Vector2 pathGoal; public bool isDeployed,shotMelee; public float nextEconomyLog; public Cost paidConstruction;
         public int attackTarget,garrisonedIn,rallyTarget,pathVersion=-1; public bool hold,dead,forceMelee;

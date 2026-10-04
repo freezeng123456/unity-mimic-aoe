@@ -33,11 +33,11 @@ namespace Frontier
             }
             foreach(var definition in rules.treasures)
             {
-                var e=Spawn(definition.entity,-1,definition.position);var treasure=new TreasureState{entity=e.id,definition=definition};Treasures.Add(treasure);
+                var e=Spawn(definition.entity,-1,MapLandPosition(definition.entity,definition.position));var treasure=new TreasureState{entity=e.id,definition=definition};Treasures.Add(treasure);
                 for(int i=0;i<definition.guards;i++)
                 {
                     var offset=new Vector2(i%2==0?-2.5f:2.5f,2.5f+i/2*1.5f);
-                    var guard=Spawn("guardian",-1,Navigation.NearestWalkable(e.position+offset,.4f));treasure.guards.Add(guard.id);
+                    var guard=Spawn("guardian",-1,MapLandPosition("guardian",Navigation.NearestWalkable(e.position+offset,.4f)));treasure.guards.Add(guard.id);
                 }
                 Emit("TreasurePlaced",-1,e.id,"Guarded camp: "+definition.guards);
             }

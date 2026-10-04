@@ -41,19 +41,36 @@ namespace Frontier
             if(!CanAfford(player,EntityCost(player,d)))return "Need "+EntityCost(player,d);
             if(id=="trade_post"&&(SocketAt(point)==null||TradingPostAt(SocketAt(point).id)!=null))return "Place on an empty trade route site";
             if(Fog.At(player,point)!=VisibilityState.Visible)return "Build inside current vision";
-            if(BridgeFootprintOverlaps(point,d.width,d.depth))return "Keep bridge decks and approaches clear";
-            if(id=="dock"){var shore=DockPlacementReason(point);if(shore!="")return shore;}
-            float margin=id=="dock"?0:1;
-            if(!Navigation.IsAreaFree(point,d.width+margin,d.depth+margin))return "Blocked footprint or map boundary";
-            int banks=0;
+            if(id=="dock")
+            {
+                var shore=DockPlacementReason(point);if(shore!="")return shore;
+                var footprint=DockFootprintReason(point);if(footprint!="")return footprint;
+            }
+            else
+            {
+                if(BridgeFootprintOverlaps(point,d.width,d.depth))return "Keep bridge decks and approaches clear";
+                if(!Navigation.IsAreaFree(point,d.width+1,d.depth+1))return "Blocked footprint or map boundary";
+            }
+            var footprintCells=new List<Vector2>(BuildingFootprintCells(d,point));int banks=0;
             foreach(var e in Entities)
             {
                 if(!e.Alive||e.garrisonedIn!=0)continue;
                 if(e.def.id=="trade_socket"&&id=="trade_post"&&(e.position-point).sqrMagnitude<.01f)continue;
                 if(e.owner==player&&e.def.id=="bank")banks++;
                 if(e.def.kind==EntityKind.Building)
-                {if(Mathf.Abs(e.position.x-point.x)<(e.def.width+d.width)*.5f+1&&Mathf.Abs(e.position.y-point.y)<(e.def.depth+d.depth)*.5f+1)return "Too close to another building";}
-                else if(Mathf.Abs(e.position.x-point.x)<d.width*.5f+e.def.radius&&Mathf.Abs(e.position.y-point.y)<d.depth*.5f+e.def.radius)return "Footprint occupied by units or resources";
+                {if(BuildingFootprintsOverlap(d,point,e.def,e.position,1))return "Too close to another building";}
+                else
+                {
+                    if(BuildingFootprintContains(d,point,e.position,e.def.radius))return "Footprint occupied by units or resources";
+                    // A coarse navigation cell can project slightly beyond a
+                    // rotated wall. A foundation must not imprison an actor
+                    // that clears the mesh but overlaps its occupied cell.
+                    foreach(var cell in footprintCells)
+                    {
+                        Vector2 distance=new Vector2(Mathf.Max(0,Mathf.Abs(e.position.x-cell.x)-.5f),Mathf.Max(0,Mathf.Abs(e.position.y-cell.y)-.5f));
+                        if(distance.sqrMagnitude<e.def.radius*e.def.radius+.00001f)return "Footprint occupied by units or resources";
+                    }
+                }
             }
             if(id=="bank"&&banks>=CountingHouseLimit(player))return "Counting house limit reached";
             return "";
@@ -80,7 +97,7 @@ namespace Frontier
                 if(d.producer!=b.def.id)return "Requires "+d.producer;
                 if(p.age<UnitAge(player,d))return "Requires age "+UnitAge(player,d);
                 if(!EntityAvailable(player,d))return "Civilization requirement";
-                if(d.waterborne&&MapId!="river")return "River vessels require a river map";
+                if(d.waterborne&&!Layout.HasWater)return "River vessels require a water map";
                 if((d.tags&Tags.Villager)!=0&&AutoRecruitSeconds(player)>0)return "Settlers are recruited automatically by town centers";
                 count=Mathf.Clamp(count,1,d.batch);
                 if(UnitLimitReason(player,d,count)!="")return UnitLimitReason(player,d,count);

@@ -20,7 +20,7 @@ namespace Frontier
         private Color32[] fogPixels=new Color32[128*128],mapPixels=new Color32[128*128];
         private float nextFog;
         private Material fogMaterial,bridgeFogMaterial,lineMaterial;
-        private LineRenderer preview;
+        private LineRenderer preview,previewJetty;
         private List<GameObject> rocks=new List<GameObject>();
         private readonly List<Mesh> outcropMeshes=new List<Mesh>();
         private MaterialPropertyBlock terrainTint;
@@ -50,6 +50,7 @@ namespace Frontier
             fogMaterial=new Material(Shader.Find("Frontier/Fog"));fogMaterial.mainTexture=fogTexture;fog.GetComponent<Renderer>().sharedMaterial=fogMaterial;
             lineMaterial=new Material(Shader.Find("Universal Render Pipeline/Unlit"));lineMaterial.color=Color.white;
             preview=NewLine("Building footprint",.12f);preview.loop=true;preview.positionCount=4;preview.gameObject.SetActive(false);
+            previewJetty=NewLine("Dock quay footprint",.12f);previewJetty.loop=true;previewJetty.positionCount=4;previewJetty.gameObject.SetActive(false);
             for(int i=0;i<128*128;i++)fogPixels[i]=new Color32(9,17,21,0);fogTexture.SetPixels32(fogPixels);fogTexture.Apply();
         }
         public void ResetWorld()
@@ -68,11 +69,14 @@ namespace Frontier
             foreach(string key in oldBuildingKeys)pool.Remove(key);
             ClearOutcrops();
             if(riverTerrain!=null)Destroy(riverTerrain.gameObject);
+            // Curved maps own a bank-height terrain mesh; the legacy maps keep
+            // their original ground. Never place a flat plane over a carved bank.
+            terrain.Find("Ground").GetComponent<MeshRenderer>().enabled=game.World==null||!game.World.Layout.HasWater||game.World.MapId==MapTopology.River;
             riverTerrain=WaterPresentation.BuildTerrain(terrain,game.World);
             AddBridgeFog();
             foreach(var line in projectiles)line.gameObject.SetActive(false);
             foreach(var line in rallyFlags)line.gameObject.SetActive(false);
-            foreach(var p in pulses)Destroy(p.line.gameObject);pulses.Clear();preview.gameObject.SetActive(false);nextFog=0;
+            foreach(var p in pulses)Destroy(p.line.gameObject);pulses.Clear();preview.gameObject.SetActive(false);previewJetty.gameObject.SetActive(false);nextFog=0;
             if(caravan!=null)Destroy(caravan.gameObject);if(tradeRoad!=null)Destroy(tradeRoad.gameObject);
             if(game.World?.Rules.landmarks!=null)CreateTradeViews();
             if(game.World!=null)foreach(var r in game.World.TerrainObstacles)
@@ -126,7 +130,7 @@ namespace Frontier
             for(int i=1;i<route.Length;i++)
             {
                 var start=route[i-1];var end=route[i];var direction=(end-start).normalized;var side=new Vector2(-direction.y,direction.x)*.6f;
-                int pieces=game.World.MapId==MapTopology.River?Mathf.CeilToInt(Vector2.Distance(start,end)*2):1;
+                int pieces=game.World.Layout.HasWater?Mathf.CeilToInt(Vector2.Distance(start,end)*2):1;
                 for(int piece=0;piece<pieces;piece++)
                 {
                     var a=Vector2.Lerp(start,end,piece/(float)pieces);var b=Vector2.Lerp(start,end,(piece+1)/(float)pieces);
@@ -146,7 +150,7 @@ namespace Frontier
         }
         private void Release(EntityVisual visual)
         {
-            visual.root.gameObject.SetActive(false);if(!pool.TryGetValue(visual.key,out var stack)){stack=new Stack<EntityVisual>();pool[visual.key]=stack;}
+            visual.root.gameObject.SetActive(false);visual.root.name="Pooled "+visual.key;if(!pool.TryGetValue(visual.key,out var stack)){stack=new Stack<EntityVisual>();pool[visual.key]=stack;}
             if(visual.architecture!=null&&stack.Count>=8){Destroy(visual.root.gameObject);return;}stack.Push(visual);
         }
         private EntityVisual Acquire(EntityState entity)
@@ -165,7 +169,7 @@ namespace Frontier
                 var health=new GameObject("Health").transform;health.SetParent(root,false);health.localPosition=new Vector3(0,architecture!=null?architecture.LocalBounds.max.y+.35f:2.8f,0);
                 ProceduralArt.Part(health,"Health backing",PrimitiveType.Cube,Vector3.zero,new Vector3(1.65f,.16f,.035f),new Color(.12f,.15f,.12f));
                 var bar=ProceduralArt.Part(health,"Health remaining",PrimitiveType.Cube,new Vector3(0,0,-.04f),new Vector3(1.55f,.11f,.045f),new Color(.3f,.74f,.34f)).transform;
-                v=new EntityVisual{key=key,root=root,model=model,circle=circle,health=health,bar=bar,rig=model.GetComponent<UnitRig>(),architecture=architecture};
+                v=new EntityVisual{key=key,root=root,model=model,circle=circle,health=health,bar=bar,rig=model.GetComponent<UnitRig>(),boatMotion=model.GetComponent<BoatPresentationMotion>(),architecture=architecture};
             }
             v.root.gameObject.SetActive(true);v.root.name="Entity "+entity.id;v.root.position=EntityPosition(entity);v.model.localScale=Vector3.one;v.model.localPosition=Vector3.zero;
             v.firedAt=v.hurtAt=v.deathAt=-1000;v.pickReady=false;v.pickRootPosition=v.root.position;v.facing=entity.facing.sqrMagnitude>.001f?Quaternion.LookRotation(new Vector3(entity.facing.x,0,entity.facing.y)):Quaternion.identity;if(entity.def.id=="dock"){var direction=game.World.DockWaterDirection(entity.position);v.facing=Quaternion.Euler(0,-Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg,0);}
@@ -188,6 +192,7 @@ namespace Frontier
         }
         private void LateUpdate()
         {
+            if(game.World!=null)WaterPresentation.Tick(game.World);
             var world=game.World;if(game.InMenu||world==null)return;ConsumeAnimationEvents(world);
             foreach(var entity in world.Entities)
             {
@@ -269,6 +274,7 @@ namespace Frontier
         private static void ApplyPose(EntityVisual visual,EntityState entity,World world)
         {
             var pose=UnitAnimation.Evaluate(entity,world.Time,visual.firedAt,visual.hurtAt,visual.deathAt,world.Get(entity.work.target));UnitAnimation.Apply(visual.rig,pose);
+            visual.boatMotion?.Apply(pose,world.Time);
             float bob=pose.moving?Mathf.Abs(Mathf.Sin(pose.locomotionPhase))*.035f:0;
             visual.model.localPosition=new Vector3(0,bob-pose.death*.28f,0);
             visual.model.rotation=visual.facing*Quaternion.Euler(pose.hurt*-9,0,pose.death*84);
@@ -315,11 +321,13 @@ namespace Frontier
         }
         private void UpdatePreview()
         {
-            var id=game.Controls.BuildingToPlace;preview.gameObject.SetActive(!string.IsNullOrEmpty(id));if(string.IsNullOrEmpty(id))return;
+            var id=game.Controls.BuildingToPlace;preview.gameObject.SetActive(!string.IsNullOrEmpty(id));previewJetty.gameObject.SetActive(id=="dock");if(string.IsNullOrEmpty(id))return;
             var d=game.Rules.Entity(id);var p=game.World.BuildPoint(0,id,game.Controls.GroundMouse);bool valid=game.World.CanBuild(0,id,p)=="";
             TintLine(preview,valid?new Color(.5f,1,.35f):new Color(1,.22f,.12f));
-            var corners=new[]{new Vector2(p.x-d.width/2,p.y-d.depth/2),new Vector2(p.x+d.width/2,p.y-d.depth/2),new Vector2(p.x+d.width/2,p.y+d.depth/2),new Vector2(p.x-d.width/2,p.y+d.depth/2)};
-            for(int i=0;i<corners.Length;i++)preview.SetPosition(i,new Vector3(corners[i].x,game.World.SurfaceHeight(corners[i])+.2f,corners[i].y));
+            var corners=game.World.BuildingFootprintCorners(d,p);
+            for(int i=0;i<4;i++)preview.SetPosition(i,new Vector3(corners[i].x,game.World.SurfaceHeight(corners[i])+.2f,corners[i].y));
+            if(corners.Length>4)
+            {TintLine(previewJetty,valid?new Color(.5f,1,.35f):new Color(1,.22f,.12f));for(int i=0;i<4;i++)previewJetty.SetPosition(i,new Vector3(corners[i+4].x,game.World.Layout.WaterHeight+.2f,corners[i+4].y));}
         }
         public void Pulse(Vector2 point,int target,bool attack)
         {
@@ -342,8 +350,19 @@ namespace Frontier
             }
         }
         public bool TryGetPickBounds(int id,out Bounds bounds)
-        {if(visuals.TryGetValue(id,out var v)&&v.pickReady&&v.root.gameObject.activeInHierarchy){bounds=v.pickBounds;return true;}bounds=default;return false;}
-        private class EntityVisual {public string key;public Transform root,model,health,bar;public UnitRig rig;public ArchitectureModel architecture;public int constructionStage=-1;public Quaternion facing;public float firedAt=-1000,hurtAt=-1000,deathAt=-1000;public LineRenderer circle;public Bounds pickBounds;public Vector3 pickScale,pickRootPosition;public bool pickReady;}
+        {
+            if(visuals.TryGetValue(id,out var v)&&v.root.gameObject.activeInHierarchy)
+            {
+                // Vessel hulls extend beyond a unit's centre-screen radius and
+                // turn during play. Measure their current geometry only when an
+                // actual click asks for it, never for every army unit per frame.
+                // EntityPickGeometry excludes the non-solid trailing wake.
+                if(v.boatMotion!=null){bounds=EntityPickGeometry.WorldBounds(v.model);return true;}
+                if(v.pickReady){bounds=v.pickBounds;return true;}
+            }
+            bounds=default;return false;
+        }
+        private class EntityVisual {public string key;public Transform root,model,health,bar;public UnitRig rig;public BoatPresentationMotion boatMotion;public ArchitectureModel architecture;public int constructionStage=-1;public Quaternion facing;public float firedAt=-1000,hurtAt=-1000,deathAt=-1000;public LineRenderer circle;public Bounds pickBounds;public Vector3 pickScale,pickRootPosition;public bool pickReady;}
         private class PulseVisual {public LineRenderer line;public Vector2 point;public float time;public bool waterborne;}
     }
 }

@@ -84,32 +84,51 @@ namespace Frontier
             }
             return nearest;
         }
-        public List<Vector2> FindPath(Vector2 start,Vector2 end,float radius=.4f,Func<Vector2,bool> extraWalkable=null)
+        public List<Vector2> FindPath(Vector2 start,Vector2 end,float radius=.4f,Func<Vector2,bool> extraWalkable=null,Func<Vector2,Vector2,bool> extraSegmentWalkable=null)
         {
             var output=new List<Vector2>();start=NearestWalkable(start,radius);end=NearestWalkable(end,radius);
             if(!PathWalkable(start,radius,extraWalkable)||!PathWalkable(end,radius,extraWalkable))return output;
-            if(PathClearLine(start,end,radius,extraWalkable)){output.Add(start);output.Add(end);return output;}
+            if(PathClearLine(start,end,radius,extraWalkable,extraSegmentWalkable)){output.Add(start);output.Add(end);return output;}
             // Fractional positions near a wall can round into an obstructed cell.
             // Both endpoints must connect to walkable graph nodes without crossing it.
             var graph=Clearance(radius);
-            int s=ConnectedNode(start,radius,extraWalkable,graph),g=ConnectedNode(end,radius,extraWalkable,graph);
+            int s=ConnectedNode(start,radius,extraWalkable,graph,extraSegmentWalkable),g=ConnectedNode(end,radius,extraWalkable,graph,extraSegmentWalkable);
             if(s<0||g<0)return output;
             if(graph.component[s]!=graph.component[g])return output;
-            int sx=s%Width,sy=s/Width,gx=g%Width,gy=g/Width;
-            search++;if(search==int.MaxValue){Array.Clear(visited,0,visited.Length);Array.Clear(closed,0,closed.Length);search=1;}
-            heap.Clear();costs[s]=0;visited[s]=search;parents[s]=-1;Push(s,Heuristic(sx,sy,gx,gy));bool found=false;
-            while(heap.Count>0)
+            int gx=g%Width,gy=g/Width;bool found=false;
+            int attempts=extraWalkable!=null||extraSegmentWalkable!=null?2:1;
+            for(int attempt=0;attempt<attempts&&!found;attempt++)
             {
-                int current=Pop();if(closed[current]==search)continue;closed[current]=search;if(current==g){found=true;break;}
-                int x=current%Width,y=current/Width;
-                for(int i=0;i<8;i++)
+                List<int> starts=null;HashSet<int> ends=null;
+                if(attempt>0)
                 {
-                    int nx=x+Dx[i],ny=y+Dy[i];if(!Inside(nx,ny))continue;int next=nx+ny*Width;
-                    if(closed[next]==search||!NodeWalkable(nx,ny,graph,extraWalkable))continue;
-                    if(i>=4&&(!NodeWalkable(x+Dx[i],y,graph,extraWalkable)||!NodeWalkable(x,y+Dy[i],graph,extraWalkable)))continue;
-                    if(extraWalkable!=null&&!PathClearLine(new Vector2(x,y),new Vector2(nx,ny),radius,extraWalkable))continue;
-                    float score=costs[current]+(i<4?1:1.41421356f);
-                    if(visited[next]!=search||score<costs[next]){visited[next]=search;costs[next]=score;parents[next]=current;Push(next,score+Heuristic(nx,ny,gx,gy));}
+                    // Parked discs can isolate the nearest integer endpoint while
+                    // the fractional actor sees another usable grid connection.
+                    // Retry those alternatives together, rather than reporting a
+                    // false blockade or flooding the map once per candidate.
+                    starts=ConnectedNodes(start,radius,extraWalkable,graph,extraSegmentWalkable);
+                    ends=new HashSet<int>(ConnectedNodes(end,radius,extraWalkable,graph,extraSegmentWalkable));
+                    if(starts.Count==0||ends.Count==0)return output;
+                }
+                search++;if(search==int.MaxValue){Array.Clear(visited,0,visited.Length);Array.Clear(closed,0,closed.Length);search=1;}
+                heap.Clear();
+                if(starts==null){costs[s]=0;visited[s]=search;parents[s]=-1;Push(s,Heuristic(s%Width,s/Width,gx,gy));}
+                else foreach(int source in starts)
+                {float cost=Vector2.Distance(start,new Vector2(source%Width,source/Width));costs[source]=cost;visited[source]=search;parents[source]=-1;Push(source,cost+Heuristic(source%Width,source/Width,gx,gy));}
+                while(heap.Count>0)
+                {
+                    int current=Pop();if(closed[current]==search)continue;closed[current]=search;
+                    if(ends==null?current==g:ends.Contains(current)){g=current;found=true;break;}
+                    int x=current%Width,y=current/Width;
+                    for(int i=0;i<8;i++)
+                    {
+                        int nx=x+Dx[i],ny=y+Dy[i];if(!Inside(nx,ny))continue;int next=nx+ny*Width;
+                        if(closed[next]==search||!NodeWalkable(nx,ny,graph,extraWalkable))continue;
+                        if(i>=4&&(!NodeWalkable(x+Dx[i],y,graph,extraWalkable)||!NodeWalkable(x,y+Dy[i],graph,extraWalkable)))continue;
+                        if((extraWalkable!=null||extraSegmentWalkable!=null)&&!PathClearLine(new Vector2(x,y),new Vector2(nx,ny),radius,extraWalkable,extraSegmentWalkable))continue;
+                        float score=costs[current]+(i<4?1:1.41421356f);
+                        if(visited[next]!=search||score<costs[next]){visited[next]=search;costs[next]=score;parents[next]=current;Push(next,score+Heuristic(nx,ny,gx,gy));}
+                    }
                 }
             }
             if(!found)return output;
@@ -117,7 +136,7 @@ namespace Frontier
             reverse.Insert(0,start);reverse.Add(end);
             output.Add(start);int anchor=0;
             while(anchor<reverse.Count-1)
-            {int next=anchor+1;while(next+1<reverse.Count&&PathClearLine(reverse[anchor],reverse[next+1],radius,extraWalkable))next++;output.Add(reverse[next]);anchor=next;}
+            {int next=anchor+1;while(next+1<reverse.Count&&PathClearLine(reverse[anchor],reverse[next+1],radius,extraWalkable,extraSegmentWalkable))next++;output.Add(reverse[next]);anchor=next;}
             return output;
         }
         private ClearanceGraph Clearance(float radius)
@@ -148,32 +167,89 @@ namespace Frontier
         }
         private bool NodeWalkable(int x,int y,ClearanceGraph graph,Func<Vector2,bool> extraWalkable)
         {return graph.walkable[x+y*Width]&&(extraWalkable==null||extraWalkable(new Vector2(x,y)));}
-        private int ConnectedNode(Vector2 point,float radius,Func<Vector2,bool> extraWalkable,ClearanceGraph graph)
+        private int ConnectedNode(Vector2 point,float radius,Func<Vector2,bool> extraWalkable,ClearanceGraph graph,Func<Vector2,Vector2,bool> extraSegmentWalkable)
         {
             int cx=Mathf.RoundToInt(point.x),cy=Mathf.RoundToInt(point.y),best=-1;float distance=float.MaxValue;
-            for(int ring=0;ring<=3;ring++)
+            // A fractional actor in a narrow bank passage may need a farther
+            // connection around a parked ally; every connection remains swept.
+            int rings=extraWalkable!=null||extraSegmentWalkable!=null?6:3;
+            for(int ring=0;ring<=rings;ring++)
             {
                 for(int y=cy-ring;y<=cy+ring;y++)for(int x=cx-ring;x<=cx+ring;x++)
                 {
                     if(!Inside(x,y)||Mathf.Max(Mathf.Abs(x-cx),Mathf.Abs(y-cy))!=ring)continue;
                     var node=new Vector2(x,y);float d=(node-point).sqrMagnitude;
-                    if(d<distance&&NodeWalkable(x,y,graph,extraWalkable)&&PathClearLine(point,node,radius,extraWalkable)){distance=d;best=x+y*Width;}
+                    if(d<distance&&NodeWalkable(x,y,graph,extraWalkable)&&PathClearLine(point,node,radius,extraWalkable,extraSegmentWalkable)){distance=d;best=x+y*Width;}
                 }
                 if(best>=0)return best;
             }
             return -1;
         }
+        private List<int> ConnectedNodes(Vector2 point,float radius,Func<Vector2,bool> extraWalkable,ClearanceGraph graph,Func<Vector2,Vector2,bool> extraSegmentWalkable)
+        {
+            var nodes=new List<int>();int cx=Mathf.RoundToInt(point.x),cy=Mathf.RoundToInt(point.y);
+            for(int y=cy-6;y<=cy+6;y++)for(int x=cx-6;x<=cx+6;x++)
+                if(Inside(x,y)&&NodeWalkable(x,y,graph,extraWalkable)&&PathClearLine(point,new Vector2(x,y),radius,extraWalkable,extraSegmentWalkable))nodes.Add(x+y*Width);
+            return nodes;
+        }
         private bool PathWalkable(Vector2 point,float radius,Func<Vector2,bool> extraWalkable)
         {return IsWalkable(point,radius)&&(extraWalkable==null||extraWalkable(point));}
-        private bool PathClearLine(Vector2 start,Vector2 end,float radius,Func<Vector2,bool> extraWalkable)
+        private bool PathClearLine(Vector2 start,Vector2 end,float radius,Func<Vector2,bool> extraWalkable,Func<Vector2,Vector2,bool> extraSegmentWalkable)
         {
-            if(extraWalkable==null)return ClearLine(start,end,radius);
+            if(!ClearLine(start,end,radius)||extraSegmentWalkable!=null&&!extraSegmentWalkable(start,end))return false;if(extraWalkable==null)return true;
             int steps=Mathf.CeilToInt(Vector2.Distance(start,end)*3);
             for(int i=0;i<=steps;i++)if(!PathWalkable(Vector2.Lerp(start,end,i/(float)Mathf.Max(1,steps)),radius,extraWalkable))return false;
             return true;
         }
         public bool ClearLine(Vector2 start,Vector2 end,float radius)
-        {int steps=Mathf.CeilToInt(Vector2.Distance(start,end)*3);for(int i=0;i<=steps;i++)if(!IsWalkable(Vector2.Lerp(start,end,i/(float)Mathf.Max(1,steps)),radius))return false;return true;}
+        {
+            if(!IsWalkable(start,radius)||!IsWalkable(end,radius))return false;
+            Vector2 delta=end-start;float squaredLength=delta.sqrMagnitude;if(squaredLength<.0000001f)return true;
+            float limit=radius*radius+.00001f,expandedHalf=.5f+radius;
+            int y0=Mathf.FloorToInt(Mathf.Min(start.y,end.y)-radius+.5f),y1=Mathf.FloorToInt(Mathf.Max(start.y,end.y)+radius+.5f);
+            for(int y=y0;y<=y1;y++)
+            {
+                // Clip the swept segment to one expanded cell row. A diagonal
+                // journey examines a narrow corridor, not its full AABB area.
+                float from=0,to=1;
+                if(Mathf.Abs(delta.y)>.0000001f)
+                {
+                    float first=(y-expandedHalf-start.y)/delta.y,last=(y+expandedHalf-start.y)/delta.y;
+                    if(first>last){float swap=first;first=last;last=swap;}
+                    from=Mathf.Max(0,first);to=Mathf.Min(1,last);if(from>to)continue;
+                }
+                else if(Mathf.Abs(start.y-y)>expandedHalf)continue;
+                float left=start.x+delta.x*from,right=start.x+delta.x*to;
+                int x0=Mathf.FloorToInt(Mathf.Min(left,right)-radius+.5f),x1=Mathf.FloorToInt(Mathf.Max(left,right)+radius+.5f);
+                for(int x=x0;x<=x1;x++)
+                {
+                    if(!Inside(x,y))return false;int index=x+y*Width;if(!blocked[index]&&!terrainBlocked[index])continue;
+                    if(SegmentCrossesCell(start,delta,x,y))return false;
+                    // Endpoints already passed IsWalkable. The remaining
+                    // closest pair is a square corner and the segment interior.
+                    for(int corner=0;corner<4;corner++)
+                    {
+                        Vector2 point=new Vector2(x+(corner%2==0?-.5f:.5f),y+(corner<2?-.5f:.5f));
+                        float t=Mathf.Clamp(Vector2.Dot(point-start,delta)/squaredLength,0,1);
+                        if((point-(start+delta*t)).sqrMagnitude<limit)return false;
+                    }
+                }
+            }
+            return true;
+        }
+        private static bool SegmentCrossesCell(Vector2 start,Vector2 delta,int x,int y)
+        {
+            float from=0,to=1;
+            for(int axis=0;axis<2;axis++)
+            {
+                float origin=axis==0?start.x:start.y,direction=axis==0?delta.x:delta.y,center=axis==0?x:y;
+                if(Mathf.Abs(direction)<.0000001f){if(Mathf.Abs(origin-center)>.5f)return false;continue;}
+                float first=(center-.5f-origin)/direction,last=(center+.5f-origin)/direction;
+                if(first>last){float swap=first;first=last;last=swap;}
+                from=Mathf.Max(from,first);to=Mathf.Min(to,last);if(from>to)return false;
+            }
+            return true;
+        }
         private static float Heuristic(int x,int y,int gx,int gy){int dx=Math.Abs(x-gx),dy=Math.Abs(y-gy);return Mathf.Max(dx,dy)+.41421356f*Mathf.Min(dx,dy);}
         private struct Node{public int id;public float score;}
         private void Push(int id,float score)

@@ -126,7 +126,7 @@ namespace Frontier
             var difficulty=game.Rules.Difficulty(game.OpponentDifficulty);
             Button(configuration,"AI DIFFICULTY: "+(difficulty?.name?.ToUpperInvariant()??"INVALID"),new Rect(28,250,454,48),()=>{game.CycleDifficulty();ShowMenu();},difficulty?.description??game.DifficultyReason);
             Label(configuration,difficulty?.description??game.DifficultyReason,new Rect(28,308,450,55),17,muted);
-            Button(configuration,"MAP: "+game.MapName,new Rect(28,367,454,44),()=>{game.SelectedMap=game.SelectedMap==MapTopology.River?MapTopology.Frontier:MapTopology.River;ShowMenu();},"River Crossings adds two bridges, shoreline docks, fishing boats and gunboats.");
+            Button(configuration,"MAP: "+game.MapName,new Rect(28,367,454,44),()=>{game.CycleMap();ShowMenu();},"Choose outcrops, river crossings, a winding valley, tropical river bend, tributaries or an estuary. River maps support shoreline docks, fishing and naval combat.");
             var civilizationSummary=Label(configuration,"SEED "+game.MatchSeed+" · "+game.Rules.Civ(game.PlayerCivilization).description,new Rect(28,418,450,96),17,muted);
             civilizationSummary.gameObject.name="Civilization summary";
             civilizationSummary.resizeTextForBestFit=true;civilizationSummary.resizeTextMinSize=14;civilizationSummary.resizeTextMaxSize=17;
@@ -351,7 +351,7 @@ namespace Frontier
             game.Controls.CancelTargetMode();
             if(game.Controls.FirstSelected==null||!game.Controls.Selected.Exists(id=>game.World.Get(id)?.Worker==true)){game.Notify("Select settlers before opening the building menu");return;}
             var box=Modal("CONSTRUCTION",640);int n=0;var p=game.World.Players[0];
-            foreach(var d in game.Rules.entities)if(d.kind==EntityKind.Building&&game.World.EntityAvailable(0,d)&&(d.id!="dock"||game.World.MapId==MapTopology.River))
+            foreach(var d in game.Rules.entities)if(d.kind==EntityKind.Building&&game.World.EntityAvailable(0,d)&&(d.id!="dock"||game.World.Layout.HasWater))
             {var def=d;int i=n++;int age=game.World.UnitAge(0,d);Button(box,d.name+"  ·  "+ShortCost(game.World.EntityCost(0,d))+"\nAge "+age+"  ·  "+d.time+"s",new Rect(25+(i%3)*275,90+(i/3)*133,265,117),()=>{CloseModal();game.Controls.BeginBuild(def.id);},d.description,p.age>=age);}
         }
         public void ShowGroups()

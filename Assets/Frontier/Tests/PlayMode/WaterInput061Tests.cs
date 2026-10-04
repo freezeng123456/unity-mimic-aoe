@@ -23,7 +23,8 @@ namespace Frontier.Tests
             yield return Click(ButtonCenter(FindButton("BEGIN SKIRMISH")));
             Assert.AreEqual(MapTopology.River,game.World.MapId);yield return Ready();
             Assert.IsTrue(session.GetComponentsInChildren<Transform>().Any(t=>t.name=="Continuous navigable river"));
-            game.ReturnToMenu();yield return Ready();yield return Click(ButtonCenter(FindButton("MAP:")));
+            game.ReturnToMenu();yield return Ready();
+            for(int i=1;i<MapTopology.All.Length;i++)yield return Click(ButtonCenter(FindButton("MAP:")));
             yield return Click(ButtonCenter(FindButton("BEGIN SKIRMISH")));yield return Ready();
             Assert.AreEqual(MapTopology.Frontier,game.World.MapId);
             Assert.IsFalse(session.GetComponentsInChildren<Transform>().Any(t=>t.name=="Continuous navigable river"));

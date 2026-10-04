@@ -275,15 +275,34 @@ namespace Frontier
             // Resolve actual elevated bridge surfaces before the base plane. A
             // boat-only selection targets the water channel beneath the deck.
             bool boatsOnly=Selected.Count>0&&Selected.TrueForAll(id=>game.World?.Get(id)?.def.waterborne==true);
-            if(game.World?.MapId==MapTopology.River&&!boatsOnly)
+            if(game.World?.Layout.HasWater==true&&game.World.MapId!=MapTopology.River)
             {
-                float[] edges={MapTopology.RiverMinX-MapTopology.BridgeRampLength,MapTopology.RiverMinX,MapTopology.RiverMaxX,MapTopology.RiverMaxX+MapTopology.BridgeRampLength};
-                foreach(float z in new[]{MapTopology.BridgeSouth,MapTopology.BridgeNorth})for(int i=0;i<3;i++)
+                // Carved banks are lower than the old y=0 plane. Solve against
+                // the same height field rendered by the terrain, before testing
+                // elevated bridge decks. Water clicks use the visible surface.
+                float low=Mathf.Max(0,enter-2),high=enter+4;
+                for(int n=0;n<16;n++)
                 {
-                    float x0=edges[i],x1=edges[i+1],y0=MapTopology.GroundHeight(new Vector2(x0,z)),y1=MapTopology.GroundHeight(new Vector2(x1,z));
-                    var bridgePlane=new Plane(new Vector3(x0,y0,z-MapTopology.BridgeHalfWidth),new Vector3(x0,y0,z+MapTopology.BridgeHalfWidth),new Vector3(x1,y1,z+MapTopology.BridgeHalfWidth));
-                    if(!bridgePlane.Raycast(ray,out float t)||t>=enter)continue;var hit=ray.GetPoint(t);
-                    if(hit.x>=x0-.001f&&hit.x<=x1+.001f&&Mathf.Abs(hit.z-z)<=MapTopology.BridgeHalfWidth)enter=t;
+                    float middle=(low+high)*.5f;var hit=ray.GetPoint(middle);var point=new Vector2(hit.x,hit.z);
+                    float height=boatsOnly||game.World.IsWater(point)?game.World.Layout.WaterHeight:game.World.Layout.BankHeight(point);
+                    if(hit.y>height)low=middle;else high=middle;
+                }
+                enter=(low+high)*.5f;
+            }
+            if(game.World?.Layout.HasWater==true&&!boatsOnly)
+            {
+                foreach(var bridge in game.World.Layout.Bridges)
+                {
+                    float[] edges={-bridge.HalfLength-bridge.RampLength,-bridge.HalfLength,bridge.HalfLength,bridge.HalfLength+bridge.RampLength};
+                    for(int i=0;i<3;i++)
+                    {
+                        Vector3 Point(float across,float along)
+                        {var p=bridge.Point(across,along);float height=bridge.Height*Mathf.Clamp01((bridge.HalfLength+bridge.RampLength-Mathf.Abs(across))/bridge.RampLength);return new Vector3(p.x,height,p.y);}
+                        var bridgePlane=new Plane(Point(edges[i],-bridge.HalfWidth),Point(edges[i],bridge.HalfWidth),Point(edges[i+1],bridge.HalfWidth));
+                        if(!bridgePlane.Raycast(ray,out float t)||t>=enter)continue;
+                        var hit=ray.GetPoint(t);var local=bridge.Local(new Vector2(hit.x,hit.z));
+                        if(local.x>=edges[i]-.001f&&local.x<=edges[i+1]+.001f&&Mathf.Abs(local.y)<=bridge.HalfWidth)enter=t;
+                    }
                 }
             }
             var p=ray.GetPoint(enter);return new Vector2(Mathf.Clamp(p.x,1,126),Mathf.Clamp(p.z,1,126));
@@ -300,8 +319,8 @@ namespace Frontier
                 var projected=game.GameCamera.WorldToScreenPoint(new Vector3(e.position.x,game.World.SurfaceHeight(e.position,e.def.waterborne)+(e.def.kind==EntityKind.Unit?1:0),e.position.y));if(projected.z<0)continue;
                 float d=Vector2.Distance(screen,projected);float threshold=e.def.kind==EntityKind.Unit?Mathf.Max(13,Screen.height/game.GameCamera.orthographicSize*.35f):20;
                 bool visualHit=false;
-                if(e.def.kind!=EntityKind.Unit&&game.View.TryGetPickBounds(e.id,out var bounds))visualHit=EntityPickGeometry.RayHits(bounds,ray);
-                bool footprint=e.def.kind==EntityKind.Building&&Mathf.Abs(e.position.x-point.x)<=e.def.width*.5f&&Mathf.Abs(e.position.y-point.y)<=e.def.depth*.5f;
+                if((e.def.kind!=EntityKind.Unit||e.def.waterborne)&&game.View.TryGetPickBounds(e.id,out var bounds))visualHit=EntityPickGeometry.RayHits(bounds,ray);
+                bool footprint=e.def.kind==EntityKind.Building&&game.World.BuildingFootprintContains(e.def,e.position,point,0);
                 if(d>threshold&&!footprint&&!visualHit)continue;
                 int rank=0;
                 if(command)

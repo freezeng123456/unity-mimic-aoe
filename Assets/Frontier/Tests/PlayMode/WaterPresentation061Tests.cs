@@ -22,7 +22,7 @@ namespace Frontier.Tests
             var renderers=root.GetComponentsInChildren<MeshRenderer>();Assert.IsNotEmpty(renderers);
             var bounds=renderers[0].bounds;foreach(var renderer in renderers.Skip(1))bounds.Encapsulate(renderer.bounds);return bounds;
         }
-        [TestCase("dock",4,9500)][TestCase("fishing_boat",2,6500)][TestCase("gunboat",3,6500)][TestCase("fish",2,1400)]
+        [TestCase("dock",4,11500)][TestCase("fishing_boat",6,6500)][TestCase("gunboat",6,6500)][TestCase("fish",2,1400)]
         public void RiverEntitiesUseOwnedBatchedLitGeometryWithoutPhysics(string id,int rendererBudget,int vertexBudget)
         {
             var model=Model(id);Assert.IsEmpty(model.GetComponentsInChildren<Collider>(true));
@@ -56,15 +56,24 @@ namespace Frontier.Tests
             }
         }
         [Test]
-        public void DockFacesWaterWithinItsFootprintAndBuildsInVisibleStages()
+        public void DockFacesWaterWithinItsShoreAndPierFootprintAndBuildsInVisibleStages()
         {
             var model=Model("dock");var architecture=model.GetComponent<ArchitectureModel>();Assert.IsNotNull(architecture);
             Assert.AreEqual("dock",architecture.Civilization,"Dock uses one maritime style and must not enter civilization variant rebuilding");
+            var bounds=Bounds(model);
+            Assert.Greater(bounds.max.x,4.8f,"The berth must really extend into the water");
+            Assert.LessOrEqual(bounds.max.x,5.001f);Assert.GreaterOrEqual(bounds.min.x,-2.001f);
+            Assert.LessOrEqual(Mathf.Max(Mathf.Abs(bounds.min.z),Mathf.Abs(bounds.max.z)),2.001f);
             foreach(float rotation in new[]{0f,90f,180f,270f})
             {
-                model.localRotation=Quaternion.Euler(0,rotation,0);var bounds=Bounds(model);
-                Assert.LessOrEqual(Mathf.Max(Mathf.Abs(bounds.min.x),Mathf.Abs(bounds.max.x)),2.001f);
-                Assert.LessOrEqual(Mathf.Max(Mathf.Abs(bounds.min.z),Mathf.Abs(bounds.max.z)),2.001f);
+                model.localRotation=Quaternion.Euler(0,rotation,0);
+                foreach(var filter in model.GetComponentsInChildren<MeshFilter>())foreach(var vertex in filter.sharedMesh.vertices)
+                {
+                    var local=model.InverseTransformPoint(filter.transform.TransformPoint(vertex));
+                    bool warehouse=local.x>=-2.001f&&local.x<=2.001f&&Mathf.Abs(local.z)<=2.001f;
+                    bool pier=local.x>=2&&local.x<=5.001f&&Mathf.Abs(local.z)<=1.501f;
+                    Assert.IsTrue(warehouse||pier,"Rotating the harbor must retain the physical shore/pier footprint");
+                }
             }
             architecture.SetConstruction(.10f);Assert.AreEqual(1,model.GetComponentsInChildren<MeshRenderer>().Length);
             architecture.SetConstruction(.30f);Assert.AreEqual(2,model.GetComponentsInChildren<MeshRenderer>().Length);

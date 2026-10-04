@@ -10,7 +10,7 @@ namespace Frontier
             var bounds=new Bounds(model.position,Vector3.zero);bool found=false;
             foreach(var renderer in renderers)
             {
-                if(!renderer.enabled)continue;
+                if(!renderer.enabled||renderer.name=="Non-solid trailing boat wake")continue;
                 if(!found){bounds=renderer.bounds;found=true;}else bounds.Encapsulate(renderer.bounds);
             }
             return bounds;
