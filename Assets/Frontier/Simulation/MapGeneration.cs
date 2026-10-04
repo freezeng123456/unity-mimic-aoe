@@ -130,8 +130,58 @@ namespace Frontier
             }
             var patrol=strait?new[]{MapLayout.CenterAt(main,24),MapLayout.CenterAt(channels[1],104)}:new[]{MapLayout.CenterAt(main,18),MapLayout.CenterAt(main,110)};
             var layout=new MapLayout(id,channels.ToArray(),bridges.ToArray(),fish.ToArray(),patrol,trade,seed,starts,neutral,objectives,strait);
-            ResolveOpeningExplorer(layout);BuildResources(layout,random);return layout;
+            ResolveOpeningExplorer(layout);BuildResources(layout,random);ResolveCampSites(layout);return layout;
         }
+        private static void ResolveCampSites(MapLayout layout)
+        {
+            // A bridge's outer mouth can lie beside the opening worker cluster.
+            // Treasure camps need their own safe land choice, including guard
+            // offsets and the ordinary routes to both harbor opportunities.
+            var navigation=new GridNavigation();navigation.ConfigureTerrain(p=>layout.IsWater(p)&&!layout.IsBridge(p)||layout.IsBridgeSideBarrierCell(p));
+            foreach(var start in layout.Starts)navigation.SetBlocked(start.Town,3,true);
+            var corridors=new List<List<Vector2>>();
+            for(int player=0;player<layout.Starts.Length;player++)
+                foreach(var shore in Join(layout.DockSites[player],layout.LandingSites[player]))
+                {
+                    var end=navigation.NearestWalkable(shore,.4f);var path=navigation.FindPath(layout.Starts[player].WorkerPoint(0),end,.4f);
+                    if(path.Count>0)corridors.Add(path);
+                }
+            var chosen=new List<Vector2>();
+            bool Safe(Vector2 point)
+            {
+                if(!navigation.IsAreaFree(point,7,7)||layout.BridgeFootprintOverlaps(point,8,8))return false;
+                foreach(var start in layout.Starts)
+                {
+                    if(Vector2.Distance(point,start.Town)<22||Vector2.Distance(point,start.Explorer)<20)return false;
+                    for(int worker=0;worker<9;worker++)if(Vector2.Distance(point,start.WorkerPoint(worker))<20)return false;
+                    foreach(var resource in start.Resources)if(Vector2.Distance(point,resource.Position)<6)return false;
+                }
+                foreach(var site in layout.NeutralSites)if(Vector2.Distance(point,site)<16)return false;
+                foreach(var site in layout.IslandLandingSites)if(Vector2.Distance(point,site)<16)return false;
+                foreach(var path in corridors)for(int i=1;i<path.Count;i++)
+                {
+                    Vector2 delta=path[i]-path[i-1];float t=Mathf.Clamp01(Vector2.Dot(point-path[i-1],delta)/Mathf.Max(.000001f,delta.sqrMagnitude));
+                    if(Vector2.Distance(point,path[i-1]+delta*t)<16)return false;
+                }
+                foreach(var other in chosen)if(Vector2.Distance(point,other)<16)return false;
+                return true;
+            }
+            for(int pair=0;pair<layout.ObjectiveSites.Length;pair+=2)
+            {
+                Vector2 desired=layout.ObjectiveSites[pair],bestPoint=Vector2.zero;float best=float.MaxValue;
+                for(int y=7;y<=121;y++)for(int x=7;x<=121;x++)
+                {
+                    var point=new Vector2(x,y);float score=(point-desired).sqrMagnitude;
+                    if(score>=best||!Safe(point)||!Safe(Flip(point))||Vector2.Distance(point,Flip(point))<16)continue;
+                    best=score;bestPoint=point;
+                }
+                if(best==float.MaxValue)throw new InvalidOperationException("Generated map has no safe paired camp: "+layout.Id+" / "+layout.Seed+" / "+pair);
+                layout.ObjectiveSites[pair]=bestPoint;chosen.Add(bestPoint);
+                if(pair+1<layout.ObjectiveSites.Length){layout.ObjectiveSites[pair+1]=Flip(bestPoint);chosen.Add(Flip(bestPoint));}
+            }
+        }
+        private static IEnumerable<Vector2> Join(Vector2[] first,Vector2[] second)
+        {foreach(var point in first)yield return point;foreach(var point in second)yield return point;}
         private static void ResolveOpeningExplorer(MapLayout layout)
         {
             var navigation=new GridNavigation();navigation.ConfigureTerrain(p=>layout.IsWater(p)&&!layout.IsBridge(p)||layout.IsBridgeSideBarrierCell(p));

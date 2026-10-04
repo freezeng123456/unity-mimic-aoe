@@ -112,7 +112,20 @@ namespace Frontier.Editor
         {
             if(!HasPath(c.world,actor,point))throw new InvalidOperationException(actor.def.id+" has no real path to "+point);
             Command(c,new GameCommand{player=actor.owner,kind=CommandKind.Order,actors=new[]{actor.id},order=OrderKind.Move,point=point});
-            Until(c,()=>actor.Alive&&Vector2.Distance(actor.position,point)<.85f,limit,"Actor must reach its commanded position");
+            var order=actor.orders.Count>0?actor.orders.Peek():null;
+            if(order==null||order.kind!=OrderKind.Move)throw new InvalidOperationException("Public Move did not create its movement order");
+            // Single-actor Move still passes through normal formation slots.
+            // Retain the actual order, including normal occupied-endpoint
+            // resolution, rather than waiting forever at the requested point.
+            var movement=new MovementRecord{entity=actor.id,startedAt=c.world.Time,requested=point,assigned=order.point};c.item.movements.Add(movement);
+            Until(c,()=>
+            {
+                movement.actual=actor.position;movement.destination=order.hasResolvedPoint?order.resolvedPoint:order.point;movement.observedAt=c.world.Time;
+                movement.distance=Vector2.Distance(actor.position,movement.destination);
+                if(!actor.Alive)throw new InvalidOperationException("Moving actor "+actor.id+" ("+actor.def.id+") died before arrival");
+                return movement.distance<.85f;
+            },limit,"Actor "+actor.id+" must reach its actual public Move destination");
+            movement.arrived=true;
             Command(c,new GameCommand{player=actor.owner,kind=CommandKind.Order,actors=new[]{actor.id},order=OrderKind.Hold});Advance(c,.5f);
         }
         static EntityState Build(Context c,int player,string id,Vector2 point)
@@ -120,7 +133,12 @@ namespace Frontier.Editor
             int before=c.world.Entities.Max(e=>e.id);var worker=Worker(c,player);
             Command(c,new GameCommand{player=player,kind=CommandKind.Build,actors=new[]{worker.id},item=id,point=point});
             var building=c.world.Entities.First(e=>e.id>before&&e.owner==player&&e.def.id==id);
-            Until(c,()=>building.Alive&&building.Complete,240,"Paid "+id+" construction must finish");
+            Until(c,()=>
+            {
+                if(!worker.Alive)throw new InvalidOperationException("Builder "+worker.id+" died while constructing paid "+id+" "+building.id);
+                if(!building.Alive)throw new InvalidOperationException("Paid "+id+" "+building.id+" was destroyed during construction");
+                return building.Complete;
+            },240,"Paid "+id+" construction must finish");
             c.item.buildings.Add(new BuildingRecord{entity=building.id,player=player,definition=id,position=building.position,paid=building.paidConstruction,completedAt=c.world.Time});return building;
         }
         static EntityState BuildNear(Context c,int player,string id,Vector2 anchor)
@@ -167,11 +185,16 @@ namespace Frontier.Editor
             if(c.item.births.Last().paymentEvents!=1||c.item.births.Last().spawnEvents!=1)throw new InvalidOperationException("Unit birth is not paired to exactly one actual production payment");
             return unit;
         }
-        static Vector2 FreeWater(Context c,EntityState ship,Vector2 desired)
+        static Vector2 FreeWater(Context c,EntityState ship,Vector2 desired,bool clearBridge=false)
         {
             var choices=new List<Vector2>();for(int y=-8;y<=8;y++)for(int x=-8;x<=8;x++)choices.Add(desired+new Vector2(x,y));
             foreach(var point in choices.OrderBy(p=>(p-desired).sqrMagnitude).ThenBy(p=>p.x).ThenBy(p=>p.y))
+            {
+                if(clearBridge&&c.world.Layout.BridgeFootprintOverlaps(point,6,6))continue;
+                var slots=c.world.WaterNavigation.FormationSlots(point,1,Mathf.Max(1.8f,ship.def.radius*4+.3f));
+                if(slots.Count!=1||(slots[0]-point).sqrMagnitude>.0001f)continue;
                 if(HasPath(c.world,ship,point)&&!c.world.Entities.Any(e=>e.Alive&&e.id!=ship.id&&e.garrisonedIn==0&&(e.position-point).sqrMagnitude<Mathf.Pow(e.def.radius+ship.def.radius+1,2)))return point;
+            }
             throw new InvalidOperationException("No clear reachable fleet parking point");
         }
         static void PrepareFleet(Context c)
@@ -208,7 +231,8 @@ namespace Frontier.Editor
             {
                 Vector2 site=c.world.Get(state.site).position;Vector2 approach=c.world.Navigation.NearestWalkable(site+new Vector2(-6,0),scout.def.radius);
                 bool reachable=HasPath(c.world,scout,approach);c.item.probes.Add(new Probe{purpose="neutral contact",player=0,point=approach,accepted=reachable,reason=reachable?"":"No land path"});if(!reachable)continue;
-                Move(c,scout,approach);var post=Build(c,0,"trade_post",site);var definition=c.world.NeutralDefinition(state.id);
+                Move(c,scout,approach);ClearVisibleGuardians(c,site);Move(c,scout,approach);
+                var post=Build(c,0,"trade_post",site);var definition=c.world.NeutralDefinition(state.id);
                 Command(c,new GameCommand{player=0,kind=CommandKind.NeutralAlliance,target=state.site});Until(c,()=>state.owner==0,definition.allianceSeconds+20,"Paid alliance must complete in actual contact");
                 int before=c.world.Entities.Max(e=>e.id),eventStart=c.world.Events.Count;
                 Command(c,new GameCommand{player=0,kind=CommandKind.NeutralRecruit,target=state.site});
@@ -223,6 +247,23 @@ namespace Frontier.Editor
             if(c.item.allies.Count<2)throw new InvalidOperationException("Fewer than two neutral services could be reached and completed on the specified seed");
             c.item.friendlyUnits=c.item.allies.Select(a=>a.unit).ToArray();c.item.cameraSize=19;
         }
+        static void ClearVisibleGuardians(Context c,Vector2 site)
+        {
+            // Scout contact is real vision. Previously the unguarded worker
+            // reached the second site and died midway through construction.
+            // Use only the starting explorer and already paid allied recruits;
+            // discover and defeat each visible camp defender through Attack.
+            for(int attempt=0;attempt<16;attempt++)
+            {
+                var target=c.world.Entities.FirstOrDefault(e=>e.Alive&&World.Guardian(e)&&c.world.IsVisible(0,e)&&(e.position-site).sqrMagnitude<=18*18);
+                if(target==null)return;
+                var fighters=new[]{Scout(c,0)}.Concat(c.item.allies.Select(a=>c.world.Get(a.unit))).Where(e=>e!=null&&e.Alive).Select(e=>e.id).ToArray();
+                Command(c,new GameCommand{player=0,kind=CommandKind.Order,actors=fighters,order=OrderKind.Attack,target=target.id});
+                Until(c,()=>!target.Alive,90,"Visible guardian "+target.id+" must be defeated before exposing the builder");
+                Advance(c,.5f);
+            }
+            throw new InvalidOperationException("Visible settlement guardians exceeded the bounded combat preparation");
+        }
         static void PrepareMonitor(Context c)
         {
             if(c.world.MaxAge!=4||c.world.Players[0].age!=4)throw new InvalidOperationException("Monitor preview requires its explicit age-IV fixture grant and cap");
@@ -230,10 +271,10 @@ namespace Frontier.Editor
             Vector2 direction=c.world.Layout.WaterDirection(dock.position),side=new Vector2(-direction.y,direction.x);
             // The authored straight river has a legal harbor and an open-water
             // approach away from the bridge, without adding a hostile target.
-            Vector2 parking=FreeWater(c,monitor,dock.position+direction*9+side*12);
-            if(c.world.Layout.IsBridgeApproach(parking))throw new InvalidOperationException("Monitor silhouette parking must be clear of bridge decks");
+            Vector2 parking=FreeWater(c,monitor,dock.position+direction*9-side*10,true);
+            if(c.world.Layout.BridgeFootprintOverlaps(parking,6,6))throw new InvalidOperationException("Monitor silhouette parking must be clear of bridge decks");
             Move(c,monitor,parking);
-            if(!monitor.Alive||!monitor.hold||!c.world.IsWater(monitor.position)||c.world.Fog.At(0,monitor.position)!=VisibilityState.Visible)
+            if(!monitor.Alive||!monitor.hold||!c.world.IsWater(monitor.position)||c.world.Layout.BridgeFootprintOverlaps(monitor.position,6,6)||c.world.Fog.At(0,monitor.position)!=VisibilityState.Visible)
                 throw new InvalidOperationException("Paid monitor must be alive, held and actually visible in open water");
             c.item.friendlyUnits=new[]{monitor.id};c.item.selection=new[]{monitor.id};c.item.cameraFocus=monitor.position;c.item.cameraSize=13;
         }
@@ -326,8 +367,9 @@ namespace Frontier.Editor
             public int[] automatedPlayers=Array.Empty<int>(),friendlyUnits=Array.Empty<int>(),selection=Array.Empty<int>();public Vector2 cameraFocus,embarkLand,embarkWater;
             public Cost[] openingResources,finalResources,spent;public PopulationSnapshot[] openingPopulation,finalPopulation;public EntityRecord[] entities;public MapObjectiveState objective;public NeutralAllianceState[] neutralAllies;
             public List<GrantRecord> grants=new List<GrantRecord>();public List<CommandRecord> commands=new List<CommandRecord>();public List<BuildingRecord> buildings=new List<BuildingRecord>();
-            public List<Birth> births=new List<Birth>();public List<AllyRecord> allies=new List<AllyRecord>();public List<Probe> probes=new List<Probe>();
+            public List<Birth> births=new List<Birth>();public List<AllyRecord> allies=new List<AllyRecord>();public List<Probe> probes=new List<Probe>();public List<MovementRecord> movements=new List<MovementRecord>();
         }
+        [Serializable]sealed class MovementRecord{public int entity;public float startedAt,observedAt,distance;public Vector2 requested,assigned,destination,actual;public bool arrived;}
         [Serializable]sealed class GrantRecord{public int player,previousAge,controlledAge;public Cost amount,before,after;}
         [Serializable]sealed class CommandRecord{public float time;public GameCommand command;public bool accepted;public string reason;public int firstEvent,eventCount;public PopulationSnapshot before,after;public Cost resourcesBefore,resourcesAfter;public QueueRecord[] queues;}
         [Serializable]sealed class QueueRecord{public int entity;public ProductionJob[] jobs;}

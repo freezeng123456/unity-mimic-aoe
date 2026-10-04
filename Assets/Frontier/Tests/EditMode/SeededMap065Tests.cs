@@ -87,6 +87,7 @@ namespace Frontier.Tests
             // bodies. Age/visibility are controlled solely for placement queries;
             // physical paid build/transport gameplay has separate integration tests.
             var world=new World(Catalog.Load(),seed,"coast","coast",5,template);
+            AssertSafeOpeningCamps(world);
             int block=world.Rules.Civ("coast").startingWorkers+2+43;
             var opening=world.Entities.Take(block*2).ToArray();Assert.AreEqual(block*2,opening.Length);
             for(int i=0;i<block;i++)
@@ -121,6 +122,53 @@ namespace Frontier.Tests
                 else gap=Vector2.Distance(a.position,b.position)-a.def.radius-b.def.radius;
                 Assert.GreaterOrEqual(gap,.115f,"Opening physical clearance: "+a.id+" / "+b.id);
             }
+        }
+
+        private static float SegmentDistance(Vector2 point,Vector2 from,Vector2 to)
+        {var delta=to-from;float t=Mathf.Clamp01(Vector2.Dot(point-from,delta)/Mathf.Max(.000001f,delta.sqrMagnitude));return Vector2.Distance(point,from+delta*t);}
+        private static void AssertSafeOpeningCamps(World world)
+        {
+            Assert.AreEqual(world.Rules.landmarks.treasures.Length,world.Treasures.Count,"Camp placement must retain every treasure definition");
+            var guards=world.Entities.Where(World.Guardian).ToArray();
+            Assert.AreEqual(world.Rules.landmarks.treasures.Sum(c=>c.guards),guards.Length,"Moving camps must retain all guardians");
+            for(int i=0;i<world.Treasures.Count;i++)
+                Assert.AreEqual(world.Layout.ObjectiveSites[i],world.Get(world.Treasures[i].entity).position,"A camp must not be projected back into its opening district");
+            foreach(var guard in guards)
+            {
+                Assert.IsTrue(world.Navigation.IsWalkable(guard.position,guard.def.radius));
+                foreach(var worker in world.Entities.Where(e=>e.owner>=0&&(e.Worker||e.def.id=="explorer")))
+                    Assert.Greater(Vector2.Distance(guard.origin,worker.position),Mathf.Max(guard.def.vision,world.Rules.landmarks.guardLeash)+worker.def.radius+1,"A stationary opening body must remain outside camp aggro: "+guard.id+" / "+worker.id);
+            }
+            for(int player=0;player<2;player++)
+            {
+                var worker=world.Entities.First(e=>e.owner==player&&e.Worker);
+                foreach(var shore in world.Layout.DockSites[player].Concat(world.Layout.LandingSites[player]))
+                {
+                    var path=world.Navigation.FindPath(worker.position,shore,worker.def.radius);Assert.IsNotEmpty(path,"Normal opening harbor/beach access");
+                    Assert.Less((path[path.Count-1]-shore).sqrMagnitude,.00001f,"Harbor access must reach the requested shore");
+                    foreach(var guard in guards)for(int i=1;i<path.Count;i++)
+                        Assert.Greater(SegmentDistance(guard.origin,path[i-1],path[i]),Mathf.Max(guard.def.vision,world.Rules.landmarks.guardLeash)+worker.def.radius+1,"An ordinary harbor corridor must not pull a camp: "+guard.id);
+                }
+            }
+        }
+
+        [TestCase(MapTopology.GeneratedRiver,161803)]
+        [TestCase(MapTopology.GeneratedDelta,271828)]
+        [TestCase(MapTopology.GeneratedStrait,314159)]
+        public void IdleOpeningWorkersSurviveExistingCampRulesForTwoHundredSeconds(string template,int seed)
+        {
+            var world=new World(Catalog.Load(),seed,"coast","coast",5,template);AssertSafeOpeningCamps(world);
+            var opening=world.Entities.Where(e=>e.owner>=0&&(e.Worker||e.def.id=="explorer")).ToArray();
+            var hp=opening.Select(e=>e.hp).ToArray();var positions=opening.Select(e=>e.position).ToArray();
+            var simulation=new MatchSimulation(world,Array.Empty<int>());
+            for(int tick=0;tick<2000;tick++)Assert.IsTrue(simulation.Step(),"Normal idle match must continue");
+            for(int i=0;i<opening.Length;i++)
+            {
+                Assert.IsTrue(opening[i].Alive,"Neutral camps must not clear an untouched opening: "+opening[i].id);
+                Assert.AreEqual(hp[i],opening[i].hp,"An opening actor must not need a hidden health grant");
+                Assert.AreEqual(positions[i],opening[i].position,"This regression must leave opening actors in place");
+            }
+            Assert.IsFalse(world.Events.Any(e=>e.kind=="Damage"&&opening.Any(actor=>actor.id==e.target)),"No initial actor may have been damaged and healed");
         }
 
         [TestCase(MapTopology.GeneratedRiver)] [TestCase(MapTopology.GeneratedDelta)] [TestCase(MapTopology.GeneratedStrait)]
