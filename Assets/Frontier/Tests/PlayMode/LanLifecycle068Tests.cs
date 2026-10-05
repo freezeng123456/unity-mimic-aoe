@@ -8,6 +8,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TestTools;
+using UnityEngine.UI;
 
 namespace Frontier.Tests
 {
@@ -206,6 +207,28 @@ namespace Frontier.Tests
             EqualCost(host.World.Players[RemotePlayer].resources,client.World.Players[RemotePlayer].resources,"Reconnected replica economy");
             var records=host.Recorder.Capture().records.Where(r=>r.kind==ReplayOperation.Command&&r.command.player==RemotePlayer&&r.command.kind==CommandKind.Train).ToArray();
             Assert.AreEqual(1,records.Length,"Retransmission must not record or execute the order a second time");Assert.IsTrue(records[0].accepted);
+        }
+
+        [UnityTest] public IEnumerator DisconnectedHostCanResumeTheSharedPauseThroughItsActualMenu()
+        {
+            yield return StartRemoteMatch();host.SetLanSharedPause(true);
+            yield return PumpUntil(()=>host.World.Paused&&client.World.Paused&&host.LanPendingCount==0&&client.LanPendingCount==0,"Shared pause did not reach both peers before disconnect");
+            var connection=Private<LanConnection>(client,"lanClient");connection.Dispose();Assert.IsFalse(connection.Connected);
+            // Keep the client controller disabled and never pump it again:
+            // the host must offer Resume without waiting for a reconnection.
+            host.PumpLan();yield return PumpUntil(()=>!host.IsLanConnected,"Host did not observe the actual peer disconnect",true,false);
+            Assert.IsTrue(host.World.Paused);Assert.IsFalse(host.CanSubmitOrders);Assert.AreEqual(0,host.LanPendingCount);
+            int step=host.Simulation.StepCount;float time=host.World.Time;
+            foreach(var canvas in hostRoot.GetComponentsInChildren<Canvas>(true))canvas.gameObject.SetActive(true);
+            host.TogglePause();yield return Ready();Assert.IsTrue(host.LocalMenuPaused);
+            var resume=hostRoot.GetComponentsInChildren<Button>().Single(b=>b.isActiveAndEnabled&&b.name=="PAUSE MATCH");
+            Assert.AreEqual("RESUME MATCH",resume.GetComponentInChildren<Text>().text);
+            Assert.IsTrue(resume.interactable,"The authoritative host must be able to resume even when its partner is disconnected");
+            resume.onClick.Invoke();Assert.AreEqual(1,host.LanPendingCount,"The actual menu must queue a host control request");
+            yield return PumpUntil(()=>!host.World.Paused&&host.LanPendingCount==0,"Host Resume was stranded behind shared pause or the absent connection",true,false);
+            Assert.IsFalse(host.IsLanConnected);Assert.IsFalse(connection.Connected);Assert.IsTrue(client.World.Paused,"The disconnected client was deliberately not pumped");
+            Assert.AreEqual(step,host.Simulation.StepCount);Assert.AreEqual(time,host.World.Time,.000001f,"Resuming the control plane must not advance simulation time");
+            Assert.IsTrue(host.LocalMenuPaused);Assert.IsNull(client.Simulation);
         }
     }
 }

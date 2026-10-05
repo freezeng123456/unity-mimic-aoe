@@ -169,7 +169,7 @@ namespace Frontier
                 bool paused=game.World?.Paused==true;
                 lanPauseStatus.text=game.LanConnectionText+"\n"+(paused?"The shared match is paused.":"The match continues while this menu is open.")+"\n"+game.LanPendingCount+" orders awaiting confirmation";
                 lanSharedPause.GetComponentInChildren<Text>().text=paused?"RESUME MATCH":"PAUSE MATCH";
-                lanSharedPause.interactable=game.IsLanConnected&&game.World!=null&&!game.World.IsMatchEnded;
+                lanSharedPause.interactable=(game.IsLanHost||game.IsLanConnected)&&game.World!=null&&!game.World.IsMatchEnded;
             }
         }
     }
