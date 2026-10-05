@@ -1,0 +1,210 @@
+{
+  "schemaVersion": 1,
+  "createdUtc": "2026-10-05T02:55:50.714448+00:00",
+  "scope": "The frozen build-macos.log and six explicitly named native session logs for 0.9.0 only. Existing build receipt, gallery, acceptance documents, runtime, tests, source and shared default Player.log were not modified.",
+  "method": "Replace only the actual licensing-client Machine Id value in build-macos.log with [REDACTED_MACHINE_ID]. Preserve original line context, endings and every other byte. Native session logs require no detected redaction and remain byte-identical. Raw identifier values are not stored in this receipt.",
+  "redactionCounts": {
+    "licensingMachineId": 1,
+    "licenseSerial": 0,
+    "sensitiveEntitlement": 0,
+    "sensitiveUserId": 0,
+    "credentialPattern": 0
+  },
+  "scanNotes": [
+    "No actual license-serial fields, sensitive entitlement/user-ID fields, recognized provider tokens, Bearer credentials, credential assignments or private-key headers were found in the seven scoped files.",
+    "Licensing status/unavailable-token messages, ordinary diagnostics and all Unity Development shutdown warnings remain intact.",
+    "MemoryLeaksLiteralOccurrences and threadFinalizedLines are text occurrence counts, not measured leaks or a stability/root-cause determination."
+  ],
+  "processObservationsProvidedByRoot": {
+    "session-01.log": {
+      "exitCode": 0,
+      "termination": "normal exit"
+    },
+    "session-02.log": {
+      "exitCode": 143,
+      "termination": "root explicitly sent SIGTERM to establish a stopped process for cold restoration"
+    },
+    "session-03.log": {
+      "exitCode": 143,
+      "termination": "root explicitly sent SIGTERM to establish a stopped process for cold restoration"
+    },
+    "session-04.log": {
+      "exitCode": 0,
+      "termination": "normal exit"
+    },
+    "session-05.log": {
+      "exitCode": 0,
+      "termination": "normal exit"
+    },
+    "session-06.log": {
+      "exitCode": 0,
+      "termination": "normal exit"
+    }
+  },
+  "excludedUnexpectedGuiRelaunch": {
+    "observationSource": "root",
+    "description": "After an exit, GUI get_app_state automatically reopened the candidate with no arguments as PID 91152. Root explicitly sent SIGTERM to this unintended process. Its log is the shared default Player.log; it was neither read nor copied for this archive. This process is excluded from native acceptance evidence.",
+    "pid": 91152,
+    "logArchived": false,
+    "usedAsPassingEvidence": false
+  },
+  "acceptanceBoundary": "This receipt audits archival bytes and identifier substitutions. Native GUI actions and passing scope are recorded separately by root; exit 143 is deliberate termination, not a natural game result or clean exit 0.",
+  "files": [
+    {
+      "file": "build-macos.log",
+      "originalSource": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.9.0/FinalCandidate/build-macos.log",
+      "rawBytes": 527290,
+      "rawSha256": "dbac635db5f67ad2804c3454c759155ec99f1d3f5633bd5c9fc276fd9c03629b",
+      "sanitizedBytes": 527283,
+      "sanitizedSha256": "9c0693b712bca30f8a4431a15e10aa49ad82076892be962d73aef71ccf2e1ccf",
+      "redactions": {
+        "licensingMachineId": 1,
+        "licenseSerial": 0,
+        "sensitiveEntitlement": 0,
+        "sensitiveUserId": 0,
+        "credentialPattern": 0
+      },
+      "redactedLineNumbers": [
+        84
+      ],
+      "allOtherBytesPreserved": true,
+      "engineWarningOccurrencesPreserved": {
+        "MemoryLeaksLiteralOccurrences": 0,
+        "threadFinalizedLines": 13
+      },
+      "byteIdenticalToOriginal": false
+    },
+    {
+      "file": "session-01.log",
+      "originalSource": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.9.0/FinalCandidate/Native/session-01.log",
+      "rawBytes": 6804,
+      "rawSha256": "83baac0419568b1d9a2edc402e97a6091fea186dfdb612724de7eadb3a0fae23",
+      "sanitizedBytes": 6804,
+      "sanitizedSha256": "83baac0419568b1d9a2edc402e97a6091fea186dfdb612724de7eadb3a0fae23",
+      "redactions": {
+        "licensingMachineId": 0,
+        "licenseSerial": 0,
+        "sensitiveEntitlement": 0,
+        "sensitiveUserId": 0,
+        "credentialPattern": 0
+      },
+      "redactedLineNumbers": [],
+      "allOtherBytesPreserved": true,
+      "engineWarningOccurrencesPreserved": {
+        "MemoryLeaksLiteralOccurrences": 1,
+        "threadFinalizedLines": 6
+      },
+      "byteIdenticalToOriginal": true
+    },
+    {
+      "file": "session-02.log",
+      "originalSource": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.9.0/FinalCandidate/Native/session-02.log",
+      "rawBytes": 2062,
+      "rawSha256": "c40b78667e201a3e4f39d8989268874be642b23ad14c4940cf31f0e11ad5798a",
+      "sanitizedBytes": 2062,
+      "sanitizedSha256": "c40b78667e201a3e4f39d8989268874be642b23ad14c4940cf31f0e11ad5798a",
+      "redactions": {
+        "licensingMachineId": 0,
+        "licenseSerial": 0,
+        "sensitiveEntitlement": 0,
+        "sensitiveUserId": 0,
+        "credentialPattern": 0
+      },
+      "redactedLineNumbers": [],
+      "allOtherBytesPreserved": true,
+      "engineWarningOccurrencesPreserved": {
+        "MemoryLeaksLiteralOccurrences": 0,
+        "threadFinalizedLines": 0
+      },
+      "byteIdenticalToOriginal": true
+    },
+    {
+      "file": "session-03.log",
+      "originalSource": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.9.0/FinalCandidate/Native/session-03.log",
+      "rawBytes": 2062,
+      "rawSha256": "96a466c5fb6b6cf7e9580b30fdd23e7c233274b892a2395e18bf07f2ebfd6b29",
+      "sanitizedBytes": 2062,
+      "sanitizedSha256": "96a466c5fb6b6cf7e9580b30fdd23e7c233274b892a2395e18bf07f2ebfd6b29",
+      "redactions": {
+        "licensingMachineId": 0,
+        "licenseSerial": 0,
+        "sensitiveEntitlement": 0,
+        "sensitiveUserId": 0,
+        "credentialPattern": 0
+      },
+      "redactedLineNumbers": [],
+      "allOtherBytesPreserved": true,
+      "engineWarningOccurrencesPreserved": {
+        "MemoryLeaksLiteralOccurrences": 0,
+        "threadFinalizedLines": 0
+      },
+      "byteIdenticalToOriginal": true
+    },
+    {
+      "file": "session-04.log",
+      "originalSource": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.9.0/FinalCandidate/Native/session-04.log",
+      "rawBytes": 16240,
+      "rawSha256": "ec32f7905abadc8eaeb076b425bda3cd418a613c8240527eeca03058d56de92e",
+      "sanitizedBytes": 16240,
+      "sanitizedSha256": "ec32f7905abadc8eaeb076b425bda3cd418a613c8240527eeca03058d56de92e",
+      "redactions": {
+        "licensingMachineId": 0,
+        "licenseSerial": 0,
+        "sensitiveEntitlement": 0,
+        "sensitiveUserId": 0,
+        "credentialPattern": 0
+      },
+      "redactedLineNumbers": [],
+      "allOtherBytesPreserved": true,
+      "engineWarningOccurrencesPreserved": {
+        "MemoryLeaksLiteralOccurrences": 1,
+        "threadFinalizedLines": 7
+      },
+      "byteIdenticalToOriginal": true
+    },
+    {
+      "file": "session-05.log",
+      "originalSource": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.9.0/FinalCandidate/Native/session-05.log",
+      "rawBytes": 17506,
+      "rawSha256": "0fc6ee34e3ca8f181dd9b026c1ef3328065c3631d3c9602d76fc0026635dab39",
+      "sanitizedBytes": 17506,
+      "sanitizedSha256": "0fc6ee34e3ca8f181dd9b026c1ef3328065c3631d3c9602d76fc0026635dab39",
+      "redactions": {
+        "licensingMachineId": 0,
+        "licenseSerial": 0,
+        "sensitiveEntitlement": 0,
+        "sensitiveUserId": 0,
+        "credentialPattern": 0
+      },
+      "redactedLineNumbers": [],
+      "allOtherBytesPreserved": true,
+      "engineWarningOccurrencesPreserved": {
+        "MemoryLeaksLiteralOccurrences": 1,
+        "threadFinalizedLines": 5
+      },
+      "byteIdenticalToOriginal": true
+    },
+    {
+      "file": "session-06.log",
+      "originalSource": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.9.0/FinalCandidate/Native/session-06.log",
+      "rawBytes": 19733,
+      "rawSha256": "9e669a6c66b53ee280226acdb65abf7efd5f4ce841ca2759286e2f7862eae659",
+      "sanitizedBytes": 19733,
+      "sanitizedSha256": "9e669a6c66b53ee280226acdb65abf7efd5f4ce841ca2759286e2f7862eae659",
+      "redactions": {
+        "licensingMachineId": 0,
+        "licenseSerial": 0,
+        "sensitiveEntitlement": 0,
+        "sensitiveUserId": 0,
+        "credentialPattern": 0
+      },
+      "redactedLineNumbers": [],
+      "allOtherBytesPreserved": true,
+      "engineWarningOccurrencesPreserved": {
+        "MemoryLeaksLiteralOccurrences": 1,
+        "threadFinalizedLines": 6
+      },
+      "byteIdenticalToOriginal": true
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "schemaVersion": 1,
+  "createdUtc": "2026-10-05T02:35:15.722207+00:00",
+  "scope": "Historical targeted runs and pre-UI-repair full-run diagnostics in this directory only. Runtime, Tests-current, frozen docs, source, build outputs and processes were not touched.",
+  "method": "Replace only the actual value after Machine Id in each licensing-client startup block with [REDACTED_MACHINE_ID]; preserve line prefix, suffix, newlines and every other byte. Raw hashes identify the pre-redaction archived copies; raw secret values are not retained in this receipt.",
+  "redactionCounts": {
+    "licensingMachineId": 8,
+    "licenseSerial": 0,
+    "sensitiveEntitlement": 0,
+    "sensitiveUserId": 0,
+    "credentialPattern": 0
+  },
+  "scanNotes": [
+    "No actual license-serial fields, sensitive entitlement/user-ID fields, recognized provider tokens, Bearer credentials, credential assignments or private-key headers were found in these archived files.",
+    "Serialization diagnostics, unavailable-token messages, licensing status, test failures and all other ordinary diagnostic content were retained.",
+    "Counts describe this bounded pattern and context review; they are not a claim about files outside this directory."
+  ],
+  "preexistingIndexEntriesVerified": 15,
+  "files": [
+    {
+      "file": "066-integration-3.log",
+      "rawBytes": 136064,
+      "rawSha256": "3d618f18f6a66cf02d4cc17a4f95680bfa387ebe1272cd0603caec9994c471c4",
+      "sanitizedBytes": 136057,
+      "sanitizedSha256": "4216bbfe16a861d5754ac61c3b6b61efa3cf8e90958685ed6e9887bdaa546a8e",
+      "redactions": {
+        "licensingMachineId": 1
+      },
+      "redactedLineNumbers": [
+        88
+      ],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "066-integration-3.xml",
+      "rawBytes": 11052,
+      "rawSha256": "6f005d2d222d2c44760099b2fe99f64238a2d3269a573690dffef78f02226f48",
+      "sanitizedBytes": 11052,
+      "sanitizedSha256": "6f005d2d222d2c44760099b2fe99f64238a2d3269a573690dffef78f02226f48",
+      "redactions": {
+        "licensingMachineId": 0
+      },
+      "redactedLineNumbers": [],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "066-targeted-edit-2.log",
+      "rawBytes": 90218,
+      "rawSha256": "dad5f230cdc44a9c35661bb0a2a7217acb748f5129b55b6300edcfbcee5a7835",
+      "sanitizedBytes": 90211,
+      "sanitizedSha256": "47b1f9c92213bb9c8d6c990dc3cacfd40ab375e7fb33ec170ad192062c70f403",
+      "redactions": {
+        "licensingMachineId": 1
+      },
+      "redactedLineNumbers": [
+        97
+      ],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "066-targeted-edit-2.xml",
+      "rawBytes": 73539,
+      "rawSha256": "0284dba116f4a733a802039725cc2a813e1bdcae12d2d04165e63a89ddb27829",
+      "sanitizedBytes": 73539,
+      "sanitizedSha256": "0284dba116f4a733a802039725cc2a813e1bdcae12d2d04165e63a89ddb27829",
+      "redactions": {
+        "licensingMachineId": 0
+      },
+      "redactedLineNumbers": [],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "066-targeted-edit.log",
+      "rawBytes": 78013,
+      "rawSha256": "87aa2a49f3f3246916f2ef7e8e62fd81d1c2cd3c1ac9fd85efd91e39fbaf5a85",
+      "sanitizedBytes": 78006,
+      "sanitizedSha256": "1c78e6b37c9088a45bdd1da270210f8deffd6a2cc5fa57eeb4a986c6d9985334",
+      "redactions": {
+        "licensingMachineId": 1
+      },
+      "redactedLineNumbers": [
+        87
+      ],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "066-targeted-play-2.log",
+      "rawBytes": 138967,
+      "rawSha256": "08c49be5227e7761f29d7e95ba0955f6f4e6b929ba490734084a31b4964940d3",
+      "sanitizedBytes": 138960,
+      "sanitizedSha256": "2f366876d5b4055a84f89de1d746c443d85d9d0b5241521c9f07dfdf2e715acc",
+      "redactions": {
+        "licensingMachineId": 1
+      },
+      "redactedLineNumbers": [
+        86
+      ],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "066-targeted-play-2.xml",
+      "rawBytes": 24829,
+      "rawSha256": "d64346036c32ab56fa3a491083a72bcf76155f3590809d720a1c5b5435267f77",
+      "sanitizedBytes": 24829,
+      "sanitizedSha256": "d64346036c32ab56fa3a491083a72bcf76155f3590809d720a1c5b5435267f77",
+      "redactions": {
+        "licensingMachineId": 0
+      },
+      "redactedLineNumbers": [],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "066-targeted-play.log",
+      "rawBytes": 120375,
+      "rawSha256": "4a32f90565a04e8ac4c3a61112215a48ca901756f8d091c422e311482b9f2580",
+      "sanitizedBytes": 120368,
+      "sanitizedSha256": "221d5eaee2b1d0bedc31061a3ab2c9eeff769b2456bd3c36171cfc62715be885",
+      "redactions": {
+        "licensingMachineId": 1
+      },
+      "redactedLineNumbers": [
+        88
+      ],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "066-targeted-play.xml",
+      "rawBytes": 19565,
+      "rawSha256": "15eab31082fa68fb971422da667233f5ce95a6aedf1c940a5590f6103051c129",
+      "sanitizedBytes": 19565,
+      "sanitizedSha256": "15eab31082fa68fb971422da667233f5ce95a6aedf1c940a5590f6103051c129",
+      "redactions": {
+        "licensingMachineId": 0
+      },
+      "redactedLineNumbers": [],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "066-team-repair.log",
+      "rawBytes": 79168,
+      "rawSha256": "564b36998e9ffc1d4b9bc7cf4e14cad756e432eb08027cd5f3b5844743e8a0e3",
+      "sanitizedBytes": 79161,
+      "sanitizedSha256": "5545e5ea14d71529f6c0be0f0903f32563017a09caae56dc0c0551662988c518",
+      "redactions": {
+        "licensingMachineId": 1
+      },
+      "redactedLineNumbers": [
+        97
+      ],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "066-team-repair.xml",
+      "rawBytes": 43074,
+      "rawSha256": "8d461437fdf5b1f33370b53b31403306a0c1e8cb188fab0d7291f1689e2f3cc3",
+      "sanitizedBytes": 43074,
+      "sanitizedSha256": "8d461437fdf5b1f33370b53b31403306a0c1e8cb188fab0d7291f1689e2f3cc3",
+      "redactions": {
+        "licensingMachineId": 0
+      },
+      "redactedLineNumbers": [],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "Full-run-before-ui-repairs/EditMode.log",
+      "rawBytes": 91148,
+      "rawSha256": "2554368696bca380b33c2897771ca88c502a11bb75ffe7d0595f330bfe55d26f",
+      "sanitizedBytes": 91141,
+      "sanitizedSha256": "9dd07ce53d5527d7d7777d8b0b6bee75e2e393876442af335cb11e4eaf5f878d",
+      "redactions": {
+        "licensingMachineId": 1
+      },
+      "redactedLineNumbers": [
+        87
+      ],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "Full-run-before-ui-repairs/EditMode.xml",
+      "rawBytes": 574191,
+      "rawSha256": "44075168133e8e97ea21ef031186eff24770cbcf56e28e26c4047ed4a542bc04",
+      "sanitizedBytes": 574191,
+      "sanitizedSha256": "44075168133e8e97ea21ef031186eff24770cbcf56e28e26c4047ed4a542bc04",
+      "redactions": {
+        "licensingMachineId": 0
+      },
+      "redactedLineNumbers": [],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "Full-run-before-ui-repairs/PlayMode.log",
+      "rawBytes": 737917,
+      "rawSha256": "515edd8c3dcc12ff6704df4f62a9a55a1bfe41ab69c156b0ca688cd152a837ee",
+      "sanitizedBytes": 737910,
+      "sanitizedSha256": "714f3e59935cc8f18990a00e521e372d78dde109ff7bd50227a2306169725bdf",
+      "redactions": {
+        "licensingMachineId": 1
+      },
+      "redactedLineNumbers": [
+        94
+      ],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "Full-run-before-ui-repairs/PlayMode.xml",
+      "rawBytes": 336446,
+      "rawSha256": "c5561b6e3fb89658767ae7d12db561ea263367cacfcd7fc71c34272e3b1cc0a8",
+      "sanitizedBytes": 336446,
+      "sanitizedSha256": "c5561b6e3fb89658767ae7d12db561ea263367cacfcd7fc71c34272e3b1cc0a8",
+      "redactions": {
+        "licensingMachineId": 0
+      },
+      "redactedLineNumbers": [],
+      "allOtherBytesPreserved": true
+    }
+  ],
+  "updatedIndexes": [
+    {
+      "file": "preliminary-runs.json",
+      "rawBytes": 1919,
+      "rawSha256": "6827158956c3685a5075d199632eb4b41f363d0286002915edaef40f1f353994",
+      "sanitizedBytes": 1919,
+      "sanitizedSha256": "1a7ee1eec64d8e5ea14926aab90bd01550e913818baa653626e10550eebaafaf",
+      "change": "Refresh indexed file byte counts and SHA-256 values; scope and file membership retained."
+    },
+    {
+      "file": "Full-run-before-ui-repairs/diagnostic.json",
+      "rawBytes": 772,
+      "rawSha256": "82555d4fb56714f83aeaf297ebc39f9aaea95bff26f962741f54d77d07ce3a48",
+      "sanitizedBytes": 772,
+      "sanitizedSha256": "04b638bf41e0b61185e27caa76c60b56c3ee18c2495638b942c02cbe2173b538",
+      "change": "Refresh indexed file byte counts and SHA-256 values; scope and file membership retained."
+    }
+  ]
+}

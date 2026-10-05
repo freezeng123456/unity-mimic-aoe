@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Passed" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-05 02:17:57Z" end-time="2026-10-05 02:18:03Z" duration="6.0189723">
+  <test-suite type="TestSuite" id="1439" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="352" result="Passed" start-time="2026-10-05 02:17:57Z" end-time="2026-10-05 02:18:03Z" duration="6.018972" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1433" name="Frontier.PlayMode.dll" fullname="/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Library/ScriptAssemblies/Frontier.PlayMode.dll" runstate="Runnable" testcasecount="352" result="Passed" start-time="2026-10-05 02:17:57Z" end-time="2026-10-05 02:18:03Z" duration="6.013140" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="88150" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1434" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="352" result="Passed" start-time="2026-10-05 02:17:57Z" end-time="2026-10-05 02:18:03Z" duration="6.008716" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1435" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="352" result="Passed" start-time="2026-10-05 02:17:57Z" end-time="2026-10-05 02:18:03Z" duration="6.007247" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1169" name="ExpansionIntegration066Tests" fullname="Frontier.Tests.ExpansionIntegration066Tests" classname="Frontier.Tests.ExpansionIntegration066Tests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-05 02:17:57Z" end-time="2026-10-05 02:18:03Z" duration="5.999701" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1175" name="EnlargedUiSliderAndScrolledActionsRemainReachableThroughRealPointerGestures" fullname="Frontier.Tests.ExpansionIntegration066Tests.EnlargedUiSliderAndScrolledActionsRemainReachableThroughRealPointerGestures" methodname="EnlargedUiSliderAndScrolledActionsRemainReachableThroughRealPointerGestures" classname="Frontier.Tests.ExpansionIntegration066Tests" runstate="Runnable" seed="950719724" result="Passed" start-time="2026-10-05 02:17:57Z" end-time="2026-10-05 02:17:59Z" duration="1.816069" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_PAUSE paused=True reason=manual_pause world=0.000000 realtime=2.520930 frame=17
+FRONTIER_PAUSE paused=False reason=manual_resume world=0.000000 realtime=2.802596 frame=34
+]]></output>
+            </test-case>
+            <test-case id="1171" name="FreeForAllMenuColdLoadAndFinalResultRetainAllFourIndependentSlots" fullname="Frontier.Tests.ExpansionIntegration066Tests.FreeForAllMenuColdLoadAndFinalResultRetainAllFourIndependentSlots" methodname="FreeForAllMenuColdLoadAndFinalResultRetainAllFourIndependentSlots" classname="Frontier.Tests.ExpansionIntegration066Tests" runstate="Runnable" seed="404825959" result="Passed" start-time="2026-10-05 02:17:59Z" end-time="2026-10-05 02:18:00Z" duration="0.775421" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-expansion-integration-ffa2612bfdb442219d6edc6ae0c89d9b/Reports/20261005-021759-755-d2a8af772eba4be4a13a4bcd7eb21af2-menu_exit.json
+FRONTIER_PAUSE paused=True reason=manual_pause world=3.499999 realtime=3.832423 frame=82
+FRONTIER_SAVE slot=1 match=4aae744d715f4bbda5cdd37b952df81c time=3.499999
+FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-expansion-integration-ffa2612bfdb442219d6edc6ae0c89d9b/Reports/20261005-021800-057-4aae744d715f4bbda5cdd37b952df81c-menu_exit.json
+FRONTIER_LOAD slot=1 match=4aae744d715f4bbda5cdd37b952df81c time=3.499999
+FRONTIER_PAUSE paused=False reason=manual_resume world=3.499999 realtime=4.042980 frame=84
+]]></output>
+            </test-case>
+            <test-case id="1173" name="GuidedSelectionProgressSurvivesControllerLoadAndPauseRestartCreatesANewLessonAttempt" fullname="Frontier.Tests.ExpansionIntegration066Tests.GuidedSelectionProgressSurvivesControllerLoadAndPauseRestartCreatesANewLessonAttempt" methodname="GuidedSelectionProgressSurvivesControllerLoadAndPauseRestartCreatesANewLessonAttempt" classname="Frontier.Tests.ExpansionIntegration066Tests" runstate="Runnable" seed="1884206177" result="Passed" start-time="2026-10-05 02:18:00Z" end-time="2026-10-05 02:18:01Z" duration="0.936399" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-expansion-integration-be4a2e0df33d4e13ba31c51376c12b0f/Reports/20261005-021800-554-278551d0657a4d92b826816214b0b657-challenge_exit.json
+FRONTIER_PAUSE paused=True reason=manual_pause world=0.000000 realtime=4.804935 frame=117
+FRONTIER_SAVE slot=1 match=6e86ed6e481c4a4fbb00f81df1481661 time=0
+FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-expansion-integration-be4a2e0df33d4e13ba31c51376c12b0f/Reports/20261005-021800-996-6e86ed6e481c4a4fbb00f81df1481661-menu_exit.json
+FRONTIER_LOAD slot=1 match=6e86ed6e481c4a4fbb00f81df1481661 time=0
+FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-expansion-integration-be4a2e0df33d4e13ba31c51376c12b0f/Reports/20261005-021801-100-6e86ed6e481c4a4fbb00f81df1481661-challenge_exit.json
+]]></output>
+            </test-case>
+            <test-case id="1172" name="LessonAndCampaignPagesUseAFontContainingTheirRealChineseInstructions" fullname="Frontier.Tests.ExpansionIntegration066Tests.LessonAndCampaignPagesUseAFontContainingTheirRealChineseInstructions" methodname="LessonAndCampaignPagesUseAFontContainingTheirRealChineseInstructions" classname="Frontier.Tests.ExpansionIntegration066Tests" runstate="Runnable" seed="1101107113" result="Passed" start-time="2026-10-05 02:18:01Z" end-time="2026-10-05 02:18:02Z" duration="0.892220" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-expansion-integration-00ac40ed66954dd880e3e1cd681c7627/Reports/20261005-021801-468-64979ad0032d48cf97d539e21cb187c0-menu_exit.json
+]]></output>
+            </test-case>
+            <test-case id="1174" name="LoadingAnOlderMatchCannotOverwriteNewerDurablePlayerSettings" fullname="Frontier.Tests.ExpansionIntegration066Tests.LoadingAnOlderMatchCannotOverwriteNewerDurablePlayerSettings" methodname="LoadingAnOlderMatchCannotOverwriteNewerDurablePlayerSettings" classname="Frontier.Tests.ExpansionIntegration066Tests" runstate="Runnable" seed="1646694329" result="Passed" start-time="2026-10-05 02:18:02Z" end-time="2026-10-05 02:18:02Z" duration="0.768013" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_PAUSE paused=True reason=manual_pause world=0.000000 realtime=6.215767 frame=174
+FRONTIER_SAVE slot=1 match=92e904696190466fabb09ace86c87ad5 time=0
+FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-expansion-integration-0c2fb388d80b49439be2cc0e7e2989b8/Reports/20261005-021802-438-92e904696190466fabb09ace86c87ad5-load_exit.json
+FRONTIER_LOAD slot=1 match=92e904696190466fabb09ace86c87ad5 time=0
+FRONTIER_PAUSE paused=False reason=manual_resume world=0.000000 realtime=6.329796 frame=176
+]]></output>
+            </test-case>
+            <test-case id="1170" name="TeamRosterColdLoadRetainsFourEconomiesAndShowsVictoryForTheSurvivingAlly" fullname="Frontier.Tests.ExpansionIntegration066Tests.TeamRosterColdLoadRetainsFourEconomiesAndShowsVictoryForTheSurvivingAlly" methodname="TeamRosterColdLoadRetainsFourEconomiesAndShowsVictoryForTheSurvivingAlly" classname="Frontier.Tests.ExpansionIntegration066Tests" runstate="Runnable" seed="237339460" result="Passed" start-time="2026-10-05 02:18:02Z" end-time="2026-10-05 02:18:03Z" duration="0.804091" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-expansion-integration-7c4ad2c88308424da0d18d6318f3395d/Reports/20261005-021803-132-2fd93629c05442cdb6e59cd86f1169e4-menu_exit.json
+FRONTIER_PAUSE paused=True reason=manual_pause world=3.499999 realtime=7.231099 frame=213
+FRONTIER_SAVE slot=1 match=5eccdb33db394c8a863d19edf5342429 time=3.499999
+FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-expansion-integration-7c4ad2c88308424da0d18d6318f3395d/Reports/20261005-021803-441-5eccdb33db394c8a863d19edf5342429-menu_exit.json
+FRONTIER_LOAD slot=1 match=5eccdb33db394c8a863d19edf5342429 time=3.499999
+FRONTIER_PAUSE paused=False reason=manual_resume world=3.499999 realtime=7.445215 frame=215
+Saving results to: /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

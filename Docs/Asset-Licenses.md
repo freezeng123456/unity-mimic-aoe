@@ -155,3 +155,8 @@ Blend: 138446 bytes，SHA-256 `4e89e50467992dc8fa9ccf61700ce8134c732c255072561e4
 ## 0.5.0 / 061 河流增量
 
 WaterPresentation.cs 的河面程序波纹/法线、河岸、木桥、码头、捕鱼船、炮艇与鱼群均由本项目 C# 几何和程序材质生成；沿用 ArchitecturalGeometry 与 ArchitecturalMaterials。未导入商业游戏模型、纹理、音效或下载素材，无新外部依赖。Evidence/061 的图片来自本工程实际 URP/原生客户端，具体场景与夹具性质由配套 JSON 标明。既有字体、Unity及依赖许可全文继续适用。
+
+
+## 0.9.0 / 066 Chinese guided-play font
+
+`Assets/Resources/Fonts/NotoSansCJKsc-Regular.otf` is the official Noto Sans CJK SC Regular font, pinned to the notofonts/noto-cjk commit `f8d157532fbfaeda587e826d4cd5b21a49186f7c`. The 16,437,364-byte asset has SHA-256 `2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b`. [Pinned provenance](Licenses/Noto-CJK-provenance.json) records both upstream URLs and hashes; the complete [SIL Open Font License 1.1](Licenses/Noto-CJK-OFL.txt) is included in source and client license packages. It supplies Chinese glyphs for the project's original guided-play text; no commercial game font or campaign assets are imported.

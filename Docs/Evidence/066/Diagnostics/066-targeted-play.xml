@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="12" result="Failed(Child)" total="12" passed="7" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-05 02:13:35Z" end-time="2026-10-05 02:13:42Z" duration="7.2006612">
+  <test-suite type="TestSuite" id="1439" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="352" result="Failed" site="Child" start-time="2026-10-05 02:13:35Z" end-time="2026-10-05 02:13:42Z" duration="7.200661" total="12" passed="7" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1433" name="Frontier.PlayMode.dll" fullname="/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Library/ScriptAssemblies/Frontier.PlayMode.dll" runstate="Runnable" testcasecount="352" result="Failed" site="Child" start-time="2026-10-05 02:13:35Z" end-time="2026-10-05 02:13:42Z" duration="7.194946" total="12" passed="7" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="87554" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1434" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="352" result="Failed" site="Child" start-time="2026-10-05 02:13:35Z" end-time="2026-10-05 02:13:42Z" duration="7.190583" total="12" passed="7" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1435" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="352" result="Failed" site="Child" start-time="2026-10-05 02:13:35Z" end-time="2026-10-05 02:13:42Z" duration="7.189305" total="12" passed="7" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1169" name="ExpansionIntegration066Tests" fullname="Frontier.Tests.ExpansionIntegration066Tests" classname="Frontier.Tests.ExpansionIntegration066Tests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-05 02:13:35Z" end-time="2026-10-05 02:13:39Z" duration="4.262308" total="6" passed="2" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1175" name="EnlargedUiSliderAndScrolledActionsRemainReachableThroughRealPointerGestures" fullname="Frontier.Tests.ExpansionIntegration066Tests.EnlargedUiSliderAndScrolledActionsRemainReachableThroughRealPointerGestures" methodname="EnlargedUiSliderAndScrolledActionsRemainReachableThroughRealPointerGestures" classname="Frontier.Tests.ExpansionIntegration066Tests" runstate="Runnable" seed="936504558" result="Passed" start-time="2026-10-05 02:13:35Z" end-time="2026-10-05 02:13:36Z" duration="1.810545" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_PAUSE paused=True reason=manual_pause world=0.000000 realtime=2.393456 frame=17
+FRONTIER_PAUSE paused=False reason=manual_resume world=0.000000 realtime=2.675090 frame=34
+]]></output>
+            </test-case>
+            <test-case id="1171" name="FreeForAllMenuColdLoadAndFinalResultRetainAllFourIndependentSlots" fullname="Frontier.Tests.ExpansionIntegration066Tests.FreeForAllMenuColdLoadAndFinalResultRetainAllFourIndependentSlots" methodname="FreeForAllMenuColdLoadAndFinalResultRetainAllFourIndependentSlots" classname="Frontier.Tests.ExpansionIntegration066Tests" runstate="Runnable" seed="1178236839" result="Failed" label="Error" start-time="2026-10-05 02:13:36Z" end-time="2026-10-05 02:13:37Z" duration="0.346577" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains more than one matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x0004a] in <1b6d7e99e5414d05b29c34e3609a3284>:0 
+  at Frontier.Tests.NativeInputFixture.FindButton (System.String prefix) [0x0000d] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/PlayMode/NativeInputFixture.cs:52 
+  at Frontier.Tests.ExpansionIntegration066Tests+<FourSlotRoundTrip>d__10.MoveNext () [0x00074] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/PlayMode/ExpansionIntegration066Tests.cs:82 
+  at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52 ]]></stack-trace>
+              </failure>
+              <output><![CDATA[FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-expansion-integration-df32e4a12c4e4a159e9c1517b88cee5c/Reports/20261005-021337-165-7d61c02f783b40a698b524044e798385-menu_exit.json
+]]></output>
+            </test-case>
+            <test-case id="1173" name="GuidedSelectionProgressSurvivesControllerLoadAndPauseRestartCreatesANewLessonAttempt" fullname="Frontier.Tests.ExpansionIntegration066Tests.GuidedSelectionProgressSurvivesControllerLoadAndPauseRestartCreatesANewLessonAttempt" methodname="GuidedSelectionProgressSurvivesControllerLoadAndPauseRestartCreatesANewLessonAttempt" classname="Frontier.Tests.ExpansionIntegration066Tests" runstate="Runnable" seed="1823148692" result="Failed" start-time="2026-10-05 02:13:37Z" end-time="2026-10-05 02:13:37Z" duration="0.487369" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 8
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.ExpansionIntegration066Tests+<GuidedSelectionProgressSurvivesControllerLoadAndPauseRestartCreatesANewLessonAttempt>d__15.MoveNext () [0x00153] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/PlayMode/ExpansionIntegration066Tests.cs:159
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-expansion-integration-ebd8c5bd86e744b49d01d1b45356b573/Reports/20261005-021337-540-8c13059f5751419ca43d33b233a351a4-challenge_exit.json
+]]></output>
+            </test-case>
+            <test-case id="1172" name="LessonAndCampaignPagesUseAFontContainingTheirRealChineseInstructions" fullname="Frontier.Tests.ExpansionIntegration066Tests.LessonAndCampaignPagesUseAFontContainingTheirRealChineseInstructions" methodname="LessonAndCampaignPagesUseAFontContainingTheirRealChineseInstructions" classname="Frontier.Tests.ExpansionIntegration066Tests" runstate="Runnable" seed="1178870348" result="Passed" start-time="2026-10-05 02:13:37Z" end-time="2026-10-05 02:13:38Z" duration="0.875409" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-expansion-integration-98b3922092194ddb9e1d206a69519e10/Reports/20261005-021338-002-3d89b1d3293647d891837c38b2622784-menu_exit.json
+]]></output>
+            </test-case>
+            <test-case id="1174" name="LoadingAnOlderMatchCannotOverwriteNewerDurablePlayerSettings" fullname="Frontier.Tests.ExpansionIntegration066Tests.LoadingAnOlderMatchCannotOverwriteNewerDurablePlayerSettings" methodname="LoadingAnOlderMatchCannotOverwriteNewerDurablePlayerSettings" classname="Frontier.Tests.ExpansionIntegration066Tests" runstate="Runnable" seed="644804620" result="Failed" start-time="2026-10-05 02:13:38Z" end-time="2026-10-05 02:13:38Z" duration="0.378536" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.ExpansionIntegration066Tests+<LoadingAnOlderMatchCannotOverwriteNewerDurablePlayerSettings>d__16.MoveNext () [0x001b0] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/PlayMode/ExpansionIntegration066Tests.cs:180
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[FRONTIER_PAUSE paused=True reason=manual_pause world=0.000000 realtime=5.212918 frame=140
+FRONTIER_SAVE slot=1 match=100fd9340a724cd6b4458ac0f97a17dd time=0
+FRONTIER_LOAD_FAILED Challenge attempt does not match this checkpoint
+]]></output>
+            </test-case>
+            <test-case id="1170" name="TeamRosterColdLoadRetainsFourEconomiesAndShowsVictoryForTheSurvivingAlly" fullname="Frontier.Tests.ExpansionIntegration066Tests.TeamRosterColdLoadRetainsFourEconomiesAndShowsVictoryForTheSurvivingAlly" methodname="TeamRosterColdLoadRetainsFourEconomiesAndShowsVictoryForTheSurvivingAlly" classname="Frontier.Tests.ExpansionIntegration066Tests" runstate="Runnable" seed="1946891469" result="Failed" label="Error" start-time="2026-10-05 02:13:38Z" end-time="2026-10-05 02:13:39Z" duration="0.353431" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains more than one matching element]]></message>
+                <stack-trace><![CDATA[  at System.Linq.Enumerable.Single[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x0004a] in <1b6d7e99e5414d05b29c34e3609a3284>:0 
+  at Frontier.Tests.NativeInputFixture.FindButton (System.String prefix) [0x0000d] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/PlayMode/NativeInputFixture.cs:52 
+  at Frontier.Tests.ExpansionIntegration066Tests+<FourSlotRoundTrip>d__10.MoveNext () [0x00074] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/PlayMode/ExpansionIntegration066Tests.cs:82 
+  at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52 ]]></stack-trace>
+              </failure>
+              <output><![CDATA[FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-expansion-integration-cf0fb0a44cab4eb0b6fd343a46b5fd0f/Reports/20261005-021339-261-1908325368e3496d8b3868664043aab2-menu_exit.json
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1308" name="PlayerSettingsInput066Tests" fullname="Frontier.Tests.PlayerSettingsInput066Tests" classname="Frontier.Tests.PlayerSettingsInput066Tests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-05 02:13:39Z" end-time="2026-10-05 02:13:42Z" duration="2.909760" total="6" passed="5" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1310" name="ChangingBindingsDiscardsPreviouslyCapturedEdgesAndNewShortcutOrdersTheFollowingNativeClick" fullname="Frontier.Tests.PlayerSettingsInput066Tests.ChangingBindingsDiscardsPreviouslyCapturedEdgesAndNewShortcutOrdersTheFollowingNativeClick" methodname="ChangingBindingsDiscardsPreviouslyCapturedEdgesAndNewShortcutOrdersTheFollowingNativeClick" classname="Frontier.Tests.PlayerSettingsInput066Tests" runstate="Runnable" seed="1544046546" result="Passed" start-time="2026-10-05 02:13:39Z" end-time="2026-10-05 02:13:39Z" duration="0.609923" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1313" name="LiveMasterAndCategoryVolumesChangeTheActualThreeAudioBuses" fullname="Frontier.Tests.PlayerSettingsInput066Tests.LiveMasterAndCategoryVolumesChangeTheActualThreeAudioBuses" methodname="LiveMasterAndCategoryVolumesChangeTheActualThreeAudioBuses" classname="Frontier.Tests.PlayerSettingsInput066Tests" runstate="Runnable" seed="1157674729" result="Failed" start-time="2026-10-05 02:13:39Z" end-time="2026-10-05 02:13:40Z" duration="0.298844" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 12
+  But was:  14
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.PlayerSettingsInput066Tests+<LiveMasterAndCategoryVolumesChangeTheActualThreeAudioBuses>d__4.MoveNext () [0x000a7] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/PlayMode/PlayerSettingsInput066Tests.cs:52
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1311" name="ReboundCameraUsesHeldPhysicalKeysAndStopsForModalOrPause" fullname="Frontier.Tests.PlayerSettingsInput066Tests.ReboundCameraUsesHeldPhysicalKeysAndStopsForModalOrPause" methodname="ReboundCameraUsesHeldPhysicalKeysAndStopsForModalOrPause" classname="Frontier.Tests.PlayerSettingsInput066Tests" runstate="Runnable" seed="1320175879" result="Passed" start-time="2026-10-05 02:13:40Z" end-time="2026-10-05 02:13:40Z" duration="0.531138" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_PAUSE paused=True reason=manual_pause world=0.000000 realtime=6.957685 frame=201
+FRONTIER_PAUSE paused=False reason=manual_resume world=0.000000 realtime=7.024301 frame=205
+]]></output>
+            </test-case>
+            <test-case id="1312" name="ReboundIdleWorkerRetiresBothOldShortcutsAndNewBoardingHotkeysActivateTargetModes" fullname="Frontier.Tests.PlayerSettingsInput066Tests.ReboundIdleWorkerRetiresBothOldShortcutsAndNewBoardingHotkeysActivateTargetModes" methodname="ReboundIdleWorkerRetiresBothOldShortcutsAndNewBoardingHotkeysActivateTargetModes" classname="Frontier.Tests.PlayerSettingsInput066Tests" runstate="Runnable" seed="1421234850" result="Passed" start-time="2026-10-05 02:13:40Z" end-time="2026-10-05 02:13:41Z" duration="0.495948" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1309" name="ReboundNondefaultKeysReachActualAttackStopAndHoldDispatchAndOldKeysStopWorking" fullname="Frontier.Tests.PlayerSettingsInput066Tests.ReboundNondefaultKeysReachActualAttackStopAndHoldDispatchAndOldKeysStopWorking" methodname="ReboundNondefaultKeysReachActualAttackStopAndHoldDispatchAndOldKeysStopWorking" classname="Frontier.Tests.PlayerSettingsInput066Tests" runstate="Runnable" seed="1841350037" result="Passed" start-time="2026-10-05 02:13:41Z" end-time="2026-10-05 02:13:41Z" duration="0.528352" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1314" name="ReboundRepairInstructionsAndZoomUseTheCurrentBindings" fullname="Frontier.Tests.PlayerSettingsInput066Tests.ReboundRepairInstructionsAndZoomUseTheCurrentBindings" methodname="ReboundRepairInstructionsAndZoomUseTheCurrentBindings" classname="Frontier.Tests.PlayerSettingsInput066Tests" runstate="Runnable" seed="882577932" result="Passed" start-time="2026-10-05 02:13:41Z" end-time="2026-10-05 02:13:42Z" duration="0.430054" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

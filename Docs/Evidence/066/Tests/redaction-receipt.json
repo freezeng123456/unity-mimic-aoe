@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "createdUtc": "2026-10-05T02:38:10.033837+00:00",
+  "scope": "Final 066 EditMode and PlayMode evidence only. XML and source-evidence.json retained byte-for-byte; originals in Builds/Tests/run-qBfLgMDn were read-only.",
+  "sourceFingerprint": "66cf7cc57e080eb40cfdf98310ee26affd93d690745dde2b457e8fb3eb0ee1ee",
+  "sourceInputFileCount": 573,
+  "sourceCommitBaselineAsProvidedByRoot": "c9747695d91fa203b05116a1fc0c15a8aac32de2",
+  "method": "Replace only licensing startup Machine Id values with [REDACTED_MACHINE_ID]; preserve all other bytes. Raw values are not retained in this receipt.",
+  "redactionCounts": {
+    "licensingMachineId": 2,
+    "licenseSerial": 0,
+    "sensitiveEntitlement": 0,
+    "sensitiveUserId": 0,
+    "credentialPattern": 0
+  },
+  "scanNotes": [
+    "No actual license-serial fields, sensitive entitlement/user-ID fields, recognized provider tokens, Bearer credentials, credential assignments or private-key headers were found in the two final logs.",
+    "Unavailable-token messages, licensing status and serialization/test diagnostics remain intact."
+  ],
+  "tests": [
+    {
+      "mode": "EditMode",
+      "result": "Passed",
+      "total": 710,
+      "passed": 710,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "startUtc": "2026-10-05 02:29:03Z",
+      "endUtc": "2026-10-05 02:31:56Z",
+      "durationSeconds": "173.0619012",
+      "individualTestCaseResultsVerified": 710
+    },
+    {
+      "mode": "PlayMode",
+      "result": "Passed",
+      "total": 352,
+      "passed": 352,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "startUtc": "2026-10-05 02:32:05Z",
+      "endUtc": "2026-10-05 02:34:32Z",
+      "durationSeconds": "146.5120681",
+      "individualTestCaseResultsVerified": 352
+    }
+  ],
+  "files": [
+    {
+      "file": "EditMode.log",
+      "originalSource": "Builds/Tests/run-qBfLgMDn/EditMode.log",
+      "rawBytes": 90825,
+      "rawSha256": "cc3fe6cdb970213034df2c20e6843b49012a86fe86427277183b965185ab610a",
+      "sanitizedBytes": 90818,
+      "sanitizedSha256": "1f0b1d53c9f8fb2c99179bf400ce303c39e31499c7f7f1343d84f1697a9f2d58",
+      "redactions": {
+        "licensingMachineId": 1
+      },
+      "redactedLineNumbers": [
+        95
+      ],
+      "allOtherBytesPreserved": true,
+      "byteIdenticalToOriginalBeforeSanitization": true
+    },
+    {
+      "file": "EditMode.xml",
+      "originalSource": "Builds/Tests/run-qBfLgMDn/EditMode.xml",
+      "rawBytes": 574165,
+      "rawSha256": "90344be8f5142e47b8371e51543e4e0ab5ea29d021d2c66c72b1126c6231ebda",
+      "sanitizedBytes": 574165,
+      "sanitizedSha256": "90344be8f5142e47b8371e51543e4e0ab5ea29d021d2c66c72b1126c6231ebda",
+      "redactions": {
+        "licensingMachineId": 0
+      },
+      "redactedLineNumbers": [],
+      "allOtherBytesPreserved": true,
+      "byteIdenticalToOriginalBeforeSanitization": true
+    },
+    {
+      "file": "PlayMode.log",
+      "originalSource": "Builds/Tests/run-qBfLgMDn/PlayMode.log",
+      "rawBytes": 737858,
+      "rawSha256": "8675727f4816a402c57c27f60ac1d752e9b48f501ff4dc4f0e990bc32e62db35",
+      "sanitizedBytes": 737851,
+      "sanitizedSha256": "ca021cc148132bc52d3cd740a96c1b0b9b616dee9183ac6060592165d9ca86b1",
+      "redactions": {
+        "licensingMachineId": 1
+      },
+      "redactedLineNumbers": [
+        94
+      ],
+      "allOtherBytesPreserved": true,
+      "byteIdenticalToOriginalBeforeSanitization": true
+    },
+    {
+      "file": "PlayMode.xml",
+      "originalSource": "Builds/Tests/run-qBfLgMDn/PlayMode.xml",
+      "rawBytes": 334142,
+      "rawSha256": "e0c5e04baa84fb1f7b51f37000d9f72a3b7071bf8eaafe0c27c3008fd92b7e5b",
+      "sanitizedBytes": 334142,
+      "sanitizedSha256": "e0c5e04baa84fb1f7b51f37000d9f72a3b7071bf8eaafe0c27c3008fd92b7e5b",
+      "redactions": {
+        "licensingMachineId": 0
+      },
+      "redactedLineNumbers": [],
+      "allOtherBytesPreserved": true,
+      "byteIdenticalToOriginalBeforeSanitization": true
+    },
+    {
+      "file": "source-evidence.json",
+      "originalSource": "Builds/Tests/run-qBfLgMDn/source-evidence.json",
+      "rawBytes": 73542,
+      "rawSha256": "9f8ebf94a9090ce0e108b93c43d2f7b684c8ab81fa068c9614a5731631e5750c",
+      "sanitizedBytes": 73542,
+      "sanitizedSha256": "9f8ebf94a9090ce0e108b93c43d2f7b684c8ab81fa068c9614a5731631e5750c",
+      "redactions": {
+        "licensingMachineId": 0
+      },
+      "redactedLineNumbers": [],
+      "allOtherBytesPreserved": true,
+      "byteIdenticalToOriginalBeforeSanitization": true
+    }
+  ]
+}
