@@ -4,7 +4,7 @@
 
 **最终原生 GUID `2d94fdd6d9734b259f5231c1fd3f2b99` 已通过手动片段 `bef1332be33c4e38b0594b3e4bf8eb13` 的新进程冷启动，从第 0 步完整前向回放至第 5622 步（9:22 模拟时间），显示 `RECORDED SEGMENT VERIFIED`。** 真正接受的 `Train villager` 与空 actors 而拒绝的 `Stop` 均重现；四观察位为 `coast=British`、`river=Dutch`、`france=French`、`ottoman=Ottomans`；±30 秒和中点原生跳转及时间轴填充/手柄修复已核验。该 `manual_save` 前缀不等于自然终局、任意长局或全部场景回放。
 
-坏文件原生错误提示保留原观看世界、玩家存储与观看输出四文件字节核对已通过；见[最终原生证据](Evidence/067/Native/README.md)。本版普通1×长窗性能未验收；最终打包及云端交付待本次冻结后完成。旧 GUID `2158deff98354bc981f074397534ad74` 的 35:50 片段只属于 [FrozenCandidate1 诊断](Evidence/067/Diagnostics/FrozenCandidate1/Native/README.md)，不重标为新构建的结果。
+坏文件原生错误提示保留原观看世界、玩家存储与观看输出四文件字节核对已通过；见[最终原生证据](Evidence/067/Native/README.md)。本版普通1×长窗性能未验收；最终三包及私有云盘七对象元数据读回已通过，见[0.10交付](Delivery-067.md)。旧 GUID `2158deff98354bc981f074397534ad74` 的 35:50 片段只属于 [FrozenCandidate1 诊断](Evidence/067/Diagnostics/FrozenCandidate1/Native/README.md)，不重标为新构建的结果。
 
 0.9 的 1,062 项测试、设置/单课/团队原生冷恢复、三包本地核验和七对象上传/元数据读回保留在[066完成快照](Completion-Status-066.md)及[交付说明](Delivery-066.md)；远端内容 SHA/下载字节一致性仍未验证。这些历史结果不作为0.10当前验收。
 

@@ -1,0 +1,552 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "checkedAtUtc": "2026-10-05T14:56:06.562558+00:00",
+  "implementation": "Independent Python standard library only; packaging helper is neither imported nor executed",
+  "scope": [
+    "Whole ZIP SHA/bytes plus all1386 members uncompressed SHA/bytes/Unix modes/types and CRC checked by complete member reads",
+    "Exact member sets and link target safety; these real three payloads contain zero symlinks",
+    "All946 source files Git blob/type/executable bit match source snapshotccc7; allowed roots/evidence067; no Unity cache/build/output/personal-data/old-app payload",
+    "Frozen source FP595 inputs plus Edit740/Play357 XML byte hashes and complete passing counts",
+    "Client app0.10 arm64/GUID/binary/boot identity; player/replay guides and licenses match frozen source",
+    "Gallery17 final F9 pairs; two native replay files including exact manual export bytes; single-gzip UTF8/CRC/ISIZE/raw SHA/header identity"
+  ],
+  "boundaries": [
+    "Local audit only: no remote checksum, download-byte equality, upload/privacy/permission acceptance claim",
+    "No Unity run, app/UI operation, rebuild, signing, notarization or package mutation",
+    "Replay container/header checks are not a new C# simulation rerun",
+    "Full forward native Verified belongs to manual_save sample; distinct canonical quit container has not independently been watched to its end",
+    "No frame rate/memory/export-latency/natural victory/network/platform acceptance inferred"
+  ],
+  "identity": {
+    "appVersion": "0.10.0",
+    "buildGuid": "2d94fdd6d9734b259f5231c1fd3f2b99",
+    "architecture": "arm64",
+    "executableSha256": "b3c149ad62375e96925ba62029a4e291dda0083c459ceb05a50addad14afdc4f",
+    "bootConfigSha256": "8a493332e72ed5557422fd84171cd9b70afca5cc465c47323cafc0afff75ba20",
+    "runtimeCommit": "2668c47a426f2cea8d4bc7b309cdbfa71533cc9d",
+    "unityVersion": "6000.6.3f1",
+    "sourceFingerprint": "8180b02b55ed3957b94042d779a6d74bdda78cd46073cf70d93353c330363466",
+    "sourceFileCount": 595,
+    "development": true,
+    "scriptingBackend": "Mono",
+    "tests": {
+      "EditMode": 740,
+      "PlayMode": 357,
+      "total": 1097,
+      "failed": 0
+    },
+    "sourceSnapshotCommit": "ccc7fcb15a608269a1a63c665ff8e4653ca0546d"
+  },
+  "inputs": {
+    "manifest": {
+      "file": "release-manifest.json",
+      "bytes": 389681,
+      "sha256": "437efdfdedc04865ca8b155104183ff599bac39da2dd23361e562163d27802b7"
+    },
+    "executeReceipt": {
+      "file": "Packaging/execute-final.json",
+      "bytes": 791,
+      "sha256": "6ed0316f8505b8ba799bfd1017be37706df62f8cbc768627b11ca380de18bfc2"
+    }
+  },
+  "summary": {
+    "allChecksPassed": 49,
+    "zipCount": 3,
+    "membersChecked": 1386,
+    "symlinksFound": 0,
+    "failures": 0
+  },
+  "packages": {
+    "source": {
+      "file": "Frontier-Reckoning-0.10.0-source.zip",
+      "bytes": 76236751,
+      "sha256": "b3672da86bf9fff43614a7f5256880ca828ca1b4380d687b65f185030e5db9fb",
+      "members": 946,
+      "allMembersByteShaModeTypeMatch": true,
+      "crcCheckedThroughFullMemberRead": true,
+      "kindCounts": {
+        "file": 946,
+        "directory": 0,
+        "symlink": 0
+      },
+      "observedInventorySha256": "261f750b7cd5733f877a543da04e668a6d45e6545e5038135f4ba447fd298a89"
+    },
+    "client": {
+      "file": "Frontier-Reckoning-0.10.0-macOS-arm64.zip",
+      "bytes": 75833081,
+      "sha256": "adf0e9ef0cdb12199d6e8a7400f57cc3ce10eeacb5d0ff9a0364852396a82482",
+      "members": 378,
+      "allMembersByteShaModeTypeMatch": true,
+      "crcCheckedThroughFullMemberRead": true,
+      "kindCounts": {
+        "file": 343,
+        "directory": 35,
+        "symlink": 0
+      },
+      "observedInventorySha256": "560d40c4554c0698e1333fede19a6425308a3f70af56f59768b9857b33d0ae20"
+    },
+    "gallery": {
+      "file": "Frontier-Reckoning-0.10.0-gallery.zip",
+      "bytes": 18526668,
+      "sha256": "c86299fb382969f5b42819198649fb049202ee294086328b2b908b5f5d8eb5c0",
+      "members": 62,
+      "allMembersByteShaModeTypeMatch": true,
+      "crcCheckedThroughFullMemberRead": true,
+      "kindCounts": {
+        "file": 56,
+        "directory": 6,
+        "symlink": 0
+      },
+      "observedInventorySha256": "ad86efaf18f986e5a09fd7cd97f6b624a3de9fb03f59cbad55ec7719fc90bd64"
+    }
+  },
+  "testReports": {
+    "EditMode": {
+      "passed": 740,
+      "sha256": "1aa522d00f468f6dcd7268fd384dd6b1caee0a4fcdb62cfcdf612b53cae96519",
+      "startUtc": "2026-10-05 14:04:23Z",
+      "endUtc": "2026-10-05 14:07:48Z"
+    },
+    "PlayMode": {
+      "passed": 357,
+      "sha256": "8d1a6cb813db3308e12ed9d99bbbc9f155963d6f3b6691b66b5a60ee7041c030",
+      "startUtc": "2026-10-05 14:07:58Z",
+      "endUtc": "2026-10-05 14:10:43Z"
+    }
+  },
+  "checks": [
+    {
+      "check": "Final manifest GUID/FP/source snapshot/1097/595/arm64",
+      "status": "PASS"
+    },
+    {
+      "check": "Exclusive new independent receipt",
+      "status": "PASS"
+    },
+    {
+      "check": "Execute receipt status",
+      "status": "PASS"
+    },
+    {
+      "check": "source whole ZIP bytes/SHA",
+      "status": "PASS"
+    },
+    {
+      "check": "source execute receipt match",
+      "status": "PASS"
+    },
+    {
+      "check": "source member count",
+      "status": "PASS"
+    },
+    {
+      "check": "source unique exact member set",
+      "status": "PASS"
+    },
+    {
+      "check": "source every member SHA/bytes/Unix modes/types/CRC and link bytes",
+      "status": "PASS",
+      "detail": {
+        "membersChecked": 946,
+        "symlinkCount": 0,
+        "symlinkTargets": {}
+      }
+    },
+    {
+      "check": "client whole ZIP bytes/SHA",
+      "status": "PASS"
+    },
+    {
+      "check": "client execute receipt match",
+      "status": "PASS"
+    },
+    {
+      "check": "client member count",
+      "status": "PASS"
+    },
+    {
+      "check": "client unique exact member set",
+      "status": "PASS"
+    },
+    {
+      "check": "client every member SHA/bytes/Unix modes/types/CRC and link bytes",
+      "status": "PASS",
+      "detail": {
+        "membersChecked": 378,
+        "symlinkCount": 0,
+        "symlinkTargets": {}
+      }
+    },
+    {
+      "check": "gallery whole ZIP bytes/SHA",
+      "status": "PASS"
+    },
+    {
+      "check": "gallery execute receipt match",
+      "status": "PASS"
+    },
+    {
+      "check": "gallery member count",
+      "status": "PASS"
+    },
+    {
+      "check": "gallery unique exact member set",
+      "status": "PASS"
+    },
+    {
+      "check": "gallery every member SHA/bytes/Unix modes/types/CRC and link bytes",
+      "status": "PASS",
+      "detail": {
+        "membersChecked": 62,
+        "symlinkCount": 0,
+        "symlinkTargets": {}
+      }
+    },
+    {
+      "check": "Source exclusions and exact Git blob/type/executable-bit snapshot",
+      "status": "PASS",
+      "detail": {
+        "commit": "ccc7fcb15a608269a1a63c665ff8e4653ca0546d",
+        "members": 946,
+        "excluded": [
+          "Account",
+          "Builds",
+          "Library",
+          "Preferences",
+          "Saves",
+          "Temp",
+          "UserSettings",
+          "obj",
+          "outputs",
+          "work"
+        ],
+        "oldAppPayloads": 0,
+        "otherEvidenceReleasePayloads": 0,
+        "note": "Docs/Evidence/067 sanitized logs and historical diagnostic metadata remain intentionally included; root Unity Logs caches are excluded by source allowlist"
+      }
+    },
+    {
+      "check": "Canonical source fingerprint and595 tested inputs",
+      "status": "PASS"
+    },
+    {
+      "check": "EditMode XML byte SHA and complete pass",
+      "status": "PASS"
+    },
+    {
+      "check": "PlayMode XML byte SHA and complete pass",
+      "status": "PASS"
+    },
+    {
+      "check": "Source Native client receipt final GUID",
+      "status": "PASS"
+    },
+    {
+      "check": "Client includes only app/docs/guide/build receipt/payload identity",
+      "status": "PASS"
+    },
+    {
+      "check": "Client plist0.10/arm64/executable mode/final GUID",
+      "status": "PASS"
+    },
+    {
+      "check": "Client binary/boot frozen hashes",
+      "status": "PASS"
+    },
+    {
+      "check": "Client embedded identity is same frozen snapshot with no circular package hashes",
+      "status": "PASS"
+    },
+    {
+      "check": "Client build receipt FP/test XML binding",
+      "status": "PASS"
+    },
+    {
+      "check": "All client license files byte/mode exact with source",
+      "status": "PASS",
+      "detail": {
+        "licenseFiles": 40
+      }
+    },
+    {
+      "check": "Both client player/replay guides source-byte exact",
+      "status": "PASS"
+    },
+    {
+      "check": "Gallery excludes all diagnostic/app/personal payloads",
+      "status": "PASS"
+    },
+    {
+      "check": "Gallery exactly17 F9 JSON/PNG pairs",
+      "status": "PASS"
+    },
+    {
+      "check": "Every gallery F9 schema4/GUID/PNG SHA/dimensions",
+      "status": "PASS",
+      "detail": {
+        "pairs": 17
+      }
+    },
+    {
+      "check": "Gallery exactly2 valid final replay files including manual export",
+      "status": "PASS"
+    },
+    {
+      "check": "Replay original stored-byte equality manual-export-bef1332be33c4e38b0594b3e4bf8eb13.replay.json",
+      "status": "PASS"
+    },
+    {
+      "check": "Replay canonical gzip-base64 envelope manual-export-bef1332be33c4e38b0594b3e4bf8eb13.replay.json",
+      "status": "PASS"
+    },
+    {
+      "check": "Replay single gzip/CRC/ISIZE/UTF8/rawSHA manual-export-bef1332be33c4e38b0594b3e4bf8eb13.replay.json",
+      "status": "PASS"
+    },
+    {
+      "check": "Replay generated header boundary manual-export-bef1332be33c4e38b0594b3e4bf8eb13.replay.json",
+      "status": "PASS"
+    },
+    {
+      "check": "Replay final document identity/segment/match manual-export-bef1332be33c4e38b0594b3e4bf8eb13.replay.json",
+      "status": "PASS"
+    },
+    {
+      "check": "Replay original stored-byte equality replay-bef1332be33c4e38b0594b3e4bf8eb13.replay.json",
+      "status": "PASS"
+    },
+    {
+      "check": "Replay canonical gzip-base64 envelope replay-bef1332be33c4e38b0594b3e4bf8eb13.replay.json",
+      "status": "PASS"
+    },
+    {
+      "check": "Replay single gzip/CRC/ISIZE/UTF8/rawSHA replay-bef1332be33c4e38b0594b3e4bf8eb13.replay.json",
+      "status": "PASS"
+    },
+    {
+      "check": "Replay generated header boundary replay-bef1332be33c4e38b0594b3e4bf8eb13.replay.json",
+      "status": "PASS"
+    },
+    {
+      "check": "Replay final document identity/segment/match replay-bef1332be33c4e38b0594b3e4bf8eb13.replay.json",
+      "status": "PASS"
+    },
+    {
+      "check": "Every gallery Native file byte/mode equals frozen source ZIP Native",
+      "status": "PASS",
+      "detail": {
+        "nativeFiles": 52
+      }
+    },
+    {
+      "check": "Acceptance final GUID/FP/manual-save sample scope",
+      "status": "PASS"
+    },
+    {
+      "check": "Native final forward Verified F9 included",
+      "status": "PASS"
+    },
+    {
+      "check": "Manifest remained frozen throughout audit",
+      "status": "PASS"
+    },
+    {
+      "check": "ZIP whole hashes remained frozen throughout audit",
+      "status": "PASS"
+    }
+  ],
+  "galleryObservations": [
+    {
+      "file": "Frontier-20261005-141457-625-f2407-5c9f91163c1840189336c8352a152170.json",
+      "utc": "2026-10-05T14:14:57.5589980Z",
+      "step": 1659,
+      "endStep": 1659,
+      "observerPlayer": 0,
+      "watching": false,
+      "verified": false,
+      "fileError": ""
+    },
+    {
+      "file": "Frontier-20261005-141617-004-f7139-c0c37fb190594c16afc77a8d1e140767.json",
+      "utc": "2026-10-05T14:16:16.9637140Z",
+      "step": 3971,
+      "endStep": 3971,
+      "observerPlayer": 0,
+      "watching": false,
+      "verified": false,
+      "fileError": ""
+    },
+    {
+      "file": "Frontier-20261005-142139-930-f26347-9e1815012f764fe5831a4c1e759fa140.json",
+      "utc": "2026-10-05T14:21:39.8858860Z",
+      "step": 5622,
+      "endStep": 5622,
+      "observerPlayer": 0,
+      "watching": false,
+      "verified": false,
+      "fileError": ""
+    },
+    {
+      "file": "Frontier-20261005-142515-497-f8161-c76ab31704124c629f208c2852b75241.json",
+      "utc": "2026-10-05T14:25:15.4419760Z",
+      "step": 0,
+      "endStep": 5622,
+      "observerPlayer": 0,
+      "watching": true,
+      "verified": false,
+      "fileError": ""
+    },
+    {
+      "file": "Frontier-20261005-142517-281-f8259-4fbdc2f972b04c0f851c4d878dc1ea6b.json",
+      "utc": "2026-10-05T14:25:17.2305680Z",
+      "step": 0,
+      "endStep": 5622,
+      "observerPlayer": 1,
+      "watching": true,
+      "verified": false,
+      "fileError": ""
+    },
+    {
+      "file": "Frontier-20261005-142518-698-f8336-cdcbb8e948b2486298c086e725ae4d40.json",
+      "utc": "2026-10-05T14:25:18.6473300Z",
+      "step": 0,
+      "endStep": 5622,
+      "observerPlayer": 2,
+      "watching": true,
+      "verified": false,
+      "fileError": ""
+    },
+    {
+      "file": "Frontier-20261005-142520-167-f8418-ac0e888674544c6ea79b26c721bb4781.json",
+      "utc": "2026-10-05T14:25:20.1146900Z",
+      "step": 0,
+      "endStep": 5622,
+      "observerPlayer": 3,
+      "watching": true,
+      "verified": false,
+      "fileError": ""
+    },
+    {
+      "file": "Frontier-20261005-142548-331-f10099-85f5e062ba8c4746b3fa40a238863d6a.json",
+      "utc": "2026-10-05T14:25:48.2967980Z",
+      "step": 0,
+      "endStep": 5622,
+      "observerPlayer": 3,
+      "watching": true,
+      "verified": false,
+      "fileError": ""
+    },
+    {
+      "file": "Frontier-20261005-142549-551-f10169-2c891d8d41914df891243218576ad380.json",
+      "utc": "2026-10-05T14:25:49.5161300Z",
+      "step": 0,
+      "endStep": 5622,
+      "observerPlayer": 3,
+      "watching": true,
+      "verified": false,
+      "fileError": ""
+    },
+    {
+      "file": "Frontier-20261005-142624-784-f12278-d2daf25bd85e4714beeb2f7f7fbbd3c1.json",
+      "utc": "2026-10-05T14:26:24.7493500Z",
+      "step": 0,
+      "endStep": 5622,
+      "observerPlayer": 3,
+      "watching": true,
+      "verified": false,
+      "fileError": ""
+    },
+    {
+      "file": "Frontier-20261005-142628-354-f12483-b39045eb14d0453c948403db102cb100.json",
+      "utc": "2026-10-05T14:26:28.3000550Z",
+      "step": 24,
+      "endStep": 5622,
+      "observerPlayer": 3,
+      "watching": true,
+      "verified": false,
+      "fileError": ""
+    },
+    {
+      "file": "Frontier-20261005-142842-999-f20484-7bfddafb658540b5a3306cee7c6fa8eb.json",
+      "utc": "2026-10-05T14:28:42.9383510Z",
+      "step": 5410,
+      "endStep": 5622,
+      "observerPlayer": 0,
+      "watching": true,
+      "verified": false,
+      "fileError": ""
+    },
+    {
+      "file": "Frontier-20261005-143052-148-f28169-f8a14961e48f4017aca7137d0b6ad6ec.json",
+      "utc": "2026-10-05T14:30:52.0839100Z",
+      "step": 5622,
+      "endStep": 5622,
+      "observerPlayer": 0,
+      "watching": true,
+      "verified": true,
+      "fileError": ""
+    },
+    {
+      "file": "Frontier-20261005-143124-864-f30085-1549625d28d74d02bfb9591a31935200.json",
+      "utc": "2026-10-05T14:31:24.8014310Z",
+      "step": 5322,
+      "endStep": 5622,
+      "observerPlayer": 0,
+      "watching": true,
+      "verified": false,
+      "fileError": ""
+    },
+    {
+      "file": "Frontier-20261005-143126-497-f30168-efc799721361400cbf53bbfbf3874560.json",
+      "utc": "2026-10-05T14:31:26.4318670Z",
+      "step": 5622,
+      "endStep": 5622,
+      "observerPlayer": 0,
+      "watching": true,
+      "verified": true,
+      "fileError": ""
+    },
+    {
+      "file": "Frontier-20261005-143716-406-f51020-645b648ae90149ce94afb5832fc465e0.json",
+      "utc": "2026-10-05T14:37:16.3401190Z",
+      "step": 2807,
+      "endStep": 5622,
+      "observerPlayer": 0,
+      "watching": true,
+      "verified": false,
+      "fileError": ""
+    },
+    {
+      "file": "Frontier-20261005-143813-787-f54441-a385a578287a4ddca59d231c2213c6df.json",
+      "utc": "2026-10-05T14:38:13.7400170Z",
+      "step": 2807,
+      "endStep": 5622,
+      "observerPlayer": 0,
+      "watching": true,
+      "verified": false,
+      "fileError": "Replay is unreadable: Invalid replay JSON punctuation"
+    }
+  ],
+  "replays": [
+    {
+      "file": "manual-export-bef1332be33c4e38b0594b3e4bf8eb13.replay.json",
+      "storedBytes": 3009633,
+      "storedSha256": "4604fb4e4be31cb17df560fd6a055f471cebd1e940b8f63de2cc08a78598dda1",
+      "rawBytes": 41389832,
+      "rawSha256": "9745c430c1e6703280e3c52d08db7dc0296d9b8ae82fb4b977ac5f9b9e7583c5",
+      "finishReason": "manual_save",
+      "incomplete": false
+    },
+    {
+      "file": "replay-bef1332be33c4e38b0594b3e4bf8eb13.replay.json",
+      "storedBytes": 3014969,
+      "storedSha256": "7b73d0014daed2a993473b71bbb8e04889bdeb802bf23746b669d907beaa5df3",
+      "rawBytes": 41440091,
+      "rawSha256": "70ef9e965a4b6202095be2cb651c5fefb326022ab31dcad98eb94463d1dc2145",
+      "finishReason": "quit",
+      "incomplete": false
+    }
+  ],
+  "failures": []
+}

@@ -4,7 +4,7 @@
 
 **当前源码版本为 0.10.0，目标平台 macOS Apple silicon。** 第四批已实现本地录像、回放、时间跳转和最多四槽观察视角，沿用六文明、本地 2v2/四方 FFA、七课、三章原创战役及持久设置。[完整自动化 1,097/1,097 通过](Docs/Evidence/067/Tests/README.md)（740 EditMode + 357 PlayMode，`run-q8grIRWM`）；运行代码提交 `2668c47a426f2cea8d4bc7b309cdbfa71533cc9d`，595 个冻结输入的指纹 `8180b02b55ed3957b94042d779a6d74bdda78cd46073cf70d93353c330363466`。录像保存完整外部命令与接受/拒绝结果、暂停、教学选择和经济日志刷新，使用原有 AI 与模拟重建并核对一致性。操作见[0.10玩家指南](Docs/Player-Guide-067.md)，格式、兼容和限制见[回放说明](Docs/Replay-067.md)。当前仍是一个本地玩家加 AI，没有 LAN 或远程人类玩家。
 
-**最终 GUID `2d94fdd6d9734b259f5231c1fd3f2b99` 已通过手动导出片段 `bef1332be33c4e38b0594b3e4bf8eb13` 的新进程冷启动、从第 0 步完整前向播放至第 5622 步（9:22 模拟时间），并显示 `RECORDED SEGMENT VERIFIED`。** 接受的 `Train villager` 和无选取单位而拒绝的 `Stop` 均被重现；四观察位分别为 `coast=British`、`river=Dutch`、`france=French`、`ottoman=Ottomans`。原生 ±30 秒、中点跳转与时间轴填充/手柄修复已核验。该 `manual_save` 片段没有自然终局含义；坏文件错误提示及原世界保留、个人存储和观看输出字节核对已通过；范围见[最终原生证据](Docs/Evidence/067/Native/README.md)。长窗性能未验收，最终打包与云端交付待本次冻结后完成。
+**最终 GUID `2d94fdd6d9734b259f5231c1fd3f2b99` 已通过手动导出片段 `bef1332be33c4e38b0594b3e4bf8eb13` 的新进程冷启动、从第 0 步完整前向播放至第 5622 步（9:22 模拟时间），并显示 `RECORDED SEGMENT VERIFIED`。** 接受的 `Train villager` 和无选取单位而拒绝的 `Stop` 均被重现；四观察位分别为 `coast=British`、`river=Dutch`、`france=French`、`ottoman=Ottomans`。原生 ±30 秒、中点跳转与时间轴填充/手柄修复已核验。该 `manual_save` 片段没有自然终局含义；坏文件错误提示及原世界保留、个人存储和观看输出字节核对已通过；范围见[最终原生证据](Docs/Evidence/067/Native/README.md)。长窗性能未验收，最终三包及私有云盘七对象已通过本地核验和元数据读回，见[0.10交付](Docs/Delivery-067.md)。
 
 旧 GUID `2158deff98354bc981f074397534ad74` 的 35:50 片段保留在[候选 1 诊断](Docs/Evidence/067/Diagnostics/FrozenCandidate1/Native/README.md)，不作为最终构建的原生证明。
 
@@ -85,4 +85,4 @@ C1–C6失败结果原样保留，不跨局拼接。C7缺少单独终局F9和菜
 
 ## 交付边界
 
-目标为macOS arm64、Development/Mono、URP。本轮 1,097 项是编辑器自动化结果；最终 GUID 的 9:22 手动片段冷启动完整播放、四观察位、接受/拒绝命令和代表性跳转已通过，原生坏文件错误、原世界保留及存储字节核验也已通过；最终包与云端交付待本次冻结后完成。当前本地录制/回放/观察已实现；LAN 只有[下阶段方案](Docs/LAN-Next-068.md)，远端人类、联网合作、通用场景编辑器、完整商业海战及可毁桥仍待后续迭代。没有本版普通 1× 对局性能或真实网络验收；原生帧率样本受机器、分辨率、镜头和活动量限制，历史结果不能保证通用60FPS。Windows、Linux、Intel Mac及跨机器签名、公证尚未验证。历史交付和验收保持各自版本身份；范围见[已知限制](Docs/Known-Issues.md)，各批状态见[差距路线](Docs/AoE3-Gap-Roadmap-064.md)。
+目标为macOS arm64、Development/Mono、URP。本轮 1,097 项是编辑器自动化结果；最终 GUID 的 9:22 手动片段冷启动完整播放、四观察位、接受/拒绝命令和代表性跳转已通过，原生坏文件错误、原世界保留及存储字节核验也已通过；最终三包与私有云盘交付已完成，见[0.10交付](Docs/Delivery-067.md)。当前本地录制/回放/观察已实现；LAN 只有[下阶段方案](Docs/LAN-Next-068.md)，远端人类、联网合作、通用场景编辑器、完整商业海战及可毁桥仍待后续迭代。没有本版普通 1× 对局性能或真实网络验收；原生帧率样本受机器、分辨率、镜头和活动量限制，历史结果不能保证通用60FPS。Windows、Linux、Intel Mac及跨机器签名、公证尚未验证。历史交付和验收保持各自版本身份；范围见[已知限制](Docs/Known-Issues.md)，各批状态见[差距路线](Docs/AoE3-Gap-Roadmap-064.md)。
