@@ -11,9 +11,16 @@ namespace Frontier
         public const int Version=1;
         static readonly Dictionary<string,MapLayout> cache=new Dictionary<string,MapLayout>();
         static readonly Queue<string> order=new Queue<string>();
-        public static string Validate(ScenarioDocument document,RuleCatalog rules,int players)
+        public static string Validate(ScenarioDocument document,RuleCatalog rules,int players,int[] teamsOverride=null)
         {
-            try{Compile(document,rules,players);return "";}
+            try
+            {
+                Compile(document,rules,players);
+                var teams=teamsOverride??Array.ConvertAll(document.starts,s=>s.team);
+                if(teams.Length!=players)return "Scenario player teams must match the match roster";
+                var factions=new HashSet<int>();foreach(int team in teams){if(team<0||team>3)return "Team must be between zero and three";factions.Add(team);}
+                return factions.Count<2?"A match requires at least two factions":"";
+            }
             catch(Exception error)when(error is ArgumentException||error is InvalidOperationException){return error.Message;}
         }
         public static MapLayout Compile(ScenarioDocument document,RuleCatalog rules,int players)

@@ -184,6 +184,10 @@ namespace Frontier.Tests
             // The real result/completion branch must also leave account progress alone.
             game.enabled=true;yield return null;yield return null;game.enabled=false;
             Assert.IsTrue(game.Hud.ResultVisible);Assert.IsFalse(game.SaveLearningProgress());AccountUnchanged(account);
+            var resultPanel=UiButton("RETURN TO EDITOR","VICTORY").transform.parent;
+            var resultTexts=resultPanel.GetComponentsInChildren<Text>().Select(t=>t.text).ToArray();
+            Assert.IsTrue(resultTexts.Any(t=>t.StartsWith(world.ScenarioState.reason+" · ")),"The visible result must explain the authored victory");
+            Assert.IsFalse(resultTexts.Any(t=>t.Contains("Elimination or resignation")),"Authored completion must not be labelled as an elimination victory");
             CollectionAssert.AreEqual(preferences,File.ReadAllBytes(game.Settings.Path));
 
             game.ReturnToMenu();Assert.IsTrue(game.InMenu);Assert.IsNull(game.World);Assert.IsNull(game.Simulation);
@@ -441,6 +445,56 @@ namespace Frontier.Tests
             Assert.AreEqual(1,game.Scenarios.List().Length);AccountUnchanged(account);CollectionAssert.AreEqual(preferences,File.ReadAllBytes(game.Settings.Path));
             Assert.IsTrue(original.Redo());Assert.AreEqual(redoHash,ScenarioCodec.ContentHash(original.Document));
             Assert.IsTrue(original.Undo());Assert.AreEqual(hash,ScenarioCodec.ContentHash(original.Document));yield return null;
+        }
+        static Rect MainMenuScreenBounds069(RectTransform rect)
+        {
+            var corners=new Vector3[4];rect.GetWorldCorners(corners);
+            var points=corners.Select(p=>RectTransformUtility.WorldToScreenPoint(null,p)).ToArray();
+            return Rect.MinMaxRect(points.Min(p=>p.x),points.Min(p=>p.y),points.Max(p=>p.x),points.Max(p=>p.y));
+        }
+        [UnityTest] public IEnumerator MainMenuButtonsStayDisjointAndRealClicksReachLoadAndWorkshopAtBothUiScales()
+        {
+            foreach(float scale in new[]{1f,1.25f})
+            {
+                var settings=game.Settings.Current;settings.uiScale=scale;Assert.IsTrue(game.Settings.TryUpdate(settings,out string reason),reason);
+                game.Hud.ShowMenu();yield return ReadyUi();
+                var menu=(RectTransform)UiButton("LOAD SAVED MATCH","Main menu").transform.parent;
+                var buttons=menu.GetComponentsInChildren<Button>().Where(b=>b.isActiveAndEnabled).ToArray();
+                Assert.AreEqual(9,buttons.Count(b=>b.transform.parent==menu),"All nine main menu entries must remain present");
+                var bounds=buttons.Select(b=>MainMenuScreenBounds069((RectTransform)b.transform)).ToArray();
+                for(int i=0;i<buttons.Length;i++)
+                {
+                    Assert.Greater(bounds[i].width,1,buttons[i].name);Assert.Greater(bounds[i].height,1,buttons[i].name);
+                    Assert.GreaterOrEqual(bounds[i].xMin,-1,buttons[i].name);Assert.GreaterOrEqual(bounds[i].yMin,-1,buttons[i].name);
+                    Assert.LessOrEqual(bounds[i].xMax,Screen.width+1,buttons[i].name);Assert.LessOrEqual(bounds[i].yMax,Screen.height+1,buttons[i].name);
+                    var label=MainMenuScreenBounds069(buttons[i].GetComponentInChildren<Text>().rectTransform);
+                    Assert.GreaterOrEqual(label.xMin,bounds[i].xMin-.1f,buttons[i].name);Assert.LessOrEqual(label.xMax,bounds[i].xMax+.1f,buttons[i].name);
+                    Assert.GreaterOrEqual(label.yMin,bounds[i].yMin-.1f,buttons[i].name);Assert.LessOrEqual(label.yMax,bounds[i].yMax+.1f,buttons[i].name);
+                    for(int j=i+1;j<buttons.Length;j++)Assert.IsFalse(bounds[i].Overlaps(bounds[j]),buttons[i].name+" overlaps "+buttons[j].name+" at UI scale "+scale);
+                }
+                var load=MainMenuScreenBounds069((RectTransform)UiButton("LOAD SAVED MATCH","Main menu").transform);
+                var workshop=MainMenuScreenBounds069((RectTransform)UiButton("SCENARIO WORKSHOP","Main menu").transform);
+                Assert.AreEqual(load.width,workshop.width,.1f);Assert.AreEqual(load.yMin,workshop.yMin,.1f);Assert.Less(load.xMax,workshop.xMin);
+                yield return ClickUiButton("LOAD SAVED MATCH","Main menu");
+                Assert.IsTrue(game.Hud.ModalVisible);Assert.IsFalse(game.ScenarioEditorOpen);Assert.IsNull(game.World);
+                Assert.IsNotNull(UiButton("BACK","LOAD MATCH"),"The load hitbox must open the actual checkpoint picker");
+                yield return ClickUiButton("BACK","LOAD MATCH");
+                yield return ClickUiButton("SCENARIO WORKSHOP","Main menu");
+                Assert.IsTrue(game.ScenarioEditorOpen);Assert.IsTrue(game.Hud.ScenarioCanvasVisible);Assert.IsFalse(game.Hud.ModalVisible);Assert.IsNull(game.World);
+                yield return ClickUiButton("CLOSE","Scenario workshop");Assert.IsFalse(game.ScenarioEditorOpen);yield return ReadyUi();
+            }
+        }
+        [UnityTest] public IEnumerator SingleFactionDraftRemainsEditableAndSavedWhileReadyAndPlaytestRejectIt()
+        {
+            Assert.IsTrue(game.OpenScenarioDocument(Draft()));var editor=game.ScenarioEditor;
+            Assert.IsTrue(game.ApplyScenarioEdit(d=>d.starts[1].team=0));string hash=ScenarioCodec.ContentHash(editor.Document);
+            Assert.IsTrue(editor.CanUndo);StringAssert.Contains("at least two factions",game.ValidateScenarioDraft());
+            Assert.IsFalse(game.PlaytestScenario());Assert.IsNull(game.World);Assert.IsNull(game.Simulation);Assert.IsNull(game.SelectedScenario);
+            Assert.IsTrue(game.ScenarioEditorOpen);Assert.AreSame(editor,game.ScenarioEditor);Assert.AreEqual(hash,ScenarioCodec.ContentHash(editor.Document));
+            Assert.IsTrue(game.SaveScenarioDraft(editor.Document.id,editor.Document.name));
+            Assert.AreEqual(hash,ScenarioCodec.ContentHash(game.Scenarios.Read(editor.Document.id)),"An unfinished team assignment is still a durable editor draft");
+            Assert.IsTrue(game.ApplyScenarioEdit(d=>d.starts[1].team=1));Assert.IsEmpty(game.ValidateScenarioDraft());
+            Assert.IsTrue(game.PlaytestScenario());Assert.IsTrue(game.World.AreEnemies(0,1));game.ReturnToMenu();Assert.AreSame(editor,game.ScenarioEditor);yield return null;
         }
     }
 }

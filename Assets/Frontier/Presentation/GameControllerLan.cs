@@ -69,7 +69,7 @@ namespace Frontier
         {
             var authored=SelectedScenario;
             if(authored!=null)
-            {string invalid=ScenarioCompiler.Validate(authored,Rules,4);if(invalid!=""){Notify("Cooperative scenarios require four authored player slots: "+invalid);return;}}
+            {string invalid=ScenarioCompiler.Validate(authored,Rules,4,new[]{0,1,0,1});if(invalid!=""){Notify("Cooperative scenarios require four authored player slots: "+invalid);return;}}
             LanTcpServer server;
             try{server=new LanTcpServer(port);}
             catch(Exception error){Notify("Could not host: "+error.Message);return;}
@@ -100,7 +100,7 @@ namespace Frontier
             if(ready&&reason!=""){Notify(reason);return;}
             if(IsLanHost)
             {
-                var selected=SelectedScenario;string invalid=selected==null?"":ScenarioCompiler.Validate(selected,Rules,4);
+                var selected=SelectedScenario;string invalid=selected==null?"":ScenarioCompiler.Validate(selected,Rules,4,new[]{0,1,0,1});
                 if(invalid!=""){Notify("Cooperative scenarios require four authored player slots: "+invalid);return;}
                 ApplyLanScenarioConfiguration(selected);
             }
@@ -120,7 +120,7 @@ namespace Frontier
         {
             if(!IsLanHost||LanLobby==null||LanLobby.started)return;
             foreach(var slot in LanLobby.slots)if(slot.human){slot.ready=false;slot.scenarioHash="";}
-            var selected=SelectedScenario;string invalid=selected==null?"":ScenarioCompiler.Validate(selected,Rules,4);
+            var selected=SelectedScenario;string invalid=selected==null?"":ScenarioCompiler.Validate(selected,Rules,4,new[]{0,1,0,1});
             if(invalid!=""){Notify("Choose a scenario with four legal player slots for cooperation: "+invalid);BroadcastLanLobby();return;}
             ApplyLanScenarioConfiguration(selected);BroadcastLanLobby();
         }
@@ -138,7 +138,7 @@ namespace Frontier
             if(lobby?.slots?.Length!=4)throw new ArgumentException("Invalid cooperative player slots");
             if(lobby.hasScenarioDocument)
             {
-                string invalid=ScenarioCompiler.Validate(lobby.scenarioDocument,Rules,4);
+                string invalid=ScenarioCompiler.Validate(lobby.scenarioDocument,Rules,4,new[]{0,1,0,1});
                 if(invalid!=""||lobby.mapId!=MapTopology.Scenario||lobby.scenarioHash!=ScenarioCodec.ContentHash(lobby.scenarioDocument)||lobby.seed!=lobby.scenarioDocument.seed)
                     throw new ArgumentException("Invalid cooperative scenario: "+invalid);
             }

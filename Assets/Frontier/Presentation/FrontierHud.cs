@@ -578,6 +578,7 @@ namespace Frontier
         {
             ResultVisible=true;var w=game.World;var box=Modal(w.Winner==-2?"DRAW":w.IsPlayerWinner(game.LocalPlayerSlot)?"VICTORY":"DEFEAT",610);
             string resultReason=w.MapObjective.mode!="elimination"&&w.MapObjective.reason!=""?w.MapObjective.reason:"Elimination or resignation";
+            if(w.HasScenario){string authoredReason=w.ScenarioState?.reason;if(!string.IsNullOrEmpty(authoredReason))resultReason=authoredReason;}
             Label(box,resultReason+" · "+((int)w.Time/60)+"m "+((int)w.Time%60)+"s\nStatistics below are accumulated from this match's simulation.",new Rect(25,84,825,65),19,muted);
             AddRosterResult(box,w);
             if(game.IsLan)Button(box,"LEAVE MATCH",new Rect(25,514,815,64),()=>game.LeaveLan());

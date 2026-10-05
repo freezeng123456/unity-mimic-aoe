@@ -110,6 +110,20 @@ namespace Frontier.Tests
             Assert.IsNotEmpty(ScenarioCompiler.Validate(doc,Catalog.Load(),doc.starts.Length),"Opening towns use the same complete foundation check");
         }
         [Test]
+        public void SingleFactionDraftsStayPortableButReadyUsesTheActualAuthoredOrLanTeams()
+        {
+            var rules=Catalog.Load();var doc=Blank(4);foreach(var start in doc.starts)start.team=0;
+            Assert.IsEmpty(ScenarioCodec.Validate(doc,rules),"Editing and preserving an unfinished team roster remains allowed");
+            var restored=ScenarioCodec.Decode(ScenarioCodec.Encode(doc,rules),rules);
+            Assert.AreEqual(ScenarioCodec.ContentHash(doc),ScenarioCodec.ContentHash(restored));
+            StringAssert.Contains("at least two factions",ScenarioCompiler.Validate(doc,rules,4));
+            Assert.Throws<ArgumentException>(()=>Play(doc));
+            var lanTeams=new[]{0,1,0,1};Assert.IsEmpty(ScenarioCompiler.Validate(doc,rules,4,lanTeams));
+            var lan=new World(rules,doc,doc.starts.Select(s=>s.civilization).ToArray(),lanTeams,5);
+            Assert.IsTrue(lan.AreAllies(0,2));Assert.IsTrue(lan.AreEnemies(0,1));Assert.DoesNotThrow(()=>World.Restore(rules,lan.CaptureState()));
+            doc.starts[3].team=1;Assert.IsEmpty(ScenarioCompiler.Validate(doc,rules,4));Assert.DoesNotThrow(()=>Play(doc));
+        }
+        [Test]
         public void FrozenDocumentHeightSurfaceRosterAndResourcesComeFromTheAuthoredData()
         {
             var doc=Blank(3);doc.starts[2].civilization="france";doc.starts[2].age=3;doc.starts[2].initialResources=new Cost(17,29,41);
