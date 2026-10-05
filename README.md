@@ -6,6 +6,8 @@
 
 最终原生 GUID `fa26339934914cd2813df9763de6bba7` 已完成**同一台 Mac 两个独立进程的真实 TCP 合作操作**：双方准备/开局、法国连续训练及第二项取消退款、英国训练、远端移动、本地菜单和共享暂停、18 秒客户端挂起后的房主离线恢复/重连、退出及房主保存录制段，已独立核对保存容器和4442条退出事件账本。两端暂停状态摘要对齐，两个进程正常退出0。[原生证据](Docs/Evidence/068/Native/README.md)与[当前完成状态](Docs/Completion-Status.md)分别记录 UI、元数据、日志及录制段。两台物理 Mac、真实网卡/防火墙链路、自然完整比赛、该段原生冷回放和本版性能仍待验证。
 
+本批源码、macOS arm64客户端和当前原生图集已冻结并上传至[原私有Google Drive项目的0.11目录](https://drive.google.com/drive/folders/1K_xqcyeJAc87F6DJpmDb0CNflM0PtDcC)，独立核验1426个成员和云端七对象元数据/权限通过。[交付说明](Docs/Delivery-068.md)记录源码快照与运行提交、完整哈希及实际范围。
+
 以下0.10结果保留原构建身份，不扩大为0.11验收。
 
 **最终 GUID `2d94fdd6d9734b259f5231c1fd3f2b99` 已通过手动导出片段 `bef1332be33c4e38b0594b3e4bf8eb13` 的新进程冷启动、从第 0 步完整前向播放至第 5622 步（9:22 模拟时间），并显示 `RECORDED SEGMENT VERIFIED`。** 接受的 `Train villager` 和无选取单位而拒绝的 `Stop` 均被重现；四观察位分别为 `coast=British`、`river=Dutch`、`france=French`、`ottoman=Ottomans`。原生 ±30 秒、中点跳转与时间轴填充/手柄修复已核验。该 `manual_save` 片段没有自然终局含义；坏文件错误提示及原世界保留、个人存储和观看输出字节核对已通过；范围见[最终原生证据](Docs/Evidence/067/Native/README.md)。长窗性能未验收，最终三包及私有云盘七对象已通过本地核验和元数据读回，见[0.10交付](Docs/Delivery-067.md)。

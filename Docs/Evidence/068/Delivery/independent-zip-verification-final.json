@@ -1,0 +1,108 @@
+{
+  "checks": {
+    "allMembersBytesSha256UnixModesTypesCrcPaths": "Passed",
+    "cachePersonalStorageOldCandidateExclusions": "Passed",
+    "currentSourceInputBytes": "Passed",
+    "manifestAndZipsUnchangedDuringReview": "Passed",
+    "manifestSchemaAndRelease": "Passed",
+    "runtimeAndSnapshotInputGitBlobs": "Passed",
+    "safeRelativeSymlinks": "Passed",
+    "sourceGitAllowlistCompleteness": "Passed",
+    "sourceGitBlobBytesSha256Modes": "Passed",
+    "sourceInputFingerprint": "Passed",
+    "wholeZipBytesAndSha256": "Passed"
+  },
+  "createdUtc": "2026-10-05T17:05:01Z",
+  "identity": {
+    "buildGuid": "fa26339934914cd2813df9763de6bba7",
+    "release": "068",
+    "runtimeCommit": "dca073708b671c60a1fe9ff243a67e4ace3fe157",
+    "sourceFingerprint": "62240c2373c773b5aaf807c72815acab2e76577504f3a0569218702864730ebe",
+    "sourceInputs": 630,
+    "sourceSnapshotCommit": "89061bc0a433fd4e94f98518200de0928cc91f7f",
+    "tests": {
+      "EditMode": 817,
+      "PlayMode": 368,
+      "result": "Passed",
+      "run": "run-Z47ikuJY",
+      "total": 1185
+    },
+    "version": "0.11.0"
+  },
+  "manifest": {
+    "bytes": 485304,
+    "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.11.0/Candidate3/Packaging/release-manifest.json",
+    "sha256": "8b9ba660d41b08bfc0972c1241cc13f47af0403e332cb9e599a3267dd5f448c9"
+  },
+  "packageDirectory": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.11.0/Candidate3",
+  "packages": {
+    "client": {
+      "bytes": 75839160,
+      "file": "Frontier-Reckoning-0.11.0-macOS-arm64.zip",
+      "memberBytesShaModesTypesCrcAndPaths": "Passed",
+      "memberKinds": {
+        "directory": 21,
+        "file": 301,
+        "symlink": 0
+      },
+      "memberRawBytes": 190598399,
+      "members": 322,
+      "prefix": "Frontier-Reckoning-0.11.0",
+      "sha256": "47cc14a7c78a475435dbb38c4193e87e8dfd3de3de2df2fabd757b3da1f2d23e"
+    },
+    "gallery": {
+      "bytes": 13855483,
+      "file": "Frontier-Reckoning-0.11.0-gallery.zip",
+      "memberBytesShaModesTypesCrcAndPaths": "Passed",
+      "memberKinds": {
+        "directory": 10,
+        "file": 76,
+        "symlink": 0
+      },
+      "memberRawBytes": 18127511,
+      "members": 86,
+      "prefix": "Frontier-Reckoning-0.11.0-gallery",
+      "sha256": "a0abf060bcbe1f4f9ee398764c593f207771f4302f377a4c67dc4a5f300bf11d"
+    },
+    "source": {
+      "bytes": 37164717,
+      "file": "Frontier-Reckoning-0.11.0-source.zip",
+      "memberBytesShaModesTypesCrcAndPaths": "Passed",
+      "memberKinds": {
+        "directory": 0,
+        "file": 1018,
+        "symlink": 0
+      },
+      "memberRawBytes": 57611113,
+      "members": 1018,
+      "prefix": "FrontierReckoning",
+      "sha256": "8bf03b113fa54b67d21a17d84d25ab0eadb23a83f26b2806992c1979f21f3d31"
+    }
+  },
+  "priorVerification": {
+    "bytes": 216,
+    "correction": "Removed generic singular Build cache exclusion; native identity receipt directories are legitimate evidence. Source remains bound to the complete Git allowlist; gallery Native/Build allows only its three identity files. Builds/cache/app/personal-storage exclusions remain active. No package/manifest bytes were changed.",
+    "error": "forbidden cache/personal-storage member",
+    "errorType": "VerificationError",
+    "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.11.0/Candidate3/Packaging/independent-zip-verification.json",
+    "result": "Failed",
+    "sha256": "b75eba8bfda228b38913bd1101db6a3a65720d7a825f2c7fd5556de96fe124bb",
+    "verifierSha256": "fbafe79fba9984241b26fdef9c95f51611aa708c851d6f6a7049760d6751c83c"
+  },
+  "result": "Passed",
+  "schema": 1,
+  "scope": [
+    "Independent standard-library ZIP/Git object verification; no packaging helper imports.",
+    "Every ZIP member is fully streamed and CRC/SHA/size/mode/type/path checked against frozen inventory.",
+    "Source regular files and symlinks bind to complete selected sourceSnapshotCommit Git blobs and modes.",
+    "Git does not store directories: directory bytes/modes are checked against the manifest only.",
+    "Client/gallery inventories are verified as supplied; native gameplay semantics are outside this tool.",
+    "No remote checksum, cloud download equality, new test execution, native performance or release-completion claim."
+  ],
+  "verifier": {
+    "bytes": 37351,
+    "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.11.0/Candidate3/Packaging/independent-zip-verify-068.py",
+    "implementation": "Independent standard-library ZIP streaming and Git-object hashing",
+    "sha256": "60fce3e3e70414313b03cfb0dfbf9a0ed2563dce9b2597dc4a58433de1ccdbf0"
+  }
+}

@@ -1,6 +1,6 @@
 # 当前范围与已知限制 · 0.11.0 可信 LAN 候选
 
-2026-10-06。已实现 P1 房主/P3 客户端的可信 LAN 合作，P2/P4 AI 只在房主运行。当前 Candidate3 运行源码 `dca073708b671c60a1fe9ff243a67e4ace3fe157`，630 个输入，指纹 `62240c2373c773b5aaf807c72815acab2e76577504f3a0569218702864730ebe`；完整测试 `run-Z47ikuJY` **1,185/1,185（817 EditMode + 368 PlayMode）** 通过，失败/跳过/未定均为 0，[XML 与来源核验](Evidence/068/Tests/README.md)。当前 GUID `fa26339934914cd2813df9763de6bba7` 的同机双原生操作已实际完成并通过独立元数据/UI和录像容器/账本核对，正式交付仍 pending。历史 Candidate2 的同数测试及原生诊断不代替当前身份。[当前完成状态](Completion-Status-068.md)、[LAN 机制](LAN-068.md)、[0.11 操作](Player-Guide-068.md)。
+2026-10-06。已实现 P1 房主/P3 客户端的可信 LAN 合作，P2/P4 AI 只在房主运行。当前 Candidate3 运行源码 `dca073708b671c60a1fe9ff243a67e4ace3fe157`，630 个输入，指纹 `62240c2373c773b5aaf807c72815acab2e76577504f3a0569218702864730ebe`；完整测试 `run-Z47ikuJY` **1,185/1,185（817 EditMode + 368 PlayMode）** 通过，失败/跳过/未定均为 0，[XML 与来源核验](Evidence/068/Tests/README.md)。当前 GUID `fa26339934914cd2813df9763de6bba7` 的同机双原生操作已实际完成并通过独立元数据/UI和录像容器/账本核对，三包及私有云盘读回已通过，见[0.11交付](Delivery-068.md)。历史 Candidate2 的同数测试及原生诊断不代替当前身份。[当前完成状态](Completion-Status-068.md)、[LAN 机制](LAN-068.md)、[0.11 操作](Player-Guide-068.md)。
 
 ## 0.11 LAN 实现与未验收范围
 
