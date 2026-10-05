@@ -1,0 +1,409 @@
+{
+  "actualRiverBend": {
+    "changedIndices": [
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      168,
+      169,
+      170,
+      171,
+      172,
+      173,
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      189,
+      190,
+      191,
+      192
+    ],
+    "control174After": {
+      "x": 78.19999694824219,
+      "y": 68.0
+    },
+    "control174Before": {
+      "x": 80.5999984741211,
+      "y": 68.0
+    },
+    "nonRiverDocumentDataUnchanged": true,
+    "samples": 341
+  },
+  "bindingToFinalInspection": {
+    "bytes": 104172,
+    "file": "Native/scenario-native069-inspection-candidate2-final.json",
+    "sha256": "5a253fa0a43b88e39782a89ca378e541dee8db608f58c19b55dbf38fce22c9aa"
+  },
+  "createdUtc": "2026-10-05T19:23:45.742848+00:00",
+  "earlyDifferentTemplateBackupReported": [
+    {
+      "bytes": 112485,
+      "file": "profile/ScenarioDrafts/draft-20261005-190733-172-f1c0b828b1074a589cfc5a6af91d5c3e.scenario.json",
+      "sha256": "e37f23a661903ebb80c0fd124832cc0df075f1a289399be02b17fdd70fc3918f"
+    }
+  ],
+  "entireScenarioDraftsDirectoryWasNotEmpty": true,
+  "finalDocument": {
+    "contentHash": "2b61502314cc6e653e4a80043145531748dab4fb430454b6fc4f5c85d91871a6",
+    "finalSavedLatestNativeExportedFullDtoAndEnvelopeBytesEqual": true,
+    "name": "Curved River Workshop",
+    "triggers": [
+      {
+        "actions": [
+          {
+            "amount": 50.0,
+            "count": 1,
+            "definition": "",
+            "kind": "grant_resource",
+            "message": "Reinforcements are ready.",
+            "objectId": "",
+            "objectiveId": "",
+            "player": 0,
+            "point": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "regionId": "",
+            "resource": 1,
+            "targetId": "",
+            "triggerId": ""
+          }
+        ],
+        "conditions": [
+          {
+            "amount": 1.0,
+            "kind": "time",
+            "objectId": "",
+            "objectiveId": "",
+            "player": 0,
+            "regionId": "",
+            "resource": 0,
+            "time": 5.0,
+            "triggerId": ""
+          }
+        ],
+        "enabled": true,
+        "id": "trigger-1",
+        "matchAny": false,
+        "maxFires": 1,
+        "repeatSeconds": 1.0
+      },
+      {
+        "actions": [
+          {
+            "amount": 1.0,
+            "count": 1,
+            "definition": "",
+            "kind": "complete_objective",
+            "message": "Reinforcements are ready.",
+            "objectId": "",
+            "objectiveId": "objective-1",
+            "player": 0,
+            "point": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "regionId": "",
+            "resource": 0,
+            "targetId": "",
+            "triggerId": ""
+          }
+        ],
+        "conditions": [
+          {
+            "amount": 1.0,
+            "kind": "time",
+            "objectId": "",
+            "objectiveId": "",
+            "player": 0,
+            "regionId": "",
+            "resource": 0,
+            "time": 90.0,
+            "triggerId": ""
+          }
+        ],
+        "enabled": true,
+        "id": "trigger-2",
+        "matchAny": false,
+        "maxFires": 1,
+        "repeatSeconds": 1.0
+      }
+    ]
+  },
+  "identityInput": {
+    "bytes": 1245,
+    "file": "Build/build-identity.json",
+    "sha256": "0e3d3721c8c6a89fb0ad3f970f7fc41e37e6c92ce115521ec7b1ff6524e864da"
+  },
+  "inputs": [
+    {
+      "bytes": 1372,
+      "file": "Native/source-absence-before-restore.json",
+      "sha256": "cdbae519b68fc37f85e6f347daef89d27945a97566ec1f19b5bc79161cf01679"
+    },
+    {
+      "bytes": 1288,
+      "file": "Native/after-cold-restore.json",
+      "sha256": "55ef20f5a40d3cb645ff9360067a3856c196f5193e4a785e877e0d154b689c0e"
+    },
+    {
+      "bytes": 888,
+      "file": "Native/process-cold-restore.json",
+      "sha256": "db24ed9e7ca1ebbb9f62260700698229ede87aa3ca08db2e9f02f21ce67c06f9"
+    },
+    {
+      "bytes": 918,
+      "file": "Native/process-cold-editor.json",
+      "sha256": "ecd866214a83375b1cf859838825d048c74742acc2dc1234246e8d58c116f7bf"
+    },
+    {
+      "bytes": 11058,
+      "file": "Native/actual-ui-observations.json",
+      "sha256": "0ecf4a113cd03b2cf4cca36376f46611cc0c7ed6fd88850904c6ab53b92f5295"
+    },
+    {
+      "bytes": 114195,
+      "file": "Native/Protected/removed-Scenarios-d6ae24fc2050471980bd20da24add1c9.json",
+      "sha256": "39eb5430082f6fe30a4913e9810e5b2036f5d97ff6758f90a74bb4ded9b0d17f"
+    },
+    {
+      "bytes": 114195,
+      "file": "Native/Protected/removed-ScenarioDrafts-latest.scenario.json",
+      "sha256": "39eb5430082f6fe30a4913e9810e5b2036f5d97ff6758f90a74bb4ded9b0d17f"
+    },
+    {
+      "bytes": 114195,
+      "file": "Native/profile/ScenarioDrafts/latest.scenario.json",
+      "sha256": "39eb5430082f6fe30a4913e9810e5b2036f5d97ff6758f90a74bb4ded9b0d17f"
+    },
+    {
+      "bytes": 114195,
+      "file": "Native/Protected/removed-ScenarioDrafts-latest.scenario.json",
+      "sha256": "39eb5430082f6fe30a4913e9810e5b2036f5d97ff6758f90a74bb4ded9b0d17f"
+    },
+    {
+      "bytes": 114189,
+      "contentHash": "0c0ee068884ba806e3ea83a6d91d0765a7c29778fb00cfcf5a12a026b1cf3a9d",
+      "file": "Native/AuthoredStages/01-after-terrain.scenario.json",
+      "heightVertices": 16641,
+      "id": "d6ae24fc2050471980bd20da24add1c9",
+      "players": 2,
+      "rivers": 1,
+      "runtimeGeography": "NotEvaluated",
+      "sha256": "714987cc546afa4cb57b30c64db29585d893fd22549765f752652ab97865b51c",
+      "status": "Passed",
+      "surfaceCells": 16384,
+      "title": "winding scenario",
+      "triggers": [
+        {
+          "id": "trigger-1",
+          "maxFires": 1
+        },
+        {
+          "id": "trigger-2",
+          "maxFires": 1
+        }
+      ],
+      "validationScope": "Envelope/payload SHA, exact DTO field types and bounded arrays only; an authored draft can be geographically unplayable."
+    },
+    {
+      "bytes": 114189,
+      "contentHash": "0c0ee068884ba806e3ea83a6d91d0765a7c29778fb00cfcf5a12a026b1cf3a9d",
+      "file": "Native/AuthoredStages/02-after-river.scenario.json",
+      "heightVertices": 16641,
+      "id": "d6ae24fc2050471980bd20da24add1c9",
+      "players": 2,
+      "rivers": 1,
+      "runtimeGeography": "NotEvaluated",
+      "sha256": "714987cc546afa4cb57b30c64db29585d893fd22549765f752652ab97865b51c",
+      "status": "Passed",
+      "surfaceCells": 16384,
+      "title": "winding scenario",
+      "triggers": [
+        {
+          "id": "trigger-1",
+          "maxFires": 1
+        },
+        {
+          "id": "trigger-2",
+          "maxFires": 1
+        }
+      ],
+      "validationScope": "Envelope/payload SHA, exact DTO field types and bounded arrays only; an authored draft can be geographically unplayable."
+    },
+    {
+      "bytes": 114191,
+      "contentHash": "8e00aa4a563759395dc51b0cc045fe34522f655c8d95a10f37d4bc5568e20bd8",
+      "file": "Native/AuthoredStages/03-after-river-move.scenario.json",
+      "heightVertices": 16641,
+      "id": "d6ae24fc2050471980bd20da24add1c9",
+      "players": 2,
+      "rivers": 1,
+      "runtimeGeography": "NotEvaluated",
+      "sha256": "7502e86b3779e5112238018d8c878450dbd6134bcf9c7b9bc83553d895a8c41d",
+      "status": "Passed",
+      "surfaceCells": 16384,
+      "title": "winding scenario",
+      "triggers": [
+        {
+          "id": "trigger-1",
+          "maxFires": 1
+        },
+        {
+          "id": "trigger-2",
+          "maxFires": 1
+        }
+      ],
+      "validationScope": "Envelope/payload SHA, exact DTO field types and bounded arrays only; an authored draft can be geographically unplayable."
+    },
+    {
+      "bytes": 114195,
+      "contentHash": "2b61502314cc6e653e4a80043145531748dab4fb430454b6fc4f5c85d91871a6",
+      "file": "Native/AuthoredStages/04-final-ready.scenario.json",
+      "heightVertices": 16641,
+      "id": "d6ae24fc2050471980bd20da24add1c9",
+      "players": 2,
+      "rivers": 1,
+      "runtimeGeography": "NotEvaluated",
+      "sha256": "39eb5430082f6fe30a4913e9810e5b2036f5d97ff6758f90a74bb4ded9b0d17f",
+      "status": "Passed",
+      "surfaceCells": 16384,
+      "title": "Curved River Workshop",
+      "triggers": [
+        {
+          "id": "trigger-1",
+          "maxFires": 1
+        },
+        {
+          "id": "trigger-2",
+          "maxFires": 1
+        }
+      ],
+      "validationScope": "Envelope/payload SHA, exact DTO field types and bounded arrays only; an authored draft can be geographically unplayable."
+    },
+    {
+      "bytes": 114195,
+      "contentHash": "2b61502314cc6e653e4a80043145531748dab4fb430454b6fc4f5c85d91871a6",
+      "file": "Native/AuthoredStages/05-latest-on-quit.scenario.json",
+      "heightVertices": 16641,
+      "id": "d6ae24fc2050471980bd20da24add1c9",
+      "players": 2,
+      "rivers": 1,
+      "runtimeGeography": "NotEvaluated",
+      "sha256": "39eb5430082f6fe30a4913e9810e5b2036f5d97ff6758f90a74bb4ded9b0d17f",
+      "status": "Passed",
+      "surfaceCells": 16384,
+      "title": "Curved River Workshop",
+      "triggers": [
+        {
+          "id": "trigger-1",
+          "maxFires": 1
+        },
+        {
+          "id": "trigger-2",
+          "maxFires": 1
+        }
+      ],
+      "validationScope": "Envelope/payload SHA, exact DTO field types and bounded arrays only; an authored draft can be geographically unplayable."
+    },
+    {
+      "bytes": 114195,
+      "contentHash": "2b61502314cc6e653e4a80043145531748dab4fb430454b6fc4f5c85d91871a6",
+      "file": "Native/AuthoredStages/06-native-exported.scenario.json",
+      "heightVertices": 16641,
+      "id": "d6ae24fc2050471980bd20da24add1c9",
+      "players": 2,
+      "rivers": 1,
+      "runtimeGeography": "NotEvaluated",
+      "sha256": "39eb5430082f6fe30a4913e9810e5b2036f5d97ff6758f90a74bb4ded9b0d17f",
+      "status": "Passed",
+      "surfaceCells": 16384,
+      "title": "Curved River Workshop",
+      "triggers": [
+        {
+          "id": "trigger-1",
+          "maxFires": 1
+        },
+        {
+          "id": "trigger-2",
+          "maxFires": 1
+        }
+      ],
+      "validationScope": "Envelope/payload SHA, exact DTO field types and bounded arrays only; an authored draft can be geographically unplayable."
+    },
+    {
+      "bytes": 114195,
+      "file": "Native/profile/ScenarioExports/curved-river-workshop.scenario.json",
+      "sha256": "39eb5430082f6fe30a4913e9810e5b2036f5d97ff6758f90a74bb4ded9b0d17f"
+    }
+  ],
+  "inputsUnchangedDuringReview": true,
+  "latestRestorationByteEquality": true,
+  "previousDetailReceipt": {
+    "bytes": 12132,
+    "correction": "Original optional status/result lookup was null because root names the actual field GUIresult; file comparisons and Passed result retained unchanged.",
+    "file": "Native/scenario-native069-independent-details-candidate2-final.json",
+    "sha256": "2f72753d0b869f6f05911dc6df8634f4dc66d70587b95b19489640b4f50cb203"
+  },
+  "removedScenarioSourceReview": [
+    {
+      "existsAtInspection": false,
+      "retained": "Native/Protected/removed-Scenarios-d6ae24fc2050471980bd20da24add1c9.json",
+      "retainedHashMatches": true,
+      "rootReportedAbsentBeforeColdProcess": true,
+      "source": "Native/profile/Scenarios/d6ae24fc2050471980bd20da24add1c9.json"
+    },
+    {
+      "existsAtInspection": true,
+      "retained": "Native/Protected/removed-ScenarioDrafts-latest.scenario.json",
+      "retainedHashMatches": true,
+      "rootReportedAbsentBeforeColdProcess": true,
+      "source": "Native/profile/ScenarioDrafts/latest.scenario.json"
+    }
+  ],
+  "result": "Passed",
+  "rootGuiIdentityBinding": {
+    "appVersion": "0.12.0",
+    "buildGuid": "4546189bdd6b40fa92789fe697f7f0a7",
+    "sourceCommit": "28cd1b3191fafd49417d544e60dc898986568aa8",
+    "sourceFingerprint": "4cbc889a5ba3d706768a2b568af42dc4ec8b4cf0d60e7b45a4cc706d9ddab3ad",
+    "status": "Root input identity fields match expected Candidate2"
+  },
+  "rootGuiStatusAsReported": "PassedWithinDeclaredScope",
+  "rootGuiStatusSourceField": "GUIresult",
+  "rootJournalTimeOrder": "Removed before second cold native process; latest-only restoration after normal exit and before third native editor process",
+  "schema": 1,
+  "scope": [
+    "Read-only actual file/raw DTO comparisons; source removal and GUI action timing comes from preserved root journals.",
+    "Early unrelated backup draft existed during source absence; no claim that all authored files were deleted.",
+    "No Unity, GUI, simulation, build or package action."
+  ],
+  "tinyGestureDiagnosticFullDocumentUnchanged": true,
+  "verifierInput": {
+    "bytes": 63098,
+    "file": "Native/inspect-scenario-native069-v3-multiprofile.py",
+    "sha256": "d63f8bf5a0c47b0098344b85271b1b7acb61844056e7caedcda625da033ae2f5"
+  }
+}
