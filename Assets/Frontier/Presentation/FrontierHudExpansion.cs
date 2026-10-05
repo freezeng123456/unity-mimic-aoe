@@ -9,7 +9,7 @@ namespace Frontier
         private Texture2D mapPreview;
         private int neutralModalSite=-1;private string neutralModalSignature="";
         private string NeutralSignature(int site)
-        {var state=game.World?.NeutralAt(site);if(state==null)return "";var p=game.World.Players[0];return state.owner+"/"+state.claimant+"/"+(int)state.claimProgress+"/"+state.contested+"/"+state.jobs.Count+"/"+(state.jobs.Count>0?(int)state.jobs[0].elapsed:0)+"/"+(int)p.resources.food+"/"+(int)p.resources.wood+"/"+(int)p.resources.coin+"/"+p.technologies.Count+"/"+p.usedPopulation+"/"+p.reservedPopulation;}
+        {var state=game.World?.NeutralAt(site);if(state==null)return "";var p=game.World.Players[game.ObserverPlayer];return state.owner+"/"+state.claimant+"/"+(int)state.claimProgress+"/"+state.contested+"/"+state.jobs.Count+"/"+(state.jobs.Count>0?(int)state.jobs[0].elapsed:0)+"/"+(int)p.resources.food+"/"+(int)p.resources.wood+"/"+(int)p.resources.coin+"/"+p.technologies.Count+"/"+p.usedPopulation+"/"+p.reservedPopulation;}
         private void UpdateExpansionPanels()
         {if(neutralModalSite>=0&&ModalVisible&&!(uiPointer?.IsPressed??false)&&neutralModalSignature!=NeutralSignature(neutralModalSite))ShowNeutralSettlement(neutralModalSite);}
         private void ShowMapOptions()
@@ -67,11 +67,11 @@ namespace Frontier
             Label(box,"Treaty: "+(state.owner<0?state.claimant<0?"unclaimed":"negotiating":"player "+(state.owner+1))+" · "+(state.contested?"contested":"open")+(state.jobs.Count>0?" · Service "+Mathf.Max(0,state.jobs[0].duration-state.jobs[0].elapsed).ToString("0")+"s":"")+"\nBuild your trading post here and keep a land unit nearby to use settlement services.",new Rect(25,214,780,85),18,muted);
             void Service(CommandKind kind,string title,string description,int y)
             {
-                string reason=world.NeutralCommandReason(0,site,kind);
-                Button(box,title,new Rect(25,y,780,62),()=>{game.Command(new GameCommand{player=0,kind=kind,target=site});ShowNeutralSettlement(site);},description+"\n"+reason,reason=="");
+                string reason=world.NeutralCommandReason(game.LocalPlayerSlot,site,kind);
+                Button(box,title,new Rect(25,y,780,62),()=>{SubmitModalCommand(new GameCommand{player=game.LocalPlayerSlot,kind=kind,target=site},box,r=>ShowNeutralSettlement(site));},description+"\n"+reason,game.CanSubmitOrders&&reason=="");
             }
             Service(CommandKind.NeutralAlliance,"NEGOTIATE · "+ShortCost(d.allianceCost),"Paid treaty; enemy presence pauses or disrupts service.",310);
-            Service(CommandKind.NeutralRecruit,"RECRUIT "+unit.name+" · "+ShortCost(world.UnitCost(0,unit)),unit.description,385);
+            Service(CommandKind.NeutralRecruit,"RECRUIT "+unit.name+" · "+ShortCost(world.UnitCost(game.LocalPlayerSlot,unit)),unit.description,385);
             Service(CommandKind.NeutralResearch,"RESEARCH "+tech.name+" · "+ShortCost(tech.cost),tech.description,460);
         }
         private void ShowTransportCargo(EntityState ship)

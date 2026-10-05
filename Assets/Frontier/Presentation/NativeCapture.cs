@@ -11,7 +11,7 @@ namespace Frontier
 {
     [Serializable] public sealed class CaptureMetadata
     {
-        public int schemaVersion = 4, eventSchemaVersion = SimEvent.CurrentSchemaVersion;
+        public int schemaVersion = 5, eventSchemaVersion = SimEvent.CurrentSchemaVersion;
         public string pngFile, pngSha256, utc, appVersion, buildGuid, unityVersion, matchId, requestMatchId;
         public int requestFrame, captureFrame, width, height, seed;
         public float requestWorldTime, worldTime;
@@ -33,6 +33,7 @@ namespace Frontier
         public PlayerSettings preferences;
         public int observerPlayer;
         public CaptureReplay replay;
+        public CaptureLan lan;
 
         // Detached observer-owned state; this does not refresh UI or inspect
         // another player's production, units or unseen neutral information.
@@ -49,7 +50,7 @@ namespace Frontier
                 hudResources = game.Hud.ResourceSummary, hudUpdatedFrame = game.Hud.ResourceSummaryFrame,
                 hudWorldTime = game.Hud.ResourceSummaryTime, hudMatchId = game.Hud.ResourceSummaryMatchId,
                 skirmishMode=game.SkirmishMode,preferences=game.Settings.Current,
-                observerPlayer=game.ObserverPlayer,replay=CaptureReplay.Read(game),
+                observerPlayer=game.ObserverPlayer,replay=CaptureReplay.Read(game),lan=CaptureLan.Read(game),
                 guidedId=game.Guided?.Definition.Id??"",guidedStatus=game.Guided?.Status.ToString()??"",guidedStage=game.Guided?.Stage?.Title??"",
                 camera = new CaptureCamera
                 {
@@ -94,6 +95,22 @@ namespace Frontier
             {var job=state.owner==observer&&state.jobs.Count>0?state.jobs[0]:null;neutral.Add(new CaptureNeutralService{id=state.id,site=state.site,owner=state.owner,claimant=state.claimant,contested=state.contested,claimProgress=state.claimant==observer?state.claimProgress:0,service=job?.kind??"",item=job?.item??"",elapsed=job?.elapsed??0,duration=job?.duration??0});}result.neutralServices=neutral.ToArray();
             return result;
         }
+    }
+    [Serializable] public sealed class CaptureLan
+    {
+        public string role="",connection="",projectedDigest="";
+        public int localPlayer,pending,completedStep,port;
+        public long revision,eventCursor;
+        public bool connected,localMenuPaused,sharedPaused,hasSimulation,hasRecorder;
+        public double rttMilliseconds;
+        public static CaptureLan Read(GameController game)=>new CaptureLan
+        {
+            role=game.SessionRole.ToString(),connection=game.LanConnectionText,localPlayer=game.LocalPlayerSlot,
+            pending=game.LanPendingCount,completedStep=game.LanCompletedStep,port=game.IsLan?game.LanPort:0,
+            revision=game.LanStateRevision,eventCursor=game.LanEventCursor,projectedDigest=game.LanProjectedDigest,
+            connected=game.IsLanConnected,localMenuPaused=game.LocalMenuPaused,sharedPaused=game.World?.Paused??false,
+            hasSimulation=game.Simulation!=null,hasRecorder=game.Recorder!=null,rttMilliseconds=game.LanRttMilliseconds
+        };
     }
     [Serializable] public sealed class CaptureReplay
     {
@@ -183,7 +200,7 @@ namespace Frontier
                     metadata.pngSha256 = BitConverter.ToString(hash.ComputeHash(png)).Replace("-", "").ToLowerInvariant();
                 string stem = "Frontier-" + DateTime.UtcNow.ToString("yyyyMMdd-HHmmss-fff") + "-f" + metadata.captureFrame + "-" + Guid.NewGuid().ToString("N");
                 metadata.pngFile = stem + ".png";
-                string directory = Path.Combine(Application.persistentDataPath, "Captures");
+                string directory = game.CaptureDirectory;
                 Directory.CreateDirectory(directory);
                 // JSON is the completion record. A partial PNG without JSON must not be treated as a valid pair.
                 string path = Path.Combine(directory, stem);

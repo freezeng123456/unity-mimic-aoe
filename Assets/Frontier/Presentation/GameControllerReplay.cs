@@ -43,8 +43,8 @@ namespace Frontier
         }
         void BeginRecording(string startKind)
         {
-            Recorder?.Dispose();Recorder=null;ObserverPlayer=0;reportedReplayError="";
-            if(BenchmarkMode||World==null||Simulation==null)return;
+            Recorder?.Dispose();Recorder=null;ObserverPlayer=LocalPlayerSlot;reportedReplayError="";
+            if(IsLanClient||BenchmarkMode||World==null||Simulation==null)return;
             try{Recorder=new ReplayRecorder(Simulation,CurrentReplayIdentity(),Guided,Guid.NewGuid().ToString("N"),300,MatchId,startKind);}
             catch(Exception error){Notify("Recording could not start: "+error.Message);Debug.LogWarning("FRONTIER_REPLAY_RECORD_FAILED "+error.Message);}
         }
@@ -55,6 +55,7 @@ namespace Frontier
         }
         public bool SaveReplayNow()
         {
+            if(IsLanClient){Notify("The host owns the cooperative match recording");return false;}
             if(IsWatching){Notify("This recording is open for viewing");return false;}
             if(ReplaySaving){Notify("A recording is still being saved");return false;}
             try
@@ -71,6 +72,7 @@ namespace Frontier
         }
         public void SaveReplayAsync()
         {
+            if(IsLanClient){Notify("The host owns the cooperative match recording");return;}
             if(IsWatching){Notify("This recording is open for viewing");return;}
             if(ReplaySaving){Notify("A recording is still being saved");return;}
             try
@@ -118,6 +120,7 @@ namespace Frontier
         }
         public void OpenReplayAsync(string path)
         {
+            if(IsLan){Notify("Leave the cooperative session before opening a recording");return;}
             if(ReplayOpening){Notify("A recording is already opening");return;}
             var rules=SnapshotCodec.Clone(Rules);var identity=CurrentReplayIdentity();
             replayOpenPath=path;replayOpenEpoch=replayEpoch;ReplayFileError="";
@@ -125,11 +128,13 @@ namespace Frontier
         }
         public bool LoadReplayNow(string path)
         {
+            if(IsLan){Notify("Leave the cooperative session before opening a recording");return false;}
             try{return InstallReplay(ReplayStore.Read(path,Rules,CurrentReplayIdentity()),path);}
             catch(Exception error){ReplayFileError=error.Message;Notify("Recording could not open: "+error.Message);Debug.LogWarning("FRONTIER_REPLAY_OPEN_FAILED "+error.Message);return false;}
         }
         bool InstallReplay(ReplayDocument document,string path)
         {
+            if(IsLan){Notify("Leave the cooperative session before opening a recording");return false;}
             ReplaySession next=null;
             try
             {

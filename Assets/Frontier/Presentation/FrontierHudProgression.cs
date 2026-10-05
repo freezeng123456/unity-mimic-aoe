@@ -17,9 +17,11 @@ namespace Frontier
             Button(parent,"SETTINGS",new Rect(544,464,208,52),ShowSettings);
             Button(parent,game.SkirmishModeLabel+" / ROSTER",new Rect(766,464,208,52),ShowRoster);
             Button(parent,"RECORDING LIBRARY",new Rect(100,525,208,52),ShowReplayLibrary);
+            Button(parent,"LAN CO-OP",new Rect(322,525,208,52),ShowLanOptions);
         }
         public void ShowGuidedLibrary(bool campaign,int page=0)
         {
+            if(game.IsLan){game.Notify("Leave LAN play before opening guided missions");return;}
             var items=new System.Collections.Generic.List<GuidedPlayDefinition>();
             foreach(var d in GuidedPlayCatalog.Definitions)if((d.Kind==GuidedPlayKind.Campaign)==campaign)items.Add(d);
             int pages=Mathf.Max(1,Mathf.CeilToInt(items.Count/4f));page=Mathf.Clamp(page,0,pages-1);
@@ -87,13 +89,14 @@ namespace Frontier
         }
         public void ShowRoster()
         {
+            if(game.IsLan){ShowLanLobby();return;}
             var box=Modal("LOCAL PLAYERS & TEAMS",660);
             Button(box,game.SkirmishModeLabel,new Rect(25,82,815,54),()=>{game.CycleSkirmishMode();ShowRoster();});
-            Label(box,"You control slot 1. Other slots use the selected AI difficulty. Allies share sight; economies and unit control remain separate.",new Rect(25,148,815,70),18,muted);
+            Label(box,"You control your local slot. Other slots use the selected AI difficulty. Allies share sight; economies and unit control remain separate.",new Rect(25,148,815,70),18,muted);
             var roster=game.RosterCivilizations();var teams=game.RosterTeams();
             for(int i=0;i<roster.Length;i++)
             {
-                int slot=i;string role=i==0?"YOU":teams[i]==teams[0]?"ALLY AI":"ENEMY AI";
+                int slot=i;string role=i==game.LocalPlayerSlot?"YOU":teams[i]==teams[game.LocalPlayerSlot]?"ALLY AI":"ENEMY AI";
                 Button(box,"SLOT "+(i+1)+" · TEAM "+(teams[i]+1)+" · "+role+"\n"+(game.Rules.Civ(roster[i])?.name??"CHOOSE CIVILIZATION"),new Rect(25,233+i*78,815,66),()=>ShowRosterCivilizations(slot,0));
             }
             Button(box,"DONE",new Rect(25,575,815,55),()=>{CloseModal();ShowMenu();});

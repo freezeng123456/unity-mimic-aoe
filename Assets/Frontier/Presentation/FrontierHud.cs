@@ -94,7 +94,8 @@ namespace Frontier
             var p=game.World.Players[game.ObserverPlayer];int key=(selected?.id??0)*10000+p.age*100+p.technologies.Count*10+(selected?.queue.Count??0);
             // Arrival and release change the Ungarrison count and availability.
             // The existing pointer-capture guard still defers same-context rebuilds.
-            return unchecked((((key*397+(selected?.occupants.Count??0))*31+(selected?.shielded==true?1:0))*31+(selected?.autoRecruitPaused==true?1:0))*31+(selected?.factoryMode?.GetHashCode()??0));
+            key=unchecked((((key*397+(selected?.occupants.Count??0))*31+(selected?.shielded==true?1:0))*31+(selected?.autoRecruitPaused==true?1:0))*31+(selected?.factoryMode?.GetHashCode()??0));
+            return unchecked(key*31+(game.CanSubmitOrders?1:0));
         }
         private RectTransform Rect(Transform parent,string name,Rect r,bool bottom=false)
         {
@@ -129,6 +130,7 @@ namespace Frontier
         {var t=(RectTransform)transform;t.anchorMin=Vector2.zero;t.anchorMax=Vector2.one;t.offsetMin=t.offsetMax=Vector2.zero;}
         public void ShowMenu()
         {
+            if(game.IsLan){ShowLanLobby();return;}
             CloseModal();ResultVisible=false;if(gamePanel!=null)Destroy(gamePanel.gameObject);if(menuPanel!=null)Destroy(menuPanel.gameObject);
             menuPanel=Panel(root,"Main menu",new Rect(0,0,1600,900),background);Fill(menuPanel);
             Label(menuPanel,"FRONTIER\nRECKONING",new Rect(95,100,960,170),66,gold);
@@ -204,7 +206,7 @@ namespace Frontier
             var messagePanel=Panel(gamePanel,"Events",new Rect(222,226,1100,38),new Color(.07f,.12f,.13f,.87f),true);messagePanel.GetComponent<Image>().raycastTarget=false;
             notice=Label(messagePanel,"",new Rect(12,8,1070,27),17,gold);
             var helpPanel=Rect(gamePanel,"Tooltips",new Rect(222,269,1110,75),true);help=Label(helpPanel,"",new Rect(0,0,1110,72),17);
-            AddGuidedHud();AddReplayHud();actionEntity=-1;actionSelection.Clear();InvalidateActions();ApplyPreferences();
+            AddGuidedHud();AddReplayHud();AddLanHud();actionEntity=-1;actionSelection.Clear();InvalidateActions();ApplyPreferences();
         }
         internal bool NeedsUiLayoutAt(Vector2 point)
         {
@@ -224,12 +226,12 @@ namespace Frontier
         public void CancelUiPointer()=>uiPointer?.Cancel();
         public bool BlocksWorldInput(Vector2 pointer)
         {
-            if(game.InMenu||ModalVisible||(!game.IsWatching&&game.IsPaused)||ResultVisible)return true;
+            if(game.InMenu||ModalVisible||(game.IsLan?game.LocalMenuPaused:!game.IsWatching&&game.IsPaused)||ResultVisible)return true;
             RaycastHover(pointer);return hits.Count>0;
         }
         public bool BlocksCameraEdgePan(Vector2 pointer)
         {
-            if(game.InMenu||ModalVisible||(!game.IsWatching&&game.IsPaused)||ResultVisible||TryMinimapPoint(pointer,out _))return true;
+            if(game.InMenu||ModalVisible||(game.IsLan?game.LocalMenuPaused:!game.IsWatching&&game.IsPaused)||ResultVisible||TryMinimapPoint(pointer,out _))return true;
             RaycastHover(pointer);
             // Passive HUD panels may touch a whole screen edge. Only controls
             // and the minimap own hover; otherwise top/bottom panning is lost.
@@ -239,13 +241,13 @@ namespace Frontier
         public bool TryMinimapPoint(Vector2 pointer,out Vector2 point)
         {
             point=default;
-            if(game.InMenu||ModalVisible||(!game.IsWatching&&game.IsPaused)||ResultVisible||minimapRect==null||!RectTransformUtility.RectangleContainsScreenPoint(minimapRect,pointer))return false;
+            if(game.InMenu||ModalVisible||(game.IsLan?game.LocalMenuPaused:!game.IsWatching&&game.IsPaused)||ResultVisible||minimapRect==null||!RectTransformUtility.RectangleContainsScreenPoint(minimapRect,pointer))return false;
             if(!RectTransformUtility.ScreenPointToLocalPointInRectangle(minimapRect,pointer,null,out var local))return false;
             var rect=minimapRect.rect;point=new Vector2(Mathf.InverseLerp(rect.xMin,rect.xMax,local.x)*128,Mathf.InverseLerp(rect.yMin,rect.yMax,local.y)*128);return true;
         }
         private void Update()
         {
-            CaptureBinding();UpdateResponsiveLayout();RefreshReplayHud();uiPointer?.Move(UnityEngine.InputSystem.Mouse.current?.position.ReadValue()??Vector2.zero);
+            CaptureBinding();UpdateResponsiveLayout();RefreshReplayHud();RefreshLanHud();uiPointer?.Move(UnityEngine.InputSystem.Mouse.current?.position.ReadValue()??Vector2.zero);
             if(game.InMenu||game.World==null||gamePanel==null)return;
             RefreshProgressionHud();
             EnsureActionContextCurrent();
@@ -297,9 +299,9 @@ namespace Frontier
         {
             ClearChildren(actionPanel);ClearChildren(queuePanel);if(e==null)return;int n=0;
             Action<string,Action,string,bool> add=(title,click,tooltip,enabled)=>{int i=n++;int columns=ActionColumns;float step=ActionWidth/columns;Button(actionPanel,DynamicBindingLabel(title),new Rect((i%columns)*step,(i/columns)*57,step-7,50),click,tooltip,enabled);ResizeActionContent(n);};
-            if(game.IsWatching){add("DETAILS",()=>ShowObjectDetails(e),"Read recorded attributes.",true);add("FOCUS",()=>game.Controls.Focus(e.position),"Center the viewing camera.",true);if(e.def.transportShip)add("PASSENGERS",()=>ShowTransportCargo(e),"Read recorded passengers.",true);return;}
+            if(game.IsWatching||game.IsLan&&!game.CanSubmitOrders){add("DETAILS",()=>ShowObjectDetails(e),"Inspect attributes without issuing orders.",true);add("FOCUS",()=>game.Controls.Focus(e.position),"Center the viewing camera.",true);if(e.def.transportShip)add("PASSENGERS",()=>ShowTransportCargo(e),"Inspect the current passengers.",true);return;}
             if(e.def.id=="trade_socket"&&game.World.NeutralAt(e.id)!=null){add("SETTLEMENT",()=>ShowNeutralSettlement(e.id),"Negotiate a paid treaty, recruit allies and research their technology.",true);add("DETAILS",()=>ShowObjectDetails(e),"Read settlement attributes.",true);return;}
-            if(e.owner!=0){add("DETAILS",()=>ShowObjectDetails(e),"Read attributes, resistances and counters.",true);return;}
+            if(e.owner!=game.LocalPlayerSlot){add("DETAILS",()=>ShowObjectDetails(e),"Read attributes, resistances and counters.",true);return;}
             if(e.def.kind==EntityKind.Unit)
             {
                 add("ATTACK MOVE [A]",()=>game.Controls.BeginAttackMove(),"Attack enemies encountered while travelling.",true);
@@ -308,38 +310,38 @@ namespace Frontier
                 if(e.Worker)add("BUILD [B]",ShowBuildMenu,"Choose a building. Shift placement queues construction.",true);
                 if(e.def.id=="factory_wagon")add("BUILD FACTORY",()=>game.Controls.BeginBuild("factory"),"Place an industrial factory in current vision. This wagon is consumed when the foundation is placed.",true);
                 add("FOCUS [F]",()=>game.Controls.Focus(e.position),"Center the camera on selection.",true);
-                if(!e.Worker&&e.def.meleeDamage>0&&e.def.range>2)add(e.forceMelee?"RANGED MODE":"MELEE MODE",()=>{game.Command(new GameCommand{player=0,kind=CommandKind.ToggleMode,actors=game.Controls.Selected.ToArray()});},"Switch the selected unit's preferred combat mode.",true);
+                if(!e.Worker&&e.def.meleeDamage>0&&e.def.range>2)add(e.forceMelee?"RANGED MODE":"MELEE MODE",()=>{SubmitUiCommand(new GameCommand{player=game.LocalPlayerSlot,kind=CommandKind.ToggleMode,actors=game.Controls.Selected.ToArray()});},"Switch the selected unit's preferred combat mode.",true);
             }
             if(e.def.kind==EntityKind.Building)
             {
-                if(!e.Complete){add("CANCEL BUILD",()=>game.Command(new GameCommand{player=0,kind=CommandKind.CancelBuilding,actors=new[]{e.id}}),"Refund 75% of the original construction cost.",true);return;}
+                if(!e.Complete){add("CANCEL BUILD",()=>SubmitUiCommand(new GameCommand{player=game.LocalPlayerSlot,kind=CommandKind.CancelBuilding,actors=new[]{e.id}}),"Refund 75% of the original construction cost.",true);return;}
                 bool supportsBatch=false;
-                foreach(var d in game.Rules.entities)if(e.def.id!="factory"&&d.kind==EntityKind.Unit&&d.producer==e.def.id&&game.World.EntityAvailable(0,d))
+                foreach(var d in game.Rules.entities)if(e.def.id!="factory"&&d.kind==EntityKind.Unit&&d.producer==e.def.id&&game.World.EntityAvailable(game.LocalPlayerSlot,d))
                 {
                     // Automatic Ottoman settlers use their own visible timer and
                     // toggle. A second paid train button would misstate their economy.
-                    if((d.tags&Tags.Villager)!=0&&game.World.AutoRecruitSeconds(0)>0)continue;
+                    if((d.tags&Tags.Villager)!=0&&game.World.AutoRecruitSeconds(game.LocalPlayerSlot)>0)continue;
                     supportsBatch|=d.batch>1;var unit=d;int count=TrainingCount(unit);
-                    var producer=TrainingProducer(e,unit,count);string reason=game.World.ProductionReason(0,producer,unit.id,false,count);
-                    add(d.name+(count>1?" ×"+count:"")+"\n"+ShortCost(game.World.UnitCost(0,d)*count),()=>{
+                    var producer=TrainingProducer(e,unit,count);string reason=game.World.ProductionReason(game.LocalPlayerSlot,producer,unit.id,false,count);
+                    add(d.name+(count>1?" ×"+count:"")+"\n"+ShortCost(game.World.UnitCost(game.LocalPlayerSlot,d)*count),()=>{
                         int requested=TrainingCount(unit);var chosen=TrainingProducer(e,unit,requested);
-                        game.Command(new GameCommand{player=0,kind=CommandKind.Train,actors=new[]{chosen.id},item=unit.id,count=requested});InvalidateActions();
-                    },d.description+"\nAge "+game.World.UnitAge(0,d)+" · "+count+" unit(s), "+(count*d.population)+" population, "+d.time+"s.\n"+(count*d.trainXp).ToString("0.#")+" XP on completed training. "+reason,reason=="");
+                        SubmitUiCommand(new GameCommand{player=game.LocalPlayerSlot,kind=CommandKind.Train,actors=new[]{chosen.id},item=unit.id,count=requested});InvalidateActions();
+                    },d.description+"\nAge "+game.World.UnitAge(game.LocalPlayerSlot,d)+" · "+count+" unit(s), "+(count*d.population)+" population, "+d.time+"s.\n"+(count*d.trainXp).ToString("0.#")+" XP on completed training. "+reason,reason=="");
                 }
                 if(supportsBatch)add(batchTraining?"TRAIN: BATCH":"TRAIN: SINGLE",()=>{batchTraining=!batchTraining;InvalidateActions();},"Choose one unit or the allowed batch per click. Shift also requests a batch. Costs and population are paid for the whole batch.",true);
                 if(e.def.id=="factory")foreach(string mode in new[]{"food","wood","coin","artillery"})
                 {
-                    string chosen=mode;add((e.factoryMode==mode?"[ACTIVE] ":"")+mode.ToUpperInvariant(),()=>{game.Command(new GameCommand{player=0,kind=CommandKind.FactoryMode,actors=new[]{e.id},item=chosen});InvalidateActions();},"Produce resources or civilization artillery. Changing modes resets artillery progress. Research pauses production.",true);
+                    string chosen=mode;add((e.factoryMode==mode?"[ACTIVE] ":"")+mode.ToUpperInvariant(),()=>{SubmitUiCommand(new GameCommand{player=game.LocalPlayerSlot,kind=CommandKind.FactoryMode,actors=new[]{e.id},item=chosen});InvalidateActions();},"Produce resources or civilization artillery. Changing modes resets artillery progress. Research pauses production.",true);
                 }
                 if(e.def.id=="trade_post"){var socket=game.World.SocketAt(e.position);if(socket!=null&&game.World.NeutralAt(socket.id)!=null)add("SETTLEMENT",()=>ShowNeutralSettlement(socket.id),"Negotiate, recruit allies or research their settlement technology.",true);}
-                if(e.def.id=="trade_post")for(int mode=0;mode<4;mode++){int chosen=mode;string label=mode==0?"XP":((ResourceKind)mode).ToString();add((mode==(int)e.tradeMode?"[ACTIVE] ":"")+label,()=>{game.Command(new GameCommand{player=0,kind=CommandKind.TradeMode,actors=new[]{e.id},index=chosen});InvalidateActions();},"Choose the reward paid when the caravan reaches this site.",mode==0||game.World.Players[0].technologies.Contains("cargo_ledgers"));}
-                if(e.def.id=="town")add("ADVANCE AGE",ShowAgeChoices,"Queue the next age with a governor reward. "+game.World.AgeReason(0,e),game.World.AgeReason(0,e)=="");
-                if(e.def.id=="town"&&game.World.AutoRecruitSeconds(0)>0)add(e.autoRecruitPaused?"AUTO SETTLERS: OFF":"AUTO SETTLERS: ON",()=>{game.Command(new GameCommand{player=0,kind=CommandKind.ToggleRecruitment,actors=new[]{e.id}});InvalidateActions();},"Free recruitment at each town center. Toggle to pause or resume. Worker limit, housing, safe exits and mosque technologies still apply.",true);
+                if(e.def.id=="trade_post")for(int mode=0;mode<4;mode++){int chosen=mode;string label=mode==0?"XP":((ResourceKind)mode).ToString();add((mode==(int)e.tradeMode?"[ACTIVE] ":"")+label,()=>{SubmitUiCommand(new GameCommand{player=game.LocalPlayerSlot,kind=CommandKind.TradeMode,actors=new[]{e.id},index=chosen});InvalidateActions();},"Choose the reward paid when the caravan reaches this site.",mode==0||game.World.Players[game.LocalPlayerSlot].technologies.Contains("cargo_ledgers"));}
+                if(e.def.id=="town")add("ADVANCE AGE",ShowAgeChoices,"Queue the next age with a governor reward. "+game.World.AgeReason(game.LocalPlayerSlot,e),game.World.AgeReason(game.LocalPlayerSlot,e)=="");
+                if(e.def.id=="town"&&game.World.AutoRecruitSeconds(game.LocalPlayerSlot)>0)add(e.autoRecruitPaused?"AUTO SETTLERS: OFF":"AUTO SETTLERS: ON",()=>{SubmitUiCommand(new GameCommand{player=game.LocalPlayerSlot,kind=CommandKind.ToggleRecruitment,actors=new[]{e.id}});InvalidateActions();},"Free recruitment at each town center. Toggle to pause or resume. Worker limit, housing, safe exits and mosque technologies still apply.",true);
                 if(e.def.id=="workshop")add("MANUFACTURE",()=>ShowManufacture(e,0),"Assign settlers by right-clicking this workshop. Orders need artisans physically working here.",true);
-                if(Array.Exists(game.Rules.techs,t=>t.building==e.def.id&&(string.IsNullOrEmpty(t.civilization)||t.civilization==game.World.Players[0].civilization)))add("TECHNOLOGIES",()=>ShowTechnologies(e,0),"Research upgrades for current and future units.",true);
-                if(e.def.garrison>0)add("UNGARRISON "+e.occupants.Count,()=>game.Command(new GameCommand{player=0,kind=CommandKind.Ungarrison,actors=new[]{e.id}}),"Release sheltered units at a safe exit.",e.occupants.Count>0);
+                if(Array.Exists(game.Rules.techs,t=>t.building==e.def.id&&(string.IsNullOrEmpty(t.civilization)||t.civilization==game.World.Players[game.LocalPlayerSlot].civilization)))add("TECHNOLOGIES",()=>ShowTechnologies(e,0),"Research upgrades for current and future units.",true);
+                if(e.def.garrison>0)add("UNGARRISON "+e.occupants.Count,()=>SubmitUiCommand(new GameCommand{player=game.LocalPlayerSlot,kind=CommandKind.Ungarrison,actors=new[]{e.id}}),"Release sheltered units at a safe exit.",e.occupants.Count>0);
                 add("HOME CITY [H]",ShowHomeCity,"Request a shipment from your chosen deck.",true);
-                add("DEMOLISH",()=>{var box=Modal("DEMOLISH "+e.def.name.ToUpperInvariant(),300);Label(box,"Remove this building and release its footprint. No refund.",new Rect(25,85,800,60),20);Button(box,"DEMOLISH BUILDING",new Rect(25,175,397,70),()=>{game.Command(new GameCommand{player=0,kind=CommandKind.Demolish,actors=new[]{e.id}});CloseModal();});Button(box,"KEEP BUILDING",new Rect(443,175,397,70),CloseModal);},"Destroy this completed building without refund.",true);
+                add("DEMOLISH",()=>{var box=Modal("DEMOLISH "+e.def.name.ToUpperInvariant(),300);Label(box,"Remove this building and release its footprint. No refund.",new Rect(25,85,800,60),20);Button(box,"DEMOLISH BUILDING",new Rect(25,175,397,70),()=>{SubmitModalCommand(new GameCommand{player=game.LocalPlayerSlot,kind=CommandKind.Demolish,actors=new[]{e.id}},box,r=>{if(r.accepted)CloseModal();});});Button(box,"KEEP BUILDING",new Rect(443,175,397,70),CloseModal);},"Destroy this completed building without refund.",true);
             }
             // Common squad controls keep their slots when the leading unit dies
             // and another soldier type becomes the first selected object.
@@ -348,21 +350,22 @@ namespace Frontier
             add("GROUPS",ShowGroups,"Save and recall selected objects. Ctrl / Command + number also saves.",true);
             if(e.def.kind==EntityKind.Unit&&!e.def.waterborne)add("GARRISON [G]",()=>game.Controls.BeginGarrison(),"Choose a completed friendly shelter, including a damaged one. Capacity is checked on arrival.",true);
             if(e.Worker||e.def.repairArtillery)add("REPAIR [R]",()=>game.Controls.BeginRepair(),e.Worker?"Choose a damaged friendly building. Use this to repair a workshop instead of manufacturing.":"Choose damaged friendly artillery to repair.",true);
-            if(e.Worker&&e.def.meleeDamage>0&&e.def.range>2)add(e.forceMelee?"RANGED MODE":"MELEE MODE",()=>game.Command(new GameCommand{player=0,kind=CommandKind.ToggleMode,actors=game.Controls.Selected.ToArray()}),"Switch the selected worker's preferred combat mode.",true);
+            if(e.Worker&&e.def.meleeDamage>0&&e.def.range>2)add(e.forceMelee?"RANGED MODE":"MELEE MODE",()=>SubmitUiCommand(new GameCommand{player=game.LocalPlayerSlot,kind=CommandKind.ToggleMode,actors=game.Controls.Selected.ToArray()}),"Switch the selected worker's preferred combat mode.",true);
             if(e.def.transportShip){add("UNLOAD",()=>game.Controls.BeginDisembark(),"Choose a reachable open land shore. The ship sails to a water berth before passengers disembark.",e.occupants.Count>0);add("PASSENGERS",()=>ShowTransportCargo(e),"Read passengers and population capacity.",true);}
             if(e.def.waterborne)add("HARBOR REPAIR",()=>game.Controls.BeginDockRepair(),"Choose your completed harbor. Ship approaches its berth; health is restored only after wood and coin payment.",e.hp<game.World.MaxHp(e));
             if(e.def.kind==EntityKind.Unit&&!e.def.waterborne)add("BOARD SHIP",()=>game.Controls.BeginEmbark(),"Choose your troop transport. Units and ship approach a reachable loading shore.",true);
             if(e.def.id=="caravan")add("TRADE ROUTE",()=>ShowCaravanRoutes(e,0),"Choose a completed waystation. The cart loads paid cargo at a nearby town and earns coin only on arrival. Move / Stop abandons cargo without refund.",true);
-            if(e.def.shieldAbility)add(e.shielded?"FOLD SHIELD":"BRACE SHIELD",()=>{game.Command(new GameCommand{player=0,kind=CommandKind.ToggleShield,actors=game.Controls.Selected.ToArray()});InvalidateActions();},"Changing stance takes 2 seconds. Bracing protects against ranged fire and prevents movement; moving or pursuing an attack folds the shield first.",game.World.Time>=e.shieldReadyAt);
+            if(e.def.shieldAbility)add(e.shielded?"FOLD SHIELD":"BRACE SHIELD",()=>{SubmitUiCommand(new GameCommand{player=game.LocalPlayerSlot,kind=CommandKind.ToggleShield,actors=game.Controls.Selected.ToArray()});InvalidateActions();},"Changing stance takes 2 seconds. Bracing protects against ranged fire and prevents movement; moving or pursuing an attack folds the shield first.",game.World.Time>=e.shieldReadyAt);
             for(int i=0;i<e.queue.Count&&i<6;i++)
             {
-                var job=e.queue[i];string name=job.kind=="Age"?"Age "+job.item:game.Rules.Entity(job.item)?.name??game.Rules.Tech(job.item)?.name??Array.Find(game.Rules.manufactureRecipes,r=>r.id==job.item)?.name??job.item;
+                var job=e.queue[i];long queueIdentity=game.IsLan?game.LanQueueId(e.id,i):0;
+                string name=job.kind=="Age"?"Age "+job.item:game.Rules.Entity(job.item)?.name??game.Rules.Tech(job.item)?.name??Array.Find(game.Rules.manufactureRecipes,r=>r.id==job.item)?.name??job.item;
                 Button(queuePanel,name+(job.count>1?" ×"+job.count:"")+"\n"+Mathf.Max(0,job.duration-job.elapsed).ToString("0")+"s",new Rect(i*86,0,80,47),()=>{
                     // Production can finish while this pointer gesture is held.
                     // Follow the clicked job if it moved forward in the queue;
                     // a completed job must never cancel its successor.
-                    int index=e.queue.IndexOf(job);
-                    if(index>=0)game.Command(new GameCommand{player=0,kind=CommandKind.CancelQueue,actors=new[]{e.id},index=index});
+                    int index=game.IsLan?game.LanQueuePosition(e.id,queueIdentity):e.queue.IndexOf(job);
+                    if(index>=0)SubmitUiCommand(new GameCommand{player=game.LocalPlayerSlot,kind=CommandKind.CancelQueue,actors=new[]{e.id},index=index},expectedQueueId:queueIdentity);
                     else game.Notify("This production order has already finished");
                     InvalidateActions();
                 },"Click to cancel this unfinished order and refund its paid cost.");
@@ -371,11 +374,11 @@ namespace Frontier
         private int TrainingCount(EntityDef unit)=>(batchTraining||game.Controls.Shift)?Mathf.Max(1,unit.batch):1;
         private EntityState TrainingProducer(EntityState fallback,EntityDef unit,int count)
         {
-            EntityState best=fallback;bool ready=game.World.ProductionReason(0,best,unit.id,false,count)=="";
+            EntityState best=fallback;bool ready=game.World.ProductionReason(game.LocalPlayerSlot,best,unit.id,false,count)=="";
             foreach(int id in game.Controls.Selected)
             {
-                var other=game.World.Get(id);if(other==null||!other.Alive||!other.Complete||other.owner!=0||other.def.id!=fallback.def.id)continue;
-                bool available=game.World.ProductionReason(0,other,unit.id,false,count)=="";
+                var other=game.World.Get(id);if(other==null||!other.Alive||!other.Complete||other.owner!=game.LocalPlayerSlot||other.def.id!=fallback.def.id)continue;
+                bool available=game.World.ProductionReason(game.LocalPlayerSlot,other,unit.id,false,count)=="";
                 if(available&&!ready||available==ready&&other.queue.Count<best.queue.Count){best=other;ready=available;}
             }
             return best;
@@ -386,15 +389,16 @@ namespace Frontier
             CloseModal();var dim=Panel(root,"Modal dim",new Rect(0,0,1600,900),new Color(.025f,.05f,.06f,.78f));Fill(dim);modal=dim;
             var box=Panel(dim,title,new Rect(365,95,870,height),background);CenterModal(box,height);Label(box,title,new Rect(25,22,740,40),29,gold);Button(box,"X",new Rect(798,15,48,43),()=>{if(onClose!=null)onClose();else{CloseModal();if(game.InMenu)ShowMenu();}});return box;
         }
-        public void CloseModal(){replayLibraryVisible=false;waitingBinding=PlayerAction.None;bindingPrompt=null;neutralModalSite=-1;neutralModalSignature="";MarkUiLayoutDirty();homeTransit=null;homeTitle=null;homeButtons.Clear();homeCards.Clear();if(modal!=null){modal.gameObject.SetActive(false);Destroy(modal.gameObject);modal=null;}Help="";}
+        public void CloseModal(){modalGeneration++;CloseLanModal();replayLibraryVisible=false;waitingBinding=PlayerAction.None;bindingPrompt=null;neutralModalSite=-1;neutralModalSignature="";MarkUiLayoutDirty();homeTransit=null;homeTitle=null;homeButtons.Clear();homeCards.Clear();if(modal!=null){modal.gameObject.SetActive(false);Destroy(modal.gameObject);modal=null;}Help="";}
         public void ShowBuildMenu()
         {
+            if(!game.CanSubmitOrders)return;
             game.Controls.CancelTargetMode();
             bool worker=game.Controls.Selected.Exists(id=>game.World.Get(id)?.Worker==true),wagon=game.Controls.Selected.Exists(id=>game.World.Get(id)?.def.id=="factory_wagon");
             if(game.Controls.FirstSelected==null||(!worker&&!wagon)){game.Notify("Select settlers or a factory wagon before opening the building menu");return;}
-            var box=Modal("CONSTRUCTION",640);int n=0;var p=game.World.Players[0];
-            foreach(var d in game.Rules.entities)if(d.kind==EntityKind.Building&&game.World.EntityAvailable(0,d)&&(d.id!="dock"||game.World.Layout.HasWater)&&(d.id=="factory"?wagon:worker))
-            {var def=d;int i=n++;int age=game.World.UnitAge(0,d);Button(box,d.name+"  ·  "+ShortCost(game.World.EntityCost(0,d))+"\nAge "+age+"  ·  "+d.time+"s",new Rect(25+(i%3)*275,90+(i/3)*133,265,117),()=>{CloseModal();game.Controls.BeginBuild(def.id);},d.description,p.age>=age);}
+            var box=Modal("CONSTRUCTION",640);int n=0;var p=game.World.Players[game.LocalPlayerSlot];
+            foreach(var d in game.Rules.entities)if(d.kind==EntityKind.Building&&game.World.EntityAvailable(game.LocalPlayerSlot,d)&&(d.id!="dock"||game.World.Layout.HasWater)&&(d.id=="factory"?wagon:worker))
+            {var def=d;int i=n++;int age=game.World.UnitAge(game.LocalPlayerSlot,d);Button(box,d.name+"  ·  "+ShortCost(game.World.EntityCost(game.LocalPlayerSlot,d))+"\nAge "+age+"  ·  "+d.time+"s",new Rect(25+(i%3)*275,90+(i/3)*133,265,117),()=>{CloseModal();game.Controls.BeginBuild(def.id);},d.description,p.age>=age);}
         }
         public void ShowGroups()
         {
@@ -414,9 +418,9 @@ namespace Frontier
             Label(box,p.deck.Count+"-card deck · XP comes from real match events.\nShipments travel in sequence. Crates must be collected by settlers.",new Rect(25,70,825,60),17,muted);
             for(int i=0;i<8&&page*8+i<p.deck.Count;i++)
             {
-                var card=game.Rules.Card(p.deck[page*8+i]);bool sent=p.sentCards.Contains(card.id);string reason=game.World.ShipmentReason(game.ObserverPlayer,card.id);bool available=!game.IsWatching&&reason=="";
+                var card=game.Rules.Card(p.deck[page*8+i]);bool sent=p.sentCards.Contains(card.id);string reason=game.World.ShipmentReason(game.ObserverPlayer,card.id);bool available=game.CanSubmitOrders&&reason=="";
                 string state=sent&&!card.repeatable?"SENT":card.repeatable?"REPEATABLE":"ONCE";
-                var cardButton=Button(box,$"{card.name.ToUpperInvariant()}  ·  AGE {card.age}\n{CardSummary(card)}\n{state}  ·  {card.travel:0}s transit",new Rect(25+(i%2)*414,145+(i/2)*112,400,101),()=>{game.Command(new GameCommand{player=0,kind=CommandKind.Ship,item=card.id});ShowHomeCityPage(page);},CardSummary(card)+"\n"+reason,available);homeButtons.Add(cardButton);homeCards.Add(card);
+                var cardButton=Button(box,$"{card.name.ToUpperInvariant()}  ·  AGE {card.age}\n{CardSummary(card)}\n{state}  ·  {card.travel:0}s transit",new Rect(25+(i%2)*414,145+(i/2)*112,400,101),()=>{SubmitModalCommand(new GameCommand{player=game.LocalPlayerSlot,kind=CommandKind.Ship,item=card.id},box,r=>ShowHomeCityPage(page));},CardSummary(card)+"\n"+reason,available);homeButtons.Add(cardButton);homeCards.Add(card);
             }
             Button(box,"PREV",new Rect(25,660,130,25),()=>ShowHomeCityPage(page-1),"",page>0);
             Button(box,"NEXT "+(page+1)+"/"+Mathf.CeilToInt(p.deck.Count/8f),new Rect(175,660,190,25),()=>ShowHomeCityPage(page+1),"",(page+1)*8<p.deck.Count);
@@ -468,35 +472,35 @@ namespace Frontier
         {
             if(homeTransit==null||game.World==null)return;var p=game.World.Players[game.ObserverPlayer];
             homeTitle.text="HOME CITY  ·  "+p.shipmentTokens+" OPPORTUNITIES"+(game.IsWatching?" · READ-ONLY":"");
-            for(int i=0;i<homeButtons.Count;i++){var c=homeCards[i];homeButtons[i].interactable=!game.IsWatching&&game.World.ShipmentReason(game.ObserverPlayer,c.id)=="";}
+            for(int i=0;i<homeButtons.Count;i++){var c=homeCards[i];homeButtons[i].interactable=game.CanSubmitOrders&&game.World.ShipmentReason(game.LocalPlayerSlot,c.id)=="";}
             string queue="";foreach(var s in p.shipments){var c=game.Rules.Card(s.card);queue+=c.name+" "+(s.waiting!=""?s.waiting:Mathf.Max(0,c.travel-s.elapsed).ToString("0")+"s")+"  ";}
             foreach(var reward in p.rewards)queue+="Governor: "+reward.waiting+"  ";
             homeTransit.text=queue==""?"No shipments in transit.":"IN TRANSIT  "+queue;
         }
         private void ShowTechnologies(EntityState producer,int page)
         {
-            var list=new List<TechDef>();foreach(var t in game.Rules.techs)if(t.building==producer.def.id&&(string.IsNullOrEmpty(t.civilization)||t.civilization==game.World.Players[0].civilization))list.Add(t);
+            var list=new List<TechDef>();foreach(var t in game.Rules.techs)if(t.building==producer.def.id&&(string.IsNullOrEmpty(t.civilization)||t.civilization==game.World.Players[game.LocalPlayerSlot].civilization))list.Add(t);
             list.Sort((a,b)=>a.age!=b.age?a.age.CompareTo(b.age):string.CompareOrdinal(a.id,b.id));
             var box=Modal(producer.def.name.ToUpperInvariant()+" · TECHNOLOGIES",690);
             for(int i=0;i<8&&page*8+i<list.Count;i++)
             {
-                var t=list[page*8+i];string reason=game.World.ProductionReason(0,producer,t.id,true);
-                Button(box,t.name+" · AGE "+t.age+"\n"+TechSummary(t)+"\n"+ShortCost(t.cost)+" · "+t.time+"s\n"+reason,new Rect(25+(i%2)*414,90+(i/2)*125,400,115),()=>{game.Command(new GameCommand{player=0,kind=CommandKind.Research,actors=new[]{producer.id},item=t.id});ShowTechnologies(producer,page);},t.description,reason=="");
+                var t=list[page*8+i];string reason=game.World.ProductionReason(game.LocalPlayerSlot,producer,t.id,true);
+                Button(box,t.name+" · AGE "+t.age+"\n"+TechSummary(t)+"\n"+ShortCost(t.cost)+" · "+t.time+"s\n"+reason,new Rect(25+(i%2)*414,90+(i/2)*125,400,115),()=>{SubmitModalCommand(new GameCommand{player=game.LocalPlayerSlot,kind=CommandKind.Research,actors=new[]{producer.id},item=t.id},box,r=>{var current=game.World.Get(producer.id);if(current!=null)ShowTechnologies(current,page);});},t.description,reason=="");
             }
             Button(box,"PREVIOUS",new Rect(25,615,220,55),()=>ShowTechnologies(producer,page-1),"",page>0);
             Button(box,"NEXT",new Rect(265,615,220,55),()=>ShowTechnologies(producer,page+1),"",(page+1)*8<list.Count);
         }
         public void ShowAgeChoices()
         {
-            var e=game.Controls.FirstSelected;if(e==null||e.def.id!="town")return;var p=game.World.Players[0];var a=game.Rules.Age(p.age+1);if(a==null||p.age>=game.World.MaxAge)return;
-            var choices=game.World.AgeChoices(0,a.age);var box=Modal("ADVANCE TO AGE "+a.age,Mathf.Max(430,195+choices.Count*139));
+            var e=game.Controls.FirstSelected;if(e==null||e.def.id!="town")return;var p=game.World.Players[game.LocalPlayerSlot];var a=game.Rules.Age(p.age+1);if(a==null||p.age>=game.World.MaxAge)return;
+            var choices=game.World.AgeChoices(game.LocalPlayerSlot,a.age);var box=Modal("ADVANCE TO AGE "+a.age,Mathf.Max(430,195+choices.Count*139));
             Label(box,a.cost+"  ·  "+a.time+"s in the town-center queue",new Rect(25,83,800,40),22);
             for(int i=0;i<choices.Count;i++)
             {
                 var choice=choices[i];var rewards=new List<string>();if(choice.crates.food+choice.crates.wood+choice.crates.coin>0)rewards.Add("Crates: "+ShortCost(choice.crates));
                 if(choice.count>0)rewards.Add(choice.count+" × "+game.Rules.Entity(choice.unit)?.name);
                 if(!string.IsNullOrEmpty(choice.tech))rewards.Add(game.Rules.Tech(choice.tech)?.name+": "+TechSummary(game.Rules.Tech(choice.tech)));
-                Button(box,choice.name.ToUpperInvariant()+"\n"+choice.description+"\n"+string.Join(" · ",rewards),new Rect(25,145+i*139,815,128),()=>{var result=game.Command(new GameCommand{player=0,kind=CommandKind.AdvanceAge,actors=new[]{e.id},choice=choice.id});if(result.accepted)CloseModal();},"Rewards and the selected technology arrive when this age completes. "+game.World.AgeReason(0,e),game.World.AgeReason(0,e)=="");
+                Button(box,choice.name.ToUpperInvariant()+"\n"+choice.description+"\n"+string.Join(" · ",rewards),new Rect(25,145+i*139,815,128),()=>{SubmitModalCommand(new GameCommand{player=game.LocalPlayerSlot,kind=CommandKind.AdvanceAge,actors=new[]{e.id},choice=choice.id},box,r=>{if(r.accepted)CloseModal();});},"Rewards and the selected technology arrive when this age completes. "+game.World.AgeReason(game.LocalPlayerSlot,e),game.World.AgeReason(game.LocalPlayerSlot,e)=="");
             }
         }
         private string CaravanSummary(EntityState cart)
@@ -513,15 +517,15 @@ namespace Frontier
         }
         private void ShowCaravanRoutes(EntityState cart,int page)
         {
-            var stations=new List<EntityState>();foreach(var e in game.World.Entities)if(e.Alive&&e.Complete&&e.owner==0&&e.def.id=="waystation")stations.Add(e);
+            var stations=new List<EntityState>();foreach(var e in game.World.Entities)if(e.Alive&&e.Complete&&e.owner==game.LocalPlayerSlot&&e.def.id=="waystation")stations.Add(e);
             int pages=Mathf.Max(1,Mathf.CeilToInt(stations.Count/6f));page=Mathf.Clamp(page,0,pages-1);
             var box=Modal("CARAVAN · TRADE ROUTES",660);
             Label(box,CaravanSummary(cart)+"\nCargo is paid at the nearest town. Coin is earned at the waystation.\nProtect the cart: destruction or a manual Move / Stop loses its cargo.",new Rect(25,74,815,100),18,muted);
             if(stations.Count==0)Label(box,"Build and finish a Waystation to open a trade route.",new Rect(25,205,810,70),21,gold);
             for(int i=0;i<6&&page*6+i<stations.Count;i++)
             {
-                var station=stations[page*6+i];string reason=game.World.CaravanRouteReason(0,cart,station);
-                Button(box,station.def.name+" #"+station.id+"  ("+station.position.x.ToString("0")+", "+station.position.y.ToString("0")+")\n"+(reason==""?"Start automatic round trips":reason),new Rect(25+(i%2)*414,195+(i/2)*119,400,105),()=>{var result=game.Command(new GameCommand{player=0,kind=CommandKind.TradeRoute,actors=new[]{cart.id},target=station.id});if(result.accepted)CloseModal();},"New routes abandon previously paid cargo. The route must connect distinct, sufficiently separated endpoints.",reason=="");
+                var station=stations[page*6+i];string reason=game.World.CaravanRouteReason(game.LocalPlayerSlot,cart,station);
+                Button(box,station.def.name+" #"+station.id+"  ("+station.position.x.ToString("0")+", "+station.position.y.ToString("0")+")\n"+(reason==""?"Start automatic round trips":reason),new Rect(25+(i%2)*414,195+(i/2)*119,400,105),()=>{SubmitModalCommand(new GameCommand{player=game.LocalPlayerSlot,kind=CommandKind.TradeRoute,actors=new[]{cart.id},target=station.id},box,r=>{if(r.accepted)CloseModal();});},"New routes abandon previously paid cargo. The route must connect distinct, sufficiently separated endpoints.",reason=="");
             }
             Button(box,"PREVIOUS",new Rect(25,583,200,52),()=>ShowCaravanRoutes(cart,page-1),"",page>0);
             Button(box,"NEXT "+(page+1)+"/"+pages,new Rect(245,583,200,52),()=>ShowCaravanRoutes(cart,page+1),"",page+1<pages);
@@ -530,18 +534,19 @@ namespace Frontier
         {
             var recipes=game.Rules.manufactureRecipes;int pages=Mathf.Max(1,Mathf.CeilToInt(recipes.Length/6f));page=Mathf.Clamp(page,0,pages-1);
             var box=Modal("WORKSHOP · MANUFACTURE",660);
-            Label(box,"Artisans in place: "+game.World.AssignedArtisans(workshop)+" · Available prefabs: "+game.World.Players[0].prefabCharges+"\nRight-click this workshop with settlers to assign artisans. Artisans stop gathering.\nProduction waits without workers. REPAIR [R] repairs a damaged workshop.\nResearch Standard Jigs in TECHNOLOGIES before ordering prefabs.",new Rect(25,74,815,100),18,muted);
+            Label(box,"Artisans in place: "+game.World.AssignedArtisans(workshop)+" · Available prefabs: "+game.World.Players[game.LocalPlayerSlot].prefabCharges+"\nRight-click this workshop with settlers to assign artisans. Artisans stop gathering.\nProduction waits without workers. REPAIR [R] repairs a damaged workshop.\nResearch Standard Jigs in TECHNOLOGIES before ordering prefabs.",new Rect(25,74,815,100),18,muted);
             for(int i=0;i<6&&page*6+i<recipes.Length;i++)
             {
-                var recipe=recipes[page*6+i];string reason=game.World.ManufactureReason(0,workshop,recipe.id);
+                var recipe=recipes[page*6+i];string reason=game.World.ManufactureReason(game.LocalPlayerSlot,workshop,recipe.id);
                 if(reason=="Requires "+recipe.requires)reason="Requires "+(game.Rules.Tech(recipe.requires)?.name??recipe.requires);
-                Button(box,recipe.name+" · "+ShortCost(recipe.cost)+"\n"+recipe.time+"s · "+recipe.prefabs+" prefab(s)\n"+(reason==""?recipe.description:reason),new Rect(25+(i%2)*414,195+(i/2)*119,400,108),()=>{game.Command(new GameCommand{player=0,kind=CommandKind.Manufacture,actors=new[]{workshop.id},item=recipe.id});ShowManufacture(workshop,page);},recipe.description,reason=="");
+                Button(box,recipe.name+" · "+ShortCost(recipe.cost)+"\n"+recipe.time+"s · "+recipe.prefabs+" prefab(s)\n"+(reason==""?recipe.description:reason),new Rect(25+(i%2)*414,195+(i/2)*119,400,108),()=>{SubmitModalCommand(new GameCommand{player=game.LocalPlayerSlot,kind=CommandKind.Manufacture,actors=new[]{workshop.id},item=recipe.id},box,r=>{var current=game.World.Get(workshop.id);if(current!=null)ShowManufacture(current,page);});},recipe.description,reason=="");
             }
             Button(box,"PREVIOUS",new Rect(25,583,200,52),()=>ShowManufacture(workshop,page-1),"",page>0);
             Button(box,"NEXT "+(page+1)+"/"+pages,new Rect(245,583,200,52),()=>ShowManufacture(workshop,page+1),"",page+1<pages);
         }
         public void ShowPause(bool paused)
         {
+            if(game.IsLan){if(paused)ShowLanPause();else CloseModal();return;}
             if(game.IsWatching){if(paused)ShowReplayOptions();else CloseModal();return;}
             if(!paused){CloseModal();return;}var box=Modal("MATCH PAUSED",700,()=>game.TogglePause());
             string reason=game.PausedForFocusLoss?"Paused when you left the game window. Resume when ready.":"Simulation time is stopped. The cursor is free.";
@@ -556,6 +561,7 @@ namespace Frontier
         }
         public void ShowSaveSlots(bool saving)
         {
+            if(game.IsLan){game.Notify("Match checkpoints are unavailable during LAN play");return;}
             void Back(){if(game.InMenu){CloseModal();game.Hud.ShowMenu();}else game.Hud.ShowPause(true);}
             var box=Modal(saving?"SAVE MATCH":"LOAD MATCH",510,Back);
             Label(box,saving?"Choose a slot. Saving to an occupied slot replaces that checkpoint.":"Choose a checkpoint. The loaded match starts paused.",new Rect(25,80,800,55),18,muted);
@@ -568,11 +574,12 @@ namespace Frontier
         }
         public void ShowResult()
         {
-            ResultVisible=true;var w=game.World;var box=Modal(w.Winner==-2?"DRAW":w.IsPlayerWinner(0)?"VICTORY":"DEFEAT",610);
+            ResultVisible=true;var w=game.World;var box=Modal(w.Winner==-2?"DRAW":w.IsPlayerWinner(game.LocalPlayerSlot)?"VICTORY":"DEFEAT",610);
             string resultReason=w.MapObjective.mode!="elimination"&&w.MapObjective.reason!=""?w.MapObjective.reason:"Elimination or resignation";
             Label(box,resultReason+" · "+((int)w.Time/60)+"m "+((int)w.Time%60)+"s\nStatistics below are accumulated from this match's simulation.",new Rect(25,84,825,65),19,muted);
             AddRosterResult(box,w);
-            Button(box,"PLAY AGAIN",new Rect(25,514,397,64),()=>game.StartMatch());Button(box,"MAIN MENU",new Rect(443,514,397,64),()=>game.ReturnToMenu());
+            if(game.IsLan)Button(box,"LEAVE MATCH",new Rect(25,514,815,64),()=>game.LeaveLan());
+            else {Button(box,"PLAY AGAIN",new Rect(25,514,397,64),()=>game.StartMatch());Button(box,"MAIN MENU",new Rect(443,514,397,64),()=>game.ReturnToMenu());}
         }
     }
     public sealed class FrontierHover : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler

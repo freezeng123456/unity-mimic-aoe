@@ -51,8 +51,16 @@ namespace Frontier
         }
         void InitializeExpansionPreferences()
         {
-            Settings=PlayerSettingsService.Load();Options=Settings.Current;muted=Options.muted;
-            Settings.Changed+=PreferencesChanged;Progress=AccountProgressStore.Load();
+            var args=Environment.GetCommandLineArgs();int ownedPath=Array.IndexOf(args,"-frontierDataDirectory");
+            if(ownedPath>=0&&ownedPath+1<args.Length)
+            {
+                dataDirectoryOverride=System.IO.Path.GetFullPath(args[ownedPath+1]);
+                saveDirectoryOverride=System.IO.Path.Combine(dataDirectoryOverride,"Saves");
+                replayDirectoryOverride=System.IO.Path.Combine(dataDirectoryOverride,"Replays");
+                reportDirectoryOverride=System.IO.Path.Combine(dataDirectoryOverride,"Reports");
+            }
+            Settings=PlayerSettingsService.Load(dataDirectoryOverride==null?null:System.IO.Path.Combine(dataDirectoryOverride,"Preferences"));Options=Settings.Current;muted=Options.muted;
+            Settings.Changed+=PreferencesChanged;Progress=AccountProgressStore.Load(dataDirectoryOverride==null?null:System.IO.Path.Combine(dataDirectoryOverride,"Account"));
         }
         void PreferencesChanged()
         {
@@ -67,6 +75,7 @@ namespace Frontier
         }
         public bool StartGuided(string id)
         {
+            if(IsLan){Notify("Leave the cooperative session before starting a campaign");return false;}
             if(!Progress.IsUnlocked(id)){Notify("Complete the previous campaign chapter to unlock this mission");return false;}
             GuidedPlaySession next;
             try{next=GuidedPlaySession.Start(Rules,id);}
@@ -83,10 +92,10 @@ namespace Frontier
             BeginRecording("guided_scenario");
             Notify(next.Definition.Title+" · "+next.StartingSetupDescription);return true;
         }
-        public void RetryCurrentMatch(){if(Guided!=null)StartGuided(Guided.Definition.Id);else StartMatch();}
+        public void RetryCurrentMatch(){if(IsLan){Notify("Return to the lobby to start another cooperative match");return;}if(Guided!=null)StartGuided(Guided.Definition.Id);else StartMatch();}
         public bool SaveLearningProgress()
         {
-            if(IsWatching)return false;
+            if(IsWatching||IsLan)return false;
             if(Guided==null||Guided.Status!=GuidedPlayStatus.Completed)return false;
             if(progressRecordedAttempt==Guided.AttemptId)return true;
             if(!Progress.RecordCompletion(Guided)){Notify("Campaign progress could not be saved: "+Progress.LastError);return false;}
@@ -100,6 +109,6 @@ namespace Frontier
             if(same)return;
             guidedSelection=selected.ToArray();if(Recorder!=null)Recorder.ObserveSelection(guidedSelection);else Guided.ObserveSelection(guidedSelection);
         }
-        private void OnDestroy(){FinishReplayFileWrites();Recorder?.Dispose();Playback?.Dispose();Guided?.Dispose();if(Settings!=null)Settings.Changed-=PreferencesChanged;}
+        private void OnDestroy(){FinishReplayFileWrites();Recorder?.Dispose();Playback?.Dispose();Guided?.Dispose();CloseLanNetwork();if(Settings!=null)Settings.Changed-=PreferencesChanged;}
     }
 }

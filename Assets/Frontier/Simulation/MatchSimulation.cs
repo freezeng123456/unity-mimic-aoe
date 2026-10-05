@@ -16,6 +16,9 @@ namespace Frontier
         public int StepCount { get; private set; }
         public float LastFrameMs { get; private set; }
         public bool CatchingUp { get; private set; }
+        // Authoritative LAN input settles at a completed boundary before AI.
+        // Paused network controls are pumped separately by the controller.
+        public event Action BeforeStep;
         public event Action StepCompleted;
         // Observers see a completed boundary after guided stages/raids settle.
         public event Action StepSettled;
@@ -52,6 +55,8 @@ namespace Frontier
         public bool Step()
         {
             if(World.Paused||World.IsMatchEnded)return false;
+            BeforeStep?.Invoke();
+            if(World.Paused||World.IsMatchEnded)return false;
             foreach(var controller in controllers)controller.Tick(StepSeconds);
             World.Tick(StepSeconds);StepCount++;StepCompleted?.Invoke();StepSettled?.Invoke();return true;
         }
@@ -64,7 +69,7 @@ namespace Frontier
             long started=Stopwatch.GetTimestamp();accumulator+=simulationSeconds;int steps=0;
             while(accumulator>=StepSeconds&&steps<MaxStepsPerFrame&&Step()){accumulator-=StepSeconds;steps++;}
             if(accumulator>2){accumulator=2;CatchingUp=true;}
-            if(World.IsMatchEnded)accumulator=0;
+            if(World.IsMatchEnded||World.Paused)accumulator=0;
             LastFrameMs=(float)((Stopwatch.GetTimestamp()-started)*1000.0/Stopwatch.Frequency);return steps;
         }
     }
