@@ -31,7 +31,7 @@ namespace Frontier.Tests
             // Mono may emit no bytes when its compressor receives no input;
             // use an actual complete empty gzip member for concatenation tests.
             if(raw.Length==0)return new byte[]{0x1f,0x8b,8,0,0,0,0,0,0,3,3,0,0,0,0,0,0,0,0,0};
-            using(var output=new MemoryStream()){using(var gzip=new GZipStream(output,CompressionLevel.Optimal,true))gzip.Write(raw,0,raw.Length);return output.ToArray();}
+            using(var output=new MemoryStream()){using(var gzip=new GZipStream(output,System.IO.Compression.CompressionLevel.Optimal,true))gzip.Write(raw,0,raw.Length);return output.ToArray();}
         }
         static string Hash(byte[] raw)
         {using(var hash=SHA256.Create())return BitConverter.ToString(hash.ComputeHash(raw)).Replace("-","").ToLowerInvariant();}

@@ -76,7 +76,7 @@ namespace Frontier
                 using(var compressed=new BoundedMemoryStream(MaxBytes/4*3))
                 using(var hash=SHA256.Create())
                 {
-                    using(var gzip=new GZipStream(compressed,CompressionLevel.Optimal,true))
+                    using(var gzip=new GZipStream(compressed,System.IO.Compression.CompressionLevel.Optimal,true))
                     {
                         var encoder=StrictUtf8.GetEncoder();var characters=new char[4096];var bytes=new byte[StrictUtf8.GetMaxByteCount(characters.Length)];
                         for(int offset=0;offset<payload.Length;)
