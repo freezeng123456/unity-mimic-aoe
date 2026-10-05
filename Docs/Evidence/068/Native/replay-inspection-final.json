@@ -1,0 +1,1957 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-10-05T16:54:08.770629+00:00",
+  "scope": "Offline Candidate3 host-only final replay, two menu_exit Reports and direct host/client Capture completion pairs. No Unity, game UI, networking or playback executed.",
+  "status": "verified_offline_package_and_ledger_facts",
+  "files": [
+    {
+      "path": "Native/host/Replays/replay-c6bb09c7691f46028ffb31a9c94bb54e.replay.json",
+      "storedBytes": 354649,
+      "sha256": "d9a4534ace1a10737311663ab32fa2556d8e400a414dd6b3732dfbf2be6673c4"
+    },
+    {
+      "path": "Native/host/Reports/20261005-163647-760-94d5ee6efc4945afad8153a3aba978f1-menu_exit.json",
+      "storedBytes": 6878,
+      "sha256": "ab6aed98728a319987340c774372ed2aaba79b255f97871755f2a202d91ca2ca"
+    },
+    {
+      "path": "Native/host/Reports/20261005-163647-760-94d5ee6efc4945afad8153a3aba978f1-menu_exit-events.jsonl",
+      "storedBytes": 2879641,
+      "sha256": "10de8c0bd98ce773a4aba4081efaf5344622b56f3ca3588f224119c30e4df891"
+    }
+  ],
+  "decode": {
+    "storageSchema": 2,
+    "encoding": "gzip-base64",
+    "decodedBytes": 10389126,
+    "decodedSha256": "2ce03bb756aadef8993069d5a0f8c1b4821a08eb48a81832116e2ddcabe8e638",
+    "canonicalBase64": true,
+    "singleGzipMember": true,
+    "crc32AndIsizeMatch": true,
+    "strictUtf8AndJson": true,
+    "duplicateKeysRejected": true,
+    "nonfiniteNumbersRejected": true,
+    "maxStoredBytes": 67108864,
+    "maxDecodedBytes": 268435456,
+    "maxJsonDepth": 64,
+    "maxArrayItems": 1000000
+  },
+  "document": {
+    "schema": 1,
+    "segmentId": "c6bb09c7691f46028ffb31a9c94bb54e",
+    "matchId": "94d5ee6efc4945afad8153a3aba978f1",
+    "identity": {
+      "appVersion": "0.11.0",
+      "buildIdentity": "fa26339934914cd2813df9763de6bba7",
+      "unityVersion": "6000.6.3f1",
+      "rulesHash": "5324ece4d54715613e941af737d8da34dcf2d5f517388373516b5e0f17b85d1f",
+      "mapGenerationVersion": 1,
+      "guidedCatalogRevision": 1
+    },
+    "identityMatchesMenuExitHostReport": true,
+    "startKind": "lan_host",
+    "finishReason": "menu_exit",
+    "incomplete": false,
+    "incompleteReasonPresent": false,
+    "recordLimit": 200000,
+    "eventLimit": 1000000,
+    "anchorInterval": 300,
+    "counts": {
+      "anchors": 9,
+      "records": 11,
+      "events": 4442
+    },
+    "startStep": 0,
+    "endStep": 2210,
+    "startWorldTime": 0.0,
+    "endWorldTime": 221.00428771972656,
+    "endWinner": -1,
+    "matchEnded": false,
+    "isUnfinishedMatchSegment": true,
+    "earlierManualSaveBytesPreservedOrInspected": false,
+    "endExplanation": "Current stored file ends at menu_exit after P3 Resign. Normal non-interrupted segment of an unfinished match; earlier manual_save bytes were not inspected or claimed preserved."
+  },
+  "roster": [
+    {
+      "slot": 0,
+      "playerLabel": "P1",
+      "recordedCivilizationId": "coast",
+      "team": 0,
+      "hasAutomatedController": false
+    },
+    {
+      "slot": 1,
+      "playerLabel": "P2",
+      "recordedCivilizationId": "river",
+      "team": 1,
+      "hasAutomatedController": true
+    },
+    {
+      "slot": 2,
+      "playerLabel": "P3",
+      "recordedCivilizationId": "france",
+      "team": 0,
+      "hasAutomatedController": false
+    },
+    {
+      "slot": 3,
+      "playerLabel": "P4",
+      "recordedCivilizationId": "ottoman",
+      "team": 1,
+      "hasAutomatedController": true
+    }
+  ],
+  "digestChecks": {
+    "eventPrefixChecksPassed": 20,
+    "eventPrefixChecksTotal": 20,
+    "inputAnchorChecksPassed": 9,
+    "inputAnchorChecksTotal": 9,
+    "stateProjectionChecksPassed": 9,
+    "stateProjectionChecksTotal": 9,
+    "finalEventHash": "25d5fdac7321d50733adf1d2261dc1c848a82400626bc759b8d85359e0d4e94a",
+    "finalInputHash": "5215e0f39b8ad30d419ec76f972c040a4419bb88a4aedf2b3603973a3bbcddc0",
+    "method": "SHA-256 uses original compact JsonUtility object byte slices, retaining field order, float spellings and escaping. State projection order follows ReplayDigest.FromState."
+  },
+  "anchors": [
+    {
+      "completedStep": 0,
+      "recordIndex": 0,
+      "eventCount": 323,
+      "worldTime": 0.0,
+      "paused": false,
+      "winner": -1,
+      "eventHash": "e20b8f1c553e870b596501f3e0ad086ecbfe8e4df91cda82d1d62c76f68029a9",
+      "inputHash": "825d884c51afbb8ed50721fafe401f3195d84093257eded9f616fd259527cac8",
+      "stateDigest": "310f3efee67a07bbe4aa99229d6d44ca9c7227ce1081ed95ad86c755774573d3",
+      "automatedPlayerSlots": [
+        3,
+        1
+      ]
+    },
+    {
+      "completedStep": 300,
+      "recordIndex": 0,
+      "eventCount": 765,
+      "worldTime": 30.000078201293945,
+      "paused": false,
+      "winner": -1,
+      "eventHash": "27b617166017434ecf81d1dcf32f05d6b793dca4494319d30b1b9fc59984847d",
+      "inputHash": "825d884c51afbb8ed50721fafe401f3195d84093257eded9f616fd259527cac8",
+      "stateDigest": "7c1bd9caa3a85c9c6eca9e5c42c2947fc0e86a916eb1ff8864558b882320d24a",
+      "automatedPlayerSlots": [
+        3,
+        1
+      ]
+    },
+    {
+      "completedStep": 600,
+      "recordIndex": 3,
+      "eventCount": 1195,
+      "worldTime": 59.999656677246094,
+      "paused": false,
+      "winner": -1,
+      "eventHash": "45421320e00da7be67dba9b650f5a3cafb8e48673c510e30da0d6d05857b463e",
+      "inputHash": "c08d5a22d691d3e4d6c75b3560564f420b6056f7d7797e14c8d85c201b2ac3a1",
+      "stateDigest": "953a8361203e904b6f21fac524ef653f9f89033f718da6f7255ff2a244e0b81e",
+      "automatedPlayerSlots": [
+        3,
+        1
+      ]
+    },
+    {
+      "completedStep": 900,
+      "recordIndex": 6,
+      "eventCount": 1680,
+      "worldTime": 89.99919891357422,
+      "paused": false,
+      "winner": -1,
+      "eventHash": "ce1b9dc226934f04c58f8c100fb488d788eeb9ae021af030876848ae7b0b8c46",
+      "inputHash": "6441e094a7269c4ff14188d03480ef2c427f95439682595914e813c4df809d26",
+      "stateDigest": "53b2799937c557c9809d9052f35a281ebdc5479d14e93bfbc9737226d601b44a",
+      "automatedPlayerSlots": [
+        3,
+        1
+      ]
+    },
+    {
+      "completedStep": 1200,
+      "recordIndex": 6,
+      "eventCount": 2188,
+      "worldTime": 119.99874114990234,
+      "paused": false,
+      "winner": -1,
+      "eventHash": "af83adcd57968471d528d08313e0bc626a83b542da7c67b5b0d2b2c0dcfbe365",
+      "inputHash": "6441e094a7269c4ff14188d03480ef2c427f95439682595914e813c4df809d26",
+      "stateDigest": "66e9e0ab209f918bd439273c280a0e929e34c9ad3bef8ede700bb43810c2159c",
+      "automatedPlayerSlots": [
+        3,
+        1
+      ]
+    },
+    {
+      "completedStep": 1500,
+      "recordIndex": 6,
+      "eventCount": 2805,
+      "worldTime": 149.9999542236328,
+      "paused": false,
+      "winner": -1,
+      "eventHash": "6dd533f93ba94114ed7a8e9ce960f1cf8f73086890e16748c4fd6c6aa2a65ddf",
+      "inputHash": "6441e094a7269c4ff14188d03480ef2c427f95439682595914e813c4df809d26",
+      "stateDigest": "c5eebb44760c87c2f656cdf953295d66aab2a22b23998a196d81a7eeba9dff3f",
+      "automatedPlayerSlots": [
+        3,
+        1
+      ]
+    },
+    {
+      "completedStep": 1800,
+      "recordIndex": 8,
+      "eventCount": 3479,
+      "worldTime": 180.0017852783203,
+      "paused": false,
+      "winner": -1,
+      "eventHash": "1b455d1b77df05bdab61f6de2e6728ed628c3fb9f03bca8d5f7c49123285fb81",
+      "inputHash": "976d6de40e9cae7ec53f41cda2378b2ed189e612deecef27cabe5d2d76651c21",
+      "stateDigest": "9512b44558a7150613383e0368dc718cf1bf83461df112e5edae67081d99cb18",
+      "automatedPlayerSlots": [
+        3,
+        1
+      ]
+    },
+    {
+      "completedStep": 2100,
+      "recordIndex": 10,
+      "eventCount": 4159,
+      "worldTime": 210.0036163330078,
+      "paused": false,
+      "winner": -1,
+      "eventHash": "ad20bac890bf13fa12f771e78a51a0ff833dbc1adc57cb227cd1453ee8f0d769",
+      "inputHash": "e9ea5b42b3e752332d08b88f8f96d07d1c37713c5adaf7f55ca1ecba4376b351",
+      "stateDigest": "fe8cc92d84dd7f13f3d88a4dee04b41c80c6d3688d256d0669560e8da6df60f6",
+      "automatedPlayerSlots": [
+        3,
+        1
+      ]
+    },
+    {
+      "completedStep": 2210,
+      "recordIndex": 11,
+      "eventCount": 4442,
+      "worldTime": 221.00428771972656,
+      "paused": false,
+      "winner": -1,
+      "eventHash": "25d5fdac7321d50733adf1d2261dc1c848a82400626bc759b8d85359e0d4e94a",
+      "inputHash": "5215e0f39b8ad30d419ec76f972c040a4419bb88a4aedf2b3603973a3bbcddc0",
+      "stateDigest": "a71134c607aafd5e6efb0146da5826a4222b681e89cb0f80979f4eeff9f4f2a3",
+      "automatedPlayerSlots": [
+        3,
+        1
+      ]
+    }
+  ],
+  "records": [
+    {
+      "recordIndex": 0,
+      "operationEnum": 0,
+      "operation": "Command",
+      "completedStep": 300,
+      "ordinal": 0,
+      "accepted": true,
+      "eventCount": 767,
+      "eventHash": "0fee7ee1641bd64d60534100973ce13370f1d9ab5758f7100c1f6c872b448827",
+      "command": {
+        "playerSlot": 2,
+        "playerLabel": "P3",
+        "kindEnum": 2,
+        "kind": "Train",
+        "actors": [
+          103
+        ],
+        "orderEnum": 0,
+        "order": "Move",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "target": 0,
+        "queueIndex": 0,
+        "count": 1,
+        "item": "coureur",
+        "append": false
+      }
+    },
+    {
+      "recordIndex": 1,
+      "operationEnum": 0,
+      "operation": "Command",
+      "completedStep": 311,
+      "ordinal": 0,
+      "accepted": true,
+      "eventCount": 784,
+      "eventHash": "3ed66a1513b65bf40f93346ae68c8a53cf2c538e4d339fec47b29c4fff40322c",
+      "command": {
+        "playerSlot": 2,
+        "playerLabel": "P3",
+        "kindEnum": 2,
+        "kind": "Train",
+        "actors": [
+          103
+        ],
+        "orderEnum": 0,
+        "order": "Move",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "target": 0,
+        "queueIndex": 0,
+        "count": 1,
+        "item": "coureur",
+        "append": false
+      }
+    },
+    {
+      "recordIndex": 2,
+      "operationEnum": 0,
+      "operation": "Command",
+      "completedStep": 530,
+      "ordinal": 0,
+      "accepted": true,
+      "eventCount": 1081,
+      "eventHash": "f449cbe945d9d28b2c71063ed3ade6fa7a270b429036f88a2542e0ffa8451ed4",
+      "command": {
+        "playerSlot": 2,
+        "playerLabel": "P3",
+        "kindEnum": 3,
+        "kind": "CancelQueue",
+        "actors": [
+          103
+        ],
+        "orderEnum": 0,
+        "order": "Move",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "target": 0,
+        "queueIndex": 1,
+        "count": 1,
+        "item": "",
+        "append": false
+      }
+    },
+    {
+      "recordIndex": 3,
+      "operationEnum": 0,
+      "operation": "Command",
+      "completedStep": 826,
+      "ordinal": 0,
+      "accepted": true,
+      "eventCount": 1542,
+      "eventHash": "b454c48173509439e917416c4b28833b1bb80ecd481a9d45a9b16a02e989b02a",
+      "command": {
+        "playerSlot": 0,
+        "playerLabel": "P1",
+        "kindEnum": 2,
+        "kind": "Train",
+        "actors": [
+          1
+        ],
+        "orderEnum": 0,
+        "order": "Move",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "target": 0,
+        "queueIndex": 0,
+        "count": 1,
+        "item": "villager",
+        "append": false
+      }
+    },
+    {
+      "recordIndex": 4,
+      "operationEnum": 1,
+      "operation": "Pause",
+      "completedStep": 845,
+      "ordinal": 0,
+      "accepted": true,
+      "eventCount": 1579,
+      "eventHash": "a993c72b2601b3ced45635b2cee930830c3c62aa2e7ffacb4522d7b28d876f22",
+      "paused": true,
+      "reasonTag": "lan_pause",
+      "initiatorType": "peer_guid"
+    },
+    {
+      "recordIndex": 5,
+      "operationEnum": 1,
+      "operation": "Pause",
+      "completedStep": 845,
+      "ordinal": 1,
+      "accepted": true,
+      "eventCount": 1580,
+      "eventHash": "ed2bffaec0c4d9e01391b970a74623d91f57284c89a901a224c993e768729f2f",
+      "paused": false,
+      "reasonTag": "lan_resume",
+      "initiatorType": "peer_guid"
+    },
+    {
+      "recordIndex": 6,
+      "operationEnum": 1,
+      "operation": "Pause",
+      "completedStep": 1663,
+      "ordinal": 0,
+      "accepted": true,
+      "eventCount": 3159,
+      "eventHash": "f8a74644caeceaa70e2bf7f24fa56c6bf39be8d094e0c5a04ddc0683febc5377",
+      "paused": true,
+      "reasonTag": "lan_pause",
+      "initiatorType": "peer_guid"
+    },
+    {
+      "recordIndex": 7,
+      "operationEnum": 1,
+      "operation": "Pause",
+      "completedStep": 1663,
+      "ordinal": 1,
+      "accepted": true,
+      "eventCount": 3160,
+      "eventHash": "de019413db9a5c8902d8fb4e7e27964f6cc07f1dce55e0f99b80272dd4dccf3c",
+      "paused": false,
+      "reasonTag": "lan_resume",
+      "initiatorType": "peer_guid"
+    },
+    {
+      "recordIndex": 8,
+      "operationEnum": 0,
+      "operation": "Command",
+      "completedStep": 1884,
+      "ordinal": 0,
+      "accepted": true,
+      "eventCount": 3658,
+      "eventHash": "c7480263984f62453ae944ddea73c53b8fd6af1157f23a288ec652be77ccd058",
+      "command": {
+        "playerSlot": 2,
+        "playerLabel": "P3",
+        "kindEnum": 0,
+        "kind": "Order",
+        "actors": [
+          104
+        ],
+        "orderEnum": 0,
+        "order": "Move",
+        "point": {
+          "x": 37.25600051879883,
+          "y": 92.18009185791016
+        },
+        "target": 0,
+        "queueIndex": 0,
+        "count": 1,
+        "item": "",
+        "append": false
+      }
+    },
+    {
+      "recordIndex": 9,
+      "operationEnum": 0,
+      "operation": "Command",
+      "completedStep": 1902,
+      "ordinal": 0,
+      "accepted": true,
+      "eventCount": 3707,
+      "eventHash": "d520a07f41f28d22ecf88429aa086a761a668690dbadc39f4af5327602f7b7f6",
+      "command": {
+        "playerSlot": 2,
+        "playerLabel": "P3",
+        "kindEnum": 12,
+        "kind": "Resign",
+        "actors": [],
+        "orderEnum": 0,
+        "order": "Move",
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "target": 0,
+        "queueIndex": 0,
+        "count": 1,
+        "item": "",
+        "append": false
+      }
+    },
+    {
+      "recordIndex": 10,
+      "operationEnum": 3,
+      "operation": "FlushEconomy",
+      "completedStep": 2210,
+      "ordinal": 0,
+      "accepted": true,
+      "eventCount": 4442,
+      "eventHash": "25d5fdac7321d50733adf1d2261dc1c848a82400626bc759b8d85359e0d4e94a"
+    }
+  ],
+  "humanTrainEvidence": [
+    {
+      "status": "verified_record_payment_queue_event",
+      "recordIndex": 0,
+      "slot": 2,
+      "playerLabel": "P3",
+      "item": "coureur",
+      "count": 1,
+      "producerEntity": 103,
+      "completedStep": 300,
+      "payment": {
+        "eventIndex": 765,
+        "worldTime": 30.000078201293945,
+        "requestedDelta": {
+          "food": -120.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": -120.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 300.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "balanceAfter": {
+          "food": 180.0,
+          "wood": 300.0,
+          "coin": 100.0
+        }
+      },
+      "productionQueuedEventIndex": 766,
+      "beforeAnchor": {
+        "completedStep": 300,
+        "recordIndex": 0,
+        "eventCount": 765,
+        "worldTime": 30.000078201293945,
+        "resources": {
+          "food": 300.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "spent": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "refunded": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "trained": 0,
+        "reservedPopulation": 0,
+        "resigned": false,
+        "eliminated": false,
+        "actorPosition": {
+          "x": 23.0,
+          "y": 99.0
+        },
+        "matchingTrainQueue": []
+      },
+      "afterAnchor": {
+        "completedStep": 600,
+        "recordIndex": 3,
+        "eventCount": 1195,
+        "worldTime": 59.999656677246094,
+        "resources": {
+          "food": 180.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "spent": {
+          "food": 240.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "refunded": {
+          "food": 120.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "trained": 1,
+        "reservedPopulation": 0,
+        "resigned": false,
+        "eliminated": false,
+        "actorPosition": {
+          "x": 23.0,
+          "y": 99.0
+        },
+        "matchingTrainQueue": []
+      },
+      "afterAnchorIncludesOtherInputRecords": true,
+      "finalAnchor": {
+        "completedStep": 2210,
+        "recordIndex": 11,
+        "eventCount": 4442,
+        "worldTime": 221.00428771972656,
+        "resources": {
+          "food": 180.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "spent": {
+          "food": 240.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "refunded": {
+          "food": 120.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "trained": 1,
+        "reservedPopulation": 0,
+        "resigned": true,
+        "eliminated": true
+      }
+    },
+    {
+      "status": "verified_record_payment_queue_event",
+      "recordIndex": 1,
+      "slot": 2,
+      "playerLabel": "P3",
+      "item": "coureur",
+      "count": 1,
+      "producerEntity": 103,
+      "completedStep": 311,
+      "payment": {
+        "eventIndex": 782,
+        "worldTime": 31.100082397460938,
+        "requestedDelta": {
+          "food": -120.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": -120.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 180.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "balanceAfter": {
+          "food": 60.0,
+          "wood": 300.0,
+          "coin": 100.0
+        }
+      },
+      "productionQueuedEventIndex": 783,
+      "beforeAnchor": {
+        "completedStep": 300,
+        "recordIndex": 0,
+        "eventCount": 765,
+        "worldTime": 30.000078201293945,
+        "resources": {
+          "food": 300.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "spent": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "refunded": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "trained": 0,
+        "reservedPopulation": 0,
+        "resigned": false,
+        "eliminated": false,
+        "actorPosition": {
+          "x": 23.0,
+          "y": 99.0
+        },
+        "matchingTrainQueue": []
+      },
+      "afterAnchor": {
+        "completedStep": 600,
+        "recordIndex": 3,
+        "eventCount": 1195,
+        "worldTime": 59.999656677246094,
+        "resources": {
+          "food": 180.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "spent": {
+          "food": 240.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "refunded": {
+          "food": 120.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "trained": 1,
+        "reservedPopulation": 0,
+        "resigned": false,
+        "eliminated": false,
+        "actorPosition": {
+          "x": 23.0,
+          "y": 99.0
+        },
+        "matchingTrainQueue": []
+      },
+      "afterAnchorIncludesOtherInputRecords": true,
+      "finalAnchor": {
+        "completedStep": 2210,
+        "recordIndex": 11,
+        "eventCount": 4442,
+        "worldTime": 221.00428771972656,
+        "resources": {
+          "food": 180.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "spent": {
+          "food": 240.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "refunded": {
+          "food": 120.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "trained": 1,
+        "reservedPopulation": 0,
+        "resigned": true,
+        "eliminated": true
+      }
+    },
+    {
+      "status": "verified_record_payment_queue_event",
+      "recordIndex": 3,
+      "slot": 0,
+      "playerLabel": "P1",
+      "item": "villager",
+      "count": 1,
+      "producerEntity": 1,
+      "completedStep": 826,
+      "payment": {
+        "eventIndex": 1540,
+        "worldTime": 82.59931182861328,
+        "requestedDelta": {
+          "food": -100.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": -100.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 300.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "balanceAfter": {
+          "food": 200.0,
+          "wood": 300.0,
+          "coin": 100.0
+        }
+      },
+      "productionQueuedEventIndex": 1541,
+      "beforeAnchor": {
+        "completedStep": 600,
+        "recordIndex": 3,
+        "eventCount": 1195,
+        "worldTime": 59.999656677246094,
+        "resources": {
+          "food": 300.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "spent": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "refunded": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "trained": 0,
+        "reservedPopulation": 0,
+        "resigned": false,
+        "eliminated": false,
+        "actorPosition": {
+          "x": 23.0,
+          "y": 29.0
+        },
+        "matchingTrainQueue": []
+      },
+      "afterAnchor": {
+        "completedStep": 900,
+        "recordIndex": 6,
+        "eventCount": 1680,
+        "worldTime": 89.99919891357422,
+        "resources": {
+          "food": 200.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "spent": {
+          "food": 100.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "refunded": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "trained": 0,
+        "reservedPopulation": 1,
+        "resigned": false,
+        "eliminated": false,
+        "actorPosition": {
+          "x": 23.0,
+          "y": 29.0
+        },
+        "matchingTrainQueue": [
+          {
+            "item": "villager",
+            "kind": "Train",
+            "count": 1,
+            "paid": {
+              "food": 100.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "elapsed": 7.39999532699585,
+            "duration": 20.0
+          }
+        ]
+      },
+      "afterAnchorIncludesOtherInputRecords": true,
+      "finalAnchor": {
+        "completedStep": 2210,
+        "recordIndex": 11,
+        "eventCount": 4442,
+        "worldTime": 221.00428771972656,
+        "resources": {
+          "food": 200.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "spent": {
+          "food": 100.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "refunded": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "trained": 1,
+        "reservedPopulation": 0,
+        "resigned": false,
+        "eliminated": false
+      }
+    }
+  ],
+  "cancelEvidence": [
+    {
+      "status": "verified_cancel_second_position_and_refund",
+      "recordIndex": 2,
+      "commandKind": "CancelQueue",
+      "commandEnum": 3,
+      "slot": 2,
+      "producerEntity": 103,
+      "queueIndex": 1,
+      "completedStep": 530,
+      "refundEventIndex": 1080,
+      "worldTime": 52.99976348876953,
+      "requestedDelta": {
+        "food": 120.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "actualDelta": {
+        "food": 120.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "balanceBefore": {
+        "food": 60.0,
+        "wood": 300.0,
+        "coin": 100.0
+      },
+      "balanceAfter": {
+        "food": 180.0,
+        "wood": 300.0,
+        "coin": 100.0
+      },
+      "beforeAnchor": {
+        "completedStep": 300,
+        "recordIndex": 0,
+        "eventCount": 765,
+        "worldTime": 30.000078201293945,
+        "resources": {
+          "food": 300.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "spent": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "refunded": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "trained": 0,
+        "reservedPopulation": 0,
+        "resigned": false,
+        "eliminated": false,
+        "actorPosition": {
+          "x": 23.0,
+          "y": 99.0
+        },
+        "matchingTrainQueue": []
+      },
+      "afterAnchor": {
+        "completedStep": 600,
+        "recordIndex": 3,
+        "eventCount": 1195,
+        "worldTime": 59.999656677246094,
+        "resources": {
+          "food": 180.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "spent": {
+          "food": 240.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "refunded": {
+          "food": 120.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "trained": 1,
+        "reservedPopulation": 0,
+        "resigned": false,
+        "eliminated": false,
+        "actorPosition": {
+          "x": 23.0,
+          "y": 99.0
+        },
+        "matchingTrainQueue": []
+      }
+    }
+  ],
+  "firstQueueProgressPreservation": {
+    "status": "verified_second_position_refund_and_first_progress_continuity",
+    "firstTrainRecordIndex": 0,
+    "secondTrainRecordIndex": 1,
+    "cancelRecordIndex": 2,
+    "cancelQueueIndex": 1,
+    "firstDurationSeconds": 28.0,
+    "firstElapsedAtCancelBoundaryInferredFloat32": 23.000051498413086,
+    "firstRemainingAtCancelBoundaryInferredSeconds": 4.999948501586914,
+    "postCancelCapturedRemainingSeconds": 4.499946594238281,
+    "postCancelCapturedCeilRemainingSeconds": 5,
+    "progressChecks": [
+      {
+        "metadataPath": "Native/client/Captures/Frontier-20261005-163157-850-f6886-34772543a63e4233826b4af0fc814fcc.json",
+        "metadataSha256": "710bd4232d66feb379fcd2763b058280106ff30ffd9599afb7fce934ef1c2b76",
+        "completedStep": 306,
+        "queueLength": 1,
+        "firstElapsed": 0.6000000238418579,
+        "firstDuration": 28.0,
+        "remainingSeconds": 27.399999976158142,
+        "ceilRemainingSeconds": 28,
+        "float32ExpectedElapsedFromFirstTrainStep300": 0.6000000238418579,
+        "exactMatch": true
+      },
+      {
+        "metadataPath": "Native/client/Captures/Frontier-20261005-163158-707-f6921-310893d7acf04526bb5a7d85de540b46.json",
+        "metadataSha256": "8c28ca3936787096895d5156f365083766086b2a5bb36a95c3b5ad05d5ce4a3e",
+        "completedStep": 313,
+        "queueLength": 2,
+        "firstElapsed": 1.3000001907348633,
+        "firstDuration": 28.0,
+        "remainingSeconds": 26.699999809265137,
+        "ceilRemainingSeconds": 27,
+        "float32ExpectedElapsedFromFirstTrainStep300": 1.3000001907348633,
+        "exactMatch": true
+      },
+      {
+        "metadataPath": "Native/client/Captures/Frontier-20261005-163220-735-f8025-3245d353a1634430b7063c1ac352bf60.json",
+        "metadataSha256": "3bc751bc553ec9b21e49b7d045cfa1f97a50b854867b471a82d4b2538124c2ee",
+        "completedStep": 535,
+        "queueLength": 1,
+        "firstElapsed": 23.50005340576172,
+        "firstDuration": 28.0,
+        "remainingSeconds": 4.499946594238281,
+        "ceilRemainingSeconds": 5,
+        "float32ExpectedElapsedFromFirstTrainStep300": 23.50005340576172,
+        "exactMatch": true
+      },
+      {
+        "metadataPath": "Native/client/Captures/Frontier-20261005-163221-500-f8057-bed5bb9af56f448d86b5dddd08feec20.json",
+        "metadataSha256": "b92165f65a5ee262daff4609f1921c15eccf94bb322cea77ebcd8ad47b31b486",
+        "completedStep": 543,
+        "queueLength": 1,
+        "firstElapsed": 24.30005645751953,
+        "firstDuration": 28.0,
+        "remainingSeconds": 3.6999435424804688,
+        "ceilRemainingSeconds": 4,
+        "float32ExpectedElapsedFromFirstTrainStep300": 24.30005645751953,
+        "exactMatch": true
+      }
+    ],
+    "p3UnitTrainedEvents": [
+      {
+        "eventIndex": 1166,
+        "worldTime": 57.99968719482422,
+        "createdEntity": 232,
+        "amount": 1.0
+      }
+    ],
+    "firstCompletionStepInferredFrom28SecondContinuousProgress": 580,
+    "wireStableQueueIdProof": "not_available_in_replay_or_capture_metadata",
+    "interpretation": "CancelQueue resolved index1 while the first job remained in progress. Captured first elapsed continues the exact float32 accumulation from step300, rather than restarting; only one P3 coureur completes. The approximately5s observation is remaining time, not elapsed time."
+  },
+  "humanMoveEvidence": [
+    {
+      "status": "verified_record_event_and_captured_movement",
+      "recordIndex": 8,
+      "slot": 2,
+      "actor": 104,
+      "completedStep": 1884,
+      "point": {
+        "x": 37.25600051879883,
+        "y": 92.18009185791016
+      },
+      "commandEventIndex": 3657,
+      "commandEventTime": 188.4022979736328,
+      "beforeAnchor": {
+        "completedStep": 1800,
+        "recordIndex": 8,
+        "eventCount": 3479,
+        "worldTime": 180.0017852783203,
+        "resources": {
+          "food": 180.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "spent": {
+          "food": 240.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "refunded": {
+          "food": 120.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "trained": 1,
+        "reservedPopulation": 0,
+        "resigned": false,
+        "eliminated": false,
+        "actorPosition": {
+          "x": 28.0,
+          "y": 102.0
+        },
+        "matchingTrainQueue": []
+      },
+      "afterAnchor": {
+        "completedStep": 2100,
+        "recordIndex": 10,
+        "eventCount": 4159,
+        "worldTime": 210.0036163330078,
+        "resources": {
+          "food": 180.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "spent": {
+          "food": 240.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "refunded": {
+          "food": 120.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "trained": 1,
+        "reservedPopulation": 0,
+        "resigned": true,
+        "eliminated": true,
+        "actorPosition": {
+          "x": 28.469276428222656,
+          "y": 101.4944839477539
+        },
+        "matchingTrainQueue": []
+      },
+      "afterSparseAnchorAlsoIncludesResign": true,
+      "capturedMovementBeforeResign": {
+        "metadataPath": "Native/client/Captures/Frontier-20261005-163615-843-f19085-1d722853327c4a10b49d150da0a636bd.json",
+        "metadataSha256": "4f588c42f279568959c5c03df2ba41f70ebcc1fbab27e86f78251ab03f4d1601",
+        "pngPath": "Native/client/Captures/Frontier-20261005-163615-843-f19085-1d722853327c4a10b49d150da0a636bd.png",
+        "pngSha256": "698915bbbe9c92b0520250e469b2b98b506df2242e205abaab5b9af01ceb9919",
+        "process": "client",
+        "role": "LanClient",
+        "observerSlot": 2,
+        "completedStep": 1889,
+        "worldTime": 188.90232849121094,
+        "pending": 0,
+        "revision": 1089,
+        "eventCursor": 3672,
+        "connected": true,
+        "sharedPaused": false,
+        "localMenuPaused": true,
+        "resources": {
+          "food": 180.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "townEntity": 103,
+        "townQueue": [],
+        "actor104": {
+          "position": {
+            "x": 28.743757247924805,
+            "y": 101.20352172851562
+          },
+          "order": "Move",
+          "destination": {
+            "x": 37.25600051879883,
+            "y": 92.18009185791016
+          }
+        }
+      },
+      "afterSparseAnchorReachedDestination": false
+    }
+  ],
+  "p1MoveEvidence": {
+    "status": "not_recorded",
+    "acceptedMoveRecordCount": 0
+  },
+  "sharedPauseEvidence": [
+    {
+      "status": "verified_record_event_boundary",
+      "pauseRecordIndex": 4,
+      "resumeRecordIndex": 5,
+      "completedStep": 845,
+      "pauseOrdinal": 0,
+      "resumeOrdinal": 1,
+      "pauseEventIndex": 1578,
+      "resumeEventIndex": 1579,
+      "pauseEventCount": 1579,
+      "resumeEventCount": 1580,
+      "worldTime": 84.49928283691406,
+      "noStepOrWorldTimeAdvanceBetweenRecordedControls": true,
+      "initiatorsDiffer": false,
+      "resumeInitiatorType": "peer_guid"
+    },
+    {
+      "status": "verified_record_event_boundary",
+      "pauseRecordIndex": 6,
+      "resumeRecordIndex": 7,
+      "completedStep": 1663,
+      "pauseOrdinal": 0,
+      "resumeOrdinal": 1,
+      "pauseEventIndex": 3158,
+      "resumeEventIndex": 3159,
+      "pauseEventCount": 3159,
+      "resumeEventCount": 3160,
+      "worldTime": 166.3009490966797,
+      "noStepOrWorldTimeAdvanceBetweenRecordedControls": true,
+      "initiatorsDiffer": true,
+      "resumeInitiatorType": "peer_guid"
+    }
+  ],
+  "resignEvidence": [
+    {
+      "status": "verified_record_event_state_transition",
+      "recordIndex": 9,
+      "slot": 2,
+      "completedStep": 1902,
+      "ordinal": 0,
+      "eventIndex": 3706,
+      "worldTime": 190.20240783691406,
+      "beforeAnchor": {
+        "completedStep": 1800,
+        "recordIndex": 8,
+        "eventCount": 3479,
+        "worldTime": 180.0017852783203,
+        "resources": {
+          "food": 180.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "spent": {
+          "food": 240.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "refunded": {
+          "food": 120.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "trained": 1,
+        "reservedPopulation": 0,
+        "resigned": false,
+        "eliminated": false
+      },
+      "afterAnchor": {
+        "completedStep": 2100,
+        "recordIndex": 10,
+        "eventCount": 4159,
+        "worldTime": 210.0036163330078,
+        "resources": {
+          "food": 180.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "spent": {
+          "food": 240.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "refunded": {
+          "food": 120.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "trained": 1,
+        "reservedPopulation": 0,
+        "resigned": true,
+        "eliminated": true
+      }
+    }
+  ],
+  "captureEvidence": {
+    "hostCount": 8,
+    "clientCount": 8,
+    "pngSha256AndDimensionsChecked": true,
+    "manualVisualInspectionPerformed": false,
+    "rows": [
+      {
+        "metadataPath": "Native/host/Captures/Frontier-20261005-163127-995-f6327-f34697d8bd8c4263858d4352113b60b6.json",
+        "metadataSha256": "ae2827b79f9d75853e3fc63aa0553581e0cae098e02a896c20b22a286d477adc",
+        "pngPath": "Native/host/Captures/Frontier-20261005-163127-995-f6327-f34697d8bd8c4263858d4352113b60b6.png",
+        "pngSha256": "1f67be2ccc81374e28486d9da4372207409d8870384da7c29d1e3cf001c222ec",
+        "process": "host",
+        "role": "LanHost",
+        "observerSlot": 0,
+        "completedStep": 10,
+        "worldTime": 1.0000001192092896,
+        "pending": 0,
+        "revision": 2,
+        "eventCursor": 350,
+        "connected": true,
+        "sharedPaused": false,
+        "localMenuPaused": false,
+        "resources": {
+          "food": 300.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "townEntity": 1,
+        "townQueue": []
+      },
+      {
+        "metadataPath": "Native/host/Captures/Frontier-20261005-163250-116-f10309-393eaf3053ce487ab5cfdc35c35a52bc.json",
+        "metadataSha256": "6d17d3494f7521169487cc9211ee55f8a125cbe9ed302f2d1f677ff66c7b28cb",
+        "pngPath": "Native/host/Captures/Frontier-20261005-163250-116-f10309-393eaf3053ce487ab5cfdc35c35a52bc.png",
+        "pngSha256": "2f26be3847a08b5c6bdf33fbcb46de03b48d2f57ee5a23863ec3bf4ec5b625d9",
+        "process": "host",
+        "role": "LanHost",
+        "observerSlot": 0,
+        "completedStep": 831,
+        "worldTime": 83.09930419921875,
+        "pending": 0,
+        "revision": 310,
+        "eventCursor": 1552,
+        "connected": true,
+        "sharedPaused": false,
+        "localMenuPaused": false,
+        "resources": {
+          "food": 200.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "townEntity": 1,
+        "townQueue": [
+          {
+            "kind": "Train",
+            "item": "villager",
+            "count": 1,
+            "population": 1,
+            "elapsed": 0.5,
+            "duration": 20.0
+          }
+        ]
+      },
+      {
+        "metadataPath": "Native/host/Captures/Frontier-20261005-163251-947-f10389-7f6779fa2e8446c4b0191b2ee9bf8355.json",
+        "metadataSha256": "245400d99f9e3f075b302fcd0ad0e4201b6386f5dc58093110b967b6a441567e",
+        "pngPath": "Native/host/Captures/Frontier-20261005-163251-947-f10389-7f6779fa2e8446c4b0191b2ee9bf8355.png",
+        "pngSha256": "5b1b41162e9103b42a8284bbfd30643e2d7bea29719b8edd8f983a8d16c83458",
+        "process": "host",
+        "role": "LanHost",
+        "observerSlot": 0,
+        "completedStep": 845,
+        "worldTime": 84.49928283691406,
+        "pending": 0,
+        "revision": 317,
+        "eventCursor": 1579,
+        "connected": true,
+        "sharedPaused": true,
+        "localMenuPaused": true,
+        "resources": {
+          "food": 200.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "townEntity": 1,
+        "townQueue": [
+          {
+            "kind": "Train",
+            "item": "villager",
+            "count": 1,
+            "population": 1,
+            "elapsed": 1.9000003337860107,
+            "duration": 20.0
+          }
+        ]
+      },
+      {
+        "metadataPath": "Native/host/Captures/Frontier-20261005-163355-079-f13473-3c379952a3654269b5a3b150df84670d.json",
+        "metadataSha256": "8772f3e5c48cc41f5c3a87a2e7668a8d20b10df889412fdebb91ede03944f1f9",
+        "pngPath": "Native/host/Captures/Frontier-20261005-163355-079-f13473-3c379952a3654269b5a3b150df84670d.png",
+        "pngSha256": "720672146d36d075c3920d2f98caa20b62b0bcc425d50bf634c0131f8b1b7385",
+        "process": "host",
+        "role": "LanHost",
+        "observerSlot": 0,
+        "completedStep": 845,
+        "worldTime": 84.49928283691406,
+        "pending": 0,
+        "revision": 555,
+        "eventCursor": 1579,
+        "connected": false,
+        "sharedPaused": true,
+        "localMenuPaused": true,
+        "resources": {
+          "food": 200.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "townEntity": 1,
+        "townQueue": [
+          {
+            "kind": "Train",
+            "item": "villager",
+            "count": 1,
+            "population": 1,
+            "elapsed": 1.9000003337860107,
+            "duration": 20.0
+          }
+        ]
+      },
+      {
+        "metadataPath": "Native/host/Captures/Frontier-20261005-163356-014-f13514-7730d459a87648a798a45e572924efb1.json",
+        "metadataSha256": "c75f57dc6ed43e83dc9604d6dfbc07a2a0e2734fcb8929c37352db39466aebae",
+        "pngPath": "Native/host/Captures/Frontier-20261005-163356-014-f13514-7730d459a87648a798a45e572924efb1.png",
+        "pngSha256": "6f10b12f09a2b4cce24bf8bd2c20552cf9ed761ed2ceec6f61aff4a867462c91",
+        "process": "host",
+        "role": "LanHost",
+        "observerSlot": 0,
+        "completedStep": 851,
+        "worldTime": 85.09927368164062,
+        "pending": 0,
+        "revision": 559,
+        "eventCursor": 1592,
+        "connected": false,
+        "sharedPaused": false,
+        "localMenuPaused": true,
+        "resources": {
+          "food": 200.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "townEntity": 1,
+        "townQueue": [
+          {
+            "kind": "Train",
+            "item": "villager",
+            "count": 1,
+            "population": 1,
+            "elapsed": 2.499999761581421,
+            "duration": 20.0
+          }
+        ]
+      },
+      {
+        "metadataPath": "Native/host/Captures/Frontier-20261005-163517-832-f17545-5bef7a9def534b1ebd301525604d4eda.json",
+        "metadataSha256": "9b6e1f6119178b64d57b7572974f1b2a60e478ef3267900ea51e2a2a0bf95c1b",
+        "pngPath": "Native/host/Captures/Frontier-20261005-163517-832-f17545-5bef7a9def534b1ebd301525604d4eda.png",
+        "pngSha256": "1c789d76abbe2a265a9d7a16f29a6d7604708cf9e1997f27204a8903be8e0565",
+        "process": "host",
+        "role": "LanHost",
+        "observerSlot": 0,
+        "completedStep": 1663,
+        "worldTime": 166.3009490966797,
+        "pending": 0,
+        "revision": 872,
+        "eventCursor": 3159,
+        "connected": true,
+        "sharedPaused": true,
+        "localMenuPaused": true,
+        "resources": {
+          "food": 200.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "townEntity": 1,
+        "townQueue": []
+      },
+      {
+        "metadataPath": "Native/host/Captures/Frontier-20261005-163645-914-f22024-248d8bce3cb74a3883494d53fec8d4b9.json",
+        "metadataSha256": "586857015de0d6307ccaafb1d845b3d4a554faa529ca1dfc18bca55794b2bdb1",
+        "pngPath": "Native/host/Captures/Frontier-20261005-163645-914-f22024-248d8bce3cb74a3883494d53fec8d4b9.png",
+        "pngSha256": "243459dc04f7d6fd94538b695fc719fb232665b7589e36ee711c672fa556ebea",
+        "process": "host",
+        "role": "LanHost",
+        "observerSlot": 0,
+        "completedStep": 2193,
+        "worldTime": 219.30418395996094,
+        "pending": 0,
+        "revision": 1218,
+        "eventCursor": 4381,
+        "connected": false,
+        "sharedPaused": false,
+        "localMenuPaused": true,
+        "resources": {
+          "food": 200.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "townEntity": 1,
+        "townQueue": []
+      },
+      {
+        "metadataPath": "Native/host/Captures/Frontier-20261005-163647-025-f22070-2bba622ff3e346deae5c79a900c3cddc.json",
+        "metadataSha256": "6fa1a626691b78493bbc77cc2773557ba945391a50dbc97146b7d8978a62153c",
+        "pngPath": "Native/host/Captures/Frontier-20261005-163647-025-f22070-2bba622ff3e346deae5c79a900c3cddc.png",
+        "pngSha256": "dc247bd37763a000ae8f0d2ce77aec29426a3e7314182d8911861c38452807fe",
+        "process": "host",
+        "role": "LanHost",
+        "observerSlot": 0,
+        "completedStep": 2204,
+        "worldTime": 220.4042510986328,
+        "pending": 0,
+        "revision": 1222,
+        "eventCursor": 4407,
+        "connected": false,
+        "sharedPaused": false,
+        "localMenuPaused": true,
+        "resources": {
+          "food": 200.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "townEntity": 1,
+        "townQueue": []
+      },
+      {
+        "metadataPath": "Native/client/Captures/Frontier-20261005-163128-684-f5427-20d9afc1174c457daca7b21406d76b6b.json",
+        "metadataSha256": "53cc9f77fd2e9726366608d7c02257f09edb385cea78281617e10107f16011e5",
+        "pngPath": "Native/client/Captures/Frontier-20261005-163128-684-f5427-20d9afc1174c457daca7b21406d76b6b.png",
+        "pngSha256": "14e3a746fb7d84a3e163a119304a73101a8faf2ae538537defcd61febf67c5a2",
+        "process": "client",
+        "role": "LanClient",
+        "observerSlot": 2,
+        "completedStep": 13,
+        "worldTime": 1.3000001907348633,
+        "pending": 0,
+        "revision": 4,
+        "eventCursor": 356,
+        "connected": true,
+        "sharedPaused": false,
+        "localMenuPaused": false,
+        "resources": {
+          "food": 300.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "townEntity": 103,
+        "townQueue": [],
+        "actor104": {
+          "position": {
+            "x": 28.0,
+            "y": 102.0
+          },
+          "order": "",
+          "destination": {
+            "x": 28.0,
+            "y": 102.0
+          }
+        }
+      },
+      {
+        "metadataPath": "Native/client/Captures/Frontier-20261005-163157-850-f6886-34772543a63e4233826b4af0fc814fcc.json",
+        "metadataSha256": "710bd4232d66feb379fcd2763b058280106ff30ffd9599afb7fce934ef1c2b76",
+        "pngPath": "Native/client/Captures/Frontier-20261005-163157-850-f6886-34772543a63e4233826b4af0fc814fcc.png",
+        "pngSha256": "08de8f10146655ac39bf7bc44f91fac0a0dbf39fbf260d7a9f55c0911258e36f",
+        "process": "client",
+        "role": "LanClient",
+        "observerSlot": 2,
+        "completedStep": 306,
+        "worldTime": 30.600080490112305,
+        "pending": 0,
+        "revision": 114,
+        "eventCursor": 777,
+        "connected": true,
+        "sharedPaused": false,
+        "localMenuPaused": false,
+        "resources": {
+          "food": 180.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "townEntity": 103,
+        "townQueue": [
+          {
+            "kind": "Train",
+            "item": "coureur",
+            "count": 1,
+            "population": 1,
+            "elapsed": 0.6000000238418579,
+            "duration": 28.0
+          }
+        ],
+        "actor104": {
+          "position": {
+            "x": 28.0,
+            "y": 102.0
+          },
+          "order": "",
+          "destination": {
+            "x": 28.0,
+            "y": 102.0
+          }
+        }
+      },
+      {
+        "metadataPath": "Native/client/Captures/Frontier-20261005-163158-707-f6921-310893d7acf04526bb5a7d85de540b46.json",
+        "metadataSha256": "8c28ca3936787096895d5156f365083766086b2a5bb36a95c3b5ad05d5ce4a3e",
+        "pngPath": "Native/client/Captures/Frontier-20261005-163158-707-f6921-310893d7acf04526bb5a7d85de540b46.png",
+        "pngSha256": "9b538c0e30c3c91f05dc621afda7cf2bf509dd29602dcea685cf2493672580ce",
+        "process": "client",
+        "role": "LanClient",
+        "observerSlot": 2,
+        "completedStep": 313,
+        "worldTime": 31.30008316040039,
+        "pending": 0,
+        "revision": 117,
+        "eventCursor": 786,
+        "connected": true,
+        "sharedPaused": false,
+        "localMenuPaused": false,
+        "resources": {
+          "food": 60.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "townEntity": 103,
+        "townQueue": [
+          {
+            "kind": "Train",
+            "item": "coureur",
+            "count": 1,
+            "population": 1,
+            "elapsed": 1.3000001907348633,
+            "duration": 28.0
+          },
+          {
+            "kind": "Train",
+            "item": "coureur",
+            "count": 1,
+            "population": 1,
+            "elapsed": 0.0,
+            "duration": 28.0
+          }
+        ],
+        "actor104": {
+          "position": {
+            "x": 28.0,
+            "y": 102.0
+          },
+          "order": "",
+          "destination": {
+            "x": 28.0,
+            "y": 102.0
+          }
+        }
+      },
+      {
+        "metadataPath": "Native/client/Captures/Frontier-20261005-163220-735-f8025-3245d353a1634430b7063c1ac352bf60.json",
+        "metadataSha256": "3bc751bc553ec9b21e49b7d045cfa1f97a50b854867b471a82d4b2538124c2ee",
+        "pngPath": "Native/client/Captures/Frontier-20261005-163220-735-f8025-3245d353a1634430b7063c1ac352bf60.png",
+        "pngSha256": "a7063d196c0abefff3b1dbf7f62f39b58d84d31a8f5f3b9a3ceb01c8028ce794",
+        "process": "client",
+        "role": "LanClient",
+        "observerSlot": 2,
+        "completedStep": 535,
+        "worldTime": 53.499755859375,
+        "pending": 0,
+        "revision": 200,
+        "eventCursor": 1088,
+        "connected": true,
+        "sharedPaused": false,
+        "localMenuPaused": true,
+        "resources": {
+          "food": 180.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "townEntity": 103,
+        "townQueue": [
+          {
+            "kind": "Train",
+            "item": "coureur",
+            "count": 1,
+            "population": 1,
+            "elapsed": 23.50005340576172,
+            "duration": 28.0
+          }
+        ],
+        "actor104": {
+          "position": {
+            "x": 28.0,
+            "y": 102.0
+          },
+          "order": "",
+          "destination": {
+            "x": 28.0,
+            "y": 102.0
+          }
+        }
+      },
+      {
+        "metadataPath": "Native/client/Captures/Frontier-20261005-163221-500-f8057-bed5bb9af56f448d86b5dddd08feec20.json",
+        "metadataSha256": "b92165f65a5ee262daff4609f1921c15eccf94bb322cea77ebcd8ad47b31b486",
+        "pngPath": "Native/client/Captures/Frontier-20261005-163221-500-f8057-bed5bb9af56f448d86b5dddd08feec20.png",
+        "pngSha256": "15ad6c7dd7d5985b8a249dda413210b323715ce166e8b93bc1c6732c146bcf84",
+        "process": "client",
+        "role": "LanClient",
+        "observerSlot": 2,
+        "completedStep": 543,
+        "worldTime": 54.29974365234375,
+        "pending": 0,
+        "revision": 203,
+        "eventCursor": 1103,
+        "connected": true,
+        "sharedPaused": false,
+        "localMenuPaused": true,
+        "resources": {
+          "food": 180.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "townEntity": 103,
+        "townQueue": [
+          {
+            "kind": "Train",
+            "item": "coureur",
+            "count": 1,
+            "population": 1,
+            "elapsed": 24.30005645751953,
+            "duration": 28.0
+          }
+        ],
+        "actor104": {
+          "position": {
+            "x": 28.0,
+            "y": 102.0
+          },
+          "order": "",
+          "destination": {
+            "x": 28.0,
+            "y": 102.0
+          }
+        }
+      },
+      {
+        "metadataPath": "Native/client/Captures/Frontier-20261005-163252-421-f9604-9fdb2942609d42b98251236fae60e9b1.json",
+        "metadataSha256": "67dd6e272375b75f231bab40bdd8591a08e7f8553bd7519cc1176fd2fa1267c8",
+        "pngPath": "Native/client/Captures/Frontier-20261005-163252-421-f9604-9fdb2942609d42b98251236fae60e9b1.png",
+        "pngSha256": "dd80007cd9e7252e1650263553175bfa7409a89bb9a105cbf1887b413f839645",
+        "process": "client",
+        "role": "LanClient",
+        "observerSlot": 2,
+        "completedStep": 845,
+        "worldTime": 84.49928283691406,
+        "pending": 0,
+        "revision": 319,
+        "eventCursor": 1579,
+        "connected": true,
+        "sharedPaused": true,
+        "localMenuPaused": true,
+        "resources": {
+          "food": 180.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "townEntity": 103,
+        "townQueue": [],
+        "actor104": {
+          "position": {
+            "x": 28.0,
+            "y": 102.0
+          },
+          "order": "",
+          "destination": {
+            "x": 28.0,
+            "y": 102.0
+          }
+        }
+      },
+      {
+        "metadataPath": "Native/client/Captures/Frontier-20261005-163518-332-f16132-bc669f7d77544f629005d1f9bc160e96.json",
+        "metadataSha256": "1d880b39d4b300b35d015a6ea41091b255e8f60a6b30dd5244daa27dbd491c43",
+        "pngPath": "Native/client/Captures/Frontier-20261005-163518-332-f16132-bc669f7d77544f629005d1f9bc160e96.png",
+        "pngSha256": "a22d137bcac89f5a875cd95ee83879c3e8afd4f5d5bb2539ebc39bb3863be19b",
+        "process": "client",
+        "role": "LanClient",
+        "observerSlot": 2,
+        "completedStep": 1663,
+        "worldTime": 166.3009490966797,
+        "pending": 0,
+        "revision": 873,
+        "eventCursor": 3159,
+        "connected": true,
+        "sharedPaused": true,
+        "localMenuPaused": true,
+        "resources": {
+          "food": 180.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "townEntity": 103,
+        "townQueue": [],
+        "actor104": {
+          "position": {
+            "x": 28.0,
+            "y": 102.0
+          },
+          "order": "",
+          "destination": {
+            "x": 28.0,
+            "y": 102.0
+          }
+        }
+      },
+      {
+        "metadataPath": "Native/client/Captures/Frontier-20261005-163615-843-f19085-1d722853327c4a10b49d150da0a636bd.json",
+        "metadataSha256": "4f588c42f279568959c5c03df2ba41f70ebcc1fbab27e86f78251ab03f4d1601",
+        "pngPath": "Native/client/Captures/Frontier-20261005-163615-843-f19085-1d722853327c4a10b49d150da0a636bd.png",
+        "pngSha256": "698915bbbe9c92b0520250e469b2b98b506df2242e205abaab5b9af01ceb9919",
+        "process": "client",
+        "role": "LanClient",
+        "observerSlot": 2,
+        "completedStep": 1889,
+        "worldTime": 188.90232849121094,
+        "pending": 0,
+        "revision": 1089,
+        "eventCursor": 3672,
+        "connected": true,
+        "sharedPaused": false,
+        "localMenuPaused": true,
+        "resources": {
+          "food": 180.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "townEntity": 103,
+        "townQueue": [],
+        "actor104": {
+          "position": {
+            "x": 28.743757247924805,
+            "y": 101.20352172851562
+          },
+          "order": "Move",
+          "destination": {
+            "x": 37.25600051879883,
+            "y": 92.18009185791016
+          }
+        }
+      }
+    ]
+  },
+  "reportLedgerComparison": {
+    "status": "verified_full_semantic_ledger_match",
+    "reportEventCount": 4442,
+    "replayEventCount": 4442,
+    "matchingCoreAndPresentEconomyPopulationEvents": 4442,
+    "rawDecodedObjectEqualCount": 4442,
+    "absentOptionalDtoRepresentationDifferences": 0,
+    "reportAdditionalEvents": 0,
+    "replayAdditionalEvents": 0,
+    "prefixOrTruncationCompensationNeeded": false,
+    "finalHumanState": [
+      {
+        "slot": 0,
+        "resources": {
+          "food": 200.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "spent": {
+          "food": 100.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "refunded": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "resigned": false,
+        "eliminated": false,
+        "matchesReplayFinalState": true
+      },
+      {
+        "slot": 2,
+        "resources": {
+          "food": 180.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "spent": {
+          "food": 240.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "refunded": {
+          "food": 120.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "resigned": true,
+        "eliminated": true,
+        "matchesReplayFinalState": true
+      }
+    ],
+    "finalFlushRecord": {
+      "recordIndex": 10,
+      "operation": "FlushEconomy",
+      "completedStep": 2210,
+      "eventCount": 4442,
+      "accepted": true,
+      "eventsSincePreviousInputRecord": 735,
+      "limit": "Difference includes intervening simulation events and does not isolate how many events FlushEconomy itself created."
+    }
+  },
+  "uncertainties": [
+    {
+      "item": "Unity ReplayValidation and ReplaySession deterministic playback",
+      "status": "not_run",
+      "detail": "Bounded package, selected DTO shapes, record boundaries and stored hash ledgers checked offline. World.ValidateSnapshot, current RuleCatalog Unity serialization/hash and simulation playback not executed."
+    },
+    {
+      "item": "Stable LAN queue ID and expectedQueueId",
+      "status": "not_stored_in_replay_or_capture_metadata",
+      "detail": "Replay contains the resolved CancelQueue index1. F9 metadata records job order/progress without IDs. Index and continuous first progress are proven here; actual LAN stable ID is outside this artifact."
+    },
+    {
+      "item": "Original manual_save prefix bytes",
+      "status": "not_preserved_in_this_inspection",
+      "detail": "Only current menu_exit file read; later saves of the same segment can replace the earlier prefix."
+    },
+    {
+      "item": "Client binding of shared Resume",
+      "status": "not_proven_by_replay_alone",
+      "detail": "GUID initiators are recorded but no peer-to-role binding exists in the replay. Raw peer identifiers omitted."
+    },
+    {
+      "item": "Forced bad-delta/resync protocol sequence",
+      "status": "not_proven_by_replay_alone",
+      "detail": "Captured client is connected with pending0 and accepted Move with changed position. Replay and F9 metadata omit received delta/base/request/full wire envelopes, so cannot independently prove resync occurred."
+    },
+    {
+      "item": "Native clicks, UI and two physical Macs",
+      "status": "not_certified_by_offline_artifacts",
+      "detail": "Metadata and accepted orders are separate from manual observations. Root actual-ui-observations.json was not read or overwritten."
+    }
+  ],
+  "sourceReferences": [
+    {
+      "path": "Assets/Frontier/Simulation/ReplayStore.cs",
+      "line": 78
+    },
+    {
+      "path": "Assets/Frontier/Simulation/MatchSaveStore.cs",
+      "line": 103
+    },
+    {
+      "path": "Assets/Frontier/Simulation/ReplayModel.cs",
+      "line": 17
+    },
+    {
+      "path": "Assets/Frontier/Simulation/ReplayDigest.cs",
+      "line": 8
+    },
+    {
+      "path": "Assets/Frontier/Simulation/Model.cs",
+      "line": 11
+    },
+    {
+      "path": "Assets/Frontier/Simulation/Economy.cs",
+      "line": 151
+    },
+    {
+      "path": "Assets/Frontier/Simulation/Economy.cs",
+      "line": 300
+    },
+    {
+      "path": "Assets/Frontier/Simulation/MatchSimulation.cs",
+      "line": 12
+    },
+    {
+      "path": "Assets/Frontier/Presentation/NativeCapture.cs",
+      "line": 83
+    },
+    {
+      "path": "Assets/Frontier/Networking/LanQueueTracker.cs",
+      "line": 14
+    },
+    {
+      "path": "Assets/Frontier/Presentation/GameController.cs",
+      "line": 302
+    }
+  ],
+  "privacy": {
+    "rawMachineIdSerialResumeCredentialsEmitted": false,
+    "rawReportDeviceGpuFieldsEmitted": false,
+    "rawPausePeerIdentifiersEmitted": false
+  }
+}

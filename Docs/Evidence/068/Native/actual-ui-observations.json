@@ -1,0 +1,187 @@
+{
+  "schema": 1,
+  "recordedUtc": "2026-10-05T16:38:35.833479+00:00",
+  "scope": "Two separately launched native processes on one physical Mac over real loopback TCP; root Computer Use observations",
+  "buildGuid": "fa26339934914cd2813df9763de6bba7",
+  "runtimeCommit": "dca073708b671c60a1fe9ff243a67e4ace3fe157",
+  "sourceFingerprint": "62240c2373c773b5aaf807c72815acab2e76577504f3a0569218702864730ebe",
+  "observations": [
+    {
+      "phase": "connected lobby",
+      "status": "observed",
+      "evidence": "UI/01-host-connected-lobby.png",
+      "sha256": "acb09341652ca98c22eaf9c0e760bae5d2321ac4e5468d41771cc3fead938fc0",
+      "detail": "Host shows connected; P1 British / P3 French, P2 Dutch / P4 Ottoman AI; generated river seed314159, normal resources."
+    },
+    {
+      "phase": "partner ready",
+      "status": "observed",
+      "evidence": "UI/03-client-ready.png",
+      "sha256": "bd5046b20c2d0a63201784ecf0430859cb812b1c937640a742cb21bda6896582",
+      "detail": "Client READY action updates P3 readiness; host then READY."
+    },
+    {
+      "phase": "both ready",
+      "status": "observed",
+      "evidence": "UI/04-host-both-ready.png",
+      "sha256": "7b137ac65975981c44bdafa768a3b9b560234eee1975233e9de863cf454e5af6",
+      "detail": "Host displays Both players ready · start co-op."
+    },
+    {
+      "phase": "match start host",
+      "status": "observed",
+      "evidence": "UI/05-host-start.png",
+      "sha256": "269ccd82ba72139e369b159d64f0c6b1294a60ce5a2d86a20ffc4e03debe74f0",
+      "detail": "Actual START CO-OP enters host P1 match; initial HUD 300F/300W/100C."
+    },
+    {
+      "phase": "match start client",
+      "status": "observed",
+      "evidence": "UI/06-client-start.png",
+      "sha256": "bb9678bfffba0d7868268c8f75d153e7412521547a78d7081687076ef356b16e",
+      "detail": "Client receives match and displays P3; initial HUD 300F/300W/100C."
+    },
+    {
+      "phase": "remote train",
+      "status": "observed",
+      "evidence": "UI/07-client-train-paid.png",
+      "sha256": "3bd287fe56f143687b97ef8e65a57601b0a0d7cefa233dc492322fe53520fa68",
+      "detail": "Client clicked French Courreur button; food180, reserved1, Added to production queue and pending returned0."
+    },
+    {
+      "phase": "identical jobs",
+      "status": "observed",
+      "evidence": "UI/08-client-two-identical-jobs.png",
+      "sha256": "ebe34d86170129401a4f464f21796d3ff92d8248c53a1af1c36016066e1a90ef",
+      "detail": "Second same training action: food60, reserved2, two jobs visible."
+    },
+    {
+      "phase": "cancel second job",
+      "status": "observed",
+      "evidence": "UI/09-client-second-job-cancelled.png",
+      "sha256": "8cd1a83badb32d042a405b7c0444e64741901b467b2fa32543720c6f374c3db2",
+      "detail": "Clicked second queue tile: food180, reserved1, first job still visible with5s remaining, Unfinished order refunded."
+    },
+    {
+      "phase": "local menu",
+      "status": "observed",
+      "evidence": "UI/10-client-local-menu.png",
+      "sha256": "6145f7d1499ecc5bb4aeffc93ad43b36a2f756e91a3432c959a1300fb83f6fa5",
+      "detail": "Client Escape opens local menu; shared match continues while menu is open."
+    },
+    {
+      "phase": "host train",
+      "status": "observed",
+      "evidence": "UI/11-host-train-paid.png",
+      "sha256": "a86ec4a1ef728e1ecd8e2ee965ea96e663341d7457e52d2f584921df301a0871",
+      "detail": "Host clicked British Settler100F; food200 and reserved1."
+    },
+    {
+      "phase": "shared pause host",
+      "status": "observed",
+      "evidence": "UI/12-host-shared-pause.png",
+      "sha256": "b4a466a56a8f1d1098b4571bd44801b574b30676feb3dd60ad41926c00f15e4e",
+      "detail": "Host Pause Match makes actual shared menu paused."
+    },
+    {
+      "phase": "shared pause client",
+      "status": "observed",
+      "evidence": "UI/13-client-shared-pause.png",
+      "sha256": "90afee5af059ffffe3616e326742abfba237461828aca0a2e0e281bf3cd79793",
+      "detail": "Client receives shared pause with no pending orders."
+    },
+    {
+      "phase": "heartbeat fault",
+      "status": "observed",
+      "evidence": "UI/14-host-offline-can-resume.png",
+      "sha256": "f6bc9ffdddfc68ea1febe5a34bdbc613c39504cc045e9217785b2408ca358651",
+      "detail": "Owned client PID26208 SIGSTOP, scheduled SIGCONT18s later. Host UI at6s shows disconnected but Resume Match available."
+    },
+    {
+      "phase": "offline resume",
+      "status": "observed",
+      "evidence": "UI/15-host-resumed-with-ally-offline.png",
+      "sha256": "30e36024f786ebfab0ce2e7d2ff561e5652ec42e14611466a9a560d4b4f77027",
+      "detail": "Host clicked Resume Match while peer disconnected; UI shows match continues and Pause Match. F9 records connectedfalse/sharedfalse,step851 versus paused845."
+    },
+    {
+      "phase": "reconnected host",
+      "status": "observed",
+      "evidence": "UI/16-host-reconnected.png",
+      "sha256": "f4443f09b95857f6afc02b6850315a85f321dc27e28b2697a91fd280379671df",
+      "detail": "After SIGCONT, host displays Cooperating with P3 rather than permanently saying reconnected."
+    },
+    {
+      "phase": "reconnected pause",
+      "status": "observed",
+      "evidence": "UI/17-host-paused-after-reconnect.png",
+      "sha256": "0af4eaa8bc4d83e2dfbd7367d270e8aa86146e0f764ee68c88e0d36dfe9285a0",
+      "detail": "Host paused after connection recovery; step1663 captured."
+    },
+    {
+      "phase": "client resync",
+      "status": "observed",
+      "evidence": "UI/18-client-paused-after-reconnect.png",
+      "sha256": "916c879e1c380bf8157d6e2a85c5f7797c217ba9df26c20f711f0c0f330bc6c9",
+      "detail": "Client displays Cooperating as P3 and shared pause, retaining local menu. Capture shares step1663/worldTime/eventCursor/digest with host."
+    },
+    {
+      "phase": "remote movement",
+      "status": "observed",
+      "evidence": "UI/19-client-move-accepted.png",
+      "sha256": "5e55c9a7af13f13125af3388f092b6d4246108067bd8e3375822711bbd7b5b40",
+      "detail": "Client resumes shared match, closes local menu, V selects a worker, right-clicks visible ground; Move order accepted and Moving/Orders1 shown."
+    },
+    {
+      "phase": "client leave",
+      "status": "observed",
+      "evidence": "UI/21-client-after-leave.png",
+      "sha256": "94b011754e25d789973f70ec2e09de1a961a81b281dc195581c4611d3839ce3a",
+      "detail": "Client Leave Match returns to ordinary main menu."
+    },
+    {
+      "phase": "host departure",
+      "status": "observed",
+      "evidence": "UI/22-host-partner-left.png",
+      "sha256": "46c829b3891be8381a43f954c7d43d7cd81a5d6504adc9a85fa4e926791e5a1e",
+      "detail": "Host remains in match with Ally left the cooperative session, shared match continues."
+    },
+    {
+      "phase": "host save replay",
+      "status": "observed",
+      "evidence": "UI/23-host-replay-save.png",
+      "sha256": "99ef5d5b0c643b97cb6d990ade17c7e68e38aeb99af5c6c7df915af73b41e566",
+      "detail": "Actual Save Replay clicked, Saving recording shown; persisted final menu_exit bytes are independently inspected separately."
+    },
+    {
+      "phase": "host leave",
+      "status": "observed",
+      "evidence": "UI/24-host-after-leave.png",
+      "sha256": "b1e56ef07d1e6eafb7c2b2603c43bf1a750b16bf56ab47b19cd6f830b2e65566",
+      "detail": "Host Leave Match returns to ordinary main menu; both apps then quit via main menu and exec sessions90059/27863 exit0."
+    }
+  ],
+  "ownedProcesses": [
+    {
+      "role": "host",
+      "pid": 26143,
+      "execSession": 90059,
+      "exitCode": 0
+    },
+    {
+      "role": "client",
+      "pid": 26208,
+      "execSession": 27863,
+      "exitCode": 0
+    }
+  ],
+  "unverified": [
+    "Two physical Macs and real LAN adapter/firewall flow",
+    "Native ACK-loss exactly-once payment fault (covered automated TCP lifecycle)",
+    "Native direct-target attack through this LAN build",
+    "Native cold replay of this LAN segment",
+    "Natural full match victory",
+    "Long-window performance/memory/latency and signed Release or other platforms"
+  ],
+  "physicalMacAcceptance": "pending"
+}
