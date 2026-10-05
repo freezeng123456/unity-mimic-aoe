@@ -93,12 +93,17 @@ namespace Frontier.Tests
         {
             host.SkirmishMode="teams";host.SelectedMap=MapTopology.Frontier;host.SelectedObjective="elimination";host.OpponentDifficulty="easy";
             client.PlayerCivilization="france";client.DeckPreset="economy";client.ResetDeckPreset();
-            host.HostLan(0);Assert.Greater(host.LanPort,0);client.JoinLan("127.0.0.1",host.LanPort);
+            host.HostLan(0);Assert.Greater(host.LanPort,0);StringAssert.Contains("waiting for your ally",host.LanConnectionText);client.JoinLan("127.0.0.1",host.LanPort);
             yield return PumpUntil(()=>client.IsLanClient&&client.IsLanConnected&&client.LocalPlayerSlot==RemotePlayer&&host.LanLobby?.slots?.Length==4&&!string.IsNullOrEmpty(host.LanLobby.slots[RemotePlayer].peerId),"Join did not bind the remote slot");
-            host.SetLanReady(true);client.SetLanReady(true);
-            yield return PumpUntil(()=>host.LanLobby.slots[0].ready&&host.LanLobby.slots[RemotePlayer].ready,"Both players did not become ready");
+            Assert.AreEqual("Connected · choose your civilization and ready up",host.LanConnectionText);
+            Assert.AreEqual("Connected · choose your civilization and ready up",client.LanConnectionText);
+            host.SetLanReady(true);Assert.AreEqual("Ready · waiting for P3",host.LanConnectionText);client.SetLanReady(true);
+            yield return PumpUntil(()=>host.LanLobby.slots[0].ready&&host.LanLobby.slots[RemotePlayer].ready&&client.LanLobby.slots[0].ready&&client.LanLobby.slots[RemotePlayer].ready,"Both players did not become ready");
+            Assert.AreEqual("Both players ready · start co-op",host.LanConnectionText);
+            Assert.AreEqual("Both players ready · waiting for host to start",client.LanConnectionText);
             host.StartLanMatch();yield return PumpUntil(()=>client.World!=null&&!client.InMenu&&client.IsLanConnected,"Start full state did not reach the client");
             Assert.IsTrue(host.IsLanHost);Assert.AreEqual(0,host.LocalPlayerSlot);Assert.AreEqual(RemotePlayer,client.LocalPlayerSlot);Assert.IsNull(client.Simulation);
+            Assert.AreEqual("Cooperating with P3",host.LanConnectionText);Assert.AreEqual("Cooperating as P3",client.LanConnectionText);
             CollectionAssert.AreEquivalent(new[]{1,3},host.Simulation.CaptureState().controllers.Select(c=>c.player));
             // Controlled fixture funds still require every real order to pass
             // World.Issue and its normal payment/production rules.
@@ -199,6 +204,7 @@ namespace Frontier.Tests
             EqualCost(cost,Difference(host.World.Players[RemotePlayer].spent,spent),"Initial host payment");oldConnection.Dispose();Assert.IsFalse(oldConnection.Connected);
             yield return PumpUntil(()=>request.IsTerminal&&client.IsLanConnected&&Private<int>(client,"lanGeneration")>generation,"The original pending sequence did not resolve after reconnect");
             Assert.AreEqual(CommandRequestStatus.Applied,request.Status);Assert.AreEqual(1,callbacks);Assert.AreEqual(0,client.LanPendingCount);
+            Assert.AreEqual("Cooperating with P3",host.LanConnectionText);Assert.AreEqual("Cooperating as P3",client.LanConnectionText);
             Assert.AreEqual(peer,Private<string>(client,"lanPeerId"));Assert.AreEqual(epoch,Private<string>(client,"lanEpoch"));Assert.AreEqual(match,client.MatchId);
             Assert.AreNotEqual(connectionId,Private<LanConnection>(client,"lanClient").ConnectionId);Assert.IsTrue(oldConnection.WorkersTerminated);
             Assert.AreSame(hostWorld,host.World);Assert.AreSame(scheduler,host.Simulation);Assert.AreSame(clientWorld,client.World);Assert.IsNull(client.Simulation);
@@ -207,6 +213,10 @@ namespace Frontier.Tests
             EqualCost(host.World.Players[RemotePlayer].resources,client.World.Players[RemotePlayer].resources,"Reconnected replica economy");
             var records=host.Recorder.Capture().records.Where(r=>r.kind==ReplayOperation.Command&&r.command.player==RemotePlayer&&r.command.kind==CommandKind.Train).ToArray();
             Assert.AreEqual(1,records.Length,"Retransmission must not record or execute the order a second time");Assert.IsTrue(records[0].accepted);
+            client.LeaveLan();
+            yield return PumpUntil(()=>!host.World.IsPlayerActive(RemotePlayer)&&!host.IsLanConnected,"An actual leave message did not retire the remote slot",true,false);
+            Assert.AreEqual("Ally left the cooperative session",host.LanConnectionText);
+            for(int frame=0;frame<3;frame++){host.PumpLan();yield return null;Assert.AreEqual("Ally left the cooperative session",host.LanConnectionText,"A retired room cannot offer reconnection");}
         }
 
         [UnityTest] public IEnumerator DisconnectedHostCanResumeTheSharedPauseThroughItsActualMenu()
@@ -217,6 +227,7 @@ namespace Frontier.Tests
             // Keep the client controller disabled and never pump it again:
             // the host must offer Resume without waiting for a reconnection.
             host.PumpLan();yield return PumpUntil(()=>!host.IsLanConnected,"Host did not observe the actual peer disconnect",true,false);
+            Assert.AreEqual("Ally disconnected · waiting to reconnect",host.LanConnectionText);
             Assert.IsTrue(host.World.Paused);Assert.IsFalse(host.CanSubmitOrders);Assert.AreEqual(0,host.LanPendingCount);
             int step=host.Simulation.StepCount;float time=host.World.Time;
             foreach(var canvas in hostRoot.GetComponentsInChildren<Canvas>(true))canvas.gameObject.SetActive(true);

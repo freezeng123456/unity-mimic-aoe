@@ -105,7 +105,20 @@ namespace Frontier
             if(reason!="")throw new ArgumentException(reason);
             slot.ready=state.ready;slot.civilization=state.civilization;slot.deck=(string[])state.deck.Clone();
         }
-        void BroadcastLanLobby(){if(lanRemote?.connection?.Connected==true)SendLan(lanRemote.connection,"lobby",LanLobby);Hud.RefreshLanLobbyState();}
+        void RefreshLanLobbyConnectionText()
+        {
+            if(LanLobby==null||!IsLanConnected)return;
+            if(LanLobby.started)
+            {if(IsLanClient&&(World==null||lanAwaitingFull))LanConnectionText="Synchronizing with host";return;}
+            if(LanLobby.slots?.Length!=4)return;
+            int partner=IsLanHost?2:0;bool localReady=LanLobby.slots[LocalPlayerSlot]?.ready==true,partnerReady=LanLobby.slots[partner]?.ready==true;
+            LanConnectionText=localReady&&partnerReady
+                ?IsLanHost?"Both players ready · start co-op":"Both players ready · waiting for host to start"
+                :localReady?"Ready · waiting for P"+(partner+1)
+                :partnerReady?"P"+(partner+1)+" ready · choose your civilization and ready up"
+                :"Connected · choose your civilization and ready up";
+        }
+        void BroadcastLanLobby(){RefreshLanLobbyConnectionText();if(lanRemote?.connection?.Connected==true)SendLan(lanRemote.connection,"lobby",LanLobby);Hud.RefreshLanLobbyState();}
         public void StartLanMatch()
         {
             if(!IsLanHost||LanLobby==null||LanLobby.started)return;
@@ -253,7 +266,7 @@ namespace Frontier
                     lanRemote=peer;lanCandidates.Remove(peer);peer.heard=LanNow;LanLobby.slots[2].peerId=peer.id;
                     lanAuthority?.BindPeer(peer.id,2,peer.generation);
                     SendLan(peer.connection,"welcome",new LanWelcome{peerId=peer.id,resumeToken=peer.token,player=2,generation=peer.generation,matchId=lanMatchId,epoch=lanEpoch,identity=CurrentReplayIdentity(),lobby=LanLobby});
-                    if(LanLobby.started){lanForceFull=true;LanConnectionText="Ally reconnected";}else BroadcastLanLobby();
+                    if(LanLobby.started){lanForceFull=true;LanConnectionText="Cooperating with P3";}else BroadcastLanLobby();
                 }
                 catch(Exception error){SendLan(peer.connection,"error",new LanReady(),error:error.Message);peer.connection.CloseAfterFlush("Handshake rejected");lanCandidates.Remove(peer);}
             }
@@ -287,7 +300,7 @@ namespace Frontier
             if(!lanRemote.connection.Connected)
             {
                 if(lanRemote.disconnectedAt<0)lanRemote.disconnectedAt=LanNow;
-                LanConnectionText="Ally disconnected · waiting to reconnect";
+                LanConnectionText=lanRemote.retired?"Ally left the cooperative session":"Ally disconnected · waiting to reconnect";
                 if(!lanRemote.retired&&LanNow-lanRemote.disconnectedAt>=LanProtocol.ReconnectSeconds)
                 {
                     lanRemote.retired=true;LanLobby.slots[2].ready=false;
@@ -323,7 +336,7 @@ namespace Frontier
                             throw new ArgumentException("Invalid cooperative welcome");
                         if(lanPeerId!=""&&(lanPeerId!=welcome.peerId||lanMatchId!=welcome.matchId||lanEpoch!=welcome.epoch))throw new ArgumentException("Host changed the cooperative session");
                         lanPeerId=welcome.peerId;lanResumeToken=welcome.resumeToken;lanGeneration=welcome.generation;lanMatchId=welcome.matchId;lanEpoch=welcome.epoch;
-                        LanLobby=welcome.lobby;lanWelcomeReceived=true;lanAwaitingFull=LanLobby.started;lanDisconnectedAt=-1;LanConnectionText=LanLobby.started?"Synchronizing with host":"Connected · choose your civilization and ready up";
+                        LanLobby=welcome.lobby;lanWelcomeReceived=true;lanAwaitingFull=LanLobby.started;lanDisconnectedAt=-1;LanConnectionText=LanLobby.started?"Synchronizing with host":"Connected · choose your civilization and ready up";RefreshLanLobbyConnectionText();
                         var retries=new List<LanCommandRequest>(lanUnconfirmed.Values);retries.Sort((a,b)=>a.sequence.CompareTo(b.sequence));
                         foreach(var request in retries){request.generation=lanGeneration;SendLan(lanClient,"command",request);}if(InMenu)Hud.ShowLanLobby();
                         continue;
@@ -332,7 +345,7 @@ namespace Frontier
                     if(!lanWelcomeReceived||packet.matchId!=lanMatchId||packet.epoch!=lanEpoch)throw new ArgumentException("Expired host state");
                     if(packet.kind=="ping")SendLan(lanClient,"pong",new LanReady(),packet.nonce);
                     else if(packet.kind=="pong"){if(packet.nonce==lanPingNonce)LanRttMilliseconds=(LanNow-lanPingSent)*1000;}
-                    else if(packet.kind=="lobby"){LanLobby=LanWire.Body<LanLobbyState>(packet);if(InMenu)Hud.RefreshLanLobbyState();}
+                    else if(packet.kind=="lobby"){LanLobby=LanWire.Body<LanLobbyState>(packet);RefreshLanLobbyConnectionText();if(InMenu)Hud.RefreshLanLobbyState();}
                     else if(packet.kind=="full")
                     {
                         var state=LanWire.Body<LanFullState>(packet);if(state.matchId!=lanMatchId||state.epoch!=lanEpoch)throw new ArgumentException("Full state changed session");
