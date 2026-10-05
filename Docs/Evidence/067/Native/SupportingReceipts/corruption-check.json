@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "fixtureFile": "stale-fixture.replay.json",
+  "originalSha256": "4604fb4e4be31cb17df560fd6a055f471cebd1e940b8f63de2cc08a78598dda1",
+  "originalBytes": 3009633,
+  "procedure": "Catalog valid owned copy; corrupt only owned copy after row validation; click cached row; verify previous viewing state is retained.",
+  "corruptBytes": 1,
+  "corruptSha256": "021fb596db81e6d02bf3d2586ee3981fe519f275c0ac9ca76bbcf2ebb4097d96",
+  "corruptContent": "{",
+  "passed": true,
+  "beforeCapture": "Frontier-20261005-143716-406-f51020-645b648ae90149ce94afb5832fc465e0.json",
+  "errorCapture": "Frontier-20261005-143813-787-f54441-a385a578287a4ddca59d231c2213c6df.json",
+  "preservedFields": [
+    "matchId",
+    "worldTime",
+    "resources",
+    "population",
+    "production",
+    "units",
+    "observerPlayer",
+    "replayStep",
+    "replaySegmentId"
+  ],
+  "worldTime": 280.7079162597656,
+  "error": "Replay is unreadable: Invalid replay JSON punctuation"
+}

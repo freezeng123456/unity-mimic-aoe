@@ -1,0 +1,940 @@
+{
+    "schemaVersion": 4,
+    "eventSchemaVersion": 2,
+    "pngFile": "Frontier-20261005-143124-864-f30085-1549625d28d74d02bfb9591a31935200.png",
+    "pngSha256": "8ac46caa62a67310011d05fe7005b6fb765ef5ee4a6633f8b48f99f0bf6c50ff",
+    "utc": "2026-10-05T14:31:24.8014310Z",
+    "appVersion": "0.10.0",
+    "buildGuid": "2d94fdd6d9734b259f5231c1fd3f2b99",
+    "unityVersion": "6000.6.3f1",
+    "matchId": "4619263a37ba4ff3b3ea8d8a18d4d969",
+    "requestMatchId": "4619263a37ba4ff3b3ea8d8a18d4d969",
+    "requestFrame": 30085,
+    "captureFrame": 30085,
+    "width": 1600,
+    "height": 900,
+    "seed": 314159,
+    "requestWorldTime": 532.2171020507813,
+    "worldTime": 532.2171020507813,
+    "inMenu": false,
+    "paused": true,
+    "hasPlayer": true,
+    "resources": {
+        "food": 224.37591552734375,
+        "wood": 191.14073181152344,
+        "coin": 650.4711303710938
+    },
+    "population": {
+        "used": 29,
+        "reserved": 3,
+        "capacity": 40
+    },
+    "hudResources": "FOOD  224     WOOD  191     COIN  650     POP  29+3/40     AGE  2     XP  234/450     SHIP  0",
+    "hudMatchId": "4619263a37ba4ff3b3ea8d8a18d4d969",
+    "hudUpdatedFrame": 30085,
+    "hudWorldTime": 532.2171020507813,
+    "camera": {
+        "focus": {
+            "x": 23.0,
+            "y": 29.0
+        },
+        "pointer": {
+            "x": 1080.0,
+            "y": 490.0
+        },
+        "applicationFocused": true,
+        "orthographicSize": 26.0
+    },
+    "aiDifficulty": "standard",
+    "mapId": "generated_river",
+    "aiDecisionSeconds": 1.2000000476837158,
+    "aiArmySeconds": 7.0,
+    "production": [
+        {
+            "entity": 1,
+            "definition": "town",
+            "factoryMode": "",
+            "position": {
+                "x": 23.0,
+                "y": 29.0
+            },
+            "hp": 3836.800048828125,
+            "construction": 1.0,
+            "factoryElapsed": 0.0,
+            "queue": []
+        },
+        {
+            "entity": 266,
+            "definition": "barracks",
+            "factoryMode": "",
+            "position": {
+                "x": 32.0,
+                "y": 32.0
+            },
+            "hp": 1980.0,
+            "construction": 1.0,
+            "factoryElapsed": 0.0,
+            "queue": [
+                {
+                    "kind": "Train",
+                    "item": "pike",
+                    "count": 1,
+                    "population": 1,
+                    "elapsed": 4.199998378753662,
+                    "duration": 22.0
+                }
+            ]
+        },
+        {
+            "entity": 269,
+            "definition": "market",
+            "factoryMode": "",
+            "position": {
+                "x": 28.0,
+                "y": 36.0
+            },
+            "hp": 956.0,
+            "construction": 1.0,
+            "factoryElapsed": 0.0,
+            "queue": []
+        },
+        {
+            "entity": 274,
+            "definition": "house",
+            "factoryMode": "",
+            "position": {
+                "x": 16.0,
+                "y": 34.0
+            },
+            "hp": 989.9989013671875,
+            "construction": 1.0,
+            "factoryElapsed": 0.0,
+            "queue": []
+        },
+        {
+            "entity": 280,
+            "definition": "stable",
+            "factoryMode": "",
+            "position": {
+                "x": 14.0,
+                "y": 29.0
+            },
+            "hp": 1980.0,
+            "construction": 1.0,
+            "factoryElapsed": 0.0,
+            "queue": [
+                {
+                    "kind": "Train",
+                    "item": "hussar",
+                    "count": 1,
+                    "population": 2,
+                    "elapsed": 13.800016403198242,
+                    "duration": 35.0
+                }
+            ]
+        },
+        {
+            "entity": 281,
+            "definition": "trade_post",
+            "factoryMode": "",
+            "position": {
+                "x": 16.0,
+                "y": 16.0
+            },
+            "hp": 1760.0,
+            "construction": 1.0,
+            "factoryElapsed": 0.0,
+            "queue": []
+        },
+        {
+            "entity": 302,
+            "definition": "house",
+            "factoryMode": "",
+            "position": {
+                "x": 26.0,
+                "y": 20.0
+            },
+            "hp": 989.9989013671875,
+            "construction": 1.0,
+            "factoryElapsed": 0.0,
+            "queue": []
+        },
+        {
+            "entity": 323,
+            "definition": "dock",
+            "factoryMode": "",
+            "position": {
+                "x": 41.0,
+                "y": 35.0
+            },
+            "hp": 2199.996826171875,
+            "construction": 1.0,
+            "factoryElapsed": 0.0,
+            "queue": []
+        }
+    ],
+    "generatedTerrain": true,
+    "requiresTransport": false,
+    "mapGeneratorVersion": 1,
+    "objective": {
+        "mode": "elimination",
+        "status": "inactive",
+        "reason": "",
+        "player": 0,
+        "target": 0,
+        "escort": 0,
+        "waypoint": 0,
+        "enemyPlayer": -1,
+        "center": {
+            "x": 0.0,
+            "y": 0.0
+        },
+        "route": [],
+        "elapsed": 0.0,
+        "progress": 0.0,
+        "enemyProgress": 0.0,
+        "nextProgressAt": 0.0,
+        "contested": false,
+        "moving": false
+    },
+    "units": [
+        {
+            "entity": 2,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 22.745752334594727,
+                "y": 24.808399200439453
+            },
+            "destination": {
+                "x": 22.745752334594727,
+                "y": 24.808399200439453
+            },
+            "hp": 136.0,
+            "cargo": []
+        },
+        {
+            "entity": 3,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 23.76849937438965,
+                "y": 33.07392120361328
+            },
+            "destination": {
+                "x": 23.76849937438965,
+                "y": 33.07392120361328
+            },
+            "hp": 79.0,
+            "cargo": []
+        },
+        {
+            "entity": 4,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 22.056377410888672,
+                "y": 24.63774299621582
+            },
+            "destination": {
+                "x": 22.056377410888672,
+                "y": 24.63774299621582
+            },
+            "hp": 150.0,
+            "cargo": []
+        },
+        {
+            "entity": 5,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 18.890596389770508,
+                "y": 31.642845153808594
+            },
+            "destination": {
+                "x": 18.890596389770508,
+                "y": 31.642845153808594
+            },
+            "hp": 115.0,
+            "cargo": []
+        },
+        {
+            "entity": 6,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 19.67094612121582,
+                "y": 25.07024383544922
+            },
+            "destination": {
+                "x": 19.67094612121582,
+                "y": 25.07024383544922
+            },
+            "hp": 126.0,
+            "cargo": []
+        },
+        {
+            "entity": 7,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 22.869949340820313,
+                "y": 24.864099502563477
+            },
+            "destination": {
+                "x": 22.869949340820313,
+                "y": 24.864099502563477
+            },
+            "hp": 150.0,
+            "cargo": []
+        },
+        {
+            "entity": 228,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 24.6816463470459,
+                "y": 24.782730102539063
+            },
+            "destination": {
+                "x": 24.6816463470459,
+                "y": 24.782730102539063
+            },
+            "hp": 150.0,
+            "cargo": []
+        },
+        {
+            "entity": 233,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 22.23646354675293,
+                "y": 24.787242889404297
+            },
+            "destination": {
+                "x": 22.23646354675293,
+                "y": 24.787242889404297
+            },
+            "hp": 150.0,
+            "cargo": []
+        },
+        {
+            "entity": 238,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 19.767017364501953,
+                "y": 24.908916473388672
+            },
+            "destination": {
+                "x": 19.767017364501953,
+                "y": 24.908916473388672
+            },
+            "hp": 79.0,
+            "cargo": []
+        },
+        {
+            "entity": 242,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 18.736452102661133,
+                "y": 29.738130569458008
+            },
+            "destination": {
+                "x": 18.736452102661133,
+                "y": 29.738130569458008
+            },
+            "hp": 112.0,
+            "cargo": []
+        },
+        {
+            "entity": 245,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 23.490615844726563,
+                "y": 24.780033111572266
+            },
+            "destination": {
+                "x": 23.490615844726563,
+                "y": 24.780033111572266
+            },
+            "hp": 150.0,
+            "cargo": []
+        },
+        {
+            "entity": 249,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 26.718740463256836,
+                "y": 32.726829528808594
+            },
+            "destination": {
+                "x": 26.718740463256836,
+                "y": 32.726829528808594
+            },
+            "hp": 126.0,
+            "cargo": []
+        },
+        {
+            "entity": 251,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 20.274368286132813,
+                "y": 24.900951385498047
+            },
+            "destination": {
+                "x": 20.274368286132813,
+                "y": 24.900951385498047
+            },
+            "hp": 97.0,
+            "cargo": []
+        },
+        {
+            "entity": 252,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 20.00806427001953,
+                "y": 30.423442840576172
+            },
+            "destination": {
+                "x": 20.00806427001953,
+                "y": 30.423442840576172
+            },
+            "hp": 80.0,
+            "cargo": []
+        },
+        {
+            "entity": 273,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 21.53875160217285,
+                "y": 24.803665161132813
+            },
+            "destination": {
+                "x": 21.53875160217285,
+                "y": 24.803665161132813
+            },
+            "hp": 132.0,
+            "cargo": []
+        },
+        {
+            "entity": 277,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 27.056570053100586,
+                "y": 29.54007339477539
+            },
+            "destination": {
+                "x": 27.056570053100586,
+                "y": 29.54007339477539
+            },
+            "hp": 138.0,
+            "cargo": []
+        },
+        {
+            "entity": 278,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 21.68378257751465,
+                "y": 24.639497756958008
+            },
+            "destination": {
+                "x": 21.68378257751465,
+                "y": 24.639497756958008
+            },
+            "hp": 115.0,
+            "cargo": []
+        },
+        {
+            "entity": 279,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 19.464170455932617,
+                "y": 25.05962562561035
+            },
+            "destination": {
+                "x": 19.464170455932617,
+                "y": 25.05962562561035
+            },
+            "hp": 136.0,
+            "cargo": []
+        },
+        {
+            "entity": 282,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 20.266386032104492,
+                "y": 24.722890853881836
+            },
+            "destination": {
+                "x": 20.266386032104492,
+                "y": 24.722890853881836
+            },
+            "hp": 150.0,
+            "cargo": []
+        },
+        {
+            "entity": 284,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 26.780061721801758,
+                "y": 32.39002990722656
+            },
+            "destination": {
+                "x": 26.780061721801758,
+                "y": 32.39002990722656
+            },
+            "hp": 112.0,
+            "cargo": []
+        },
+        {
+            "entity": 291,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 24.615266799926758,
+                "y": 33.04562759399414
+            },
+            "destination": {
+                "x": 24.615266799926758,
+                "y": 33.04562759399414
+            },
+            "hp": 126.0,
+            "cargo": []
+        },
+        {
+            "entity": 299,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 26.788728713989258,
+                "y": 26.71994972229004
+            },
+            "destination": {
+                "x": 26.788728713989258,
+                "y": 26.71994972229004
+            },
+            "hp": 126.0,
+            "cargo": []
+        },
+        {
+            "entity": 310,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 18.71656608581543,
+                "y": 28.110401153564453
+            },
+            "destination": {
+                "x": 18.71656608581543,
+                "y": 28.110401153564453
+            },
+            "hp": 132.0,
+            "cargo": []
+        },
+        {
+            "entity": 319,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 19.923526763916016,
+                "y": 31.41880226135254
+            },
+            "destination": {
+                "x": 19.923526763916016,
+                "y": 31.41880226135254
+            },
+            "hp": 132.0,
+            "cargo": []
+        },
+        {
+            "entity": 381,
+            "garrisonedIn": 1,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "villager",
+            "status": "Garrisoned",
+            "order": "",
+            "position": {
+                "x": 22.751615524291992,
+                "y": 24.761226654052734
+            },
+            "destination": {
+                "x": 22.751615524291992,
+                "y": 24.761226654052734
+            },
+            "hp": 150.0,
+            "cargo": []
+        },
+        {
+            "entity": 383,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "pike",
+            "status": "Preparing attack",
+            "order": "AttackMove",
+            "position": {
+                "x": 28.505605697631836,
+                "y": 38.570770263671875
+            },
+            "destination": {
+                "x": 19.654390335083008,
+                "y": 22.090627670288086
+            },
+            "hp": 72.0,
+            "cargo": []
+        },
+        {
+            "entity": 389,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "hussar",
+            "status": "Preparing attack",
+            "order": "AttackMove",
+            "position": {
+                "x": 16.39289093017578,
+                "y": 21.881641387939453
+            },
+            "destination": {
+                "x": 27.003177642822266,
+                "y": 32.53318786621094
+            },
+            "hp": 24.0,
+            "cargo": []
+        },
+        {
+            "entity": 393,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "pike",
+            "status": "Reloading",
+            "order": "",
+            "position": {
+                "x": 26.006433486938477,
+                "y": 37.166175842285156
+            },
+            "destination": {
+                "x": 26.006433486938477,
+                "y": 37.166175842285156
+            },
+            "hp": 180.0,
+            "cargo": []
+        }
+    ],
+    "neutralServices": [
+        {
+            "id": "coastal_league",
+            "service": "",
+            "item": "",
+            "site": 211,
+            "owner": -1,
+            "claimant": -1,
+            "contested": false,
+            "claimProgress": 0.0,
+            "elapsed": 0.0,
+            "duration": 0.0
+        }
+    ],
+    "players": [
+        {
+            "slot": 0,
+            "team": 0,
+            "civilization": "coast",
+            "resigned": false,
+            "eliminated": false,
+            "winner": false
+        },
+        {
+            "slot": 1,
+            "team": 1,
+            "civilization": "river",
+            "resigned": false,
+            "eliminated": false,
+            "winner": false
+        },
+        {
+            "slot": 2,
+            "team": 2,
+            "civilization": "france",
+            "resigned": false,
+            "eliminated": false,
+            "winner": false
+        },
+        {
+            "slot": 3,
+            "team": 3,
+            "civilization": "ottoman",
+            "resigned": false,
+            "eliminated": false,
+            "winner": false
+        }
+    ],
+    "skirmishMode": "ffa",
+    "guidedId": "",
+    "guidedStatus": "",
+    "guidedStage": "",
+    "preferences": {
+        "masterVolume": 1.0,
+        "sfxVolume": 1.0,
+        "musicVolume": 1.0,
+        "environmentVolume": 1.0,
+        "uiScale": 1.0,
+        "muted": false,
+        "musicEnabled": true,
+        "environmentEnabled": true,
+        "friendEnemyPatterns": false,
+        "highContrastMinimap": false,
+        "subtitles": true,
+        "eventHints": true,
+        "hotkeys": [
+            {
+                "action": 1,
+                "key": 15
+            },
+            {
+                "action": 2,
+                "key": 33
+            },
+            {
+                "action": 3,
+                "key": 24
+            },
+            {
+                "action": 4,
+                "key": 21
+            },
+            {
+                "action": 5,
+                "key": 32
+            },
+            {
+                "action": 6,
+                "key": 22
+            },
+            {
+                "action": 7,
+                "key": 16
+            },
+            {
+                "action": 8,
+                "key": 36
+            },
+            {
+                "action": 9,
+                "key": 34
+            },
+            {
+                "action": 10,
+                "key": 27
+            },
+            {
+                "action": 11,
+                "key": 20
+            },
+            {
+                "action": 12,
+                "key": 19
+            },
+            {
+                "action": 13,
+                "key": 35
+            },
+            {
+                "action": 14,
+                "key": 25
+            },
+            {
+                "action": 15,
+                "key": 61
+            },
+            {
+                "action": 16,
+                "key": 62
+            },
+            {
+                "action": 17,
+                "key": 63
+            },
+            {
+                "action": 18,
+                "key": 64
+            },
+            {
+                "action": 19,
+                "key": 14
+            },
+            {
+                "action": 20,
+                "key": 13
+            }
+        ]
+    },
+    "observerPlayer": 0,
+    "replay": {
+        "watching": true,
+        "recording": false,
+        "seek": false,
+        "paused": true,
+        "worldPaused": false,
+        "verified": false,
+        "incomplete": false,
+        "segment": "bef1332be33c4e38b0594b3e4bf8eb13",
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.10.0/FinalCandidate/Native/Replays/manual-export-bef1332be33c4e38b0594b3e4bf8eb13.replay.json",
+        "lastSavedFile": "",
+        "error": "",
+        "incompleteReason": "",
+        "fileError": "",
+        "libraryError": "",
+        "startStep": 0,
+        "endStep": 5622,
+        "currentStep": 5322,
+        "observerPlayer": 0,
+        "speed": 4.0,
+        "identity": {
+            "appVersion": "0.10.0",
+            "buildIdentity": "2d94fdd6d9734b259f5231c1fd3f2b99",
+            "unityVersion": "6000.6.3f1",
+            "rulesHash": "5324ece4d54715613e941af737d8da34dcf2d5f517388373516b5e0f17b85d1f",
+            "mapGenerationVersion": 1,
+            "guidedCatalogRevision": 1
+        }
+    }
+}

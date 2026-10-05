@@ -2,7 +2,13 @@
 
 独立 Unity 即时战略游戏：英国、荷兰、法国、奥斯曼四个经典文明核心玩法，加上远驿盟市、山岭工联两个原创文明，共六文明。五个时代、25张卡组与XP船运、银行、实车贸易、工坊制造、守卫宝藏和炮兵攻城，配有原创模型、动画与音频。使用本项目规则和候选数值，与 Age of Empires 及其发行商无关联。
 
-**当前源码版本为 0.9.0，目标平台 macOS Apple silicon。** 第三批已实现本地 2v2/四方 FFA、七个中文引导课程、三章相连的原创河流战役、持久音频与20动作改键，以及UI比例、阵营形状、高对比小地图和事件文字。[完整自动化1,062/1,062通过](Docs/Evidence/066/Tests/README.md)（710 EditMode + 352 PlayMode）；运行代码提交/来源基线 `c9747695d91fa203b05116a1fc0c15a8aac32de2`，573个冻结输入的指纹 `66cf7cc57e080eb40cfdf98310ee26affd93d690745dde2b457e8fb3eb0ee1ee`。四槽模式是一个玩家加AI，当前没有联网。**GUID `1969c7ee14f944879510f4ca0d0f241d` 的代表性原生操作与冷恢复已通过；本版性能未采样；最终三包本地核验及六载荷/第七回执上传、云端隐私/名称/大小/父目录元数据读回已通过，远端内容SHA与下载字节一致性未验证。** 玩法和操作见[内容说明](Docs/Content-066.md)、[玩家指南](Docs/Player-Guide-066.md)，证据见[066索引](Docs/Evidence/066/README.md)与[本地完成快照](Docs/Completion-Status-066.md)。
+**当前源码版本为 0.10.0，目标平台 macOS Apple silicon。** 第四批已实现本地录像、回放、时间跳转和最多四槽观察视角，沿用六文明、本地 2v2/四方 FFA、七课、三章原创战役及持久设置。[完整自动化 1,097/1,097 通过](Docs/Evidence/067/Tests/README.md)（740 EditMode + 357 PlayMode，`run-q8grIRWM`）；运行代码提交 `2668c47a426f2cea8d4bc7b309cdbfa71533cc9d`，595 个冻结输入的指纹 `8180b02b55ed3957b94042d779a6d74bdda78cd46073cf70d93353c330363466`。录像保存完整外部命令与接受/拒绝结果、暂停、教学选择和经济日志刷新，使用原有 AI 与模拟重建并核对一致性。操作见[0.10玩家指南](Docs/Player-Guide-067.md)，格式、兼容和限制见[回放说明](Docs/Replay-067.md)。当前仍是一个本地玩家加 AI，没有 LAN 或远程人类玩家。
+
+**最终 GUID `2d94fdd6d9734b259f5231c1fd3f2b99` 已通过手动导出片段 `bef1332be33c4e38b0594b3e4bf8eb13` 的新进程冷启动、从第 0 步完整前向播放至第 5622 步（9:22 模拟时间），并显示 `RECORDED SEGMENT VERIFIED`。** 接受的 `Train villager` 和无选取单位而拒绝的 `Stop` 均被重现；四观察位分别为 `coast=British`、`river=Dutch`、`france=French`、`ottoman=Ottomans`。原生 ±30 秒、中点跳转与时间轴填充/手柄修复已核验。该 `manual_save` 片段没有自然终局含义；坏文件错误提示及原世界保留、个人存储和观看输出字节核对已通过；范围见[最终原生证据](Docs/Evidence/067/Native/README.md)。长窗性能未验收，最终打包与云端交付待本次冻结后完成。
+
+旧 GUID `2158deff98354bc981f074397534ad74` 的 35:50 片段保留在[候选 1 诊断](Docs/Evidence/067/Diagnostics/FrozenCandidate1/Native/README.md)，不作为最终构建的原生证明。
+
+0.9 的本地团队、课程、战役和持久设置保留在[内容说明](Docs/Content-066.md)、[玩家指南](Docs/Player-Guide-066.md)及[完成快照](Docs/Completion-Status-066.md)。该版 1,062 项测试、GUID `1969c7ee14f944879510f4ca0d0f241d` 的代表性原生操作、冷恢复和已上传三包见[066索引](Docs/Evidence/066/README.md)与[交付说明](Docs/Delivery-066.md)，不重标为 0.10 结果。
 
 0.8的958项测试、生成地图、海军运输与有界压缩存档，以及原生长局冷恢复/两乘员登陆记录，保留在[0.8状态快照](Docs/Completion-Status-before-066.md)、[正常冷恢复](Docs/Evidence/065/Native/Normal/README.md)和[受控乘员证据](Docs/Evidence/065/Native/Fleet/README.md)，不重标为0.9结果。已交付0.7的工业、三槽存读档、796项测试与原生证据见[0.7完成快照](Docs/Completion-Status-064.md)和[0.7交付索引](Docs/Delivery-064.md)。机制说明仍可参考[经典工业](Docs/Classic-Industry-064.md)、[存档与续局](Docs/Save-Load-064.md)、[地图与海军内容](Docs/Naval-Content-065.md)；[AoE III 差距路线](Docs/AoE3-Gap-Roadmap-064.md)记录各批的独立实现和验收范围。
 
@@ -10,11 +16,13 @@
 
 ## 启动与操作
 
-0.9操作见[玩家指南](Docs/Player-Guide-066.md)。初次可从 **GUIDED LESSONS** 学习；**RIVER CAMPAIGN** 进入原创三章，完成记录用于解锁后续章节；**SETTINGS** 调整音频、可访问性和改键。原生已通过设置冷恢复、单课槽3恢复后实际完成及账号徽记再冷恢复、2v2曲河冷恢复/投降后盟友继续，以及四国FFA开局；[原生回执](Docs/Evidence/066/Native/README.md)记录范围。全部课程/战役或四人终局没有被宣称通过；下载入口及三包本地SHA见[0.9交付说明](Docs/Delivery-066.md)；云端已完成元数据核验，远端内容校验未完成。
+0.10 录像操作见[玩家指南](Docs/Player-Guide-067.md)：正常开局、课程和检查点恢复会自动创建录制段；暂停菜单 **SAVE REPLAY** 保存当前片段并继续录制，主菜单或暂停菜单 **RECORDING LIBRARY** 打开后默认暂停。**PLAY / PAUSE**、**0.5× / 1× / 2× / 4×**、**−30s / +30s** 与时间轴控制播放；**VIEW P1–P4** 仅切换已有观察槽位。镜头、选取、资源与迷雾跟随该槽位，观看不会下达命令、保存检查点或写入任务完成记录。上述最终构建已核验手动导出、冷启动完整播放和代表性跳转，更多课程、长片段与操作组合仍需分别验收。
 
-当前[0.9私有交付目录](https://drive.google.com/drive/folders/1wzczmUUktYSDSn92KuwpUQ4dZkIK-h-3)提供源码、macOS客户端和原生图集；源码快照为`e75407c78522374ed7e327a1ed1727212d27ffd3`，运行代码仍为上述c974，上传后三ZIP未重建。包外回执见[Delivery-066](Docs/Delivery-066.md)，私有开发分支推送及草稿PR说明读回已通过；[远端回执](Docs/Evidence/066/Delivery/github-delivery-readback.json)绑定首轮交付提交`72f84c8`，后续仅追加包外文档，最末提交以PR当前head为准。
+初次可从 **GUIDED LESSONS** 学习，**RIVER CAMPAIGN** 进入原创三章，**SETTINGS** 调整音频、可访问性和改键。基础操作沿用[0.9指南](Docs/Player-Guide-066.md)，其设置/单课/团队冷恢复证据仅属于对应旧构建。
 
-历史客户端下载和核验见[0.7交付索引](Docs/Delivery-064.md)与[0.8交付说明](Docs/Delivery-065.md)所列包外回执。0.7客户端只有六张固定地图；当前源码菜单有九图循环、**MAP, SEED & OBJECTIVES** 和本地槽位配置，不能用历史客户端演示新增0.9功能。
+历史[0.9私有交付目录](https://drive.google.com/drive/folders/1wzczmUUktYSDSn92KuwpUQ4dZkIK-h-3)提供源码、macOS客户端和原生图集；源码快照为`e75407c78522374ed7e327a1ed1727212d27ffd3`，该版运行代码为`c9747695d91fa203b05116a1fc0c15a8aac32de2`，上传后三ZIP未重建。包外回执见[Delivery-066](Docs/Delivery-066.md)，私有开发分支推送及草稿PR说明读回已通过；[远端回执](Docs/Evidence/066/Delivery/github-delivery-readback.json)绑定首轮交付提交`72f84c8`，后续仅追加包外文档，最末提交以PR当前head为准。
+
+历史客户端下载和核验见[0.7交付索引](Docs/Delivery-064.md)与[0.8交付说明](Docs/Delivery-065.md)所列包外回执。0.7客户端只有六张固定地图；当前源码菜单有九图循环、**MAP, SEED & OBJECTIVES** 和本地槽位配置，不能用历史客户端演示新增0.10录像与观战功能。
 
 源码通过 Unity Hub 使用 **Unity 6000.6.3f1** 打开；主场景为 `Assets/Frontier/Scenes/FrontierSkirmish.unity`。自由对战中选择文明、时代上限、难度、地图、牌组和模式，再点击 **BEGIN SKIRMISH**；2v2槽1+3同队、槽2+4同队，玩家只控制槽1。历史[0.8指南](Docs/Playtest-065.md)、[0.7指南](Docs/Playtest-064.md)和[0.6指南](Docs/Playtest-063.md)保留给对应版本。
 
@@ -31,12 +39,14 @@
 | MAP, SEED & OBJECTIVES / SETTLEMENT | 选择地图种子与目标 / 接触中立据点后缔约、招募和研究 |
 | 模式按钮 / LOCAL PLAYERS & TEAMS | 1v1、2v2或四方FFA / 配置各槽文明 |
 | GUIDED LESSONS / RIVER CAMPAIGN / SETTINGS | 七课 / 三章原创战役 / 持久音频、可访问性与20动作改键 |
+| SAVE REPLAY / RECORDING LIBRARY | 保存录制片段并继续游戏 / 在原构建中打开录像 |
+| VIEW P1–P4 / SPEED / TIMELINE | 切换观察槽位 / 调整播放速度 / 跳到记录区间中的位置 |
 | Ctrl或Command + 数字 / 数字 | 保存编组 / 召回编组 |
 | Esc | 取消操作、关闭面板或暂停；以可见暂停界面为准 |
 
 开局先采集资源箱，再维持食物、木材与钱币收入。箱子和时代奖励须由工人实际采集；同一资源点最多8名有效工人。荷兰银行完工后持续产币，主城船运需要XP机会和运输时间。奥斯曼城镇中心显示免费招工进度、工人上限和阻塞原因；**AUTO SETTLERS: ON/OFF** 控制暂停与恢复。炮兵优先框选并配备护卫；驻军工人不会采集，安全后应及时撤出。
 
-正常玩家局失焦会自动暂停，回来后手动恢复。**SAVE MATCH** 写三个手动检查点，主菜单 **LOAD SAVED MATCH** 或暂停菜单 **LOAD MATCH** 读取后先暂停。检查点包含AI、迷雾、队列、工厂、镜头、编组、乘员、完整事件及可选任务尝试；选择已有槽会替换该检查点。写入使用schema 2 gzip-base64，文件仍限64 MiB、解压原文限256 MiB，失败保留旧槽。读档要求应用版本和规则一致，不提供0.8→0.9迁移。任务完成/解锁另存于本地Account，音频和改键另存于Preferences，读取检查点不回滚它们。F8/F9/F10是保留的诊断采集键；默认动作和改键冲突规则见[指南](Docs/Player-Guide-066.md)。
+正常玩家局失焦会自动暂停，回来后手动恢复。**SAVE MATCH** 写三个手动检查点，主菜单 **LOAD SAVED MATCH** 或暂停菜单 **LOAD MATCH** 读取后先暂停。检查点包含AI、迷雾、队列、工厂、镜头、编组、乘员、完整事件及可选任务尝试；选择已有槽会替换该检查点。写入使用schema 2 gzip-base64，文件仍限64 MiB、解压原文限256 MiB，失败保留旧槽。读档要求应用版本和规则一致，不提供旧版本→0.10迁移。任务完成/解锁另存于本地Account，音频和改键另存于Preferences，读取检查点不回滚它们。 录像另存于 `Replays`，与检查点分别保存；要求应用、原生 build GUID、Unity、规则和生成版本等身份匹配。同为0.10版本号的重新构建也可能拒绝旧录像。F8/F9/F10是保留的诊断采集键；默认动作和改键冲突规则见[指南](Docs/Player-Guide-066.md)。
 
 ## 六文明玩法
 
@@ -75,4 +85,4 @@ C1–C6失败结果原样保留，不跨局拼接。C7缺少单独终局F9和菜
 
 ## 交付边界
 
-目标为macOS arm64、Development/Mono、URP。本轮1,062项是编辑器自动化结果，0.9另有上述代表性原生验收；三包本地核验及云端元数据已通过，远端SHA/下载字节一致性未验证，本版性能未采样。历史0.8正常续局/受控操作不扩大为0.9整局、自然胜负或1×性能。原生帧率样本受机器、分辨率、镜头和活动量限制，不能保证通用60FPS。Windows、Linux、Intel Mac及跨机器签名、公证尚未验证。七课、三章原创战役和本地团队已实现；联网合作、可毁桥、完整商业海战、地图编辑器和通用回放仍缺。完整边界见[完成状态](Docs/Completion-Status.md)与[已知限制](Docs/Known-Issues.md)。
+目标为macOS arm64、Development/Mono、URP。本轮 1,097 项是编辑器自动化结果；最终 GUID 的 9:22 手动片段冷启动完整播放、四观察位、接受/拒绝命令和代表性跳转已通过，原生坏文件错误、原世界保留及存储字节核验也已通过；最终包与云端交付待本次冻结后完成。当前本地录制/回放/观察已实现；LAN 只有[下阶段方案](Docs/LAN-Next-068.md)，远端人类、联网合作、通用场景编辑器、完整商业海战及可毁桥仍待后续迭代。没有本版普通 1× 对局性能或真实网络验收；原生帧率样本受机器、分辨率、镜头和活动量限制，历史结果不能保证通用60FPS。Windows、Linux、Intel Mac及跨机器签名、公证尚未验证。历史交付和验收保持各自版本身份；范围见[已知限制](Docs/Known-Issues.md)，各批状态见[差距路线](Docs/AoE3-Gap-Roadmap-064.md)。
