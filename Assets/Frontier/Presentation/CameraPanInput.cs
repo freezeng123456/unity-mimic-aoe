@@ -1,9 +1,16 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Frontier
 {
     public static class CameraPanInput
     {
+        public static Vector2 KeyDirection(Keyboard keyboard,PlayerBindings bindings)
+        {
+            if(keyboard==null||bindings==null)return Vector2.zero;
+            return new Vector2((bindings.IsPressed(keyboard,PlayerAction.CameraRight)?1:0)-(bindings.IsPressed(keyboard,PlayerAction.CameraLeft)?1:0),
+                (bindings.IsPressed(keyboard,PlayerAction.CameraUp)?1:0)-(bindings.IsPressed(keyboard,PlayerAction.CameraDown)?1:0)).normalized;
+        }
         public static Vector2 EdgeDirection(Vector2 pointer,Vector2 viewport,bool focused)
         {
             if(!focused||viewport.x<=0||viewport.y<=0||pointer.x<0||pointer.y<0||pointer.x>=viewport.x||pointer.y>=viewport.y)return Vector2.zero;

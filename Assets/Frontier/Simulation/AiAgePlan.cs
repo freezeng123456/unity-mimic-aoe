@@ -25,7 +25,7 @@ namespace Frontier
         }
         public void Tick(EntityState town,int workers,int soldiers,int visibleRaiders,bool advancing)
         {
-            if(world.Paused||world.Winner>=0)return;
+            if(world.Paused||world.IsMatchEnded||!world.IsPlayerActive(player))return;
             var p=world.Players[player];int required=Math.Min(world.WorkerLimit(player),p.age==1?12:p.age==2?20:p.age==3?30:38);
             if(TargetAge>0)
             {

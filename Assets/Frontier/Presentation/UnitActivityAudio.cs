@@ -24,7 +24,7 @@ namespace Frontier
         public void Tick(GameController game,EventAudio audio)
         {
             var world=game.World;
-            if(world==null||game.InMenu||world.Paused||world.Winner>=0||game.Muted){Reset(world);return;}
+            if(world==null||game.InMenu||world.Paused||world.Winner>=0||audio.EffectiveSfxVolume<=0){Reset(world);return;}
             if(observedWorld!=world){Reset();observedWorld=world;}
             if(world.Time<=observedAt)return;observedAt=world.Time;
             EntityState chosen=null;Rhythm chosenRhythm=null;EventAudio.SoundCategory chosenCategory=default;

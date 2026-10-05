@@ -61,7 +61,8 @@ namespace Frontier
         public string NeutralCommandReason(int player,int site,CommandKind kind)
         {
             if(player<0||player>=Players.Length)return "Invalid player";
-            if(Winner>=0)return "Match has ended";
+            if(IsMatchEnded)return "Match has ended";
+            if(!IsPlayerActive(player))return "Player is eliminated or resigned";
             if(Paused)return "Resume the match first";
             var state=NeutralAt(site);var d=state==null?null:NeutralDefinition(state.id);var anchor=Get(site);
             if(d==null||anchor==null||!anchor.Alive)return "Unknown neutral settlement";
@@ -69,7 +70,7 @@ namespace Frontier
             if(!NeutralPresence(player,anchor.position,d.controlRadius))return "Bring a land unit to contact the settlement";
             var post=TradingPostAt(site);
             if(post==null||post.owner!=player||!post.Complete)return "Build your trading post at this settlement";
-            if(NeutralPresence(1-player,anchor.position,d.controlRadius,true))return "Settlement is contested";
+            if(HostileNeutralPresence(player,anchor.position,d.controlRadius))return "Settlement is contested";
             if(kind==CommandKind.NeutralAlliance)
             {
                 if(state.owner>=0||state.claimant>=0)return "Alliance already held or being negotiated";
@@ -146,10 +147,10 @@ namespace Frontier
             {
                 int player=state.owner>=0?state.owner:state.claimant;if(player<0)continue;
                 var d=NeutralDefinition(state.id);var anchor=Get(state.site);var post=Get(state.post);
-                if(anchor==null||!anchor.Alive||post==null||!post.Alive||post.owner!=player||!post.Complete)
+                if(!IsPlayerActive(player)||anchor==null||!anchor.Alive||post==null||!post.Alive||post.owner!=player||!post.Complete)
                 {LoseNeutralAlliance(state,"Trading post lost");continue;}
                 bool friendly=NeutralPresence(player,anchor.position,d.controlRadius);
-                bool hostile=NeutralPresence(1-player,anchor.position,d.controlRadius,true);
+                bool hostile=HostileNeutralPresence(player,anchor.position,d.controlRadius);
                 if(state.contested!=hostile){state.contested=hostile;Emit("NeutralContest",player,state.site,hostile?"Hostile troops contest the settlement":"Settlement secure");}
                 state.lossProgress=hostile&&!friendly?state.lossProgress+dt:0;
                 if(state.lossProgress+.0001f>=d.lossSeconds){LoseNeutralAlliance(state,"Hostile troops broke control");continue;}
@@ -184,16 +185,16 @@ namespace Frontier
         {
             void Require(bool valid){if(!valid)throw new ArgumentException("Invalid saved neutral alliances");}
             var defs=rules.neutralAllies??Array.Empty<NeutralAllyDef>();Require(states!=null&&states.Length==defs.Length);
-            var ids=new HashSet<string>();var sites=new HashSet<int>();var reserved=new int[2];
+            var ids=new HashSet<string>();var sites=new HashSet<int>();var reserved=new int[players.Length];
             EntitySnapshot Find(int id)=>Array.Find(entities,e=>e.state.id==id);
             foreach(var state in states)
             {
                 Require(state!=null);var d=Array.Find(defs,x=>x.id==state.id);
                 Require(d!=null&&ids.Add(state.id)&&sites.Add(state.site)&&Find(state.site)?.definition=="trade_socket");
-                Require(state.owner>=-1&&state.owner<2&&state.claimant>=-1&&state.claimant<2&&!(state.owner>=0&&state.claimant>=0));
+                Require(state.owner>=-1&&state.owner<players.Length&&state.claimant>=-1&&state.claimant<players.Length&&!(state.owner>=0&&state.claimant>=0));
                 Require(SnapshotCodec.Finite(state.claimProgress)&&state.claimProgress>=0&&state.claimProgress<=d.allianceSeconds+.001f&&SnapshotCodec.Finite(state.lossProgress)&&state.lossProgress>=0&&state.lossProgress<=d.lossSeconds+.001f);
                 Require(state.jobs!=null&&state.jobs.Count<=1);int player=state.owner>=0?state.owner:state.claimant;
-                Require(player<0?state.post==0&&state.jobs.Count==0:Find(state.post)?.definition=="trade_post");
+                Require(player<0?state.post==0&&state.jobs.Count==0:Find(state.post)?.definition=="trade_post"&&Find(state.post).state.owner==player&&!players[player].state.eliminated&&!players[player].state.resigned);
                 foreach(var job in state.jobs)
                 {
                     Require(job!=null&&state.owner>=0&&SnapshotCodec.Finite(job.elapsed)&&job.elapsed>=0&&SnapshotCodec.Finite(job.duration)&&job.duration>=0&&job.elapsed<=job.duration+.001f&&SnapshotCodec.Finite(job.paid)&&job.paid.food>=0&&job.paid.wood>=0&&job.paid.coin>=0);
@@ -201,7 +202,7 @@ namespace Frontier
                     reserved[player]+=job.population;
                 }
             }
-            for(int player=0;player<2;player++)Require(players[player].state.reservedPopulation>=reserved[player]);
+            for(int player=0;player<players.Length;player++)Require(players[player].state.reservedPopulation>=reserved[player]);
         }
     }
 }

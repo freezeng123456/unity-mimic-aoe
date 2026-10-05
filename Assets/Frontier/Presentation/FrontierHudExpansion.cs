@@ -14,7 +14,7 @@ namespace Frontier
         {if(neutralModalSite>=0&&ModalVisible&&!(uiPointer?.IsPressed??false)&&neutralModalSignature!=NeutralSignature(neutralModalSite))ShowNeutralSettlement(neutralModalSite);}
         private void ShowMapOptions()
         {
-            var preview=new World(game.Rules,game.MatchSeed,game.PlayerCivilization,game.OpponentCivilization,game.AgeLimit,game.SelectedMap);
+            var preview=new World(game.Rules,game.MatchSeed,game.RosterCivilizations(),game.RosterTeams(),game.AgeLimit,game.SelectedMap);
             var box=Modal("MAP & MISSION",710);
             Button(box,game.MapName,new Rect(25,75,470,48),()=>{game.CycleMap();ShowMapOptions();},"Cycle authored and generated maps.");
             Label(box,preview.Layout.Generated?"Generated terrain: this seed changes shores, crossings, spawns and resources.":"Authored terrain: the seed preserves this fixed map.",new Rect(25,138,470,70),18,muted);
@@ -25,7 +25,7 @@ namespace Frontier
             Button(box,"APPLY",new Rect(354,216,140,46),()=>{if(int.TryParse(input.text,out int seed)){game.MatchSeed=seed;ShowMapOptions();}else game.Notify("Enter a signed 32-bit integer seed");});
             var terrain=Rect(box,"Terrain preview",new Rect(530,75,280,280));var image=terrain.gameObject.AddComponent<RawImage>();
             image.texture=RenderMapPreview(preview);image.raycastTarget=false;
-            Label(box,"Blue / red: starting towns\nGold: bridges · White: harbor sites",new Rect(530,365,280,68),17,muted);
+            Label(box,"P1 blue · P2 red · P3 green · P4 purple\nGold: bridges · White: harbor sites",new Rect(530,365,280,68),17,muted);
             Label(box,preview.Layout.RequiresTransport?"Two separated shores: an army needs a transport to cross.":"Land routes and shores are checked when the match is created.",new Rect(25,279,470,70),18,gold);
             string[] modes={"elimination","capture_harbor","defend_bridge","escort_caravan"};
             for(int i=0;i<modes.Length;i++)
@@ -48,7 +48,7 @@ namespace Frontier
             }
             void Mark(Vector2 p,Color32 color,int radius){for(int y=-radius;y<=radius;y++)for(int x=-radius;x<=radius;x++){int px=Mathf.RoundToInt(p.x)+x,py=Mathf.RoundToInt(p.y)+y;if(px>=0&&px<128&&py>=0&&py<128&&x*x+y*y<=radius*radius)pixels[py*128+px]=color;}}
             foreach(var coast in world.Layout.DockSites)foreach(var point in coast)Mark(point,new Color32(235,228,200,255),2);
-            Mark(world.OpeningTownPosition(0),new Color32(50,133,249,255),3);Mark(world.OpeningTownPosition(1),new Color32(222,69,64,255),3);
+            for(int i=0;i<world.Players.Length;i++)Mark(world.OpeningTownPosition(i),ProceduralArt.OwnerColor(i),3);
             mapPreview.SetPixels32(pixels);mapPreview.Apply(false);return mapPreview;
         }
         private string ObjectiveSummary()

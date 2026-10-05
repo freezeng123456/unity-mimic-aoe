@@ -11,6 +11,7 @@ namespace Frontier
         private enum RoofForm { Gable,Hip,Flat,Shed }
         private static readonly Dictionary<Color,Material> Materials=new Dictionary<Color,Material>();
         public static readonly Color Blue=new Color(.13f,.42f,.64f), Red=new Color(.68f,.22f,.15f);
+        public static Color OwnerColor(int owner)=>owner==0?Blue:owner==1?Red:owner==2?new Color(.16f,.61f,.41f):owner==3?new Color(.61f,.35f,.72f):new Color(.4f,.43f,.24f);
         public static Material Mat(Color color)
         {
             if(Materials.TryGetValue(color,out var m)&&m!=null)return m;
@@ -67,7 +68,7 @@ namespace Frontier
         public static Transform BuildEntity(EntityState e,Transform parent,string civilization=null,int age=1)
         {
             var root=new GameObject(e.def.name).transform;root.SetParent(parent,false);
-            Color team=e.owner==0?Blue:e.owner==1?Red:new Color(.4f,.43f,.24f);
+            Color team=OwnerColor(e.owner);
             if(WaterPresentation.TryBuildEntity(root,e,team))return root;
             if(e.def.kind==EntityKind.Resource){Resource(root,e);return root;}
             if(e.def.kind==EntityKind.Building){DetailedArchitecture.Build(root,e,team,civilization,age);return root;}

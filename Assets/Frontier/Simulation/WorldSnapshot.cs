@@ -25,9 +25,10 @@ namespace Frontier
     [Serializable] public sealed class TreasureSnapshot
     { public int entity,definition;public int[] guards; }
     [Serializable] public sealed class SocketSnapshot {public int entity,waypoint;}
+    [Serializable] public sealed class LandmarkDiscoverySnapshot {public int[] entities;}
     [Serializable] public sealed class WorldSnapshot
     {
-        public const int CurrentSchema=2;
+        public const int CurrentSchema=3;
         public int schema=CurrentSchema,seed,maxAge,winner,nextId,caravanWaypoint,caravanDirection;
         public string rulesHash,mapId;public float time,fogAt,nextEvacuation;public bool paused;
         public PlayerSnapshot[] players;public EntitySnapshot[] entities;
@@ -37,6 +38,8 @@ namespace Frontier
         public Vector2 caravanPosition;public int[] discoveries0,discoveries1,pendingEvacuations,fineRecoveryQueue;
         public IncomeSnapshot[] incomes;
         public NeutralAllianceState[] neutralAllies;public MapObjectiveState mapObjective;
+        public int[] teams;
+        public LandmarkDiscoverySnapshot[] discoveries;
     }
     public static class SnapshotCodec
     {
@@ -75,6 +78,8 @@ namespace Frontier
             var sockets=new List<SocketSnapshot>();foreach(var s in TradeSockets)sockets.Add(new SocketSnapshot{entity=s.entity,waypoint=s.waypoint});snapshot.sockets=sockets.ToArray();
             var treasures=new List<TreasureSnapshot>();foreach(var t in Treasures)treasures.Add(new TreasureSnapshot{entity=t.entity,definition=Array.IndexOf(Rules.landmarks.treasures,t.definition),guards=t.guards.ToArray()});snapshot.treasures=treasures.ToArray();
             snapshot.discoveries0=Sorted(discoveredLandmarks[0]);snapshot.discoveries1=Sorted(discoveredLandmarks[1]);
+            snapshot.teams=new int[Players.Length];snapshot.discoveries=new LandmarkDiscoverySnapshot[Players.Length];
+            for(int i=0;i<Players.Length;i++){snapshot.teams[i]=Players[i].team;snapshot.discoveries[i]=new LandmarkDiscoverySnapshot{entities=Sorted(discoveredLandmarks[i])};}
             var evacuations=new List<int>();foreach(var e in pendingEvacuations)evacuations.Add(e.id);snapshot.pendingEvacuations=evacuations.ToArray();
             var recovery=new List<int>();foreach(var request in pendingFineRecoveryQueue)
                 if(pendingFineRecoveries.TryGetValue(request.unit.id,out var current)&&ReferenceEquals(current,request)&&
@@ -91,10 +96,17 @@ namespace Frontier
         public static World Restore(RuleCatalog rules,WorldSnapshot source)
         {
             ValidateSnapshot(rules,source);var s=SnapshotCodec.Clone(source);
-            var world=new World(rules,s.seed,s.players[0].state.civilization,s.players[1].state.civilization,s.maxAge,s.mapId);
+            if(s.schema==2)
+            {
+                for(int i=0;i<2;i++)s.players[i].state.eliminated=s.players[i].state.resigned||s.winner>=0&&s.mapObjective.mode=="elimination"&&i!=s.winner;
+                s.mapObjective.enemyPlayer=s.mapObjective.enemyProgress>0?1-s.mapObjective.player:-1;
+            }
+            var civilizations=new string[s.players.Length];var teams=new int[s.players.Length];
+            for(int i=0;i<s.players.Length;i++){civilizations[i]=s.players[i].state.civilization;teams[i]=s.schema==2?i:s.teams[i];s.players[i].state.team=teams[i];}
+            var world=new World(rules,s.seed,civilizations,teams,s.maxAge,s.mapId);
             world.Entities.Clear();world.byId.Clear();world.Events.Clear();world.Projectiles.Clear();world.TradeSockets.Clear();world.Treasures.Clear();
             world.TerrainObstacles.Clear();world.TerrainObstacles.AddRange(s.terrainObstacles);
-            for(int i=0;i<2;i++)
+            for(int i=0;i<s.players.Length;i++)
             {
                 var saved=s.players[i];var p=saved.state;
                 p.technologies.UnionWith(saved.technologies);p.sentCards.UnionWith(saved.sentCards);p.deck.AddRange(saved.deck);p.ageHistory.AddRange(saved.ageHistory);
@@ -112,7 +124,8 @@ namespace Frontier
             foreach(var item in s.treasures)
             {var treasure=new TreasureState{entity=item.entity,definition=rules.landmarks.treasures[item.definition]};treasure.guards.AddRange(item.guards);world.Treasures.Add(treasure);}
             world.CaravanPosition=s.caravanPosition;world.caravanWaypoint=s.caravanWaypoint;world.caravanDirection=s.caravanDirection;
-            world.discoveredLandmarks[0].Clear();world.discoveredLandmarks[0].UnionWith(s.discoveries0);world.discoveredLandmarks[1].Clear();world.discoveredLandmarks[1].UnionWith(s.discoveries1);
+            for(int i=0;i<s.players.Length;i++)
+            {world.discoveredLandmarks[i].Clear();world.discoveredLandmarks[i].UnionWith(s.schema==2?(i==0?s.discoveries0:s.discoveries1):s.discoveries[i].entities);}
             world.pendingEvacuations.Clear();foreach(int id in s.pendingEvacuations)world.pendingEvacuations.Add(world.Get(id));world.nextEvacuation=s.nextEvacuation;
             foreach(int id in s.fineRecoveryQueue)
             {var e=world.Get(id);var request=new FineRecoveryRequest{unit=e,order=e.orders.Count>0?e.orders.Peek():null};world.pendingFineRecoveries.Add(id,request);world.pendingFineRecoveryQueue.Enqueue(request);}
@@ -123,15 +136,22 @@ namespace Frontier
         public static void ValidateSnapshot(RuleCatalog rules,WorldSnapshot s)
         {
             void Require(bool valid,string message){if(!valid)throw new ArgumentException("Invalid saved match: "+message);}
-            Require(rules!=null&&s!=null,"missing state");Require(s.schema==WorldSnapshot.CurrentSchema,"unsupported schema");
+            Require(rules!=null&&s!=null,"missing state");Require(s.schema==2||s.schema==WorldSnapshot.CurrentSchema,"unsupported schema");
             Require(s.rulesHash==SnapshotCodec.RulesHash(rules),"rules changed; this save needs its original game version");
             Require(MapTopology.IsValid(s.mapId)&&s.maxAge>=1&&s.maxAge<=rules.ages.Length,"map or age cap");
             Require(SnapshotCodec.Finite(s.time)&&s.time>=0&&SnapshotCodec.Finite(s.fogAt)&&SnapshotCodec.Finite(s.nextEvacuation),"clock");
-            Require(s.winner>=-1&&s.winner<2&&s.players?.Length==2&&s.entities!=null&&s.entities.Length<100000,"players or entities");
+            int count=s.players?.Length??0;
+            Require(count>=2&&count<=4&&(s.schema!=2||count==2)&&s.winner>=-2&&s.winner<count&&s.entities!=null&&s.entities.Length<100000,"players or entities");
+            int[] teams=s.schema==2?new[]{0,1}:s.teams;
+            Require(teams!=null&&teams.Length==count,"team roster");var factions=new HashSet<int>();
+            for(int i=0;i<count;i++){Require(teams[i]>=0&&teams[i]<=3,"team identity");factions.Add(teams[i]);}
+            Require(factions.Count>=2,"at least two factions");
             var ids=new HashSet<int>();int max=0;
-            for(int i=0;i<2;i++)
+            for(int i=0;i<count;i++)
             {
                 var p=s.players[i];Require(p?.state!=null&&p.state.id==i&&rules.Civ(p.state.civilization)!=null,"civilization");
+                Require(s.schema==2||p.state.team==teams[i],"player team mismatch");
+                Require(s.schema==2||!p.state.resigned||p.state.eliminated,"resigned player state");
                 Require(p.state.age>=1&&p.state.age<=s.maxAge&&SnapshotCodec.Finite(p.state.resources)&&SnapshotCodec.Finite(p.state.xp),"player economy");
                 Require(p.technologies!=null&&p.sentCards!=null&&p.deck!=null&&p.ageHistory!=null&&p.rewards!=null&&p.shipments!=null&&p.enemyMemory!=null,"player collections");
                 foreach(string id in p.technologies)Require(rules.Tech(id)!=null,"unknown technology");foreach(string id in p.deck)Require(rules.Card(id)!=null,"unknown card");
@@ -139,7 +159,7 @@ namespace Frontier
             }
             foreach(var saved in s.entities)
             {
-                var e=saved?.state;Require(e!=null&&e.id>0&&ids.Add(e.id)&&e.owner>=-1&&e.owner<2&&rules.Entity(saved.definition)!=null,"entity identity");max=Math.Max(max,e.id);
+                var e=saved?.state;Require(e!=null&&e.id>0&&ids.Add(e.id)&&e.owner>=-1&&e.owner<count&&rules.Entity(saved.definition)!=null,"entity identity");max=Math.Max(max,e.id);
                 Require(SnapshotCodec.Finite(e.position)&&SnapshotCodec.Finite(e.hp)&&SnapshotCodec.Finite(e.construction)&&SnapshotCodec.Finite(e.remaining),"entity values");
                 Require(SnapshotCodec.Finite(e.factoryElapsed)&&e.factoryElapsed>=0,"factory progress");
                 if(saved.definition=="factory")Require(e.factoryMode=="food"||e.factoryMode=="wood"||e.factoryMode=="coin"||e.factoryMode=="artillery","factory mode");
@@ -162,9 +182,35 @@ namespace Frontier
             Require(s.nextId>max&&s.nextId<int.MaxValue,"next entity id");
             ValidateTransportSnapshot(rules,s.entities);
             ValidateNeutralAlliesSnapshot(rules,s.neutralAllies,s.entities,s.players);
-            ValidateMapObjectiveSnapshot(rules,s.mapObjective,s.entities,s.mapId,s.winner,s.seed);
-            Require(s.events!=null&&s.projectiles!=null&&s.terrainObstacles!=null&&s.visibility?.Length==32768&&s.sockets!=null&&s.treasures!=null&&s.incomes!=null,"world collections");
+            var objective=s.mapObjective;
+            if(s.schema==2&&objective!=null){objective=SnapshotCodec.Clone(objective);objective.enemyPlayer=objective.enemyProgress>0?1-objective.player:-1;}
+            ValidateMapObjectiveSnapshot(rules,objective,s.entities,s.mapId,s.winner,s.seed,teams);
+            Require(s.events!=null&&s.projectiles!=null&&s.terrainObstacles!=null&&s.visibility?.Length==count*16384&&s.sockets!=null&&s.treasures!=null&&s.incomes!=null,"world collections");
             Require(s.discoveries0!=null&&s.discoveries1!=null&&s.pendingEvacuations!=null&&s.fineRecoveryQueue!=null,"world queues");
+            if(s.schema!=2)
+            {
+                Require(s.discoveries!=null&&s.discoveries.Length==count,"landmark discovery roster");
+                for(int player=0;player<count;player++)
+                {
+                    Require(s.discoveries[player]?.entities!=null,"landmark discoveries");var seen=new HashSet<int>();
+                    foreach(int id in s.discoveries[player].entities)Require(ids.Contains(id)&&seen.Add(id),"landmark discovery identity");
+                    if(s.players[player].state.eliminated&&!s.players[player].state.resigned)
+                        Require(!Array.Exists(s.entities,e=>e.state.Alive&&e.state.owner==player&&rules.Entity(e.definition).kind!=EntityKind.Resource),"eliminated player has actors");
+                }
+                var surviving=new HashSet<int>();for(int i=0;i<count;i++)if(!s.players[i].state.eliminated&&!s.players[i].state.resigned)surviving.Add(teams[i]);
+                if(s.winner==-2&&s.mapObjective.mode=="elimination")Require(surviving.Count==0,"draw still has a surviving faction");
+                if(s.winner>=0)
+                {
+                    Require(!s.players[s.winner].state.eliminated&&!s.players[s.winner].state.resigned,"winner is inactive");
+                    if(s.mapObjective.mode=="elimination")Require(surviving.Count==1&&surviving.Contains(teams[s.winner]),"elimination winner factions");
+                }
+                if(s.winner==-1)Require(surviving.Count>=2,"active match has fewer than two factions");
+                for(int player=0;player<count;player++)for(int other=0;other<player;other++)if(teams[player]==teams[other])
+                    for(int cell=0;cell<16384;cell++)Require(s.visibility[player*16384+cell]==s.visibility[other*16384+cell],"allied visibility mismatch");
+            }
+            foreach(int value in s.visibility)Require(value>=0&&value<=2,"visibility cell");
+            foreach(var projectile in s.projectiles)Require(projectile!=null&&projectile.owner>=-1&&projectile.owner<count&&ids.Contains(projectile.target)&&ids.Contains(projectile.source)&&SnapshotCodec.Finite(projectile.hitAt)&&SnapshotCodec.Finite(projectile.damage)&&projectile.damage>=0,"projectile state");
+            foreach(var ev in s.events)Require(ev!=null&&ev.player>=-2&&ev.player<count&&(ev.visibilityMask&~((1<<count)-1))==0&&SnapshotCodec.Finite(ev.time)&&SnapshotCodec.Finite(ev.position),"event roster");
             foreach(var saved in s.entities){var e=saved.state;Require(e.garrisonedIn==0||ids.Contains(e.garrisonedIn),"garrison reference");foreach(int id in saved.occupants)Require(ids.Contains(id),"occupant reference");}
             foreach(int id in s.pendingEvacuations)Require(ids.Contains(id),"evacuation reference");
             var recoveryIds=new HashSet<int>();foreach(int id in s.fineRecoveryQueue)Require(ids.Contains(id)&&recoveryIds.Add(id),"recovery queue");

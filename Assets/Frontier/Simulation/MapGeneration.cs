@@ -17,8 +17,8 @@ namespace Frontier
         public readonly int Player;
         public readonly MapResourceAnchor[] Resources;
         public MapStartLayout(int player,Vector2 town,int resources=0,Vector2? explorer=null)
-        {Player=player;Town=town;Explorer=explorer??town+new Vector2(7,4)*(player==0?1:-1);Resources=new MapResourceAnchor[resources];}
-        public Vector2 WorkerPoint(int index)=>Town+new Vector2(5+index%3*1.3f,-3+index/3*1.4f)*(Player==0?1:-1);
+        {Player=player;Town=town;Explorer=explorer??town+new Vector2(7*(town.x<64?1:-1),4*(town.y<64?1:-1));Resources=new MapResourceAnchor[resources];}
+        public Vector2 WorkerPoint(int index)=>Town+new Vector2((5+index%3*1.3f)*(Town.x<64?1:-1),(-3+index/3*1.4f)*(Town.y<64?1:-1));
     }
 
     // Versioned, local deterministic generation. No Unity/global random state,

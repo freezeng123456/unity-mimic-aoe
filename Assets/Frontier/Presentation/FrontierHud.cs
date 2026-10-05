@@ -56,7 +56,7 @@ namespace Frontier
         private readonly Color background=new Color(.065f,.104f,.12f,.98f),panelColor=new Color(.105f,.16f,.17f,.97f),gold=new Color(.82f,.72f,.43f),ink=new Color(.88f,.9f,.81f),muted=new Color(.58f,.68f,.65f);
         public void Initialize(GameController controller)
         {
-            game=controller;traceInput=Array.IndexOf(Environment.GetCommandLineArgs(),"-frontierInputTrace")>=0;font=Resources.Load<Font>("Fonts/NotoSans-Regular");
+            game=controller;traceInput=Array.IndexOf(Environment.GetCommandLineArgs(),"-frontierInputTrace")>=0;font=Resources.Load<Font>("Fonts/NotoSans-Regular");cjkFont=Resources.Load<Font>("Fonts/NotoSansCJKsc-Regular");
             var c=new GameObject("Frontier Native UI",typeof(RectTransform),typeof(Canvas),typeof(CanvasScaler),typeof(GraphicRaycaster));c.transform.SetParent(transform,false);
             canvas=c.GetComponent<Canvas>();canvas.renderMode=RenderMode.ScreenSpaceOverlay;canvas.sortingOrder=10;root=c.transform;
             var scaler=c.GetComponent<CanvasScaler>();scaler.uiScaleMode=CanvasScaler.ScaleMode.ScaleWithScreenSize;scaler.referenceResolution=new Vector2(1600,900);scaler.screenMatchMode=CanvasScaler.ScreenMatchMode.Expand;
@@ -67,7 +67,7 @@ namespace Frontier
             if(uiModule!=null){uiModule.leftClick=null;uiModule.rightClick=null;uiModule.middleClick=null;}
             uiPointer=new UiPointerDispatcher(EventSystem.current,traceInput);
             var drag=Panel(root,"Selection rectangle",new Rect(0,0,0,0),new Color(.6f,.8f,.56f,.12f));drag.GetComponent<Image>().raycastTarget=false;dragBox=drag.GetComponent<Image>();dragBox.gameObject.SetActive(false);
-            var outline=drag.gameObject.AddComponent<Outline>();outline.effectColor=new Color(.8f,.94f,.6f);outline.effectDistance=new Vector2(1,-1);
+            var outline=drag.gameObject.AddComponent<Outline>();outline.effectColor=new Color(.8f,.94f,.6f);outline.effectDistance=new Vector2(1,-1);ApplyPreferences();
         }
         public void InvalidateActions(){actionKey=int.MinValue;refreshAt=0;}
         // Selection and completed HUD actions are ordered with native input,
@@ -104,7 +104,7 @@ namespace Frontier
         {var t=Rect(parent,name,r,bottom);var image=t.gameObject.AddComponent<Image>();image.color=color;return t;}
         private Text Label(Transform parent,string text,Rect r,int size=16,Color? color=null)
         {
-            var t=Rect(parent,text.Length>30?text.Substring(0,30):text,r);var label=t.gameObject.AddComponent<Text>();label.font=font;label.fontSize=size;label.color=color??ink;label.text=text;label.raycastTarget=false;label.supportRichText=true;label.verticalOverflow=VerticalWrapMode.Overflow;return label;
+            var t=Rect(parent,text.Length>30?text.Substring(0,30):text,r);var label=t.gameObject.AddComponent<Text>();label.font=font;foreach(char ch in text)if(ch>='\u2e80'){label.font=cjkFont??font;break;}label.fontSize=size;label.color=color??ink;label.text=text;label.raycastTarget=false;label.supportRichText=true;label.verticalOverflow=VerticalWrapMode.Overflow;return label;
         }
         private Button Button(Transform parent,string text,Rect r,Action click,string tooltip="",bool enabled=true)
         {
@@ -149,13 +149,14 @@ namespace Frontier
             civilizationSummary.horizontalOverflow=HorizontalWrapMode.Wrap;civilizationSummary.verticalOverflow=VerticalWrapMode.Truncate;
             Button(configuration,"PRESET: "+game.DeckPreset.ToUpperInvariant(),new Rect(28,520,220,48),()=>{string[] presets={"economy","military","technology"};game.DeckPreset=presets[(Array.IndexOf(presets,game.DeckPreset)+1)%presets.Length];game.ResetDeckPreset();ShowMenu();},"Economy, military and technology plans use different cards. Edit any preset before play.");
             Button(configuration,"EDIT DECK  "+game.SelectedDeck.Count+"/"+game.Rules.deckCapacity,new Rect(258,520,224,48),()=>ShowDeckEditor(0));
-            string deckReason=DeckLibrary.Validate(game.Rules,game.PlayerCivilization,game.SelectedDeck);if(deckReason=="")deckReason=game.DifficultyReason;
+            string deckReason=DeckLibrary.Validate(game.Rules,game.PlayerCivilization,game.SelectedDeck);if(deckReason=="")deckReason=game.DifficultyReason;if(deckReason=="")deckReason=game.RosterReason;
             Button(configuration,"BEGIN SKIRMISH",new Rect(28,584,454,58),()=>{game.Autoplay=false;game.StartMatch();},deckReason,deckReason=="");
             Button(configuration,"QUIT",new Rect(28,654,454,44),()=>Application.Quit());
             Button(menuPanel,"LOAD SAVED MATCH",new Rect(100,555,454,58),()=>ShowSaveSlots(false),"Continue a local match, including AI and production progress.");
             Button(menuPanel,"MAP, SEED & OBJECTIVES",new Rect(585,555,420,58),ShowMapOptions,"Preview terrain, enter a seed and choose a map objective.");
+            AddExpansionMenu(menuPanel);
             Label(menuPanel,"FIVE-ERA FRONTIER",new Rect(100,665,840,35),23,gold);
-            Label(menuPanel,game.Rules.civs.Length+" civilizations · British · Dutch · French · Ottomans\nManors · Banks · Trade · Workshops · Rivers · Docks\nIndependent project. Not affiliated with Age of Empires or its publishers.",new Rect(100,715,820,110),18,muted);
+            Label(menuPanel,game.Rules.civs.Length+" civilizations · British · Dutch · French · Ottomans\nManors · Banks · Trade · Workshops · Rivers · Docks\nIndependent project. Not affiliated with Age of Empires or its publishers.",new Rect(100,715,820,110),18,muted);ApplyPreferences();
         }
         private void ShowCivilizations(bool opponent,int page)
         {
@@ -196,14 +197,14 @@ namespace Frontier
             selection=Label(bottom,"",new Rect(213,14,530,30),23,gold);
             details=Label(bottom,"",new Rect(213,50,515,90),15);
             queuePanel=Rect(bottom,"Production queue",new Rect(213,145,530,48));
-            actionPanel=Rect(bottom,"Context actions",new Rect(757,14,807,180));
+            CreateActionViewport(bottom);
             orders=Label(gamePanel,"",new Rect(22,82,610,32),17,gold);
             objectiveLabel=Label(gamePanel,"",new Rect(22,122,770,74),17,gold);objectiveLabel.raycastTarget=false;
-            Label(gamePanel,"CAMERA: arrow keys / pointer near window edge\nMINIMAP: left click to view / right click to move",new Rect(840,80,735,54),15,muted);
+            var cameraHelp=Label(gamePanel,"",new Rect(840,80,735,54),15,muted);cameraHelp.gameObject.name="Camera help";
             var messagePanel=Panel(gamePanel,"Events",new Rect(222,226,1100,38),new Color(.07f,.12f,.13f,.87f),true);messagePanel.GetComponent<Image>().raycastTarget=false;
             notice=Label(messagePanel,"",new Rect(12,8,1070,27),17,gold);
             var helpPanel=Rect(gamePanel,"Tooltips",new Rect(222,269,1110,75),true);help=Label(helpPanel,"",new Rect(0,0,1110,72),17);
-            actionEntity=-1;actionSelection.Clear();InvalidateActions();
+            AddGuidedHud();actionEntity=-1;actionSelection.Clear();InvalidateActions();ApplyPreferences();
         }
         internal bool NeedsUiLayoutAt(Vector2 point)
         {
@@ -244,7 +245,9 @@ namespace Frontier
         }
         private void Update()
         {
+            CaptureBinding();UpdateResponsiveLayout();uiPointer?.Move(UnityEngine.InputSystem.Mouse.current?.position.ReadValue()??Vector2.zero);
             if(game.InMenu||game.World==null||gamePanel==null)return;
+            RefreshProgressionHud();
             EnsureActionContextCurrent();
             var w=game.World;var p=w.Players[0];int idle=0;foreach(var e in w.Entities)if(e.Alive&&e.owner==0&&e.Worker&&e.garrisonedIn==0&&e.orders.Count==0)idle++;
             var display=new ResourceDisplay{amount=p.resources,xp=p.xp,threshold=w.Rules.initialXp+w.Rules.xpIncrease*p.xpLevels,used=p.usedPopulation,reserved=p.reservedPopulation,capacity=p.populationCap,age=p.age,shipments=p.shipmentTokens};
@@ -257,7 +260,7 @@ namespace Frontier
             UpdateHomeCity();
             if(lastClockLabel!=clockLabel||lastClockSeconds!=(int)w.Time||lastIdle!=idle)
             {UpdateExpansionPanels();if(objectiveLabel!=null)objectiveLabel.text=ObjectiveSummary();clockLabel.text=$"{(int)w.Time/60:00}:{(int)w.Time%60:00}   IDLE {idle}";lastClockLabel=clockLabel;lastClockSeconds=(int)w.Time;lastIdle=idle;}
-            orders.text=game.Controls.EmbarkMode?"BOARD — CHOOSE YOUR TROOP TRANSPORT":game.Controls.DisembarkMode?"UNLOAD — CHOOSE AN OPEN LAND SHORE":game.Controls.DockRepairMode?"HARBOR REPAIR — CHOOSE YOUR COMPLETED DOCK":game.Controls.BuildingToPlace!=""?"PLACING  "+game.Rules.Entity(game.Controls.BuildingToPlace).name:game.Controls.RepairMode?"REPAIR [R] — CHOOSE A DAMAGED FRIENDLY TARGET":game.Controls.GarrisonMode?"GARRISON [G] — CHOOSE A FRIENDLY SHELTER":game.Controls.AttackMode?"ATTACK MOVE — CHOOSE DESTINATION":"[V] Idle settler     [T] Town center     [M] Military     [B] Build";
+            orders.text=DynamicBindingLabel(game.Controls.EmbarkMode?"BOARD — CHOOSE YOUR TROOP TRANSPORT":game.Controls.DisembarkMode?"UNLOAD — CHOOSE AN OPEN LAND SHORE":game.Controls.DockRepairMode?"HARBOR REPAIR — CHOOSE YOUR COMPLETED DOCK":game.Controls.BuildingToPlace!=""?"PLACING  "+game.Rules.Entity(game.Controls.BuildingToPlace).name:game.Controls.RepairMode?"REPAIR [R] — CHOOSE A DAMAGED FRIENDLY TARGET":game.Controls.GarrisonMode?"GARRISON [G] — CHOOSE A FRIENDLY SHELTER":game.Controls.AttackMode?"ATTACK MOVE — CHOOSE DESTINATION":"[V] Idle settler     [T] Town center     [M] Military     [B] Build");
             notice.text=game.Notice;
             help.text=Help;
             var selected=game.Controls.FirstSelected;
@@ -292,7 +295,7 @@ namespace Frontier
         private void RebuildActions(EntityState e)
         {
             ClearChildren(actionPanel);ClearChildren(queuePanel);if(e==null)return;int n=0;
-            Action<string,Action,string,bool> add=(title,click,tooltip,enabled)=>{int i=n++;Button(actionPanel,title,new Rect((i%5)*162,(i/5)*57,155,50),click,tooltip,enabled);};
+            Action<string,Action,string,bool> add=(title,click,tooltip,enabled)=>{int i=n++;int columns=ActionColumns;float step=ActionWidth/columns;Button(actionPanel,DynamicBindingLabel(title),new Rect((i%columns)*step,(i/columns)*57,step-7,50),click,tooltip,enabled);ResizeActionContent(n);};
             if(e.def.id=="trade_socket"&&game.World.NeutralAt(e.id)!=null){add("SETTLEMENT",()=>ShowNeutralSettlement(e.id),"Negotiate a paid treaty, recruit allies and research their technology.",true);add("DETAILS",()=>ShowObjectDetails(e),"Read settlement attributes.",true);return;}
             if(e.owner!=0){add("DETAILS",()=>ShowObjectDetails(e),"Read attributes, resistances and counters.",true);return;}
             if(e.def.kind==EntityKind.Unit)
@@ -379,9 +382,9 @@ namespace Frontier
         private Transform Modal(string title,float height=640,Action onClose=null)
         {
             CloseModal();var dim=Panel(root,"Modal dim",new Rect(0,0,1600,900),new Color(.025f,.05f,.06f,.78f));Fill(dim);modal=dim;
-            var box=Panel(dim,title,new Rect(365,95,870,height),background);Label(box,title,new Rect(25,22,740,40),29,gold);Button(box,"X",new Rect(798,15,48,43),()=>{if(onClose!=null)onClose();else{CloseModal();if(game.InMenu)ShowMenu();}});return box;
+            var box=Panel(dim,title,new Rect(365,95,870,height),background);CenterModal(box,height);Label(box,title,new Rect(25,22,740,40),29,gold);Button(box,"X",new Rect(798,15,48,43),()=>{if(onClose!=null)onClose();else{CloseModal();if(game.InMenu)ShowMenu();}});return box;
         }
-        public void CloseModal(){neutralModalSite=-1;neutralModalSignature="";MarkUiLayoutDirty();homeTransit=null;homeTitle=null;homeButtons.Clear();homeCards.Clear();if(modal!=null){modal.gameObject.SetActive(false);Destroy(modal.gameObject);modal=null;}Help="";}
+        public void CloseModal(){waitingBinding=PlayerAction.None;bindingPrompt=null;neutralModalSite=-1;neutralModalSignature="";MarkUiLayoutDirty();homeTransit=null;homeTitle=null;homeButtons.Clear();homeCards.Clear();if(modal!=null){modal.gameObject.SetActive(false);Destroy(modal.gameObject);modal=null;}Help="";}
         public void ShowBuildMenu()
         {
             game.Controls.CancelTargetMode();
@@ -540,12 +543,12 @@ namespace Frontier
             if(!paused){CloseModal();return;}var box=Modal("MATCH PAUSED",610,()=>game.TogglePause());
             string reason=game.PausedForFocusLoss?"Paused when you left the game window. Resume when ready.":"Simulation time is stopped. The cursor is free.";
             Label(box,reason,new Rect(25,83,800,50),20);
-            Button(box,"RESUME",new Rect(25,150,397,65),()=>game.TogglePause());Button(box,"RESTART",new Rect(443,150,397,65),()=>game.StartMatch());
+            Button(box,"RESUME",new Rect(25,150,397,65),()=>game.TogglePause());Button(box,"RESTART",new Rect(443,150,397,65),()=>game.RetryCurrentMatch());
             Button(box,game.Muted?"SOUND: OFF":"SOUND: ON",new Rect(25,240,397,65),()=>{game.Muted=!game.Muted;ShowPause(true);});Button(box,"RESIGN",new Rect(443,240,397,65),()=>{CloseModal();game.Resign();});
             Button(box,game.EnvironmentSoundEnabled?"ENVIRONMENT: ON":"ENVIRONMENT: OFF",new Rect(25,330,397,65),()=>{game.EnvironmentSoundEnabled=!game.EnvironmentSoundEnabled;ShowPause(true);},"Enable or disable environmental sounds. SOUND controls all audio.");
             Button(box,game.MusicEnabled?"MUSIC: ON":"MUSIC: OFF",new Rect(443,330,397,65),()=>{game.MusicEnabled=!game.MusicEnabled;ShowPause(true);},"Enable or disable music. SOUND controls all audio.");
             Button(box,"SAVE MATCH",new Rect(25,421,397,65),()=>ShowSaveSlots(true));Button(box,"LOAD MATCH",new Rect(443,421,397,65),()=>ShowSaveSlots(false));
-            Button(box,"RETURN TO MENU",new Rect(25,511,815,65),()=>game.ReturnToMenu());
+            Button(box,"RETURN TO MENU",new Rect(25,511,397,65),()=>game.ReturnToMenu());Button(box,"SETTINGS",new Rect(443,511,397,65),()=>ShowSettings());
         }
         public void ShowSaveSlots(bool saving)
         {
@@ -561,12 +564,10 @@ namespace Frontier
         }
         public void ShowResult()
         {
-            ResultVisible=true;var w=game.World;var box=Modal(w.Winner==0?"VICTORY":"DEFEAT",610);
+            ResultVisible=true;var w=game.World;var box=Modal(w.Winner==-2?"DRAW":w.IsPlayerWinner(0)?"VICTORY":"DEFEAT",610);
             string resultReason=w.MapObjective.mode!="elimination"&&w.MapObjective.reason!=""?w.MapObjective.reason:"Elimination or resignation";
             Label(box,resultReason+" · "+((int)w.Time/60)+"m "+((int)w.Time%60)+"s\nStatistics below are accumulated from this match's simulation.",new Rect(25,84,825,65),19,muted);
-            Label(box,"                           YOU                         OPPONENT",new Rect(25,180,820,40),19,gold);
-            var a=w.Players[0];var b=w.Players[1];
-            Label(box,$"FOOD GATHERED          {a.gathered.food:0}                         {b.gathered.food:0}\nWOOD GATHERED          {a.gathered.wood:0}                         {b.gathered.wood:0}\nCOIN GATHERED           {a.gathered.coin:0}                         {b.gathered.coin:0}\nKILLS / LOSSES             {a.kills}/{a.losses}                         {b.kills}/{b.losses}\nAGE REACHED              {a.age}                            {b.age}\nSHIPMENTS SENT          {a.shipsSent}                            {b.shipsSent}",new Rect(25,227,820,240),22);
+            AddRosterResult(box,w);
             Button(box,"PLAY AGAIN",new Rect(25,514,397,64),()=>game.StartMatch());Button(box,"MAIN MENU",new Rect(443,514,397,64),()=>game.ReturnToMenu());
         }
     }

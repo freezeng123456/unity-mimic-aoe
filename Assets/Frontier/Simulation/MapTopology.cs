@@ -96,7 +96,7 @@ namespace Frontier
         }
         public bool CanAttackTarget(EntityState actor,EntityState target)
         {
-            if(actor==null||target==null||!actor.Alive||!target.Alive||target.def.kind==EntityKind.Resource||actor.def.civilian||actor.def.damage<=0)return false;
+            if(actor==null||target==null||!actor.Alive||!target.Alive||target.def.kind==EntityKind.Resource||actor.def.civilian||actor.def.damage<=0||!IsHostileTarget(actor.owner,target))return false;
             if(actor.def.waterborne==target.def.waterborne)return true;
             // Weapons cannot make a melee contact between the bridge/shore and
             // water channels. A musket close to a boat keeps its ranged shot.

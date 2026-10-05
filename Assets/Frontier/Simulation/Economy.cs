@@ -25,7 +25,7 @@ namespace Frontier
         }
         public bool CanAfford(int player,Cost cost)
         {
-            var p=P(player);return p!=null&&cost.food>=0&&cost.wood>=0&&cost.coin>=0&&p.resources.food+.001f>=cost.food&&p.resources.wood+.001f>=cost.wood&&p.resources.coin+.001f>=cost.coin;
+            var p=P(player);return p!=null&&IsPlayerActive(player)&&cost.food>=0&&cost.wood>=0&&cost.coin>=0&&p.resources.food+.001f>=cost.food&&p.resources.wood+.001f>=cost.wood&&p.resources.coin+.001f>=cost.coin;
         }
         public Cost UnitCost(int player,EntityDef d)=>EntityCost(player,d);
         public string ValidateDeck(int player,IList<string> deck)
@@ -199,7 +199,7 @@ namespace Frontier
             builders.Clear();buildWorkers.Clear();int originalCount=Entities.Count;
             for(int i=0;i<originalCount;i++)
             {
-                var e=Entities[i];if(!e.Alive||e.garrisonedIn!=0)continue;
+                var e=Entities[i];if(!e.Alive||e.garrisonedIn!=0||e.owner>=0&&!IsPlayerActive(e.owner))continue;
                 if((e.Worker||e.def.repairArtillery||e.def.fishingBoat)&&e.orders.Count>0)
                 {
                     var o=e.orders.Peek();var target=Get(o.target);
@@ -235,9 +235,9 @@ namespace Frontier
                 }
             }
             TickIndustrialEconomy(dt);
-            foreach(var p in Players)if(p.shipments.Count>0)
+            foreach(var p in Players)if(IsPlayerActive(p.id)&&p.shipments.Count>0)
             {var s=p.shipments[0];var card=Rules.Card(s.card);s.elapsed=Mathf.Min(card.travel,s.elapsed+dt);if(s.elapsed>=card.travel)Deliver(p,s,card);}
-            foreach(var p in Players)if(p.rewards.Count>0)DeliverReward(p);
+            foreach(var p in Players)if(IsPlayerActive(p.id)&&p.rewards.Count>0)DeliverReward(p);
         }
         private void Gather(EntityState worker,UnitOrder order,float dt)
         {
@@ -331,7 +331,7 @@ namespace Frontier
             foreach(var point in points)
             {
                 var unit=Spawn(d.id,b.owner,point);produced.Add(unit);
-                if(j.kind=="Train"){owner.trained++;AwardXp(b.owner,d.trainXp,b.id,"Unit trained");}
+                if(j.kind=="Train"){owner.trained++;AwardXp(b.owner,d.trainXp,b.id,"Unit trained");Emit("UnitTrained",b.owner,b.id,d.id,1,unit.id);}
             }
             AssignProducerRally(b,produced);
             b.status="Ready";

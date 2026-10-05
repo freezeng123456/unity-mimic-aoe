@@ -12,7 +12,7 @@ namespace Frontier
     [Serializable] public sealed class MapObjectiveState
     {
         public string mode="elimination",status="inactive",reason="";
-        public int player,target,escort,waypoint;
+        public int player,target,escort,waypoint,enemyPlayer=-1;
         public Vector2 center;
         public Vector2[] route=Array.Empty<Vector2>();
         public float elapsed,progress,enemyProgress,nextProgressAt;
@@ -68,7 +68,8 @@ namespace Frontier
                 if(DockPlacementReason(candidate)!=""||DockFootprintReason(candidate)!="")continue;
                 bool occupied=false;var dock=Rules.Entity("dock");
                 foreach(var e in Entities)if(e.Alive&&e.garrisonedIn==0&&BuildingFootprintContains(dock,candidate,e.position,e.def.radius+1)){occupied=true;break;}
-                if(occupied||!ObjectiveHarborReach(0,candidate,definition.radius)||!ObjectiveHarborReach(1,candidate,definition.radius))continue;
+                bool reachable=true;for(int player=0;player<Players.Length;player++)if(!ObjectiveHarborReach(player,candidate,definition.radius)){reachable=false;break;}
+                if(occupied||!reachable)continue;
                 float score=(candidate-new Vector2(64,64)).sqrMagnitude;
                 if(score>=best)continue;point=candidate;best=score;
             }
@@ -78,8 +79,10 @@ namespace Frontier
         {
             point=Vector2.zero;
             foreach(var bridge in Layout.Bridges)
-                if(ObjectiveLandReach(0,bridge.Center,definition.radius)&&ObjectiveLandReach(1,bridge.Center,definition.radius))
-                {point=bridge.Center;return true;}
+            {
+                bool reachable=true;for(int player=0;player<Players.Length;player++)if(!ObjectiveLandReach(player,bridge.Center,definition.radius)){reachable=false;break;}
+                if(reachable){point=bridge.Center;return true;}
+            }
             return false;
         }
         private bool TryObjectiveEscort(int player,MapObjectiveDef definition,out Vector2 start,out Vector2[] route)
@@ -110,7 +113,7 @@ namespace Frontier
         }
         public CommandResult ConfigureMapObjective(string id,int player=0)
         {
-            if(Time!=0||Winner>=0||MapObjective.mode!="elimination")return CommandResult.Fail("Choose the objective once before the match starts");
+            if(Time!=0||IsMatchEnded||MapObjective.mode!="elimination")return CommandResult.Fail("Choose the objective once before the match starts");
             string reason=MapObjectiveAvailability(id,player);if(reason!="")return CommandResult.Fail(reason);
             if(id=="elimination")return CommandResult.Ok("Elimination victory");
             var definition=ObjectiveDefinition(id);var state=new MapObjectiveState{mode=id,status="active",player=player,nextProgressAt=5};
@@ -128,34 +131,61 @@ namespace Frontier
         {
             // Objective position/progress is an announced game rule, shared by
             // both players. No enemy entity list or hidden positions is exposed.
-            var e=Emit(kind,player,MapObjective.target,message,amount,0,MapObjective.center);e.visibilityMask=3;
+            var e=Emit(kind,player,MapObjective.target,message,amount,0,MapObjective.center);e.visibilityMask=(1<<Players.Length)-1;
         }
         private bool ObjectivePresence(int player,Vector2 center,float radius,int except=0,bool militaryOnly=true,bool landOnly=false)
         {
+            if(!IsPlayerActive(player))return false;
             foreach(var e in Entities)
                 if(e.id!=except&&e.Alive&&e.owner==player&&e.garrisonedIn==0&&e.def.kind==EntityKind.Unit&&
                     (!militaryOnly||e.Military)&&(!landOnly||!e.def.waterborne)&&(e.position-center).sqrMagnitude<=radius*radius)return true;
             return false;
         }
+        private bool AlliedObjectivePresence(int player,Vector2 center,float radius,int except=0,bool landOnly=false)
+        {
+            for(int other=0;other<Players.Length;other++)if(AreAllies(player,other)&&ObjectivePresence(other,center,radius,except,landOnly:landOnly))return true;
+            return false;
+        }
+        private int EnemyObjectivePresence(int player,Vector2 center,float radius,int except,out bool competing,bool landOnly=false)
+        {
+            int first=-1;competing=false;
+            for(int other=0;other<Players.Length;other++)if(AreEnemies(player,other)&&ObjectivePresence(other,center,radius,except,landOnly:landOnly))
+            {if(first<0)first=other;else if(!AreAllies(first,other))competing=true;}
+            return first;
+        }
+        private int ObjectiveFailureWinner()
+        {
+            int first=-1;
+            for(int player=0;player<Players.Length;player++)if(IsPlayerActive(player)&&AreEnemies(MapObjective.player,player))
+            {if(first<0)first=player;else if(!AreAllies(first,player))return -2;}
+            return first<0?-2:first;
+        }
         private void FinishMapObjective(int winner,string reason)
         {
-            MapObjective.status=winner==MapObjective.player?"won":"failed";MapObjective.reason=reason;MapObjective.moving=false;
-            Winner=winner;PublicObjectiveEvent(winner==MapObjective.player?"MapObjectiveWon":"MapObjectiveFailed",winner,reason);
+            winner=ObjectiveRepresentative(winner);
+            MapObjective.status=winner>=0&&AreAllies(winner,MapObjective.player)?"won":"failed";MapObjective.reason=reason;MapObjective.moving=false;
+            Winner=winner;PublicObjectiveEvent(MapObjective.status=="won"?"MapObjectiveWon":"MapObjectiveFailed",winner,reason);
             PublicObjectiveEvent("MatchEnded",winner,reason);
+        }
+        private int ObjectiveRepresentative(int winner)
+        {
+            if(winner<0||IsPlayerActive(winner))return winner;
+            for(int player=0;player<Players.Length;player++)if(IsPlayerActive(player)&&AreAllies(player,winner))return player;
+            return -2;
         }
         public void FinalizeMapObjectiveForMatchEnd()
         {
-            if(Winner<0||MapObjective.mode=="elimination"||MapObjective.status!="active")return;
-            MapObjective.status=Winner==MapObjective.player?"ended":"failed";MapObjective.reason="Match ended before objective completion";MapObjective.moving=false;
-            PublicObjectiveEvent(Winner==MapObjective.player?"MapObjectiveEnded":"MapObjectiveFailed",Winner,MapObjective.reason);
+            if(!IsMatchEnded||MapObjective.mode=="elimination"||MapObjective.status!="active")return;
+            MapObjective.status=IsPlayerWinner(MapObjective.player)?"ended":"failed";MapObjective.reason="Match ended before objective completion";MapObjective.moving=false;
+            PublicObjectiveEvent(IsPlayerWinner(MapObjective.player)?"MapObjectiveEnded":"MapObjectiveFailed",Winner,MapObjective.reason);
         }
         public bool TryAiObjectiveDestination(int player,out Vector2 destination)
         {
             destination=Vector2.zero;var state=MapObjective;
-            if(player<0||player>=Players.Length||Winner>=0||state.mode=="elimination"||state.status!="active")return false;
+            if(player<0||player>=Players.Length||IsMatchEnded||!IsPlayerActive(player)||state.mode=="elimination"||state.status!="active")return false;
             if(state.mode!="escort_caravan"){destination=state.center;return true;}
             var cart=Get(state.escort);if(cart==null||!cart.Alive)return false;
-            if(player==state.player)
+            if(AreAllies(player,state.player))
             {
                 destination=cart.position;
                 if(state.waypoint<state.route.Length)destination+=Vector2.ClampMagnitude(state.route[state.waypoint]-cart.position,3);
@@ -166,12 +196,12 @@ namespace Frontier
         }
         private void TickMapObjectives(float dt)
         {
-            var state=MapObjective;if(state.mode=="elimination"||state.status!="active"||Winner>=0)return;
+            var state=MapObjective;if(state.mode=="elimination"||state.status!="active"||IsMatchEnded)return;
             var definition=ObjectiveDefinition(state.mode);state.elapsed+=dt;
             if(state.mode=="escort_caravan")TickEscortObjective(definition,dt);
             else TickControlObjective(definition,dt);
             if(state.status!="active")return;
-            if(state.elapsed+.0001f>=definition.deadline){FinishMapObjective(1-state.player,"Objective deadline expired");return;}
+            if(state.elapsed+.0001f>=definition.deadline){FinishMapObjective(ObjectiveFailureWinner(),"Objective deadline expired");return;}
             if(state.elapsed+.0001f>=state.nextProgressAt)
             {state.nextProgressAt=state.elapsed+5;PublicObjectiveEvent("MapObjectiveProgress",state.player,state.mode+": "+state.progress.ToString("0.0")+(state.contested?" contested":""),state.progress);}
         }
@@ -179,29 +209,30 @@ namespace Frontier
         {
             var state=MapObjective;
             if(state.mode=="capture_harbor"&&(Get(state.target)==null||!Get(state.target).Alive))
-            {FinishMapObjective(1-state.player,"The objective harbor was destroyed");return;}
+            {FinishMapObjective(ObjectiveFailureWinner(),"The objective harbor was destroyed");return;}
             bool landOnly=state.mode=="defend_bridge";
-            bool friendly=ObjectivePresence(state.player,state.center,definition.radius,landOnly:landOnly),hostile=ObjectivePresence(1-state.player,state.center,definition.radius,landOnly:landOnly);
-            bool contested=friendly&&hostile;if(state.contested!=contested){state.contested=contested;PublicObjectiveEvent("MapObjectiveContest",state.player,contested?"Objective contested":"Objective uncontested");}
+            bool friendly=AlliedObjectivePresence(state.player,state.center,definition.radius,landOnly:landOnly);
+            int enemy=EnemyObjectivePresence(state.player,state.center,definition.radius,0,out bool competing,landOnly);bool hostile=enemy>=0;
+            bool contested=friendly&&hostile||competing;if(state.contested!=contested){state.contested=contested;PublicObjectiveEvent("MapObjectiveContest",state.player,contested?"Objective contested":"Objective uncontested");}
             if(contested)return;
-            if(friendly){state.progress=Mathf.Min(definition.holdSeconds,state.progress+dt);state.enemyProgress=0;}
-            else if(hostile){state.enemyProgress+=dt;state.progress=0;}
-            else {state.progress=0;state.enemyProgress=0;}
+            if(friendly){state.progress=Mathf.Min(definition.holdSeconds,state.progress+dt);state.enemyProgress=0;state.enemyPlayer=-1;}
+            else if(hostile){if(state.enemyPlayer<0||!AreAllies(state.enemyPlayer,enemy))state.enemyProgress=0;state.enemyPlayer=enemy;state.enemyProgress+=dt;state.progress=0;}
+            else {state.progress=0;state.enemyProgress=0;state.enemyPlayer=-1;}
             float enemyRequired=state.mode=="defend_bridge"?definition.failureSeconds:definition.holdSeconds;
             if(state.progress+.0001f>=definition.holdSeconds||state.enemyProgress+.0001f>=enemyRequired)
             {
-                int winner=state.progress+.0001f>=definition.holdSeconds?state.player:1-state.player;
+                int winner=ObjectiveRepresentative(state.progress+.0001f>=definition.holdSeconds?state.player:state.enemyPlayer);
                 if(state.mode=="capture_harbor")
                 {var harbor=Get(state.target);harbor.owner=winner;RecomputePopulationCap(winner);PublicObjectiveEvent("MapHarborCaptured",winner,"Harbor captured",definition.holdSeconds);}
-                FinishMapObjective(winner,state.mode=="defend_bridge"?(winner==state.player?"Bridge defended":"Bridge overrun"):"Harbor secured");
+                FinishMapObjective(winner,state.mode=="defend_bridge"?(AreAllies(winner,state.player)?"Bridge defended":"Bridge overrun"):"Harbor secured");
             }
         }
         private void TickEscortObjective(MapObjectiveDef definition,float dt)
         {
             var state=MapObjective;var cart=Get(state.escort);
-            if(cart==null||!cart.Alive){FinishMapObjective(1-state.player,"Escort caravan destroyed");return;}
-            bool escorted=ObjectivePresence(state.player,cart.position,definition.radius,cart.id);
-            bool threatened=ObjectivePresence(1-state.player,cart.position,definition.radius,cart.id);state.contested=threatened;
+            if(cart==null||!cart.Alive){FinishMapObjective(ObjectiveFailureWinner(),"Escort caravan destroyed");return;}
+            bool escorted=AlliedObjectivePresence(state.player,cart.position,definition.radius,cart.id);
+            bool threatened=EnemyObjectivePresence(state.player,cart.position,definition.radius,cart.id,out _)>=0;state.contested=threatened;
             if(!escorted||cart.garrisonedIn!=0)
             {
                 if(cart.orders.Count>0){cart.orders.Clear();InvalidateCommandPath(cart);cart.hold=false;}
@@ -230,17 +261,19 @@ namespace Frontier
         }
         public MapObjectiveState CaptureMapObjective()=>SnapshotCodec.Clone(MapObjective);
         public void RestoreMapObjective(MapObjectiveState state){MapObjective=SnapshotCodec.Clone(state);}
-        public static void ValidateMapObjectiveSnapshot(RuleCatalog rules,MapObjectiveState state,EntitySnapshot[] entities,string mapId,int winner,int seed)
+        public static void ValidateMapObjectiveSnapshot(RuleCatalog rules,MapObjectiveState state,EntitySnapshot[] entities,string mapId,int winner,int seed,int[] teams=null)
         {
             void Require(bool valid){if(!valid)throw new ArgumentException("Invalid saved map objective");}
-            Require(state!=null&&state.route!=null&&state.player>=0&&state.player<2);
+            teams??=new[]{0,1};Require(state!=null&&state.route!=null&&state.player>=0&&state.player<teams.Length&&winner>=-2&&winner<teams.Length);
+            Require(state.enemyPlayer>=-1&&state.enemyPlayer<teams.Length&&(state.enemyPlayer<0||teams[state.enemyPlayer]!=teams[state.player]));
             Require(SnapshotCodec.Finite(state.center)&&SnapshotCodec.Finite(state.elapsed)&&state.elapsed>=0&&SnapshotCodec.Finite(state.progress)&&state.progress>=0&&SnapshotCodec.Finite(state.enemyProgress)&&state.enemyProgress>=0&&SnapshotCodec.Finite(state.nextProgressAt)&&state.nextProgressAt>=0);
             foreach(var point in state.route)Require(SnapshotCodec.Finite(point)&&point.x>=0&&point.x<=128&&point.y>=0&&point.y<=128);
             if(state.mode=="elimination"){Require(state.status=="inactive"&&state.target==0&&state.escort==0&&state.route.Length==0);return;}
             var definition=Array.Find(rules.mapObjectives??Array.Empty<MapObjectiveDef>(),d=>d.id==state.mode);
             Require(definition!=null&&(state.status=="active"||state.status=="won"||state.status=="failed"||state.status=="ended"));
-            Require(state.status!="won"||winner==state.player);Require(state.status!="failed"||winner==1-state.player);
-            Require(state.status!="ended"||winner==state.player);
+            Require(state.status!="active"||winner==-1);
+            Require(state.status!="won"||winner>=0&&teams[winner]==teams[state.player]);Require(state.status!="failed"||winner==-2||winner>=0&&teams[winner]!=teams[state.player]);
+            Require(state.status!="ended"||winner>=0&&teams[winner]==teams[state.player]);
             if(state.mode=="escort_caravan")
             {Require(state.route.Length>=2&&state.waypoint>=0&&state.waypoint<=state.route.Length&&state.target==state.escort&&state.progress==state.waypoint&&(state.center-state.route[state.route.Length-1]).sqrMagnitude<.0001f);Require(Array.Exists(entities,e=>e.state.id==state.escort&&e.definition==definition.escortUnit&&e.state.owner==state.player));}
             else if(state.mode=="capture_harbor")Require(MapLayout.Create(mapId,seed).HasWater&&Array.Exists(entities,e=>e.state.id==state.target&&e.definition=="dock"&&(e.state.position-state.center).sqrMagnitude<.0001f)&&state.route.Length==0&&state.escort==0);

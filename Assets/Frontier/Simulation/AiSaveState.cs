@@ -15,7 +15,7 @@ namespace Frontier
     {
         public bool visitedStart;
         public bool[] processed;
-        public int current,pass,revision;
+        public int current,pass,revision,enemyPlayer=-1,schema;
         public float selectedAt;
     }
     [Serializable] public sealed class AiWaterEconomySnapshot

@@ -8,7 +8,10 @@ namespace Frontier
     {
         private readonly int width,height;
         private readonly VisibilityState[,,] cells;
-        public Visibility(int width=128,int height=128,int players=2){this.width=width;this.height=height;cells=new VisibilityState[players,width,height];}
+        private readonly int[] teams;
+        private readonly System.Func<int,bool> activePlayer;
+        public Visibility(int width=128,int height=128,int players=2,int[] teams=null,System.Func<int,bool> activePlayer=null)
+        {this.width=width;this.height=height;cells=new VisibilityState[players,width,height];this.teams=teams==null?null:(int[])teams.Clone();this.activePlayer=activePlayer;if(teams!=null&&teams.Length!=players)throw new System.ArgumentException("Visibility roster mismatch");}
         public int[] CaptureState()
         {
             var state=new int[cells.Length];int i=0;
@@ -24,7 +27,7 @@ namespace Frontier
         public void Tick(List<EntityState> entities)
         {
             for(int p=0;p<cells.GetLength(0);p++)for(int x=0;x<width;x++)for(int y=0;y<height;y++)if(cells[p,x,y]==VisibilityState.Visible)cells[p,x,y]=VisibilityState.Explored;
-            foreach(var e in entities)if(e.Alive&&e.owner>=0&&e.owner<cells.GetLength(0)&&e.garrisonedIn==0&&e.def.vision>0&&(e.def.id!="trade_post"||e.Complete))Reveal(e.owner,e.position,Mathf.CeilToInt(e.def.vision));
+            foreach(var e in entities)if(e.Alive&&e.owner>=0&&e.owner<cells.GetLength(0)&&(activePlayer==null||activePlayer(e.owner))&&e.garrisonedIn==0&&e.def.vision>0&&(e.def.id!="trade_post"||e.Complete))Reveal(e.owner,e.position,Mathf.CeilToInt(e.def.vision));
         }
         public VisibilityState At(int player,Vector2 point)
         {
@@ -35,6 +38,10 @@ namespace Frontier
         public void Reveal(int player,Vector2 point,int radius)
         {
             if(player<0||player>=cells.GetLength(0))return;
+            for(int observer=0;observer<cells.GetLength(0);observer++)if(observer==player||teams!=null&&teams[observer]==teams[player])RevealForPlayer(observer,point,radius);
+        }
+        private void RevealForPlayer(int player,Vector2 point,int radius)
+        {
             int cx=Mathf.RoundToInt(point.x),cy=Mathf.RoundToInt(point.y);
             for(int x=Mathf.Max(0,cx-radius);x<=Mathf.Min(width-1,cx+radius);x++)for(int y=Mathf.Max(0,cy-radius);y<=Mathf.Min(height-1,cy+radius);y++)
                 if((x-point.x)*(x-point.x)+(y-point.y)*(y-point.y)<=radius*radius)cells[player,x,y]=VisibilityState.Visible;

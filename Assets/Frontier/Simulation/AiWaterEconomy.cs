@@ -73,7 +73,7 @@ namespace Frontier
         }
         public void Tick(List<EntityState> own,List<EntityState> workers,List<EntityState> visibleEnemies,Cost reserve,bool saving,bool underAttack)
         {
-            if(!world.Layout.HasWater||world.Paused||world.Winner>=0)return;
+            if(!world.Layout.HasWater||world.Paused||world.IsMatchEnded||!world.IsPlayerActive(player))return;
             var dock=own.Find(e=>e.Alive&&e.def.id=="dock");
             navalOperations.Tick(own,visibleEnemies,underAttack);
             AssignFishing(own,visibleEnemies);

@@ -60,9 +60,9 @@ namespace Frontier
         {int order=a.score.CompareTo(b.score);if(order!=0)return order;order=a.point.x.CompareTo(b.point.x);return order!=0?order:a.point.y.CompareTo(b.point.y);}
         private static void ResetDestinationPath(EntityState unit)
         {unit.pathVersion=-1;unit.detourUntil=0;unit.progressDistance=float.MaxValue;unit.stuckFor=0;}
-        private static bool StationaryAlly(EntityState unit,EntityState other)
+        private bool StationaryAlly(EntityState unit,EntityState other)
         {
-            if(other.id==unit.id||!other.Alive||other.owner!=unit.owner||other.garrisonedIn!=0||other.def.kind!=EntityKind.Unit||other.def.waterborne!=unit.def.waterborne)return false;
+            if(other.id==unit.id||!other.Alive||!ShareMovementSide(other.owner,unit.owner)||other.garrisonedIn!=0||other.def.kind!=EntityKind.Unit||other.def.waterborne!=unit.def.waterborne)return false;
             if(other.orders.Count==0||other.hold)return true;
             var kind=other.orders.Peek().kind;
             return kind!=OrderKind.Move&&kind!=OrderKind.AttackMove&&other.status!="Moving";
@@ -80,7 +80,7 @@ namespace Frontier
             var navigation=NavigationFor(unit);destinationSpaces.Clear();
             foreach(var other in Entities)
             {
-                if(other.id==unit.id||!other.Alive||other.owner!=unit.owner||other.garrisonedIn!=0||other.def.kind!=EntityKind.Unit||other.def.waterborne!=unit.def.waterborne)continue;
+                if(other.id==unit.id||!other.Alive||!ShareMovementSide(other.owner,unit.owner)||other.garrisonedIn!=0||other.def.kind!=EntityKind.Unit||other.def.waterborne!=unit.def.waterborne)continue;
                 Vector2 point;
                 if(other.orders.Count>0&&(other.orders.Peek().kind==OrderKind.Move||other.orders.Peek().kind==OrderKind.AttackMove))
                 {var order=other.orders.Peek();point=order.hasResolvedPoint?order.resolvedPoint:order.point;}

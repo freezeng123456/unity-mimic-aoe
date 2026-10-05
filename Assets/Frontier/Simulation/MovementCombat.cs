@@ -10,7 +10,7 @@ namespace Frontier
             LastNavigationMs=0;BeginFineRecoveryTick();int count=Entities.Count;
             for(int i=0;i<count;i++)
             {
-                var e=Entities[i];if(!e.Alive||!e.Complete||e.garrisonedIn!=0||e.def.kind==EntityKind.Resource)continue;
+                var e=Entities[i];if(!e.Alive||!e.Complete||e.garrisonedIn!=0||e.def.kind==EntityKind.Resource||e.owner>=0&&!IsPlayerActive(e.owner))continue;
                 if(e.def.shieldAbility&&Time<e.shieldReadyAt){e.status=e.shielded?"Deploying shield":"Lowering shield";continue;}
                 if(e.def.civilian&&e.routeLeg>0){TickCaravan(e,dt);continue;}
                 if(Guardian(e)&&Vector2.Distance(e.position,e.origin)>Rules.landmarks.guardLeash)
@@ -57,7 +57,7 @@ namespace Frontier
                 else
                 {
                     var remembered=Get(e.attackTarget);
-                    if(remembered!=null&&remembered.Alive&&remembered.owner!=e.owner&&Observes(e,remembered)&&EdgeDistance(e,remembered)<e.def.vision&&CanStationaryAutoTarget(e,remembered))enemy=remembered;
+                    if(remembered!=null&&remembered.Alive&&IsHostileTarget(e.owner,remembered)&&Observes(e,remembered)&&EdgeDistance(e,remembered)<e.def.vision&&CanStationaryAutoTarget(e,remembered))enemy=remembered;
                     if(enemy==null&&Time>=e.scanAt&&HasFirepower(e))
                     {e.scanAt=Time+.55f+(e.id%5)*.025f;enemy=FindEnemy(e);e.attackTarget=enemy?.id??0;}
                 }
@@ -99,12 +99,12 @@ namespace Frontier
             for(int i=Projectiles.Count-1;i>=0;i--)
             {
                 var p=Projectiles[i];if(Time<p.hitAt)continue;var target=Get(p.target);
-                if(target!=null&&target.Alive&&target.garrisonedIn==0)
+                if(target!=null&&target.Alive&&target.garrisonedIn==0&&IsHostileTarget(p.owner,target)&&(p.owner<0||IsPlayerActive(p.owner)))
                 {
                     var impact=target.position;ApplyDamage(target,p.damage,p.kind,p.owner,p.source);
                     if(p.splash>0)
                     {
-                        var victims=new List<EntityState>();foreach(var candidate in Nearby(impact,p.splash))if(candidate.garrisonedIn==0&&candidate.id!=target.id&&(candidate.owner>=0||Guardian(candidate))&&candidate.owner!=p.owner&&candidate.def.kind!=EntityKind.Resource)victims.Add(candidate);
+                        var victims=new List<EntityState>();foreach(var candidate in Nearby(impact,p.splash))if(candidate.garrisonedIn==0&&candidate.id!=target.id&&(candidate.owner>=0||Guardian(candidate))&&IsHostileTarget(p.owner,candidate)&&candidate.def.kind!=EntityKind.Resource)victims.Add(candidate);
                         foreach(var other in victims)
                         {
                             var shooter=Get(p.source);DamageKind splashKind=p.baseKind;
@@ -124,7 +124,7 @@ namespace Frontier
         {
             foreach(var other in Nearby(unit.position,3.5f))
             {
-                if(other.id==unit.id||!other.Alive||other.owner!=unit.owner||other.garrisonedIn!=0||other.def.kind!=EntityKind.Unit||other.def.waterborne!=unit.def.waterborne)continue;
+                if(other.id==unit.id||!other.Alive||!ShareMovementSide(other.owner,unit.owner)||other.garrisonedIn!=0||other.def.kind!=EntityKind.Unit||other.def.waterborne!=unit.def.waterborne)continue;
                 float radius=unit.def.radius+other.def.radius;
                 if((other.position-unit.position).sqrMagnitude<radius*radius)return false;
             }
@@ -147,7 +147,7 @@ namespace Frontier
             float vision=e.Worker?2:e.hold||e.def.kind==EntityKind.Building?e.def.range+5:e.def.vision;
             foreach(var target in Nearby(e.position,vision))
             {
-                if((target.owner<0&&!Guardian(target))||target.owner==e.owner||target.def.kind==EntityKind.Resource||!Observes(e,target))continue;
+                if((target.owner<0&&!Guardian(target))||!IsHostileTarget(e.owner,target)||target.def.kind==EntityKind.Resource||!Observes(e,target))continue;
                 if(Guardian(e)&&(target.def.kind!=EntityKind.Unit||Vector2.Distance(target.position,e.origin)>Rules.landmarks.guardLeash))continue;
                 if(e.def.id=="mortar"&&target.def.kind!=EntityKind.Building)continue;
                 float distance=EdgeDistance(e,target);
@@ -317,7 +317,7 @@ namespace Frontier
                 {
                     var victims=new List<EntityState>();
                     foreach(var other in Nearby(impact,e.def.meleeSplash))
-                        if(other.id!=target.id&&other.garrisonedIn==0&&(other.owner>=0||Guardian(other))&&other.owner!=e.owner&&other.def.kind==EntityKind.Unit&&other.def.waterborne==e.def.waterborne)victims.Add(other);
+                        if(other.id!=target.id&&other.garrisonedIn==0&&(other.owner>=0||Guardian(other))&&IsHostileTarget(e.owner,other)&&other.def.kind==EntityKind.Unit&&other.def.waterborne==e.def.waterborne)victims.Add(other);
                     foreach(var other in victims)
                     {
                         float bonus=1;foreach(var b in e.def.bonuses)if((b.tags&other.def.tags)!=0)bonus=Mathf.Max(bonus,b.multiplier);
@@ -332,7 +332,7 @@ namespace Frontier
         }
         public void ApplyDamage(EntityState target,float raw,DamageKind kind,int owner,int source=0)
         {
-            if(target==null||!target.Alive||target.garrisonedIn!=0)return;
+            if(target==null||!target.Alive||target.garrisonedIn!=0||owner>=0&&(!IsPlayerActive(owner)||!IsHostileTarget(owner,target)))return;
             float resistance=kind==DamageKind.Melee?target.def.meleeResist:kind==DamageKind.Ranged?target.def.rangedResist:target.def.siegeResist;
             if(kind==DamageKind.Ranged&&target.shielded&&Time>=target.shieldReadyAt)resistance+=.35f;
             float damage=Mathf.Max(0,raw)*(1-Mathf.Clamp01(resistance));

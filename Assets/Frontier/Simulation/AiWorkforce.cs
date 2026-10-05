@@ -26,7 +26,7 @@ namespace Frontier
         public bool HasSafeSource(ResourceKind kind)=>resources.Exists(e=>e.def.resource==kind);
         public void Assign(List<EntityState> workers,Cost target,List<EntityState> visibleEnemies)
         {
-            if(world.Paused||world.Winner>=0)return;
+            if(world.Paused||world.IsMatchEnded||!world.IsPlayerActive(player))return;
             available.Clear();resources.Clear();assigned.Clear();var current=new int[4];
             foreach(var worker in workers)
             {

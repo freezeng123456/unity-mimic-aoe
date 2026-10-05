@@ -99,6 +99,11 @@ namespace Frontier
                     shore[index]=best;nearestCenter[index]=center;
                 }
             }
+            if(Starts.Length>2)
+            {
+                DockSites=MultiPlayerShoreSites(false);LandingSites=MultiPlayerShoreSites(true);
+                IslandLandingSites=RequiresTransport?MapGeneration.IslandLandings(this):Array.Empty<Vector2>();return;
+            }
             DockSites=id==MapTopology.River?new[]{new[]{new Vector2(55,28),new Vector2(55,100)},new[]{new Vector2(73,100),new Vector2(73,28)}}:
                 HasWater?new[]{BankSites(0),BankSites(1)}:new[]{Array.Empty<Vector2>(),Array.Empty<Vector2>()};
             if(Generated){DockSites[1]=MapGeneration.Mirror(DockSites[0]);LandingSites=MapGeneration.Landings(this);IslandLandingSites=RequiresTransport?MapGeneration.IslandLandings(this):Array.Empty<Vector2>();}

@@ -6,8 +6,11 @@ namespace Frontier
     public sealed class EventAudio : MonoBehaviour
     {
         public enum SoundCategory { Gun,Cannon,Melee,Impact,Notice,Footstep,Hoof,Wheel,Woodcut,Mine,Handling,Build }
-        private sealed class Channel { public AudioSource source;public bool notice,activity;public float last=-999,until;public int actor; }
+        private sealed class Channel { public AudioSource source;public bool notice,activity;public float last=-999,until;public int actor;public float baseVolume; }
         private GameController game;
+        private PlayerSettingsService settings;
+        private PlayerSettings options=PlayerSettings.Defaults();
+        public float EffectiveSfxVolume=>options.muted?0:options.masterVolume*options.sfxVolume;
         private readonly List<Channel> channels=new List<Channel>();
         private readonly Dictionary<SoundCategory,float> lastByCategory=new Dictionary<SoundCategory,float>();
         private readonly Dictionary<SoundCategory,AudioClip> clips=new Dictionary<SoundCategory,AudioClip>();
@@ -21,12 +24,12 @@ namespace Frontier
         public int SourceCount=>channels.Count;
         public void Initialize(GameController controller)
         {
-            DisposeAudio();game=controller;
+            DisposeAudio();game=controller;settings=game.Settings;options=settings.Current;settings.Changed+=ApplySettings;
             for(int i=0;i<12;i++)
             {
                 var child=new GameObject("Event audio "+i);child.transform.SetParent(transform,false);
-                var source=child.AddComponent<AudioSource>();source.playOnAwake=false;source.spatialBlend=0;source.mute=game.Muted;
-                channels.Add(new Channel{source=source,notice=i>=10,activity=i>=8&&i<10});
+                var source=child.AddComponent<AudioSource>();source.playOnAwake=false;source.spatialBlend=0;source.mute=options.muted;source.volume=(i>=10?.3f:i>=8?.1f:.22f)*EffectiveSfxVolume;
+                channels.Add(new Channel{source=source,notice=i>=10,activity=i>=8&&i<10,baseVolume=i>=10?.3f:i>=8?.1f:.22f});
             }
             clips[SoundCategory.Gun]=Synthesize("Musket report",180,.12f,.7f);
             clips[SoundCategory.Cannon]=Synthesize("Cannon report",70,.3f,.8f);
@@ -38,7 +41,7 @@ namespace Frontier
         }
         public void OnEvent(SimEvent ev)
         {
-            if(game==null||ev==null||game.Muted||game.World==null||game.World.Paused)return;
+            if(game==null||ev==null||EffectiveSfxVolume<=0||game.World==null||game.World.Paused)return;
             SoundCategory category;
             NoticeCue noticeCue=NoticeCue.None;
             if(ev.kind=="Fire")
@@ -70,7 +73,7 @@ namespace Frontier
             if(chosen==null)return;
             // PlayOneShot can overlap multiple voices on a single source. Stop the
             // replaced voice first so twelve sources also means twelve voice slots.
-            chosen.source.Stop();chosen.last=now;chosen.source.volume=notice?.3f:.22f;
+            chosen.source.Stop();chosen.last=now;chosen.source.volume=chosen.baseVolume*EffectiveSfxVolume;
             chosen.source.transform.position=new Vector3(ev.position.x,0,ev.position.y);
             chosen.source.PlayOneShot(notice?notices[noticeCue]:clips[category]);lastByCategory[category]=now;
             LastCategory=category;LastNotice=noticeCue;PlayedCount++;
@@ -82,24 +85,34 @@ namespace Frontier
             // visibility or the viewport; a later reveal cannot resume it.
             foreach(var channel in channels)if(channel.activity&&channel.actor!=0)
             {
-                if(game.World==null||game.Muted||game.World.Paused||game.World.Winner>=0||!UnitActivityAudio.OnScreen(game,game.World.Get(channel.actor),out _))
+                if(game.World==null||EffectiveSfxVolume<=0||game.World.Paused||game.World.Winner>=0||!UnitActivityAudio.OnScreen(game,game.World.Get(channel.actor),out _))
                 {channel.source.Stop();channel.actor=0;channel.until=0;}
             }
             activity.Tick(game,this);
         }
         public bool TryPlayActivity(EntityState actor,SoundCategory category)
         {
-            if(game==null||game.World==null||game.Muted||game.World.Paused||game.World.Winner>=0||category<SoundCategory.Footstep
+            if(game==null||game.World==null||EffectiveSfxVolume<=0||game.World.Paused||game.World.Winner>=0||category<SoundCategory.Footstep
                 ||!UnitActivityAudio.OnScreen(game,actor,out var screen))return false;
             float now=Time.unscaledTime;if(now-lastActivity<.085f)return false;
             Channel chosen=null;foreach(var channel in channels)if(channel.activity&&now>=channel.until){chosen=channel;break;}
             if(chosen==null)return false;
-            var clip=clips[category];chosen.source.Stop();chosen.source.clip=clip;chosen.source.volume=.1f;
+            var clip=clips[category];chosen.source.Stop();chosen.source.clip=clip;chosen.source.volume=chosen.baseVolume*EffectiveSfxVolume;
             chosen.source.panStereo=Mathf.Clamp((screen.x-.5f)*1.5f,-.75f,.75f);
             chosen.source.transform.position=new Vector3(actor.position.x,0,actor.position.y);chosen.source.Play();
             chosen.actor=actor.id;chosen.last=now;chosen.until=now+clip.length;lastActivity=now;
             LastCategory=category;LastNotice=NoticeCue.None;PlayedCount++;ActivityPlayedCount++;
             return true;
+        }
+        private void ApplySettings()
+        {
+            options=settings.Current;
+            foreach(var channel in channels)
+            {
+                channel.source.volume=channel.baseVolume*EffectiveSfxVolume;channel.source.mute=options.muted;
+                if(EffectiveSfxVolume<=0){channel.source.Stop();channel.actor=0;channel.until=0;}
+            }
+            if(EffectiveSfxVolume<=0){activity.Reset(game?.World);lastActivity=-999;lastByCategory.Clear();}
         }
         public void SetMuted(bool muted)
         {
@@ -117,7 +130,7 @@ namespace Frontier
         public void PauseAll(bool paused)
         {
             activity.Reset(game?.World);
-            foreach(var channel in channels)if(paused)channel.source.Pause();else if(game!=null&&game.Muted)channel.source.Stop();else channel.source.UnPause();
+            foreach(var channel in channels)if(paused)channel.source.Pause();else if(EffectiveSfxVolume<=0)channel.source.Stop();else channel.source.UnPause();
             game?.Ambience?.SetPaused(paused);
         }
         private AudioClip Synthesize(string name,float frequency,float seconds,float noiseMix)
@@ -134,6 +147,7 @@ namespace Frontier
         }
         public void DisposeAudio()
         {
+            if(settings!=null)settings.Changed-=ApplySettings;settings=null;
             ResetMatch();foreach(var channel in channels)if(channel.source!=null)Destroy(channel.source.gameObject);channels.Clear();
             foreach(var clip in clips.Values)if(clip!=null)Destroy(clip);clips.Clear();
             foreach(var clip in notices.Values)if(clip!=null)Destroy(clip);notices.Clear();game=null;

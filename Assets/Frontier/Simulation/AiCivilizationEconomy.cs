@@ -22,7 +22,7 @@ namespace Frontier
         public static bool CanReassign(EntityState worker)=>worker.Alive&&worker.Worker&&worker.garrisonedIn==0&&!worker.hold&&worker.orders.Count<=1&&(worker.orders.Count==0||worker.orders.Peek().kind==OrderKind.Gather);
         public void Tick(List<EntityState> own,List<EntityState> workers,List<EntityState> visible,Cost reserve,bool saving,bool underAttack)
         {
-            if(world.Paused||world.Winner>=0)return;
+            if(world.Paused||world.IsMatchEnded||!world.IsPlayerActive(player))return;
             if(Building=="waystation")Trade(own,visible,reserve,saving,underAttack);
             if(Building=="workshop")Manufacture(own,workers,visible,reserve,saving,underAttack);
             if(Building=="mosque"&&!saving&&!underAttack)ResearchMosque(own,reserve);

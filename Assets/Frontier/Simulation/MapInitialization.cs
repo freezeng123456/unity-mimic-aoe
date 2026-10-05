@@ -25,13 +25,18 @@ namespace Frontier
                     Spawn(anchor.Definition,anchor.Owned?player:-1,MapLandPosition(anchor.Definition,anchor.Position,player));
             }
             foreach(var point in Layout.FishPoints)Spawn("fish",-1,point);
+            if(MapId==MapTopology.Frontier)for(int y=42;y<=86;y+=4)
+            {
+                if(y>=58&&y<=70)continue;
+                var obstacle=new Vector3(64,y,1.8f);TerrainObstacles.Add(obstacle);Navigation.SetBlocked(new Vector2(obstacle.x,obstacle.y),obstacle.z,true);
+            }
         }
         // New authored banks can intersect the old expansion-resource coordinates.
         // Resolve opening placement once; Spawn itself remains an explicit contract
         // for rewards, production, tests and gameplay, and never silently teleports.
         private Vector2 MapLandPosition(string definition,Vector2 desired,int homePlayer=-1)
         {
-            if(MapId==MapTopology.Frontier||MapId==MapTopology.River)return desired;
+            if(Players.Length==2&&(MapId==MapTopology.Frontier||MapId==MapTopology.River))return desired;
             var d=Rules.Entity(definition);
             if(d==null||d.waterborne)return desired;
             float width=d.kind==EntityKind.Building?d.width:Mathf.Max(1,d.radius*2);
@@ -40,8 +45,9 @@ namespace Frontier
             {
                 if(p.x-width*.5f<2||p.y-depth*.5f<2||p.x+width*.5f>126||p.y+depth*.5f>126)return false;
                 if(Layout.BridgeFootprintOverlaps(p,width+1,depth+1))return false;
-                if(Layout.Generated&&homePlayer>=0&&!Layout.InStartingRegion(homePlayer,p))return false;
-                if(Layout.Generated&&d.id!="town"&&MapGeneration.ProtectedShore(Layout,p,d.radius+4))return false;
+                if((Layout.Generated||Players.Length>2)&&homePlayer>=0&&!Layout.InStartingRegion(homePlayer,p))return false;
+                if(Players.Length>2&&homePlayer>=0&&!Layout.InOpeningTerritory(homePlayer,p))return false;
+                if((Layout.Generated||Players.Length>2)&&d.id!="town"&&MapGeneration.ProtectedShore(Layout,p,d.radius+4))return false;
                 if(!Navigation.IsAreaFree(p,width,depth))return false;
                 foreach(var v in new[]{Vector2.zero,new Vector2(-width*.5f,-depth*.5f),new Vector2(width*.5f,-depth*.5f),new Vector2(-width*.5f,depth*.5f),new Vector2(width*.5f,depth*.5f)})
                     if(IsWater(p+v))return false;

@@ -59,20 +59,24 @@ namespace Frontier
     public sealed class AmbientAudio : MonoBehaviour
     {
         private GameController game;
+        private PlayerSettingsService settings;
+        private PlayerSettings options=PlayerSettings.Defaults();
         private World observedWorld;
         private AudioSource wind, music;
         private AudioClip windClip, musicClip;
         private bool paused;
+        public float EffectiveEnvironmentVolume=>options.muted||!options.environmentEnabled?0:options.masterVolume*options.environmentVolume;
+        public float EffectiveMusicVolume=>options.muted||!options.musicEnabled?0:options.masterVolume*options.musicVolume;
         public int SourceCount => wind != null && music != null ? 2 : 0;
         public bool WindPlaying => wind != null && wind.isPlaying;
         public bool MusicPlaying => music != null && music.isPlaying;
 
         public void Initialize(GameController controller)
         {
-            Dispose(); game = controller;
+            Dispose(); game = controller;settings=game.Settings;options=settings.Current;settings.Changed+=ApplySettings;
             windClip = AmbientSoundClips.Create(AmbientCue.Wind); musicClip = AmbientSoundClips.Create(AmbientCue.FrontierTheme);
             wind = CreateSource(AmbientCue.Wind, windClip, .065f); music = CreateSource(AmbientCue.FrontierTheme, musicClip, .045f);
-            SetMuted(game.Muted);
+            ApplySettings();
         }
 
         private AudioSource CreateSource(AmbientCue cue, AudioClip clip, float volume)
@@ -86,20 +90,27 @@ namespace Frontier
         {
             if (game == null || wind == null || music == null) return;
             if (!ReferenceEquals(observedWorld, game.World)) { ResetMatch(); observedWorld = game.World; }
-            if (game.InMenu || game.World == null || game.World.Winner >= 0 || game.Muted)
+            if (game.InMenu || game.World == null || game.World.Winner >= 0 || options.muted || options.masterVolume<=0)
             { wind.Stop(); music.Stop(); return; }
             if (paused != game.World.Paused) SetPaused(game.World.Paused);
             if (paused) return;
             // Ambient wind describes only the viewed, currently visible terrain;
             // it never follows or reveals a hidden enemy source or location.
             bool visibleGround = game.World.Fog.At(0, game.Controls.CameraFocus) == VisibilityState.Visible;
-            PlayLoop(wind, game.EnvironmentSoundEnabled && visibleGround);
-            PlayLoop(music, game.MusicEnabled);
+            PlayLoop(wind, EffectiveEnvironmentVolume>0 && visibleGround);
+            PlayLoop(music, EffectiveMusicVolume>0);
         }
 
         private static void PlayLoop(AudioSource source, bool enabled)
         { if (!enabled) source.Stop(); else if (!source.isPlaying) source.Play(); }
 
+        private void ApplySettings()
+        {
+            options=settings.Current;if(wind==null||music==null)return;
+            wind.volume=.065f*EffectiveEnvironmentVolume;music.volume=.045f*EffectiveMusicVolume;
+            wind.mute=music.mute=options.muted;
+            if(EffectiveEnvironmentVolume<=0)wind.Stop();if(EffectiveMusicVolume<=0)music.Stop();
+        }
         public void SetMuted(bool muted)
         {
             if (wind == null || music == null) return;
@@ -112,7 +123,7 @@ namespace Frontier
             paused = value;
             if (wind == null || music == null) return;
             if (value) { wind.Pause(); music.Pause(); }
-            else if (game != null && !game.Muted) { wind.UnPause(); music.UnPause(); }
+            else if (game != null) { if(EffectiveEnvironmentVolume>0)wind.UnPause();if(EffectiveMusicVolume>0)music.UnPause(); }
         }
 
         public void ResetMatch()
@@ -120,6 +131,7 @@ namespace Frontier
 
         public void Dispose()
         {
+            if(settings!=null)settings.Changed-=ApplySettings;settings=null;
             ResetMatch();
             foreach (var source in new[] { wind, music }) if (source != null)
                 Destroy(source.gameObject);

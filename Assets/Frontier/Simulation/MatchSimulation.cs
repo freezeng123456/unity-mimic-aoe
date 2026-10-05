@@ -16,6 +16,7 @@ namespace Frontier
         public int StepCount { get; private set; }
         public float LastFrameMs { get; private set; }
         public bool CatchingUp { get; private set; }
+        public event Action StepCompleted;
         readonly List<SkirmishAI> controllers=new List<SkirmishAI>();
         float accumulator;
         public MatchSimulation(World world,params int[] automatedPlayers):this(world,automatedPlayers,"standard"){}
@@ -48,20 +49,20 @@ namespace Frontier
         }
         public bool Step()
         {
-            if(World.Paused||World.Winner>=0)return false;
+            if(World.Paused||World.IsMatchEnded)return false;
             foreach(var controller in controllers)controller.Tick(StepSeconds);
-            World.Tick(StepSeconds);StepCount++;return true;
+            World.Tick(StepSeconds);StepCount++;StepCompleted?.Invoke();return true;
         }
         // Input is elapsed simulation time (the caller may scale autoplay).
         // Paused time is never banked. Bounded catch-up slows the game under overload.
         public int AdvanceFrame(float simulationSeconds)
         {
             if(float.IsNaN(simulationSeconds)||float.IsInfinity(simulationSeconds)||simulationSeconds<0)throw new ArgumentOutOfRangeException(nameof(simulationSeconds));
-            LastFrameMs=0;CatchingUp=false;if(World.Paused||World.Winner>=0)return 0;
+            LastFrameMs=0;CatchingUp=false;if(World.Paused||World.IsMatchEnded)return 0;
             long started=Stopwatch.GetTimestamp();accumulator+=simulationSeconds;int steps=0;
             while(accumulator>=StepSeconds&&steps<MaxStepsPerFrame&&Step()){accumulator-=StepSeconds;steps++;}
             if(accumulator>2){accumulator=2;CatchingUp=true;}
-            if(World.Winner>=0)accumulator=0;
+            if(World.IsMatchEnded)accumulator=0;
             LastFrameMs=(float)((Stopwatch.GetTimestamp()-started)*1000.0/Stopwatch.Frequency);return steps;
         }
     }

@@ -17,7 +17,7 @@ namespace Frontier
             if(town==null||!town.Alive||town.def.id!="town"||P(town.owner)==null)return "Requires a living town center";
             if(AutoRecruitSeconds(town.owner)<=0)return "This civilization trains settlers manually";
             if(!town.Complete)return "Town center under construction";
-            if(Winner>=0)return "Match has ended";
+            if(IsMatchEnded)return "Match has ended";
             if(town.autoRecruitPaused)return "Paused by player";
             if(town.queue.Count>0)return "Town center queue busy";
             var worker=WorkerDefinition(town.owner);
@@ -30,7 +30,7 @@ namespace Frontier
 
         private void TickAutoRecruitment(EntityState town,float dt)
         {
-            if(dt<=0||Paused||Winner>=0||town.def.id!="town"||P(town.owner)==null)return;
+            if(dt<=0||Paused||IsMatchEnded||town.def.id!="town"||!IsPlayerActive(town.owner)||P(town.owner)==null)return;
             float seconds=AutoRecruitSeconds(town.owner);
             if(seconds<=0||AutoRecruitReason(town)!="")return;
             // One ready recruit at most; a blocked exit, cap or queue never

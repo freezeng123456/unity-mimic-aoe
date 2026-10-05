@@ -35,7 +35,7 @@ namespace Frontier
         public void SuppressWorldInput(bool clearPending=true)
         {ResetDoubleClick();suppressUntil=Time.unscaledTime+.22f;beganWorld=false;beganMinimap=false;Dragging=false;if(clearPending)input?.DiscardPointerEdges();game?.Hud?.CancelUiPointer();}
         private void ResetDoubleClick(){lastType=null;lastClickTime=0;lastClickPosition=default;}
-        private void OnDestroy()=>input?.Dispose();
+        private void OnDestroy(){if(game?.Settings!=null)game.Settings.Changed-=ClearTransientInput;input?.Dispose();}
         private void OnApplicationFocus(bool focused){if(inputTrace)Debug.LogFormat(LogType.Log,LogOption.NoStacktrace,null,"FRONTIER_FOCUS focused={0} frame={1}",focused,Time.frameCount);input?.SetFocus(focused);if(!focused)ClearTransientInput();}
         public void ClearTransientInput()
         {input?.Clear();SuppressWorldInput();}
@@ -43,7 +43,7 @@ namespace Frontier
         // pointer/keyboard orders use the explicit per-event edge.shift instead.
         public bool Shift=>Keyboard.current!=null&&(Keyboard.current.leftShiftKey.isPressed||Keyboard.current.rightShiftKey.isPressed||Keyboard.current.leftShiftKey.wasPressedThisFrame||Keyboard.current.rightShiftKey.wasPressedThisFrame);
         public void Initialize(GameController controller)
-        {game=controller;inputTrace=System.Array.IndexOf(System.Environment.GetCommandLineArgs(),"-frontierInputTrace")>=0;input=new DiscreteInputBuffer(inputTrace);}
+        {game=controller;inputTrace=System.Array.IndexOf(System.Environment.GetCommandLineArgs(),"-frontierInputTrace")>=0;input=new DiscreteInputBuffer(inputTrace,game.Settings);game.Settings.Changed+=ClearTransientInput;}
         public void Focus(Vector2 point){ResetDoubleClick();CameraFocus=new Vector2(Mathf.Clamp(point.x,7,121),Mathf.Clamp(point.y,7,121));UpdateCamera();}
         public void RestoreCamera(Vector2 focus,float size)
         {ResetDoubleClick();zoom=Mathf.Clamp(size,12,47);Focus(focus);groundCached=false;}
@@ -101,7 +101,7 @@ namespace Frontier
             if(GarrisonMode){CancelTargetMode();game.Notify("Garrison targeting cancelled");return;}
             bool mobile=Selected.Exists(id=>{var e=game.World?.Get(id);return e!=null&&e.owner==0&&e.def.kind==EntityKind.Unit&&game.World.IsVisible(0,e);});
             if(!mobile){game.Notify("Select mobile units before choosing a shelter");return;}
-            CancelTargetMode();GarrisonMode=true;game.Notify("Garrison: choose a completed friendly shelter. G / right click / Esc cancels.");
+            CancelTargetMode();GarrisonMode=true;game.Notify("Garrison: choose a completed friendly shelter. "+game.Settings.BindingLabel(PlayerAction.Garrison)+" / right click / Esc cancels.");
         }
         public void BeginEmbark(){CancelTargetMode();EmbarkMode=true;game.Notify("Board: choose your troop transport. Right click or Esc cancels.");}
         public void BeginDisembark(){CancelTargetMode();DisembarkMode=true;game.Notify("Unload: choose an open land shore. Right click or Esc cancels.");}
@@ -111,7 +111,7 @@ namespace Frontier
             if(RepairMode){CancelTargetMode();game.Notify("Repair targeting cancelled");return;}
             bool capable=Selected.Exists(id=>{var e=game.World?.Get(id);return e!=null&&e.owner==0&&(e.Worker||e.def.repairArtillery)&&game.World.IsVisible(0,e);});
             if(!capable){game.Notify("Select settlers or field engineers before repairing");return;}
-            CancelTargetMode();RepairMode=true;game.Notify("Repair: settlers repair buildings; field engineers repair artillery. R / right click / Esc cancels.");
+            CancelTargetMode();RepairMode=true;game.Notify("Repair: settlers repair buildings; field engineers repair artillery. "+game.Settings.BindingLabel(PlayerAction.Repair)+" / right click / Esc cancels.");
         }
         public void IssueOrder(OrderKind kind,Vector2 point,int target=0){if(kind==OrderKind.Stop||kind==OrderKind.Hold)CancelTargetMode();IssueOrder(kind,point,target,Shift);}
         private void IssueOrder(OrderKind kind,Vector2 point,int target,bool append)
@@ -163,7 +163,7 @@ namespace Frontier
             Vector2 pan=Vector2.zero;
             if(!game.Hud.ModalVisible)
             {
-                if(keys.leftArrowKey.isPressed)pan.x--;if(keys.rightArrowKey.isPressed)pan.x++;if(keys.upArrowKey.isPressed)pan.y++;if(keys.downArrowKey.isPressed)pan.y--;
+                pan=CameraPanInput.KeyDirection(keys,game.Settings.Bindings);
                 if(!game.Hud.BlocksCameraEdgePan(pointer))pan+=CameraPanInput.EdgeDirection(pointer,new Vector2(Screen.width,Screen.height),Application.isFocused);
                 pan=Vector2.ClampMagnitude(pan,1);
                 if(mouse.middleButton.isPressed)pan-=(pointer-lastMouse)*.08f;
@@ -186,24 +186,30 @@ namespace Frontier
         private void ProcessKey(Edge edge)
         {
             ResetDoubleClick();
-            switch(edge.key)
+            switch(edge.action)
             {
-                case Key.A:BeginAttackMove();break;
-                case Key.G:BeginGarrison();break;
-                case Key.R:BeginRepair();break;
-                case Key.S:CancelTargetMode();IssueOrder(OrderKind.Stop,Vector2.zero,0,edge.shift);break;
-                case Key.J:CancelTargetMode();IssueOrder(OrderKind.Hold,Vector2.zero,0,edge.shift);break;
-                case Key.H:game.Hud.ShowHomeCity();beganWorld=false;Dragging=false;break;
-                case Key.B:game.Hud.ShowBuildMenu();beganWorld=false;Dragging=false;break;
-                case Key.V:case Key.Period:Locate(0);break;
-                case Key.T:Locate(1);break;
-                case Key.M:Locate(2);break;
-                case Key.F:if(FirstSelected!=null)Focus(FirstSelected.position);break;
+                case PlayerAction.AttackMove:BeginAttackMove();break;
+                case PlayerAction.Garrison:BeginGarrison();break;
+                case PlayerAction.Repair:BeginRepair();break;
+                case PlayerAction.Embark:BeginEmbark();break;
+                case PlayerAction.Disembark:BeginDisembark();break;
+                case PlayerAction.DockRepair:BeginDockRepair();break;
+                case PlayerAction.Stop:CancelTargetMode();IssueOrder(OrderKind.Stop,Vector2.zero,0,edge.shift);break;
+                case PlayerAction.Hold:CancelTargetMode();IssueOrder(OrderKind.Hold,Vector2.zero,0,edge.shift);break;
+                case PlayerAction.HomeCity:game.Hud.ShowHomeCity();beganWorld=false;Dragging=false;break;
+                case PlayerAction.BuildMenu:game.Hud.ShowBuildMenu();beganWorld=false;Dragging=false;break;
+                case PlayerAction.IdleWorker:Locate(0);break;
+                case PlayerAction.TownCenter:Locate(1);break;
+                case PlayerAction.Army:Locate(2);break;
+                case PlayerAction.FocusSelection:if(FirstSelected!=null)Focus(FirstSelected.position);break;
+                case PlayerAction.ZoomIn:zoom=Mathf.Clamp(zoom-2,12,47);UpdateCamera();break;
+                case PlayerAction.ZoomOut:zoom=Mathf.Clamp(zoom+2,12,47);UpdateCamera();break;
                 default:
                     int n=edge.key==Key.Digit0?0:edge.key>=Key.Digit1&&edge.key<=Key.Digit9?(int)edge.key-(int)Key.Digit1+1:-1;
                     if(n>=0){if(edge.saveGroup)SaveGroup(n);else RecallGroup(n);}break;
             }
         }
+
         private void ProcessRight(Edge edge)
         {
             ResetDoubleClick();beganWorld=false;beganMinimap=false;Dragging=false;
@@ -224,7 +230,7 @@ namespace Frontier
                     var r=game.Command(new GameCommand{player=0,kind=CommandKind.Build,actors=Selected.ToArray(),item=BuildingToPlace,point=game.World.BuildPoint(0,BuildingToPlace,point),append=edge.shift});
                     if(r.accepted&&!edge.shift)BuildingToPlace="";beganWorld=false;return;
                 }
-                if(AttackMode){var target=Pick(pointer,true);IssueOrder(target!=null&&(target.owner==1||World.Guardian(target))?OrderKind.Attack:OrderKind.AttackMove,point,target?.id??0,edge.shift);AttackMode=false;beganWorld=false;return;}
+                if(AttackMode){var target=Pick(pointer,true);IssueOrder(target!=null&&(game.World.AreEnemies(0,target.owner)||World.Guardian(target))?OrderKind.Attack:OrderKind.AttackMove,point,target?.id??0,edge.shift);AttackMode=false;beganWorld=false;return;}
                 if(EmbarkMode||DisembarkMode||DockRepairMode)
                 {
                     var target=Pick(pointer,true,true);var command=EmbarkMode?CommandKind.Embark:DisembarkMode?CommandKind.Disembark:CommandKind.DockRepair;
@@ -293,7 +299,7 @@ namespace Frontier
                 {
                     if(resource){if(game.World.CanGather(actor,target))kind=OrderKind.Gather;}
                     else if(World.Treasure(target)){if((actor.def.tags&Tags.Explorer)!=0)kind=OrderKind.Claim;}
-                    else if(target.owner==1||World.Guardian(target))kind=OrderKind.Attack;
+                    else if(game.World.AreEnemies(0,target.owner)||World.Guardian(target))kind=OrderKind.Attack;
                     else if(target.owner==0&&target.def.transportShip&&!actor.def.waterborne)kind=OrderKind.Embark;
                     else if(target.owner==0&&target.def.id=="dock"&&actor.def.waterborne&&actor.hp<game.World.MaxHp(actor)-1)kind=OrderKind.DockRepair;
                     else if(target.owner==0&&target.def.kind==EntityKind.Building)
@@ -371,7 +377,7 @@ namespace Frontier
                 int rank=0;
                 if(command)
                 {
-                    bool enemy=e.owner==1||World.Guardian(e);
+                    bool enemy=game.World.AreEnemies(0,e.owner)||World.Guardian(e);
                     bool resource=Selected.Exists(id=>game.World.CanGather(game.World.Get(id),e));
                     bool treasure=explorers&&World.Treasure(e);
                     bool building=e.owner==0&&e.def.kind==EntityKind.Building&&(e.def.garrison>0||workers&&(!e.Complete||e.hp<game.World.MaxHp(e)-1||e.def.id=="workshop"));

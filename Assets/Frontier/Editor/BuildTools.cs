@@ -29,12 +29,12 @@ namespace Frontier.Editor
             pipelineSettings.ApplyModifiedPropertiesWithoutUndo();
             GraphicsSettings.defaultRenderPipeline=pipeline;QualitySettings.renderPipeline=pipeline;
             QualitySettings.shadows=UnityEngine.ShadowQuality.All;QualitySettings.shadowDistance=90;QualitySettings.vSyncCount=0;
-            PlayerSettings.companyName="Frontier Workshop";PlayerSettings.productName="Frontier Reckoning";
-            PlayerSettings.defaultScreenWidth=2560;PlayerSettings.defaultScreenHeight=1440;PlayerSettings.fullScreenMode=FullScreenMode.Windowed;
-            PlayerSettings.runInBackground=true;PlayerSettings.resizableWindow=true;PlayerSettings.colorSpace=ColorSpace.Linear;
-            PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.Standalone,"com.frontierworkshop.reckoning");
-            PlayerSettings.SetScriptingBackend(NamedBuildTarget.Standalone,ScriptingImplementation.Mono2x);
-            PlayerSettings.SetArchitecture(NamedBuildTarget.Standalone,1);
+            UnityEditor.PlayerSettings.companyName="Frontier Workshop";UnityEditor.PlayerSettings.productName="Frontier Reckoning";
+            UnityEditor.PlayerSettings.defaultScreenWidth=2560;UnityEditor.PlayerSettings.defaultScreenHeight=1440;UnityEditor.PlayerSettings.fullScreenMode=FullScreenMode.Windowed;
+            UnityEditor.PlayerSettings.runInBackground=true;UnityEditor.PlayerSettings.resizableWindow=true;UnityEditor.PlayerSettings.colorSpace=ColorSpace.Linear;
+            UnityEditor.PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.Standalone,"com.frontierworkshop.reckoning");
+            UnityEditor.PlayerSettings.SetScriptingBackend(NamedBuildTarget.Standalone,ScriptingImplementation.Mono2x);
+            UnityEditor.PlayerSettings.SetArchitecture(NamedBuildTarget.Standalone,1);
             var settings=new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/ProjectSettings.asset"));var input=settings.FindProperty("activeInputHandler");if(input!=null){input.intValue=1;settings.ApplyModifiedPropertiesWithoutUndo();}
             var graphics=new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/GraphicsSettings.asset"));var shaders=graphics.FindProperty("m_AlwaysIncludedShaders");
             if(shaders!=null)foreach(string name in new[]{"Frontier/Fog","Universal Render Pipeline/Lit","Universal Render Pipeline/Unlit"}){var shader=Shader.Find(name);bool found=false;for(int i=0;i<shaders.arraySize;i++)if(shaders.GetArrayElementAtIndex(i).objectReferenceValue==shader)found=true;if(!found&&shader!=null){int i=shaders.arraySize;shaders.InsertArrayElementAtIndex(i);shaders.GetArrayElementAtIndex(i).objectReferenceValue=shader;}}

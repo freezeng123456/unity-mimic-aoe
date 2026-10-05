@@ -13,7 +13,7 @@ namespace Frontier
 
         public void ResumeOne(List<EntityState> own,List<EntityState> workers,List<EntityState> visibleEnemies)
         {
-            if(world.Paused||world.Winner>=0)return;
+            if(world.Paused||world.IsMatchEnded||!world.IsPlayerActive(player))return;
             foreach(var foundation in own)
             {
                 if(!foundation.Alive||foundation.owner!=player||foundation.def.kind!=EntityKind.Building||foundation.Complete||

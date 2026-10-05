@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Frontier
 {
-    public sealed class WorldView : MonoBehaviour
+    public sealed partial class WorldView : MonoBehaviour
     {
         private GameController game;
         private Transform terrain,entityRoot,effectsRoot,caravan;
@@ -175,10 +175,11 @@ namespace Frontier
                 var health=new GameObject("Health").transform;health.SetParent(root,false);health.localPosition=new Vector3(0,architecture!=null?architecture.LocalBounds.max.y+.35f:2.8f,0);
                 ProceduralArt.Part(health,"Health backing",PrimitiveType.Cube,Vector3.zero,new Vector3(1.65f,.16f,.035f),new Color(.12f,.15f,.12f));
                 var bar=ProceduralArt.Part(health,"Health remaining",PrimitiveType.Cube,new Vector3(0,0,-.04f),new Vector3(1.55f,.11f,.045f),new Color(.3f,.74f,.34f)).transform;
-                v=new EntityVisual{key=key,root=root,model=model,circle=circle,health=health,bar=bar,rig=model.GetComponent<UnitRig>(),boatMotion=model.GetComponent<BoatPresentationMotion>(),architecture=architecture};
+                v=new EntityVisual{key=key,root=root,model=model,circle=circle,health=health,bar=bar,rig=model.GetComponent<UnitRig>(),boatMotion=model.GetComponent<BoatPresentationMotion>(),architecture=architecture,roleMarker=BuildRoleMarker(entity,root)};
             }
             v.root.gameObject.SetActive(true);v.root.name="Entity "+entity.id;v.root.position=EntityPosition(entity);v.model.localScale=Vector3.one;v.model.localPosition=Vector3.zero;
             v.firedAt=v.hurtAt=v.deathAt=-1000;v.pickReady=false;v.pickRootPosition=v.root.position;v.poseSeen=false;v.nextOffscreenPose=0;v.ringTintReady=false;v.healthFraction=-1;v.facing=entity.facing.sqrMagnitude>.001f?Quaternion.LookRotation(new Vector3(entity.facing.x,0,entity.facing.y)):Quaternion.identity;if(entity.def.id=="dock"){var direction=game.World.DockWaterDirection(entity.position);v.facing=Quaternion.Euler(0,-Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg,0);}
+            if(v.roleMarker!=null)TintLine(v.roleMarker,game.World.AreAllies(0,entity.owner)?new Color(.16f,.78f,.89f):new Color(.98f,.96f,.78f));
             v.model.rotation=v.facing;v.rig?.RestoreInitialPose();return v;
         }
         private string VisualKey(EntityState entity)
@@ -201,6 +202,7 @@ namespace Frontier
             LastFrameMs=LastFogMs=0;LastPoseApplications=LastOffscreenPoseSkips=LastCameraRelevantUnits=0;
             long started=System.Diagnostics.Stopwatch.GetTimestamp();
             if(game.World!=null)WaterPresentation.Tick(game.World);
+            UpdateGuidedMarker();
             var world=game.World;if(game.InMenu||world==null)return;ConsumeAnimationEvents(world);
             foreach(var entity in world.Entities)
             {
@@ -235,7 +237,8 @@ namespace Frontier
                 }
                 bool selected=game.Controls.Selected.Contains(entity.id);SetActive(visual.circle.gameObject,selected);
                 if(selected&&(!visual.ringTintReady||visual.ringTintOwner!=entity.owner))
-                {TintLine(visual.circle,entity.owner==1?new Color(1,.4f,.25f):new Color(.8f,.87f,.4f));visual.ringTintReady=true;visual.ringTintOwner=entity.owner;}
+                {TintLine(visual.circle,world.AreEnemies(0,entity.owner)?new Color(1,.4f,.25f):new Color(.8f,.87f,.4f));visual.ringTintReady=true;visual.ringTintOwner=entity.owner;}
+                if(visual.roleMarker!=null)SetActive(visual.roleMarker.gameObject,game.Options.friendEnemyPatterns&&entity.Alive);
                 float maxHp=world.MaxHp(entity);bool showHealth=selected||entity.hp<maxHp*.97f||!entity.Complete;SetActive(visual.health.gameObject,showHealth);
                 if(showHealth)
                 {
@@ -327,13 +330,15 @@ namespace Frontier
                 var visibility=world.Fog.At(0,new Vector2(x,y));int i=y*128+x;
                 fogPixels[i]=new Color32(12,21,25,(byte)(visibility==VisibilityState.Visible?0:visibility==VisibilityState.Explored?170:252));
                 mapPixels[i]=visibility==VisibilityState.Unexplored?new Color32(12,22,27,255):world.IsWater(new Vector2(x,y))?(world.IsBridge(new Vector2(x,y))?new Color32(133,111,73,255):visibility==VisibilityState.Explored?new Color32(26,55,64,255):new Color32(45,106,127,255)):visibility==VisibilityState.Explored?new Color32(44,53,43,255):new Color32(87,103,57,255);
+                if(game.Options.highContrastMinimap&&visibility!=VisibilityState.Unexplored)mapPixels[i]=world.IsWater(new Vector2(x,y))?new Color32(8,35,53,255):new Color32(24,32,23,255);
             }
             foreach(var e in world.Entities)
             {
                 if(!e.Alive||!world.IsVisible(0,e))continue;
                 int r=e.def.kind==EntityKind.Building?2:1;
-                Color32 c=e.def.kind==EntityKind.Resource?(e.def.resource==ResourceKind.Coin?new Color32(210,188,108,255):new Color32(134,146,72,255)):e.owner==0?new Color32(88,179,231,255):new Color32(231,99,72,255);
+                Color32 c=e.def.kind==EntityKind.Resource?(e.def.resource==ResourceKind.Coin?new Color32(210,188,108,255):new Color32(134,146,72,255)):ProceduralArt.OwnerColor(e.owner);
                 for(int dy=-r;dy<=r;dy++)for(int dx=-r;dx<=r;dx++){int x=Mathf.RoundToInt(e.position.x)+dx,y=Mathf.RoundToInt(e.position.y)+dy;if(x>=0&&x<128&&y>=0&&y<128)mapPixels[y*128+x]=c;}
+                if(game.Options.friendEnemyPatterns&&e.owner>=0&&e.def.kind!=EntityKind.Resource)MarkPlayerPattern(e);
             }
             var focus=game.Controls.CameraFocus;for(int i=-14;i<=14;i++){MapPixel((int)focus.x+i,(int)focus.y-11);MapPixel((int)focus.x+i,(int)focus.y+11);}for(int i=-11;i<=11;i++){MapPixel((int)focus.x-14,(int)focus.y+i);MapPixel((int)focus.x+14,(int)focus.y+i);}
             fogTexture.SetPixels32(fogPixels);fogTexture.Apply(false);Minimap.SetPixels32(mapPixels);Minimap.Apply(false);
@@ -396,7 +401,7 @@ namespace Frontier
             }
             bounds=default;return false;
         }
-        private class EntityVisual {public string key;public Transform root,model,health,bar;public UnitRig rig;public BoatPresentationMotion boatMotion;public ArchitectureModel architecture;public int constructionStage=-1;public Quaternion facing;public float firedAt=-1000,hurtAt=-1000,deathAt=-1000,nextOffscreenPose,healthFraction=-1;public LineRenderer circle;public Bounds pickBounds;public Vector3 pickScale,pickRootPosition;public bool pickReady,poseSeen,ringTintReady;public int ringTintOwner;}
+        private class EntityVisual {public string key;public Transform root,model,health,bar;public UnitRig rig;public BoatPresentationMotion boatMotion;public ArchitectureModel architecture;public int constructionStage=-1;public Quaternion facing;public float firedAt=-1000,hurtAt=-1000,deathAt=-1000,nextOffscreenPose,healthFraction=-1;public LineRenderer circle,roleMarker;public Bounds pickBounds;public Vector3 pickScale,pickRootPosition;public bool pickReady,poseSeen,ringTintReady;public int ringTintOwner;}
         private class PulseVisual {public LineRenderer line;public Vector2 point;public float time;public bool waterborne;}
     }
 }

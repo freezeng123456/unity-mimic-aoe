@@ -218,12 +218,12 @@ namespace Frontier
 
         public void TickIndustrialEconomy(float dt)
         {
-            if(dt<=0||float.IsNaN(dt)||float.IsInfinity(dt)||Paused||Winner>=0)return;
+            if(dt<=0||float.IsNaN(dt)||float.IsInfinity(dt)||Paused||IsMatchEnded)return;
             int originalCount=Entities.Count;
             for(int i=0;i<originalCount;i++)
             {
                 var factory=Entities[i];
-                if(!factory.Alive||factory.def.id!="factory"||factory.garrisonedIn!=0||!ClassicIndustryAvailable(factory.owner))continue;
+                if(!factory.Alive||factory.def.id!="factory"||factory.garrisonedIn!=0||!IsPlayerActive(factory.owner)||!ClassicIndustryAvailable(factory.owner))continue;
                 if(!factory.Complete)
                 {
                     float delta=dt*CivilizationFactor(factory.owner,t=>t.buildSpeed)/Mathf.Max(1,factory.def.time);

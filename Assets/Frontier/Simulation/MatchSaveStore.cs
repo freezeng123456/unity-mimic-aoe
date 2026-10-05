@@ -13,6 +13,7 @@ namespace Frontier
         public Vector3 cameraPosition;public float cameraSize=26;
         public Vector2 cameraFocus;public int[] selection;public ControlGroupSnapshot[] groups;
         public bool muted,environmentSound=true,music=true,autoplay;public float simulationSpeed=1;
+        public bool hasGuided;public GuidedPlaySnapshot guided;
     }
     [Serializable] public sealed class SaveEnvelope
     {public int schema=1;public string payload,sha256,encoding,payloadBase64;}
@@ -29,6 +30,7 @@ namespace Frontier
         internal static void WriteWithLimits(string path,SavedMatch save,long storedLimit,long payloadLimit)
         {
             if(save?.world==null||save.simulation==null)throw new ArgumentException("No match to save");
+            save.hasGuided=save.guided!=null;
             string payload=JsonUtility.ToJson(save);
             var envelope=EncodePayload(payload,payloadLimit);
             string json=JsonUtility.ToJson(envelope);
@@ -60,6 +62,12 @@ namespace Frontier
             catch(Exception error)when(error is ArgumentException||error is FormatException)
             {throw new IOException("Save is incomplete or damaged",error);}
             if(saved?.world==null||saved.simulation==null||string.IsNullOrEmpty(saved.matchId))throw new IOException("Save has no match state");
+            // Unity creates default instances for null serializable classes.
+            // Preserve the actual optional state across a normal cold read.
+            if(saved.hasGuided)
+            {if(saved.guided==null||string.IsNullOrEmpty(saved.guided.definitionId))throw new IOException("Save has no challenge state");}
+            else
+            {if(saved.guided!=null&&!string.IsNullOrEmpty(saved.guided.definitionId))throw new IOException("Save has an inconsistent challenge marker");saved.guided=null;}
             if(expectedVersion!=null&&(string.IsNullOrEmpty(saved.appVersion)||saved.appVersion!=expectedVersion))throw new IOException("Save requires game version "+(saved.appVersion??"unknown")+"; current version is "+expectedVersion);
             if(!SnapshotCodec.Finite(saved.cameraSize)||saved.cameraSize<8||saved.cameraSize>100||!SnapshotCodec.Finite(saved.cameraPosition.x)||!SnapshotCodec.Finite(saved.cameraPosition.y)||!SnapshotCodec.Finite(saved.cameraPosition.z))throw new IOException("Save has invalid camera settings");
             if(!SnapshotCodec.Finite(saved.cameraFocus)||!SnapshotCodec.Finite(saved.simulationSpeed)||saved.simulationSpeed<1||saved.simulationSpeed>16)throw new IOException("Save has invalid session settings");

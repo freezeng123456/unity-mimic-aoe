@@ -151,9 +151,9 @@ namespace Frontier
     }
     [Serializable] public class PlayerState
     {
-        public int id,age=1,usedPopulation,reservedPopulation,populationCap,shipmentTokens,xpLevels;
+        public int id,team,age=1,usedPopulation,reservedPopulation,populationCap,shipmentTokens,xpLevels;
         public int prefabCharges;
-        public string civilization; public Cost resources; public float xp; public bool resigned;
+        public string civilization; public Cost resources; public float xp; public bool resigned,eliminated;
         public readonly HashSet<string> technologies=new HashSet<string>();
         public readonly HashSet<string> sentCards=new HashSet<string>(); public readonly List<string> deck=new List<string>();
         public readonly List<RewardJob> rewards=new List<RewardJob>();

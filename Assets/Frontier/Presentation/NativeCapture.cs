@@ -28,6 +28,9 @@ namespace Frontier
         public bool generatedTerrain,requiresTransport;public int mapGeneratorVersion;
         public MapObjectiveState objective;public CaptureUnit[] units=Array.Empty<CaptureUnit>();
         public CaptureNeutralService[] neutralServices=Array.Empty<CaptureNeutralService>();
+        public CapturePlayer[] players=Array.Empty<CapturePlayer>();
+        public string skirmishMode="",guidedId="",guidedStatus="",guidedStage="";
+        public PlayerSettings preferences;
 
         // Detached player-owned state; this does not refresh UI or inspect enemy information.
         public static CaptureMetadata Read(GameController game)
@@ -42,6 +45,8 @@ namespace Frontier
                 paused = game.IsPaused, seed = w?.Seed ?? 0, worldTime = w?.Time ?? 0,
                 hudResources = game.Hud.ResourceSummary, hudUpdatedFrame = game.Hud.ResourceSummaryFrame,
                 hudWorldTime = game.Hud.ResourceSummaryTime, hudMatchId = game.Hud.ResourceSummaryMatchId,
+                skirmishMode=game.SkirmishMode,preferences=game.Settings.Current,
+                guidedId=game.Guided?.Definition.Id??"",guidedStatus=game.Guided?.Status.ToString()??"",guidedStage=game.Guided?.Stage?.Title??"",
                 camera = new CaptureCamera
                 {
                     focus = game.Controls.CameraFocus,
@@ -56,6 +61,7 @@ namespace Frontier
             result.aiDifficulty=game.Simulation?.Difficulty.Id??"";
             result.aiDecisionSeconds=game.Simulation?.Difficulty.DecisionSeconds??0;
             result.aiArmySeconds=game.Simulation?.Difficulty.ArmySeconds??0;
+            result.players=new CapturePlayer[w.Players.Length];for(int i=0;i<w.Players.Length;i++){var p=w.Players[i];result.players[i]=new CapturePlayer{slot=i,team=p.team,civilization=p.civilization,resigned=p.resigned,eliminated=p.eliminated,winner=w.IsPlayerWinner(i)};}
             result.hasPlayer = true; result.resources = w.Players[0].resources;
             result.population = PopulationSnapshot.From(w.Players[0]);
             var buildings = new List<CaptureProduction>();
@@ -86,6 +92,8 @@ namespace Frontier
     }
     [Serializable] public sealed class CaptureUnit
     {public int entity,garrisonedIn,load,capacity,target;public string definition,status,order;public Vector2 position,destination;public float hp;public int[] cargo;}
+    [Serializable] public sealed class CapturePlayer
+    {public int slot,team;public string civilization;public bool resigned,eliminated,winner;}
     [Serializable] public sealed class CaptureNeutralService
     {public string id,service,item;public int site,owner,claimant;public bool contested;public float claimProgress,elapsed,duration;}
     [Serializable] public sealed class CaptureCamera

@@ -20,7 +20,7 @@ namespace Frontier
         public readonly List<TreasureState> Treasures=new List<TreasureState>();
         public Vector2 CaravanPosition {get;private set;}
         private int caravanWaypoint=1,caravanDirection=1;
-        private readonly HashSet<int>[] discoveredLandmarks={new HashSet<int>(),new HashSet<int>()};
+        private readonly HashSet<int>[] discoveredLandmarks;
         public static bool Guardian(EntityState e)=>e!=null&&(e.def.tags&Tags.Guardian)!=0;
         public static bool Treasure(EntityState e)=>e!=null&&e.def.id.StartsWith("treasure_");
         private void InitializeLandmarks()
@@ -137,7 +137,7 @@ namespace Frontier
             int count=Entities.Count;
             for(int i=0;i<count;i++)
             {
-                var explorer=Entities[i];if(!explorer.Alive||explorer.garrisonedIn!=0||explorer.orders.Count==0)continue;
+                var explorer=Entities[i];if(!explorer.Alive||!IsPlayerActive(explorer.owner)||explorer.garrisonedIn!=0||explorer.orders.Count==0)continue;
                 var order=explorer.orders.Peek();if(order.kind!=OrderKind.Claim)continue;
                 var treasure=Get(order.target);string reason=TreasureReason(explorer.owner,treasure);
                 if(reason!=""){explorer.orders.Dequeue();explorer.status=reason;continue;}
@@ -165,7 +165,7 @@ namespace Frontier
             foreach(var socket in TradeSockets)
             {
                 if(socket.waypoint!=waypoint)continue;var post=TradingPostAt(socket.entity);
-                if(post==null||!post.Complete)continue;
+                if(post==null||!post.Complete||!IsPlayerActive(post.owner))continue;
                 var p=Players[post.owner];float factor=p.technologies.Contains("cargo_ledgers")?Rules.landmarks.tradeUpgradeMultiplier:1;
                 if(post.tradeMode==ResourceKind.None){float xp=Rules.landmarks.tradeXp*factor;AwardXp(post.owner,xp,post.id,"Trade route delivery");Emit("TradeDelivery",post.owner,post.id,"XP",xp,socket.entity);}
                 else

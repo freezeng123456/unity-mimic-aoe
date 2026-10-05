@@ -18,13 +18,14 @@ namespace Frontier
         private int shipId,phase,landingIndex,landingAttempts,landingPlayer;
         private float startedAt,retryAt;
         private readonly List<int> passengers=new List<int>();
-        public AiNavalOperations(World world,int player){this.world=world;this.player=player;landingPlayer=1-player;}
+        public AiNavalOperations(World world,int player){this.world=world;this.player=player;landingPlayer=world.FirstEnemyPlayer(player);}
         public AiNavalOperationsSnapshot CaptureState()=>new AiNavalOperationsSnapshot
         {ship=shipId,phase=phase,landingIndex=landingIndex,landingAttempts=landingAttempts,landingPlayer=landingPlayer,startedAt=startedAt,retryAt=retryAt,passengers=passengers.ToArray()};
         public void RestoreState(AiNavalOperationsSnapshot state)
         {
             AiSaveValidation.Require(state!=null&&state.ship>=0&&state.phase>=0&&state.phase<=2&&state.landingIndex>=0&&state.landingAttempts>=0&&state.landingAttempts<=6&&
-                state.landingPlayer>=0&&state.landingPlayer<=1&&AiSaveValidation.Clock(state.startedAt)&&AiSaveValidation.Clock(state.retryAt)&&state.passengers!=null,"naval operations state");
+                state.landingPlayer>=0&&state.landingPlayer<world.Players.Length&&AiSaveValidation.Clock(state.startedAt)&&AiSaveValidation.Clock(state.retryAt)&&state.passengers!=null,"naval operations state");
+            AiSaveValidation.Require(state.landingPlayer==player||world.AreEnemies(player,state.landingPlayer),"naval landing faction");
             var seen=new HashSet<int>();foreach(int id in state.passengers)AiSaveValidation.Require(id>0&&seen.Add(id),"naval passengers");
             shipId=state.ship;phase=state.phase;landingIndex=state.landingIndex;landingAttempts=state.landingAttempts;landingPlayer=state.landingPlayer;
             startedAt=state.startedAt;retryAt=state.retryAt;passengers.Clear();passengers.AddRange(state.passengers);
@@ -32,7 +33,7 @@ namespace Frontier
         public bool NeedsTransport=>world.Layout.RequiresTransport&&world.Players[player].age>=2&&world.Rules.Entity("transport_ship")!=null;
         public bool Tick(List<EntityState> own,List<EntityState> visibleEnemies,bool underAttack)
         {
-            if(!NeedsTransport||world.Paused||world.Winner>=0)return false;
+            if(!NeedsTransport||world.Paused||world.IsMatchEnded||!world.IsPlayerActive(player))return false;
             var ship=world.Get(shipId);
             if(world.NavalTransportReason(player,ship)!="")
             {
@@ -56,7 +57,7 @@ namespace Frontier
                 // reserving soldiers or a full ship forever.
                 foreach(var unit in own)if(unit.Alive&&unit.garrisonedIn==0&&unit.orders.Count>0&&unit.orders.Peek().kind==OrderKind.Embark&&unit.orders.Peek().target==ship.id)
                     Send(new GameCommand{kind=CommandKind.Order,actors=new[]{unit.id},order=OrderKind.Stop});
-                landingPlayer=underAttack||ship.hp<world.MaxHp(ship)*.45f?player:1-player;
+                landingPlayer=underAttack||ship.hp<world.MaxHp(ship)*.45f?player:world.FirstEnemyPlayer(player);
                 var shores=world.Layout.LandingSites[landingPlayer];
                 if(shores.Length==0)return true;
                 if(landingAttempts>=6){landingAttempts=0;retryAt=world.Time+30;return true;}

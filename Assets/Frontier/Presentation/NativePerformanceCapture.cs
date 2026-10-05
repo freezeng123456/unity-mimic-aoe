@@ -24,7 +24,7 @@ namespace Frontier
         public double realtime;
         public float worldTime;
         public long managedBytes, unityAllocatedBytes;
-        public int livingUnits, playerUnits0, playerUnits1, neutralUnits, viewportVisibleUnitCenters, livingBuildings, totalEntities,eventCount;
+        public int livingUnits, playerUnits0, playerUnits1, playerUnits2, playerUnits3, neutralUnits, viewportVisibleUnitCenters, livingBuildings, totalEntities,eventCount;
     }
     [Serializable] public sealed class PerformanceCaptureReport
     {
@@ -114,17 +114,17 @@ namespace Frontier
             };
             previousFocused = focused; previousPaused = paused; focusLostInInterval = false;
             if (now >= nextMemory) { AddMemory(); nextMemory = now + 1; }
-            if (capturedWorld.Winner >= 0) Finish("match_finished");
+            if (capturedWorld.IsMatchEnded) Finish("match_finished");
         }
 
         private void AddMemory()
         {
-            int units = 0, owned0 = 0, owned1 = 0, neutral = 0, viewportCenters = 0, buildings = 0;
+            int units = 0, owned0 = 0, owned1 = 0, owned2 = 0, owned3 = 0, neutral = 0, viewportCenters = 0, buildings = 0;
             foreach (var e in capturedWorld.Entities) if (e.Alive)
             {
                 if (e.def.kind == EntityKind.Unit)
                 {
-                    units++; if (e.owner == 0) owned0++; else if (e.owner == 1) owned1++; else neutral++;
+                    units++; if (e.owner == 0) owned0++; else if (e.owner == 1) owned1++; else if(e.owner==2)owned2++; else if(e.owner==3)owned3++; else neutral++;
                     // Center inside the camera viewport and allowed by player fog;
                     // this count does not promise unoccluded models or HUD-free pixels.
                     if (game != null && game.GameCamera != null && (e.owner == 0 || capturedWorld.Fog.At(0, e.position) == VisibilityState.Visible))
@@ -139,7 +139,7 @@ namespace Frontier
             {
                 realtime = Time.realtimeSinceStartupAsDouble, worldTime = capturedWorld.Time,
                 managedBytes = GC.GetTotalMemory(false), unityAllocatedBytes = Profiler.GetTotalAllocatedMemoryLong(),
-                livingUnits = units, playerUnits0 = owned0, playerUnits1 = owned1, neutralUnits = neutral,
+                livingUnits = units, playerUnits0 = owned0, playerUnits1 = owned1, playerUnits2 = owned2, playerUnits3 = owned3, neutralUnits = neutral,
                 viewportVisibleUnitCenters = viewportCenters,
                 livingBuildings = buildings, totalEntities = capturedWorld.Entities.Count,eventCount=capturedWorld.Events.Count
             });

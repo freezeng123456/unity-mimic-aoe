@@ -9,7 +9,8 @@ namespace Frontier
     {
         private readonly World world;
         private readonly int player;
-        private readonly Vector2 home,enemyStart;
+        private readonly Vector2 home;
+        private Vector2 enemyStart=>world.OpeningTownPosition(world.FirstEnemyPlayer(player));
         private readonly Dictionary<int,Vector2> memory=new Dictionary<int,Vector2>();
         private float thinkAt,armyAt;
         public AiDifficultyProfile Difficulty { get; }
@@ -25,7 +26,7 @@ namespace Frontier
         private int rotation,buildSerial;
         public SkirmishAI(World world,int player):this(world,player,AiDifficultyProfile.From(world.Rules,"standard")){}
         public SkirmishAI(World world,int player,AiDifficultyProfile difficulty)
-        {this.world=world;this.player=player;Difficulty=difficulty??throw new ArgumentNullException(nameof(difficulty));workforce=new AiWorkforce(world,player);agePlan=new AiAgePlan(world,player);construction=new AiConstruction(world,player);civilizationEconomy=new AiCivilizationEconomy(world,player);waterEconomy=new AiWaterEconomy(world,player);home=world.OpeningTownPosition(player);enemyStart=world.OpeningTownPosition(1-player);search=new AiSearchPlan(world,player,enemyStart);}
+        {this.world=world??throw new ArgumentNullException(nameof(world));if(player<0||player>=world.Players.Length)throw new ArgumentOutOfRangeException(nameof(player));this.player=player;Difficulty=difficulty??throw new ArgumentNullException(nameof(difficulty));workforce=new AiWorkforce(world,player);agePlan=new AiAgePlan(world,player);construction=new AiConstruction(world,player);civilizationEconomy=new AiCivilizationEconomy(world,player);waterEconomy=new AiWaterEconomy(world,player);home=world.OpeningTownPosition(player);search=new AiSearchPlan(world,player,enemyStart);}
         public AiSnapshot CaptureState()
         {
             var remembered=new List<IntPointSnapshot>();
@@ -47,6 +48,7 @@ namespace Frontier
             foreach(var item in state.memory)
             {
                 AiSaveValidation.Require(item!=null&&item.id>0&&ids.Add(item.id)&&SnapshotCodec.Finite(item.point),"enemy memory entry");
+                var remembered=world.Get(item.id);AiSaveValidation.Require(remembered==null||world.AreEnemies(state.player,remembered.owner),"allied enemy memory");
                 result.memory.Add(item.id,item.point);
             }
             result.agePlan.RestoreState(state.agePlan);result.workforce.RestoreState(state.workforce);result.search.RestoreState(state.search);
@@ -56,13 +58,13 @@ namespace Frontier
         }
         public void Tick(float dt)
         {
-            if(world.Paused||world.Winner>=0)return;thinkAt-=dt;if(thinkAt>0)return;thinkAt=Difficulty.DecisionSeconds;
+            if(world.Paused||world.IsMatchEnded||!world.IsPlayerActive(player))return;thinkAt-=dt;if(thinkAt>0)return;thinkAt=Difficulty.DecisionSeconds;
             var own=new List<EntityState>();var workers=new List<EntityState>();var army=new List<EntityState>();var enemies=new List<EntityState>();
             foreach(var e in world.Entities)
             {
                 if(!e.Alive)continue;
                 if(e.owner==player){own.Add(e);if(e.Worker)workers.Add(e);else if(e.Military&&!e.def.waterborne)army.Add(e);}
-                else if(e.owner>=0&&e.def.kind!=EntityKind.Resource&&world.IsVisible(player,e)){enemies.Add(e);memory[e.id]=e.position;}
+                else if(world.AreEnemies(player,e.owner)&&e.def.kind!=EntityKind.Resource&&world.IsVisible(player,e)){enemies.Add(e);memory[e.id]=e.position;}
             }
             DevelopIndustry(own,enemies);
             int soldierCount=army.FindAll(e=>(e.def.tags&Tags.Explorer)==0).Count;
@@ -196,7 +198,7 @@ namespace Frontier
                 }
                 if(removeId!=0)ForgetMemory(removeId);
                 int muster=p.age<=2?6:p.age==3?10:14;
-                Vector2 rally=home+new Vector2(player==0?10:-10,player==0?10:-10);
+                Vector2 rally=home+Vector2.ClampMagnitude(new Vector2(64,64)-home,14.142136f);
                 int assembled=soldiers.FindAll(e=>(e.position-rally).sqrMagnitude<22*22).Count;
                 // A failed attack must rebuild a force; elapsed match time never
                 // turns one replacement into an automatic suicide expedition.
@@ -280,7 +282,7 @@ namespace Frontier
                 resources.wood<world.EntityCost(player,world.Rules.Entity("house")).wood)resource="wood";
             int guards=army.FindAll(e=>e.Complete&&e.garrisonedIn==0&&!e.def.civilian&&(e.def.tags&(Tags.Explorer|Tags.Artillery))==0).Count;
             int guns=own.FindAll(e=>e.def.id==artillery.id).Count;
-            Vector2 rally=world.Navigation.NearestWalkable(home+new Vector2(player==0?10:-10,player==0?10:-10),artillery.radius);
+            Vector2 rally=world.Navigation.NearestWalkable(home+Vector2.ClampMagnitude(new Vector2(64,64)-home,14.142136f),artillery.radius);
             for(int i=0;i<factories.Count;i++)
             {
                 var factory=factories[i];if(factory.queue.Count>0)continue;

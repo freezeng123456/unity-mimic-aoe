@@ -34,7 +34,7 @@ namespace Frontier.Tests
         private void AssertLayout()
         {
             var panel=(RectTransform)FindButton("RESUME").transform.parent;
-            var buttons=panel.GetComponentsInChildren<Button>().Where(b=>b.transform.parent==panel).ToArray();Assert.AreEqual(10,buttons.Length);
+            var buttons=panel.GetComponentsInChildren<Button>().Where(b=>b.transform.parent==panel).ToArray();Assert.AreEqual(11,buttons.Length);Assert.IsTrue(buttons.Contains(FindButton("SETTINGS")));
             Assert.IsTrue(buttons.Contains(FindButton("SAVE MATCH")));Assert.IsTrue(buttons.Contains(FindButton("LOAD MATCH")));
             Rect Bounds(RectTransform rect)
             {

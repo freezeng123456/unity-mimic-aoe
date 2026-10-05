@@ -25,20 +25,24 @@ namespace Frontier
         private int nextId=1;
         private float fogAt;
         public World(RuleCatalog rules,int seed=314159,string civ0="coast",string civ1="coast",int maxAge=3,string mapId="frontier")
+            :this(rules,seed,new[]{civ0,civ1},new[]{0,1},maxAge,mapId){}
+        public World(RuleCatalog rules,int seed,string[] civilizations,int[] teams,int maxAge=3,string mapId="frontier")
         {
-            Rules=rules??throw new ArgumentNullException(nameof(rules));Seed=seed;MaxAge=Mathf.Clamp(maxAge,1,rules.ages.Length);
+            Rules=rules??throw new ArgumentNullException(nameof(rules));ValidateRoster(rules,civilizations,teams);
+            Seed=seed;MaxAge=Mathf.Clamp(maxAge,1,rules.ages.Length);
+            Players=new PlayerState[civilizations.Length];
+            for(int i=0;i<Players.Length;i++)Players[i]=new PlayerState{id=i,team=teams[i],civilization=civilizations[i]};
             MapId=mapId??MapTopology.Frontier;if(!MapTopology.IsValid(MapId))throw new ArgumentException("Unknown map: "+MapId);
-            Layout=MapLayout.Create(MapId,Seed);
-            Navigation=new GridNavigation();WaterNavigation=new GridNavigation();Fog=new Visibility();
+            Layout=MapLayout.Create(MapId,Seed,Players.Length);
+            Navigation=new GridNavigation();WaterNavigation=new GridNavigation();Fog=new Visibility(players:Players.Length,teams:teams,activePlayer:IsPlayerActive);
             TradeRoute=MapTradeRoute();InitializeNavigationTerrain();
-            Players=new[]{new PlayerState{id=0,civilization=civ0},new PlayerState{id=1,civilization=civ1}};
-            if(Rules.Civ(civ0)==null||Rules.Civ(civ1)==null)throw new ArgumentException("Unknown civilization");
+            discoveredLandmarks=new HashSet<int>[Players.Length];for(int i=0;i<Players.Length;i++)discoveredLandmarks[i]=new HashSet<int>();
             InitializeEconomy();InitializeMap();InitializeLandmarks();InitializeNeutralAllies();Fog.Tick(Entities);RecordLandmarkDiscoveries();RebuildSpatial();
-            Emit("MatchStarted",-1,0,$"Seed {Seed}; map {MapId}; age cap {MaxAge}; {civ0} vs {civ1}; project rules P v0.2");
+            Emit("MatchStarted",-1,0,$"Seed {Seed}; map {MapId}; age cap {MaxAge}; {string.Join(" vs ",civilizations)}; project rules P v0.2");
         }
         private void InitializeMap()
         {
-            if(Layout.Generated){InitializeGeneratedMap();return;}
+            if(Layout.Generated||Players.Length>2){InitializeGeneratedMap();return;}
             EntityState Place(string definition,int owner,Vector2 position)=>Spawn(definition,owner,MapLandPosition(definition,position));
             // Mirrored resources, two outcrop walls with a narrow middle passage and wide flanks.
             for(int p=0;p<2;p++)
@@ -68,6 +72,7 @@ namespace Frontier
         public EntityState Get(int id)=>byId.TryGetValue(id,out var e)?e:null;
         public EntityState Spawn(string definition,int owner,Vector2 position,bool complete=true)
         {
+            if(owner< -1||owner>=Players.Length)throw new ArgumentOutOfRangeException(nameof(owner));
             var d=Rules.Entity(definition);if(d==null)throw new ArgumentException("Undefined entity: "+definition);
             var e=new EntityState{id=nextId++,owner=owner,def=d,position=position,previousPosition=position,origin=position,
                 hp=complete?d.hp:Mathf.Max(1,d.hp*.05f),construction=complete?1:0,remaining=d.amount,rally=position+new Vector2(0,-d.depth*.5f-3)};
@@ -90,7 +95,7 @@ namespace Frontier
             if(e.def.kind==EntityKind.Building)SetBuildingObstacle(e,false);
             OnEntityRemoved(e);
             if(e.owner>=0&&e.def.kind!=EntityKind.Resource)Players[e.owner].losses++;
-            if(killerOwner>=0&&killerOwner<2&&e.owner!=killerOwner&&e.def.kind!=EntityKind.Resource)
+            if(killerOwner>=0&&killerOwner<Players.Length&&IsHostileTarget(killerOwner,e)&&e.def.kind!=EntityKind.Resource)
             {if(Guardian(e))Players[killerOwner].guardiansDefeated++;else Players[killerOwner].kills++;AwardXp(killerOwner,e.def.killXp,e.id,"Combat bounty");}
             bool removedTransport=HandleTransportRemoval(e,killerOwner);
             if(e.occupants.Count>0&&!removedTransport)EvacuateDestroyedBuilding(e);
@@ -108,12 +113,13 @@ namespace Frontier
         }
         public CommandResult Issue(GameCommand c)
         {
-            if(c==null||c.player<0||c.player>=2)return CommandResult.Fail("Invalid player");
+            if(c==null||c.player<0||c.player>=Players.Length)return CommandResult.Fail("Invalid player");
             if(!System.Enum.IsDefined(typeof(CommandKind),c.kind)||!SnapshotCodec.Finite(c.point))return CommandResult.Fail("Invalid command or destination");
             c.actors??=Array.Empty<int>();
-            if(Winner>=0)return CommandResult.Fail("Match has ended");
+            if(IsMatchEnded)return CommandResult.Fail("Match has ended");
+            if(!IsPlayerActive(c.player))return CommandResult.Fail("Player is eliminated or resigned");
             if(Paused)return CommandResult.Fail("Resume before issuing orders");
-            if(c.kind==CommandKind.Resign){Players[c.player].resigned=true;Winner=1-c.player;FinalizeMapObjectiveForMatchEnd();Emit("Resign",c.player,0,"Player resigned");return CommandResult.Ok("Resigned");}
+            if(c.kind==CommandKind.Resign)return ResignPlayer(c.player);
             if(c.kind==CommandKind.ToggleMode)
             {int n=0;foreach(int id in c.actors){var e=Get(id);if(e!=null&&e.Alive&&e.owner==c.player&&e.def.meleeDamage>0&&e.def.range>2){e.forceMelee=!e.forceMelee;n++;}}return n>0?CommandResult.Ok("Combat mode changed"):CommandResult.Fail("No mode-switching units selected");}
             if(c.kind==CommandKind.TradeMode)return SetTradeMode(c);
@@ -143,7 +149,7 @@ namespace Frontier
             bool targeted=c.order==OrderKind.Attack||c.order==OrderKind.Gather||c.order==OrderKind.Build||c.order==OrderKind.Repair||c.order==OrderKind.Garrison||c.order==OrderKind.Claim||c.order==OrderKind.Manufacture;
             if(targeted&&(target==null||!IsVisible(c.player,target)))return CommandResult.Fail("Target is not currently visible");
             if(c.order==OrderKind.Claim){string reason=TreasureReason(c.player,target);if(reason!="")return CommandResult.Fail(reason);}
-            if(c.order==OrderKind.Attack&&(target.owner==c.player||target.def.kind==EntityKind.Resource))return CommandResult.Fail("Choose an enemy");
+            if(c.order==OrderKind.Attack&&(!IsHostileTarget(c.player,target)||target.def.kind==EntityKind.Resource))return CommandResult.Fail("Choose an enemy");
             if((c.order==OrderKind.Build||c.order==OrderKind.Repair||c.order==OrderKind.Garrison)&&target.owner!=c.player)return CommandResult.Fail("Choose your own building");
             if(c.order==OrderKind.Manufacture&&(target.owner!=c.player||target.def.id!="workshop"||!target.Complete||!Rules.Civ(Players[c.player].civilization).manufacturing))return CommandResult.Fail("Choose your completed workshop");
             if(c.order==OrderKind.Gather&&!(target.def.resource!=ResourceKind.None&&(target.def.kind==EntityKind.Resource||target.owner==c.player)))return CommandResult.Fail("Choose a resource");
@@ -212,19 +218,14 @@ namespace Frontier
         }
         public void Tick(float dt=.1f)
         {
-            if(Paused||Winner>=0||dt<=0)return;
+            if(Paused||IsMatchEnded||dt<=0)return;
             Time+=dt;foreach(var e in Entities)e.previousPosition=e.position;TickEvacuations();
             RebuildSpatial();
             var sw=System.Diagnostics.Stopwatch.StartNew();TickMovementCombat(dt);LastCombatMs=Mathf.Max(0,(float)sw.Elapsed.TotalMilliseconds-LastNavigationMs);
             TickTransportCargo();
             sw.Restart();TickEconomy(dt);TickLandmarks(dt);TickNeutralAllies(dt);TickMapObjectives(dt);LastEconomyMs=(float)sw.Elapsed.TotalMilliseconds;
             if(Time>=fogAt){fogAt=Time+.4f;Fog.Tick(Entities);RecordLandmarkDiscoveries();}
-            if(Winner>=0)return;
-            for(int p=0;p<2;p++)
-            {
-                bool remains=false;foreach(var e in Entities)if(e.Alive&&e.owner==p&&e.def.kind!=EntityKind.Resource){remains=true;break;}
-                if(!remains){Winner=1-p;FinalizeMapObjectiveForMatchEnd();Emit("MatchEnded",Winner,0,"All opposing units and buildings eliminated");break;}
-            }
+            if(!IsMatchEnded)EvaluateElimination();
         }
         private void RebuildSpatial()
         {
