@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "status": "historical failed package attempt",
+  "failedCheck": "clientReceiptBinaryFileAndBytesMatch",
+  "cause": "Initial build receipt omitted binaryFile and binaryBytes. App bytes/modes/SHA and source/test checks passed; gallery identity failure cascaded from client rejection.",
+  "repair": "Added actual plist executable relative path and stat byte count, preserving binary, boot config, source fingerprint and GUID. Only source/client ZIPs need repackaging; previous ZIPs remain outside repository in PackagingAttempt1.",
+  "actualBinaryFile": "Contents/MacOS/Frontier Reckoning",
+  "actualBinaryBytes": 35151,
+  "originalReceiptSha256": "9e77edd77eeedaeb7231d60f1f7fef076526ea3777cc555d5d7834ed4958405c",
+  "failedVerificationSha256": "ea21042675751c72b8803861f7b1ffceb317097cca533c5943432b6306bca8e5"
+}
