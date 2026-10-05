@@ -1,6 +1,6 @@
 # 0.10.0 交付与核验（067）
 
-源码、macOS arm64客户端、原生图集三个最终ZIP已冻结，本地身份和全部成员字节/权限/链接核验通过；已上传Google Drive并读回名称、大小、父目录、shared=false和仅所有者权限。清单、指南、独立验包回执和上传读回回执也已上传，共七个私有对象；元数据均读回通过。GitHub私有开发分支与原草稿PR同步待本次完成。
+源码、macOS arm64客户端、原生图集三个最终ZIP已冻结，本地身份和全部成员字节/权限/链接核验通过；已上传Google Drive并读回名称、大小、父目录、shared=false和仅所有者权限。清单、指南、独立验包回执和上传读回回执也已上传，共七个私有对象；元数据均读回通过。GitHub私有开发分支推送和原草稿PR标题/完整描述/提交身份读回也已通过；没有合并或公开发布。
 
 下载入口：[私有0.10交付目录](https://drive.google.com/drive/folders/1fS0we1PNCNuHOucbVrUXnzdgvuygSUZ1)。下列SHA和bytes属于本地冻结ZIP；没有远端SHA或下载字节对照证明。
 
@@ -34,3 +34,9 @@
 [独立回执](Evidence/067/Delivery/independent-zip-verification.json)由单独代理使用Python标准库核对全部1,386个成员及49项检查，全Passed，16,934字节，SHA `c33f719ca1c31acfb4bf0275de932a56acce235e765df9f9c275f06f384909ba`。原包实际没有symlink，回执明确记0；946源码成员Git blob/类型/执行位均匹配ccc7快照，缓存、outputs、个人内容和旧app排除通过。
 
 [六载荷上传读回](Evidence/067/Delivery/cloud-upload-readback.json)包含三ZIP、release-manifest、README-zh及独立验包JSON，各自复核本地bytes/SHA，云端名称、大小、父目录和owner-only私有权限均通过。[第七个回执的上传读回](Evidence/067/Delivery/cloud-delivery-final.json)记录5,420字节cloud-upload-readback回执的远端身份及本地SHA。七个对象均shared=false，没有共享权限变更；两份回执明确未验证远端内容SHA或下载字节相等。cloud-delivery-final是本地外层资料，没有计成第八个云端对象。
+
+## GitHub交付读回
+
+[推送后回执](Evidence/067/Delivery/github-delivery-readback.json)确认私有仓库、[原PR #1](https://github.com/freezeng123456/unity-mimic-aoe/pull/1)为open/draft/未合并；首轮交付head `cd71c9131c23b201503ca1a23d8bb5f7cdd25bf1`与本地一致，标题和完整描述读回相同。该回执先于最后的包外说明提交；之后只追加交付资料，最末文档提交以PR当前head为准。运行595输入、最终客户端和已上传三ZIP哈希不变。
+
+两个原生会话退出代码均为0，但Unity Development日志各有一次MemoryLeaks提示；保留原始去敏日志，没有采集Profiler定位或宣称无泄漏。正常速度长窗内存/性能仍待后续专项验收。

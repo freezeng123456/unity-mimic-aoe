@@ -7,4 +7,4 @@
 - [随包使用说明](README-zh.md)、[冻结打包助手](Tools/pack-verify-067.py)。
 - [推送前历史GitHub状态](github-before-final-push.json)：记录较早候选本地083与当时远端627，不当作最终推送状态。
 
-[独立验包](independent-zip-verification.json)49项/1386成员Passed；[六载荷读回](cloud-upload-readback.json)及[第七回执](cloud-delivery-final.json)通过名称/大小/父目录/owner-only私有元数据核验。[本次推送前私有范围确认](github-private-scope-prepush.json)证明仓库private、PR open/draft/未合并及正确head/base分支。推送后读回在完成后追加。[交付说明](../../../Delivery-067.md)记录实际范围；远端内容SHA及下载字节对照不由元数据读回证明。
+[独立验包](independent-zip-verification.json)49项/1386成员Passed；[六载荷读回](cloud-upload-readback.json)及[第七回执](cloud-delivery-final.json)通过名称/大小/父目录/owner-only私有元数据核验。[本次推送前私有范围确认](github-private-scope-prepush.json)证明仓库private、PR open/draft/未合并及正确head/base分支。[推送与PR完整描述读回](github-delivery-readback.json)通过，记录首轮交付cd71；最后仅追加包外资料，PR当前head为最末文档身份。[交付说明](../../../Delivery-067.md)记录实际范围；远端内容SHA及下载字节对照不由元数据读回证明。
