@@ -1,0 +1,1081 @@
+{
+  "schema": 1,
+  "recordedAtUtc": "2026-10-05T00:46:27.739927+00:00",
+  "status": "normal_large_save_cold_resume_verified",
+  "scope": "One normal both-AI match started under the earlier candidate and resumed from its unchanged schema-1 842-second checkpoint. Current-GUID schema-2 large save, new-process immediate re-save, and continued simulation verified. Controlled cargo/settlement/objective/monitor are outside this report.",
+  "build": {
+    "schema": 1,
+    "recordedAtUtc": "2026-10-05T00:32:07.880292+00:00",
+    "appVersion": "0.8.0",
+    "buildGuid": "5fbcf668506b4814bc34d27b3902a237",
+    "unityVersion": "6000.6.3f1",
+    "architecture": "arm64",
+    "buildType": "Development / Mono",
+    "runtimeCommit": "c4365e31dbea9dd7e5d5c253b661ee2d3a25879a",
+    "sourceFingerprint": "d7bbe1e4f0e52210bf64b4787864449a438be87fb14952173cdd4d60d0563eb6",
+    "sourceFileCount": 531,
+    "tests": {
+      "EditMode": {
+        "file": "EditMode.xml",
+        "sha256": "52690f77490580e1c537bf43b2d3fe887b792a3462def917532ef5ed7c70bb31",
+        "passed": 618
+      },
+      "PlayMode": {
+        "file": "PlayMode.xml",
+        "sha256": "81b71bca87eeb0797cd11ae8b49c29b67747764aceaff556caa303cb28d91031",
+        "passed": 340
+      }
+    },
+    "sourceFingerprintVerifiedAfterBuild": true,
+    "binaryFile": "Contents/MacOS/Frontier Reckoning",
+    "binaryBytes": 35151,
+    "binarySha256": "9d80883ddfaa97a50639d3d18ec999e9471332b9d98e4adc892722da12642947",
+    "postBuildPackagingTransforms": {
+      "bootConfigLocalDebugAddressesRemoved": 1
+    },
+    "bootConfigSha256": "b9a05b4b0aef6e072d557370800fa6f99c48935f68ae59d4f3d5b5a1c546f450"
+  },
+  "buildReceipt": {
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/client-build.json",
+    "bytes": 1147,
+    "sha256": "0230a10294a5d5c98be387da5d66939d3d93077a0d0e037da87a1940690a9741"
+  },
+  "testSourceEvidence": {
+    "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-Wu2tGZSt/source-evidence.json",
+    "bytes": 68093,
+    "sha256": "37a0addd44931057f60113923dc488434346e686e1091d3a1072d14807bad6ce"
+  },
+  "helperIdentities": [
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/save-envelope-reader.py",
+      "bytes": 6409,
+      "sha256": "7d6b3157999d7393198b3d04ee09b621ccb5a45e203c50dffcf883def0a2cff4"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/verify-native-captures.py",
+      "bytes": 14597,
+      "sha256": "05a2877acac10f30430225463cb9b7ecaa1e3d0786186cbf60d1792e680cd3de"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/native-evidence-helper.py",
+      "bytes": 20920,
+      "sha256": "e115e2fd105c095dc1df15c1dbe3be9db407c8c71f570ebe3a651c68c66b768c"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/helper-toolchain.json",
+      "bytes": 4403,
+      "sha256": "dcf50d4b339cdeded701c3df426618fe8ddf10f546d1a1e80a327ad34b4f17bc"
+    }
+  ],
+  "checkpoints": [
+    {
+      "label": "legacy_842",
+      "file": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/Native/Checkpoints/normal-autoplay-landing.json",
+        "bytes": 25609029,
+        "sha256": "5a68379ce6f3614793af5a9827d4dca099eb64e1ce00c67c5fda10a3eae887b0"
+      },
+      "schema": 1,
+      "encoding": "plain-json",
+      "compressedBytes": null,
+      "rawPayloadBytes": 22594580,
+      "rawPayloadSha256": "7236707d0d3c2ac42a8895e3094c1846bb0992c7df16cd687390dfd37617fcab",
+      "worldTime": 842.2413940429688,
+      "paused": true,
+      "eventCount": 33590,
+      "simulationStepCount": 8423,
+      "simulationAccumulator": 0.013681575655937195,
+      "controllerPlayers": [
+        1,
+        0
+      ],
+      "rulesHash": "5324ece4d54715613e941af737d8da34dcf2d5f517388373516b5e0f17b85d1f",
+      "previousCheckpointEventsExactPrefix": true,
+      "controlledGrantEventCount": 0,
+      "startingResources": [
+        {
+          "time": 0.0,
+          "player": 0,
+          "message": "Configured opening: 300 F / 300 W / 100 C"
+        },
+        {
+          "time": 0.0,
+          "player": 1,
+          "message": "Configured opening: 300 F / 300 W / 100 C"
+        }
+      ],
+      "session": {
+        "matchId": "d1eafccccf5e44cc973adaee2768b009",
+        "appVersion": "0.8.0",
+        "cameraPosition": {
+          "x": 21.0,
+          "y": 50.0,
+          "z": -13.0
+        },
+        "cameraSize": 26.0,
+        "cameraFocus": {
+          "x": 21.0,
+          "y": 29.0
+        },
+        "selection": [],
+        "groups": [],
+        "muted": false,
+        "environmentSound": true,
+        "music": true,
+        "autoplay": true,
+        "simulationSpeed": 16.0
+      }
+    },
+    {
+      "label": "saved_1745",
+      "file": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Checkpoints/normal-large-save-1745.json",
+        "bytes": 6123609,
+        "sha256": "0da201e0f5fed3a63f097fc54c19c80c3bc8a627616768695af33c1f527e52be"
+      },
+      "schema": 2,
+      "encoding": "gzip-base64",
+      "compressedBytes": 4592598,
+      "rawPayloadBytes": 64975542,
+      "rawPayloadSha256": "b89f7fbc348474387f75d56aa64b3e7ba65e04daf7efa618e00e5981189b8265",
+      "worldTime": 1745.220947265625,
+      "paused": true,
+      "eventCount": 97963,
+      "simulationStepCount": 17455,
+      "simulationAccumulator": 2.0,
+      "controllerPlayers": [
+        1,
+        0
+      ],
+      "rulesHash": "5324ece4d54715613e941af737d8da34dcf2d5f517388373516b5e0f17b85d1f",
+      "previousCheckpointEventsExactPrefix": true,
+      "controlledGrantEventCount": 0,
+      "startingResources": [
+        {
+          "time": 0.0,
+          "player": 0,
+          "message": "Configured opening: 300 F / 300 W / 100 C"
+        },
+        {
+          "time": 0.0,
+          "player": 1,
+          "message": "Configured opening: 300 F / 300 W / 100 C"
+        }
+      ],
+      "session": {
+        "matchId": "d1eafccccf5e44cc973adaee2768b009",
+        "appVersion": "0.8.0",
+        "cameraPosition": {
+          "x": 21.0,
+          "y": 50.0,
+          "z": -13.0
+        },
+        "cameraSize": 26.0,
+        "cameraFocus": {
+          "x": 21.0,
+          "y": 29.0
+        },
+        "selection": [],
+        "groups": [],
+        "muted": false,
+        "environmentSound": true,
+        "music": true,
+        "autoplay": true,
+        "simulationSpeed": 16.0
+      },
+      "receipt": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Checkpoints/normal-large-save-1745.receipt.json",
+        "bytes": 31164,
+        "sha256": "55e418dda286301aa6b32505928a27d57a780953c99e2479b70081cc50a90369"
+      }
+    },
+    {
+      "label": "before_cold_2106",
+      "file": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Checkpoints/normal-large-before-cold.json",
+        "bytes": 8462877,
+        "sha256": "de76a304133d87b39f7a20d72c4d7e973e80dc5554d7f4ff3984496642c97418"
+      },
+      "schema": 2,
+      "encoding": "gzip-base64",
+      "compressedBytes": 6347048,
+      "rawPayloadBytes": 85654935,
+      "rawPayloadSha256": "0070b09b0605e329b9d6ee021bb547005ec6f27c8d2b34cf8eae57da6e7a98c2",
+      "worldTime": 2106.203857421875,
+      "paused": true,
+      "eventCount": 129656,
+      "simulationStepCount": 21065,
+      "simulationAccumulator": 2.0,
+      "controllerPlayers": [
+        1,
+        0
+      ],
+      "rulesHash": "5324ece4d54715613e941af737d8da34dcf2d5f517388373516b5e0f17b85d1f",
+      "previousCheckpointEventsExactPrefix": true,
+      "controlledGrantEventCount": 0,
+      "startingResources": [
+        {
+          "time": 0.0,
+          "player": 0,
+          "message": "Configured opening: 300 F / 300 W / 100 C"
+        },
+        {
+          "time": 0.0,
+          "player": 1,
+          "message": "Configured opening: 300 F / 300 W / 100 C"
+        }
+      ],
+      "session": {
+        "matchId": "d1eafccccf5e44cc973adaee2768b009",
+        "appVersion": "0.8.0",
+        "cameraPosition": {
+          "x": 21.0,
+          "y": 50.0,
+          "z": -13.0
+        },
+        "cameraSize": 26.0,
+        "cameraFocus": {
+          "x": 21.0,
+          "y": 29.0
+        },
+        "selection": [],
+        "groups": [],
+        "muted": false,
+        "environmentSound": true,
+        "music": true,
+        "autoplay": true,
+        "simulationSpeed": 16.0
+      },
+      "receipt": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Checkpoints/normal-large-before-cold.receipt.json",
+        "bytes": 31789,
+        "sha256": "846eac26b816464ad9d74f04c26f50b1d3022812f92bb57a44208e548adebd38"
+      }
+    },
+    {
+      "label": "cold_resaved_2106",
+      "file": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Checkpoints/normal-large-cold-resaved.json",
+        "bytes": 8462877,
+        "sha256": "de76a304133d87b39f7a20d72c4d7e973e80dc5554d7f4ff3984496642c97418"
+      },
+      "schema": 2,
+      "encoding": "gzip-base64",
+      "compressedBytes": 6347048,
+      "rawPayloadBytes": 85654935,
+      "rawPayloadSha256": "0070b09b0605e329b9d6ee021bb547005ec6f27c8d2b34cf8eae57da6e7a98c2",
+      "worldTime": 2106.203857421875,
+      "paused": true,
+      "eventCount": 129656,
+      "simulationStepCount": 21065,
+      "simulationAccumulator": 2.0,
+      "controllerPlayers": [
+        1,
+        0
+      ],
+      "rulesHash": "5324ece4d54715613e941af737d8da34dcf2d5f517388373516b5e0f17b85d1f",
+      "previousCheckpointEventsExactPrefix": true,
+      "controlledGrantEventCount": 0,
+      "startingResources": [
+        {
+          "time": 0.0,
+          "player": 0,
+          "message": "Configured opening: 300 F / 300 W / 100 C"
+        },
+        {
+          "time": 0.0,
+          "player": 1,
+          "message": "Configured opening: 300 F / 300 W / 100 C"
+        }
+      ],
+      "session": {
+        "matchId": "d1eafccccf5e44cc973adaee2768b009",
+        "appVersion": "0.8.0",
+        "cameraPosition": {
+          "x": 21.0,
+          "y": 50.0,
+          "z": -13.0
+        },
+        "cameraSize": 26.0,
+        "cameraFocus": {
+          "x": 21.0,
+          "y": 29.0
+        },
+        "selection": [],
+        "groups": [],
+        "muted": false,
+        "environmentSound": true,
+        "music": true,
+        "autoplay": true,
+        "simulationSpeed": 16.0
+      },
+      "receipt": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Checkpoints/normal-large-cold-resaved.receipt.json",
+        "bytes": 31792,
+        "sha256": "59533bdc0fe9a8ab42d077b11b2737ec4e9519fd36f9d5e4e110ff0e1c20a6a9"
+      },
+      "fullFileEqualsBeforeCold": true
+    },
+    {
+      "label": "cold_continued_2222",
+      "file": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Checkpoints/normal-large-cold-continued.json",
+        "bytes": 9295397,
+        "sha256": "f3997ef854ba261da8f6dcbc0625ec9fac5d7c1357a8bd9fe4dc76fdda698d34"
+      },
+      "schema": 2,
+      "encoding": "gzip-base64",
+      "compressedBytes": 6971437,
+      "rawPayloadBytes": 93014578,
+      "rawPayloadSha256": "408b31a832472dad1bb6059b27cfc7f789047b7808255918c5a7c8a1a243a3d9",
+      "worldTime": 2222.317138671875,
+      "paused": true,
+      "eventCount": 140982,
+      "simulationStepCount": 22225,
+      "simulationAccumulator": 2.0,
+      "controllerPlayers": [
+        1,
+        0
+      ],
+      "rulesHash": "5324ece4d54715613e941af737d8da34dcf2d5f517388373516b5e0f17b85d1f",
+      "previousCheckpointEventsExactPrefix": true,
+      "controlledGrantEventCount": 0,
+      "startingResources": [
+        {
+          "time": 0.0,
+          "player": 0,
+          "message": "Configured opening: 300 F / 300 W / 100 C"
+        },
+        {
+          "time": 0.0,
+          "player": 1,
+          "message": "Configured opening: 300 F / 300 W / 100 C"
+        }
+      ],
+      "session": {
+        "matchId": "d1eafccccf5e44cc973adaee2768b009",
+        "appVersion": "0.8.0",
+        "cameraPosition": {
+          "x": 21.0,
+          "y": 50.0,
+          "z": -13.0
+        },
+        "cameraSize": 26.0,
+        "cameraFocus": {
+          "x": 21.0,
+          "y": 29.0
+        },
+        "selection": [],
+        "groups": [],
+        "muted": false,
+        "environmentSound": true,
+        "music": true,
+        "autoplay": true,
+        "simulationSpeed": 16.0
+      },
+      "receipt": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Checkpoints/normal-large-cold-continued.receipt.json",
+        "bytes": 32887,
+        "sha256": "f9995d7ec2a7e657aeea31d02a3828b8c22d345d1025a5796be19b75ea186e23"
+      },
+      "eventsAfterColdCount": 11326,
+      "eventKindsAfterCold": {
+        "PauseChanged": 2,
+        "Gather": 8598,
+        "DestinationAdjusted": 747,
+        "FactoryIncome": 316,
+        "Command": 1086,
+        "Spawn": 36,
+        "Experience": 30,
+        "ShipmentEarned": 2,
+        "RallyAssigned": 19,
+        "ShipmentSent": 2,
+        "Payment": 22,
+        "ProductionQueued": 13,
+        "Technology": 4,
+        "ResearchComplete": 4,
+        "FactoryModeChanged": 10,
+        "AttackPrepared": 114,
+        "Fire": 106,
+        "Damage": 91,
+        "Impact": 91,
+        "EmbarkOrdered": 1,
+        "RallySet": 2,
+        "Embarked": 5,
+        "BuildingComplete": 4,
+        "ShipmentArrived": 2,
+        "FactoryDeploymentOrdered": 1,
+        "FactoryApproachAdjusted": 1,
+        "Death": 12,
+        "ResourceDepleted": 3,
+        "DisembarkOrdered": 1,
+        "FactoryFoundationStarted": 1
+      },
+      "commandKindsAfterColdByPlayer": {
+        "0": {
+          "Command": 695,
+          "Payment": 7,
+          "Spawn": 12
+        },
+        "1": {
+          "Command": 391,
+          "Spawn": 24,
+          "Payment": 15
+        }
+      }
+    }
+  ],
+  "coldRecovery": {
+    "fullStoredFilesByteEqual": true,
+    "allRawPayloadWorldSimulationSessionEqual": true,
+    "storedSha256": "de76a304133d87b39f7a20d72c4d7e973e80dc5554d7f4ff3984496642c97418",
+    "payloadSha256": "0070b09b0605e329b9d6ee021bb547005ec6f27c8d2b34cf8eae57da6e7a98c2",
+    "actualNewProcessEvidence": [
+      {
+        "file": {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/normal-cold-exit-first.json",
+          "bytes": 463,
+          "sha256": "a820e194d2d56ae29988fd171aaa8ea478c15f6a8b1efbb883a637ffb4c2acaa"
+        },
+        "recordedObservation": {
+          "schema": 2,
+          "encoding": "gzip-base64",
+          "storedBytes": 8462877,
+          "rawPayloadBytes": 85654935,
+          "payloadSha256": "0070b09b0605e329b9d6ee021bb547005ec6f27c8d2b34cf8eae57da6e7a98c2",
+          "storedSha256": "de76a304133d87b39f7a20d72c4d7e973e80dc5554d7f4ff3984496642c97418",
+          "time": 2106.203857421875,
+          "events": 129656,
+          "firstSession": 55179,
+          "actualExitCode": 0,
+          "matchingProcessCountAfterQuit": 0,
+          "buildGuid": "5fbcf668506b4814bc34d27b3902a237"
+        },
+        "scope": "Parent-recorded execution-tool/process observation; this audit independently checks associated saved files, logs and capture identity."
+      },
+      {
+        "file": {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/normal-cold-resave-comparison.json",
+          "bytes": 373,
+          "sha256": "cd75f4cef692f7551ce4845689e2d7f9b160934780a233668a29b13d57e1250c"
+        },
+        "recordedObservation": {
+          "beforeStoredSha256": "de76a304133d87b39f7a20d72c4d7e973e80dc5554d7f4ff3984496642c97418",
+          "afterStoredSha256": "de76a304133d87b39f7a20d72c4d7e973e80dc5554d7f4ff3984496642c97418",
+          "fullStoredBytesEqual": true,
+          "storedBytes": 8462877,
+          "coldLaunchSession": 64909,
+          "coldProcessPid": 76423,
+          "previousProcessExitedCode": 0,
+          "previousProcessCountAfterQuit": 0
+        },
+        "scope": "Parent-recorded execution-tool/process observation; this audit independently checks associated saved files, logs and capture identity."
+      },
+      {
+        "file": {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/normal-cold-exit-second.json",
+          "bytes": 282,
+          "sha256": "f61b6f8e9eeae2b193f00813a6dd628562f605facff1fb9b618b3cbf73e93678"
+        },
+        "recordedObservation": {
+          "session": 64909,
+          "actualExitCode": 0,
+          "exitResultToolChunk": "c85e76",
+          "source": "actual unified exec write_stdin returned exit_code0 after GUI CmdQ",
+          "buildGuid": "5fbcf668506b4814bc34d27b3902a237",
+          "scope": "operator tool observation, not log-parsed exit status"
+        },
+        "scope": "Parent-recorded execution-tool/process observation; this audit independently checks associated saved files, logs and capture identity."
+      }
+    ],
+    "continuedSeconds": 116.11328125,
+    "continuedSteps": 1160,
+    "continuedEvents": 11326
+  },
+  "reports": [
+    {
+      "report": {
+        "path": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261005-003728-566-d1eafccccf5e44cc973adaee2768b009-quit.json",
+        "bytes": 3395,
+        "sha256": "f6db9627b852a0c08f594646a6f894045a3e7c8a789f08bf9979e626996b67f9",
+        "archive": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Reports/20261005-003728-566-d1eafccccf5e44cc973adaee2768b009-quit.json",
+        "archiveSha256": "f6db9627b852a0c08f594646a6f894045a3e7c8a789f08bf9979e626996b67f9"
+      },
+      "events": {
+        "path": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261005-003728-566-d1eafccccf5e44cc973adaee2768b009-quit-events.jsonl",
+        "bytes": 84436515,
+        "sha256": "6ccb94410e07d3e783452857cfcc8c904fe591c57b0e3c0bc848e07b1105ead3",
+        "archive": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Reports/20261005-003728-566-d1eafccccf5e44cc973adaee2768b009-quit-events.jsonl",
+        "archiveSha256": "6ccb94410e07d3e783452857cfcc8c904fe591c57b0e3c0bc848e07b1105ead3"
+      },
+      "reason": "quit",
+      "winner": -1,
+      "worldTime": 2106.203857421875,
+      "eventCount": 129717,
+      "savedCheckpointLabel": "before_cold_2106",
+      "savedCheckpointEventsExactPrefix": true,
+      "additionalReportFlushEventCount": 61,
+      "additionalReportFlushKinds": {
+        "Gather": 59,
+        "FactoryIncome": 2
+      },
+      "additionalReportFlushSameWorldTime": true,
+      "flushExplanation": "GameController.SaveReport calls World.FlushEconomyLog before serializing; extra Gather/FactoryIncome records are absent from the earlier frozen save and do not imply simulation advancement.",
+      "eventKindCounts": {
+        "StartingResources": 2,
+        "Spawn": 505,
+        "TradeSocket": 3,
+        "TreasurePlaced": 6,
+        "LandmarkReachability": 34,
+        "MatchStarted": 1,
+        "Payment": 5147,
+        "ProductionQueued": 215,
+        "Command": 7675,
+        "Gather": 101007,
+        "ResourceDepleted": 41,
+        "Death": 230,
+        "LandmarkDiscovered": 29,
+        "AttackPrepared": 2744,
+        "Damage": 2511,
+        "Fire": 2533,
+        "Experience": 508,
+        "RallyAssigned": 341,
+        "ShipmentEarned": 25,
+        "TreasureClaimed": 2,
+        "ShipmentSent": 25,
+        "ShipmentArrived": 25,
+        "AIStrategy": 27,
+        "AgeAdvanced": 7,
+        "Technology": 32,
+        "AgeRouteChosen": 7,
+        "AgeRewardArrived": 7,
+        "BuildingComplete": 49,
+        "PauseChanged": 7,
+        "ResearchComplete": 20,
+        "DestinationAdjusted": 2462,
+        "RallySet": 22,
+        "EmbarkOrdered": 18,
+        "Embarked": 114,
+        "DisembarkOrdered": 16,
+        "Impact": 1754,
+        "Disembarked": 86,
+        "NavalLandingCompleted": 12,
+        "Garrison": 64,
+        "Ungarrison": 6,
+        "MeleeAreaHit": 4,
+        "AIConstructionResumed": 1,
+        "FactoryDeploymentOrdered": 3,
+        "FactoryFoundationStarted": 3,
+        "FactoryIncome": 1142,
+        "FactoryModeChanged": 242,
+        "FactoryArtilleryProduced": 2,
+        "RallyFallback": 1
+      },
+      "performanceScope": "Autoplay 16x report metrics are not a foreground 1x benchmark or performance acceptance."
+    },
+    {
+      "report": {
+        "path": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261005-004120-122-d1eafccccf5e44cc973adaee2768b009-quit.json",
+        "bytes": 3399,
+        "sha256": "5fb2f4b3543c75a617ef92b39f2f4b0c7ac8328ed7d004944dc4cfa9fa635f15",
+        "archive": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Reports/20261005-004120-122-d1eafccccf5e44cc973adaee2768b009-quit.json",
+        "archiveSha256": "5fb2f4b3543c75a617ef92b39f2f4b0c7ac8328ed7d004944dc4cfa9fa635f15"
+      },
+      "events": {
+        "path": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261005-004120-122-d1eafccccf5e44cc973adaee2768b009-quit-events.jsonl",
+        "bytes": 91757676,
+        "sha256": "b4c8370f2381945ac02a83f0db765ee10e1d1532fc4574e6e7b75f012b80dbca",
+        "archive": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Reports/20261005-004120-122-d1eafccccf5e44cc973adaee2768b009-quit-events.jsonl",
+        "archiveSha256": "b4c8370f2381945ac02a83f0db765ee10e1d1532fc4574e6e7b75f012b80dbca"
+      },
+      "reason": "quit",
+      "winner": -1,
+      "worldTime": 2222.317138671875,
+      "eventCount": 141049,
+      "savedCheckpointLabel": "cold_continued_2222",
+      "savedCheckpointEventsExactPrefix": true,
+      "additionalReportFlushEventCount": 67,
+      "additionalReportFlushKinds": {
+        "Gather": 64,
+        "FactoryIncome": 3
+      },
+      "additionalReportFlushSameWorldTime": true,
+      "flushExplanation": "GameController.SaveReport calls World.FlushEconomyLog before serializing; extra Gather/FactoryIncome records are absent from the earlier frozen save and do not imply simulation advancement.",
+      "eventKindCounts": {
+        "StartingResources": 2,
+        "Spawn": 541,
+        "TradeSocket": 3,
+        "TreasurePlaced": 6,
+        "LandmarkReachability": 34,
+        "MatchStarted": 1,
+        "Payment": 5169,
+        "ProductionQueued": 228,
+        "Command": 8761,
+        "Gather": 109610,
+        "ResourceDepleted": 44,
+        "Death": 242,
+        "LandmarkDiscovered": 29,
+        "AttackPrepared": 2858,
+        "Damage": 2602,
+        "Fire": 2639,
+        "Experience": 538,
+        "RallyAssigned": 360,
+        "ShipmentEarned": 27,
+        "TreasureClaimed": 2,
+        "ShipmentSent": 27,
+        "ShipmentArrived": 27,
+        "AIStrategy": 27,
+        "AgeAdvanced": 7,
+        "Technology": 36,
+        "AgeRouteChosen": 7,
+        "AgeRewardArrived": 7,
+        "BuildingComplete": 53,
+        "PauseChanged": 9,
+        "ResearchComplete": 24,
+        "DestinationAdjusted": 3209,
+        "RallySet": 24,
+        "EmbarkOrdered": 19,
+        "Embarked": 119,
+        "DisembarkOrdered": 17,
+        "Impact": 1845,
+        "Disembarked": 86,
+        "NavalLandingCompleted": 12,
+        "Garrison": 64,
+        "Ungarrison": 6,
+        "MeleeAreaHit": 4,
+        "AIConstructionResumed": 1,
+        "FactoryDeploymentOrdered": 4,
+        "FactoryFoundationStarted": 4,
+        "FactoryIncome": 1459,
+        "FactoryModeChanged": 252,
+        "FactoryArtilleryProduced": 2,
+        "RallyFallback": 1,
+        "FactoryApproachAdjusted": 1
+      },
+      "performanceScope": "Autoplay 16x report metrics are not a foreground 1x benchmark or performance acceptance."
+    }
+  ],
+  "nativeLogs": [
+    {
+      "raw": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Diagnostics/native-normal-restored.log",
+        "bytes": 40418,
+        "sha256": "1c9c91271b6d740b61147e7ac5e025986ba4dc9f5d9c644fe0e7db15063e02fc"
+      },
+      "sanitized": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Logs/native-normal-restored.sanitized.log",
+        "bytes": 40418,
+        "sha256": "1c9c91271b6d740b61147e7ac5e025986ba4dc9f5d9c644fe0e7db15063e02fc"
+      },
+      "linePreservingSanitization": true,
+      "redactions": [],
+      "markers": [
+        {
+          "sourceLine": 39,
+          "text": "FRONTIER_LOAD slot=3 match=d1eafccccf5e44cc973adaee2768b009 time=842.2414"
+        },
+        {
+          "sourceLine": 61,
+          "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261005-003250-481-f1950-1c381887bc7e475b9c32a3e272061ea2.json"
+        },
+        {
+          "sourceLine": 229,
+          "text": "FRONTIER_SAVE slot=3 match=d1eafccccf5e44cc973adaee2768b009 time=1745.221"
+        },
+        {
+          "sourceLine": 251,
+          "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261005-003520-658-f8439-c3d4659293c54fe9bbaa6cc808bd4b41.json"
+        },
+        {
+          "sourceLine": 331,
+          "text": "FRONTIER_SAVE slot=3 match=d1eafccccf5e44cc973adaee2768b009 time=2106.204"
+        },
+        {
+          "sourceLine": 353,
+          "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261005-003712-113-f11752-2efa31693df043299084dbdbc4704b29.json"
+        },
+        {
+          "sourceLine": 365,
+          "text": "FRONTIER_REPORT /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261005-003728-566-d1eafccccf5e44cc973adaee2768b009-quit.json"
+        }
+      ],
+      "exceptionOrSaveLoadFailureMatches": [],
+      "shutdownTelemetry": [
+        {
+          "sourceLine": 377,
+          "text": "Thread 0x16d30f000 may have been prematurely finalized"
+        },
+        {
+          "sourceLine": 378,
+          "text": "Thread 0x16ceef000 may have been prematurely finalized"
+        },
+        {
+          "sourceLine": 384,
+          "text": "Thread 0x16bf9f000 may have been prematurely finalized"
+        },
+        {
+          "sourceLine": 385,
+          "text": "Thread 0x16bdfb000 may have been prematurely finalized"
+        },
+        {
+          "sourceLine": 386,
+          "text": "Thread 0x16bf13000 may have been prematurely finalized"
+        },
+        {
+          "sourceLine": 387,
+          "text": "Thread 0x16be87000 may have been prematurely finalized"
+        }
+      ],
+      "scope": "Closed native log; shutdown telemetry preserved without claiming a leak or a fix."
+    },
+    {
+      "raw": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Diagnostics/native-normal-cold.log",
+        "bytes": 18772,
+        "sha256": "092f2c9a4de31310899abf68d4107789b978c2f2a3d61546041dfb81f699ed05"
+      },
+      "sanitized": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Logs/native-normal-cold.sanitized.log",
+        "bytes": 18772,
+        "sha256": "092f2c9a4de31310899abf68d4107789b978c2f2a3d61546041dfb81f699ed05"
+      },
+      "linePreservingSanitization": true,
+      "redactions": [],
+      "markers": [
+        {
+          "sourceLine": 39,
+          "text": "FRONTIER_LOAD slot=3 match=d1eafccccf5e44cc973adaee2768b009 time=2106.204"
+        },
+        {
+          "sourceLine": 61,
+          "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261005-003903-930-f3277-1dbe9f5859d84996829bca2053a7b4a9.json"
+        },
+        {
+          "sourceLine": 73,
+          "text": "FRONTIER_SAVE slot=3 match=d1eafccccf5e44cc973adaee2768b009 time=2106.204"
+        },
+        {
+          "sourceLine": 107,
+          "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261005-004041-719-f6042-169b2d41d1b545d8809282a1e0bb900d.json"
+        },
+        {
+          "sourceLine": 120,
+          "text": "FRONTIER_SAVE slot=3 match=d1eafccccf5e44cc973adaee2768b009 time=2222.317"
+        },
+        {
+          "sourceLine": 142,
+          "text": "FRONTIER_REPORT /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261005-004120-122-d1eafccccf5e44cc973adaee2768b009-quit.json"
+        }
+      ],
+      "exceptionOrSaveLoadFailureMatches": [],
+      "shutdownTelemetry": [
+        {
+          "sourceLine": 154,
+          "text": "Thread 0x171943000 may have been prematurely finalized"
+        },
+        {
+          "sourceLine": 155,
+          "text": "Thread 0x17140b000 may have been prematurely finalized"
+        },
+        {
+          "sourceLine": 161,
+          "text": "Thread 0x1704bb000 may have been prematurely finalized"
+        },
+        {
+          "sourceLine": 162,
+          "text": "Thread 0x17042f000 may have been prematurely finalized"
+        },
+        {
+          "sourceLine": 163,
+          "text": "Thread 0x170317000 may have been prematurely finalized"
+        },
+        {
+          "sourceLine": 164,
+          "text": "Thread 0x1703a3000 may have been prematurely finalized"
+        }
+      ],
+      "scope": "Closed native log; shutdown telemetry preserved without claiming a leak or a fix."
+    }
+  ],
+  "captures": [
+    {
+      "json": "Frontier-20261005-003250-481-f1950-1c381887bc7e475b9c32a3e272061ea2.json",
+      "status": "identity_verified",
+      "errors": [],
+      "jsonBytes": 29228,
+      "jsonSha256": "c5c021e08b28c72365424826faad6ba9d05efe2a2b359613133b3c9798fbabaf",
+      "png": "Frontier-20261005-003250-481-f1950-1c381887bc7e475b9c32a3e272061ea2.png",
+      "pngBytes": 510475,
+      "pngSha256": "025b1e8e50729d5fb772ecde98e47266bb101c234e84f48dd248b9f50253e8a1",
+      "width": 1600,
+      "height": 1000,
+      "utc": "2026-10-05T00:32:50.4333740Z",
+      "appVersion": "0.8.0",
+      "buildGuid": "5fbcf668506b4814bc34d27b3902a237",
+      "matchId": "d1eafccccf5e44cc973adaee2768b009",
+      "inMenu": false,
+      "paused": true,
+      "seed": 314159,
+      "mapId": "generated_strait",
+      "worldTime": 842.2413940429688,
+      "requestWorldTime": 842.2413940429688,
+      "requestFrame": 1950,
+      "captureFrame": 1950,
+      "requestCaptureSameFrame": true,
+      "camera": {
+        "focus": {
+          "x": 21.0,
+          "y": 29.0
+        },
+        "pointer": {
+          "x": 743.0,
+          "y": 544.0
+        },
+        "applicationFocused": true,
+        "orthographicSize": 26.0
+      },
+      "hudResources": "FOOD  1046     WOOD  415     COIN  66     POP  47+0/60     AGE  3     XP  324/600     SHIP  0",
+      "hudUpdatedFrame": 1950,
+      "hudWorldTime": 842.2413940429688,
+      "hudMatchId": "d1eafccccf5e44cc973adaee2768b009",
+      "hudConsistency": "same_match_frame_world_time_resources_population",
+      "hudAgeObserved": 3,
+      "objectiveMode": "elimination",
+      "objectiveStatus": "inactive"
+    },
+    {
+      "json": "Frontier-20261005-003520-658-f8439-c3d4659293c54fe9bbaa6cc808bd4b41.json",
+      "status": "identity_verified",
+      "errors": [],
+      "jsonBytes": 49379,
+      "jsonSha256": "2b8d67fe68d071b78d44605103107eab2ce1af95ba00b014a996540a7ea43ec9",
+      "png": "Frontier-20261005-003520-658-f8439-c3d4659293c54fe9bbaa6cc808bd4b41.png",
+      "pngBytes": 585926,
+      "pngSha256": "34404efa977d654ece77b03740b6cda27a837a8fdd9ed29e2cfc2c08ea43a37b",
+      "width": 1600,
+      "height": 1000,
+      "utc": "2026-10-05T00:35:20.6117510Z",
+      "appVersion": "0.8.0",
+      "buildGuid": "5fbcf668506b4814bc34d27b3902a237",
+      "matchId": "d1eafccccf5e44cc973adaee2768b009",
+      "inMenu": false,
+      "paused": true,
+      "seed": 314159,
+      "mapId": "generated_strait",
+      "worldTime": 1745.220947265625,
+      "requestWorldTime": 1745.220947265625,
+      "requestFrame": 8439,
+      "captureFrame": 8439,
+      "requestCaptureSameFrame": true,
+      "camera": {
+        "focus": {
+          "x": 21.0,
+          "y": 29.0
+        },
+        "pointer": {
+          "x": 743.0,
+          "y": 544.0
+        },
+        "applicationFocused": true,
+        "orthographicSize": 26.0
+      },
+      "hudResources": "FOOD  3782     WOOD  981     COIN  168     POP  82+2/90     AGE  3     XP  515/975     SHIP  0",
+      "hudUpdatedFrame": 8439,
+      "hudWorldTime": 1745.220947265625,
+      "hudMatchId": "d1eafccccf5e44cc973adaee2768b009",
+      "hudConsistency": "same_match_frame_world_time_resources_population",
+      "hudAgeObserved": 3,
+      "objectiveMode": "elimination",
+      "objectiveStatus": "inactive"
+    },
+    {
+      "json": "Frontier-20261005-003712-113-f11752-2efa31693df043299084dbdbc4704b29.json",
+      "status": "identity_verified",
+      "errors": [],
+      "jsonBytes": 57504,
+      "jsonSha256": "3fdfd1c1e7359ebbbe0e765a8fb819e4de224a7e011a33919880d01e5f0e7ff2",
+      "png": "Frontier-20261005-003712-113-f11752-2efa31693df043299084dbdbc4704b29.png",
+      "pngBytes": 592868,
+      "pngSha256": "66ec008e279d3aab3f08885cda989ea044f862fdbe4ff84588fff5de2f17b2a5",
+      "width": 1600,
+      "height": 1000,
+      "utc": "2026-10-05T00:37:12.0641940Z",
+      "appVersion": "0.8.0",
+      "buildGuid": "5fbcf668506b4814bc34d27b3902a237",
+      "matchId": "d1eafccccf5e44cc973adaee2768b009",
+      "inMenu": false,
+      "paused": true,
+      "seed": 314159,
+      "mapId": "generated_strait",
+      "worldTime": 2106.203857421875,
+      "requestWorldTime": 2106.203857421875,
+      "requestFrame": 11752,
+      "captureFrame": 11752,
+      "requestCaptureSameFrame": true,
+      "camera": {
+        "focus": {
+          "x": 21.0,
+          "y": 29.0
+        },
+        "pointer": {
+          "x": 743.0,
+          "y": 544.0
+        },
+        "applicationFocused": true,
+        "orthographicSize": 26.0
+      },
+      "hudResources": "FOOD  5293     WOOD  3929     COIN  1846     POP  98+0/110     AGE  4     XP  1006/1050     SHIP  0",
+      "hudUpdatedFrame": 11752,
+      "hudWorldTime": 2106.203857421875,
+      "hudMatchId": "d1eafccccf5e44cc973adaee2768b009",
+      "hudConsistency": "same_match_frame_world_time_resources_population",
+      "hudAgeObserved": 4,
+      "objectiveMode": "elimination",
+      "objectiveStatus": "inactive"
+    },
+    {
+      "json": "Frontier-20261005-003903-930-f3277-1dbe9f5859d84996829bca2053a7b4a9.json",
+      "status": "identity_verified",
+      "errors": [],
+      "jsonBytes": 57500,
+      "jsonSha256": "51c3541c75cc40ba0d59d2160eeb9b87604e7ad9bdaccfa0e2eb90c709606356",
+      "png": "Frontier-20261005-003903-930-f3277-1dbe9f5859d84996829bca2053a7b4a9.png",
+      "pngBytes": 511634,
+      "pngSha256": "d80b03e8e20de3c74953a5d80caec64b092043581593e8e18b2091f67e8f772f",
+      "width": 1600,
+      "height": 1000,
+      "utc": "2026-10-05T00:39:03.8803650Z",
+      "appVersion": "0.8.0",
+      "buildGuid": "5fbcf668506b4814bc34d27b3902a237",
+      "matchId": "d1eafccccf5e44cc973adaee2768b009",
+      "inMenu": false,
+      "paused": true,
+      "seed": 314159,
+      "mapId": "generated_strait",
+      "worldTime": 2106.203857421875,
+      "requestWorldTime": 2106.203857421875,
+      "requestFrame": 3277,
+      "captureFrame": 3277,
+      "requestCaptureSameFrame": true,
+      "camera": {
+        "focus": {
+          "x": 21.0,
+          "y": 29.0
+        },
+        "pointer": {
+          "x": 743.0,
+          "y": 544.0
+        },
+        "applicationFocused": true,
+        "orthographicSize": 26.0
+      },
+      "hudResources": "FOOD  5293     WOOD  3929     COIN  1846     POP  98+0/110     AGE  4     XP  1006/1050     SHIP  0",
+      "hudUpdatedFrame": 3277,
+      "hudWorldTime": 2106.203857421875,
+      "hudMatchId": "d1eafccccf5e44cc973adaee2768b009",
+      "hudConsistency": "same_match_frame_world_time_resources_population",
+      "hudAgeObserved": 4,
+      "objectiveMode": "elimination",
+      "objectiveStatus": "inactive"
+    },
+    {
+      "json": "Frontier-20261005-004041-719-f6042-169b2d41d1b545d8809282a1e0bb900d.json",
+      "status": "identity_verified",
+      "errors": [],
+      "jsonBytes": 60550,
+      "jsonSha256": "108b89113a4d065fc5d4a0fe9991a2eeae6b53b6e034da884b23adc1629a08f4",
+      "png": "Frontier-20261005-004041-719-f6042-169b2d41d1b545d8809282a1e0bb900d.png",
+      "pngBytes": 1286654,
+      "pngSha256": "8f83efe72f2980d216bf94f7bcb48ff0739680ccec2d05edcaa28ce5ce8f07c8",
+      "width": 1600,
+      "height": 1000,
+      "utc": "2026-10-05T00:40:41.6509810Z",
+      "appVersion": "0.8.0",
+      "buildGuid": "5fbcf668506b4814bc34d27b3902a237",
+      "matchId": "d1eafccccf5e44cc973adaee2768b009",
+      "inMenu": false,
+      "paused": false,
+      "seed": 314159,
+      "mapId": "generated_strait",
+      "worldTime": 2217.312255859375,
+      "requestWorldTime": 2217.312255859375,
+      "requestFrame": 6042,
+      "captureFrame": 6042,
+      "requestCaptureSameFrame": true,
+      "camera": {
+        "focus": {
+          "x": 21.0,
+          "y": 29.0
+        },
+        "pointer": {
+          "x": 560.0,
+          "y": 722.0
+        },
+        "applicationFocused": true,
+        "orthographicSize": 26.0
+      },
+      "hudResources": "FOOD  5548     WOOD  4509     COIN  2942     POP  104+0/100     AGE  4     XP  352/1125     SHIP  0",
+      "hudUpdatedFrame": 6042,
+      "hudWorldTime": 2217.312255859375,
+      "hudMatchId": "d1eafccccf5e44cc973adaee2768b009",
+      "hudConsistency": "same_match_frame_world_time_resources_population",
+      "hudAgeObserved": 4,
+      "objectiveMode": "elimination",
+      "objectiveStatus": "inactive"
+    }
+  ],
+  "visualReview": [
+    {
+      "png": "Frontier-20261005-003903-930-f3277-1dbe9f5859d84996829bca2053a7b4a9.png",
+      "observed": "Paused match at 35:06, age IV; resource HUD and sound/environment/music settings agree with cold checkpoint."
+    },
+    {
+      "png": "Frontier-20261005-004041-719-f6042-169b2d41d1b545d8809282a1e0bb900d.png",
+      "observed": "Resumed match at 36:57, age IV, updated economy/population; visible simulation catching-up/rendering-load notice retained. This capture precedes the final paused save and is not assigned its exact world time."
+    }
+  ],
+  "protectedSlots": [
+    {
+      "slot": 1,
+      "baseline": {
+        "slot": 1,
+        "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Saves/slot-1.json",
+        "exists": true,
+        "bytes": 3017924,
+        "sha256": "b54bd30d20e25a0b40274d9ed3a50899fd05386fa7833420651b7f51edb8c3eb"
+      },
+      "current": {
+        "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Saves/slot-1.json",
+        "bytes": 3017924,
+        "sha256": "b54bd30d20e25a0b40274d9ed3a50899fd05386fa7833420651b7f51edb8c3eb"
+      },
+      "unchanged": true
+    },
+    {
+      "slot": 2,
+      "baseline": {
+        "slot": 2,
+        "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Saves/slot-2.json",
+        "exists": true,
+        "bytes": 4782539,
+        "sha256": "24e670cc987221d62a79609741687b16eb28dbf875faa8892f6922563e868ecf"
+      },
+      "current": {
+        "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Saves/slot-2.json",
+        "bytes": 4782539,
+        "sha256": "24e670cc987221d62a79609741687b16eb28dbf875faa8892f6922563e868ecf"
+      },
+      "unchanged": true
+    }
+  ],
+  "limitations": [
+    "This is a resumed bounded normal simulation with two deliberate process exits, not a whole uninterrupted match or a natural victory; both final reports have reason quit and winner -1.",
+    "No foreground 1x performance or FPS pass is inferred from 16x autoplay or report timings. The resumed screenshot visibly shows a catching-up notice.",
+    "The original 842-second schema-1 file and failed ac217 candidate remain historical; current build binding comes from new-GUID captures/reports/logs, not a buildGuid inside SavedMatch.",
+    "Native keyboard/pointer actions and actual CLI exit observations are attributed to the parent operator; file equality, codec validation, event prefix, native logs, report identities and screenshot pairs were checked independently.",
+    "No cargo cold or other controlled-fixture completion is claimed by this normal-only audit."
+  ],
+  "mutationsPerformed": [
+    "New normal audit JSON only; original reports/events copied byte-exact to Native/Reports using exclusive creation or identical SHA; sanitized native log derivatives created under Native/Logs. Original saves, logs, captures and runtime source were not modified."
+  ]
+}

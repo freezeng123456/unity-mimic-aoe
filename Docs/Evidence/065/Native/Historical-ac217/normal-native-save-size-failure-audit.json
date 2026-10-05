@@ -1,0 +1,3429 @@
+{
+  "schema": 1,
+  "recordedAtUtc": "2026-10-05T00:02:34.627231+00:00",
+  "status": "confirmed_native_save_size_blocker",
+  "scope": "Historical final-GUID ac217 native normal-start bothAI run. Real gameplay progressed through1706.5304s at16x; final save failed, old842.2414s slot retained. This is a failed save acceptance attempt, not final-save or full-match victory pass. No fix/newbuild acceptance is implied.",
+  "build": {
+    "path": "Native/client-build.json",
+    "bytes": 1147,
+    "sha256": "65016b7f95f8a6226dd4b78b93edde3bb039747da0b2a0471f54d18e4990dbd6",
+    "appVersion": "0.8.0",
+    "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+    "runtimeCommit": "eb19da3e9cad898240a52db152574b2e762410c9",
+    "sourceFingerprint": "fdf7e8ff5976a4e8235f86282d2f8e3ea1537d33ba2388839ebb516fdce1a60c"
+  },
+  "match": {
+    "matchId": "d1eafccccf5e44cc973adaee2768b009",
+    "mapId": "generated_strait",
+    "seed": 314159,
+    "maxAge": 5,
+    "autoplay": true,
+    "simulationSpeed": 16,
+    "AIPlayers": [
+      0,
+      1
+    ],
+    "quitWorldTime": 1706.5303955078125,
+    "winner": -1,
+    "reason": "quit",
+    "eventCount": 94739,
+    "nativePerformanceCertification": false,
+    "note": "Accelerated bothAI simulation; no human full-match victory or real-time performance claim. Earliest F9 is253s, not a0s opening screenshot."
+  },
+  "saveFailure": {
+    "severity": "delivery_blocker_for_this_build",
+    "logWarning": {
+      "line": 479,
+      "text": "FRONTIER_SAVE_FAILED This match exceeds the save size limit"
+    },
+    "warningNotException": true,
+    "sizeLimitBytes": 67108864,
+    "sizeLimitScope": "Serialized UTF8 schema1 envelope before atomic temporary-file creation. Exact rejected serialized byte count not emitted or retained.",
+    "lastSuccessfulSaveWorldTime": 842.2413940429688,
+    "failedAttemptWorldTime": 1706.5303955078125,
+    "staleFinalFileByteEqualsLanding": true,
+    "staleFinalSha256": "5a68379ce6f3614793af5a9827d4dca099eb64e1ce00c67c5fda10a3eae887b0",
+    "staleFinalBytes": 25609029,
+    "misleadingArchiveLabel": "normal-autoplay-final.json",
+    "interpretation": "Label was chosen by copy helper after save attempt; helper archived existing842s slot. Its envelope/receipt validity is not proof the1706s save succeeded.",
+    "oldSlotPreservedAsExpected": true,
+    "sourceIdentity": {
+      "gitRevisionPath": "eb19da3e9cad898240a52db152574b2e762410c9:Assets/Frontier/Simulation/MatchSaveStore.cs",
+      "sha256": "ab5cb9b1af5d3e2733cc5e285d71417cd9f34ef06d73df67024ac908add65a9d",
+      "relevantLines": [
+        {
+          "line": 19,
+          "text": "public const long MaxBytes=64*1024*1024;"
+        },
+        {
+          "line": 26,
+          "text": "byte[] bytes=Encoding.UTF8.GetBytes(json);if(bytes.LongLength>MaxBytes)throw new IOException(\"This match exceeds the save size limit\");"
+        },
+        {
+          "line": 28,
+          "text": "string temporary=path+\".tmp-\"+Guid.NewGuid().ToString(\"N\");"
+        },
+        {
+          "line": 34,
+          "text": "if(File.Exists(path))File.Replace(temporary,path,null);else File.Move(temporary,path);"
+        }
+      ]
+    },
+    "finalEventJsonlBytes": 61699979,
+    "note": "94,739events alone occupy61,699,979bytes of rawJSONL. Event growth is observed; exact rejected save payload composition/byte count is not reconstructed here."
+  },
+  "checkpoints": {
+    "early": {
+      "path": "Native/Checkpoints/normal-autoplay-early.json",
+      "bytes": 4881991,
+      "sha256": "79287117618725e48983a1d1916aa4e60cdf3b6f64ccfc0ae8e4242c31cf515d",
+      "payloadSha256": "046a5d5a6f352deb71ed5447718e152b1a2d21ed2a10c531212ddb32ff61b378",
+      "payloadUtf8Bytes": 4346688,
+      "worldTime": 256.80645751953125,
+      "eventCount": 5712,
+      "autoplay": true,
+      "speed": 16.0,
+      "controllerPlayers": [
+        1,
+        0
+      ],
+      "age": [
+        2,
+        2
+      ]
+    },
+    "landing": {
+      "path": "Native/Checkpoints/normal-autoplay-landing.json",
+      "bytes": 25609029,
+      "sha256": "5a68379ce6f3614793af5a9827d4dca099eb64e1ce00c67c5fda10a3eae887b0",
+      "payloadSha256": "7236707d0d3c2ac42a8895e3094c1846bb0992c7df16cd687390dfd37617fcab",
+      "payloadUtf8Bytes": 22594580,
+      "worldTime": 842.2413940429688,
+      "eventCount": 33590,
+      "autoplay": true,
+      "speed": 16.0,
+      "controllerPlayers": [
+        1,
+        0
+      ],
+      "age": [
+        3,
+        3
+      ]
+    },
+    "final": {
+      "path": "Native/Checkpoints/normal-autoplay-final.json",
+      "bytes": 25609029,
+      "sha256": "5a68379ce6f3614793af5a9827d4dca099eb64e1ce00c67c5fda10a3eae887b0",
+      "payloadSha256": "7236707d0d3c2ac42a8895e3094c1846bb0992c7df16cd687390dfd37617fcab",
+      "payloadUtf8Bytes": 22594580,
+      "worldTime": 842.2413940429688,
+      "eventCount": 33590,
+      "autoplay": true,
+      "speed": 16.0,
+      "controllerPlayers": [
+        1,
+        0
+      ],
+      "age": [
+        3,
+        3
+      ]
+    }
+  },
+  "startingResources": [
+    {
+      "eventIndexZeroBased": 0,
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": false,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 0,
+        "reserved": 0,
+        "capacity": 0
+      },
+      "time": 0.0,
+      "kind": "StartingResources",
+      "message": "Configured opening: 300 F / 300 W / 100 C",
+      "player": 0,
+      "entity": 0,
+      "target": 0,
+      "visibilityMask": 0,
+      "amount": 0.0,
+      "position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "eventIndexZeroBased": 1,
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": false,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 0,
+        "reserved": 0,
+        "capacity": 0
+      },
+      "time": 0.0,
+      "kind": "StartingResources",
+      "message": "Configured opening: 300 F / 300 W / 100 C",
+      "player": 1,
+      "entity": 0,
+      "target": 0,
+      "visibilityMask": 0,
+      "amount": 0.0,
+      "position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    }
+  ],
+  "controlledGrantEventsFound": 0,
+  "normalProgression": [
+    {
+      "player": 0,
+      "civilization": "coast",
+      "eventCounts": {
+        "EmbarkOrdered": {
+          "events": 5,
+          "distinctEntityIds": 2,
+          "firstWorldTime": 574.8067016601562
+        },
+        "Embarked": {
+          "events": 25,
+          "distinctEntityIds": 14,
+          "firstWorldTime": 578.6057739257812
+        },
+        "DisembarkOrdered": {
+          "events": 4,
+          "distinctEntityIds": 2,
+          "firstWorldTime": 582.0049438476562
+        },
+        "Disembarked": {
+          "events": 25,
+          "distinctEntityIds": 14,
+          "firstWorldTime": 623.2948608398438
+        },
+        "NavalLandingCompleted": {
+          "events": 4,
+          "distinctEntityIds": 2,
+          "firstWorldTime": 623.9946899414062
+        },
+        "Payment": {
+          "events": 468,
+          "distinctEntityIds": 22,
+          "firstWorldTime": 0.0
+        },
+        "ProductionQueued": {
+          "events": 82,
+          "distinctEntityIds": 6,
+          "firstWorldTime": 0.0
+        },
+        "AgeAdvanced": {
+          "events": 2,
+          "distinctEntityIds": 1,
+          "firstWorldTime": 223.30442810058594
+        }
+      },
+      "actualPaymentDebitsSummed": {
+        "food": 12030.0,
+        "wood": 10055.76857483387,
+        "coin": 5653.205993652344
+      },
+      "reportSpentAccumulator": {
+        "food": 12030.0,
+        "wood": 10055.77734375,
+        "coin": 5653.220703125
+      },
+      "paymentScope": "Payment event actual deltas summed; separate cumulative float spent counter may differ slightly. Includes training/construction/research/age and repair; not all payments are unit production.",
+      "repairPaymentCount": 352,
+      "shipBirths": [
+        {
+          "eventIndexZeroBased": 18905,
+          "time": 545.5138549804688,
+          "entity": 205,
+          "name": "Troop Transport",
+          "adjacentShipmentArrived": "Chartered Transport arrived",
+          "productionAttribution": "legal_shipment"
+        },
+        {
+          "eventIndexZeroBased": 23438,
+          "time": 639.3909301757812,
+          "entity": 219,
+          "name": "Fishing Boat",
+          "adjacentShipmentArrived": null,
+          "productionAttribution": "training_path_not_individually_reconstructed_in_this_diagnostic"
+        },
+        {
+          "eventIndexZeroBased": 27659,
+          "time": 733.8678588867188,
+          "entity": 246,
+          "name": "Troop Transport",
+          "adjacentShipmentArrived": null,
+          "productionAttribution": "training_path_not_individually_reconstructed_in_this_diagnostic"
+        },
+        {
+          "eventIndexZeroBased": 30326,
+          "time": 784.5554809570312,
+          "entity": 261,
+          "name": "Fishing Boat",
+          "adjacentShipmentArrived": null,
+          "productionAttribution": "training_path_not_individually_reconstructed_in_this_diagnostic"
+        },
+        {
+          "eventIndexZeroBased": 33053,
+          "time": 831.4440307617188,
+          "entity": 272,
+          "name": "Gunboat",
+          "adjacentShipmentArrived": null,
+          "productionAttribution": "training_path_not_individually_reconstructed_in_this_diagnostic"
+        }
+      ],
+      "proof": {
+        "ageAdvanced": [
+          {
+            "eventIndexZeroBased": 4893,
+            "schemaVersion": 2,
+            "hasEconomy": false,
+            "hasPopulation": false,
+            "economy": {
+              "requestedDelta": {
+                "food": 0.0,
+                "wood": 0.0,
+                "coin": 0.0
+              },
+              "actualDelta": {
+                "food": 0.0,
+                "wood": 0.0,
+                "coin": 0.0
+              },
+              "balanceBefore": {
+                "food": 0.0,
+                "wood": 0.0,
+                "coin": 0.0
+              },
+              "balanceAfter": {
+                "food": 0.0,
+                "wood": 0.0,
+                "coin": 0.0
+              },
+              "hasRepair": false,
+              "healthTarget": 0,
+              "hpBefore": 0.0,
+              "hpAfter": 0.0
+            },
+            "population": {
+              "used": 0,
+              "reserved": 0,
+              "capacity": 0
+            },
+            "time": 223.30442810058594,
+            "kind": "AgeAdvanced",
+            "message": "Reached age 2",
+            "player": 0,
+            "entity": 1,
+            "target": 0,
+            "visibilityMask": 1,
+            "amount": 0.0,
+            "position": {
+              "x": 21.0,
+              "y": 29.0
+            },
+            "facing": {
+              "x": 0.0,
+              "y": 1.0
+            }
+          },
+          {
+            "eventIndexZeroBased": 27058,
+            "schemaVersion": 2,
+            "hasEconomy": false,
+            "hasPopulation": false,
+            "economy": {
+              "requestedDelta": {
+                "food": 0.0,
+                "wood": 0.0,
+                "coin": 0.0
+              },
+              "actualDelta": {
+                "food": 0.0,
+                "wood": 0.0,
+                "coin": 0.0
+              },
+              "balanceBefore": {
+                "food": 0.0,
+                "wood": 0.0,
+                "coin": 0.0
+              },
+              "balanceAfter": {
+                "food": 0.0,
+                "wood": 0.0,
+                "coin": 0.0
+              },
+              "hasRepair": false,
+              "healthTarget": 0,
+              "hpBefore": 0.0,
+              "hpAfter": 0.0
+            },
+            "population": {
+              "used": 0,
+              "reserved": 0,
+              "capacity": 0
+            },
+            "time": 723.2704467773438,
+            "kind": "AgeAdvanced",
+            "message": "Reached age 3",
+            "player": 0,
+            "entity": 1,
+            "target": 0,
+            "visibilityMask": 1,
+            "amount": 0.0,
+            "position": {
+              "x": 21.0,
+              "y": 29.0
+            },
+            "facing": {
+              "x": -0.1214355006814003,
+              "y": 0.9925993084907532
+            }
+          }
+        ],
+        "shipTrainingPayments": [
+          {
+            "eventIndexZeroBased": 22039,
+            "schemaVersion": 2,
+            "hasEconomy": true,
+            "hasPopulation": true,
+            "economy": {
+              "requestedDelta": {
+                "food": 0.0,
+                "wood": -70.0,
+                "coin": 0.0
+              },
+              "actualDelta": {
+                "food": 0.0,
+                "wood": -70.0,
+                "coin": 0.0
+              },
+              "balanceBefore": {
+                "food": 227.64453125,
+                "wood": 661.1140747070312,
+                "coin": 13.373125076293945
+              },
+              "balanceAfter": {
+                "food": 227.64453125,
+                "wood": 591.1140747070312,
+                "coin": 13.373125076293945
+              },
+              "hasRepair": false,
+              "healthTarget": 0,
+              "hpBefore": 0.0,
+              "hpAfter": 0.0
+            },
+            "population": {
+              "used": 39,
+              "reserved": 0,
+              "capacity": 50
+            },
+            "time": 614.3970336914062,
+            "kind": "Payment",
+            "message": "Fishing Boat ×1: 0 F / 70 W / 0 C",
+            "player": 0,
+            "entity": 181,
+            "target": 0,
+            "visibilityMask": 1,
+            "amount": 0.0,
+            "position": {
+              "x": 27.0,
+              "y": 29.0
+            },
+            "facing": {
+              "x": 0.0,
+              "y": 1.0
+            }
+          },
+          {
+            "eventIndexZeroBased": 25398,
+            "schemaVersion": 2,
+            "hasEconomy": true,
+            "hasPopulation": true,
+            "economy": {
+              "requestedDelta": {
+                "food": 0.0,
+                "wood": -200.0,
+                "coin": -75.0
+              },
+              "actualDelta": {
+                "food": 0.0,
+                "wood": -200.0,
+                "coin": -75.0
+              },
+              "balanceBefore": {
+                "food": 268.3417053222656,
+                "wood": 594.3565673828125,
+                "coin": 124.91146087646484
+              },
+              "balanceAfter": {
+                "food": 268.3417053222656,
+                "wood": 394.3565673828125,
+                "coin": 49.911460876464844
+              },
+              "hasRepair": false,
+              "healthTarget": 0,
+              "hpBefore": 0.0,
+              "hpAfter": 0.0
+            },
+            "population": {
+              "used": 32,
+              "reserved": 2,
+              "capacity": 50
+            },
+            "time": 688.7788696289062,
+            "kind": "Payment",
+            "message": "Troop Transport ×1: 0 F / 200 W / 75 C",
+            "player": 0,
+            "entity": 181,
+            "target": 0,
+            "visibilityMask": 1,
+            "amount": 0.0,
+            "position": {
+              "x": 27.0,
+              "y": 29.0
+            },
+            "facing": {
+              "x": 0.0,
+              "y": 1.0
+            }
+          },
+          {
+            "eventIndexZeroBased": 28945,
+            "schemaVersion": 2,
+            "hasEconomy": true,
+            "hasPopulation": true,
+            "economy": {
+              "requestedDelta": {
+                "food": 0.0,
+                "wood": -70.0,
+                "coin": 0.0
+              },
+              "actualDelta": {
+                "food": 0.0,
+                "wood": -70.0,
+                "coin": 0.0
+              },
+              "balanceBefore": {
+                "food": 435.5876159667969,
+                "wood": 186.7139434814453,
+                "coin": 105.84058380126953
+              },
+              "balanceAfter": {
+                "food": 435.5876159667969,
+                "wood": 116.71394348144531,
+                "coin": 105.84058380126953
+              },
+              "hasRepair": false,
+              "healthTarget": 0,
+              "hpBefore": 0.0,
+              "hpAfter": 0.0
+            },
+            "population": {
+              "used": 40,
+              "reserved": 3,
+              "capacity": 50
+            },
+            "time": 759.5615844726562,
+            "kind": "Payment",
+            "message": "Fishing Boat ×1: 0 F / 70 W / 0 C",
+            "player": 0,
+            "entity": 181,
+            "target": 0,
+            "visibilityMask": 1,
+            "amount": 0.0,
+            "position": {
+              "x": 27.0,
+              "y": 29.0
+            },
+            "facing": {
+              "x": 0.0,
+              "y": 1.0
+            }
+          },
+          {
+            "eventIndexZeroBased": 30869,
+            "schemaVersion": 2,
+            "hasEconomy": true,
+            "hasPopulation": true,
+            "economy": {
+              "requestedDelta": {
+                "food": 0.0,
+                "wood": -150.0,
+                "coin": -100.0
+              },
+              "actualDelta": {
+                "food": 0.0,
+                "wood": -150.0,
+                "coin": -100.0
+              },
+              "balanceBefore": {
+                "food": 414.6403503417969,
+                "wood": 156.2255401611328,
+                "coin": 150.9281005859375
+              },
+              "balanceAfter": {
+                "food": 414.6403503417969,
+                "wood": 6.2255401611328125,
+                "coin": 50.9281005859375
+              },
+              "hasRepair": false,
+              "healthTarget": 0,
+              "hpBefore": 0.0,
+              "hpAfter": 0.0
+            },
+            "population": {
+              "used": 44,
+              "reserved": 1,
+              "capacity": 50
+            },
+            "time": 793.1533813476562,
+            "kind": "Payment",
+            "message": "Gunboat ×1: 0 F / 150 W / 100 C",
+            "player": 0,
+            "entity": 181,
+            "target": 0,
+            "visibilityMask": 1,
+            "amount": 0.0,
+            "position": {
+              "x": 27.0,
+              "y": 29.0
+            },
+            "facing": {
+              "x": 0.0,
+              "y": 1.0
+            }
+          }
+        ]
+      },
+      "lastReportAge": 3,
+      "lastReportPopulation": 78
+    },
+    {
+      "player": 1,
+      "civilization": "france",
+      "eventCounts": {
+        "EmbarkOrdered": {
+          "events": 11,
+          "distinctEntityIds": 2,
+          "firstWorldTime": 432.01715087890625
+        },
+        "Embarked": {
+          "events": 78,
+          "distinctEntityIds": 78,
+          "firstWorldTime": 436.1174011230469
+        },
+        "DisembarkOrdered": {
+          "events": 10,
+          "distinctEntityIds": 2,
+          "firstWorldTime": 439.21759033203125
+        },
+        "Disembarked": {
+          "events": 61,
+          "distinctEntityIds": 61,
+          "firstWorldTime": 481.0201416015625
+        },
+        "NavalLandingCompleted": {
+          "events": 8,
+          "distinctEntityIds": 1,
+          "firstWorldTime": 481.22015380859375
+        },
+        "Payment": {
+          "events": 3682,
+          "distinctEntityIds": 22,
+          "firstWorldTime": 0.0
+        },
+        "ProductionQueued": {
+          "events": 95,
+          "distinctEntityIds": 5,
+          "firstWorldTime": 0.0
+        },
+        "AgeAdvanced": {
+          "events": 3,
+          "distinctEntityIds": 1,
+          "firstWorldTime": 205.30332946777344
+        }
+      },
+      "actualPaymentDebitsSummed": {
+        "food": 13450.0,
+        "wood": 9657.36609211564,
+        "coin": 6776.948736980557
+      },
+      "reportSpentAccumulator": {
+        "food": 13450.0,
+        "wood": 9657.37890625,
+        "coin": 6777.03515625
+      },
+      "paymentScope": "Payment event actual deltas summed; separate cumulative float spent counter may differ slightly. Includes training/construction/research/age and repair; not all payments are unit production.",
+      "repairPaymentCount": 3558,
+      "shipBirths": [
+        {
+          "eventIndexZeroBased": 12611,
+          "time": 431.5171203613281,
+          "entity": 198,
+          "name": "Troop Transport",
+          "adjacentShipmentArrived": null,
+          "productionAttribution": "training_path_not_individually_reconstructed_in_this_diagnostic"
+        },
+        {
+          "eventIndexZeroBased": 13848,
+          "time": 457.0186767578125,
+          "entity": 202,
+          "name": "Fishing Boat",
+          "adjacentShipmentArrived": null,
+          "productionAttribution": "training_path_not_individually_reconstructed_in_this_diagnostic"
+        },
+        {
+          "eventIndexZeroBased": 19572,
+          "time": 557.8108520507812,
+          "entity": 208,
+          "name": "Fishing Boat",
+          "adjacentShipmentArrived": null,
+          "productionAttribution": "training_path_not_individually_reconstructed_in_this_diagnostic"
+        },
+        {
+          "eventIndexZeroBased": 21643,
+          "time": 605.2992553710938,
+          "entity": 215,
+          "name": "Gunboat",
+          "adjacentShipmentArrived": null,
+          "productionAttribution": "training_path_not_individually_reconstructed_in_this_diagnostic"
+        },
+        {
+          "eventIndexZeroBased": 23783,
+          "time": 647.2890014648438,
+          "entity": 222,
+          "name": "Gunboat",
+          "adjacentShipmentArrived": null,
+          "productionAttribution": "training_path_not_individually_reconstructed_in_this_diagnostic"
+        },
+        {
+          "eventIndexZeroBased": 44122,
+          "time": 1016.5988159179688,
+          "entity": 310,
+          "name": "Frigate",
+          "adjacentShipmentArrived": null,
+          "productionAttribution": "training_path_not_individually_reconstructed_in_this_diagnostic"
+        },
+        {
+          "eventIndexZeroBased": 55011,
+          "time": 1183.758056640625,
+          "entity": 333,
+          "name": "Frigate",
+          "adjacentShipmentArrived": "Fleet Reinforcement arrived",
+          "productionAttribution": "legal_shipment"
+        },
+        {
+          "eventIndexZeroBased": 64140,
+          "time": 1308.32763671875,
+          "entity": 351,
+          "name": "Gunboat",
+          "adjacentShipmentArrived": null,
+          "productionAttribution": "training_path_not_individually_reconstructed_in_this_diagnostic"
+        },
+        {
+          "eventIndexZeroBased": 73034,
+          "time": 1428.29833984375,
+          "entity": 378,
+          "name": "Gunboat",
+          "adjacentShipmentArrived": null,
+          "productionAttribution": "training_path_not_individually_reconstructed_in_this_diagnostic"
+        },
+        {
+          "eventIndexZeroBased": 76555,
+          "time": 1475.0869140625,
+          "entity": 388,
+          "name": "Gunboat",
+          "adjacentShipmentArrived": null,
+          "productionAttribution": "training_path_not_individually_reconstructed_in_this_diagnostic"
+        },
+        {
+          "eventIndexZeroBased": 83597,
+          "time": 1566.464599609375,
+          "entity": 416,
+          "name": "Troop Transport",
+          "adjacentShipmentArrived": null,
+          "productionAttribution": "training_path_not_individually_reconstructed_in_this_diagnostic"
+        }
+      ],
+      "proof": {
+        "ageAdvanced": [
+          {
+            "eventIndexZeroBased": 4440,
+            "schemaVersion": 2,
+            "hasEconomy": false,
+            "hasPopulation": false,
+            "economy": {
+              "requestedDelta": {
+                "food": 0.0,
+                "wood": 0.0,
+                "coin": 0.0
+              },
+              "actualDelta": {
+                "food": 0.0,
+                "wood": 0.0,
+                "coin": 0.0
+              },
+              "balanceBefore": {
+                "food": 0.0,
+                "wood": 0.0,
+                "coin": 0.0
+              },
+              "balanceAfter": {
+                "food": 0.0,
+                "wood": 0.0,
+                "coin": 0.0
+              },
+              "hasRepair": false,
+              "healthTarget": 0,
+              "hpBefore": 0.0,
+              "hpAfter": 0.0
+            },
+            "population": {
+              "used": 0,
+              "reserved": 0,
+              "capacity": 0
+            },
+            "time": 205.30332946777344,
+            "kind": "AgeAdvanced",
+            "message": "Reached age 2",
+            "player": 1,
+            "entity": 52,
+            "target": 0,
+            "visibilityMask": 2,
+            "amount": 0.0,
+            "position": {
+              "x": 107.0,
+              "y": 99.0
+            },
+            "facing": {
+              "x": 0.0,
+              "y": 1.0
+            }
+          },
+          {
+            "eventIndexZeroBased": 23539,
+            "schemaVersion": 2,
+            "hasEconomy": false,
+            "hasPopulation": false,
+            "economy": {
+              "requestedDelta": {
+                "food": 0.0,
+                "wood": 0.0,
+                "coin": 0.0
+              },
+              "actualDelta": {
+                "food": 0.0,
+                "wood": 0.0,
+                "coin": 0.0
+              },
+              "balanceBefore": {
+                "food": 0.0,
+                "wood": 0.0,
+                "coin": 0.0
+              },
+              "balanceAfter": {
+                "food": 0.0,
+                "wood": 0.0,
+                "coin": 0.0
+              },
+              "hasRepair": false,
+              "healthTarget": 0,
+              "hpBefore": 0.0,
+              "hpAfter": 0.0
+            },
+            "population": {
+              "used": 0,
+              "reserved": 0,
+              "capacity": 0
+            },
+            "time": 641.6903686523438,
+            "kind": "AgeAdvanced",
+            "message": "Reached age 3",
+            "player": 1,
+            "entity": 52,
+            "target": 0,
+            "visibilityMask": 3,
+            "amount": 0.0,
+            "position": {
+              "x": 107.0,
+              "y": 99.0
+            },
+            "facing": {
+              "x": 0.0,
+              "y": 1.0
+            }
+          },
+          {
+            "eventIndexZeroBased": 63731,
+            "schemaVersion": 2,
+            "hasEconomy": false,
+            "hasPopulation": false,
+            "economy": {
+              "requestedDelta": {
+                "food": 0.0,
+                "wood": 0.0,
+                "coin": 0.0
+              },
+              "actualDelta": {
+                "food": 0.0,
+                "wood": 0.0,
+                "coin": 0.0
+              },
+              "balanceBefore": {
+                "food": 0.0,
+                "wood": 0.0,
+                "coin": 0.0
+              },
+              "balanceAfter": {
+                "food": 0.0,
+                "wood": 0.0,
+                "coin": 0.0
+              },
+              "hasRepair": false,
+              "healthTarget": 0,
+              "hpBefore": 0.0,
+              "hpAfter": 0.0
+            },
+            "population": {
+              "used": 0,
+              "reserved": 0,
+              "capacity": 0
+            },
+            "time": 1302.3291015625,
+            "kind": "AgeAdvanced",
+            "message": "Reached age 4",
+            "player": 1,
+            "entity": 52,
+            "target": 0,
+            "visibilityMask": 2,
+            "amount": 0.0,
+            "position": {
+              "x": 107.0,
+              "y": 99.0
+            },
+            "facing": {
+              "x": -0.5711513161659241,
+              "y": -0.820844829082489
+            }
+          }
+        ],
+        "shipTrainingPayments": [
+          {
+            "eventIndexZeroBased": 10618,
+            "schemaVersion": 2,
+            "hasEconomy": true,
+            "hasPopulation": true,
+            "economy": {
+              "requestedDelta": {
+                "food": 0.0,
+                "wood": -200.0,
+                "coin": -75.0
+              },
+              "actualDelta": {
+                "food": 0.0,
+                "wood": -200.0,
+                "coin": -75.0
+              },
+              "balanceBefore": {
+                "food": 289.19415283203125,
+                "wood": 370.8035888671875,
+                "coin": 118.25933837890625
+              },
+              "balanceAfter": {
+                "food": 289.19415283203125,
+                "wood": 170.8035888671875,
+                "coin": 43.25933837890625
+              },
+              "hasRepair": false,
+              "healthTarget": 0,
+              "hpBefore": 0.0,
+              "hpAfter": 0.0
+            },
+            "population": {
+              "used": 27,
+              "reserved": 4,
+              "capacity": 40
+            },
+            "time": 386.41436767578125,
+            "kind": "Payment",
+            "message": "Troop Transport ×1: 0 F / 200 W / 75 C",
+            "player": 1,
+            "entity": 175,
+            "target": 0,
+            "visibilityMask": 2,
+            "amount": 0.0,
+            "position": {
+              "x": 101.0,
+              "y": 99.0
+            },
+            "facing": {
+              "x": 0.0,
+              "y": 1.0
+            }
+          },
+          {
+            "eventIndexZeroBased": 12638,
+            "schemaVersion": 2,
+            "hasEconomy": true,
+            "hasPopulation": true,
+            "economy": {
+              "requestedDelta": {
+                "food": 0.0,
+                "wood": -70.0,
+                "coin": 0.0
+              },
+              "actualDelta": {
+                "food": 0.0,
+                "wood": -70.0,
+                "coin": 0.0
+              },
+              "balanceBefore": {
+                "food": 354.64923095703125,
+                "wood": 234.89337158203125,
+                "coin": 95.78346252441406
+              },
+              "balanceAfter": {
+                "food": 354.64923095703125,
+                "wood": 164.89337158203125,
+                "coin": 95.78346252441406
+              },
+              "hasRepair": false,
+              "healthTarget": 0,
+              "hpBefore": 0.0,
+              "hpAfter": 0.0
+            },
+            "population": {
+              "used": 35,
+              "reserved": 4,
+              "capacity": 50
+            },
+            "time": 432.01715087890625,
+            "kind": "Payment",
+            "message": "Fishing Boat ×1: 0 F / 70 W / 0 C",
+            "player": 1,
+            "entity": 175,
+            "target": 0,
+            "visibilityMask": 2,
+            "amount": 0.0,
+            "position": {
+              "x": 101.0,
+              "y": 99.0
+            },
+            "facing": {
+              "x": 0.0,
+              "y": 1.0
+            }
+          },
+          {
+            "eventIndexZeroBased": 18109,
+            "schemaVersion": 2,
+            "hasEconomy": true,
+            "hasPopulation": true,
+            "economy": {
+              "requestedDelta": {
+                "food": 0.0,
+                "wood": -70.0,
+                "coin": 0.0
+              },
+              "actualDelta": {
+                "food": 0.0,
+                "wood": -70.0,
+                "coin": 0.0
+              },
+              "balanceBefore": {
+                "food": 287.4996337890625,
+                "wood": 217.4896240234375,
+                "coin": 22.411651611328125
+              },
+              "balanceAfter": {
+                "food": 287.4996337890625,
+                "wood": 147.4896240234375,
+                "coin": 22.411651611328125
+              },
+              "hasRepair": false,
+              "healthTarget": 0,
+              "hpBefore": 0.0,
+              "hpAfter": 0.0
+            },
+            "population": {
+              "used": 34,
+              "reserved": 0,
+              "capacity": 50
+            },
+            "time": 532.8169555664062,
+            "kind": "Payment",
+            "message": "Fishing Boat ×1: 0 F / 70 W / 0 C",
+            "player": 1,
+            "entity": 175,
+            "target": 0,
+            "visibilityMask": 2,
+            "amount": 0.0,
+            "position": {
+              "x": 101.0,
+              "y": 99.0
+            },
+            "facing": {
+              "x": 0.0,
+              "y": 1.0
+            }
+          },
+          {
+            "eventIndexZeroBased": 19945,
+            "schemaVersion": 2,
+            "hasEconomy": true,
+            "hasPopulation": true,
+            "economy": {
+              "requestedDelta": {
+                "food": 0.0,
+                "wood": -150.0,
+                "coin": -100.0
+              },
+              "actualDelta": {
+                "food": 0.0,
+                "wood": -150.0,
+                "coin": -100.0
+              },
+              "balanceBefore": {
+                "food": 366.3918762207031,
+                "wood": 150.5816650390625,
+                "coin": 139.78814697265625
+              },
+              "balanceAfter": {
+                "food": 366.3918762207031,
+                "wood": 0.5816650390625,
+                "coin": 39.78814697265625
+              },
+              "hasRepair": false,
+              "healthTarget": 0,
+              "hpBefore": 0.0,
+              "hpAfter": 0.0
+            },
+            "population": {
+              "used": 32,
+              "reserved": 3,
+              "capacity": 50
+            },
+            "time": 565.2090454101562,
+            "kind": "Payment",
+            "message": "Gunboat ×1: 0 F / 150 W / 100 C",
+            "player": 1,
+            "entity": 175,
+            "target": 0,
+            "visibilityMask": 2,
+            "amount": 0.0,
+            "position": {
+              "x": 101.0,
+              "y": 99.0
+            },
+            "facing": {
+              "x": 0.0,
+              "y": 1.0
+            }
+          },
+          {
+            "eventIndexZeroBased": 21733,
+            "schemaVersion": 2,
+            "hasEconomy": true,
+            "hasPopulation": true,
+            "economy": {
+              "requestedDelta": {
+                "food": 0.0,
+                "wood": -150.0,
+                "coin": -100.0
+              },
+              "actualDelta": {
+                "food": 0.0,
+                "wood": -150.0,
+                "coin": -100.0
+              },
+              "balanceBefore": {
+                "food": 462.3541259765625,
+                "wood": 180.50218200683594,
+                "coin": 103.68553161621094
+              },
+              "balanceAfter": {
+                "food": 462.3541259765625,
+                "wood": 30.502182006835938,
+                "coin": 3.6855316162109375
+              },
+              "hasRepair": false,
+              "healthTarget": 0,
+              "hpBefore": 0.0,
+              "hpAfter": 0.0
+            },
+            "population": {
+              "used": 36,
+              "reserved": 3,
+              "capacity": 50
+            },
+            "time": 607.1987915039062,
+            "kind": "Payment",
+            "message": "Gunboat ×1: 0 F / 150 W / 100 C",
+            "player": 1,
+            "entity": 175,
+            "target": 0,
+            "visibilityMask": 2,
+            "amount": 0.0,
+            "position": {
+              "x": 101.0,
+              "y": 99.0
+            },
+            "facing": {
+              "x": 0.0,
+              "y": 1.0
+            }
+          },
+          {
+            "eventIndexZeroBased": 39964,
+            "schemaVersion": 2,
+            "hasEconomy": true,
+            "hasPopulation": true,
+            "economy": {
+              "requestedDelta": {
+                "food": 0.0,
+                "wood": -350.0,
+                "coin": -250.0
+              },
+              "actualDelta": {
+                "food": 0.0,
+                "wood": -350.0,
+                "coin": -250.0
+              },
+              "balanceBefore": {
+                "food": 357.00982666015625,
+                "wood": 649.4712524414062,
+                "coin": 253.957763671875
+              },
+              "balanceAfter": {
+                "food": 357.00982666015625,
+                "wood": 299.47125244140625,
+                "coin": 3.957763671875
+              },
+              "hasRepair": false,
+              "healthTarget": 0,
+              "hpBefore": 0.0,
+              "hpAfter": 0.0
+            },
+            "population": {
+              "used": 62,
+              "reserved": 3,
+              "capacity": 80
+            },
+            "time": 951.5147094726562,
+            "kind": "Payment",
+            "message": "Frigate ×1: 0 F / 350 W / 250 C",
+            "player": 1,
+            "entity": 175,
+            "target": 0,
+            "visibilityMask": 2,
+            "amount": 0.0,
+            "position": {
+              "x": 101.0,
+              "y": 99.0
+            },
+            "facing": {
+              "x": 0.0,
+              "y": 1.0
+            }
+          },
+          {
+            "eventIndexZeroBased": 61274,
+            "schemaVersion": 2,
+            "hasEconomy": true,
+            "hasPopulation": true,
+            "economy": {
+              "requestedDelta": {
+                "food": 0.0,
+                "wood": -150.0,
+                "coin": -100.0
+              },
+              "actualDelta": {
+                "food": 0.0,
+                "wood": -150.0,
+                "coin": -100.0
+              },
+              "balanceBefore": {
+                "food": 382.70361328125,
+                "wood": 2962.827880859375,
+                "coin": 101.06476593017578
+              },
+              "balanceAfter": {
+                "food": 382.70361328125,
+                "wood": 2812.827880859375,
+                "coin": 1.0647659301757812
+              },
+              "hasRepair": false,
+              "healthTarget": 0,
+              "hpBefore": 0.0,
+              "hpAfter": 0.0
+            },
+            "population": {
+              "used": 58,
+              "reserved": 6,
+              "capacity": 80
+            },
+            "time": 1268.2374267578125,
+            "kind": "Payment",
+            "message": "Gunboat ×1: 0 F / 150 W / 100 C",
+            "player": 1,
+            "entity": 175,
+            "target": 0,
+            "visibilityMask": 2,
+            "amount": 0.0,
+            "position": {
+              "x": 101.0,
+              "y": 99.0
+            },
+            "facing": {
+              "x": 0.0,
+              "y": 1.0
+            }
+          },
+          {
+            "eventIndexZeroBased": 70017,
+            "schemaVersion": 2,
+            "hasEconomy": true,
+            "hasPopulation": true,
+            "economy": {
+              "requestedDelta": {
+                "food": 0.0,
+                "wood": -150.0,
+                "coin": -100.0
+              },
+              "actualDelta": {
+                "food": 0.0,
+                "wood": -150.0,
+                "coin": -100.0
+              },
+              "balanceBefore": {
+                "food": 95.82707977294922,
+                "wood": 3603.740234375,
+                "coin": 105.1352767944336
+              },
+              "balanceAfter": {
+                "food": 95.82707977294922,
+                "wood": 3453.740234375,
+                "coin": 5.135276794433594
+              },
+              "hasRepair": false,
+              "healthTarget": 0,
+              "hpBefore": 0.0,
+              "hpAfter": 0.0
+            },
+            "population": {
+              "used": 65,
+              "reserved": 3,
+              "capacity": 80
+            },
+            "time": 1388.2081298828125,
+            "kind": "Payment",
+            "message": "Gunboat ×1: 0 F / 150 W / 100 C",
+            "player": 1,
+            "entity": 175,
+            "target": 0,
+            "visibilityMask": 2,
+            "amount": 0.0,
+            "position": {
+              "x": 101.0,
+              "y": 99.0
+            },
+            "facing": {
+              "x": 0.0,
+              "y": 1.0
+            }
+          },
+          {
+            "eventIndexZeroBased": 73515,
+            "schemaVersion": 2,
+            "hasEconomy": true,
+            "hasPopulation": true,
+            "economy": {
+              "requestedDelta": {
+                "food": 0.0,
+                "wood": -150.0,
+                "coin": -100.0
+              },
+              "actualDelta": {
+                "food": 0.0,
+                "wood": -150.0,
+                "coin": -100.0
+              },
+              "balanceBefore": {
+                "food": 108.96229553222656,
+                "wood": 3915.46630859375,
+                "coin": 107.33786010742188
+              },
+              "balanceAfter": {
+                "food": 108.96229553222656,
+                "wood": 3765.46630859375,
+                "coin": 7.337860107421875
+              },
+              "hasRepair": false,
+              "healthTarget": 0,
+              "hpBefore": 0.0,
+              "hpAfter": 0.0
+            },
+            "population": {
+              "used": 70,
+              "reserved": 4,
+              "capacity": 90
+            },
+            "time": 1434.9967041015625,
+            "kind": "Payment",
+            "message": "Gunboat ×1: 0 F / 150 W / 100 C",
+            "player": 1,
+            "entity": 175,
+            "target": 0,
+            "visibilityMask": 2,
+            "amount": 0.0,
+            "position": {
+              "x": 101.0,
+              "y": 99.0
+            },
+            "facing": {
+              "x": 0.0,
+              "y": 1.0
+            }
+          },
+          {
+            "eventIndexZeroBased": 79996,
+            "schemaVersion": 2,
+            "hasEconomy": true,
+            "hasPopulation": true,
+            "economy": {
+              "requestedDelta": {
+                "food": 0.0,
+                "wood": -200.0,
+                "coin": -75.0
+              },
+              "actualDelta": {
+                "food": 0.0,
+                "wood": -200.0,
+                "coin": -75.0
+              },
+              "balanceBefore": {
+                "food": 219.3867950439453,
+                "wood": 4079.935546875,
+                "coin": 173.4040985107422
+              },
+              "balanceAfter": {
+                "food": 219.3867950439453,
+                "wood": 3879.935546875,
+                "coin": 98.40409851074219
+              },
+              "hasRepair": false,
+              "healthTarget": 0,
+              "hpBefore": 0.0,
+              "hpAfter": 0.0
+            },
+            "population": {
+              "used": 62,
+              "reserved": 6,
+              "capacity": 90
+            },
+            "time": 1521.3756103515625,
+            "kind": "Payment",
+            "message": "Troop Transport ×1: 0 F / 200 W / 75 C",
+            "player": 1,
+            "entity": 175,
+            "target": 0,
+            "visibilityMask": 2,
+            "amount": 0.0,
+            "position": {
+              "x": 101.0,
+              "y": 99.0
+            },
+            "facing": {
+              "x": 0.0,
+              "y": 1.0
+            }
+          }
+        ]
+      },
+      "lastReportAge": 4,
+      "lastReportPopulation": 71
+    }
+  ],
+  "navalPhysicsEvidence": {
+    "status": "actual_embark_disembark_event_pairs_verified",
+    "pairedLandingCount": 86,
+    "unmatchedDisembarkOrDuplicateActiveEmbark": [],
+    "landings": [
+      {
+        "player": 1,
+        "entity": 173,
+        "transport": 198,
+        "embarkEventIndex": 12983,
+        "embarkTime": 439.21759033203125,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 15046,
+        "landingTime": 481.0201416015625,
+        "landingPosition": {
+          "x": 28.350000381469727,
+          "y": 44.650001525878906
+        }
+      },
+      {
+        "player": 1,
+        "entity": 174,
+        "transport": 198,
+        "embarkEventIndex": 12879,
+        "embarkTime": 437.1174621582031,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 15047,
+        "landingTime": 481.0201416015625,
+        "landingPosition": {
+          "x": 31.649999618530273,
+          "y": 44.650001525878906
+        }
+      },
+      {
+        "player": 1,
+        "entity": 192,
+        "transport": 198,
+        "embarkEventIndex": 12909,
+        "embarkTime": 437.7174987792969,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 15048,
+        "landingTime": 481.0201416015625,
+        "landingPosition": {
+          "x": 31.649999618530273,
+          "y": 39.70000076293945
+        }
+      },
+      {
+        "player": 1,
+        "entity": 160,
+        "transport": 198,
+        "embarkEventIndex": 12927,
+        "embarkTime": 438.1175231933594,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 15049,
+        "landingTime": 481.0201416015625,
+        "landingPosition": {
+          "x": 28.850000381469727,
+          "y": 43.0
+        }
+      },
+      {
+        "player": 1,
+        "entity": 165,
+        "transport": 198,
+        "embarkEventIndex": 12982,
+        "embarkTime": 439.21759033203125,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 15050,
+        "landingTime": 481.0201416015625,
+        "landingPosition": {
+          "x": 27.700000762939453,
+          "y": 41.849998474121094
+        }
+      },
+      {
+        "player": 1,
+        "entity": 171,
+        "transport": 198,
+        "embarkEventIndex": 12936,
+        "embarkTime": 438.217529296875,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 15051,
+        "landingTime": 481.0201416015625,
+        "landingPosition": {
+          "x": 30.0,
+          "y": 45.29999923706055
+        }
+      },
+      {
+        "player": 1,
+        "entity": 182,
+        "transport": 198,
+        "embarkEventIndex": 12831,
+        "embarkTime": 436.1174011230469,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 15052,
+        "landingTime": 481.0201416015625,
+        "landingPosition": {
+          "x": 28.850000381469727,
+          "y": 39.54999923706055
+        }
+      },
+      {
+        "player": 1,
+        "entity": 186,
+        "transport": 198,
+        "embarkEventIndex": 12938,
+        "embarkTime": 438.3175354003906,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 15053,
+        "landingTime": 481.0201416015625,
+        "landingPosition": {
+          "x": 30.0,
+          "y": 39.54999923706055
+        }
+      },
+      {
+        "player": 1,
+        "entity": 193,
+        "transport": 198,
+        "embarkEventIndex": 12852,
+        "embarkTime": 436.617431640625,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 15054,
+        "landingTime": 481.0201416015625,
+        "landingPosition": {
+          "x": 32.29999923706055,
+          "y": 46.45000076293945
+        }
+      },
+      {
+        "player": 1,
+        "entity": 197,
+        "transport": 198,
+        "embarkEventIndex": 12913,
+        "embarkTime": 437.8175048828125,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 15055,
+        "landingTime": 481.0201416015625,
+        "landingPosition": {
+          "x": 33.45000076293945,
+          "y": 46.45000076293945
+        }
+      },
+      {
+        "player": 1,
+        "entity": 200,
+        "transport": 198,
+        "embarkEventIndex": 20591,
+        "embarkTime": 579.3056030273438,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 22424,
+        "landingTime": 623.0949096679688,
+        "landingPosition": {
+          "x": 28.350000381469727,
+          "y": 39.349998474121094
+        }
+      },
+      {
+        "player": 1,
+        "entity": 209,
+        "transport": 198,
+        "embarkEventIndex": 20614,
+        "embarkTime": 579.7055053710938,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 22425,
+        "landingTime": 623.0949096679688,
+        "landingPosition": {
+          "x": 30.0,
+          "y": 39.349998474121094
+        }
+      },
+      {
+        "player": 1,
+        "entity": 201,
+        "transport": 198,
+        "embarkEventIndex": 20673,
+        "embarkTime": 581.2051391601562,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 22426,
+        "landingTime": 623.0949096679688,
+        "landingPosition": {
+          "x": 30.0,
+          "y": 41.0
+        }
+      },
+      {
+        "player": 1,
+        "entity": 207,
+        "transport": 198,
+        "embarkEventIndex": 20666,
+        "embarkTime": 581.0051879882812,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 22427,
+        "landingTime": 623.0949096679688,
+        "landingPosition": {
+          "x": 31.149999618530273,
+          "y": 39.849998474121094
+        }
+      },
+      {
+        "player": 0,
+        "entity": 204,
+        "transport": 205,
+        "embarkEventIndex": 20674,
+        "embarkTime": 581.2051391601562,
+        "embarkPosition": {
+          "x": 30.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 22441,
+        "landingTime": 623.2948608398438,
+        "landingPosition": {
+          "x": 96.3499984741211,
+          "y": 85.3499984741211
+        }
+      },
+      {
+        "player": 0,
+        "entity": 203,
+        "transport": 205,
+        "embarkEventIndex": 20566,
+        "embarkTime": 578.6057739257812,
+        "embarkPosition": {
+          "x": 30.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 22442,
+        "landingTime": 623.2948608398438,
+        "landingPosition": {
+          "x": 98.0,
+          "y": 85.8499984741211
+        }
+      },
+      {
+        "player": 0,
+        "entity": 206,
+        "transport": 205,
+        "embarkEventIndex": 20668,
+        "embarkTime": 581.1051635742188,
+        "embarkPosition": {
+          "x": 30.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 22443,
+        "landingTime": 623.2948608398438,
+        "landingPosition": {
+          "x": 99.1500015258789,
+          "y": 85.8499984741211
+        }
+      },
+      {
+        "player": 0,
+        "entity": 210,
+        "transport": 205,
+        "embarkEventIndex": 20654,
+        "embarkTime": 580.7052612304688,
+        "embarkPosition": {
+          "x": 30.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 22444,
+        "landingTime": 623.2948608398438,
+        "landingPosition": {
+          "x": 96.8499984741211,
+          "y": 88.1500015258789
+        }
+      },
+      {
+        "player": 1,
+        "entity": 230,
+        "transport": 198,
+        "embarkEventIndex": 28046,
+        "embarkTime": 741.3660278320312,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 29445,
+        "landingTime": 770.9588012695312,
+        "landingPosition": {
+          "x": 32.0,
+          "y": 85.0
+        }
+      },
+      {
+        "player": 1,
+        "entity": 225,
+        "transport": 198,
+        "embarkEventIndex": 27835,
+        "embarkTime": 737.2670288085938,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 29446,
+        "landingTime": 770.9588012695312,
+        "landingPosition": {
+          "x": 30.350000381469727,
+          "y": 83.3499984741211
+        }
+      },
+      {
+        "player": 1,
+        "entity": 218,
+        "transport": 198,
+        "embarkEventIndex": 28003,
+        "embarkTime": 740.5662231445312,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 29447,
+        "landingTime": 770.9588012695312,
+        "landingPosition": {
+          "x": 33.150001525878906,
+          "y": 83.8499984741211
+        }
+      },
+      {
+        "player": 1,
+        "entity": 223,
+        "transport": 198,
+        "embarkEventIndex": 27970,
+        "embarkTime": 739.8663940429688,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 29448,
+        "landingTime": 770.9588012695312,
+        "landingPosition": {
+          "x": 30.850000381469727,
+          "y": 86.1500015258789
+        }
+      },
+      {
+        "player": 1,
+        "entity": 228,
+        "transport": 198,
+        "embarkEventIndex": 27939,
+        "embarkTime": 739.2665405273438,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 29449,
+        "landingTime": 770.9588012695312,
+        "landingPosition": {
+          "x": 33.150001525878906,
+          "y": 86.1500015258789
+        }
+      },
+      {
+        "player": 1,
+        "entity": 229,
+        "transport": 198,
+        "embarkEventIndex": 27883,
+        "embarkTime": 738.2667846679688,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 29450,
+        "landingTime": 770.9588012695312,
+        "landingPosition": {
+          "x": 32.0,
+          "y": 82.69999694824219
+        }
+      },
+      {
+        "player": 1,
+        "entity": 235,
+        "transport": 198,
+        "embarkEventIndex": 27940,
+        "embarkTime": 739.2665405273438,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 29451,
+        "landingTime": 770.9588012695312,
+        "landingPosition": {
+          "x": 33.150001525878906,
+          "y": 82.69999694824219
+        }
+      },
+      {
+        "player": 1,
+        "entity": 241,
+        "transport": 198,
+        "embarkEventIndex": 27876,
+        "embarkTime": 738.0668334960938,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 29452,
+        "landingTime": 770.9588012695312,
+        "landingPosition": {
+          "x": 29.700000762939453,
+          "y": 85.0
+        }
+      },
+      {
+        "player": 1,
+        "entity": 242,
+        "transport": 198,
+        "embarkEventIndex": 27945,
+        "embarkTime": 739.3665161132812,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 29453,
+        "landingTime": 770.9588012695312,
+        "landingPosition": {
+          "x": 29.700000762939453,
+          "y": 86.1500015258789
+        }
+      },
+      {
+        "player": 0,
+        "entity": 233,
+        "transport": 246,
+        "embarkEventIndex": 29650,
+        "embarkTime": 774.8578491210938,
+        "embarkPosition": {
+          "x": 30.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 29679,
+        "landingTime": 775.2577514648438,
+        "landingPosition": {
+          "x": 28.350000381469727,
+          "y": 41.349998474121094
+        }
+      },
+      {
+        "player": 0,
+        "entity": 243,
+        "transport": 246,
+        "embarkEventIndex": 29654,
+        "embarkTime": 774.9578247070312,
+        "embarkPosition": {
+          "x": 30.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 29680,
+        "landingTime": 775.2577514648438,
+        "landingPosition": {
+          "x": 30.0,
+          "y": 41.349998474121094
+        }
+      },
+      {
+        "player": 0,
+        "entity": 221,
+        "transport": 246,
+        "embarkEventIndex": 29600,
+        "embarkTime": 773.9580688476562,
+        "embarkPosition": {
+          "x": 30.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 29681,
+        "landingTime": 775.2577514648438,
+        "landingPosition": {
+          "x": 30.0,
+          "y": 43.0
+        }
+      },
+      {
+        "player": 0,
+        "entity": 227,
+        "transport": 246,
+        "embarkEventIndex": 29643,
+        "embarkTime": 774.7578735351562,
+        "embarkPosition": {
+          "x": 30.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 29682,
+        "landingTime": 775.2577514648438,
+        "landingPosition": {
+          "x": 31.149999618530273,
+          "y": 41.849998474121094
+        }
+      },
+      {
+        "player": 0,
+        "entity": 232,
+        "transport": 246,
+        "embarkEventIndex": 29581,
+        "embarkTime": 773.6581420898438,
+        "embarkPosition": {
+          "x": 30.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 29683,
+        "landingTime": 775.2577514648438,
+        "landingPosition": {
+          "x": 31.149999618530273,
+          "y": 43.0
+        }
+      },
+      {
+        "player": 0,
+        "entity": 237,
+        "transport": 246,
+        "embarkEventIndex": 29638,
+        "embarkTime": 774.6578979492188,
+        "embarkPosition": {
+          "x": 30.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 29684,
+        "landingTime": 775.2577514648438,
+        "landingPosition": {
+          "x": 30.0,
+          "y": 44.150001525878906
+        }
+      },
+      {
+        "player": 0,
+        "entity": 248,
+        "transport": 246,
+        "embarkEventIndex": 29591,
+        "embarkTime": 773.8580932617188,
+        "embarkPosition": {
+          "x": 30.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 29685,
+        "landingTime": 775.2577514648438,
+        "landingPosition": {
+          "x": 31.149999618530273,
+          "y": 44.150001525878906
+        }
+      },
+      {
+        "player": 0,
+        "entity": 233,
+        "transport": 246,
+        "embarkEventIndex": 31298,
+        "embarkTime": 800.8515014648438,
+        "embarkPosition": {
+          "x": 30.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 32079,
+        "landingTime": 815.9478149414062,
+        "landingPosition": {
+          "x": 32.0,
+          "y": 85.0
+        }
+      },
+      {
+        "player": 0,
+        "entity": 221,
+        "transport": 246,
+        "embarkEventIndex": 31231,
+        "embarkTime": 799.5518188476562,
+        "embarkPosition": {
+          "x": 30.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 32080,
+        "landingTime": 815.9478149414062,
+        "landingPosition": {
+          "x": 30.850000381469727,
+          "y": 83.8499984741211
+        }
+      },
+      {
+        "player": 0,
+        "entity": 227,
+        "transport": 246,
+        "embarkEventIndex": 31390,
+        "embarkTime": 802.6510620117188,
+        "embarkPosition": {
+          "x": 30.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 32081,
+        "landingTime": 815.9478149414062,
+        "landingPosition": {
+          "x": 33.150001525878906,
+          "y": 83.8499984741211
+        }
+      },
+      {
+        "player": 0,
+        "entity": 248,
+        "transport": 246,
+        "embarkEventIndex": 31279,
+        "embarkTime": 800.4515991210938,
+        "embarkPosition": {
+          "x": 30.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 32082,
+        "landingTime": 815.9478149414062,
+        "landingPosition": {
+          "x": 30.850000381469727,
+          "y": 86.1500015258789
+        }
+      },
+      {
+        "player": 0,
+        "entity": 255,
+        "transport": 246,
+        "embarkEventIndex": 31238,
+        "embarkTime": 799.7517700195312,
+        "embarkPosition": {
+          "x": 30.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 32083,
+        "landingTime": 815.9478149414062,
+        "landingPosition": {
+          "x": 33.150001525878906,
+          "y": 86.1500015258789
+        }
+      },
+      {
+        "player": 0,
+        "entity": 256,
+        "transport": 246,
+        "embarkEventIndex": 31218,
+        "embarkTime": 799.3518676757812,
+        "embarkPosition": {
+          "x": 30.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 32084,
+        "landingTime": 815.9478149414062,
+        "landingPosition": {
+          "x": 29.700000762939453,
+          "y": 82.69999694824219
+        }
+      },
+      {
+        "player": 0,
+        "entity": 264,
+        "transport": 246,
+        "embarkEventIndex": 31329,
+        "embarkTime": 801.4513549804688,
+        "embarkPosition": {
+          "x": 30.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 32085,
+        "landingTime": 815.9478149414062,
+        "landingPosition": {
+          "x": 30.850000381469727,
+          "y": 82.69999694824219
+        }
+      },
+      {
+        "player": 1,
+        "entity": 254,
+        "transport": 198,
+        "embarkEventIndex": 32551,
+        "embarkTime": 823.1460571289062,
+        "embarkPosition": {
+          "x": 96.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 34289,
+        "landingTime": 854.8383178710938,
+        "landingPosition": {
+          "x": 30.0,
+          "y": 43.0
+        }
+      },
+      {
+        "player": 1,
+        "entity": 245,
+        "transport": 198,
+        "embarkEventIndex": 32488,
+        "embarkTime": 822.1463012695312,
+        "embarkPosition": {
+          "x": 96.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 34290,
+        "landingTime": 854.8383178710938,
+        "landingPosition": {
+          "x": 28.350000381469727,
+          "y": 41.349998474121094
+        }
+      },
+      {
+        "player": 1,
+        "entity": 259,
+        "transport": 198,
+        "embarkEventIndex": 32562,
+        "embarkTime": 823.2460327148438,
+        "embarkPosition": {
+          "x": 96.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 34291,
+        "landingTime": 854.8383178710938,
+        "landingPosition": {
+          "x": 30.0,
+          "y": 41.349998474121094
+        }
+      },
+      {
+        "player": 1,
+        "entity": 252,
+        "transport": 198,
+        "embarkEventIndex": 32693,
+        "embarkTime": 825.3455200195312,
+        "embarkPosition": {
+          "x": 96.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 34292,
+        "landingTime": 854.8383178710938,
+        "landingPosition": {
+          "x": 31.149999618530273,
+          "y": 41.849998474121094
+        }
+      },
+      {
+        "player": 0,
+        "entity": 233,
+        "transport": 246,
+        "embarkEventIndex": 33360,
+        "embarkTime": 837.8424682617188,
+        "embarkPosition": {
+          "x": 32.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 35655,
+        "landingTime": 883.2313842773438,
+        "landingPosition": {
+          "x": 96.0,
+          "y": 43.0
+        }
+      },
+      {
+        "player": 0,
+        "entity": 221,
+        "transport": 246,
+        "embarkEventIndex": 33298,
+        "embarkTime": 836.7427368164062,
+        "embarkPosition": {
+          "x": 32.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 35656,
+        "landingTime": 883.2313842773438,
+        "landingPosition": {
+          "x": 94.8499984741211,
+          "y": 41.849998474121094
+        }
+      },
+      {
+        "player": 0,
+        "entity": 227,
+        "transport": 246,
+        "embarkEventIndex": 33484,
+        "embarkTime": 840.2418823242188,
+        "embarkPosition": {
+          "x": 32.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 35657,
+        "landingTime": 883.2313842773438,
+        "landingPosition": {
+          "x": 97.1500015258789,
+          "y": 41.849998474121094
+        }
+      },
+      {
+        "player": 0,
+        "entity": 248,
+        "transport": 246,
+        "embarkEventIndex": 33312,
+        "embarkTime": 836.8427124023438,
+        "embarkPosition": {
+          "x": 32.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 35658,
+        "landingTime": 883.2313842773438,
+        "landingPosition": {
+          "x": 94.8499984741211,
+          "y": 44.150001525878906
+        }
+      },
+      {
+        "player": 0,
+        "entity": 255,
+        "transport": 246,
+        "embarkEventIndex": 33342,
+        "embarkTime": 837.5425415039062,
+        "embarkPosition": {
+          "x": 32.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 35659,
+        "landingTime": 883.2313842773438,
+        "landingPosition": {
+          "x": 97.1500015258789,
+          "y": 44.150001525878906
+        }
+      },
+      {
+        "player": 0,
+        "entity": 256,
+        "transport": 246,
+        "embarkEventIndex": 33327,
+        "embarkTime": 837.2426147460938,
+        "embarkPosition": {
+          "x": 32.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 35660,
+        "landingTime": 883.2313842773438,
+        "landingPosition": {
+          "x": 93.69999694824219,
+          "y": 40.70000076293945
+        }
+      },
+      {
+        "player": 0,
+        "entity": 264,
+        "transport": 246,
+        "embarkEventIndex": 33438,
+        "embarkTime": 839.5420532226562,
+        "embarkPosition": {
+          "x": 32.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 35661,
+        "landingTime": 883.2313842773438,
+        "landingPosition": {
+          "x": 94.8499984741211,
+          "y": 40.70000076293945
+        }
+      },
+      {
+        "player": 1,
+        "entity": 244,
+        "transport": 198,
+        "embarkEventIndex": 38364,
+        "embarkTime": 925.3211059570312,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 41068,
+        "landingTime": 968.3106079101562,
+        "landingPosition": {
+          "x": 30.0,
+          "y": 43.0
+        }
+      },
+      {
+        "player": 1,
+        "entity": 262,
+        "transport": 198,
+        "embarkEventIndex": 38404,
+        "embarkTime": 925.8209838867188,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 41069,
+        "landingTime": 968.3106079101562,
+        "landingPosition": {
+          "x": 28.850000381469727,
+          "y": 41.849998474121094
+        }
+      },
+      {
+        "player": 1,
+        "entity": 263,
+        "transport": 198,
+        "embarkEventIndex": 38325,
+        "embarkTime": 924.7212524414062,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 41070,
+        "landingTime": 968.3106079101562,
+        "landingPosition": {
+          "x": 31.149999618530273,
+          "y": 41.849998474121094
+        }
+      },
+      {
+        "player": 1,
+        "entity": 268,
+        "transport": 198,
+        "embarkEventIndex": 38272,
+        "embarkTime": 923.9214477539062,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 41071,
+        "landingTime": 968.3106079101562,
+        "landingPosition": {
+          "x": 28.850000381469727,
+          "y": 44.150001525878906
+        }
+      },
+      {
+        "player": 1,
+        "entity": 269,
+        "transport": 198,
+        "embarkEventIndex": 38350,
+        "embarkTime": 925.0211791992188,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 41072,
+        "landingTime": 968.3106079101562,
+        "landingPosition": {
+          "x": 27.700000762939453,
+          "y": 40.70000076293945
+        }
+      },
+      {
+        "player": 1,
+        "entity": 273,
+        "transport": 198,
+        "embarkEventIndex": 38281,
+        "embarkTime": 924.1213989257812,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 41073,
+        "landingTime": 968.3106079101562,
+        "landingPosition": {
+          "x": 32.29999923706055,
+          "y": 40.70000076293945
+        }
+      },
+      {
+        "player": 1,
+        "entity": 274,
+        "transport": 198,
+        "embarkEventIndex": 38306,
+        "embarkTime": 924.5213012695312,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 41074,
+        "landingTime": 968.3106079101562,
+        "landingPosition": {
+          "x": 27.700000762939453,
+          "y": 41.849998474121094
+        }
+      },
+      {
+        "player": 1,
+        "entity": 277,
+        "transport": 198,
+        "embarkEventIndex": 38282,
+        "embarkTime": 924.1213989257812,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 41075,
+        "landingTime": 968.3106079101562,
+        "landingPosition": {
+          "x": 32.29999923706055,
+          "y": 41.849998474121094
+        }
+      },
+      {
+        "player": 1,
+        "entity": 278,
+        "transport": 198,
+        "embarkEventIndex": 38385,
+        "embarkTime": 925.6210327148438,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 41076,
+        "landingTime": 968.3106079101562,
+        "landingPosition": {
+          "x": 27.700000762939453,
+          "y": 43.0
+        }
+      },
+      {
+        "player": 1,
+        "entity": 279,
+        "transport": 198,
+        "embarkEventIndex": 38355,
+        "embarkTime": 925.1211547851562,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 41077,
+        "landingTime": 968.3106079101562,
+        "landingPosition": {
+          "x": 32.29999923706055,
+          "y": 43.0
+        }
+      },
+      {
+        "player": 1,
+        "entity": 280,
+        "transport": 198,
+        "embarkEventIndex": 38248,
+        "embarkTime": 923.6215209960938,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 41078,
+        "landingTime": 968.3106079101562,
+        "landingPosition": {
+          "x": 32.29999923706055,
+          "y": 44.150001525878906
+        }
+      },
+      {
+        "player": 1,
+        "entity": 281,
+        "transport": 198,
+        "embarkEventIndex": 38258,
+        "embarkTime": 923.7214965820312,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 41079,
+        "landingTime": 968.3106079101562,
+        "landingPosition": {
+          "x": 28.850000381469727,
+          "y": 45.29999923706055
+        }
+      },
+      {
+        "player": 1,
+        "entity": 311,
+        "transport": 198,
+        "embarkEventIndex": 45505,
+        "embarkTime": 1042.992431640625,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 48391,
+        "landingTime": 1091.6805419921875,
+        "landingPosition": {
+          "x": 28.350000381469727,
+          "y": 41.349998474121094
+        }
+      },
+      {
+        "player": 1,
+        "entity": 282,
+        "transport": 198,
+        "embarkEventIndex": 45783,
+        "embarkTime": 1047.9912109375,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 48392,
+        "landingTime": 1091.6805419921875,
+        "landingPosition": {
+          "x": 30.0,
+          "y": 43.0
+        }
+      },
+      {
+        "player": 1,
+        "entity": 283,
+        "transport": 198,
+        "embarkEventIndex": 45605,
+        "embarkTime": 1044.8919677734375,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 48393,
+        "landingTime": 1091.6805419921875,
+        "landingPosition": {
+          "x": 28.850000381469727,
+          "y": 43.0
+        }
+      },
+      {
+        "player": 1,
+        "entity": 286,
+        "transport": 198,
+        "embarkEventIndex": 45517,
+        "embarkTime": 1043.2923583984375,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 48394,
+        "landingTime": 1091.6805419921875,
+        "landingPosition": {
+          "x": 31.149999618530273,
+          "y": 43.0
+        }
+      },
+      {
+        "player": 1,
+        "entity": 287,
+        "transport": 198,
+        "embarkEventIndex": 45631,
+        "embarkTime": 1045.2918701171875,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 48395,
+        "landingTime": 1091.6805419921875,
+        "landingPosition": {
+          "x": 28.850000381469727,
+          "y": 44.150001525878906
+        }
+      },
+      {
+        "player": 1,
+        "entity": 288,
+        "transport": 198,
+        "embarkEventIndex": 45518,
+        "embarkTime": 1043.2923583984375,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 48396,
+        "landingTime": 1091.6805419921875,
+        "landingPosition": {
+          "x": 30.0,
+          "y": 44.150001525878906
+        }
+      },
+      {
+        "player": 1,
+        "entity": 289,
+        "transport": 198,
+        "embarkEventIndex": 45499,
+        "embarkTime": 1042.79248046875,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 48397,
+        "landingTime": 1091.6805419921875,
+        "landingPosition": {
+          "x": 31.149999618530273,
+          "y": 44.150001525878906
+        }
+      },
+      {
+        "player": 1,
+        "entity": 295,
+        "transport": 198,
+        "embarkEventIndex": 45524,
+        "embarkTime": 1043.392333984375,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 48398,
+        "landingTime": 1091.6805419921875,
+        "landingPosition": {
+          "x": 31.149999618530273,
+          "y": 40.70000076293945
+        }
+      },
+      {
+        "player": 1,
+        "entity": 296,
+        "transport": 198,
+        "embarkEventIndex": 45460,
+        "embarkTime": 1041.99267578125,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 48399,
+        "landingTime": 1091.6805419921875,
+        "landingPosition": {
+          "x": 32.29999923706055,
+          "y": 40.70000076293945
+        }
+      },
+      {
+        "player": 1,
+        "entity": 301,
+        "transport": 198,
+        "embarkEventIndex": 45866,
+        "embarkTime": 1049.5908203125,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 48400,
+        "landingTime": 1091.6805419921875,
+        "landingPosition": {
+          "x": 32.29999923706055,
+          "y": 41.849998474121094
+        }
+      },
+      {
+        "player": 1,
+        "entity": 302,
+        "transport": 198,
+        "embarkEventIndex": 45465,
+        "embarkTime": 1042.192626953125,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 48401,
+        "landingTime": 1091.6805419921875,
+        "landingPosition": {
+          "x": 32.29999923706055,
+          "y": 43.0
+        }
+      },
+      {
+        "player": 1,
+        "entity": 306,
+        "transport": 198,
+        "embarkEventIndex": 45568,
+        "embarkTime": 1044.0921630859375,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 48402,
+        "landingTime": 1091.6805419921875,
+        "landingPosition": {
+          "x": 32.29999923706055,
+          "y": 44.150001525878906
+        }
+      },
+      {
+        "player": 1,
+        "entity": 307,
+        "transport": 198,
+        "embarkEventIndex": 45504,
+        "embarkTime": 1042.992431640625,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 48403,
+        "landingTime": 1091.6805419921875,
+        "landingPosition": {
+          "x": 28.850000381469727,
+          "y": 45.29999923706055
+        }
+      },
+      {
+        "player": 1,
+        "entity": 312,
+        "transport": 198,
+        "embarkEventIndex": 58180,
+        "embarkTime": 1224.4481201171875,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 60727,
+        "landingTime": 1260.4393310546875,
+        "landingPosition": {
+          "x": 32.0,
+          "y": 85.0
+        }
+      },
+      {
+        "player": 1,
+        "entity": 334,
+        "transport": 198,
+        "embarkEventIndex": 58415,
+        "embarkTime": 1227.6473388671875,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 60728,
+        "landingTime": 1260.4393310546875,
+        "landingPosition": {
+          "x": 30.850000381469727,
+          "y": 83.8499984741211
+        }
+      },
+      {
+        "player": 1,
+        "entity": 335,
+        "transport": 198,
+        "embarkEventIndex": 58259,
+        "embarkTime": 1225.5478515625,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 60729,
+        "landingTime": 1260.4393310546875,
+        "landingPosition": {
+          "x": 33.150001525878906,
+          "y": 83.8499984741211
+        }
+      },
+      {
+        "player": 1,
+        "entity": 336,
+        "transport": 198,
+        "embarkEventIndex": 58493,
+        "embarkTime": 1228.7470703125,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 60730,
+        "landingTime": 1260.4393310546875,
+        "landingPosition": {
+          "x": 30.850000381469727,
+          "y": 86.1500015258789
+        }
+      },
+      {
+        "player": 1,
+        "entity": 337,
+        "transport": 198,
+        "embarkEventIndex": 58604,
+        "embarkTime": 1230.2467041015625,
+        "embarkPosition": {
+          "x": 98.0,
+          "y": 85.0
+        },
+        "landingEventIndex": 60731,
+        "landingTime": 1260.4393310546875,
+        "landingPosition": {
+          "x": 33.150001525878906,
+          "y": 86.1500015258789
+        }
+      },
+      {
+        "player": 1,
+        "entity": 338,
+        "transport": 198,
+        "embarkEventIndex": 64364,
+        "embarkTime": 1311.52685546875,
+        "embarkPosition": {
+          "x": 96.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 67460,
+        "landingTime": 1355.316162109375,
+        "landingPosition": {
+          "x": 32.0,
+          "y": 85.0
+        }
+      },
+      {
+        "player": 1,
+        "entity": 339,
+        "transport": 198,
+        "embarkEventIndex": 64370,
+        "embarkTime": 1311.6268310546875,
+        "embarkPosition": {
+          "x": 96.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 67461,
+        "landingTime": 1355.316162109375,
+        "landingPosition": {
+          "x": 30.850000381469727,
+          "y": 83.8499984741211
+        }
+      },
+      {
+        "player": 1,
+        "entity": 341,
+        "transport": 198,
+        "embarkEventIndex": 64386,
+        "embarkTime": 1311.8267822265625,
+        "embarkPosition": {
+          "x": 96.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 67462,
+        "landingTime": 1355.316162109375,
+        "landingPosition": {
+          "x": 32.0,
+          "y": 83.8499984741211
+        }
+      },
+      {
+        "player": 1,
+        "entity": 342,
+        "transport": 198,
+        "embarkEventIndex": 64387,
+        "embarkTime": 1311.8267822265625,
+        "embarkPosition": {
+          "x": 96.0,
+          "y": 43.0
+        },
+        "landingEventIndex": 67463,
+        "landingTime": 1355.316162109375,
+        "landingPosition": {
+          "x": 33.150001525878906,
+          "y": 83.8499984741211
+        }
+      }
+    ],
+    "scope": "Every86Disembarked event has earlier same-player/entity/transport Embarked. Counts include repeated cycles and are not unique recruited soldiers. Event/position evidence, not a new independent simulator replay."
+  },
+  "shipProvenanceCaution": "Player0first transport205 arrived via normal Chartered Transport shipment; player1frigate333via Fleet Reinforcement shipment. Other production Payments are recorded. No artificial fixtureGrant events; legal shipments are not falsely labelled paidTrain births.",
+  "rawReport": {
+    "path": "Native/Reports/20261004-235324-421-d1eafccccf5e44cc973adaee2768b009-quit.json",
+    "bytes": 3304,
+    "sha256": "5cc4ceca3e6c1841a10ba93bcb4489576fb838289a209e3c8dced132e9c655e2"
+  },
+  "rawEvents": {
+    "path": "Native/Reports/20261004-235324-421-d1eafccccf5e44cc973adaee2768b009-quit-events.jsonl",
+    "bytes": 61699979,
+    "sha256": "4b66135fad27698735b8c49751ede4ab83ff90595f69020ed6d28225c41d6a47"
+  },
+  "eventKindCounts": {
+    "StartingResources": 2,
+    "Spawn": 437,
+    "TradeSocket": 3,
+    "TreasurePlaced": 6,
+    "LandmarkReachability": 34,
+    "MatchStarted": 1,
+    "Payment": 4150,
+    "ProductionQueued": 177,
+    "Command": 4538,
+    "Gather": 74809,
+    "ResourceDepleted": 34,
+    "Death": 200,
+    "LandmarkDiscovered": 29,
+    "AttackPrepared": 2300,
+    "Damage": 2131,
+    "Fire": 2125,
+    "Experience": 428,
+    "RallyAssigned": 292,
+    "ShipmentEarned": 23,
+    "TreasureClaimed": 2,
+    "ShipmentSent": 23,
+    "ShipmentArrived": 23,
+    "AIStrategy": 25,
+    "AgeAdvanced": 5,
+    "Technology": 27,
+    "AgeRouteChosen": 5,
+    "AgeRewardArrived": 5,
+    "BuildingComplete": 39,
+    "PauseChanged": 5,
+    "ResearchComplete": 17,
+    "DestinationAdjusted": 705,
+    "RallySet": 14,
+    "EmbarkOrdered": 16,
+    "Embarked": 103,
+    "DisembarkOrdered": 14,
+    "Impact": 1379,
+    "Disembarked": 86,
+    "NavalLandingCompleted": 12,
+    "Garrison": 63,
+    "Ungarrison": 5,
+    "MeleeAreaHit": 4,
+    "AIConstructionResumed": 1,
+    "FactoryDeploymentOrdered": 2,
+    "FactoryFoundationStarted": 2,
+    "FactoryIncome": 348,
+    "FactoryModeChanged": 90
+  },
+  "nativeCaptures": {
+    "count": 6,
+    "status": "identity_verified",
+    "scope": "JSON/PNG file identity and metadata consistency only. PNG SHA-256 binds the exact same-stem image bytes; frame, camera and HUD values are recorded metadata, not independently observed pixels. No OCR or visual review, native-input/gameplay acceptance, continuous focus, save restoration, performance, test execution or build provenance verification is performed.",
+    "pairs": [
+      {
+        "json": "Frontier-20261004-234909-304-f919-ec2bf5608e7b4a4192db768ad8f43669.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 12667,
+        "jsonSha256": "5450b492d261a1b73a5dcfa912cb66cf29cca8592e1c1edc523c70fe82bcdc43",
+        "png": "Frontier-20261004-234909-304-f919-ec2bf5608e7b4a4192db768ad8f43669.png",
+        "pngBytes": 1050140,
+        "pngSha256": "9aec8f87b9f7b3055fb8b53a9b016abc0d4ffed40f610401c1245d93425e011f",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:49:09.2187330Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "d1eafccccf5e44cc973adaee2768b009",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 253.00624084472656,
+        "requestWorldTime": 253.00624084472656,
+        "requestFrame": 919,
+        "captureFrame": 919,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 21.0,
+            "y": 29.0
+          },
+          "pointer": {
+            "x": 542.0,
+            "y": 962.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 26.0
+        },
+        "hudResources": "FOOD  818     WOOD  391     COIN  100     POP  15+1/20     AGE  2     XP  40/300     SHIP  0",
+        "hudUpdatedFrame": 919,
+        "hudWorldTime": 253.00624084472656,
+        "hudMatchId": "d1eafccccf5e44cc973adaee2768b009",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 2,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive",
+        "sourceJson": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-234909-304-f919-ec2bf5608e7b4a4192db768ad8f43669.json",
+        "sourcePng": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-234909-304-f919-ec2bf5608e7b4a4192db768ad8f43669.png"
+      },
+      {
+        "json": "Frontier-20261004-235012-956-f4663-7f6a8a77082c49ebb6a6ab22b12b45e3.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 12939,
+        "jsonSha256": "c8dcc7b490f63186fea327070597109470d3877b18e57a327e15cda20bd4c3c9",
+        "png": "Frontier-20261004-235012-956-f4663-7f6a8a77082c49ebb6a6ab22b12b45e3.png",
+        "pngBytes": 1051772,
+        "pngSha256": "ec22b9d69f72f0a88429d5a18d01174f5cb8c30d092e1b6c282ef11efc2efccd",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:50:12.8909370Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "d1eafccccf5e44cc973adaee2768b009",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 257.3064880371094,
+        "requestWorldTime": 257.3064880371094,
+        "requestFrame": 4663,
+        "captureFrame": 4663,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 21.0,
+            "y": 29.0
+          },
+          "pointer": {
+            "x": 560.0,
+            "y": 722.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 26.0
+        },
+        "hudResources": "FOOD  818     WOOD  343     COIN  100     POP  15+1/20     AGE  2     XP  58/300     SHIP  0",
+        "hudUpdatedFrame": 4663,
+        "hudWorldTime": 257.3064880371094,
+        "hudMatchId": "d1eafccccf5e44cc973adaee2768b009",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 2,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive",
+        "sourceJson": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-235012-956-f4663-7f6a8a77082c49ebb6a6ab22b12b45e3.json",
+        "sourcePng": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-235012-956-f4663-7f6a8a77082c49ebb6a6ab22b12b45e3.png"
+      },
+      {
+        "json": "Frontier-20261004-235028-300-f5561-4eec6aca918f4dccb50853a5e7e85d90.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 22408,
+        "jsonSha256": "e44b1e4f6aebeb98a4fde63ac38c386329c8c053da4e71475782d06a8ffead42",
+        "png": "Frontier-20261004-235028-300-f5561-4eec6aca918f4dccb50853a5e7e85d90.png",
+        "pngBytes": 1081433,
+        "pngSha256": "5ffe3814d0f4891dbd4dd4457a9a48391d1ce6e696abb56828e502b57727ed37",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:50:28.2362270Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "d1eafccccf5e44cc973adaee2768b009",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 502.82147216796875,
+        "requestWorldTime": 502.82147216796875,
+        "requestFrame": 5561,
+        "captureFrame": 5561,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 21.0,
+            "y": 29.0
+          },
+          "pointer": {
+            "x": 560.0,
+            "y": 722.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 26.0
+        },
+        "hudResources": "FOOD  1162     WOOD  273     COIN  1026     POP  31+0/50     AGE  2     XP  30/450     SHIP  0",
+        "hudUpdatedFrame": 5561,
+        "hudWorldTime": 502.82147216796875,
+        "hudMatchId": "d1eafccccf5e44cc973adaee2768b009",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 2,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive",
+        "sourceJson": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-235028-300-f5561-4eec6aca918f4dccb50853a5e7e85d90.json",
+        "sourcePng": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-235028-300-f5561-4eec6aca918f4dccb50853a5e7e85d90.png"
+      },
+      {
+        "json": "Frontier-20261004-235135-672-f9404-29aa6510d1b847d99698b90a998ace1b.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 29216,
+        "jsonSha256": "3e905d6ed0fa2567ee4df173b086cf02953b55ef3fcf146df8a9844b0938f1ef",
+        "png": "Frontier-20261004-235135-672-f9404-29aa6510d1b847d99698b90a998ace1b.png",
+        "pngBytes": 1226974,
+        "pngSha256": "8a1384e7fe3e89cef36aa9d192e16ffe0b5aa04d6f26b7ff9b6bb83fe2e0520a",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:51:35.6062740Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "d1eafccccf5e44cc973adaee2768b009",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 845.9404907226562,
+        "requestWorldTime": 845.9404907226562,
+        "requestFrame": 9404,
+        "captureFrame": 9404,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 21.0,
+            "y": 29.0
+          },
+          "pointer": {
+            "x": 67.0,
+            "y": 132.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 26.0
+        },
+        "hudResources": "FOOD  1103     WOOD  433     COIN  83     POP  47+0/60     AGE  3     XP  334/600     SHIP  0",
+        "hudUpdatedFrame": 9404,
+        "hudWorldTime": 845.9404907226562,
+        "hudMatchId": "d1eafccccf5e44cc973adaee2768b009",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive",
+        "sourceJson": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-235135-672-f9404-29aa6510d1b847d99698b90a998ace1b.json",
+        "sourcePng": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-235135-672-f9404-29aa6510d1b847d99698b90a998ace1b.png"
+      },
+      {
+        "json": "Frontier-20261004-235220-299-f11616-25ef78e66d6a4cd6b809e16c5e76dd45.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 38364,
+        "jsonSha256": "2cd3c089fc4be2c1ee520b6bff1ab07ba4637de23f9e0089ed484e47dafc386d",
+        "png": "Frontier-20261004-235220-299-f11616-25ef78e66d6a4cd6b809e16c5e76dd45.png",
+        "pngBytes": 1240965,
+        "pngSha256": "ce63d5b1f80ade675ed76858e46e0e8edb885e35bf99a597b6381934a53e33be",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:52:20.2277050Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "d1eafccccf5e44cc973adaee2768b009",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 1501.9803466796875,
+        "requestWorldTime": 1501.9803466796875,
+        "requestFrame": 11616,
+        "captureFrame": 11616,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 21.0,
+            "y": 29.0
+          },
+          "pointer": {
+            "x": 67.0,
+            "y": 132.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 26.0
+        },
+        "hudResources": "FOOD  4885     WOOD  53     COIN  609     POP  59+6/70     AGE  3     XP  231/900     SHIP  0",
+        "hudUpdatedFrame": 11616,
+        "hudWorldTime": 1501.9803466796875,
+        "hudMatchId": "d1eafccccf5e44cc973adaee2768b009",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive",
+        "sourceJson": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-235220-299-f11616-25ef78e66d6a4cd6b809e16c5e76dd45.json",
+        "sourcePng": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-235220-299-f11616-25ef78e66d6a4cd6b809e16c5e76dd45.png"
+      },
+      {
+        "json": "Frontier-20261004-235245-695-f12070-5c9f9bde5c4d406c8d008505280d6191.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 46935,
+        "jsonSha256": "176b6365c615abb422fd94117c3bb456b7edbcba79cfac8a0903c020d0a3b59a",
+        "png": "Frontier-20261004-235245-695-f12070-5c9f9bde5c4d406c8d008505280d6191.png",
+        "pngBytes": 1261411,
+        "pngSha256": "89eee9448c1169d32e4a70746e2ebe1810090447daca8d6fdae5269ee0fb8fc3",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:52:45.6251940Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "d1eafccccf5e44cc973adaee2768b009",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 1702.5313720703125,
+        "requestWorldTime": 1702.5313720703125,
+        "requestFrame": 12070,
+        "captureFrame": 12070,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 21.0,
+            "y": 29.0
+          },
+          "pointer": {
+            "x": 67.0,
+            "y": 132.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 26.0
+        },
+        "hudResources": "FOOD  5786     WOOD  711     COIN  1201     POP  78+2/90     AGE  3     XP  364/975     SHIP  0",
+        "hudUpdatedFrame": 12070,
+        "hudWorldTime": 1702.5313720703125,
+        "hudMatchId": "d1eafccccf5e44cc973adaee2768b009",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive",
+        "sourceJson": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-235245-695-f12070-5c9f9bde5c4d406c8d008505280d6191.json",
+        "sourcePng": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-235245-695-f12070-5c9f9bde5c4d406c8d008505280d6191.png"
+      }
+    ],
+    "rawSourceFilesNotCopiedByThisAudit": true
+  },
+  "log": {
+    "path": "Diagnostics/native-normal-autoplay.log",
+    "bytes": 54169,
+    "sha256": "22094d1d95c3a526588c00e5b0441fa0cddc15376d249b51258c822f5ff67ee2",
+    "lineCount": 526,
+    "successfulSaves": [
+      {
+        "line": 107,
+        "text": "FRONTIER_SAVE slot=3 match=d1eafccccf5e44cc973adaee2768b009 time=256.8065"
+      },
+      {
+        "line": 254,
+        "text": "FRONTIER_SAVE slot=3 match=d1eafccccf5e44cc973adaee2768b009 time=842.2414"
+      }
+    ],
+    "failedSaveWarnings": [
+      {
+        "line": 479,
+        "text": "FRONTIER_SAVE_FAILED This match exceeds the save size limit"
+      }
+    ],
+    "exceptionPattern": "(?:NullReferenceException|MissingReferenceException|IndexOutOfRangeException|Argument\\w*Exception|Assertion failed|Unhandled Exception|[A-Za-z][A-Za-z0-9.]*Exception:)",
+    "exceptionMatches": [],
+    "interpretation": "Zero Exception matches does not negate explicit save failure. Shutdown/thread-finalization telemetry retained in source log.",
+    "exitTelemetry": [
+      {
+        "line": 513,
+        "text": "Thread 0x16d267000 may have been prematurely finalized"
+      },
+      {
+        "line": 514,
+        "text": "Thread 0x16ced3000 may have been prematurely finalized"
+      },
+      {
+        "line": 517,
+        "text": "Input System module state changed to: ShutdownInProgress."
+      },
+      {
+        "line": 518,
+        "text": "Input Polling Thread exited."
+      },
+      {
+        "line": 519,
+        "text": "Input System module state changed to: Shutdown."
+      },
+      {
+        "line": 520,
+        "text": "Thread 0x16be6b000 may have been prematurely finalized"
+      },
+      {
+        "line": 521,
+        "text": "Thread 0x16bef7000 may have been prematurely finalized"
+      },
+      {
+        "line": 522,
+        "text": "Thread 0x16c00f000 may have been prematurely finalized"
+      },
+      {
+        "line": 523,
+        "text": "Thread 0x16bf83000 may have been prematurely finalized"
+      },
+      {
+        "line": 524,
+        "text": "Thread 0x16bddf000 may have been prematurely finalized"
+      }
+    ]
+  },
+  "nativeExit": {
+    "receipt": {
+      "path": "Native/normal-autoplay-save-attempt.json",
+      "bytes": 620,
+      "sha256": "1506511dfcc5fcaa65c2a4c4cd30c91a7e6695ac2638771f6d2e0532e5bdc06c"
+    },
+    "sessionId": 72636,
+    "nativeProcessExitCode": 0,
+    "scope": "Archived root receipt records actual exec session exit0; successful process exit does not imply save success."
+  },
+  "previousControlledEvidence": {
+    "file": {
+      "path": "native-flow-audit-controlled.json",
+      "bytes": 138346,
+      "sha256": "d588c868bbc74881a3491b22ae7744dcdc515016ecc500535c4efcaa08e4b4c8"
+    },
+    "status": "valid_historical_controlled_scope_for_same_GUID_not_overall_release_pass"
+  },
+  "requiredBeforeNewAcceptance": [
+    "Complete bounded save-format fix and integrity/compatibility tests",
+    "New fullUnity source fingerprint and buildGUID receipts",
+    "New native large-state save followed by process restart/load and restored-state proof",
+    "Re-export/revalidate required native fixture scopes under newidentity",
+    "Final original-slot preservation/managed-slot cleanup",
+    "Final package/Drive evidence"
+  ],
+  "mutations": "Only this new external diagnostic JSON; source/playerSaves/helper/raw reports/logs/screenshots/prior audits unchanged; no UI/Unity."
+}

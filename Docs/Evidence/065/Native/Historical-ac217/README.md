@@ -1,0 +1,5 @@
+# Historical ac217 candidate evidence
+
+These small unmodified audits and build receipt belong to GUIDac217fb5b02c4077acce8f43dae02aab, runtimeeb19da3e9cad898240a52db152574b2e762410c9, fingerprint fdf7e8ff5976a4e8235f86282d2f8e3ea1537d33ba2388839ebb516fdce1a60c, 529 inputs and952 tests. Original raw logs, events, checkpoints and images remain external under frontier-reckoning-0.8.0 historical outputs. Embedded wording such as final-GUID refers to that earlier candidate only.
+
+Controlled boarding/cold restoration/landing/repair/recruitment/bridge-result/monitor movement and failed first combat branch retain their original scopes. The normal both-AI save at1706.5303955 seconds/94739 events FAILED at the64MiB stored cap; original842-second slot survived and the helper final file actually contained842 seconds. This was the real trigger for the later bounded compressed codec. None of these old screenshots, audits or proofs is relabeled as final5fbc native acceptance. The current identity and958 tests are documented in Completion-Status and the separate Normal/Fleet final archives.
