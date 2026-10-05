@@ -1,6 +1,6 @@
 # 当前范围与已知限制 · 0.9.0 批次 3
 
-2026-10-05。第三批已实现本地 2v2/四方 FFA、七个中文课程、三章原创河流战役，以及持久音频、20动作改键与可访问性设置。完整自动化 **1,062/1,062（710 EditMode + 352 PlayMode）**，运行代码提交/来源基线 `c9747695d91fa203b05116a1fc0c15a8aac32de2`，573个输入指纹 `66cf7cc57e080eb40cfdf98310ee26affd93d690745dde2b457e8fb3eb0ee1ee`；[正式报告](Evidence/066/Tests/README.md)保留实际XML及原始/脱敏哈希。**GUID `1969c7ee14f944879510f4ca0d0f241d` 的代表性原生操作和冷恢复已通过；本版性能未采样，打包及云盘上传/读回仍待验收。** 范围见 [完成状态](Completion-Status.md)，操作见 [玩家指南](Player-Guide-066.md)。
+2026-10-05。第三批已实现本地 2v2/四方 FFA、七个中文课程、三章原创河流战役，以及持久音频、20动作改键与可访问性设置。完整自动化 **1,062/1,062（710 EditMode + 352 PlayMode）**，运行代码提交/来源基线 `c9747695d91fa203b05116a1fc0c15a8aac32de2`，573个输入指纹 `66cf7cc57e080eb40cfdf98310ee26affd93d690745dde2b457e8fb3eb0ee1ee`；[正式报告](Evidence/066/Tests/README.md)保留实际XML及原始/脱敏哈希。**GUID `1969c7ee14f944879510f4ca0d0f241d` 的代表性原生操作和冷恢复已通过；本版性能未采样；三包本地核验和七对象云端上传/元数据读回已通过，远端SHA/下载字节一致性未验证，GitHub最终推送/PR更新仍待。** 范围见 [完成状态](Completion-Status.md)，操作见 [玩家指南](Player-Guide-066.md)。
 
 0.8的958项测试、GUID `5fbcf668506b4814bc34d27b3902a237` 长局冷恢复/续存及受控乘员记录保留于 [更新前状态快照](Completion-Status-before-066.md)和065证据。旧ac217的泊修、招募、守桥终局及超限保存失败也只属于0.8历史。0.7工业与原生记录见 [064快照](Completion-Status-064.md)，0.6曲河见 [063快照](Completion-Status-063.md)。历史帧时间、GUID、测试和上传文件不重标为0.9结果。
 
@@ -19,7 +19,7 @@
 
 [066原生回执](Evidence/066/Native/native-acceptance.json)和[20组F9/存档索引](Evidence/066/Native/README.md)绑定上述GUID。除设置和单课，2v2曲河同局103.4989929秒检查点已在新进程恢复，玩家投降后盟友继续；英国/荷兰/法国/奥斯曼四独立队伍FFA实际开局已核验。没有四人完整自然终局、全课程/全战役或本版FPS/内存结果。
 
-槽1/2原SHA未变；原先不存在的任务槽3、设置和账号按精确哈希恢复不存在，见[保护回执](Evidence/066/Native/storage-restoration.json)。session02/03退出143为主动SIGTERM建立冷恢复条件，其他四个记录会话退出0；退出检查意外重开的无参数进程随后终止且不作为通过证据。MemoryLeaks/Thread finalized等Unity Development退出提示保留，没有根因或零泄漏结论。包与云盘仍待核验，API对象元数据不等于远端SHA或完整字节读回。
+槽1/2原SHA未变；原先不存在的任务槽3、设置和账号按精确哈希恢复不存在，见[保护回执](Evidence/066/Native/storage-restoration.json)。session02/03退出143为主动SIGTERM建立冷恢复条件，其他四个记录会话退出0；退出检查意外重开的无参数进程随后终止且不作为通过证据。MemoryLeaks/Thread finalized等Unity Development退出提示保留，没有根因或零泄漏结论。三包本地核验及七对象上传/名称/大小/父目录/owner-only/shared=false元数据核验已通过，见[交付说明](Delivery-066.md)。源码ZIP为e754快照，包外文档后加，上传后没有重建；API元数据仍不等于远端SHA或完整字节读回。GitHub最终推送/PR更新尚待主任务，私有draft保留。
 
 ## 验收口径
 

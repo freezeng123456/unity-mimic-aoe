@@ -2,7 +2,7 @@
 
 独立 Unity 即时战略游戏：英国、荷兰、法国、奥斯曼四个经典文明核心玩法，加上远驿盟市、山岭工联两个原创文明，共六文明。五个时代、25张卡组与XP船运、银行、实车贸易、工坊制造、守卫宝藏和炮兵攻城，配有原创模型、动画与音频。使用本项目规则和候选数值，与 Age of Empires 及其发行商无关联。
 
-**当前源码版本为 0.9.0，目标平台 macOS Apple silicon。** 第三批已实现本地 2v2/四方 FFA、七个中文引导课程、三章相连的原创河流战役、持久音频与20动作改键，以及UI比例、阵营形状、高对比小地图和事件文字。[完整自动化1,062/1,062通过](Docs/Evidence/066/Tests/README.md)（710 EditMode + 352 PlayMode）；运行代码提交/来源基线 `c9747695d91fa203b05116a1fc0c15a8aac32de2`，573个冻结输入的指纹 `66cf7cc57e080eb40cfdf98310ee26affd93d690745dde2b457e8fb3eb0ee1ee`。四槽模式是一个玩家加AI，当前没有联网。**GUID `1969c7ee14f944879510f4ca0d0f241d` 的代表性原生操作与冷恢复已通过；本版性能未采样，最终分包及云盘上传/读回仍待验收。** 玩法和操作见[内容说明](Docs/Content-066.md)、[玩家指南](Docs/Player-Guide-066.md)，证据见[066索引](Docs/Evidence/066/README.md)与[本地完成快照](Docs/Completion-Status-066.md)。
+**当前源码版本为 0.9.0，目标平台 macOS Apple silicon。** 第三批已实现本地 2v2/四方 FFA、七个中文引导课程、三章相连的原创河流战役、持久音频与20动作改键，以及UI比例、阵营形状、高对比小地图和事件文字。[完整自动化1,062/1,062通过](Docs/Evidence/066/Tests/README.md)（710 EditMode + 352 PlayMode）；运行代码提交/来源基线 `c9747695d91fa203b05116a1fc0c15a8aac32de2`，573个冻结输入的指纹 `66cf7cc57e080eb40cfdf98310ee26affd93d690745dde2b457e8fb3eb0ee1ee`。四槽模式是一个玩家加AI，当前没有联网。**GUID `1969c7ee14f944879510f4ca0d0f241d` 的代表性原生操作与冷恢复已通过；本版性能未采样；最终三包本地核验及六载荷/第七回执上传、云端隐私/名称/大小/父目录元数据读回已通过，远端内容SHA与下载字节一致性未验证。** 玩法和操作见[内容说明](Docs/Content-066.md)、[玩家指南](Docs/Player-Guide-066.md)，证据见[066索引](Docs/Evidence/066/README.md)与[本地完成快照](Docs/Completion-Status-066.md)。
 
 0.8的958项测试、生成地图、海军运输与有界压缩存档，以及原生长局冷恢复/两乘员登陆记录，保留在[0.8状态快照](Docs/Completion-Status-before-066.md)、[正常冷恢复](Docs/Evidence/065/Native/Normal/README.md)和[受控乘员证据](Docs/Evidence/065/Native/Fleet/README.md)，不重标为0.9结果。已交付0.7的工业、三槽存读档、796项测试与原生证据见[0.7完成快照](Docs/Completion-Status-064.md)和[0.7交付索引](Docs/Delivery-064.md)。机制说明仍可参考[经典工业](Docs/Classic-Industry-064.md)、[存档与续局](Docs/Save-Load-064.md)、[地图与海军内容](Docs/Naval-Content-065.md)；[AoE III 差距路线](Docs/AoE3-Gap-Roadmap-064.md)记录各批的独立实现和验收范围。
 
@@ -10,7 +10,9 @@
 
 ## 启动与操作
 
-0.9操作见[玩家指南](Docs/Player-Guide-066.md)。初次可从 **GUIDED LESSONS** 学习；**RIVER CAMPAIGN** 进入原创三章，完成记录用于解锁后续章节；**SETTINGS** 调整音频、可访问性和改键。原生已通过设置冷恢复、单课槽3恢复后实际完成及账号徽记再冷恢复、2v2曲河冷恢复/投降后盟友继续，以及四国FFA开局；[原生回执](Docs/Evidence/066/Native/README.md)记录范围。全部课程/战役或四人终局没有被宣称通过；下载包和云端仍待核验。
+0.9操作见[玩家指南](Docs/Player-Guide-066.md)。初次可从 **GUIDED LESSONS** 学习；**RIVER CAMPAIGN** 进入原创三章，完成记录用于解锁后续章节；**SETTINGS** 调整音频、可访问性和改键。原生已通过设置冷恢复、单课槽3恢复后实际完成及账号徽记再冷恢复、2v2曲河冷恢复/投降后盟友继续，以及四国FFA开局；[原生回执](Docs/Evidence/066/Native/README.md)记录范围。全部课程/战役或四人终局没有被宣称通过；下载入口及三包本地SHA见[0.9交付说明](Docs/Delivery-066.md)；云端已完成元数据核验，远端内容校验未完成。
+
+当前[0.9私有交付目录](https://drive.google.com/drive/folders/1wzczmUUktYSDSn92KuwpUQ4dZkIK-h-3)提供源码、macOS客户端和原生图集；源码快照为`e75407c78522374ed7e327a1ed1727212d27ffd3`，运行代码仍为上述c974，上传后三ZIP未重建。包外回执见[Delivery-066](Docs/Delivery-066.md)，GitHub最终推送/PR更新仍待主任务完成，私有draft保留。
 
 历史客户端下载和核验见[0.7交付索引](Docs/Delivery-064.md)与[0.8交付说明](Docs/Delivery-065.md)所列包外回执。0.7客户端只有六张固定地图；当前源码菜单有九图循环、**MAP, SEED & OBJECTIVES** 和本地槽位配置，不能用历史客户端演示新增0.9功能。
 
@@ -73,4 +75,4 @@ C1–C6失败结果原样保留，不跨局拼接。C7缺少单独终局F9和菜
 
 ## 交付边界
 
-目标为macOS arm64、Development/Mono、URP。本轮1,062项是编辑器自动化结果，0.9另有上述代表性原生验收；分包与云盘仍待核验，本版性能未采样。历史0.8正常续局/受控操作不扩大为0.9整局、自然胜负或1×性能。原生帧率样本受机器、分辨率、镜头和活动量限制，不能保证通用60FPS。Windows、Linux、Intel Mac及跨机器签名、公证尚未验证。七课、三章原创战役和本地团队已实现；联网合作、可毁桥、完整商业海战、地图编辑器和通用回放仍缺。完整边界见[完成状态](Docs/Completion-Status.md)与[已知限制](Docs/Known-Issues.md)。
+目标为macOS arm64、Development/Mono、URP。本轮1,062项是编辑器自动化结果，0.9另有上述代表性原生验收；三包本地核验及云端元数据已通过，远端SHA/下载字节一致性未验证，本版性能未采样。历史0.8正常续局/受控操作不扩大为0.9整局、自然胜负或1×性能。原生帧率样本受机器、分辨率、镜头和活动量限制，不能保证通用60FPS。Windows、Linux、Intel Mac及跨机器签名、公证尚未验证。七课、三章原创战役和本地团队已实现；联网合作、可毁桥、完整商业海战、地图编辑器和通用回放仍缺。完整边界见[完成状态](Docs/Completion-Status.md)与[已知限制](Docs/Known-Issues.md)。
