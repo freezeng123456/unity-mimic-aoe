@@ -1,6 +1,6 @@
 # 0.11.0 交付与核验（068）
 
-源码、macOS arm64客户端与当前原生图集的三个ZIP已冻结，逐成员检查和独立验包通过；Google Drive七个对象已上传并读回名称、字节数、父目录、shared=false及仅所有者权限。GitHub私有开发分支与原draft PR交付正在收尾，后续读回另记；没有合并或公开发布。
+源码、macOS arm64客户端与当前原生图集的三个ZIP已冻结，逐成员检查和独立验包通过；Google Drive七个对象已上传并读回名称、字节数、父目录、shared=false及仅所有者权限。GitHub私有开发分支已推送，原draft PR标题、完整说明和提交身份读回通过；没有合并或公开发布。
 
 下载入口：[原私有项目中的0.11交付目录](https://drive.google.com/drive/folders/1K_xqcyeJAc87F6DJpmDb0CNflM0PtDcC)。下列SHA和bytes属于本地冻结ZIP，没有远端内容SHA或下载字节对照证明。
 
@@ -38,3 +38,7 @@
 [六个载荷回执](Evidence/068/Delivery/cloud-upload-readback.json)记录三ZIP、清单、随包指南、独立验包JSON；各自本地上传前后bytes/SHA完全一致，云端名称、大小、目录和owner-only私有权限读回通过。[外层回执](Evidence/068/Delivery/cloud-delivery-final.json)记录第七个云盘对象——六载荷回执——的上传与读回，本地前后哈希也一致。外层文件仅在本地/仓库保留，不计为第八个云盘对象。没有共享权限修改，回执明确未下载比较远端内容SHA。
 
 项目继续保留私有仓库与[原draft PR #1](https://github.com/freezeng123456/unity-mimic-aoe/pull/1)，不合并main或公开发布。整个AoE III差距目标仍在进行，[差距路线](AoE3-Gap-Roadmap-064.md)保留后续内容与验收工作。
+
+## 私有GitHub读回
+
+[即时推送前范围](Evidence/068/Delivery/github-private-scope-immediately-before-push.json)确认仓库仍私有、PR1仍open/draft/未合并，head分支及main基线与原范围一致。之后的非force推送成功；[PR更新读回](Evidence/068/Delivery/github-delivery-readback.json)确认首轮交付head `1a2d7600925f0d0fa3b33dde4a9e6b7e5b15b358`、标题及[完整说明](Evidence/068/Delivery/pull-request-body.md)与实际提交内容一致。该回执先于本段包外说明的最后提交，不能当作PR未来head的固定值；最终head在末次推送后另行只读核对。运行630输入、构建GUID、云端权限及三个冻结ZIP的本地哈希不变。
