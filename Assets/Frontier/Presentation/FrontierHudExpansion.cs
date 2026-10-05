@@ -14,7 +14,7 @@ namespace Frontier
         {if(neutralModalSite>=0&&ModalVisible&&!(uiPointer?.IsPressed??false)&&neutralModalSignature!=NeutralSignature(neutralModalSite))ShowNeutralSettlement(neutralModalSite);}
         private void ShowMapOptions()
         {
-            var preview=new World(game.Rules,game.MatchSeed,game.RosterCivilizations(),game.RosterTeams(),game.AgeLimit,game.SelectedMap);
+            var authored=game.SelectedScenario;var preview=authored==null?new World(game.Rules,game.MatchSeed,game.RosterCivilizations(),game.RosterTeams(),game.AgeLimit,game.SelectedMap):new World(game.Rules,authored,game.RosterCivilizations(),game.RosterTeams(),game.AgeLimit);
             var box=Modal("MAP & MISSION",710);
             Button(box,game.MapName,new Rect(25,75,470,48),()=>{game.CycleMap();ShowMapOptions();},"Cycle authored and generated maps.");
             Label(box,preview.Layout.Generated?"Generated terrain: this seed changes shores, crossings, spawns and resources.":"Authored terrain: the seed preserves this fixed map.",new Rect(25,138,470,70),18,muted);
@@ -53,6 +53,7 @@ namespace Frontier
         }
         private string ObjectiveSummary()
         {
+            if(game.World.HasScenario)return ScenarioObjectiveSummary069();
             var state=game.World.MapObjective;if(state==null||state.mode=="elimination")return "";
             var d=game.World.ObjectiveDefinition(state.mode);if(d==null)return "";
             string progress=state.mode=="escort_caravan"?"Checkpoint "+Mathf.Min(state.waypoint,state.route.Length)+" / "+state.route.Length:state.progress.ToString("0")+" / "+d.holdSeconds.ToString("0")+"s";
@@ -81,6 +82,6 @@ namespace Frontier
             string names="";foreach(int id in ship.occupants){var unit=game.World.Get(id);if(unit?.Alive==true)names+=unit.def.name+" · "+Math.Max(1,unit.def.population)+" slots · HP "+unit.hp.ToString("0")+"\n";}
             Label(box,names==""?"No passengers aboard":names,new Rect(25,186,780,330),18);
         }
-        private void OnDestroy(){if(mapPreview!=null)Destroy(mapPreview);}
+        private void OnDestroy(){if(mapPreview!=null)Destroy(mapPreview);if(editorMap069!=null)Destroy(editorMap069);}
     }
 }

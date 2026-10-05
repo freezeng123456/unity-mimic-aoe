@@ -18,9 +18,10 @@ namespace Frontier
         {
             foreach(var p in Players)
             {
-                p.resources=Rules.Civ(p.civilization).startingResources;p.populationCap=0;
+                p.resources=HasScenario?scenarioDocument.starts[p.id].initialResources:Rules.Civ(p.civilization).startingResources;p.populationCap=0;
+                if(HasScenario)p.age=scenarioDocument.starts[p.id].age;
                 p.deck.AddRange(DeckLibrary.Preset(Rules,p.civilization,"economy"));
-                p.ageHistory.Add("I @ 0s");Emit("StartingResources",p.id,0,"Configured opening: "+p.resources);
+                p.ageHistory.Add(HasScenario?"Age "+p.age+" @ 0s (authored scenario)":"I @ 0s");Emit("StartingResources",p.id,0,(HasScenario?"Authored scenario opening: ":"Configured opening: ")+p.resources);
             }
         }
         public bool CanAfford(int player,Cost cost)
@@ -52,6 +53,7 @@ namespace Frontier
                 if(BridgeFootprintOverlaps(point,d.width,d.depth))return "Keep bridge decks and approaches clear";
                 if(!Navigation.IsAreaFree(point,d.width+1,d.depth+1))return "Blocked footprint or map boundary";
             }
+            if(HasScenario&&(id=="dock"?Layout.FoundationHeightRange(point,d.width,d.depth,Layout.WaterDirection(point)):Layout.FoundationHeightRange(point,d.width,d.depth))>(id=="dock"?.5f:.25f))return "Building requires a level foundation";
             var footprintCells=new List<Vector2>(BuildingFootprintCells(d,point));int banks=0;
             foreach(var e in Entities)
             {

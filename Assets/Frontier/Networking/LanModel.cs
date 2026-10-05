@@ -48,6 +48,7 @@ namespace Frontier
         public int player;
         public bool human,ready;
         public string civilization="",peerId="";
+        public string scenarioHash="";
         public string[] deck=Array.Empty<string>();
     }
     [Serializable] public sealed class LanLobbyState
@@ -55,6 +56,9 @@ namespace Frontier
         public string mapId="",difficulty="standard",objective="elimination";
         public int seed=314159,maxAge=5;
         public bool started;
+        public bool hasScenarioDocument;
+        public string scenarioHash="";
+        public ScenarioDocument scenarioDocument;
         public LanLobbySlot[] slots=Array.Empty<LanLobbySlot>();
     }
     [Serializable] public sealed class LanHello
@@ -74,6 +78,7 @@ namespace Frontier
     {
         public bool ready;
         public string civilization="";
+        public string scenarioHash="";
         public string[] deck=Array.Empty<string>();
     }
     [Serializable] public sealed class LanFullState
@@ -95,6 +100,7 @@ namespace Frontier
         public EntitySnapshot[] changed=Array.Empty<EntitySnapshot>();
         public int[] removed=Array.Empty<int>(),entityOrder=Array.Empty<int>();
         public bool hasLandNavigation,hasWaterNavigation,hasVisibility,hasTerrain;
+        public bool hasScenarioDocument;
         public SimEvent[] events=Array.Empty<SimEvent>();
         public LanQueueIdentity[] queues=Array.Empty<LanQueueIdentity>();
     }

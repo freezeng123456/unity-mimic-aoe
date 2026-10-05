@@ -318,7 +318,7 @@ namespace Frontier
             if(landRegions==null)
             {
                 var open=new bool[128*128];landRegions=new int[open.Length];
-                for(int y=0;y<128;y++)for(int x=0;x<128;x++){var p=new Vector2(x,y);open[x+y*128]=(!IsWater(p)||IsBridge(p))&&!IsBridgeSideBarrierCell(p);}
+                for(int y=0;y<128;y++)for(int x=0;x<128;x++){var p=new Vector2(x,y);open[x+y*128]=(!IsWater(p)||IsBridge(p))&&!IsBridgeSideBarrierCell(p)&&!IsTerrainBlocked(p);}
                 var pending=new Queue<int>();int label=0;
                 for(int i=0;i<open.Length;i++)if(open[i]&&landRegions[i]==0)
                 {

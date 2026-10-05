@@ -73,7 +73,8 @@ namespace Frontier
         private void UpdateCamera()
         {
             if(game.GameCamera==null)return;
-            game.GameCamera.transform.position=new Vector3(CameraFocus.x,50,CameraFocus.y-42);
+            float ground=game.World?.Layout.HasScenario==true?game.World.SurfaceHeight(CameraFocus):0;
+            game.GameCamera.transform.position=new Vector3(CameraFocus.x,50+ground,CameraFocus.y-42);
             game.GameCamera.transform.rotation=Quaternion.Euler(50,0,0);game.GameCamera.orthographicSize=zoom;
         }
         public EntityState FirstSelected
@@ -354,6 +355,7 @@ namespace Frontier
         public Vector2 GroundPoint(Vector2 screen)
         {
             var ray=game.GameCamera.ScreenPointToRay(screen);var plane=new Plane(Vector3.up,Vector3.zero);
+            if(game.World?.Layout.HasScenario==true)return ScenarioGroundPoint(ray,OnlySelectedBoats());
             if(!plane.Raycast(ray,out float enter))return CameraFocus;
             // Resolve actual elevated bridge surfaces before the base plane. A
             // boat-only selection targets the water channel beneath the deck.
@@ -390,6 +392,57 @@ namespace Frontier
                 }
             }
             var p=ray.GetPoint(enter);return new Vector2(Mathf.Clamp(p.x,1,126),Mathf.Clamp(p.z,1,126));
+        }
+        private Vector2 ScenarioGroundPoint(Ray ray,bool boatsOnly)
+        {
+            // The authored contract allows -20..100m; water-bed carving needs
+            // another metre below it. Traverse actual rendered grid faces so a
+            // steep or narrow peak cannot be skipped by an approximate ray march.
+            float near=0,far=float.PositiveInfinity;
+            bool Slab(float origin,float direction,float minimum,float maximum)
+            {
+                if(Mathf.Abs(direction)<.0000001f)return origin>=minimum&&origin<=maximum;
+                float a=(minimum-origin)/direction,b=(maximum-origin)/direction;if(a>b){float swap=a;a=b;b=swap;}
+                near=Mathf.Max(near,a);far=Mathf.Min(far,b);return near<=far;
+            }
+            if(!Slab(ray.origin.x,ray.direction.x,0,128)||!Slab(ray.origin.y,ray.direction.y,-22,102)||!Slab(ray.origin.z,ray.direction.z,0,128)||far<0)return CameraFocus;
+            var layout=game.World.Layout;float nearest=far+.001f;bool hit=false;
+            if(layout.HasWater&&Mathf.Abs(ray.direction.y)>.0000001f)
+            {
+                float t=(layout.WaterHeight-ray.origin.y)/ray.direction.y;var p=ray.GetPoint(t);
+                if(t>=near&&t<=far&&layout.IsWater(new Vector2(p.x,p.z))){nearest=t;hit=true;}
+            }
+            if(!boatsOnly)foreach(var span in layout.Bridges)for(int i=0;i<3;i++)
+            {
+                float a=i==0?-span.HalfLength-span.RampLength:i==1?-span.HalfLength:span.HalfLength;
+                float b=i==0?-span.HalfLength:i==1?span.HalfLength:span.HalfLength+span.RampLength;
+                Vector3 Point(float across,float along){var p=span.Point(across,along);return new Vector3(p.x,span.GroundHeight(span.Point(across,0)),p.y);}
+                var plane=new Plane(Point(a,-span.HalfWidth),Point(a,span.HalfWidth),Point(b,span.HalfWidth));
+                if(!plane.Raycast(ray,out float t)||t<near||t>far||t>=nearest)continue;
+                var p=ray.GetPoint(t);var local=span.Local(new Vector2(p.x,p.z));
+                if(local.x>=a-.0001f&&local.x<=b+.0001f&&Mathf.Abs(local.y)<=span.HalfWidth){nearest=t;hit=true;}
+            }
+            var entry=ray.GetPoint(Mathf.Min(far,near+.00001f));int x=Mathf.Clamp(Mathf.FloorToInt(entry.x),0,127),z=Mathf.Clamp(Mathf.FloorToInt(entry.z),0,127);
+            int sx=ray.direction.x>0?1:ray.direction.x<0?-1:0,sz=ray.direction.z>0?1:ray.direction.z<0?-1:0;
+            float dx=sx==0?float.PositiveInfinity:1/Mathf.Abs(ray.direction.x),dz=sz==0?float.PositiveInfinity:1/Mathf.Abs(ray.direction.z);
+            float nextX=sx==0?float.PositiveInfinity:(x+(sx>0?1:0)-ray.origin.x)/ray.direction.x,nextZ=sz==0?float.PositiveInfinity:(z+(sz>0?1:0)-ray.origin.z)/ray.direction.z;
+            float cursor=near;
+            for(int traversed=0;traversed<260&&x>=0&&x<128&&z>=0&&z<128&&cursor<=far&&cursor<=nearest+.0001f;traversed++)
+            {
+                float end=Mathf.Min(far,Mathf.Min(nextX,nextZ));
+                Vector3 Vertex(int xx,int zz)=>new Vector3(xx,layout.BankHeight(new Vector2(xx,zz)),zz);
+                var a=Vertex(x,z);var b=Vertex(x,z+1);var c=Vertex(x+1,z+1);var d=Vertex(x+1,z);
+                for(int triangle=0;triangle<2;triangle++)
+                {
+                    var e1=(triangle==0?b:c)-a;var e2=(triangle==0?c:d)-a;var cross=Vector3.Cross(ray.direction,e2);float determinant=Vector3.Dot(e1,cross);
+                    if(Mathf.Abs(determinant)<.0000001f)continue;float inv=1/determinant;var distance=ray.origin-a;float u=Vector3.Dot(distance,cross)*inv;if(u<-.00001f||u>1.00001f)continue;
+                    var q=Vector3.Cross(distance,e1);float v=Vector3.Dot(ray.direction,q)*inv;if(v<-.00001f||u+v>1.00001f)continue;
+                    float t=Vector3.Dot(e2,q)*inv;if(t>=cursor-.0001f&&t<=end+.0001f&&t<nearest){nearest=t;hit=true;}
+                }
+                if(end>=far)break;bool stepX=nextX<=end+.00001f,stepZ=nextZ<=end+.00001f;
+                if(stepX){x+=sx;nextX+=dx;}if(stepZ){z+=sz;nextZ+=dz;}cursor=end;
+            }
+            if(!hit)return CameraFocus;var result=ray.GetPoint(nearest);return new Vector2(Mathf.Clamp(result.x,0,128),Mathf.Clamp(result.z,0,128));
         }
         private bool OnlySelectedBoats()
         {if(Selected.Count==0)return false;foreach(int id in Selected)if(game.World?.Get(id)?.def.waterborne!=true)return false;return true;}

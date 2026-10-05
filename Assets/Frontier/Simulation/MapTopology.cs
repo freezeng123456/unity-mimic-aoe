@@ -9,6 +9,7 @@ namespace Frontier
     {
         public const string Frontier="frontier",River="river",Winding="winding",Tropical="tropical",Tributaries="tributaries",Estuary="estuary";
         public const string GeneratedRiver="generated_river",GeneratedDelta="generated_delta",GeneratedStrait="generated_strait";
+        public const string Scenario="custom_scenario";
         public static readonly string[] Authored={Frontier,River,Winding,Tropical,Tributaries,Estuary};
         public static readonly string[] Generated={GeneratedRiver,GeneratedDelta,GeneratedStrait};
         public static readonly string[] All={Frontier,River,Winding,Tropical,Tributaries,Estuary,GeneratedRiver,GeneratedDelta,GeneratedStrait};
@@ -61,14 +62,15 @@ namespace Frontier
         public bool IsBridge(Vector2 point)=>Layout.IsBridge(point);
         public bool IsBridgeApproach(Vector2 point)=>Layout.IsBridgeApproach(point);
         public bool BridgeFootprintOverlaps(Vector2 center,float width,float depth)=>Layout.BridgeFootprintOverlaps(center,width,depth);
-        public float SurfaceHeight(Vector2 point,bool waterborne=false)=>Layout.HasWater?(waterborne?Layout.WaterHeight:Layout.GroundHeight(point)):0;
+        public float SurfaceHeight(Vector2 point,bool waterborne=false)=>waterborne&&Layout.HasWater?Layout.WaterHeight:Layout.GroundHeight(point);
         private void InitializeNavigationTerrain()
         {
-            Navigation.ConfigureTerrain(point=>IsWater(point)&&!IsBridge(point)||Layout.IsBridgeSideBarrierCell(point));
+            Navigation.ConfigureTerrain(point=>IsWater(point)&&!IsBridge(point)||Layout.IsBridgeSideBarrierCell(point)||Layout.IsTerrainBlocked(point));
             WaterNavigation.ConfigureTerrain(point=>!IsWater(point));
         }
         private Vector2[] MapTradeRoute()
         {
+            if(HasScenario)return (Vector2[])Layout.TradeRoute.Clone();
             if(Layout.HasWater)return (Vector2[])Layout.TradeRoute.Clone();
             return Rules.landmarks?.route==null?Array.Empty<Vector2>():(Vector2[])Rules.landmarks.route.Clone();
         }

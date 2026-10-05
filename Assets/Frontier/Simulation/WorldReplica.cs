@@ -15,7 +15,7 @@ namespace Frontier
         internal void ApplyReplica(WorldSnapshot s)
         {
             LanProjection.Validate(Rules,s);
-            if(s.seed!=Seed||s.mapId!=MapId||s.maxAge!=MaxAge||s.players.Length!=Players.Length)throw new ArgumentException("Replica world identity changed");
+            if(s.seed!=Seed||s.mapId!=MapId||s.maxAge!=MaxAge||s.players.Length!=Players.Length||s.hasScenarioDocument!=HasScenario||s.scenarioHash!=ScenarioHash)throw new ArgumentException("Replica world identity changed");
             for(int i=0;i<Players.Length;i++)if(s.players[i].state.civilization!=Players[i].civilization||s.teams[i]!=Players[i].team)throw new ArgumentException("Replica roster changed");
             for(int i=0;i<Players.Length;i++)
             {
@@ -48,6 +48,7 @@ namespace Frontier
             }
             gatherLog.Clear();gatherLogTarget.Clear();incomeKinds.Clear();foreach(var item in s.incomes){gatherLog[item.source]=item.amount;gatherLogTarget[item.source]=item.target;incomeKinds[item.source]=item.kind;}
             RestoreNeutralAllies(s.neutralAllies);RestoreMapObjective(s.mapObjective);RebuildSpatial();
+            if(HasScenario)RestoreScenarioState(s.scenarioState);
         }
     }
 }

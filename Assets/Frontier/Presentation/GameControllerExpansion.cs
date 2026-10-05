@@ -14,15 +14,17 @@ namespace Frontier
         string progressRecordedAttempt="";
         int[] guidedSelection=Array.Empty<int>();
         public static bool ValidSkirmishMode(string mode)=>mode=="duel"||mode=="teams"||mode=="ffa";
-        public string SkirmishModeLabel=>SkirmishMode=="teams"?"2 VS 2 TEAMS":SkirmishMode=="ffa"?"4 PLAYER FREE FOR ALL":"1 VS 1 DUEL";
-        public void CycleSkirmishMode(){SkirmishMode=SkirmishMode=="duel"?"teams":SkirmishMode=="teams"?"ffa":"duel";}
-        public string[] RosterCivilizations()=>SkirmishMode=="duel"?new[]{PlayerCivilization,OpponentCivilization}:
+        public string SkirmishModeLabel=>selectedScenario069!=null?selectedScenario069.starts.Length+" PLAYER SCENARIO":SkirmishMode=="teams"?"2 VS 2 TEAMS":SkirmishMode=="ffa"?"4 PLAYER FREE FOR ALL":"1 VS 1 DUEL";
+        public void CycleSkirmishMode(){SelectAuthoredScenario(null);SkirmishMode=SkirmishMode=="duel"?"teams":SkirmishMode=="teams"?"ffa":"duel";}
+        public string[] RosterCivilizations()=>selectedScenario069!=null?Array.ConvertAll(selectedScenario069.starts,s=>s.civilization):SkirmishMode=="duel"?new[]{PlayerCivilization,OpponentCivilization}:
             SkirmishMode=="teams"?new[]{PlayerCivilization,OpponentCivilization,AllyCivilization,ThirdCivilization}:
             new[]{PlayerCivilization,OpponentCivilization,ThirdCivilization,FourthCivilization};
-        public int[] RosterTeams()=>SkirmishMode=="duel"?new[]{0,1}:SkirmishMode=="teams"?new[]{0,1,0,1}:new[]{0,1,2,3};
+        public int[] RosterTeams()=>selectedScenario069!=null?Array.ConvertAll(selectedScenario069.starts,s=>s.team):SkirmishMode=="duel"?new[]{0,1}:SkirmishMode=="teams"?new[]{0,1,0,1}:new[]{0,1,2,3};
         public void SetRosterCivilization(int slot,string id)
         {
             if(Rules.Civ(id)==null)throw new ArgumentException("Unknown civilization");
+            if(selectedScenario069!=null)
+            {var draft=SelectedScenario;if(slot<0||slot>=draft.starts.Length)throw new ArgumentOutOfRangeException(nameof(slot));draft.starts[slot].civilization=id;if(SelectAuthoredScenario(draft)){PlayerCivilization=draft.starts[0].civilization;OpponentCivilization=draft.starts[1].civilization;}return;}
             if(slot==0)PlayerCivilization=id;else if(slot==1)OpponentCivilization=id;
             else if(slot==2){if(SkirmishMode=="teams")AllyCivilization=id;else ThirdCivilization=id;}
             else if(slot==3){if(SkirmishMode=="teams")ThirdCivilization=id;else FourthCivilization=id;}
@@ -83,7 +85,7 @@ namespace Frontier
             if(World!=null)SaveReport("challenge_exit");
             Guided?.Dispose();ReleasePlayback();Guided=next;progressRecordedAttempt="";guidedSelection=Array.Empty<int>();
             ClearBenchmark();Settings.Captions.Clear();Audio.ResetMatch();
-            World=next.World;Simulation=next.Simulation;MatchId=next.AttemptId;
+            World=next.World;Simulation=next.Simulation;MatchId=next.AttemptId;SyncScenarioSelectionFromWorld();
             PlayerCivilization=World.Players[0].civilization;OpponentCivilization=World.Players[1].civilization;
             SelectedMap=World.MapId;MatchSeed=World.Seed;AgeLimit=World.MaxAge;SelectedObjective=World.MapObjective.mode;
             Autoplay=false;SimulationSpeed=1;InMenu=false;PausedForFocusLoss=false;audioCursor=World.Events.Count;

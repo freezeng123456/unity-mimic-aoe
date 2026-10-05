@@ -145,7 +145,7 @@ namespace Frontier
                 if(World!=null&&!IsWatching)SaveReport("replay_exit");
                 Guided?.Dispose();Recorder?.Dispose();Recorder=null;ReleasePlayback();
                 Playback=next;next=null;WatchingDocument=document;ReplayFile=path;ReplayPaused=true;
-                World=Playback.World;Simulation=Playback.Simulation;Guided=Playback.Guided;MatchId=document.matchId;
+                World=Playback.World;Simulation=Playback.Simulation;Guided=Playback.Guided;MatchId=document.matchId;SyncScenarioSelectionFromWorld();
                 PlayerCivilization=World.Players[0].civilization;OpponentCivilization=World.Players[1].civilization;
                 SelectedMap=World.MapId;MatchSeed=World.Seed;AgeLimit=World.MaxAge;SelectedObjective=World.MapObjective.mode;
                 RestoreRosterConfiguration();Autoplay=false;SimulationSpeed=1;InMenu=false;PausedForFocusLoss=false;

@@ -37,6 +37,7 @@ namespace Frontier
 
         private void InitializeNeutralAllies()
         {
+            if(HasScenario){InitializeScenarioNeutralAllies();return;}
             var ids=new HashSet<string>();var sockets=new HashSet<int>();
             foreach(var d in Rules.neutralAllies??Array.Empty<NeutralAllyDef>())
             {
@@ -181,16 +182,22 @@ namespace Frontier
         {var states=new NeutralAllianceState[NeutralAllies.Count];for(int i=0;i<states.Length;i++)states[i]=SnapshotCodec.Clone(NeutralAllies[i]);return states;}
         public void RestoreNeutralAllies(NeutralAllianceState[] states)
         {NeutralAllies.Clear();foreach(var state in states)NeutralAllies.Add(SnapshotCodec.Clone(state));}
-        public static void ValidateNeutralAlliesSnapshot(RuleCatalog rules,NeutralAllianceState[] states,EntitySnapshot[] entities,PlayerSnapshot[] players)
+        public static void ValidateNeutralAlliesSnapshot(RuleCatalog rules,NeutralAllianceState[] states,EntitySnapshot[] entities,PlayerSnapshot[] players,ScenarioDocument scenario=null,ScenarioRuntimeState runtime=null)
         {
             void Require(bool valid){if(!valid)throw new ArgumentException("Invalid saved neutral alliances");}
-            var defs=rules.neutralAllies??Array.Empty<NeutralAllyDef>();Require(states!=null&&states.Length==defs.Length);
+            var defs=rules.neutralAllies??Array.Empty<NeutralAllyDef>();Require(states!=null&&states.Length==(scenario==null?defs.Length:scenario.neutralBindings.Length));
             var ids=new HashSet<string>();var sites=new HashSet<int>();var reserved=new int[players.Length];
             EntitySnapshot Find(int id)=>Array.Find(entities,e=>e.state.id==id);
             foreach(var state in states)
             {
                 Require(state!=null);var d=Array.Find(defs,x=>x.id==state.id);
                 Require(d!=null&&ids.Add(state.id)&&sites.Add(state.site)&&Find(state.site)?.definition=="trade_socket");
+                if(scenario!=null)
+                {
+                    var declared=Array.Find(scenario.neutralBindings,b=>b.definition==state.id);
+                    var socket=declared==null?null:Array.Find(runtime?.bindings??Array.Empty<ScenarioBindingState>(),b=>b.objectId==declared.socketId);
+                    Require(socket?.entityIds?.Length==1&&socket.entityIds[0]==state.site);
+                }
                 Require(state.owner>=-1&&state.owner<players.Length&&state.claimant>=-1&&state.claimant<players.Length&&!(state.owner>=0&&state.claimant>=0));
                 Require(SnapshotCodec.Finite(state.claimProgress)&&state.claimProgress>=0&&state.claimProgress<=d.allianceSeconds+.001f&&SnapshotCodec.Finite(state.lossProgress)&&state.lossProgress>=0&&state.lossProgress<=d.lossSeconds+.001f);
                 Require(state.jobs!=null&&state.jobs.Count<=1);int player=state.owner>=0?state.owner:state.claimant;

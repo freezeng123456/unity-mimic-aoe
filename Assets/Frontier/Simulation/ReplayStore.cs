@@ -133,7 +133,7 @@ namespace Frontier
         {
             if(document!=null&&document.schema!=ReplayDocument.CurrentSchema)throw new ReplayIncompatibleException("Unsupported replay document schema");
             var identity=document?.identity;
-            if(identity!=null&&(identity.appVersion!=expected.appVersion||identity.buildIdentity!=expected.buildIdentity||identity.unityVersion!=expected.unityVersion||identity.rulesHash!=expected.rulesHash||identity.mapGenerationVersion!=expected.mapGenerationVersion||identity.guidedCatalogRevision!=expected.guidedCatalogRevision))
+            if(identity!=null&&(identity.appVersion!=expected.appVersion||identity.buildIdentity!=expected.buildIdentity||identity.unityVersion!=expected.unityVersion||identity.rulesHash!=expected.rulesHash||identity.mapGenerationVersion!=expected.mapGenerationVersion||identity.guidedCatalogRevision!=expected.guidedCatalogRevision||identity.scenarioFormatVersion!=expected.scenarioFormatVersion||identity.scenarioRuntimeVersion!=expected.scenarioRuntimeVersion))
                 throw new ReplayIncompatibleException("Replay requires its original game version, build, Unity version, rules and catalog revisions");
             try{ReplayValidation.Validate(rules,document,expected);}
             catch(ArgumentException error){throw new IOException("Replay validation failed: "+error.Message,error);}

@@ -37,7 +37,7 @@ namespace Frontier
             int index=0;
             if(world.Layout.Channels.Length>1)ConfluenceWaterPresentation.Build(root,world.Layout,water);
             else foreach(var channel in world.Layout.Channels)BuildChannel(root,channel,water,index++,world.Layout.WaterHeight);
-            BuildBanks(root,world);
+            if(world.Layout.HasWater)BuildBanks(root,world);
             if(world.MapId==MapTopology.Tropical)BuildTropicalPalms(root,world);
             index=0;foreach(var bridge in world.Layout.Bridges)BuildBridge(root,bridge,index++);
             return root;
@@ -56,6 +56,7 @@ namespace Frontier
         {
             const int count=129;var vertices=new Vector3[count*count];var uv=new Vector2[vertices.Length];var layers=new Color[vertices.Length];
             var triangles=new List<int>();
+            var authored=layout.HasScenario?new[]{new List<int>(),new List<int>(),new List<int>(),new List<int>()}:null;
             for(int z=0;z<count;z++)for(int x=0;x<count;x++)
             {
                 int i=x+z*count;var p=new Vector2(x,z);
@@ -73,12 +74,19 @@ namespace Frontier
             for(int z=0;z<count-1;z++)for(int x=0;x<count-1;x++)
             {
                 int a=x+z*count,b=a+count,c=b+1,d=a+1;
-                triangles.AddRange(new[]{a,b,c,a,c,d});
+                if(authored!=null)authored[layout.SurfaceKind(new Vector2(x+.5f,z+.5f))].AddRange(new[]{a,b,c,a,c,d});
+                else triangles.AddRange(new[]{a,b,c,a,c,d});
             }
             var mesh=new Mesh{name="River valley ground with submerged bed",indexFormat=IndexFormat.UInt32};
-            mesh.vertices=vertices;mesh.uv=uv;mesh.colors=layers;mesh.SetTriangles(triangles,0);
+            mesh.vertices=vertices;mesh.uv=uv;mesh.colors=layers;
+            if(authored!=null){mesh.subMeshCount=4;for(int i=0;i<4;i++)mesh.SetTriangles(authored[i],i);}
+            else mesh.SetTriangles(triangles,0);
             mesh.RecalculateNormals();mesh.RecalculateTangents();mesh.RecalculateBounds();
-            MeshObject(root,"Continuous sculpted land and river bed",mesh,new[]{GroundMaterial(layout.Id)});
+            var materials=authored==null?new[]{GroundMaterial(layout.Id)}:new[]{LandscapePresentation.GroundMaterial(),
+                ArchitecturalMaterials.Get(Surface.Earth,new Color(.62f,.555f,.37f)),
+                ArchitecturalMaterials.Get(Surface.Earth,new Color(.39f,.335f,.225f)),
+                ArchitecturalMaterials.Get(Surface.Stone,new Color(.42f,.45f,.43f))};
+            MeshObject(root,"Continuous sculpted land and river bed",mesh,materials);
         }
 
         static void BuildChannel(Transform root,RiverChannel channel,Material water,int index,float waterHeight)
@@ -258,24 +266,26 @@ namespace Frontier
             bridge.localPosition=new Vector3(span.Center.x,0,span.Center.y);
             bridge.localRotation=Quaternion.Euler(0,-Mathf.Atan2(span.Direction.y,span.Direction.x)*Mathf.Rad2Deg,0);
             var g=new ArchitecturalGeometry();float deck=span.HalfLength,end=deck+span.RampLength,rail=span.HalfWidth-.2f;
-            float Height(float x)=>Mathf.Abs(x)<=deck?span.Height:Mathf.Max(0,span.Height*(1-(Mathf.Abs(x)-deck)/span.RampLength));
+            float Height(float x)=>span.GroundHeight(span.Point(x,0));
             foreach(float x in new[]{-deck-.35f,deck+.35f})foreach(int side in new[]{-1,1})
             {
-                g.Box(new Vector3(x,span.Height*.45f,side*rail),new Vector3(.80f,span.Height*.9f,.65f),Stone);
+                float footing=x<0?span.WestHeight:span.EastHeight;
+                bool elevated=span.WestHeight!=0||span.EastHeight!=0;
+                g.Box(new Vector3(x,elevated?(span.Height+footing)*.5f:span.Height*.45f,side*rail),new Vector3(.80f,elevated?Mathf.Max(.1f,span.Height-footing):span.Height*.9f,.65f),Stone);
                 g.Box(new Vector3(x,span.Height-.28f,side*rail),new Vector3(1.15f,.2f,.85f),Stone);
             }
             int planks=Mathf.CeilToInt(end*4);
             for(int i=0;i<planks;i++)
             {
                 float x=Mathf.Lerp(-end,end,(i+.5f)/planks),w=end*2/planks;
-                float slope=x < -deck?span.Height/span.RampLength:x>deck?-span.Height/span.RampLength:0;
+                float slope=x < -deck?(span.Height-span.WestHeight)/span.RampLength:x>deck?(span.EastHeight-span.Height)/span.RampLength:0;
                 var rotation=Quaternion.Euler(0,0,Mathf.Atan(slope)*Mathf.Rad2Deg);
                 g.Box(new Vector3(x,Height(x),0)-rotation*Vector3.up*.105f,new Vector3((w-.02f)*Mathf.Sqrt(1+slope*slope),.21f,span.HalfWidth*2-.22f),i%5==0?PaleWood:Wood,rotation);
             }
             foreach(int side in new[]{-1,1})
             {
-                float z=side*rail;var start=new Vector3(-end,-.2f,z);var a=new Vector3(-deck,span.Height-.2f,z);
-                var b=new Vector3(deck,span.Height-.2f,z);var finish=new Vector3(end,-.2f,z);
+                float z=side*rail;var start=new Vector3(-end,span.WestHeight-.2f,z);var a=new Vector3(-deck,span.Height-.2f,z);
+                var b=new Vector3(deck,span.Height-.2f,z);var finish=new Vector3(end,span.EastHeight-.2f,z);
                 g.Beam(start,a,.22f,.24f,DarkWood);g.Beam(a,b,.22f,.24f,DarkWood);g.Beam(b,finish,.22f,.24f,DarkWood);
                 int posts=Mathf.CeilToInt(end);
                 for(int i=0;i<=posts;i++)

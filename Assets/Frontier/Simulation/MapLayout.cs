@@ -20,11 +20,11 @@ namespace Frontier
     public sealed class BridgeSpan
     {
         public readonly Vector2 Center,Direction;
-        public readonly float HalfLength,HalfWidth,RampLength,Height;
-        public BridgeSpan(Vector2 center,Vector2 direction,float halfLength,float halfWidth=4.5f,float rampLength=9,float height=3.2f)
+        public readonly float HalfLength,HalfWidth,RampLength,Height,WestHeight,EastHeight;
+        public BridgeSpan(Vector2 center,Vector2 direction,float halfLength,float halfWidth=4.5f,float rampLength=9,float height=3.2f,float westHeight=0,float eastHeight=0)
         {
             if(direction.sqrMagnitude<.99f||halfLength<=0||halfWidth<=1||rampLength<=0||height<=0)throw new ArgumentException("Invalid bridge span");
-            Center=center;Direction=direction.normalized;HalfLength=halfLength;HalfWidth=halfWidth;RampLength=rampLength;Height=height;
+            Center=center;Direction=direction.normalized;HalfLength=halfLength;HalfWidth=halfWidth;RampLength=rampLength;Height=height;WestHeight=westHeight;EastHeight=eastHeight;
         }
         public Vector2 Local(Vector2 point)
         {Vector2 delta=point-Center;return new Vector2(Vector2.Dot(delta,Direction),Vector2.Dot(delta,new Vector2(-Direction.y,Direction.x)));}
@@ -43,7 +43,7 @@ namespace Frontier
             return Mathf.Abs(local.x)<=HalfLength+RampLength+projection&&along>=HalfWidth-projection&&along<=HalfWidth+1.5f+projection;
         }
         public float GroundHeight(Vector2 point)
-        {Vector2 local=Local(point);return Mathf.Abs(local.y)<=HalfWidth?Height*Mathf.Clamp01((HalfLength+RampLength-Mathf.Abs(local.x))/RampLength):0;}
+        {Vector2 local=Local(point);return Mathf.Abs(local.y)<=HalfWidth?Mathf.Lerp(local.x<0?WestHeight:EastHeight,Height,Mathf.Clamp01((HalfLength+RampLength-Mathf.Abs(local.x))/RampLength)):0;}
         public bool FootprintOverlaps(Vector2 center,float width,float depth)
         {
             // Separating-axis test for an axis-aligned building and the full
@@ -76,16 +76,18 @@ namespace Frontier
         private readonly float[] shore;
         private readonly Vector2[] nearestCenter;
         private static readonly Dictionary<string,MapLayout> layouts=new Dictionary<string,MapLayout>();
+        private readonly ScenarioDocument scenarioDefinition;
+        public bool HasScenario=>scenarioDefinition!=null;
         internal MapLayout(string id,RiverChannel[] channels,BridgeSpan[] bridges,Vector2[] fish,Vector2[] patrol,Vector2[] trade,
-            int seed=0,MapStartLayout[] starts=null,Vector2[] neutral=null,Vector2[] objectives=null,bool requiresTransport=false)
+            int seed=0,MapStartLayout[] starts=null,Vector2[] neutral=null,Vector2[] objectives=null,bool requiresTransport=false,ScenarioDocument scenario=null)
         {
-            Seed=seed;Generated=MapTopology.IsGenerated(id);RequiresTransport=requiresTransport;
+            scenarioDefinition=scenario;Seed=seed;Generated=scenario==null&&MapTopology.IsGenerated(id);RequiresTransport=requiresTransport;
             Starts=starts??MapGeneration.AuthoredStarts();NeutralSites=neutral??Array.Empty<Vector2>();ObjectiveSites=objectives??Array.Empty<Vector2>();
-            Id=id;HasWater=channels.Length>0;WaterHeight=id==MapTopology.Frontier?0:id==MapTopology.River?MapTopology.WaterHeight:-.4f;Channels=channels;Bridges=bridges;FishPoints=fish;PatrolPoints=patrol;TradeRoute=trade;
+            Id=id;HasWater=channels.Length>0;WaterHeight=scenario!=null?scenario.waterHeightCm*.01f:id==MapTopology.Frontier?0:id==MapTopology.River?MapTopology.WaterHeight:-.4f;Channels=channels;Bridges=bridges;FishPoints=fish;PatrolPoints=patrol;TradeRoute=trade;
             if(HasWater&&id!=MapTopology.River)
             {
                 shore=new float[Resolution*Resolution];nearestCenter=new Vector2[shore.Length];
-                if(Generated)MapGeneration.BuildShoreCache(Channels,shore,nearestCenter,Resolution,Cell);
+                if(Generated||HasScenario)MapGeneration.BuildShoreCache(Channels,shore,nearestCenter,Resolution,Cell);
                 else for(int z=0;z<Resolution;z++)for(int x=0;x<Resolution;x++)
                 {
                     int index=x+z*Resolution;Vector2 point=new Vector2(x*Cell,z*Cell);float best=float.MaxValue;Vector2 center=Vector2.zero;
@@ -98,6 +100,11 @@ namespace Frontier
                     }
                     shore[index]=best;nearestCenter[index]=center;
                 }
+            }
+            if(HasScenario)
+            {
+                DockSites=ScenarioShoreSites(false);LandingSites=ScenarioShoreSites(true);IslandLandingSites=Array.Empty<Vector2>();
+                RequiresTransport=ScenarioRequiresTransport();return;
             }
             if(Starts.Length>2)
             {
@@ -139,6 +146,14 @@ namespace Frontier
         {if(Id==MapTopology.River)return MapTopology.IsBridgeSideBarrier(point);foreach(var span in Bridges)if(span.SideBarrier(point,.5f))return true;return false;}
         public float BankHeight(Vector2 point)
         {
+            if(HasScenario)
+            {
+                float authored=BaseGroundHeight(point);if(!HasWater)return authored;
+                float scenarioDistance=CachedShore(point);
+                float edge=WaterHeight-.06f;
+                if(scenarioDistance<=0)return Mathf.Min(authored,edge-Mathf.SmoothStep(0,1,-scenarioDistance/4)*.9f);
+                return Mathf.Lerp(Mathf.Min(authored,edge),authored,Mathf.SmoothStep(0,1,scenarioDistance/3));
+            }
             if(!HasWater||Id==MapTopology.River)return 0;
             float distance=CachedShore(point);
             if(distance<=0)return Mathf.Lerp(WaterHeight-.02f,-.9f,Mathf.SmoothStep(0,1,-distance/4));

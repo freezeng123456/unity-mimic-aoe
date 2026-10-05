@@ -7,6 +7,7 @@ namespace Frontier
     {
         public string appVersion="",buildIdentity="",unityVersion="",rulesHash="";
         public int mapGenerationVersion=MapGeneration.Version,guidedCatalogRevision=GuidedPlayCatalog.Revision;
+        public int scenarioFormatVersion=ScenarioDocument.CurrentSchema,scenarioRuntimeVersion=ScenarioRuntime.Version;
         public static ReplayIdentity Create(RuleCatalog rules,string appVersion,string buildIdentity,string unityVersion)
         {
             if(rules==null||string.IsNullOrWhiteSpace(appVersion)||string.IsNullOrWhiteSpace(buildIdentity)||string.IsNullOrWhiteSpace(unityVersion))
@@ -69,6 +70,7 @@ namespace Frontier
             Require(actual.rulesHash==hash&&expected.rulesHash==hash,"rules changed");
             Require(actual.mapGenerationVersion==MapGeneration.Version&&expected.mapGenerationVersion==MapGeneration.Version,"map generation changed");
             Require(actual.guidedCatalogRevision==GuidedPlayCatalog.Revision&&expected.guidedCatalogRevision==GuidedPlayCatalog.Revision,"guided catalog changed");
+            Require(actual.scenarioFormatVersion==ScenarioDocument.CurrentSchema&&expected.scenarioFormatVersion==ScenarioDocument.CurrentSchema&&actual.scenarioRuntimeVersion==ScenarioRuntime.Version&&expected.scenarioRuntimeVersion==ScenarioRuntime.Version,"scenario format or execution changed");
         }
         public static void Validate(RuleCatalog rules,ReplayDocument document,ReplayIdentity expectedIdentity)
         {

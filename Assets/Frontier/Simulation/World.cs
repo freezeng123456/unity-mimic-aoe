@@ -27,21 +27,27 @@ namespace Frontier
         public World(RuleCatalog rules,int seed=314159,string civ0="coast",string civ1="coast",int maxAge=3,string mapId="frontier")
             :this(rules,seed,new[]{civ0,civ1},new[]{0,1},maxAge,mapId){}
         public World(RuleCatalog rules,int seed,string[] civilizations,int[] teams,int maxAge=3,string mapId="frontier")
+            :this(rules,seed,civilizations,teams,maxAge,mapId,null){}
+        World(RuleCatalog rules,int seed,string[] civilizations,int[] teams,int maxAge,string mapId,ScenarioDocument scenario)
         {
             Rules=rules??throw new ArgumentNullException(nameof(rules));ValidateRoster(rules,civilizations,teams);
             Seed=seed;MaxAge=Mathf.Clamp(maxAge,1,rules.ages.Length);
             Players=new PlayerState[civilizations.Length];
             for(int i=0;i<Players.Length;i++)Players[i]=new PlayerState{id=i,team=teams[i],civilization=civilizations[i]};
-            MapId=mapId??MapTopology.Frontier;if(!MapTopology.IsValid(MapId))throw new ArgumentException("Unknown map: "+MapId);
-            Layout=MapLayout.Create(MapId,Seed,Players.Length);
+            scenarioDocument=scenario==null?null:ScenarioCodec.Clone(scenario);scenarioHash=scenario==null?"":ScenarioCodec.ContentHash(scenarioDocument);
+            MapId=mapId??MapTopology.Frontier;if(!HasScenario&&!MapTopology.IsValid(MapId))throw new ArgumentException("Unknown map: "+MapId);
+            Layout=HasScenario?ScenarioCompiler.Compile(scenarioDocument,rules,Players.Length):MapLayout.Create(MapId,Seed,Players.Length);
+            if(HasScenario)foreach(var start in scenarioDocument.starts)if(start.age>MaxAge)throw new ArgumentException("Scenario opening age exceeds the match age limit");
             Navigation=new GridNavigation();WaterNavigation=new GridNavigation();Fog=new Visibility(players:Players.Length,teams:teams,activePlayer:IsPlayerActive);
             TradeRoute=MapTradeRoute();InitializeNavigationTerrain();
             discoveredLandmarks=new HashSet<int>[Players.Length];for(int i=0;i<Players.Length;i++)discoveredLandmarks[i]=new HashSet<int>();
             InitializeEconomy();InitializeMap();InitializeLandmarks();InitializeNeutralAllies();Fog.Tick(Entities);RecordLandmarkDiscoveries();RebuildSpatial();
+            if(HasScenario)scenarioRuntime=new ScenarioRuntime(this,scenarioDocument,initialScenarioBindings);
             Emit("MatchStarted",-1,0,$"Seed {Seed}; map {MapId}; age cap {MaxAge}; {string.Join(" vs ",civilizations)}; project rules P v0.2");
         }
         private void InitializeMap()
         {
+            if(HasScenario){InitializeScenarioMap();return;}
             if(Layout.Generated||Players.Length>2){InitializeGeneratedMap();return;}
             EntityState Place(string definition,int owner,Vector2 position)=>Spawn(definition,owner,MapLandPosition(definition,position));
             // Mirrored resources, two outcrop walls with a narrow middle passage and wide flanks.
@@ -223,7 +229,7 @@ namespace Frontier
             RebuildSpatial();
             var sw=System.Diagnostics.Stopwatch.StartNew();TickMovementCombat(dt);LastCombatMs=Mathf.Max(0,(float)sw.Elapsed.TotalMilliseconds-LastNavigationMs);
             TickTransportCargo();
-            sw.Restart();TickEconomy(dt);TickLandmarks(dt);TickNeutralAllies(dt);TickMapObjectives(dt);LastEconomyMs=(float)sw.Elapsed.TotalMilliseconds;
+            sw.Restart();TickEconomy(dt);TickLandmarks(dt);TickNeutralAllies(dt);TickMapObjectives(dt);scenarioRuntime?.Tick(dt);LastEconomyMs=(float)sw.Elapsed.TotalMilliseconds;
             if(Time>=fogAt){fogAt=Time+.4f;Fog.Tick(Entities);RecordLandmarkDiscoveries();}
             if(!IsMatchEnded)EvaluateElimination();
         }

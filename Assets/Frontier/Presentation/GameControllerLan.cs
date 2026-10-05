@@ -67,6 +67,9 @@ namespace Frontier
         {var bytes=new byte[32];using(var rng=RandomNumberGenerator.Create())rng.GetBytes(bytes);return Convert.ToBase64String(bytes);}
         public void HostLan(int port=47621)
         {
+            var authored=SelectedScenario;
+            if(authored!=null)
+            {string invalid=ScenarioCompiler.Validate(authored,Rules,4);if(invalid!=""){Notify("Cooperative scenarios require four authored player slots: "+invalid);return;}}
             LanTcpServer server;
             try{server=new LanTcpServer(port);}
             catch(Exception error){Notify("Could not host: "+error.Message);return;}
@@ -75,6 +78,7 @@ namespace Frontier
             SkirmishMode="teams";var civs=RosterCivilizations();
             LanLobby=new LanLobbyState{mapId=SelectedMap,seed=MatchSeed,difficulty=OpponentDifficulty,maxAge=AgeLimit,objective=SelectedObjective,slots=new LanLobbySlot[4]};
             for(int i=0;i<4;i++)LanLobby.slots[i]=new LanLobbySlot{player=i,human=i==0||i==2,civilization=civs[i],ready=i==1||i==3,deck=DeckLibrary.Preset(Rules,civs[i],i==0?DeckPreset:"military").ToArray(),peerId=i==0?lanPeerId:""};
+            ApplyLanScenarioConfiguration(authored);
             LanConnectionText="Hosting · port "+server.Port+" · waiting for your ally";lanLastPing=LanNow;Hud.ShowLanLobby();
         }
         public void JoinLan(string address,int port=47621)
@@ -94,8 +98,14 @@ namespace Frontier
             if(!IsLan||LanLobby?.started==true)return;
             string reason=DeckLibrary.Validate(Rules,PlayerCivilization,SelectedDeck);
             if(ready&&reason!=""){Notify(reason);return;}
-            var state=new LanReady{ready=ready,civilization=PlayerCivilization,deck=SelectedDeck.ToArray()};
-            if(IsLanHost){InstallLanReady(LanLobby.slots[0],state);LanLobby.mapId=SelectedMap;LanLobby.seed=MatchSeed;LanLobby.difficulty=OpponentDifficulty;LanLobby.maxAge=AgeLimit;LanLobby.objective=SelectedObjective;BroadcastLanLobby();}
+            if(IsLanHost)
+            {
+                var selected=SelectedScenario;string invalid=selected==null?"":ScenarioCompiler.Validate(selected,Rules,4);
+                if(invalid!=""){Notify("Cooperative scenarios require four authored player slots: "+invalid);return;}
+                ApplyLanScenarioConfiguration(selected);
+            }
+            var state=new LanReady{ready=ready,civilization=PlayerCivilization,deck=SelectedDeck.ToArray(),scenarioHash=LanLobby.scenarioHash};
+            if(IsLanHost){InstallLanReady(LanLobby.slots[0],state);LanLobby.difficulty=OpponentDifficulty;LanLobby.maxAge=AgeLimit;LanLobby.objective=LanLobby.hasScenarioDocument?"elimination":SelectedObjective;BroadcastLanLobby();}
             else if(lanWelcomeReceived&&lanClient?.Connected==true)SendLan(lanClient,"ready",state);
         }
         void InstallLanReady(LanLobbySlot slot,LanReady state)
@@ -103,7 +113,43 @@ namespace Frontier
             if(state==null||state.deck==null||state.deck.Length>Rules.deckCapacity||Rules.Civ(state.civilization)==null)throw new ArgumentException("Invalid ally setup");
             string reason=DeckLibrary.Validate(Rules,state.civilization,state.deck);
             if(reason!="")throw new ArgumentException(reason);
-            slot.ready=state.ready;slot.civilization=state.civilization;slot.deck=(string[])state.deck.Clone();
+            if(state.ready&&state.scenarioHash!=LanLobby.scenarioHash)throw new ArgumentException("Ready belongs to a different scenario; review the map and ready again");
+            slot.ready=state.ready;slot.civilization=state.civilization;slot.deck=(string[])state.deck.Clone();slot.scenarioHash=state.ready?state.scenarioHash:"";
+        }
+        public void NotifyLanScenarioChanged()
+        {
+            if(!IsLanHost||LanLobby==null||LanLobby.started)return;
+            foreach(var slot in LanLobby.slots)if(slot.human){slot.ready=false;slot.scenarioHash="";}
+            var selected=SelectedScenario;string invalid=selected==null?"":ScenarioCompiler.Validate(selected,Rules,4);
+            if(invalid!=""){Notify("Choose a scenario with four legal player slots for cooperation: "+invalid);BroadcastLanLobby();return;}
+            ApplyLanScenarioConfiguration(selected);BroadcastLanLobby();
+        }
+        void ApplyLanScenarioConfiguration(ScenarioDocument authored)
+        {
+            string hash=authored==null?"":ScenarioCodec.ContentHash(authored);
+            if(LanLobby.hasScenarioDocument!=(authored!=null)||LanLobby.scenarioHash!=hash)
+                foreach(var slot in LanLobby.slots)if(slot.human){slot.ready=false;slot.scenarioHash="";}
+            LanLobby.hasScenarioDocument=authored!=null;LanLobby.scenarioDocument=authored==null?null:ScenarioCodec.Clone(authored);LanLobby.scenarioHash=hash;
+            LanLobby.mapId=authored==null?SelectedMap:MapTopology.Scenario;LanLobby.seed=authored==null?MatchSeed:authored.seed;
+            LanLobby.objective=authored==null?SelectedObjective:"elimination";
+        }
+        void ValidateLanLobbyScenario(LanLobbyState lobby)
+        {
+            if(lobby?.slots?.Length!=4)throw new ArgumentException("Invalid cooperative player slots");
+            if(lobby.hasScenarioDocument)
+            {
+                string invalid=ScenarioCompiler.Validate(lobby.scenarioDocument,Rules,4);
+                if(invalid!=""||lobby.mapId!=MapTopology.Scenario||lobby.scenarioHash!=ScenarioCodec.ContentHash(lobby.scenarioDocument)||lobby.seed!=lobby.scenarioDocument.seed)
+                    throw new ArgumentException("Invalid cooperative scenario: "+invalid);
+            }
+            else if(!MapTopology.IsValid(lobby.mapId)||!string.IsNullOrEmpty(lobby.scenarioHash))throw new ArgumentException("Invalid cooperative map identity");
+        }
+        void InstallReceivedLanLobby(LanLobbyState lobby)
+        {
+            ValidateLanLobbyScenario(lobby);
+            if(World!=null&&lobby.started&&(World.HasScenario!=lobby.hasScenarioDocument||World.ScenarioHash!=lobby.scenarioHash))throw new ArgumentException("Host changed the running scenario");
+            LanLobby=SnapshotCodec.Clone(lobby);selectedScenario069=lobby.hasScenarioDocument?ScenarioCodec.Clone(lobby.scenarioDocument):null;
+            SelectedMap=lobby.mapId;MatchSeed=lobby.seed;
         }
         void RefreshLanLobbyConnectionText()
         {
@@ -123,11 +169,13 @@ namespace Frontier
         {
             if(!IsLanHost||LanLobby==null||LanLobby.started)return;
             if(lanRemote?.connection?.Connected!=true||!LanLobby.slots[0].ready||!LanLobby.slots[2].ready){Notify("Both players must be ready");return;}
-            if(!MapTopology.IsValid(LanLobby.mapId)||Rules.Difficulty(LanLobby.difficulty)==null||LanLobby.maxAge<1||LanLobby.maxAge>Rules.ages.Length){Notify("Invalid map, difficulty or age cap");return;}
+            if(Rules.Difficulty(LanLobby.difficulty)==null||LanLobby.maxAge<1||LanLobby.maxAge>Rules.ages.Length){Notify("Invalid map, difficulty or age cap");return;}
             try
             {
-                var civs=new string[4];for(int i=0;i<4;i++){civs[i]=LanLobby.slots[i].civilization;InstallLanReady(LanLobby.slots[i],new LanReady{ready=LanLobby.slots[i].ready,civilization=civs[i],deck=LanLobby.slots[i].deck});}
-                var next=new World(Rules,LanLobby.seed,civs,new[]{0,1,0,1},LanLobby.maxAge,LanLobby.mapId);
+                ValidateLanLobbyScenario(LanLobby);
+                if((SelectedScenario==null?"":ScenarioCodec.ContentHash(SelectedScenario))!=LanLobby.scenarioHash)throw new ArgumentException("Scenario changed; review the map and ready again");
+                var civs=new string[4];for(int i=0;i<4;i++){civs[i]=LanLobby.slots[i].civilization;InstallLanReady(LanLobby.slots[i],new LanReady{ready=LanLobby.slots[i].ready,civilization=civs[i],deck=LanLobby.slots[i].deck,scenarioHash=LanLobby.slots[i].human?LanLobby.slots[i].scenarioHash:LanLobby.scenarioHash});}
+                var next=LanLobby.hasScenarioDocument?new World(Rules,LanLobby.scenarioDocument,civs,new[]{0,1,0,1},LanLobby.maxAge):new World(Rules,LanLobby.seed,civs,new[]{0,1,0,1},LanLobby.maxAge,LanLobby.mapId);
                 var objective=next.ConfigureMapObjective(LanLobby.objective);if(!objective.accepted)throw new ArgumentException(objective.reason);
                 for(int i=0;i<4;i++){next.Players[i].deck.Clear();next.Players[i].deck.AddRange(LanLobby.slots[i].deck);}
                 Guided?.Dispose();Guided=null;ReleasePlayback();ClearBenchmark();World=next;Simulation=new MatchSimulation(next,new[]{1,3},LanLobby.difficulty);MatchId=lanMatchId;
@@ -336,7 +384,7 @@ namespace Frontier
                             throw new ArgumentException("Invalid cooperative welcome");
                         if(lanPeerId!=""&&(lanPeerId!=welcome.peerId||lanMatchId!=welcome.matchId||lanEpoch!=welcome.epoch))throw new ArgumentException("Host changed the cooperative session");
                         lanPeerId=welcome.peerId;lanResumeToken=welcome.resumeToken;lanGeneration=welcome.generation;lanMatchId=welcome.matchId;lanEpoch=welcome.epoch;
-                        LanLobby=welcome.lobby;lanWelcomeReceived=true;lanAwaitingFull=LanLobby.started;lanDisconnectedAt=-1;LanConnectionText=LanLobby.started?"Synchronizing with host":"Connected · choose your civilization and ready up";RefreshLanLobbyConnectionText();
+                        InstallReceivedLanLobby(welcome.lobby);lanWelcomeReceived=true;lanAwaitingFull=LanLobby.started;lanDisconnectedAt=-1;LanConnectionText=LanLobby.started?"Synchronizing with host":"Connected · choose your civilization and ready up";RefreshLanLobbyConnectionText();
                         var retries=new List<LanCommandRequest>(lanUnconfirmed.Values);retries.Sort((a,b)=>a.sequence.CompareTo(b.sequence));
                         foreach(var request in retries){request.generation=lanGeneration;SendLan(lanClient,"command",request);}if(InMenu)Hud.ShowLanLobby();
                         continue;
@@ -345,10 +393,11 @@ namespace Frontier
                     if(!lanWelcomeReceived||packet.matchId!=lanMatchId||packet.epoch!=lanEpoch)throw new ArgumentException("Expired host state");
                     if(packet.kind=="ping")SendLan(lanClient,"pong",new LanReady(),packet.nonce);
                     else if(packet.kind=="pong"){if(packet.nonce==lanPingNonce)LanRttMilliseconds=(LanNow-lanPingSent)*1000;}
-                    else if(packet.kind=="lobby"){LanLobby=LanWire.Body<LanLobbyState>(packet);RefreshLanLobbyConnectionText();if(InMenu)Hud.RefreshLanLobbyState();}
+                    else if(packet.kind=="lobby"){InstallReceivedLanLobby(LanWire.Body<LanLobbyState>(packet));RefreshLanLobbyConnectionText();if(InMenu)Hud.RefreshLanLobbyState();}
                     else if(packet.kind=="full")
                     {
                         var state=LanWire.Body<LanFullState>(packet);if(state.matchId!=lanMatchId||state.epoch!=lanEpoch)throw new ArgumentException("Full state changed session");
+                        if(state.world==null||state.world.hasScenarioDocument!=LanLobby.hasScenarioDocument||state.world.scenarioHash!=LanLobby.scenarioHash)throw new ArgumentException("Full state changed the cooperative scenario");
                         if(lanReplica!=null&&!lanReplica.NeedsFullState&&!lanAwaitingFull&&state.revision==lanReplica.Revision)continue;
                         var oldWorld=World;lanReplica??=new LanReplica(Rules);lanReplica.Install(state);lanAwaitingFull=false;World=lanReplica.World;Simulation=null;Guided=null;Recorder?.Dispose();Recorder=null;
                         MatchId=lanMatchId;ObserverPlayer=LocalPlayerSlot;InMenu=false;LanStateRevision=lanReplica.Revision;if(oldWorld==null){LocalMenuPaused=false;PausedForFocusLoss=false;}

@@ -59,7 +59,7 @@ namespace Frontier
         }
         private void EvaluateElimination()
         {
-            for(int player=0;player<Players.Length;player++)if(IsPlayerActive(player))
+            for(int player=0;player<Players.Length;player++)if((!HasScenario||scenarioDocument.enableElimination)&&IsPlayerActive(player))
             {
                 bool remains=false;
                 foreach(var e in Entities)if(e.Alive&&e.owner==player&&e.def.kind!=EntityKind.Resource){remains=true;break;}
@@ -69,7 +69,7 @@ namespace Frontier
             for(int player=0;player<Players.Length;player++)if(IsPlayerActive(player))
             {if(representative<0)representative=player;surviving.Add(Players[player].team);}
             if(surviving.Count>1)return;
-            Winner=surviving.Count==0?-2:representative;FinalizeMapObjectiveForMatchEnd();
+            Winner=surviving.Count==0?-2:representative;FinalizeMapObjectiveForMatchEnd();scenarioRuntime?.MarkResult(Winner,"Elimination or resignation",false);
             var ended=Emit("MatchEnded",Winner,0,Winner==-2?"Draw: no surviving faction":"All opposing factions eliminated");
             ended.visibilityMask=(1<<Players.Length)-1;
         }

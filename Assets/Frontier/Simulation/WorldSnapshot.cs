@@ -28,7 +28,7 @@ namespace Frontier
     [Serializable] public sealed class LandmarkDiscoverySnapshot {public int[] entities;}
     [Serializable] public sealed class WorldSnapshot
     {
-        public const int CurrentSchema=3;
+        public const int CurrentSchema=4;
         public int schema=CurrentSchema,seed,maxAge,winner,nextId,caravanWaypoint,caravanDirection;
         public string rulesHash,mapId;public float time,fogAt,nextEvacuation;public bool paused;
         public PlayerSnapshot[] players;public EntitySnapshot[] entities;
@@ -40,6 +40,10 @@ namespace Frontier
         public NeutralAllianceState[] neutralAllies;public MapObjectiveState mapObjective;
         public int[] teams;
         public LandmarkDiscoverySnapshot[] discoveries;
+        public bool hasScenarioDocument;
+        public string scenarioHash="";
+        public ScenarioDocument scenarioDocument;
+        public ScenarioRuntimeState scenarioState;
     }
     public static class SnapshotCodec
     {
@@ -61,6 +65,7 @@ namespace Frontier
         public WorldSnapshot CaptureState(bool includeEvents=true)
         {
             var snapshot=new WorldSnapshot{rulesHash=SnapshotCodec.RulesHash(Rules),seed=Seed,maxAge=MaxAge,mapId=MapId,
+                hasScenarioDocument=HasScenario,scenarioHash=ScenarioHash,scenarioDocument=HasScenario?scenarioDocument:null,scenarioState=ScenarioState,
                 winner=Winner,time=Time,paused=Paused,nextId=nextId,fogAt=fogAt,nextEvacuation=nextEvacuation,
                 players=new PlayerSnapshot[Players.Length],entities=new EntitySnapshot[Entities.Count],events=includeEvents?Events.ToArray():Array.Empty<SimEvent>(),
                 projectiles=Projectiles.ToArray(),terrainObstacles=TerrainObstacles.ToArray(),landNavigation=Navigation.CaptureState(),
@@ -115,7 +120,7 @@ namespace Frontier
             }
             var civilizations=new string[s.players.Length];var teams=new int[s.players.Length];
             for(int i=0;i<s.players.Length;i++){civilizations[i]=s.players[i].state.civilization;teams[i]=s.schema==2?i:s.teams[i];s.players[i].state.team=teams[i];}
-            var world=new World(rules,s.seed,civilizations,teams,s.maxAge,s.mapId);
+            var world=s.hasScenarioDocument?new World(rules,s.scenarioDocument,civilizations,teams,s.maxAge):new World(rules,s.seed,civilizations,teams,s.maxAge,s.mapId);
             world.Entities.Clear();world.byId.Clear();world.Events.Clear();world.Projectiles.Clear();world.TradeSockets.Clear();world.Treasures.Clear();
             world.TerrainObstacles.Clear();world.TerrainObstacles.AddRange(s.terrainObstacles);
             for(int i=0;i<s.players.Length;i++)
@@ -143,17 +148,24 @@ namespace Frontier
             {var e=world.Get(id);var request=new FineRecoveryRequest{unit=e,order=e.orders.Count>0?e.orders.Peek():null};world.pendingFineRecoveries.Add(id,request);world.pendingFineRecoveryQueue.Enqueue(request);}
             foreach(var item in s.incomes){world.gatherLog[item.source]=item.amount;world.gatherLogTarget[item.source]=item.target;world.incomeKinds[item.source]=item.kind;}
             world.RestoreNeutralAllies(s.neutralAllies);world.RestoreMapObjective(s.mapObjective);
+            if(world.HasScenario)world.RestoreScenarioState(s.scenarioState);
             world.RebuildSpatial();return world;
         }
         public static void ValidateSnapshot(RuleCatalog rules,WorldSnapshot s)
         {
             void Require(bool valid,string message){if(!valid)throw new ArgumentException("Invalid saved match: "+message);}
-            Require(rules!=null&&s!=null,"missing state");Require(s.schema==2||s.schema==WorldSnapshot.CurrentSchema,"unsupported schema");
+            Require(rules!=null&&s!=null,"missing state");Require(s.schema==2||s.schema==3||s.schema==WorldSnapshot.CurrentSchema,"unsupported schema");
             Require(s.rulesHash==SnapshotCodec.RulesHash(rules),"rules changed; this save needs its original game version");
-            Require(MapTopology.IsValid(s.mapId)&&s.maxAge>=1&&s.maxAge<=rules.ages.Length,"map or age cap");
+            Require((s.hasScenarioDocument?s.schema==4&&s.mapId==MapTopology.Scenario:MapTopology.IsValid(s.mapId))&&s.maxAge>=1&&s.maxAge<=rules.ages.Length,"map or age cap");
+            if(s.hasScenarioDocument)
+            {
+                Require(ScenarioCodec.Validate(s.scenarioDocument,rules)==""&&s.scenarioHash==ScenarioCodec.ContentHash(s.scenarioDocument)&&s.seed==s.scenarioDocument.seed,"scenario document identity");
+            }
+            else Require(string.IsNullOrEmpty(s.scenarioHash)&&(s.scenarioDocument==null||string.IsNullOrEmpty(s.scenarioDocument.id))&&(s.scenarioState==null||string.IsNullOrEmpty(s.scenarioState.documentHash)),"unexpected scenario identity");
             Require(SnapshotCodec.Finite(s.time)&&s.time>=0&&SnapshotCodec.Finite(s.fogAt)&&SnapshotCodec.Finite(s.nextEvacuation),"clock");
             int count=s.players?.Length??0;
             Require(count>=2&&count<=4&&(s.schema!=2||count==2)&&s.winner>=-2&&s.winner<count&&s.entities!=null&&s.entities.Length<100000,"players or entities");
+            MapLayout savedLayout=s.hasScenarioDocument?ScenarioCompiler.Compile(s.scenarioDocument,rules,count):MapLayout.Create(s.mapId,s.seed,count);
             int[] teams=s.schema==2?new[]{0,1}:s.teams;
             Require(teams!=null&&teams.Length==count,"team roster");var factions=new HashSet<int>();
             for(int i=0;i<count;i++){Require(teams[i]>=0&&teams[i]<=3,"team identity");factions.Add(teams[i]);}
@@ -192,11 +204,22 @@ namespace Frontier
                 }
             }
             Require(s.nextId>max&&s.nextId<int.MaxValue,"next entity id");
+            if(s.hasScenarioDocument)
+            {
+                ScenarioRuntime.Validate(s.scenarioDocument,s.scenarioHash,s.scenarioState,Array.ConvertAll(s.entities,e=>e.state),s.winner,s.time);
+                foreach(var nav in new[]{s.landNavigation,s.waterNavigation})Require(nav!=null&&nav.width==128&&nav.height==128&&nav.terrain?.Length==16384,"scenario navigation");
+                for(int y=0;y<128;y++)for(int x=0;x<128;x++)
+                {
+                    var p=new Vector2(x,y);int index=x+y*128;
+                    Require(s.landNavigation.terrain[index]==(savedLayout.IsWater(p)&&!savedLayout.IsBridge(p)||savedLayout.IsBridgeSideBarrierCell(p)||savedLayout.IsTerrainBlocked(p)),"scenario land terrain mismatch");
+                    Require(s.waterNavigation.terrain[index]==!savedLayout.IsWater(p),"scenario water terrain mismatch");
+                }
+            }
             ValidateTransportSnapshot(rules,s.entities);
-            ValidateNeutralAlliesSnapshot(rules,s.neutralAllies,s.entities,s.players);
+            ValidateNeutralAlliesSnapshot(rules,s.neutralAllies,s.entities,s.players,s.hasScenarioDocument?s.scenarioDocument:null,s.hasScenarioDocument?s.scenarioState:null);
             var objective=s.mapObjective;
             if(s.schema==2&&objective!=null){objective=SnapshotCodec.Clone(objective);objective.enemyPlayer=objective.enemyProgress>0?1-objective.player:-1;}
-            ValidateMapObjectiveSnapshot(rules,objective,s.entities,s.mapId,s.winner,s.seed,teams);
+            ValidateMapObjectiveSnapshot(rules,objective,s.entities,s.mapId,s.winner,s.seed,teams,savedLayout);
             Require(s.events!=null&&s.projectiles!=null&&s.terrainObstacles!=null&&s.visibility?.Length==count*16384&&s.sockets!=null&&s.treasures!=null&&s.incomes!=null,"world collections");
             Require(s.discoveries0!=null&&s.discoveries1!=null&&s.pendingEvacuations!=null&&s.fineRecoveryQueue!=null,"world queues");
             if(s.schema!=2)
@@ -210,13 +233,14 @@ namespace Frontier
                         Require(!Array.Exists(s.entities,e=>e.state.Alive&&e.state.owner==player&&rules.Entity(e.definition).kind!=EntityKind.Resource),"eliminated player has actors");
                 }
                 var surviving=new HashSet<int>();for(int i=0;i<count;i++)if(!s.players[i].state.eliminated&&!s.players[i].state.resigned)surviving.Add(teams[i]);
-                if(s.winner==-2&&s.mapObjective.mode=="elimination")Require(surviving.Count==0,"draw still has a surviving faction");
+                bool scenarioResult=s.hasScenarioDocument&&s.scenarioState.scenarioVictory;
+                if(s.winner==-2&&s.mapObjective.mode=="elimination"&&!scenarioResult)Require(surviving.Count==0,"draw still has a surviving faction");
                 if(s.winner>=0)
                 {
                     Require(!s.players[s.winner].state.eliminated&&!s.players[s.winner].state.resigned,"winner is inactive");
-                    if(s.mapObjective.mode=="elimination")Require(surviving.Count==1&&surviving.Contains(teams[s.winner]),"elimination winner factions");
+                    if(s.mapObjective.mode=="elimination"&&!scenarioResult)Require(surviving.Count==1&&surviving.Contains(teams[s.winner]),"elimination winner factions");
                 }
-                if(s.winner==-1)Require(surviving.Count>=2,"active match has fewer than two factions");
+                if(s.winner==-1&&(!s.hasScenarioDocument||s.scenarioDocument.enableElimination))Require(surviving.Count>=2,"active match has fewer than two factions");
                 for(int player=0;player<count;player++)for(int other=0;other<player;other++)if(teams[player]==teams[other])
                     for(int cell=0;cell<16384;cell++)Require(s.visibility[player*16384+cell]==s.visibility[other*16384+cell],"allied visibility mismatch");
             }
@@ -227,9 +251,9 @@ namespace Frontier
             foreach(int id in s.pendingEvacuations)Require(ids.Contains(id),"evacuation reference");
             var recoveryIds=new HashSet<int>();foreach(int id in s.fineRecoveryQueue)Require(ids.Contains(id)&&recoveryIds.Add(id),"recovery queue");
             foreach(var t in s.treasures)Require(t!=null&&ids.Contains(t.entity)&&t.definition>=0&&t.definition<(rules.landmarks?.treasures?.Length??0)&&t.guards!=null,"treasure");
-            foreach(var socket in s.sockets)Require(socket!=null&&ids.Contains(socket.entity)&&socket.waypoint>=0&&socket.waypoint<(MapLayout.Create(s.mapId,s.seed).HasWater?MapLayout.Create(s.mapId,s.seed).TradeRoute.Length:rules.landmarks.route.Length),"trade socket");
+            foreach(var socket in s.sockets)Require(socket!=null&&ids.Contains(socket.entity)&&socket.waypoint>=0&&socket.waypoint<(s.hasScenarioDocument||savedLayout.HasWater?savedLayout.TradeRoute.Length:rules.landmarks.route.Length),"trade socket");
             Require(SnapshotCodec.Finite(s.caravanPosition)&&(s.caravanDirection==1||s.caravanDirection==-1),"caravan");
-            int routeLength=MapLayout.Create(s.mapId,s.seed).HasWater?MapLayout.Create(s.mapId,s.seed).TradeRoute.Length:rules.landmarks?.route?.Length??0;
+            int routeLength=s.hasScenarioDocument||savedLayout.HasWater?savedLayout.TradeRoute.Length:rules.landmarks?.route?.Length??0;
             Require(routeLength<2||s.caravanWaypoint>=0&&s.caravanWaypoint<routeLength,"caravan waypoint");
         }
     }

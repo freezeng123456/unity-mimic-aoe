@@ -130,6 +130,7 @@ namespace Frontier
         {var t=(RectTransform)transform;t.anchorMin=Vector2.zero;t.anchorMax=Vector2.one;t.offsetMin=t.offsetMax=Vector2.zero;}
         public void ShowMenu()
         {
+            if(game.ScenarioEditorOpen&&!game.IsLan){ShowScenarioEditor();return;}
             if(game.IsLan){ShowLanLobby();return;}
             CloseModal();ResultVisible=false;if(gamePanel!=null)Destroy(gamePanel.gameObject);if(menuPanel!=null)Destroy(menuPanel.gameObject);
             menuPanel=Panel(root,"Main menu",new Rect(0,0,1600,900),background);Fill(menuPanel);
@@ -157,6 +158,7 @@ namespace Frontier
             Button(menuPanel,"LOAD SAVED MATCH",new Rect(100,555,454,58),()=>ShowSaveSlots(false),"Continue a local match, including AI and production progress.");
             Button(menuPanel,"MAP, SEED & OBJECTIVES",new Rect(585,555,420,58),ShowMapOptions,"Preview terrain, enter a seed and choose a map objective.");
             AddExpansionMenu(menuPanel);
+            Button(menuPanel,"SCENARIO WORKSHOP",new Rect(544,525,260,52),()=>game.OpenScenarioEditor(),"Paint terrain, shape rivers, place armies and build original missions.");
             Label(menuPanel,"FIVE-ERA FRONTIER",new Rect(100,665,840,35),23,gold);
             Label(menuPanel,game.Rules.civs.Length+" civilizations · British · Dutch · French · Ottomans\nManors · Banks · Trade · Workshops · Rivers · Docks\nIndependent project. Not affiliated with Age of Empires or its publishers.",new Rect(100,715,820,110),18,muted);ApplyPreferences();
         }
@@ -168,7 +170,7 @@ namespace Frontier
             for(int i=0;i<4&&page*4+i<civs.Length;i++)
             {
                 var civ=civs[page*4+i];bool chosen=civ.id==(opponent?game.OpponentCivilization:game.PlayerCivilization);
-                Button(box,(chosen?"[SELECTED] ":"")+civ.name.ToUpperInvariant()+"\n\n"+civ.description,new Rect(25+(i%2)*414,135+(i/2)*198,400,184),()=>{if(opponent)game.OpponentCivilization=civ.id;else game.PlayerCivilization=civ.id;ShowMenu();},civ.description);
+                Button(box,(chosen?"[SELECTED] ":"")+civ.name.ToUpperInvariant()+"\n\n"+civ.description,new Rect(25+(i%2)*414,135+(i/2)*198,400,184),()=>{game.SetRosterCivilization(opponent?1:0,civ.id);ShowMenu();},civ.description);
             }
             Button(box,"PREVIOUS",new Rect(25,560,210,55),()=>ShowCivilizations(opponent,page-1),"",page>0);
             Button(box,"NEXT "+(page+1)+"/"+pages,new Rect(255,560,210,55),()=>ShowCivilizations(opponent,page+1),"",page+1<pages);
@@ -247,7 +249,7 @@ namespace Frontier
         }
         private void Update()
         {
-            CaptureBinding();UpdateResponsiveLayout();RefreshReplayHud();RefreshLanHud();uiPointer?.Move(UnityEngine.InputSystem.Mouse.current?.position.ReadValue()??Vector2.zero);
+            UpdateScenarioEditor069();CaptureBinding();UpdateResponsiveLayout();RefreshReplayHud();RefreshLanHud();uiPointer?.Move(UnityEngine.InputSystem.Mouse.current?.position.ReadValue()??Vector2.zero);
             if(game.InMenu||game.World==null||gamePanel==null)return;
             RefreshProgressionHud();
             EnsureActionContextCurrent();
@@ -556,7 +558,7 @@ namespace Frontier
             Button(box,game.EnvironmentSoundEnabled?"ENVIRONMENT: ON":"ENVIRONMENT: OFF",new Rect(25,330,397,65),()=>{game.EnvironmentSoundEnabled=!game.EnvironmentSoundEnabled;ShowPause(true);},"Enable or disable environmental sounds. SOUND controls all audio.");
             Button(box,game.MusicEnabled?"MUSIC: ON":"MUSIC: OFF",new Rect(443,330,397,65),()=>{game.MusicEnabled=!game.MusicEnabled;ShowPause(true);},"Enable or disable music. SOUND controls all audio.");
             Button(box,"SAVE MATCH",new Rect(25,421,397,65),()=>ShowSaveSlots(true));Button(box,"LOAD MATCH",new Rect(443,421,397,65),()=>ShowSaveSlots(false));
-            Button(box,"RETURN TO MENU",new Rect(25,511,397,65),()=>game.ReturnToMenu());Button(box,"SETTINGS",new Rect(443,511,397,65),()=>ShowSettings());
+            Button(box,game.IsScenarioPlaytest?"RETURN TO EDITOR":"RETURN TO MENU",new Rect(25,511,397,65),()=>game.ReturnToMenu());Button(box,"SETTINGS",new Rect(443,511,397,65),()=>ShowSettings());
             Button(box,"SAVE REPLAY",new Rect(25,601,397,65),()=>game.SaveReplayAsync());Button(box,"RECORDING LIBRARY",new Rect(443,601,397,65),ShowReplayLibrary);
         }
         public void ShowSaveSlots(bool saving)
@@ -579,7 +581,7 @@ namespace Frontier
             Label(box,resultReason+" · "+((int)w.Time/60)+"m "+((int)w.Time%60)+"s\nStatistics below are accumulated from this match's simulation.",new Rect(25,84,825,65),19,muted);
             AddRosterResult(box,w);
             if(game.IsLan)Button(box,"LEAVE MATCH",new Rect(25,514,815,64),()=>game.LeaveLan());
-            else {Button(box,"PLAY AGAIN",new Rect(25,514,397,64),()=>game.StartMatch());Button(box,"MAIN MENU",new Rect(443,514,397,64),()=>game.ReturnToMenu());}
+            else {Button(box,"PLAY AGAIN",new Rect(25,514,397,64),()=>game.StartMatch());Button(box,game.IsScenarioPlaytest?"RETURN TO EDITOR":"MAIN MENU",new Rect(443,514,397,64),()=>game.ReturnToMenu());}
         }
     }
     public sealed class FrontierHover : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler

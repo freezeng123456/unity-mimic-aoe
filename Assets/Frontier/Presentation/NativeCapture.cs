@@ -11,7 +11,7 @@ namespace Frontier
 {
     [Serializable] public sealed class CaptureMetadata
     {
-        public int schemaVersion = 5, eventSchemaVersion = SimEvent.CurrentSchemaVersion;
+        public int schemaVersion = 6, eventSchemaVersion = SimEvent.CurrentSchemaVersion;
         public string pngFile, pngSha256, utc, appVersion, buildGuid, unityVersion, matchId, requestMatchId;
         public int requestFrame, captureFrame, width, height, seed;
         public float requestWorldTime, worldTime;
@@ -34,6 +34,7 @@ namespace Frontier
         public int observerPlayer;
         public CaptureReplay replay;
         public CaptureLan lan;
+        public CaptureScenario scenario;
 
         // Detached observer-owned state; this does not refresh UI or inspect
         // another player's production, units or unseen neutral information.
@@ -50,7 +51,7 @@ namespace Frontier
                 hudResources = game.Hud.ResourceSummary, hudUpdatedFrame = game.Hud.ResourceSummaryFrame,
                 hudWorldTime = game.Hud.ResourceSummaryTime, hudMatchId = game.Hud.ResourceSummaryMatchId,
                 skirmishMode=game.SkirmishMode,preferences=game.Settings.Current,
-                observerPlayer=game.ObserverPlayer,replay=CaptureReplay.Read(game),lan=CaptureLan.Read(game),
+                observerPlayer=game.ObserverPlayer,replay=CaptureReplay.Read(game),lan=CaptureLan.Read(game),scenario=CaptureScenario.Read(game),
                 guidedId=game.Guided?.Definition.Id??"",guidedStatus=game.Guided?.Status.ToString()??"",guidedStage=game.Guided?.Stage?.Title??"",
                 camera = new CaptureCamera
                 {
@@ -93,6 +94,27 @@ namespace Frontier
             {var order=unit.orders.Count>0?unit.orders.Peek():null;units.Add(new CaptureUnit{entity=unit.id,definition=unit.def.id,status=unit.status,position=unit.position,hp=unit.hp,garrisonedIn=unit.garrisonedIn,cargo=unit.occupants.ToArray(),load=unit.def.transportShip?w.TransportLoad(unit):0,capacity=unit.def.transportCapacity,order=order?.kind.ToString()??"",target=order?.target??0,destination=order?.point??unit.position});}result.units=units.ToArray();
             var neutral=new List<CaptureNeutralService>();foreach(var state in w.NeutralAllies)if(w.IsVisible(observer,w.Get(state.site)))
             {var job=state.owner==observer&&state.jobs.Count>0?state.jobs[0]:null;neutral.Add(new CaptureNeutralService{id=state.id,site=state.site,owner=state.owner,claimant=state.claimant,contested=state.contested,claimProgress=state.claimant==observer?state.claimProgress:0,service=job?.kind??"",item=job?.item??"",elapsed=job?.elapsed??0,duration=job?.duration??0});}result.neutralServices=neutral.ToArray();
+            return result;
+        }
+    }
+    [Serializable] public sealed class CaptureScenario
+    {
+        public bool authored,editorOpen,playtest;
+        public string id="",title="",contentHash="",draftHash="";
+        public int winner=-1;
+        public ScenarioObjectiveState[] objectives=Array.Empty<ScenarioObjectiveState>();
+        public ScenarioTriggerState[] triggers=Array.Empty<ScenarioTriggerState>();
+        public static CaptureScenario Read(GameController game)
+        {
+            var result=new CaptureScenario{authored=game.World?.HasScenario==true,editorOpen=game.ScenarioEditorOpen,playtest=game.IsScenarioPlaytest};
+            if(game.ScenarioEditorOpen&&game.ScenarioEditor!=null)result.draftHash=ScenarioCodec.ContentHash(game.ScenarioEditor.Document);
+            if(!result.authored)return result;
+            var doc=game.World.ScenarioDocument;var state=game.World.ScenarioState;
+            result.id=doc.id;result.title=doc.name;result.contentHash=game.World.ScenarioHash;result.winner=state.winner;
+            var visible=new List<ScenarioObjectiveState>();foreach(var row in state.objectiveStates)
+            {var goal=Array.Find(doc.objectives,o=>o.id==row.id);if(goal!=null&&goal.player==game.ObserverPlayer)visible.Add(row);}
+            result.objectives=visible.ToArray();result.triggers=state.triggerStates;
+            // No entity bindings or hidden actor positions enter observer metadata.
             return result;
         }
     }

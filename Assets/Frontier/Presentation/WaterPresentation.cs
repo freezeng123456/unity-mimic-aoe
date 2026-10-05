@@ -55,7 +55,7 @@ namespace Frontier
 
         public static Transform BuildTerrain(Transform parent,World world)
         {
-            if(world==null||!world.Layout.HasWater)return null;
+            if(world==null||!world.Layout.HasWater&&!world.Layout.HasScenario)return null;
             if(world.MapId!=MapTopology.River)return RiverLandscapePresentation.Build(parent,world,WaterMaterial());
             var root=new GameObject("River, banks and two raised crossings").transform;root.SetParent(parent,false);
             var channel=new ArchitecturalGeometry();

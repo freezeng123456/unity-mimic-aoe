@@ -261,7 +261,7 @@ namespace Frontier
         }
         public MapObjectiveState CaptureMapObjective()=>SnapshotCodec.Clone(MapObjective);
         public void RestoreMapObjective(MapObjectiveState state){MapObjective=SnapshotCodec.Clone(state);}
-        public static void ValidateMapObjectiveSnapshot(RuleCatalog rules,MapObjectiveState state,EntitySnapshot[] entities,string mapId,int winner,int seed,int[] teams=null)
+        public static void ValidateMapObjectiveSnapshot(RuleCatalog rules,MapObjectiveState state,EntitySnapshot[] entities,string mapId,int winner,int seed,int[] teams=null,MapLayout layout=null)
         {
             void Require(bool valid){if(!valid)throw new ArgumentException("Invalid saved map objective");}
             teams??=new[]{0,1};Require(state!=null&&state.route!=null&&state.player>=0&&state.player<teams.Length&&winner>=-2&&winner<teams.Length);
@@ -276,8 +276,8 @@ namespace Frontier
             Require(state.status!="ended"||winner>=0&&teams[winner]==teams[state.player]);
             if(state.mode=="escort_caravan")
             {Require(state.route.Length>=2&&state.waypoint>=0&&state.waypoint<=state.route.Length&&state.target==state.escort&&state.progress==state.waypoint&&(state.center-state.route[state.route.Length-1]).sqrMagnitude<.0001f);Require(Array.Exists(entities,e=>e.state.id==state.escort&&e.definition==definition.escortUnit&&e.state.owner==state.player));}
-            else if(state.mode=="capture_harbor")Require(MapLayout.Create(mapId,seed).HasWater&&Array.Exists(entities,e=>e.state.id==state.target&&e.definition=="dock"&&(e.state.position-state.center).sqrMagnitude<.0001f)&&state.route.Length==0&&state.escort==0);
-            else Require(state.mode=="defend_bridge"&&Array.Exists(MapLayout.Create(mapId,seed).Bridges,b=>(b.Center-state.center).sqrMagnitude<.0001f)&&state.target==0&&state.route.Length==0&&state.escort==0);
+            else if(state.mode=="capture_harbor")Require((layout??MapLayout.Create(mapId,seed)).HasWater&&Array.Exists(entities,e=>e.state.id==state.target&&e.definition=="dock"&&(e.state.position-state.center).sqrMagnitude<.0001f)&&state.route.Length==0&&state.escort==0);
+            else Require(state.mode=="defend_bridge"&&Array.Exists((layout??MapLayout.Create(mapId,seed)).Bridges,b=>(b.Center-state.center).sqrMagnitude<.0001f)&&state.target==0&&state.route.Length==0&&state.escort==0);
         }
     }
 }

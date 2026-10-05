@@ -23,15 +23,19 @@ namespace Frontier
     {
         public double realtime;
         public float worldTime;
+        public int observerPlayer;
         public long managedBytes, unityAllocatedBytes;
         public int livingUnits, playerUnits0, playerUnits1, playerUnits2, playerUnits3, neutralUnits, viewportVisibleUnitCenters, livingBuildings, totalEntities,eventCount;
     }
     [Serializable] public sealed class PerformanceCaptureReport
     {
-        public int schemaVersion = 2;
+        public int schemaVersion = 3;
         public string scope = "Native rendered-frame intervals including capture overhead; focused and unpaused subset is reported separately. No hardware portability claim.";
         public string measurementDetails = PerformanceCounters.Scope;
         public string appVersion, buildGuid, unityVersion, matchId, currentMatchId, platform, cpu, gpu, resolution, utcStart, utcEnd, stopReason;
+        public string sessionRole;
+        public int localPlayerSlot, observerPlayerStart, observerPlayerEnd;
+        public bool sampledObserverChanged;
         public bool autoplay, benchmark, allFramesFocused, singleSession, truncated, focusedAtStart, pausedAtStart;
         public float simulationSpeed, worldTimeStart, worldTimeEnd, meanFrameMs, p95FrameMs, p99FrameMs;
         public double realtimeStart, realtimeEnd;
@@ -70,7 +74,17 @@ namespace Frontier
             frames = new PerformanceFrame[MaximumFrames]; count = 0; memory.Clear();
             counters.Begin();previousSimulationStep=game.Simulation?.StepCount??0;
             initialGc0 = GC.CollectionCount(0); initialGc1 = GC.CollectionCount(1); initialGc2 = GC.CollectionCount(2);
-            report = new PerformanceCaptureReport
+            report = CreateReport();
+            previousFocused = Application.isFocused; previousPaused = game.IsPaused;
+            focusLostInInterval = false; eventCursor = capturedWorld.Events.Count;
+            AddMemory(); nextMemory = report.realtimeStart + 1;
+            game.Notify("Performance capture started. F8 stops; maximum 10 minutes.");
+            return true;
+        }
+
+        private PerformanceCaptureReport CreateReport()
+        {
+            return new PerformanceCaptureReport
             {
                 appVersion = Application.version, buildGuid = Application.buildGUID, unityVersion = Application.unityVersion,
                 matchId = game.MatchId, platform = Application.platform.ToString(), cpu = SystemInfo.processorType,
@@ -78,13 +92,10 @@ namespace Frontier
                 utcStart = DateTime.UtcNow.ToString("O"), realtimeStart = Time.realtimeSinceStartupAsDouble,
                 worldTimeStart = capturedWorld.Time, autoplay = game.Autoplay, benchmark = game.BenchmarkMode,
                 simulationSpeed = game.Autoplay ? game.SimulationSpeed : 1,
-                focusedAtStart = Application.isFocused, pausedAtStart = game.IsPaused
+                focusedAtStart = Application.isFocused, pausedAtStart = game.IsPaused,
+                sessionRole = game.SessionRole.ToString(), localPlayerSlot = game.LocalPlayerSlot,
+                observerPlayerStart = game.ObserverPlayer, observerPlayerEnd = game.ObserverPlayer
             };
-            previousFocused = Application.isFocused; previousPaused = game.IsPaused;
-            focusLostInInterval = false; eventCursor = capturedWorld.Events.Count;
-            AddMemory(); nextMemory = report.realtimeStart + 1;
-            game.Notify("Performance capture started. F8 stops; maximum 10 minutes.");
-            return true;
         }
 
         private void LateUpdate()
@@ -120,6 +131,7 @@ namespace Frontier
         private void AddMemory()
         {
             int units = 0, owned0 = 0, owned1 = 0, owned2 = 0, owned3 = 0, neutral = 0, viewportCenters = 0, buildings = 0;
+            int observer = game.ObserverPlayer;
             foreach (var e in capturedWorld.Entities) if (e.Alive)
             {
                 if (e.def.kind == EntityKind.Unit)
@@ -127,9 +139,10 @@ namespace Frontier
                     units++; if (e.owner == 0) owned0++; else if (e.owner == 1) owned1++; else if(e.owner==2)owned2++; else if(e.owner==3)owned3++; else neutral++;
                     // Center inside the camera viewport and allowed by player fog;
                     // this count does not promise unoccluded models or HUD-free pixels.
-                    if (game != null && game.GameCamera != null && (e.owner == 0 || capturedWorld.Fog.At(0, e.position) == VisibilityState.Visible))
+                    if (game.GameCamera != null && capturedWorld.IsVisible(observer, e))
                     {
-                        var screen = game.GameCamera.WorldToViewportPoint(new Vector3(e.position.x, 1, e.position.y));
+                        var screen = game.GameCamera.WorldToViewportPoint(new Vector3(e.position.x,
+                            capturedWorld.SurfaceHeight(e.position, e.def.waterborne) + 1, e.position.y));
                         if (screen.z > 0 && screen.x >= 0 && screen.x <= 1 && screen.y >= 0 && screen.y <= 1) viewportCenters++;
                     }
                 }
@@ -138,6 +151,7 @@ namespace Frontier
             memory.Add(new PerformanceMemory
             {
                 realtime = Time.realtimeSinceStartupAsDouble, worldTime = capturedWorld.Time,
+                observerPlayer = observer,
                 managedBytes = GC.GetTotalMemory(false), unityAllocatedBytes = Profiler.GetTotalAllocatedMemoryLong(),
                 livingUnits = units, playerUnits0 = owned0, playerUnits1 = owned1, playerUnits2 = owned2, playerUnits3 = owned3, neutralUnits = neutral,
                 viewportVisibleUnitCenters = viewportCenters,
@@ -154,11 +168,13 @@ namespace Frontier
                 AddMemory(); stopped.utcEnd = DateTime.UtcNow.ToString("O"); stopped.realtimeEnd = Time.realtimeSinceStartupAsDouble;
                 stopped.worldTimeEnd = capturedWorld.Time; stopped.currentMatchId = game != null ? game.MatchId : "";
                 stopped.singleSession = stopped.currentMatchId == stopped.matchId;
+                stopped.observerPlayerEnd = game.ObserverPlayer;
+                foreach (var sample in memory) stopped.sampledObserverChanged |= sample.observerPlayer != stopped.observerPlayerStart;
                 stopped.stopReason = reason; stopped.gc0 = GC.CollectionCount(0) - initialGc0;
                 stopped.gc1 = GC.CollectionCount(1) - initialGc1; stopped.gc2 = GC.CollectionCount(2) - initialGc2;
                 stopped.totalFrames = count; stopped.frames = new PerformanceFrame[count]; Array.Copy(frames, stopped.frames, count);
                 stopped.memory = memory.ToArray(); Summarize(stopped);
-                string dir = Path.Combine(Application.persistentDataPath, "PerformanceCaptures"); Directory.CreateDirectory(dir);
+                string dir = Path.Combine(Path.GetDirectoryName(game.CaptureDirectory), "PerformanceCaptures"); Directory.CreateDirectory(dir);
                 string path = Path.Combine(dir, "Frontier-Performance-" + DateTime.UtcNow.ToString("yyyyMMdd-HHmmss-fff") + "-" + Guid.NewGuid().ToString("N") + ".json");
                 File.WriteAllText(path + ".partial", JsonUtility.ToJson(stopped, false)); File.Move(path + ".partial", path);
                 LastReportPath = path; Debug.Log("FRONTIER_PERFORMANCE_CAPTURE_SAVED " + path);

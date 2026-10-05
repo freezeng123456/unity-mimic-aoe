@@ -25,6 +25,7 @@ namespace Frontier
         public static bool Treasure(EntityState e)=>e!=null&&e.def.id.StartsWith("treasure_");
         private void InitializeLandmarks()
         {
+            if(HasScenario){InitializeScenarioLandmarks();return;}
             var rules=Rules.landmarks;if(rules==null)return;
             foreach(var socket in rules.sockets)
             {

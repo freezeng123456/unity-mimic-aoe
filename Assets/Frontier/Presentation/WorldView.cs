@@ -16,6 +16,8 @@ namespace Frontier
         private readonly List<LineRenderer> rallyFlags=new List<LineRenderer>();
         private readonly List<PulseVisual> pulses=new List<PulseVisual>();
         private Texture2D fogTexture;
+        private Mesh flatFogMesh;
+        private ProceduralMeshLifetime fogMeshOwner;
         public Texture2D Minimap { get; private set; }
         private Color32[] fogPixels=new Color32[128*128],mapPixels=new Color32[128*128];
         private float nextFog;
@@ -53,6 +55,7 @@ namespace Frontier
             fogTexture=new Texture2D(128,128,TextureFormat.RGBA32,false);fogTexture.filterMode=FilterMode.Bilinear;fogTexture.wrapMode=TextureWrapMode.Clamp;
             Minimap=new Texture2D(128,128,TextureFormat.RGBA32,false);Minimap.filterMode=FilterMode.Point;
             var fog=GameObject.CreatePrimitive(PrimitiveType.Quad);fog.name="Three-state visibility surface";fog.transform.SetParent(terrain,false);fog.transform.position=new Vector3(64,.08f,64);fog.transform.rotation=Quaternion.Euler(90,0,0);fog.transform.localScale=new Vector3(128,128,1);Destroy(fog.GetComponent<Collider>());
+            flatFogMesh=fog.GetComponent<MeshFilter>().sharedMesh;fogMeshOwner=fog.AddComponent<ProceduralMeshLifetime>();
             fogMaterial=new Material(Shader.Find("Frontier/Fog"));fogMaterial.mainTexture=fogTexture;fog.GetComponent<Renderer>().sharedMaterial=fogMaterial;
             lineMaterial=new Material(Shader.Find("Universal Render Pipeline/Unlit"));lineMaterial.color=Color.white;
             preview=NewLine("Building footprint",.12f);preview.loop=true;preview.positionCount=4;preview.gameObject.SetActive(false);
@@ -77,8 +80,9 @@ namespace Frontier
             if(riverTerrain!=null)Destroy(riverTerrain.gameObject);
             // Curved maps own a bank-height terrain mesh; the legacy maps keep
             // their original ground. Never place a flat plane over a carved bank.
-            terrain.Find("Ground").GetComponent<MeshRenderer>().enabled=game.World==null||!game.World.Layout.HasWater||game.World.MapId==MapTopology.River;
+            terrain.Find("Ground").GetComponent<MeshRenderer>().enabled=game.World==null||!game.World.Layout.HasScenario&&(!game.World.Layout.HasWater||game.World.MapId==MapTopology.River);
             riverTerrain=WaterPresentation.BuildTerrain(terrain,game.World);
+            ResetScenarioFog();
             AddBridgeFog();
             foreach(var line in projectiles)line.gameObject.SetActive(false);
             foreach(var line in rallyFlags)line.gameObject.SetActive(false);
@@ -89,7 +93,7 @@ namespace Frontier
             {
                 var footprint=GridNavigation.BlockedFootprint(new Vector2(r.x,r.y),r.z);
                 var rock=new GameObject("Navigation outcrop");rock.transform.SetParent(terrain,false);
-                rock.transform.localPosition=new Vector3(footprint.center.x,0,footprint.center.y);
+                rock.transform.localPosition=new Vector3(footprint.center.x,game.World.SurfaceHeight(footprint.center),footprint.center.y);
                 var mesh=OutcropArt.CreateMesh(footprint.width*.5f,rocks.Count);outcropMeshes.Add(mesh);
                 rock.AddComponent<MeshFilter>().sharedMesh=mesh;
                 rock.AddComponent<MeshRenderer>().sharedMaterial=ProceduralArt.Mat(new Color(.38f,.39f,.33f));
@@ -97,6 +101,27 @@ namespace Frontier
             }
         }
         private Transform riverTerrain;
+        private void ResetScenarioFog()
+        {
+            var fog=terrain.Find("Three-state visibility surface");
+            if(fogMeshOwner.OwnedMesh!=null)Destroy(fogMeshOwner.OwnedMesh);fogMeshOwner.OwnedMesh=null;
+            if(game.World?.Layout.HasScenario!=true)
+            {
+                fog.GetComponent<MeshFilter>().sharedMesh=flatFogMesh;
+                fog.localPosition=new Vector3(64,.08f,64);fog.localRotation=Quaternion.Euler(90,0,0);fog.localScale=new Vector3(128,128,1);return;
+            }
+            var layout=game.World.Layout;const int size=129;var vertices=new Vector3[size*size];var uv=new Vector2[vertices.Length];var triangles=new int[128*128*6];
+            for(int z=0;z<size;z++)for(int x=0;x<size;x++)
+            {
+                var p=new Vector2(x,z);float height=layout.BankHeight(p);if(layout.IsWater(p))height=Mathf.Max(height,layout.WaterHeight);
+                int i=x+z*size;vertices[i]=new Vector3(x,height+.08f,z);uv[i]=p/128;
+                if(x==128||z==128)continue;int at=(x+z*128)*6,a=i,b=i+size,c=b+1,d=a+1;
+                triangles[at]=a;triangles[at+1]=b;triangles[at+2]=c;triangles[at+3]=a;triangles[at+4]=c;triangles[at+5]=d;
+            }
+            var mesh=new Mesh{name="Scenario conforming visibility",indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};mesh.vertices=vertices;mesh.uv=uv;mesh.triangles=triangles;mesh.RecalculateBounds();
+            fog.localPosition=Vector3.zero;fog.localRotation=Quaternion.identity;fog.localScale=Vector3.one;
+            fog.GetComponent<MeshFilter>().sharedMesh=mesh;fogMeshOwner.OwnedMesh=mesh;
+        }
         private void ClearOutcrops()
         {
             foreach(var mesh in outcropMeshes)if(mesh!=null)Destroy(mesh);outcropMeshes.Clear();
@@ -136,7 +161,7 @@ namespace Frontier
             for(int i=1;i<route.Length;i++)
             {
                 var start=route[i-1];var end=route[i];var direction=(end-start).normalized;var side=new Vector2(-direction.y,direction.x)*.6f;
-                int pieces=game.World.Layout.HasWater?Mathf.CeilToInt(Vector2.Distance(start,end)*2):1;
+                int pieces=game.World.Layout.HasWater||game.World.Layout.HasScenario?Mathf.CeilToInt(Vector2.Distance(start,end)*2):1;
                 for(int piece=0;piece<pieces;piece++)
                 {
                     var a=Vector2.Lerp(start,end,piece/(float)pieces);var b=Vector2.Lerp(start,end,(piece+1)/(float)pieces);
@@ -330,6 +355,11 @@ namespace Frontier
                 var visibility=world.Fog.At(game.ObserverPlayer,new Vector2(x,y));int i=y*128+x;
                 fogPixels[i]=new Color32(12,21,25,(byte)(visibility==VisibilityState.Visible?0:visibility==VisibilityState.Explored?170:252));
                 mapPixels[i]=visibility==VisibilityState.Unexplored?new Color32(12,22,27,255):world.IsWater(new Vector2(x,y))?(world.IsBridge(new Vector2(x,y))?new Color32(133,111,73,255):visibility==VisibilityState.Explored?new Color32(26,55,64,255):new Color32(45,106,127,255)):visibility==VisibilityState.Explored?new Color32(44,53,43,255):new Color32(87,103,57,255);
+                if(world.Layout.HasScenario&&visibility!=VisibilityState.Unexplored&&!world.IsWater(new Vector2(x,y)))
+                {
+                    int surface=world.Layout.SurfaceKind(new Vector2(x,y));Color color=surface==1?new Color32(166,148,98,255):surface==2?new Color32(99,82,59,255):surface==3?new Color32(108,115,116,255):new Color32(87,103,57,255);
+                    if(visibility==VisibilityState.Explored)color*=.5f;color.a=1;mapPixels[i]=color;
+                }
                 if(game.Options.highContrastMinimap&&visibility!=VisibilityState.Unexplored)mapPixels[i]=world.IsWater(new Vector2(x,y))?new Color32(8,35,53,255):new Color32(24,32,23,255);
             }
             foreach(var e in world.Entities)

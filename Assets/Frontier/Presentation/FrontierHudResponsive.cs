@@ -76,6 +76,7 @@ namespace Frontier
         }
         void LayoutMenu()
         {
+            if(game.ScenarioEditorOpen&&menuPanel.name=="Scenario workshop"){LayoutScenarioEditor069();return;}
             var size=CanvasSize;
             var config=menuPanel.Find("Skirmish configuration") as RectTransform;if(config==null)return;
             float scale=Mathf.Min(1,(size.y-80)/710);config.localScale=Vector3.one*scale;Position(config,size.x-510*scale-35,40,510,710);

@@ -49,11 +49,13 @@ namespace Frontier
             bool visibility=!ArraysEqual(previous.world.visibility,globals.visibility),terrain=!ArraysEqual(previous.world.terrainObstacles,globals.terrainObstacles);
             if(!land)globals.landNavigation=null;if(!water)globals.waterNavigation=null;
             if(!visibility)globals.visibility=Array.Empty<int>();if(!terrain)globals.terrainObstacles=Array.Empty<Vector3>();
+            if(previous.world.hasScenarioDocument!=next.world.hasScenarioDocument||previous.world.scenarioHash!=next.world.scenarioHash)throw new InvalidOperationException("Scenario identity changed during the match");
+            globals.scenarioDocument=null;
             var tail=new SimEvent[(int)(next.eventCursor-previous.eventCursor)];
             for(int i=0;i<tail.Length;i++)tail[i]=ReplayEventCopy.Copy(events[(int)previous.eventCursor+i]);
             return new LanStateDelta{matchId=next.matchId,epoch=next.epoch,baseRevision=previous.revision,revision=next.revision,completedStep=next.completedStep,
                 eventStart=previous.eventCursor,eventCursor=next.eventCursor,digest=next.digest,globals=globals,changed=changed.ToArray(),removed=removed.ToArray(),entityOrder=order,
-                hasLandNavigation=land,hasWaterNavigation=water,hasVisibility=visibility,hasTerrain=terrain,events=tail,queues=CopyQueues(next.queues)};
+                hasLandNavigation=land,hasWaterNavigation=water,hasVisibility=visibility,hasTerrain=terrain,hasScenarioDocument=false,events=tail,queues=CopyQueues(next.queues)};
         }
         static bool ArraysEqual<T>(T[] a,T[] b)
         {if(a==null||b==null||a.Length!=b.Length)return false;for(int i=0;i<a.Length;i++)if(!EqualityComparer<T>.Default.Equals(a[i],b[i]))return false;return true;}
@@ -106,6 +108,8 @@ namespace Frontier
                 if(!delta.hasWaterNavigation)next.waterNavigation=baseline.waterNavigation;
                 if(!delta.hasVisibility)next.visibility=baseline.visibility;
                 if(!delta.hasTerrain)next.terrainObstacles=baseline.terrainObstacles;
+                if(delta.hasScenarioDocument||next.hasScenarioDocument!=baseline.hasScenarioDocument||next.scenarioHash!=baseline.scenarioHash)throw new ArgumentException("Network scenario identity changed");
+                next.scenarioDocument=baseline.scenarioDocument;
                 LanProjection.Validate(rules,next);
                 LanQueueIndex.Validate(next,delta.queues);
                 if(LanProjection.Digest(next,delta.queues)!=delta.digest)throw new ArgumentException("Network delta digest mismatch");
