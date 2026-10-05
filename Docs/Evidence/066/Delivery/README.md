@@ -13,3 +13,5 @@
 - [首轮失败验包](PackagingAttempt1/package-contents-verification.json)：clientReceiptBinaryFileAndBytesMatch、gallery appIdentityAndTestEvidenceAvailable失败；[首轮源码清单](PackagingAttempt1/Frontier-Reckoning-0.9.0-source.manifest.json)保留。旧失败ZIP原件仍在输出PackagingAttempt1，未替换成成功回执或宣称为云端最终载荷。
 
 本目录是e754源码ZIP冻结后新增的外层文档，不在原源码ZIP中。六载荷为三ZIP、release-manifest、验包JSON和客户端指南；第七份是cloud-upload-readback。cloud-delivery-final及本目录其他文件不是新增云端对象。下载入口、最终包身份和当前GitHub边界见[Delivery-066](../../../Delivery-066.md)。
+
+根任务随后新增[GitHub交付读回](github-delivery-readback.json)：首轮提交`72f84c8`与远端一致，标题/描述及私有draft状态均通过；该原字节副本为557 bytes，SHA `f3e674a1e8941c3eab487a5b3252083339c1df744b1855d2b22ddf5ecd5d0ec4`。它不在最初13份副本的archive-receipt范围中，后续仅追加包外文档，最末提交以PR当前head为准。

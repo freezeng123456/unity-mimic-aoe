@@ -1,6 +1,6 @@
 # 0.9.0 交付与核验（066）
 
-三个最终ZIP已通过本地内容核验，六份载荷和第七份上传回执均已上传；本次云端名称、大小、父目录、`shared=false`与仅所有者权限元数据读回通过。**远端SHA-256及下载后的字节一致性未验证；GitHub最终推送与PR更新仍由主任务随后完成。** 私有仓库和draft PR保留，没有公开发布或合并结论。
+三个最终ZIP已通过本地内容核验，六份载荷和第七份上传回执均已上传；本次云端名称、大小、父目录、`shared=false`与仅所有者权限元数据读回通过。**远端SHA-256及下载后的字节一致性未验证；私有开发分支推送与草稿PR说明读回已通过。** 私有仓库和draft PR保留，没有公开发布或合并结论。
 
 下载入口：[私有0.9交付目录](https://drive.google.com/drive/folders/1wzczmUUktYSDSn92KuwpUQ4dZkIK-h-3)。下列大小和SHA属于本地最终ZIP，不是远端内容校验结果。
 
@@ -37,4 +37,4 @@
 
 [首轮验包失败](Evidence/066/Delivery/PackagingAttempt1/package-contents-verification.json)原样保留：客户端身份的文件/字节检查及图集应用身份/测试证据检查失败。首轮源码清单亦保留，旧失败ZIP原件仍在输出PackagingAttempt1；它们不是云端最终三包。只引用后来八部分全部Passed的最终回执，不抹去失败历史。
 
-[推送前GitHub观察](Evidence/066/Delivery/github-before-final-push.json)记录私有仓库、[PR #1](https://github.com/freezeng123456/unity-mimic-aoe/pull/1)仍open/draft且未合并。本页冻结时最终推送和PR说明更新仍待主任务完成，不能把本地e754快照或Drive上传当成GitHub已更新。没有Git提交、推送、PR修改、构建、UI或重新打包由本次文档归档执行。
+[推送前GitHub观察](Evidence/066/Delivery/github-before-final-push.json)保留历史状态。[交付后的远端回执](Evidence/066/Delivery/github-delivery-readback.json)确认私有仓库、[PR #1](https://github.com/freezeng123456/unity-mimic-aoe/pull/1)为open/draft、未合并，首轮交付提交`72f84c86ecf11719dd67cb478bd2863fbf9101fb`与本地一致，标题和完整描述读回通过。该回执先于本页的收尾文档提交，后续仅追加包外文档，最末文档提交以PR当前head为准。运行指纹及已上传三ZIP未变，没有合并或公开发布。

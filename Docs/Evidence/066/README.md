@@ -1,6 +1,6 @@
 # 066 · 0.9.0 批次3证据索引
 
-本批实现本地四槽团队/FFA、七个中文课程、三章原创河流战役与持久设置/可访问性。完整自动化与代表性原生操作已通过；最终三包本地核验和六载荷/第七回执上传、云端元数据读回已通过；远端SHA/下载字节一致性未验证，GitHub最终推送/PR更新仍待，本版性能未采样。实现不是完整商业内容对等性。
+本批实现本地四槽团队/FFA、七个中文课程、三章原创河流战役与持久设置/可访问性。完整自动化与代表性原生操作已通过；最终三包本地核验和六载荷/第七回执上传、云端元数据读回已通过；远端SHA/下载字节一致性未验证，私有分支推送及草稿PR说明读回已通过，本版性能未采样。实现不是完整商业内容对等性。
 
 ## 统一身份
 
@@ -37,4 +37,4 @@ session01/04/05/06退出0，02/03为显式SIGTERM退出143以建立冷恢复条�
 
 [Delivery归档](Delivery/README.md)逐字节保存最终release manifest、435753字节/8部分全Passed的验包回执、六载荷cloud-upload-readback、第七回执的cloud-delivery-final、upload-inputs、辅助脚本、客户端指南和首轮失败回执。三ZIP以e754源码/文档快照冻结，运行代码c974/573输入/66cf指纹不变；上传后未重建，后来包外文档不在原源码ZIP中。具体下载、大小和本地SHA见[Delivery-066](../../Delivery-066.md)。
 
-七对象的名称、大小、父目录、shared=false与owner-only元数据核验通过，远端内容SHA/下载字节一致性未验证。最终GitHub推送/PR更新仍待主任务，私有draft保留；Drive上传不等于GitHub已更新。首轮失败未删除或改称最终通过。Completion-Status-066分包前快照、Native/Tests/Diagnostics及065历史保持原字节/身份，本版性能仍未采样。
+七对象的名称、大小、父目录、shared=false与owner-only元数据核验通过，远端内容SHA/下载字节一致性未验证。私有分支推送及草稿PR说明读回已通过，见[首轮远端回执](Delivery/github-delivery-readback.json)。回执绑定72f84c8，后续仅追加包外文档，最末提交以PR当前head为准。首轮失败未删除或改称最终通过。Completion-Status-066分包前快照、Native/Tests/Diagnostics及065历史保持原字节/身份，本版性能仍未采样。

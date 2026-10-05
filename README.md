@@ -12,7 +12,7 @@
 
 0.9操作见[玩家指南](Docs/Player-Guide-066.md)。初次可从 **GUIDED LESSONS** 学习；**RIVER CAMPAIGN** 进入原创三章，完成记录用于解锁后续章节；**SETTINGS** 调整音频、可访问性和改键。原生已通过设置冷恢复、单课槽3恢复后实际完成及账号徽记再冷恢复、2v2曲河冷恢复/投降后盟友继续，以及四国FFA开局；[原生回执](Docs/Evidence/066/Native/README.md)记录范围。全部课程/战役或四人终局没有被宣称通过；下载入口及三包本地SHA见[0.9交付说明](Docs/Delivery-066.md)；云端已完成元数据核验，远端内容校验未完成。
 
-当前[0.9私有交付目录](https://drive.google.com/drive/folders/1wzczmUUktYSDSn92KuwpUQ4dZkIK-h-3)提供源码、macOS客户端和原生图集；源码快照为`e75407c78522374ed7e327a1ed1727212d27ffd3`，运行代码仍为上述c974，上传后三ZIP未重建。包外回执见[Delivery-066](Docs/Delivery-066.md)，GitHub最终推送/PR更新仍待主任务完成，私有draft保留。
+当前[0.9私有交付目录](https://drive.google.com/drive/folders/1wzczmUUktYSDSn92KuwpUQ4dZkIK-h-3)提供源码、macOS客户端和原生图集；源码快照为`e75407c78522374ed7e327a1ed1727212d27ffd3`，运行代码仍为上述c974，上传后三ZIP未重建。包外回执见[Delivery-066](Docs/Delivery-066.md)，私有开发分支推送及草稿PR说明读回已通过；[远端回执](Docs/Evidence/066/Delivery/github-delivery-readback.json)绑定首轮交付提交`72f84c8`，后续仅追加包外文档，最末提交以PR当前head为准。
 
 历史客户端下载和核验见[0.7交付索引](Docs/Delivery-064.md)与[0.8交付说明](Docs/Delivery-065.md)所列包外回执。0.7客户端只有六张固定地图；当前源码菜单有九图循环、**MAP, SEED & OBJECTIVES** 和本地槽位配置，不能用历史客户端演示新增0.9功能。
 
