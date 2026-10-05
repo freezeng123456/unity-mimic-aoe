@@ -41,7 +41,7 @@ namespace Frontier
         }
         public void OnEvent(SimEvent ev)
         {
-            if(game==null||ev==null||EffectiveSfxVolume<=0||game.World==null||game.World.Paused)return;
+            if(game==null||ev==null||EffectiveSfxVolume<=0||game.World==null||game.IsPaused)return;
             SoundCategory category;
             NoticeCue noticeCue=NoticeCue.None;
             if(ev.kind=="Fire")
@@ -53,10 +53,10 @@ namespace Frontier
             else if(NoticeSoundClips.TryClassify(ev.kind,out noticeCue))category=SoundCategory.Notice;
             else return;
             bool notice=category==SoundCategory.Notice;
-            if(notice){if(ev.player!=0)return;}
+            if(notice){if(ev.player!=game.ObserverPlayer)return;}
             else
             {
-                if(!CombatFeedback.CanDisplay(game.World,0,ev)||game.World.Time-ev.time>.4f)return;
+                if(!CombatFeedback.CanDisplay(game.World,game.ObserverPlayer,ev)||game.World.Time-ev.time>.4f)return;
                 var camera=game.GameCamera.transform.position;
                 if(Vector2.Distance(new Vector2(camera.x,camera.z),ev.position)>65)return;
             }
@@ -85,14 +85,14 @@ namespace Frontier
             // visibility or the viewport; a later reveal cannot resume it.
             foreach(var channel in channels)if(channel.activity&&channel.actor!=0)
             {
-                if(game.World==null||EffectiveSfxVolume<=0||game.World.Paused||game.World.Winner>=0||!UnitActivityAudio.OnScreen(game,game.World.Get(channel.actor),out _))
+                if(game.World==null||EffectiveSfxVolume<=0||game.IsPaused||game.World.Winner>=0||!UnitActivityAudio.OnScreen(game,game.World.Get(channel.actor),out _))
                 {channel.source.Stop();channel.actor=0;channel.until=0;}
             }
             activity.Tick(game,this);
         }
         public bool TryPlayActivity(EntityState actor,SoundCategory category)
         {
-            if(game==null||game.World==null||EffectiveSfxVolume<=0||game.World.Paused||game.World.Winner>=0||category<SoundCategory.Footstep
+            if(game==null||game.World==null||EffectiveSfxVolume<=0||game.IsPaused||game.World.Winner>=0||category<SoundCategory.Footstep
                 ||!UnitActivityAudio.OnScreen(game,actor,out var screen))return false;
             float now=Time.unscaledTime;if(now-lastActivity<.085f)return false;
             Channel chosen=null;foreach(var channel in channels)if(channel.activity&&now>=channel.until){chosen=channel;break;}

@@ -61,7 +61,7 @@ namespace Frontier
         }
         public void ResetWorld()
         {
-            combatFeedback.Bind(game.World,0,effectsRoot);animationEventCursor=game.World?.Events.Count??0;
+            combatFeedback.Bind(game.World,game.ObserverPlayer,effectsRoot);animationEventCursor=game.World?.Events.Count??0;
             foreach(var visual in visuals.Values)Release(visual);visuals.Clear();
             // Building variants are tied to a match's civilizations and ages.
             // Do not retain whole previous towns when switching civilizations.
@@ -179,7 +179,7 @@ namespace Frontier
             }
             v.root.gameObject.SetActive(true);v.root.name="Entity "+entity.id;v.root.position=EntityPosition(entity);v.model.localScale=Vector3.one;v.model.localPosition=Vector3.zero;
             v.firedAt=v.hurtAt=v.deathAt=-1000;v.pickReady=false;v.pickRootPosition=v.root.position;v.poseSeen=false;v.nextOffscreenPose=0;v.ringTintReady=false;v.healthFraction=-1;v.facing=entity.facing.sqrMagnitude>.001f?Quaternion.LookRotation(new Vector3(entity.facing.x,0,entity.facing.y)):Quaternion.identity;if(entity.def.id=="dock"){var direction=game.World.DockWaterDirection(entity.position);v.facing=Quaternion.Euler(0,-Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg,0);}
-            if(v.roleMarker!=null)TintLine(v.roleMarker,game.World.AreAllies(0,entity.owner)?new Color(.16f,.78f,.89f):new Color(.98f,.96f,.78f));
+            if(v.roleMarker!=null)TintLine(v.roleMarker,game.World.AreAllies(game.ObserverPlayer,entity.owner)?new Color(.16f,.78f,.89f):new Color(.98f,.96f,.78f));
             v.model.rotation=v.facing;v.rig?.RestoreInitialPose();return v;
         }
         private string VisualKey(EntityState entity)
@@ -206,12 +206,12 @@ namespace Frontier
             var world=game.World;if(game.InMenu||world==null)return;ConsumeAnimationEvents(world);
             foreach(var entity in world.Entities)
             {
-                bool show=entity.Alive&&world.IsVisible(0,entity)&&!(entity.def.id=="trade_socket"&&world.TradingPostAt(entity.id)!=null);
+                bool show=entity.Alive&&world.IsVisible(game.ObserverPlayer,entity)&&!(entity.def.id=="trade_socket"&&world.TradingPostAt(entity.id)!=null);
                 if(!visuals.TryGetValue(entity.id,out var visual))
                 {if(!show)continue;visual=Acquire(entity);visuals.Add(entity.id,visual);}
                 if(!show)
                 {
-                    if(!entity.Alive&&entity.def.kind==EntityKind.Unit&&world.Time-visual.deathAt<.7f&&world.Fog.At(0,entity.position)==VisibilityState.Visible)
+                    if(!entity.Alive&&entity.def.kind==EntityKind.Unit&&world.Time-visual.deathAt<.7f&&world.Fog.At(game.ObserverPlayer,entity.position)==VisibilityState.Visible)
                     {visual.root.gameObject.SetActive(true);visual.circle.gameObject.SetActive(false);visual.health.gameObject.SetActive(false);ApplyPose(visual,entity,world);continue;}
                     if(!entity.Alive){Release(visual);visuals.Remove(entity.id);}else visual.root.gameObject.SetActive(false);
                     continue;
@@ -220,9 +220,9 @@ namespace Frontier
                 if(entity.def.kind==EntityKind.Building&&!MatchesBuildingVariant(visual,entity))
                 {visual.root.gameObject.SetActive(false);Destroy(visual.root.gameObject);visual=Acquire(entity);visuals[entity.id]=visual;}
                 SetActive(visual.root.gameObject,true);var targetPosition=EntityPosition(entity);
-                if(!world.Paused&&!visual.root.position.Equals(targetPosition))visual.root.position=Vector3.Lerp(visual.root.position,targetPosition,.55f);
+                if(!game.IsPaused&&!visual.root.position.Equals(targetPosition))visual.root.position=Vector3.Lerp(visual.root.position,targetPosition,.55f);
                 if((visual.root.position-targetPosition).sqrMagnitude>16)visual.root.position=targetPosition;
-                if(!world.Paused&&world.Time-visual.firedAt>=.22f&&entity.def.kind==EntityKind.Unit&&entity.facing.sqrMagnitude>.01f)visual.facing=Quaternion.Slerp(visual.facing,Quaternion.LookRotation(new Vector3(entity.facing.x,0,entity.facing.y)),.35f);
+                if(!game.IsPaused&&world.Time-visual.firedAt>=.22f&&entity.def.kind==EntityKind.Unit&&entity.facing.sqrMagnitude>.01f)visual.facing=Quaternion.Slerp(visual.facing,Quaternion.LookRotation(new Vector3(entity.facing.x,0,entity.facing.y)),.35f);
                 if(visual.architecture!=null&&visual.constructionStage!=visual.architecture.ConstructionStage(entity.construction))
                 {visual.architecture.SetConstruction(entity.construction);visual.constructionStage=visual.architecture.ConstructionStage(entity.construction);visual.pickReady=false;}
                 // Units use their projected selection radius. Only static building/resource
@@ -237,7 +237,7 @@ namespace Frontier
                 }
                 bool selected=game.Controls.Selected.Contains(entity.id);SetActive(visual.circle.gameObject,selected);
                 if(selected&&(!visual.ringTintReady||visual.ringTintOwner!=entity.owner))
-                {TintLine(visual.circle,world.AreEnemies(0,entity.owner)?new Color(1,.4f,.25f):new Color(.8f,.87f,.4f));visual.ringTintReady=true;visual.ringTintOwner=entity.owner;}
+                {TintLine(visual.circle,world.AreEnemies(game.ObserverPlayer,entity.owner)?new Color(1,.4f,.25f):new Color(.8f,.87f,.4f));visual.ringTintReady=true;visual.ringTintOwner=entity.owner;}
                 if(visual.roleMarker!=null)SetActive(visual.roleMarker.gameObject,game.Options.friendEnemyPatterns&&entity.Alive);
                 float maxHp=world.MaxHp(entity);bool showHealth=selected||entity.hp<maxHp*.97f||!entity.Complete;SetActive(visual.health.gameObject,showHealth);
                 if(showHealth)
@@ -260,7 +260,7 @@ namespace Frontier
             }
             if(Time.unscaledTime>=nextFog){nextFog=Time.unscaledTime+.35f;long fogStarted=System.Diagnostics.Stopwatch.GetTimestamp();UpdateFog(world);LastFogMs=(float)((System.Diagnostics.Stopwatch.GetTimestamp()-fogStarted)*1000.0/System.Diagnostics.Stopwatch.Frequency);}
             UpdateProjectiles(world);UpdateRallyFlags(world);combatFeedback.Tick();UpdatePreview();
-            if(caravan!=null){var p=world.CaravanPosition;caravan.gameObject.SetActive(world.Fog.At(0,p)==VisibilityState.Visible);var delta=new Vector3(p.x,world.SurfaceHeight(p),p.y)-caravan.position;if(delta.sqrMagnitude>.00001f)caravan.rotation=Quaternion.LookRotation(delta);caravan.position=new Vector3(p.x,world.SurfaceHeight(p),p.y);}
+            if(caravan!=null){var p=world.CaravanPosition;caravan.gameObject.SetActive(world.Fog.At(game.ObserverPlayer,p)==VisibilityState.Visible);var delta=new Vector3(p.x,world.SurfaceHeight(p),p.y)-caravan.position;if(delta.sqrMagnitude>.00001f)caravan.rotation=Quaternion.LookRotation(delta);caravan.position=new Vector3(p.x,world.SurfaceHeight(p),p.y);}
             for(int i=pulses.Count-1;i>=0;i--)
             {var pulse=pulses[i];float elapsed=Time.unscaledTime-pulse.time;if(elapsed>1){Destroy(pulse.line.gameObject);pulses.RemoveAt(i);continue;}SetRing(pulse.line,pulse.point,.5f+elapsed*1.3f,pulse.waterborne);}
             LastFrameMs=(float)((System.Diagnostics.Stopwatch.GetTimestamp()-started)*1000.0/System.Diagnostics.Stopwatch.Frequency);
@@ -277,13 +277,13 @@ namespace Frontier
         {
             for(;animationEventCursor<world.Events.Count;animationEventCursor++)
             {
-                var ev=world.Events[animationEventCursor];if((ev.visibilityMask&1)==0)continue;
+                var ev=world.Events[animationEventCursor];if((ev.visibilityMask&(1<<game.ObserverPlayer))==0)continue;
                 if(ev.kind!="Fire"&&ev.kind!="Damage"&&ev.kind!="Death")continue;
                 int id=ev.kind=="Damage"?ev.target:ev.entity;
                 if(!visuals.TryGetValue(id,out var visual))
                 {
                     var entity=world.Get(id);
-                    if(entity==null||entity.def.kind!=EntityKind.Unit||world.Time-ev.time>=.7f||world.Fog.At(0,entity.position)!=VisibilityState.Visible)continue;
+                    if(entity==null||entity.def.kind!=EntityKind.Unit||world.Time-ev.time>=.7f||world.Fog.At(game.ObserverPlayer,entity.position)!=VisibilityState.Visible)continue;
                     visual=Acquire(entity);visuals.Add(id,visual);
                 }
                 if(ev.kind=="Fire"){visual.firedAt=ev.time;if(ev.facing.sqrMagnitude>.001f)visual.facing=Quaternion.LookRotation(new Vector3(ev.facing.x,0,ev.facing.y));}
@@ -297,7 +297,7 @@ namespace Frontier
             foreach(int id in game.Controls.Selected)
             {
                 var building=world.Get(id);
-                if(building==null||!building.Alive||building.owner!=0||building.def.kind!=EntityKind.Building)continue;
+                if(building==null||!building.Alive||building.owner!=game.ObserverPlayer||building.def.kind!=EntityKind.Building)continue;
                 if(rallyFlags.Count<=used)rallyFlags.Add(NewLine("Owned rally intention",.09f));
                 var flag=rallyFlags[used++];flag.gameObject.SetActive(true);flag.positionCount=5;
                 // This is the player's remembered destination, not a query of a
@@ -320,21 +320,21 @@ namespace Frontier
         {
             foreach(var rock in rocks)
             {
-                var point=rock.transform.position;var state=world.Fog.At(0,new Vector2(point.x,point.z));
+                var point=rock.transform.position;var state=world.Fog.At(game.ObserverPlayer,new Vector2(point.x,point.z));
                 rock.SetActive(state!=VisibilityState.Unexplored);
                 terrainTint.SetColor("_BaseColor",state==VisibilityState.Visible?new Color(.38f,.39f,.33f):new Color(.17f,.18f,.15f));
                 rock.GetComponent<Renderer>().SetPropertyBlock(terrainTint);
             }
             for(int y=0;y<128;y++)for(int x=0;x<128;x++)
             {
-                var visibility=world.Fog.At(0,new Vector2(x,y));int i=y*128+x;
+                var visibility=world.Fog.At(game.ObserverPlayer,new Vector2(x,y));int i=y*128+x;
                 fogPixels[i]=new Color32(12,21,25,(byte)(visibility==VisibilityState.Visible?0:visibility==VisibilityState.Explored?170:252));
                 mapPixels[i]=visibility==VisibilityState.Unexplored?new Color32(12,22,27,255):world.IsWater(new Vector2(x,y))?(world.IsBridge(new Vector2(x,y))?new Color32(133,111,73,255):visibility==VisibilityState.Explored?new Color32(26,55,64,255):new Color32(45,106,127,255)):visibility==VisibilityState.Explored?new Color32(44,53,43,255):new Color32(87,103,57,255);
                 if(game.Options.highContrastMinimap&&visibility!=VisibilityState.Unexplored)mapPixels[i]=world.IsWater(new Vector2(x,y))?new Color32(8,35,53,255):new Color32(24,32,23,255);
             }
             foreach(var e in world.Entities)
             {
-                if(!e.Alive||!world.IsVisible(0,e))continue;
+                if(!e.Alive||!world.IsVisible(game.ObserverPlayer,e))continue;
                 int r=e.def.kind==EntityKind.Building?2:1;
                 Color32 c=e.def.kind==EntityKind.Resource?(e.def.resource==ResourceKind.Coin?new Color32(210,188,108,255):new Color32(134,146,72,255)):ProceduralArt.OwnerColor(e.owner);
                 for(int dy=-r;dy<=r;dy++)for(int dx=-r;dx<=r;dx++){int x=Mathf.RoundToInt(e.position.x)+dx,y=Mathf.RoundToInt(e.position.y)+dy;if(x>=0&&x<128&&y>=0&&y<128)mapPixels[y*128+x]=c;}
@@ -348,11 +348,11 @@ namespace Frontier
         {
             int used=0;foreach(var p in world.Projectiles)
             {
-                float t=Mathf.InverseLerp(p.firedAt,p.hitAt,world.Time);var target=world.Get(p.target);Vector2 end=target!=null&&world.IsVisible(0,target)?target.position:p.end;
+                float t=Mathf.InverseLerp(p.firedAt,p.hitAt,world.Time);var target=world.Get(p.target);Vector2 end=target!=null&&world.IsVisible(game.ObserverPlayer,target)?target.position:p.end;
                 var source=world.Get(p.source);
                 Vector3 start=new Vector3(p.start.x,world.SurfaceHeight(p.start,source?.def.waterborne??false)+(source?.def.id=="gunboat"?.83f:1.25f),p.start.y),finish=new Vector3(end.x,world.SurfaceHeight(end,target?.def.waterborne??false)+.8f,end.y);Vector3 pos=Vector3.Lerp(start,finish,t);pos.y+=Mathf.Sin(t*Mathf.PI)*(p.splash>0?1.5f:.15f);
                 Vector3 tail=pos-(finish-start).normalized*(p.splash>0?.65f:.4f);
-                if(world.Fog.At(0,new Vector2(pos.x,pos.z))!=VisibilityState.Visible||world.Fog.At(0,new Vector2(tail.x,tail.z))!=VisibilityState.Visible)continue;
+                if(world.Fog.At(game.ObserverPlayer,new Vector2(pos.x,pos.z))!=VisibilityState.Visible||world.Fog.At(game.ObserverPlayer,new Vector2(tail.x,tail.z))!=VisibilityState.Visible)continue;
                 while(projectiles.Count<=used)projectiles.Add(NewLine("Projectile",.055f));var line=projectiles[used++];line.gameObject.SetActive(true);line.positionCount=2;
                 line.SetPosition(0,pos);line.SetPosition(1,tail);TintLine(line,new Color(1,.83f,.4f));
             }
@@ -360,8 +360,8 @@ namespace Frontier
         }
         private void UpdatePreview()
         {
-            var id=game.Controls.BuildingToPlace;preview.gameObject.SetActive(!string.IsNullOrEmpty(id));previewJetty.gameObject.SetActive(id=="dock");if(string.IsNullOrEmpty(id))return;
-            var d=game.Rules.Entity(id);var p=game.World.BuildPoint(0,id,game.Controls.GroundMouse);bool valid=game.World.CanBuild(0,id,p)=="";
+            var id=game.IsWatching?"":game.Controls.BuildingToPlace;preview.gameObject.SetActive(!string.IsNullOrEmpty(id));previewJetty.gameObject.SetActive(id=="dock");if(string.IsNullOrEmpty(id))return;
+            var d=game.Rules.Entity(id);var p=game.World.BuildPoint(game.ObserverPlayer,id,game.Controls.GroundMouse);bool valid=game.World.CanBuild(game.ObserverPlayer,id,p)=="";
             TintLine(preview,valid?new Color(.5f,1,.35f):new Color(1,.22f,.12f));
             var corners=game.World.BuildingFootprintCorners(d,p);
             for(int i=0;i<4;i++)preview.SetPosition(i,new Vector3(corners[i].x,game.World.SurfaceHeight(corners[i])+.2f,corners[i].y));

@@ -11,7 +11,7 @@ namespace Frontier
 {
     [Serializable] public sealed class CaptureMetadata
     {
-        public int schemaVersion = 3, eventSchemaVersion = SimEvent.CurrentSchemaVersion;
+        public int schemaVersion = 4, eventSchemaVersion = SimEvent.CurrentSchemaVersion;
         public string pngFile, pngSha256, utc, appVersion, buildGuid, unityVersion, matchId, requestMatchId;
         public int requestFrame, captureFrame, width, height, seed;
         public float requestWorldTime, worldTime;
@@ -31,8 +31,11 @@ namespace Frontier
         public CapturePlayer[] players=Array.Empty<CapturePlayer>();
         public string skirmishMode="",guidedId="",guidedStatus="",guidedStage="";
         public PlayerSettings preferences;
+        public int observerPlayer;
+        public CaptureReplay replay;
 
-        // Detached player-owned state; this does not refresh UI or inspect enemy information.
+        // Detached observer-owned state; this does not refresh UI or inspect
+        // another player's production, units or unseen neutral information.
         public static CaptureMetadata Read(GameController game)
         {
             var w = game.World;
@@ -46,6 +49,7 @@ namespace Frontier
                 hudResources = game.Hud.ResourceSummary, hudUpdatedFrame = game.Hud.ResourceSummaryFrame,
                 hudWorldTime = game.Hud.ResourceSummaryTime, hudMatchId = game.Hud.ResourceSummaryMatchId,
                 skirmishMode=game.SkirmishMode,preferences=game.Settings.Current,
+                observerPlayer=game.ObserverPlayer,replay=CaptureReplay.Read(game),
                 guidedId=game.Guided?.Definition.Id??"",guidedStatus=game.Guided?.Status.ToString()??"",guidedStage=game.Guided?.Stage?.Title??"",
                 camera = new CaptureCamera
                 {
@@ -62,12 +66,13 @@ namespace Frontier
             result.aiDecisionSeconds=game.Simulation?.Difficulty.DecisionSeconds??0;
             result.aiArmySeconds=game.Simulation?.Difficulty.ArmySeconds??0;
             result.players=new CapturePlayer[w.Players.Length];for(int i=0;i<w.Players.Length;i++){var p=w.Players[i];result.players[i]=new CapturePlayer{slot=i,team=p.team,civilization=p.civilization,resigned=p.resigned,eliminated=p.eliminated,winner=w.IsPlayerWinner(i)};}
-            result.hasPlayer = true; result.resources = w.Players[0].resources;
-            result.population = PopulationSnapshot.From(w.Players[0]);
+            int observer=game.ObserverPlayer;
+            result.hasPlayer = true; result.resources = w.Players[observer].resources;
+            result.population = PopulationSnapshot.From(w.Players[observer]);
             var buildings = new List<CaptureProduction>();
             foreach (var e in w.Entities)
             {
-                if (!e.Alive || e.owner != 0 || e.def.kind != EntityKind.Building) continue;
+                if (!e.Alive || e.owner != observer || e.def.kind != EntityKind.Building) continue;
                 var b = new CaptureProduction
                 {
                     entity = e.id, definition = e.def.id, position = e.position, hp = e.hp,
@@ -83,10 +88,48 @@ namespace Frontier
                 buildings.Add(b);
             }
             result.production = buildings.ToArray();
-            var units=new List<CaptureUnit>();foreach(var unit in w.Entities)if(unit.Alive&&unit.owner==0&&unit.def.kind==EntityKind.Unit)
+            var units=new List<CaptureUnit>();foreach(var unit in w.Entities)if(unit.Alive&&unit.owner==observer&&unit.def.kind==EntityKind.Unit)
             {var order=unit.orders.Count>0?unit.orders.Peek():null;units.Add(new CaptureUnit{entity=unit.id,definition=unit.def.id,status=unit.status,position=unit.position,hp=unit.hp,garrisonedIn=unit.garrisonedIn,cargo=unit.occupants.ToArray(),load=unit.def.transportShip?w.TransportLoad(unit):0,capacity=unit.def.transportCapacity,order=order?.kind.ToString()??"",target=order?.target??0,destination=order?.point??unit.position});}result.units=units.ToArray();
-            var neutral=new List<CaptureNeutralService>();foreach(var state in w.NeutralAllies)if(w.IsVisible(0,w.Get(state.site)))
-            {var job=state.owner==0&&state.jobs.Count>0?state.jobs[0]:null;neutral.Add(new CaptureNeutralService{id=state.id,site=state.site,owner=state.owner,claimant=state.claimant,contested=state.contested,claimProgress=state.claimant==0?state.claimProgress:0,service=job?.kind??"",item=job?.item??"",elapsed=job?.elapsed??0,duration=job?.duration??0});}result.neutralServices=neutral.ToArray();
+            var neutral=new List<CaptureNeutralService>();foreach(var state in w.NeutralAllies)if(w.IsVisible(observer,w.Get(state.site)))
+            {var job=state.owner==observer&&state.jobs.Count>0?state.jobs[0]:null;neutral.Add(new CaptureNeutralService{id=state.id,site=state.site,owner=state.owner,claimant=state.claimant,contested=state.contested,claimProgress=state.claimant==observer?state.claimProgress:0,service=job?.kind??"",item=job?.item??"",elapsed=job?.elapsed??0,duration=job?.duration??0});}result.neutralServices=neutral.ToArray();
+            return result;
+        }
+    }
+    [Serializable] public sealed class CaptureReplay
+    {
+        public bool watching,recording,seek,paused,worldPaused,verified,incomplete;
+        public string segment="",file="",lastSavedFile="",error="",incompleteReason="",fileError="",libraryError="";
+        public int startStep,endStep,currentStep,observerPlayer;
+        public float speed=1;
+        public ReplayIdentity identity;
+        public static CaptureReplay Read(GameController game)
+        {
+            var playback=game.Playback;var recorder=game.Recorder;
+            var result=new CaptureReplay
+            {
+                watching=game.IsWatching,recording=recorder?.IsRecording??false,
+                paused=game.IsPaused,worldPaused=game.World?.Paused??false,
+                currentStep=game.Simulation?.StepCount??0,observerPlayer=game.ObserverPlayer,
+                speed=game.IsWatching?game.ReplaySpeed:game.Autoplay?game.SimulationSpeed:1,
+                fileError=game.ReplayFileError,libraryError=game.ReplayLibraryError,lastSavedFile=game.LastReplayFile,
+                identity=game.CurrentReplayIdentity()
+            };
+            if(playback!=null)
+            {
+                result.segment=game.WatchingDocument.segmentId;result.file=game.ReplayFile;
+                result.startStep=playback.StartStep;result.endStep=playback.EndStep;result.currentStep=playback.CurrentStep;
+                result.seek=playback.IsSeeking;result.verified=playback.Verified;result.error=playback.Error;
+                result.incomplete=game.WatchingDocument.incomplete;result.incompleteReason=game.WatchingDocument.incompleteReason;
+            }
+            else if(recorder!=null)
+            {
+                result.segment=recorder.SegmentId;result.startStep=recorder.StartStep;result.endStep=recorder.RecordedEndStep;
+                result.error=recorder.Error;result.incomplete=!string.IsNullOrEmpty(recorder.Error);result.incompleteReason=recorder.Error;
+                // A previous match's saved path must not be associated with a
+                // fresh recorder. Only a successful save of this segment counts.
+                string candidate=ReplayStore.PathFor(game.ReplayDirectory,recorder.SegmentId);
+                if(game.LastReplayFile==candidate)result.file=game.LastReplayFile;
+            }
             return result;
         }
     }

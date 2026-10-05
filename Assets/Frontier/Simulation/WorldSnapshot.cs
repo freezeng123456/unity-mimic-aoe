@@ -58,11 +58,11 @@ namespace Frontier
     }
     public partial class World
     {
-        public WorldSnapshot CaptureState()
+        public WorldSnapshot CaptureState(bool includeEvents=true)
         {
             var snapshot=new WorldSnapshot{rulesHash=SnapshotCodec.RulesHash(Rules),seed=Seed,maxAge=MaxAge,mapId=MapId,
                 winner=Winner,time=Time,paused=Paused,nextId=nextId,fogAt=fogAt,nextEvacuation=nextEvacuation,
-                players=new PlayerSnapshot[Players.Length],entities=new EntitySnapshot[Entities.Count],events=Events.ToArray(),
+                players=new PlayerSnapshot[Players.Length],entities=new EntitySnapshot[Entities.Count],events=includeEvents?Events.ToArray():Array.Empty<SimEvent>(),
                 projectiles=Projectiles.ToArray(),terrainObstacles=TerrainObstacles.ToArray(),landNavigation=Navigation.CaptureState(),
                 waterNavigation=WaterNavigation.CaptureState(),visibility=Fog.CaptureState(),caravanPosition=CaravanPosition,
                 caravanWaypoint=caravanWaypoint,caravanDirection=caravanDirection,neutralAllies=CaptureNeutralAllies(),mapObjective=CaptureMapObjective()};
@@ -95,7 +95,19 @@ namespace Frontier
         private static int[] Sorted(HashSet<int> set){var list=new List<int>(set);list.Sort();return list.ToArray();}
         public static World Restore(RuleCatalog rules,WorldSnapshot source)
         {
-            ValidateSnapshot(rules,source);var s=SnapshotCodec.Clone(source);
+            ValidateSnapshot(rules,source);return RestoreOwned(rules,SnapshotCodec.Clone(source));
+        }
+        // Replay history already owns plain DTO copies. Clone only the eventless
+        // state projection; repeated JSON serialization of the ledger would make
+        // otherwise sparse seeks grow with the entire match history.
+        internal static World RestoreReplay(RuleCatalog rules,WorldSnapshot projection,SimEvent[] ownedEvents)
+        {
+            ValidateSnapshot(rules,projection);
+            if(projection.events.Length!=0||ownedEvents==null)throw new ArgumentException("Invalid replay projection");
+            var s=SnapshotCodec.Clone(projection);s.events=ownedEvents;return RestoreOwned(rules,s);
+        }
+        static World RestoreOwned(RuleCatalog rules,WorldSnapshot s)
+        {
             if(s.schema==2)
             {
                 for(int i=0;i<2;i++)s.players[i].state.eliminated=s.players[i].state.resigned||s.winner>=0&&s.mapObjective.mode=="elimination"&&i!=s.winner;

@@ -64,6 +64,8 @@ namespace Frontier
             var cameraHelp=gamePanel.Find("Camera help").GetComponent<Text>();
             Position(cameraHelp.rectTransform,width*.61f,78,width*.37f,60);cameraHelp.fontSize=14;
             cameraHelp.text="CAMERA: "+game.Settings.BindingLabel(PlayerAction.CameraLeft)+" / "+game.Settings.BindingLabel(PlayerAction.CameraRight)+" / "+game.Settings.BindingLabel(PlayerAction.CameraUp)+" / "+game.Settings.BindingLabel(PlayerAction.CameraDown)+" or window edge\nMINIMAP: left to view / right to move";
+            if(game.IsWatching)cameraHelp.text="VIEWING CAMERA: arrow keys / window edge\nMINIMAP: left to view · recorded commands are read-only";
+            LayoutReplayHud(width);
             if(guideLabel!=null)
             {
                 float guideWidth=Mathf.Min(710,width*.57f);((RectTransform)guideLabel.transform.parent).sizeDelta=new Vector2(guideWidth,116);guideLabel.rectTransform.sizeDelta=new Vector2(guideWidth-25,96);
@@ -88,7 +90,7 @@ namespace Frontier
                     var label=child.GetComponentInChildren<Text>();string title=label.text;
                     if(title=="LOAD SAVED MATCH")Position(rt,45,474,leftWidth,48);
                     else if(title=="MAP, SEED & OBJECTIVES")Position(rt,45,538,leftWidth,48);
-                    else {Position(rt,45+(expansion%2)*(leftWidth*.5f+5),338+(expansion/2)*65,leftWidth*.5f-5,52);expansion++;}
+                    else {float cell=(leftWidth+10)/3;Position(rt,45+(expansion%3)*cell,338+(expansion/3)*65,cell-10,52);expansion++;}
                     label.resizeTextForBestFit=true;label.resizeTextMinSize=12;label.resizeTextMaxSize=15;
                 }
                 else if(text!=null)

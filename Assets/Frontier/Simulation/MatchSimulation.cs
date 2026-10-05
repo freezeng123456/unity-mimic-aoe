@@ -17,6 +17,8 @@ namespace Frontier
         public float LastFrameMs { get; private set; }
         public bool CatchingUp { get; private set; }
         public event Action StepCompleted;
+        // Observers see a completed boundary after guided stages/raids settle.
+        public event Action StepSettled;
         readonly List<SkirmishAI> controllers=new List<SkirmishAI>();
         float accumulator;
         public MatchSimulation(World world,params int[] automatedPlayers):this(world,automatedPlayers,"standard"){}
@@ -51,7 +53,7 @@ namespace Frontier
         {
             if(World.Paused||World.IsMatchEnded)return false;
             foreach(var controller in controllers)controller.Tick(StepSeconds);
-            World.Tick(StepSeconds);StepCount++;StepCompleted?.Invoke();return true;
+            World.Tick(StepSeconds);StepCount++;StepCompleted?.Invoke();StepSettled?.Invoke();return true;
         }
         // Input is elapsed simulation time (the caller may scale autoplay).
         // Paused time is never banked. Bounded catch-up slows the game under overload.

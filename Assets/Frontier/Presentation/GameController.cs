@@ -20,7 +20,7 @@ namespace Frontier
         public bool MusicEnabled {get=>Options?.musicEnabled??true;set=>ChangePreference(s=>s.musicEnabled=value);}
         public Camera GameCamera { get; private set; }
         public bool InMenu { get; private set; } = true;
-        public bool IsPaused => World != null && World.Paused;
+        public bool IsPaused => IsWatching ? ReplayPaused : World != null && World.Paused;
         public bool PausedForFocusLoss { get; private set; }
         public string Notice = "";
         public string DeckPreset = "economy";
@@ -74,6 +74,7 @@ namespace Frontier
         }
         public bool SaveMatch(int slot)
         {
+            if(IsWatching){Notify("Viewing a recording does not create match checkpoints");return false;}
             if(World==null||Simulation==null||BenchmarkMode){Notify("Start a normal match before saving");return false;}
             try
             {
@@ -95,7 +96,7 @@ namespace Frontier
                 var restored=Frontier.World.Restore(Rules,saved.world);var simulation=MatchSimulation.Restore(restored,saved.simulation);
                 var guided=saved.guided==null?null:GuidedPlaySession.Restore(restored,simulation,saved.guided);
                 // Validate and reconstruct before replacing the current game.
-                if(World!=null)SaveReport("load_exit");Guided?.Dispose();Guided=guided;progressRecordedAttempt="";Settings.Captions.Clear();ClearBenchmark();Audio.ResetMatch();World=restored;Simulation=simulation;MatchId=saved.matchId;
+                if(World!=null)SaveReport("load_exit");Guided?.Dispose();ReleasePlayback();Guided=guided;progressRecordedAttempt="";Settings.Captions.Clear();ClearBenchmark();Audio.ResetMatch();World=restored;Simulation=simulation;MatchId=saved.matchId;
                 PlayerCivilization=World.Players[0].civilization;OpponentCivilization=World.Players[1].civilization;AgeLimit=World.MaxAge;
                 SelectedMap=World.MapId;SelectedObjective=World.MapObjective.mode;MatchSeed=World.Seed;OpponentDifficulty=Simulation.Difficulty.Id;
                 configuredDecks[PlayerCivilization]=new List<string>(World.Players[0].deck);
@@ -103,6 +104,7 @@ namespace Frontier
                 InMenu=false;PausedForFocusLoss=false;audioCursor=World.Events.Count;frameTimes.Clear();nextTelemetry=World.Time+60;LastSimulationFrameMs=0;
                 View.ResetWorld();Controls.ResetSelection();Controls.RestoreCamera(saved.cameraFocus,saved.cameraSize);Controls.RestoreSelection(saved.selection);Controls.RestoreGroups(saved.groups);
                 Controls.ClearTransientInput();Hud.ShowGame();World.Paused=true;Audio.PauseAll(true);Hud.ShowPause(true);
+                BeginRecording("loaded_checkpoint");
                 Notify("Loaded slot "+slot+" · resume when ready");Debug.Log("FRONTIER_LOAD slot="+slot+" match="+MatchId+" time="+World.Time);return true;
             }
             catch(Exception error){Notify("Load failed: "+error.Message);Debug.LogWarning("FRONTIER_LOAD_FAILED "+error.Message);return false;}
@@ -148,7 +150,10 @@ namespace Frontier
             if(Arg("-frontierObjective")!=null)SelectedObjective=Arg("-frontierObjective");
             if(ValidSkirmishMode(Arg("-frontierFormat")))SkirmishMode=Arg("-frontierFormat");
             if(int.TryParse(Arg("-frontierMaxAge"),out int ages))AgeLimit=Mathf.Clamp(ages,1,Rules.ages.Length);
-            if(Array.IndexOf(args,"-frontierAutoplay")>=0) {Autoplay=true;int index=Array.IndexOf(args,"-frontierAutoSpeed");if(index>=0&&index+1<args.Length&&float.TryParse(args[index+1],out float speed))SimulationSpeed=Mathf.Clamp(speed,1,16);StartMatch();}
+            if(Arg("-frontierReplayDirectory")!=null)replayDirectoryOverride=Path.GetFullPath(Arg("-frontierReplayDirectory"));
+            if(Arg("-frontierReportDirectory")!=null)reportDirectoryOverride=Path.GetFullPath(Arg("-frontierReportDirectory"));
+            if(Arg("-frontierReplay")!=null){Hud.ShowMenu();OpenReplayAsync(Path.GetFullPath(Arg("-frontierReplay")));}
+            else if(Array.IndexOf(args,"-frontierAutoplay")>=0) {Autoplay=true;int index=Array.IndexOf(args,"-frontierAutoSpeed");if(index>=0&&index+1<args.Length&&float.TryParse(args[index+1],out float speed))SimulationSpeed=Mathf.Clamp(speed,1,16);StartMatch();}
             else if(GuidedPlayCatalog.Find(Arg("-frontierLesson"))!=null)StartGuided(Arg("-frontierLesson"));
             else Hud.ShowMenu();
             int benchmarkIndex=Array.IndexOf(args,"-frontierBenchmark");
@@ -168,7 +173,7 @@ namespace Frontier
             // A menu restart ends an already running diagnostic fixture. The CLI
             // creates its fixture after StartMatch, so its initial mode is retained.
             if(GetComponent<RuntimeBenchmark>()!=null)ClearBenchmark();
-            if(World!=null)SaveReport("restart_exit");Guided?.Dispose();Guided=null;progressRecordedAttempt="";Settings.Captions.Clear();
+            if(World!=null)SaveReport("restart_exit");Guided?.Dispose();ReleasePlayback();Guided=null;progressRecordedAttempt="";Settings.Captions.Clear();
             PausedForFocusLoss=false;audioCursor=0;frameTimes.Clear();nextTelemetry=0;Audio.ResetMatch();
             World=new World(Rules,MatchSeed,RosterCivilizations(),RosterTeams(),AgeLimit,SelectedMap);
             var objective=World.ConfigureMapObjective(SelectedObjective);
@@ -179,6 +184,7 @@ namespace Frontier
             InMenu=false;Notice="Explore, gather, build. Earn XP and choose a shipment with H.";noticeUntil=12;
             View.ResetWorld();Controls.ResetSelection();Controls.Focus(World.OpeningTownPosition(0));
             Hud.ShowGame();
+            BeginRecording(Autoplay?"autoplay":"normal");
         }
         private void SetDeck(int player,string preset)
         {
@@ -189,7 +195,8 @@ namespace Frontier
         public CommandResult Command(GameCommand c)
         {
             if(InMenu||World==null)return CommandResult.Fail("No active match");
-            var r=Guided==null?World.Issue(c):Guided.Issue(c);
+            if(IsWatching)return CommandResult.Fail("Viewing a recording does not issue game orders");
+            var r=Recorder!=null?Recorder.Issue(c):Guided==null?World.Issue(c):Guided.Issue(c);
             Notify(r.reason);if(r.accepted)View.Pulse(c.point,c.target,c.order==OrderKind.Attack||c.order==OrderKind.AttackMove);
             return r;
         }
@@ -202,25 +209,28 @@ namespace Frontier
         }
         public void PauseForFocusLoss()
         {
+            if(IsWatching){if(!ReplayPaused){ReplayPaused=true;Audio.PauseAll(true);Controls.ClearTransientInput();}return;}
             if(InMenu||World==null||World.IsMatchEnded||Guided!=null&&Guided.Status!=GuidedPlayStatus.Running||World.Paused||Autoplay||BenchmarkMode)return;
             SetPaused(true,"focus_lost");
         }
         public void TogglePause()
         {
             if(InMenu||World==null)return;
+            if(IsWatching){ToggleReplayPlayback();Hud.ShowPause(ReplayPaused);return;}
             if(Guided!=null&&Guided.Status!=GuidedPlayStatus.Running){Hud.ShowGuidedResult();return;}
             if(World.IsMatchEnded){Hud.ShowResult();return;}
             SetPaused(!World.Paused,World.Paused?"manual_resume":"manual_pause");
         }
         private void SetPaused(bool paused,string reason)
         {
-            World.Paused=paused;PausedForFocusLoss=paused&&reason=="focus_lost";
+            if(Recorder!=null)Recorder.Pause(paused,reason);
+            else {World.Paused=paused;World.Emit("PauseChanged",0,0,reason,paused?1:0);}
+            PausedForFocusLoss=paused&&reason=="focus_lost";
             // Focus loss invalidates the old device stream. An explicit pause
             // button/ESC transition retains later fresh keyboard edges in FIFO.
             if(reason=="focus_lost")Controls.ClearTransientInput();else Controls.SuppressWorldInput();
             if(paused)Controls.CancelTargetMode();
             Audio.PauseAll(paused);Cursor.lockState=CursorLockMode.None;Cursor.visible=true;
-            World.Emit("PauseChanged",0,0,reason,paused?1:0);
             Debug.LogFormat(LogType.Log,LogOption.NoStacktrace,null,
                 "FRONTIER_PAUSE paused={0} reason={1} world={2:F6} realtime={3:F6} frame={4}",
                 paused,reason,World.Time,Time.realtimeSinceStartupAsDouble,Time.frameCount);
@@ -229,7 +239,7 @@ namespace Frontier
         public void ReturnToMenu()
         {
             if(World!=null)SaveReport("menu_exit");
-            Guided?.Dispose();Guided=null;Settings.Captions.Clear();ClearBenchmark();Audio.ResetMatch();World=null;Simulation=null;InMenu=true;Autoplay=false;SimulationSpeed=1;LastSimulationFrameMs=0;
+            Guided?.Dispose();Guided=null;ReleasePlayback();Recorder?.Dispose();Recorder=null;Settings.Captions.Clear();ClearBenchmark();Audio.ResetMatch();World=null;Simulation=null;InMenu=true;Autoplay=false;SimulationSpeed=1;LastSimulationFrameMs=0;
             MatchId="";
             PausedForFocusLoss=false;Controls.ResetSelection();View.ResetWorld();Hud.ShowMenu();Cursor.lockState=CursorLockMode.None;Cursor.visible=true;
         }
@@ -238,13 +248,14 @@ namespace Frontier
             BenchmarkMode=false;
             foreach(var fixture in GetComponents<RuntimeBenchmark>()){fixture.enabled=false;Destroy(fixture);}
         }
-        public void Resign() {if(InMenu||World==null||World.IsMatchEnded)return;if(IsPaused)SetPaused(false,"resign");Command(new GameCommand{player=0,kind=CommandKind.Resign});}
+        public void Resign() {if(IsWatching||InMenu||World==null||World.IsMatchEnded)return;if(IsPaused)SetPaused(false,"resign");Command(new GameCommand{player=0,kind=CommandKind.Resign});}
         private void Update()
         {
             Settings.Captions.Tick(Time.unscaledTime);
+            PollReplayOperations();
             if(InMenu||World==null)return;
-            ObserveGuidedSelection();
-            if(!World.Paused&&!World.IsMatchEnded)
+            if(IsWatching)AdvanceReplayFrame();else ObserveGuidedSelection();
+            if(!IsWatching&&!World.Paused&&!World.IsMatchEnded)
             {
                 Simulation.AdvanceFrame(Time.unscaledDeltaTime*(Autoplay?SimulationSpeed:1));
                 LastSimulationFrameMs=Simulation.LastFrameMs;
@@ -253,24 +264,30 @@ namespace Frontier
             }
             while(audioCursor<World.Events.Count)
             {
-                var ev=World.Events[audioCursor++];Settings.Captions.OnEvent(World,0,ev);Audio.OnEvent(ev);
-                if(ev.player==0 && (ev.kind=="ShipmentArrived"||ev.kind=="AgeAdvanced"||ev.kind=="ResourceDepleted"||ev.kind=="TreasureClaimed"))Notify(ev.message);
+                var ev=World.Events[audioCursor++];Settings.Captions.OnEvent(World,ObserverPlayer,ev);Audio.OnEvent(ev);
+                if(ev.player==ObserverPlayer && (ev.kind=="ShipmentArrived"||ev.kind=="AgeAdvanced"||ev.kind=="ResourceDepleted"||ev.kind=="TreasureClaimed"))Notify(ev.message);
             }
             Audio.TickActivity();
-            if(Guided!=null)
+            if(!IsWatching&&Guided!=null)
             {
                 if(World.IsMatchEnded&&Guided.Status==GuidedPlayStatus.Running)Guided.Tick();
                 if(Guided.Status!=GuidedPlayStatus.Running&&!Hud.ResultVisible){SaveLearningProgress();SaveReport("guided_finished");Hud.ShowGuidedResult();}
             }
-            else if(World.IsMatchEnded&&!Hud.ResultVisible){SaveReport("match_finished");Hud.ShowResult();}
+            else if(!IsWatching&&World.IsMatchEnded&&!Hud.ResultVisible){SaveReport("match_finished");Hud.ShowResult();}
             if(Time.unscaledTime>noticeUntil)Notice="";
             if(Autoplay&&World.Time>=nextTelemetry)
             {nextTelemetry=World.Time+60;Debug.Log($"FRONTIER_PROGRESS t={World.Time:0} entities={World.Entities.Count} age={World.Players[0].age}/{World.Players[1].age} winner={World.Winner}");}
         }
         public void SaveReport(string reason)
         {
-            if(World==null)return;
-            World.FlushEconomyLog();
+            if(World==null||IsWatching)return;
+            if(Recorder!=null)Recorder.FlushEconomy();else World.FlushEconomyLog();
+            if(EndsRecording(reason))CloseRecording(reason);
+            try{WriteReport(reason);}
+            catch(Exception error){Notify("Match report could not be written: "+error.Message);Debug.LogWarning("FRONTIER_REPORT_FAILED "+error.Message);}
+        }
+        private void WriteReport(string reason)
+        {
             string dir=(reportDirectoryOverride??Path.Combine(Application.persistentDataPath,"Reports"));Directory.CreateDirectory(dir);
             string stem=DateTime.UtcNow.ToString("yyyyMMdd-HHmmss-fff")+"-"+MatchId+"-"+reason;
             lastReport=Path.Combine(dir,stem+".json");
@@ -286,7 +303,7 @@ namespace Frontier
         {
             Captures.Request();
         }
-        private void OnApplicationQuit(){SaveReport("quit");}
+        private void OnApplicationQuit(){try{SaveReport("quit");}catch(Exception error){Debug.LogWarning("FRONTIER_REPORT_FAILED "+error.Message);}finally{FinishReplayFileWrites();}}
         [Serializable]private class MatchReport {public string mapId,aiDifficulty;public float aiDecisionSeconds,aiArmySeconds;public int eventSchemaVersion;public string matchId,appVersion,buildGuid,version,platform,device,gpu,resolution,reason;public int seed,winner,eventCount,maxAge;public float time,meanFrameMs,p95FrameMs,simulationSpeed;public bool autoplay;public long managedBytes;public PlayerReport[] players;public GuidedPlaySnapshot guided;}
         [Serializable]private class PlayerReport {public string civilization;public int player,team,age,kills,losses,shipments,population,treasures,guardians;public bool eliminated,resigned;public Cost gathered,spent,passiveIncome,tradeIncome,resources,refunded;public string[] ageHistory;}
     }

@@ -72,7 +72,7 @@ namespace Frontier
             try{next=GuidedPlaySession.Start(Rules,id);}
             catch(Exception error){Notify("Could not start challenge: "+error.Message);return false;}
             if(World!=null)SaveReport("challenge_exit");
-            Guided?.Dispose();Guided=next;progressRecordedAttempt="";guidedSelection=Array.Empty<int>();
+            Guided?.Dispose();ReleasePlayback();Guided=next;progressRecordedAttempt="";guidedSelection=Array.Empty<int>();
             ClearBenchmark();Settings.Captions.Clear();Audio.ResetMatch();
             World=next.World;Simulation=next.Simulation;MatchId=next.AttemptId;
             PlayerCivilization=World.Players[0].civilization;OpponentCivilization=World.Players[1].civilization;
@@ -80,11 +80,13 @@ namespace Frontier
             Autoplay=false;SimulationSpeed=1;InMenu=false;PausedForFocusLoss=false;audioCursor=World.Events.Count;
             frameTimes.Clear();nextTelemetry=World.Time+60;LastSimulationFrameMs=0;
             View.ResetWorld();Controls.ResetSelection();Controls.Focus(World.OpeningTownPosition(0));Controls.ClearTransientInput();Hud.ShowGame();
+            BeginRecording("guided_scenario");
             Notify(next.Definition.Title+" · "+next.StartingSetupDescription);return true;
         }
         public void RetryCurrentMatch(){if(Guided!=null)StartGuided(Guided.Definition.Id);else StartMatch();}
         public bool SaveLearningProgress()
         {
+            if(IsWatching)return false;
             if(Guided==null||Guided.Status!=GuidedPlayStatus.Completed)return false;
             if(progressRecordedAttempt==Guided.AttemptId)return true;
             if(!Progress.RecordCompletion(Guided)){Notify("Campaign progress could not be saved: "+Progress.LastError);return false;}
@@ -92,12 +94,12 @@ namespace Frontier
         }
         void ObserveGuidedSelection()
         {
-            if(Guided==null||Guided.Status!=GuidedPlayStatus.Running)return;
+            if(IsWatching||Guided==null||Guided.Status!=GuidedPlayStatus.Running)return;
             var selected=Controls.Selected;bool same=selected.Count==guidedSelection.Length;
             if(same)for(int i=0;i<selected.Count;i++)if(selected[i]!=guidedSelection[i]){same=false;break;}
             if(same)return;
-            guidedSelection=selected.ToArray();Guided.ObserveSelection(guidedSelection);
+            guidedSelection=selected.ToArray();if(Recorder!=null)Recorder.ObserveSelection(guidedSelection);else Guided.ObserveSelection(guidedSelection);
         }
-        private void OnDestroy(){Guided?.Dispose();if(Settings!=null)Settings.Changed-=PreferencesChanged;}
+        private void OnDestroy(){FinishReplayFileWrites();Recorder?.Dispose();Playback?.Dispose();Guided?.Dispose();if(Settings!=null)Settings.Changed-=PreferencesChanged;}
     }
 }

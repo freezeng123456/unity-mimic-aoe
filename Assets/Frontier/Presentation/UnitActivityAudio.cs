@@ -17,14 +17,14 @@ namespace Frontier
         public static bool OnScreen(GameController game,EntityState entity,out Vector3 screen)
         {
             screen=default;
-            if(entity==null||!entity.Alive||entity.def.kind!=EntityKind.Unit||entity.garrisonedIn!=0||!game.World.IsVisible(0,entity))return false;
+            if(entity==null||!entity.Alive||entity.def.kind!=EntityKind.Unit||entity.garrisonedIn!=0||!game.World.IsVisible(game.ObserverPlayer,entity))return false;
             screen=game.GameCamera.WorldToViewportPoint(new Vector3(entity.position.x,1,entity.position.y));
             return screen.z>0&&screen.x>=0&&screen.x<=1&&screen.y>=0&&screen.y<=1;
         }
         public void Tick(GameController game,EventAudio audio)
         {
             var world=game.World;
-            if(world==null||game.InMenu||world.Paused||world.Winner>=0||audio.EffectiveSfxVolume<=0){Reset(world);return;}
+            if(world==null||game.InMenu||game.IsPaused||world.Winner>=0||audio.EffectiveSfxVolume<=0){Reset(world);return;}
             if(observedWorld!=world){Reset();observedWorld=world;}
             if(world.Time<=observedAt)return;observedAt=world.Time;
             EntityState chosen=null;Rhythm chosenRhythm=null;EventAudio.SoundCategory chosenCategory=default;

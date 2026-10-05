@@ -92,11 +92,11 @@ namespace Frontier
             if (!ReferenceEquals(observedWorld, game.World)) { ResetMatch(); observedWorld = game.World; }
             if (game.InMenu || game.World == null || game.World.Winner >= 0 || options.muted || options.masterVolume<=0)
             { wind.Stop(); music.Stop(); return; }
-            if (paused != game.World.Paused) SetPaused(game.World.Paused);
+            if (paused != game.IsPaused) SetPaused(game.IsPaused);
             if (paused) return;
             // Ambient wind describes only the viewed, currently visible terrain;
             // it never follows or reveals a hidden enemy source or location.
-            bool visibleGround = game.World.Fog.At(0, game.Controls.CameraFocus) == VisibilityState.Visible;
+            bool visibleGround = game.World.Fog.At(game.ObserverPlayer, game.Controls.CameraFocus) == VisibilityState.Visible;
             PlayLoop(wind, EffectiveEnvironmentVolume>0 && visibleGround);
             PlayLoop(music, EffectiveMusicVolume>0);
         }

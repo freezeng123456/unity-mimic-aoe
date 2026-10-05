@@ -7,7 +7,7 @@ namespace Frontier
         LineRenderer guidedMarker;
         void UpdateGuidedMarker()
         {
-            var session=game.Guided;bool active=!game.InMenu&&session!=null&&session.Status==GuidedPlayStatus.Running;
+            var session=game.Guided;bool active=!game.InMenu&&(!game.IsWatching||game.ObserverPlayer==0)&&session!=null&&session.Status==GuidedPlayStatus.Running;
             if(!active){if(guidedMarker!=null)SetActive(guidedMarker.gameObject,false);return;}
             if(guidedMarker==null){guidedMarker=NewLine("Current guided objective",.16f);guidedMarker.loop=true;guidedMarker.positionCount=32;TintLine(guidedMarker,new Color(1,.82f,.24f));}
             SetActive(guidedMarker.gameObject,true);var point=session.ObjectivePoint;
@@ -31,13 +31,13 @@ namespace Frontier
             float radius=entity.def.kind==EntityKind.Building?Mathf.Max(entity.def.width,entity.def.depth)*.65f:entity.def.radius+.55f;
             float offset=entity.owner==2?Mathf.PI/4:0;
             for(int i=0;i<sides;i++){float angle=offset+i*Mathf.PI*2/sides;line.SetPosition(i,new Vector3(Mathf.Sin(angle)*radius,.15f,Mathf.Cos(angle)*radius));}
-            TintLine(line,game.World.AreAllies(0,entity.owner)?new Color(.16f,.78f,.89f):new Color(.98f,.96f,.78f));
+            TintLine(line,game.World.AreAllies(game.ObserverPlayer,entity.owner)?new Color(.16f,.78f,.89f):new Color(.98f,.96f,.78f));
             line.gameObject.SetActive(game.Options.friendEnemyPatterns);return line;
         }
         void MarkPlayerPattern(EntityState entity)
         {
             int x=Mathf.RoundToInt(entity.position.x),y=Mathf.RoundToInt(entity.position.y);
-            Color32 cue=game.World.AreAllies(0,entity.owner)?new Color32(45,214,237,255):new Color32(252,245,200,255);
+            Color32 cue=game.World.AreAllies(game.ObserverPlayer,entity.owner)?new Color32(45,214,237,255):new Color32(252,245,200,255);
             for(int dy=-2;dy<=2;dy++)for(int dx=-2;dx<=2;dx++)
             {
                 bool mark=entity.owner==0?(dx==0||dy==0):entity.owner==1?Mathf.Abs(dx)==Mathf.Abs(dy):entity.owner==2?Mathf.Abs(dx)+Mathf.Abs(dy)==2:Mathf.Max(Mathf.Abs(dx),Mathf.Abs(dy))==2;

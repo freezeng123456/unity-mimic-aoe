@@ -16,6 +16,7 @@ namespace Frontier
             Button(parent,"RIVER CAMPAIGN",new Rect(322,464,208,52),()=>ShowGuidedLibrary(true));
             Button(parent,"SETTINGS",new Rect(544,464,208,52),ShowSettings);
             Button(parent,game.SkirmishModeLabel+" / ROSTER",new Rect(766,464,208,52),ShowRoster);
+            Button(parent,"RECORDING LIBRARY",new Rect(100,525,208,52),ShowReplayLibrary);
         }
         public void ShowGuidedLibrary(bool campaign,int page=0)
         {
