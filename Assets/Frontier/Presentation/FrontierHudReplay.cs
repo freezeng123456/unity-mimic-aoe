@@ -80,7 +80,13 @@ namespace Frontier
             Label(box,"Recorded interval "+ReplayTime(s.StartStep)+"–"+ReplayTime(s.EndStep)+"\nViewing P"+(game.ObserverPlayer+1)+" · "+game.World.Players[game.ObserverPlayer].civilization+"\n"+(game.WatchingDocument.incomplete?"Interrupted: "+game.WatchingDocument.incompleteReason:game.WatchingDocument.finishReason),new Rect(25,78,815,90),18,muted);
             var target=Label(box,"JUMP TO "+ReplayTime(s.CurrentStep),new Rect(25,180,815,30),20,gold);
             var track=Panel(box,"Timeline",new Rect(25,230,815,36),panelColor);var slider=track.gameObject.AddComponent<Slider>();slider.minValue=s.StartStep;slider.maxValue=Mathf.Max(s.StartStep+1,s.EndStep);slider.wholeNumbers=true;slider.value=s.CurrentStep;
-            var fill=Panel(track,"Track",new Rect(0,12,815,12),muted);var handle=Panel(track,"Handle",new Rect(0,0,22,36),gold);slider.fillRect=fill;slider.handleRect=handle;slider.targetGraphic=handle.GetComponent<Image>();slider.interactable=s.EndStep>s.StartStep;
+            // Slider drives child anchors; fixed dimensions belong to the
+            // containing areas so stretch does not add another track's width/height.
+            var fillArea=Rect(track,"Fill area",new Rect(11,12,793,12));
+            var handleArea=Rect(track,"Handle area",new Rect(11,0,793,36));
+            var fill=Panel(fillArea,"Track",new Rect(0,0,0,0),muted);fill.sizeDelta=Vector2.zero;fill.anchoredPosition=Vector2.zero;
+            var handle=Panel(handleArea,"Handle",new Rect(0,0,22,0),gold);handle.pivot=new Vector2(.5f,.5f);handle.sizeDelta=new Vector2(22,0);handle.anchoredPosition=Vector2.zero;
+            slider.fillRect=fill;slider.handleRect=handle;slider.targetGraphic=handle.GetComponent<Image>();slider.interactable=s.EndStep>s.StartStep;
             slider.onValueChanged.AddListener(v=>target.text="JUMP TO "+ReplayTime((int)v));
             Button(box,"JUMP",new Rect(25,290,397,56),()=>{game.BeginReplaySeek((int)slider.value);CloseModal();},"Seeking runs in bounded steps while the camera remains responsive.",string.IsNullOrEmpty(s.Error));
             Button(box,"FROM START",new Rect(443,290,397,56),()=>{game.BeginReplaySeek(s.StartStep);CloseModal();});

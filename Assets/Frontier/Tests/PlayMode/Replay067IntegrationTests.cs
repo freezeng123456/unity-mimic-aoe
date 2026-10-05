@@ -6,7 +6,9 @@ using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.TestTools;
+using UnityEngine.UI;
 
 namespace Frontier.Tests
 {
@@ -88,6 +90,63 @@ namespace Frontier.Tests
             var result=recorder==null?lesson.Issue(command):recorder.Issue(command);Assert.IsTrue(result.accepted,result.reason);
             int guard=0;while(lesson.Status==GuidedPlayStatus.Running&&guard++<1000)Steps(lesson.Simulation,1);
             Assert.AreEqual(GuidedPlayStatus.Completed,lesson.Status,lesson.Reason);Assert.IsTrue(lesson.World.Paused);
+        }
+
+        static Rect WorldRect(RectTransform transform)
+        {
+            var corners=new Vector3[4];transform.GetWorldCorners(corners);
+            return Rect.MinMaxRect(corners.Min(p=>p.x),corners.Min(p=>p.y),corners.Max(p=>p.x),corners.Max(p=>p.y));
+        }
+        static void Contained(Rect inner,Rect outer,string name)
+        {
+            const float tolerance=.1f;
+            Assert.GreaterOrEqual(inner.xMin,outer.xMin-tolerance,name+" extends left");
+            Assert.LessOrEqual(inner.xMax,outer.xMax+tolerance,name+" extends right");
+            Assert.GreaterOrEqual(inner.yMin,outer.yMin-tolerance,name+" extends below");
+            Assert.LessOrEqual(inner.yMax,outer.yMax+tolerance,name+" extends above");
+        }
+
+        [UnityTest] public IEnumerator TimelineFillAndHandleStayInsideTheRenderedTrackAndDraggingStillSeeks()
+        {
+            game.StartMatch();Steps(game.Simulation,100);Assert.IsTrue(game.SaveReplayNow(),game.ReplayFileError);
+            string path=Path.Combine(game.ReplayDirectory,"timeline-ui.replay.json");File.Copy(game.LastReplayFile,path);
+            Assert.IsTrue(game.LoadReplayNow(path),game.ReplayFileError);DrainWrites();Assert.IsTrue(game.ReplayPaused);
+            game.Hud.ShowReplayOptions();yield return null;Canvas.ForceUpdateCanvases();
+            var slider=root.GetComponentsInChildren<Slider>().Single(s=>s.isActiveAndEnabled&&s.name=="Timeline");
+            var track=(RectTransform)slider.transform;var bounds=WorldRect(track);
+            Assert.Greater(bounds.width,1);Assert.Greater(bounds.height,1);
+            Contained(bounds,WorldRect((RectTransform)track.parent),"Timeline track inside modal");
+            var fillWidths=new float[3];var handleCenters=new float[3];
+            for(int i=0;i<3;i++)
+            {
+                slider.normalizedValue=i*.5f;Canvas.ForceUpdateCanvases();
+                var fill=WorldRect(slider.fillRect);var handle=WorldRect(slider.handleRect);
+                Contained(fill,bounds,"Fill at "+slider.normalizedValue);Contained(handle,bounds,"Handle at "+slider.normalizedValue);
+                Assert.Greater(handle.width,1);Assert.AreEqual(bounds.height,handle.height,.1f,"Stretch must not double the handle height");
+                fillWidths[i]=fill.width;handleCenters[i]=handle.center.x;
+                if(i==0)Assert.AreEqual(bounds.xMin,handle.xMin,.1f,"Start handle must reach the left end without overflowing");
+                if(i==2)Assert.AreEqual(bounds.xMax,handle.xMax,.1f,"End handle must reach the right end without overflowing");
+            }
+            Assert.AreEqual(0,fillWidths[0],.1f);Assert.Greater(fillWidths[2],1);
+            Assert.AreEqual(fillWidths[2]*.5f,fillWidths[1],.1f,"The actual rendered fill must follow the value");
+            Assert.AreEqual((handleCenters[0]+handleCenters[2])*.5f,handleCenters[1],.1f,"The handle must travel through the track midpoint");
+
+            slider.normalizedValue=0;Canvas.ForceUpdateCanvases();
+            var pointer=new PointerEventData(EventSystem.current){button=PointerEventData.InputButton.Left,
+                position=RectTransformUtility.WorldToScreenPoint(null,slider.handleRect.TransformPoint(slider.handleRect.rect.center))};
+            slider.OnPointerDown(pointer);
+            var area=(RectTransform)slider.handleRect.parent;
+            pointer.position=RectTransformUtility.WorldToScreenPoint(null,area.TransformPoint(area.rect.center));
+            slider.OnDrag(pointer);slider.OnPointerUp(pointer);Canvas.ForceUpdateCanvases();
+            Assert.AreEqual(.5f,slider.normalizedValue,.001f,"Dragging the rendered handle must still select the midpoint");
+            int target=(int)slider.value;Assert.AreEqual(50,target);
+            Assert.IsTrue(root.GetComponentsInChildren<Text>().Any(t=>t.isActiveAndEnabled&&t.text=="JUMP TO 00:05"),"Drag must update the displayed seek target");
+            root.GetComponentsInChildren<Button>().Single(b=>b.isActiveAndEnabled&&b.name=="JUMP").onClick.Invoke();
+            Assert.IsTrue(game.Playback.IsSeeking);Assert.AreEqual(target,game.Playback.SeekTargetStep);
+            game.enabled=true;int frames=0;
+            while(game.Playback.IsSeeking&&frames++<20)yield return null;
+            game.enabled=false;Assert.IsFalse(game.Playback.IsSeeking);Assert.IsEmpty(game.Playback.Error);
+            Assert.AreEqual(target,game.Playback.CurrentStep,"The actual JUMP action must reach the dragged target");
         }
 
         [UnityTest] public IEnumerator CompletedLessonPlaybackCannotWriteAccountSlotsPreferencesOrReportsOrIssueOrders()
