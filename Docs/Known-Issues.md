@@ -8,7 +8,7 @@
 - 每笔必须选一个活着、己方、完工Market，并持有真实支付资源。不足余额、非法参数、暂停/淘汰/终局或浮点精度饱和原子拒绝；不会部分支付、部分售货或重置价格。配置限制变价小于两倍价差，受控套利/边界测试通过不等于商业市场或竞技经济平衡认证。
 - Payment与MarketTrade及marketIncome/marketSold/marketBought分开记录真实支出、到账和买/卖货物，不能当作Gather、Passive或实车Trade收入。保存、录像前向/双向seek、LAN full/delta与重复请求、防陈旧报价/HUD指针刷新和写盘报告已通过自动化；当前GUID实际原生同范围尚待观察。
 - AI只卖真实余Food，不卖Town恢复Wood；保留实际义务及至少400F防守储备，每次最多五lot。要有自己的完工Market与余粮，库存不足、设施毁损或需求仍无法满足时允许断档；市场不是无限币源或免费注资，连续卖粮会压低价格。
-- Coin-only需求可申请真实Post200W+Ledger200W/150C启动，短期市场收入不释放未付Ledger预算，紧急骑兵同样保护已批准的150C；仍须施工、研究和实车配送。筹够现金、付款、设施完工、收到正运输收入及恢复战争能力是不同结果，三条新普通局尚未闭合，不能声称已普遍恢复。
+- Coin-only需求可申请真实Post200W+Ledger200W/150C启动，短期市场收入不释放未付Ledger预算，紧急骑兵同样保护已批准的150C；仍须施工、研究和实车配送。三条新普通局已关闭：两Ottoman的P1均由市场收入补足Ledger付款，随后研究完成并收到Coin运输；P0没有完成Ledger。Dutch两方有Ledger与运输，零市场交换。筹够现金、付款、设施完工、收到正运输收入及恢复战争能力是不同结果，不能声称已普遍恢复。
 
 ## 普通采集与危险路线
 
@@ -20,16 +20,16 @@
 ## 集结、寻路与性能
 
 - 073将SelectStage扩至65位置×7×7/5×5两占地，保存延期候选；每次最多6次非直线FindPath包含旧stage重验。ClearLine直达不消耗此预算，AtStage真实抵达判断、其他AI/运动寻路另计；不能宣称整个Army Review或固定Step最多6次寻路。
-- 6/10/14实际抵达、4人补员和可用守卫保持；近墙/跨河长路不按距离或数量直接算到齐。没有合法可见、安全、空闲、可达stage时仍Muster，扩大候选不保证所有港区、动态障碍或地图都能发兵。自动化覆盖扩展中心、窄廊紧凑中心、断连等待、延期搜索/cold后同世界；普通三case军事结果仍待收口。
+- 6/10/14实际抵达、4人补员和可用守卫保持；近墙/跨河长路不按距离或数量直接算到齐。没有合法可见、安全、空闲、可达stage时仍Muster，扩大候选不保证所有港区、动态障碍或地图都能发兵。自动化覆盖扩展中心、窄廊紧凑中心、断连等待、延期搜索/cold后同世界；普通三case均有实际集结、出发与末300秒正PvP伤害，两Ottoman自然终局，Dutch到2400秒观察cap。
 - 072 Dutch42闭合样本确有hasStage=false/wave空、大量陆军持续Muster，末300秒无AttackPrepared/Fire/Damage。未记录每候选拒绝谓词，不能把65位置修复说成已证明原全部原因，也不能从调度故障推出CPU主热点。
 - Dutch42总wall3303.190543s包含建局、Step、采样/事件写盘及最终保存，旧样本无wall时间；文件体积不能单独解释主耗时。073新observer已实际关闭，Step分别385.481716/319.038606/123.777137s，observer0.623286/0.547908/0.592703s，最大单步约1.8s；与Native1共享主机负载，不是隔离基准。2400cap与1500比较点不同于0723600cap/2400比较点，不能直接把总wall比例写成性能改善或071/072因果对照。
 - 旧NativeA同锚点250步Editor诊断结果字节一致且热点下降，旧072D的155.623s F8为声明短窗；均不是073GUI帧率或整个游戏加速倍数。当前GUID长期帧时间、GC/内存、正常/加速倍率和隔离性能未验收，不能承诺60FPS、所有卡顿消失或零泄漏。
 
-## 自动化、观察与未完成交付
+## 自动化、观察与交付范围
 
 - 正式1611项全Passed且原732输入绑定完整；独立完整审计保留072旧fullname，名称保留不表示断言字节从未改变。FocusedFinal2实际63Edit+10Play全Passed，但未预记source map/runner收据，正式exact-source依据另为run-9q8yTJKS。
 - FocusedMarket1实际20/21、Market2实际39/40，各保留CoinOnlyShortageProtectsCompleteTradeStartupBeforeMilitaryConsumesLedgerFee失败；Market3后续42/42Passed。FocusedFinal1的CS8773 C#9 inferred-delegate编译失败log保留，后续FocusedFinal2和完整回归另记通过。072既有失败/终止/探针原件不回写。
-- 预声明winding Ottoman44/45、river_bend Dutch42，普通I、standard、双AI，2400模拟秒cap、1500比较点、30秒采样，无运行注资/强制命令/干预。开始收据与正在增长的样本不能当作三case完成；自然终局/cap、真实支付/施工/配送/市场收入/集结/攻击须分别核。三例即使关闭也不等于新16局路线认证或六文明平衡。
+- 预声明winding Ottoman44/45、river_bend Dutch42，普通I、standard、双AI，2400模拟秒cap、1500比较点、30秒采样，无运行注资/强制命令/干预。三case已闭合、runner实际exit0、源码前后稳定，逐项核验自然终局/cap、真实支付/施工/配送/市场收入/集结/攻击；两自然终局、一cap的结果不等于新16局路线认证或六文明平衡。
 - 本GUID实际完成市场建造和100W扣费，三1600×1000F9原图已查看；原生兑换模态/买卖/100-500点击因public Sky noWindowsAvailable未完成，保存/冷恢复/完整录像/长局尚未验收。自动化InputSystem/Canvas字形不是OS像素；0729原生范围/40对F9/五exit0及H600→1111、Verified=false属于GUID3288，不重标为073。
 - 073四原ZIP已封存，本地完整性独立核验通过；云盘九文件111794577B实际全字节SHA/owner-only读回通过。证据封包和上传不会增加原生交互、动态安全、平衡或FPS范围；后续文档Git提交不重建原包。072SourceSnapshot8490、原包与11文件保持原身份，见[073交付](Delivery-073.md)和[Delivery072](Delivery-072.md)。
 

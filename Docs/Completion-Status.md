@@ -17,14 +17,14 @@ AI仅在安全Coin渠道不足、真实义务需要币时出售真实余粮，�
 | Runtime提交 | `519d7d34a0be85f75ee19e53458c636d1ba0b3e4` |
 | 来源 | 732输入；`9b92812a922adb69a5ae501925417d8eba8e24b836f496274ebc8ec8679ba03d` |
 | 正式完整测试 | `run-9q8yTJKS`；1192/1192Edit+419/419Play=**1611/1611 Passed**，0Failed/Skipped/Inconclusive |
-| 独立完整回归核验 | 原XML/732输入与冻结/runtime Git blob一致；072旧1158Edit/409Play fullname保留，新增26Market+8StageEdit及10MarketUIPlay；独立报告的构建/普通局部分仍待续写 |
+| 独立完整回归核验 | 原XML/732输入与冻结/runtime Git blob一致；072旧1158Edit/409Play fullname保留，新增26Market+8StageEdit及10MarketUIPlay；构建和三条普通局的独立审计已封存，原生市场交互范围仍不完整 |
 | 构建 | Unity6000.6.3f1、macOS arm64 Development/Mono；Candidate1/Build1实际exit0/Succeeded，前后源稳定；GUID `5f347ad9ec2f494984b0b49c4f896c31` |
 | 普通三case | **实际关闭、exit0、sourceStable**；Ottoman44/45自然终局、Dutch42观察cap，逐case事件与账本见验证记录 |
 | 本GUID原生 | **partial_market_scope，进程exit0**；三F9确认市场建造/100W扣费/完成；原生兑换、当前构建冷恢复/录像未验收 |
 | 073私有交付 | **四ZIP本地独立核验、九云盘文件111794577B完整字节SHA/owner-only通过**；见交付记录 |
 | 本轮Git审查 | runtime519d与SourceSnapshot0f656各有原身份；包外收据只写文档，最末head以既有私有draft PR为准 |
 
-## 观察范围与待填项
+## 观察结果与范围
 
 闭合072 Ottoman44原100055事件的只读诊断确认：本地矿耗尽后8名矿工因敌袭从仍有资源的中央矿撤回，此后五次尝试另一中央矿均回撤而未采币；不是991秒全图矿耗尽或首次Town丢失导致停币。普通AiWorkforce筛目标点，实际Gather路径仍可能穿过敌区；中间A*轨迹和首次威胁判定未记录，不追加精确路径因果。073市场与Coin-only贸易接续针对供给缺口，不能视为普通路线/动态安全修复。[验证记录](Verification-073.md)列原诊断位置。
 
