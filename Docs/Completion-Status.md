@@ -18,7 +18,7 @@
 | 独立审计 | 25/25 检查；070 原 967 EditMode 与 397 PlayMode 全部保留；新增 150 EditMode 与 7 PlayMode |
 | 构建 | macOS arm64 / Development / Mono，Unity 6000.6.3f1，Succeeded；GUID `2d39f78f9f234ef092e172a35f800cae` |
 | 本构建原生 | 英国受控 IV 范围通过；`passed_observed_native_scope`，15 必需范围无缺项或错误，8 个自有进程正常退出 0；[071 验证](Verification-071.md)、[最终原生收据](Evidence/071/Native/independent-native071-final.json)与[实际操作记录](Evidence/071/Native/native-journal071-final.json) |
-| 071 私有交付 | **待完成**；[待填：冻结源码快照、三包成员核验、Google Drive 元数据/权限读回、draft PR head] |
+| 071 私有交付 | **已完成**；快照47d7927d；三主包2058成员独立核验、九上传文件与目录十对象仅owner读回。既有私有草稿PR保持审查入口。[交付回执](Delivery-071.md) |
 
 [正式原件与审计](Evidence/071/Tests/README.md)已保存实际 XML、日志、源码清单及独立冻结。自动化与已观察受控原生范围不证明普通路线全部可达、其他三国原生整链、两台物理 Mac 或长期性能。
 

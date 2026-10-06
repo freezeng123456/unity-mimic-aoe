@@ -1,6 +1,6 @@
 # 当前范围与限制 · 0.14.0 革命与平民重建
 
-2026-10-06。当前实现四个经典文明的项目版革命/平民重建。正式 1117 EditMode + 404 PlayMode 共 1521 项全部通过，独立 25 项审计通过，macOS arm64 构建成功。本构建英国受控 IV 原生范围已通过，071 私有交付仍待包上传和读回。[完成状态](Completion-Status.md)、[内容合同](Content-071.md)、[操作](Player-Guide-071.md)、[正式测试](Evidence/071/Tests/README.md)。
+2026-10-06。当前实现四个经典文明的项目版革命/平民重建。正式 1117 EditMode + 404 PlayMode 共 1521 项全部通过，独立 25 项审计通过，macOS arm64 构建成功。本构建英国受控 IV 原生范围已通过，071私有交付已完成，仅owner元数据/权限读回记录见[交付](Delivery-071.md)。[完成状态](Completion-Status.md)、[内容合同](Content-071.md)、[操作](Player-Guide-071.md)、[正式测试](Evidence/071/Tests/README.md)。
 
 ## 自然经营与作战
 
