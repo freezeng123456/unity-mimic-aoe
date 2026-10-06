@@ -26,7 +26,7 @@ namespace Frontier
             foreach(var d in GuidedPlayCatalog.Definitions)if((d.Kind==GuidedPlayKind.Campaign)==campaign)items.Add(d);
             int pages=Mathf.Max(1,Mathf.CeilToInt(items.Count/4f));page=Mathf.Clamp(page,0,pages-1);
             var box=Modal(campaign?"ORIGINAL RIVER CAMPAIGN":"GUIDED LESSONS",720);
-            Label(box,campaign?"Three linked original missions. Complete each chapter to unlock the next.":"Seven practical lessons. Objectives require your real orders and their results.",new Rect(25,76,820,55),18,muted);
+            Label(box,campaign?items.Count+" original missions in two expeditions. Each expedition unlocks its following chapters.":"Seven practical lessons. Objectives require your real orders and their results.",new Rect(25,76,820,55),18,muted);
             for(int i=0;i<4&&page*4+i<items.Count;i++)
             {
                 var d=items[page*4+i];bool unlocked=game.Progress.IsUnlocked(d.Id);

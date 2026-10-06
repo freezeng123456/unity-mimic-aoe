@@ -157,6 +157,9 @@ namespace Frontier
                 var roster=new string[document.starts.Length];var teams=new int[roster.Length];
                 for(int i=0;i<roster.Length;i++){roster[i]=document.starts[i].civilization;teams[i]=document.starts[i].team;}
                 next=new World(Rules,ScenarioCodec.Clone(document),roster,teams,AgeLimit);
+                string objective=editorPlaytest||document.objectives.Length>0||!document.enableElimination?"elimination":SelectedObjective;
+                var configured=next.ConfigureMapObjective(objective);
+                if(!configured.accepted)throw new ArgumentException(configured.reason);
                 var automated=new int[next.Players.Length-1];for(int i=1;i<next.Players.Length;i++)automated[i-1]=i;
                 nextSimulation=new MatchSimulation(next,automated,OpponentDifficulty);
             }
@@ -165,7 +168,7 @@ namespace Frontier
             Guided?.Dispose();Guided=null;ReleasePlayback();Recorder?.Dispose();Recorder=null;ClearBenchmark();
             Settings.Captions.Clear();Audio.ResetMatch();World=next;Simulation=nextSimulation;MatchId=Guid.NewGuid().ToString("N");
             selectedScenario069=next.ScenarioDocument;PlayerCivilization=next.Players[0].civilization;OpponentCivilization=next.Players[1].civilization;
-            SelectedMap=next.MapId;SelectedObjective="elimination";MatchSeed=next.Seed;RestoreRosterConfiguration();
+            SelectedMap=next.MapId;SelectedObjective=next.MapObjective.mode;MatchSeed=next.Seed;RestoreRosterConfiguration();
             for(int i=0;i<next.Players.Length;i++)SetDeck(i,i==0?DeckPreset:"military");
             IsScenarioPlaytest=editorPlaytest;ScenarioEditorOpen=false;Autoplay=false;SimulationSpeed=1;InMenu=false;
             PausedForFocusLoss=false;audioCursor=next.Events.Count;frameTimes.Clear();nextTelemetry=next.Time+60;LastSimulationFrameMs=0;

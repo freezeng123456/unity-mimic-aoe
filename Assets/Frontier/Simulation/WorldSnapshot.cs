@@ -206,7 +206,8 @@ namespace Frontier
             Require(s.nextId>max&&s.nextId<int.MaxValue,"next entity id");
             if(s.hasScenarioDocument)
             {
-                ScenarioRuntime.Validate(s.scenarioDocument,s.scenarioHash,s.scenarioState,Array.ConvertAll(s.entities,e=>e.state),s.winner,s.time);
+                ScenarioRuntime.Validate(s.scenarioDocument,s.scenarioHash,s.scenarioState,Array.ConvertAll(s.entities,e=>e.state),s.winner,s.time,
+                    Array.ConvertAll(s.entities,e=>e.definition),Array.ConvertAll(s.players,p=>rules.Civ(p.state.civilization).workerUnit));
                 foreach(var nav in new[]{s.landNavigation,s.waterNavigation})Require(nav!=null&&nav.width==128&&nav.height==128&&nav.terrain?.Length==16384,"scenario navigation");
                 for(int y=0;y<128;y++)for(int x=0;x<128;x++)
                 {

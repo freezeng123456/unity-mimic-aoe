@@ -14,7 +14,7 @@ namespace Frontier
     [Serializable] public sealed class GuidedPlaySnapshot
     {
         public int schema=1,catalogRevision=GuidedPlayCatalog.Revision,stageIndex,revision,startEventIndex,resultEventIndex=-1;
-        public string definitionId,attemptId,rulesHash,reason="";
+        public string definitionId,attemptId,rulesHash,reason="",scenarioHash="";
         public GuidedPlayStatus status;
         public float completedSeconds,startingWood;
         public int town,scout,firstTarget,secondTarget,transport,neutralSite;
@@ -26,7 +26,7 @@ namespace Frontier
     }
     // This session observes the same commands, entities, payments and fixed
     // scheduler as skirmish. It never completes a lesson from a HUD click alone.
-    public sealed class GuidedPlaySession:IDisposable
+    public sealed partial class GuidedPlaySession:IDisposable
     {
         public World World {get;}
         public MatchSimulation Simulation {get;}
@@ -44,6 +44,7 @@ namespace Frontier
         {
             get
             {
+                if(IsAuthored)return AuthoredObjectivePoint;
                 switch(Stage?.Goal)
                 {
                     case GuidedPlayGoal.Contact:case GuidedPlayGoal.TradingPost:case GuidedPlayGoal.Alliance:case GuidedPlayGoal.Recruit:return state.contactPoint;
@@ -61,6 +62,7 @@ namespace Frontier
         {
             get
             {
+                if(IsAuthored)return AuthoredSuggestedTarget;
                 switch(Stage?.Goal)
                 {
                     case GuidedPlayGoal.DestroyFirst:case GuidedPlayGoal.Defend:return state.firstTarget;
@@ -75,6 +77,7 @@ namespace Frontier
         {
             get
             {
+                if(IsAuthored)return AuthoredSuggestedActors;
                 switch(Stage?.Goal)
                 {
                     case GuidedPlayGoal.Selection:case GuidedPlayGoal.Contact:return new[]{state.scout};
@@ -97,6 +100,7 @@ namespace Frontier
         GuidedPlaySession(World world,MatchSimulation simulation,GuidedPlayDefinition definition,GuidedPlaySnapshot saved)
         {
             World=world;Simulation=simulation;Definition=definition;state=saved;
+            authoredDocument=definition.AuthoredScenarioId==""?null:world.ScenarioDocument;
             commands=new List<GuidedPlayCommandProof>(saved.commands);stageEvents=new List<int>(saved.stageEvents);
             checklist=new GuidedPlayChecklist[definition.Stages.Count];
             for(int i=0;i<checklist.Length;i++)checklist[i]=new GuidedPlayChecklist{Id=definition.Stages[i].Id,Text=definition.Stages[i].Title,Required=definition.Stages[i].Required};
@@ -106,8 +110,9 @@ namespace Frontier
         {
             var definition=GuidedPlayCatalog.Find(id)??throw new ArgumentException("Unknown guided scenario",nameof(id));
             attemptId??=Guid.NewGuid().ToString("N");Require(ValidAttempt(attemptId),"attempt ID");
-            var world=new World(rules,definition.Seed,"coast","france",5,definition.MapId);
-            var saved=new GuidedPlaySnapshot{definitionId=id,attemptId=attemptId,rulesHash=SnapshotCodec.RulesHash(rules),startingWood=world.Players[0].gathered.wood};
+            var world=definition.AuthoredScenarioId==""?new World(rules,definition.Seed,"coast","france",5,definition.MapId):
+                new World(rules,RiverContent070.Build(rules,definition.AuthoredScenarioId),new[]{"coast","france"},new[]{0,1},5);
+            var saved=new GuidedPlaySnapshot{definitionId=id,attemptId=attemptId,rulesHash=SnapshotCodec.RulesHash(rules),startingWood=world.Players[0].gathered.wood,scenarioHash=world.HasScenario?world.ScenarioHash:""};
             Configure(world,definition,saved);var simulation=new MatchSimulation(world,Array.Empty<int>(),"standard");
             saved.startEventIndex=world.Events.Count;
             world.Emit("GuidedStarted",0,saved.town,StartMarker(saved));
@@ -120,6 +125,9 @@ namespace Frontier
             Require(saved.schema==1&&saved.catalogRevision==GuidedPlayCatalog.Revision,"schema or catalog revision");
             Require(ValidAttempt(saved.attemptId)&&saved.rulesHash==SnapshotCodec.RulesHash(world.Rules),"attempt or rules");
             Require(world.MapId==definition.MapId&&world.Seed==definition.Seed&&world.MaxAge==5&&world.Players.Length==2&&world.Players[0].civilization=="coast"&&world.Players[1].civilization=="france","scenario/world identity");
+            if(definition.AuthoredScenarioId!="")
+                Require(world.HasScenario&&saved.scenarioHash==world.ScenarioHash&&world.ScenarioHash==ScenarioCodec.ContentHash(RiverContent070.Build(world.Rules,definition.AuthoredScenarioId)),"authored campaign content identity");
+            else Require(!world.HasScenario&&saved.scenarioHash=="","unexpected authored campaign identity");
             Require(Enum.IsDefined(typeof(GuidedPlayStatus),saved.status)&&saved.stageIndex>=0&&saved.stageIndex<=definition.Stages.Count&&saved.revision>=0,"status or stage");
             Require(saved.reason!=null&&saved.reason.Length<=512&&SnapshotCodec.Finite(saved.completedSeconds)&&saved.completedSeconds>=0&&saved.completedSeconds<=world.Time+.001f&&SnapshotCodec.Finite(saved.startingWood)&&saved.startingWood>=0,"result clock");
             Require(saved.workers!=null&&saved.soldiers!=null&&saved.selection!=null&&saved.stageEvents!=null&&saved.commands!=null&&saved.commands.Length<=4096&&saved.stageEvents.Length==saved.stageIndex,"collections");
@@ -147,6 +155,7 @@ namespace Frontier
             if(saved.status!=GuidedPlayStatus.Running)Require(world.Paused&&saved.resultEventIndex>previous&&EventIs(world,saved.resultEventIndex,saved.status==GuidedPlayStatus.Completed?"GuidedCompleted":"GuidedFailed",ResultMarker(saved)),"result witness");
             else Require(saved.resultEventIndex==-1&&saved.completedSeconds==0&&saved.reason=="","running result");
             Require(!saved.raidIssued||world.Events.Any(e=>e.kind=="GuidedRaid"&&e.player==1&&e.message==saved.attemptId),"raid witness");
+            if(definition.AuthoredScenarioId!="")ValidateAuthoredProgress(world,definition,saved);
             // Restoring only adopts validated existing state. No Start, Spawn,
             // grant, command, stage evaluation or event is run here.
             return new GuidedPlaySession(world,simulation,definition,SnapshotCodec.Clone(saved));
@@ -178,6 +187,7 @@ namespace Frontier
         public void Tick()
         {
             if(disposed||Status!=GuidedPlayStatus.Running)return;
+            if(IsAuthored){TickAuthored();return;}
             if(World.Get(state.town)?.Alive!=true||World.Players[0].resigned||World.Players[0].eliminated){Finish(GuidedPlayStatus.Failed,"城镇中心已失守或己方退出；同种子重试可重新开始。");return;}
             if(state.transport!=0&&(World.Get(state.transport)?.Alive!=true||state.soldiers.All(id=>World.Get(id)?.Alive!=true))){Finish(GuidedPlayStatus.Failed,"运输舰或登陆队全部损失；请重新安排登陆行动。");return;}
             if(World.Time>=Definition.TimeLimit){Finish(GuidedPlayStatus.Failed,"场景时限已到；可按同一地图种子重试。");return;}
@@ -240,6 +250,7 @@ namespace Frontier
         }
         float Progress(GuidedPlayStage stage)
         {
+            if(IsAuthored)return AuthoredProgress(stage);
             switch(stage.Goal)
             {
                 case GuidedPlayGoal.Selection:return state.selection.Contains(state.scout)?1:0;
@@ -278,7 +289,7 @@ namespace Frontier
         static void ValidateRole(World world,int id,string definition,int owner)=>Require(world.Get(id)?.def.id==definition&&world.Get(id).owner==owner,"role "+definition);
         static bool EventIs(World w,int index,string kind,string message)=>index>=0&&index<w.Events.Count&&w.Events[index].kind==kind&&w.Events[index].player==0&&w.Events[index].message==message;
         static string StartMarker(GuidedPlaySnapshot s)=>s.definitionId+"|"+s.attemptId+"|"+SetupHash(s);
-        static string SetupHash(GuidedPlaySnapshot s)=>SnapshotCodec.Hash(s.definitionId+"|"+s.rulesHash+"|"+s.town+"|"+s.scout+"|"+s.firstTarget+"|"+s.secondTarget+"|"+s.transport+"|"+s.neutralSite+"|"+JsonUtility.ToJson(new GuidedPlaySetupWitness{workers=s.workers,soldiers=s.soldiers,move=s.movePoint,contact=s.contactPoint,boarding=s.boardingPoint,landing=s.landingPoint,build=s.buildPoint,barracks=s.barracksPoint,wood=s.startingWood}));
+        static string SetupHash(GuidedPlaySnapshot s)=>SnapshotCodec.Hash(s.definitionId+"|"+s.rulesHash+"|"+s.town+"|"+s.scout+"|"+s.firstTarget+"|"+s.secondTarget+"|"+s.transport+"|"+s.neutralSite+"|"+JsonUtility.ToJson(new GuidedPlaySetupWitness{workers=s.workers,soldiers=s.soldiers,move=s.movePoint,contact=s.contactPoint,boarding=s.boardingPoint,landing=s.landingPoint,build=s.buildPoint,barracks=s.barracksPoint,wood=s.startingWood})+(s.scenarioHash==""?"":"|"+s.scenarioHash));
         static string StageMarker(GuidedPlaySnapshot s,string stage)=>s.definitionId+"|"+s.attemptId+"|"+stage;
         static string CommandMarker(GuidedPlaySnapshot s,GameCommand c)=>s.attemptId+"|"+JsonUtility.ToJson(c);
         static string ResultMarker(GuidedPlaySnapshot s)=>s.definitionId+"|"+s.attemptId+"|"+s.reason;
@@ -308,6 +319,7 @@ namespace Frontier
         {
             s.town=w.Entities.First(e=>e.owner==0&&e.def.id=="town").id;s.scout=w.Entities.First(e=>e.owner==0&&e.def.id=="explorer").id;
             s.workers=w.Entities.Where(e=>e.owner==0&&e.Worker).Select(e=>e.id).ToArray();
+            if(d.AuthoredScenarioId!=""){ConfigureAuthored(w,d,s);return;}
             w.Players[0].age=d.StartingAge;w.Players[1].age=d.StartingAge;
             var grant=d.ScenarioGrant;
             if(grant.food+grant.wood+grant.coin>0){w.Players[0].resources+=grant;w.Emit("GuidedScenarioGrant",0,0,d.StartingSetupDescription,grant.food+grant.wood+grant.coin);}

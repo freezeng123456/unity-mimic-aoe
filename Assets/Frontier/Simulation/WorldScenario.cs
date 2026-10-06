@@ -17,6 +17,7 @@ namespace Frontier
         public ScenarioObjectiveState[] ScenarioObjectiveStates=>scenarioRuntime?.Capture().objectiveStates??Array.Empty<ScenarioObjectiveState>();
         public EntityState ScenarioEntity(string id)
         {var ids=scenarioRuntime?.BoundEntities(id);return ids!=null&&ids.Length>0?Get(ids[0]):null;}
+        public int[] ScenarioEntities(string id)=>scenarioRuntime?.BoundEntities(id)??Array.Empty<int>();
         public World(RuleCatalog rules,ScenarioDocument document,string[] civilizations,int[] teams,int maxAge=5)
             :this(rules,document?.seed??314159,civilizations,teams,maxAge,MapTopology.Scenario,document??throw new ArgumentNullException(nameof(document))){}
         void BindScenario(string id,int entity)

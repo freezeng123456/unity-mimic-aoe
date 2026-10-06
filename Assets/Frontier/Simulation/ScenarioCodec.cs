@@ -9,11 +9,14 @@ namespace Frontier
     public static class ScenarioCodec
     {
         public const int MaxBytes=2*1024*1024,MaxPlacements=2048,MaxRivers=8,MaxRiverPoints=512;
-        public const int MaxObjectives=32,MaxTriggers=64,MaxSpawnBudget=4096;
+        public const int MaxObjectives=32,MaxTriggers=64,MaxSpawnBudget=4096,MaxGroups=64,MaxGroupMembers=128;
         static readonly UTF8Encoding Utf8=new UTF8Encoding(false,true);
-        static readonly HashSet<string> ObjectiveKinds=Set("manual","hold_region","destroy_object","reach_region","collect_resource");
-        static readonly HashSet<string> ConditionKinds=Set("time","object_dead","units_in_region","resource","objective_complete","objective_failed","trigger_fired");
-        static readonly HashSet<string> ActionKinds=Set("message","spawn","order_move","order_attack","grant_resource","complete_objective","fail_objective","win","lose","enable_trigger","disable_trigger");
+        static readonly HashSet<string> ObjectiveKinds=Set("manual","hold_region","destroy_object","reach_region","collect_resource","embark_group","escort_group");
+        static readonly HashSet<string> ConditionKinds=Set("time","object_dead","units_in_region","resource","objective_complete","objective_failed","trigger_fired","units_embarked","units_lost");
+        static readonly HashSet<string> ActionKinds=Set("message","spawn","order_move","order_attack","order_attack_move","grant_resource","complete_objective","fail_objective","win","lose","enable_trigger","disable_trigger");
+        static readonly HashSet<string> LegacyObjectiveKinds=Set("manual","hold_region","destroy_object","reach_region","collect_resource");
+        static readonly HashSet<string> LegacyConditionKinds=Set("time","object_dead","units_in_region","resource","objective_complete","objective_failed","trigger_fired");
+        static readonly HashSet<string> LegacyActionKinds=Set("message","spawn","order_move","order_attack","grant_resource","complete_objective","fail_objective","win","lose","enable_trigger","disable_trigger");
         static HashSet<string> Set(params string[] values)=>new HashSet<string>(values,StringComparer.Ordinal);
         public static ScenarioDocument Clone(ScenarioDocument document)
         {if(document==null)throw new ArgumentNullException(nameof(document));return JsonUtility.FromJson<ScenarioDocument>(JsonUtility.ToJson(document));}
@@ -35,13 +38,87 @@ namespace Frontier
                 if(envelope.schema!=1||envelope.encoding!="frontier-scenario-json-v1"||!IsHash(envelope.sha256)||
                     string.IsNullOrEmpty(envelope.payload)||SnapshotCodec.Hash(envelope.payload)!=envelope.sha256)
                     throw new InvalidDataException("Scenario file format or content hash is damaged");
-                CheckSize(envelope.payload);ReplayJson.Validate<ScenarioDocument>(envelope.payload);
+                CheckSize(envelope.payload);
+                bool legacy=false;
+                try{ReplayJson.Validate<ScenarioDocument>(envelope.payload);}
+                catch(FormatException)
+                {
+                    // The old envelope checksum is checked before any migration.
+                    // Only the complete original DTO is accepted here; missing
+                    // old fields, unknown keys and mixed old/new shapes still fail.
+                    ReplayJson.Validate<LegacyDocument069>(envelope.payload);legacy=true;
+                }
                 var document=JsonUtility.FromJson<ScenarioDocument>(envelope.payload);
+                if(legacy)
+                {
+                    document.groups=Array.Empty<ScenarioGroup>();
+                    foreach(var objective in document.objectives??Array.Empty<ScenarioObjective>())if(objective!=null)
+                    {
+                        if(!LegacyObjectiveKinds.Contains(objective.kind))throw new InvalidDataException("Legacy scenario objective kind is unsupported");
+                        objective.targetId="";
+                    }
+                    foreach(var trigger in document.triggers??Array.Empty<ScenarioTrigger>())if(trigger!=null)
+                    {
+                        foreach(var condition in trigger.conditions??Array.Empty<ScenarioCondition>())if(condition!=null)
+                        {
+                            if(!LegacyConditionKinds.Contains(condition.kind))throw new InvalidDataException("Legacy scenario condition kind is unsupported");
+                            condition.targetId="";
+                        }
+                        foreach(var action in trigger.actions??Array.Empty<ScenarioAction>())if(action!=null&&!LegacyActionKinds.Contains(action.kind))
+                            throw new InvalidDataException("Legacy scenario action kind is unsupported");
+                    }
+                }
                 string reason=Validate(document,rules);if(reason!="")throw new InvalidDataException(reason);
                 return document;
             }
             catch(Exception error)when(error is ArgumentException||error is FormatException)
             {throw new InvalidDataException("Scenario JSON is incomplete or invalid: "+error.Message,error);}
+        }
+        // Strict legacy shape for portable 0.12 imports. This is deliberately
+        // separate from current fields rather than making the JSON reader
+        // accept arbitrary missing members. Encoding always writes the new shape.
+        [Serializable] sealed class LegacyDocument069
+        {
+            public int schema,width,height,seed,waterHeightCm,victoryPlayer;
+            public string id,name,description,rulesHash;
+            public bool enableElimination;
+            public int[] heightsCm,surfaces;
+            public ScenarioRiver[] rivers;
+            public ScenarioBridge[] bridges;
+            public ScenarioStart[] starts;
+            public ScenarioPlacement[] resources,objects;
+            public Vector2[] tradeRoute;
+            public ScenarioTradeSocket[] tradeSockets;
+            public ScenarioTreasure[] treasures;
+            public ScenarioNeutralBinding[] neutralBindings;
+            public ScenarioRegion[] regions;
+            public LegacyObjective069[] objectives;
+            public LegacyTrigger069[] triggers;
+        }
+        [Serializable] sealed class LegacyObjective069
+        {
+            public string id,title,description,kind,objectId,regionId;
+            public int player;
+            public bool required;
+            public ResourceKind resource;
+            public float amount,holdSeconds,deadline;
+            public string[] prerequisites;
+        }
+        [Serializable] sealed class LegacyTrigger069
+        {
+            public string id;
+            public bool enabled,matchAny;
+            public int maxFires;
+            public float repeatSeconds;
+            public LegacyCondition069[] conditions;
+            public ScenarioAction[] actions;
+        }
+        [Serializable] sealed class LegacyCondition069
+        {
+            public string kind,objectId,regionId,objectiveId,triggerId;
+            public int player;
+            public ResourceKind resource;
+            public float amount,time;
         }
         static void CheckSize(string text)
         {
@@ -91,6 +168,7 @@ namespace Frontier
             Require(d.starts!=null&&d.starts.Length>=2&&d.starts.Length<=4,"requires 2–4 explicit player slots");
             int players=d.starts.Length;Require(Owner(d.victoryPlayer,players),"victory player");
             var ids=Set();var entities=Set();var regions=Set();var sockets=Set();var objectiveIds=Set();var triggerIds=Set();
+            var initialUnits=new Dictionary<string,EntityDef>(StringComparer.Ordinal);
             void Add(string id,string kind,bool entity=false)
             {Require(IsIdentifier(id)&&ids.Add(id),"duplicate or invalid "+kind+" ID "+id);if(entity)entities.Add(id);}
             for(int i=0;i<players;i++)
@@ -99,7 +177,9 @@ namespace Frontier
                 Require(s.team>=0&&s.team<=3&&rules.Civ(s.civilization)!=null&&rules.Age(s.age)!=null&&Nonnegative(s.initialResources),"player "+i+" civilization/team/era/resources");
                 Require(Point(s.town)&&Point(s.explorer)&&s.workers!=null&&s.workers.Length<=99,"player "+i+" starting positions");
                 Add(StartTownId(i),"starting town",true);Add(StartExplorerId(i),"starting explorer",true);
-                for(int w=0;w<s.workers.Length;w++){Require(Point(s.workers[w]),"starting worker position");Add(StartWorkerId(i,w),"starting worker",true);}
+                initialUnits.Add(StartExplorerId(i),rules.Entity("explorer"));
+                for(int w=0;w<s.workers.Length;w++)
+                {Require(Point(s.workers[w]),"starting worker position");Add(StartWorkerId(i,w),"starting worker",true);initialUnits.Add(StartWorkerId(i,w),rules.Entity(rules.Civ(s.civilization).workerUnit));}
             }
             Require(d.rivers!=null&&d.rivers.Length<=MaxRivers&&d.bridges!=null&&d.bridges.Length<=32,"river/bridge count");
             int points=0;
@@ -127,6 +207,7 @@ namespace Frontier
                     Require(Point(p.position)&&Owner(p.owner,players,true)&&Number(p.remaining,-1,1000000)&&(p.remaining==-1||p.remaining>=0),"placement position/owner/remaining");
                     Require(resources?p.complete:true,"resources must be complete");
                     Require(!resources||!string.IsNullOrEmpty(definition.id),"resource definition");
+                    if(definition.kind==EntityKind.Unit)initialUnits.Add(p.id,definition);
                 }
             }
             Placements(d.resources,true);Placements(d.objects,false);
@@ -144,8 +225,20 @@ namespace Frontier
             {
                 Require(t!=null,"null treasure");Add(t.id,"treasure",true);
                 Require(t.definition>=0&&t.definition<(rules.landmarks?.treasures?.Length??0)&&Point(t.position)&&t.guardPositions!=null&&t.guardPositions.Length<=32,"treasure definition/guards/position");
-                for(int i=0;i<t.guardPositions.Length;i++){Require(Point(t.guardPositions[i]),"treasure guard position");Add(TreasureGuardId(t.id,i),"treasure guard",true);}
+                for(int i=0;i<t.guardPositions.Length;i++)
+                {Require(Point(t.guardPositions[i]),"treasure guard position");string id=TreasureGuardId(t.id,i);Add(id,"treasure guard",true);initialUnits.Add(id,rules.Entity("guardian"));}
             }
+            Require(d.groups!=null&&d.groups.Length<=MaxGroups,"unit group count (64)");
+            var groups=new Dictionary<string,ScenarioGroup>(StringComparer.Ordinal);
+            foreach(var group in d.groups)
+            {
+                Require(group!=null,"null unit group");Add(group.id,"unit group",true);
+                Require(group.objectIds!=null&&group.objectIds.Length>=1&&group.objectIds.Length<=MaxGroupMembers,"unit group needs 1–128 initial members");
+                var members=Set();foreach(string id in group.objectIds)
+                    Require(id!=null&&initialUnits.ContainsKey(id)&&members.Add(id),"unit group must reference unique initial units: "+id);
+                groups.Add(group.id,group);
+            }
+            var unitReferences=Set();foreach(string id in initialUnits.Keys)unitReferences.Add(id);foreach(string id in groups.Keys)unitReferences.Add(id);
             Require(d.neutralBindings!=null&&d.neutralBindings.Length<=32,"neutral binding count");var neutralIds=Set();var neutralSockets=Set();
             foreach(var n in d.neutralBindings)
             {
@@ -170,16 +263,30 @@ namespace Frontier
                     Require(a!=null&&ActionKinds.Contains(a.kind),"unknown trigger action");
                     if(a.kind!="spawn")continue;
                     Require(a.count>=1&&a.count<=64,"spawn count");spawnBudget+=a.count*t.maxFires;Require(spawnBudget<=MaxSpawnBudget,"total trigger spawn budget (4096)");
-                    if(a.objectId!="")Add(a.objectId,"spawn group",true);
+                    if(a.objectId!=""){Add(a.objectId,"spawn group",true);unitReferences.Add(a.objectId);}
                 }
             }
             void Reference(string id,HashSet<string> known,string purpose,bool required=false)
             {Require(id!=null&&(id==""?!required:known.Contains(id)),purpose+" reference "+id);}
+            void TransportGroup(string objectId,string targetId,float amount)
+            {
+                ScenarioGroup group=null;EntityDef ship=null;
+                Require(objectId!=null&&groups.TryGetValue(objectId,out group),"embarkation requires an initial unit group");
+                Require(targetId!=null&&initialUnits.TryGetValue(targetId,out ship)&&ship.waterborne&&ship.transportShip&&ship.transportCapacity>0,"embarkation target must be one initial transport ship");
+                Require(amount>=1&&amount<=group.objectIds.Length&&amount==Mathf.Floor(amount),"embarkation threshold must be a possible integer member count");
+                foreach(string id in group.objectIds)
+                {
+                    var member=initialUnits[id];
+                    Require(member.kind==EntityKind.Unit&&!member.waterborne&&!member.civilian&&(member.tags&Tags.Villager)==0,"embarkation group must contain only initial land military units");
+                }
+            }
             foreach(var o in d.objectives)
             {
                 Require(Text(o.title,100,true)&&Text(o.description,2000)&&ObjectiveKinds.Contains(o.kind)&&Owner(o.player,players)&&Enum.IsDefined(typeof(ResourceKind),o.resource),"objective title/kind/player/resource");
                 Require(Number(o.amount,.001f,1000000)&&Number(o.holdSeconds,.1f,86400)&&Number(o.deadline,0,86400)&&o.prerequisites!=null&&o.prerequisites.Length<=MaxObjectives,"objective requirements");
-                Reference(o.objectId,entities,"objective object",o.kind=="destroy_object");Reference(o.regionId,regions,"objective region",o.kind=="hold_region"||o.kind=="reach_region");
+                Reference(o.objectId,entities,"objective object",o.kind=="destroy_object"||o.kind=="embark_group"||o.kind=="escort_group");Reference(o.regionId,regions,"objective region",o.kind=="hold_region"||o.kind=="reach_region"||o.kind=="escort_group");
+                Reference(o.targetId,entities,"objective target",o.kind=="embark_group"||o.kind=="escort_group");
+                if(o.kind=="embark_group"||o.kind=="escort_group")TransportGroup(o.objectId,o.targetId,o.amount);
                 Require(o.kind!="collect_resource"||Resource(o.resource),"collect objective resource");
                 var seen=Set();foreach(string id in o.prerequisites){Reference(id,objectiveIds,"objective prerequisite",true);Require(id!=o.id&&seen.Add(id),"self/duplicate objective prerequisite");}
             }
@@ -192,7 +299,10 @@ namespace Frontier
                 foreach(var c in t.conditions)
                 {
                     Require(c!=null&&ConditionKinds.Contains(c.kind)&&Owner(c.player,players)&&Enum.IsDefined(typeof(ResourceKind),c.resource)&&Number(c.amount,0,1000000)&&Number(c.time,0,86400),"trigger condition values");
-                    Reference(c.objectId,entities,"condition object",c.kind=="object_dead");Reference(c.regionId,regions,"condition region",c.kind=="units_in_region");
+                    Reference(c.objectId,entities,"condition object",c.kind=="object_dead"||c.kind=="units_embarked"||c.kind=="units_lost");Reference(c.regionId,regions,"condition region",c.kind=="units_in_region");
+                    Reference(c.targetId,entities,"condition target",c.kind=="units_embarked");
+                    if(c.kind=="units_embarked")TransportGroup(c.objectId,c.targetId,c.amount);
+                    if(c.kind=="units_lost")Require(unitReferences.Contains(c.objectId)&&c.amount>=1&&c.amount<=4096&&c.amount==Mathf.Floor(c.amount),"unit loss threshold must reference units and be an integer member count");
                     Reference(c.objectiveId,objectiveIds,"condition objective",c.kind=="objective_complete"||c.kind=="objective_failed");Reference(c.triggerId,triggerIds,"condition trigger",c.kind=="trigger_fired");
                     Require(c.kind!="resource"||Resource(c.resource),"resource condition type");
                     Require(c.kind!="units_in_region"||c.amount>=1&&c.amount<=4096&&c.amount==Mathf.Floor(c.amount),"region unit count");
@@ -202,7 +312,7 @@ namespace Frontier
                 {
                     Require(Owner(a.player,players)&&a.count>=1&&a.count<=64&&Point(a.point)&&Enum.IsDefined(typeof(ResourceKind),a.resource)&&Number(a.amount,0,1000000)&&Text(a.message,1024),"trigger action values");
                     Reference(a.objectiveId,objectiveIds,"action objective",a.kind=="complete_objective"||a.kind=="fail_objective");Reference(a.regionId,regions,"action region");
-                    Reference(a.objectId,entities,"action object",a.kind=="order_move"||a.kind=="order_attack");Reference(a.targetId,entities,"action target",a.kind=="order_attack");
+                    Reference(a.objectId,entities,"action object",a.kind=="order_move"||a.kind=="order_attack"||a.kind=="order_attack_move");Reference(a.targetId,entities,"action target",a.kind=="order_attack");
                     Reference(a.triggerId,triggerIds,"action trigger",a.kind=="enable_trigger"||a.kind=="disable_trigger");
                     Require(a.definition!=null&&(a.definition==""||rules.Entity(a.definition)!=null),"action definition");
                     if(a.kind=="spawn")Require(rules.Entity(a.definition)?.kind==EntityKind.Unit,"spawn needs a catalog unit");

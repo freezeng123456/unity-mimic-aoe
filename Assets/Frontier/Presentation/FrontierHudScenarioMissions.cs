@@ -8,9 +8,9 @@ namespace Frontier
     public sealed partial class FrontierHud
     {
         int editorCondition069,editorAction069,editorTreasureDefinition069;
-        static readonly string[] objectiveKinds069={"manual","hold_region","destroy_object","reach_region","collect_resource"};
-        static readonly string[] conditionKinds069={"time","object_dead","units_in_region","resource","objective_complete","objective_failed","trigger_fired"};
-        static readonly string[] actionKinds069={"message","spawn","order_move","order_attack","grant_resource","complete_objective","fail_objective","win","lose","enable_trigger","disable_trigger"};
+        static readonly string[] objectiveKinds069={"manual","hold_region","destroy_object","reach_region","collect_resource","embark_group","escort_group"};
+        static readonly string[] conditionKinds069={"time","object_dead","units_in_region","resource","objective_complete","objective_failed","trigger_fired","units_embarked","units_lost"};
+        static readonly string[] actionKinds069={"message","spawn","order_move","order_attack","order_attack_move","grant_resource","complete_objective","fail_objective","win","lose","enable_trigger","disable_trigger"};
         void BeginTradeGesture069(Vector2 p)
         {
             var doc=gestureDocument069;editorPoint069=-1;float best=5*5;
@@ -74,7 +74,51 @@ namespace Frontier
             var ids=new List<string>();foreach(var s in doc.starts){ids.Add("start-"+s.player+"-town");ids.Add("start-"+s.player+"-explorer");for(int i=0;i<s.workers.Length;i++)ids.Add("start-"+s.player+"-worker-"+i);}
             foreach(var e in doc.objects)ids.Add(e.id);foreach(var e in doc.resources)ids.Add(e.id);foreach(var socket in doc.tradeSockets)ids.Add(socket.id);
             foreach(var e in doc.treasures){ids.Add(e.id);for(int i=0;i<e.guardPositions.Length;i++)ids.Add(ScenarioCodec.TreasureGuardId(e.id,i));}
+            foreach(var group in doc.groups)ids.Add(group.id);
             foreach(var t in doc.triggers)foreach(var a in t.actions)if(a.kind=="spawn"&&a.objectId!=""&&!ids.Contains(a.objectId))ids.Add(a.objectId);return ids.ToArray();
+        }
+        string[] EditorInitialUnitReferences070(ScenarioDocument doc)
+        {
+            var ids=new List<string>();foreach(var s in doc.starts)
+            {ids.Add(ScenarioCodec.StartExplorerId(s.player));for(int i=0;i<s.workers.Length;i++)ids.Add(ScenarioCodec.StartWorkerId(s.player,i));}
+            foreach(var e in doc.objects)if(game.Rules.Entity(e.definition)?.kind==EntityKind.Unit)ids.Add(e.id);
+            foreach(var e in doc.treasures)for(int i=0;i<e.guardPositions.Length;i++)ids.Add(ScenarioCodec.TreasureGuardId(e.id,i));
+            return ids.ToArray();
+        }
+        string[] EditorUnitReferences070(ScenarioDocument doc)
+        {
+            var ids=new List<string>(EditorInitialUnitReferences070(doc));foreach(var group in doc.groups)ids.Add(group.id);
+            foreach(var t in doc.triggers)foreach(var a in t.actions)if(a.kind=="spawn"&&a.objectId!="")ids.Add(a.objectId);return ids.ToArray();
+        }
+        EntityDef EditorInitialUnitDefinition070(ScenarioDocument doc,string id)
+        {
+            foreach(var s in doc.starts)
+            {if(id==ScenarioCodec.StartExplorerId(s.player))return game.Rules.Entity("explorer");for(int i=0;i<s.workers.Length;i++)if(id==ScenarioCodec.StartWorkerId(s.player,i))return game.Rules.Entity(game.Rules.Civ(s.civilization).workerUnit);}
+            var item=Array.Find(doc.objects,e=>e.id==id);if(item!=null)return game.Rules.Entity(item.definition);
+            foreach(var treasure in doc.treasures)for(int i=0;i<treasure.guardPositions.Length;i++)if(id==ScenarioCodec.TreasureGuardId(treasure.id,i))return game.Rules.Entity("guardian");return null;
+        }
+        string[] EditorMilitaryGroups070(ScenarioDocument doc)
+        {
+            var ids=new List<string>();foreach(var group in doc.groups)
+            {
+                bool eligible=group.objectIds.Length>0;foreach(string id in group.objectIds)
+                {var d=EditorInitialUnitDefinition070(doc,id);if(d==null||d.kind!=EntityKind.Unit||d.waterborne||d.civilian||(d.tags&Tags.Villager)!=0){eligible=false;break;}}
+                if(eligible)ids.Add(group.id);
+            }
+            return ids.ToArray();
+        }
+        string[] EditorTransportReferences070(ScenarioDocument doc)
+        {
+            var ids=new List<string>();foreach(var item in doc.objects)
+            {var d=game.Rules.Entity(item.definition);if(d!=null&&d.waterborne&&d.transportShip&&d.transportCapacity>0)ids.Add(item.id);}return ids.ToArray();
+        }
+        string[] EditorOptionalReferences070(string[] ids)
+        {var result=new string[ids.Length+1];result[0]="";Array.Copy(ids,0,result,1,ids.Length);return result;}
+        void EditorEmbarkDefaults070(ScenarioDocument doc,out string group,out string ship)
+        {
+            var groups=EditorMilitaryGroups070(doc);var transports=EditorTransportReferences070(doc);
+            if(groups.Length==0||transports.Length==0)throw new ArgumentException("Add an initial land military group and a transport ship on the Objects page first");
+            group=groups[0];ship=transports[0];
         }
         string[] EditorRegionIds069(ScenarioDocument d){var ids=new string[d.regions.Length];for(int i=0;i<ids.Length;i++)ids[i]=d.regions[i].id;return ids;}
         string[] EditorObjectiveIds069(ScenarioDocument d){var ids=new string[d.objectives.Length];for(int i=0;i<ids.Length;i++)ids[i]=d.objectives[i].id;return ids;}
@@ -90,13 +134,20 @@ namespace Frontier
             var o=SelectedObjective069(doc);if(o==null)return;
             InspectorField069("TITLE",o.title,v=>EditScenario069(d=>SelectedObjective069(d).title=v),ref y,100);
             InspectorField069("DESCRIPTION",o.description,v=>EditScenario069(d=>SelectedObjective069(d).description=v),ref y,2000);
-            InspectorChoice069("GOAL",o.kind,objectiveKinds069,v=>EditScenario069(d=>{var goal=SelectedObjective069(d);goal.kind=v;goal.objectId="";goal.regionId="";if(v=="destroy_object")goal.objectId=EditorEntityReferences069(d)[0];if(v=="hold_region"||v=="reach_region"){if(d.regions.Length==0)throw new ArgumentException("Add a region first");goal.regionId=d.regions[0].id;}if(v=="collect_resource")goal.resource=ResourceKind.Food;}),ref y);
+            InspectorChoice069("GOAL",o.kind,objectiveKinds069,v=>EditScenario069(d=>{var goal=SelectedObjective069(d);goal.kind=v;goal.objectId=goal.targetId=goal.regionId="";if(v=="destroy_object")goal.objectId=EditorEntityReferences069(d)[0];if(v=="hold_region"||v=="reach_region"||v=="escort_group"){if(d.regions.Length==0)throw new ArgumentException("Add a region first");goal.regionId=d.regions[0].id;}if(v=="collect_resource")goal.resource=ResourceKind.Food;if(v=="embark_group"||v=="escort_group"){EditorEmbarkDefaults070(d,out goal.objectId,out goal.targetId);goal.amount=1;}}),ref y);
             InspectorInteger069("PLAYER SLOT",o.player,v=>EditScenario069(d=>SelectedObjective069(d).player=v),ref y,0,doc.starts.Length-1);
             InspectorBool069("REQUIRED",o.required,v=>EditScenario069(d=>SelectedObjective069(d).required=v),ref y);
             if(o.kind=="destroy_object")InspectorChoice069("TARGET",o.objectId,EditorEntityReferences069(doc),v=>EditScenario069(d=>SelectedObjective069(d).objectId=v),ref y);
-            if(o.kind=="hold_region"||o.kind=="reach_region")InspectorChoice069("REGION",o.regionId,EditorRegionIds069(doc),v=>EditScenario069(d=>SelectedObjective069(d).regionId=v),ref y);
+            if(o.kind=="hold_region"||o.kind=="reach_region"||o.kind=="escort_group")InspectorChoice069("REGION",o.regionId,EditorRegionIds069(doc),v=>EditScenario069(d=>SelectedObjective069(d).regionId=v),ref y);
+            if(o.kind=="hold_region"||o.kind=="reach_region")InspectorChoice069("BOUND UNITS (empty = all)",o.objectId,EditorOptionalReferences070(EditorUnitReferences070(doc)),v=>EditScenario069(d=>SelectedObjective069(d).objectId=v),ref y);
+            if(o.kind=="embark_group"||o.kind=="escort_group")
+            {
+                InspectorChoice069("MILITARY GROUP",o.objectId,EditorMilitaryGroups070(doc),v=>EditScenario069(d=>{var goal=SelectedObjective069(d);goal.objectId=v;goal.amount=Mathf.Min(goal.amount,Array.Find(d.groups,g=>g.id==v).objectIds.Length);}),ref y);
+                InspectorChoice069("TRANSPORT SHIP",o.targetId,EditorTransportReferences070(doc),v=>EditScenario069(d=>SelectedObjective069(d).targetId=v),ref y);
+            }
             if(o.kind=="collect_resource")InspectorResource069(o.resource,v=>EditScenario069(d=>SelectedObjective069(d).resource=v),ref y);
-            InspectorNumber069(o.kind=="collect_resource"?"RESOURCE AMOUNT":"UNIT COUNT",o.amount,v=>EditScenario069(d=>SelectedObjective069(d).amount=v),ref y,.001f,1000000);
+            if(o.kind=="embark_group"||o.kind=="escort_group")InspectorInteger069("SPECIFIED SOLDIER COUNT",(int)o.amount,v=>EditScenario069(d=>SelectedObjective069(d).amount=v),ref y,1,Array.Find(doc.groups,g=>g.id==o.objectId)?.objectIds.Length??128);
+            else InspectorNumber069(o.kind=="collect_resource"?"RESOURCE AMOUNT":"UNIT COUNT",o.amount,v=>EditScenario069(d=>SelectedObjective069(d).amount=v),ref y,.001f,1000000);
             InspectorNumber069("HOLD TIME (seconds)",o.holdSeconds,v=>EditScenario069(d=>SelectedObjective069(d).holdSeconds=v),ref y,.1f,86400);
             InspectorNumber069("DEADLINE (seconds)",o.deadline,v=>EditScenario069(d=>SelectedObjective069(d).deadline=v),ref y,0,86400);
             InspectorField069("REQUIRES (comma IDs)",string.Join(",",o.prerequisites),v=>EditScenario069(d=>SelectedObjective069(d).prerequisites=string.IsNullOrWhiteSpace(v)?Array.Empty<string>():v.Replace(" ","").Split(',')),ref y,1000);
@@ -132,21 +183,31 @@ namespace Frontier
         {
             InspectorChoice069("WHEN",c.kind,conditionKinds069,kind=>EditScenario069(d=>
             {
-                var x=SelectedTrigger069(d).conditions[editorCondition069];x.kind=kind;x.objectId=x.regionId=x.objectiveId=x.triggerId="";
+                var x=SelectedTrigger069(d).conditions[editorCondition069];x.kind=kind;x.objectId=x.targetId=x.regionId=x.objectiveId=x.triggerId="";
                 if(kind=="object_dead")x.objectId=EditorEntityReferences069(d)[0];
                 if(kind=="units_in_region"){if(d.regions.Length==0)throw new ArgumentException("Add a region first");x.regionId=d.regions[0].id;x.amount=1;}
                 if(kind=="objective_complete"||kind=="objective_failed"){if(d.objectives.Length==0)throw new ArgumentException("Add an objective first");x.objectiveId=d.objectives[0].id;}
                 if(kind=="trigger_fired"){x.triggerId=d.triggers[0].id;x.amount=1;}
                 if(kind=="resource")x.resource=ResourceKind.Food;
+                if(kind=="units_embarked"){EditorEmbarkDefaults070(d,out x.objectId,out x.targetId);x.amount=1;}
+                if(kind=="units_lost"){x.objectId=EditorUnitReferences070(d)[0];x.amount=1;}
             }),ref y);
             InspectorInteger069("PLAYER",c.player,v=>EditCondition069(x=>x.player=v),ref y,0,doc.starts.Length-1);
             if(c.kind=="time")InspectorNumber069("TIME (seconds)",c.time,v=>EditCondition069(x=>x.time=v),ref y,0,86400);
             if(c.kind=="object_dead")InspectorChoice069("OBJECT",c.objectId,EditorEntityReferences069(doc),v=>EditCondition069(x=>x.objectId=v),ref y);
             if(c.kind=="units_in_region")InspectorChoice069("REGION",c.regionId,EditorRegionIds069(doc),v=>EditCondition069(x=>x.regionId=v),ref y);
+            if(c.kind=="units_in_region")InspectorChoice069("BOUND UNITS (empty = all)",c.objectId,EditorOptionalReferences070(EditorUnitReferences070(doc)),v=>EditCondition069(x=>x.objectId=v),ref y);
+            if(c.kind=="units_embarked")
+            {
+                InspectorChoice069("MILITARY GROUP",c.objectId,EditorMilitaryGroups070(doc),v=>EditScenario069(d=>{var x=SelectedTrigger069(d).conditions[editorCondition069];x.objectId=v;x.amount=Mathf.Min(x.amount,Array.Find(d.groups,g=>g.id==v).objectIds.Length);}),ref y);
+                InspectorChoice069("TRANSPORT SHIP",c.targetId,EditorTransportReferences070(doc),v=>EditCondition069(x=>x.targetId=v),ref y);
+            }
+            if(c.kind=="units_lost")InspectorChoice069("SPECIFIED UNITS",c.objectId,EditorUnitReferences070(doc),v=>EditCondition069(x=>x.objectId=v),ref y);
             if(c.kind=="resource")InspectorResource069(c.resource,v=>EditCondition069(x=>x.resource=v),ref y);
             if(c.kind=="objective_complete"||c.kind=="objective_failed")InspectorChoice069("OBJECTIVE",c.objectiveId,EditorObjectiveIds069(doc),v=>EditCondition069(x=>x.objectiveId=v),ref y);
             if(c.kind=="trigger_fired")InspectorChoice069("TRIGGER",c.triggerId,EditorTriggerIds069(doc),v=>EditCondition069(x=>x.triggerId=v),ref y);
             if(c.kind=="resource"||c.kind=="units_in_region"||c.kind=="trigger_fired")InspectorNumber069("THRESHOLD",c.amount,v=>EditCondition069(x=>x.amount=v),ref y,1,c.kind=="trigger_fired"?64:1000000);
+            if(c.kind=="units_embarked"||c.kind=="units_lost")InspectorInteger069("MEMBER COUNT",(int)c.amount,v=>EditCondition069(x=>x.amount=v),ref y,1,c.kind=="units_embarked"?(Array.Find(doc.groups,g=>g.id==c.objectId)?.objectIds.Length??128):4096);
         }
         void ActionInspector069(ScenarioDocument doc,ScenarioAction a,ref float y)
         {
@@ -155,7 +216,7 @@ namespace Frontier
                 var x=SelectedTrigger069(d).actions[editorAction069];x.kind=kind;x.objectiveId=x.regionId=x.objectId=x.targetId=x.triggerId=x.definition="";
                 if(kind=="message")x.message="Objective updated.";
                 if(kind=="spawn"){x.definition=game.Rules.Civ(d.starts[x.player].civilization).workerUnit;x.objectId=NewEditorId069(d,"army");x.point=editorCursor069;}
-                if(kind=="order_move"||kind=="order_attack"){x.objectId=EditorEntityReferences069(d)[0];x.point=editorCursor069;if(kind=="order_attack")x.targetId="start-1-town";}
+                if(kind=="order_move"||kind=="order_attack"||kind=="order_attack_move"){x.objectId=EditorUnitReferences070(d)[0];x.point=editorCursor069;if(kind=="order_attack")x.targetId="start-1-town";}
                 if(kind=="grant_resource"){x.resource=ResourceKind.Food;x.amount=100;}
                 if(kind=="complete_objective"||kind=="fail_objective"){if(d.objectives.Length==0)throw new ArgumentException("Add an objective first");x.objectiveId=d.objectives[0].id;}
                 if(kind=="enable_trigger"||kind=="disable_trigger")x.triggerId=d.triggers[0].id;
@@ -164,9 +225,9 @@ namespace Frontier
             if(a.kind=="message")InspectorField069("MESSAGE",a.message,v=>EditAction069(x=>x.message=v),ref y,1024);
             if(a.kind=="spawn")
             {InspectorField069("UNIT CATALOG ID",a.definition,v=>EditAction069(x=>x.definition=v),ref y,64);InspectorField069("NEW GROUP ID",a.objectId,v=>EditAction069(x=>x.objectId=v),ref y,64);InspectorInteger069("COUNT",a.count,v=>EditAction069(x=>x.count=v),ref y,1,64);}
-            if(a.kind=="order_move"||a.kind=="order_attack")InspectorChoice069("ACTOR GROUP",a.objectId,EditorEntityReferences069(doc),v=>EditAction069(x=>x.objectId=v),ref y);
+            if(a.kind=="order_move"||a.kind=="order_attack"||a.kind=="order_attack_move")InspectorChoice069("ACTOR GROUP",a.objectId,EditorUnitReferences070(doc),v=>EditAction069(x=>x.objectId=v),ref y);
             if(a.kind=="order_attack")InspectorChoice069("TARGET OBJECT",a.targetId,EditorEntityReferences069(doc),v=>EditAction069(x=>x.targetId=v),ref y);
-            if(a.kind=="spawn"||a.kind=="order_move")InspectorPoint069("DESTINATION",a.point,p=>EditAction069(x=>x.point=p),ref y);
+            if(a.kind=="spawn"||a.kind=="order_move"||a.kind=="order_attack_move")InspectorPoint069("DESTINATION",a.point,p=>EditAction069(x=>x.point=p),ref y);
             if(a.kind=="grant_resource"){InspectorResource069(a.resource,v=>EditAction069(x=>x.resource=v),ref y);InspectorNumber069("AMOUNT",a.amount,v=>EditAction069(x=>x.amount=v),ref y,.001f,1000000);}
             if(a.kind=="complete_objective"||a.kind=="fail_objective")InspectorChoice069("OBJECTIVE",a.objectiveId,EditorObjectiveIds069(doc),v=>EditAction069(x=>x.objectiveId=v),ref y);
             if(a.kind=="enable_trigger"||a.kind=="disable_trigger")InspectorChoice069("TRIGGER",a.triggerId,EditorTriggerIds069(doc),v=>EditAction069(x=>x.triggerId=v),ref y);

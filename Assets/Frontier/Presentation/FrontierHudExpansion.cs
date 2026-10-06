@@ -27,10 +27,12 @@ namespace Frontier
             image.texture=RenderMapPreview(preview);image.raycastTarget=false;
             Label(box,"P1 blue · P2 red · P3 green · P4 purple\nGold: bridges · White: harbor sites",new Rect(530,365,280,68),17,muted);
             Label(box,preview.Layout.RequiresTransport?"Two separated shores: an army needs a transport to cross.":"Land routes and shores are checked when the match is created.",new Rect(25,279,470,70),18,gold);
+            Button(box,"RIVER EXPEDITIONS",new Rect(25,365,470,58),ShowRiverContent070,"Choose Traders' Bend or three linked original missions; each can also be edited in the workshop.");
             string[] modes={"elimination","capture_harbor","defend_bridge","escort_caravan"};
             for(int i=0;i<modes.Length;i++)
             {
-                string id=modes[i];var definition=preview.ObjectiveDefinition(id);string reason=preview.MapObjectiveAvailability(id);
+                string id=modes[i];var definition=preview.ObjectiveDefinition(id);string reason=preview.HasScenario&&(authored.objectives.Length>0||!authored.enableElimination)&&id!="elimination"?
+                    "This document uses its authored objectives. Edit them in the workshop.":preview.MapObjectiveAvailability(id);
                 Button(box,(game.SelectedObjective==id?"[SELECTED] ":"")+(definition?.name??"Elimination"),new Rect(25+(i%2)*400,446+(i/2)*75,385,62),()=>{game.SelectedObjective=id;ShowMapOptions();},reason==""?"Use this mission at match start. Progress and failure conditions appear in the game HUD.":reason,reason=="");
             }
             string selectedReason=preview.MapObjectiveAvailability(game.SelectedObjective);
@@ -53,7 +55,7 @@ namespace Frontier
         }
         private string ObjectiveSummary()
         {
-            if(game.World.HasScenario)return ScenarioObjectiveSummary069();
+            if(game.World.HasScenario&&game.World.ScenarioDocument.objectives.Length>0)return ScenarioObjectiveSummary069();
             var state=game.World.MapObjective;if(state==null||state.mode=="elimination")return "";
             var d=game.World.ObjectiveDefinition(state.mode);if(d==null)return "";
             string progress=state.mode=="escort_caravan"?"Checkpoint "+Mathf.Min(state.waypoint,state.route.Length)+" / "+state.route.Length:state.progress.ToString("0")+" / "+d.holdSeconds.ToString("0")+"s";

@@ -80,6 +80,7 @@ namespace Frontier
         {
             var ids=new HashSet<string>();
             foreach(var x in doc.rivers)ids.Add(x.id);foreach(var x in doc.bridges)ids.Add(x.id);foreach(var x in doc.resources)ids.Add(x.id);foreach(var x in doc.objects)ids.Add(x.id);
+            foreach(var x in doc.groups)ids.Add(x.id);
             foreach(var x in doc.tradeSockets)ids.Add(x.id);foreach(var x in doc.treasures)ids.Add(x.id);foreach(var x in doc.regions)ids.Add(x.id);foreach(var x in doc.objectives)ids.Add(x.id);foreach(var x in doc.triggers){ids.Add(x.id);foreach(var a in x.actions)if(a.objectId!="")ids.Add(a.objectId);}
             for(int i=1;i<10000;i++){string id=prefix+"-"+i;if(!ids.Contains(id))return id;}throw new InvalidOperationException("Too many authored IDs");
         }
@@ -182,6 +183,7 @@ namespace Frontier
             for(int i=0;i<6&&editorCatalogPage069*6+i<entries.Count;i++){var def=entries[editorCatalogPage069*6+i];InspectorButton069(def.name+" · "+def.id,()=>{editorDefinition069=def.id;editorTool069="place";RefreshEditorInspector069();},ref y);}
             InspectorButton069("MORE OBJECTS "+(editorCatalogPage069+1)+" / "+pages,()=>{editorCatalogPage069=(editorCatalogPage069+1)%pages;RefreshEditorInspector069();},ref y);
             InspectorInteger069("NEW OBJECT OWNER",editorOwner069,v=>editorOwner069=v,ref y,-1,doc.starts.Length-1);
+            GroupsInspector070(doc,ref y);
             var item=SelectedPlacement069(doc);if(item==null){InspectorNote069("No object selected. Choose select, then click a map marker.",ref y);return;}
             InspectorTitle069(item.id,ref y);InspectorNote069(game.Rules.Entity(item.definition).name,ref y,1);
             InspectorPoint069("POSITION",item.position,p=>EditScenario069(d=>SelectedPlacement069(d).position=p),ref y);
@@ -189,6 +191,30 @@ namespace Frontier
             else
             {InspectorInteger069("OWNER",item.owner,v=>EditScenario069(d=>SelectedPlacement069(d).owner=v),ref y,-1,doc.starts.Length-1);InspectorBool069("COMPLETED",item.complete,v=>EditScenario069(d=>SelectedPlacement069(d).complete=v),ref y);}
             InspectorButton069("REMOVE SELECTED",()=>EditScenario069(d=>{int index=Array.FindIndex(d.resources,e=>e.id==editorSelected069);if(index>=0)d.resources=RemoveEditor069(d.resources,index);else d.objects=RemoveEditor069(d.objects,Array.FindIndex(d.objects,e=>e.id==editorSelected069));editorSelected069="";}),ref y);
+        }
+        void GroupsInspector070(ScenarioDocument doc,ref float y)
+        {
+            InspectorTitle069("INITIAL UNIT GROUPS",ref y);
+            InspectorNote069("Bind specific initial units for orders, losses and landing goals.\nGroups do not add units and cannot contain groups or buildings.",ref y);
+            var available=EditorInitialUnitReferences070(doc);
+            InspectorButton069("ADD UNIT GROUP",()=>EditScenario069(d=>
+            {
+                var unit=SelectedPlacement069(d);string member=unit!=null&&game.Rules.Entity(unit.definition)?.kind==EntityKind.Unit?unit.id:EditorInitialUnitReferences070(d)[0];
+                string id=NewEditorId069(d,"group");d.groups=AppendEditor069(d.groups,new ScenarioGroup{id=id,objectIds=new[]{member}});editorSelected069=id;editorTool069="select";
+            }),ref y,doc.groups.Length<ScenarioCodec.MaxGroups&&available.Length>0);
+            foreach(var group in doc.groups)
+            {string id=group.id;InspectorButton069((editorSelected069==id?"[SELECTED] ":"")+id+" · "+group.objectIds.Length+" units",()=>{editorSelected069=id;RefreshEditorInspector069();},ref y);}
+            var selected=Array.Find(doc.groups,g=>g.id==editorSelected069);if(selected==null)return;
+            string selectedId=selected.id;
+            for(int i=0;i<selected.objectIds.Length;i++)
+            {
+                int index=i;var choices=new List<string>();foreach(string id in available)if(id==selected.objectIds[index]||Array.IndexOf(selected.objectIds,id)<0)choices.Add(id);
+                InspectorChoice069("MEMBER "+(i+1),selected.objectIds[i],choices.ToArray(),v=>EditScenario069(d=>Array.Find(d.groups,g=>g.id==selectedId).objectIds[index]=v),ref y);
+                InspectorButton069("REMOVE MEMBER "+(i+1),()=>EditScenario069(d=>{var group=Array.Find(d.groups,g=>g.id==selectedId);group.objectIds=RemoveEditor069(group.objectIds,index);}),ref y,selected.objectIds.Length>1);
+            }
+            string next=Array.Find(available,id=>Array.IndexOf(selected.objectIds,id)<0);
+            InspectorButton069("ADD ANOTHER INITIAL UNIT",()=>EditScenario069(d=>{var group=Array.Find(d.groups,g=>g.id==selectedId);group.objectIds=AppendEditor069(group.objectIds,next);}),ref y,next!=null&&selected.objectIds.Length<ScenarioCodec.MaxGroupMembers);
+            InspectorButton069("REMOVE UNIT GROUP",()=>EditScenario069(d=>{d.groups=RemoveEditor069(d.groups,Array.FindIndex(d.groups,g=>g.id==selectedId));editorSelected069="";}),ref y);
         }
         void MoveStart069(Vector2 p)
         {

@@ -5,7 +5,7 @@ namespace Frontier
 {
     public enum GuidedPlayKind { Lesson, Campaign }
     public enum GuidedPlayStatus { Running, Completed, Failed }
-    public enum GuidedPlayGoal { Selection, Move, GatherWood, House, Age, Barracks, Train, SendShipment, ShipmentArrival, DestroyFirst, DestroySecond, Contact, TradingPost, Alliance, Recruit, Embark, Land, HoldLanding, Defend }
+    public enum GuidedPlayGoal { Selection, Move, GatherWood, House, Age, Barracks, Train, SendShipment, ShipmentArrival, DestroyFirst, DestroySecond, Contact, TradingPost, Alliance, Recruit, Embark, Land, HoldLanding, Defend, ScenarioObjective }
     public sealed class GuidedPlayStage
     {
         public string Id {get; internal set;}
@@ -28,6 +28,7 @@ namespace Frontier
         public string NextId {get; internal set;}
         public string UnlockAfterId {get; internal set;}
         public string StartingSetupDescription {get; internal set;}
+        public string AuthoredScenarioId {get; internal set;}="";
         public IReadOnlyList<GuidedPlayStage> Stages {get; internal set;}
     }
     public sealed class GuidedPlayChecklist
@@ -75,7 +76,31 @@ namespace Frontier
             };
             for(int i=0;i<6;i++)a[i].NextId=a[i+1].Id;
             a[6].NextId=a[7].Id;a[7].NextId=a[8].Id;a[8].NextId=a[9].Id;
-            a[8].UnlockAfterId=a[7].Id;a[9].UnlockAfterId=a[8].Id;return a;
+            a[8].UnlockAfterId=a[7].Id;a[9].UnlockAfterId=a[8].Id;
+            // The original three-chapter arc and its account revision remain
+            // unchanged. A second expedition has its own first unlocked chapter.
+            var additions=new[]{
+                D(RiverContent070.Scout,"远征 I：双桥侦察","侦察远岸、选择渡桥，并清除商路封锁；侧线瞭望提供一次补给。",GuidedPlayKind.Campaign,MapTopology.Scenario,902004,2,new Cost(),
+                    "原创时代 II 任务：200 食物、180 木材、100 钱币；6 工人、探路者、4 火枪兵、2 长枪兵及补给住宅。无敌方经济 AI；营地或前线部队损失、目标超时会失败。",
+                    S("survey","侦察远岸","移动探路者越桥进入远岸标记；可先去西侧瞭望点获得一次补给。",GuidedPlayGoal.ScenarioObjective),
+                    S("blockade","清除商路封锁","侦察目标后，指挥部队摧毁敌方补给市场，保护后方营地。",GuidedPlayGoal.ScenarioObjective)),
+                D(RiverContent070.Convoy,"远征 II：渡湾护送","运输指定登陆队穿过分流河湾，护航或绕行后建立岛上据点。",GuidedPlayKind.Campaign,MapTopology.Scenario,902005,2,new Cost(),
+                    "原创时代 II 任务：160 食物、180 木材、120 钱币；6 工人、6 名指定登陆兵、运输舰、炮艇与己方港口。岛与本岸没有陆路；最低4名指定登陆兵及运输舰必须生存。无敌方经济 AI。",
+                    S("embark","装载指定登陆队","选择登陆兵，右键指定运输舰；至少4人实际登船。",GuidedPlayGoal.ScenarioObjective,4),
+                    S("sail","护送运输舰","保护载有至少4名指定登陆兵的运输舰进入西侧岛岸水域；可用炮艇压制来袭船或经东侧水道绕行。",GuidedPlayGoal.ScenarioObjective,4),
+                    S("land","建立岛上登陆点","在岛岸卸载，再将至少4名指定登陆兵移入岛中标记；船和工人不计入。",GuidedPlayGoal.ScenarioObjective,4),
+                    S("blockade","清除岛上封锁","指挥登陆队摧毁已侦察的敌方补给市场。",GuidedPlayGoal.ScenarioObjective)),
+                D(RiverContent070.Retreat,"远征 III：守港回撤","陆海反击下守住港区，再选择过桥或船运撤回后方。",GuidedPlayKind.Campaign,MapTopology.Scenario,902006,3,new Cost(),
+                    "原创时代 III 任务：160 食物、180 木材、120 钱币；6名指定后卫、运输舰、炮艇及前方港口；敌军分三次增援。至少4名后卫、前港和后方城镇须生存；修船和新生产仍实际付费。",
+                    S("hold","守住港区","至少4名后卫在标记内守住40秒；敌人进入时进度清零。保护码头，应对陆海增援。",GuidedPlayGoal.ScenarioObjective,40),
+                    S("withdraw","后卫回撤","将至少4名指定幸存后卫带回后方标记；可走南桥或装载、航行、卸载。",GuidedPlayGoal.ScenarioObjective,4))};
+            for(int i=0;i<additions.Length;i++)
+            {
+                additions[i].AuthoredScenarioId=additions[i].Id;additions[i].TimeLimit=1200;
+                if(i>0)additions[i].UnlockAfterId=additions[i-1].Id;
+                if(i+1<additions.Length)additions[i].NextId=additions[i+1].Id;
+            }
+            var all=new List<GuidedPlayDefinition>(a);all.AddRange(additions);return all.ToArray();
         }
     }
 }

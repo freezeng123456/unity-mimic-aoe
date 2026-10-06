@@ -8,7 +8,7 @@ namespace Frontier
     // enters the cache; changing an editor draft cannot change a running match.
     public static class ScenarioCompiler
     {
-        public const int Version=1;
+        public const int Version=2;
         static readonly Dictionary<string,MapLayout> cache=new Dictionary<string,MapLayout>();
         static readonly Queue<string> order=new Queue<string>();
         public static string Validate(ScenarioDocument document,RuleCatalog rules,int players,int[] teamsOverride=null)

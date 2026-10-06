@@ -17,6 +17,7 @@ namespace Frontier
         public ScenarioBridge[] bridges=Array.Empty<ScenarioBridge>();
         public ScenarioStart[] starts=Array.Empty<ScenarioStart>();
         public ScenarioPlacement[] resources=Array.Empty<ScenarioPlacement>(),objects=Array.Empty<ScenarioPlacement>();
+        public ScenarioGroup[] groups=Array.Empty<ScenarioGroup>();
         public Vector2[] tradeRoute=Array.Empty<Vector2>();
         public ScenarioTradeSocket[] tradeSockets=Array.Empty<ScenarioTradeSocket>();
         public ScenarioTreasure[] treasures=Array.Empty<ScenarioTreasure>();
@@ -46,6 +47,8 @@ namespace Frontier
         public string id="",definition="";public Vector2 position;public int owner=-1;
         public float remaining=-1;public bool complete=true;
     }
+    [Serializable] public sealed class ScenarioGroup
+    {public string id="";public string[] objectIds=Array.Empty<string>();}
     [Serializable] public sealed class ScenarioTradeSocket
     {public string id="";public Vector2 position;public int waypoint;}
     [Serializable] public sealed class ScenarioTreasure
@@ -56,7 +59,7 @@ namespace Frontier
     {public string id="";public Vector2 center,size=new Vector2(10,10);}
     [Serializable] public sealed class ScenarioObjective
     {
-        public string id="",title="Objective",description="",kind="manual",objectId="",regionId="";
+        public string id="",title="Objective",description="",kind="manual",objectId="",targetId="",regionId="";
         public int player;public bool required=true;public ResourceKind resource=ResourceKind.None;
         public float amount=1,holdSeconds=30,deadline;
         public string[] prerequisites=Array.Empty<string>();
@@ -69,7 +72,7 @@ namespace Frontier
     }
     [Serializable] public sealed class ScenarioCondition
     {
-        public string kind="time",objectId="",regionId="",objectiveId="",triggerId="";
+        public string kind="time",objectId="",targetId="",regionId="",objectiveId="",triggerId="";
         public int player;public ResourceKind resource=ResourceKind.None;public float amount=1,time;
     }
     [Serializable] public sealed class ScenarioAction
