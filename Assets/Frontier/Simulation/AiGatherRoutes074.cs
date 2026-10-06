@@ -51,7 +51,12 @@ namespace Frontier
             // former so a nearby worker never bypasses a movement check.
             if(safe&&world.EdgeDistance(worker,source)>1.35f)
             {
-                safe=OrdinaryPathSafe(worker,world.WorkPoint(source,worker));
+                var goal=world.WorkPoint(source,worker);
+                // Projection may find a walkable point beyond actual extraction
+                // range. Reuse Gather's geometry with a separate arrival probe;
+                // no live actor position or manual command behavior changes.
+                var arrival=new EntityState{def=worker.def,position=goal};
+                safe=world.EdgeDistance(arrival,source)<=1.5f&&OrdinaryPathSafe(worker,goal);
                 // A valid cached path may survive the movement retarget threshold
                 // or ally recovery. Check its remaining legs as well, rather than
                 // proving only a fresh route which the current order might not use.

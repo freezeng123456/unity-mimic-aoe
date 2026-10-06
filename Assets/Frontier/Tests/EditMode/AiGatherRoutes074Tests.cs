@@ -143,6 +143,40 @@ namespace Frontier.Tests
             for(int i=0;i<100;i++)w.Tick(.1f);Assert.AreEqual(0,w.Players[0].gathered.wood);
         }
 
+        [Test] public void ReachableProjectedWorkPointOutsideGatherRangeCannotForecastOrAssignWoodAndClearingRestoresIncome()
+        {
+            var a=new Fixture();var w=a.World;var threats=new List<EntityState>();
+            a.Worker.position=new Vector2(29,25);a.Worker.previousPosition=a.Worker.position;
+            var source=a.Tree(new Vector2(40,28));
+            // Declared terrain change isolates the source's extraction perimeter,
+            // while its projected ordinary WorkPoint remains reachable and safe.
+            w.Navigation.SetTerrainBlocked(source.position,3,true);
+            var goal=w.WorkPoint(source,a.Worker);
+            Assert.AreEqual(new Vector2(36,28),goal);
+            Assert.GreaterOrEqual(w.Navigation.FindPath(a.Worker.position,goal,a.Worker.def.radius).Count,2);
+            Assert.IsTrue(new AiGatherRoutes074(w,0,threats).OrdinaryPathSafe(a.Worker,goal));
+            Assert.IsTrue(w.CanGather(a.Worker,source),"Manual Gather authority is independent of extraction arrival");
+            var start=a.Worker.position;Gather(w,a.Worker,source);
+            for(int i=0;i<160;i++)w.Tick(.1f);
+            Assert.Greater((a.Worker.position-start).sqrMagnitude,1,"The real ordinary command moves toward the reachable projection");
+            Assert.Greater(w.EdgeDistance(a.Worker,source),1.5f);
+            w.FlushEconomyLog();Assert.AreEqual(0,w.Players[0].gathered.wood);
+            Assert.IsFalse(w.Events.Any(e=>e.kind=="Gather"&&e.target==source.id&&e.amount>0));
+            Assert.IsTrue(w.Issue(new GameCommand{player=0,kind=CommandKind.Order,actors=new[]{a.Worker.id},order=OrderKind.Stop}).accepted);
+            w.Fog.Reveal(0,source.position,1);
+            Assert.IsFalse(new AiGatherRoutes074(w,0,threats).CanGather(a.Worker,source),"A reachable projected goal outside real income range is not an available source");
+            Assert.AreEqual(0,new AiResourceContinuity072(w,0).Evaluate().VisibleWoodRemaining,.001f);
+            a.Assign(threats);Assert.IsFalse(a.Workforce.HasSafeSource(ResourceKind.Wood));Assert.IsEmpty(a.Worker.orders);
+
+            w.Navigation.SetTerrainBlocked(source.position,3,false);w.Fog.Reveal(0,source.position,1);
+            Assert.IsTrue(new AiGatherRoutes074(w,0,threats).CanGather(a.Worker,source));
+            Assert.Greater(new AiResourceContinuity072(w,0).Evaluate().VisibleWoodRemaining,0);
+            a.Assign(threats);Assert.AreEqual(source.id,a.Worker.orders.Peek().target);
+            for(int i=0;i<150;i++){w.Tick(.1f);a.Assign(threats);}
+            w.FlushEconomyLog();Assert.Greater(w.Players[0].gathered.wood,1);
+            Assert.IsTrue(w.Events.Any(e=>e.kind=="Gather"&&e.entity==a.Worker.id&&e.target==source.id&&e.amount>0));
+        }
+
         [Test] public void DepletionAutoRetargetToUnsafeResourceIsCaughtAtNextReview()
         {
             var a=new Fixture();var w=a.World;a.Worker.position=new Vector2(39,28);a.Worker.previousPosition=a.Worker.position;
