@@ -197,7 +197,7 @@ namespace Frontier
             MatchId=Guid.NewGuid().ToString("N");
             for(int player=0;player<World.Players.Length;player++)SetDeck(player,player==0?DeckPreset:"military");
             Simulation=new MatchSimulation(World,AutomatedSlots(World.Players.Length),OpponentDifficulty);
-            InMenu=false;Notice="Explore, gather, build. Earn XP and choose a shipment with H.";noticeUntil=12;
+            InMenu=false;Notice=Autoplay?"AI OBSERVATION · select objects and move the camera to watch the match":"Explore, gather, build. Earn XP and choose a shipment with H.";noticeUntil=12;
             View.ResetWorld();Controls.ResetSelection();Controls.Focus(World.OpeningTownPosition(0));
             Hud.ShowGame();
             BeginRecording(Autoplay?"autoplay":"normal");
@@ -213,6 +213,7 @@ namespace Frontier
             if(IsLan)return CommandResult.Fail("Cooperative orders require host confirmation");
             if(InMenu||World==null)return CommandResult.Fail("No active match");
             if(IsWatching)return CommandResult.Fail("Viewing a recording does not issue game orders");
+            if(Autoplay){const string reason="Autoplay is an AI observation. Start a skirmish to command your army";Notify(reason);return CommandResult.Fail(reason);}
             var r=Recorder!=null?Recorder.Issue(c):Guided==null?World.Issue(c):Guided.Issue(c);
             Notify(r.reason);if(r.accepted)View.Pulse(c.point,c.target,c.order==OrderKind.Attack||c.order==OrderKind.AttackMove);
             return r;

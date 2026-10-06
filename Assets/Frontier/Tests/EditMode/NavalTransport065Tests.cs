@@ -151,30 +151,116 @@ namespace Frontier.Tests
         [TestCase(271828)]
         public void UnboardedArmyAndExplorerUseReachableDestinationsOnTheirCurrentLandmass(int seed)
         {
-            // The six military actors are fixture inputs for an assembled army;
+            // The six military actors are fixture inputs and must really assemble;
             // the long normal-opening cases below still grant no actors or funds.
             var world=new World(Catalog.Load(),seed,"coast","coast",2,MapTopology.GeneratedStrait);
             Vector2 home=world.OpeningTownPosition(0),enemy=world.OpeningTownPosition(1);int region=world.Layout.LandRegion(home);
             Assert.AreNotEqual(region,world.Layout.LandRegion(enemy));
             float radius=world.Rules.Entity("musketeer").radius;
             var army=Enumerable.Range(0,6).Select(_=>world.Spawn("musketeer",0,SafeLand(world,home+new Vector2(-8,10),radius))).ToArray();
+            var ids=army.Select(e=>e.id).ToArray();var travelled=ids.ToDictionary(id=>id,id=>0f);
             var explorer=world.Entities.First(e=>e.Alive&&e.owner==0&&(e.def.tags&Tags.Explorer)!=0);
             var economy=new AiWaterEconomy(world,0);
+            string Bodies()=>string.Join("; ",army.Select(e=>$"{e.id} alive={e.Alive} cargo={e.garrisonedIn} pos={e.position} moved={travelled[e.id]:F3} hold={e.hold} order={(e.orders.Count>0?e.orders.Peek().kind.ToString():"none")} goal={(e.orders.Count>0?e.orders.Peek().point:Vector2.zero)}"));
+            void CheckBodies()
+            {
+                foreach(var soldier in army)
+                {
+                    string state=$"seed={seed} t={world.Time} actor={soldier.id} pos={soldier.position}";
+                    Assert.IsTrue(soldier.Alive,state+" The original soldier must survive the real muster");
+                    Assert.AreEqual(0,soldier.garrisonedIn,state+" The soldier must remain unboarded");
+                    Assert.AreEqual(region,world.Layout.LandRegion(soldier.position),state+" An unboarded body cannot cross to another landmass");
+                    Assert.IsFalse(world.IsWater(soldier.position),state+" An unboarded body cannot enter water");
+                    Assert.IsTrue(world.Navigation.IsWalkable(soldier.position,soldier.def.radius),state+" The actual body must fit on land");
+                }
+            }
+            void CheckRoute(EntityState actor,Vector2 point,string reason)
+            {
+                string state=$"{reason} seed={seed} t={world.Time} actor={actor.id} pos={actor.position} goal={point}";
+                Assert.AreEqual(region,world.Layout.LandRegion(point),state+" The destination must stay on the current island");
+                Assert.IsFalse(world.IsWater(point),state+" The destination cannot be water");
+                Assert.IsTrue(world.Navigation.IsWalkable(point,actor.def.radius),state+" The destination must fit the actor");
+                var route=world.Navigation.FindPath(actor.position,point,actor.def.radius);
+                Assert.IsNotEmpty(route,state+" The destination must have a complete land path");
+                Assert.LessOrEqual((route[route.Count-1]-point).sqrMagnitude,.0001f,state+" A path to a different snapped endpoint is insufficient");
+            }
+            bool AtStage(EntityState soldier,Vector2 stage)
+            {
+                if((soldier.position-stage).sqrMagnitude>100||!world.Navigation.IsWalkable(soldier.position,soldier.def.radius))return false;
+                if(world.Navigation.ClearLine(soldier.position,stage,soldier.def.radius))return true;
+                var route=world.Navigation.FindPath(soldier.position,stage,soldier.def.radius);
+                if(route.Count<2||(route[route.Count-1]-stage).sqrMagnitude>.0001f)return false;
+                float length=0;for(int i=1;i<route.Count;i++)length+=Vector2.Distance(route[i-1],route[i]);
+                return length<=14;
+            }
             Vector2 scout=economy.LandArmyDestination(explorer,enemy);
-            Assert.AreEqual(region,world.Layout.LandRegion(scout));Assert.IsTrue(world.Navigation.IsWalkable(scout,explorer.def.radius));
-            Assert.IsNotEmpty(world.Navigation.FindPath(explorer.position,scout,explorer.def.radius),"The scout must explore a reachable bank rather than an enemy island");
-            var controller=new SkirmishAI(world,0);controller.Tick(.1f);
+            CheckRoute(explorer,scout,"The scout API must return a reachable bank");
+            CheckBodies();Assert.IsFalse(world.Paused);Assert.IsFalse(world.IsMatchEnded);
+            var controller=new SkirmishAI(world,0);int eventStart=world.Events.Count;controller.Tick(.1f);
+            var plan=controller.CaptureState().armyPlan;
+            Assert.IsTrue(plan.hasStage,$"seed={seed} The first ordinary AI decision must select a real stage");
+            Assert.AreEqual(AiArmyPhase072.Muster,plan.phase,$"seed={seed} The fixture soldiers have not yet assembled");
+            Assert.IsEmpty(plan.wave);Assert.AreEqual(0,plan.initialWaveSize);
+            var initiallyOutside=army.Where(e=>!AtStage(e,plan.stage)).Select(e=>e.id).ToArray();
+            Assert.IsNotEmpty(initiallyOutside,"This fixture must exercise actual movement into the stage");
             foreach(var soldier in army)
             {
-                Assert.AreEqual(OrderKind.AttackMove,soldier.orders.Peek().kind);
-                Vector2 point=soldier.orders.Peek().point;
-                Assert.AreEqual(region,world.Layout.LandRegion(point),"The actual army command must stay on the unboarded actor's landmass");
-                Assert.IsTrue(world.Navigation.IsWalkable(point,soldier.def.radius));
-                var route=world.Navigation.FindPath(soldier.position,point,soldier.def.radius);
-                Assert.IsNotEmpty(route);Assert.LessOrEqual((route[route.Count-1]-point).sqrMagnitude,.0001f);
+                if(AtStage(soldier,plan.stage))
+                {Assert.IsTrue(soldier.hold,"An already assembled soldier must receive ordinary Hold");Assert.IsEmpty(soldier.orders);}
+                else
+                {
+                    Assert.IsFalse(soldier.hold);Assert.AreEqual(1,soldier.orders.Count);
+                    Assert.AreEqual(OrderKind.Move,soldier.orders.Peek().kind,"Muster must use ordinary Move before departure");
+                    CheckRoute(soldier,soldier.orders.Peek().point,"The actual muster Move");
+                }
             }
             if(explorer.orders.Count>0&&explorer.orders.Peek().kind==OrderKind.Move)
-                Assert.AreEqual(region,world.Layout.LandRegion(explorer.orders.Peek().point),"The actual Explore command must also stay on its own island");
+                CheckRoute(explorer,explorer.orders.Peek().point,"The actual Explore command");
+            bool marched=false;int departureStep=-1;
+            // Step zero completes the first Tick above. Every subsequent step
+            // uses the ordinary controller/World pair; no orders or poses are injected.
+            for(int step=0;step<1200;step++)
+            {
+                Assert.IsFalse(world.Paused,$"seed={seed} t={world.Time} Pausing cannot satisfy the departure bound");
+                Assert.IsFalse(world.IsMatchEnded,$"seed={seed} t={world.Time} Terminal play cannot satisfy the departure bound");
+                CheckBodies();
+                if(step>0){eventStart=world.Events.Count;controller.Tick(.1f);}
+                Assert.IsFalse(world.Paused);Assert.IsFalse(world.IsMatchEnded);CheckBodies();
+                plan=controller.CaptureState().armyPlan;
+                if(plan.phase==AiArmyPhase072.March)
+                {
+                    // Inspect before World.Tick: departure cannot be justified by
+                    // movement that happens after the AI has already sent the wave.
+                    Assert.IsTrue(plan.hasStage);Assert.AreEqual(6,plan.initialWaveSize);
+                    CollectionAssert.AreEquivalent(ids,plan.wave,"The first wave must contain exactly the six declared original soldiers");
+                    foreach(var soldier in army)
+                    {
+                        Assert.IsTrue(AtStage(soldier,plan.stage),$"First March before World.Tick: seed={seed} t={world.Time} stage={plan.stage} "+Bodies());
+                        Assert.IsFalse(soldier.hold);Assert.AreEqual(1,soldier.orders.Count);
+                        var order=soldier.orders.Peek();Assert.AreEqual(OrderKind.AttackMove,order.kind);Assert.AreEqual(0,order.target);
+                        Vector2 mapped=economy.LandArmyDestination(soldier,plan.destination);
+                        var slots=(mapped-plan.destination).sqrMagnitude>1
+                            ?world.Navigation.FormationSlots(mapped,1,1.9f)
+                            :world.Navigation.FormationSlots(plan.destination,6,1.9f);
+                        Assert.IsTrue(slots.Any(point=>(point-order.point).sqrMagnitude<=.0001f),$"Actor {soldier.id} must receive the normal formation slot for destination={plan.destination}, mapped={mapped}, actual={order.point}");
+                        CheckRoute(soldier,order.point,"The actual first March AttackMove");
+                    }
+                    var decisionEvents=world.Events.Skip(eventStart).ToArray();
+                    Assert.IsTrue(decisionEvents.Any(e=>e.kind=="AIArmyPhase"&&e.player==0&&e.amount==6&&e.message=="Owned soldiers actually assembled for the first wave"),"The first March needs its real phase-change event in this AI decision");
+                    var commands=decisionEvents.Where(e=>e.kind=="Command"&&e.player==0&&ids.Contains(e.entity)&&e.message.StartsWith("AttackMove ×",StringComparison.Ordinal)).ToArray();
+                    Assert.IsNotEmpty(commands,"The phase snapshot alone is not an accepted AttackMove command");
+                    Assert.AreEqual(6f,commands.Sum(e=>e.amount),"The ordinary accepted AttackMove commands must account for all six soldiers");
+                    Assert.IsTrue(commands.All(e=>e.target==0&&e.amount>=1&&e.amount<=6));
+                    marched=true;departureStep=step;
+                }
+                var before=army.Select(e=>e.position).ToArray();world.Tick(.1f);
+                for(int i=0;i<army.Length;i++)travelled[army[i].id]+=Vector2.Distance(before[i],army[i].position);
+                Assert.IsFalse(world.Paused);Assert.IsFalse(world.IsMatchEnded);CheckBodies();
+                if(marched)break;
+            }
+            Assert.IsTrue(marched,$"seed={seed} No actual first March within 1200 normal steps; t={world.Time} phase={plan.phase} stage={plan.stage} "+Bodies());
+            foreach(int id in initiallyOutside)Assert.Greater(travelled[id],0f,$"Original soldier {id} must really move into assembly");
+            TestContext.WriteLine($"seed={seed} firstMarchStep={departureStep} t={world.Time} stage={plan.stage} destination={plan.destination}; "+Bodies());
         }
 
         [Test] public void AnOccupiedLandingRetainsAllCargoAndStopCancelsTheAttempt()

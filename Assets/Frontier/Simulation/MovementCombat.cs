@@ -18,7 +18,18 @@ namespace Frontier
                 if(e.fireAt>=0)
                 {
                     if(Time>=e.fireAt){Fire(e);e.fireAt=-1;}
-                    else {e.status="Preparing attack";continue;}
+                    else
+                    {
+                        // Keep physical contact during a mobile melee windup.
+                        // Damage still waits for Fire and its live range checks.
+                        var windingTarget=Get(e.attackTarget);
+                        if(e.shotMelee&&!e.hold&&(!e.Worker||e.orders.Count>0&&e.orders.Peek().kind==OrderKind.Attack)&&
+                            e.def.kind==EntityKind.Unit&&windingTarget!=null&&windingTarget.Alive&&
+                            windingTarget.def.kind==EntityKind.Unit&&windingTarget.garrisonedIn==0&&Observes(e,windingTarget)&&
+                            CanAttackTarget(e,windingTarget)&&EdgeDistance(e,windingTarget)>1)
+                            MoveTowardsTarget(e,WorkPoint(windingTarget,e),dt,.04f);
+                        e.status="Preparing attack";continue;
+                    }
                 }
                 UnitOrder order=e.orders.Count>0?e.orders.Peek():null;
                 if(order!=null&&TickNavalTransportOrder(e,order,dt))continue;
@@ -83,7 +94,9 @@ namespace Frontier
                         Vector2 goal=WorkPoint(enemy,e);
                         if(distance<e.def.minRange)goal=e.position+(e.position-enemy.position).normalized*(e.def.minRange+2);
                         else if(range>2)goal=enemy.position+(e.position-enemy.position).normalized*(range*.8f+enemy.def.radius);
-                        MoveTowardsTarget(e,goal,dt);continue;
+                        // A moving melee target can otherwise stay just outside reach while
+                        // the attacker repeatedly finishes a stale approach point.
+                        MoveTowardsTarget(e,goal,dt,(melee||e.def.range<=2)&&enemy.def.kind==EntityKind.Unit?.04f:4);continue;
                     }
                 }
                 if(order!=null&&order.kind==OrderKind.AttackMove)
@@ -157,11 +170,11 @@ namespace Frontier
             }
             return result;
         }
-        private void MoveTowardsTarget(EntityState e,Vector2 goal,float dt)
+        private void MoveTowardsTarget(EntityState e,Vector2 goal,float dt,float retargetDistanceSquared=4)
         {
-            long start=System.Diagnostics.Stopwatch.GetTimestamp();MoveCore(e,goal,dt);LastNavigationMs+=(float)((System.Diagnostics.Stopwatch.GetTimestamp()-start)*1000.0/System.Diagnostics.Stopwatch.Frequency);
+            long start=System.Diagnostics.Stopwatch.GetTimestamp();MoveCore(e,goal,dt,retargetDistanceSquared);LastNavigationMs+=(float)((System.Diagnostics.Stopwatch.GetTimestamp()-start)*1000.0/System.Diagnostics.Stopwatch.Frequency);
         }
-        private void MoveCore(EntityState e,Vector2 goal,float dt)
+        private void MoveCore(EntityState e,Vector2 goal,float dt,float retargetDistanceSquared)
         {
             if(e.def.kind!=EntityKind.Unit||e.shielded||Time<e.shieldReadyAt)return;
             var navigation=NavigationFor(e);e.isDeployed=false;e.deployUntil=0;
@@ -183,7 +196,7 @@ namespace Frontier
                 e.detourUntil=0;float remaining=(requestedGoal-e.position).magnitude;
                 // Measure progress along the planned route. Euclidean distance may grow
                 // while a unit correctly approaches a gate around a wall.
-                if(e.pathIndex<e.path.Count&&(e.pathGoal-requestedGoal).sqrMagnitude<4)
+                if(e.pathIndex<e.path.Count&&(e.pathGoal-requestedGoal).sqrMagnitude<retargetDistanceSquared)
                 {
                     remaining=Vector2.Distance(e.position,e.path[e.pathIndex]);
                     for(int n=e.pathIndex+1;n<e.path.Count;n++)remaining+=Vector2.Distance(e.path[n-1],e.path[n]);
@@ -217,7 +230,7 @@ namespace Frontier
             bool routeOccluded=e.pathIndex<e.path.Count&&!navigation.ClearLine(e.position,e.path[e.pathIndex],e.def.radius);
             bool allyRouteOccluded=e.pathAvoidsAllies&&e.pathIndex<e.path.Count&&
                 (!AllySegmentFree(e,e.position,e.path[e.pathIndex])||e.pathIndex<e.path.Count-1&&(e.position-e.path[e.pathIndex]).sqrMagnitude<.04f&&!AllySegmentFree(e,e.position,e.path[e.pathIndex+1]));
-            if(e.pathVersion!=navigation.Version||(e.pathGoal-goal).sqrMagnitude>4||routeOccluded||allyRouteOccluded||e.pathIndex>=e.path.Count&&Time>=e.pathRetryAt)
+            if(e.pathVersion!=navigation.Version||(e.pathGoal-goal).sqrMagnitude>retargetDistanceSquared||routeOccluded||allyRouteOccluded||e.pathIndex>=e.path.Count&&Time>=e.pathRetryAt)
             {
                 if(!e.pathAvoidsAllies||!TryAllyRecovery(e,goal))
                 {

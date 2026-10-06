@@ -33,6 +33,7 @@ namespace Frontier
         public AiSearchSnapshot search;
         public AiWaterEconomySnapshot waterEconomy;
         public AiCivilizationEconomySnapshot civilizationEconomy;
+        public AiArmyPlan072Snapshot armyPlan;
     }
     [Serializable] public sealed class MatchSimulationSnapshot
     {

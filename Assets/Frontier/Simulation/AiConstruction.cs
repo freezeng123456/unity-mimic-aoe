@@ -18,31 +18,25 @@ namespace Frontier
             {
                 if(!foundation.Alive||foundation.owner!=player||foundation.def.kind!=EntityKind.Building||foundation.Complete||
                     world.Fog.At(player,foundation.position)!=VisibilityState.Visible)continue;
+                if(!AiResourceContinuity072.Safe(world,player,foundation.position,visibleEnemies))continue;
                 bool assigned=false;
                 foreach(var worker in workers)
                 {
                     if(!worker.Alive||worker.owner!=player||worker.garrisonedIn!=0)continue;
-                    foreach(var order in worker.orders)if(order.kind==OrderKind.Build&&order.target==foundation.id){assigned=true;break;}
+                    foreach(var order in worker.orders)if(order.kind==OrderKind.Build&&order.target==foundation.id)
+                    {
+                        // Preserve explicit queues. A single blocked AI builder
+                        // must not permanently claim a paid foundation.
+                        if(worker.orders.Count>1||AiResourceContinuity072.TryConstructionWorker(world,player,foundation.def,foundation.position,
+                            new List<EntityState>{worker},visibleEnemies,out _,foundation.id))assigned=true;
+                        else world.Issue(new GameCommand{player=player,kind=CommandKind.Order,actors=new[]{worker.id},order=OrderKind.Stop});
+                        break;
+                    }
                     if(assigned)break;
                 }
                 if(assigned)continue;
-                bool threatened=false;
-                foreach(var enemy in visibleEnemies)
-                {
-                    if(!world.IsVisible(player,enemy)||!enemy.Military||(enemy.def.tags&Tags.Explorer)!=0)continue;
-                    float danger=Mathf.Max(12,enemy.def.range+4);
-                    if((enemy.position-foundation.position).sqrMagnitude<danger*danger){threatened=true;break;}
-                }
-                if(threatened)continue;
-                EntityState replacement=null;float nearest=float.MaxValue;
-                foreach(var worker in workers)
-                {
-                    if(!worker.Alive||worker.owner!=player||!worker.Worker||worker.garrisonedIn!=0||worker.hold||worker.orders.Count>1||
-                        worker.orders.Count==1&&worker.orders.Peek().kind!=OrderKind.Gather)continue;
-                    float distance=(worker.position-foundation.position).sqrMagnitude;
-                    if(distance<nearest){nearest=distance;replacement=worker;}
-                }
-                if(replacement==null)return;
+                if(!AiResourceContinuity072.TryConstructionWorker(world,player,foundation.def,foundation.position,
+                    workers,visibleEnemies,out var replacement,foundation.id))continue;
                 var result=world.Issue(new GameCommand{player=player,kind=CommandKind.Order,actors=new[]{replacement.id},order=OrderKind.Build,target=foundation.id,point=foundation.position});
                 if(result.accepted)world.Emit("AIConstructionResumed",player,replacement.id,"Resuming the existing foundation",1,foundation.id,foundation.position);
                 // Bound recovery work and accepted orders to one foundation per decision.

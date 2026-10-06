@@ -271,11 +271,11 @@ namespace Frontier
             if(lastClockLabel!=clockLabel||lastClockSeconds!=(int)w.Time||lastIdle!=idle)
             {UpdateExpansionPanels();clockLabel.text=$"{(int)w.Time/60:00}:{(int)w.Time%60:00}   IDLE {idle}";lastClockLabel=clockLabel;lastClockSeconds=(int)w.Time;lastIdle=idle;}
             orders.text=DynamicBindingLabel(game.Controls.EmbarkMode?"BOARD — CHOOSE YOUR TROOP TRANSPORT":game.Controls.DisembarkMode?"UNLOAD — CHOOSE AN OPEN LAND SHORE":game.Controls.DockRepairMode?"HARBOR REPAIR — CHOOSE YOUR COMPLETED DOCK":game.Controls.BuildingToPlace!=""?"PLACING  "+game.Rules.Entity(game.Controls.BuildingToPlace).name:game.Controls.RepairMode?"REPAIR [R] — CHOOSE A DAMAGED FRIENDLY TARGET":game.Controls.GarrisonMode?"GARRISON [G] — CHOOSE A FRIENDLY SHELTER":game.Controls.AttackMode?"ATTACK MOVE — CHOOSE DESTINATION":"[V] Idle settler     [T] Town center     [M] Military     [B] Build");
-            if(game.IsWatching)orders.text="WATCHING · camera and selection · recorded orders are read-only";
+            if(game.IsWatching||game.Autoplay)orders.text=game.Autoplay?"AI OBSERVATION · camera and selection · army orders are controlled by AI":"WATCHING · camera and selection · recorded orders are read-only";
             notice.text=game.Notice;
             help.text=Help;
             var selected=game.Controls.FirstSelected;
-            if(selected==null){selection.text="THE FRONTIER AWAITS";details.text="Select units or drag a selection box.\nRight click to move, gather, build or attack.\nShift queues orders · Ctrl+0–9 saves groups.";}
+            if(selected==null){selection.text="THE FRONTIER AWAITS";details.text=game.Autoplay||game.IsWatching?"Select objects to inspect them.\nMove the camera to follow the match.\nObservation keeps army orders read-only.":"Select units or drag a selection box.\nRight click to move, gather, build or attack.\nShift queues orders · Ctrl+0–9 saves groups.";}
             else
             {
                 selection.text=game.Controls.Selected.Count>1?game.Controls.Selected.Count+" SELECTED  ·  "+selected.def.name:selected.def.name.ToUpperInvariant();
@@ -305,9 +305,9 @@ namespace Frontier
         private void ClearChildren(Transform parent){MarkUiLayoutDirty();for(int i=parent.childCount-1;i>=0;i--){var child=parent.GetChild(i).gameObject;child.SetActive(false);Destroy(child);}}
         private void RebuildActions(EntityState e)
         {
-            ClearChildren(actionPanel);ClearChildren(queuePanel);if(e==null)return;int n=0;
+            ClearChildren(actionPanel);ClearChildren(queuePanel);if(e==null)return;RebuildQueue(e);int n=0;
             Action<string,Action,string,bool> add=(title,click,tooltip,enabled)=>{int i=n++;int columns=ActionColumns;float step=ActionWidth/columns;Button(actionPanel,DynamicBindingLabel(title),new Rect((i%columns)*step,(i/columns)*57,step-7,50),click,tooltip,enabled);ResizeActionContent(n);};
-            if(game.IsWatching||game.IsLan&&!game.CanSubmitOrders){add("DETAILS",()=>ShowObjectDetails(e),"Inspect attributes without issuing orders.",true);add("FOCUS",()=>game.Controls.Focus(e.position),"Center the viewing camera.",true);if(e.def.transportShip)add("PASSENGERS",()=>ShowTransportCargo(e),"Inspect the current passengers.",true);return;}
+            if(game.IsWatching||game.Autoplay||game.IsLan&&!game.CanSubmitOrders){add("DETAILS",()=>ShowObjectDetails(e),"Inspect attributes without issuing orders.",true);add("FOCUS",()=>game.Controls.Focus(e.position),"Center the viewing camera.",true);if(e.def.transportShip)add("PASSENGERS",()=>ShowTransportCargo(e),"Inspect the current passengers.",true);return;}
             if(e.def.id=="trade_socket"&&game.World.NeutralAt(e.id)!=null){add("SETTLEMENT",()=>ShowNeutralSettlement(e.id),"Negotiate a paid treaty, recruit allies and research their technology.",true);add("DETAILS",()=>ShowObjectDetails(e),"Read settlement attributes.",true);return;}
             if(e.owner!=game.LocalPlayerSlot){add("DETAILS",()=>ShowObjectDetails(e),"Read attributes, resistances and counters.",true);return;}
             if(e.def.kind==EntityKind.Unit)
@@ -367,11 +367,16 @@ namespace Frontier
             if(e.def.id=="caravan")add("TRADE ROUTE",()=>ShowCaravanRoutes(e,0),"Choose a completed waystation. The cart loads paid cargo at a nearby town and earns coin only on arrival. Move / Stop abandons cargo without refund.",true);
             if(e.def.shieldAbility)add(e.shielded?"FOLD SHIELD":"BRACE SHIELD",()=>{SubmitUiCommand(new GameCommand{player=game.LocalPlayerSlot,kind=CommandKind.ToggleShield,actors=game.Controls.Selected.ToArray()});InvalidateActions();},"Changing stance takes 2 seconds. Bracing protects against ranged fire and prevents movement; moving or pursuing an attack folds the shield first.",game.World.Time>=e.shieldReadyAt);
             if(e.def.kind==EntityKind.Unit&&!e.def.waterborne)add("DISBAND",ShowDisband071,"Dismiss selected land units to release population. No refund or combat XP.",e.garrisonedIn==0);
+        }
+        private void RebuildQueue(EntityState e)
+        {
+            if(e.owner!=game.LocalPlayerSlot)return;
             for(int i=0;i<e.queue.Count&&i<6;i++)
             {
                 var job=e.queue[i];long queueIdentity=game.IsLan?game.LanQueueId(e.id,i):0;
                 string name=job.kind=="Age"?"Age "+job.item:job.kind=="Revolution"?game.World.RevolutionDefinition(e.owner)?.name??job.item:game.Rules.Entity(job.item)?.name??game.Rules.Tech(job.item)?.name??Array.Find(game.Rules.manufactureRecipes,r=>r.id==job.item)?.name??job.item;
-                Button(queuePanel,name+(job.count>1?" ×"+job.count:"")+"\n"+Mathf.Max(0,job.duration-job.elapsed).ToString("0")+"s",new Rect(i*86,0,80,47),()=>{
+                string remaining=Mathf.Max(0,job.duration-job.elapsed).ToString("0")+"s";
+                var queueButton=Button(queuePanel,name+(job.count>1?" ×"+job.count:"")+"\n"+remaining,new Rect(i*86,0,80,47),()=>{
                     // Production can finish while this pointer gesture is held.
                     // Follow the clicked job if it moved forward in the queue;
                     // a completed job must never cancel its successor.
@@ -379,7 +384,13 @@ namespace Frontier
                     if(index>=0)SubmitUiCommand(new GameCommand{player=game.LocalPlayerSlot,kind=CommandKind.CancelQueue,actors=new[]{e.id},index=index},expectedQueueId:queueIdentity);
                     else game.Notify("This production order has already finished");
                     InvalidateActions();
-                },"Click to cancel this unfinished order and refund its paid cost.");
+                },name+" · "+remaining+" remaining. Click to cancel this unfinished order and refund its paid cost.",game.CanSubmitOrders);
+                var title=queueButton.GetComponentInChildren<Text>();title.text=name+(job.count>1?" ×"+job.count:"");
+                Position((RectTransform)title.transform,6,3,68,26);title.alignment=TextAnchor.MiddleCenter;
+                title.resizeTextForBestFit=true;title.resizeTextMinSize=9;title.resizeTextMaxSize=12;
+                title.horizontalOverflow=HorizontalWrapMode.Wrap;title.verticalOverflow=VerticalWrapMode.Truncate;
+                var clock=Label(queueButton.transform,remaining,new Rect(6,29,68,15),12);clock.alignment=TextAnchor.MiddleCenter;
+                clock.verticalOverflow=VerticalWrapMode.Truncate;
             }
         }
         private int TrainingCount(EntityDef unit)=>(batchTraining||game.Controls.Shift)?Mathf.Max(1,unit.batch):1;

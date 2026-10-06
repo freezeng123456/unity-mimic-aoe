@@ -10,8 +10,10 @@ namespace Frontier
     {
         readonly World world;
         readonly int player;
+        readonly AiResourceContinuity072 continuity;
         float manufactureAt;
-        public AiCivilizationEconomy(World world,int player){this.world=world;this.player=player;}
+        public AiCivilizationEconomy(World world,int player,AiResourceContinuity072 continuity=null)
+        {this.world=world;this.player=player;this.continuity=continuity??new AiResourceContinuity072(world,player);}
         public AiCivilizationEconomySnapshot CaptureState()=>new AiCivilizationEconomySnapshot{manufactureAt=manufactureAt};
         public void RestoreState(AiCivilizationEconomySnapshot state)
         {
@@ -196,7 +198,7 @@ namespace Frontier
                 }
                 // Engineers travel with the army; repairs use the normal paid
                 // order and are not interrupted by each strategic review.
-                if(target!=null&&nearest<24*24)
+                if(target!=null&&nearest<24*24&&AiResourceContinuity072.MayRepair(world,player,target))
                 {
                     if(unit.orders.Count==0||unit.orders.Peek().kind!=OrderKind.Repair||unit.orders.Peek().target!=target.id)
                         return Send(new GameCommand{kind=CommandKind.Order,actors=new[]{unit.id},order=OrderKind.Repair,target=target.id}).accepted;
@@ -217,12 +219,13 @@ namespace Frontier
             }
             return false;
         }
-        bool Threatened(EntityState location,List<EntityState> visible)=>visible.Exists(enemy=>enemy.Alive&&enemy.Military&&(enemy.def.tags&Tags.Explorer)==0&&world.IsVisible(player,enemy)&&(enemy.position-location.position).sqrMagnitude<Mathf.Pow(Mathf.Max(12,enemy.def.range+4),2));
+        bool Threatened(EntityState location,List<EntityState> visible)=>!AiResourceContinuity072.Safe(world,player,location.position,visible);
         bool CanSpend(Cost cost,Cost reserve)
         {
-            if(!world.CanAfford(player,cost))return false;var r=world.Players[player].resources;
-            return r.food-cost.food>=Math.Min(r.food,reserve.food)&&r.wood-cost.wood>=Math.Min(r.wood,reserve.wood)&&r.coin-cost.coin>=Math.Min(r.coin,reserve.coin);
+            if(!world.CanAfford(player,cost))return false;
+            return AiResourceContinuity072.CanSpend(world,player,cost,continuity.EnsureProtectedReserve(reserve));
         }
-        CommandResult Send(GameCommand command){command.player=player;return world.Issue(command);}
+        CommandResult Send(GameCommand command)
+        {command.player=player;var result=world.Issue(command);if(result.accepted)continuity.InvalidateSourceSurvey();return result;}
     }
 }

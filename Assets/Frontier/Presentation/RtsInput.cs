@@ -226,7 +226,7 @@ namespace Frontier
         private void ProcessKey(Edge edge)
         {
             ResetDoubleClick();
-            if((game.IsWatching||game.IsLan&&!game.CanSubmitOrders)&&edge.action!=PlayerAction.None&&edge.action!=PlayerAction.IdleWorker&&edge.action!=PlayerAction.TownCenter&&edge.action!=PlayerAction.Army&&edge.action!=PlayerAction.FocusSelection&&edge.action!=PlayerAction.ZoomIn&&edge.action!=PlayerAction.ZoomOut)return;
+            if((game.IsWatching||game.Autoplay||game.IsLan&&!game.CanSubmitOrders)&&edge.action!=PlayerAction.None&&edge.action!=PlayerAction.IdleWorker&&edge.action!=PlayerAction.TownCenter&&edge.action!=PlayerAction.Army&&edge.action!=PlayerAction.FocusSelection&&edge.action!=PlayerAction.ZoomIn&&edge.action!=PlayerAction.ZoomOut)return;
             switch(edge.action)
             {
                 case PlayerAction.AttackMove:BeginAttackMove();break;

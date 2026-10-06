@@ -26,7 +26,7 @@ namespace Frontier
         public double LanRttMilliseconds {get;private set;}
         public string LanConnectionText {get;private set;}="";
         public bool IsLanConnected=>IsLanHost?lanRemote?.connection?.Connected==true:IsLanClient&&lanClient?.Connected==true&&lanWelcomeReceived&&(InMenu||!lanAwaitingFull&&lanReplica!=null&&!lanReplica.NeedsFullState);
-        public bool CanSubmitOrders=>World!=null&&!InMenu&&!IsWatching&&!LocalMenuPaused&&!World.Paused&&!World.IsMatchEnded&&World.IsPlayerActive(LocalPlayerSlot)&&(!IsLanClient||IsLanConnected)&&
+        public bool CanSubmitOrders=>World!=null&&!InMenu&&!IsWatching&&!Autoplay&&!LocalMenuPaused&&!World.Paused&&!World.IsMatchEnded&&World.IsPlayerActive(LocalPlayerSlot)&&(!IsLanClient||IsLanConnected)&&
             (Guided==null||Guided.Status==GuidedPlayStatus.Running);
         LanTcpServer lanServer;
         LanConnection lanClient;

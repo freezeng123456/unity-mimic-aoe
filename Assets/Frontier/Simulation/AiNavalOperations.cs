@@ -15,10 +15,12 @@ namespace Frontier
     public sealed class AiNavalOperations
     {
         private readonly World world;private readonly int player;
+        private readonly AiResourceContinuity072 continuity;
         private int shipId,phase,landingIndex,landingAttempts,landingPlayer;
         private float startedAt,retryAt;
         private readonly List<int> passengers=new List<int>();
-        public AiNavalOperations(World world,int player){this.world=world;this.player=player;landingPlayer=world.FirstEnemyPlayer(player);}
+        public AiNavalOperations(World world,int player,AiResourceContinuity072 continuity=null)
+        {this.world=world;this.player=player;this.continuity=continuity;landingPlayer=world.FirstEnemyPlayer(player);}
         public AiNavalOperationsSnapshot CaptureState()=>new AiNavalOperationsSnapshot
         {ship=shipId,phase=phase,landingIndex=landingIndex,landingAttempts=landingAttempts,landingPlayer=landingPlayer,startedAt=startedAt,retryAt=retryAt,passengers=passengers.ToArray()};
         public void RestoreState(AiNavalOperationsSnapshot state)
@@ -85,7 +87,7 @@ namespace Frontier
                 world.Emit("NavalLandingCompleted",player,ship.id,"Transport expedition landed",passengers.Count,0,ship.position);
                 phase=0;passengers.Clear();landingAttempts=0;retryAt=world.Time+8;return true;
             }
-            if(ship.hp<world.MaxHp(ship)*.45f)
+            if(ship.hp<world.MaxHp(ship)*.45f&&AiResourceContinuity072.MayRepair(world,player,ship))
             {
                 var dock=own.Find(e=>e.Alive&&e.Complete&&e.def.id=="dock"&&world.Fog.At(player,e.position)==VisibilityState.Visible&&!Threatened(e.position,visibleEnemies));
                 if(dock!=null&&Send(new GameCommand{kind=CommandKind.DockRepair,actors=new[]{ship.id},target=dock.id}).accepted)return true;
@@ -135,6 +137,7 @@ namespace Frontier
                 (enemy.position-point).sqrMagnitude<Mathf.Pow(Mathf.Max(10,enemy.def.range+6),2))return true;
             return false;
         }
-        private CommandResult Send(GameCommand command){command.player=player;return world.Issue(command);}
+        private CommandResult Send(GameCommand command)
+        {command.player=player;var result=world.Issue(command);if(result.accepted)continuity?.InvalidateSourceSurvey();return result;}
     }
 }

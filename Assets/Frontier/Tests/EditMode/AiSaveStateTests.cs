@@ -62,15 +62,57 @@ namespace Frontier.Tests
 
         [Test] public void LiveExpeditionRetainsItsMusterAndDoesNotRallyAgainAfterLoading()
         {
-            // A staged force exercises an expedition already launched through an ordinary AI review.
-            var world=new World(Catalog.Load(),6407,"coast","coast",3);world.Players[0].age=2;world.Players[0].resources=new Cost();
-            for(int i=0;i<6;i++)world.Spawn("musketeer",0,new Vector2(33+i%3,37+i/3));
-            var simulation=new MatchSimulation(world,0);simulation.Step();
-            var state=simulation.CaptureState().controllers[0];Assert.IsTrue(state.expedition);Assert.GreaterOrEqual(state.expeditionSize,6);
-            var restored=ColdRestore(simulation);
-            for(int i=0;i<180;i++){simulation.Step();restored.Step();}
+            // A declared colonial force and completed producer isolate a real
+            // departure and rally. No live planner state or orders are injected.
+            var world=new World(Catalog.Load(),6407,"coast","coast",3);world.Players[0].age=2;
+            var producerPoint=new Vector2(42,37);
+            world.Players[0].resources=world.EntityCost(0,world.Rules.Entity("barracks"));
+            Assert.AreEqual("",world.CanBuild(0,"barracks",producerPoint),"The declared fixture producer must have a legal footprint");
+            var producer=world.Spawn("barracks",0,producerPoint);world.Players[0].resources=new Cost();
+            var soldiers=Enumerable.Range(0,6).Select(i=>world.Spawn("musketeer",0,new Vector2(33+i%3,37+i/3))).ToArray();
+            var ids=soldiers.Select(e=>e.id).ToArray();var simulation=new MatchSimulation(world,0);
+            AiArmyPlan072Snapshot plan=null;
+            for(int i=0;i<600;i++)
+            {
+                Assert.IsTrue(simulation.Step(),"The controlled force must remain active while it really assembles");
+                plan=simulation.CaptureState().controllers.Single(c=>c.player==0).armyPlan;
+                if(plan.phase==AiArmyPhase072.March)break;
+            }
+            Assert.IsNotNull(plan);Assert.AreEqual(AiArmyPhase072.March,plan.phase,"A live expedition must actually depart before saving");
+            Assert.IsTrue(plan.hasStage);Assert.AreEqual(6,plan.initialWaveSize);CollectionAssert.AreEqual(ids,plan.wave);
+            foreach(var soldier in soldiers)
+            {
+                // AI reviews precede World.Tick; previousPosition records the
+                // actual assembly position before this step's first march.
+                Vector2 assembled=soldier.previousPosition;
+                Assert.IsTrue(soldier.Alive);Assert.AreEqual(0,soldier.garrisonedIn);
+                Assert.LessOrEqual(Vector2.Distance(assembled,plan.stage),10.001f);
+                Assert.IsTrue(world.Navigation.IsWalkable(assembled,soldier.def.radius));
+                if(!world.Navigation.ClearLine(assembled,plan.stage,soldier.def.radius))
+                {
+                    var path=world.Navigation.FindPath(assembled,plan.stage,soldier.def.radius);
+                    Assert.GreaterOrEqual(path.Count,2);Assert.LessOrEqual((path[path.Count-1]-plan.stage).sqrMagnitude,.0001f);
+                    float length=0;for(int n=1;n<path.Count;n++)length+=Vector2.Distance(path[n-1],path[n]);
+                    Assert.LessOrEqual(length,14.001f,"Saving a wave cannot manufacture arrival through a long detour");
+                }
+                Assert.IsNotEmpty(soldier.orders);Assert.AreEqual(OrderKind.AttackMove,soldier.orders.Peek().kind);
+            }
+            const string departure="Owned soldiers actually assembled for the first wave";
+            Assert.AreEqual(1,world.Events.Count(e=>e.player==0&&e.kind=="AIArmyPhase"&&e.message==departure));
+            Assert.IsTrue(world.Events.Any(e=>e.player==0&&e.kind=="Command"&&e.amount==6&&ids.Contains(e.entity)&&e.message.StartsWith("AttackMove")),"The saved cohort must have a real group departure command");
+            int rallies=world.Events.Count(e=>e.player==0&&e.kind=="RallySet"&&e.entity==producer.id);
+            Assert.AreEqual(1,rallies,"The producer must really receive the assembly rally before the cold save");
+            Assert.AreEqual(plan.stage,producer.rally);Assert.AreEqual(0,producer.rallyTarget);
+            var restored=ColdRestore(simulation);SameState(simulation,restored);
+            Assert.AreEqual(JsonUtility.ToJson(plan),JsonUtility.ToJson(restored.CaptureState().controllers.Single(c=>c.player==0).armyPlan));
+            for(int i=0;i<180;i++){Assert.IsTrue(simulation.Step());Assert.IsTrue(restored.Step());}
             SameState(simulation,restored);
-            Assert.IsTrue(restored.CaptureState().controllers[0].expedition);
+            var continued=restored.CaptureState().controllers.Single(c=>c.player==0).armyPlan;
+            Assert.AreEqual(AiArmyPhase072.March,continued.phase);Assert.AreEqual(6,continued.initialWaveSize);
+            CollectionAssert.AreEqual(ids,continued.wave);CollectionAssert.AreEqual(plan.guards,continued.guards);Assert.AreEqual(plan.stage,continued.stage);
+            Assert.AreEqual(1,restored.World.Events.Count(e=>e.player==0&&e.kind=="AIArmyPhase"&&e.message==departure),"Loading must not launch the existing wave a second time");
+            Assert.AreEqual(rallies,restored.World.Events.Count(e=>e.player==0&&e.kind=="RallySet"&&e.entity==producer.id),"Loading a live wave must not repeat its producer rally");
+            Assert.AreEqual(plan.stage,restored.World.Get(producer.id).rally);
         }
 
         [Test] public void SearchResumesADeferredPassWithoutForgettingVisitedRegions()

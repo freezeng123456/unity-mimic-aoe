@@ -169,7 +169,27 @@ namespace Frontier.Tests
             Assert.GreaterOrEqual(p.revolutionAt,world.RevolutionDefinition(0).time-.11f);
             Assert.GreaterOrEqual(p.civilianRebuiltAt-p.revolutionAt,world.Rules.Tech(World.CivilianRebuildingTechnology).time-.11f);
             Assert.IsFalse(world.WorkerSourcesClosed(0));Assert.IsTrue(world.CivilianWorkersEnabled(0));
-            foreach(int id in originalWorkers)Assert.IsTrue(world.Get(id).def.revolutionary,"Original worker IDs remain soldiers after civilian rebuilding");
+            foreach(int id in originalWorkers)
+            {
+                var original=world.Get(id);
+                if(!original.def.revolutionary)
+                {
+                    TestContext.WriteLine("Original worker diagnostic: id="+id+", definition="+original.def.id+", alive="+original.Alive+", dead="+original.dead+", hp="+original.hp+", position="+original.position+", revolutionAt="+p.revolutionAt);
+                    for(int index=0;index<world.Events.Count;index++)
+                    {
+                        var entry=world.Events[index];
+                        if(entry.kind=="RevolutionCompleted"||entry.kind=="CivilianRebuilt"||
+                            (entry.entity==id||entry.target==id)&&(entry.kind=="Damage"||entry.kind=="Death"||entry.kind=="WorkerConverted"||entry.kind=="Command"))
+                        {
+                            var source=world.Get(entry.entity);
+                            TestContext.WriteLine("eventIndex="+index+", time="+entry.time+", kind="+entry.kind+", actor="+entry.entity+
+                                ", actorDefinition="+source?.def.id+", guardian="+(source!=null&&World.Guardian(source))+", target="+entry.target+
+                                ", player="+entry.player+", amount="+entry.amount+", position="+entry.position+", message="+entry.message);
+                        }
+                    }
+                }
+                Assert.IsTrue(original.def.revolutionary,"Original worker IDs remain soldiers after civilian rebuilding: id="+id+", alive="+original.Alive+", definition="+original.def.id);
+            }
             Assert.AreEqual(1,world.Events.Count(e=>e.player==0&&e.kind=="RevolutionCompleted"));
             Assert.AreEqual(1,world.Events.Count(e=>e.player==0&&e.kind=="CivilianRebuilt"));
             Assert.IsFalse(world.Events.Any(e=>e.player==0&&e.kind=="Payment"&&e.message.Contains("Advance to age 5")));

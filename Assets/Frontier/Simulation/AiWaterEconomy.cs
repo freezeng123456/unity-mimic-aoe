@@ -10,10 +10,12 @@ namespace Frontier
     {
         private readonly World world;
         private readonly int player;
+        private readonly AiResourceContinuity072 continuity;
         private readonly AiNavalOperations navalOperations;
         private int surveyor;
         private float patrolAt;
-        public AiWaterEconomy(World world,int player){this.world=world;this.player=player;navalOperations=new AiNavalOperations(world,player);}
+        public AiWaterEconomy(World world,int player,AiResourceContinuity072 continuity=null)
+        {this.world=world;this.player=player;this.continuity=continuity??new AiResourceContinuity072(world,player);navalOperations=new AiNavalOperations(world,player,this.continuity);}
         public AiWaterEconomySnapshot CaptureState()=>new AiWaterEconomySnapshot{surveyor=surveyor,patrolAt=patrolAt,navalOperations=navalOperations.CaptureState()};
         public void RestoreState(AiWaterEconomySnapshot state)
         {
@@ -71,21 +73,22 @@ namespace Frontier
             }
             return unit.position;
         }
-        public void Tick(List<EntityState> own,List<EntityState> workers,List<EntityState> visibleEnemies,Cost reserve,bool saving,bool underAttack)
+        public void Tick(List<EntityState> own,List<EntityState> workers,List<EntityState> visibleEnemies,Cost reserve,bool saving,bool underAttack,List<EntityState> economicThreats=null)
         {
             if(!world.Layout.HasWater||world.Paused||world.IsMatchEnded||!world.IsPlayerActive(player))return;
+            var safety=economicThreats??visibleEnemies;
             var dock=own.Find(e=>e.Alive&&e.def.id=="dock");
             navalOperations.Tick(own,visibleEnemies,underAttack);
-            AssignFishing(own,visibleEnemies);
+            AssignFishing(own,safety);
             CommandFleet(own,visibleEnemies);
             if(world.Players[player].age<2||saving||underAttack)return;
             if(dock==null)
             {
                 if(!CanSpend(world.EntityCost(player,world.Rules.Entity("dock")),reserve))return;
-                SurveyAndBuild(workers);return;
+                SurveyAndBuild(workers,safety);return;
             }
             if(!dock.Complete||dock.queue.Count>0)return;
-            var fish=NearestFish(dock.position,visibleEnemies);
+            var fish=NearestFish(dock.position,safety);
             string next=NextShip(own,fish!=null);
             if(next==""||!CanSpend(world.UnitCost(player,world.Rules.Entity(next)),reserve))return;
             if(fish!=null)Send(new GameCommand{kind=CommandKind.Rally,actors=new[]{dock.id},target=fish.id});
@@ -110,19 +113,25 @@ namespace Frontier
             {var definition=world.Rules.Entity(id);if(definition!=null&&world.UnitAge(player,definition)<=world.Players[player].age&&world.UnitCountIncludingProduction(player,id)<1)return id;}
             return "";
         }
-        private void SurveyAndBuild(List<EntityState> workers)
+        private void SurveyAndBuild(List<EntityState> workers,List<EntityState> visible)
         {
             // Public terrain is known; occupants and construction authority still
             // require current vision. A settler must physically survey the bank.
             EntityState worker=world.Get(surveyor);
             if(worker==null||!worker.Alive||worker.owner!=player||worker.garrisonedIn!=0||!worker.Worker||worker.def.waterborne)worker=null;
+            if(worker!=null&&!AiResourceContinuity072.Safe(world,player,worker.position,visible))
+            {
+                if(worker.orders.Count==1&&worker.orders.Peek().kind==OrderKind.Move)
+                    Send(new GameCommand{kind=CommandKind.Order,actors=new[]{worker.id},order=OrderKind.Stop});
+                surveyor=0;return;
+            }
             var sites=world.Layout.DockSites[player];if(sites.Length==0)return;
             if(worker==null)
             {
                 float best=float.MaxValue;
                 foreach(var candidate in workers)
                 {
-                    if(!AiCivilizationEconomy.CanReassign(candidate))continue;
+                    if(!AiCivilizationEconomy.CanReassign(candidate)||!AiResourceContinuity072.Safe(world,player,candidate.position,visible))continue;
                     float d=(candidate.position-sites[0]).sqrMagnitude;
                     if(d<best){best=d;worker=candidate;}
                 }
@@ -130,15 +139,29 @@ namespace Frontier
             }
             foreach(var point in sites)
             {
-                if(world.DockPlacementReason(point)!="")continue;
+                if(world.DockPlacementReason(point)!=""||!AiResourceContinuity072.Safe(world,player,point,visible))continue;
                 if(world.Fog.At(player,point)!=VisibilityState.Visible)
                 {
                     Vector2 survey=world.Navigation.NearestWalkable(point-world.DockWaterDirection(point)*4,worker.def.radius);
+                    // A Move command uses the ordinary physical route. Check
+                    // that route against current weapons rather than assuming
+                    // an alternate safe route would become the commanded one.
+                    var path=world.Navigation.FindPath(worker.position,survey,worker.def.radius);
+                    bool safe=path.Count>=2&&(path[path.Count-1]-survey).sqrMagnitude<.01f;
+                    for(int i=1;i<path.Count&&safe;i++)safe=AiResourceContinuity072.SegmentSafe(world,player,path[i-1],path[i],visible);
+                    if(!safe)
+                    {
+                        if(worker.orders.Count==1&&worker.orders.Peek().kind==OrderKind.Move)
+                            Send(new GameCommand{kind=CommandKind.Order,actors=new[]{worker.id},order=OrderKind.Stop});
+                        continue;
+                    }
                     if(worker.orders.Count==0||worker.orders.Peek().kind==OrderKind.Gather||worker.orders.Peek().kind==OrderKind.Move&&(worker.orders.Peek().point-survey).sqrMagnitude>1)
                         Send(new GameCommand{kind=CommandKind.Order,actors=new[]{worker.id},order=OrderKind.Move,point=survey});
                     return;
                 }
                 if(world.CanBuild(player,"dock",point)!="")continue;
+                if(!AiResourceContinuity072.TryConstructionWorker(world,player,world.Rules.Entity("dock"),point,
+                    new List<EntityState>{worker},visible,out _))continue;
                 if(Send(new GameCommand{kind=CommandKind.Build,actors=new[]{worker.id},item="dock",point=point}).accepted)surveyor=0;
                 return;
             }
@@ -215,7 +238,7 @@ namespace Frontier
             {
                 if(!boat.Alive||!boat.def.waterborne||!boat.Military||boat.def.transportShip)continue;
                 if(boat.orders.Count>0&&boat.orders.Peek().kind==OrderKind.DockRepair)continue;
-                if(boat.hp<world.MaxHp(boat)*.45f)
+                if(boat.hp<world.MaxHp(boat)*.45f&&AiResourceContinuity072.MayRepair(world,player,boat))
                 {
                     var repairDock=own.Find(e=>e.Alive&&e.Complete&&e.def.id=="dock"&&!Threatened(e.position,enemies));
                     if(repairDock!=null&&Send(new GameCommand{kind=CommandKind.DockRepair,actors=new[]{boat.id},target=repairDock.id}).accepted)continue;
@@ -253,9 +276,10 @@ namespace Frontier
         }
         private bool CanSpend(Cost cost,Cost reserve)
         {
-            if(!world.CanAfford(player,cost))return false;var r=world.Players[player].resources;
-            return r.food-cost.food>=Math.Min(r.food,reserve.food)&&r.wood-cost.wood>=Math.Min(r.wood,reserve.wood)&&r.coin-cost.coin>=Math.Min(r.coin,reserve.coin);
+            if(!world.CanAfford(player,cost))return false;
+            return AiResourceContinuity072.CanSpend(world,player,cost,continuity.EnsureProtectedReserve(reserve));
         }
-        private CommandResult Send(GameCommand command){command.player=player;return world.Issue(command);}
+        private CommandResult Send(GameCommand command)
+        {command.player=player;var result=world.Issue(command);if(result.accepted)continuity.InvalidateSourceSurvey();return result;}
     }
 }

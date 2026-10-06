@@ -9,11 +9,19 @@ namespace Frontier.Tests
         {
             var w=new World(Catalog.Load(),42,"river","coast",5);w.Time=720;w.Players[0].age=2;w.Players[0].resources=new Cost();
             var a=w.Spawn("musketeer",0,new Vector2(33,33));var b=w.Spawn("musketeer",0,new Vector2(35,33));
-            new SkirmishAI(w,0).Tick(.1f);
+            var ai=new SkirmishAI(w,0);ai.Tick(.1f);
+            Assert.AreEqual(AiArmyPhase072.Muster,ai.CaptureState().armyPlan.phase);
             foreach(var unit in new[]{a,b})
             {
-                Assert.IsNotEmpty(unit.orders);var order=unit.orders.Peek();
-                Assert.Less(Vector2.Distance(order.point,new Vector2(24,28)),30,"Elapsed time alone must not order two replacements to the enemy base");
+                if(unit.hold)
+                {
+                    Assert.IsEmpty(unit.orders);Assert.LessOrEqual(Vector2.Distance(unit.position,ai.CaptureState().armyPlan.stage),10);
+                }
+                else
+                {
+                    Assert.IsNotEmpty(unit.orders);var order=unit.orders.Peek();Assert.AreEqual(OrderKind.Move,order.kind);
+                    Assert.Less(Vector2.Distance(order.point,new Vector2(24,28)),30,"Elapsed time alone must not order two replacements to the enemy base");
+                }
             }
         }
         [Test] public void ExpeditionLosingMostOfItsArmyReturnsForReinforcement()
@@ -22,7 +30,12 @@ namespace Frontier.Tests
             var troops=Enumerable.Range(0,6).Select(i=>w.Spawn("musketeer",0,new Vector2(32+i,37))).ToArray();var ai=new SkirmishAI(w,0);ai.Tick(.1f);
             Assert.Greater(Vector2.Distance(troops[0].orders.Peek().point,new Vector2(24,28)),60);
             foreach(var unit in troops.Take(4))w.Remove(unit,1);w.Time+=8;ai.Tick(2);
-            foreach(var unit in troops.Skip(4))Assert.Less(Vector2.Distance(unit.orders.Peek().point,new Vector2(24,28)),30);
+            Assert.AreEqual(AiArmyPhase072.Muster,ai.CaptureState().armyPlan.phase);Assert.IsEmpty(ai.CaptureState().armyPlan.wave);
+            foreach(var unit in troops.Skip(4))
+            {
+                if(unit.hold){Assert.IsEmpty(unit.orders);Assert.LessOrEqual(Vector2.Distance(unit.position,ai.CaptureState().armyPlan.stage),10);}
+                else{Assert.IsNotEmpty(unit.orders);Assert.AreEqual(OrderKind.Move,unit.orders.Peek().kind);Assert.Less(Vector2.Distance(unit.orders.Peek().point,new Vector2(24,28)),30);}
+            }
         }
         [Test] public void AiSpendsActualSingleCannonCostWhenBatchIsUnaffordable()
         {

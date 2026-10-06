@@ -151,6 +151,7 @@ namespace Frontier
         bool StartAuthoredScenario(ScenarioDocument document,bool editorPlaytest)
         {
             if(IsLan){Notify("Start cooperative scenarios from the lobby");return false;}
+            bool observation=Autoplay&&!editorPlaytest;
             World next;MatchSimulation nextSimulation;
             try
             {
@@ -160,7 +161,7 @@ namespace Frontier
                 string objective=editorPlaytest||document.objectives.Length>0||!document.enableElimination?"elimination":SelectedObjective;
                 var configured=next.ConfigureMapObjective(objective);
                 if(!configured.accepted)throw new ArgumentException(configured.reason);
-                var automated=new int[next.Players.Length-1];for(int i=1;i<next.Players.Length;i++)automated[i-1]=i;
+                int first=observation?0:1;var automated=new int[next.Players.Length-first];for(int i=first;i<next.Players.Length;i++)automated[i-first]=i;
                 nextSimulation=new MatchSimulation(next,automated,OpponentDifficulty);
             }
             catch(Exception error){EditorMessage("Playtest could not start: "+error.Message);return false;}
@@ -170,11 +171,11 @@ namespace Frontier
             selectedScenario069=next.ScenarioDocument;PlayerCivilization=next.Players[0].civilization;OpponentCivilization=next.Players[1].civilization;
             SelectedMap=next.MapId;SelectedObjective=next.MapObjective.mode;MatchSeed=next.Seed;RestoreRosterConfiguration();
             for(int i=0;i<next.Players.Length;i++)SetDeck(i,i==0?DeckPreset:"military");
-            IsScenarioPlaytest=editorPlaytest;ScenarioEditorOpen=false;Autoplay=false;SimulationSpeed=1;InMenu=false;
+            IsScenarioPlaytest=editorPlaytest;ScenarioEditorOpen=false;Autoplay=observation;SimulationSpeed=observation?SimulationSpeed:1;InMenu=false;
             PausedForFocusLoss=false;audioCursor=next.Events.Count;frameTimes.Clear();nextTelemetry=next.Time+60;LastSimulationFrameMs=0;
             Controls.ResetSelection();View.ResetWorld();Controls.Focus(next.OpeningTownPosition(0));Controls.ClearTransientInput();Hud.ShowGame();
-            BeginRecording(editorPlaytest?"editor_playtest":"authored_scenario");
-            Notify(document.name+" · "+(editorPlaytest?"PLAYTEST · Return to editor keeps the draft":"AUTHORED SCENARIO"));return true;
+            BeginRecording(observation?"autoplay_authored_scenario":editorPlaytest?"editor_playtest":"authored_scenario");
+            Notify(document.name+" · "+(observation?"AI OBSERVATION":editorPlaytest?"PLAYTEST · Return to editor keeps the draft":"AUTHORED SCENARIO"));return true;
         }
         bool RestoreScenarioEditorAfterPlaytest()
         {

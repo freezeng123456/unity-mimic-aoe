@@ -15,10 +15,12 @@ namespace Frontier.Tests
         [Test] public void VariableRenderBatchesProduceTheSameActualAIAndWorldEvents()
         {
             var direct=new MatchSimulation(NewWorld(),0,1);var frames=new MatchSimulation(NewWorld(),1,0);float[] chunks={.025f,.075f,.2f,.05f};int n=0;
-            while(frames.StepCount<1800)frames.AdvanceFrame(chunks[n++%chunks.Length]);
-            for(int i=0;i<frames.StepCount;i++)direct.Step();
+            while(frames.StepCount<1800&&n<7200&&!frames.World.Paused&&!frames.World.IsMatchEnded)frames.AdvanceFrame(chunks[n++%chunks.Length]);
+            for(int i=0;i<frames.StepCount;i++)Assert.IsTrue(direct.Step(),"Direct simulation must reach every completed render-batched step");
             Assert.AreEqual(direct.World.Time,frames.World.Time);
             CollectionAssert.AreEqual(direct.World.Events.Select(JsonUtility.ToJson).ToArray(),frames.World.Events.Select(JsonUtility.ToJson).ToArray());
+            Assert.AreEqual(direct.World.Winner,frames.World.Winner);Assert.AreEqual(direct.World.IsMatchEnded,frames.World.IsMatchEnded);
+            Assert.GreaterOrEqual(frames.StepCount,1800,"Render batches stopped before the declared horizon: frames="+n+", winner="+frames.World.Winner+", paused="+frames.World.Paused);
         }
         [Test] public void PauseAndTerminalStateDoNotAdvanceOrAccumulateAIDecisions()
         {

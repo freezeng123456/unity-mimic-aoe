@@ -51,5 +51,22 @@ namespace Frontier.Tests
             for(int i=1;i<shots.Length;i++)Assert.GreaterOrEqual(shots[i].time-shots[i-1].time,gun.def.period-.001f,"Repeated commands do not bypass the weapon period");
             Assert.Less(target.hp,target.def.hp);
         }
+        [TestCase("villager",false)]
+        [TestCase("hussar",true)]
+        public void StationaryAutoAttackDoesNotChaseDuringMeleePreparation(string definition,bool held)
+        {
+            var actor=Spawn(definition,0,new Vector2(40,30));
+            var target=Spawn("villager",1,new Vector2(40+actor.def.radius+.4f+1.2f,30));
+            if(!held)Order(actor,OrderKind.Stop);
+            Steps(1);
+            Assert.Greater(actor.fireAt,w.Time,"The fixture must enter actual melee preparation");
+            Assert.IsTrue(actor.shotMelee);Assert.AreEqual(0,actor.orders.Count);
+            var position=actor.position;var targetStart=target.position;
+            Order(target,OrderKind.Move,point:new Vector2(54,30));Steps(3);
+            Assert.Greater(Vector2.Distance(targetStart,target.position),.5f,"The target must actually move during the windup");
+            Assert.Greater(actor.fireAt,w.Time);
+            Assert.AreEqual(position,actor.position,"An idle worker or held soldier must retain its stationary auto-fire boundary");
+            Assert.AreEqual(0,Fires(actor,target));
+        }
     }
 }

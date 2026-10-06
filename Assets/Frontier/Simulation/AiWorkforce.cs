@@ -43,14 +43,7 @@ namespace Frontier
             foreach(var resource in world.Entities)
             {
                 if(resource.def.waterborne||!world.GatherableResource(player,resource))continue;
-                bool threatened=false;
-                foreach(var enemy in visibleEnemies)
-                {
-                    if(!world.IsVisible(player,enemy)||!enemy.Military||(enemy.def.tags&Tags.Explorer)!=0)continue;
-                    float danger=Mathf.Max(12,enemy.def.range+4);
-                    if((enemy.position-resource.position).sqrMagnitude<danger*danger){threatened=true;break;}
-                }
-                if(!threatened)resources.Add(resource);
+                if(AiResourceContinuity072.Safe(world,player,resource.position,visibleEnemies))resources.Add(resource);
             }
             var rate=new float[4];
             foreach(var resource in resources)
@@ -93,6 +86,8 @@ namespace Frontier
                 var order=worker.orders.Count>0?worker.orders.Peek():null;
                 var previous=order!=null?world.Get(order.target):null;
                 bool unsafeTarget=previous!=null&&!resources.Contains(previous);
+                if(!AiResourceContinuity072.Safe(world,player,worker.position,visibleEnemies)&&SeekShelter(worker,visibleEnemies))
+                {if(previous!=null){current[(int)previous.def.resource]--;if(assigned.ContainsKey(previous.id))assigned[previous.id]--;}continue;}
                 if(order!=null&&!unsafeTarget&&(!rebalance||changes>=limit))continue;
                 if(previous!=null&&!unsafeTarget&&current[(int)previous.def.resource]<=wantedCounts[(int)previous.def.resource])continue;
                 int kind=1;for(int k=2;k<4;k++)if(wantedCounts[k]-current[k]>wantedCounts[kind]-current[kind])kind=k;
@@ -129,7 +124,7 @@ namespace Frontier
             }
             if(shelter!=null)return world.Issue(new GameCommand{player=player,kind=CommandKind.Order,actors=new[]{worker.id},order=OrderKind.Garrison,target=shelter.id}).accepted;
             Vector2 away=Vector2.zero;
-            foreach(var enemy in visibleEnemies)if(world.IsVisible(player,enemy)&&enemy.Military)away+=(worker.position-enemy.position).normalized;
+            foreach(var enemy in visibleEnemies)if(!AiResourceContinuity072.Safe(world,player,worker.position,new List<EntityState>{enemy}))away+=(worker.position-enemy.position).normalized;
             if(away.sqrMagnitude<.01f)return false;
             return world.Issue(new GameCommand{player=player,kind=CommandKind.Order,actors=new[]{worker.id},order=OrderKind.Move,point=worker.position+away.normalized*12}).accepted;
         }

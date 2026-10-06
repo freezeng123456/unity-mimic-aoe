@@ -62,16 +62,52 @@ namespace Frontier.Tests
         }
         [Test] public void ResourceChoiceRejectsAVisibleRaidButCannotInspectHiddenRaiders()
         {
+            void AssertLegalResponse(World world,EntityState worker,EntityState raider,int commandAt)
+            {
+                Assert.AreEqual(1,worker.orders.Count,"The available worker must receive a legal response in this resource-and-shelter fixture");
+                var order=worker.orders.Peek();var target=world.Get(order.target);
+                Assert.IsNotNull(target);Assert.IsTrue(target.Alive);Assert.IsTrue(world.IsVisible(0,target));
+                if(order.kind==OrderKind.Gather)
+                {
+                    Assert.IsTrue(world.GatherableResource(0,target));Assert.IsTrue(world.CanGather(worker,target));
+                    Assert.GreaterOrEqual(Vector2.Distance(target.position,raider.position),Mathf.Max(12,raider.def.range+4));
+                }
+                else if(order.kind==OrderKind.Garrison)
+                {
+                    Assert.AreEqual(0,target.owner);Assert.AreEqual(EntityKind.Building,target.def.kind);Assert.IsTrue(target.Complete);
+                    Assert.Greater(target.def.garrison,target.occupants.Count,"The real shelter must have available capacity");
+                }
+                else Assert.Fail("Expected a safe Gather or legal Garrison response, got "+order.kind);
+                Assert.IsTrue(world.Events.Skip(commandAt).Any(e=>e.kind=="Command"&&e.player==0&&e.entity==worker.id&&
+                    e.target==target.id&&e.message.StartsWith(order.kind+" ×")&&e.amount==1),"The response must come from the actual accepted worker command");
+            }
             var w=Opening();var workers=w.Entities.Where(e=>e.owner==0&&e.Worker).ToList();
             var enemy=w.Spawn("musketeer",1,new Vector2(33,20));w.Fog.Reveal(0,enemy.position,5);
+            Assert.IsTrue(w.IsVisible(0,enemy));
             w.Players[0].resources=new Cost(0,1000,1000);
+            int visibleCommandAt=w.Events.Count;
             new AiWorkforce(w,0).Assign(workers,new Cost(800,0,0),new List<EntityState>{enemy});
-            foreach(var worker in workers)
-            {
-                if(worker.orders.Count==0)continue;var target=w.Get(worker.orders.Peek().target);
-                Assert.GreaterOrEqual(Vector2.Distance(target.position,enemy.position),Mathf.Max(12,enemy.def.range+4));
-                Assert.IsTrue(w.IsVisible(0,target));
-            }
+            foreach(var worker in workers)AssertLegalResponse(w,worker,enemy,visibleCommandAt);
+
+            // A separate declared single-wood-source fixture uses real unit
+            // vision. Passing an actually hidden raider must not exclude the
+            // visible tree inside its potential danger envelope.
+            var hidden=Opening();var settler=hidden.Entities.First(e=>e.owner==0&&e.Worker);
+            foreach(var resource in hidden.Entities.Where(e=>e.def.resource==ResourceKind.Wood).ToArray())hidden.Remove(resource);
+            var tree=hidden.Spawn("tree",-1,new Vector2(42,28));var raider=hidden.Spawn("musketeer",1,new Vector2(55,28));
+            hidden.Fog.Tick(hidden.Entities);Assert.IsTrue(hidden.IsVisible(0,tree));Assert.IsFalse(hidden.IsVisible(0,raider));
+            Assert.Less(Vector2.Distance(tree.position,raider.position),Mathf.Max(12,raider.def.range+4));
+            var workforce=new AiWorkforce(hidden,0);var oneWorker=new List<EntityState>{settler};var possibleRaid=new List<EntityState>{raider};
+            int hiddenCommandAt=hidden.Events.Count;workforce.Assign(oneWorker,new Cost(0,1000,0),possibleRaid);
+            Assert.AreEqual(OrderKind.Gather,settler.orders.Peek().kind);Assert.AreEqual(tree.id,settler.orders.Peek().target);
+            Assert.IsTrue(hidden.CanGather(settler,tree));Assert.IsTrue(workforce.HasSafeSource(ResourceKind.Wood));
+            Assert.IsTrue(hidden.Events.Skip(hiddenCommandAt).Any(e=>e.kind=="Command"&&e.player==0&&e.entity==settler.id&&
+                e.target==tree.id&&e.message.StartsWith("Gather ×")&&e.amount==1));
+            hidden.Fog.Reveal(0,raider.position,2);Assert.IsTrue(hidden.IsVisible(0,raider));
+            int revealedCommandAt=hidden.Events.Count;workforce.Assign(oneWorker,new Cost(0,1000,0),possibleRaid);
+            Assert.IsFalse(workforce.HasSafeSource(ResourceKind.Wood));
+            Assert.IsFalse(settler.orders.Any(o=>o.kind==OrderKind.Gather&&o.target==tree.id));
+            AssertLegalResponse(hidden,settler,raider,revealedCommandAt);
         }
     }
 }
