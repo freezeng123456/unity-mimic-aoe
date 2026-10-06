@@ -2,11 +2,13 @@
 
 独立 Unity 即时战略游戏：英国、荷兰、法国、奥斯曼四个经典文明核心玩法，加上远驿盟市、山岭工联两个原创文明，共六文明。五个时代、25张卡组与XP船运、银行、实车贸易、工坊制造、守卫宝藏和炮兵攻城，配有原创模型、动画与音频。使用本项目规则和候选数值，与 Age of Empires 及其发行商无关联。
 
-**当前源码版本为0.15.0，目标平台macOS Apple silicon。** 072完善有限资源后的合法供给、失Town的500W恢复预算、可见守卫避险、实际陆军集结/补员和经济线防守。人类可以指定攻击当前可见的人物或建筑；AI OBSERVATION为只读，工作坊PLAYTEST保持人类控制。四经典文明的项目版革命/平民重建、两原创文明、曲河/港区/海军与工作坊内容保留，没有新增国家或模型。[操作](Docs/Player-Guide-072.md)、[内容](Docs/Content-072.md)。
+**当前源码版本为0.16.0，目标平台macOS Apple silicon。** 073新增自己完工Market的 **RESOURCE EXCHANGE**，用Coin买Food/Wood或卖货取得Coin，支持100/500资源、逐lot报价与真实账本。价格按玩家独立保存，同玩家多个Market/重建共用；规则限制买卖循环套利。AI有界卖真实余粮并保留核心储备，Coin-only短缺可启动真实Post/Ledger渠道；拥挤港区集结扩展65位置/7×7与5×5占地，每次SelectStage最多6次非直线路径，AtStage另计。没有新增文明或模型。[073内容](Docs/Content-073.md)、[当前状态](Docs/Completion-Status.md)、[限制](Docs/Known-Issues.md)，基础操作沿用[072指南](Docs/Player-Guide-072.md)。
 
-运行提交 `bc127e02638caaeefd2310a1a3eff858f4f4cb2f`，718输入，指纹 `04698dad49278a42db8a13a2ab997870bfb008c52f95313130026da5a7f35f62`。正式完整 `run-HACRyTBF` 实际1158Edit+409Play，共 **1567/1567 Passed**，零失败/跳过/未决；独立核原XML/源和071旧用例名称保留。Mac arm64 Development/Mono构建实际成功、源前后稳定，GUID `3288d9fe24e844748a1183f756874fbf`。[072验证](Docs/Verification-072.md)、[当前状态](Docs/Completion-Status.md)、[限制](Docs/Known-Issues.md)。
+运行提交 `519d7d34a0be85f75ee19e53458c636d1ba0b3e4`，732输入，指纹 `9b92812a922adb69a5ae501925417d8eba8e24b836f496274ebc8ec8679ba03d`。正式完整 `run-9q8yTJKS` 实际1192Edit+419Play，共 **1611/1611 Passed**，零失败/跳过/未决；原XML/源冻结及072旧用例fullname保留已独立核。Mac arm64 Development/Mono Build1实际exit0/Succeeded、前后源稳定，GUID `5f347ad9ec2f494984b0b49c4f896c31`。[073验证记录](Docs/Verification-073.md)。
 
-**本GUID9个声明原生范围及正常16局独立核验已闭合；路线9/16达到、保留observed_routes_incomplete，072私有交付已完成11远端文件真实字节/SHA与owner-only核验。** [最终原生日志](Docs/Evidence/072/Native/FinalJournal/README.md)记录5个实际exit0、40对F9和完整边界。 实际包括E指定Guardian/House与Death、付费革命/政府取消退款/保存，F冷恢复后完成政府及真实新工人89，G只读相机和H短段前向600→1111。H未播完5490，Verified=false；右键、移动工人追击及编组恢复不扩成此次原生验收。 [NormalRoutesFinal1](Docs/Evidence/072/NormalSelected/README.md)按两图/四经典文明/两政治偏好实际关闭16条，runner exit0/sourceStable，固定独立checker Consistent；革命6/8、升V3/8达到，7条未达。15自然终局+1cap，仅5局到2400边界；32位玩家的设施付款/完工/正收入分别统计，15笔正常Town恢复付款仅5笔完工。Dutch42 wall3303.190543s约55分3秒仍有性能限制，曲河Ottoman44 Age2缺币初始原因未证实，Market没有兑换。结果不认证全部路线/三资源恢复、文明平衡或071因果改善。同一原NativeA锚点的250步Editor诊断已观察热点降低且最终62633事件/World/Controller/新事件字节一致；它不能认证当前GUI帧率、全部自然地图、60FPS或零泄漏。[072私有下载与交付说明](Docs/Delivery-072.md)记录实际云盘入口、11文件458,466,879B完整下载/SHA与owner-only；本地5ZIP2465成员另独立核验，完整正常局ZIP以三个原字节分片下载后重组。SourceSnapshot8490与已封包保持不变，最终Git文档提交/推送另行完成。
+**三条声明普通I观察仍在运行，当前GUID原生、073封包/私有Drive及本轮最终文档提交/推送待完成。** Candidate1/NormalObserved1观察winding Ottoman44/45与river_bend Dutch42，2400cap/1500比较点；开始收据不等于三条完成。普通Gather实际路线/动态护送仍有限制，扩展stage不认证所有地图发兵，headless分项计时不认证原生FPS或文明平衡。[073交付记录](Docs/Delivery-073.md)只列当前身份与待补收据，尚无073已核验云盘下载入口。
+
+**历史072保持原身份。** 0.15.0 runtime `bc127e02638caaeefd2310a1a3eff858f4f4cb2f`、718输入FP04698、GUID `3288d9fe24e844748a1183f756874fbf` 的1567项正式测试、9个声明原生范围及私有11文件字节/SHA/owner-only交付已完成。[072完成快照](Docs/Completion-Status-072.md)、[072验证](Docs/Verification-072.md)、[072交付与下载](Docs/Delivery-072.md)。16普通I局独立Consistent、原状态observed_routes_incomplete，路线9/16达到（革命6/8、升V3/8），15笔500W Town恢复仅5笔完工；Dutch42约55分3秒总wall与普通Gather安全限制保留。H原录像仅step600→1111、Verified=false。073对闭合旧样本的只读诊断确认Ottoman44从仍有矿的敌袭区撤回后停币、Dutch42末段无stage持续Muster，不能把原截图/包或旧FPS样本重标新GUID，也不回写072原诊断/结果。完整[072README快照](Docs/Archive/README-072.md)逐字保留。
 
 **历史071保持原身份。** 0.14正式1521项与25项独立审计、英国受控IV原生范围及私有交付已完成，见[071快照](Docs/Completion-Status-071.md)、[071验证](Docs/Verification-071.md)、[071交付](Docs/Delivery-071.md)。原八条普通I路线只有1/8完整恢复；英国V已付4000F/4000C但旧2400cap未完成，奥斯曼研究后立即终局未产新工人/正采集。46对F9、三槽/三录像、两冷恢复及转换后SAVE1不扩大为当前GUID或四国自然全链；旧结果不回写通过。
 
@@ -37,6 +39,8 @@
 0.6.0 新增蜿蜒河谷、热带河湾、支流汇合、河口四张地图，连同旧陆图与直河图共六张固定布局。水域、岸高、斜桥、港位、鱼点与 AI 航路统一使用 MapLayout；河岸采用连续岸坡与材质混合，港区有岸仓与伸水栈桥，船有厚船舷、船员工作动作和尾流。实现见[曲河玩法](Docs/Rivers-063.md)，该版测试、来源指纹、机动与原生记录见[0.6.0 完成状态](Docs/Completion-Status-063.md)和[063证据](Docs/Evidence/063/README.md)。当前候选进度见[完成状态](Docs/Completion-Status.md)，旧版验收保留原版本身份。
 
 ## 启动与操作
+
+选中自己的完工 **Market**，点击 **RESOURCE EXCHANGE**。**BUY FOOD / SELL FOOD / BUY WOOD / SELL WOOD** 按显示的整批Coin费用或收入执行，批量按钮切换 **100 / 500 UNITS**；每笔点击重新核价，余额不足、暂停、观战或失去Market时不能成交。初始100资源买130C/卖70C，500买680C/卖320C；Food/Wood和每位玩家分别变价，属于本项目规则P。[073合同](Docs/Content-073.md)。
 
 主菜单 **SCENARIO WORKSHOP** 打开地图工作坊。**NEW** 展开模板，左侧页面选择编辑类别，右侧属性修改具体数据；**VALIDATE** 检查地形、引用和时代上限，**PLAYTEST** 运行独立场景副本。试玩暂停或结算后 **RETURN TO EDITOR** 返回草稿；**SAVE / SAVE AS** 写地图库，**IMPORT / EXPORT** 使用便携场景文件。撤销历史属于当前会话，跨进程恢复的是文档内容；详见[0.12操作说明](Docs/Scenario-Editor-069.md)。
 
@@ -70,6 +74,7 @@
 | LAN CO-OP / HOST CO-OP / JOIN HOST / READY | 两真人合作对抗房主 AI / 建房 / 加入 / 准备 |
 | SAVE REPLAY / RECORDING LIBRARY | 保存录制片段并继续游戏 / 在原构建中打开录像 |
 | VIEW P1–P4 / SPEED / TIMELINE | 切换观察槽位 / 调整播放速度 / 跳到记录区间中的位置 |
+| RESOURCE EXCHANGE / BUY / SELL / 100–500 UNITS | 完工己方Market真实买卖Food/Wood、支付/取得Coin与查看下一报价 |
 | REVOLUTION / CIVILIAN GOVERNMENT / DISBAND | IV 时代政治预览与真实付费 / 恢复正常工人来源 / 确认后遣散陆地单位释放人口 |
 | Ctrl或Command + 数字 / 数字 | 保存编组 / 召回编组 |
 | Esc | 取消操作、关闭面板或暂停；以可见暂停界面为准 |
@@ -78,7 +83,7 @@
 
 开局先采集资源箱，再维持食物、木材与钱币收入。箱子和时代奖励须由工人实际采集；同一资源点最多8名有效工人。荷兰银行完工后持续产币，主城船运需要XP机会和运输时间。奥斯曼城镇中心显示免费招工进度、工人上限和阻塞原因；**AUTO SETTLERS: ON/OFF** 控制暂停与恢复。炮兵优先框选并配备护卫；驻军工人不会采集，安全后应及时撤出。
 
-单机局失焦会自动暂停，回来后手动恢复。LAN 失焦只打开本地菜单，世界保持共享暂停状态；普通存读档入口须先离开 LAN。**SAVE MATCH** 写三个手动检查点，主菜单 **LOAD SAVED MATCH** 或暂停菜单 **LOAD MATCH** 读取后先暂停。检查点包含AI、迷雾、队列、工厂、镜头、编组、乘员、完整事件及可选任务尝试；自定义对局还包含场景文档、内容哈希和触发器/目标状态。选择已有槽会替换该检查点。外层封装仍为schema 2 gzip-base64，文件限64 MiB、解压原文限256 MiB，失败保留旧槽。读档要求应用版本和规则一致，不承诺071到当前0.15.0的原生跨版本迁移。任务完成/解锁另存于本地Account，音频和改键另存于Preferences，读取检查点不回滚它们。录像另存于 `Replays`，与检查点分别保存；要求应用、原生 build GUID、Unity、规则、生成与场景运行版本等身份匹配。同为当前版本号的重新构建也可能拒绝旧录像。F8/F9/F10是保留的诊断采集键；默认动作和改键冲突规则见[指南](Docs/Player-Guide-066.md)。
+单机局失焦会自动暂停，回来后手动恢复。LAN 失焦只打开本地菜单，世界保持共享暂停状态；普通存读档入口须先离开 LAN。**SAVE MATCH** 写三个手动检查点，主菜单 **LOAD SAVED MATCH** 或暂停菜单 **LOAD MATCH** 读取后先暂停。检查点包含AI、迷雾、队列、工厂、镜头、编组、乘员、完整事件及可选任务尝试；自定义对局还包含场景文档、内容哈希和触发器/目标状态。选择已有槽会替换该检查点。外层封装仍为schema 2 gzip-base64，文件限64 MiB、解压原文限256 MiB，失败保留旧槽。读档要求应用版本和规则一致，不承诺072到当前0.16.0的原生跨版本迁移。任务完成/解锁另存于本地Account，音频和改键另存于Preferences，读取检查点不回滚它们。录像另存于 `Replays`，与检查点分别保存；要求应用、原生 build GUID、Unity、规则、生成与场景运行版本等身份匹配。同为当前版本号的重新构建也可能拒绝旧录像。F8/F9/F10是保留的诊断采集键；默认动作和改键冲突规则见[指南](Docs/Player-Guide-066.md)。
 
 ## 六文明玩法
 
@@ -117,6 +122,6 @@ C1–C6失败结果原样保留，不跨局拼接。C7缺少单独终局F9和菜
 
 ## 交付边界
 
-当前0.15.0正式1567项自动化与Mac构建已通过，**9个声明原生范围已闭合，NormalRoutesFinal1正常16局独立Consistent但路线9/16达到，072私有交付11文件字节/SHA与owner-only已闭合**。[072验证](Docs/Verification-072.md)与[072交付](Docs/Delivery-072.md)分别记录玩法范围、当前私有下载与剩余限制。历史0711521项、八条路线观察、英国受控IV原生与私有包上传/读回保留原身份，见[071交付](Docs/Delivery-071.md)；0.12/0.11及更早样本同理。
+当前0.16.0正式1611项自动化与Mac Build1已通过；**普通三case已关闭（两自然终局、一2400秒cap），当前GUID原生仅市场建造/扣费/完成；原生兑换点击未完成，073私有交付与最终推送仍待闭合**。[073验证记录](Docs/Verification-073.md)和[073交付记录](Docs/Delivery-073.md)列真实身份与待补项。历史072的9个原生范围、16普通局9/16路线与11远端文件字节/SHA/owner-only属于原GUID，下载仍见[072交付](Docs/Delivery-072.md)。历史0711521项、八条路线观察、英国受控IV原生与私有包上传/读回保留原身份，见[071交付](Docs/Delivery-071.md)；0.12/0.11及更早样本同理。
 
 实体双Mac、跨网卡/防火墙、长窗延迟/性能、签名公证Release及Windows/Linux/Intel Mac分别未验收。可信LAN提供完整世界投影，没有竞技防作弊、加密、公网匹配/NAT/中继或主机迁移，同版本不同构建可能拒绝连接。原创场景编辑、四个项目革命分支和经营/集结改进已落入代码，完整文明制度/卡池/商业场景、美术/语音与海战仍有差距。[完成状态](Docs/Completion-Status.md)、[限制](Docs/Known-Issues.md)、[后续方向](Docs/AoE3-Gap-Roadmap.md)。

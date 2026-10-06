@@ -1,0 +1,4301 @@
+{
+  "status": "closed_raw_ledger_cause_localized_without_rerun",
+  "rawRuntimeCommit": "bc127e02638caaeefd2310a1a3eff858f4f4cb2f",
+  "case": "winding-ottoman-44",
+  "player": 0,
+  "scope": {
+    "eventLedgerFullStream": true,
+    "finalWorldLargeFileRead": false,
+    "openingAndEarlyTerminalWorldRead": true,
+    "noRuntimeIntervention": true,
+    "noCodeEdits": true,
+    "noOriginalFilesChanged": true
+  },
+  "rawFiles": {
+    "events.jsonl": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/winding-ottoman-44/events.jsonl",
+      "bytes": 64259623,
+      "sha256": "32610e2921a22aabf3e9adb08e73952868a913a5247fc464b0a38604007654be",
+      "mtimeNs": 1791294563441010182,
+      "inode": 8081377
+    },
+    "samples.jsonl": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/winding-ottoman-44/samples.jsonl",
+      "bytes": 1347034,
+      "sha256": "8018ade3cecb2b3dc557769d2e7e8371530d82b53f6d15c1ec8f1e6211c17ad0",
+      "mtimeNs": 1791294563441651683,
+      "inode": 8081376
+    },
+    "opening-world.json": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/winding-ottoman-44/opening-world.json",
+      "bytes": 2805799,
+      "sha256": "d05f6130a73af258d94d26fd8fb13e053fcae4f40095e36546e33d8cb2a3319e",
+      "mtimeNs": 1791293609762021997,
+      "inode": 8081375
+    },
+    "early-terminal-world.json": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/winding-ottoman-44/early-terminal-world.json",
+      "bytes": 3638347,
+      "sha256": "c1dd09b760d966ed8e99f11191746f79a74d1c2bb96c572287e201825d256a49",
+      "mtimeNs": 1791294563476820893,
+      "inode": 8113453
+    },
+    "result.json": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/winding-ottoman-44/result.json",
+      "bytes": 1381,
+      "sha256": "3e8a5f5da949d3ea982dd992b262de7254f42c820bea36f840c72adce4094cac",
+      "mtimeNs": 1791294565522875929,
+      "inode": 8113460
+    }
+  },
+  "frozenSourceFiles": {
+    "Assets/Frontier/Simulation/AiWorkforce.cs": {
+      "commit": "bc127e02638caaeefd2310a1a3eff858f4f4cb2f",
+      "bytes": 8633,
+      "sha256": "fe2407f3c0fc5bd8ba3fb71f59e209297c23097431885ffc083007c8a23c2fc3"
+    },
+    "Assets/Frontier/Simulation/AiResourceContinuity072.cs": {
+      "commit": "bc127e02638caaeefd2310a1a3eff858f4f4cb2f",
+      "bytes": 28179,
+      "sha256": "2e42dea01cf9482027cd3a0473c8dd7ff675338f8302f6c26a9154985efd8e54"
+    },
+    "Assets/Frontier/Simulation/SkirmishAI.cs": {
+      "commit": "bc127e02638caaeefd2310a1a3eff858f4f4cb2f",
+      "bytes": 37607,
+      "sha256": "37b2cc8da6fc0c8c54d62feacb102888f0af0d9dcc5e3be660833a6827c46da1"
+    },
+    "Assets/Frontier/Simulation/Economy.cs": {
+      "commit": "bc127e02638caaeefd2310a1a3eff858f4f4cb2f",
+      "bytes": 35508,
+      "sha256": "d5262180633fa9e0b68787e5fbd7bf1000ad46c5320a9187fcd1575c76bbeb68"
+    },
+    "Assets/Frontier/Simulation/World.cs": {
+      "commit": "bc127e02638caaeefd2310a1a3eff858f4f4cb2f",
+      "bytes": 20080,
+      "sha256": "d7f41ecf0d2e92c4eac7e0e63c99830d15a3b788190a3ef4b02060c4aad7c0fa"
+    },
+    "Assets/Frontier/Simulation/AiCivilizationEconomy.cs": {
+      "commit": "bc127e02638caaeefd2310a1a3eff858f4f4cb2f",
+      "bytes": 14635,
+      "sha256": "6ca35e16ef31bcfc9d156625cf521aaf6812c4aac0992e9bac8dfa090edb639e"
+    }
+  },
+  "eventCount": 100055,
+  "eventKinds": {
+    "StartingResources": 2,
+    "Spawn": 434,
+    "TradeSocket": 3,
+    "TreasurePlaced": 6,
+    "LandmarkReachability": 34,
+    "LandmarkDiscovered": 27,
+    "MatchStarted": 1,
+    "Payment": 462,
+    "Command": 2736,
+    "Gather": 77922,
+    "TreasureClaimed": 5,
+    "Death": 225,
+    "AttackPrepared": 4212,
+    "Damage": 3901,
+    "Fire": 3990,
+    "ResourceDepleted": 33,
+    "Experience": 381,
+    "BuildingComplete": 51,
+    "ShipmentEarned": 23,
+    "ShipmentSent": 23,
+    "RallyAssigned": 455,
+    "AutomaticWorkerProduced": 73,
+    "ShipmentArrived": 22,
+    "Technology": 39,
+    "ResearchComplete": 28,
+    "AIStrategy": 21,
+    "AgeAdvanced": 5,
+    "AgeRouteChosen": 5,
+    "AgeRewardArrived": 5,
+    "ProductionQueued": 108,
+    "RallySet": 43,
+    "UnitTrained": 115,
+    "Garrison": 350,
+    "Impact": 3240,
+    "Ungarrison": 91,
+    "AIArmyPhase": 52,
+    "DestinationAdjusted": 499,
+    "TradeDelivery": 33,
+    "NeutralAllianceStarted": 1,
+    "NeutralAllianceComplete": 1,
+    "NeutralRecruitQueued": 15,
+    "NeutralContest": 2,
+    "NeutralRecruitComplete": 15,
+    "AIArmyReinforcement": 11,
+    "TradeMode": 22,
+    "NeutralResearchQueued": 1,
+    "NeutralResearchComplete": 1,
+    "AIConstructionResumed": 6,
+    "FactoryDeploymentOrdered": 2,
+    "FactoryApproachAdjusted": 1,
+    "FactoryFoundationStarted": 2,
+    "FactoryModeChanged": 4,
+    "FactoryIncome": 313,
+    "FactoryArtilleryProduced": 1,
+    "PlayerEliminated": 1,
+    "MatchEnded": 1
+  },
+  "openingMines": {
+    "16": {
+      "remaining": 1200.0,
+      "position": {
+        "x": 14.0,
+        "y": 23.0
+      }
+    },
+    "37": {
+      "remaining": 1200.0,
+      "position": {
+        "x": 45.0,
+        "y": 35.0
+      }
+    },
+    "67": {
+      "remaining": 1200.0,
+      "position": {
+        "x": 114.0,
+        "y": 105.0
+      }
+    },
+    "88": {
+      "remaining": 1200.0,
+      "position": {
+        "x": 82.0,
+        "y": 93.0
+      }
+    },
+    "103": {
+      "remaining": 1200.0,
+      "position": {
+        "x": 53.0,
+        "y": 66.0
+      }
+    },
+    "104": {
+      "remaining": 1200.0,
+      "position": {
+        "x": 67.0,
+        "y": 65.0
+      }
+    }
+  },
+  "terminalMines": {
+    "16": {
+      "remaining": 0.0,
+      "dead": true
+    },
+    "37": {
+      "remaining": 0.0,
+      "dead": true
+    },
+    "67": {
+      "remaining": 0.0,
+      "dead": true
+    },
+    "88": {
+      "remaining": 0.0,
+      "dead": true
+    },
+    "103": {
+      "remaining": 0.0,
+      "dead": true
+    },
+    "104": {
+      "remaining": 0.0,
+      "dead": true
+    }
+  },
+  "mineDepletion": [
+    {
+      "time": 655.2870483398438,
+      "kind": "ResourceDepleted",
+      "message": "Coin Mine exhausted",
+      "player": 1,
+      "entity": 67,
+      "target": 0,
+      "visibilityMask": 2,
+      "amount": 0.0,
+      "position": {
+        "x": 114.0,
+        "y": 105.0
+      },
+      "line": 18979,
+      "byteOffset": 12221137,
+      "lineBytes": 598
+    },
+    {
+      "time": 687.6791381835938,
+      "kind": "ResourceDepleted",
+      "message": "Coin Mine exhausted",
+      "player": 0,
+      "entity": 16,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 14.0,
+        "y": 23.0
+      },
+      "line": 20675,
+      "byteOffset": 13313660,
+      "lineBytes": 596
+    },
+    {
+      "time": 888.4301147460938,
+      "kind": "ResourceDepleted",
+      "message": "Coin Mine exhausted",
+      "player": 1,
+      "entity": 88,
+      "target": 0,
+      "visibilityMask": 2,
+      "amount": 0.0,
+      "position": {
+        "x": 82.0,
+        "y": 93.0
+      },
+      "line": 30579,
+      "byteOffset": 19699631,
+      "lineBytes": 596
+    },
+    {
+      "time": 936.4183959960938,
+      "kind": "ResourceDepleted",
+      "message": "Coin Mine exhausted",
+      "player": 0,
+      "entity": 37,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 45.0,
+        "y": 35.0
+      },
+      "line": 32792,
+      "byteOffset": 21121778,
+      "lineBytes": 596
+    },
+    {
+      "time": 1233.14599609375,
+      "kind": "ResourceDepleted",
+      "message": "Coin Mine exhausted",
+      "player": 1,
+      "entity": 104,
+      "target": 0,
+      "visibilityMask": 2,
+      "amount": 0.0,
+      "position": {
+        "x": 67.0,
+        "y": 65.0
+      },
+      "line": 48842,
+      "byteOffset": 31448757,
+      "lineBytes": 596
+    },
+    {
+      "time": 1251.4415283203125,
+      "kind": "ResourceDepleted",
+      "message": "Coin Mine exhausted",
+      "player": 1,
+      "entity": 103,
+      "target": 0,
+      "visibilityMask": 2,
+      "amount": 0.0,
+      "position": {
+        "x": 53.0,
+        "y": 66.0
+      },
+      "line": 49689,
+      "byteOffset": 31991873,
+      "lineBytes": 598
+    }
+  ],
+  "p0CoinGatherBySource": {
+    "140": {
+      "count": 24,
+      "amount": 149.99998724460602,
+      "first": {
+        "time": 80.49934387207031,
+        "kind": "Gather",
+        "message": "Coin",
+        "player": 0,
+        "entity": 7,
+        "target": 140,
+        "visibilityMask": 3,
+        "amount": 0.6000000238418579,
+        "position": {
+          "x": 41.93592071533203,
+          "y": 60.19513702392578
+        },
+        "line": 1452,
+        "byteOffset": 935147,
+        "lineBytes": 644
+      },
+      "last": {
+        "time": 105.39896392822266,
+        "kind": "Gather",
+        "message": "Coin",
+        "player": 0,
+        "entity": 7,
+        "target": 140,
+        "visibilityMask": 1,
+        "amount": 4.199999809265137,
+        "position": {
+          "x": 42.0147819519043,
+          "y": 60.587284088134766
+        },
+        "line": 1869,
+        "byteOffset": 1203634,
+        "lineBytes": 644
+      },
+      "miners": [
+        7
+      ]
+    },
+    "103": {
+      "count": 380,
+      "amount": 255.00600092858076,
+      "first": {
+        "time": 107.89892578125,
+        "kind": "Gather",
+        "message": "Coin",
+        "player": 0,
+        "entity": 7,
+        "target": 103,
+        "visibilityMask": 1,
+        "amount": 0.06000000238418579,
+        "position": {
+          "x": 50.6262321472168,
+          "y": 64.83038330078125
+        },
+        "line": 1915,
+        "byteOffset": 1233237,
+        "lineBytes": 641
+      },
+      "last": {
+        "time": 1009.2006225585938,
+        "kind": "Gather",
+        "message": "Coin",
+        "player": 0,
+        "entity": 243,
+        "target": 103,
+        "visibilityMask": 1,
+        "amount": 0.3449999988079071,
+        "position": {
+          "x": 16.894289016723633,
+          "y": 17.8953800201416
+        },
+        "line": 36782,
+        "byteOffset": 23692581,
+        "lineBytes": 647
+      },
+      "miners": [
+        2,
+        7,
+        138,
+        141,
+        145,
+        147,
+        159,
+        165,
+        173,
+        174,
+        231,
+        234,
+        236,
+        243,
+        250,
+        256,
+        268
+      ]
+    },
+    "16": {
+      "count": 1681,
+      "amount": 1200.1482238024473,
+      "first": {
+        "time": 359.9127502441406,
+        "kind": "Gather",
+        "message": "Coin",
+        "player": 0,
+        "entity": 2,
+        "target": 16,
+        "visibilityMask": 3,
+        "amount": 0.06000000238418579,
+        "position": {
+          "x": 15.860329627990723,
+          "y": 20.914390563964844
+        },
+        "line": 7515,
+        "byteOffset": 4846070,
+        "lineBytes": 647
+      },
+      "last": {
+        "time": 687.7791137695312,
+        "kind": "Gather",
+        "message": "Coin",
+        "player": 0,
+        "entity": 171,
+        "target": 16,
+        "visibilityMask": 1,
+        "amount": 0.2759999930858612,
+        "position": {
+          "x": 14.94062614440918,
+          "y": 25.416179656982422
+        },
+        "line": 20690,
+        "byteOffset": 13323219,
+        "lineBytes": 648
+      },
+      "miners": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        165,
+        171,
+        173,
+        175,
+        197
+      ]
+    },
+    "37": {
+      "count": 1616,
+      "amount": 1200.3002123311162,
+      "first": {
+        "time": 429.9170227050781,
+        "kind": "Gather",
+        "message": "Coin",
+        "player": 0,
+        "entity": 174,
+        "target": 37,
+        "visibilityMask": 1,
+        "amount": 0.0689999982714653,
+        "position": {
+          "x": 42.52894973754883,
+          "y": 33.93134689331055
+        },
+        "line": 9536,
+        "byteOffset": 6145876,
+        "lineBytes": 644
+      },
+      "last": {
+        "time": 936.4183959960938,
+        "kind": "Gather",
+        "message": "Coin",
+        "player": 0,
+        "entity": 250,
+        "target": 37,
+        "visibilityMask": 1,
+        "amount": 0.2069999873638153,
+        "position": {
+          "x": 42.41360855102539,
+          "y": 34.87002182006836
+        },
+        "line": 32802,
+        "byteOffset": 21128108,
+        "lineBytes": 646
+      },
+      "miners": [
+        2,
+        4,
+        5,
+        6,
+        138,
+        142,
+        147,
+        174,
+        175,
+        187,
+        197,
+        207,
+        218,
+        234,
+        250
+      ]
+    },
+    "104": {
+      "count": 54,
+      "amount": 35.949000135064125,
+      "first": {
+        "time": 838.1423950195312,
+        "kind": "Gather",
+        "message": "Coin",
+        "player": 0,
+        "entity": 256,
+        "target": 104,
+        "visibilityMask": 1,
+        "amount": 0.0689999982714653,
+        "position": {
+          "x": 64.71703338623047,
+          "y": 63.28685760498047
+        },
+        "line": 28106,
+        "byteOffset": 18096203,
+        "lineBytes": 645
+      },
+      "last": {
+        "time": 909.6249389648438,
+        "kind": "Gather",
+        "message": "Coin",
+        "player": 0,
+        "entity": 250,
+        "target": 104,
+        "visibilityMask": 1,
+        "amount": 0.6899999976158142,
+        "position": {
+          "x": 42.41360855102539,
+          "y": 34.87002182006836
+        },
+        "line": 31513,
+        "byteOffset": 20297805,
+        "lineBytes": 645
+      },
+      "miners": [
+        149,
+        165,
+        231,
+        250,
+        256
+      ]
+    }
+  },
+  "allPlayersLoggedGatherCoinByTarget": {
+    "140": 149.99998724460602,
+    "103": 1200.2785502150655,
+    "67": 1199.9157465472817,
+    "16": 1200.1482238024473,
+    "88": 1200.117124132812,
+    "37": 1200.3002123311162,
+    "237": 599.998173058033,
+    "104": 1200.3002126291394,
+    "288": 999.9967632293701,
+    "334": 3990.586935505271,
+    "372": 1400.0009440779686,
+    "391": 599.9991971850395
+  },
+  "mine103EvacuationCommands": [
+    {
+      "time": 975.5088500976562,
+      "kind": "Command",
+      "message": "Garrison ×1",
+      "player": 0,
+      "entity": 2,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 51.24531936645508,
+        "y": 64.358154296875
+      },
+      "line": 34829,
+      "byteOffset": 22433669,
+      "lineBytes": 633
+    },
+    {
+      "time": 975.5088500976562,
+      "kind": "Command",
+      "message": "Garrison ×1",
+      "player": 0,
+      "entity": 268,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 54.750125885009766,
+        "y": 64.07501983642578
+      },
+      "line": 34830,
+      "byteOffset": 22434302,
+      "lineBytes": 639
+    },
+    {
+      "time": 975.5088500976562,
+      "kind": "Command",
+      "message": "Garrison ×1",
+      "player": 0,
+      "entity": 256,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 50.47522735595703,
+        "y": 64.94572448730469
+      },
+      "line": 34831,
+      "byteOffset": 22434941,
+      "lineBytes": 638
+    },
+    {
+      "time": 975.5088500976562,
+      "kind": "Command",
+      "message": "Garrison ×1",
+      "player": 0,
+      "entity": 250,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 51.7369499206543,
+        "y": 63.70509338378906
+      },
+      "line": 34832,
+      "byteOffset": 22435579,
+      "lineBytes": 636
+    },
+    {
+      "time": 975.5088500976562,
+      "kind": "Command",
+      "message": "Garrison ×1",
+      "player": 0,
+      "entity": 243,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 52.54313659667969,
+        "y": 63.3903923034668
+      },
+      "line": 34833,
+      "byteOffset": 22436215,
+      "lineBytes": 637
+    },
+    {
+      "time": 975.5088500976562,
+      "kind": "Command",
+      "message": "Garrison ×1",
+      "player": 0,
+      "entity": 236,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 53.813880920410156,
+        "y": 63.74031448364258
+      },
+      "line": 34834,
+      "byteOffset": 22436852,
+      "lineBytes": 639
+    },
+    {
+      "time": 975.5088500976562,
+      "kind": "Command",
+      "message": "Garrison ×1",
+      "player": 0,
+      "entity": 234,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 50.63376235961914,
+        "y": 66.86231231689453
+      },
+      "line": 34835,
+      "byteOffset": 22437491,
+      "lineBytes": 637
+    },
+    {
+      "time": 975.5088500976562,
+      "kind": "Command",
+      "message": "Garrison ×1",
+      "player": 0,
+      "entity": 231,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 50.60075378417969,
+        "y": 65.93592834472656
+      },
+      "line": 34836,
+      "byteOffset": 22438128,
+      "lineBytes": 638
+    }
+  ],
+  "mine103MinerGarrisonAndFoodWoodReassignment": [
+    {
+      "time": 975.5088500976562,
+      "kind": "Command",
+      "message": "Garrison ×1",
+      "player": 0,
+      "entity": 2,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 51.24531936645508,
+        "y": 64.358154296875
+      },
+      "line": 34829,
+      "byteOffset": 22433669,
+      "lineBytes": 633
+    },
+    {
+      "time": 975.5088500976562,
+      "kind": "Command",
+      "message": "Garrison ×1",
+      "player": 0,
+      "entity": 268,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 54.750125885009766,
+        "y": 64.07501983642578
+      },
+      "line": 34830,
+      "byteOffset": 22434302,
+      "lineBytes": 639
+    },
+    {
+      "time": 975.5088500976562,
+      "kind": "Command",
+      "message": "Garrison ×1",
+      "player": 0,
+      "entity": 256,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 50.47522735595703,
+        "y": 64.94572448730469
+      },
+      "line": 34831,
+      "byteOffset": 22434941,
+      "lineBytes": 638
+    },
+    {
+      "time": 975.5088500976562,
+      "kind": "Command",
+      "message": "Garrison ×1",
+      "player": 0,
+      "entity": 250,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 51.7369499206543,
+        "y": 63.70509338378906
+      },
+      "line": 34832,
+      "byteOffset": 22435579,
+      "lineBytes": 636
+    },
+    {
+      "time": 975.5088500976562,
+      "kind": "Command",
+      "message": "Garrison ×1",
+      "player": 0,
+      "entity": 243,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 52.54313659667969,
+        "y": 63.3903923034668
+      },
+      "line": 34833,
+      "byteOffset": 22436215,
+      "lineBytes": 637
+    },
+    {
+      "time": 975.5088500976562,
+      "kind": "Command",
+      "message": "Garrison ×1",
+      "player": 0,
+      "entity": 236,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 53.813880920410156,
+        "y": 63.74031448364258
+      },
+      "line": 34834,
+      "byteOffset": 22436852,
+      "lineBytes": 639
+    },
+    {
+      "time": 975.5088500976562,
+      "kind": "Command",
+      "message": "Garrison ×1",
+      "player": 0,
+      "entity": 234,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 50.63376235961914,
+        "y": 66.86231231689453
+      },
+      "line": 34835,
+      "byteOffset": 22437491,
+      "lineBytes": 637
+    },
+    {
+      "time": 975.5088500976562,
+      "kind": "Command",
+      "message": "Garrison ×1",
+      "player": 0,
+      "entity": 231,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 50.60075378417969,
+        "y": 65.93592834472656
+      },
+      "line": 34836,
+      "byteOffset": 22438128,
+      "lineBytes": 638
+    },
+    {
+      "time": 985.9063110351562,
+      "kind": "Garrison",
+      "message": "Entered Town Center",
+      "player": 0,
+      "entity": 250,
+      "target": 1,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 26.485340118408203,
+        "y": 32.36195755004883
+      },
+      "line": 35381,
+      "byteOffset": 22789287,
+      "lineBytes": 648
+    },
+    {
+      "time": 986.4061889648438,
+      "kind": "Garrison",
+      "message": "Entered Town Center",
+      "player": 0,
+      "entity": 256,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 25.906902313232422,
+        "y": 32.06911087036133
+      },
+      "line": 35419,
+      "byteOffset": 22813806,
+      "lineBytes": 648
+    },
+    {
+      "time": 986.5061645507812,
+      "kind": "Garrison",
+      "message": "Entered Town Center",
+      "player": 0,
+      "entity": 243,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 26.547372817993164,
+        "y": 32.16715621948242
+      },
+      "line": 35426,
+      "byteOffset": 22818342,
+      "lineBytes": 647
+    },
+    {
+      "time": 986.8060913085938,
+      "kind": "Garrison",
+      "message": "Entered Town Center",
+      "player": 0,
+      "entity": 268,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 28.035058975219727,
+        "y": 31.572172164916992
+      },
+      "line": 35452,
+      "byteOffset": 22835084,
+      "lineBytes": 650
+    },
+    {
+      "time": 987.0060424804688,
+      "kind": "Garrison",
+      "message": "Entered Town Center",
+      "player": 0,
+      "entity": 231,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 25.796554565429688,
+        "y": 32.263572692871094
+      },
+      "line": 35460,
+      "byteOffset": 22840253,
+      "lineBytes": 648
+    },
+    {
+      "time": 987.1060180664062,
+      "kind": "Garrison",
+      "message": "Entered Town Center",
+      "player": 0,
+      "entity": 234,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 25.827150344848633,
+        "y": 32.397003173828125
+      },
+      "line": 35469,
+      "byteOffset": 22846030,
+      "lineBytes": 649
+    },
+    {
+      "time": 987.8058471679688,
+      "kind": "Garrison",
+      "message": "Entered Town Center",
+      "player": 0,
+      "entity": 2,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 26.376415252685547,
+        "y": 32.28587341308594
+      },
+      "line": 35515,
+      "byteOffset": 22875646,
+      "lineBytes": 646
+    },
+    {
+      "time": 988.0057983398438,
+      "kind": "Garrison",
+      "message": "Entered Town Center",
+      "player": 0,
+      "entity": 236,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 27.0,
+        "y": 32.199981689453125
+      },
+      "line": 35527,
+      "byteOffset": 22883413,
+      "lineBytes": 604
+    },
+    {
+      "time": 992.3047485351562,
+      "kind": "RallyAssigned",
+      "message": "Automatic rally destination",
+      "player": 0,
+      "entity": 250,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 27.799999237060547,
+        "y": 26.299999237060547
+      },
+      "line": 35785,
+      "byteOffset": 23048959,
+      "lineBytes": 662
+    },
+    {
+      "time": 992.3047485351562,
+      "kind": "RallyAssigned",
+      "message": "Automatic rally destination",
+      "player": 0,
+      "entity": 256,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 25.899999618530273,
+        "y": 24.399999618530273
+      },
+      "line": 35787,
+      "byteOffset": 23050281,
+      "lineBytes": 662
+    },
+    {
+      "time": 992.3047485351562,
+      "kind": "RallyAssigned",
+      "message": "Automatic rally destination",
+      "player": 0,
+      "entity": 243,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 24.0,
+        "y": 24.399999618530273
+      },
+      "line": 35788,
+      "byteOffset": 23050943,
+      "lineBytes": 647
+    },
+    {
+      "time": 992.3047485351562,
+      "kind": "RallyAssigned",
+      "message": "Automatic rally destination",
+      "player": 0,
+      "entity": 268,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 22.100000381469727,
+        "y": 24.399999618530273
+      },
+      "line": 35790,
+      "byteOffset": 23052252,
+      "lineBytes": 663
+    },
+    {
+      "time": 992.3047485351562,
+      "kind": "RallyAssigned",
+      "message": "Automatic rally destination",
+      "player": 0,
+      "entity": 231,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 20.200000762939453,
+        "y": 24.399999618530273
+      },
+      "line": 35791,
+      "byteOffset": 23052915,
+      "lineBytes": 661
+    },
+    {
+      "time": 992.3047485351562,
+      "kind": "RallyAssigned",
+      "message": "Automatic rally destination",
+      "player": 0,
+      "entity": 234,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 20.200000762939453,
+        "y": 20.600000381469727
+      },
+      "line": 35795,
+      "byteOffset": 23055503,
+      "lineBytes": 662
+    },
+    {
+      "time": 992.3047485351562,
+      "kind": "RallyAssigned",
+      "message": "Automatic rally destination",
+      "player": 0,
+      "entity": 2,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 27.799999237060547,
+        "y": 22.5
+      },
+      "line": 35801,
+      "byteOffset": 23059420,
+      "lineBytes": 646
+    },
+    {
+      "time": 992.3047485351562,
+      "kind": "RallyAssigned",
+      "message": "Automatic rally destination",
+      "player": 0,
+      "entity": 236,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 29.700000762939453,
+        "y": 16.799999237060547
+      },
+      "line": 35804,
+      "byteOffset": 23061378,
+      "lineBytes": 631
+    },
+    {
+      "time": 993.5044555664062,
+      "kind": "Command",
+      "message": "Gather ×1",
+      "player": 0,
+      "entity": 2,
+      "target": 22,
+      "visibilityMask": 1,
+      "amount": 1.0,
+      "position": {
+        "x": 27.799999237060547,
+        "y": 22.5
+      },
+      "line": 35866,
+      "byteOffset": 23101377,
+      "lineBytes": 623
+    },
+    {
+      "time": 993.5044555664062,
+      "kind": "Command",
+      "message": "Gather ×1",
+      "player": 0,
+      "entity": 250,
+      "target": 22,
+      "visibilityMask": 1,
+      "amount": 1.0,
+      "position": {
+        "x": 27.799999237060547,
+        "y": 26.299999237060547
+      },
+      "line": 35868,
+      "byteOffset": 23102625,
+      "lineBytes": 641
+    },
+    {
+      "time": 994.7041625976562,
+      "kind": "Command",
+      "message": "Gather ×1",
+      "player": 0,
+      "entity": 256,
+      "target": 15,
+      "visibilityMask": 1,
+      "amount": 1.0,
+      "position": {
+        "x": 25.899999618530273,
+        "y": 24.399999618530273
+      },
+      "line": 35930,
+      "byteOffset": 23142429,
+      "lineBytes": 639
+    },
+    {
+      "time": 994.7041625976562,
+      "kind": "Command",
+      "message": "Gather ×1",
+      "player": 0,
+      "entity": 236,
+      "target": 15,
+      "visibilityMask": 1,
+      "amount": 1.0,
+      "position": {
+        "x": 29.69183349609375,
+        "y": 16.838544845581055
+      },
+      "line": 35932,
+      "byteOffset": 23143706,
+      "lineBytes": 639
+    },
+    {
+      "time": 995.9038696289062,
+      "kind": "Command",
+      "message": "Gather ×1",
+      "player": 0,
+      "entity": 243,
+      "target": 21,
+      "visibilityMask": 1,
+      "amount": 1.0,
+      "position": {
+        "x": 24.0,
+        "y": 24.399999618530273
+      },
+      "line": 36000,
+      "byteOffset": 23187476,
+      "lineBytes": 626
+    },
+    {
+      "time": 995.9038696289062,
+      "kind": "Command",
+      "message": "Gather ×1",
+      "player": 0,
+      "entity": 234,
+      "target": 13,
+      "visibilityMask": 1,
+      "amount": 1.0,
+      "position": {
+        "x": 20.200000762939453,
+        "y": 20.600000381469727
+      },
+      "line": 36001,
+      "byteOffset": 23188102,
+      "lineBytes": 641
+    },
+    {
+      "time": 995.9038696289062,
+      "kind": "Command",
+      "message": "Gather ×1",
+      "player": 0,
+      "entity": 231,
+      "target": 19,
+      "visibilityMask": 1,
+      "amount": 1.0,
+      "position": {
+        "x": 20.200000762939453,
+        "y": 24.399999618530273
+      },
+      "line": 36002,
+      "byteOffset": 23188743,
+      "lineBytes": 638
+    },
+    {
+      "time": 997.1035766601562,
+      "kind": "Command",
+      "message": "Gather ×1",
+      "player": 0,
+      "entity": 268,
+      "target": 14,
+      "visibilityMask": 1,
+      "amount": 1.0,
+      "position": {
+        "x": 22.100000381469727,
+        "y": 24.399999618530273
+      },
+      "line": 36069,
+      "byteOffset": 23231972,
+      "lineBytes": 638
+    }
+  ],
+  "mine104RetryAndReturnCommands": [
+    {
+      "time": 1052.2901611328125,
+      "kind": "Command",
+      "message": "Gather ×1",
+      "player": 0,
+      "entity": 187,
+      "target": 104,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 19.264677047729492,
+        "y": 34.53240203857422
+      },
+      "line": 39390,
+      "byteOffset": 25382048,
+      "lineBytes": 639
+    },
+    {
+      "time": 1053.4898681640625,
+      "kind": "Command",
+      "message": "Garrison ×1",
+      "player": 0,
+      "entity": 187,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 23.05878257751465,
+        "y": 37.472618103027344
+      },
+      "line": 39453,
+      "byteOffset": 25422719,
+      "lineBytes": 639
+    },
+    {
+      "time": 1054.6895751953125,
+      "kind": "Command",
+      "message": "Gather ×1",
+      "player": 0,
+      "entity": 4,
+      "target": 104,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 14.303340911865234,
+        "y": 32.8281135559082
+      },
+      "line": 39521,
+      "byteOffset": 25466402,
+      "lineBytes": 637
+    },
+    {
+      "time": 1054.6895751953125,
+      "kind": "Command",
+      "message": "Gather ×1",
+      "player": 0,
+      "entity": 142,
+      "target": 104,
+      "visibilityMask": 1,
+      "amount": 1.0,
+      "position": {
+        "x": 13.344871520996094,
+        "y": 33.06338119506836
+      },
+      "line": 39522,
+      "byteOffset": 25467039,
+      "lineBytes": 638
+    },
+    {
+      "time": 1054.6895751953125,
+      "kind": "Command",
+      "message": "Gather ×1",
+      "player": 0,
+      "entity": 149,
+      "target": 104,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 17.801837921142578,
+        "y": 35.06638717651367
+      },
+      "line": 39523,
+      "byteOffset": 25467677,
+      "lineBytes": 640
+    },
+    {
+      "time": 1054.8895263671875,
+      "kind": "Garrison",
+      "message": "Entered Town Center",
+      "player": 0,
+      "entity": 187,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 23.572935104370117,
+        "y": 32.29808807373047
+      },
+      "line": 39531,
+      "byteOffset": 25472827,
+      "lineBytes": 648
+    },
+    {
+      "time": 1055.8892822265625,
+      "kind": "Command",
+      "message": "Garrison ×1",
+      "player": 0,
+      "entity": 149,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 21.710819244384766,
+        "y": 37.85201644897461
+      },
+      "line": 39593,
+      "byteOffset": 25512658,
+      "lineBytes": 638
+    },
+    {
+      "time": 1057.0889892578125,
+      "kind": "Command",
+      "message": "Garrison ×1",
+      "player": 0,
+      "entity": 4,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 21.323354721069336,
+        "y": 38.835689544677734
+      },
+      "line": 39652,
+      "byteOffset": 25550622,
+      "lineBytes": 638
+    },
+    {
+      "time": 1057.0889892578125,
+      "kind": "Command",
+      "message": "Gather ×1",
+      "player": 0,
+      "entity": 141,
+      "target": 104,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 11.778143882751465,
+        "y": 32.827125549316406
+      },
+      "line": 39653,
+      "byteOffset": 25551260,
+      "lineBytes": 640
+    },
+    {
+      "time": 1057.0889892578125,
+      "kind": "Command",
+      "message": "Garrison ×1",
+      "player": 0,
+      "entity": 142,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 19.765600204467773,
+        "y": 38.79618835449219
+      },
+      "line": 39654,
+      "byteOffset": 25551900,
+      "lineBytes": 639
+    },
+    {
+      "time": 1057.388916015625,
+      "kind": "Garrison",
+      "message": "Entered Town Center",
+      "player": 0,
+      "entity": 149,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 22.978256225585938,
+        "y": 32.39731216430664
+      },
+      "line": 39660,
+      "byteOffset": 25555777,
+      "lineBytes": 648
+    },
+    {
+      "time": 1058.2886962890625,
+      "kind": "Command",
+      "message": "Garrison ×1",
+      "player": 0,
+      "entity": 141,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 15.33448600769043,
+        "y": 35.01936340332031
+      },
+      "line": 39712,
+      "byteOffset": 25589121,
+      "lineBytes": 638
+    },
+    {
+      "time": 1058.8885498046875,
+      "kind": "Garrison",
+      "message": "Entered Town Center",
+      "player": 0,
+      "entity": 4,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 22.914785385131836,
+        "y": 32.28314971923828
+      },
+      "line": 39734,
+      "byteOffset": 25603346,
+      "lineBytes": 646
+    },
+    {
+      "time": 1058.988525390625,
+      "kind": "Garrison",
+      "message": "Entered Town Center",
+      "player": 0,
+      "entity": 142,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 22.394559860229492,
+        "y": 32.093292236328125
+      },
+      "line": 39739,
+      "byteOffset": 25606585,
+      "lineBytes": 648
+    },
+    {
+      "time": 1060.188232421875,
+      "kind": "Garrison",
+      "message": "Entered Town Center",
+      "player": 0,
+      "entity": 141,
+      "target": 1,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 20.448898315429688,
+        "y": 31.734418869018555
+      },
+      "line": 39785,
+      "byteOffset": 25636235,
+      "lineBytes": 649
+    }
+  ],
+  "nearbyVisibleEnemyEvidence": [
+    {
+      "time": 971.1099243164062,
+      "kind": "AttackPrepared",
+      "message": "Attack prepared",
+      "player": 1,
+      "entity": 280,
+      "target": 291,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 61.1180305480957,
+        "y": 43.78202819824219
+      },
+      "line": 34583,
+      "byteOffset": 22275174,
+      "lineBytes": 649
+    },
+    {
+      "time": 971.5098266601562,
+      "kind": "Fire",
+      "message": "Ranged",
+      "player": 1,
+      "entity": 280,
+      "target": 291,
+      "visibilityMask": 3,
+      "amount": 20.0,
+      "position": {
+        "x": 61.1180305480957,
+        "y": 43.78202819824219
+      },
+      "line": 34603,
+      "byteOffset": 22288084,
+      "lineBytes": 631
+    },
+    {
+      "time": 974.2091674804688,
+      "kind": "AttackPrepared",
+      "message": "Attack prepared",
+      "player": 1,
+      "entity": 280,
+      "target": 291,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 61.1180305480957,
+        "y": 43.78202819824219
+      },
+      "line": 34751,
+      "byteOffset": 22383468,
+      "lineBytes": 649
+    },
+    {
+      "time": 974.6090698242188,
+      "kind": "Fire",
+      "message": "Ranged",
+      "player": 1,
+      "entity": 280,
+      "target": 291,
+      "visibilityMask": 3,
+      "amount": 20.0,
+      "position": {
+        "x": 61.1180305480957,
+        "y": 43.78202819824219
+      },
+      "line": 34778,
+      "byteOffset": 22400824,
+      "lineBytes": 631
+    },
+    {
+      "time": 975.8087768554688,
+      "kind": "AttackPrepared",
+      "message": "Attack prepared",
+      "player": 1,
+      "entity": 254,
+      "target": 234,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 57.4400634765625,
+        "y": 81.26932525634766
+      },
+      "line": 34852,
+      "byteOffset": 22448397,
+      "lineBytes": 651
+    },
+    {
+      "time": 976.0087280273438,
+      "kind": "AttackPrepared",
+      "message": "Attack prepared",
+      "player": 1,
+      "entity": 222,
+      "target": 234,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 58.86409378051758,
+        "y": 80.96842193603516
+      },
+      "line": 34861,
+      "byteOffset": 22454212,
+      "lineBytes": 650
+    },
+    {
+      "time": 976.2086791992188,
+      "kind": "Fire",
+      "message": "Ranged",
+      "player": 1,
+      "entity": 254,
+      "target": 234,
+      "visibilityMask": 3,
+      "amount": 30.0,
+      "position": {
+        "x": 57.4400634765625,
+        "y": 81.26932525634766
+      },
+      "line": 34866,
+      "byteOffset": 22457452,
+      "lineBytes": 633
+    },
+    {
+      "time": 977.3084106445312,
+      "kind": "AttackPrepared",
+      "message": "Attack prepared",
+      "player": 1,
+      "entity": 280,
+      "target": 291,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 61.1180305480957,
+        "y": 43.78202819824219
+      },
+      "line": 34912,
+      "byteOffset": 22487110,
+      "lineBytes": 649
+    },
+    {
+      "time": 977.7083129882812,
+      "kind": "Fire",
+      "message": "Ranged",
+      "player": 1,
+      "entity": 280,
+      "target": 291,
+      "visibilityMask": 3,
+      "amount": 20.0,
+      "position": {
+        "x": 61.1180305480957,
+        "y": 43.78202819824219
+      },
+      "line": 34929,
+      "byteOffset": 22498097,
+      "lineBytes": 631
+    },
+    {
+      "time": 978.0082397460938,
+      "kind": "AttackPrepared",
+      "message": "Attack prepared",
+      "player": 1,
+      "entity": 253,
+      "target": 234,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 51.37675857543945,
+        "y": 70.02284240722656
+      },
+      "line": 34947,
+      "byteOffset": 22509678,
+      "lineBytes": 651
+    },
+    {
+      "time": 980.4076538085938,
+      "kind": "AttackPrepared",
+      "message": "Attack prepared",
+      "player": 1,
+      "entity": 280,
+      "target": 291,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 61.1180305480957,
+        "y": 43.78202819824219
+      },
+      "line": 35072,
+      "byteOffset": 22590140,
+      "lineBytes": 649
+    },
+    {
+      "time": 980.8075561523438,
+      "kind": "Fire",
+      "message": "Ranged",
+      "player": 1,
+      "entity": 280,
+      "target": 291,
+      "visibilityMask": 3,
+      "amount": 20.0,
+      "position": {
+        "x": 61.1180305480957,
+        "y": 43.78202819824219
+      },
+      "line": 35087,
+      "byteOffset": 22599845,
+      "lineBytes": 631
+    },
+    {
+      "time": 981.7073364257812,
+      "kind": "AttackPrepared",
+      "message": "Attack prepared",
+      "player": 1,
+      "entity": 226,
+      "target": 285,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 49.08967590332031,
+        "y": 65.86949920654297
+      },
+      "line": 35138,
+      "byteOffset": 22632687,
+      "lineBytes": 651
+    },
+    {
+      "time": 1057.2889404296875,
+      "kind": "AttackPrepared",
+      "message": "Attack prepared",
+      "player": 1,
+      "entity": 261,
+      "target": 149,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 30.57724380493164,
+        "y": 42.71221160888672
+      },
+      "line": 39657,
+      "byteOffset": 25553828,
+      "lineBytes": 652
+    },
+    {
+      "time": 1057.6888427734375,
+      "kind": "AttackPrepared",
+      "message": "Attack prepared",
+      "player": 1,
+      "entity": 298,
+      "target": 4,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 23.22869873046875,
+        "y": 35.187408447265625
+      },
+      "line": 39677,
+      "byteOffset": 25566693,
+      "lineBytes": 648
+    },
+    {
+      "time": 1057.8887939453125,
+      "kind": "AttackPrepared",
+      "message": "Attack prepared",
+      "player": 1,
+      "entity": 259,
+      "target": 4,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 31.406213760375977,
+        "y": 42.42588424682617
+      },
+      "line": 39687,
+      "byteOffset": 25573168,
+      "lineBytes": 651
+    },
+    {
+      "time": 1059.788330078125,
+      "kind": "AttackPrepared",
+      "message": "Attack prepared",
+      "player": 1,
+      "entity": 298,
+      "target": 141,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 21.723134994506836,
+        "y": 34.21998977661133
+      },
+      "line": 39768,
+      "byteOffset": 25625306,
+      "lineBytes": 652
+    }
+  ],
+  "lastRegularMiningFlushEvents": [
+    {
+      "time": 974.1091918945312,
+      "kind": "Gather",
+      "message": "Coin",
+      "player": 0,
+      "entity": 2,
+      "target": 103,
+      "visibilityMask": 1,
+      "amount": 0.7590000033378601,
+      "position": {
+        "x": 51.24531936645508,
+        "y": 64.358154296875
+      },
+      "line": 34748,
+      "byteOffset": 22381532,
+      "lineBytes": 641
+    },
+    {
+      "time": 974.2091674804688,
+      "kind": "Gather",
+      "message": "Coin",
+      "player": 0,
+      "entity": 236,
+      "target": 103,
+      "visibilityMask": 3,
+      "amount": 0.7590000033378601,
+      "position": {
+        "x": 53.813880920410156,
+        "y": 63.74031448364258
+      },
+      "line": 34756,
+      "byteOffset": 22386700,
+      "lineBytes": 647
+    },
+    {
+      "time": 974.2091674804688,
+      "kind": "Gather",
+      "message": "Coin",
+      "player": 0,
+      "entity": 250,
+      "target": 103,
+      "visibilityMask": 1,
+      "amount": 0.7590000033378601,
+      "position": {
+        "x": 51.7369499206543,
+        "y": 63.70509338378906
+      },
+      "line": 34757,
+      "byteOffset": 22387347,
+      "lineBytes": 644
+    },
+    {
+      "time": 974.3091430664062,
+      "kind": "Gather",
+      "message": "Coin",
+      "player": 0,
+      "entity": 234,
+      "target": 103,
+      "visibilityMask": 1,
+      "amount": 0.7590000033378601,
+      "position": {
+        "x": 50.63376235961914,
+        "y": 66.86231231689453
+      },
+      "line": 34759,
+      "byteOffset": 22388636,
+      "lineBytes": 645
+    },
+    {
+      "time": 974.4091186523438,
+      "kind": "Gather",
+      "message": "Coin",
+      "player": 0,
+      "entity": 231,
+      "target": 103,
+      "visibilityMask": 1,
+      "amount": 0.7590000033378601,
+      "position": {
+        "x": 50.60075378417969,
+        "y": 65.93592834472656
+      },
+      "line": 34773,
+      "byteOffset": 22397591,
+      "lineBytes": 646
+    },
+    {
+      "time": 974.5090942382812,
+      "kind": "Gather",
+      "message": "Coin",
+      "player": 0,
+      "entity": 268,
+      "target": 103,
+      "visibilityMask": 3,
+      "amount": 0.7590000033378601,
+      "position": {
+        "x": 54.750125885009766,
+        "y": 64.07501983642578
+      },
+      "line": 34776,
+      "byteOffset": 22399530,
+      "lineBytes": 647
+    },
+    {
+      "time": 974.8090209960938,
+      "kind": "Gather",
+      "message": "Coin",
+      "player": 0,
+      "entity": 256,
+      "target": 103,
+      "visibilityMask": 1,
+      "amount": 0.7590000033378601,
+      "position": {
+        "x": 50.47522735595703,
+        "y": 64.94572448730469
+      },
+      "line": 34793,
+      "byteOffset": 22410483,
+      "lineBytes": 646
+    },
+    {
+      "time": 975.0089721679688,
+      "kind": "Gather",
+      "message": "Coin",
+      "player": 0,
+      "entity": 243,
+      "target": 103,
+      "visibilityMask": 3,
+      "amount": 0.7590000033378601,
+      "position": {
+        "x": 52.54313659667969,
+        "y": 63.3903923034668
+      },
+      "line": 34801,
+      "byteOffset": 22415652,
+      "lineBytes": 645
+    },
+    {
+      "time": 975.2089233398438,
+      "kind": "Gather",
+      "message": "Coin",
+      "player": 0,
+      "entity": 2,
+      "target": 103,
+      "visibilityMask": 3,
+      "amount": 0.7590000033378601,
+      "position": {
+        "x": 51.24531936645508,
+        "y": 64.358154296875
+      },
+      "line": 34811,
+      "byteOffset": 22422085,
+      "lineBytes": 641
+    },
+    {
+      "time": 975.3088989257812,
+      "kind": "Gather",
+      "message": "Coin",
+      "player": 0,
+      "entity": 236,
+      "target": 103,
+      "visibilityMask": 3,
+      "amount": 0.7590000033378601,
+      "position": {
+        "x": 53.813880920410156,
+        "y": 63.74031448364258
+      },
+      "line": 34817,
+      "byteOffset": 22425955,
+      "lineBytes": 647
+    },
+    {
+      "time": 975.3088989257812,
+      "kind": "Gather",
+      "message": "Coin",
+      "player": 0,
+      "entity": 250,
+      "target": 103,
+      "visibilityMask": 3,
+      "amount": 0.7590000033378601,
+      "position": {
+        "x": 51.7369499206543,
+        "y": 63.70509338378906
+      },
+      "line": 34818,
+      "byteOffset": 22426602,
+      "lineBytes": 644
+    },
+    {
+      "time": 975.4088745117188,
+      "kind": "Gather",
+      "message": "Coin",
+      "player": 0,
+      "entity": 234,
+      "target": 103,
+      "visibilityMask": 3,
+      "amount": 0.7590000033378601,
+      "position": {
+        "x": 50.63376235961914,
+        "y": 66.86231231689453
+      },
+      "line": 34820,
+      "byteOffset": 22427891,
+      "lineBytes": 645
+    },
+    {
+      "time": 975.5088500976562,
+      "kind": "Gather",
+      "message": "Coin",
+      "player": 0,
+      "entity": 231,
+      "target": 103,
+      "visibilityMask": 3,
+      "amount": 0.7590000033378601,
+      "position": {
+        "x": 50.60075378417969,
+        "y": 65.93592834472656
+      },
+      "line": 34826,
+      "byteOffset": 22431749,
+      "lineBytes": 646
+    }
+  ],
+  "delayedCoinFlushAfterEvacuation": [
+    {
+      "time": 995.3040161132812,
+      "kind": "Gather",
+      "message": "Coin",
+      "player": 0,
+      "entity": 2,
+      "target": 103,
+      "visibilityMask": 1,
+      "amount": 0.2069999873638153,
+      "position": {
+        "x": 22.734052658081055,
+        "y": 18.0101375579834
+      },
+      "line": 35962,
+      "byteOffset": 23162978,
+      "lineBytes": 645
+    },
+    {
+      "time": 996.3037719726562,
+      "kind": "Gather",
+      "message": "Coin",
+      "player": 0,
+      "entity": 250,
+      "target": 103,
+      "visibilityMask": 1,
+      "amount": 0.1379999965429306,
+      "position": {
+        "x": 23.380828857421875,
+        "y": 17.413692474365234
+      },
+      "line": 36026,
+      "byteOffset": 23204218,
+      "lineBytes": 649
+    },
+    {
+      "time": 997.7034301757812,
+      "kind": "Gather",
+      "message": "Coin",
+      "player": 0,
+      "entity": 256,
+      "target": 103,
+      "visibilityMask": 1,
+      "amount": 0.4830000102519989,
+      "position": {
+        "x": 24.162353515625,
+        "y": 34.39984893798828
+      },
+      "line": 36102,
+      "byteOffset": 23253262,
+      "lineBytes": 644
+    },
+    {
+      "time": 999.7029418945312,
+      "kind": "Gather",
+      "message": "Coin",
+      "player": 0,
+      "entity": 236,
+      "target": 103,
+      "visibilityMask": 1,
+      "amount": 0.1379999965429306,
+      "position": {
+        "x": 23.071802139282227,
+        "y": 34.34661865234375
+      },
+      "line": 36215,
+      "byteOffset": 23326256,
+      "lineBytes": 647
+    },
+    {
+      "time": 1000.3027954101562,
+      "kind": "Gather",
+      "message": "Coin",
+      "player": 0,
+      "entity": 268,
+      "target": 103,
+      "visibilityMask": 1,
+      "amount": 0.6899999976158142,
+      "position": {
+        "x": 22.154949188232422,
+        "y": 36.22794723510742
+      },
+      "line": 36250,
+      "byteOffset": 23348868,
+      "lineBytes": 647
+    },
+    {
+      "time": 1003.0021362304688,
+      "kind": "Gather",
+      "message": "Coin",
+      "player": 0,
+      "entity": 234,
+      "target": 103,
+      "visibilityMask": 1,
+      "amount": 0.0689999982714653,
+      "position": {
+        "x": 21.772993087768555,
+        "y": 35.321136474609375
+      },
+      "line": 36414,
+      "byteOffset": 23454671,
+      "lineBytes": 651
+    },
+    {
+      "time": 1009.2006225585938,
+      "kind": "Gather",
+      "message": "Coin",
+      "player": 0,
+      "entity": 243,
+      "target": 103,
+      "visibilityMask": 1,
+      "amount": 0.3449999988079071,
+      "position": {
+        "x": 16.894289016723633,
+        "y": 17.8953800201416
+      },
+      "line": 36782,
+      "byteOffset": 23692581,
+      "lineBytes": 647
+    }
+  ],
+  "p0CoinOrdersAfter1100": [],
+  "p0CoinPaymentsAfterMiningLost": [
+    {
+      "time": 989.9053344726562,
+      "kind": "Payment",
+      "message": "Abus Gunner ×1: 50 F / 0 W / 100 C",
+      "player": 0,
+      "entity": 156,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 17.0,
+        "y": 33.0
+      },
+      "line": 35648,
+      "byteOffset": 22961135,
+      "lineBytes": 694,
+      "economy": {
+        "requestedDelta": {
+          "food": -50.0,
+          "wood": 0.0,
+          "coin": -100.0
+        },
+        "actualDelta": {
+          "food": -50.0,
+          "wood": 0.0,
+          "coin": -100.0
+        },
+        "balanceBefore": {
+          "food": 2047.3720703125,
+          "wood": 934.3469848632812,
+          "coin": 576.1400146484375
+        },
+        "balanceAfter": {
+          "food": 1997.3720703125,
+          "wood": 934.3469848632812,
+          "coin": 476.1400146484375
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      }
+    },
+    {
+      "time": 989.9053344726562,
+      "kind": "Payment",
+      "message": "Hussar ×1: 120 F / 0 W / 80 C",
+      "player": 0,
+      "entity": 177,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 27.0,
+        "y": 19.0
+      },
+      "line": 35650,
+      "byteOffset": 22962416,
+      "lineBytes": 689,
+      "economy": {
+        "requestedDelta": {
+          "food": -120.0,
+          "wood": 0.0,
+          "coin": -80.0
+        },
+        "actualDelta": {
+          "food": -120.0,
+          "wood": 0.0,
+          "coin": -80.0
+        },
+        "balanceBefore": {
+          "food": 1997.3720703125,
+          "wood": 934.3469848632812,
+          "coin": 476.1400146484375
+        },
+        "balanceAfter": {
+          "food": 1877.3720703125,
+          "wood": 934.3469848632812,
+          "coin": 396.1400146484375
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      }
+    },
+    {
+      "time": 989.9053344726562,
+      "kind": "Payment",
+      "message": "Janissary ×1: 100 F / 0 W / 25 C",
+      "player": 0,
+      "entity": 155,
+      "target": 0,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 29.0,
+        "y": 35.0
+      },
+      "line": 35652,
+      "byteOffset": 22963694,
+      "lineBytes": 692,
+      "economy": {
+        "requestedDelta": {
+          "food": -100.0,
+          "wood": 0.0,
+          "coin": -25.0
+        },
+        "actualDelta": {
+          "food": -100.0,
+          "wood": 0.0,
+          "coin": -25.0
+        },
+        "balanceBefore": {
+          "food": 1877.3720703125,
+          "wood": 934.3469848632812,
+          "coin": 396.1400146484375
+        },
+        "balanceAfter": {
+          "food": 1777.3720703125,
+          "wood": 934.3469848632812,
+          "coin": 371.1400146484375
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      }
+    },
+    {
+      "time": 1019.8980102539062,
+      "kind": "Payment",
+      "message": "Janissary ×1: 100 F / 0 W / 25 C",
+      "player": 0,
+      "entity": 155,
+      "target": 0,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 29.0,
+        "y": 35.0
+      },
+      "line": 37495,
+      "byteOffset": 24150652,
+      "lineBytes": 691,
+      "economy": {
+        "requestedDelta": {
+          "food": -100.0,
+          "wood": 0.0,
+          "coin": -25.0
+        },
+        "actualDelta": {
+          "food": -100.0,
+          "wood": 0.0,
+          "coin": -25.0
+        },
+        "balanceBefore": {
+          "food": 2114.5498046875,
+          "wood": 816.549072265625,
+          "coin": 371.1400146484375
+        },
+        "balanceAfter": {
+          "food": 2014.5498046875,
+          "wood": 816.549072265625,
+          "coin": 346.1400146484375
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      }
+    },
+    {
+      "time": 1025.8966064453125,
+      "kind": "Payment",
+      "message": "Hussar ×1: 120 F / 0 W / 80 C",
+      "player": 0,
+      "entity": 177,
+      "target": 0,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 27.0,
+        "y": 19.0
+      },
+      "line": 37854,
+      "byteOffset": 24380977,
+      "lineBytes": 688,
+      "economy": {
+        "requestedDelta": {
+          "food": -120.0,
+          "wood": 0.0,
+          "coin": -80.0
+        },
+        "actualDelta": {
+          "food": -120.0,
+          "wood": 0.0,
+          "coin": -80.0
+        },
+        "balanceBefore": {
+          "food": 2018.7744140625,
+          "wood": 857.945556640625,
+          "coin": 346.1400146484375
+        },
+        "balanceAfter": {
+          "food": 1898.7744140625,
+          "wood": 857.945556640625,
+          "coin": 266.1400146484375
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      }
+    },
+    {
+      "time": 1025.8966064453125,
+      "kind": "Payment",
+      "message": "Abus Gunner ×1: 50 F / 0 W / 100 C",
+      "player": 0,
+      "entity": 156,
+      "target": 0,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 17.0,
+        "y": 33.0
+      },
+      "line": 37856,
+      "byteOffset": 24382255,
+      "lineBytes": 693,
+      "economy": {
+        "requestedDelta": {
+          "food": -50.0,
+          "wood": 0.0,
+          "coin": -100.0
+        },
+        "actualDelta": {
+          "food": -50.0,
+          "wood": 0.0,
+          "coin": -100.0
+        },
+        "balanceBefore": {
+          "food": 1898.7744140625,
+          "wood": 857.945556640625,
+          "coin": 266.1400146484375
+        },
+        "balanceAfter": {
+          "food": 1848.7744140625,
+          "wood": 857.945556640625,
+          "coin": 166.1400146484375
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      }
+    },
+    {
+      "time": 1049.8907470703125,
+      "kind": "Payment",
+      "message": "Janissary ×1: 100 F / 0 W / 25 C",
+      "player": 0,
+      "entity": 155,
+      "target": 0,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 29.0,
+        "y": 35.0
+      },
+      "line": 39244,
+      "byteOffset": 25288321,
+      "lineBytes": 695,
+      "economy": {
+        "requestedDelta": {
+          "food": -100.0,
+          "wood": 0.0,
+          "coin": -25.0
+        },
+        "actualDelta": {
+          "food": -100.0,
+          "wood": 0.0,
+          "coin": -25.0
+        },
+        "balanceBefore": {
+          "food": 1890.910400390625,
+          "wood": 971.785888671875,
+          "coin": 166.1400146484375
+        },
+        "balanceAfter": {
+          "food": 1790.910400390625,
+          "wood": 971.785888671875,
+          "coin": 141.1400146484375
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      }
+    },
+    {
+      "time": 1061.8878173828125,
+      "kind": "Payment",
+      "message": "Hussar ×1: 120 F / 0 W / 80 C",
+      "player": 0,
+      "entity": 177,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 27.0,
+        "y": 19.0
+      },
+      "line": 39879,
+      "byteOffset": 25696204,
+      "lineBytes": 695,
+      "economy": {
+        "requestedDelta": {
+          "food": -120.0,
+          "wood": 0.0,
+          "coin": -80.0
+        },
+        "actualDelta": {
+          "food": -120.0,
+          "wood": 0.0,
+          "coin": -80.0
+        },
+        "balanceBefore": {
+          "food": 1810.3507080078125,
+          "wood": 1013.182373046875,
+          "coin": 141.1400146484375
+        },
+        "balanceAfter": {
+          "food": 1690.3507080078125,
+          "wood": 1013.182373046875,
+          "coin": 61.1400146484375
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      }
+    },
+    {
+      "time": 1079.8834228515625,
+      "kind": "Payment",
+      "message": "Janissary ×1: 100 F / 0 W / 25 C",
+      "player": 0,
+      "entity": 155,
+      "target": 0,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 29.0,
+        "y": 35.0
+      },
+      "line": 40861,
+      "byteOffset": 26325655,
+      "lineBytes": 695,
+      "economy": {
+        "requestedDelta": {
+          "food": -100.0,
+          "wood": 0.0,
+          "coin": -25.0
+        },
+        "actualDelta": {
+          "food": -100.0,
+          "wood": 0.0,
+          "coin": -25.0
+        },
+        "balanceBefore": {
+          "food": 1710.335205078125,
+          "wood": 1061.478271484375,
+          "coin": 61.1400146484375
+        },
+        "balanceAfter": {
+          "food": 1610.335205078125,
+          "wood": 1061.478271484375,
+          "coin": 36.1400146484375
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      }
+    },
+    {
+      "time": 1141.0684814453125,
+      "kind": "Payment",
+      "message": "Janissary ×1: 100 F / 0 W / 25 C",
+      "player": 0,
+      "entity": 317,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 28.0,
+        "y": 15.0
+      },
+      "line": 44074,
+      "byteOffset": 28386374,
+      "lineBytes": 697,
+      "economy": {
+        "requestedDelta": {
+          "food": -100.0,
+          "wood": 0.0,
+          "coin": -25.0
+        },
+        "actualDelta": {
+          "food": -100.0,
+          "wood": 0.0,
+          "coin": -25.0
+        },
+        "balanceBefore": {
+          "food": 1777.5333251953125,
+          "wood": 964.2220458984375,
+          "coin": 36.1400146484375
+        },
+        "balanceAfter": {
+          "food": 1677.5333251953125,
+          "wood": 964.2220458984375,
+          "coin": 11.1400146484375
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      }
+    }
+  ],
+  "p0Samples": [
+    {
+      "time": 901.6268920898438,
+      "age": 2,
+      "workers": 29,
+      "soldiers": 2,
+      "resources": {
+        "food": 1207.3011474609375,
+        "wood": 664.3611450195312,
+        "coin": 459.3934326171875
+      },
+      "spent": {
+        "food": 3640.0,
+        "wood": 2860.0,
+        "coin": 2265.0
+      },
+      "gathered": {
+        "food": 4545.90966796875,
+        "wood": 3227.46484375,
+        "coin": 2624.71728515625
+      },
+      "passive": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "agePlan": {
+        "targetAge": 3,
+        "saving": false,
+        "retryAt": 207.6034698486328,
+        "resumeAt": 921.1270141601562,
+        "progressAt": 901.1270141601562,
+        "bestCoverage": 2.8073205947875977
+      },
+      "buildings": [
+        {
+          "id": 1,
+          "definition": "town",
+          "complete": true
+        },
+        {
+          "id": 135,
+          "definition": "mosque",
+          "complete": true
+        },
+        {
+          "id": 155,
+          "definition": "barracks",
+          "complete": true
+        },
+        {
+          "id": 156,
+          "definition": "foundry",
+          "complete": true
+        },
+        {
+          "id": 158,
+          "definition": "market",
+          "complete": true
+        },
+        {
+          "id": 162,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 177,
+          "definition": "stable",
+          "complete": true
+        },
+        {
+          "id": 186,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 193,
+          "definition": "dock",
+          "complete": true
+        },
+        {
+          "id": 208,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 269,
+          "definition": "farm",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "time": 931.7195434570312,
+      "age": 2,
+      "workers": 29,
+      "soldiers": 7,
+      "resources": {
+        "food": 1442.2132568359375,
+        "wood": 600.5878295898438,
+        "coin": 470.6908264160156
+      },
+      "spent": {
+        "food": 3640.0,
+        "wood": 3110.0,
+        "coin": 2365.0
+      },
+      "gathered": {
+        "food": 4780.52783203125,
+        "wood": 3414.0869140625,
+        "coin": 2736.162353515625
+      },
+      "passive": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "agePlan": {
+        "targetAge": 3,
+        "saving": true,
+        "retryAt": 207.6034698486328,
+        "resumeAt": 922.3267211914062,
+        "progressAt": 927.5205688476562,
+        "bestCoverage": 2.4475066661834717
+      },
+      "buildings": [
+        {
+          "id": 1,
+          "definition": "town",
+          "complete": true
+        },
+        {
+          "id": 135,
+          "definition": "mosque",
+          "complete": true
+        },
+        {
+          "id": 155,
+          "definition": "barracks",
+          "complete": true
+        },
+        {
+          "id": 156,
+          "definition": "foundry",
+          "complete": true
+        },
+        {
+          "id": 158,
+          "definition": "market",
+          "complete": true
+        },
+        {
+          "id": 162,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 177,
+          "definition": "stable",
+          "complete": true
+        },
+        {
+          "id": 186,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 193,
+          "definition": "dock",
+          "complete": true
+        },
+        {
+          "id": 208,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 269,
+          "definition": "farm",
+          "complete": true
+        },
+        {
+          "id": 281,
+          "definition": "house",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "time": 961.8121948242188,
+      "age": 2,
+      "workers": 30,
+      "soldiers": 4,
+      "resources": {
+        "food": 1742.4051513671875,
+        "wood": 812.6298217773438,
+        "coin": 511.1011657714844
+      },
+      "spent": {
+        "food": 3640.0,
+        "wood": 3110.0,
+        "coin": 2365.0
+      },
+      "gathered": {
+        "food": 5080.41162109375,
+        "wood": 3626.5791015625,
+        "coin": 2776.626220703125
+      },
+      "passive": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "agePlan": {
+        "targetAge": 3,
+        "saving": true,
+        "retryAt": 207.6034698486328,
+        "resumeAt": 922.3267211914062,
+        "progressAt": 937.1182250976562,
+        "bestCoverage": 2.4961280822753906
+      },
+      "buildings": [
+        {
+          "id": 1,
+          "definition": "town",
+          "complete": true
+        },
+        {
+          "id": 135,
+          "definition": "mosque",
+          "complete": true
+        },
+        {
+          "id": 155,
+          "definition": "barracks",
+          "complete": true
+        },
+        {
+          "id": 156,
+          "definition": "foundry",
+          "complete": true
+        },
+        {
+          "id": 158,
+          "definition": "market",
+          "complete": true
+        },
+        {
+          "id": 162,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 177,
+          "definition": "stable",
+          "complete": true
+        },
+        {
+          "id": 186,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 193,
+          "definition": "dock",
+          "complete": true
+        },
+        {
+          "id": 208,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 269,
+          "definition": "farm",
+          "complete": true
+        },
+        {
+          "id": 281,
+          "definition": "house",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "time": 991.9048461914062,
+      "age": 2,
+      "workers": 31,
+      "soldiers": 3,
+      "resources": {
+        "food": 1789.740234375,
+        "wood": 935.4968872070312,
+        "coin": 371.1400146484375
+      },
+      "spent": {
+        "food": 3910.0,
+        "wood": 3110.0,
+        "coin": 2570.0
+      },
+      "gathered": {
+        "food": 5397.4658203125,
+        "wood": 3749.70703125,
+        "coin": 2841.77978515625
+      },
+      "passive": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "agePlan": {
+        "targetAge": 3,
+        "saving": false,
+        "retryAt": 207.6034698486328,
+        "resumeAt": 1011.1050415039062,
+        "progressAt": 991.1050415039062,
+        "bestCoverage": 2.563035726547241
+      },
+      "buildings": [
+        {
+          "id": 1,
+          "definition": "town",
+          "complete": true
+        },
+        {
+          "id": 135,
+          "definition": "mosque",
+          "complete": true
+        },
+        {
+          "id": 155,
+          "definition": "barracks",
+          "complete": true
+        },
+        {
+          "id": 156,
+          "definition": "foundry",
+          "complete": true
+        },
+        {
+          "id": 158,
+          "definition": "market",
+          "complete": true
+        },
+        {
+          "id": 162,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 177,
+          "definition": "stable",
+          "complete": true
+        },
+        {
+          "id": 186,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 193,
+          "definition": "dock",
+          "complete": true
+        },
+        {
+          "id": 208,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 269,
+          "definition": "farm",
+          "complete": true
+        },
+        {
+          "id": 281,
+          "definition": "house",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "time": 1021.9974975585938,
+      "age": 2,
+      "workers": 32,
+      "soldiers": 1,
+      "resources": {
+        "food": 2018.246337890625,
+        "wood": 831.037841796875,
+        "coin": 346.1400146484375
+      },
+      "spent": {
+        "food": 4010.0,
+        "wood": 3410.0,
+        "coin": 2595.0
+      },
+      "gathered": {
+        "food": 5725.85302734375,
+        "wood": 3945.6630859375,
+        "coin": 2841.77978515625
+      },
+      "passive": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "agePlan": {
+        "targetAge": 3,
+        "saving": false,
+        "retryAt": 207.6034698486328,
+        "resumeAt": 1041.09765625,
+        "progressAt": 1021.0977172851562,
+        "bestCoverage": 2.563035726547241
+      },
+      "buildings": [
+        {
+          "id": 1,
+          "definition": "town",
+          "complete": true
+        },
+        {
+          "id": 135,
+          "definition": "mosque",
+          "complete": true
+        },
+        {
+          "id": 155,
+          "definition": "barracks",
+          "complete": true
+        },
+        {
+          "id": 156,
+          "definition": "foundry",
+          "complete": true
+        },
+        {
+          "id": 158,
+          "definition": "market",
+          "complete": true
+        },
+        {
+          "id": 162,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 177,
+          "definition": "stable",
+          "complete": true
+        },
+        {
+          "id": 186,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 193,
+          "definition": "dock",
+          "complete": true
+        },
+        {
+          "id": 208,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 269,
+          "definition": "farm",
+          "complete": true
+        },
+        {
+          "id": 281,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 303,
+          "definition": "farm",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "time": 1052.0902099609375,
+      "age": 2,
+      "workers": 32,
+      "soldiers": 1,
+      "resources": {
+        "food": 1800.642822265625,
+        "wood": 979.375244140625,
+        "coin": 141.1400146484375
+      },
+      "spent": {
+        "food": 4280.0,
+        "wood": 3410.0,
+        "coin": 2800.0
+      },
+      "gathered": {
+        "food": 5778.2890625,
+        "wood": 4094.3154296875,
+        "coin": 2841.77978515625
+      },
+      "passive": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "agePlan": {
+        "targetAge": 3,
+        "saving": false,
+        "retryAt": 207.6034698486328,
+        "resumeAt": 1071.0904541015625,
+        "progressAt": 1051.0904541015625,
+        "bestCoverage": 2.563035726547241
+      },
+      "buildings": [
+        {
+          "id": 1,
+          "definition": "town",
+          "complete": true
+        },
+        {
+          "id": 135,
+          "definition": "mosque",
+          "complete": true
+        },
+        {
+          "id": 155,
+          "definition": "barracks",
+          "complete": true
+        },
+        {
+          "id": 156,
+          "definition": "foundry",
+          "complete": true
+        },
+        {
+          "id": 158,
+          "definition": "market",
+          "complete": true
+        },
+        {
+          "id": 162,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 177,
+          "definition": "stable",
+          "complete": true
+        },
+        {
+          "id": 186,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 193,
+          "definition": "dock",
+          "complete": true
+        },
+        {
+          "id": 269,
+          "definition": "farm",
+          "complete": true
+        },
+        {
+          "id": 281,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 303,
+          "definition": "farm",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "time": 1082.182861328125,
+      "age": 2,
+      "workers": 33,
+      "soldiers": 1,
+      "resources": {
+        "food": 1615.400146484375,
+        "wood": 1066.1353759765625,
+        "coin": 36.1400146484375
+      },
+      "spent": {
+        "food": 4500.0,
+        "wood": 3410.0,
+        "coin": 2905.0
+      },
+      "gathered": {
+        "food": 5813.10888671875,
+        "wood": 4181.259765625,
+        "coin": 2841.77978515625
+      },
+      "passive": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "agePlan": {
+        "targetAge": 3,
+        "saving": false,
+        "retryAt": 207.6034698486328,
+        "resumeAt": 1101.0831298828125,
+        "progressAt": 1081.0831298828125,
+        "bestCoverage": 2.563035726547241
+      },
+      "buildings": [
+        {
+          "id": 1,
+          "definition": "town",
+          "complete": true
+        },
+        {
+          "id": 135,
+          "definition": "mosque",
+          "complete": true
+        },
+        {
+          "id": 155,
+          "definition": "barracks",
+          "complete": true
+        },
+        {
+          "id": 156,
+          "definition": "foundry",
+          "complete": true
+        },
+        {
+          "id": 158,
+          "definition": "market",
+          "complete": true
+        },
+        {
+          "id": 162,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 177,
+          "definition": "stable",
+          "complete": true
+        },
+        {
+          "id": 186,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 193,
+          "definition": "dock",
+          "complete": true
+        },
+        {
+          "id": 269,
+          "definition": "farm",
+          "complete": true
+        },
+        {
+          "id": 281,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 303,
+          "definition": "farm",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "time": 1112.2755126953125,
+      "age": 2,
+      "workers": 34,
+      "soldiers": 0,
+      "resources": {
+        "food": 1698.2559814453125,
+        "wood": 914.5462646484375,
+        "coin": 36.1400146484375
+      },
+      "spent": {
+        "food": 4500.0,
+        "wood": 3610.0,
+        "coin": 2905.0
+      },
+      "gathered": {
+        "food": 5896.1484375,
+        "wood": 4229.7734375,
+        "coin": 2841.77978515625
+      },
+      "passive": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "agePlan": {
+        "targetAge": 3,
+        "saving": false,
+        "retryAt": 207.6034698486328,
+        "resumeAt": 1131.0758056640625,
+        "progressAt": 1111.0758056640625,
+        "bestCoverage": 2.563035726547241
+      },
+      "buildings": [
+        {
+          "id": 1,
+          "definition": "town",
+          "complete": true
+        },
+        {
+          "id": 135,
+          "definition": "mosque",
+          "complete": true
+        },
+        {
+          "id": 156,
+          "definition": "foundry",
+          "complete": true
+        },
+        {
+          "id": 158,
+          "definition": "market",
+          "complete": true
+        },
+        {
+          "id": 162,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 177,
+          "definition": "stable",
+          "complete": true
+        },
+        {
+          "id": 186,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 193,
+          "definition": "dock",
+          "complete": true
+        },
+        {
+          "id": 269,
+          "definition": "farm",
+          "complete": true
+        },
+        {
+          "id": 281,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 303,
+          "definition": "farm",
+          "complete": true
+        },
+        {
+          "id": 317,
+          "definition": "barracks",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "time": 1142.3681640625,
+      "age": 2,
+      "workers": 35,
+      "soldiers": 0,
+      "resources": {
+        "food": 1681.11181640625,
+        "wood": 967.039306640625,
+        "coin": 11.1400146484375
+      },
+      "spent": {
+        "food": 4600.0,
+        "wood": 3610.0,
+        "coin": 2930.0
+      },
+      "gathered": {
+        "food": 5979.18798828125,
+        "wood": 4282.3779296875,
+        "coin": 2841.77978515625
+      },
+      "passive": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "agePlan": {
+        "targetAge": 3,
+        "saving": false,
+        "retryAt": 207.6034698486328,
+        "resumeAt": 1162.2681884765625,
+        "progressAt": 1142.2681884765625,
+        "bestCoverage": 2.563035726547241
+      },
+      "buildings": [
+        {
+          "id": 1,
+          "definition": "town",
+          "complete": true
+        },
+        {
+          "id": 135,
+          "definition": "mosque",
+          "complete": true
+        },
+        {
+          "id": 156,
+          "definition": "foundry",
+          "complete": true
+        },
+        {
+          "id": 158,
+          "definition": "market",
+          "complete": true
+        },
+        {
+          "id": 162,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 177,
+          "definition": "stable",
+          "complete": true
+        },
+        {
+          "id": 186,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 193,
+          "definition": "dock",
+          "complete": true
+        },
+        {
+          "id": 269,
+          "definition": "farm",
+          "complete": true
+        },
+        {
+          "id": 281,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 303,
+          "definition": "farm",
+          "complete": true
+        },
+        {
+          "id": 317,
+          "definition": "barracks",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "time": 1172.4608154296875,
+      "age": 2,
+      "workers": 35,
+      "soldiers": 1,
+      "resources": {
+        "food": 1772.94140625,
+        "wood": 1041.7254638671875,
+        "coin": 11.1400146484375
+      },
+      "spent": {
+        "food": 4600.0,
+        "wood": 3610.0,
+        "coin": 2930.0
+      },
+      "gathered": {
+        "food": 6071.22119140625,
+        "wood": 4357.22265625,
+        "coin": 2841.77978515625
+      },
+      "passive": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "agePlan": {
+        "targetAge": 3,
+        "saving": false,
+        "retryAt": 207.6034698486328,
+        "resumeAt": 1192.2608642578125,
+        "progressAt": 1172.2608642578125,
+        "bestCoverage": 2.563035726547241
+      },
+      "buildings": [
+        {
+          "id": 1,
+          "definition": "town",
+          "complete": true
+        },
+        {
+          "id": 156,
+          "definition": "foundry",
+          "complete": true
+        },
+        {
+          "id": 158,
+          "definition": "market",
+          "complete": true
+        },
+        {
+          "id": 162,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 177,
+          "definition": "stable",
+          "complete": true
+        },
+        {
+          "id": 186,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 193,
+          "definition": "dock",
+          "complete": true
+        },
+        {
+          "id": 269,
+          "definition": "farm",
+          "complete": true
+        },
+        {
+          "id": 281,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 303,
+          "definition": "farm",
+          "complete": true
+        },
+        {
+          "id": 317,
+          "definition": "barracks",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "time": 1202.553466796875,
+      "age": 2,
+      "workers": 36,
+      "soldiers": 0,
+      "resources": {
+        "food": 1877.98388671875,
+        "wood": 1115.7216796875,
+        "coin": 11.1400146484375
+      },
+      "spent": {
+        "food": 4600.0,
+        "wood": 3610.0,
+        "coin": 2930.0
+      },
+      "gathered": {
+        "food": 6176.49658203125,
+        "wood": 4431.3759765625,
+        "coin": 2841.77978515625
+      },
+      "passive": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "agePlan": {
+        "targetAge": 3,
+        "saving": false,
+        "retryAt": 207.6034698486328,
+        "resumeAt": 1222.2535400390625,
+        "progressAt": 1202.2535400390625,
+        "bestCoverage": 2.563035726547241
+      },
+      "buildings": [
+        {
+          "id": 1,
+          "definition": "town",
+          "complete": true
+        },
+        {
+          "id": 156,
+          "definition": "foundry",
+          "complete": true
+        },
+        {
+          "id": 158,
+          "definition": "market",
+          "complete": true
+        },
+        {
+          "id": 162,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 177,
+          "definition": "stable",
+          "complete": true
+        },
+        {
+          "id": 186,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 269,
+          "definition": "farm",
+          "complete": true
+        },
+        {
+          "id": 281,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 303,
+          "definition": "farm",
+          "complete": true
+        },
+        {
+          "id": 317,
+          "definition": "barracks",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "time": 1232.6461181640625,
+      "age": 2,
+      "workers": 37,
+      "soldiers": 0,
+      "resources": {
+        "food": 1978.6771240234375,
+        "wood": 1102.2518310546875,
+        "coin": 11.1400146484375
+      },
+      "spent": {
+        "food": 4600.0,
+        "wood": 3710.0,
+        "coin": 2930.0
+      },
+      "gathered": {
+        "food": 6277.4130859375,
+        "wood": 4518.08984375,
+        "coin": 2841.77978515625
+      },
+      "passive": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "agePlan": {
+        "targetAge": 3,
+        "saving": false,
+        "retryAt": 207.6034698486328,
+        "resumeAt": 1252.2462158203125,
+        "progressAt": 1232.2462158203125,
+        "bestCoverage": 2.563035726547241
+      },
+      "buildings": [
+        {
+          "id": 1,
+          "definition": "town",
+          "complete": true
+        },
+        {
+          "id": 156,
+          "definition": "foundry",
+          "complete": true
+        },
+        {
+          "id": 158,
+          "definition": "market",
+          "complete": true
+        },
+        {
+          "id": 162,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 177,
+          "definition": "stable",
+          "complete": true
+        },
+        {
+          "id": 269,
+          "definition": "farm",
+          "complete": true
+        },
+        {
+          "id": 281,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 303,
+          "definition": "farm",
+          "complete": true
+        },
+        {
+          "id": 317,
+          "definition": "barracks",
+          "complete": true
+        },
+        {
+          "id": 329,
+          "definition": "house",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "time": 1774.3138427734375,
+      "age": 2,
+      "workers": 45,
+      "soldiers": 0,
+      "resources": {
+        "food": 4076.14501953125,
+        "wood": 3281.105224609375,
+        "coin": 11.1400146484375
+      },
+      "spent": {
+        "food": 4600.0,
+        "wood": 6110.0,
+        "coin": 2930.0
+      },
+      "gathered": {
+        "food": 8378.4228515625,
+        "wood": 9102.560546875,
+        "coin": 2841.77978515625
+      },
+      "passive": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "agePlan": {
+        "targetAge": 0,
+        "saving": false,
+        "retryAt": 1452.9996337890625,
+        "resumeAt": 1441.7999267578125,
+        "progressAt": 1421.7999267578125,
+        "bestCoverage": 2.0111401081085205
+      },
+      "buildings": [
+        {
+          "id": 357,
+          "definition": "town",
+          "complete": true
+        },
+        {
+          "id": 358,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 363,
+          "definition": "foundry",
+          "complete": true
+        },
+        {
+          "id": 364,
+          "definition": "farm",
+          "complete": true
+        },
+        {
+          "id": 367,
+          "definition": "stable",
+          "complete": true
+        },
+        {
+          "id": 368,
+          "definition": "market",
+          "complete": true
+        },
+        {
+          "id": 375,
+          "definition": "barracks",
+          "complete": true
+        },
+        {
+          "id": 381,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 384,
+          "definition": "house",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "time": 1804.406494140625,
+      "age": 2,
+      "workers": 45,
+      "soldiers": 0,
+      "resources": {
+        "food": 4076.14501953125,
+        "wood": 3281.105224609375,
+        "coin": 11.1400146484375
+      },
+      "spent": {
+        "food": 4600.0,
+        "wood": 6110.0,
+        "coin": 2930.0
+      },
+      "gathered": {
+        "food": 8378.4228515625,
+        "wood": 9102.560546875,
+        "coin": 2841.77978515625
+      },
+      "passive": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "agePlan": {
+        "targetAge": 0,
+        "saving": false,
+        "retryAt": 1452.9996337890625,
+        "resumeAt": 1441.7999267578125,
+        "progressAt": 1421.7999267578125,
+        "bestCoverage": 2.0111401081085205
+      },
+      "buildings": [
+        {
+          "id": 357,
+          "definition": "town",
+          "complete": true
+        },
+        {
+          "id": 358,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 363,
+          "definition": "foundry",
+          "complete": true
+        },
+        {
+          "id": 364,
+          "definition": "farm",
+          "complete": true
+        },
+        {
+          "id": 367,
+          "definition": "stable",
+          "complete": true
+        },
+        {
+          "id": 368,
+          "definition": "market",
+          "complete": true
+        },
+        {
+          "id": 375,
+          "definition": "barracks",
+          "complete": true
+        },
+        {
+          "id": 381,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 384,
+          "definition": "house",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "time": 1834.4991455078125,
+      "age": 2,
+      "workers": 45,
+      "soldiers": 0,
+      "resources": {
+        "food": 4076.14501953125,
+        "wood": 3281.105224609375,
+        "coin": 11.1400146484375
+      },
+      "spent": {
+        "food": 4600.0,
+        "wood": 6110.0,
+        "coin": 2930.0
+      },
+      "gathered": {
+        "food": 8378.4228515625,
+        "wood": 9102.560546875,
+        "coin": 2841.77978515625
+      },
+      "passive": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "agePlan": {
+        "targetAge": 0,
+        "saving": false,
+        "retryAt": 1452.9996337890625,
+        "resumeAt": 1441.7999267578125,
+        "progressAt": 1421.7999267578125,
+        "bestCoverage": 2.0111401081085205
+      },
+      "buildings": [
+        {
+          "id": 357,
+          "definition": "town",
+          "complete": true
+        },
+        {
+          "id": 358,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 363,
+          "definition": "foundry",
+          "complete": true
+        },
+        {
+          "id": 367,
+          "definition": "stable",
+          "complete": true
+        },
+        {
+          "id": 375,
+          "definition": "barracks",
+          "complete": true
+        },
+        {
+          "id": 381,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 384,
+          "definition": "house",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "time": 1864.591796875,
+      "age": 2,
+      "workers": 38,
+      "soldiers": 0,
+      "resources": {
+        "food": 4076.14501953125,
+        "wood": 2281.105224609375,
+        "coin": 11.1400146484375
+      },
+      "spent": {
+        "food": 4600.0,
+        "wood": 7110.0,
+        "coin": 2930.0
+      },
+      "gathered": {
+        "food": 8378.4228515625,
+        "wood": 9102.560546875,
+        "coin": 2841.77978515625
+      },
+      "passive": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "agePlan": {
+        "targetAge": 0,
+        "saving": false,
+        "retryAt": 1452.9996337890625,
+        "resumeAt": 1441.7999267578125,
+        "progressAt": 1421.7999267578125,
+        "bestCoverage": 2.0111401081085205
+      },
+      "buildings": [
+        {
+          "id": 358,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 367,
+          "definition": "stable",
+          "complete": true
+        },
+        {
+          "id": 375,
+          "definition": "barracks",
+          "complete": true
+        },
+        {
+          "id": 381,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 384,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 405,
+          "definition": "town",
+          "complete": false
+        },
+        {
+          "id": 406,
+          "definition": "house",
+          "complete": false
+        },
+        {
+          "id": 407,
+          "definition": "market",
+          "complete": false
+        },
+        {
+          "id": 408,
+          "definition": "foundry",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "time": 1894.6844482421875,
+      "age": 2,
+      "workers": 14,
+      "soldiers": 0,
+      "resources": {
+        "food": 4076.14501953125,
+        "wood": 2281.105224609375,
+        "coin": 11.1400146484375
+      },
+      "spent": {
+        "food": 4600.0,
+        "wood": 7110.0,
+        "coin": 2930.0
+      },
+      "gathered": {
+        "food": 8378.4228515625,
+        "wood": 9102.560546875,
+        "coin": 2841.77978515625
+      },
+      "passive": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "agePlan": {
+        "targetAge": 0,
+        "saving": false,
+        "retryAt": 1452.9996337890625,
+        "resumeAt": 1441.7999267578125,
+        "progressAt": 1421.7999267578125,
+        "bestCoverage": 2.0111401081085205
+      },
+      "buildings": [
+        {
+          "id": 367,
+          "definition": "stable",
+          "complete": true
+        },
+        {
+          "id": 375,
+          "definition": "barracks",
+          "complete": true
+        },
+        {
+          "id": 381,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 384,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 405,
+          "definition": "town",
+          "complete": false
+        },
+        {
+          "id": 406,
+          "definition": "house",
+          "complete": false
+        },
+        {
+          "id": 407,
+          "definition": "market",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "time": 1924.777099609375,
+      "age": 2,
+      "workers": 0,
+      "soldiers": 0,
+      "resources": {
+        "food": 4076.14501953125,
+        "wood": 1981.105224609375,
+        "coin": 11.1400146484375
+      },
+      "spent": {
+        "food": 4600.0,
+        "wood": 7410.0,
+        "coin": 2930.0
+      },
+      "gathered": {
+        "food": 8378.4228515625,
+        "wood": 9102.560546875,
+        "coin": 2841.77978515625
+      },
+      "passive": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "agePlan": {
+        "targetAge": 0,
+        "saving": false,
+        "retryAt": 1452.9996337890625,
+        "resumeAt": 1441.7999267578125,
+        "progressAt": 1421.7999267578125,
+        "bestCoverage": 2.0111401081085205
+      },
+      "buildings": [
+        {
+          "id": 367,
+          "definition": "stable",
+          "complete": true
+        },
+        {
+          "id": 375,
+          "definition": "barracks",
+          "complete": true
+        },
+        {
+          "id": 381,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 384,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 405,
+          "definition": "town",
+          "complete": false
+        },
+        {
+          "id": 406,
+          "definition": "house",
+          "complete": false
+        },
+        {
+          "id": 407,
+          "definition": "market",
+          "complete": false
+        },
+        {
+          "id": 417,
+          "definition": "foundry",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "time": 1954.8697509765625,
+      "age": 2,
+      "workers": 0,
+      "soldiers": 0,
+      "resources": {
+        "food": 4076.14501953125,
+        "wood": 1981.105224609375,
+        "coin": 11.1400146484375
+      },
+      "spent": {
+        "food": 4600.0,
+        "wood": 7410.0,
+        "coin": 2930.0
+      },
+      "gathered": {
+        "food": 8378.4228515625,
+        "wood": 9102.560546875,
+        "coin": 2841.77978515625
+      },
+      "passive": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "agePlan": {
+        "targetAge": 0,
+        "saving": false,
+        "retryAt": 1452.9996337890625,
+        "resumeAt": 1441.7999267578125,
+        "progressAt": 1421.7999267578125,
+        "bestCoverage": 2.0111401081085205
+      },
+      "buildings": [
+        {
+          "id": 367,
+          "definition": "stable",
+          "complete": true
+        },
+        {
+          "id": 375,
+          "definition": "barracks",
+          "complete": true
+        },
+        {
+          "id": 381,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 384,
+          "definition": "house",
+          "complete": true
+        },
+        {
+          "id": 405,
+          "definition": "town",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "time": 1982.762939453125,
+      "age": 2,
+      "workers": 0,
+      "soldiers": 0,
+      "resources": {
+        "food": 4076.14501953125,
+        "wood": 1981.105224609375,
+        "coin": 11.1400146484375
+      },
+      "spent": {
+        "food": 4600.0,
+        "wood": 7410.0,
+        "coin": 2930.0
+      },
+      "gathered": {
+        "food": 8378.4228515625,
+        "wood": 9102.560546875,
+        "coin": 2841.77978515625
+      },
+      "passive": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "agePlan": {
+        "targetAge": 0,
+        "saving": false,
+        "retryAt": 1452.9996337890625,
+        "resumeAt": 1441.7999267578125,
+        "progressAt": 1421.7999267578125,
+        "bestCoverage": 2.0111401081085205
+      },
+      "buildings": []
+    }
+  ],
+  "confirmed": [
+    "Local mines 16 and 37 depleted at 687.679 and 936.418. Coin continued from contested central mine 103 until all eight current miners were ordered into Town 1 at 975.508850.",
+    "The 975.508850 Garrison commands coincide with a real visible enemy advance: Abus 254/222 acquired miner 234 at 975.808777/976.008728, and Janissary 253 acquired the same miner at 978.008240.",
+    "Mine 103/104 were not depleted at the income stop; player 1 exhausted them at 1251.441528/1233.145996. All six mines are empty at terminal state.",
+    "All eight miners survived the immediate withdrawal and entered Town 1 at 985.906311-988.005798; following ungarrison at 992.304749, they received wood/food orders. Logged Gather events until 1009.200623 are delayed income-log flushes, not new mining after the withdrawal.",
+    "Player 0 made five later assignments to mine 104 at 1052.290161-1057.088989; every named worker instead received Garrison shortly after, and none earned any Coin from mine 104 on these attempts.",
+    "Cumulative P0 GatherCoin is exactly flat at 2841.779785 from sample 991.905 through terminal, and passive Coin remains 0. No P0 commands target a mine after 1100."
+  ],
+  "sourceSupportedExplanation": [
+    "AiWorkforce selects candidates from GatherableResource plus Safe(resource.position), rates/quotas and Euclidean distance only. It does not test each candidate with CanGather(worker,resource), endpoint reachability, or the full threat-cleared route used by AiResourceContinuity072.",
+    "SeekShelter is invoked when the current worker point is unsafe. It orders an available own garrison even across long travel distance. The mine-104 assignments followed by 1.2-2.4-second returns show a source can be accepted while its ordinary approach crosses current enemy weapons.",
+    "For Age II non-Dutch Ottoman, finite coin loss yields NeedsCoin but no Estate (requires Age III) or Bank (Dutch-only). TradeBootstrap/LedgerBootstrap are guarded by NeedsWood. With hundreds of excess Wood, coin-only loss never authorizes the recovery Post/Ledger path; regular InvestInRoute is additionally gated by underAttack and saving.",
+    "At sample 991.905 wallet 1789.740F/935.497W/371.140C can fund a full ordinary Post 200W + Ledger 200W150C start, but Coin drops below 150 by sample 1052.090 and below the minimum Janissary 25C by 1142.368. The full fee must be protected before discretionary military spend exhausts Coin."
+  ],
+  "limits": [
+    "No intermediate complete world snapshot exists at 975.508850. Exact threat geometry at that instant cannot be reconstructed from event positions alone; the source branch and near-time visible targeting events support raid-triggered shelter, but do not identify which exact threat predicate fired first.",
+    "No intermediate path payload is logged on a Gather command. Mine-104 approach crossing hostile space is directly supported by point changes, Garrison and enemy acquisition records, but the exact A* segment sequence cannot be rederived from this ledger alone.",
+    "No counterfactual restart or new natural match was run. Proposed fixes are not yet demonstrated to win this case or improve balance.",
+    "Sum of logged Float32 Gather amounts need not bit-match the repeatedly added wallet/gathered accumulators; sums are descriptive and are not asserted to be an exact financial reconciliation."
+  ],
+  "recommendedFixes": [
+    "Keep correct shelter from hostile mine raids. Make ordinary worker assignments and continuity evaluate the same per-worker domain, reachable endpoints and safe transit rules, and ensure the issued movement actually follows the checked route or declines.",
+    "Allow genuinely payable coin-only Post/Ledger recovery as well as wood shortages. Protect both still-unpaid startup costs early; preserve the higher-priority 500W Town recovery and genuine age/political commitments, and reject incomplete startup budgets.",
+    "Add a player-facing Market buy/sell transaction with atomic explicit costs and deterministic price state, providing a usable low-age Coin bridge from actual surplus Food/Wood rather than wallet gifts. AI can use the same legal command under bounded reserve rules.",
+    "Add meaningful fixtures for remaining-but-contested mines, safe source with unsafe transit, and Age II Ottoman Coin-only deficit with funded versus unfunded 400W150C bootstrap. Then observe a predeclared new natural mirror case under the new runtime identity."
+  ]
+}

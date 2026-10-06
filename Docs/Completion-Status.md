@@ -1,39 +1,41 @@
-# 当前完成状态 · 0.15.0 经营延续与集结调度
+# 当前完成状态 · 0.16.0 市场兑换与拥挤港区集结
 
-2026-10-06。072补强有限木/币来源后的合法供给、失Town真实500W恢复预算、可见Guardian避险、实际陆军集结/补员和经济线防守，以及指定目标与自动观战权限。六文明、五时代、四经典革命、曲河港区/海军、工作坊、课程/两条三章链、保存/录像和可信LAN沿用既有内容；没有新增国家或模型。规则仍为本项目P。[内容](Content-072.md)、[操作](Player-Guide-072.md)。
+2026-10-07。073新增真实付费的Food/Wood市场兑换、AI低时代Coin接续与完整Post/Ledger启动储备，以及拥挤港区的有界集结搜索。完整自动化和Mac构建已完成；三条普通I观察已实际关闭（runner exit0、源前后FP相同）：Ottoman44/45自然终局，Dutch42到2400秒cap；原生市场建造/扣费/完成已核，原生兑换点击因窗口定位错误未完成。073封包、私有Drive与本轮最终推送仍待闭合。六文明、五时代、四经典革命、曲河港区/海军、工作坊、课程/两条三章链、保存/录像和可信LAN沿用既有内容；没有新增国家或模型。规则仍为本项目P。[073内容](Content-073.md)、[073验证记录](Verification-073.md)、[073交付记录](Delivery-073.md)，基础操作沿用[073市场指南](Player-Guide-073.md)与[072基础指南](Player-Guide-072.md)。
 
 ## 已实现且通过自动化的内容
 
-当前可见来源与真实核心费用共同规划，Post200W+Ledger200W/150C完整启动、Bank/Estate竞争、合法IV Factory与正常卡箱都按实际支付/完成/正收入判断。Town缺失时保护500W，已付活地基续建；普通消费与固定步并发Repair/DockRepair保护核心储备。有界收入/紧急反制例外不免费注资、不强升时代。
+自己的完工Market提供 **RESOURCE EXCHANGE**，可用Coin买Food/Wood，或卖Food/Wood取得Coin；HUD支持100/500资源。初始每100资源买130C/卖70C，五lot逐笔变价合计买680C/卖320C；Food/Wood分别计价，每位玩家独立，同玩家多个Market及重建共用价格。整笔付款、到账与变价原子执行，非法/不足余额/暂停/淘汰和精度饱和均拒绝；规则限制价差与每步变价，防止买卖循环套利。真实Payment/MarketTrade和marketIncome/marketSold/marketBought进入保存、录像、LAN和完成报告，不能冒充采集或运输收入。
 
-军队采用6/10/14实际成军，近stage但绕墙/跨河长路不算到齐；至少4人补员，可用时尽量留2守卫。Home随存活或重建Town，当前可见经济线军事威胁优先防守。人类指定人物/建筑的命令和实际伤害受正常规则；自动观战拒绝下令，工作坊试玩保持人类1×。
+AI仅在安全Coin渠道不足、真实义务需要币时出售真实余粮，每次最多五lot；保留恢复Wood、升级/政治/首工义务及至少400F防守食物。Coin-only短缺也可申请真实可付的Post200W+Ledger200W/150C启动，短期筹币不会取消未付Ledger义务，紧急骑兵消费也须保留已批准的150C。Post奖励按币渠道需求选择Coin，仍须真实施工、研究和运输配送；没有设施/库存/工人/合法安全位置时仍允许失败。
 
-经济安全独立包括当前可见武装Guardian，不污染敌国memory。Build按真实未来地基和普通路径预检，Gather后续路径/动态避让仍有限制。一次Survey不可变可见圈与每radius弱连通负预检减少无路重复搜索，positive仍原A*；restoreGeneration保证同Version恢复不沿用旧负结论。队列clock18高，正常真实时间刷新与指针保护保留。
+集结保留原优先候选，扩至65个位置、7×7/5×5两种占地共130候选；保存延期搜索位置，每次SelectStage最多6次非直线FindPath（包括旧stage重验）。AtStage抵达判断另计，不能称整个Army Review总寻路上限。6/10/14实际抵达、4人补员及防守逻辑保持，不能仅按兵数派出。普通Gather的实际路线安全与动态护送尚未解决。
 
 ## 当前正式源码、测试与构建
 
 | 项目 | 实际结果 |
 |---|---|
-| Runtime提交 | `bc127e02638caaeefd2310a1a3eff858f4f4cb2f` |
-| 来源 | 718输入；`04698dad49278a42db8a13a2ab997870bfb008c52f95313130026da5a7f35f62` |
-| 正式完整测试 | `run-HACRyTBF`；1158/1158Edit+409/409Play=**1567/1567 Passed**，0Failed/Skipped/Inconclusive |
-| 独立完整审计 | `passed_frozen_full_regression`；原XML/718输入、0711117Edit+404Play名称保留及新41Edit+5Play |
-| 构建 | Unity6000.6.3f1、macOS arm64 Development/Mono；BuildFinal1实际exit0/Succeeded，源稳定；GUID `3288d9fe24e844748a1183f756874fbf` |
-| 定向测试 | Focused21实际51Edit+10Play全通过，源04698/718稳定、两进程exit0；行为范围见[072验证](Verification-072.md) |
-| 本GUID原生 | **native_scopes_complete**；[最终journal](Evidence/072/Native/FinalJournal/native-journal072-final.json)9个声明范围、5个实际exit0、40对F9，pending=[]，不认证整段录像/全局FPS |
-| 正常16局 | **observed_routes_incomplete / Consistent**；16条关闭，P0路线9/16达到（革命6/8、升V3/8），15自然终局+1cap；[选定原件](Evidence/072/NormalSelected/README.md) |
-| 072私有交付 | **uploaded_owner_only_all_remote_bytes_sha256_verified**；[072私有目录](https://drive.google.com/drive/folders/1hdezEOqw10bCPAUZ6YIG0btx8Rbw-0I5)11文件458,466,879B全部实际下载/SHA及owner-only核验，[Delivery072](Delivery-072.md) |
+| Runtime提交 | `519d7d34a0be85f75ee19e53458c636d1ba0b3e4` |
+| 来源 | 732输入；`9b92812a922adb69a5ae501925417d8eba8e24b836f496274ebc8ec8679ba03d` |
+| 正式完整测试 | `run-9q8yTJKS`；1192/1192Edit+419/419Play=**1611/1611 Passed**，0Failed/Skipped/Inconclusive |
+| 独立完整回归核验 | 原XML/732输入与冻结/runtime Git blob一致；072旧1158Edit/409Play fullname保留，新增26Market+8StageEdit及10MarketUIPlay；独立报告的构建/普通局部分仍待续写 |
+| 构建 | Unity6000.6.3f1、macOS arm64 Development/Mono；Candidate1/Build1实际exit0/Succeeded，前后源稳定；GUID `5f347ad9ec2f494984b0b49c4f896c31` |
+| 普通三case | **实际关闭、exit0、sourceStable**；Ottoman44/45自然终局、Dutch42观察cap，逐case事件与账本见验证记录 |
+| 本GUID原生 | **partial_market_scope，进程exit0**；三F9确认市场建造/100W扣费/完成；原生兑换、当前构建冷恢复/录像未验收 |
+| 073私有交付 | **pending**；尚无073已核验的源码/客户端/证据封包或Drive下载入口 |
+| 本轮Git交付 | **pending**；runtime提交已有身份，本轮最终文档提交/推送及远端读回尚待root完成 |
 
 ## 观察范围与待填项
 
-固定原NativeA锚点250步Editor诊断实际exit0、285checks/0fail；gross565254.4585→3918.2488ms、最大72990.4258→276.0642ms，最终62633事件及World/Controller/新事件字节一致。诊断与正式测试并行，不等于本GUID原生FPS、完整自然终局或零泄漏。[072验证](Verification-072.md)保留原卡顿、编译/连接失败探针与环境限制。
+闭合072 Ottoman44原100055事件的只读诊断确认：本地矿耗尽后8名矿工因敌袭从仍有资源的中央矿撤回，此后五次尝试另一中央矿均回撤而未采币；不是991秒全图矿耗尽或首次Town丢失导致停币。普通AiWorkforce筛目标点，实际Gather路径仍可能穿过敌区；中间A*轨迹和首次威胁判定未记录，不追加精确路径因果。073市场与Coin-only贸易接续针对供给缺口，不能视为普通路线/动态安全修复。[验证记录](Verification-073.md)列原诊断位置。
 
-16正常局已在2026-10-06T13:52:28.3340010Z关闭，runner实际exit0/sourceStable；独立[final1检查](Evidence/072/NormalSelected/independent-normal072-final1.json)Consistent，844稳定文件引用，未读取071。9条P0声明路线达到，7条提前终局前未达到；仅5局到2400观察边界，11局在此前自然终局。革命6/8达到真实付费/完工/首平民/正普通采集，升V3/8真实付费且完工；不代表三资源均恢复、全部路线成功或文明平衡。[32位玩家经济统计](Evidence/072/NormalSelected/normal072-economics-final1.md)区分支付/完工/正收入：15笔正常500W Town恢复付款仅5笔完工，10笔未完工。Dutch42 wall3303.190543s约55分3秒、模拟3600.061279s未自然终局，仍有性能限制；WindingOttoman44停留Age2/缺Coin，初始停币原因未证实，Market没有兑换。完整结果与边界见[072验证](Verification-072.md)，不作071因果改善。
+072 Dutch42的3303.190543s总wall含建局、Step、采样/事件写盘和最终保存；旧样本没有wall时间，不能定位主耗时。末段双方hasStage=false/wave空、72/70陆军持续Muster和300秒零AttackPrepared/Fire/Damage是已证实调度失败；不是已证明全部候选失败原因或主要CPU热点。073扩展候选有受控通过，三case已关闭，付款/运输收入、集结/攻击、敌损与工人存活依实际事件逐项审计。观察计时区分Step、采样/写盘和最终保存，不认证原生FPS、全面性能改善或文明平衡。
 
-原生五进程已实际退出0：E的Guardian84/House83接受攻击与Death、90秒革命、政府取消退款/重排及Slot1；F完整冷初始状态和政府完成/真实100F工人89；G只读选择/聚焦与minimap镜头；H实际1×前向step600→1111。H起播前两次seek保留，播放期间无seek，未播完5490，Verified=false；没有编组恢复或移动工人原生追击声明。D正常I自然42m32终局和155.623s性能窗另记，不能认证整个比赛固定FPS或零泄漏。[合并最终journal](Evidence/072/Native/FinalJournal/README.md)已封存并按9个声明范围接受；[选定原生审计](Evidence/072/Native/SelectedScopes/README.md)保持各自原件与边界。[交付](Delivery-072.md)已闭合本地5ZIP2465成员CRC/SHA/模式、SourceSnapshot8490的1518保留/3635省略Git对象、四冻结inventory及全部11远端文件字节/SHA/owner-only。完整NormalZIP209,058,503B远端为三片原字节，实际重组与CRC另核；原5ZIP保持不变。最终交付文档在8490快照之后追加，Git最终提交/推送不在本收据范围内。文档与原件复制不改变已关闭矩阵和当前718运行输入。
+两Ott实际26笔卖Food；P1在两局都由70C市场收入补足150C Ledger费用并研究完成、收到金币运输。P0没有完成Ledger；Dutch两方有实际Ledger/运输，零市场交换。三局末300秒均有实际正PvP伤害（2749/2280/330），不等于全部cohort达目标、六文明平衡或动态路径已安全。[073验证](Verification-073.md)记录全部实际边界与计时。
+Native1市场137正常100W付款且完成，三1600×1000F9已看；坐标click/drag后续noWindowsAvailable，原生兑换未完成（0MarketTrade）。键盘F9和AX菜单退出可用、进程exit0；当前GUID冷恢复/录像未验，不挪用072证据。
+<!-- ROOT-FILL-073-DELIVERY: 待本地封包/私有上传及实际远端字节SHA与权限读回后填写；再独立补最终Git提交/推送回执。 -->
 
 ## 历史保持原身份
 
-0710.14.0正式1521项、25项审计、GUID2d39f78f9f234ef092e172a35f800cae英国受控IV范围及私有交付已完成，见[071完成快照](Completion-Status-071.md)、[071验证](Verification-071.md)、[071限制](Known-Issues-071.md)、[071交付](Delivery-071.md)。旧八条I路线证据有效但仅1/8完整经济恢复：英国V已付但2400cap未完成，奥斯曼重建研究后立即终局未产新工人/正采集；不回写通过。原07146对F9/三槽/三录像/两冷恢复和转换后SAVE1的范围不扩成072。
+0720.15.0运行提交 `bc127e02638caaeefd2310a1a3eff858f4f4cb2f`、718输入FP04698、GUID `3288d9fe24e844748a1183f756874fbf`，正式1567项、9个声明原生范围及私有11文件字节/SHA/owner-only交付均属原版。16普通局独立Consistent，但仅9/16路线达到、原状态observed_routes_incomplete；15笔500W Town恢复付款仅5笔完工，Dutch42性能与Gather安全限制保留。其[完成快照](Completion-Status-072.md)、[验证](Verification-072.md)、[交付](Delivery-072.md)、[原限制](Known-Issues-072.md)与Evidence/072原件保持不变，旧截图/存档/录像/包不重标073。
 
-此前072候选47/a132、716输入和GUIDf991有1556项通过及旧原生诊断，已被04698新正式回归/构建替代为当前源码身份；旧NativeA/NativeC和两coast观察只作历史。070三章与更早四里程碑、工业/录像/工作坊/LAN保留对应旧GUID；两台物理Mac、完整商业国别制度/卡池、美术/语音、Release/签名公证与长期性能分别仍待验。[差距方向](AoE3-Gap-Roadmap.md)、[限制](Known-Issues.md)。
+071正式1521项、英国受控IV原生/私有交付与八条仅1/8完整经济恢复仍为原身份，见[071快照](Completion-Status-071.md)、[071验证](Verification-071.md)、[071交付](Delivery-071.md)。070三章及更早工业/录像/工作坊/LAN各保留旧GUID。普通Gather全程安全、动态护送、完整商业国别制度/卡池、美术/语音、长期帧率/内存、Release/签名公证和两台物理Mac分别仍待证据。[差距方向](AoE3-Gap-Roadmap.md)、[限制](Known-Issues.md)。
