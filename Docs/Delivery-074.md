@@ -27,3 +27,5 @@
 三条普通I/standard双AI、无注资/强制命令，全部达到2400秒cap、未分胜负。真实市场14/15/10笔、集结25/18/20，最后300秒正PvP伤害886/889/642。13657闭合一致性检查零失败，该检查器作者参与Gather实现；不称独立实现审计或六文明平衡验收。
 
 Gather为任务准入与定期复查，standard约1.2秒（easy2.4/hard0.6）；两个审查点间风险、精细恢复和耗尽换目标仍有限制。最大headless Step仍约1.8秒；当前GUID原生交互/冷恢复/录像、FPS、签名公证Release及双物理Mac分别未验收。[073交付](Delivery-073.md)及更早包、截图和验收保持旧身份。
+
+[审计字段修正来源说明](Evidence/074/Delivery/independent074-audit-correction-provenance.json)及[首次终态GitHub读回](Evidence/074/Delivery/github074-final-draft-readback.json)已补录，原封包/复制索引不改；补录后的最末head以PR和包外最后读回为准。
