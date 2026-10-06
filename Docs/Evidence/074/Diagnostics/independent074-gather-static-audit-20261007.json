@@ -1,0 +1,78 @@
+{
+  "schema": "independent074-gather-static-audit-v1",
+  "createdUtc": "2026-10-06T16:58:37.914108+00:00",
+  "status": "static_review_complete_runtime_tests_pending_root",
+  "scope": "Read-only source audit; no Unity or simulated acceptance run; no speedup, balance, complete route safety or native acceptance claim. Source hashes identify inspected bytes only.",
+  "files": [
+    {
+      "path": "Assets/Frontier/Simulation/AiGatherRoutes074.cs",
+      "bytes": 4453,
+      "sha256": "8a83318c74896c41f39522edbf9184b71bad647d309ae2506c816f978d013ef5"
+    },
+    {
+      "path": "Assets/Frontier/Simulation/AiWorkforce.cs",
+      "bytes": 10421,
+      "sha256": "503da3432db809fbe5c9a271babbd43d6e27dec1f0cc8e98d157ad0218fc6434"
+    },
+    {
+      "path": "Assets/Frontier/Simulation/AiResourceContinuity072.cs",
+      "bytes": 23848,
+      "sha256": "fa496bcd6e49988c5517b844ff39876c407564cdad6a8cfb459d472d90be3da7"
+    },
+    {
+      "path": "Assets/Frontier/Tests/EditMode/AiGatherRoutes074Tests.cs",
+      "bytes": 17484,
+      "sha256": "5b334fef64fdd868a018c1b9beb09e7196db2eed14c819c985a0d277b89b5a26"
+    },
+    {
+      "path": "Assets/Frontier/Editor/GatherObservation074.cs",
+      "bytes": 431,
+      "sha256": "40167d147ac6f37f28e12ff26b96f96e1caf8dba4eacb433122fa2b4de24ce1b"
+    },
+    {
+      "path": "Assets/Frontier/Editor/MarketObservation073.cs",
+      "bytes": 8067,
+      "sha256": "5cc8bb74c6063c9d4a3197c373e62045e6778d7f23620a341dc35f86abdaad08"
+    }
+  ],
+  "declaredGatherTestCases": 17,
+  "resolvedFindings": [
+    {
+      "id": "held-queued-admission",
+      "finding": "Continuity excluded held/multiorder workers while Workforce and route helper admitted them.",
+      "currentResolution": "Both now use AiCivilizationEconomy.CanReassign; occupied Gather heads still count toward assigned slots even when excluded from automatic reassignment; new held and queued followup tests present.",
+      "verifiedBy": "current source read, not test execution"
+    },
+    {
+      "id": "catalog-singleton-test-contamination",
+      "finding": "Unarmed-threat test changed the cached Catalog.Load singleton.",
+      "currentResolution": "Test and default Fixture clone the catalogue before mutation.",
+      "verifiedBy": "current source read, not test execution"
+    }
+  ],
+  "staticChecks": {
+    "actualWorkPointUsed": true,
+    "unfilteredOrdinaryRouteChecked": true,
+    "continuousThreatSegmentsChecked": true,
+    "movementThreshold135Matched": true,
+    "retainedGatherPathLegsChecked": true,
+    "activeDetourChecked": true,
+    "queryCachesLocalToSurveyOrAssign": true,
+    "noNewSaveDto": true,
+    "sourceCacheScopeAndInvalidationUnchanged": true,
+    "resourcesClearedBeforeAvailableEmptyReturn": true,
+    "normalRebalance12SecondsPreserved": true,
+    "normalChangesLimitPreserved": true,
+    "ordinaryOccupancyLimit8Preserved": true,
+    "ordersIssuedThroughWorldIssue": true,
+    "manualWorldGatherAuthorityUnchanged": true,
+    "revolutionaryWorkerConversionAuthorityUnchanged": true
+  },
+  "limits": [
+    "Admission/review only: steering, new vision, worker motion, ally recovery and depletion retargeting may change routes between AI reviews.",
+    "Current path checks are conservative: an obsolete cached path can reject a source even when the freshly planned route is safe.",
+    "Sample rejection counts include unavailable/ineligible actors and physical failures; they are not an unsafe-path count or a per-frame safety proof.",
+    "CanGather proves the ordinary planned route safe; it does not separately assert that a nearest-walkable projected WorkPoint ends within the income admission distance. A terrain-blocked workpoint fixture is an optional further coverage check, not a reproduced regression.",
+    "No performance improvement claim: new worker-source route probes can add AI decision cost and need isolated instrumentation."
+  ]
+}

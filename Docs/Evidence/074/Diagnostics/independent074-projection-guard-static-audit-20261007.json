@@ -1,0 +1,45 @@
+{
+  "blockingFindings": [],
+  "findings": [
+    "Ordinary World.WorkPoint is computed once in the existing movement-required branch.",
+    "Separate unregistered arrival probe must satisfy the exact inclusive 1.5 Gather edge distance before ordinary-path acceptance.",
+    "Nearby <=1.35 workers and current cached-path/detour/eligibility/decision-local cache behavior remain unchanged.",
+    "No live worker, World registration, command authorization, movement or save field was changed.",
+    "The test establishes actual manual movement with zero Gather income before helper/forecast/assignment rejection and real income after obstacle clearing."
+  ],
+  "limits": [
+    "Focused3 and new full regression results are not assessed by this static audit.",
+    "Admission is a synchronous check, not a continuous movement safety or gameplay/performance guarantee.",
+    "Earlier initial static report and Full1 evidence remain unchanged; no new source acceptance is inferred from them."
+  ],
+  "priorFull1NotApplicableToChangedSource": true,
+  "priorFull1RuntimeCommit": "4344edacffad01bfc8d49ff90cb8361534f7702d",
+  "priorFull1SourceFingerprint": "b72d96ee8ef5018ae7c2543c552117bb3e9370f525fcc2d97470c1ce9aeacdb9",
+  "recordedAtUtc": "2026-10-06T17:20:14.448122+00:00",
+  "regressionTest": "Frontier.Tests.AiGatherRoutes074Tests.ReachableProjectedWorkPointOutsideGatherRangeCannotForecastOrAssignWoodAndClearingRestoresIncome",
+  "reviewedFiles": {
+    "Assets/Frontier/Simulation/AiGatherRoutes074.cs": {
+      "bytes": 4841,
+      "sha256": "37d78efc0f89c87950bdc8ee72c3a3bd11e1bf4102ab406a88c533cc63c4d691"
+    },
+    "Assets/Frontier/Simulation/Economy.cs": {
+      "bytes": 35508,
+      "sha256": "d5262180633fa9e0b68787e5fbd7bf1000ad46c5320a9187fcd1575c76bbeb68"
+    },
+    "Assets/Frontier/Simulation/MovementCombat.cs": {
+      "bytes": 27147,
+      "sha256": "35a086314b370617860e3c5a5351eacd6bc1b3c0e53a07662218fe11a06281f7"
+    },
+    "Assets/Frontier/Simulation/World.cs": {
+      "bytes": 20150,
+      "sha256": "07cf6cbdd286007af3f85e22d15f85c4de1766e2c9b8d0d150bf238267872800"
+    },
+    "Assets/Frontier/Tests/EditMode/AiGatherRoutes074Tests.cs": {
+      "bytes": 20243,
+      "sha256": "c8a960b9b06b690dfec70fecc849d861827862ae3046d5861017b1cd0eaf7165"
+    }
+  },
+  "schema": "independent074-projection-static-audit-v1",
+  "scope": "read_only_review_no_Unity_execution_no_repo_mutation",
+  "status": "static_review_complete_runtime_acceptance_not_assessed"
+}
