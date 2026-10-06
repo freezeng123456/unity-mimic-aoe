@@ -389,7 +389,7 @@ namespace Frontier
                 Position((RectTransform)title.transform,6,3,68,26);title.alignment=TextAnchor.MiddleCenter;
                 title.resizeTextForBestFit=true;title.resizeTextMinSize=9;title.resizeTextMaxSize=12;
                 title.horizontalOverflow=HorizontalWrapMode.Wrap;title.verticalOverflow=VerticalWrapMode.Truncate;
-                var clock=Label(queueButton.transform,remaining,new Rect(6,29,68,15),12);clock.alignment=TextAnchor.MiddleCenter;
+                var clock=Label(queueButton.transform,remaining,new Rect(6,29,68,18),12);clock.alignment=TextAnchor.MiddleCenter;
                 clock.verticalOverflow=VerticalWrapMode.Truncate;
             }
         }

@@ -147,6 +147,91 @@ namespace Frontier.Tests
         string[] VisibleCardNames()=>session.GetComponentsInChildren<Button>().Where(b=>b.isActiveAndEnabled&&b.name.Contains("  ·  AGE "))
             .Select(b=>b.name.Substring(0,b.name.IndexOf("  ·  AGE ",StringComparison.Ordinal))).ToArray();
 
+        static void AssertGeneratedQueueGlyphsInsideTile(UnityEngine.UI.Text text, UnityEngine.UI.Button button)
+        {
+            Assert.IsTrue(text.isActiveAndEnabled, "Actual visible queue label must be active");
+            Assert.IsNotNull(text.font, "Use the production font loaded by FrontierHud");
+            Assert.IsTrue(text.font.dynamic, "This fixture must exercise the production dynamic-font metrics");
+            var tile = (UnityEngine.RectTransform)button.transform;
+            Assert.AreEqual(47, tile.rect.height, .001f, "The production queue tile remains 47 high");
+            Assert.Greater(text.cachedTextGenerator.vertexCount, 0,
+                "A nonempty text string is insufficient: truncation can generate no glyphs");
+            // GetMesh returns the renderer's current mesh. Inspect it without taking ownership.
+            var mesh = text.canvasRenderer.GetMesh();
+            Assert.IsNotNull(mesh, "Actual CanvasRenderer must hold a mesh");
+            {
+                Assert.Greater(mesh.vertexCount, 0, "Actual CanvasRenderer must contain glyph geometry");
+                Assert.Greater(mesh.bounds.size.x, .001f, "Reject a degenerate/sentinel-only result");
+                Assert.Greater(mesh.bounds.size.y, .001f, "Reject invisible zero-height geometry");
+                foreach (var vertex in mesh.vertices)
+                {
+                    var p = tile.InverseTransformPoint(text.rectTransform.TransformPoint(vertex));
+                    Assert.That(p.x, Is.InRange(tile.rect.xMin - .25f, tile.rect.xMax + .25f),
+                        "Rendered glyph must stay inside the actual queue tile horizontally");
+                    Assert.That(p.y, Is.InRange(tile.rect.yMin - .25f, tile.rect.yMax + .25f),
+                        "Rendered glyph must stay inside the 47-high queue tile vertically");
+                }
+                TestContext.WriteLine("Queue label='{0}' font={1} fontSize={2} lineSpacing={3} rect={4} preferredHeight={5} " +
+                    "generatorVertices={6} rendererVertices={7} rendererBounds={8} pixelsPerUnit={9}",
+                    text.text, text.font.name, text.fontSize, text.lineSpacing, text.rectTransform.rect,
+                    text.preferredHeight, text.cachedTextGenerator.vertexCount, mesh.vertexCount, mesh.bounds, text.pixelsPerUnit);
+            }
+        }
+
+        [UnityEngine.TestTools.UnityTest]
+        public IEnumerator ActualPaidRevolutionCountdownGeneratesContainedGlyphsAndUpdatesBeforeRealCancellation()
+        {
+            Cost before = Player.resources;
+            yield return StartRevolution();
+            yield return Ready();
+            UnityEngine.Canvas.ForceUpdateCanvases();
+            yield return null;
+            UnityEngine.Canvas.ForceUpdateCanvases();
+            var job = Town.queue.Single();
+            EqualCost(Rule.cost, job.paid);
+            EqualCost(Subtract(before, Rule.cost), Player.resources);
+            var button = FindButton(Rule.name, "Production queue");
+            var clock = button.GetComponentsInChildren<UnityEngine.UI.Text>()
+                .Single(t => t.isActiveAndEnabled && t.transform.parent == button.transform && t.text == "90s");
+            Assert.AreEqual("90s", clock.text, "Actual normal queue state starts a 90-second revolution");
+            // Three non-whitespace glyphs must actually exist, not merely be stored in text.text.
+            Assert.GreaterOrEqual(clock.cachedTextGenerator.vertexCount, 12, "All three 90s glyphs must generate quads");
+            AssertGeneratedQueueGlyphsInsideTile(clock, button);
+            var title = button.GetComponentsInChildren<UnityEngine.UI.Text>()
+                .Single(t => t.isActiveAndEnabled && t.transform.parent == button.transform && t.text == Rule.name);
+            AssertGeneratedQueueGlyphsInsideTile(title, button);
+
+            // Let the real fixed-step production timer advance; no elapsed field injection.
+            Steps(17);
+            // The production HUD refreshes queue tiles once per real second and
+            // preserves an in-flight pointer gesture. Fixed simulation steps can
+            // finish sooner; allow the normal refresh, without invalidating it.
+            yield return new WaitForSecondsRealtime(1.05f);
+            UpdateHud();
+            yield return Ready();
+            UnityEngine.Canvas.ForceUpdateCanvases();
+            yield return null;
+            UnityEngine.Canvas.ForceUpdateCanvases();
+            Assert.AreSame(job, Town.queue.Single(), "UI rebuild must retain the paid queue's identity");
+            string remaining = UnityEngine.Mathf.Max(0, job.duration - job.elapsed).ToString("0") + "s";
+            Assert.AreNotEqual("90s", remaining, "The test must observe a genuinely changed countdown");
+            button = FindButton(Rule.name, "Production queue");
+            Assert.IsTrue(button.GetComponentsInChildren<UnityEngine.UI.Text>().Any(t =>
+                t.isActiveAndEnabled && t.transform.parent == button.transform && t.text == remaining),
+                "The normal HUD refresh must display the actual advanced countdown: " + remaining);
+            clock = button.GetComponentsInChildren<UnityEngine.UI.Text>()
+                .Single(t => t.isActiveAndEnabled && t.transform.parent == button.transform && t.text == remaining);
+            Assert.GreaterOrEqual(clock.cachedTextGenerator.vertexCount, 4 * remaining.Length,
+                "Every non-whitespace countdown character needs a rendered quad after refresh");
+            AssertGeneratedQueueGlyphsInsideTile(clock, button);
+            yield return ClickButton(Rule.name, "Production queue");
+            Assert.IsEmpty(Town.queue);
+            EqualCost(before, Player.resources);
+            EqualCost(Rule.cost, Player.refunded);
+            Assert.AreEqual(1, Commands().Count(r => r.accepted && r.command.kind == CommandKind.CancelQueue),
+                "The same actual queue button must still cancel the original paid job exactly once");
+        }
+
         [UnityTest] public IEnumerator TownPreviewPaysOnceAndActualQueueClickRefundsTheWholeRevolution()
         {
             Cost before=Player.resources;yield return Press(Key.T);yield return ClickButton("REVOLUTION","Context actions");

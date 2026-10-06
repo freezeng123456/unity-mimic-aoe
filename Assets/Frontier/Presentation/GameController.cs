@@ -288,7 +288,7 @@ namespace Frontier
             {
                 Simulation.AdvanceFrame(Time.unscaledDeltaTime*(Autoplay?SimulationSpeed:1));
                 LastSimulationFrameMs=Simulation.LastFrameMs;
-                if(Simulation.CatchingUp)Notify("Simulation is catching up — rendering load is high.");
+                if(Simulation.CatchingUp)Notify("Simulation is catching up.");
                 frameTimes.Add(Time.unscaledDeltaTime*1000);
             }
             PublishLan();

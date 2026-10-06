@@ -8,6 +8,7 @@ namespace Frontier
     {
         public readonly int Width,Height;
         public int Version {get;private set;}=1;
+        private ulong restoreGeneration;
         private readonly bool[] blocked,terrainBlocked;
         private readonly float[] costs;
         private readonly int[] parents,visited,closed;
@@ -28,6 +29,7 @@ namespace Frontier
                 throw new ArgumentException("Invalid navigation state");
             Array.Copy(state.blocked,blocked,blocked.Length);Array.Copy(state.terrain,terrainBlocked,terrainBlocked.Length);
             Version=state.version;clearanceGraphs.Clear();heap.Clear();search=0;Array.Clear(visited,0,visited.Length);Array.Clear(closed,0,closed.Length);
+            restoreGeneration++;
         }
         private bool Inside(int x,int y)=>x>=0&&y>=0&&x<Width&&y<Height;
         public bool IsWalkable(Vector2 point,float radius=.4f)
@@ -146,6 +148,98 @@ namespace Frontier
             while(anchor<reverse.Count-1)
             {int next=anchor+1;while(next+1<reverse.Count&&PathClearLine(reverse[anchor],reverse[next+1],radius,extraWalkable,extraSegmentWalkable))next++;output.Add(reverse[next]);anchor=next;}
             return output;
+        }
+        // A caller with an immutable, query-local filter can cheaply reject many
+        // searches into the same sealed region. A positive answer is only a
+        // preflight: FindPath still constructs and validates the actual route.
+        public FilteredConnectivity CreateFilteredConnectivity(float radius,Func<Vector2,bool> extraWalkable,
+            Func<Vector2,Vector2,bool> extraSegmentWalkable=null)
+            =>new FilteredConnectivity(this,radius,extraWalkable,extraSegmentWalkable);
+        public sealed class FilteredConnectivity
+        {
+            readonly GridNavigation navigation;readonly float radius;readonly int version;
+            readonly ulong generation;
+            readonly Func<Vector2,bool> walkable;readonly Func<Vector2,Vector2,bool> segment;
+            readonly Dictionary<Vector2,Endpoint> endpoints=new Dictionary<Vector2,Endpoint>();
+            ClearanceGraph physical;int[] components;
+            sealed class Endpoint{public int first;public HashSet<int> labels;}
+            internal FilteredConnectivity(GridNavigation navigation,float radius,Func<Vector2,bool> walkable,
+                Func<Vector2,Vector2,bool> segment)
+            {this.navigation=navigation;this.radius=radius;this.walkable=walkable;this.segment=segment;version=navigation.Version;generation=navigation.restoreGeneration;}
+            public bool MayConnect(Vector2 start,Vector2 end)
+            {
+                if(walkable==null&&segment==null)return true;
+                // An old context must never reject a newly opened route. The
+                // caller can rebuild it; meanwhile the ordinary search decides.
+                if(navigation.Version!=version||navigation.restoreGeneration!=generation)return true;
+                start=navigation.NearestWalkable(start,radius);end=navigation.NearestWalkable(end,radius);
+                if(!navigation.PathWalkable(start,radius,walkable)||!navigation.PathWalkable(end,radius,walkable))return false;
+                if(navigation.PathClearLine(start,end,radius,walkable,segment))return true;
+                if(physical==null)physical=navigation.Clearance(radius);
+                var source=EndpointAt(start);var target=EndpointAt(end);
+                if(source.first<0||target.first<0)return false;
+                // Preserve the same physical-component gate as FindPath.
+                if(physical.component[source.first]!=physical.component[target.first])return false;
+                if(components==null)BuildComponents();
+                if(components[source.first]==components[target.first])return true;
+                // Fractional endpoints can attach around a blocked nearest node.
+                // Consider every swept alternative used by the second A* attempt.
+                var sources=Labels(start,source);var targets=Labels(end,target);
+                foreach(int label in sources)if(targets.Contains(label))return true;
+                return false;
+            }
+            Endpoint EndpointAt(Vector2 point)
+            {
+                if(endpoints.TryGetValue(point,out var endpoint))return endpoint;
+                endpoint=new Endpoint{first=navigation.ConnectedNode(point,radius,walkable,physical,segment)};
+                endpoints.Add(point,endpoint);return endpoint;
+            }
+            HashSet<int> Labels(Vector2 point,Endpoint endpoint)
+            {
+                if(endpoint.labels!=null)return endpoint.labels;
+                var labels=new HashSet<int>();
+                if(endpoint.first>=0)labels.Add(components[endpoint.first]);
+                if(walkable!=null||segment!=null)
+                    foreach(int node in navigation.ConnectedNodes(point,radius,walkable,physical,segment))labels.Add(components[node]);
+                endpoint.labels=labels;return labels;
+            }
+            void BuildComponents()
+            {
+                int width=navigation.Width,count=width*navigation.Height;
+                var allowed=new bool[count];var parents=new int[count];
+                for(int node=0;node<count;node++)
+                {
+                    allowed[node]=navigation.NodeWalkable(node%width,node/width,physical,walkable);
+                    parents[node]=node;
+                }
+                int Root(int node)
+                {
+                    while(parents[node]!=node){parents[node]=parents[parents[node]];node=parents[node];}
+                    return node;
+                }
+                for(int node=0;node<count;node++)
+                {
+                    if(!allowed[node])continue;int x=node%width,y=node/width;
+                    // Each undirected pair is inspected once (east, north and
+                    // the two north diagonals); corner clearance matches A*.
+                    for(int direction=0;direction<8;direction++)
+                    {
+                        int nx=x+Dx[direction],ny=y+Dy[direction];
+                        if(!navigation.Inside(nx,ny))continue;int next=nx+ny*width;
+                        if(next<=node||!allowed[next])continue;
+                        if(direction>=4&&(!allowed[x+Dx[direction]+y*width]||!allowed[x+(y+Dy[direction])*width]))continue;
+                        var from=new Vector2(x,y);var to=new Vector2(nx,ny);
+                        // Union either direction. This is a conservative graph
+                        // even for asymmetric filters or floating-point boundary
+                        // samples, so it cannot reject a directed valid path.
+                        if(!navigation.PathClearLine(from,to,radius,walkable,segment)&&
+                            !navigation.PathClearLine(to,from,radius,walkable,segment))continue;
+                        int a=Root(node),b=Root(next);if(a!=b)parents[b]=a;
+                    }
+                }
+                components=new int[count];
+                for(int node=0;node<count;node++)if(allowed[node])components[node]=Root(node)+1;
+            }
         }
         private ClearanceGraph Clearance(float radius)
         {
