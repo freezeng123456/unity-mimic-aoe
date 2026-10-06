@@ -1,0 +1,573 @@
+{
+  "schema": 1,
+  "preparedUtc": "2026-10-06T05:51:00.385829+00:00",
+  "scope": "Authored controlled age-IV native UI fixtures; not normal-opening completion evidence",
+  "beforeBootstrapScope": "All civilian counts, era and funds are document inputs before World construction. No XP, live World mutation, injected queue, free technology or victory is provided.",
+  "nativeAcceptance": "Pending actual game ScenarioCodec/ScenarioCompiler/rules validation and native UI actions; Python checks do not certify playability",
+  "sourceOpening": {
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/NormalRoutes/matrix/coast-revolution/opening-scenario.json",
+    "fileSha256": "f55d6e6871531bb25d2fb101eaf4f2634ac49af0ed6b15bee866d1e9035fc04a",
+    "payloadSha256": "b650ace40d03127ed46cf1d6c8315776b5e1f57030e978cbeb03449b9e5e7d86",
+    "scenarioId": "traders_bend070",
+    "rulesHash": "e0aca57faf2e1d08be2a6e341391be985fc368e296e410397327b38292024583",
+    "starts": [
+      {
+        "player": 0,
+        "team": 0,
+        "age": 1,
+        "civilization": "coast",
+        "initialResources": {
+          "food": 300.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "town": {
+          "x": 22.0,
+          "y": 24.0
+        },
+        "explorer": {
+          "x": 35.0,
+          "y": 24.0
+        },
+        "workers": [
+          {
+            "x": 12.0,
+            "y": 18.0
+          },
+          {
+            "x": 14.0,
+            "y": 16.0
+          },
+          {
+            "x": 17.0,
+            "y": 14.0
+          },
+          {
+            "x": 26.0,
+            "y": 14.0
+          },
+          {
+            "x": 30.0,
+            "y": 16.0
+          },
+          {
+            "x": 32.0,
+            "y": 18.0
+          }
+        ]
+      },
+      {
+        "player": 1,
+        "team": 1,
+        "age": 1,
+        "civilization": "coast",
+        "initialResources": {
+          "food": 300.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "town": {
+          "x": 106.0,
+          "y": 104.0
+        },
+        "explorer": {
+          "x": 93.0,
+          "y": 104.0
+        },
+        "workers": [
+          {
+            "x": 116.0,
+            "y": 110.0
+          },
+          {
+            "x": 114.0,
+            "y": 112.0
+          },
+          {
+            "x": 111.0,
+            "y": 114.0
+          },
+          {
+            "x": 102.0,
+            "y": 114.0
+          },
+          {
+            "x": 98.0,
+            "y": 112.0
+          },
+          {
+            "x": 96.0,
+            "y": 110.0
+          }
+        ]
+      }
+    ]
+  },
+  "matrix": {
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/NormalRoutes/matrix/manifest.json",
+    "fileSha256": "def0d8dda4246363e3cee7b11e052440ace340df6ef2dfc4a94c71dcc78df09c",
+    "declaredSourceFingerprint": "098e5c97eb8e1a3f5cff1e0dd7db30a7fe761fc8f480c6b8517811fab5d8795a",
+    "status": "observed_routes_incomplete",
+    "caseId": "coast-revolution",
+    "caseStatus": "route_reached"
+  },
+  "preservedFields": [
+    "bridges",
+    "groups",
+    "height",
+    "heightsCm",
+    "neutralBindings",
+    "objects",
+    "regions",
+    "resources",
+    "rivers",
+    "rulesHash",
+    "schema",
+    "seed",
+    "surfaces",
+    "tradeRoute",
+    "tradeSockets",
+    "treasures",
+    "victoryPlayer",
+    "waterHeightCm",
+    "width"
+  ],
+  "hashMeaning": "payloadSha256 is the portable envelope's exact UTF8 checksum, not Unity's reserialized World.ScenarioHash; fileSha256 hashes exact emitted file bytes",
+  "documents": [
+    {
+      "civilization": "coast",
+      "scenarioId": "controlled_iv071_coast",
+      "name": "Controlled IV UI: British",
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/ControlledNative/controlled_iv071_coast.scenario.json",
+      "bytes": 86541,
+      "fileSha256": "c31c67dd80deb406bbdc499d3faecfe57f6706748049d3f707edeb966b2ec080",
+      "payloadSha256": "0e4f5e805e3ac5d6bdebb2f82d46b19af467ca0c37283039f78d911603ccecef",
+      "rulesHash": "e0aca57faf2e1d08be2a6e341391be985fc368e296e410397327b38292024583",
+      "startingResources": {
+        "food": 1300,
+        "wood": 800,
+        "coin": 1200
+      },
+      "startingWorkers": 6,
+      "changes": [
+        {
+          "path": "id",
+          "before": "traders_bend070",
+          "after": "controlled_iv071_coast"
+        },
+        {
+          "path": "name",
+          "before": "Traders' Bend",
+          "after": "Controlled IV UI: British"
+        },
+        {
+          "path": "description",
+          "before": "Two bridges carry land armies and a northern trade route. The broad central bend permits ships and a landing behind either crossing. Home resources are paired; forward mines, woods and fishing demand expansion.",
+          "after": "Controlled age-IV native UI fixture, not a normal opening or AI route result. Player 0 has six real initial civilian workers, the original town/explorer, and authored funds for revolution, civilian rebuilding and one legal new worker. Player 1 is France at age I with no initial workers or funds; its distant town/explorer remain real. Terrain and source rulesHash come from the completed normal-opening matrix. No XP or live-world state is gifted. Elimination and scripted objectives/triggers are disabled."
+        },
+        {
+          "path": "enableElimination",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "starts[0].initialResources",
+          "before": {
+            "food": 300.0,
+            "wood": 300.0,
+            "coin": 100.0
+          },
+          "after": {
+            "food": 1300,
+            "wood": 800,
+            "coin": 1200
+          }
+        },
+        {
+          "path": "starts[0].age",
+          "before": 1,
+          "after": 4
+        },
+        {
+          "path": "starts[1].initialResources",
+          "before": {
+            "food": 300.0,
+            "wood": 300.0,
+            "coin": 100.0
+          },
+          "after": {
+            "food": 0,
+            "wood": 0,
+            "coin": 0
+          }
+        },
+        {
+          "path": "starts[1].civilization",
+          "before": "coast",
+          "after": "france"
+        },
+        {
+          "path": "starts[1].workers",
+          "before": [
+            {
+              "x": 116.0,
+              "y": 110.0
+            },
+            {
+              "x": 114.0,
+              "y": 112.0
+            },
+            {
+              "x": 111.0,
+              "y": 114.0
+            },
+            {
+              "x": 102.0,
+              "y": 114.0
+            },
+            {
+              "x": 98.0,
+              "y": 112.0
+            },
+            {
+              "x": 96.0,
+              "y": 110.0
+            }
+          ],
+          "after": []
+        }
+      ],
+      "suggestedFreshDataDirectory": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/ControlledNative/native-profile-coast"
+    },
+    {
+      "civilization": "france",
+      "scenarioId": "controlled_iv071_france",
+      "name": "Controlled IV UI: French",
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/ControlledNative/controlled_iv071_france.scenario.json",
+      "bytes": 86542,
+      "fileSha256": "01686b3bfe84ad2297ac715a88d7efd53963dce0e3be89ef982c384615da8b0f",
+      "payloadSha256": "a194f7da051d5de4fd6f21e54a52d426b036690ff4be319d8402984c7e75d197",
+      "rulesHash": "e0aca57faf2e1d08be2a6e341391be985fc368e296e410397327b38292024583",
+      "startingResources": {
+        "food": 1320,
+        "wood": 800,
+        "coin": 1200
+      },
+      "startingWorkers": 6,
+      "changes": [
+        {
+          "path": "id",
+          "before": "traders_bend070",
+          "after": "controlled_iv071_france"
+        },
+        {
+          "path": "name",
+          "before": "Traders' Bend",
+          "after": "Controlled IV UI: French"
+        },
+        {
+          "path": "description",
+          "before": "Two bridges carry land armies and a northern trade route. The broad central bend permits ships and a landing behind either crossing. Home resources are paired; forward mines, woods and fishing demand expansion.",
+          "after": "Controlled age-IV native UI fixture, not a normal opening or AI route result. Player 0 has six real initial civilian workers, the original town/explorer, and authored funds for revolution, civilian rebuilding and one legal new worker. Player 1 is France at age I with no initial workers or funds; its distant town/explorer remain real. Terrain and source rulesHash come from the completed normal-opening matrix. No XP or live-world state is gifted. Elimination and scripted objectives/triggers are disabled."
+        },
+        {
+          "path": "enableElimination",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "starts[0].initialResources",
+          "before": {
+            "food": 300.0,
+            "wood": 300.0,
+            "coin": 100.0
+          },
+          "after": {
+            "food": 1320,
+            "wood": 800,
+            "coin": 1200
+          }
+        },
+        {
+          "path": "starts[0].civilization",
+          "before": "coast",
+          "after": "france"
+        },
+        {
+          "path": "starts[0].age",
+          "before": 1,
+          "after": 4
+        },
+        {
+          "path": "starts[1].initialResources",
+          "before": {
+            "food": 300.0,
+            "wood": 300.0,
+            "coin": 100.0
+          },
+          "after": {
+            "food": 0,
+            "wood": 0,
+            "coin": 0
+          }
+        },
+        {
+          "path": "starts[1].civilization",
+          "before": "coast",
+          "after": "france"
+        },
+        {
+          "path": "starts[1].workers",
+          "before": [
+            {
+              "x": 116.0,
+              "y": 110.0
+            },
+            {
+              "x": 114.0,
+              "y": 112.0
+            },
+            {
+              "x": 111.0,
+              "y": 114.0
+            },
+            {
+              "x": 102.0,
+              "y": 114.0
+            },
+            {
+              "x": 98.0,
+              "y": 112.0
+            },
+            {
+              "x": 96.0,
+              "y": 110.0
+            }
+          ],
+          "after": []
+        }
+      ],
+      "suggestedFreshDataDirectory": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/ControlledNative/native-profile-france"
+    },
+    {
+      "civilization": "river",
+      "scenarioId": "controlled_iv071_river",
+      "name": "Controlled IV UI: Dutch",
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/ControlledNative/controlled_iv071_river.scenario.json",
+      "bytes": 86539,
+      "fileSha256": "be2df6237bb9c24bf328586f09b624aa9f531a6d8bdacfee73c1fe35d219c87d",
+      "payloadSha256": "4fc38d598816a6f06b685b098cae78930801b5149eba323ef12d92ad982dfeb6",
+      "rulesHash": "e0aca57faf2e1d08be2a6e341391be985fc368e296e410397327b38292024583",
+      "startingResources": {
+        "food": 1200,
+        "wood": 800,
+        "coin": 1300
+      },
+      "startingWorkers": 6,
+      "changes": [
+        {
+          "path": "id",
+          "before": "traders_bend070",
+          "after": "controlled_iv071_river"
+        },
+        {
+          "path": "name",
+          "before": "Traders' Bend",
+          "after": "Controlled IV UI: Dutch"
+        },
+        {
+          "path": "description",
+          "before": "Two bridges carry land armies and a northern trade route. The broad central bend permits ships and a landing behind either crossing. Home resources are paired; forward mines, woods and fishing demand expansion.",
+          "after": "Controlled age-IV native UI fixture, not a normal opening or AI route result. Player 0 has six real initial civilian workers, the original town/explorer, and authored funds for revolution, civilian rebuilding and one legal new worker. Player 1 is France at age I with no initial workers or funds; its distant town/explorer remain real. Terrain and source rulesHash come from the completed normal-opening matrix. No XP or live-world state is gifted. Elimination and scripted objectives/triggers are disabled."
+        },
+        {
+          "path": "enableElimination",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "starts[0].initialResources",
+          "before": {
+            "food": 300.0,
+            "wood": 300.0,
+            "coin": 100.0
+          },
+          "after": {
+            "food": 1200,
+            "wood": 800,
+            "coin": 1300
+          }
+        },
+        {
+          "path": "starts[0].civilization",
+          "before": "coast",
+          "after": "river"
+        },
+        {
+          "path": "starts[0].age",
+          "before": 1,
+          "after": 4
+        },
+        {
+          "path": "starts[1].initialResources",
+          "before": {
+            "food": 300.0,
+            "wood": 300.0,
+            "coin": 100.0
+          },
+          "after": {
+            "food": 0,
+            "wood": 0,
+            "coin": 0
+          }
+        },
+        {
+          "path": "starts[1].civilization",
+          "before": "coast",
+          "after": "france"
+        },
+        {
+          "path": "starts[1].workers",
+          "before": [
+            {
+              "x": 116.0,
+              "y": 110.0
+            },
+            {
+              "x": 114.0,
+              "y": 112.0
+            },
+            {
+              "x": 111.0,
+              "y": 114.0
+            },
+            {
+              "x": 102.0,
+              "y": 114.0
+            },
+            {
+              "x": 98.0,
+              "y": 112.0
+            },
+            {
+              "x": 96.0,
+              "y": 110.0
+            }
+          ],
+          "after": []
+        }
+      ],
+      "suggestedFreshDataDirectory": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/ControlledNative/native-profile-river"
+    },
+    {
+      "civilization": "ottoman",
+      "scenarioId": "controlled_iv071_ottoman",
+      "name": "Controlled IV UI: Ottoman",
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/ControlledNative/controlled_iv071_ottoman.scenario.json",
+      "bytes": 86545,
+      "fileSha256": "3ca0aadce32c30bfd4be556a7d114184583ee54aa158d11a2bb1ae853ea0c9b8",
+      "payloadSha256": "42c6d066cb081d01eb89a8d18aa3a1479b9206b32f05ac5c2d1baeba1c64b6b1",
+      "rulesHash": "e0aca57faf2e1d08be2a6e341391be985fc368e296e410397327b38292024583",
+      "startingResources": {
+        "food": 1200,
+        "wood": 800,
+        "coin": 1200
+      },
+      "startingWorkers": 6,
+      "changes": [
+        {
+          "path": "id",
+          "before": "traders_bend070",
+          "after": "controlled_iv071_ottoman"
+        },
+        {
+          "path": "name",
+          "before": "Traders' Bend",
+          "after": "Controlled IV UI: Ottoman"
+        },
+        {
+          "path": "description",
+          "before": "Two bridges carry land armies and a northern trade route. The broad central bend permits ships and a landing behind either crossing. Home resources are paired; forward mines, woods and fishing demand expansion.",
+          "after": "Controlled age-IV native UI fixture, not a normal opening or AI route result. Player 0 has six real initial civilian workers, the original town/explorer, and authored funds for revolution, civilian rebuilding and one legal new worker. Player 1 is France at age I with no initial workers or funds; its distant town/explorer remain real. Terrain and source rulesHash come from the completed normal-opening matrix. No XP or live-world state is gifted. Elimination and scripted objectives/triggers are disabled."
+        },
+        {
+          "path": "enableElimination",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "starts[0].initialResources",
+          "before": {
+            "food": 300.0,
+            "wood": 300.0,
+            "coin": 100.0
+          },
+          "after": {
+            "food": 1200,
+            "wood": 800,
+            "coin": 1200
+          }
+        },
+        {
+          "path": "starts[0].civilization",
+          "before": "coast",
+          "after": "ottoman"
+        },
+        {
+          "path": "starts[0].age",
+          "before": 1,
+          "after": 4
+        },
+        {
+          "path": "starts[1].initialResources",
+          "before": {
+            "food": 300.0,
+            "wood": 300.0,
+            "coin": 100.0
+          },
+          "after": {
+            "food": 0,
+            "wood": 0,
+            "coin": 0
+          }
+        },
+        {
+          "path": "starts[1].civilization",
+          "before": "coast",
+          "after": "france"
+        },
+        {
+          "path": "starts[1].workers",
+          "before": [
+            {
+              "x": 116.0,
+              "y": 110.0
+            },
+            {
+              "x": 114.0,
+              "y": 112.0
+            },
+            {
+              "x": 111.0,
+              "y": 114.0
+            },
+            {
+              "x": 102.0,
+              "y": 114.0
+            },
+            {
+              "x": 98.0,
+              "y": 112.0
+            },
+            {
+              "x": 96.0,
+              "y": 110.0
+            }
+          ],
+          "after": []
+        }
+      ],
+      "suggestedFreshDataDirectory": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/ControlledNative/native-profile-ottoman"
+    }
+  ]
+}
