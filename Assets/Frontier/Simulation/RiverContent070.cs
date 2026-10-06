@@ -134,7 +134,10 @@ namespace Frontier
             a.Army("field-force",0,new Vector2(27,42),4,2);
             a.Put("road-market","market",1,new Vector2(80,38));
             a.Put("guard-a","pike",1,new Vector2(74,39));a.Put("guard-b","pike",1,new Vector2(78,45));
-            a.Put("raider-a","hussar",1,new Vector2(33,57));a.Put("raider-b","hussar",1,new Vector2(36,57));
+            // Stay beyond the default south-crossing army's acquisition range
+            // until the survey orders the raid. The western lookout can still
+            // reveal them to a player who deliberately scouts farther upstream.
+            a.Put("raider-a","hussar",1,new Vector2(24,100));a.Put("raider-b","hussar",1,new Vector2(27,100));
             a.Group("raiders","raider-a","raider-b");
             a.Region("survey-zone",new Vector2(72,33),new Vector2(10,10));a.Region("lookout-zone",new Vector2(30,78),new Vector2(10,10));
             a.Goal("survey","Survey the far bank","Move the explorer across either bridge into the far-bank marker.","reach_region","start-0-explorer","survey-zone",1,deadline:360);

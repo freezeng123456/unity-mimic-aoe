@@ -277,6 +277,73 @@ namespace Frontier.Tests
                 }
             }
         }
+        [Test] public void ScoutRaidWaitsThroughTheDefaultCrossingThenReallyAttacksTheSupplyCamp()
+        {
+            using(var s=GuidedPlaySession.Start(rules,RiverContent070.Scout))
+            {
+                var w=s.World;var state=s.CaptureState();var raiders=w.ScenarioEntities("raiders");
+                Assert.AreEqual(2,raiders.Length);
+                var origins=raiders.ToDictionary(id=>id,id=>w.Get(id).position);
+                var health=raiders.ToDictionary(id=>id,id=>w.Get(id).hp);
+                var camp=w.ScenarioEntity("start-0-town");
+                void Waiting()
+                {
+                    Assert.AreEqual("active",w.ScenarioObjectiveStates.Single(o=>o.id=="survey").status);
+                    Assert.AreEqual(0,w.ScenarioState.triggerStates.Single(t=>t.id=="survey-ambush").fires);
+                    foreach(int id in raiders)
+                    {
+                        var rider=w.Get(id);Assert.IsTrue(rider.Alive,"The later raid cannot be consumed by opening auto-acquisition");
+                        Assert.AreEqual(health[id],rider.hp,"No pre-survey combat on the normal route");
+                        Assert.Less((rider.position-origins[id]).sqrMagnitude,.0001f,"No premature pursuit toward the camp");
+                        Assert.IsEmpty(rider.orders,"The camp attack must be issued by the completed survey");
+                        Assert.AreEqual(0,rider.attackTarget);
+                    }
+                    Assert.IsFalse(w.Events.Any(e=>e.kind=="Command"&&e.player==1&&raiders.Contains(e.entity)),"No accepted raid command before survey");
+                }
+                // Native startup advances normally before the first player input.
+                // No Hold flags or altered unit state suppress auto-acquisition.
+                for(int step=0;step<100;step++){Assert.IsTrue(s.Simulation.Step());Waiting();}
+                var farBank=Region(s,"survey-zone");
+                Order(s,state.soldiers,OrderKind.AttackMove,farBank);
+                Order(s,new[]{state.scout},OrderKind.Move,farBank);
+                for(int step=0;step<1800&&s.Stage?.Id=="survey"&&s.Status==GuidedPlayStatus.Running;step++)
+                {
+                    Assert.IsTrue(s.Simulation.Step());
+                    if(w.ScenarioObjectiveStates.Single(o=>o.id=="survey").status=="active")Waiting();
+                }
+                Assert.AreEqual(GuidedPlayStatus.Running,s.Status,Diagnostic(s));
+                Assert.AreEqual("blockade",s.Stage?.Id,"Ordinary explorer movement must actually finish the survey"+Diagnostic(s));
+                var fired=w.ScenarioState.triggerStates.Single(t=>t.id=="survey-ambush");
+                Assert.AreEqual(1,fired.fires);Assert.AreEqual("",fired.lastError);
+                // Command events store the actor's location, not the requested
+                // destination. Check the authored request and its real accepted
+                // queue separately; town footprints legitimately displace slots.
+                var raidAction=w.ScenarioDocument.triggers.Single(t=>t.id=="survey-ambush").actions.Single(a=>a.kind=="order_attack_move");
+                Assert.AreEqual(1,raidAction.player);Assert.AreEqual("raiders",raidAction.objectId);
+                Assert.AreEqual(camp.position,raidAction.point,"The triggered attack-move requests the actual supply camp");
+                var raidCommand=w.Events.Single(e=>e.kind=="Command"&&e.player==1&&raiders.Contains(e.entity));
+                Assert.AreEqual("AttackMove ×2",raidCommand.message);Assert.AreEqual(2,raidCommand.amount);
+                Assert.AreEqual(0,raidCommand.target,"The raid follows ordinary attack-move acquisition instead of selecting a hidden target");
+                foreach(int id in raiders)
+                {
+                    var rider=w.Get(id);Assert.IsTrue(rider.Alive);Assert.AreEqual(1,rider.orders.Count);
+                    Assert.AreEqual(OrderKind.AttackMove,rider.orders.Peek().kind);
+                    Connected(w.Navigation,rider.position,rider.orders.Peek().point,rider.def.radius,"Accepted raid slot must be a legally reachable endpoint");
+                }
+                bool arrived=false;
+                bool CampDamage()=>w.Events.Any(e=>e.kind=="Damage"&&e.amount>0&&raiders.Contains(e.entity)&&
+                    w.Get(e.target)?.owner==0&&(e.position-camp.position).sqrMagnitude<25*25);
+                for(int step=0;step<1200&&!CampDamage()&&s.Status==GuidedPlayStatus.Running;step++)
+                {
+                    Assert.IsTrue(s.Simulation.Step());
+                    arrived|=raiders.Any(id=>w.Get(id).Alive&&(w.Get(id).position-camp.position).sqrMagnitude<25*25);
+                }
+                Assert.IsTrue(arrived,"The real riders must traverse the west bank into the camp perimeter"+Diagnostic(s));
+                Assert.IsTrue(CampDamage(),"The raid must actually damage a camp building or unit through normal combat"+Diagnostic(s));
+                Assert.AreEqual(1,w.ScenarioState.triggerStates.Single(t=>t.id=="survey-ambush").fires);
+                Assert.AreEqual(1,w.Events.Count(e=>e.kind=="Command"&&e.player==1&&raiders.Contains(e.entity)),"The attack cannot be reissued by every objective tick");
+            }
+        }
         [Test] public void EmptyTransportCannotCompleteTheEscortByLeavingTheDesignatedPartyOnItsHomeShore()
         {
             using(var s=GuidedPlaySession.Start(rules,RiverContent070.Convoy))
