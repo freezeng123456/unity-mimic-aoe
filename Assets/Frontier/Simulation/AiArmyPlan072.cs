@@ -34,19 +34,27 @@ namespace Frontier
         {
             get
             {
-                EntityState town=null,rescue=null;float nearest=float.MaxValue;
-                var opening=world.OpeningTownPosition(player);
+                EntityState town=null;
                 foreach(var e in world.Entities)
                 {
                     if(!e.Alive||e.owner!=player||e.garrisonedIn!=0||e.def.waterborne)continue;
                     if(e.def.id=="town"&&(town==null||e.Complete&&!town.Complete||e.Complete==town.Complete&&e.id<town.id))town=e;
+                }
+                // A Town always owns the home anchor, even under visible fire.
+                // Only its absence needs the more expensive rescue safety scan.
+                if(town!=null)return town.position;
+                EntityState rescue=null;float nearest=float.MaxValue;
+                var opening=world.OpeningTownPosition(player);
+                foreach(var e in world.Entities)
+                {
+                    if(!e.Alive||e.owner!=player||e.garrisonedIn!=0||e.def.waterborne)continue;
                     if(!e.Worker&&e.def.id!="factory"&&e.def.id!="farm"&&e.def.id!="estate")continue;
                     bool unsafePoint=false;
                     foreach(var enemy in world.Entities)if(DangerAt(enemy,e.position)){unsafePoint=true;break;}
                     if(unsafePoint)continue;float distance=(e.position-opening).sqrMagnitude;
                     if(distance<nearest){nearest=distance;rescue=e;}
                 }
-                return town?.position??rescue?.position??opening;
+                return rescue?.position??opening;
             }
         }
         bool IsThreat(EntityState enemy)=>enemy.Alive&&world.AreEnemies(player,enemy.owner)&&enemy.Military&&

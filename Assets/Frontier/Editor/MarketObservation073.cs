@@ -28,16 +28,18 @@ namespace Frontier.Editor
         {
             public float time;public int player,age,workers,soldiers,towns,markets,posts;
             public Cost wallet,gathered,spent,marketIncome,marketSold,marketBought;
-            public int foodPressure,woodPressure;
+            public int foodPressure,woodPressure,gatherOrders,gatherRoutesRejectedAtSample;
             public AiArmyPlan072Snapshot army;
             public double intervalStepSeconds,intervalObserverSeconds,maxStepMs;
         }
         public static void RunNormal()
+            =>RunDeclaredThreeCases("normal-market073-v1");
+        public static void RunDeclaredThreeCases(string schema)
         {
             string directory=Environment.GetEnvironmentVariable("FRONTIER_REPORT_PATH");
-            if(string.IsNullOrWhiteSpace(directory)||Directory.Exists(directory)&&Directory.EnumerateFileSystemEntries(directory).Any())throw new IOException("Use a fresh 073 observation directory");
+            if(string.IsNullOrWhiteSpace(directory)||Directory.Exists(directory)&&Directory.EnumerateFileSystemEntries(directory).Any())throw new IOException("Use a fresh observation directory");
             Directory.CreateDirectory(directory);var rules=Catalog.Load();
-            var run=new Run{startedUtc=DateTime.UtcNow.ToString("o"),status="running",version=Application.version,rulesHash=SnapshotCodec.RulesHash(rules),
+            var run=new Run{schema=schema,startedUtc=DateTime.UtcNow.ToString("o"),status="running",version=Application.version,rulesHash=SnapshotCodec.RulesHash(rules),
                 sourceFingerprint=Environment.GetEnvironmentVariable("FRONTIER_SOURCE_FINGERPRINT")??"",cases=new[]{
                     new Case{id="winding-ottoman-44",map=MapTopology.Winding,civilization="ottoman",seed=44},
                     new Case{id="winding-ottoman-45",map=MapTopology.Winding,civilization="ottoman",seed=45},
@@ -69,11 +71,15 @@ namespace Frontier.Editor
                         foreach(var p in world.Players)
                         {
                             var own=world.Entities.Where(e=>e.Alive&&e.owner==p.id).ToArray();
+                            var threats=world.Entities.Where(e=>AiResourceContinuity072.EconomicThreat(world,p.id,e)).ToList();
+                            var routes=new AiGatherRoutes074(world,p.id,threats);
+                            var gathering=own.Where(e=>e.Worker&&!e.def.waterborne&&e.garrisonedIn==0&&e.orders.Count>0&&e.orders.Peek().kind==OrderKind.Gather).ToArray();
                             var sample=new Sample{time=world.Time,player=p.id,age=p.age,workers=own.Count(e=>e.Worker),
                                 soldiers=own.Count(e=>e.Military&&!e.def.waterborne&&(e.def.tags&Tags.Explorer)==0),towns=own.Count(e=>e.def.id=="town"),
                                 markets=own.Count(e=>e.def.id=="market"&&e.Complete),posts=own.Count(e=>e.def.id=="trade_post"&&e.Complete),
                                 wallet=p.resources,gathered=p.gathered,spent=p.spent,marketIncome=p.marketIncome,marketSold=p.marketSold,marketBought=p.marketBought,
                                 foodPressure=p.marketFoodPressure,woodPressure=p.marketWoodPressure,army=state.controllers.First(a=>a.player==p.id).armyPlan,
+                                gatherOrders=gathering.Length,gatherRoutesRejectedAtSample=gathering.Count(e=>!routes.CanGather(e,world.Get(e.orders.Peek().target))),
                                 intervalStepSeconds=c.stepSeconds-lastStep,intervalObserverSeconds=c.observerSeconds-lastObserver,maxStepMs=intervalMax};
                             samples.WriteLine(JsonUtility.ToJson(sample));
                         }

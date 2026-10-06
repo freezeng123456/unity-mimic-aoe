@@ -16,54 +16,6 @@ namespace Frontier
             public readonly float WoodAmount;public readonly bool Wood,Coin;
             public SourceSurvey(float amount,bool wood,bool coin){WoodAmount=amount;Wood=wood;Coin=coin;}
         }
-        readonly struct ThreatCircle
-        {
-            public readonly Vector2 Center;public readonly float ReachSquared;
-            public ThreatCircle(EntityState threat)
-            {Center=threat.position;float reach=Mathf.Max(12,threat.def.range+4);ReachSquared=reach*reach;}
-        }
-        // No commands or ticks occur during one survey. Copy current visible
-        // weapon geometry once instead of repeating faction/Fog tests per cell.
-        sealed class SurveySafety
-        {
-            readonly GridNavigation navigation;readonly ThreatCircle[] threats;
-            Dictionary<float,GridNavigation.FilteredConnectivity> connectivity;
-            public bool HasThreats=>threats.Length>0;
-            public SurveySafety(World world,int player,List<EntityState> visible)
-            {
-                navigation=world.Navigation;var circles=new List<ThreatCircle>();
-                for(int i=0;i<visible.Count;i++)if(EconomicThreat(world,player,visible[i]))circles.Add(new ThreatCircle(visible[i]));
-                threats=circles.ToArray();
-            }
-            public bool Safe(Vector2 point)
-            {
-                for(int i=0;i<threats.Length;i++)
-                    if((threats[i].Center-point).sqrMagnitude<threats[i].ReachSquared)return false;
-                return true;
-            }
-            public bool SegmentSafe(Vector2 from,Vector2 to)
-            {
-                Vector2 segment=to-from;float length=segment.sqrMagnitude;
-                for(int i=0;i<threats.Length;i++)
-                {
-                    var threat=threats[i];float t=length>0?Mathf.Clamp01(Vector2.Dot(threat.Center-from,segment)/length):0;
-                    if((threat.Center-(from+segment*t)).sqrMagnitude<threat.ReachSquared)return false;
-                }
-                return true;
-            }
-            public bool MayConnect(Vector2 from,Vector2 to,float radius)
-            {
-                if(connectivity==null)connectivity=new Dictionary<float,GridNavigation.FilteredConnectivity>();
-                if(!connectivity.TryGetValue(radius,out var query))
-                {
-                    // The original filtered search samples Safe along each line.
-                    // Keep that filter; continuous SegmentSafe is only the same
-                    // direct-line fast path used before this context existed.
-                    query=navigation.CreateFilteredConnectivity(radius,Safe);connectivity.Add(radius,query);
-                }
-                return query.MayConnect(from,to);
-            }
-        }
         public AiResourceContinuity072(World world,int player,Func<Cost> obligations=null){this.world=world;this.player=player;this.obligations=obligations;}
         // This temporary survey never crosses a synchronous strategy review and
         // has no save DTO. Plans, wallets and obligations are never cached.
@@ -100,9 +52,9 @@ namespace Frontier
         SourceSurvey Survey(List<EntityState> workers,List<EntityState> visible,bool allowScope)
         {
             if(allowScope&&decisionActive&&surveyCached&&surveyTime==world.Time&&surveyEvents==world.Events.Count&&surveyNavigation==world.Navigation.Version)return cachedSurvey;
-            var safety=new SurveySafety(world,player,visible);
-            float amount=SourceAmountInSurvey(ResourceKind.Wood,workers,safety,safety.HasThreats,out bool wood);
-            SourceAmountInSurvey(ResourceKind.Coin,workers,safety,safety.HasThreats,out bool coin,true);
+            var routes=new AiGatherRoutes074(world,player,visible);
+            float amount=SourceAmountInSurvey(ResourceKind.Wood,workers,routes,out bool wood);
+            SourceAmountInSurvey(ResourceKind.Coin,workers,routes,out bool coin,true);
             var surveyed=new SourceSurvey(amount,wood,coin);
             if(allowScope&&decisionActive)
             {cachedSurvey=surveyed;surveyCached=true;surveyTime=world.Time;surveyEvents=world.Events.Count;surveyNavigation=world.Navigation.Version;}
@@ -208,44 +160,20 @@ namespace Frontier
             if(result.NeedsWood)result.ResourceNeed.wood=Mathf.Max(result.ResourceNeed.wood,Mathf.Max(woodHorizon,startupWood));
             return result;
         }
-        float SourceAmount(ResourceKind kind,List<EntityState> workers,List<EntityState> visible,bool threatenedPaths,out bool available,bool firstOnly=false)
-            =>SourceAmountInSurvey(kind,workers,new SurveySafety(world,player,visible),threatenedPaths,out available,firstOnly);
-        float SourceAmountInSurvey(ResourceKind kind,List<EntityState> workers,SurveySafety safety,bool threatenedPaths,out bool available,bool firstOnly=false)
+        float SourceAmountInSurvey(ResourceKind kind,List<EntityState> workers,AiGatherRoutes074 routes,out bool available,bool firstOnly=false)
         {
             available=false;float amount=0;
             foreach(var source in world.Entities)
                 if(source.def.resource==kind&&!source.def.waterborne&&!source.def.id.StartsWith("crate_")&&
-                    world.GatherableResource(player,source)&&safety.Safe(source.position)&&ReachableSource(source,workers,safety,threatenedPaths))
+                    world.GatherableResource(player,source)&&routes.PointSafe(source.position)&&ReachableSource(source,workers,routes))
                 {available=true;if(World.Sustainable(source))return float.PositiveInfinity;if(firstOnly)return source.remaining;amount+=source.remaining;}
             return amount;
         }
-        bool ReachableSource(EntityState source,List<EntityState> workers,SurveySafety safety,bool threatenedPaths)
+        bool ReachableSource(EntityState source,List<EntityState> workers,AiGatherRoutes074 routes)
         {
             foreach(var worker in workers)
             {
-                if(worker.owner!=player||!AiCivilizationEconomy.CanReassign(worker)||!world.CanGather(worker,source)||!safety.Safe(worker.position))continue;
-                if(world.EdgeDistance(worker,source)<=1.5f)return true;
-                float reach=(source.def.kind==EntityKind.Building?Mathf.Max(source.def.width,source.def.depth)*.5f:source.def.radius)+worker.def.radius+.8f;
-                float angle=Mathf.Atan2(worker.position.y-source.position.y,worker.position.x-source.position.x);
-                for(int n=0;n<4;n++)
-                {
-                    Vector2 goal=source.position+new Vector2(Mathf.Cos(angle+n*Mathf.PI*.5f),Mathf.Sin(angle+n*Mathf.PI*.5f))*reach;
-                    if(!world.Navigation.IsWalkable(goal,worker.def.radius)||!safety.Safe(goal))continue;
-                    // Prove both the ordinary physical line and the entire
-                    // visible threat clearance before skipping a filtered search.
-                    if(threatenedPaths&&world.Navigation.ClearLine(worker.position,goal,worker.def.radius)&&
-                        safety.SegmentSafe(worker.position,goal))return true;
-                    // A negative context result is conclusive. Every positive
-                    // result still uses the original route and endpoint checks.
-                    if(threatenedPaths&&!safety.MayConnect(worker.position,goal,worker.def.radius))continue;
-                    // With no relevant current visible weapon the extra filter
-                    // is always true. Use the ordinary path (including its line
-                    // checks), rather than forcing a filtered grid search.
-                    var path=threatenedPaths?
-                        world.Navigation.FindPath(worker.position,goal,worker.def.radius,safety.Safe):
-                        world.Navigation.FindPath(worker.position,goal,worker.def.radius);
-                    if(path.Count>=2&&(path[path.Count-1]-goal).sqrMagnitude<.01f)return true;
-                }
+                if(worker.owner==player&&AiCivilizationEconomy.CanReassign(worker)&&routes.CanGather(worker,source))return true;
             }
             return false;
         }
