@@ -1,6 +1,6 @@
 # 0.16.0 验证记录 · 073 限定验收
 
-2026-10-07。当前runtime提交 `519d7d34a0be85f75ee19e53458c636d1ba0b3e4`；732运行输入（Assets、Packages、ProjectSettings、Tools）FP `9b92812a922adb69a5ae501925417d8eba8e24b836f496274ebc8ec8679ba03d`。正式完整回归与Mac构建已完成，三条普通I观察已实际关闭，当前GUID原生仅市场建造/付款/完成；原生兑换交互未完成，073交付仍待闭合。本页已记录正式测试、构建、三局观察与原生限定范围；私有封包/远端交付另见交付记录。[内容](Content-073.md)、[状态](Completion-Status.md)、[限制](Known-Issues.md)、[交付记录](Delivery-073.md)。
+2026-10-07。当前runtime提交 `519d7d34a0be85f75ee19e53458c636d1ba0b3e4`；732运行输入（Assets、Packages、ProjectSettings、Tools）FP `9b92812a922adb69a5ae501925417d8eba8e24b836f496274ebc8ec8679ba03d`。正式完整回归与Mac构建已完成，三条普通I观察已实际关闭，当前GUID原生仅市场建造/付款/完成；原生兑换交互未完成，073四包与九云盘文件已核。本页已记录正式测试、构建、三局观察与原生限定范围；私有封包/远端交付另见交付记录。[内容](Content-073.md)、[状态](Completion-Status.md)、[限制](Known-Issues.md)、[交付记录](Delivery-073.md)。
 
 ## 正式完整回归与构建
 
@@ -38,7 +38,7 @@ Dutch42模拟3600.061279s、whole-case wall3303.190543s，旧watch包含建局/S
 
 真实预声明为Candidate1/Diagnostics/predeclared-observation073.json，observer SHA `963de12e6d39cfeeb6faa17c1ba532d03c752b226d722752780e2c1e5255a6a8`；普通I、standard、双AI、最高V，2400模拟秒cap、1500比较点、30秒采样。三个case：
 
-| 地图 / 文明 / seed | 当前状态 | 待核结果 |
+| 地图 / 文明 / seed | 实际状态 | 观察结果 |
 |---|---|---|
 | winding / Ottoman / 44 | natural_terminal；2084.883057s、P0胜 | 11笔MarketTrade、14次assembled；1500比较点到达 |
 | winding / Ottoman / 45 | natural_terminal；1754.918579s、P1胜 | 15笔MarketTrade、14次assembled；1500比较点到达 |
@@ -69,4 +69,4 @@ Native1真实人工正常开局，三1600×1000F9原图均已查看且metadata P
 Native1与普通观察在同一主机并行运行，所有计时均不能视为隔离原生FPS。
 61份选定原件已逐字复制到[Evidence/073](Evidence/073/copy-index073.json)，含完整回归原XML/log/map、失败/成功focus、Build receipt/log、三局manifest/receipt、Native1完整保留树和全部限定审计；原件前后SHA稳定。完整28份普通局原件另交normal.zip。[总审计](Evidence/073/Diagnostics/independent073-audit.json)148691B、SHA4165a0754d5994f2dd27407b36efa0340c3733a379a99e3cc0c2f46ebb59c187，Full/Build/三case通过、nativeexchange=false，交付outside该审计。
 
-073封包、Drive实际字节/SHA/owner-only与本轮最终Git推送另由[交付记录](Delivery-073.md)补齐。全部072Evidence、源码快照/五ZIP/远端11文件以及更早历史保持原字节和原身份；原生长局性能、普通Gather动态安全、双物理Mac、完整商业内容与签名Release仍待证据。
+073四包本地独立完整性核验通过；九文件111794577B实际Drive全字节SHA/owner-only读回通过，见[交付记录](Delivery-073.md)。最末包外文档Git审查head以既有draft PR为准。全部072Evidence、源码快照/五ZIP/远端11文件以及更早历史保持原字节和原身份；原生长局性能、普通Gather动态安全、双物理Mac、完整商业内容与签名Release仍待证据。

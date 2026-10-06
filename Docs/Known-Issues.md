@@ -1,6 +1,6 @@
 # 当前范围与限制 · 0.16.0 市场兑换与集结候选
 
-2026-10-07。当前runtime为 `519d7d34a0be85f75ee19e53458c636d1ba0b3e4`，732输入FP `9b92812a922adb69a5ae501925417d8eba8e24b836f496274ebc8ec8679ba03d`。正式1192Edit+419Play=1611项全部Passed，0Failed/Skipped/Inconclusive；Build1实际exit0/Succeeded/sourceStable，GUID `5f347ad9ec2f494984b0b49c4f896c31`。三条普通I观察已实际关闭（runner exit0、源前后FP相同）：Ottoman44/45自然终局，Dutch42到2400秒cap；原生市场建造/扣费/完成已核，原生兑换点击因窗口定位错误未完成。073封包、私有Drive与本轮最终推送仍待闭合。[状态](Completion-Status.md)、[内容](Content-073.md)、[验证记录](Verification-073.md)、[交付记录](Delivery-073.md)。
+2026-10-07。当前runtime为 `519d7d34a0be85f75ee19e53458c636d1ba0b3e4`，732输入FP `9b92812a922adb69a5ae501925417d8eba8e24b836f496274ebc8ec8679ba03d`。正式1192Edit+419Play=1611项全部Passed，0Failed/Skipped/Inconclusive；Build1实际exit0/Succeeded/sourceStable，GUID `5f347ad9ec2f494984b0b49c4f896c31`。三条普通I观察已实际关闭（runner exit0、源前后FP相同）：Ottoman44/45自然终局，Dutch42到2400秒cap；原生市场建造/扣费/完成已核，原生兑换点击因窗口定位错误未完成。073四包本地完整性已核，九文件私有Drive全字节SHA/owner-only读回通过；最末Git审查head见既有draft PR。[状态](Completion-Status.md)、[内容](Content-073.md)、[验证记录](Verification-073.md)、[交付记录](Delivery-073.md)。
 
 ## 市场兑换与经济边界
 
@@ -31,9 +31,9 @@
 - FocusedMarket1实际20/21、Market2实际39/40，各保留CoinOnlyShortageProtectsCompleteTradeStartupBeforeMilitaryConsumesLedgerFee失败；Market3后续42/42Passed。FocusedFinal1的CS8773 C#9 inferred-delegate编译失败log保留，后续FocusedFinal2和完整回归另记通过。072既有失败/终止/探针原件不回写。
 - 预声明winding Ottoman44/45、river_bend Dutch42，普通I、standard、双AI，2400模拟秒cap、1500比较点、30秒采样，无运行注资/强制命令/干预。开始收据与正在增长的样本不能当作三case完成；自然终局/cap、真实支付/施工/配送/市场收入/集结/攻击须分别核。三例即使关闭也不等于新16局路线认证或六文明平衡。
 - 本GUID实际完成市场建造和100W扣费，三1600×1000F9原图已查看；原生兑换模态/买卖/100-500点击因public Sky noWindowsAvailable未完成，保存/冷恢复/完整录像/长局尚未验收。自动化InputSystem/Canvas字形不是OS像素；0729原生范围/40对F9/五exit0及H600→1111、Verified=false属于GUID3288，不重标为073。
-- 073尚无已封存包、画廊、私有Drive文件/权限/实际远端字节SHA收据，本轮最终文档提交/推送也未完成。构建成功只证明已产出当前客户端，不构成完整交付。072SourceSnapshot8490、五原ZIP、11远端文件与分片重组均保持原字节和身份，见[Delivery072](Delivery-072.md)。
+- 073四原ZIP已封存，本地完整性独立核验通过；云盘九文件111794577B实际全字节SHA/owner-only读回通过。证据封包和上传不会增加原生交互、动态安全、平衡或FPS范围；后续文档Git提交不重建原包。072SourceSnapshot8490、原包与11文件保持原身份，见[073交付](Delivery-073.md)和[Delivery072](Delivery-072.md)。
 
-<!-- ROOT-FILL-073-CLOSURE: 待三case独立关闭、当前GUID原生和实际交付收据后更新这些状态；保留失败/cap与各自边界。 -->
+073三局与私有交付均已关闭其声明范围，原生exchange/current-GUID cold/replay仍未验收；失败/cap与旧版边界保持。
 
 ## 政治、保存与历史身份
 

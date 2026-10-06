@@ -1,50 +1,50 @@
-# 0.16.0 私有交付 · 073 草稿
+# 0.16.0 私有交付 · 073
 
-2026-10-07。**正式完整回归、Mac构建和三条声明普通局已关闭；当前是封包前源码快照，073私有交付尚未完成。** 三条普通I观察已关闭（两自然终局、一cap），Native1实际进程exit0且市场建造/100W扣费/完成限定通过，原生兑换点击未完成；61份选定原件及复制索引已入库，本地封包、073Drive上传/实际远端字节SHA与权限读回，以及本轮最终文档Git提交/推送均待补收据。此页未提供073已验收的云盘下载链接。[状态](Completion-Status.md)、[验证记录](Verification-073.md)、[内容](Content-073.md)、[限制](Known-Issues.md)。
+2026-10-07。源码、Mac客户端、选定证据及完整三局原件已封包，并上传原私有Google Drive；**九文件111794577B均实际读回全字节、SHA相同且仅owner可访问**。正式1611项回归、构建、三局观察通过其声明范围；当前GUID原生兑换交互未完成，建造/扣费/完工范围已核。[内容](Content-073.md)、[验证](Verification-073.md)、[状态](Completion-Status.md)、[限制](Known-Issues.md)。
 
-## 已确认的候选身份
+## 身份与源码选择
 
-| 项目 | 当前实际身份 |
+| 项目 | 实际身份 |
 |---|---|
-| 应用 | 0.16.0；Unity6000.6.3f1；macOS Apple silicon arm64 Development/Mono |
-| Runtime提交 | `519d7d34a0be85f75ee19e53458c636d1ba0b3e4` |
-| 运行输入 | 732；FP `9b92812a922adb69a5ae501925417d8eba8e24b836f496274ebc8ec8679ba03d` |
-| 正式完整回归 | `run-9q8yTJKS`；1192Edit+419Play=1611/1611Passed，0Failed/Skipped/Inconclusive |
-| Mac候选 | Candidate1/Build1，actual exit0/Succeeded/sourceStable |
-| 原生GUID | `5f347ad9ec2f494984b0b49c4f896c31` |
-| 本地App | `/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.16.0/Candidate1/Build1/Frontier Reckoning.app` |
+| Runtime | 519d7d34a0be85f75ee19e53458c636d1ba0b3e4 |
+| 源码ZIP快照 | 0f656d39c6715a27a6d85414dac7c16c3c7645bd |
+| 运行输入 | 732；FP9b92812a922adb69a5ae501925417d8eba8e24b836f496274ebc8ec8679ba03d |
+| 构建 | 0.16.0；Unity6000.6.3f1；arm64 Development/Mono；Build1实际exit0/sourceStable |
+| 原生GUID | 5f347ad9ec2f494984b0b49c4f896c31 |
+| 回归 | run-9q8yTJKS；1192Edit+419Play=1611/1611Passed |
 
-Build1的真实 `build.log` 与 `runner-receipt073.json` 已记录源前后相同和built_same_frozen_source；正式XML/源map与独立部分审计见[验证记录](Verification-073.md)。runtime提交身份与最终交付源码快照是不同对象。封包选择全部tracked源码/文档，明确省略Docs/Evidence/**；独立证据另包交付，732运行输入全部包含并逐文件校验。没有声明已有073ZIP或已验收下载入口。
+profile为all-tracked-except-Docs-Evidence-073-v1：1008选中tracked路径23985861B、4254省略路径3420117514B，完整分区记录Git path/mode/blob/bytes。包含全部Assets/Packages/ProjectSettings/Tools、根文件、SourceAssets及非Evidence文档；明确省略Docs/Evidence/**，不是完整Git树或历史归档。选定61份原件+索引另在evidence.zip，完整28份普通局原件在normal.zip。后续Git提交仅写包外交付收据，不改运行输入或重建原ZIP；源码ZIP内文档为封包前快照，终态以本页和云盘README为准。
 
-## 待完成的材料与收据
+## 下载与真实字节核对
 
-| 环节 | 当前状态 | 闭合需要的实际证据 |
-|---|---|---|
-| 普通三case | actual closed / exit0 / sourceStable | 最终runner exit/源前后、实际manifest/原World/Controller/事件与独立核账；终局/cap/失败分别报告 |
-| 本GUID原生 | partial_market_scope / actual process exit0 | 当前GUID原图/元数据、进程日志/exit、保存/冷恢复/录像与最终journal精确声明范围 |
-| 073证据入库 | 61份原件+复制索引已逐字入库 | [复制索引](Evidence/073/copy-index073.json)，Full/Build/三case独立核验通过；nativeexchange=false |
-| 源码快照 | pending | 明确Git快照/保留与省略profile、全部732运行输入；不能沿用072SourceSnapshot8490 |
-| 客户端/证据/画廊/正常局封包 | pending | 冻结inventory、成员类型/模式/路径/bytes/SHA与CRC/EOF独立核验；原图均实际查看后限定像素范围 |
-| 073私有Drive | pending | 实际目录/文件ID/父目录/名称/大小、owner-only，实际远端全字节SHA对照；不以元数据代替内容核验 |
-| 本轮Git最终提交/推送 | pending | 最终文档/evidence提交SHA、实际push和远端head/既有draft PR读回；runtime提交已有不代表交付推送完成 |
+[0.16.0私有目录](https://drive.google.com/drive/folders/1tmsiSFugort0xgY43XYsDQm4TtKATdBP)，父目录为原Frontier Reckoning项目。父目录、候选目录及九文件实际metadata均shared=false、仅一项user owner；没有共享修改。
 
-源码profile为all-tracked-except-Docs-Evidence-073-v1：完整Assets/Packages/ProjectSettings/Tools、根文件、SourceAssets和非Evidence文档；不是完整Git树或历史归档。选中/省略每个路径均记录Git mode/blob/bytes，运行输入732项与runtime/full/freeze相同。最终源码快照commit以外部package-manifest073.json实际记录为准，后续只写交付收据的Git提交另计，避免包哈希与自身提交形成循环。
-<!-- ROOT-FILL-073-PACKAGES: 封包后填每原ZIP精确bytes/SHA/成员及独立EOF/CRC/源目录/模式审计，注明未覆盖的ACL/xattrs/resource fork/签名范围。 -->
-073私有目录已实际创建在原项目父目录：[0.16.0候选](https://drive.google.com/drive/folders/1tmsiSFugort0xgY43XYsDQm4TtKATdBP)，当前权限读回shared=false、仅owner。文件上传与实际远端字节SHA仍pending，不能把空目录当交付完成。
+| 原件 | bytes | SHA256 | 下载 |
+|---|---:|---|---|
+| source.zip | 16296933 | `8b2c5df6983a6876e05b04dd5fd136be7ad547e19b550167c0789e7daecf761c` | [文件](https://drive.google.com/file/d/1_NKWQHV7TKtVnMxrjHxT8xvdZmSpivKg/view?usp=drivesdk) |
+| macOS.zip | 75955219 | `f341b957fbc7f747a4c299d8ba5264f774d8739c0519d06e2afa2a7966622a91` | [文件](https://drive.google.com/file/d/125ZKVJ7P3AYyhs6BsXJpNP4hqUxeYobz/view?usp=drivesdk) |
+| evidence.zip | 4945039 | `b3dd2a39711ff93d88f8e7504247acf961946fca209ec0d05ba7408e30027018` | [文件](https://drive.google.com/file/d/1k863sr5GVApNezINA04DxzZLJQLAgp4-/view?usp=drivesdk) |
+| normal.zip | 11710868 | `2cd481547129cdc4091c3e2119489f1bccd750effd5f4dab7d04797225ac4598` | [文件](https://drive.google.com/file/d/1VluFXwsPIknVIJCK_hEA3CnZcwB_Dkl2/view?usp=drivesdk) |
+| package-manifest073.json | 2565132 | `3d9a6c4d5e1ab24daa26f686d0d782c010e59c9f5b40749c0b80c0579d6ac714` | [文件](https://drive.google.com/file/d/1Dev2OA4kEWX5jKvEfwNzomxE6eT1ola9/view?usp=drivesdk) |
+| source-map073.json | 93889 | `dcffdf16c51f10eef0e1be84e7302d4f2545ca5048faec3dd8ebf08378391bd5` | [文件](https://drive.google.com/file/d/16UHFeKMOMQDn_SgpZ3h2w0qNeTpwjpYs/view?usp=drivesdk) |
+| actual-app-manifest073.json | 217262 | `83b5714a36bbceac21ceda9ee8a368e6a0a7e1037107358d912cb19bba9ea7a1` | [文件](https://drive.google.com/file/d/1Fcb6aA-w4zRPHztPA3OoY2oyjzKSX-yH/view?usp=drivesdk) |
+| drive073-original-seven-verified.json | 6077 | `78bc96c0e171312b818c1fce392790eefbef1474a643a2ab651cbbfcfabdeb05` | [文件](https://drive.google.com/file/d/1lG3O7aXoAWoK5ajFeiuHMOKGlIT83TXC/view?usp=drivesdk) |
+| README-073.md | 4158 | `18054bc69e36162ccd497e28d89835000e686ab76d36bc65648a09da861d3392` | [文件](https://drive.google.com/file/d/1_wCM4r0CuqnVU-f3drfc-BWnEcPcfUEi/view?usp=drivesdk) |
 
-<!-- ROOT-FILL-073-DRIVE-FILES: 实际上传和全字节SHA/owner-only核验后写终态与下载表。 -->
-<!-- ROOT-FILL-073-GIT: 最终文档/evidence提交和实际推送/远端读回完成后填SHA与收据，不预写成功。 -->
+四ZIP总108908059B、1478成员：source1049（1008files/41dirs）、macOS319（298/21）、evidence77（62/15）、normal33（28/5）。各低于100MiB；成员集/EOF/CRC/全字节SHA/Unix type+mode/执行flag已核。本次没有symlink；ACL/xattrs/resource fork和签名公证不由ZIP验证表示。
 
-## 游戏与交付边界
+[封包manifest](Evidence/073/Delivery/package-manifest073.json)SHA3d9a6c4d5e1ab24daa26f686d0d782c010e59c9f5b40749c0b80c0579d6ac714；[独立本地封包审计](Evidence/073/Delivery/independent073-package-audit.md)25319项检查、0失败，另有2410项只读核对和实际helper --verify exit0，均不增加Unity1611测试计数。fresh Git blob/source ZIP/freeze/source-map的732SHA相同；证据62file与源码快照Git副本/61原件相同；normal28file完整保留。
 
-073的玩家市场100/500真实交易、每玩家独立报价、反套利、保存/录像/LAN账本、AI余Food换币与完整Coin-only贸易储备、扩大有界stage已有自动化证据。当前三条普通case即使关闭，也只证明各实际付款/收入/军队行为和时限结果，不扩大为所有路线、六文明平衡、普通Gather全程安全/动态护送或原生FPS。当前GUID原生只确认市场建造/100W扣费/完成和三F9；兑换模态/原生买卖未完成，noWindowsAvailable错误保留。
+[最终九文件收据](Evidence/073/Delivery/drive073-final-nine-verified.json)保存实际Drive ID/title/parent/权限/全字节bytesSHA；它验证七原件111784342B，以及上传的七文件收据6077B和README4158B。收据本身不递归声称已核自身上传。[包外交付复制索引](Evidence/073/Delivery/delivery-copy-index073.json)记录原件SHA。原包、SourceSnapshot和此前审计均封存不改。
 
-客户端仍为Development/Mono，Release、签名/公证、Windows/Linux/Intel Mac、双物理Mac合作与长期帧时间/GC/内存尚未验收。保存/录像要求应用/规则/原生build身份匹配，不承诺072→073存档迁移或跨GUID录像。封包完整性和私有上传不能增加游戏验收范围或扩大共享。
+## 游戏通过范围与未完成项
 
-## 072及更早交付保持原身份
+三条普通I、standard双AI，无注资或强制干预；Ottoman44/45自然終局，Dutch42在2400秒cap未决胜。实际市场交易11/15/0、assembled14/14/21，最后300秒均有实际PvP伤害。10049项一致性核对通过，P1两Ott以70C市场收入补足并实际研究Ledger、收到金币运输；P0未完成Ledger，Dutch市场未触发。不同窗口不认证六文明平衡、全部路线或因果性能改善。
 
-[072私有交付](Delivery-072.md)已完成原11远端文件458,466,879B真实下载/SHA与owner-only，SourceSnapshot `8490fc7b153ddd7c3f566a59f9e916f0134f610b`、runtime `bc127e02638caaeefd2310a1a3eff858f4f4cb2f`、718输入FP04698、GUID `3288d9fe24e844748a1183f756874fbf` 各保持原身份。五本地原ZIP及完整正常局原ZIP209,058,503B/三片传输与重组核验不重建，不挪作073。原16普通局仅9/16路线达到、observed_routes_incomplete及旧性能/恢复限制保留。
+本GUID Native1只核正常300F/300W/100C开局、无效岸边放置不扣费、Market137在陆地100W付款并完成、三1600×1000F9和实际进程exit0。后续public Sky坐标click/drag返回noWindowsAvailable，原生市场模态/买卖/100-500未完成，原报告零MarketTrade；当前GUID原生cold/replay未验。InputSystem/Canvas自动化与OS像素分开。普通Gather动态路线安全、约1.8s模拟慢步/长期原生FPS、双物理Mac、完整商业内容、Release签名/其他平台仍待工作。
 
-072完成状态在更换canonical前已[逐字归档](Completion-Status-072.md)，原README/路线与最终canonical限制分别保存在[README快照](Archive/README-072.md)、[路线快照](AoE3-Gap-Roadmap-072.md)、[限制快照](Archive/Known-Issues-072-final.md)；已有Known-Issues-072与全部Evidence/072原件保持不变。071和更早各版原包、截图、存档/录像与[071交付](Delivery-071.md)、[070交付](Delivery-070.md)保留旧范围，不能重标为当前验收。
+## Git审查与历史身份
 
-既有[私有draft PR1](https://github.com/freezeng123456/unity-mimic-aoe/pull/1)保持原审查入口；此页不声明本轮最终PR head/远端push已读回，不修改main或公开发行范围。
+[既有私有draft PR1](https://github.com/freezeng123456/unity-mimic-aoe/pull/1)是审查入口；分支codex/land-rts-completion，main、公开发行和共享范围不在本次交付。源码ZIP以冻结SourceSnapshot为准，包外交付记录的最末Git提交以PR当前head和外部GitHub最终读回收据为准，避免包哈希或提交自引用。
+
+[072交付](Delivery-072.md)及其11远端文件、SourceSnapshot8490/runtimebc127/718输入/GUID3288、16普通局仅9/16路线和五原ZIP保持原字节/旧范围。[072完成快照](Completion-Status-072.md)、[README快照](Archive/README-072.md)、[路线快照](AoE3-Gap-Roadmap-072.md)、[限制快照](Archive/Known-Issues-072-final.md)逐字保存，原Known-Issues-072和所有Evidence/072未改。

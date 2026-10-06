@@ -1,6 +1,6 @@
 # 当前完成状态 · 0.16.0 市场兑换与拥挤港区集结
 
-2026-10-07。073新增真实付费的Food/Wood市场兑换、AI低时代Coin接续与完整Post/Ledger启动储备，以及拥挤港区的有界集结搜索。完整自动化和Mac构建已完成；三条普通I观察已实际关闭（runner exit0、源前后FP相同）：Ottoman44/45自然终局，Dutch42到2400秒cap；原生市场建造/扣费/完成已核，原生兑换点击因窗口定位错误未完成。073封包、私有Drive与本轮最终推送仍待闭合。六文明、五时代、四经典革命、曲河港区/海军、工作坊、课程/两条三章链、保存/录像和可信LAN沿用既有内容；没有新增国家或模型。规则仍为本项目P。[073内容](Content-073.md)、[073验证记录](Verification-073.md)、[073交付记录](Delivery-073.md)，基础操作沿用[073市场指南](Player-Guide-073.md)与[072基础指南](Player-Guide-072.md)。
+2026-10-07。073新增真实付费的Food/Wood市场兑换、AI低时代Coin接续与完整Post/Ledger启动储备，以及拥挤港区的有界集结搜索。完整自动化和Mac构建已完成；三条普通I观察已实际关闭（runner exit0、源前后FP相同）：Ottoman44/45自然终局，Dutch42到2400秒cap；原生市场建造/扣费/完成已核，原生兑换点击因窗口定位错误未完成。073四包本地完整性已核，九文件私有Drive全字节SHA/owner-only读回通过；最末Git审查head见既有draft PR。六文明、五时代、四经典革命、曲河港区/海军、工作坊、课程/两条三章链、保存/录像和可信LAN沿用既有内容；没有新增国家或模型。规则仍为本项目P。[073内容](Content-073.md)、[073验证记录](Verification-073.md)、[073交付记录](Delivery-073.md)，基础操作沿用[073市场指南](Player-Guide-073.md)与[072基础指南](Player-Guide-072.md)。
 
 ## 已实现且通过自动化的内容
 
@@ -21,8 +21,8 @@ AI仅在安全Coin渠道不足、真实义务需要币时出售真实余粮，�
 | 构建 | Unity6000.6.3f1、macOS arm64 Development/Mono；Candidate1/Build1实际exit0/Succeeded，前后源稳定；GUID `5f347ad9ec2f494984b0b49c4f896c31` |
 | 普通三case | **实际关闭、exit0、sourceStable**；Ottoman44/45自然终局、Dutch42观察cap，逐case事件与账本见验证记录 |
 | 本GUID原生 | **partial_market_scope，进程exit0**；三F9确认市场建造/100W扣费/完成；原生兑换、当前构建冷恢复/录像未验收 |
-| 073私有交付 | **pending**；尚无073已核验的源码/客户端/证据封包或Drive下载入口 |
-| 本轮Git交付 | **pending**；runtime提交已有身份，本轮最终文档提交/推送及远端读回尚待root完成 |
+| 073私有交付 | **四ZIP本地独立核验、九云盘文件111794577B完整字节SHA/owner-only通过**；见交付记录 |
+| 本轮Git审查 | runtime519d与SourceSnapshot0f656各有原身份；包外收据只写文档，最末head以既有私有draft PR为准 |
 
 ## 观察范围与待填项
 
@@ -32,7 +32,7 @@ AI仅在安全Coin渠道不足、真实义务需要币时出售真实余粮，�
 
 两Ott实际26笔卖Food；P1在两局都由70C市场收入补足150C Ledger费用并研究完成、收到金币运输。P0没有完成Ledger；Dutch两方有实际Ledger/运输，零市场交换。三局末300秒均有实际正PvP伤害（2749/2280/330），不等于全部cohort达目标、六文明平衡或动态路径已安全。[073验证](Verification-073.md)记录全部实际边界与计时。
 Native1市场137正常100W付款且完成，三1600×1000F9已看；坐标click/drag后续noWindowsAvailable，原生兑换未完成（0MarketTrade）。键盘F9和AX菜单退出可用、进程exit0；当前GUID冷恢复/录像未验，不挪用072证据。
-<!-- ROOT-FILL-073-DELIVERY: 待本地封包/私有上传及实际远端字节SHA与权限读回后填写；再独立补最终Git提交/推送回执。 -->
+[073私有交付](Delivery-073.md)记录全部真实Drive文件/哈希、四包25319项完整性检查、sourceprofile1008路径/4254省略，以及包外收据与源码快照的区别。
 
 ## 历史保持原身份
 

@@ -6,7 +6,7 @@
 
 运行提交 `519d7d34a0be85f75ee19e53458c636d1ba0b3e4`，732输入，指纹 `9b92812a922adb69a5ae501925417d8eba8e24b836f496274ebc8ec8679ba03d`。正式完整 `run-9q8yTJKS` 实际1192Edit+419Play，共 **1611/1611 Passed**，零失败/跳过/未决；原XML/源冻结及072旧用例fullname保留已独立核。Mac arm64 Development/Mono Build1实际exit0/Succeeded、前后源稳定，GUID `5f347ad9ec2f494984b0b49c4f896c31`。[073验证记录](Docs/Verification-073.md)。
 
-**三条声明普通I观察仍在运行，当前GUID原生、073封包/私有Drive及本轮最终文档提交/推送待完成。** Candidate1/NormalObserved1观察winding Ottoman44/45与river_bend Dutch42，2400cap/1500比较点；开始收据不等于三条完成。普通Gather实际路线/动态护送仍有限制，扩展stage不认证所有地图发兵，headless分项计时不认证原生FPS或文明平衡。[073交付记录](Docs/Delivery-073.md)只列当前身份与待补收据，尚无073已核验云盘下载入口。
+**三条普通I观察已关闭：两自然终局、一2400秒cap；073四包和云盘九文件已完成全字节SHA/owner-only核验。** 当前GUID原生仅市场建造/100W扣费/完成，原生兑换点击未完成；动态采集路线与长期帧率仍有限制。下载见[073私有交付](Docs/Delivery-073.md)，市场操作见[073指南](Docs/Player-Guide-073.md)。
 
 **历史072保持原身份。** 0.15.0 runtime `bc127e02638caaeefd2310a1a3eff858f4f4cb2f`、718输入FP04698、GUID `3288d9fe24e844748a1183f756874fbf` 的1567项正式测试、9个声明原生范围及私有11文件字节/SHA/owner-only交付已完成。[072完成快照](Docs/Completion-Status-072.md)、[072验证](Docs/Verification-072.md)、[072交付与下载](Docs/Delivery-072.md)。16普通I局独立Consistent、原状态observed_routes_incomplete，路线9/16达到（革命6/8、升V3/8），15笔500W Town恢复仅5笔完工；Dutch42约55分3秒总wall与普通Gather安全限制保留。H原录像仅step600→1111、Verified=false。073对闭合旧样本的只读诊断确认Ottoman44从仍有矿的敌袭区撤回后停币、Dutch42末段无stage持续Muster，不能把原截图/包或旧FPS样本重标新GUID，也不回写072原诊断/结果。完整[072README快照](Docs/Archive/README-072.md)逐字保留。
 
@@ -122,6 +122,6 @@ C1–C6失败结果原样保留，不跨局拼接。C7缺少单独终局F9和菜
 
 ## 交付边界
 
-当前0.16.0正式1611项自动化与Mac Build1已通过；**普通三case已关闭（两自然终局、一2400秒cap），当前GUID原生仅市场建造/扣费/完成；原生兑换点击未完成，073私有交付与最终推送仍待闭合**。[073验证记录](Docs/Verification-073.md)和[073交付记录](Docs/Delivery-073.md)列真实身份与待补项。历史072的9个原生范围、16普通局9/16路线与11远端文件字节/SHA/owner-only属于原GUID，下载仍见[072交付](Docs/Delivery-072.md)。历史0711521项、八条路线观察、英国受控IV原生与私有包上传/读回保留原身份，见[071交付](Docs/Delivery-071.md)；0.12/0.11及更早样本同理。
+当前0.16.0正式1611项自动化与Mac Build1已通过；**普通三case已关闭（两自然终局、一2400秒cap），当前GUID原生仅市场建造/扣费/完成；原生兑换点击未完成，073四包及云盘九文件已核，最末Git审查以draft PR当前head为准**。[073验证记录](Docs/Verification-073.md)和[073交付记录](Docs/Delivery-073.md)列真实身份、下载与限定范围。历史072的9个原生范围、16普通局9/16路线与11远端文件字节/SHA/owner-only属于原GUID，下载仍见[072交付](Docs/Delivery-072.md)。历史0711521项、八条路线观察、英国受控IV原生与私有包上传/读回保留原身份，见[071交付](Docs/Delivery-071.md)；0.12/0.11及更早样本同理。
 
 实体双Mac、跨网卡/防火墙、长窗延迟/性能、签名公证Release及Windows/Linux/Intel Mac分别未验收。可信LAN提供完整世界投影，没有竞技防作弊、加密、公网匹配/NAT/中继或主机迁移，同版本不同构建可能拒绝连接。原创场景编辑、四个项目革命分支和经营/集结改进已落入代码，完整文明制度/卡池/商业场景、美术/语音与海战仍有差距。[完成状态](Docs/Completion-Status.md)、[限制](Docs/Known-Issues.md)、[后续方向](Docs/AoE3-Gap-Roadmap.md)。
