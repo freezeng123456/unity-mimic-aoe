@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using UnityEngine;
 
 namespace Frontier
@@ -38,6 +40,10 @@ namespace Frontier
         public const long MaxBytes=64*1024*1024,MaxPayloadBytes=256*1024*1024;
         public const int MaxCatalogFiles=256;
         static readonly UTF8Encoding Utf8=new UTF8Encoding(false,true);
+        static readonly object CatalogCacheLock=new object();
+        static readonly Dictionary<string,ReplayCatalogEntry> ValidatedCatalogMetadata=new Dictionary<string,ReplayCatalogEntry>();
+        static readonly Queue<string> CatalogCacheOrder=new Queue<string>();
+        static long catalogValidationPasses;
         public static string DefaultDirectory=>Path.Combine(Application.persistentDataPath,"Replays");
         public static string PathFor(string directory,string segmentId)
         {
@@ -74,13 +80,26 @@ namespace Frontier
                 if(File.Exists(fullPath))File.Replace(temporary,fullPath,null);else File.Move(temporary,fullPath);
             }
             finally{if(File.Exists(temporary))File.Delete(temporary);}
+            RememberCatalogMetadata(CatalogContext(rules,expectedIdentity),BytesHash(bytes),document);
         }
         public static ReplayDocument Read(string path,RuleCatalog rules,ReplayIdentity expectedIdentity)
         {
             RequireIdentity(rules,expectedIdentity);
             try
             {
-                string json=ReadBounded(path);
+                string json=ReadBounded(path,out string storedHash);
+                var document=ReadDocument(json,rules,expectedIdentity);
+                RememberCatalogMetadata(CatalogContext(rules,expectedIdentity),storedHash,document);return document;
+            }
+            catch(Exception error)when(error is ArgumentException||error is FormatException)
+            {throw new IOException("Replay is unreadable: "+error.Message,error);}
+        }
+        // Catalog cache hits never enter this path: opening a file always runs
+        // the original envelope, document, anchor and ledger validation.
+        static ReplayDocument ReadDocument(string json,RuleCatalog rules,ReplayIdentity expectedIdentity)
+        {
+            try
+            {
                 // All envelope values get type/duplicate/unknown-key validation;
                 // schema and digest must be present even for the plain legacy
                 // container. No legacy ReplayDocument or MatchSave is accepted.
@@ -100,7 +119,7 @@ namespace Frontier
             RequireIdentity(rules,expectedIdentity);
             if(string.IsNullOrEmpty(directory))throw new ArgumentException("Replay directory is missing",nameof(directory));
             if(!Directory.Exists(directory))return Array.Empty<ReplayCatalogEntry>();
-            var entries=new List<ReplayCatalogEntry>();
+            var entries=new List<ReplayCatalogEntry>();string context=CatalogContext(rules,expectedIdentity);
             foreach(string file in Directory.EnumerateFiles(directory,"*.replay.json",SearchOption.TopDirectoryOnly))
             {
                 if(entries.Count>=MaxCatalogFiles)throw new IOException("Replay catalog exceeds "+MaxCatalogFiles+" files; existing files are preserved");
@@ -108,13 +127,14 @@ namespace Frontier
                 try
                 {
                     var info=new FileInfo(file);entry.StoredBytes=info.Length;entry.LastWriteUtc=info.LastWriteTimeUtc;
-                    var document=Read(file,rules,expectedIdentity);entry.SegmentId=document.segmentId;
-                    entry.StartStep=document.anchors[0].completedStep;entry.EndStep=document.anchors[document.anchors.Length-1].completedStep;
-                    var first=document.anchors[0].world;var last=document.anchors[document.anchors.Length-1].world;
-                    entry.RecordCount=document.records.Length;entry.MatchEnded=last.winner!=-1;entry.MapId=first.mapId;entry.PlayerCount=first.players.Length;
-                    entry.MatchId=document.matchId;entry.DurationSeconds=last.time-first.time;entry.FinishReason=document.finishReason;
-                    entry.Incomplete=document.incomplete;entry.IncompleteReason=document.incompleteReason;
-                    entry.Status=document.incomplete?ReplayFileStatus.IncompleteRecording:ReplayFileStatus.RecordedSegment;
+                    string json=ReadBounded(file,out string storedHash);
+                    if(!TryCatalogMetadata(context,storedHash,out var metadata))
+                    {
+                        Interlocked.Increment(ref catalogValidationPasses);
+                        var document=ReadDocument(json,rules,expectedIdentity);metadata=CatalogMetadata(document);
+                        RememberCatalogMetadata(context,storedHash,document);
+                    }
+                    entry=metadata;entry.FilePath=file;entry.StoredBytes=info.Length;entry.LastWriteUtc=info.LastWriteTimeUtc;
                 }
                 catch(Exception error)when(error is IOException||error is UnauthorizedAccessException||error is ArgumentException||error is FormatException)
                 {entry.Error=error.Message;if(error is ReplayIncompatibleException)entry.Status=ReplayFileStatus.Incompatible;}
@@ -122,6 +142,45 @@ namespace Frontier
             }
             entries.Sort((a,b)=>{int date=b.LastWriteUtc.CompareTo(a.LastWriteUtc);return date!=0?date:string.CompareOrdinal(a.FileName,b.FileName);});
             return entries.AsReadOnly();
+        }
+        static string CatalogContext(RuleCatalog rules,ReplayIdentity identity)
+        {return SnapshotCodec.Hash(JsonUtility.ToJson(identity)+"|"+SnapshotCodec.RulesHash(rules));}
+        static ReplayCatalogEntry CatalogMetadata(ReplayDocument document)
+        {
+            var first=document.anchors[0];var last=document.anchors[document.anchors.Length-1];
+            return new ReplayCatalogEntry{SegmentId=document.segmentId,Status=document.incomplete?ReplayFileStatus.IncompleteRecording:ReplayFileStatus.RecordedSegment,
+                StartStep=first.completedStep,EndStep=last.completedStep,RecordCount=document.records.Length,MatchEnded=last.world.winner!=-1,
+                MapId=first.world.mapId,PlayerCount=first.world.players.Length,MatchId=document.matchId,DurationSeconds=last.world.time-first.world.time,
+                FinishReason=document.finishReason,Incomplete=document.incomplete,IncompleteReason=document.incompleteReason};
+        }
+        static ReplayCatalogEntry CopyCatalogMetadata(ReplayCatalogEntry entry)
+        {
+            return new ReplayCatalogEntry{SegmentId=entry.SegmentId,Status=entry.Status,StartStep=entry.StartStep,EndStep=entry.EndStep,RecordCount=entry.RecordCount,
+                MatchEnded=entry.MatchEnded,MapId=entry.MapId,PlayerCount=entry.PlayerCount,MatchId=entry.MatchId,DurationSeconds=entry.DurationSeconds,
+                FinishReason=entry.FinishReason,Incomplete=entry.Incomplete,IncompleteReason=entry.IncompleteReason};
+        }
+        static bool TryCatalogMetadata(string context,string storedHash,out ReplayCatalogEntry entry)
+        {
+            lock(CatalogCacheLock)
+            {
+                if(ValidatedCatalogMetadata.TryGetValue(context+":"+storedHash,out var cached))
+                {entry=CopyCatalogMetadata(cached);return true;}
+            }
+            entry=null;return false;
+        }
+        static void RememberCatalogMetadata(string context,string storedHash,ReplayDocument document)
+        {
+            string key=context+":"+storedHash;
+            lock(CatalogCacheLock)
+            {
+                if(ValidatedCatalogMetadata.ContainsKey(key))return;
+                // Trusted only inside this process, after complete validation.
+                // Every listing still hashes the actual bounded file bytes;
+                // timestamps/lengths or mutable caller-owned entries are never
+                // evidence. No sidecar or persisted cache can assert validity.
+                while(ValidatedCatalogMetadata.Count>=MaxCatalogFiles)ValidatedCatalogMetadata.Remove(CatalogCacheOrder.Dequeue());
+                ValidatedCatalogMetadata.Add(key,CatalogMetadata(document));CatalogCacheOrder.Enqueue(key);
+            }
         }
         static void RequireIdentity(RuleCatalog rules,ReplayIdentity expected)
         {
@@ -140,14 +199,16 @@ namespace Frontier
         }
         sealed class ReplayIncompatibleException:IOException
         {public ReplayIncompatibleException(string message):base(message){}}
-        static string ReadBounded(string path)
+        static string BytesHash(byte[] bytes)
+        {using(var hash=SHA256.Create())return BitConverter.ToString(hash.ComputeHash(bytes)).Replace("-","").ToLowerInvariant();}
+        static string ReadBounded(string path,out string storedHash)
         {
             using(var stream=new FileStream(path,FileMode.Open,FileAccess.Read,FileShare.Read))
             {
                 if(stream.Length<=0||stream.Length>MaxBytes)throw new IOException("Replay file size is outside the allowed range");
                 byte[] bytes=new byte[(int)stream.Length];int used=0;
                 while(used<bytes.Length){int count=stream.Read(bytes,used,bytes.Length-used);if(count==0)throw new IOException("Replay file was truncated while reading");used+=count;}
-                if(stream.ReadByte()!=-1)throw new IOException("Replay file grew while reading");return Utf8.GetString(bytes);
+                if(stream.ReadByte()!=-1)throw new IOException("Replay file grew while reading");storedHash=BytesHash(bytes);return Utf8.GetString(bytes);
             }
         }
     }

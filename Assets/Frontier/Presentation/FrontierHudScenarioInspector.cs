@@ -178,7 +178,7 @@ namespace Frontier
             InspectorNote069("Select and drag an existing object, or choose PLACE.\nResource amounts and building completion are editable.",ref y);
             InspectorChoice069("POINTER",new[]{"place","erase"}.Contains069(editorTool069)?editorTool069:"select",new[]{"select","place","erase"},v=>{editorTool069=v;RefreshEditorInspector069();},ref y);
             InspectorField069("CATALOG ID",editorDefinition069,v=>{if(game.Rules.Entity(v.Trim())!=null){editorDefinition069=v.Trim();editorTool069="place";}else game.EditorMessage("Unknown unit, building or resource");RefreshEditorInspector069();},ref y,64);
-            var entries=new List<EntityDef>();foreach(var d in game.Rules.entities)if(d.id!="trade_socket"&&d.id!="treasure")entries.Add(d);
+            var entries=new List<EntityDef>();foreach(var d in game.Rules.entities)if(d.id!="trade_socket"&&d.id!="treasure"&&!d.revolutionary)entries.Add(d);
             int pages=Mathf.Max(1,Mathf.CeilToInt(entries.Count/6f));editorCatalogPage069=Mathf.Clamp(editorCatalogPage069,0,pages-1);
             for(int i=0;i<6&&editorCatalogPage069*6+i<entries.Count;i++){var def=entries[editorCatalogPage069*6+i];InspectorButton069(def.name+" · "+def.id,()=>{editorDefinition069=def.id;editorTool069="place";RefreshEditorInspector069();},ref y);}
             InspectorButton069("MORE OBJECTS "+(editorCatalogPage069+1)+" / "+pages,()=>{editorCatalogPage069=(editorCatalogPage069+1)%pages;RefreshEditorInspector069();},ref y);

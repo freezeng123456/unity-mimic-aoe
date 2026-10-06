@@ -93,6 +93,7 @@ namespace Frontier
                 Horse(root,rig,team);
             }
             Color coat=e.Worker?new Color(.69f,.57f,.36f):team;
+            if(e.def.revolutionary)coat=new Color(.42f,.38f,.30f);
             if(e.def.civilization=="wayfarer")coat=new Color(.21f,.23f,.40f);
             else if(e.def.civilization=="highland")coat=new Color(.37f,.39f,.33f);
             else if(e.def.id=="coureur")coat=new Color(.60f,.52f,.35f);
@@ -128,6 +129,7 @@ namespace Frontier
                 Section(x<0?rig.LeftHand:rig.RightHand,"Hand",Vector3.zero,new Vector2(.17f,.18f),new Vector2(.16f,.17f),.18f,new Color(.77f,.59f,.4f));
             }
             Equip(e,rig,horse);
+            if(e.def.revolutionary)rig.SupplyCollectorWeapon=rig.Weapon;
             ExpansionEquipment(root,e,rig,team,riderY);
             ClassicEquipment(root,e,rig,team,riderY);
             DetailedUnits.Refine(root,rig,e,team);
@@ -137,7 +139,7 @@ namespace Frontier
         private static void Headwear(Transform root,EntityState e,float riderY,Color team)
         {
             if(ClassicHeadwear(root,e,riderY,team))return;
-            bool broad=e.Worker||e.def.id=="explorer"||e.def.id=="skirmisher"||e.def.id=="longbow";
+            bool broad=e.Worker||e.def.revolutionary||e.def.id=="explorer"||e.def.id=="skirmisher"||e.def.id=="longbow";
             Color felt=e.Worker?new Color(.65f,.49f,.25f):new Color(.12f,.16f,.17f);
             Section(root,"Hat brim",new Vector3(0,1.73f+riderY,0),new Vector2(broad?.70f:.48f,broad?.58f:.44f),new Vector2(broad?.70f:.48f,broad?.58f:.44f),.055f,felt);
             float height=e.def.id=="hussar"||e.def.id=="carabineer"?.24f:e.Worker?.12f:.15f;

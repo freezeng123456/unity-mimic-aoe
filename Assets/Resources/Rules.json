@@ -3130,6 +3130,64 @@
       "waterborne": false,
       "civilian": false,
       "repairCost": {}
+    },
+    {
+      "id": "revolutionary",
+      "name": "Revolutionary Volunteer",
+      "description": "Revolution infantry. Can collect only your food, wood and coin crates; cannot work natural resources, construct or repair. Existing settlers convert with their identity and health ratio intact.",
+      "producer": "",
+      "civilization": "",
+      "kind": 0,
+      "tags": 3,
+      "cost": {
+        "food": 0,
+        "wood": 0,
+        "coin": 0
+      },
+      "hp": 190,
+      "radius": 0.4,
+      "width": 1,
+      "depth": 1,
+      "speed": 4,
+      "vision": 18,
+      "damage": 22,
+      "meleeDamage": 10,
+      "siegeDamage": 12,
+      "range": 14,
+      "minRange": 0,
+      "period": 3,
+      "windup": 0.35,
+      "projectileSpeed": 30,
+      "splash": 0,
+      "damageKind": 1,
+      "meleeResist": 0,
+      "rangedResist": 0,
+      "siegeResist": 0,
+      "time": 26,
+      "population": 1,
+      "capacity": 0,
+      "age": 4,
+      "batch": 5,
+      "garrison": 0,
+      "deploy": false,
+      "bonuses": [],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 0,
+      "trainXp": 0,
+      "killXp": 10,
+      "excludedCivilizations": [
+        "wayfarer",
+        "highland"
+      ],
+      "meleeBonuses": [
+        {
+          "tags": 8,
+          "multiplier": 3
+        }
+      ],
+      "revolutionary": true
     }
   ],
   "techs": [
@@ -6616,6 +6674,20 @@
         "ally_coastal_guard"
       ],
       "attack": 0.2
+    },
+    {
+      "id": "civilian_rebuilding",
+      "name": "Rebuild Civilian Government",
+      "description": "Restore this civilization's settler training, Manor settlers or automatic Ottoman recruitment. Revolutionary soldiers stay soldiers; the commitment to age IV is permanent.",
+      "building": "town",
+      "age": 4,
+      "cost": {
+        "food": 400,
+        "wood": 0,
+        "coin": 400
+      },
+      "time": 60,
+      "requiresRevolution": true
     }
   ],
   "cards": [
@@ -8312,6 +8384,234 @@
       "count": 1,
       "travel": 45,
       "repeatable": false
+    },
+    {
+      "id": "rev_coast_reserve",
+      "name": "Volunteer Assembly - Volunteer Reinforcements",
+      "description": "Revolution shipment. Uses an earned opportunity and a real landing. Supplies remain collectible crates.",
+      "civilization": "coast",
+      "age": 4,
+      "unit": "revolutionary",
+      "count": 6,
+      "crates": {},
+      "travel": 35,
+      "repeatable": true,
+      "revolutionOnly": true
+    },
+    {
+      "id": "rev_coast_food",
+      "name": "Volunteer Assembly - Food Supply",
+      "description": "Revolution shipment. Uses an earned opportunity and a real landing. Supplies remain collectible crates.",
+      "civilization": "coast",
+      "age": 4,
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "food": 1000
+      },
+      "travel": 35,
+      "repeatable": true,
+      "revolutionOnly": true
+    },
+    {
+      "id": "rev_coast_engineering",
+      "name": "Volunteer Assembly - Engineering Supply",
+      "description": "Revolution shipment. Uses an earned opportunity and a real landing. Supplies remain collectible crates.",
+      "civilization": "coast",
+      "age": 4,
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "wood": 800,
+        "coin": 400
+      },
+      "travel": 35,
+      "repeatable": true,
+      "revolutionOnly": true
+    },
+    {
+      "id": "rev_coast_guard",
+      "name": "Volunteer Assembly - National Guard",
+      "description": "Revolution shipment. Uses an earned opportunity and a real landing. Supplies remain collectible crates.",
+      "civilization": "coast",
+      "age": 4,
+      "unit": "longbow",
+      "count": 6,
+      "crates": {},
+      "travel": 35,
+      "repeatable": false,
+      "revolutionOnly": true
+    },
+    {
+      "id": "rev_river_reserve",
+      "name": "Merchant Republic - Volunteer Reinforcements",
+      "description": "Revolution shipment. Uses an earned opportunity and a real landing. Supplies remain collectible crates.",
+      "civilization": "river",
+      "age": 4,
+      "unit": "revolutionary",
+      "count": 6,
+      "crates": {},
+      "travel": 35,
+      "repeatable": true,
+      "revolutionOnly": true
+    },
+    {
+      "id": "rev_river_food",
+      "name": "Merchant Republic - Food Supply",
+      "description": "Revolution shipment. Uses an earned opportunity and a real landing. Supplies remain collectible crates.",
+      "civilization": "river",
+      "age": 4,
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "food": 1000
+      },
+      "travel": 35,
+      "repeatable": true,
+      "revolutionOnly": true
+    },
+    {
+      "id": "rev_river_engineering",
+      "name": "Merchant Republic - Engineering Supply",
+      "description": "Revolution shipment. Uses an earned opportunity and a real landing. Supplies remain collectible crates.",
+      "civilization": "river",
+      "age": 4,
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "wood": 800,
+        "coin": 400
+      },
+      "travel": 35,
+      "repeatable": true,
+      "revolutionOnly": true
+    },
+    {
+      "id": "rev_river_guard",
+      "name": "Merchant Republic - National Guard",
+      "description": "Revolution shipment. Uses an earned opportunity and a real landing. Supplies remain collectible crates.",
+      "civilization": "river",
+      "age": 4,
+      "unit": "carabineer",
+      "count": 3,
+      "crates": {},
+      "travel": 35,
+      "repeatable": false,
+      "revolutionOnly": true
+    },
+    {
+      "id": "rev_france_reserve",
+      "name": "Citizens' Guard - Volunteer Reinforcements",
+      "description": "Revolution shipment. Uses an earned opportunity and a real landing. Supplies remain collectible crates.",
+      "civilization": "france",
+      "age": 4,
+      "unit": "revolutionary",
+      "count": 6,
+      "crates": {},
+      "travel": 35,
+      "repeatable": true,
+      "revolutionOnly": true
+    },
+    {
+      "id": "rev_france_food",
+      "name": "Citizens' Guard - Food Supply",
+      "description": "Revolution shipment. Uses an earned opportunity and a real landing. Supplies remain collectible crates.",
+      "civilization": "france",
+      "age": 4,
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "food": 1000
+      },
+      "travel": 35,
+      "repeatable": true,
+      "revolutionOnly": true
+    },
+    {
+      "id": "rev_france_engineering",
+      "name": "Citizens' Guard - Engineering Supply",
+      "description": "Revolution shipment. Uses an earned opportunity and a real landing. Supplies remain collectible crates.",
+      "civilization": "france",
+      "age": 4,
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "wood": 800,
+        "coin": 400
+      },
+      "travel": 35,
+      "repeatable": true,
+      "revolutionOnly": true
+    },
+    {
+      "id": "rev_france_guard",
+      "name": "Citizens' Guard - National Guard",
+      "description": "Revolution shipment. Uses an earned opportunity and a real landing. Supplies remain collectible crates.",
+      "civilization": "france",
+      "age": 4,
+      "unit": "cuirassier",
+      "count": 2,
+      "crates": {},
+      "travel": 35,
+      "repeatable": false,
+      "revolutionOnly": true
+    },
+    {
+      "id": "rev_ottoman_reserve",
+      "name": "Provincial Assembly - Volunteer Reinforcements",
+      "description": "Revolution shipment. Uses an earned opportunity and a real landing. Supplies remain collectible crates.",
+      "civilization": "ottoman",
+      "age": 4,
+      "unit": "revolutionary",
+      "count": 6,
+      "crates": {},
+      "travel": 35,
+      "repeatable": true,
+      "revolutionOnly": true
+    },
+    {
+      "id": "rev_ottoman_food",
+      "name": "Provincial Assembly - Food Supply",
+      "description": "Revolution shipment. Uses an earned opportunity and a real landing. Supplies remain collectible crates.",
+      "civilization": "ottoman",
+      "age": 4,
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "food": 1000
+      },
+      "travel": 35,
+      "repeatable": true,
+      "revolutionOnly": true
+    },
+    {
+      "id": "rev_ottoman_engineering",
+      "name": "Provincial Assembly - Engineering Supply",
+      "description": "Revolution shipment. Uses an earned opportunity and a real landing. Supplies remain collectible crates.",
+      "civilization": "ottoman",
+      "age": 4,
+      "unit": "",
+      "count": 0,
+      "crates": {
+        "wood": 800,
+        "coin": 400
+      },
+      "travel": 35,
+      "repeatable": true,
+      "revolutionOnly": true
+    },
+    {
+      "id": "rev_ottoman_guard",
+      "name": "Provincial Assembly - National Guard",
+      "description": "Revolution shipment. Uses an earned opportunity and a real landing. Supplies remain collectible crates.",
+      "civilization": "ottoman",
+      "age": 4,
+      "unit": "janissary",
+      "count": 5,
+      "crates": {},
+      "travel": 35,
+      "repeatable": false,
+      "revolutionOnly": true
     }
   ],
   "ages": [
@@ -9562,6 +9862,84 @@
       "deadline": 600,
       "radius": 9,
       "escortUnit": "objective_cart"
+    }
+  ],
+  "revolutions": [
+    {
+      "id": "rev_coast",
+      "civilization": "coast",
+      "name": "Volunteer Assembly",
+      "description": "Keep your civilization and age IV; convert land settlers into infantry and replace the active shipment list. Paid civilian rebuilding restores settler sources.",
+      "unit": "revolutionary",
+      "cards": [
+        "rev_coast_reserve",
+        "rev_coast_food",
+        "rev_coast_engineering",
+        "rev_coast_guard"
+      ],
+      "cost": {
+        "food": 800,
+        "wood": 800,
+        "coin": 800
+      },
+      "time": 90
+    },
+    {
+      "id": "rev_river",
+      "civilization": "river",
+      "name": "Merchant Republic",
+      "description": "Keep your civilization and age IV; convert land settlers into infantry and replace the active shipment list. Paid civilian rebuilding restores settler sources.",
+      "unit": "revolutionary",
+      "cards": [
+        "rev_river_reserve",
+        "rev_river_food",
+        "rev_river_engineering",
+        "rev_river_guard"
+      ],
+      "cost": {
+        "food": 800,
+        "wood": 800,
+        "coin": 800
+      },
+      "time": 90
+    },
+    {
+      "id": "rev_france",
+      "civilization": "france",
+      "name": "Citizens' Guard",
+      "description": "Keep your civilization and age IV; convert land settlers into infantry and replace the active shipment list. Paid civilian rebuilding restores settler sources.",
+      "unit": "revolutionary",
+      "cards": [
+        "rev_france_reserve",
+        "rev_france_food",
+        "rev_france_engineering",
+        "rev_france_guard"
+      ],
+      "cost": {
+        "food": 800,
+        "wood": 800,
+        "coin": 800
+      },
+      "time": 90
+    },
+    {
+      "id": "rev_ottoman",
+      "civilization": "ottoman",
+      "name": "Provincial Assembly",
+      "description": "Keep your civilization and age IV; convert land settlers into infantry and replace the active shipment list. Paid civilian rebuilding restores settler sources.",
+      "unit": "revolutionary",
+      "cards": [
+        "rev_ottoman_reserve",
+        "rev_ottoman_food",
+        "rev_ottoman_engineering",
+        "rev_ottoman_guard"
+      ],
+      "cost": {
+        "food": 800,
+        "wood": 800,
+        "coin": 800
+      },
+      "time": 90
     }
   ]
 }

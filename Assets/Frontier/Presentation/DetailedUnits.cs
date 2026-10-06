@@ -39,7 +39,7 @@ namespace Frontier
                 Replace(root.Find("Head"),s=>s.Loft(new[]{-.17f,-.105f,.025f,.105f,.17f},new[]{.105f,.149f,.171f,.163f,.13f},new[]{.12f,.16f,.168f,.15f,.12f},16,Color.white));
                 Replace(root.Find("Tailored coat"),s=>s.Loft(new[]{-.275f,-.16f,.04f,.19f,.275f},new[]{.20f,.23f,.30f,.325f,.325f},new[]{.15f,.164f,.199f,.21f,.21f},16,Color.white));
                 Replace(root.Find("Coat skirts"),s=>s.Loft(new[]{-.16f,-.05f,.09f,.16f},new[]{.31f,.286f,.23f,.20f},new[]{.20f,.21f,.17f,.15f},16,Color.white));
-                bool broad=e.Worker||e.def.id=="explorer"||e.def.id=="skirmisher"||e.def.id=="longbow";
+                bool broad=e.Worker||e.def.revolutionary||e.def.id=="explorer"||e.def.id=="skirmisher"||e.def.id=="longbow";
                 Replace(root.Find("Hat brim"),s=>s.HatBrim(broad,e.Worker));
                 Replace(root.Find("Steel cavalry helmet"),s=>s.Loft(new[]{-.14f,-.07f,.05f,.13f,.16f},new[]{.23f,.225f,.20f,.145f,.07f},new[]{.215f,.219f,.192f,.145f,.085f},18,Color.white));
                 Replace(root.Find("Janissary tall felt cap"),s=>s.Loft(new[]{-.235f,-.12f,.12f,.235f},new[]{.195f,.20f,.18f,.17f},new[]{.18f,.19f,.16f,.14f},16,Color.white));

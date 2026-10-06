@@ -88,6 +88,7 @@ namespace Frontier
             {
                 var t=Rules.Tech(item);if(t==null)return "Unknown technology";
                 if(t.building!=b.def.id)return "Requires "+t.building;
+                if(t.requiresRevolution&&p.politicalPhase!=PoliticalPhase.Revolutionary)return "Requires completed revolution; civilian rebuilding is once-only";
                 if(p.age<t.age)return "Requires age "+t.age;
                 if(!string.IsNullOrEmpty(t.civilization)&&t.civilization!=p.civilization)return "Civilization requirement";
                 if(t.units!=null&&t.units.Length>0&&!Array.Exists(t.units,id=>EntityAvailable(player,Rules.Entity(id))))return "No available units use this technology";
@@ -101,6 +102,7 @@ namespace Frontier
                 if(d.producer!=b.def.id)return "Requires "+d.producer;
                 if(p.age<UnitAge(player,d))return "Requires age "+UnitAge(player,d);
                 if(!EntityAvailable(player,d))return "Civilization requirement";
+                if((d.tags&Tags.Villager)!=0&&WorkerSourcesClosed(player))return "Settler training closed during revolution; rebuild civilian government";
                 if(d.waterborne&&!Layout.HasWater)return "River vessels require a water map";
                 if((d.tags&Tags.Villager)!=0&&AutoRecruitSeconds(player)>0)return "Settlers are recruited automatically by town centers";
                 count=Mathf.Clamp(count,1,d.batch);
@@ -121,6 +123,7 @@ namespace Frontier
             var p=P(c.player);if(p==null)return CommandResult.Fail("Invalid player");
             if(TryHandleIndustrialCommand(c,out var industrialResult))return industrialResult;
             var b=c.actors!=null&&c.actors.Length>0?Get(c.actors[0]):null;
+            if(c.kind==CommandKind.Revolution)return StartRevolution(c,b);
             if(c.kind==CommandKind.ToggleRecruitment)
             {
                 if(b==null||!b.Alive||b.owner!=c.player||!b.Complete||b.def.id!="town"||AutoRecruitSeconds(c.player)<=0)return CommandResult.Fail("Select your completed automatic recruiting town center");
@@ -153,7 +156,9 @@ namespace Frontier
             if(c.kind==CommandKind.CancelQueue)
             {
                 if(b==null||!b.Alive||b.owner!=c.player||c.index<0||c.index>=b.queue.Count)return CommandResult.Fail("No such queue entry");
-                var j=b.queue[c.index];b.queue.RemoveAt(c.index);p.reservedPopulation=Mathf.Max(0,p.reservedPopulation-j.population);Refund(c.player,j.paid,b.id,"Cancelled "+j.item);return CommandResult.Ok("Unfinished order refunded");
+                var j=b.queue[c.index];b.queue.RemoveAt(c.index);p.reservedPopulation=Mathf.Max(0,p.reservedPopulation-j.population);Refund(c.player,j.paid,b.id,"Cancelled "+j.item);
+                if(j.kind=="Revolution")Emit("RevolutionCancelled",c.player,b.id,j.item);
+                return CommandResult.Ok("Unfinished order refunded");
             }
             if(c.kind==CommandKind.Train||c.kind==CommandKind.Research)
             {
@@ -186,8 +191,10 @@ namespace Frontier
         public string ShipmentReason(int player,string id)
         {
             var p=P(player);if(p==null)return "Invalid player";
-                var card=Rules.Card(id);if(card==null||!p.deck.Contains(id))return ("Card not in this deck");
+                var card=Rules.Card(id);if(card==null||!ActiveShipmentCards(player).Contains(id))return ("Card not in this active deck");
                 if(ValidateDeck(player,p.deck)!="")return ("Invalid deck");
+                var shippedUnit=Rules.Entity(card.unit);
+                if(shippedUnit!=null&&(shippedUnit.tags&Tags.Villager)!=0&&!shippedUnit.waterborne&&WorkerSourcesClosed(player))return "New settler shipments closed during revolution; accepted shipments still arrive";
                 if(card.age>p.age)return ("Card requires age "+card.age);
                 if(!card.repeatable&&p.sentCards.Contains(card.id))return ("Already sent this match");
                 if(p.shipmentTokens<=0)return ("Earn XP for a shipment opportunity");
@@ -202,16 +209,16 @@ namespace Frontier
             for(int i=0;i<originalCount;i++)
             {
                 var e=Entities[i];if(!e.Alive||e.garrisonedIn!=0||e.owner>=0&&!IsPlayerActive(e.owner))continue;
-                if((e.Worker||e.def.repairArtillery||e.def.fishingBoat)&&e.orders.Count>0)
+                if((e.Worker||e.def.repairArtillery||e.def.fishingBoat||e.def.revolutionary)&&e.orders.Count>0)
                 {
                     var o=e.orders.Peek();var target=Get(o.target);
                     if(o.kind==OrderKind.Gather)Gather(e,o,dt);
-                    else if(o.kind==OrderKind.Manufacture)
+                    else if(o.kind==OrderKind.Manufacture&&e.Worker)
                     {
                         if(target==null||!target.Alive||!target.Complete){e.orders.Dequeue();e.status="Workshop lost";continue;}
                         if(EdgeDistance(e,target)<=1.5f){e.status=target.queue.Count>0?"Manufacturing":"Workshop awaiting orders";if(dt>0&&target.queue.Count>0)e.work=new WorkActivity{kind=WorkKind.Manufacture,target=target.id,time=Time};}
                     }
-                    else if(o.kind==OrderKind.Build||o.kind==OrderKind.Repair)
+                    else if(o.kind==OrderKind.Build&&e.Worker||o.kind==OrderKind.Repair&&(e.Worker||e.def.repairArtillery))
                     {
                         if(target==null||!target.Alive||target.garrisonedIn!=0){e.orders.Dequeue();e.status="Target lost";continue;}
                         if(EdgeDistance(e,target)>1.5f)continue;
@@ -233,13 +240,13 @@ namespace Frontier
                 if(b.Complete)
                 {
                     RecomputePopulationCap(b.owner);AwardXp(b.owner,b.def.buildXp,b.id,"Building completed");Emit("BuildingComplete",b.owner,b.id,b.def.name+" ready");
-                    if(b.def.id=="house"&&Rules.Civ(Players[b.owner].civilization).houseVillager)b.queue.Add(new ProductionJob{kind="Gift",item=WorkerDefinition(b.owner).id,count=1,duration=0});
+                    if(b.def.id=="house"&&CivilianWorkersEnabled(b.owner)&&Rules.Civ(Players[b.owner].civilization).houseVillager)b.queue.Add(new ProductionJob{kind="Gift",item=WorkerDefinition(b.owner).id,count=1,duration=0});
                 }
             }
             TickIndustrialEconomy(dt);
             foreach(var p in Players)if(IsPlayerActive(p.id)&&p.shipments.Count>0)
-            {var s=p.shipments[0];var card=Rules.Card(s.card);s.elapsed=Mathf.Min(card.travel,s.elapsed+dt);if(s.elapsed>=card.travel)Deliver(p,s,card);}
-            foreach(var p in Players)if(IsPlayerActive(p.id)&&p.rewards.Count>0)DeliverReward(p);
+                TickPoliticalShipments(p,dt);
+            foreach(var p in Players)if(IsPlayerActive(p.id)&&p.rewards.Count>0)TickPoliticalRewards(p);
         }
         private void Gather(EntityState worker,UnitOrder order,float dt)
         {
@@ -255,7 +262,7 @@ namespace Frontier
             if(!GatheringDomainAllowed(worker,r)){FlushGather(worker.id);worker.orders.Dequeue();worker.status="Resource unavailable";return;}
             if(!r.Complete){worker.status="Waiting for completion";return;}
             if(EdgeDistance(worker,r)>1.5f)return;
-            int atPoint=0;foreach(var e in Nearby(r.position,3.2f))if((e.Worker||e.def.fishingBoat)&&e.orders.Count>0&&e.orders.Peek().kind==OrderKind.Gather&&e.orders.Peek().target==r.id&&e.id<worker.id)atPoint++;
+            int atPoint=0;foreach(var e in Nearby(r.position,3.2f))if((e.Worker||e.def.fishingBoat||e.def.revolutionary)&&e.orders.Count>0&&e.orders.Peek().kind==OrderKind.Gather&&e.orders.Peek().target==r.id&&e.id<worker.id)atPoint++;
             if(atPoint>=8){worker.status="Waiting for a work position";return;}
             float amount=GatherRate(worker,r)*dt;if(!Sustainable(r))amount=Mathf.Min(r.remaining,amount);
             if(amount<=0)return;
@@ -310,7 +317,8 @@ namespace Frontier
             if(j.kind=="Train")dt*=CivilizationFactor(b.owner,t=>t.trainSpeed);
             j.elapsed=Mathf.Min(j.duration,j.elapsed+dt);if(j.elapsed<j.duration)return;
             if(j.kind=="Manufacture"){Players[b.owner].prefabCharges+=j.count;b.queue.RemoveAt(0);Emit("ManufactureComplete",b.owner,b.id,j.item,j.count);b.status="Prefabrication kit ready";return;}
-            if(j.kind=="Research"){ApplyTechnology(b.owner,j.item);b.queue.RemoveAt(0);Emit("ResearchComplete",b.owner,b.id,Rules.Tech(j.item).name);return;}
+            if(j.kind=="Research"){ApplyTechnology(b.owner,j.item);if(j.item==CivilianRebuildingTechnology)CompleteCivilianRebuilding(b.owner,b.id);b.queue.RemoveAt(0);Emit("ResearchComplete",b.owner,b.id,Rules.Tech(j.item).name);return;}
+            if(j.kind=="Revolution"){CompleteRevolution(b,j);return;}
             if(j.kind=="Age")
             {
                 int age=int.Parse(j.item);var a=Rules.Age(age);var p=P(b.owner);p.age=age;p.ageHistory.Add(age+" @ "+Time.ToString("0.0")+"s");b.queue.RemoveAt(0);AwardXp(p.id,100,b.id,"Age advancement");Emit("AgeAdvanced",p.id,b.id,"Reached age "+age);
@@ -323,7 +331,7 @@ namespace Frontier
                     Emit("AgeRouteChosen",p.id,b.id,choice.id);
                 }return;
             }
-            var d=Rules.Entity(j.item);if(d==null){b.queue.RemoveAt(0);return;}
+            var d=RevolutionOutputDefinition(b.owner,Rules.Entity(j.item));if(d==null){b.queue.RemoveAt(0);return;}
             var owner=P(b.owner);
             if(j.kind=="Gift"&&UnitLimitReason(b.owner,d,j.count)!=""){b.status=UnitLimitReason(b.owner,d,j.count);return;}
             if(j.kind=="Gift"&&owner.usedPopulation+owner.reservedPopulation+d.population*j.count>Mathf.Min(owner.populationCap,Rules.populationLimit)){b.status="Reward waiting for housing";return;}
@@ -357,9 +365,9 @@ namespace Frontier
         }
         private EntityState FindNavalReceiver(int player)
         {foreach(var e in Entities)if(e.Alive&&e.Complete&&e.owner==player&&e.def.id=="dock")return e;return null;}
-        private void DeliverReward(PlayerState p)
+        private void DeliverReward(PlayerState p,RewardJob reward=null)
         {
-            var reward=p.rewards[0];var d=Rules.Entity(reward.unit);
+            reward??=p.rewards[0];var d=RevolutionOutputDefinition(p.id,Rules.Entity(reward.unit));
             var receiver=d?.waterborne==true?FindNavalReceiver(p.id):FindReceiver(p.id);
             if(receiver==null){reward.waiting=d?.waterborne==true?"Naval reward needs a completed harbor":"Age reward needs a town center or watchtower";return;}
             if(d!=null)
@@ -371,12 +379,12 @@ namespace Frontier
                 foreach(var point in positions)Spawn(d.id,p.id,point);
             }
             else if(!SpawnCrates(p.id,receiver.position,reward.crates)){reward.waiting="Age reward crate landing blocked";return;}
-            p.rewards.RemoveAt(0);Emit("AgeRewardArrived",p.id,receiver.id,"Governor reward arrived");
+            p.rewards.Remove(reward);Emit("AgeRewardArrived",p.id,receiver.id,"Governor reward arrived");
         }
         private void Deliver(PlayerState p,ShipmentJob shipment,CardDef card)
         {
             var industry=IndustrialShipmentReason(p.id,card,true);if(industry!=""){shipment.waiting=industry;return;}
-            var d=string.IsNullOrEmpty(card.unit)?null:Rules.Entity(card.unit);
+            var d=string.IsNullOrEmpty(card.unit)?null:RevolutionOutputDefinition(p.id,Rules.Entity(card.unit));
             EntityState receiver=d?.waterborne==true?FindNavalReceiver(p.id):FindReceiver(p.id);
             if(receiver==null){shipment.waiting=d?.waterborne==true?"Naval shipment needs a completed harbor":"Need a town center or watchtower";return;}
             if(d!=null)
@@ -389,7 +397,7 @@ namespace Frontier
             }
             else if(!SpawnCrates(p.id,receiver.position,card.crates)){shipment.waiting="Crate landing area blocked";return;}
             if(!string.IsNullOrEmpty(card.tech))ApplyTechnology(p.id,card.tech);
-            p.shipments.RemoveAt(0);Emit("ShipmentArrived",p.id,receiver.id,card.name+" arrived");
+            p.shipments.Remove(shipment);Emit("ShipmentArrived",p.id,receiver.id,card.name+" arrived");
         }
         private bool SpawnCrates(int player,Vector2 point,Cost crates)
         {
@@ -415,7 +423,9 @@ namespace Frontier
         {
             CancelCaravan(e,"Caravan destroyed");FlushGather(e.id);var p=P(e.owner);if(p==null)return;
             if(e.def.kind==EntityKind.Unit)p.usedPopulation=Mathf.Max(0,p.usedPopulation-e.def.population);
-            foreach(var j in e.queue)p.reservedPopulation=Mathf.Max(0,p.reservedPopulation-j.population);e.queue.Clear();RecomputePopulationCap(e.owner);
+            foreach(var j in e.queue)
+            {p.reservedPopulation=Mathf.Max(0,p.reservedPopulation-j.population);if(j.kind=="Revolution")Emit("RevolutionLost",e.owner,e.id,j.item+"; paid commitment lost with the town center");}
+            e.queue.Clear();RecomputePopulationCap(e.owner);
         }
         public void ApplyTechnology(int player,string id)
         {

@@ -18,6 +18,7 @@ namespace Frontier
         private int expeditionSize;
         private readonly AiWorkforce workforce;
         private readonly AiAgePlan agePlan;
+        private readonly AiRevolution071 revolution;
         private readonly AiConstruction construction;
         private readonly AiSearchPlan search;
         private readonly AiCivilizationEconomy civilizationEconomy;
@@ -26,7 +27,7 @@ namespace Frontier
         private int rotation,buildSerial;
         public SkirmishAI(World world,int player):this(world,player,AiDifficultyProfile.From(world.Rules,"standard")){}
         public SkirmishAI(World world,int player,AiDifficultyProfile difficulty)
-        {this.world=world??throw new ArgumentNullException(nameof(world));if(player<0||player>=world.Players.Length)throw new ArgumentOutOfRangeException(nameof(player));this.player=player;Difficulty=difficulty??throw new ArgumentNullException(nameof(difficulty));workforce=new AiWorkforce(world,player);agePlan=new AiAgePlan(world,player);construction=new AiConstruction(world,player);civilizationEconomy=new AiCivilizationEconomy(world,player);waterEconomy=new AiWaterEconomy(world,player);home=world.OpeningTownPosition(player);search=new AiSearchPlan(world,player,enemyStart);}
+        {this.world=world??throw new ArgumentNullException(nameof(world));if(player<0||player>=world.Players.Length)throw new ArgumentOutOfRangeException(nameof(player));this.player=player;Difficulty=difficulty??throw new ArgumentNullException(nameof(difficulty));workforce=new AiWorkforce(world,player);agePlan=new AiAgePlan(world,player);revolution=new AiRevolution071(world,player,Difficulty);construction=new AiConstruction(world,player);civilizationEconomy=new AiCivilizationEconomy(world,player);waterEconomy=new AiWaterEconomy(world,player);home=world.OpeningTownPosition(player);search=new AiSearchPlan(world,player,enemyStart);}
         public AiSnapshot CaptureState()
         {
             var remembered=new List<IntPointSnapshot>();
@@ -69,25 +70,35 @@ namespace Frontier
             DevelopIndustry(own,enemies);
             int soldierCount=army.FindAll(e=>(e.def.tags&Tags.Explorer)==0).Count;
             var p=world.Players[player];var town=Find(own,"town");bool advancing=false;
-            foreach(var e in own)foreach(var j in e.queue)if(j.kind=="Age")advancing=true;
+            foreach(var e in own)foreach(var j in e.queue)if(j.kind=="Age"||j.kind=="Revolution")advancing=true;
             construction.ResumeOne(own,workers,enemies);
             if(town==null&&workers.Count>0)Build(own,workers,"town");
             int workerGoal=Math.Min(world.WorkerLimit(player),p.age==1?12:p.age==2?24:p.age==3?34:42);
             var workerDefinition=world.WorkerDefinition(player);bool paidWorkers=world.AutoRecruitSeconds(player)<=0;
             bool underAttack=enemies.Exists(e=>e.Military&&(e.def.tags&Tags.Explorer)==0&&(e.position-home).sqrMagnitude<34*34);
             bool rangedRaid=enemies.Exists(e=>(e.def.tags&Tags.Infantry)!=0&&e.def.range>=16&&(e.position-home).sqrMagnitude<40*40);
-            bool investWorkers=workers.Count<workerGoal&&(!underAttack||soldierCount>=6||workers.Count<12);
+            bool investWorkers=!world.WorkerSourcesClosed(player)&&world.CivilianWorkersEnabled(player)&&workers.Count<workerGoal&&(!underAttack||soldierCount>=6||workers.Count<12);
             int raiders=enemies.FindAll(e=>e.Military&&(e.def.tags&Tags.Explorer)==0&&(e.position-home).sqrMagnitude<34*34).Count;
-            agePlan.Tick(town,workers.Count,soldierCount,raiders,advancing);
-            bool saveForAge=agePlan.Saving;
+            agePlan.Tick(town,workers.Count,soldierCount,raiders,advancing,revolution.AllowsAgeAdvance);
+            var politicalReserve=revolution.Reserve;
+            bool saveForAge=agePlan.Saving||politicalReserve.food+politicalReserve.wood+politicalReserve.coin>0;
             if(town!=null&&town.Complete&&town.queue.Count==0)
             {
                 var next=world.Rules.Age(p.age+1);
-                if(p.age<world.MaxAge&&next!=null&&world.CanAfford(player,next.cost)&&saveForAge)
+                if(revolution.TryFreeCivilianSeat(town,enemies))
+                {own.RemoveAll(e=>!e.Alive);army.RemoveAll(e=>!e.Alive);workers.RemoveAll(e=>!e.Alive);}
+                if(revolution.NeedsFirstPaidWorker&&paidWorkers&&investWorkers&&!world.WorkerSourcesClosed(player)&&
+                    world.ProductionReason(player,town,workerDefinition.id)==""&&
+                    Send(new GameCommand{kind=CommandKind.Train,actors=new[]{town.id},item=workerDefinition.id}).accepted)
+                {politicalReserve=revolution.Reserve;saveForAge=agePlan.Saving||politicalReserve.food+politicalReserve.wood+politicalReserve.coin>0;}
+                else if(revolution.TryCommit(town))
+                {politicalReserve=revolution.Reserve;saveForAge=agePlan.Saving||politicalReserve.food+politicalReserve.wood+politicalReserve.coin>0;}
+                else if(p.age<world.MaxAge&&next!=null&&world.CanAfford(player,next.cost)&&agePlan.Saving&&revolution.AllowsAgeAdvance)
                     Send(new GameCommand{kind=CommandKind.AdvanceAge,actors=new[]{town.id},choice=agePlan.ChooseBranch(underAttack)});
-                else if(paidWorkers&&investWorkers&&!saveForAge)Send(new GameCommand{kind=CommandKind.Train,actors=new[]{town.id},item=workerDefinition.id});
+                else if(paidWorkers&&investWorkers&&!world.WorkerSourcesClosed(player)&&!saveForAge)Send(new GameCommand{kind=CommandKind.Train,actors=new[]{town.id},item=workerDefinition.id});
             }
-            Cost workerReserve=paidWorkers&&town!=null&&town.Complete&&town.queue.Count==0&&investWorkers&&!saveForAge?world.UnitCost(player,workerDefinition):new Cost();
+            Cost progressReserve=agePlan.Reserve+politicalReserve;
+            Cost workerReserve=!world.WorkerSourcesClosed(player)&&paidWorkers&&town!=null&&town.Complete&&town.queue.Count==0&&investWorkers&&!saveForAge?world.UnitCost(player,workerDefinition):new Cost();
             bool firstBank=p.age>=2&&world.CountingHouseLimit(player)>0&&Find(own,"bank")==null&&!saveForAge&&!underAttack;
             Cost bankReserve=firstBank?world.EntityCost(player,world.Rules.Entity("bank")):new Cost();
             string specialBuilding=civilizationEconomy.Building;
@@ -110,21 +121,22 @@ namespace Frontier
             }
             foreach(var e in own)if(e.def.garrison>0&&e.occupants.Count>0&&enemies.Find(x=>(x.position-e.position).sqrMagnitude<24*24)==null)Send(new GameCommand{kind=CommandKind.Ungarrison,actors=new[]{e.id}});
             Cost civilizationResearchReserve=civilizationEconomy.TechnologyReserve(own,saveForAge,underAttack);
-            civilizationEconomy.Tick(own,workers,enemies,workerReserve+bankReserve+agePlan.Reserve,saveForAge,underAttack);
+            civilizationEconomy.Tick(own,workers,enemies,workerReserve+bankReserve+progressReserve,saveForAge,underAttack);
             bool riverInvestment=workers.Count>=12&&soldierCount>=4&&own.Exists(e=>e.def.id=="barracks"&&e.Complete);
-            waterEconomy.Tick(own,workers,enemies,workerReserve+bankReserve+specialReserve+agePlan.Reserve,saveForAge||!riverInvestment,underAttack);
-            var economyTarget=EconomyTarget(own,workers,enemies,saveForAge,investWorkers,firstBank);
+            waterEconomy.Tick(own,workers,enemies,workerReserve+bankReserve+specialReserve+progressReserve,saveForAge||!riverInvestment,underAttack);
+            var economyTarget=EconomyTarget(own,workers,enemies,saveForAge,investWorkers,firstBank,politicalReserve);
             ChooseFactoryProduction(own,army,economyTarget,dt);
             workforce.Assign(workers,economyTarget,enemies);
+            revolution.CollectCrates(army,enemies);
             EnsureSustainableEconomy(own,workers,p);
             if(p.age>=2&&!underAttack&&!saveForAge&&workers.Count>=16)InvestInRoute(own,workers);
             foreach(var post in own)if(post.def.id=="trade_post"&&post.Complete&&p.technologies.Contains("cargo_ledgers"))
             {var wanted=p.resources.food<500?ResourceKind.Food:p.resources.coin<500?ResourceKind.Coin:ResourceKind.Wood;if(post.tradeMode!=wanted)Send(new GameCommand{kind=CommandKind.TradeMode,actors=new[]{post.id},index=(int)wanted});}
-            if(p.age>=2&&!underAttack&&!saveForAge)UseNeutralSettlement(own,workerReserve+bankReserve+specialReserve+civilizationResearchReserve+agePlan.Reserve);
+            if(p.age>=2&&!underAttack&&!saveForAge)UseNeutralSettlement(own,workerReserve+bankReserve+specialReserve+civilizationResearchReserve+progressReserve);
             if(p.shipmentTokens>0)
             {
                 CardDef chosen=null;float best=-10000;
-                foreach(string id in p.deck)
+                foreach(string id in world.ActiveShipmentCards(player))
                 {
                     if(world.ShipmentReason(player,id)!="")continue;var card=world.Rules.Card(id);
                     float score=card.repeatable?0:8;score+=card.age*2;
@@ -138,7 +150,13 @@ namespace Frontier
                         foreach(var pending in p.shipments)if(world.Rules.Card(pending.card)?.unit=="factory_wagon")industry++;
                         score+=underAttack?(industry==0?20:10):(industry==0?70:35);
                     }
-                    if(saveForAge){var need=world.Rules.Age(p.age+1).cost;score+=Math.Min(card.crates.food,Math.Max(0,need.food-p.resources.food))*.04f+Math.Min(card.crates.coin,Math.Max(0,need.coin-p.resources.coin))*.04f;}
+                    if(saveForAge)
+                    {
+                        var need=progressReserve;
+                        float useful=Math.Min(card.crates.food,Math.Max(0,need.food-p.resources.food))+Math.Min(card.crates.wood,Math.Max(0,need.wood-p.resources.wood))+Math.Min(card.crates.coin,Math.Max(0,need.coin-p.resources.coin));
+                        score+=useful*.04f;
+                        if(politicalReserve.food+politicalReserve.wood+politicalReserve.coin>0&&useful>0)score+=80;
+                    }
                     if(score>best){best=score;chosen=card;}
                 }
                 if(chosen!=null)Send(new GameCommand{kind=CommandKind.Ship,item=chosen.id});
@@ -163,7 +181,7 @@ namespace Frontier
                     for(int n=batch;n>=1;n--)
                     {
                         var cost=world.UnitCost(player,d)*n;
-                        if(!CanSpend(cost,workerReserve+bankReserve+specialReserve+civilizationResearchReserve+agePlan.Reserve+(artillery?new Cost():siegeReserve)))continue;
+                        if(!CanSpend(cost,workerReserve+bankReserve+specialReserve+civilizationResearchReserve+progressReserve+(artillery?new Cost():siegeReserve)))continue;
                         var result=Send(new GameCommand{kind=CommandKind.Train,actors=new[]{producer.id},item=d.id,count=n});
                         if(result.accepted){rotation++;queued=true;break;}
                     }
@@ -175,7 +193,7 @@ namespace Frontier
                     if(world.ProductionReason(player,producer,t.id,true)!="")continue;
                     // Unit upgrades need a meaningful existing force; economy can invest sooner.
                     if(t.units!=null&&t.units.Length>0&&world.UnitCountIncludingProduction(player,t.units[0])<4)continue;
-                    if(!CanSpend(t.cost,workerReserve+bankReserve+specialReserve+civilizationResearchReserve+siegeReserve))continue;
+                    if(!CanSpend(t.cost,workerReserve+bankReserve+specialReserve+civilizationResearchReserve+progressReserve+siegeReserve))continue;
                     Send(new GameCommand{kind=CommandKind.Research,actors=new[]{producer.id},item=t.id});break;
                 }
             }
@@ -211,6 +229,7 @@ namespace Frontier
             bool refreshSearch=searchActive&&(!searchingLastReview||search.Revision!=previousSearchRevision);searchingLastReview=searchActive;
             foreach(var unit in soldiers)
             {
+                if(revolution.KeepSupplyGuard(unit,enemies))continue;
                 if(unit.orders.Count>0&&unit.orders.Peek().kind==OrderKind.Embark)continue;
                 if(unit.hp<world.MaxHp(unit)*.22f&&enemies.Count>soldiers.Count){if(unit.orders.Count==0||unit.orders.Peek().kind!=OrderKind.Move)Send(new GameCommand{kind=CommandKind.Order,actors=new[]{unit.id},order=OrderKind.Move,point=waterEconomy.LandArmyDestination(unit,home)});continue;}
                 if(civilizationEconomy.Support(unit,army,enemies))continue;
@@ -334,12 +353,14 @@ namespace Frontier
             }
         }
         // Savings are inferred from actual next commands and rule costs, never awarded.
-        private Cost EconomyTarget(List<EntityState> own,List<EntityState> workers,List<EntityState> visible,bool save,bool recruit,bool firstBank)
+        private Cost EconomyTarget(List<EntityState> own,List<EntityState> workers,List<EntityState> visible,bool save,bool recruit,bool firstBank,Cost politicalReserve)
         {
             var p=world.Players[player];Cost target=new Cost();
             var settler=world.WorkerDefinition(player);
             if(recruit&&world.AutoRecruitSeconds(player)<=0)target+=world.UnitCost(player,settler)*(60/settler.time);
-            if((save||p.age==1)&&p.age<world.MaxAge)target+=world.Rules.Age(p.age+1).cost;
+            if(agePlan.Saving)target+=agePlan.Reserve;
+            else if(p.age==1&&revolution.AllowsAgeAdvance&&p.age<world.MaxAge)target+=world.Rules.Age(p.age+1).cost;
+            target+=politicalReserve;
             int free=p.populationCap-p.usedPopulation-p.reservedPopulation;
             if(free<12&&p.populationCap<world.Rules.populationLimit)target+=world.EntityCost(player,world.Rules.Entity("house"));
             if(Find(own,"barracks")==null)target+=world.EntityCost(player,world.Rules.Entity("barracks"));
@@ -375,6 +396,7 @@ namespace Frontier
         private bool Build(List<EntityState> own,List<EntityState> workers,string id)
         {
             if(Unfinished(own,id)||workers.Count==0)return false;
+            if(!CanSpend(world.EntityCost(player,world.Rules.Entity(id)),agePlan.Reserve+revolution.Reserve))return false;
             for(int ring=0;ring<4;ring++)for(int n=0;n<20;n++)
             {
                 float angle=(n+buildSerial)*Mathf.PI*2/20;Vector2 point=home+new Vector2(Mathf.Cos(angle),Mathf.Sin(angle))*(9+ring*5);point=new Vector2(Mathf.Round(point.x),Mathf.Round(point.y));

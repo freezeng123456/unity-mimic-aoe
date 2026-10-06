@@ -11,6 +11,7 @@ namespace Frontier
         public Transform LeftKnee,RightKnee,HorseHead,HorseTail;
         public Transform Shield,Cargo,RepairWeapon;
         public Transform WorkerFirearm;
+        public Transform SupplyCollectorWeapon;
         public Transform MeleeWeapon;
         public Transform[] CartWheels=Array.Empty<Transform>();
         public float RiderSeatHeight=1.15f,ArtilleryTravelTilt=12,ArtilleryRecoil=.32f;

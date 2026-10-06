@@ -18,6 +18,7 @@ namespace Frontier
             if(AutoRecruitSeconds(town.owner)<=0)return "This civilization trains settlers manually";
             if(!town.Complete)return "Town center under construction";
             if(IsMatchEnded)return "Match has ended";
+            if(!CivilianWorkersEnabled(town.owner))return "Revolution: rebuild civilian government to resume settlers";
             if(town.autoRecruitPaused)return "Paused by player";
             if(town.queue.Count>0)return "Town center queue busy";
             var worker=WorkerDefinition(town.owner);

@@ -23,10 +23,13 @@ namespace Frontier
                 SnapshotCodec.Finite(state.bestCoverage)&&state.bestCoverage>=0&&state.bestCoverage<=3.001f,"age plan clocks or coverage");
             TargetAge=state.targetAge;saving=state.saving;retryAt=state.retryAt;resumeAt=state.resumeAt;progressAt=state.progressAt;bestCoverage=state.bestCoverage;
         }
-        public void Tick(EntityState town,int workers,int soldiers,int visibleRaiders,bool advancing)
+        public void Tick(EntityState town,int workers,int soldiers,int visibleRaiders,bool advancing,bool allowAdvance=true)
         {
             if(world.Paused||world.IsMatchEnded||!world.IsPlayerActive(player))return;
-            var p=world.Players[player];int required=Math.Min(world.WorkerLimit(player),p.age==1?12:p.age==2?20:p.age==3?30:38);
+            var p=world.Players[player];
+            if(!allowAdvance||p.politicalPhase!=PoliticalPhase.Empire||world.WorkerSourcesClosed(player))
+            {if(TargetAge>0)End(town,"Political commitment replaces age savings",0);return;}
+            int required=Math.Min(world.WorkerLimit(player),p.age==1?12:p.age==2?20:p.age==3?30:38);
             if(TargetAge>0)
             {
                 if(advancing||p.age>=TargetAge){End(town,"Age study queued or completed",0);return;}

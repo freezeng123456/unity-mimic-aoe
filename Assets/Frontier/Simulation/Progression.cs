@@ -66,8 +66,9 @@ namespace Frontier
         {
             if(town==null||!town.Alive||town.owner!=player||town.def.id!="town"||!town.Complete)return "Select a completed town center";
             var p=Players[player];if(p.age>=MaxAge)return "Maximum era reached";
+            if(p.politicalPhase!=PoliticalPhase.Empire)return "Revolution permanently retains age IV";
             if(town.queue.Count>=6)return "Production queue full";
-            foreach(var e in Entities)if(e.Alive&&e.owner==player)foreach(var j in e.queue)if(j.kind=="Age")return "Age advancement already queued";
+            if(PoliticalCommitmentQueued(player))return "Age advancement or revolution already queued";
             var next=Rules.Age(p.age+1);if(next==null)return "Age undefined";
             return CanAfford(player,next.cost)?"":"Need "+next.cost;
         }

@@ -54,6 +54,7 @@ namespace Frontier
             if(rig==null||!rig.BeginPose(pose))return;rig.WorkerEquipment?.Show(pose.tool);
             SetActive(rig.RepairWeapon,pose.tool==WorkerTool.None);
             SetActive(rig.WorkerFirearm,pose.tool==WorkerTool.None);
+            SetActive(rig.SupplyCollectorWeapon,pose.state!=UnitPoseState.Gather);
             if(rig.MeleeWeapon!=null){SetActive(rig.Weapon,!pose.melee);SetActive(rig.MeleeWeapon,pose.melee);}
             SetActive(rig.Cargo,pose.loadedCargo);
             if(rig.Shield!=null&&rig.FoldingPavise)

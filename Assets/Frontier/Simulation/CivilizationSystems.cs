@@ -10,7 +10,7 @@ namespace Frontier
         public static readonly Cost CaravanLoadCost=new Cost(60,0,0);
         public bool EntityAvailable(int player,EntityDef definition)
         {
-            var p=P(player);return p!=null&&definition!=null&&
+            var p=P(player);return p!=null&&definition!=null&&(!definition.revolutionary||p.politicalPhase!=PoliticalPhase.Empire)&&
                 (string.IsNullOrEmpty(definition.civilization)||definition.civilization==p.civilization)&&
                 (definition.excludedCivilizations==null||Array.IndexOf(definition.excludedCivilizations,p.civilization)<0);
         }

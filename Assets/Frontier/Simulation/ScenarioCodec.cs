@@ -204,6 +204,7 @@ namespace Frontier
                 {
                     Require(p!=null,"null placement");Add(p.id,"placement",true);var definition=rules.Entity(p.definition);
                     Require(definition!=null&&(resources?definition.kind==EntityKind.Resource:definition.kind==EntityKind.Unit||definition.kind==EntityKind.Building),"placement catalog kind "+p.definition);
+                    Require(!definition.revolutionary,"revolution troops are obtained through the paid match commitment");
                     Require(Point(p.position)&&Owner(p.owner,players,true)&&Number(p.remaining,-1,1000000)&&(p.remaining==-1||p.remaining>=0),"placement position/owner/remaining");
                     Require(resources?p.complete:true,"resources must be complete");
                     Require(!resources||!string.IsNullOrEmpty(definition.id),"resource definition");
@@ -315,7 +316,7 @@ namespace Frontier
                     Reference(a.objectId,entities,"action object",a.kind=="order_move"||a.kind=="order_attack"||a.kind=="order_attack_move");Reference(a.targetId,entities,"action target",a.kind=="order_attack");
                     Reference(a.triggerId,triggerIds,"action trigger",a.kind=="enable_trigger"||a.kind=="disable_trigger");
                     Require(a.definition!=null&&(a.definition==""||rules.Entity(a.definition)!=null),"action definition");
-                    if(a.kind=="spawn")Require(rules.Entity(a.definition)?.kind==EntityKind.Unit,"spawn needs a catalog unit");
+                    if(a.kind=="spawn")Require(rules.Entity(a.definition)?.kind==EntityKind.Unit&&!rules.Entity(a.definition).revolutionary,"spawn needs a unit obtainable without a revolution commitment");
                     if(a.kind=="grant_resource")Require(Resource(a.resource)&&a.amount>0,"resource grant type/amount");
                     if(a.kind=="message")Require(Text(a.message,1024,true),"message action needs text");
                 }

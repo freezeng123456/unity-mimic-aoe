@@ -200,14 +200,19 @@ namespace Frontier
                     else if(job.kind=="Research")known=rules.Tech(job.item)!=null;
                     else if(job.kind=="Manufacture")known=Array.Exists(rules.manufactureRecipes,r=>r.id==job.item);
                     else if(job.kind=="Age")known=int.TryParse(job.item,out int age)&&age>=2&&age<=s.maxAge&&rules.Age(age)!=null;
+                    else if(job.kind=="Revolution")known=Array.Exists(rules.revolutions??Array.Empty<RevolutionDef>(),r=>r.id==job.item);
                     Require(known,"unknown production kind or item");
                 }
             }
             Require(s.nextId>max&&s.nextId<int.MaxValue,"next entity id");
+            ValidateTransportSnapshot(rules,s.entities);
+            ValidateNeutralAlliesSnapshot(rules,s.neutralAllies,s.entities,s.players,s.hasScenarioDocument?s.scenarioDocument:null,s.hasScenarioDocument?s.scenarioState:null);
+            ValidateRevolutionSnapshot(rules,s);
             if(s.hasScenarioDocument)
             {
                 ScenarioRuntime.Validate(s.scenarioDocument,s.scenarioHash,s.scenarioState,Array.ConvertAll(s.entities,e=>e.state),s.winner,s.time,
-                    Array.ConvertAll(s.entities,e=>e.definition),Array.ConvertAll(s.players,p=>rules.Civ(p.state.civilization).workerUnit));
+                    Array.ConvertAll(s.entities,e=>e.definition),Array.ConvertAll(s.players,p=>rules.Civ(p.state.civilization).workerUnit),
+                    rules,Array.ConvertAll(s.players,p=>p.state),s.maxAge);
                 foreach(var nav in new[]{s.landNavigation,s.waterNavigation})Require(nav!=null&&nav.width==128&&nav.height==128&&nav.terrain?.Length==16384,"scenario navigation");
                 for(int y=0;y<128;y++)for(int x=0;x<128;x++)
                 {
@@ -216,8 +221,6 @@ namespace Frontier
                     Require(s.waterNavigation.terrain[index]==!savedLayout.IsWater(p),"scenario water terrain mismatch");
                 }
             }
-            ValidateTransportSnapshot(rules,s.entities);
-            ValidateNeutralAlliesSnapshot(rules,s.neutralAllies,s.entities,s.players,s.hasScenarioDocument?s.scenarioDocument:null,s.hasScenarioDocument?s.scenarioState:null);
             var objective=s.mapObjective;
             if(s.schema==2&&objective!=null){objective=SnapshotCodec.Clone(objective);objective.enemyPlayer=objective.enemyProgress>0?1-objective.player:-1;}
             ValidateMapObjectiveSnapshot(rules,objective,s.entities,s.mapId,s.winner,s.seed,teams,savedLayout);

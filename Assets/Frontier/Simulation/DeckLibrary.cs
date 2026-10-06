@@ -12,7 +12,7 @@ namespace Frontier
         }
         public static bool CardAllowed(RuleCatalog rules,string civilization,CardDef card)
         {
-            if(card==null||(!string.IsNullOrEmpty(card.civilization)&&card.civilization!=civilization))return false;
+            if(card==null||card.revolutionOnly||(!string.IsNullOrEmpty(card.civilization)&&card.civilization!=civilization))return false;
             if(!string.IsNullOrEmpty(card.unit)&&!EntityAllowed(rules,civilization,card.unit))return false;
             if(!string.IsNullOrEmpty(card.tech))
             {

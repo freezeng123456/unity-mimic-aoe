@@ -241,8 +241,9 @@ namespace Frontier
                     if(!entity.Alive){Release(visual);visuals.Remove(entity.id);}else visual.root.gameObject.SetActive(false);
                     continue;
                 }
-                // Refresh only visible models. Age changes do not reveal a hidden opponent.
-                if(entity.def.kind==EntityKind.Building&&!MatchesBuildingVariant(visual,entity))
+                // A stable entity ID can change its role during revolution. Only
+                // visible models refresh, preserving the normal fog boundary.
+                if(visual.key!=VisualKey(entity)||entity.def.kind==EntityKind.Building&&!MatchesBuildingVariant(visual,entity))
                 {visual.root.gameObject.SetActive(false);Destroy(visual.root.gameObject);visual=Acquire(entity);visuals[entity.id]=visual;}
                 SetActive(visual.root.gameObject,true);var targetPosition=EntityPosition(entity);
                 if(!game.IsPaused&&!visual.root.position.Equals(targetPosition))visual.root.position=Vector3.Lerp(visual.root.position,targetPosition,.55f);

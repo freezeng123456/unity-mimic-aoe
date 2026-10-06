@@ -55,7 +55,8 @@ namespace Frontier
         public void Restore(ScenarioRuntimeState saved)
         {
             Validate(document,world.ScenarioHash,saved,world.Entities.ToArray(),world.Winner,world.Time,
-                world.Entities.ConvertAll(e=>e.def.id).ToArray(),Array.ConvertAll(world.Players,p=>world.Rules.Civ(p.civilization).workerUnit));state=SnapshotCodec.Clone(saved);
+                world.Entities.ConvertAll(e=>e.def.id).ToArray(),Array.ConvertAll(world.Players,p=>world.Rules.Civ(p.civilization).workerUnit),
+                world.Rules,world.Players,world.MaxAge);state=SnapshotCodec.Clone(saved);
         }
         ScenarioObjectiveState Objective(string id)=>Array.Find(state.objectiveStates,o=>o.id==id);
         ScenarioTriggerState Trigger(string id)=>Array.Find(state.triggerStates,t=>t.id==id);
@@ -214,7 +215,8 @@ namespace Frontier
         }
         public void MarkResult(int winner,string reason,bool scenarioVictory)
         {state.winner=winner;state.reason=reason;state.scenarioVictory=scenarioVictory;}
-        public static void Validate(ScenarioDocument document,string hash,ScenarioRuntimeState state,EntityState[] entities,int winner,float time,string[] entityDefinitions=null,string[] workerDefinitions=null)
+        public static void Validate(ScenarioDocument document,string hash,ScenarioRuntimeState state,EntityState[] entities,int winner,float time,string[] entityDefinitions=null,string[] workerDefinitions=null,
+            RuleCatalog rules=null,PlayerState[] players=null,int maxAge=0)
         {
             void Require(bool valid,string reason){if(!valid)throw new ArgumentException("Invalid scenario runtime state: "+reason);}
             Require(state!=null&&state.schema==1&&state.documentHash==hash,"identity");
@@ -225,6 +227,21 @@ namespace Frontier
             // EntitySnapshot.definition without mutating the source state.
             entityDefinitions??=Array.ConvertAll(entities,e=>e.def?.id??"");
             Require(entityDefinitions.Length==entities.Length&&workerDefinitions?.Length==document.starts.Length,"entity/worker definition context");
+            Require(rules==null&&players==null||rules!=null&&players?.Length==document.starts.Length,"political role context");
+            bool ConvertedWorkerRole(string original,string current,int owner)
+            {
+                // This is a definition transition of the same authored actor,
+                // never a replacement binding or a general military exception.
+                // WorldSnapshot validates the full political receipt first.
+                if(rules==null||players==null||owner<0||owner>=players.Length||maxAge!=5)return false;
+                var p=players[owner];var before=rules.Entity(original);var after=rules.Entity(current);
+                var revolution=p==null?null:Array.Find(rules.revolutions??Array.Empty<RevolutionDef>(),r=>r!=null&&r.civilization==p.civilization);
+                return p!=null&&p.id==owner&&(p.politicalPhase==PoliticalPhase.Revolutionary||p.politicalPhase==PoliticalPhase.CivilianRebuilt)&&p.age==4&&
+                    revolution!=null&&p.revolutionId==revolution.id&&SnapshotCodec.Finite(p.revolutionAt)&&p.revolutionAt>=0&&p.revolutionAt<=time&&
+                    before!=null&&before.kind==EntityKind.Unit&&(before.tags&Tags.Villager)!=0&&!before.waterborne&&
+                    after!=null&&after.kind==EntityKind.Unit&&after.revolutionary&&!after.waterborne&&current==revolution.unit&&
+                    before.population==after.population&&before.radius==after.radius;
+            }
             var ids=new HashSet<int>();var entityRows=new Dictionary<int,EntityState>();
             var definitions=new Dictionary<int,string>();
             for(int i=0;i<entities.Length;i++)
@@ -269,7 +286,7 @@ namespace Frontier
                 {
                     var entity=entityRows[binding.entityIds[0]];
                     Require(entity.owner==expected.Item1&&SnapshotCodec.Finite(entity.origin)&&(entity.origin-expected.Item2).sqrMagnitude<.000001f,"initial binding identity");
-                    if(roles.TryGetValue(binding.objectId,out string role))Require(definitions[entity.id]==role,"initial binding definition "+binding.objectId);
+                    if(roles.TryGetValue(binding.objectId,out string role))Require(definitions[entity.id]==role||ConvertedWorkerRole(role,definitions[entity.id],expected.Item1),"initial binding definition "+binding.objectId);
                 }
                 else Require(binding.entityIds.Length<=spawnCounts[binding.objectId],"spawn binding execution count");
             }

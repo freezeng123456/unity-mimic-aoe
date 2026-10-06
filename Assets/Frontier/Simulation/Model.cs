@@ -9,7 +9,8 @@ namespace Frontier
     public enum DamageKind { Melee, Ranged, Siege }
     [Flags] public enum Tags { None=0, Infantry=1, HeavyInfantry=2, LightInfantry=4, Cavalry=8, HeavyCavalry=16, LightCavalry=32, Artillery=64, Villager=128, Building=256, Explorer=512, Guardian=1024, Naval=2048 }
     public enum OrderKind { Move, Attack, AttackMove, Gather, Build, Repair, Garrison, Stop, Hold, Claim, Manufacture, DeployFactory, Embark, Disembark, TransportBerth, DockRepair }
-    public enum CommandKind { Order, Build, Train, CancelQueue, CancelBuilding, Research, AdvanceAge, Ship, Rally, Ungarrison, ToggleMode, Demolish, Resign, TradeMode, TradeRoute, Manufacture, ToggleShield, ToggleRecruitment, FactoryMode, Embark, Disembark, DockRepair, NeutralAlliance, NeutralRecruit, NeutralResearch }
+    public enum CommandKind { Order, Build, Train, CancelQueue, CancelBuilding, Research, AdvanceAge, Ship, Rally, Ungarrison, ToggleMode, Demolish, Resign, TradeMode, TradeRoute, Manufacture, ToggleShield, ToggleRecruitment, FactoryMode, Embark, Disembark, DockRepair, NeutralAlliance, NeutralRecruit, NeutralResearch, Revolution, Disband }
+    public enum PoliticalPhase { Empire, Revolutionary, CivilianRebuilt }
     [Serializable] public struct Cost
     {
         public float food, wood, coin;
@@ -23,7 +24,7 @@ namespace Frontier
     {
         public string id, name, description, producer, civilization="";
         public string[] excludedCivilizations=Array.Empty<string>();
-        public bool civilian,repairArtillery,shieldAbility,waterborne,fishingBoat,transportShip;
+        public bool civilian,repairArtillery,shieldAbility,waterborne,fishingBoat,transportShip,revolutionary;
         public int transportCapacity;
         public float gatherMultiplier=1,meleeSplash;
         public EntityKind kind; public Tags tags; public Cost cost,repairCost;
@@ -44,11 +45,11 @@ namespace Frontier
         public string[] units=Array.Empty<string>(); public int bankLimit; public float bankIncome;
         public float caravanProfit,manufactureSpeed,buildSpeed,trainSpeed;
         public float factoryIncome,factoryArtillerySpeed,navalRepair;
-        public int villagerLimit; public float autoVillagerSpeed;
+        public int villagerLimit; public float autoVillagerSpeed; public bool requiresRevolution;
     }
     [Serializable] public class CardDef
     {
-        public string id,name,description,civilization="",unit="",tech=""; public int age=1,count=0; public bool repeatable=false; public Cost crates; public float travel=35;
+        public string id,name,description,civilization="",unit="",tech=""; public int age=1,count=0; public bool repeatable=false,revolutionOnly; public Cost crates; public float travel=35;
     }
     [Serializable] public class AgeDef { public int age; public string name; public Cost cost; public float time; public Cost economicReward; public string militaryUnit; public int militaryCount; }
     [Serializable] public class UnitAgeOverride { public string unit; public int age; }
@@ -64,6 +65,8 @@ namespace Frontier
         public Cost startingResources=new Cost(300,300,100); public Cost houseCost=new Cost(0,135,0);
     }
     [Serializable] public class AgeChoiceDef { public string id,civilization,name,description,tech,unit; public int age,count; public Cost crates; }
+    [Serializable] public class RevolutionDef
+    { public string id,civilization,name,description,unit; public string[] cards=Array.Empty<string>(); public Cost cost; public float time; }
     [Serializable] public class ManufactureRecipeDef { public string id,name,description,requires; public Cost cost; public float time=40; public int prefabs=1; }
     [Serializable] public class AiDifficultyDef
     { public string id,name,description; public float decisionSeconds,armySeconds; }
@@ -80,6 +83,7 @@ namespace Frontier
     {
         public EntityDef[] entities; public TechDef[] techs; public CardDef[] cards; public AgeDef[] ages; public CivDef[] civs;
         public AgeChoiceDef[] ageChoices=Array.Empty<AgeChoiceDef>();
+        public RevolutionDef[] revolutions=Array.Empty<RevolutionDef>();
         public ManufactureRecipeDef[] manufactureRecipes=Array.Empty<ManufactureRecipeDef>();
         public LandmarkRules landmarks;
         public NeutralAllyDef[] neutralAllies=Array.Empty<NeutralAllyDef>();
@@ -139,7 +143,7 @@ namespace Frontier
         public WorkActivity work;
         public bool IsWorkingAt(float time)
         {
-            if(!Alive||(!Worker&&!def.repairArtillery&&!def.fishingBoat)||garrisonedIn!=0||work.kind==WorkKind.None||Mathf.Abs(work.time-time)>.0001f||orders.Count==0)return false;
+            if(!Alive||(!Worker&&!def.repairArtillery&&!def.fishingBoat&&!def.revolutionary)||garrisonedIn!=0||work.kind==WorkKind.None||Mathf.Abs(work.time-time)>.0001f||orders.Count==0)return false;
             var order=orders.Peek();
             return order.target==work.target&&(work.kind==WorkKind.Gather&&order.kind==OrderKind.Gather
                 ||work.kind==WorkKind.Build&&order.kind==OrderKind.Build||work.kind==WorkKind.Repair&&order.kind==OrderKind.Repair||work.kind==WorkKind.Manufacture&&order.kind==OrderKind.Manufacture);
@@ -154,6 +158,7 @@ namespace Frontier
         public int id,team,age=1,usedPopulation,reservedPopulation,populationCap,shipmentTokens,xpLevels;
         public int prefabCharges;
         public string civilization; public Cost resources; public float xp; public bool resigned,eliminated;
+        public PoliticalPhase politicalPhase; public string revolutionId=""; public float revolutionAt,civilianRebuiltAt;
         public readonly HashSet<string> technologies=new HashSet<string>();
         public readonly HashSet<string> sentCards=new HashSet<string>(); public readonly List<string> deck=new List<string>();
         public readonly List<RewardJob> rewards=new List<RewardJob>();

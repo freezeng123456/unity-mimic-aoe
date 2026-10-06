@@ -126,6 +126,7 @@ namespace Frontier
             if(!IsPlayerActive(c.player))return CommandResult.Fail("Player is eliminated or resigned");
             if(Paused)return CommandResult.Fail("Resume before issuing orders");
             if(c.kind==CommandKind.Resign)return ResignPlayer(c.player);
+            if(c.kind==CommandKind.Disband)return DisbandLandUnits(c);
             if(c.kind==CommandKind.ToggleMode)
             {int n=0;foreach(int id in c.actors){var e=Get(id);if(e!=null&&e.Alive&&e.owner==c.player&&e.def.meleeDamage>0&&e.def.range>2){e.forceMelee=!e.forceMelee;n++;}}return n>0?CommandResult.Ok("Combat mode changed"):CommandResult.Fail("No mode-switching units selected");}
             if(c.kind==CommandKind.TradeMode)return SetTradeMode(c);

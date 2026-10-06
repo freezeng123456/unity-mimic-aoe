@@ -14,6 +14,7 @@ namespace Frontier
             if(actor==null||!actor.Alive||actor.owner<0||actor.garrisonedIn!=0||target==null||!target.Alive||target.def.resource==ResourceKind.None||
                 (target.def.kind!=EntityKind.Resource&&target.owner!=actor.owner))return false;
             if(actor.def.fishingBoat)return actor.def.waterborne&&target.def.id=="fish"&&target.def.waterborne&&IsWater(actor.position)&&IsWater(target.position);
+            if(actor.def.revolutionary)return RevolutionaryCanCollect(actor,target);
             return actor.Worker&&!actor.def.waterborne&&!target.def.waterborne;
         }
 
