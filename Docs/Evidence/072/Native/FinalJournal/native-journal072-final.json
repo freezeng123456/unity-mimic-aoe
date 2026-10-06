@@ -1,0 +1,2752 @@
+{
+  "schema": "frontier-final-native-journal072-1",
+  "createdUtc": "2026-10-06T12:54:15.911255+00:00",
+  "title": "Final observed native072 bounded scopes, finalGUID3288",
+  "status": "native_scopes_complete",
+  "releaseAcceptance": "accepted_declared_native_scopes_only",
+  "nativeAllPassed": true,
+  "finalReleaseAccepted": false,
+  "scope": "The9declared bounded native requirements are closed from actualD/E/F/G/H evidence. Normal16matrix and delivery are separate gates; fullreplay, allpixels, FPS, zero-leak, naturalworkerGather and nativeLAN are not claimed.",
+  "identity": {
+    "runtimeCommit": "bc127e02638caaeefd2310a1a3eff858f4f4cb2f",
+    "sourceFingerprint": "04698dad49278a42db8a13a2ab997870bfb008c52f95313130026da5a7f35f62",
+    "sourceInputs": 718,
+    "appVersion": "0.15.0",
+    "buildGuid": "3288d9fe24e844748a1183f756874fbf"
+  },
+  "buildProvenance": {
+    "buildIdentity": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/BuildFinal1/build-identity.json",
+      "bytes": 1215,
+      "sha256": "6566f4049c8d43900b31188858d3ca9455894e91bbe40b8a760949ed8710aaa7"
+    },
+    "buildRunnerReceipt": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/BuildFinal1/runner-receipt.json",
+      "bytes": 1803,
+      "sha256": "4ed060f4fa8129c517b2f462c2a3acfa8ca53cecf0b192733dab5aa8a0f6bff2"
+    },
+    "buildResult": "Succeeded",
+    "sourceStable": true,
+    "compiledRuntime": {
+      "file": "BuildFinal1/Frontier Reckoning.app/Contents/Resources/Data/Managed/Frontier.Runtime.dll",
+      "bytes": 1193472,
+      "sha256": "0f96f8490c87a33fd142b61d4fde915452157e1e22e2cb09221b23a06734ad83"
+    },
+    "executable": {
+      "file": "BuildFinal1/Frontier Reckoning.app/Contents/MacOS/Frontier Reckoning",
+      "bytes": 35151,
+      "sha256": "fb67cb57de257681b532b109b96d78cbfd27c2d0e26d51094eef6d129045e651"
+    }
+  },
+  "fullTests": {
+    "run": "run-HACRyTBF",
+    "sourceEvidence": {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-HACRyTBF/source-evidence.json",
+      "bytes": 92352,
+      "sha256": "5bea075816d526da84810731f0f0996c37afeee025c485626fbc34e019a768ac"
+    },
+    "passed": 1567,
+    "suites": [
+      {
+        "id": "EditMode",
+        "passed": 1158,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "xml": {
+          "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-HACRyTBF/EditMode.xml",
+          "bytes": 952758,
+          "sha256": "7afadc06362c49307cdd18548968aff7b10c76f721ea31ba2d2c075c3d6aa4f4"
+        }
+      },
+      {
+        "id": "PlayMode",
+        "passed": 409,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "xml": {
+          "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-HACRyTBF/PlayMode.xml",
+          "bytes": 568430,
+          "sha256": "25ebabe56bce8b39e84376ad14510d4c449587bdff05d50a4424d15ad9de2952"
+        }
+      }
+    ],
+    "frozenIndependentAudit": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/full-regression072-final1.json",
+      "bytes": 7298,
+      "sha256": "ae67a4e54239793a924414d805671fcf1b20f95319cdb4caf342fccc7b038c29"
+    },
+    "doesNotSubstituteNativeAcceptance": true
+  },
+  "nativeOriginalDirectory": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072",
+  "scopePlan": {
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-native-scope-plan.json",
+    "bytes": 20937,
+    "sha256": "d1a7a1a71a0180a7a92f3096c80f3b93b81de3dd00b2c35a0d2fd370a64e8623"
+  },
+  "scopePlanOriginalRemainsImmutable": true,
+  "historicalRunningJournalPreserved": {
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/native-journal072-final-running.json",
+    "bytes": 84337,
+    "sha256": "71739c5a061df0914215218d575395e4607d4204f9a5e690ae3502f4b8c19ef7"
+  },
+  "scopes": [
+    {
+      "id": "identity_and_closed_originals",
+      "status": "passed_declared_bounded_native_scope",
+      "description": "所有 final process/report/perf/F9/replay identity 与实际 new build 一致；owned native process exited0；冻结全部原件和最终 journal。",
+      "actualProgress": "All5 actual owned finalGUID processes exited0. Every original raw native file is independently hashed twice, excluding journals to avoid self-reference. Build bc127/04698/718, full1567 are explicit provenance, not substitutes for native behavior.",
+      "pendingAssertions": [],
+      "scopePlanAssertions": [
+        "actual final build GUID is not old f9912d56d5d04a198a5f495ea9e8eb6e",
+        "all duplicated identity fields agree",
+        "processes refer to actual process metadata, not process-start acknowledgements"
+      ],
+      "evidenceReferences": [
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processd-performance-audit.json",
+          "bytes": 155312,
+          "sha256": "b6bd860acee2ebc206651d2b251c3f3a63b6f3564396973a2f1efbe38e7a7a6d"
+        },
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processd-army-final-audit.json",
+          "bytes": 508763,
+          "sha256": "8d0661969646bbd00fec3e28e6d5facd11ee36c86c2b5c4c12434c576d3743eb"
+        },
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processe-audit.json",
+          "bytes": 186109,
+          "sha256": "6207534524944855915bb8715db234e9a2c0ef0660f4788e3f5f8c6165c17b29"
+        },
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processe-save-replay-audit.json",
+          "bytes": 42256,
+          "sha256": "b8861b81a2fe84bcf1da20505faf0c6741a76b69409107497813f248a66439ca"
+        },
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processf-cold-save-replay-audit.json",
+          "bytes": 98796,
+          "sha256": "faddeb5104a7412bb57be38777076bb90c441629c51c402a1c7dba0a4c59de1c"
+        },
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processf-continuation-pixels-audit.json",
+          "bytes": 51426,
+          "sha256": "ec3780d8c7c680a42bf201acdbd09d7f1b554474ec344da0e032ae9fb20afade"
+        },
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processg-camera-readonly-audit.json",
+          "bytes": 55661,
+          "sha256": "6bc105cc8af582fbe06c6d037e2d55e6c02deb2940fe24fd4218f55105d419a6"
+        },
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processh-forward-audit.json",
+          "bytes": 115678,
+          "sha256": "36899f48fb8eca7121080a7761aa7e1e1a3b277b32932b27c75b0d7de34cd0b6"
+        }
+      ],
+      "allSourceAuditChecksPassed": true,
+      "scopeLimitsExplicit": true
+    },
+    {
+      "id": "normal_opening_and_read_only",
+      "status": "passed_declared_bounded_native_scope",
+      "description": "新 GUID 的 authored DutchBend42 正常 age-I 双 AI、16x；F8/F9、选择/观察者/相机；尝试命令被拒。",
+      "actualProgress": "D/G actual normal seed42 Dutch mirror AgeI,6 workers100F/300W/400C. G actual M/F selection, A/S ignored by frontend observation gate, pointer selection and camera. No accepted human gameplay record; D/G52 common state anchors and65117 event prefix identical. No World.Issue rejection receipt claimed.",
+      "pendingAssertions": [],
+      "scopePlanAssertions": [
+        "no prepared age-IV army/wallet in normal session",
+        "raw autoplay=true and simulationSpeed=16 with actual two AI controllers",
+        "attempted human gameplay command is rejected; no human accepted gameplay record/event attributed to it",
+        "camera/selection change observed in pixels/metadata, not attributed as gameplay success"
+      ],
+      "evidenceReferences": [
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processd-army-final-audit.json",
+          "bytes": 508763,
+          "sha256": "8d0661969646bbd00fec3e28e6d5facd11ee36c86c2b5c4c12434c576d3743eb"
+        },
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processg-camera-readonly-audit.json",
+          "bytes": 55661,
+          "sha256": "6bc105cc8af582fbe06c6d037e2d55e6c02deb2940fe24fd4218f55105d419a6"
+        }
+      ],
+      "allSourceAuditChecksPassed": true,
+      "scopeLimitsExplicit": true
+    },
+    {
+      "id": "normal_muster_departure",
+      "status": "passed_declared_bounded_native_scope",
+      "description": "看到己方真实集结后第一次 March，记录 phase/wave/stage/实际位置和订单。",
+      "actualProgress": "D actual raw AI6/10/14 first departures and real ordinary AttackMove/wave member records. 24firstwaves,14reinforcement,33defense and actual state anchors independently checked. This is raw army-state scope;30s anchors do not certify every sub-tick AtStage/Fog path. G selected actual armed gunboat is observation scope, not a substitute land-stage claim.",
+      "pendingAssertions": [],
+      "scopePlanAssertions": [
+        "armyPlan.phase actual Muster=0 then March=1, hasStage, initialWaveSize, wave IDs",
+        "actual muster threshold for current age 6/10/14, not guessed from soldier count",
+        "same wave IDs alive/unboarded at observed stage and later actually displaced under recorded ordinary orders",
+        "do not claim exact sub-tick AtStage from 30s anchors; use appropriate actual snapshots, events, positions and label sampling limits"
+      ],
+      "evidenceReferences": [
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processd-army-final-audit.json",
+          "bytes": 508763,
+          "sha256": "8d0661969646bbd00fec3e28e6d5facd11ee36c86c2b5c4c12434c576d3743eb"
+        }
+      ],
+      "allSourceAuditChecksPassed": true,
+      "scopeLimitsExplicit": true
+    },
+    {
+      "id": "normal_responsiveness",
+      "status": "passed_declared_bounded_native_scope",
+      "description": "F8 有界窗口观察旧 NativeA 1470 附近区域的可用性；记录实际观察时间与并行负载。",
+      "actualProgress": "D bounded1872 consecutive-frame F8 sample covers actual1470 region; max observed realtime gap1275.270416ms, no>10s gap in this sample only. Exclusions985, parallel headless matrix, actual8.6379× vs requested16 disclosed; no all-sessionFPS/nostall certification.",
+      "pendingAssertions": [],
+      "scopePlanAssertions": [
+        "report actual realtime/worldTime ranges, eligible/excluded focus/pause samples, speed and concurrent headless load",
+        "a 1470-region revisit is accepted only if actually reached; otherwise name the shorter observed window",
+        "isolated 250-step byte-identical diagnostic belongs to its own source/anchor and is not final native FPS certification",
+        "no fixed FPS/no-stall/performance pass inferred from process exit or gross diagnostic ratio"
+      ],
+      "evidenceReferences": [
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processd-performance-audit.json",
+          "bytes": 155312,
+          "sha256": "b6bd860acee2ebc206651d2b251c3f3a63b6f3564396973a2f1efbe38e7a7a6d"
+        }
+      ],
+      "allSourceAuditChecksPassed": true,
+      "scopeLimitsExplicit": true
+    },
+    {
+      "id": "human_declared_target_attack",
+      "status": "passed_declared_bounded_native_scope",
+      "description": "新 GUID，human0 非 Autoplay，British IV 受控 fixture；GUI 指定 Guardian 和 enemy House 后有真实 Fire/Damage。",
+      "actualProgress": "E singleHussar77 accepted explicitAttack→Guardian84 andHouse83, prior incomingFire/Damage0 for each, actualFire/Damage/Death. Other normal enemy explorer10 death predates human orders and is separated. Guardian is person target, not movingworker chase.",
+      "pendingAssertions": [],
+      "scopePlanAssertions": [
+        "derive current actor and target IDs; do not hardcode old 76/77/83/84",
+        "count incoming Fire and Damage to each declared target before its human Attack; required count 0/0",
+        "human actor owned0, intended target and accepted command precede its caused Fire/Damage",
+        "all other natural combat and target motion reported separately; historical old C full kills are not repeated proof",
+        "minimal new claim is actual targeted damage; new destruction/complete hit counts claimed only if observed"
+      ],
+      "evidenceReferences": [
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processe-audit.json",
+          "bytes": 186109,
+          "sha256": "6207534524944855915bb8715db234e9a2c0ef0660f4788e3f5f8c6165c17b29"
+        },
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processe-save-replay-audit.json",
+          "bytes": 42256,
+          "sha256": "b8861b81a2fe84bcf1da20505faf0c6741a76b69409107497813f248a66439ca"
+        }
+      ],
+      "allSourceAuditChecksPassed": true,
+      "scopeLimitsExplicit": true
+    },
+    {
+      "id": "revolution_payment_clock_conversion",
+      "status": "passed_declared_bounded_native_scope",
+      "description": "实际支付，革命 90s 队列有可见初始/更新倒计时，然后正常完成六工人转换。",
+      "actualProgress": "E paid800F/W/C,90.105499s real completion,6stableoriginalIDs3–8 withHP150→190/pop19. SelectedoriginalPNG90/50/17 clocks read; title guaranteed initial only. ControlledIV authored opening, no runtime gifts or scripted victory.",
+      "pendingAssertions": [],
+      "scopePlanAssertions": [
+        "initial visible countdown 90 or actual near-start rounded remaining followed by lower updated remaining",
+        "if exact 90 label was missed, report actual label and do not claim exact90 screenshot",
+        "at equal worldTime paused clock stable; active time advances elapsed normally",
+        "living original land worker IDs convert normally and maintain IDs/health/population; no runtime grant/spawn/HP/Fog/phase injection"
+      ],
+      "evidenceReferences": [
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processe-audit.json",
+          "bytes": 186109,
+          "sha256": "6207534524944855915bb8715db234e9a2c0ef0660f4788e3f5f8c6165c17b29"
+        },
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processe-save-replay-audit.json",
+          "bytes": 42256,
+          "sha256": "b8861b81a2fe84bcf1da20505faf0c6741a76b69409107497813f248a66439ca"
+        }
+      ],
+      "allSourceAuditChecksPassed": true,
+      "scopeLimitsExplicit": true
+    },
+    {
+      "id": "government_title_clock_cancel_requeue",
+      "status": "passed_declared_bounded_native_scope",
+      "description": "政府重建实际付款，长标题与clock可见；点击该未完成 job 真正取消退款，再正常付款重新排队。",
+      "actualProgress": "E originalPNG Rebuild Civilian Government60s, actual400F/C payment→cancel/refund→repayment. F natural completion retains oldsoldiers and real100F20s worker89. Pixel selection verifiedsecond12:34:15/final; first12:34:14 is pausedRevolutionary. F actual resizing disclosed; no naturalgathering scope.",
+      "pendingAssertions": [],
+      "scopePlanAssertions": [
+        "title/clock contained and readable in actual selected resolution; do not infer rendered text from production metadata",
+        "full refund is job.paid per Economy.cs156-161, not construction75% rule",
+        "no queue completion before cancellation; the intended job disappears and its paid amount restores wallet",
+        "one government cancellation suffices for this selected scope; revolution cancellation is extra only if actually exercised"
+      ],
+      "evidenceReferences": [
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processe-audit.json",
+          "bytes": 186109,
+          "sha256": "6207534524944855915bb8715db234e9a2c0ef0660f4788e3f5f8c6165c17b29"
+        },
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processf-cold-save-replay-audit.json",
+          "bytes": 98796,
+          "sha256": "faddeb5104a7412bb57be38777076bb90c441629c51c402a1c7dba0a4c59de1c"
+        },
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processf-continuation-pixels-audit.json",
+          "bytes": 51426,
+          "sha256": "ec3780d8c7c680a42bf201acdbd09d7f1b554474ec344da0e032ae9fb20afade"
+        }
+      ],
+      "allSourceAuditChecksPassed": true,
+      "scopeLimitsExplicit": true
+    },
+    {
+      "id": "save_and_cold_restore_pending_queue",
+      "status": "passed_declared_bounded_native_scope",
+      "description": "在重新付款后的 pending 政府队列保存，退出；新 owned cold process 从同原件载入并正常续跑。",
+      "actualProgress": "E originalslot1 SHA c46875... contains paidResearch0.10000000149/60 at549.013 paused. FreshF85449 withoutscenario/autoplay loadsit; normalizedentireWorld/controller/guided match (onlyevents projection/accumulator0), sameinitialdigest2515c890...,367eventprefix identical. No repeatedcharge; actualCivilianRebuilt andpaidfirstworker. Hotkeygroups[] not group-persistence success.",
+      "pendingAssertions": [],
+      "scopePlanAssertions": [
+        "same final build GUID, scenario/rules hashes and actual save file bytes unchanged",
+        "loaded political phase, wallet, six original converted IDs, queue paid/duration/elapsed match saved checkpoint",
+        "cold startup is different process, not merely in-process menu/load or file decode",
+        "time/elapsed advances through normal ticks to Technology/CivilianRebuilt/ResearchComplete; no new civilian worker production claim unless actually observed"
+      ],
+      "evidenceReferences": [
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processf-cold-save-replay-audit.json",
+          "bytes": 98796,
+          "sha256": "faddeb5104a7412bb57be38777076bb90c441629c51c402a1c7dba0a4c59de1c"
+        },
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processf-continuation-pixels-audit.json",
+          "bytes": 51426,
+          "sha256": "ec3780d8c7c680a42bf201acdbd09d7f1b554474ec344da0e032ae9fb20afade"
+        }
+      ],
+      "allSourceAuditChecksPassed": true,
+      "scopeLimitsExplicit": true
+    },
+    {
+      "id": "short_actual_forward_replay",
+      "status": "passed_declared_bounded_native_scope",
+      "description": "实际打开新 GUID 生成 replay，在真实短窗口前向模拟跨下一锚点及命令/事件。",
+      "actualProgress": "H newprocess85769 actually forwardplays originalE segment600→1111 at1× aftertwopreparationseek300/600, thenpauses; no seekwhileplaying. Crossedanchor900 andrecord787 GuardianAttack/Death,XP20→28/errorsempty. Next expectedanchor1200/privateprefix hashes are derived, not F9 fields. Verifiedfalse at1111 of5490, so no whole-segment playback verification.",
+      "pendingAssertions": [],
+      "scopePlanAssertions": [
+        "choose window after reading actual new anchors/records; no hardcoded oldC step IDs",
+        "restore anchorA then actually forward into/past anchorB; direct seek to terminal/another anchor alone is insufficient",
+        "include one recorded accepted command or nonempty deterministic event interval",
+        "error/fileError/libraryError empty and observed state/event prefix consistent at checkpoints",
+        "verified=false is expected for partial segment; do not claim entire replay verified or arbitrary long-seek compatibility"
+      ],
+      "evidenceReferences": [
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processh-forward-audit.json",
+          "bytes": 115678,
+          "sha256": "36899f48fb8eca7121080a7761aa7e1e1a3b277b32932b27c75b0d7de34cd0b6"
+        }
+      ],
+      "allSourceAuditChecksPassed": true,
+      "scopeLimitsExplicit": true
+    }
+  ],
+  "pending": [],
+  "matrixGate": {
+    "status": "separate_pending",
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1",
+    "claimedByThisNativeJournal": false
+  },
+  "captures": [
+    {
+      "id": "Frontier-20261006-113933-796-f1799-4c9cc078945d4c719dc861d087185eb0",
+      "process": "ProcessD",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/Captures/Frontier-20261006-113933-796-f1799-4c9cc078945d4c719dc861d087185eb0.json",
+        "bytes": 31069,
+        "sha256": "c024e12322edb10f8939d4aafc09c56cb4e43a5dd996822664bad0d2a0568029"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/Captures/Frontier-20261006-113933-796-f1799-4c9cc078945d4c719dc861d087185eb0.png",
+        "bytes": 1243314,
+        "sha256": "e851454a7bd61fb5a9114fd51ea9a1c26671a08502d32e447dd0a92020e8dda7"
+      },
+      "frame": 1799,
+      "utc": "2026-10-06T11:39:33.7217200Z",
+      "worldTime": 855.7380981445312,
+      "matchId": "6ffbb8314e184604be4de3be2686133a",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-114024-845-f2351-22acc5188f9d40d58b5ebadac7242f35",
+      "process": "ProcessD",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/Captures/Frontier-20261006-114024-845-f2351-22acc5188f9d40d58b5ebadac7242f35.json",
+        "bytes": 31224,
+        "sha256": "0bd5d27da34e89b34da2bd01c041513be8df3d16fe9cebbe6a0a60f224af93d8"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/Captures/Frontier-20261006-114024-845-f2351-22acc5188f9d40d58b5ebadac7242f35.png",
+        "bytes": 1370572,
+        "sha256": "201d38b683c857a6acd3fadcde3f04a70632871422d215820334ed80dee393ff"
+      },
+      "frame": 2351,
+      "utc": "2026-10-06T11:40:24.7718930Z",
+      "worldTime": 1240.2442626953125,
+      "matchId": "6ffbb8314e184604be4de3be2686133a",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-114210-445-f3678-c08f533c82584cec93a65e4d1f8bf5a4",
+      "process": "ProcessD",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/Captures/Frontier-20261006-114210-445-f3678-c08f533c82584cec93a65e4d1f8bf5a4.json",
+        "bytes": 29254,
+        "sha256": "aed85c3a022a08fcf083d8a58f9559c8478ebe5cb27ea5d9c243355448b63a31"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/Captures/Frontier-20261006-114210-445-f3678-c08f533c82584cec93a65e4d1f8bf5a4.png",
+        "bytes": 1286562,
+        "sha256": "edf57869d9fd12f56c333f226c21c0c4695612b521f6a2e29dab1e7335f2aa68"
+      },
+      "frame": 3678,
+      "utc": "2026-10-06T11:42:10.3748680Z",
+      "worldTime": 2206.001220703125,
+      "matchId": "6ffbb8314e184604be4de3be2686133a",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-120127-117-f70150-390249c5a5244b0cab4debe548017fda",
+      "process": "ProcessD",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/Captures/Frontier-20261006-120127-117-f70150-390249c5a5244b0cab4debe548017fda.json",
+        "bytes": 6792,
+        "sha256": "c42bd01569be856f6863223c542a39d6364de45cec74aa1c1d3bc0a32529b9da"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/Captures/Frontier-20261006-120127-117-f70150-390249c5a5244b0cab4debe548017fda.png",
+        "bytes": 355991,
+        "sha256": "d21d076e407f5610adaf930db4733516cce439b73ed93a5318dcd367d40ba177"
+      },
+      "frame": 70150,
+      "utc": "2026-10-06T12:01:27.0725620Z",
+      "worldTime": 2552.138916015625,
+      "matchId": "6ffbb8314e184604be4de3be2686133a",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-121306-912-f38685-1baad36110f34a54aedc006649aa8bf7",
+      "process": "ProcessE",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-121306-912-f38685-1baad36110f34a54aedc006649aa8bf7.json",
+        "bytes": 5809,
+        "sha256": "56dd7ef9e5510898621aa1609fc4402b6d05494e71c3152dbca7418802c0bdfc"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-121306-912-f38685-1baad36110f34a54aedc006649aa8bf7.png",
+        "bytes": 418307,
+        "sha256": "5cf9517750580f83c3e629de9806e4bbfd38d4514769a7329adc1a75872ea3a3"
+      },
+      "frame": 38685,
+      "utc": "2026-10-06T12:13:06.8640260Z",
+      "worldTime": 0.0,
+      "matchId": "",
+      "inMenu": true,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-121951-905-f62817-c11a35ec2cb84119a4b8d5f985e0e828",
+      "process": "ProcessE",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-121951-905-f62817-c11a35ec2cb84119a4b8d5f985e0e828.json",
+        "bytes": 15015,
+        "sha256": "d8595094946f3133a7c85dc493f0a77a11492660fc0e480aee41233673ecf03a"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-121951-905-f62817-c11a35ec2cb84119a4b8d5f985e0e828.png",
+        "bytes": 333873,
+        "sha256": "c03c47117f5673c1f169c52a3962d61d6089c922914ddd4b27abc6cb63f9c0f6"
+      },
+      "frame": 62817,
+      "utc": "2026-10-06T12:19:51.8577050Z",
+      "worldTime": 30.300079345703125,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-122015-599-f64226-38403398d9114e6b8f29005c5ec2369e",
+      "process": "ProcessE",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122015-599-f64226-38403398d9114e6b8f29005c5ec2369e.json",
+        "bytes": 15047,
+        "sha256": "4c302ac87f58149cc01026cb1766ef639067bf6bcdeb7121e264c08ca40014de"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122015-599-f64226-38403398d9114e6b8f29005c5ec2369e.png",
+        "bytes": 1184731,
+        "sha256": "6aabcc52336e7d7e1b04974aa1aa53fbe5eb98782c3ee6cfe926a4b2443a0bc8"
+      },
+      "frame": 64226,
+      "utc": "2026-10-06T12:20:15.5269760Z",
+      "worldTime": 30.300079345703125,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-122103-399-f67074-aa1cf10a876c4c0ca69551f98fb32c53",
+      "process": "ProcessE",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122103-399-f67074-aa1cf10a876c4c0ca69551f98fb32c53.json",
+        "bytes": 15043,
+        "sha256": "8808dd28b374593fd93aacd42a86474b9b4a7422713c042410746c961a354dc6"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122103-399-f67074-aa1cf10a876c4c0ca69551f98fb32c53.png",
+        "bytes": 1180215,
+        "sha256": "79904ff91c90fa7f1800ed877accb2cc8831fac5dda5b6d6448e4bedcd19aca2"
+      },
+      "frame": 67074,
+      "utc": "2026-10-06T12:21:03.3254470Z",
+      "worldTime": 78.09938049316406,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-122103-999-f67105-6f3e828d87ec475b98e0aef29c785fa8",
+      "process": "ProcessE",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122103-999-f67105-6f3e828d87ec475b98e0aef29c785fa8.json",
+        "bytes": 15051,
+        "sha256": "4b7f8cb24e8919f231bc61dd79ab3253c5e3d896dfcb9510ec2ef866435e7040"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122103-999-f67105-6f3e828d87ec475b98e0aef29c785fa8.png",
+        "bytes": 1197732,
+        "sha256": "b4035288c6968c6ac4a00e3d5037a7e67d574e96250bf79ea8490a1fba904e6c"
+      },
+      "frame": 67105,
+      "utc": "2026-10-06T12:21:03.9289910Z",
+      "worldTime": 78.69937133789062,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-122124-815-f68343-027dec8c06cf4171ba3c6aeba75e7ef0",
+      "process": "ProcessE",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122124-815-f68343-027dec8c06cf4171ba3c6aeba75e7ef0.json",
+        "bytes": 15037,
+        "sha256": "d7ce0108373bb930b8555c63499f499606cd81488054b711a808c691ba187e7b"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122124-815-f68343-027dec8c06cf4171ba3c6aeba75e7ef0.png",
+        "bytes": 1195046,
+        "sha256": "ba50cb003bddab22b344b181a7cb24b4d7536f511aab177760596f7364f4209d"
+      },
+      "frame": 68343,
+      "utc": "2026-10-06T12:21:24.7421180Z",
+      "worldTime": 99.49905395507812,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-122148-115-f69730-99b0478ef2214f008a86eb111e69d557",
+      "process": "ProcessE",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122148-115-f69730-99b0478ef2214f008a86eb111e69d557.json",
+        "bytes": 15043,
+        "sha256": "f482a38fe050675c2ce1d5180b01714ec81a238fded21d1998db203d97052e6c"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122148-115-f69730-99b0478ef2214f008a86eb111e69d557.png",
+        "bytes": 1195956,
+        "sha256": "28387b6247442fd0dfedc6092cc1c8df4b30f36e3494c432b4b6f31bc31565d8"
+      },
+      "frame": 69730,
+      "utc": "2026-10-06T12:21:48.0417930Z",
+      "worldTime": 122.79869842529297,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-122148-482-f69747-fb9bf1ef2b614550a6ad4e41eb328d54",
+      "process": "ProcessE",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122148-482-f69747-fb9bf1ef2b614550a6ad4e41eb328d54.json",
+        "bytes": 15026,
+        "sha256": "17975486dcb917cf8ffb5a2c29afba3a53e2e1a5b926851d0f8489db61723d31"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122148-482-f69747-fb9bf1ef2b614550a6ad4e41eb328d54.png",
+        "bytes": 1208306,
+        "sha256": "e67ab7a517524f5b3de03324ce0502b951e120e54fa3a236bb24a56db46c25c9"
+      },
+      "frame": 69747,
+      "utc": "2026-10-06T12:21:48.4130140Z",
+      "worldTime": 123.19869232177734,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-122642-437-f87316-9b5674026c5e4a4fb6d734c0b63006ae",
+      "process": "ProcessE",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122642-437-f87316-9b5674026c5e4a4fb6d734c0b63006ae.json",
+        "bytes": 15284,
+        "sha256": "0a17c1f220df4ebc5cdb27ff4bc1e2a811a831b9902975b54903a157ca623913"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122642-437-f87316-9b5674026c5e4a4fb6d734c0b63006ae.png",
+        "bytes": 1168569,
+        "sha256": "1f651e91eb089593458685c3786cbfb6598214cd446ab00158b4d1f9af2a4e17"
+      },
+      "frame": 87316,
+      "utc": "2026-10-06T12:26:42.3654800Z",
+      "worldTime": 417.1162414550781,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-122723-045-f89736-26f7169b3a894212a86a87ed327c9bea",
+      "process": "ProcessE",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122723-045-f89736-26f7169b3a894212a86a87ed327c9bea.json",
+        "bytes": 15296,
+        "sha256": "49dd7407ac448110649d3f28646004ae94af7eae9122cbc304b2c3f742ce2e63"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122723-045-f89736-26f7169b3a894212a86a87ed327c9bea.png",
+        "bytes": 1145771,
+        "sha256": "77211ea4a6bb55db0c8005167eee763a5225ca4128d28770c2314fa426025e12"
+      },
+      "frame": 89736,
+      "utc": "2026-10-06T12:27:22.9766320Z",
+      "worldTime": 457.8187255859375,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-122755-044-f91642-62b0a81029e54fee92e87fd5d5248b90",
+      "process": "ProcessE",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122755-044-f91642-62b0a81029e54fee92e87fd5d5248b90.json",
+        "bytes": 15296,
+        "sha256": "c9bcc734c997d65d3be32b5be0c96cb0183b1cc050ed285913cfeba6dcffd7e6"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122755-044-f91642-62b0a81029e54fee92e87fd5d5248b90.png",
+        "bytes": 1149053,
+        "sha256": "b7ebe42d4fb9ed7e6e9891898eda1edc612beb16ed113c5fa16ec746b61832a0"
+      },
+      "frame": 91642,
+      "utc": "2026-10-06T12:27:54.9777890Z",
+      "worldTime": 489.8206787109375,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-122816-775-f92933-8ab5a9259eff485db0a23beba3e66987",
+      "process": "ProcessE",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122816-775-f92933-8ab5a9259eff485db0a23beba3e66987.json",
+        "bytes": 15040,
+        "sha256": "a51b58ff4888a80c9140571510d9435088109ecad203f3bf58bf126e90ce94ad"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122816-775-f92933-8ab5a9259eff485db0a23beba3e66987.png",
+        "bytes": 1149652,
+        "sha256": "9b64a08a94c9dbbe3fd42f8fa204d526487a397c0c280ccd9b70c8ace6882608"
+      },
+      "frame": 92933,
+      "utc": "2026-10-06T12:28:16.7080400Z",
+      "worldTime": 511.5220031738281,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-122833-449-f93924-d89ff5b8f7e443139f47c42212fe9821",
+      "process": "ProcessE",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122833-449-f93924-d89ff5b8f7e443139f47c42212fe9821.json",
+        "bytes": 15334,
+        "sha256": "12b435cba0af62bfb7b9de22478cb52eb00f28a2b4677723df84d4cfa2e9e481"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122833-449-f93924-d89ff5b8f7e443139f47c42212fe9821.png",
+        "bytes": 1158475,
+        "sha256": "f39e90e682431b6827355edc7cf2e09e11ccfed87772cc9d6e621cf4e5a58658"
+      },
+      "frame": 93924,
+      "utc": "2026-10-06T12:28:33.3802500Z",
+      "worldTime": 528.2180786132812,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-122841-992-f94428-a41e11a68b5d433cad903f4428ba1b8a",
+      "process": "ProcessE",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122841-992-f94428-a41e11a68b5d433cad903f4428ba1b8a.json",
+        "bytes": 15332,
+        "sha256": "eb37b8ca2f2abce5acaed2ee938c56b950b864fa05f4707361df4ab1e926b3d4"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122841-992-f94428-a41e11a68b5d433cad903f4428ba1b8a.png",
+        "bytes": 1150951,
+        "sha256": "c60e502a47da70de2e97b93a64d84b3de2157b049ac4d0320241c5407575d906"
+      },
+      "frame": 94428,
+      "utc": "2026-10-06T12:28:41.9245440Z",
+      "worldTime": 536.7160034179688,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-122842-814-f94473-3633312ca3454af09c442df5fd2cb1c6",
+      "process": "ProcessE",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122842-814-f94473-3633312ca3454af09c442df5fd2cb1c6.json",
+        "bytes": 15039,
+        "sha256": "d037320394c24d7fe57deb18ae7bf281bde90ff8428575c44af40468a91e4882"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122842-814-f94473-3633312ca3454af09c442df5fd2cb1c6.png",
+        "bytes": 1164619,
+        "sha256": "fa75a573841fbcc666161a04d90e3107220638893d720533e372644e1e46ff12"
+      },
+      "frame": 94473,
+      "utc": "2026-10-06T12:28:42.7451270Z",
+      "worldTime": 537.5158081054688,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-122854-162-f95147-50aa87af281c4e9bb10876db67212ce4",
+      "process": "ProcessE",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122854-162-f95147-50aa87af281c4e9bb10876db67212ce4.json",
+        "bytes": 15318,
+        "sha256": "4292e0bce5902d6750194c07f4f844657b69201de29b9ac1cee7a1f9cd6065c0"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122854-162-f95147-50aa87af281c4e9bb10876db67212ce4.png",
+        "bytes": 1157762,
+        "sha256": "9ec1bdb10b95949017e43df795a4ec8d79c580fb6140f8627e31754be9a0539b"
+      },
+      "frame": 95147,
+      "utc": "2026-10-06T12:28:54.0948300Z",
+      "worldTime": 548.9130249023438,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-122912-208-f96219-eb89405b117e492aa20c8f42563c18f8",
+      "process": "ProcessE",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122912-208-f96219-eb89405b117e492aa20c8f42563c18f8.json",
+        "bytes": 15330,
+        "sha256": "cb70e5a9b971afc8598428f57a5aa854da790676f7a13f1a4b357879a92aad46"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122912-208-f96219-eb89405b117e492aa20c8f42563c18f8.png",
+        "bytes": 486351,
+        "sha256": "58e92abe094b6c403bf9ac564d87973ba420909191e8d0ac36d0206cb407283b"
+      },
+      "frame": 96219,
+      "utc": "2026-10-06T12:29:12.1586580Z",
+      "worldTime": 549.0130004882812,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-122930-958-f97324-08b3cc42fc514802963a093ecae29d79",
+      "process": "ProcessE",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122930-958-f97324-08b3cc42fc514802963a093ecae29d79.json",
+        "bytes": 15330,
+        "sha256": "c8030023a06ee0ed67cbc175fcba39c29308c39fb58e6c944b92da0fc803f8b4"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122930-958-f97324-08b3cc42fc514802963a093ecae29d79.png",
+        "bytes": 350983,
+        "sha256": "f74e29b191f5a4c438e3806787c3218c715559c7ebe8cefc5b7f54bd392659b7"
+      },
+      "frame": 97324,
+      "utc": "2026-10-06T12:29:30.9115710Z",
+      "worldTime": 549.0130004882812,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-122950-985-f98516-5af0e188460a405da2853797d1ea32ad",
+      "process": "ProcessE",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122950-985-f98516-5af0e188460a405da2853797d1ea32ad.json",
+        "bytes": 15678,
+        "sha256": "b362aae07871aabcede800b35fe6865590cde5b099df1e54baab8297a163f6d0"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122950-985-f98516-5af0e188460a405da2853797d1ea32ad.png",
+        "bytes": 346429,
+        "sha256": "7047f9493bd0d7738e59dbe1afbdf08872f25a58ffd59f6318154501e83c5b0a"
+      },
+      "frame": 98516,
+      "utc": "2026-10-06T12:29:50.9429520Z",
+      "worldTime": 549.0130004882812,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-123041-497-f1273-8a3946890ea4463ba7ef3cc87321422c",
+      "process": "ProcessF",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123041-497-f1273-8a3946890ea4463ba7ef3cc87321422c.json",
+        "bytes": 15329,
+        "sha256": "ae15a82ca9ededacc18a01b275b457ea7a6988a700156bcc3fc1fd291280ec09"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123041-497-f1273-8a3946890ea4463ba7ef3cc87321422c.png",
+        "bytes": 351891,
+        "sha256": "3124e3bffafae1c7a012f4615a6e97a43786fcd77ccd83704d679399adb8d530"
+      },
+      "frame": 1273,
+      "utc": "2026-10-06T12:30:41.4488990Z",
+      "worldTime": 549.0130004882812,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-123048-657-f1695-d2935c7ea1874424ab88c8298704f00b",
+      "process": "ProcessF",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123048-657-f1695-d2935c7ea1874424ab88c8298704f00b.json",
+        "bytes": 15333,
+        "sha256": "51561aec40d42d7e73dd47351590d09fbca650017f8db50ea435306946dfacd7"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123048-657-f1695-d2935c7ea1874424ab88c8298704f00b.png",
+        "bytes": 1147501,
+        "sha256": "eb53ed89d6bafa7eab7e4120955ac582ca92f5c5bb35083e5123b7dba5c739c7"
+      },
+      "frame": 1695,
+      "utc": "2026-10-06T12:30:48.5873780Z",
+      "worldTime": 549.0130004882812,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-123136-949-f4571-de1245476b264152b1f28d052aee4c09",
+      "process": "ProcessF",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123136-949-f4571-de1245476b264152b1f28d052aee4c09.json",
+        "bytes": 15331,
+        "sha256": "f2a198b666bbe51891fc39838b071cbed3474782cd50f82d75420bdfe4ef8936"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123136-949-f4571-de1245476b264152b1f28d052aee4c09.png",
+        "bytes": 1146934,
+        "sha256": "59e234427bff44cef15ed154970c4c34714fe489b49be74ca205ac4220cc9f75"
+      },
+      "frame": 4571,
+      "utc": "2026-10-06T12:31:36.8811700Z",
+      "worldTime": 597.3012084960938,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-123207-917-f6415-2866a3d1ec1c4e6bbf9030648d88e761",
+      "process": "ProcessF",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123207-917-f6415-2866a3d1ec1c4e6bbf9030648d88e761.json",
+        "bytes": 15035,
+        "sha256": "510e1a4f1b8fd757fe97c60c9a5de3ec8a84bac67d7a1366ea7b4d0d58111220"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123207-917-f6415-2866a3d1ec1c4e6bbf9030648d88e761.png",
+        "bytes": 1146934,
+        "sha256": "0f57635a57ca0bfe006a5c007b9952efbdba7b73aee1ef1b6315157bb59c44e5"
+      },
+      "frame": 6415,
+      "utc": "2026-10-06T12:32:07.8467500Z",
+      "worldTime": 628.1936645507812,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-123217-800-f7000-496fd26903ef4a378647c08f248f8987",
+      "process": "ProcessF",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123217-800-f7000-496fd26903ef4a378647c08f248f8987.json",
+        "bytes": 15299,
+        "sha256": "efc0ec3b02190d2cd486c566c1b8e012cd11af085aeec945585d9d2d3b3c4cdc"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123217-800-f7000-496fd26903ef4a378647c08f248f8987.png",
+        "bytes": 1173618,
+        "sha256": "bcdaf1ded11e21ede7a4992b07844585e00c96dddf6ded4e634e0917ce627e85"
+      },
+      "frame": 7000,
+      "utc": "2026-10-06T12:32:17.7299850Z",
+      "worldTime": 638.0912475585938,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-123414-923-f13930-59bcad351e4745749bcdcd2a0ab5396a",
+      "process": "ProcessF",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123414-923-f13930-59bcad351e4745749bcdcd2a0ab5396a.json",
+        "bytes": 15598,
+        "sha256": "3ab7ba41ad6fee86735536309c1ff9f520eddff3355cd3bb46b10c631cbd4cf7"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123414-923-f13930-59bcad351e4745749bcdcd2a0ab5396a.png",
+        "bytes": 1294348,
+        "sha256": "8c194df6d54f54c9fec3337b513c19a9f04ea6b3907472a11a33ad208f0fe048"
+      },
+      "frame": 13930,
+      "utc": "2026-10-06T12:34:14.7518770Z",
+      "worldTime": 700.3760375976562,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 3456,
+      "height": 2168,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-123415-302-f13936-06a6e3c6154d4403ac55a838ddedca7c",
+      "process": "ProcessF",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123415-302-f13936-06a6e3c6154d4403ac55a838ddedca7c.json",
+        "bytes": 15603,
+        "sha256": "c36c5d560d4e735ddae2408ddf9b99b55a7cec84ab9af3564441e362870ad1e1"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123415-302-f13936-06a6e3c6154d4403ac55a838ddedca7c.png",
+        "bytes": 4034045,
+        "sha256": "beea61d7ecb48611e9e0a0ac32e39792386814ab68a05e4e81b132f437d58fbe"
+      },
+      "frame": 13936,
+      "utc": "2026-10-06T12:34:15.0375170Z",
+      "worldTime": 700.3760375976562,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 3456,
+      "height": 2168,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-123628-634-f21855-e9656073641045d9b62686e7039d983a",
+      "process": "ProcessF",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123628-634-f21855-e9656073641045d9b62686e7039d983a.json",
+        "bytes": 15603,
+        "sha256": "f46db4aa7b9c466bc94709e0d1423c094f4b08b907527f2ed93a53a48ac3b688"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123628-634-f21855-e9656073641045d9b62686e7039d983a.png",
+        "bytes": 3172965,
+        "sha256": "5ef1d21e3b869dde0b7f76f3f8357a14eedb81e3a4efba4a6a2cee4b9e56810d"
+      },
+      "frame": 21855,
+      "utc": "2026-10-06T12:36:28.4094850Z",
+      "worldTime": 833.7434692382812,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 3416,
+      "height": 1884,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-123953-416-f555-765554393dd54240889a39b4fd8819a8",
+      "process": "ProcessG",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-123953-416-f555-765554393dd54240889a39b4fd8819a8.json",
+        "bytes": 15579,
+        "sha256": "f17fe3746a9680581df387e7e35aa43d7ab9b234ec4b9212e3fc566ae52747e2"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-123953-416-f555-765554393dd54240889a39b4fd8819a8.png",
+        "bytes": 1062507,
+        "sha256": "017546e081013bbd0ea16ab94a7f349953aa82b7bf6e400feb963a78309c8bfc"
+      },
+      "frame": 555,
+      "utc": "2026-10-06T12:39:53.3449130Z",
+      "worldTime": 224.10447692871094,
+      "matchId": "a28af2af61b74700b3be462a595178eb",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-124107-728-f1786-a749149c24a4451fa43c79065c5831c9",
+      "process": "ProcessG",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-124107-728-f1786-a749149c24a4451fa43c79065c5831c9.json",
+        "bytes": 30860,
+        "sha256": "e8c437eb25425575f7d7f7548033686e32322a756361cc66b61f7b31f984cada"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-124107-728-f1786-a749149c24a4451fa43c79065c5831c9.png",
+        "bytes": 1515244,
+        "sha256": "90e141fc6c0f107b4c67ca860c69caf4e7a6e27fd2ec60da88e51874e8fa8530"
+      },
+      "frame": 1786,
+      "utc": "2026-10-06T12:41:07.6456030Z",
+      "worldTime": 863.9360961914062,
+      "matchId": "a28af2af61b74700b3be462a595178eb",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-124109-710-f1798-633eb79d2ce540fe9d111a97e08921d6",
+      "process": "ProcessG",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-124109-710-f1798-633eb79d2ce540fe9d111a97e08921d6.json",
+        "bytes": 30242,
+        "sha256": "6f25c95abc7a29179e928c5cd1c4bd9ff671223425d5f1dc0f1d4259978cf19b"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-124109-710-f1798-633eb79d2ce540fe9d111a97e08921d6.png",
+        "bytes": 1512709,
+        "sha256": "16f96974f6412462879ec7c07583f5e5df3a3b69f757e9f7171c9e77dd90430b"
+      },
+      "frame": 1798,
+      "utc": "2026-10-06T12:41:09.6290610Z",
+      "worldTime": 875.9331665039062,
+      "matchId": "a28af2af61b74700b3be462a595178eb",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-124141-584-f2171-2c1e869d77e542279af84bda6fd581e5",
+      "process": "ProcessG",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-124141-584-f2171-2c1e869d77e542279af84bda6fd581e5.json",
+        "bytes": 33442,
+        "sha256": "4777c461ba8cac1d9fe9bd74077f31affa07db7cf7471483b8676fbfc7521a92"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-124141-584-f2171-2c1e869d77e542279af84bda6fd581e5.png",
+        "bytes": 1256493,
+        "sha256": "c16ab1114ec49ab4162035f5953205a0611a1ac78dcea67ecfcdaa86fd3ea981"
+      },
+      "frame": 2171,
+      "utc": "2026-10-06T12:41:41.5096950Z",
+      "worldTime": 1104.0775146484375,
+      "matchId": "a28af2af61b74700b3be462a595178eb",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-124144-471-f2178-1ed00b4b67c8489b8322d6340eaf71a3",
+      "process": "ProcessG",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-124144-471-f2178-1ed00b4b67c8489b8322d6340eaf71a3.json",
+        "bytes": 32888,
+        "sha256": "28e75339f55a0e7fa7c9fac8b33e80a47f4678b5274d1b99a734d1ac328da02f"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-124144-471-f2178-1ed00b4b67c8489b8322d6340eaf71a3.png",
+        "bytes": 1074199,
+        "sha256": "5e56300938ca60c8b7f0c5e04ad237323a8d6a9f1aaff0d3c24f059e7eb5764f"
+      },
+      "frame": 2178,
+      "utc": "2026-10-06T12:41:44.4011900Z",
+      "worldTime": 1111.0758056640625,
+      "matchId": "a28af2af61b74700b3be462a595178eb",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-124227-222-f2883-4995e74d11184761a5dac067ac59d0e0",
+      "process": "ProcessG",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-124227-222-f2883-4995e74d11184761a5dac067ac59d0e0.json",
+        "bytes": 34057,
+        "sha256": "f8c4d5d42072034330b4a46ec9e88b040deb98e2a588b3a942d81d6d9244ed0a"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-124227-222-f2883-4995e74d11184761a5dac067ac59d0e0.png",
+        "bytes": 1172451,
+        "sha256": "9b27559cd2e901b0bf248ba612d867508e2330533041eb1e5ea213a4729deae6"
+      },
+      "frame": 2883,
+      "utc": "2026-10-06T12:42:27.1528480Z",
+      "worldTime": 1532.072998046875,
+      "matchId": "a28af2af61b74700b3be462a595178eb",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-123729-432-f1105-b552edca89f241fbb4721bbd37640545",
+      "process": "ProcessH",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileH/Captures/Frontier-20261006-123729-432-f1105-b552edca89f241fbb4721bbd37640545.json",
+        "bytes": 14718,
+        "sha256": "83d38018f1253f8a0854e88d2a82779fe5bb79b03185a1a02ef48cd1be0c31b8"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileH/Captures/Frontier-20261006-123729-432-f1105-b552edca89f241fbb4721bbd37640545.png",
+        "bytes": 1056443,
+        "sha256": "308e33980adc7fdbe7fa699e0a2b45990f935ceb091c211145de1b16a8e4a967"
+      },
+      "frame": 1105,
+      "utc": "2026-10-06T12:37:29.3609000Z",
+      "worldTime": 0.0,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-123759-958-f2907-5bee4d32fcfb476ab23df49bfea8ed3d",
+      "process": "ProcessH",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileH/Captures/Frontier-20261006-123759-958-f2907-5bee4d32fcfb476ab23df49bfea8ed3d.json",
+        "bytes": 15189,
+        "sha256": "7bdbefd95b6cc9bd6893d763c9b8a6ad44fc227198ceb448cd4f5f8ab5fbb140"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileH/Captures/Frontier-20261006-123759-958-f2907-5bee4d32fcfb476ab23df49bfea8ed3d.png",
+        "bytes": 1054818,
+        "sha256": "1970959465310946327efc187828d4adf8171b42983506d91f00a3f4cd222d9b"
+      },
+      "frame": 2907,
+      "utc": "2026-10-06T12:37:59.8915730Z",
+      "worldTime": 59.999656677246094,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    },
+    {
+      "id": "Frontier-20261006-123851-739-f5998-0eb7a68163ee42aa98b461454896dbd1",
+      "process": "ProcessH",
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileH/Captures/Frontier-20261006-123851-739-f5998-0eb7a68163ee42aa98b461454896dbd1.json",
+        "bytes": 15181,
+        "sha256": "4387e20a30b1c4741c9c87044d8ad35a9e7b38a7352a08b9671d1df90d1b60b2"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileH/Captures/Frontier-20261006-123851-739-f5998-0eb7a68163ee42aa98b461454896dbd1.png",
+        "bytes": 1054785,
+        "sha256": "138aa2a62505953bcbd6e21d066c82aa5485bac67d174d7d11df3a808552dd56"
+      },
+      "frame": 5998,
+      "utc": "2026-10-06T12:38:51.6723730Z",
+      "worldTime": 111.098876953125,
+      "matchId": "68c69480797e47e3850953863ce58aa9",
+      "inMenu": false,
+      "width": 1600,
+      "height": 1000,
+      "metadataAndPngHashChecked": true,
+      "allPixelsReviewed": false
+    }
+  ],
+  "manualObservations": [
+    {
+      "id": "d_town_settler16_third_f9",
+      "status": "partial_observation_recorded_not_acceptance",
+      "actuallyObserved": true,
+      "observer": "root Codex GUI operator",
+      "observerIsHumanUser": false,
+      "captureIds": [
+        "Frontier-20261006-114210-445-f3678-c08f533c82584cec93a65e4d1f8bf5a4"
+      ],
+      "description": "Root actually saw Town Settler16s in the third D F9. Metadata town1 Train villager duration20 elapsed4.829998493 agrees with rounded remaining16. This is an autoplay AI worker queue, not human Revolution/Government clock proof."
+    },
+    {
+      "id": "d_terminal_defeat4232",
+      "status": "partial_observation_recorded_not_acceptance",
+      "actuallyObserved": true,
+      "observer": "root Codex GUI operator",
+      "observerIsHumanUser": false,
+      "captureIds": [
+        "Frontier-20261006-120127-117-f70150-390249c5a5244b0cab4debe548017fda"
+      ],
+      "description": "Root actually saw DEFEAT42:32 in final D F9; world2552.138916/reportwinner1 confirms local0 natural defeat. No all-captures pixel review or tactical-balance claim."
+    },
+    {
+      "id": "e_revolution90_50_17_selected_original_pixels",
+      "status": "partial_observation_recorded_not_acceptance",
+      "actuallyObserved": true,
+      "observer": "Delegated Codex auditor viewed3original local PNGs",
+      "observerIsHumanUser": false,
+      "captureIds": [
+        "Frontier-20261006-122642-437-f87316-9b5674026c5e4a4fb6d734c0b63006ae",
+        "Frontier-20261006-122723-045-f89736-26f7169b3a894212a86a87ed327c9bea",
+        "Frontier-20261006-122755-044-f91642-62b0a81029e54fee92e87fd5d5248b90"
+      ],
+      "description": "Initial Volunteer Assembly title and90s actually readable; later50s and17s actual clocks verified. Only initial title guaranteed, no all-capture pixel certification."
+    },
+    {
+      "id": "e_government60_selected_original_pixels",
+      "status": "partial_observation_recorded_not_acceptance",
+      "actuallyObserved": true,
+      "observer": "This Codex auditor viewed original local PNG",
+      "observerIsHumanUser": false,
+      "captureIds": [
+        "Frontier-20261006-122833-449-f93924-d89ff5b8f7e443139f47c42212fe9821"
+      ],
+      "description": "Rebuild Civilian Government title in two lines and 60s visible; FOOD100/WOOD0/COIN0."
+    },
+    {
+      "id": "f_123207_selected_pixels",
+      "status": "partial_observation_recorded_not_acceptance",
+      "actuallyObserved": true,
+      "observer": "This Codex auditor viewed original local PNG",
+      "observerIsHumanUser": false,
+      "captureIds": [
+        "Frontier-20261006-123207-917-f6415-2866a3d1ec1c4e6bbf9030648d88e761"
+      ],
+      "description": "Original PNG actually shows Town government queue empty, wallet100F and pop19/20."
+    },
+    {
+      "id": "f_123217_selected_pixels",
+      "status": "partial_observation_recorded_not_acceptance",
+      "actuallyObserved": true,
+      "observer": "This Codex auditor viewed original local PNG",
+      "observerIsHumanUser": false,
+      "captureIds": [
+        "Frontier-20261006-123217-800-f7000-496fd26903ef4a378647c08f248f8987"
+      ],
+      "description": "Original PNG actually shows Settler20s tile and wallet0, pop19+1/20."
+    },
+    {
+      "id": "f_123414_selected_pixels",
+      "status": "partial_observation_recorded_not_acceptance",
+      "actuallyObserved": true,
+      "observer": "This Codex auditor viewed original local PNG",
+      "observerIsHumanUser": false,
+      "captureIds": [
+        "Frontier-20261006-123414-923-f13930-59bcad351e4745749bcdcd2a0ab5396a"
+      ],
+      "description": "Original PNG is focus-loss paused and still has Revolutionary Volunteer190HP selected; it must not be called newworker selected."
+    },
+    {
+      "id": "f_123415_selected_pixels",
+      "status": "partial_observation_recorded_not_acceptance",
+      "actuallyObserved": true,
+      "observer": "This Codex auditor viewed original local PNG",
+      "observerIsHumanUser": false,
+      "captureIds": [
+        "Frontier-20261006-123415-302-f13936-06a6e3c6154d4403ac55a838ddedca7c"
+      ],
+      "description": "Original PNG actually shows SETTLER HP150/150 POP1 and yellow selected ring below Town; pop20/20,XP53."
+    },
+    {
+      "id": "f_123628_selected_pixels",
+      "status": "partial_observation_recorded_not_acceptance",
+      "actuallyObserved": true,
+      "observer": "This Codex auditor viewed original local PNG",
+      "observerIsHumanUser": false,
+      "captureIds": [
+        "Frontier-20261006-123628-634-f21855-e9656073641045d9b62686e7039d983a"
+      ],
+      "description": "Original final PNG actually shows selected SETTLER HP150/150 POP1 and yellow ring; pop20/20,XP53."
+    },
+    {
+      "id": "g_selected_pixels_1",
+      "status": "observed_selected_pixels",
+      "actuallyObserved": true,
+      "observer": "This Codex auditor viewed original local PNG",
+      "observerIsHumanUser": false,
+      "captureIds": [
+        "Frontier-20261006-124107-728-f1786-a749149c24a4451fa43c79065c5831c9"
+      ],
+      "description": "Original PNG shows AI OBSERVATION and selected GUNBOAT HP344/450 with only DETAILS/FOCUS actions, yellow selected ring."
+    },
+    {
+      "id": "g_selected_pixels_3",
+      "status": "observed_selected_pixels",
+      "actuallyObserved": true,
+      "observer": "This Codex auditor viewed original local PNG",
+      "observerIsHumanUser": false,
+      "captureIds": [
+        "Frontier-20261006-124141-584-f2171-2c1e869d77e542279af84bda6fd581e5"
+      ],
+      "description": "Original PNG shows selected Town Center with only DETAILS/FOCUS; camera centered22/24 while AI has real Settler16s queue."
+    },
+    {
+      "id": "g_selected_pixels_4",
+      "status": "observed_selected_pixels",
+      "actuallyObserved": true,
+      "observer": "This Codex auditor viewed original local PNG",
+      "observerIsHumanUser": false,
+      "captureIds": [
+        "Frontier-20261006-124144-471-f2178-1ed00b4b67c8489b8322d6340eaf71a3"
+      ],
+      "description": "Original PNG after minimap pointer gesture shows camera65.768/88.398 and visible explored fogged bridge region; observation banner persists."
+    },
+    {
+      "id": "h_Frontier-20261006-123729-432-f1105-b552edca89f241fbb4721bbd37640545_selected_pixels",
+      "status": "observed_selected_pixels",
+      "actuallyObserved": true,
+      "observer": "Delegated Codex auditor viewed original local PNG",
+      "observerIsHumanUser": false,
+      "captureIds": [
+        "Frontier-20261006-123729-432-f1105-b552edca89f241fbb4721bbd37640545"
+      ],
+      "description": "Actual replay readonly/paused banner and time 00:00 / 09:09, XP0. Short forward scope only."
+    },
+    {
+      "id": "h_Frontier-20261006-123759-958-f2907-5bee4d32fcfb476ab23df49bfea8ed3d_selected_pixels",
+      "status": "observed_selected_pixels",
+      "actuallyObserved": true,
+      "observer": "Delegated Codex auditor viewed original local PNG",
+      "observerIsHumanUser": false,
+      "captureIds": [
+        "Frontier-20261006-123759-958-f2907-5bee4d32fcfb476ab23df49bfea8ed3d"
+      ],
+      "description": "Actual replay readonly/paused banner and time 01:00 / 09:09, XP20. Short forward scope only."
+    },
+    {
+      "id": "h_Frontier-20261006-123851-739-f5998-0eb7a68163ee42aa98b461454896dbd1_selected_pixels",
+      "status": "observed_selected_pixels",
+      "actuallyObserved": true,
+      "observer": "Delegated Codex auditor viewed original local PNG",
+      "observerIsHumanUser": false,
+      "captureIds": [
+        "Frontier-20261006-123851-739-f5998-0eb7a68163ee42aa98b461454896dbd1"
+      ],
+      "description": "Actual replay readonly/paused banner and time 01:51 / 09:09, XP28. Short forward scope only."
+    }
+  ],
+  "processes": [
+    {
+      "id": "ProcessD",
+      "role": "NormalFullMatch",
+      "pid": 83036,
+      "status": "exited",
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-06T11:38:02.126366+00:00",
+      "endedAtUtc": "2026-10-06T12:01:57.336539+00:00",
+      "buildGuid": "3288d9fe24e844748a1183f756874fbf",
+      "processMetadata": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessD/process.json",
+        "bytes": 2072,
+        "sha256": "46838035cdaa8f505cc10369143c2944beaf7592d6f3c5325abfdeeb92e961e9"
+      },
+      "log": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessD/Player.log",
+        "bytes": 65133,
+        "sha256": "4fb83082ea28f98612b09cf7c23d0f511069fcdf95ad6bcbf1b48ff437b7bd0e"
+      },
+      "profile": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD",
+      "command": [
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/BuildFinal1/Frontier Reckoning.app/Contents/MacOS/Frontier Reckoning",
+        "-screen-width",
+        "1600",
+        "-screen-height",
+        "1000",
+        "-frontierMaxAge",
+        "5",
+        "-frontierDataDirectory",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD",
+        "-frontierReportDirectory",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/Reports",
+        "-frontierReplayDirectory",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/Replays",
+        "-frontierInputTrace",
+        "-logFile",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessD/Player.log",
+        "-frontierScenarioPath",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/Fixtures/normal_river_traders072.scenario.json",
+        "-frontierAutoplay",
+        "-frontierAutoSpeed",
+        "16"
+      ]
+    },
+    {
+      "id": "ProcessE",
+      "role": "ControlledHuman",
+      "pid": 84132,
+      "status": "exited",
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-06T12:02:16.694324+00:00",
+      "endedAtUtc": "2026-10-06T12:29:53.989179+00:00",
+      "buildGuid": "3288d9fe24e844748a1183f756874fbf",
+      "processMetadata": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessE/process.json",
+        "bytes": 2023,
+        "sha256": "b7170ed5f2f4feedca041b5be14c5030449590897ca7feab5e775e3f829d0b11"
+      },
+      "log": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessE/Player.log",
+        "bytes": 51992,
+        "sha256": "9ae4bd57cc2b1789a3ad54b9640f5bbec1e005a7bfadfbb670e6c0e3adfb55e8"
+      },
+      "profile": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE",
+      "command": [
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/BuildFinal1/Frontier Reckoning.app/Contents/MacOS/Frontier Reckoning",
+        "-screen-width",
+        "1600",
+        "-screen-height",
+        "1000",
+        "-frontierMaxAge",
+        "5",
+        "-frontierDataDirectory",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE",
+        "-frontierReportDirectory",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Reports",
+        "-frontierReplayDirectory",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Replays",
+        "-frontierInputTrace",
+        "-logFile",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessE/Player.log",
+        "-frontierScenarioPath",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/Fixtures/controlled_human_targets_nativec072.scenario.json"
+      ]
+    },
+    {
+      "id": "ProcessF",
+      "role": "ColdLoadedHuman",
+      "pid": 85449,
+      "status": "exited",
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-06T12:30:16.019499+00:00",
+      "endedAtUtc": "2026-10-06T12:36:29.809476+00:00",
+      "buildGuid": "3288d9fe24e844748a1183f756874fbf",
+      "processMetadata": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessF/process.json",
+        "bytes": 1822,
+        "sha256": "b1f863848ffb58f057649c082c5aa6a98fc8cdfd5600e2e58f1ec96ec52ffb6f"
+      },
+      "log": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessF/Player.log",
+        "bytes": 35488,
+        "sha256": "2ddddcf31f6261d24eea167b9c6afa03d9dbc05abab9ab0336a0f16f8beadd6a"
+      },
+      "profile": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE",
+      "command": [
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/BuildFinal1/Frontier Reckoning.app/Contents/MacOS/Frontier Reckoning",
+        "-screen-width",
+        "1600",
+        "-screen-height",
+        "1000",
+        "-frontierMaxAge",
+        "5",
+        "-frontierDataDirectory",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE",
+        "-frontierReportDirectory",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Reports",
+        "-frontierReplayDirectory",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Replays",
+        "-frontierInputTrace",
+        "-logFile",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessF/Player.log"
+      ]
+    },
+    {
+      "id": "ProcessG",
+      "role": "NormalObserverCamera",
+      "pid": 85848,
+      "status": "exited",
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-06T12:39:35.575110+00:00",
+      "endedAtUtc": "2026-10-06T12:42:36.766396+00:00",
+      "buildGuid": "3288d9fe24e844748a1183f756874fbf",
+      "processMetadata": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessG/process.json",
+        "bytes": 2107,
+        "sha256": "d2477dc62fbe7cd487b1747d3d43b855d9f5cb9c22e539da1894b9779fa7f641"
+      },
+      "log": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessG/Player.log",
+        "bytes": 48268,
+        "sha256": "8f2be8b6e27ad8ccca04d2585aed4f2e0dfe73a22f13eadf7137ed9ed3c1369d"
+      },
+      "profile": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG",
+      "command": [
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/BuildFinal1/Frontier Reckoning.app/Contents/MacOS/Frontier Reckoning",
+        "-screen-width",
+        "1600",
+        "-screen-height",
+        "1000",
+        "-frontierMaxAge",
+        "5",
+        "-frontierDataDirectory",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG",
+        "-frontierReportDirectory",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Reports",
+        "-frontierReplayDirectory",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Replays",
+        "-frontierInputTrace",
+        "-logFile",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessG/Player.log",
+        "-screen-fullscreen",
+        "0",
+        "-frontierScenarioPath",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/Fixtures/normal_river_traders072.scenario.json",
+        "-frontierAutoplay",
+        "-frontierAutoSpeed",
+        "16"
+      ]
+    },
+    {
+      "id": "ProcessH",
+      "role": "ShortForwardViewer",
+      "pid": 85769,
+      "status": "exited",
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-06T12:37:05.920721+00:00",
+      "endedAtUtc": "2026-10-06T12:39:08.226385+00:00",
+      "buildGuid": "3288d9fe24e844748a1183f756874fbf",
+      "processMetadata": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessH/process.json",
+        "bytes": 2062,
+        "sha256": "350ea7e1088955dadd85a127d51465835754d416744dc393db6a961aa0c1776f"
+      },
+      "log": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessH/Player.log",
+        "bytes": 19440,
+        "sha256": "7a6c2c420a1109cd7dd4d200057d013e444364e22c0fcf7ab4b71ce8541df046"
+      },
+      "profile": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileH",
+      "command": [
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/BuildFinal1/Frontier Reckoning.app/Contents/MacOS/Frontier Reckoning",
+        "-screen-width",
+        "1600",
+        "-screen-height",
+        "1000",
+        "-frontierMaxAge",
+        "5",
+        "-frontierDataDirectory",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileH",
+        "-frontierReportDirectory",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileH/Reports",
+        "-frontierReplayDirectory",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileH/Replays",
+        "-frontierInputTrace",
+        "-logFile",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessH/Player.log",
+        "-screen-fullscreen",
+        "0",
+        "-frontierReplay",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Replays/replay-2d5f4818ae50407cb7769a0971cc85ef.replay.json"
+      ]
+    }
+  ],
+  "originalFiles": [
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/Fixtures/controlled_human_targets_nativec072.scenario.json",
+      "bytes": 88015,
+      "sha256": "ce68745c3d59ff611cc090e1d6c9cb3dc732f250acad79376c3619d0e28f99b5",
+      "relativePath": "Fixtures/controlled_human_targets_nativec072.scenario.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/Fixtures/normal_river_traders072.scenario.json",
+      "bytes": 86392,
+      "sha256": "efb9ad47e47c1fc48795b0d98c822926be26f91e17b9cc6109f05a7015660aa9",
+      "relativePath": "Fixtures/normal_river_traders072.scenario.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessD/Player.log",
+      "bytes": 65133,
+      "sha256": "4fb83082ea28f98612b09cf7c23d0f511069fcdf95ad6bcbf1b48ff437b7bd0e",
+      "relativePath": "ProcessD/Player.log"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessD/process.json",
+      "bytes": 2072,
+      "sha256": "46838035cdaa8f505cc10369143c2944beaf7592d6f3c5325abfdeeb92e961e9",
+      "relativePath": "ProcessD/process.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessD/stdout.log",
+      "bytes": 1853,
+      "sha256": "9d82fc59cc2c195c9dfe973c037469a51222684f5d1b07101c64176e5564a625",
+      "relativePath": "ProcessD/stdout.log"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessE/Player.log",
+      "bytes": 51992,
+      "sha256": "9ae4bd57cc2b1789a3ad54b9640f5bbec1e005a7bfadfbb670e6c0e3adfb55e8",
+      "relativePath": "ProcessE/Player.log"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessE/process.json",
+      "bytes": 2023,
+      "sha256": "b7170ed5f2f4feedca041b5be14c5030449590897ca7feab5e775e3f829d0b11",
+      "relativePath": "ProcessE/process.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessE/stdout.log",
+      "bytes": 1853,
+      "sha256": "9d82fc59cc2c195c9dfe973c037469a51222684f5d1b07101c64176e5564a625",
+      "relativePath": "ProcessE/stdout.log"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessF/Player.log",
+      "bytes": 35488,
+      "sha256": "2ddddcf31f6261d24eea167b9c6afa03d9dbc05abab9ab0336a0f16f8beadd6a",
+      "relativePath": "ProcessF/Player.log"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessF/process.json",
+      "bytes": 1822,
+      "sha256": "b1f863848ffb58f057649c082c5aa6a98fc8cdfd5600e2e58f1ec96ec52ffb6f",
+      "relativePath": "ProcessF/process.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessF/stdout.log",
+      "bytes": 1853,
+      "sha256": "9d82fc59cc2c195c9dfe973c037469a51222684f5d1b07101c64176e5564a625",
+      "relativePath": "ProcessF/stdout.log"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessG/Player.log",
+      "bytes": 48268,
+      "sha256": "8f2be8b6e27ad8ccca04d2585aed4f2e0dfe73a22f13eadf7137ed9ed3c1369d",
+      "relativePath": "ProcessG/Player.log"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessG/process.json",
+      "bytes": 2107,
+      "sha256": "d2477dc62fbe7cd487b1747d3d43b855d9f5cb9c22e539da1894b9779fa7f641",
+      "relativePath": "ProcessG/process.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessG/stdout.log",
+      "bytes": 1853,
+      "sha256": "9d82fc59cc2c195c9dfe973c037469a51222684f5d1b07101c64176e5564a625",
+      "relativePath": "ProcessG/stdout.log"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessH/Player.log",
+      "bytes": 19440,
+      "sha256": "7a6c2c420a1109cd7dd4d200057d013e444364e22c0fcf7ab4b71ce8541df046",
+      "relativePath": "ProcessH/Player.log"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessH/process.json",
+      "bytes": 2062,
+      "sha256": "350ea7e1088955dadd85a127d51465835754d416744dc393db6a961aa0c1776f",
+      "relativePath": "ProcessH/process.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessH/stdout.log",
+      "bytes": 1853,
+      "sha256": "9d82fc59cc2c195c9dfe973c037469a51222684f5d1b07101c64176e5564a625",
+      "relativePath": "ProcessH/stdout.log"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/Captures/Frontier-20261006-113933-796-f1799-4c9cc078945d4c719dc861d087185eb0.json",
+      "bytes": 31069,
+      "sha256": "c024e12322edb10f8939d4aafc09c56cb4e43a5dd996822664bad0d2a0568029",
+      "relativePath": "ProfileD/Captures/Frontier-20261006-113933-796-f1799-4c9cc078945d4c719dc861d087185eb0.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/Captures/Frontier-20261006-113933-796-f1799-4c9cc078945d4c719dc861d087185eb0.png",
+      "bytes": 1243314,
+      "sha256": "e851454a7bd61fb5a9114fd51ea9a1c26671a08502d32e447dd0a92020e8dda7",
+      "relativePath": "ProfileD/Captures/Frontier-20261006-113933-796-f1799-4c9cc078945d4c719dc861d087185eb0.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/Captures/Frontier-20261006-114024-845-f2351-22acc5188f9d40d58b5ebadac7242f35.json",
+      "bytes": 31224,
+      "sha256": "0bd5d27da34e89b34da2bd01c041513be8df3d16fe9cebbe6a0a60f224af93d8",
+      "relativePath": "ProfileD/Captures/Frontier-20261006-114024-845-f2351-22acc5188f9d40d58b5ebadac7242f35.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/Captures/Frontier-20261006-114024-845-f2351-22acc5188f9d40d58b5ebadac7242f35.png",
+      "bytes": 1370572,
+      "sha256": "201d38b683c857a6acd3fadcde3f04a70632871422d215820334ed80dee393ff",
+      "relativePath": "ProfileD/Captures/Frontier-20261006-114024-845-f2351-22acc5188f9d40d58b5ebadac7242f35.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/Captures/Frontier-20261006-114210-445-f3678-c08f533c82584cec93a65e4d1f8bf5a4.json",
+      "bytes": 29254,
+      "sha256": "aed85c3a022a08fcf083d8a58f9559c8478ebe5cb27ea5d9c243355448b63a31",
+      "relativePath": "ProfileD/Captures/Frontier-20261006-114210-445-f3678-c08f533c82584cec93a65e4d1f8bf5a4.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/Captures/Frontier-20261006-114210-445-f3678-c08f533c82584cec93a65e4d1f8bf5a4.png",
+      "bytes": 1286562,
+      "sha256": "edf57869d9fd12f56c333f226c21c0c4695612b521f6a2e29dab1e7335f2aa68",
+      "relativePath": "ProfileD/Captures/Frontier-20261006-114210-445-f3678-c08f533c82584cec93a65e4d1f8bf5a4.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/Captures/Frontier-20261006-120127-117-f70150-390249c5a5244b0cab4debe548017fda.json",
+      "bytes": 6792,
+      "sha256": "c42bd01569be856f6863223c542a39d6364de45cec74aa1c1d3bc0a32529b9da",
+      "relativePath": "ProfileD/Captures/Frontier-20261006-120127-117-f70150-390249c5a5244b0cab4debe548017fda.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/Captures/Frontier-20261006-120127-117-f70150-390249c5a5244b0cab4debe548017fda.png",
+      "bytes": 355991,
+      "sha256": "d21d076e407f5610adaf930db4733516cce439b73ed93a5318dcd367d40ba177",
+      "relativePath": "ProfileD/Captures/Frontier-20261006-120127-117-f70150-390249c5a5244b0cab4debe548017fda.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/PerformanceCaptures/Frontier-Performance-20261006-114210-104-d4c8b2547adf4d91aa57caf7a32af696.json",
+      "bytes": 1312663,
+      "sha256": "fd400ddfa754cbb0c97eaed59c7e4924339f23d684749b88b61a05c6620dec1b",
+      "relativePath": "ProfileD/PerformanceCaptures/Frontier-Performance-20261006-114210-104-d4c8b2547adf4d91aa57caf7a32af696.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/Replays/replay-b6d5c43a945a4bcba798e33525c6a0c4.replay.json",
+      "bytes": 12666693,
+      "sha256": "d191db28385de3ded59e1e97f096f4b044cb13d32e48da96a2066026d802c694",
+      "relativePath": "ProfileD/Replays/replay-b6d5c43a945a4bcba798e33525c6a0c4.replay.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/Reports/20261006-114259-803-6ffbb8314e184604be4de3be2686133a-match_finished-events.jsonl",
+      "bytes": 79112325,
+      "sha256": "6c2431958d5e7f033a58855f6f81f8cbc3bdeaf6751475a0b9f3c428aa0012a6",
+      "relativePath": "ProfileD/Reports/20261006-114259-803-6ffbb8314e184604be4de3be2686133a-match_finished-events.jsonl"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/Reports/20261006-114259-803-6ffbb8314e184604be4de3be2686133a-match_finished.json",
+      "bytes": 4957,
+      "sha256": "042ea9c5aed57d4bcf44cd376ca1201cda655ab3dd0cbd24c59610c95ac88870",
+      "relativePath": "ProfileD/Reports/20261006-114259-803-6ffbb8314e184604be4de3be2686133a-match_finished.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/Reports/20261006-120156-218-6ffbb8314e184604be4de3be2686133a-quit-events.jsonl",
+      "bytes": 79112325,
+      "sha256": "6c2431958d5e7f033a58855f6f81f8cbc3bdeaf6751475a0b9f3c428aa0012a6",
+      "relativePath": "ProfileD/Reports/20261006-120156-218-6ffbb8314e184604be4de3be2686133a-quit-events.jsonl"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileD/Reports/20261006-120156-218-6ffbb8314e184604be4de3be2686133a-quit.json",
+      "bytes": 4947,
+      "sha256": "3f7208a8a3eae68ff7338abc4622604e44220875720a2de9a3f76386eadeb47c",
+      "relativePath": "ProfileD/Reports/20261006-120156-218-6ffbb8314e184604be4de3be2686133a-quit.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-121306-912-f38685-1baad36110f34a54aedc006649aa8bf7.json",
+      "bytes": 5809,
+      "sha256": "56dd7ef9e5510898621aa1609fc4402b6d05494e71c3152dbca7418802c0bdfc",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-121306-912-f38685-1baad36110f34a54aedc006649aa8bf7.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-121306-912-f38685-1baad36110f34a54aedc006649aa8bf7.png",
+      "bytes": 418307,
+      "sha256": "5cf9517750580f83c3e629de9806e4bbfd38d4514769a7329adc1a75872ea3a3",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-121306-912-f38685-1baad36110f34a54aedc006649aa8bf7.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-121951-905-f62817-c11a35ec2cb84119a4b8d5f985e0e828.json",
+      "bytes": 15015,
+      "sha256": "d8595094946f3133a7c85dc493f0a77a11492660fc0e480aee41233673ecf03a",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-121951-905-f62817-c11a35ec2cb84119a4b8d5f985e0e828.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-121951-905-f62817-c11a35ec2cb84119a4b8d5f985e0e828.png",
+      "bytes": 333873,
+      "sha256": "c03c47117f5673c1f169c52a3962d61d6089c922914ddd4b27abc6cb63f9c0f6",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-121951-905-f62817-c11a35ec2cb84119a4b8d5f985e0e828.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122015-599-f64226-38403398d9114e6b8f29005c5ec2369e.json",
+      "bytes": 15047,
+      "sha256": "4c302ac87f58149cc01026cb1766ef639067bf6bcdeb7121e264c08ca40014de",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122015-599-f64226-38403398d9114e6b8f29005c5ec2369e.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122015-599-f64226-38403398d9114e6b8f29005c5ec2369e.png",
+      "bytes": 1184731,
+      "sha256": "6aabcc52336e7d7e1b04974aa1aa53fbe5eb98782c3ee6cfe926a4b2443a0bc8",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122015-599-f64226-38403398d9114e6b8f29005c5ec2369e.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122103-399-f67074-aa1cf10a876c4c0ca69551f98fb32c53.json",
+      "bytes": 15043,
+      "sha256": "8808dd28b374593fd93aacd42a86474b9b4a7422713c042410746c961a354dc6",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122103-399-f67074-aa1cf10a876c4c0ca69551f98fb32c53.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122103-399-f67074-aa1cf10a876c4c0ca69551f98fb32c53.png",
+      "bytes": 1180215,
+      "sha256": "79904ff91c90fa7f1800ed877accb2cc8831fac5dda5b6d6448e4bedcd19aca2",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122103-399-f67074-aa1cf10a876c4c0ca69551f98fb32c53.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122103-999-f67105-6f3e828d87ec475b98e0aef29c785fa8.json",
+      "bytes": 15051,
+      "sha256": "4b7f8cb24e8919f231bc61dd79ab3253c5e3d896dfcb9510ec2ef866435e7040",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122103-999-f67105-6f3e828d87ec475b98e0aef29c785fa8.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122103-999-f67105-6f3e828d87ec475b98e0aef29c785fa8.png",
+      "bytes": 1197732,
+      "sha256": "b4035288c6968c6ac4a00e3d5037a7e67d574e96250bf79ea8490a1fba904e6c",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122103-999-f67105-6f3e828d87ec475b98e0aef29c785fa8.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122124-815-f68343-027dec8c06cf4171ba3c6aeba75e7ef0.json",
+      "bytes": 15037,
+      "sha256": "d7ce0108373bb930b8555c63499f499606cd81488054b711a808c691ba187e7b",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122124-815-f68343-027dec8c06cf4171ba3c6aeba75e7ef0.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122124-815-f68343-027dec8c06cf4171ba3c6aeba75e7ef0.png",
+      "bytes": 1195046,
+      "sha256": "ba50cb003bddab22b344b181a7cb24b4d7536f511aab177760596f7364f4209d",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122124-815-f68343-027dec8c06cf4171ba3c6aeba75e7ef0.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122148-115-f69730-99b0478ef2214f008a86eb111e69d557.json",
+      "bytes": 15043,
+      "sha256": "f482a38fe050675c2ce1d5180b01714ec81a238fded21d1998db203d97052e6c",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122148-115-f69730-99b0478ef2214f008a86eb111e69d557.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122148-115-f69730-99b0478ef2214f008a86eb111e69d557.png",
+      "bytes": 1195956,
+      "sha256": "28387b6247442fd0dfedc6092cc1c8df4b30f36e3494c432b4b6f31bc31565d8",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122148-115-f69730-99b0478ef2214f008a86eb111e69d557.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122148-482-f69747-fb9bf1ef2b614550a6ad4e41eb328d54.json",
+      "bytes": 15026,
+      "sha256": "17975486dcb917cf8ffb5a2c29afba3a53e2e1a5b926851d0f8489db61723d31",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122148-482-f69747-fb9bf1ef2b614550a6ad4e41eb328d54.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122148-482-f69747-fb9bf1ef2b614550a6ad4e41eb328d54.png",
+      "bytes": 1208306,
+      "sha256": "e67ab7a517524f5b3de03324ce0502b951e120e54fa3a236bb24a56db46c25c9",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122148-482-f69747-fb9bf1ef2b614550a6ad4e41eb328d54.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122642-437-f87316-9b5674026c5e4a4fb6d734c0b63006ae.json",
+      "bytes": 15284,
+      "sha256": "0a17c1f220df4ebc5cdb27ff4bc1e2a811a831b9902975b54903a157ca623913",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122642-437-f87316-9b5674026c5e4a4fb6d734c0b63006ae.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122642-437-f87316-9b5674026c5e4a4fb6d734c0b63006ae.png",
+      "bytes": 1168569,
+      "sha256": "1f651e91eb089593458685c3786cbfb6598214cd446ab00158b4d1f9af2a4e17",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122642-437-f87316-9b5674026c5e4a4fb6d734c0b63006ae.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122723-045-f89736-26f7169b3a894212a86a87ed327c9bea.json",
+      "bytes": 15296,
+      "sha256": "49dd7407ac448110649d3f28646004ae94af7eae9122cbc304b2c3f742ce2e63",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122723-045-f89736-26f7169b3a894212a86a87ed327c9bea.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122723-045-f89736-26f7169b3a894212a86a87ed327c9bea.png",
+      "bytes": 1145771,
+      "sha256": "77211ea4a6bb55db0c8005167eee763a5225ca4128d28770c2314fa426025e12",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122723-045-f89736-26f7169b3a894212a86a87ed327c9bea.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122755-044-f91642-62b0a81029e54fee92e87fd5d5248b90.json",
+      "bytes": 15296,
+      "sha256": "c9bcc734c997d65d3be32b5be0c96cb0183b1cc050ed285913cfeba6dcffd7e6",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122755-044-f91642-62b0a81029e54fee92e87fd5d5248b90.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122755-044-f91642-62b0a81029e54fee92e87fd5d5248b90.png",
+      "bytes": 1149053,
+      "sha256": "b7ebe42d4fb9ed7e6e9891898eda1edc612beb16ed113c5fa16ec746b61832a0",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122755-044-f91642-62b0a81029e54fee92e87fd5d5248b90.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122816-775-f92933-8ab5a9259eff485db0a23beba3e66987.json",
+      "bytes": 15040,
+      "sha256": "a51b58ff4888a80c9140571510d9435088109ecad203f3bf58bf126e90ce94ad",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122816-775-f92933-8ab5a9259eff485db0a23beba3e66987.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122816-775-f92933-8ab5a9259eff485db0a23beba3e66987.png",
+      "bytes": 1149652,
+      "sha256": "9b64a08a94c9dbbe3fd42f8fa204d526487a397c0c280ccd9b70c8ace6882608",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122816-775-f92933-8ab5a9259eff485db0a23beba3e66987.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122833-449-f93924-d89ff5b8f7e443139f47c42212fe9821.json",
+      "bytes": 15334,
+      "sha256": "12b435cba0af62bfb7b9de22478cb52eb00f28a2b4677723df84d4cfa2e9e481",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122833-449-f93924-d89ff5b8f7e443139f47c42212fe9821.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122833-449-f93924-d89ff5b8f7e443139f47c42212fe9821.png",
+      "bytes": 1158475,
+      "sha256": "f39e90e682431b6827355edc7cf2e09e11ccfed87772cc9d6e621cf4e5a58658",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122833-449-f93924-d89ff5b8f7e443139f47c42212fe9821.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122841-992-f94428-a41e11a68b5d433cad903f4428ba1b8a.json",
+      "bytes": 15332,
+      "sha256": "eb37b8ca2f2abce5acaed2ee938c56b950b864fa05f4707361df4ab1e926b3d4",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122841-992-f94428-a41e11a68b5d433cad903f4428ba1b8a.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122841-992-f94428-a41e11a68b5d433cad903f4428ba1b8a.png",
+      "bytes": 1150951,
+      "sha256": "c60e502a47da70de2e97b93a64d84b3de2157b049ac4d0320241c5407575d906",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122841-992-f94428-a41e11a68b5d433cad903f4428ba1b8a.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122842-814-f94473-3633312ca3454af09c442df5fd2cb1c6.json",
+      "bytes": 15039,
+      "sha256": "d037320394c24d7fe57deb18ae7bf281bde90ff8428575c44af40468a91e4882",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122842-814-f94473-3633312ca3454af09c442df5fd2cb1c6.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122842-814-f94473-3633312ca3454af09c442df5fd2cb1c6.png",
+      "bytes": 1164619,
+      "sha256": "fa75a573841fbcc666161a04d90e3107220638893d720533e372644e1e46ff12",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122842-814-f94473-3633312ca3454af09c442df5fd2cb1c6.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122854-162-f95147-50aa87af281c4e9bb10876db67212ce4.json",
+      "bytes": 15318,
+      "sha256": "4292e0bce5902d6750194c07f4f844657b69201de29b9ac1cee7a1f9cd6065c0",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122854-162-f95147-50aa87af281c4e9bb10876db67212ce4.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122854-162-f95147-50aa87af281c4e9bb10876db67212ce4.png",
+      "bytes": 1157762,
+      "sha256": "9ec1bdb10b95949017e43df795a4ec8d79c580fb6140f8627e31754be9a0539b",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122854-162-f95147-50aa87af281c4e9bb10876db67212ce4.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122912-208-f96219-eb89405b117e492aa20c8f42563c18f8.json",
+      "bytes": 15330,
+      "sha256": "cb70e5a9b971afc8598428f57a5aa854da790676f7a13f1a4b357879a92aad46",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122912-208-f96219-eb89405b117e492aa20c8f42563c18f8.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122912-208-f96219-eb89405b117e492aa20c8f42563c18f8.png",
+      "bytes": 486351,
+      "sha256": "58e92abe094b6c403bf9ac564d87973ba420909191e8d0ac36d0206cb407283b",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122912-208-f96219-eb89405b117e492aa20c8f42563c18f8.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122930-958-f97324-08b3cc42fc514802963a093ecae29d79.json",
+      "bytes": 15330,
+      "sha256": "c8030023a06ee0ed67cbc175fcba39c29308c39fb58e6c944b92da0fc803f8b4",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122930-958-f97324-08b3cc42fc514802963a093ecae29d79.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122930-958-f97324-08b3cc42fc514802963a093ecae29d79.png",
+      "bytes": 350983,
+      "sha256": "f74e29b191f5a4c438e3806787c3218c715559c7ebe8cefc5b7f54bd392659b7",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122930-958-f97324-08b3cc42fc514802963a093ecae29d79.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122950-985-f98516-5af0e188460a405da2853797d1ea32ad.json",
+      "bytes": 15678,
+      "sha256": "b362aae07871aabcede800b35fe6865590cde5b099df1e54baab8297a163f6d0",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122950-985-f98516-5af0e188460a405da2853797d1ea32ad.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-122950-985-f98516-5af0e188460a405da2853797d1ea32ad.png",
+      "bytes": 346429,
+      "sha256": "7047f9493bd0d7738e59dbe1afbdf08872f25a58ffd59f6318154501e83c5b0a",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-122950-985-f98516-5af0e188460a405da2853797d1ea32ad.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123041-497-f1273-8a3946890ea4463ba7ef3cc87321422c.json",
+      "bytes": 15329,
+      "sha256": "ae15a82ca9ededacc18a01b275b457ea7a6988a700156bcc3fc1fd291280ec09",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-123041-497-f1273-8a3946890ea4463ba7ef3cc87321422c.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123041-497-f1273-8a3946890ea4463ba7ef3cc87321422c.png",
+      "bytes": 351891,
+      "sha256": "3124e3bffafae1c7a012f4615a6e97a43786fcd77ccd83704d679399adb8d530",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-123041-497-f1273-8a3946890ea4463ba7ef3cc87321422c.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123048-657-f1695-d2935c7ea1874424ab88c8298704f00b.json",
+      "bytes": 15333,
+      "sha256": "51561aec40d42d7e73dd47351590d09fbca650017f8db50ea435306946dfacd7",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-123048-657-f1695-d2935c7ea1874424ab88c8298704f00b.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123048-657-f1695-d2935c7ea1874424ab88c8298704f00b.png",
+      "bytes": 1147501,
+      "sha256": "eb53ed89d6bafa7eab7e4120955ac582ca92f5c5bb35083e5123b7dba5c739c7",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-123048-657-f1695-d2935c7ea1874424ab88c8298704f00b.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123136-949-f4571-de1245476b264152b1f28d052aee4c09.json",
+      "bytes": 15331,
+      "sha256": "f2a198b666bbe51891fc39838b071cbed3474782cd50f82d75420bdfe4ef8936",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-123136-949-f4571-de1245476b264152b1f28d052aee4c09.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123136-949-f4571-de1245476b264152b1f28d052aee4c09.png",
+      "bytes": 1146934,
+      "sha256": "59e234427bff44cef15ed154970c4c34714fe489b49be74ca205ac4220cc9f75",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-123136-949-f4571-de1245476b264152b1f28d052aee4c09.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123207-917-f6415-2866a3d1ec1c4e6bbf9030648d88e761.json",
+      "bytes": 15035,
+      "sha256": "510e1a4f1b8fd757fe97c60c9a5de3ec8a84bac67d7a1366ea7b4d0d58111220",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-123207-917-f6415-2866a3d1ec1c4e6bbf9030648d88e761.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123207-917-f6415-2866a3d1ec1c4e6bbf9030648d88e761.png",
+      "bytes": 1146934,
+      "sha256": "0f57635a57ca0bfe006a5c007b9952efbdba7b73aee1ef1b6315157bb59c44e5",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-123207-917-f6415-2866a3d1ec1c4e6bbf9030648d88e761.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123217-800-f7000-496fd26903ef4a378647c08f248f8987.json",
+      "bytes": 15299,
+      "sha256": "efc0ec3b02190d2cd486c566c1b8e012cd11af085aeec945585d9d2d3b3c4cdc",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-123217-800-f7000-496fd26903ef4a378647c08f248f8987.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123217-800-f7000-496fd26903ef4a378647c08f248f8987.png",
+      "bytes": 1173618,
+      "sha256": "bcdaf1ded11e21ede7a4992b07844585e00c96dddf6ded4e634e0917ce627e85",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-123217-800-f7000-496fd26903ef4a378647c08f248f8987.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123414-923-f13930-59bcad351e4745749bcdcd2a0ab5396a.json",
+      "bytes": 15598,
+      "sha256": "3ab7ba41ad6fee86735536309c1ff9f520eddff3355cd3bb46b10c631cbd4cf7",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-123414-923-f13930-59bcad351e4745749bcdcd2a0ab5396a.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123414-923-f13930-59bcad351e4745749bcdcd2a0ab5396a.png",
+      "bytes": 1294348,
+      "sha256": "8c194df6d54f54c9fec3337b513c19a9f04ea6b3907472a11a33ad208f0fe048",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-123414-923-f13930-59bcad351e4745749bcdcd2a0ab5396a.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123415-302-f13936-06a6e3c6154d4403ac55a838ddedca7c.json",
+      "bytes": 15603,
+      "sha256": "c36c5d560d4e735ddae2408ddf9b99b55a7cec84ab9af3564441e362870ad1e1",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-123415-302-f13936-06a6e3c6154d4403ac55a838ddedca7c.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123415-302-f13936-06a6e3c6154d4403ac55a838ddedca7c.png",
+      "bytes": 4034045,
+      "sha256": "beea61d7ecb48611e9e0a0ac32e39792386814ab68a05e4e81b132f437d58fbe",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-123415-302-f13936-06a6e3c6154d4403ac55a838ddedca7c.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123628-634-f21855-e9656073641045d9b62686e7039d983a.json",
+      "bytes": 15603,
+      "sha256": "f46db4aa7b9c466bc94709e0d1423c094f4b08b907527f2ed93a53a48ac3b688",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-123628-634-f21855-e9656073641045d9b62686e7039d983a.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Captures/Frontier-20261006-123628-634-f21855-e9656073641045d9b62686e7039d983a.png",
+      "bytes": 3172965,
+      "sha256": "5ef1d21e3b869dde0b7f76f3f8357a14eedb81e3a4efba4a6a2cee4b9e56810d",
+      "relativePath": "ProfileE/Captures/Frontier-20261006-123628-634-f21855-e9656073641045d9b62686e7039d983a.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Replays/replay-2d5f4818ae50407cb7769a0971cc85ef.replay.json",
+      "bytes": 443529,
+      "sha256": "dab9e98aa9223ff9b1f112476aac02e9b0d168a032f6aaa589787d93e7b84a0e",
+      "relativePath": "ProfileE/Replays/replay-2d5f4818ae50407cb7769a0971cc85ef.replay.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Replays/replay-b846573eff774fa288e857856988738e.replay.json",
+      "bytes": 254561,
+      "sha256": "2a008127b8bcbba105b925c1cc718f0b4dc667c1f1816259561edede57fb4209",
+      "relativePath": "ProfileE/Replays/replay-b846573eff774fa288e857856988738e.replay.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Reports/20261006-122951-323-68c69480797e47e3850953863ce58aa9-quit-events.jsonl",
+      "bytes": 228829,
+      "sha256": "6686fae129b1fa285fc52e289c96f78255ea44d66b1c081b64a903611ae1fad8",
+      "relativePath": "ProfileE/Reports/20261006-122951-323-68c69480797e47e3850953863ce58aa9-quit-events.jsonl"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Reports/20261006-122951-323-68c69480797e47e3850953863ce58aa9-quit.json",
+      "bytes": 4445,
+      "sha256": "b36781591127b936a3307c1b13d4dda4e754f00be6fb480586a589b3ef83b66f",
+      "relativePath": "ProfileE/Reports/20261006-122951-323-68c69480797e47e3850953863ce58aa9-quit.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Reports/20261006-123628-873-68c69480797e47e3850953863ce58aa9-quit-events.jsonl",
+      "bytes": 236004,
+      "sha256": "a3f46c7c8ad1b151a878589a27097b95fb56b59974da5e4f5fbae2f38e092ef7",
+      "relativePath": "ProfileE/Reports/20261006-123628-873-68c69480797e47e3850953863ce58aa9-quit-events.jsonl"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Reports/20261006-123628-873-68c69480797e47e3850953863ce58aa9-quit.json",
+      "bytes": 4442,
+      "sha256": "94d3fa0138f0b295d001e2c9979ddb0368be9c9257040d5ce13668c6c24244ad",
+      "relativePath": "ProfileE/Reports/20261006-123628-873-68c69480797e47e3850953863ce58aa9-quit.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Saves/slot-1.json",
+      "bytes": 33521,
+      "sha256": "c46875d4883e887d330fee45f97cd34d6fe79487ef5fd469b4530fd4376db8f8",
+      "relativePath": "ProfileE/Saves/slot-1.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-123953-416-f555-765554393dd54240889a39b4fd8819a8.json",
+      "bytes": 15579,
+      "sha256": "f17fe3746a9680581df387e7e35aa43d7ab9b234ec4b9212e3fc566ae52747e2",
+      "relativePath": "ProfileG/Captures/Frontier-20261006-123953-416-f555-765554393dd54240889a39b4fd8819a8.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-123953-416-f555-765554393dd54240889a39b4fd8819a8.png",
+      "bytes": 1062507,
+      "sha256": "017546e081013bbd0ea16ab94a7f349953aa82b7bf6e400feb963a78309c8bfc",
+      "relativePath": "ProfileG/Captures/Frontier-20261006-123953-416-f555-765554393dd54240889a39b4fd8819a8.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-124107-728-f1786-a749149c24a4451fa43c79065c5831c9.json",
+      "bytes": 30860,
+      "sha256": "e8c437eb25425575f7d7f7548033686e32322a756361cc66b61f7b31f984cada",
+      "relativePath": "ProfileG/Captures/Frontier-20261006-124107-728-f1786-a749149c24a4451fa43c79065c5831c9.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-124107-728-f1786-a749149c24a4451fa43c79065c5831c9.png",
+      "bytes": 1515244,
+      "sha256": "90e141fc6c0f107b4c67ca860c69caf4e7a6e27fd2ec60da88e51874e8fa8530",
+      "relativePath": "ProfileG/Captures/Frontier-20261006-124107-728-f1786-a749149c24a4451fa43c79065c5831c9.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-124109-710-f1798-633eb79d2ce540fe9d111a97e08921d6.json",
+      "bytes": 30242,
+      "sha256": "6f25c95abc7a29179e928c5cd1c4bd9ff671223425d5f1dc0f1d4259978cf19b",
+      "relativePath": "ProfileG/Captures/Frontier-20261006-124109-710-f1798-633eb79d2ce540fe9d111a97e08921d6.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-124109-710-f1798-633eb79d2ce540fe9d111a97e08921d6.png",
+      "bytes": 1512709,
+      "sha256": "16f96974f6412462879ec7c07583f5e5df3a3b69f757e9f7171c9e77dd90430b",
+      "relativePath": "ProfileG/Captures/Frontier-20261006-124109-710-f1798-633eb79d2ce540fe9d111a97e08921d6.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-124141-584-f2171-2c1e869d77e542279af84bda6fd581e5.json",
+      "bytes": 33442,
+      "sha256": "4777c461ba8cac1d9fe9bd74077f31affa07db7cf7471483b8676fbfc7521a92",
+      "relativePath": "ProfileG/Captures/Frontier-20261006-124141-584-f2171-2c1e869d77e542279af84bda6fd581e5.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-124141-584-f2171-2c1e869d77e542279af84bda6fd581e5.png",
+      "bytes": 1256493,
+      "sha256": "c16ab1114ec49ab4162035f5953205a0611a1ac78dcea67ecfcdaa86fd3ea981",
+      "relativePath": "ProfileG/Captures/Frontier-20261006-124141-584-f2171-2c1e869d77e542279af84bda6fd581e5.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-124144-471-f2178-1ed00b4b67c8489b8322d6340eaf71a3.json",
+      "bytes": 32888,
+      "sha256": "28e75339f55a0e7fa7c9fac8b33e80a47f4678b5274d1b99a734d1ac328da02f",
+      "relativePath": "ProfileG/Captures/Frontier-20261006-124144-471-f2178-1ed00b4b67c8489b8322d6340eaf71a3.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-124144-471-f2178-1ed00b4b67c8489b8322d6340eaf71a3.png",
+      "bytes": 1074199,
+      "sha256": "5e56300938ca60c8b7f0c5e04ad237323a8d6a9f1aaff0d3c24f059e7eb5764f",
+      "relativePath": "ProfileG/Captures/Frontier-20261006-124144-471-f2178-1ed00b4b67c8489b8322d6340eaf71a3.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-124227-222-f2883-4995e74d11184761a5dac067ac59d0e0.json",
+      "bytes": 34057,
+      "sha256": "f8c4d5d42072034330b4a46ec9e88b040deb98e2a588b3a942d81d6d9244ed0a",
+      "relativePath": "ProfileG/Captures/Frontier-20261006-124227-222-f2883-4995e74d11184761a5dac067ac59d0e0.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Captures/Frontier-20261006-124227-222-f2883-4995e74d11184761a5dac067ac59d0e0.png",
+      "bytes": 1172451,
+      "sha256": "9b27559cd2e901b0bf248ba612d867508e2330533041eb1e5ea213a4729deae6",
+      "relativePath": "ProfileG/Captures/Frontier-20261006-124227-222-f2883-4995e74d11184761a5dac067ac59d0e0.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Replays/replay-7975a74ea1e94f1aa8989ecd6301bc16.replay.json",
+      "bytes": 5573569,
+      "sha256": "27a86d3aaf0dc84616eb426e0eb5f9d1fc54db3aab4be57072ef787ede213156",
+      "relativePath": "ProfileG/Replays/replay-7975a74ea1e94f1aa8989ecd6301bc16.replay.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Reports/20261006-124228-602-a28af2af61b74700b3be462a595178eb-quit-events.jsonl",
+      "bytes": 41944556,
+      "sha256": "6502f62d9bcb549382dfffed0aaf41b9ccd9cfd6c21bd8b986d2583b145e0048",
+      "relativePath": "ProfileG/Reports/20261006-124228-602-a28af2af61b74700b3be462a595178eb-quit-events.jsonl"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileG/Reports/20261006-124228-602-a28af2af61b74700b3be462a595178eb-quit.json",
+      "bytes": 4770,
+      "sha256": "2784bbe0dec73429067c70ac5c645333e63617a7f174d63a49bce12df4c53282",
+      "relativePath": "ProfileG/Reports/20261006-124228-602-a28af2af61b74700b3be462a595178eb-quit.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileH/Captures/Frontier-20261006-123729-432-f1105-b552edca89f241fbb4721bbd37640545.json",
+      "bytes": 14718,
+      "sha256": "83d38018f1253f8a0854e88d2a82779fe5bb79b03185a1a02ef48cd1be0c31b8",
+      "relativePath": "ProfileH/Captures/Frontier-20261006-123729-432-f1105-b552edca89f241fbb4721bbd37640545.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileH/Captures/Frontier-20261006-123729-432-f1105-b552edca89f241fbb4721bbd37640545.png",
+      "bytes": 1056443,
+      "sha256": "308e33980adc7fdbe7fa699e0a2b45990f935ceb091c211145de1b16a8e4a967",
+      "relativePath": "ProfileH/Captures/Frontier-20261006-123729-432-f1105-b552edca89f241fbb4721bbd37640545.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileH/Captures/Frontier-20261006-123759-958-f2907-5bee4d32fcfb476ab23df49bfea8ed3d.json",
+      "bytes": 15189,
+      "sha256": "7bdbefd95b6cc9bd6893d763c9b8a6ad44fc227198ceb448cd4f5f8ab5fbb140",
+      "relativePath": "ProfileH/Captures/Frontier-20261006-123759-958-f2907-5bee4d32fcfb476ab23df49bfea8ed3d.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileH/Captures/Frontier-20261006-123759-958-f2907-5bee4d32fcfb476ab23df49bfea8ed3d.png",
+      "bytes": 1054818,
+      "sha256": "1970959465310946327efc187828d4adf8171b42983506d91f00a3f4cd222d9b",
+      "relativePath": "ProfileH/Captures/Frontier-20261006-123759-958-f2907-5bee4d32fcfb476ab23df49bfea8ed3d.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileH/Captures/Frontier-20261006-123851-739-f5998-0eb7a68163ee42aa98b461454896dbd1.json",
+      "bytes": 15181,
+      "sha256": "4387e20a30b1c4741c9c87044d8ad35a9e7b38a7352a08b9671d1df90d1b60b2",
+      "relativePath": "ProfileH/Captures/Frontier-20261006-123851-739-f5998-0eb7a68163ee42aa98b461454896dbd1.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileH/Captures/Frontier-20261006-123851-739-f5998-0eb7a68163ee42aa98b461454896dbd1.png",
+      "bytes": 1054785,
+      "sha256": "138aa2a62505953bcbd6e21d066c82aa5485bac67d174d7d11df3a808552dd56",
+      "relativePath": "ProfileH/Captures/Frontier-20261006-123851-739-f5998-0eb7a68163ee42aa98b461454896dbd1.png"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/fixtures-receipt.json",
+      "bytes": 1314,
+      "sha256": "fdad0ef22af1789a7da480d0013fc1c59ba5dd4499247dd098d0fe989584c01d",
+      "relativePath": "fixtures-receipt.json"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/sky-actions072.jsonl",
+      "bytes": 97461,
+      "sha256": "9f14f0b87ca75f59238e129c2cb2329a735461f798bb62fd957f2aed68678031",
+      "relativePath": "sky-actions072.jsonl"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/startup-helper-routing-note.json",
+      "bytes": 840,
+      "sha256": "b8d67085741fc76667f179adbe5ec3cd813476d1d4ee215f1a96561b406dd17a",
+      "relativePath": "startup-helper-routing-note.json"
+    }
+  ],
+  "originalFileCount": 116,
+  "originalBytes": 269005909,
+  "originalInputsStableBeforeAndAfter": true,
+  "allRequiredProcessesClosed": true,
+  "rawNativeOriginalTreeFrozen": true,
+  "journalFilesExcludedFromOriginalInventory": [
+    "native-journal072-final-running.json",
+    "native-journal072-final.json"
+  ],
+  "selfReferenceExcluded": true,
+  "outsideAudits": [
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processd-performance-audit.json",
+      "bytes": 155312,
+      "sha256": "b6bd860acee2ebc206651d2b251c3f3a63b6f3564396973a2f1efbe38e7a7a6d"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processd-performance-audit.md",
+      "bytes": 2625,
+      "sha256": "41102f2b395d6b251af37d71aec4a1fc744c2fc227f7d66121aac826b495d182"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processd-army-final-audit.json",
+      "bytes": 508763,
+      "sha256": "8d0661969646bbd00fec3e28e6d5facd11ee36c86c2b5c4c12434c576d3743eb"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processd-army-final-audit.md",
+      "bytes": 2840,
+      "sha256": "748e6098d8cd19859d6217178fcc7b8ed1061c41b2651408ff91bda29600586c"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processe-audit.json",
+      "bytes": 186109,
+      "sha256": "6207534524944855915bb8715db234e9a2c0ef0660f4788e3f5f8c6165c17b29"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processe-audit.md",
+      "bytes": 2722,
+      "sha256": "851c4a7215a21335e51384c13f869e91474acaa42e6a6f60be63b165018e7888"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processe-save-replay-audit.json",
+      "bytes": 42256,
+      "sha256": "b8861b81a2fe84bcf1da20505faf0c6741a76b69409107497813f248a66439ca"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processe-save-replay-audit.md",
+      "bytes": 2882,
+      "sha256": "472da934cf3be28ab01b99638e600874ad2eac31d019c936725af2a1ffeda27e"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processf-cold-save-replay-audit.json",
+      "bytes": 98796,
+      "sha256": "faddeb5104a7412bb57be38777076bb90c441629c51c402a1c7dba0a4c59de1c"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processf-cold-save-replay-audit.md",
+      "bytes": 3170,
+      "sha256": "db1e30789ee081f3c2bf0afe1bc51af4b824aaa57d9a6b7e5f9f251e39ad78fe"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processf-continuation-pixels-audit.json",
+      "bytes": 51426,
+      "sha256": "ec3780d8c7c680a42bf201acdbd09d7f1b554474ec344da0e032ae9fb20afade"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processf-continuation-pixels-audit.md",
+      "bytes": 1768,
+      "sha256": "fba7ebec515e7115a5c043d60a14d32b1371eb950a2e7aa1a1542c24a64c017c"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processg-camera-readonly-audit.json",
+      "bytes": 55661,
+      "sha256": "6bc105cc8af582fbe06c6d037e2d55e6c02deb2940fe24fd4218f55105d419a6"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processg-camera-readonly-audit.md",
+      "bytes": 1777,
+      "sha256": "c6848bb20fbe05173b85d15f63e13fc3b17d47ea36911661b079b8eb62f3f4ef"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processh-forward-audit.json",
+      "bytes": 115678,
+      "sha256": "36899f48fb8eca7121080a7761aa7e1e1a3b277b32932b27c75b0d7de34cd0b6"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processh-forward-audit.md",
+      "bytes": 2854,
+      "sha256": "f58c5f517a0122553ea08c89754f7a42417e2f979897e88f8bb88b11537bab2d"
+    }
+  ],
+  "sourceAuditCheckCountSum": 3659,
+  "sourceAuditFailureCount": 0,
+  "coldRestores": [
+    {
+      "fromProcess": "ProcessE",
+      "toProcess": "ProcessF",
+      "save": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Saves/slot-1.json",
+        "bytes": 33521,
+        "sha256": "c46875d4883e887d330fee45f97cd34d6fe79487ef5fd469b4530fd4376db8f8"
+      },
+      "entireNormalizedWorldEqual": true,
+      "entireNormalizedSimulationEqual": true,
+      "entireGuidedEqual": true,
+      "allowedNormalization": [
+        "World.events projected away by CaptureState(false)",
+        "Recorded simulation.accumulator=0 by ReplayDigest"
+      ],
+      "additionalDifferences": [],
+      "initialDigest": "2515c890b10d64b0c6ef3119fbd33de4754f1239dd51b28109b35f7aad01c3e7",
+      "initialStep": 5490,
+      "initialTime": 549.0130004882812,
+      "paidPendingResearchElapsed": 0.10000000149011612,
+      "researchDuration": 60,
+      "actualGovCompletion": 608.9983520507812,
+      "noRepeatedPoliticalCharge": true,
+      "audit": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processf-cold-save-replay-audit.json",
+        "bytes": 98796,
+        "sha256": "faddeb5104a7412bb57be38777076bb90c441629c51c402a1c7dba0a4c59de1c"
+      }
+    }
+  ],
+  "replayViewing": [
+    {
+      "process": "ProcessH",
+      "file": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Replays/replay-2d5f4818ae50407cb7769a0971cc85ef.replay.json",
+        "bytes": 443529,
+        "sha256": "dab9e98aa9223ff9b1f112476aac02e9b0d168a032f6aaa589787d93e7b84a0e"
+      },
+      "fromStep": 600,
+      "toStep": 1111,
+      "actualForwardSteps": 511,
+      "seekDuringForward": false,
+      "crossedAnchorDerived": 900,
+      "nextExpectedAnchorDerived": 1200,
+      "actualErrors": [],
+      "actualVerified": false,
+      "fullReplayVerified": false,
+      "playbackCaptureIds": [
+        "Frontier-20261006-123729-432-f1105-b552edca89f241fbb4721bbd37640545",
+        "Frontier-20261006-123759-958-f2907-5bee4d32fcfb476ab23df49bfea8ed3d",
+        "Frontier-20261006-123851-739-f5998-0eb7a68163ee42aa98b461454896dbd1"
+      ],
+      "audit": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/072-final-processh-forward-audit.json",
+        "bytes": 115678,
+        "sha256": "36899f48fb8eca7121080a7761aa7e1e1a3b277b32932b27c75b0d7de34cd0b6"
+      }
+    }
+  ],
+  "shutdownDiagnostics": [
+    {
+      "process": "ProcessD",
+      "log": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessD/Player.log",
+        "bytes": 65133,
+        "sha256": "4fb83082ea28f98612b09cf7c23d0f511069fcdf95ad6bcbf1b48ff437b7bd0e"
+      },
+      "prematureFinalizationLines": 6,
+      "actualDiagnosticLines": [
+        {
+          "line1": 682,
+          "text": "Thread 0x16f7bf000 may have been prematurely finalized"
+        },
+        {
+          "line1": 688,
+          "text": "Thread 0x16f287000 may have been prematurely finalized"
+        },
+        {
+          "line1": 689,
+          "text": "Thread 0x16e21f000 may have been prematurely finalized"
+        },
+        {
+          "line1": 690,
+          "text": "Thread 0x16e2ab000 may have been prematurely finalized"
+        },
+        {
+          "line1": 691,
+          "text": "Thread 0x16e193000 may have been prematurely finalized"
+        },
+        {
+          "line1": 692,
+          "text": "Thread 0x16e337000 may have been prematurely finalized"
+        },
+        {
+          "line1": 694,
+          "text": "PlayerConnection::Cleanup##utp:{\"type\":\"MemoryLeaks\",\"version\":2,\"phase\":\"Immediate\",\"time\":1791288117262,\"processId\":83036,\"allocatedMemory\":3296486,\"memoryLabels\":[{\"Default\":54543},{\"Permanent\":1472},{\"NewDelete\":2471148},{\"Thread\":8120},{\"Manager\":15163},{\"VertexData\":8},{\"Geometry\":408},{\"Texture\":16},{\"Shader\":78020},{\"Material\":68},{\"GfxDevice\":38920},{\"GfxThread\":480},{\"Animation\":880},{\"FreeType\":8},{\"FontEngine\":736},{\"Physics\":2000},{\"Physics2D\":16},{\"Serialization\":16592},{\"Input\":43216},{\"JobScheduler\":448},{\"TextLib\":280},{\"Mono\":56},{\"ScriptingNativeRuntime\":128},{\"BaseObject\":52112},{\"Resource\":564},{\"Renderer\":2448},{\"Transform\":6485},{\"File\":4600},{\"WebCam\":32},{\"Culling\":32},{\"Terrain\":11298},{\"Wind\":24},{\"String\":3127},{\"Utility\":316568},{\"PoolAlloc\":1536},{\"AI\":40},{\"TypeTree\":5512},{\"ScriptManager\":5696},{\"CodeReload\":440},{\"RuntimeInitializeOnLoadManager\":64},{\"Sprites\":78},{\"SpriteAtlas\":120},{\"GI\":7200},{\"Director\":8248},{\"CloudService\":144},{\"WebRequest\":520},{\"VR\":49402},{\"SceneManager\":408},{\"Video\":2080},{\"LazyScriptCache\":32},{\"NativeArray\":648},{\"Camera\":1169},{\"Secure\":241},{\"SerializationCache\":3608},{\"APIUpdating\":10320},{\"Subsystems\":336},{\"VirtualTexturing\":57496},{\"Baselib\":16},{\"Analytics\":80},{\"Hierarchy\":1452},{\"UIElements\":40},{\"CoreStats\":14536},{\"Identifiers\":7152},{\"Gui\":40},{\"CoreBusinessMetrics\":128},{\"AssetReference\":32}]}"
+        }
+      ],
+      "zeroLeaksCertified": false
+    },
+    {
+      "process": "ProcessE",
+      "log": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessE/Player.log",
+        "bytes": 51992,
+        "sha256": "9ae4bd57cc2b1789a3ad54b9640f5bbec1e005a7bfadfbb670e6c0e3adfb55e8"
+      },
+      "prematureFinalizationLines": 7,
+      "actualDiagnosticLines": [
+        {
+          "line1": 489,
+          "text": "Thread 0x16d90f000 may have been prematurely finalized"
+        },
+        {
+          "line1": 490,
+          "text": "Thread 0x16d3d7000 may have been prematurely finalized"
+        },
+        {
+          "line1": 496,
+          "text": "Thread 0x16c2e3000 may have been prematurely finalized"
+        },
+        {
+          "line1": 497,
+          "text": "Thread 0x16c36f000 may have been prematurely finalized"
+        },
+        {
+          "line1": 498,
+          "text": "Thread 0x16c3fb000 may have been prematurely finalized"
+        },
+        {
+          "line1": 499,
+          "text": "Thread 0x16c487000 may have been prematurely finalized"
+        },
+        {
+          "line1": 500,
+          "text": "Thread 0x16c513000 may have been prematurely finalized"
+        },
+        {
+          "line1": 502,
+          "text": "PlayerConnection::Cleanup##utp:{\"type\":\"MemoryLeaks\",\"version\":2,\"phase\":\"Immediate\",\"time\":1791289793968,\"processId\":84132,\"allocatedMemory\":3259006,\"memoryLabels\":[{\"Default\":54543},{\"Permanent\":1472},{\"NewDelete\":2417240},{\"Thread\":8120},{\"Manager\":14983},{\"VertexData\":8},{\"Geometry\":408},{\"Texture\":16},{\"Shader\":78020},{\"Material\":68},{\"GfxDevice\":39064},{\"GfxThread\":560},{\"Animation\":880},{\"FreeType\":8},{\"FontEngine\":736},{\"Physics\":2000},{\"Physics2D\":16},{\"Serialization\":32976},{\"Input\":43216},{\"JobScheduler\":448},{\"TextLib\":280},{\"Mono\":56},{\"ScriptingNativeRuntime\":128},{\"BaseObject\":52112},{\"Resource\":564},{\"Renderer\":2448},{\"Transform\":6485},{\"File\":4600},{\"WebCam\":32},{\"Culling\":32},{\"Terrain\":11298},{\"Wind\":24},{\"String\":3127},{\"Utility\":316568},{\"PoolAlloc\":1536},{\"AI\":40},{\"TypeTree\":5512},{\"ScriptManager\":5696},{\"CodeReload\":440},{\"RuntimeInitializeOnLoadManager\":64},{\"Sprites\":78},{\"SpriteAtlas\":120},{\"GI\":7200},{\"Director\":8248},{\"CloudService\":144},{\"WebRequest\":520},{\"VR\":49402},{\"SceneManager\":408},{\"Video\":2080},{\"LazyScriptCache\":32},{\"NativeArray\":648},{\"Camera\":1169},{\"Secure\":241},{\"SerializationCache\":3608},{\"APIUpdating\":10320},{\"Subsystems\":336},{\"VirtualTexturing\":57496},{\"Baselib\":16},{\"Analytics\":80},{\"Hierarchy\":1452},{\"UIElements\":40},{\"CoreStats\":14536},{\"Identifiers\":7152},{\"Gui\":40},{\"CoreBusinessMetrics\":128},{\"AssetReference\":32}]}"
+        }
+      ],
+      "zeroLeaksCertified": false
+    },
+    {
+      "process": "ProcessF",
+      "log": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessF/Player.log",
+        "bytes": 35488,
+        "sha256": "2ddddcf31f6261d24eea167b9c6afa03d9dbc05abab9ab0336a0f16f8beadd6a"
+      },
+      "prematureFinalizationLines": 6,
+      "actualDiagnosticLines": [
+        {
+          "line1": 350,
+          "text": "Thread 0x16f15f000 may have been prematurely finalized"
+        },
+        {
+          "line1": 351,
+          "text": "Thread 0x16ec27000 may have been prematurely finalized"
+        },
+        {
+          "line1": 357,
+          "text": "Thread 0x16dc4b000 may have been prematurely finalized"
+        },
+        {
+          "line1": 358,
+          "text": "Thread 0x16db33000 may have been prematurely finalized"
+        },
+        {
+          "line1": 359,
+          "text": "Thread 0x16dcd7000 may have been prematurely finalized"
+        },
+        {
+          "line1": 360,
+          "text": "Thread 0x16dbbf000 may have been prematurely finalized"
+        },
+        {
+          "line1": 362,
+          "text": "PlayerConnection::Cleanup##utp:{\"type\":\"MemoryLeaks\",\"version\":2,\"phase\":\"Immediate\",\"time\":1791290189784,\"processId\":85449,\"allocatedMemory\":3431878,\"memoryLabels\":[{\"Default\":54543},{\"Permanent\":1472},{\"NewDelete\":2590560},{\"Thread\":8120},{\"Manager\":14983},{\"VertexData\":8},{\"Geometry\":408},{\"Texture\":16},{\"Shader\":78020},{\"Material\":68},{\"GfxDevice\":38776},{\"GfxThread\":400},{\"Animation\":880},{\"FreeType\":8},{\"FontEngine\":736},{\"Physics\":2000},{\"Physics2D\":16},{\"Serialization\":32976},{\"Input\":43216},{\"JobScheduler\":448},{\"TextLib\":280},{\"Mono\":56},{\"ScriptingNativeRuntime\":128},{\"BaseObject\":52112},{\"Resource\":564},{\"Renderer\":2448},{\"Transform\":6485},{\"File\":4600},{\"WebCam\":32},{\"Culling\":32},{\"Terrain\":11298},{\"Wind\":24},{\"String\":3127},{\"Utility\":316568},{\"PoolAlloc\":1536},{\"AI\":40},{\"TypeTree\":5512},{\"ScriptManager\":5696},{\"CodeReload\":440},{\"RuntimeInitializeOnLoadManager\":64},{\"Sprites\":78},{\"SpriteAtlas\":120},{\"GI\":7200},{\"Director\":8248},{\"CloudService\":144},{\"WebRequest\":520},{\"VR\":49402},{\"SceneManager\":408},{\"Video\":2080},{\"LazyScriptCache\":32},{\"NativeArray\":648},{\"Camera\":1169},{\"Secure\":241},{\"SerializationCache\":3608},{\"APIUpdating\":10320},{\"Subsystems\":336},{\"VirtualTexturing\":57496},{\"Baselib\":16},{\"Analytics\":80},{\"Hierarchy\":1452},{\"UIElements\":40},{\"CoreStats\":14536},{\"Identifiers\":7152},{\"Gui\":40},{\"CoreBusinessMetrics\":128},{\"AssetReference\":32}]}"
+        }
+      ],
+      "zeroLeaksCertified": false
+    },
+    {
+      "process": "ProcessG",
+      "log": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessG/Player.log",
+        "bytes": 48268,
+        "sha256": "8f2be8b6e27ad8ccca04d2585aed4f2e0dfe73a22f13eadf7137ed9ed3c1369d"
+      },
+      "prematureFinalizationLines": 6,
+      "actualDiagnosticLines": [
+        {
+          "line1": 512,
+          "text": "Thread 0x17185b000 may have been prematurely finalized"
+        },
+        {
+          "line1": 513,
+          "text": "Thread 0x171297000 may have been prematurely finalized"
+        },
+        {
+          "line1": 519,
+          "text": "Thread 0x1702bb000 may have been prematurely finalized"
+        },
+        {
+          "line1": 520,
+          "text": "Thread 0x1701a3000 may have been prematurely finalized"
+        },
+        {
+          "line1": 521,
+          "text": "Thread 0x170347000 may have been prematurely finalized"
+        },
+        {
+          "line1": 522,
+          "text": "Thread 0x17022f000 may have been prematurely finalized"
+        },
+        {
+          "line1": 524,
+          "text": "PlayerConnection::Cleanup##utp:{\"type\":\"MemoryLeaks\",\"version\":2,\"phase\":\"Immediate\",\"time\":1791290556705,\"processId\":85848,\"allocatedMemory\":3157545,\"memoryLabels\":[{\"Default\":54543},{\"Permanent\":1472},{\"NewDelete\":2332611},{\"Thread\":8120},{\"Manager\":14983},{\"VertexData\":8},{\"Geometry\":408},{\"Texture\":16},{\"Shader\":78020},{\"Material\":68},{\"GfxDevice\":38776},{\"GfxThread\":400},{\"Animation\":880},{\"FreeType\":8},{\"FontEngine\":736},{\"Physics\":2000},{\"Physics2D\":16},{\"Serialization\":16592},{\"Input\":43216},{\"JobScheduler\":448},{\"TextLib\":280},{\"Mono\":56},{\"ScriptingNativeRuntime\":128},{\"BaseObject\":52112},{\"Resource\":564},{\"Renderer\":2448},{\"Transform\":6485},{\"File\":4600},{\"WebCam\":32},{\"Culling\":32},{\"Terrain\":11298},{\"Wind\":24},{\"String\":3127},{\"Utility\":316568},{\"PoolAlloc\":1536},{\"AI\":40},{\"TypeTree\":5512},{\"ScriptManager\":5696},{\"CodeReload\":440},{\"RuntimeInitializeOnLoadManager\":64},{\"Sprites\":78},{\"SpriteAtlas\":120},{\"GI\":7200},{\"Director\":8248},{\"CloudService\":144},{\"WebRequest\":520},{\"VR\":49402},{\"SceneManager\":408},{\"Video\":2080},{\"LazyScriptCache\":32},{\"NativeArray\":648},{\"Camera\":1169},{\"Secure\":241},{\"SerializationCache\":3608},{\"APIUpdating\":10320},{\"Subsystems\":336},{\"VirtualTexturing\":57496},{\"Baselib\":16},{\"Analytics\":80},{\"Hierarchy\":1452},{\"UIElements\":40},{\"CoreStats\":14536},{\"Identifiers\":7152},{\"Gui\":40},{\"CoreBusinessMetrics\":128},{\"AssetReference\":32}]}"
+        }
+      ],
+      "zeroLeaksCertified": false
+    },
+    {
+      "process": "ProcessH",
+      "log": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProcessH/Player.log",
+        "bytes": 19440,
+        "sha256": "7a6c2c420a1109cd7dd4d200057d013e444364e22c0fcf7ab4b71ce8541df046"
+      },
+      "prematureFinalizationLines": 7,
+      "actualDiagnosticLines": [
+        {
+          "line1": 173,
+          "text": "Thread 0x16d453000 may have been prematurely finalized"
+        },
+        {
+          "line1": 174,
+          "text": "Thread 0x16ce8f000 may have been prematurely finalized"
+        },
+        {
+          "line1": 180,
+          "text": "Thread 0x16bfcb000 may have been prematurely finalized"
+        },
+        {
+          "line1": 181,
+          "text": "Thread 0x16bd9b000 may have been prematurely finalized"
+        },
+        {
+          "line1": 182,
+          "text": "Thread 0x16bf3f000 may have been prematurely finalized"
+        },
+        {
+          "line1": 183,
+          "text": "Thread 0x16be27000 may have been prematurely finalized"
+        },
+        {
+          "line1": 184,
+          "text": "Thread 0x16beb3000 may have been prematurely finalized"
+        },
+        {
+          "line1": 186,
+          "text": "PlayerConnection::Cleanup##utp:{\"type\":\"MemoryLeaks\",\"version\":2,\"phase\":\"Immediate\",\"time\":1791290348199,\"processId\":85769,\"allocatedMemory\":3172021,\"memoryLabels\":[{\"Default\":54543},{\"Permanent\":1472},{\"NewDelete\":2330703},{\"Thread\":8120},{\"Manager\":14983},{\"VertexData\":8},{\"Geometry\":408},{\"Texture\":16},{\"Shader\":78020},{\"Material\":68},{\"GfxDevice\":38776},{\"GfxThread\":400},{\"Animation\":880},{\"FreeType\":8},{\"FontEngine\":736},{\"Physics\":2000},{\"Physics2D\":16},{\"Serialization\":32976},{\"Input\":43216},{\"JobScheduler\":448},{\"TextLib\":280},{\"Mono\":56},{\"ScriptingNativeRuntime\":128},{\"BaseObject\":52112},{\"Resource\":564},{\"Renderer\":2448},{\"Transform\":6485},{\"File\":4600},{\"WebCam\":32},{\"Culling\":32},{\"Terrain\":11298},{\"Wind\":24},{\"String\":3127},{\"Utility\":316568},{\"PoolAlloc\":1536},{\"AI\":40},{\"TypeTree\":5512},{\"ScriptManager\":5696},{\"CodeReload\":440},{\"RuntimeInitializeOnLoadManager\":64},{\"Sprites\":78},{\"SpriteAtlas\":120},{\"GI\":7200},{\"Director\":8248},{\"CloudService\":144},{\"WebRequest\":520},{\"VR\":49402},{\"SceneManager\":408},{\"Video\":2080},{\"LazyScriptCache\":32},{\"NativeArray\":648},{\"Camera\":1169},{\"Secure\":241},{\"SerializationCache\":3608},{\"APIUpdating\":10320},{\"Subsystems\":336},{\"VirtualTexturing\":57496},{\"Baselib\":16},{\"Analytics\":80},{\"Hierarchy\":1452},{\"UIElements\":40},{\"CoreStats\":14536},{\"Identifiers\":7152},{\"Gui\":40},{\"CoreBusinessMetrics\":128},{\"AssetReference\":32}]}"
+        }
+      ],
+      "zeroLeaksCertified": false
+    }
+  ],
+  "guiBoundary": {
+    "soleOperator": "root Codex GUI operator",
+    "humanUserObserver": false,
+    "selectedOriginalPixelsReviewed": true,
+    "allNativeCapturePixelsReviewed": false,
+    "autoplayGInputReceiptKind": "received-but-ignored observation inputs; not World.Issue rejected receipt",
+    "publicPointerSolution": "Actual same-point Sky drag inputs, failed Sky click/noWindows attempts preserved in original actionjournal"
+  },
+  "limits": [
+    "Selected actual native9scopes only, distinct from ongoing16-case matrix and overall release/delivery.",
+    "Short forwardE replay step600→1111 retains verifiedfalse; not entire5490 segment verification.",
+    "No whole-sessionFPS/nostall/zero-leak certification. Original prematurely-finalized threads and MemoryLeaks records retained.",
+    "F first5 F9s1600×1000, next2 are3456×2168, last3416×1884. Firstpaused13930selectedRevolutionary; next13936/finalselectedSettler.",
+    "G actual selectedmilitary isGUNBOAT165; actualA/S frontendignored, not submitted World.Issue rejection.",
+    "Guardian person target is controlled authoredIV scope; movingworker chase exists only in separate4Play tests.",
+    "Actualpaidfirstworker89 was idle; no nativewoodGather/longterm economic proof inF.",
+    "All-pixelreview/nativenetworking/LAN/group-persistence/hypotheticalhiddenpath are outside this native acceptance scope."
+  ]
+}

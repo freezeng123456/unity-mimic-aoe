@@ -1,0 +1,609 @@
+{
+  "actualComparisonChecks": 285,
+  "createdUtc": "2026-10-06T12:16:52.189153+00:00",
+  "currentFullRegression": "passed_frozen_full_regression",
+  "finalState": {
+    "emittedEvents": 1343,
+    "finalDigest": "59d3818268c962b1584cc4d9530168778ad45ca38604c60f7c5828aca9b4d75f",
+    "finalEvents": 62633,
+    "finalWorldControllerAndEventBytesIdentical": true,
+    "initialEvents": 61290,
+    "pairedObservableTransitionsIdentical": true,
+    "startingDigest": "ac4b1b1603d1b5f37d923eb1e6fd90e5c1ead5ac7d771a3e4373fa66b6cb5dec"
+  },
+  "fullRegressionAtSealWasPending": true,
+  "inputs": [
+    {
+      "archiveMember": "PerfProbe/step-comparison072.json",
+      "auditInputIndex": 0,
+      "bytes": 46141,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "2575ecc1fca3ce1ebc4ea45a09c8330d9fbb94e17fa5301e106f13b3e37d836e",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/step-comparison072.json"
+    },
+    {
+      "archiveMember": "PerfProbe/step-comparison072.md",
+      "auditInputIndex": 1,
+      "bytes": 1074,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "73e75a813ead4363b58a08e0c3c428fd54ab1a02345e6ecf93140fa65f1c97cb",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/step-comparison072.md"
+    },
+    {
+      "archiveMember": "PerfProbe/step-instrumentation-candidate1-manifest072.json",
+      "auditInputIndex": 2,
+      "bytes": 10416,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "d980b9978067aa032b4d1f45fe891da8d1ce17ac59dae412d0688c7ed93e260b",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/step-instrumentation-candidate1-manifest072.json"
+    },
+    {
+      "archiveMember": "PerfProbe/PatchedCopyPreparation1/source-before-receipt.json",
+      "auditInputIndex": 3,
+      "bytes": 14797,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "c88cb9dff6dcbc34758662b07ac5878e6d645805ae09ffca80678e349c31d635",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/PatchedCopyPreparation1/source-before-receipt.json"
+    },
+    {
+      "archiveMember": "PerfProbe/Tooling/prepare-patched-step-comparison072.py",
+      "auditInputIndex": 4,
+      "bytes": 11367,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "619748afd2b2d6bb0fbd360ee0fe6087b0de6f5ae19da9ac39172e6cbc98fafe",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/prepare-patched-step-comparison072.py"
+    },
+    {
+      "archiveMember": "PerfProbe/Tooling/compare-step-probes072.py",
+      "auditInputIndex": 5,
+      "bytes": 7411,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "42b0cc699f8112c6b7ad37410c5220324a010fc84fea86b4e95a15a9ba2b4635",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/compare-step-probes072.py"
+    },
+    {
+      "archiveMember": "PerfProbe/instrumentation-manifest072.json",
+      "auditInputIndex": 6,
+      "bytes": 5649,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "eb4dffb9dd11debf072eb3b5767161ab8c656acd8dc364fe0778e938c5237adf",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/instrumentation-manifest072.json"
+    },
+    {
+      "archiveMember": "PerfProbe/PatchedCopyPreparation1/manifests-before/instrumentation-manifest072.json",
+      "auditInputIndex": 7,
+      "bytes": 5649,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "eb4dffb9dd11debf072eb3b5767161ab8c656acd8dc364fe0778e938c5237adf",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/PatchedCopyPreparation1/manifests-before/instrumentation-manifest072.json"
+    },
+    {
+      "archiveMember": "PerfProbe/step-instrumentation-manifest072.json",
+      "auditInputIndex": 8,
+      "bytes": 5028,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "f8f0e5fffae3f2d4e9bc5b1f06ea6a66316a557592ffbf34bf9953d2e9b1fe96",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/step-instrumentation-manifest072.json"
+    },
+    {
+      "archiveMember": "PerfProbe/PatchedCopyPreparation1/manifests-before/step-instrumentation-manifest072.json",
+      "auditInputIndex": 9,
+      "bytes": 5028,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "f8f0e5fffae3f2d4e9bc5b1f06ea6a66316a557592ffbf34bf9953d2e9b1fe96",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/PatchedCopyPreparation1/manifests-before/step-instrumentation-manifest072.json"
+    },
+    {
+      "archiveMember": "PerfProbe/copy-receipt.json",
+      "auditInputIndex": 10,
+      "bytes": 132188,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "7ad4e03b604d7cd8c07a14ba70045dc9c709680461e98f0016b4dc6e36cf82af",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/copy-receipt.json"
+    },
+    {
+      "archiveMember": "PerfProbe/PatchedCopyPreparation1/manifests-before/copy-receipt.json",
+      "auditInputIndex": 11,
+      "bytes": 132188,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "7ad4e03b604d7cd8c07a14ba70045dc9c709680461e98f0016b4dc6e36cf82af",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/PatchedCopyPreparation1/manifests-before/copy-receipt.json"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedBaseline/Assets/Frontier/Simulation/AiResourceContinuity072.cs",
+      "auditInputIndex": 12,
+      "bytes": 26073,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "f2526bcd7ea67056544c0d2ccb26a4511cb3c9d39127a0171143043149e24159",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/PatchedCopyPreparation1/source-before/Assets/Frontier/Simulation/AiResourceContinuity072.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedBaseline/Assets/Frontier/Simulation/GridNavigation.cs",
+      "auditInputIndex": 13,
+      "bytes": 19399,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "5eaa44e5567ec4a821530af174f950c8f679fc16ae36f60a93b479c4849445fb",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/PatchedCopyPreparation1/source-before/Assets/Frontier/Simulation/GridNavigation.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedBaseline/Assets/Frontier/Presentation/FrontierHud.cs",
+      "auditInputIndex": 14,
+      "bytes": 66086,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "c3b1c3d901db24e9fa964c806f0af801891eb84ffd7997ec208406768f2032de",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/PatchedCopyPreparation1/source-before/Assets/Frontier/Presentation/FrontierHud.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedBaseline/Assets/Frontier/Presentation/GameController.cs",
+      "auditInputIndex": 15,
+      "bytes": 26287,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "2c59ab0eb12b1b6ff0aa044e98338c6ebf57fef3f677d0f6b51edebcf7bdaa97",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/PatchedCopyPreparation1/source-before/Assets/Frontier/Presentation/GameController.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedBaseline/Assets/Frontier/Tests/PlayMode/RevolutionHud071Tests.cs",
+      "auditInputIndex": 16,
+      "bytes": 28546,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "cea9bb3a3d9f0cce58540742fdfbe25cd7146cbb95256d4e42ff26272299d4f3",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/PatchedCopyPreparation1/source-before/Assets/Frontier/Tests/PlayMode/RevolutionHud071Tests.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedBaseline/Assets/Frontier/Simulation/SkirmishAI.cs",
+      "auditInputIndex": 17,
+      "bytes": 37861,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "faf893ecf94a1abf63661b4ff9ad383b67c98fc500793ca8e53e78659e175018",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/PatchedCopyPreparation1/source-before/Assets/Frontier/Simulation/SkirmishAI.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedBaseline/Assets/Frontier/Simulation/World.cs",
+      "auditInputIndex": 18,
+      "bytes": 20188,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "13189bc9c0821df2a833814d0759f903e6310bc9b8942b384b4acf0e0b3ae93f",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/PatchedCopyPreparation1/source-before/Assets/Frontier/Simulation/World.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedBaseline/Assets/Frontier/Simulation/AiArmyPlan072.cs",
+      "auditInputIndex": 19,
+      "bytes": 17215,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "39f6eb51406b0d21b9617d941b6966ecba037ea3ea7f38765a9803ffad23943c",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/PatchedCopyPreparation1/source-before/Assets/Frontier/Simulation/AiArmyPlan072.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedBaseline/Assets/Frontier/Simulation/PerfProbeDiagnostics072.cs",
+      "auditInputIndex": 20,
+      "bytes": 1871,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "524ca88a81b21958a57442b4042bde9526ba676490ec3b83536135cf40852438",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/PatchedCopyPreparation1/source-before/Assets/Frontier/Simulation/PerfProbeDiagnostics072.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedBaseline/Assets/Frontier/Editor/EditorProbe072.cs",
+      "auditInputIndex": 21,
+      "bytes": 10645,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "0ff937c351cff56b89562d88aca3f088cd3f88352eda3ed2f171c5fb05c150dc",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/PatchedCopyPreparation1/source-before/Assets/Frontier/Editor/EditorProbe072.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedBaseline/Assets/Frontier/Editor/EditorStepProbe072.cs",
+      "auditInputIndex": 22,
+      "bytes": 8850,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "be6375a391c125a082bac5ccdb97535ecc0ddd814707fdd4984508214e3f6fc1",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/PatchedCopyPreparation1/source-before/Assets/Frontier/Editor/EditorStepProbe072.cs"
+    },
+    {
+      "archiveMember": null,
+      "auditInputIndex": 23,
+      "bytes": 28179,
+      "mode": 420,
+      "notArchivedReason": "Tracked runtime source remains in commit bc127e02638caaeefd2310a1a3eff858f4f4cb2f",
+      "retainedAsRuntimeSource": true,
+      "sha256": "2e42dea01cf9482027cd3a0473c8dd7ff675338f8302f6c26a9154985efd8e54",
+      "source": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Simulation/AiResourceContinuity072.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedOptimized/Assets/Frontier/Simulation/AiResourceContinuity072.cs",
+      "auditInputIndex": 24,
+      "bytes": 29445,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "d06cca7df39edd553061af7b32b5a5ef7731f2f1428a6186d9d68ee68515997a",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Simulation/AiResourceContinuity072.cs"
+    },
+    {
+      "archiveMember": null,
+      "auditInputIndex": 25,
+      "bytes": 25005,
+      "mode": 420,
+      "notArchivedReason": "Tracked runtime source remains in commit bc127e02638caaeefd2310a1a3eff858f4f4cb2f",
+      "retainedAsRuntimeSource": true,
+      "sha256": "99c2a6edebf649398a588c176adf8d7c21b4f80c5fbe830bdc93f593595eecff",
+      "source": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Simulation/GridNavigation.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedOptimized/Assets/Frontier/Simulation/GridNavigation.cs",
+      "auditInputIndex": 26,
+      "bytes": 25645,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "45b2821de30cf427ff4e60a6ef9d5a522cbbbe61964f4b7cf8a478ec6bd52ec3",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Simulation/GridNavigation.cs"
+    },
+    {
+      "archiveMember": null,
+      "auditInputIndex": 27,
+      "bytes": 66086,
+      "mode": 420,
+      "notArchivedReason": "Tracked runtime source remains in commit bc127e02638caaeefd2310a1a3eff858f4f4cb2f",
+      "retainedAsRuntimeSource": true,
+      "sha256": "a287cb425618e2d299b342af8db2d6cfce215f14c609070f62f6f3a62c0c10e0",
+      "source": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Presentation/FrontierHud.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedOptimized/Assets/Frontier/Presentation/FrontierHud.cs",
+      "auditInputIndex": 28,
+      "bytes": 66086,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "a287cb425618e2d299b342af8db2d6cfce215f14c609070f62f6f3a62c0c10e0",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Presentation/FrontierHud.cs"
+    },
+    {
+      "archiveMember": null,
+      "auditInputIndex": 29,
+      "bytes": 26260,
+      "mode": 420,
+      "notArchivedReason": "Tracked runtime source remains in commit bc127e02638caaeefd2310a1a3eff858f4f4cb2f",
+      "retainedAsRuntimeSource": true,
+      "sha256": "d7fefe916d77e85e7c4e85f06b4372df8a71fd0919ab4c35b6bde072453daea1",
+      "source": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Presentation/GameController.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedOptimized/Assets/Frontier/Presentation/GameController.cs",
+      "auditInputIndex": 30,
+      "bytes": 26260,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "d7fefe916d77e85e7c4e85f06b4372df8a71fd0919ab4c35b6bde072453daea1",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Presentation/GameController.cs"
+    },
+    {
+      "archiveMember": null,
+      "auditInputIndex": 31,
+      "bytes": 34584,
+      "mode": 420,
+      "notArchivedReason": "Tracked runtime source remains in commit bc127e02638caaeefd2310a1a3eff858f4f4cb2f",
+      "retainedAsRuntimeSource": true,
+      "sha256": "ea1246454dc1b8bbd02e05c022164d97ad3a166dfa04d0d7ea91f0dc79fe7d90",
+      "source": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/PlayMode/RevolutionHud071Tests.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedOptimized/Assets/Frontier/Tests/PlayMode/RevolutionHud071Tests.cs",
+      "auditInputIndex": 32,
+      "bytes": 34584,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "ea1246454dc1b8bbd02e05c022164d97ad3a166dfa04d0d7ea91f0dc79fe7d90",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Tests/PlayMode/RevolutionHud071Tests.cs"
+    },
+    {
+      "archiveMember": null,
+      "auditInputIndex": 33,
+      "bytes": 37607,
+      "mode": 420,
+      "notArchivedReason": "Tracked runtime source remains in commit bc127e02638caaeefd2310a1a3eff858f4f4cb2f",
+      "retainedAsRuntimeSource": true,
+      "sha256": "37b2cc8da6fc0c8c54d62feacb102888f0af0d9dcc5e3be660833a6827c46da1",
+      "source": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Simulation/SkirmishAI.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedOptimized/Assets/Frontier/Simulation/SkirmishAI.cs",
+      "auditInputIndex": 34,
+      "bytes": 37861,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "faf893ecf94a1abf63661b4ff9ad383b67c98fc500793ca8e53e78659e175018",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Simulation/SkirmishAI.cs"
+    },
+    {
+      "archiveMember": null,
+      "auditInputIndex": 35,
+      "bytes": 20080,
+      "mode": 420,
+      "notArchivedReason": "Tracked runtime source remains in commit bc127e02638caaeefd2310a1a3eff858f4f4cb2f",
+      "retainedAsRuntimeSource": true,
+      "sha256": "d7f41ecf0d2e92c4eac7e0e63c99830d15a3b788190a3ef4b02060c4aad7c0fa",
+      "source": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Simulation/World.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedOptimized/Assets/Frontier/Simulation/World.cs",
+      "auditInputIndex": 36,
+      "bytes": 20188,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "13189bc9c0821df2a833814d0759f903e6310bc9b8942b384b4acf0e0b3ae93f",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Simulation/World.cs"
+    },
+    {
+      "archiveMember": null,
+      "auditInputIndex": 37,
+      "bytes": 17109,
+      "mode": 420,
+      "notArchivedReason": "Tracked runtime source remains in commit bc127e02638caaeefd2310a1a3eff858f4f4cb2f",
+      "retainedAsRuntimeSource": true,
+      "sha256": "071e424d6a82b1319ed40619e28a8914aae44cd3ffca291e184bae0ff218ea7f",
+      "source": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Simulation/AiArmyPlan072.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedOptimized/Assets/Frontier/Simulation/AiArmyPlan072.cs",
+      "auditInputIndex": 38,
+      "bytes": 17215,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "39f6eb51406b0d21b9617d941b6966ecba037ea3ea7f38765a9803ffad23943c",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Simulation/AiArmyPlan072.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedOptimized/Assets/Frontier/Simulation/SkirmishAI.cs",
+      "auditInputIndex": 39,
+      "bytes": 37861,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "faf893ecf94a1abf63661b4ff9ad383b67c98fc500793ca8e53e78659e175018",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Simulation/SkirmishAI.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedOptimized/Assets/Frontier/Simulation/World.cs",
+      "auditInputIndex": 40,
+      "bytes": 20188,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "13189bc9c0821df2a833814d0759f903e6310bc9b8942b384b4acf0e0b3ae93f",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Simulation/World.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedOptimized/Assets/Frontier/Simulation/AiArmyPlan072.cs",
+      "auditInputIndex": 41,
+      "bytes": 17215,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "39f6eb51406b0d21b9617d941b6966ecba037ea3ea7f38765a9803ffad23943c",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Simulation/AiArmyPlan072.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedOptimized/Assets/Frontier/Simulation/PerfProbeDiagnostics072.cs",
+      "auditInputIndex": 42,
+      "bytes": 1871,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "524ca88a81b21958a57442b4042bde9526ba676490ec3b83536135cf40852438",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Simulation/PerfProbeDiagnostics072.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedOptimized/Assets/Frontier/Editor/EditorProbe072.cs",
+      "auditInputIndex": 43,
+      "bytes": 10645,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "0ff937c351cff56b89562d88aca3f088cd3f88352eda3ed2f171c5fb05c150dc",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Editor/EditorProbe072.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/InstrumentedOptimized/Assets/Frontier/Editor/EditorStepProbe072.cs",
+      "auditInputIndex": 44,
+      "bytes": 8850,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "be6375a391c125a082bac5ccdb97535ecc0ddd814707fdd4984508214e3f6fc1",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Editor/EditorStepProbe072.cs"
+    },
+    {
+      "archiveMember": "PerfProbe/StepRun1/final-simulation.json",
+      "auditInputIndex": 45,
+      "bytes": 22748,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "f041c1cbc3cb0c6b6e569c417e398901dbd26118987d503a75f15483e04088f8",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/StepRun1/final-simulation.json"
+    },
+    {
+      "archiveMember": "PerfProbe/StepRun1/final-world.json",
+      "auditInputIndex": 46,
+      "bytes": 1008419,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "1f59b09ce549880e22da644bd64260416bcb54d046f16fe5e0d2992f3ad3d4b9",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/StepRun1/final-world.json"
+    },
+    {
+      "archiveMember": "PerfProbe/StepRun1/new-events.jsonl",
+      "auditInputIndex": 47,
+      "bytes": 857908,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "a1e38edb92868212114b774a7ba66bf45dd4749e352c993b11efd375d413fb35",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/StepRun1/new-events.jsonl"
+    },
+    {
+      "archiveMember": "PerfProbe/StepRun1/receipt.json",
+      "auditInputIndex": 48,
+      "bytes": 1841,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "8b656d08a397c567404cdf5ce9341e0c9aa375804308c4868b71588c9243114c",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/StepRun1/receipt.json"
+    },
+    {
+      "archiveMember": "PerfProbe/StepRun1/steps.jsonl",
+      "auditInputIndex": 49,
+      "bytes": 330535,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "1d36f5d2beda62ece65c08e485f1d8c843acdf77c1847aa4d19e02371f1cbfff",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/StepRun1/steps.jsonl"
+    },
+    {
+      "archiveMember": "PerfProbe/StepRun2/final-simulation.json",
+      "auditInputIndex": 50,
+      "bytes": 22748,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "f041c1cbc3cb0c6b6e569c417e398901dbd26118987d503a75f15483e04088f8",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/StepRun2/final-simulation.json"
+    },
+    {
+      "archiveMember": "PerfProbe/StepRun2/final-world.json",
+      "auditInputIndex": 51,
+      "bytes": 1008419,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "1f59b09ce549880e22da644bd64260416bcb54d046f16fe5e0d2992f3ad3d4b9",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/StepRun2/final-world.json"
+    },
+    {
+      "archiveMember": "PerfProbe/StepRun2/new-events.jsonl",
+      "auditInputIndex": 52,
+      "bytes": 857908,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "a1e38edb92868212114b774a7ba66bf45dd4749e352c993b11efd375d413fb35",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/StepRun2/new-events.jsonl"
+    },
+    {
+      "archiveMember": "PerfProbe/StepRun2/receipt.json",
+      "auditInputIndex": 53,
+      "bytes": 1841,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "092ec39280e1a64446216eb634fe55925cce22acda57f7ed5299ff797c844167",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/StepRun2/receipt.json"
+    },
+    {
+      "archiveMember": "PerfProbe/StepRun2/steps.jsonl",
+      "auditInputIndex": 54,
+      "bytes": 335651,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "aef1f3b6eea007e2c640d43b12080beee57d2d7b6da33223f597a3df6b063c74",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/StepRun2/steps.jsonl"
+    },
+    {
+      "archiveMember": "PerfProbe/NativeAnchor1470/anchor.json",
+      "auditInputIndex": 55,
+      "bytes": 1010613,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "edb9e504bd6e7b8e37e501f42b2c14349fcb7ac1d0ebc31a42ae51e8522a5785",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/NativeAnchor1470/anchor.json"
+    },
+    {
+      "archiveMember": null,
+      "auditInputIndex": 56,
+      "bytes": 39456727,
+      "mode": 420,
+      "notArchivedReason": "Original external immutable input retained; this is an explicit subset",
+      "retainedAsRuntimeSource": false,
+      "sha256": "cd9907d6bcc1134c0a08272d8fa31230e3351e8b761613ee95e2f934de008336",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/NativeAnchor1470/recorded-events-prefix.json"
+    },
+    {
+      "archiveMember": "PerfProbe/NativeAnchor1470/extraction-receipt.json",
+      "auditInputIndex": 57,
+      "bytes": 1924,
+      "mode": 420,
+      "notArchivedReason": null,
+      "retainedAsRuntimeSource": false,
+      "sha256": "be1ad0751f2d903931f326df28798e44b4ca04c75c0b4689ef26c9d7bdc2b56a",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/NativeAnchor1470/extraction-receipt.json"
+    }
+  ],
+  "mechanism": "Immutable current-visible geometry eliminates repeated economic threat/Fog checks. Query-local weak-connectivity only rejects impossible original routes; every positive still runs the original FindPath and original endpoint validation.",
+  "originalAuditInputs": 58,
+  "originalSealChecks": 63,
+  "releaseAcceptance": {
+    "delivery": false,
+    "finalPackage": false,
+    "nativeFinal": false,
+    "normal16Matrix": false
+  },
+  "schema": "frontier-072-perf-input-mapping-1",
+  "scope": "Recorded sealed inputs and selected archive mapping; not rewritten original audit",
+  "uniqueOriginalInputPaths": 55
+}

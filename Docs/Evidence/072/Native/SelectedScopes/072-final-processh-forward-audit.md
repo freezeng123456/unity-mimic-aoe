@@ -1,0 +1,14 @@
+# ProcessH independent actual short forward replay audit
+
+Status: actual short forward observed with document-boundary checks and explicit limits. Full replay verified **false**; nativeAllPassed and release acceptance remain false.
+
+- PID **85769**, final GUID `3288d9fe24e844748a1183f756874fbf`, exited **0**. It opens the unchanged E recording `2d5f4818ae50407cb7769a0971cc85ef` (original SHA `dab9e98aa9223ff9b1f112476aac02e9b0d168a032f6aaa589787d93e7b84a0e`).
+- Raw log seek lines **74 / 106** target **300 / 600**, both before PLAY line **150**, at world 60.000. The second play-button toggle line **158** occurs at world 111.099 and pauses; endpoint capture line **161** follows. No seek occurs during that forward interval. The log object is named PLAY for both toggles; final metadata confirms paused.
+- Three F9 projections are currentStep **0 → 600 → 1111**, all seek=false, paused=true, verified=false, incomplete=false, error/fileError/libraryError empty. Actual forward covers **511 steps**, from 59.999656677246094 to 111.098876953125 seconds, speed 1.
+- Original accepted record **2**, step **787**, targets Guardian **84** with hussar **77**. The source recording interval contains three 35-damage melee hits and Guardian death at 86.9992446899414, plus 8 XP. Endpoint hussar position matches the bounding original anchors 900 and 1200, and HUD XP changes **20 → 28**.
+- The required crossed anchor is **900**. At endpoint 1111 the next expected anchor is **1200**. Expected prefix is recordIndex **3**, eventCount **178**. These are **document/implementation-derived values**, not serialized F9 fields. F9 exports currentStep but no positionStep, nextAnchor, recordIndex, eventCount or hashes. Runtime source checks event serialization, operation outcomes/prefixes and required state digests; the observed prefix has no reported mismatch.
+- Independently recomputed all 20 original anchor digests and event/input chains. All 3 PNGs pass CRC/scanline validation and match JSON/frame/match/GUID metadata. Local pixel review confirms WATCHING/read-only text, PAUSED, timeline 00:00 → 01:00 → 01:51 of 09:09, and XP 0 → 20 → 28.
+
+Ten selected originals match before/after bytes. This is short native playback, not full segment completion: endpoint1111 is before5490 and Verified remains false. There is no newly saved full H world/simulation or quit event report, so endpoint full-state equality is not claimed. Original-recording events and source-check semantics are distinguished from actual exported endpoint fields; no intermediate pixel-complete review is claimed. MemoryLeaks closure output is retained. No nativeAllPassed, release approval, networking or performance certification is asserted.
+
+506 checks passed. Exact references, raw log lines, original boundary hashes, and actual-vs-derived fields are in the JSON.

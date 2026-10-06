@@ -1,0 +1,85 @@
+{
+  "schema": "frontier-isolated-perf-instrumentation072-1",
+  "status": "prepared_source_sealed_not_unity_compiled_or_run",
+  "executeMethod": "Frontier.Editor.EditorProbe072.Run",
+  "projectPath": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project",
+  "sourceScope": "Only root-owned isolated project copy; main repository remains read-only",
+  "input": {
+    "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutes/matrix/traders_bend070-river-42/comparison-2400-world.json",
+    "bytes": 4137184,
+    "sha256": "337d2612646cccc59a8f52a03db9630cbba4b0ae48f542688dc239507bbca36f"
+  },
+  "inputScope": "Actual normal Dutch42 comparison snapshot at2400.090576 seconds,521entities; events absent by original comparison export, not exact NativeA1480 save or full restored AI political decisions",
+  "baselineCopyReceipts": [
+    {
+      "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/copy-receipt.json",
+      "bytes": 132188,
+      "sha256": "7ad4e03b604d7cd8c07a14ba70045dc9c709680461e98f0016b4dc6e36cf82af"
+    }
+  ],
+  "diagnosticFiles": [
+    {
+      "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Editor/EditorProbe072.cs",
+      "bytes": 10645,
+      "sha256": "0ff937c351cff56b89562d88aca3f088cd3f88352eda3ed2f171c5fb05c150dc"
+    },
+    {
+      "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Editor/EditorProbe072.cs.meta",
+      "bytes": 60,
+      "sha256": "03a33c0b926c9d7aadcd963808f74f0cd8a956d5a3b6bed3d2e3a395e931c506"
+    },
+    {
+      "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Simulation/PerfProbeDiagnostics072.cs",
+      "bytes": 1871,
+      "sha256": "524ca88a81b21958a57442b4042bde9526ba676490ec3b83536135cf40852438"
+    },
+    {
+      "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Simulation/PerfProbeDiagnostics072.cs.meta",
+      "bytes": 60,
+      "sha256": "a487093bda2360c77b653d10c7400717334acdac26f6b518588101806614be60"
+    },
+    {
+      "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Simulation/AiResourceContinuity072.cs",
+      "bytes": 26073,
+      "sha256": "f2526bcd7ea67056544c0d2ccb26a4511cb3c9d39127a0171143043149e24159"
+    },
+    {
+      "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Simulation/AiArmyPlan072.cs",
+      "bytes": 17215,
+      "sha256": "39f6eb51406b0d21b9617d941b6966ecba037ea3ea7f38765a9803ffad23943c"
+    },
+    {
+      "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Simulation/GridNavigation.cs",
+      "bytes": 19399,
+      "sha256": "5eaa44e5567ec4a821530af174f950c8f679fc16ae36f60a93b479c4849445fb"
+    }
+  ],
+  "originalSourceFiles": [
+    {
+      "file": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Simulation/AiResourceContinuity072.cs",
+      "bytes": 25129,
+      "sha256": "98378f61881de1d48a54d6cc991cb14ac457768a929cdcf9ce88b82d0728a05b"
+    },
+    {
+      "file": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Simulation/AiArmyPlan072.cs",
+      "bytes": 17109,
+      "sha256": "071e424d6a82b1319ed40619e28a8914aae44cd3ffca291e184bae0ff218ea7f"
+    },
+    {
+      "file": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Simulation/GridNavigation.cs",
+      "bytes": 18963,
+      "sha256": "8bcf15fb3d43cfe57185c14ed8b1eb2a48e730d8c1fdc16d2e0d45a7dbc340a0"
+    }
+  ],
+  "semanticsProof": "After stripping UNITY_EDITOR blocks and undoing expression-body instrumentation syntax, all original modified-source tokens identical ignoring whitespace; no comparisons, loops, branch ordering, costs, navigation or visibility decisions changed",
+  "instrumentation": "inclusive Stopwatch at Home/Survey/EvaluatePlan/SourceAmount/ReachableSource/TryConstructionWorker/FindPath ordinary-or-filtered; counts Safe/SegmentSafe/EconomicThreat/PathNodePops/PathClearLine. Gated Editor only. Nested durations overlap and counters add overhead. No World.Tick or Issue in probe. Before/after complete serialized world hashes per query",
+  "operatingScope": "Two players, same frozen restored world, Home once; one cold+warm decision-scopedEvaluate; uncached direct wood+coin survey; existing foundation and one CanBuild-legal affordable visible new house/farm/estate site if available",
+  "commandEnvironment": {
+    "FRONTIER_PERF_SNAPSHOT": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutes/matrix/traders_bend070-river-42/comparison-2400-world.json",
+    "FRONTIER_PERF_OUTPUT": "EXCLUSIVE_NEW_PROBE_OUTPUT_DIRECTORY"
+  },
+  "sourceBudgetScope": "Helper default null political obligation delegate. This isolates resource/path costs, not current AI budget/action sequence",
+  "measurements": "begin/end operations.jsonl flush establishes active top-level phase; receipt survives exception. With concurrency CPU effects remain and diagnostics cannot be called release FPS or acceptance",
+  "plannedOnly": true,
+  "unityNotStartedByAgent": true
+}

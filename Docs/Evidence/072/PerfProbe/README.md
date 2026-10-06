@@ -1,0 +1,11 @@
+# 072 固定锚点性能诊断归档
+
+StepRun1/2由同原NativeA step14700锚点及相同完整实际事件前缀，各实际exit0续跑250正常固定步至14950。285checks比较与63checks最终独立封存均零失败；最终World/Controller和1343条新事件原字节相同，finalEvents62633、digest59d3818268c962b1584cc4d9530168778ad45ca38604c60f7c5828aca9b4d75f。
+
+gross wall565254.4585→3918.2488ms；最慢72990.4258→276.0642ms；>500ms步11→0。新的圈几何在单Survey固定，按radius弱连通仅负向排除，无可能通路才跳原A*，positive仍原FindPath/端点；这不是移除安全检查或改变路线。
+
+此处收录两次十个结果原件、比较/封存、preparation原metadata、有限instrumented baseline/optimized源码快照（仅Docs下，不是运行源）及[immutable映射](immutable-inputs-summary072.json)。不复制完整copyproject/Library/cache。原完整39.46MB prefix仍在外部，SHA cd9907d6bcc1134c0a08272d8fa31230e3351e8b761613ee95e2f934de008336；anchor/提取receipt入档，不伪称自包含完整重跑包。
+
+原manifest的sealed_not_unity_compiled_or_run等是当时准备状态，原字节保留；后来实际StepRun/比较另存，不能改旧状态为成功。原seal里的完整回归pending亦保留当时时态，当前主源full另由Tests证明。
+
+这是instrumented Editor诊断，无renderer/未来外部ReplayRecord输入；候选与正式full并行，CPU/编译/缓存/写入影响时间；inclusive嵌套计时不可相加，不认证ReleaseFPS、当前native整局、自然矩阵或终交付。更早失败UPM/编译/旧Native卡顿原件仍在外部保留。

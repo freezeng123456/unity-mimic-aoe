@@ -1,0 +1,13 @@
+# Final GUID ProcessD: independent performance audit 072
+
+ProcessD PID 83036 exited normally with code 0 at 2026-10-06T12:01:57.336539+00:00. Its F8 capture, process and completed-match report consistently identify build `3288d9fe24e844748a1183f756874fbf` and match `6ffbb8314e184604be4de3be2686133a`. This audit passed 1890 checks with zero failures and retained the raw/source file hashes.
+
+The immutable F8 capture covers 2026-10-06T11:39:34.4803020Z → 2026-10-06T11:42:10.1034800Z, 155.623315 real seconds, world 857.737610 → 2201.997314. Autoplay requested 16×; actual advancement was 8.637907×. Of 1,872 consecutive observed frames, 887 were eligible and 985 excluded. 984 frame observations were unfocused, with one focus-loss transition; no sample was paused. The capture therefore does not support an all-focused frame-rate claim.
+
+The report's focused subset is independently reproduced: mean 68.508781 ms, p95 366.672089 ms, p99 416.679077 ms. Actual realtime intervals over **all** observations have mean 83.083845 ms, p95 374.864583 ms and maximum 1275.270416 ms. The unsampled F8 stop tail is 90.358250 ms; all intervals plus this tail cover the capture wall duration. There were no >10-second gaps in this sample. The worst observed gap occurred at frame 2615 with simulationMs 1262.260132 ms; this still shows a noticeable ≈1.275-second delay.
+
+Frame delta sums and report means are not a substitute for realtime gaps. The simulation total includes bounded catch-up of at most ten fixed steps per rendered frame; the report's 5,240 simulationSteps are only its eligible subset, while all recorded frames contain 13,434 steps. WorldView counters are not GPU timing and lastTickNavigation covers only the last World.Tick. The headless `NormalRoutesFinal1` job was running concurrently according to root; this audit did not measure CPU contention. These figures are observations for this session, rather than a release FPS guarantee.
+
+The match subsequently ended naturally at world 2552.138916 seconds with winner 1 and 123,310 events (local observer 0 defeat). F8 ended earlier at world 2201.997314; this sample cannot prove responsiveness throughout the later match or outside its window. Managed memory and shutdown diagnostics are recorded in the JSON; increasing event/entity ledgers and GC snapshots do not establish a continuous leak or zero leaks.
+
+AI cohort evidence is a separate audit of actual replay controller fields and accepted commands. No inferred 6/10/14 transitions are asserted here. Final human targeting, pending political cold-load and forward-viewer acceptance remain separate.
