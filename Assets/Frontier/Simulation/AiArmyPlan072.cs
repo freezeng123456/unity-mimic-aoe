@@ -7,7 +7,7 @@ namespace Frontier
     public enum AiArmyPhase072 { Muster, March, Defend }
     [Serializable] public sealed class AiArmyPlan072Snapshot
     {
-        public int schema=1,initialWaveSize,anchor,stageNavigationVersion=-1;
+        public int schema=1,initialWaveSize,anchor,stageNavigationVersion=-1,stageSearchCursor;
         public AiArmyPhase072 phase;
         public bool hasStage;
         public float reviewAt;
@@ -22,7 +22,8 @@ namespace Frontier
         readonly World world;readonly int player;readonly AiDifficultyProfile difficulty;
         readonly List<int> wave=new List<int>(),guards=new List<int>();
         AiArmyPhase072 phase;int initialWaveSize,anchor,stageNavigationVersion=-1;
-        bool hasStage;float reviewAt;Vector2 stage,lastHome,destination;
+        bool hasStage;float reviewAt;Vector2 stage,lastHome,destination;int stageSearchCursor;
+        const int StagePositions=65,StageCandidates=StagePositions*2,StagePathBudget=6;
         public AiArmyPlan072(World world,int player,AiDifficultyProfile difficulty)
         {this.world=world??throw new ArgumentNullException(nameof(world));this.player=player;this.difficulty=difficulty??throw new ArgumentNullException(nameof(difficulty));}
         public AiArmyPhase072 Phase=>phase;
@@ -86,18 +87,19 @@ namespace Frontier
         }
         public AiArmyPlan072Snapshot CaptureState()=>new AiArmyPlan072Snapshot
         {phase=phase,initialWaveSize=initialWaveSize,anchor=anchor,hasStage=hasStage,stage=stage,lastHome=lastHome,
-            destination=destination,stageNavigationVersion=stageNavigationVersion,reviewAt=reviewAt,wave=wave.ToArray(),guards=guards.ToArray()};
+            destination=destination,stageNavigationVersion=stageNavigationVersion,stageSearchCursor=stageSearchCursor,reviewAt=reviewAt,wave=wave.ToArray(),guards=guards.ToArray()};
         public void RestoreState(AiArmyPlan072Snapshot state)
         {
             // Older saves have no cohort plan. They resume a deterministic fresh
             // muster rather than guessing expedition members from hidden targets.
             if(state==null)
             {
-                phase=AiArmyPhase072.Muster;initialWaveSize=anchor=0;hasStage=false;reviewAt=0;
+                phase=AiArmyPhase072.Muster;initialWaveSize=anchor=stageSearchCursor=0;hasStage=false;reviewAt=0;
                 stage=lastHome=destination=Vector2.zero;stageNavigationVersion=-1;wave.Clear();guards.Clear();return;
             }
             AiSaveValidation.Require(state.schema==1&&Enum.IsDefined(typeof(AiArmyPhase072),state.phase)&&
                 state.initialWaveSize>=0&&state.initialWaveSize<=world.Rules.populationLimit&&state.anchor>=0&&state.stageNavigationVersion>=-1&&
+                state.stageSearchCursor>=0&&state.stageSearchCursor<StageCandidates&&
                 AiSaveValidation.Clock(state.reviewAt)&&state.reviewAt<=world.Time+difficulty.ArmySeconds+MatchSimulation.StepSeconds+.01f&&
                 InMap(state.stage)&&InMap(state.lastHome)&&InMap(state.destination)&&
                 state.wave!=null&&state.guards!=null&&state.wave.Length+state.guards.Length<=world.Rules.populationLimit,"army plan state");
@@ -109,16 +111,19 @@ namespace Frontier
             }
             AiSaveValidation.Require(state.phase!=AiArmyPhase072.March||state.initialWaveSize>=3,"march without a committed wave");
             AiSaveValidation.Require(state.phase!=AiArmyPhase072.Muster||state.wave.Length==0&&state.guards.Length==0&&state.initialWaveSize==0,"muster with committed members");
+            AiSaveValidation.Require(!state.hasStage||state.stageSearchCursor==0,"selected stage with deferred search");
             var savedAnchor=world.Get(state.anchor);AiSaveValidation.Require(state.anchor==0||savedAnchor!=null&&savedAnchor.owner==player&&savedAnchor.def.id=="town","army anchor");
             phase=state.phase;initialWaveSize=state.initialWaveSize;anchor=state.anchor;hasStage=state.hasStage;stage=state.stage;
-            lastHome=state.lastHome;destination=state.destination;stageNavigationVersion=state.stageNavigationVersion;reviewAt=state.reviewAt;
+            lastHome=state.lastHome;destination=state.destination;stageNavigationVersion=state.stageNavigationVersion;stageSearchCursor=state.stageSearchCursor;reviewAt=state.reviewAt;
             wave.Clear();wave.AddRange(state.wave);guards.Clear();guards.AddRange(state.guards);
         }
         bool InMap(Vector2 p)=>SnapshotCodec.Finite(p)&&p.x>=0&&p.y>=0&&p.x<=world.Navigation.Width&&p.y<=world.Navigation.Height;
-        bool Reachable(Vector2 from,Vector2 to,float radius)
+        bool Reachable(Vector2 from,Vector2 to,float radius,ref int budget,out bool deferred)
         {
+            deferred=false;
             if(!world.Navigation.IsWalkable(from,radius)||!world.Navigation.IsWalkable(to,radius))return false;
             if(world.Navigation.ClearLine(from,to,radius))return true;
+            if(budget==0){deferred=true;return false;}budget--;
             var path=world.Navigation.FindPath(from,to,radius);return path.Count>=2&&(path[path.Count-1]-to).sqrMagnitude<.0001f;
         }
         bool Safe(Vector2 point,List<EntityState> enemies)
@@ -130,19 +135,34 @@ namespace Frontier
         {
             Vector2 home=Home;float radius=.4f;foreach(var e in soldiers)radius=Mathf.Max(radius,e.def.radius);
             var exit=world.Navigation.NearestWalkable(home,radius);
+            int pathBudget=StagePathBudget;
             int nextAnchor=0;foreach(var e in own)if(e.Alive&&e.def.id=="town"&&(e.position-home).sqrMagnitude<.01f){nextAnchor=e.id;break;}
             if(hasStage&&anchor==nextAnchor&&(home-lastHome).sqrMagnitude<1&&Safe(stage,enemies)&&
-                world.Navigation.IsAreaFree(stage,7,7)&&Reachable(exit,stage,radius))
-            {stageNavigationVersion=world.Navigation.Version;return true;}
+                world.Navigation.IsAreaFree(stage,5,5)&&Reachable(exit,stage,radius,ref pathBudget,out _))
+            {stageSearchCursor=0;stageNavigationVersion=world.Navigation.Version;return true;}
             var desired=home+Vector2.ClampMagnitude(new Vector2(world.Navigation.Width*.5f,world.Navigation.Height*.5f)-home,12);
-            for(int ring=0;ring<4;ring++)for(int n=0;n<(ring==0?1:8);n++)
+            // Keep the original25 spacious candidates first. A bounded outer
+            // search then reaches around dense ports; compact centers are a
+            // final fallback. Actual soldiers must still arrive within the
+            // unchanged10-distance/14-route muster checks before any departure.
+            // A failed non-linear route cannot consume unbounded queries every
+            // review. Persist only the next candidate, never terrain or safety.
+            for(int checkedCandidates=0;checkedCandidates<StageCandidates;checkedCandidates++)
             {
+                int candidate=(stageSearchCursor+checkedCandidates)%StageCandidates;
+                int position=candidate%StagePositions;float span=candidate<StagePositions?7:5;
+                int ring=position==0?0:1+(position-1)/8,n=position==0?0:(position-1)%8;
                 float angle=n*Mathf.PI/4;var point=desired+new Vector2(Mathf.Cos(angle),Mathf.Sin(angle))*ring*4;
                 point=new Vector2(Mathf.Round(point.x),Mathf.Round(point.y));
-                if(world.Fog.At(player,point)!=VisibilityState.Visible||!Safe(point,enemies)||!world.Navigation.IsAreaFree(point,7,7)||!Reachable(exit,point,radius))continue;
-                stage=point;hasStage=true;lastHome=home;anchor=nextAnchor;stageNavigationVersion=world.Navigation.Version;return true;
+                if(world.Fog.At(player,point)!=VisibilityState.Visible||!Safe(point,enemies)||!world.Navigation.IsAreaFree(point,span,span))continue;
+                if(!Reachable(exit,point,radius,ref pathBudget,out bool deferred))
+                {
+                    if(deferred){stageSearchCursor=candidate;hasStage=false;return false;}
+                    continue;
+                }
+                stage=point;hasStage=true;lastHome=home;anchor=nextAnchor;stageSearchCursor=0;stageNavigationVersion=world.Navigation.Version;return true;
             }
-            hasStage=false;return false;
+            stageSearchCursor=0;hasStage=false;return false;
         }
         bool AtStage(EntityState e)
         {

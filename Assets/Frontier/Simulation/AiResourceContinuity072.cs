@@ -73,8 +73,8 @@ namespace Frontier
         public sealed class Plan
         {
             public Cost Reserve,ResourceNeed;
-            public bool TownRecovery,NeedsWood,NeedsCoin,TradeBootstrap,LedgerBootstrap,HasReceiver,NearWoodDepletion,CoreDeferredForWood;
-            public float VisibleWoodRemaining,CoinForecast60;
+            public bool TownRecovery,NeedsWood,NeedsCoin,CoinChannelNeeded,TradeBootstrap,LedgerBootstrap,HasReceiver,NearWoodDepletion,CoreDeferredForWood;
+            public float VisibleWoodRemaining,CoinForecast60,CoinDemand;
             public string CoreBuilding="";
             public Cost ProtectedReserve(Cost other,string consumer="")
             {
@@ -133,6 +133,10 @@ namespace Frontier
             int soldiers=own.FindAll(e=>e.Alive&&e.Military&&!e.def.waterborne&&(e.def.tags&Tags.Explorer)==0).Count;
             if(p.age<world.MaxAge&&workers.Count>=ageWorkers&&(p.age==1||soldiers>=8)&&!world.WorkerSourcesClosed(player))coinNeed+=world.Rules.Age(p.age+1)?.cost.coin??0;
             coinNeed=Mathf.Max(coinNeed,committed.coin);
+            result.CoinDemand=coinNeed;
+            // A funded wallet bridges production; it does not replace a source.
+            // Keep a real trade startup protected until its dependency is paid.
+            result.CoinChannelNeeded=landWorkers&&!coin&&coinNeed>0&&result.CoinForecast60+.001f<coinNeed;
             bool coinGap=!coin&&p.resources.coin+result.CoinForecast60+.001f<coinNeed;
             if(result.TownRecovery)result.CoreBuilding="town";
             else if(landWorkers&&p.age>=3&&coinGap&&!own.Exists(e=>e.Alive&&e.def.id=="estate"))result.CoreBuilding="estate";
@@ -141,6 +145,7 @@ namespace Frontier
             if(result.CoreBuilding!="")result.Reserve=world.EntityCost(player,world.Rules.Entity(result.CoreBuilding));
             result.ResourceNeed=result.Reserve;
             result.NeedsCoin=coinGap&&landWorkers;
+            if(result.NeedsCoin)result.ResourceNeed.coin=Mathf.Max(result.ResourceNeed.coin,coinNeed);
             // Even after the core is funded, a modest real house/infrastructure
             // horizon keeps an already-paid wood channel useful without locking it.
             float infrastructure=world.EntityCost(player,world.Rules.Entity("house")).wood;
@@ -169,7 +174,7 @@ namespace Frontier
                 woodHorizon=Mathf.Max(woodHorizon,world.EntityCost(player,world.Rules.Entity(result.CoreBuilding)).wood+startupWood);
             if(!wood||woodAmount<=Mathf.Max(woodHorizon,startupWood)+.001f)
             {result.NearWoodDepletion=true;result.NeedsWood=p.resources.wood+.001f<Mathf.Max(woodHorizon,startupWood);}
-            if(result.NeedsWood&&landWorkers&&p.age>=2&&!industry&&!(result.TownRecovery&&world.CanAfford(player,result.Reserve)))
+            if((result.NeedsWood||result.CoinChannelNeeded)&&landWorkers&&p.age>=2&&!industry&&!(result.TownRecovery&&world.CanAfford(player,result.Reserve)))
             {
                 result.CoreDeferredForWood=startupWood>0&&result.CoreBuilding!=""&&!result.TownRecovery&&world.CanAfford(player,startup)&&
                     p.resources.wood+.001f<world.EntityCost(player,world.Rules.Entity(result.CoreBuilding)).wood+startupWood;

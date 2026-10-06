@@ -4,6 +4,15 @@
   "initialXp": 150,
   "xpIncrease": 75,
   "constructionRefund": 0.75,
+  "market": {
+    "lotSize": 100,
+    "maxLots": 5,
+    "basePrice": 100,
+    "spread": 30,
+    "priceStep": 3,
+    "minPrice": 50,
+    "maxPrice": 200
+  },
   "aiDifficulties": [
     {
       "id": "easy",
@@ -735,7 +744,7 @@
     {
       "id": "market",
       "name": "Market",
-      "description": "Economic technology building.",
+      "description": "Research economic technologies and buy or sell food and wood for coin. Each trade changes your next quote.",
       "producer": "",
       "civilization": "",
       "kind": 1,

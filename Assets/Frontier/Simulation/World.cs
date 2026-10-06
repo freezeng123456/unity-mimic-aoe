@@ -131,6 +131,7 @@ namespace Frontier
             {int n=0;foreach(int id in c.actors){var e=Get(id);if(e!=null&&e.Alive&&e.owner==c.player&&e.def.meleeDamage>0&&e.def.range>2){e.forceMelee=!e.forceMelee;n++;}}return n>0?CommandResult.Ok("Combat mode changed"):CommandResult.Fail("No mode-switching units selected");}
             if(c.kind==CommandKind.TradeMode)return SetTradeMode(c);
             if(c.kind==CommandKind.TradeRoute)return SetCaravanRoute(c);
+            if(c.kind==CommandKind.Market)return ExchangeAtMarket(c);
             if(c.kind==CommandKind.Manufacture)return StartManufacture(c);
             if(c.kind==CommandKind.ToggleShield)return ToggleShield(c);
             if(TryHandleNavalTransportCommand(c,out var navalResult))return navalResult;

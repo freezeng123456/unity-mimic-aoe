@@ -254,7 +254,7 @@ namespace Frontier
         }
         private void Update()
         {
-            UpdateScenarioEditor069();CaptureBinding();UpdateResponsiveLayout();RefreshReplayHud();RefreshLanHud();uiPointer?.Move(UnityEngine.InputSystem.Mouse.current?.position.ReadValue()??Vector2.zero);
+            UpdateScenarioEditor069();CaptureBinding();UpdateResponsiveLayout();RefreshReplayHud();RefreshLanHud();RefreshMarket073();uiPointer?.Move(UnityEngine.InputSystem.Mouse.current?.position.ReadValue()??Vector2.zero);
             if(game.InMenu||game.World==null||gamePanel==null)return;
             RefreshProgressionHud();
             EnsureActionContextCurrent();
@@ -343,6 +343,7 @@ namespace Frontier
                 }
                 if(e.def.id=="trade_post"){var socket=game.World.SocketAt(e.position);if(socket!=null&&game.World.NeutralAt(socket.id)!=null)add("SETTLEMENT",()=>ShowNeutralSettlement(socket.id),"Negotiate, recruit allies or research their settlement technology.",true);}
                 if(e.def.id=="trade_post")for(int mode=0;mode<4;mode++){int chosen=mode;string label=mode==0?"XP":((ResourceKind)mode).ToString();add((mode==(int)e.tradeMode?"[ACTIVE] ":"")+label,()=>{SubmitUiCommand(new GameCommand{player=game.LocalPlayerSlot,kind=CommandKind.TradeMode,actors=new[]{e.id},index=chosen});InvalidateActions();},"Choose the reward paid when the caravan reaches this site.",mode==0||game.World.Players[game.LocalPlayerSlot].technologies.Contains("cargo_ledgers"));}
+                if(e.def.id=="market")add("RESOURCE EXCHANGE",()=>ShowMarket073(e),"Buy or sell food and wood for coin. Quotes change after each lot and are shared by your markets.",game.CanSubmitOrders);
                 if(e.def.id=="town")add("ADVANCE AGE",ShowAgeChoices,"Queue the next age with a governor reward. "+game.World.AgeReason(game.LocalPlayerSlot,e),game.World.AgeReason(game.LocalPlayerSlot,e)=="");
                 if(e.def.id=="town"&&game.World.RevolutionDefinition(game.LocalPlayerSlot)!=null)
                     add(game.World.Players[game.LocalPlayerSlot].politicalPhase==PoliticalPhase.Empire?"REVOLUTION":"CIVILIAN GOVERNMENT",()=>ShowRevolution071(e),"Review the paid age IV commitment and civilian rebuilding.",true);
@@ -425,7 +426,7 @@ namespace Frontier
             CloseModal();var dim=Panel(root,"Modal dim",new Rect(0,0,1600,900),new Color(.025f,.05f,.06f,.78f));Fill(dim);modal=dim;
             var box=Panel(dim,title,new Rect(365,95,870,height),background);CenterModal(box,height);Label(box,title,new Rect(25,22,740,40),29,gold);Button(box,"X",new Rect(798,15,48,43),()=>{if(onClose!=null)onClose();else{CloseModal();if(game.InMenu)ShowMenu();}});return box;
         }
-        public void CloseModal(){modalGeneration++;CloseLanModal();replayLibraryVisible=false;waitingBinding=PlayerAction.None;bindingPrompt=null;neutralModalSite=-1;neutralModalSignature="";MarkUiLayoutDirty();homeTransit=null;homeTitle=null;homeButtons.Clear();homeCards.Clear();if(modal!=null){modal.gameObject.SetActive(false);Destroy(modal.gameObject);modal=null;}Help="";}
+        public void CloseModal(){modalGeneration++;CloseLanModal();CloseMarket073();replayLibraryVisible=false;waitingBinding=PlayerAction.None;bindingPrompt=null;neutralModalSite=-1;neutralModalSignature="";MarkUiLayoutDirty();homeTransit=null;homeTitle=null;homeButtons.Clear();homeCards.Clear();if(modal!=null){modal.gameObject.SetActive(false);Destroy(modal.gameObject);modal=null;}Help="";}
         public void ShowBuildMenu()
         {
             if(!game.CanSubmitOrders)return;

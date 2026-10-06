@@ -9,7 +9,7 @@ namespace Frontier
     public enum DamageKind { Melee, Ranged, Siege }
     [Flags] public enum Tags { None=0, Infantry=1, HeavyInfantry=2, LightInfantry=4, Cavalry=8, HeavyCavalry=16, LightCavalry=32, Artillery=64, Villager=128, Building=256, Explorer=512, Guardian=1024, Naval=2048 }
     public enum OrderKind { Move, Attack, AttackMove, Gather, Build, Repair, Garrison, Stop, Hold, Claim, Manufacture, DeployFactory, Embark, Disembark, TransportBerth, DockRepair }
-    public enum CommandKind { Order, Build, Train, CancelQueue, CancelBuilding, Research, AdvanceAge, Ship, Rally, Ungarrison, ToggleMode, Demolish, Resign, TradeMode, TradeRoute, Manufacture, ToggleShield, ToggleRecruitment, FactoryMode, Embark, Disembark, DockRepair, NeutralAlliance, NeutralRecruit, NeutralResearch, Revolution, Disband }
+    public enum CommandKind { Order, Build, Train, CancelQueue, CancelBuilding, Research, AdvanceAge, Ship, Rally, Ungarrison, ToggleMode, Demolish, Resign, TradeMode, TradeRoute, Manufacture, ToggleShield, ToggleRecruitment, FactoryMode, Embark, Disembark, DockRepair, NeutralAlliance, NeutralRecruit, NeutralResearch, Revolution, Disband, Market }
     public enum PoliticalPhase { Empire, Revolutionary, CivilianRebuilt }
     [Serializable] public struct Cost
     {
@@ -86,6 +86,7 @@ namespace Frontier
         public RevolutionDef[] revolutions=Array.Empty<RevolutionDef>();
         public ManufactureRecipeDef[] manufactureRecipes=Array.Empty<ManufactureRecipeDef>();
         public LandmarkRules landmarks;
+        public MarketRules market=new MarketRules();
         public NeutralAllyDef[] neutralAllies=Array.Empty<NeutralAllyDef>();
         public MapObjectiveDef[] mapObjectives=Array.Empty<MapObjectiveDef>();
         public AiDifficultyDef[] aiDifficulties=Array.Empty<AiDifficultyDef>();
@@ -165,6 +166,9 @@ namespace Frontier
         public readonly List<ShipmentJob> shipments=new List<ShipmentJob>();
         public readonly Dictionary<int,Vector2> enemyMemory=new Dictionary<int,Vector2>();
         public Cost gathered,spent,refunded,passiveIncome,tradeIncome; public int kills,losses,trained,shipsSent,treasuresClaimed,guardiansDefeated; public readonly List<string> ageHistory=new List<string>();
+        // A player's markets share quotes; replacement buildings cannot reset prices.
+        public int marketFoodPressure,marketWoodPressure;
+        public Cost marketIncome,marketSold,marketBought;
     }
     [Serializable] public class GameCommand
     {

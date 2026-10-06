@@ -177,6 +177,10 @@ namespace Frontier
                 Require(s.schema==2||p.state.team==teams[i],"player team mismatch");
                 Require(s.schema==2||!p.state.resigned||p.state.eliminated,"resigned player state");
                 Require(p.state.age>=1&&p.state.age<=s.maxAge&&SnapshotCodec.Finite(p.state.resources)&&SnapshotCodec.Finite(p.state.xp),"player economy");
+                Require(rules.market!=null&&rules.market.Valid&&p.state.marketFoodPressure>=rules.market.minPrice-rules.market.basePrice&&
+                    p.state.marketFoodPressure<=rules.market.maxPrice-rules.market.basePrice&&p.state.marketWoodPressure>=rules.market.minPrice-rules.market.basePrice&&
+                    p.state.marketWoodPressure<=rules.market.maxPrice-rules.market.basePrice&&SnapshotCodec.Finite(p.state.marketIncome)&&
+                    SnapshotCodec.Finite(p.state.marketSold)&&SnapshotCodec.Finite(p.state.marketBought),"market economy");
                 Require(p.technologies!=null&&p.sentCards!=null&&p.deck!=null&&p.ageHistory!=null&&p.rewards!=null&&p.shipments!=null&&p.enemyMemory!=null,"player collections");
                 foreach(string id in p.technologies)Require(rules.Tech(id)!=null,"unknown technology");foreach(string id in p.deck)Require(rules.Card(id)!=null,"unknown card");
                 foreach(var shipment in p.shipments)Require(shipment!=null&&rules.Card(shipment.card)!=null&&SnapshotCodec.Finite(shipment.elapsed),"shipment");

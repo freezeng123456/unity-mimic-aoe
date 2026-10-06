@@ -121,6 +121,8 @@ namespace Frontier
             var factoryArtillery=world.FactoryArtilleryDefinition(player);
             int housingMargin=factoryArtillery!=null&&own.Exists(e=>e.def.id=="factory")?Math.Max(5,factoryArtillery.population):5;
             var recovery=continuity.Evaluate();
+            if(AiMarket073.TryRelieve(world,player,own,recovery,progressReserve+workerReserve+bankReserve+specialReserve))
+            {continuity.InvalidateSourceSurvey();recovery=continuity.Evaluate();}
             if(recovery.CoreBuilding!=""&&recovery.CoreBuilding!="town")Build(own,workers,recovery.CoreBuilding);
             if(p.populationCap-p.usedPopulation-p.reservedPopulation<housingMargin&&!Unfinished(own,"house")&&p.populationCap<world.Rules.populationLimit)Build(own,workers,"house");
             if(firstSpecial&&p.age<2&&CanSpend(specialReserve,workerReserve))Build(own,workers,specialBuilding);
@@ -147,7 +149,7 @@ namespace Frontier
             EnsureSustainableEconomy(own,workers,p);
             if(continuity.Evaluate().TradeBootstrap||p.age>=2&&!underAttack&&!saveForAge&&workers.Count>=16)InvestInRoute(own,workers,economicThreats);
             foreach(var post in own)if(post.def.id=="trade_post"&&post.Complete&&p.technologies.Contains("cargo_ledgers"))
-            {var wanted=continuity.Evaluate().NeedsWood?ResourceKind.Wood:p.resources.food<500?ResourceKind.Food:p.resources.coin<500?ResourceKind.Coin:ResourceKind.Wood;if(post.tradeMode!=wanted)Send(new GameCommand{kind=CommandKind.TradeMode,actors=new[]{post.id},index=(int)wanted});}
+            {var supply=continuity.Evaluate();var wanted=supply.NeedsWood?ResourceKind.Wood:supply.CoinChannelNeeded?ResourceKind.Coin:p.resources.food<500?ResourceKind.Food:p.resources.coin<500?ResourceKind.Coin:ResourceKind.Wood;if(post.tradeMode!=wanted)Send(new GameCommand{kind=CommandKind.TradeMode,actors=new[]{post.id},index=(int)wanted});}
             if(p.age>=2&&!underAttack&&!saveForAge)UseNeutralSettlement(own,workerReserve+bankReserve+specialReserve+civilizationResearchReserve+progressReserve);
             if(p.shipmentTokens>0)
             {
@@ -434,7 +436,12 @@ namespace Frontier
             // A visible ranged raid and a weak home army may use food/coin
             // for its cavalry counter. Recovery wood remains protected, and
             // this exception never applies to construction or research.
-            if(urgentDefense&&!plan.TownRecovery){plan.Reserve.food=0;plan.Reserve.coin=0;}
+            if(urgentDefense&&!plan.TownRecovery)
+            {
+                plan.Reserve.food=0;
+                plan.Reserve.coin=plan.TradeBootstrap||plan.LedgerBootstrap?
+                    Math.Min(plan.Reserve.coin,world.Rules.Tech("cargo_ledgers").cost.coin):0;
+            }
             return AiResourceContinuity072.CanSpend(world,player,cost,plan.ProtectedReserve(reserve,consumer));
         }
         private float CounterScore(EntityDef unit,List<EntityState> visible)
