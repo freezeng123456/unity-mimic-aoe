@@ -1,0 +1,265 @@
+{
+  "schema": 1,
+  "kind": "independent070-test-audit",
+  "auditedAtUtc": "2026-10-06T02:21:02.940045+00:00",
+  "projectRoot": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project",
+  "reportsDirectory": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-mfr2pucl",
+  "source": {
+    "frozenCommit": "573e017c7c95f07548bc47f902408c53fd2ce88a",
+    "actualCommit": "573e017c7c95f07548bc47f902408c53fd2ce88a",
+    "inputDirectories": [
+      "Assets",
+      "Packages",
+      "ProjectSettings",
+      "Tools"
+    ],
+    "inputCount": 682,
+    "recordedInputCount": 682,
+    "frozenFingerprint": "e2ab75d010ebcde449d94a5b5ca23c7507ac837b1efa2b957f41facde8d5333d",
+    "recordedFingerprint": "e2ab75d010ebcde449d94a5b5ca23c7507ac837b1efa2b957f41facde8d5333d",
+    "currentFingerprint": "e2ab75d010ebcde449d94a5b5ca23c7507ac837b1efa2b957f41facde8d5333d",
+    "workingTreeStatus": [
+      "?? Docs/Evidence/070/",
+      "?? Docs/Player-Guide-070.md"
+    ],
+    "excludedDocumentChanges": [
+      "Docs/Player-Guide-070.md"
+    ],
+    "evidenceFile": "source-evidence.json",
+    "evidenceFileSha256": "08830eefe83c455537866f8e45a2cf56e7d1f582265006653027db3dfdec59f4",
+    "evidenceRecordedAtUtc": "2026-10-06T02:18:54.129715+00:00"
+  },
+  "reports": {
+    "EditMode": {
+      "file": "EditMode.xml",
+      "sha256": "84f422d1aec4dd173b778a2f9142cef77314deee87af58ba63d770c625e1ccc4",
+      "result": "Passed",
+      "declaredTotal": 966,
+      "declaredPassed": 966,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "actualLeafTotal": 966,
+      "actualLeafCounts": {
+        "Passed": 966
+      },
+      "startTimeUtc": "2026-10-06 02:11:19Z",
+      "endTimeUtc": "2026-10-06 02:15:30Z",
+      "relevantSuites": [
+        {
+          "name": "GuidedPlay066Tests",
+          "result": "Passed",
+          "declaredTotal": 29,
+          "actualLeafTotal": 29,
+          "actualLeafCounts": {
+            "Passed": 29
+          },
+          "passedCaseNames": [
+            "AlteredScenarioStageCommandWitnessAndFutureRevisionAreRejectedWithoutMutation",
+            "ColdCompletedResultCanBeRecordedOnlyOnceAndUnlocksNextCampaignChapter",
+            "ColdRestorePreservesCargoStageAndCommandsWithoutSpawningOrGranting",
+            "DestroyingCriticalBaseFailsAndRetryReusesSeedWithNewAttempt",
+            "DisposalStopsObservationAndScenarioCompletionIsIndependentFromWorldWinner",
+            "DurableAccountKeepsBestTimeAndMalformedUnknownOrFutureFilesAreNeverOverwritten",
+            "EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"lesson_selection\")",
+            "EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"lesson_economy\")",
+            "EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"lesson_age_army\")",
+            "EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"lesson_shipments\")",
+            "EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"lesson_targeting\")",
+            "EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"lesson_allies\")",
+            "EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"lesson_transport\")",
+            "EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"campaign_supply\")",
+            "EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"campaign_bridge\")",
+            "EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"campaign_estuary\")",
+            "EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"lesson_selection\")",
+            "EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"lesson_economy\")",
+            "EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"lesson_age_army\")",
+            "EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"lesson_shipments\")",
+            "EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"lesson_targeting\")",
+            "EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"lesson_allies\")",
+            "EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"lesson_transport\")",
+            "EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"campaign_supply\")",
+            "EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"campaign_bridge\")",
+            "EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"campaign_estuary\")",
+            "QueuedAgeAndPaidArmyRestoreMidJobWithoutAnotherPaymentOrDuplicateBirth",
+            "RejectedCommandsForeignPlayersAndInitialUnitsCannotCompleteStages",
+            "UnknownIdsFailedResultsAndOutOfOrderCampaignCannotUnlockProgress"
+          ]
+        },
+        {
+          "name": "RiverCampaignRestore070Tests",
+          "result": "Passed",
+          "declaredTotal": 16,
+          "actualLeafTotal": 16,
+          "actualLeafCounts": {
+            "Passed": 16
+          },
+          "passedCaseNames": [
+            "ACompletedObjectiveEventDoesNotReplaceItsRequiredProgress",
+            "AnActiveLaterGoalCannotBypassItsIncompletePrerequisite",
+            "AResultEventCannotBeHiddenByChangingTheObjectiveBackToActive",
+            "CompletedGoalCannotPrecedeItsPrerequisiteResultEvent",
+            "GenuineInitialColdChapterAdoptsWithoutCreatingAnyEventsOrBodies(\"campaign_scout070\")",
+            "GenuineInitialColdChapterAdoptsWithoutCreatingAnyEventsOrBodies(\"campaign_convoy070\")",
+            "GenuineInitialColdChapterAdoptsWithoutCreatingAnyEventsOrBodies(\"campaign_retreat070\")",
+            "HoldProgressCannotCreateFortySecondsFromAnUnadvancedClock",
+            "RejectedStatusOnlyColdSlotKeepsItsOriginalBytes",
+            "StatusOnlyCompletionCannotGenerateGuidedWitnessesOrUnlockTheNextChapter(\"campaign_scout070\")",
+            "StatusOnlyCompletionCannotGenerateGuidedWitnessesOrUnlockTheNextChapter(\"campaign_convoy070\")",
+            "StatusOnlyCompletionCannotGenerateGuidedWitnessesOrUnlockTheNextChapter(\"campaign_retreat070\")",
+            "TerminalObjectiveMustMatchOneExactExistingResultEvent(\"reason\")",
+            "TerminalObjectiveMustMatchOneExactExistingResultEvent(\"player\")",
+            "TerminalObjectiveMustMatchOneExactExistingResultEvent(\"time\")",
+            "TerminalObjectiveMustMatchOneExactExistingResultEvent(\"duplicate\")"
+          ]
+        },
+        {
+          "name": "RiverContent070Tests",
+          "result": "Passed",
+          "declaredTotal": 24,
+          "actualLeafTotal": 24,
+          "actualLeafCounts": {
+            "Passed": 24
+          },
+          "passedCaseNames": [
+            "ActualAuthoredConvoyRecordingRebuildsCargoTriggersObjectivesAndGuidedResultForward",
+            "AlteredFrozenChapterOrHashCannotEarnAnUnlockEvenWithRecomputedPortableHashes",
+            "EmptyTransportCannotCompleteTheEscortByLeavingTheDesignatedPartyOnItsHomeShore",
+            "FactoriesProduceLegalIndependentFrozenDocumentsAndPortableByteRoundtrips(\"traders_bend070\")",
+            "FactoriesProduceLegalIndependentFrozenDocumentsAndPortableByteRoundtrips(\"campaign_scout070\")",
+            "FactoriesProduceLegalIndependentFrozenDocumentsAndPortableByteRoundtrips(\"campaign_convoy070\")",
+            "FactoriesProduceLegalIndependentFrozenDocumentsAndPortableByteRoundtrips(\"campaign_retreat070\")",
+            "GenuineResignationFailsAndRetryStartsANewUnrewardedAttempt(\"campaign_scout070\")",
+            "GenuineResignationFailsAndRetryStartsANewUnrewardedAttempt(\"campaign_convoy070\")",
+            "GenuineResignationFailsAndRetryStartsANewUnrewardedAttempt(\"campaign_retreat070\")",
+            "LosingThreeBoundTroopsFailsRatherThanAllowingWorkersOrReplacementUnitsToCount(\"campaign_convoy070\")",
+            "LosingThreeBoundTroopsFailsRatherThanAllowingWorkersOrReplacementUnitsToCount(\"campaign_retreat070\")",
+            "LossOfTheNamedProtectedAssetFailsEvenWhenOtherStartingUnitsSurvive(\"campaign_convoy070\",\"transport\")",
+            "LossOfTheNamedProtectedAssetFailsEvenWhenOtherStartingUnitsSurvive(\"campaign_retreat070\",\"forward-port\")",
+            "NewArcUnlocksSequentiallyOncePerActualAttemptAndPreservesTheRevisionOneLegacyAccount",
+            "NewChaptersAreWonByRealCommandsCombatCargoAndTimedWithdrawal(\"campaign_scout070\")",
+            "NewChaptersAreWonByRealCommandsCombatCargoAndTimedWithdrawal(\"campaign_convoy070\")",
+            "NewChaptersAreWonByRealCommandsCombatCargoAndTimedWithdrawal(\"campaign_retreat070\")",
+            "OrdinaryMapOffersBothBridgeRoutesAnUnbrokenShipChannelLegalPortsAndOppositeShoreLandings",
+            "OrdinaryMapStartsWithPaidRulesAndPairedHomeAndForwardResourceBudgets",
+            "RearGuardCanChooseActualBoardSailAndUnloadWithdrawalAfterHoldingTheSamePort",
+            "StageBoundaryColdSlotContinuesWithoutDuplicatingBodiesSuppliesOrWaves(\"campaign_scout070\")",
+            "StageBoundaryColdSlotContinuesWithoutDuplicatingBodiesSuppliesOrWaves(\"campaign_convoy070\")",
+            "StageBoundaryColdSlotContinuesWithoutDuplicatingBodiesSuppliesOrWaves(\"campaign_retreat070\")"
+          ]
+        },
+        {
+          "name": "RiverMissionBranches070Tests",
+          "result": "Passed",
+          "declaredTotal": 4,
+          "actualLeafTotal": 4,
+          "actualLeafCounts": {
+            "Passed": 4
+          },
+          "passedCaseNames": [
+            "ActualCacheDestructionPaysOneRepairDeliveryAndColdRestoreDoesNotRepeatIt",
+            "ActualLookoutVisitAndRepeatedColdVisitsDeliverExactlyOneWoodShipment",
+            "RealCounterattackDamageIsRepairedAtTheForwardDockWithActualPaidHealthReceipts",
+            "TheSurveyDeadlineFailsThroughRealSchedulerStepsAndRetryHasNoOldRewardOrResult"
+          ]
+        },
+        {
+          "name": "ScenarioGroups070Tests",
+          "result": "Passed",
+          "declaredTotal": 27,
+          "actualLeafTotal": 27,
+          "actualLeafCounts": {
+            "Passed": 27
+          },
+          "passedCaseNames": [
+            "AColdGroupMemberCannotKeepItsIdAndOriginButChangeItsAuthoredDefinition(\"soldier-a\",\"hussar\")",
+            "AColdGroupMemberCannotKeepItsIdAndOriginButChangeItsAuthoredDefinition(\"start-0-explorer\",\"musketeer\")",
+            "AColdGroupMemberCannotKeepItsIdAndOriginButChangeItsAuthoredDefinition(\"camp-guard-0\",\"musketeer\")",
+            "AForeignPlayersEmbarkObjectiveDoesNotCountTheOtherFactionCargo",
+            "AggregateBindingsAliasOnlyTheirExactOrderedInitialMembersAndReturnedArraysAreOwned",
+            "AttackMoveUsesNormalOwnedGroupCommandsAndColdRestoreDoesNotReissueTheTrigger",
+            "CompleteLegacyPortableShapeChecksTheOriginalHashBeforeAddingEmptyFields",
+            "EmbarkGoalsCannotUseWorkersOrShipsAsTheirSpecifiedMilitaryGroup(\"cargo-worker\")",
+            "EmbarkGoalsCannotUseWorkersOrShipsAsTheirSpecifiedMilitaryGroup(\"transport\")",
+            "EmbarkGoalsRequireOneRealTransportAndPossibleIntegerThresholds",
+            "EmptyFutureGroupsDoNotCountAsLossesAndTheirRealDeathsDo",
+            "ExplorerWorkersAndTreasureGuardsCanBeInitialGroupMembers",
+            "FailedLegacyImportPreservesItsOriginalBytesAndAnExistingValidLibraryRow",
+            "GroupIdentifiersAndMemberListsAreUniqueAndBounded",
+            "GroupsRejectUnknownNestedBuildingAndResourceReferences(\"missing\")",
+            "GroupsRejectUnknownNestedBuildingAndResourceReferences(\"start-0-town\")",
+            "GroupsRejectUnknownNestedBuildingAndResourceReferences(\"depot\")",
+            "GroupsRejectUnknownNestedBuildingAndResourceReferences(\"berries\")",
+            "GroupsRejectUnknownNestedBuildingAndResourceReferences(\"landing-force\")",
+            "InitialGroupsCannotReferToFutureSpawnGroups",
+            "LossThresholdsMustBePositiveBoundedIntegers(0)",
+            "LossThresholdsMustBePositiveBoundedIntegers(0.5f)",
+            "LossThresholdsMustBePositiveBoundedIntegers(4097)",
+            "MissingOldFieldsMixedShapesAndUnknownFieldsAreNotLegacyCompatibility",
+            "OnlyTheSpecifiedLivingSoldiersInsideTheSpecifiedShipCompleteBoardingAfterColdRestore",
+            "SinkingTheTransportRemovesCargoAndOnlySpecifiedActualLossesTriggerFailure",
+            "StartingWorkerRolesUseTheActualOverriddenCivilizationAndNotTheEditableDocumentRoster"
+          ]
+        }
+      ]
+    },
+    "PlayMode": {
+      "file": "PlayMode.xml",
+      "sha256": "9711e5c2a7ef062df01058caf32d634c48357a0d9f7d91c64fb7d0555e8266a9",
+      "result": "Passed",
+      "declaredTotal": 397,
+      "declaredPassed": 397,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "actualLeafTotal": 397,
+      "actualLeafCounts": {
+        "Passed": 397
+      },
+      "startTimeUtc": "2026-10-06 02:15:39Z",
+      "endTimeUtc": "2026-10-06 02:18:52Z",
+      "relevantSuites": [
+        {
+          "name": "RiverContentController070Tests",
+          "result": "Passed",
+          "declaredTotal": 6,
+          "actualLeafTotal": 6,
+          "actualLeafCounts": {
+            "Passed": 6
+          },
+          "passedCaseNames": [
+            "AuthoredWorkshopCopyRetainsItsOwnGoalsAndCannotEarnChapterUnlocks",
+            "ControllerColdSlotPreservesActualSurveyAndCompletesOnceThenUnlocksTheNextChapter",
+            "LockedChaptersAndARejectedMapSelectionDoNotReplaceAPlayableWorld",
+            "RiverLibraryButtonsExposeTheNewIndependentArcAndLockedChapters",
+            "StandardAuthoredMapDoesNotSilentlyIgnoreACustomaryBridgeObjective",
+            "StandardMapMenuSelectionStartsTheFrozenOrdinaryMapWithTheChosenCivilizations"
+          ]
+        }
+      ]
+    }
+  },
+  "checks": {
+    "commitMatchesFrozen": true,
+    "inputCountMatchesFrozen": true,
+    "recordedFingerprintInternallyConsistent": true,
+    "currentFilesEqualRecordedFiles": true,
+    "currentAndRecordedFingerprintMatchFrozen": true,
+    "EditModeReportShaMatchesEvidence": true,
+    "EditModeActualLeavesMatchDeclaredAndEvidence": true,
+    "PlayModeReportShaMatchesEvidence": true,
+    "PlayModeActualLeavesMatchDeclaredAndEvidence": true
+  },
+  "actualLeafTotal": 1363,
+  "actualPassedLeafTotal": 1363,
+  "formalTestAndSourceAuditPassed": true,
+  "acceptanceBoundaries": {
+    "currentBuildCompletion": "not audited; build in progress per parent task",
+    "currentBuildNativeAcceptance": "pending, not started per parent task",
+    "twoPhysicalDeviceAcceptance": "not verified",
+    "ordinaryTradersBendPaidHarborAndFullAiMatch": "not verified",
+    "naturalMatchBalance": "not verified",
+    "convoyEasternChannelWinningRoute": "not independently covered",
+    "global1200SecondTimeout": "not naturally exercised; required goal deadlines end the chapters earlier"
+  }
+}

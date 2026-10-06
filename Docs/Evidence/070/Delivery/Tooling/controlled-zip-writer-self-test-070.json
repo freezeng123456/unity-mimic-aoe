@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "result": "Passed",
+  "count": 28,
+  "checks": [
+    "Git committed allowlist excludes untracked, cache and historical release files",
+    "source mode comes from Git despite working-tree chmod",
+    "source actual generated ZIP passes independent raw central/local/header/CRC/SHA/mode/path checks",
+    "client actual generated ZIP passes independent raw central/local/header/CRC/SHA/mode/path checks",
+    "gallery actual generated ZIP passes independent raw central/local/header/CRC/SHA/mode/path checks",
+    "source reads committed bytes and literal Git symlink body",
+    "full app lstat directories, executable mode and symlink body preserved",
+    "Unicode names use canonical UTF8 flag with no extras/comment and valid PNG dimensions",
+    "same original inventory generates deterministic ZIP bytes",
+    "mutated approved file hash refuses completion",
+    "mutated approved file size refuses completion",
+    "mutated approved mode refuses completion",
+    "failed newly created ZIP is reported without cleanup",
+    "failed ZIP cannot be reused or overwritten",
+    "partial output bytes survive failure and exclusive retry unchanged",
+    "nonseekable writer refuses descriptors",
+    "duplicate case alias inventory rejected",
+    "escaping Git symlink rejected",
+    "dangling Git symlink rejected",
+    "cyclic Git symlink rejected",
+    "gallery candidate archive path rejected",
+    "source misplaced historical candidate rejected",
+    "any existing package refuses entire batch before reservation",
+    "existing output unchanged and absent outputs not reserved after preflight refusal",
+    "dangling receipt symlink refused",
+    "receipt ZIP collision refused",
+    "formal pending request refused before production output access",
+    "fixtures automatically removed; no real request/approval/packages/Unity/project accessed"
+  ],
+  "scope": "Isolated temporary synthetic Git/app/gallery ZIPs only; no actual release packaging or acceptance.",
+  "tools": {
+    "write-approved-zips-070.py": {
+      "bytes": 26997,
+      "sha256": "7c39902dd800a9044a82b3a38d54e232c26cd944a5a4cac454c09215c9862011"
+    },
+    "prepare-delivery-documents-070.py": {
+      "bytes": 38642,
+      "sha256": "4d36991276fb4f1acf96671b11caaadecfd7e6f8e00512a01420301a0a35bd4c"
+    },
+    "independent-zip-verify-070.py": {
+      "bytes": 77464,
+      "sha256": "8be809bab33d8442081592daaaeba48fe1e08109a88e35d281bd59ea1c344463"
+    }
+  }
+}
