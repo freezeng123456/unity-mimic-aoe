@@ -6,6 +6,8 @@
 
 候选2运行提交 `8b6598d0939262571d0a595ba1499e053f00e1b7`，682输入，指纹 `ab5ae20e5ff0de9d5e3b2fdd9346ed9f158cb4082a05933e4d6b074cd7333047`。正式完整回归967项EditMode与397项PlayMode，共1364/1364通过，失败和跳过均为零。Mac构建成功，GUID `1e9cea464e46478d9193c121b4ce3534`；当前构建三章原生通关与侦察检查点新进程恢复已完成。候选1的1363项及GUID763cc75b的真实截图保留为诊断，其原生试玩发现并促成了后发袭营布局修正。[当前完成状态](Docs/Completion-Status.md)、[具体限制](Docs/Known-Issues.md)。
 
+已上传 [0.13 Google Drive](https://drive.google.com/drive/folders/13SGjI5BVUbaT3pRwjOSOn1gIMcEaKQ7J) ： macOS arm64 / source / 27 native PNG-JSON pairs; 1491 ZIP members independently verified. [Delivery](Docs/Delivery-070.md).
+
 此前0.12工作坊、冻结场景存档/录像与可信LAN仍保留。[工作坊操作](Docs/Scenario-Editor-069.md)、[旧容量合同](Docs/Scenario-069-Contract.md)。历史0.12候选2的1286项、GUID4546189b、原生编辑/冷恢复/录像和私有三包保持其旧身份，见[069验证](Docs/Verification-069.md)和[069交付](Docs/Delivery-069.md)。
 
 以下0.11及更早结果保留原版本身份。
