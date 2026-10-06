@@ -2,7 +2,7 @@
 
 0.15.0，Runtime `bc127e02638caaeefd2310a1a3eff858f4f4cb2f`，718输入，FP `04698dad49278a42db8a13a2ab997870bfb008c52f95313130026da5a7f35f62`；构建GUID `3288d9fe24e844748a1183f756874fbf`。
 
-本目录是各独立索引列出的已闭合本地原件子集；完整原生范围由最终journal说明，终包与私有交付仍另验。原件复制前后核bytes/SHA/mode，具体原路径/成员/范围见[evidence-allowlist072](evidence-allowlist072.json)与[copied-originals072](copied-originals072.json)。
+本目录是各独立索引列出的已闭合本地原件子集；完整原生范围由最终journal说明，终包和私有交付由[最终Delivery原件](Delivery/README.md)另行证明。原件复制前后核bytes/SHA/mode，具体原路径/成员/范围见[evidence-allowlist072](evidence-allowlist072.json)与[copied-originals072](copied-originals072.json)。
 
 - [Tests](Tests/README.md)：正式run-HACRyTBF两XML、日志、718项source-evidence及独立完整审计；1158Edit+409Play=1567全部Passed，零失败/跳过/未决。
 - [Build](Build/README.md)：BuildFinal1真实identity、wrapper receipt、前后源清单及Succeeded日志，exit0/sourceStable。
@@ -15,7 +15,9 @@
 
 [正常矩阵选定原件](NormalSelected/README.md)追加15份actual manifest/runner/718输入清单/预声明/独立检查/32玩家经济分析及工具、有界Coin诊断，6,435,792B；独立[复制索引](NormalSelected/normal-selected-copy-index072.json)核bytes/SHA/mode。16case已关闭、runner exit0/sourceStable，fixed checker Consistent、844稳定文件引用；原状态observed_routes_incomplete，P0革命6/8、升V3/8达到。完整samples/events/final-world保留外部，不复制巨型数据到Git。
 
-**NativeScopesComplete / MatrixObservedIncompleteAndConsistent / DrivePending**。正式源/测试/构建、本GUID9个原生声明范围和正常16局独立核验已闭合；9/16达到不等于全部路线成功、平衡或071因果改善。各冻结树、成员核验、完整seal和owner-only上传/字节读回仍独立要求，这里不填release sealed、不建ZIP、不上传。原67份allowlist/复制收据、各历史prepared/pending原件均保持原字节。
+**NativeScopesComplete / MatrixObservedIncompleteAndConsistent / PrivateRemoteBytesShaVerified**。正式源/测试/构建、本GUID9个原生声明范围和正常16局独立核验已闭合；9/16达到不等于全部路线成功、平衡或071因果改善。[Delivery选定原件](Delivery/README.md)新增22份实际readback/manifest/seal/freeze/inventories/独立审查和小型传输工具，2,901,154B及独立复制索引。实际本地5ZIP2465members独立核验，云端4wholeZIP+Normal3parts及清单/脚本/README共11files458,466,879B全部真实下载/SHA与owner-only确认。
+
+SourceSnapshot8490、已封外部Evidence/Gallery/raw/ZIP保持原状；当前Delivery文档和原件副本随后独立追加，未重打包。原67份allowlist/复制收据、各历史prepared/pending/uploaded=false审计原件均保持原字节，历史时点不替代新[实际远端读回](Delivery/drive072-final-delivery-readback.json)。最终Git文档提交/推送尚由root完成。[下载与合并说明](../../Delivery-072.md)。
 
 [ProcessD实际军队正式审计](Native/BoundedArmy/README.md)另核457checks/0fail、真实6/10/14成军和补员/防守/战损重集结；只归档-final-audit，错误bootstrap初诊保持外部且不作为验收。
 

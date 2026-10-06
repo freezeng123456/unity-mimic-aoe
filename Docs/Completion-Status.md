@@ -22,7 +22,7 @@
 | 定向测试 | Focused21实际51Edit+10Play全通过，源04698/718稳定、两进程exit0；行为范围见[072验证](Verification-072.md) |
 | 本GUID原生 | **native_scopes_complete**；[最终journal](Evidence/072/Native/FinalJournal/native-journal072-final.json)9个声明范围、5个实际exit0、40对F9，pending=[]，不认证整段录像/全局FPS |
 | 正常16局 | **observed_routes_incomplete / Consistent**；16条关闭，P0路线9/16达到（革命6/8、升V3/8），15自然终局+1cap；[选定原件](Evidence/072/NormalSelected/README.md) |
-| 072私有交付 | **PENDING_DELIVERY**；未声明包核验/上传/读回完成，未生成新Drive链接 |
+| 072私有交付 | **uploaded_owner_only_all_remote_bytes_sha256_verified**；[072私有目录](https://drive.google.com/drive/folders/1hdezEOqw10bCPAUZ6YIG0btx8Rbw-0I5)11文件458,466,879B全部实际下载/SHA及owner-only核验，[Delivery072](Delivery-072.md) |
 
 ## 观察范围与待填项
 
@@ -30,7 +30,7 @@
 
 16正常局已在2026-10-06T13:52:28.3340010Z关闭，runner实际exit0/sourceStable；独立[final1检查](Evidence/072/NormalSelected/independent-normal072-final1.json)Consistent，844稳定文件引用，未读取071。9条P0声明路线达到，7条提前终局前未达到；仅5局到2400观察边界，11局在此前自然终局。革命6/8达到真实付费/完工/首平民/正普通采集，升V3/8真实付费且完工；不代表三资源均恢复、全部路线成功或文明平衡。[32位玩家经济统计](Evidence/072/NormalSelected/normal072-economics-final1.md)区分支付/完工/正收入：15笔正常500W Town恢复付款仅5笔完工，10笔未完工。Dutch42 wall3303.190543s约55分3秒、模拟3600.061279s未自然终局，仍有性能限制；WindingOttoman44停留Age2/缺Coin，初始停币原因未证实，Market没有兑换。完整结果与边界见[072验证](Verification-072.md)，不作071因果改善。
 
-原生五进程已实际退出0：E的Guardian84/House83接受攻击与Death、90秒革命、政府取消退款/重排及Slot1；F完整冷初始状态和政府完成/真实100F工人89；G只读选择/聚焦与minimap镜头；H实际1×前向step600→1111。H起播前两次seek保留，播放期间无seek，未播完5490，Verified=false；没有编组恢复或移动工人原生追击声明。D正常I自然42m32终局和155.623s性能窗另记，不能认证整个比赛固定FPS或零泄漏。[合并最终journal](Evidence/072/Native/FinalJournal/README.md)已封存并按9个声明范围接受；[选定原生审计](Evidence/072/Native/SelectedScopes/README.md)保持各自原件与边界。交付待填新包source profile、成员核验、owner-only权限和实际字节读回。文档与原件复制不改变已关闭矩阵和当前718运行输入；私有交付仍PENDING_DELIVERY。
+原生五进程已实际退出0：E的Guardian84/House83接受攻击与Death、90秒革命、政府取消退款/重排及Slot1；F完整冷初始状态和政府完成/真实100F工人89；G只读选择/聚焦与minimap镜头；H实际1×前向step600→1111。H起播前两次seek保留，播放期间无seek，未播完5490，Verified=false；没有编组恢复或移动工人原生追击声明。D正常I自然42m32终局和155.623s性能窗另记，不能认证整个比赛固定FPS或零泄漏。[合并最终journal](Evidence/072/Native/FinalJournal/README.md)已封存并按9个声明范围接受；[选定原生审计](Evidence/072/Native/SelectedScopes/README.md)保持各自原件与边界。[交付](Delivery-072.md)已闭合本地5ZIP2465成员CRC/SHA/模式、SourceSnapshot8490的1518保留/3635省略Git对象、四冻结inventory及全部11远端文件字节/SHA/owner-only。完整NormalZIP209,058,503B远端为三片原字节，实际重组与CRC另核；原5ZIP保持不变。最终交付文档在8490快照之后追加，Git最终提交/推送不在本收据范围内。文档与原件复制不改变已关闭矩阵和当前718运行输入。
 
 ## 历史保持原身份
 

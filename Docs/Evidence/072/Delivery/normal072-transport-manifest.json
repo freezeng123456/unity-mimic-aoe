@@ -1,0 +1,31 @@
+{
+  "schema": "frontier072-byte-split-transport-1",
+  "status": "verified_exact_transport_of_unchanged_zip",
+  "createdUtc": "2026-10-06T14:29:07.692880+00:00",
+  "reason": "Drive connector rejected a209058503-byte upload before action: maximum104857600bytes.",
+  "original": {
+    "file": "normal-routes-originals072.zip",
+    "bytes": 209058503,
+    "sha256": "036fde3891836a12f25a98f8af1bf3c0fa5974711580ffed72864b82d3c9c33a"
+  },
+  "parts": [
+    {
+      "file": "normal-routes-originals072.zip.part001",
+      "bytes": 80000000,
+      "sha256": "4aa0b88b5cbbe918de6025e92f10c7895df4d240070efd07997a542ab44caf34"
+    },
+    {
+      "file": "normal-routes-originals072.zip.part002",
+      "bytes": 80000000,
+      "sha256": "f53f4ff237a3c22315d01944682ad60adf6a25a2f032edfb819df90624f450b8"
+    },
+    {
+      "file": "normal-routes-originals072.zip.part003",
+      "bytes": 49058503,
+      "sha256": "82f739532ca60800658cc3b9d5403d832b8bfe500a1d8a148d083ec2a75dd8e8"
+    }
+  ],
+  "concatenatedSHA256MatchesOriginal": true,
+  "originalUnchangedBeforeAfter": true,
+  "scope": "Raw-byte transport split only; does not replace the verified original ZIP or change gameplay acceptance."
+}

@@ -16,6 +16,6 @@
 | 保存及冷恢复 | E原Slot1，F新PID完整初始World/Controller规范化全等，正常续跑 |
 | 实际短段前向 | H1×step600→1111、播放期间无seek，跨原record787/anchor900，Verified仍false |
 
-原生操作者是Codex root agent通过公开Sky工具，未将其称作人类用户。仅抽查声明选定原图；H未播完5490且没有导出终点完整World/Controller，F新工人未采集、无编组恢复，G不是World.Issue拒绝事件，F分辨率变化和所有关闭Mono/MemoryLeaks保留。不扩大成60FPS、零泄漏、LAN或文明平衡认证。矩阵与交付仍是独立待完成门槛。
+原生操作者是Codex root agent通过公开Sky工具，未将其称作人类用户。仅抽查声明选定原图；H未播完5490且没有导出终点完整World/Controller，F新工人未采集、无编组恢复，G不是World.Issue拒绝事件，F分辨率变化和所有关闭Mono/MemoryLeaks保留。不扩大成60FPS、零泄漏、LAN或文明平衡认证。矩阵和交付为独立范围：后续[正常16局](../../NormalSelected/README.md)已关闭且Consistent，但仅9/16达到；[私有交付](../../../../Delivery-072.md)11文件已全部真实下载/SHA及owner-only。原journal和说明当时pending字段保持原字节，不扩大原生范围。
 
 [选定独立审计](../SelectedScopes/README.md) · [验证记录](../../../../Verification-072.md)

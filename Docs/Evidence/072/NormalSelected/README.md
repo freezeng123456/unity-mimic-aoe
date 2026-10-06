@@ -31,6 +31,6 @@
 
 15份原件共6,435,792B逐字复制。每份原件的绝对来源、复制前/后SHA/bytes/mode/lstat身份、副本身份见[独立复制索引](normal-selected-copy-index072.json)。已有根allowlist与复制收据保持历史原字节，未重新解释为本子目录总清单。
 
-完整16case samples/events/opening/comparison/final-world与原始日志保留在外部 `/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1`。本目录不复制巨型样本/事件/最终世界，不生成终包seal/ZIP，不提交/上传；072私有交付 **PENDING_DELIVERY**。原生的9个声明范围另由[最终journal](../Native/FinalJournal/README.md)证明。
+完整16case samples/events/opening/comparison/final-world与原始日志保留在外部 `/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1`。本目录复制任务不包含巨型样本/事件/最终世界，不生成终包；随后[072私有交付](../../../Delivery-072.md)已完成本地5ZIP/远端11文件真实下载/SHA及owner-only。完整Normal209,058,503B原ZIP以三个原字节分片传输，需按说明下载重组；本索引原当时PENDING_DELIVERY字段保持历史原字节。原生的9个声明范围另由[最终journal](../Native/FinalJournal/README.md)证明。
 
 [072验证](../../../Verification-072.md)、[当前状态](../../../Completion-Status.md)、[限制](../../../Known-Issues-072.md)。

@@ -1,6 +1,6 @@
 # 0.15.0 玩家操作 · 指定攻击、经营恢复与观战（072）
 
-2026-10-06。本文说明0.15.0的正常操作、经济恢复与观察权限。当前1567项正式回归与Mac构建已通过；本GUID9个声明原生范围已闭合，正常16局已退出并独立Consistent，路线9/16达到、保留observed_routes_incomplete；私有交付仍待验收，见[072验证](Verification-072.md)。
+2026-10-06。本文说明0.15.0的正常操作、经济恢复与观察权限。当前1567项正式回归与Mac构建已通过；本GUID9个声明原生范围已闭合，正常16局已退出并独立Consistent，路线9/16达到、保留observed_routes_incomplete；私有交付已完成11远端文件真实字节/SHA与owner-only核验，下载与三片重组见[Delivery072](Delivery-072.md)，验收范围见[072验证](Verification-072.md)。
 
 ## 开始自己控制的对局
 
@@ -70,4 +70,4 @@ SAVE REPLAY保存已录区间；RECORDING LIBRARY打开后默认暂停，用PLAY
 
 ## 实际验收范围
 
-本构建GUID为 `3288d9fe24e844748a1183f756874fbf`。正式1158Edit+409Play共1567项全部Passed，保存与录制文件仍须使用原构建加载。D/E/F/G/H五个真实Mac进程均已正常退出0。E用A模式加左键指定Guardian/House并产生实际Death，完成付费革命、政府取消/退款/重排和Slot1保存；F新进程恢复完整初始状态后完成政府，再付100F产出Settler89，未观察该工人采木。G核只读选择/相机；H仅实际1×前向step600→1111，尚未播完整段，Verified=false。[最终原生日志](Evidence/072/Native/FinalJournal/README.md)已按9个声明范围闭合；正常16局已关闭并独立Consistent：革命6/8与升V3/8达到、7条提前终局前未达，仅5局到2400边界；不能把政治研究或自然胜利算三资源恢复。Dutch42长局wall3303.190543s、WindingOttoman44 Age2缺币限制保留。[正常矩阵原件](Evidence/072/NormalSelected/README.md)分别记录付款/完工/实际收入；私有包上传读回仍待完成。右键和移动人物追击、编组恢复不扩大为这次原生范围；固定250步Editor诊断和短原生性能窗口也不认证整局流畅度。[验证记录](Verification-072.md)分别记录范围。[当前状态](Completion-Status.md)、[具体限制](Known-Issues.md)。
+本构建GUID为 `3288d9fe24e844748a1183f756874fbf`。正式1158Edit+409Play共1567项全部Passed，保存与录制文件仍须使用原构建加载。D/E/F/G/H五个真实Mac进程均已正常退出0。E用A模式加左键指定Guardian/House并产生实际Death，完成付费革命、政府取消/退款/重排和Slot1保存；F新进程恢复完整初始状态后完成政府，再付100F产出Settler89，未观察该工人采木。G核只读选择/相机；H仅实际1×前向step600→1111，尚未播完整段，Verified=false。[最终原生日志](Evidence/072/Native/FinalJournal/README.md)已按9个声明范围闭合；正常16局已关闭并独立Consistent：革命6/8与升V3/8达到、7条提前终局前未达，仅5局到2400边界；不能把政治研究或自然胜利算三资源恢复。Dutch42长局wall3303.190543s、WindingOttoman44 Age2缺币限制保留。[正常矩阵原件](Evidence/072/NormalSelected/README.md)分别记录付款/完工/实际收入；[私有下载](Delivery-072.md)已完成11远端文件字节/SHA及owner-only；客户端是完整ZIP，正常局记录因传输上限需下载三片与清单/脚本后按普通Python3重组。旧版本保存/录像仍使用原构建打开。右键和移动人物追击、编组恢复不扩大为这次原生范围；固定250步Editor诊断和短原生性能窗口也不认证整局流畅度。[验证记录](Verification-072.md)分别记录范围。[当前状态](Completion-Status.md)、[具体限制](Known-Issues.md)。

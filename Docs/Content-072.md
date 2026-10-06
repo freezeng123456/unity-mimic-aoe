@@ -1,6 +1,6 @@
 # 0.15.0 内容合同候选 · 经营延续、集结与指定调度（072）
 
-2026-10-06。072整合实际军队集结、经营延续、可见危险、指定攻击、正常观察权限及队列显示。项目采用原创规则P与现有六文明，不宣称商业《帝国时代III》精确国家数值、完整国家制度或完整美术复刻。当前源码/构建已正式通过，五个本GUID原生进程的9个声明范围及正常16局独立核验已闭合；自然路线9/16达到、原状态observed_routes_incomplete，私有交付仍待验，见[072验证](Verification-072.md)。
+2026-10-06。072整合实际军队集结、经营延续、可见危险、指定攻击、正常观察权限及队列显示。项目采用原创规则P与现有六文明，不宣称商业《帝国时代III》精确国家数值、完整国家制度或完整美术复刻。当前源码/构建已正式通过，五个本GUID原生进程的9个声明范围及正常16局独立核验已闭合；自然路线9/16达到、原状态observed_routes_incomplete，私有交付已完成11远端文件字节/SHA与owner-only核验，见[Delivery072](Delivery-072.md)和[072验证](Verification-072.md)。
 
 ## 本批内容与既有文明
 
@@ -103,7 +103,7 @@ Safe半径仍max(12,range+4)，严格圆内部不安全、等半径边界安全�
 | 当前构建 | Unity6000.6.3f1，macOS arm64 Development/Mono，version0.15.0；BuildFinal1实际Succeeded/exit0、源前后稳定；GUID `3288d9fe24e844748a1183f756874fbf` |
 | 当前构建原生 | **native_scopes_complete**：[最终journal](Evidence/072/Native/FinalJournal/native-journal072-final.json)9个声明范围/5个实际exit0/40对F9，pending=[]；指定攻击、政治/保存冷恢复/新工人、观战相机与H短段前向按各实际范围闭合。H仅step600→1111、Verified=false，D性能仅155.623s窗口 |
 | 16局正常I矩阵 | **observed_routes_incomplete / Consistent**：`NormalRoutesFinal1`16条关闭、runner exit0/sourceStable；革命6/8、升V3/8达到，7条未达到。15自然终局+1cap，仅5局到2400边界；[实际原件](Evidence/072/NormalSelected/README.md)按32位玩家分别记录设施付款/完工/正收入、Town恢复与军力，未评估平衡 |
-| 072私有交付 | **PENDING_DELIVERY**：对应新身份的源码/客户端/原始图集包、独立包核验及owner-only上传/权限/字节读回尚未闭合，不生成新Drive完成链接 |
+| 072私有交付 | **uploaded_owner_only_all_remote_bytes_sha256_verified**：本地5ZIP2465成员独立核验，云端11文件458,466,879B逐个真实下载/SHA及owner-only；完整NormalZIP以三片原字节传输，SourceSnapshot8490与原包不变，详见[Delivery072](Delivery-072.md) |
 
 正常恢复不是必成：15笔正常500W Town重建付款5笔完工、10笔未完工；6条达到革命路线仍不意味着三资源均恢复，Dutch42及WindingFrench44恢复后Wood=0。Dutch42 wall3303.190543s约55分3秒、模拟3600.061279s未自然终局；WindingOttoman44停留Age2/缺Coin，初始停止原因未证实，Market没有资源兑换。这些限制不因独立Consistent而移除。详细原件、SHA和范围见[072验证](Verification-072.md)。历史源47/a132、716输入的1556通过与GUID `f9912d56d5d04a198a5f495ea9e8eb6e` 构建仅属此前候选，不能替代当前原生。该旧批两条coast case（42提前自然终局；43已付V并完成）保留原身份，不当作当前16局结果。
 

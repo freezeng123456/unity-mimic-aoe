@@ -6,7 +6,7 @@
 
 运行提交 `bc127e02638caaeefd2310a1a3eff858f4f4cb2f`，718输入，指纹 `04698dad49278a42db8a13a2ab997870bfb008c52f95313130026da5a7f35f62`。正式完整 `run-HACRyTBF` 实际1158Edit+409Play，共 **1567/1567 Passed**，零失败/跳过/未决；独立核原XML/源和071旧用例名称保留。Mac arm64 Development/Mono构建实际成功、源前后稳定，GUID `3288d9fe24e844748a1183f756874fbf`。[072验证](Docs/Verification-072.md)、[当前状态](Docs/Completion-Status.md)、[限制](Docs/Known-Issues.md)。
 
-**本GUID9个声明原生范围及正常16局独立核验已闭合；路线9/16达到、保留observed_routes_incomplete，072私有交付仍待验收。** [最终原生日志](Docs/Evidence/072/Native/FinalJournal/README.md)记录5个实际exit0、40对F9和完整边界。 实际包括E指定Guardian/House与Death、付费革命/政府取消退款/保存，F冷恢复后完成政府及真实新工人89，G只读相机和H短段前向600→1111。H未播完5490，Verified=false；右键、移动工人追击及编组恢复不扩成此次原生验收。 [NormalRoutesFinal1](Docs/Evidence/072/NormalSelected/README.md)按两图/四经典文明/两政治偏好实际关闭16条，runner exit0/sourceStable，固定独立checker Consistent；革命6/8、升V3/8达到，7条未达。15自然终局+1cap，仅5局到2400边界；32位玩家的设施付款/完工/正收入分别统计，15笔正常Town恢复付款仅5笔完工。Dutch42 wall3303.190543s约55分3秒仍有性能限制，曲河Ottoman44 Age2缺币初始原因未证实，Market没有兑换。结果不认证全部路线/三资源恢复、文明平衡或071因果改善。同一原NativeA锚点的250步Editor诊断已观察热点降低且最终62633事件/World/Controller/新事件字节一致；它不能认证当前GUI帧率、全部自然地图、60FPS或零泄漏。当前不生成072Drive完成链接。
+**本GUID9个声明原生范围及正常16局独立核验已闭合；路线9/16达到、保留observed_routes_incomplete，072私有交付已完成11远端文件真实字节/SHA与owner-only核验。** [最终原生日志](Docs/Evidence/072/Native/FinalJournal/README.md)记录5个实际exit0、40对F9和完整边界。 实际包括E指定Guardian/House与Death、付费革命/政府取消退款/保存，F冷恢复后完成政府及真实新工人89，G只读相机和H短段前向600→1111。H未播完5490，Verified=false；右键、移动工人追击及编组恢复不扩成此次原生验收。 [NormalRoutesFinal1](Docs/Evidence/072/NormalSelected/README.md)按两图/四经典文明/两政治偏好实际关闭16条，runner exit0/sourceStable，固定独立checker Consistent；革命6/8、升V3/8达到，7条未达。15自然终局+1cap，仅5局到2400边界；32位玩家的设施付款/完工/正收入分别统计，15笔正常Town恢复付款仅5笔完工。Dutch42 wall3303.190543s约55分3秒仍有性能限制，曲河Ottoman44 Age2缺币初始原因未证实，Market没有兑换。结果不认证全部路线/三资源恢复、文明平衡或071因果改善。同一原NativeA锚点的250步Editor诊断已观察热点降低且最终62633事件/World/Controller/新事件字节一致；它不能认证当前GUI帧率、全部自然地图、60FPS或零泄漏。[072私有下载与交付说明](Docs/Delivery-072.md)记录实际云盘入口、11文件458,466,879B完整下载/SHA与owner-only；本地5ZIP2465成员另独立核验，完整正常局ZIP以三个原字节分片下载后重组。SourceSnapshot8490与已封包保持不变，最终Git文档提交/推送另行完成。
 
 **历史071保持原身份。** 0.14正式1521项与25项独立审计、英国受控IV原生范围及私有交付已完成，见[071快照](Docs/Completion-Status-071.md)、[071验证](Docs/Verification-071.md)、[071交付](Docs/Delivery-071.md)。原八条普通I路线只有1/8完整恢复；英国V已付4000F/4000C但旧2400cap未完成，奥斯曼研究后立即终局未产新工人/正采集。46对F9、三槽/三录像、两冷恢复及转换后SAVE1不扩大为当前GUID或四国自然全链；旧结果不回写通过。
 
@@ -117,6 +117,6 @@ C1–C6失败结果原样保留，不跨局拼接。C7缺少单独终局F9和菜
 
 ## 交付边界
 
-当前0.15.0正式1567项自动化与Mac构建已通过，**9个声明原生范围已闭合，NormalRoutesFinal1正常16局独立Consistent但路线9/16达到，072私有交付待验**。[072验证](Docs/Verification-072.md)分别记录已通过与待填范围。历史0711521项、八条路线观察、英国受控IV原生与私有包上传/读回保留原身份，见[071交付](Docs/Delivery-071.md)；0.12/0.11及更早样本同理。
+当前0.15.0正式1567项自动化与Mac构建已通过，**9个声明原生范围已闭合，NormalRoutesFinal1正常16局独立Consistent但路线9/16达到，072私有交付11文件字节/SHA与owner-only已闭合**。[072验证](Docs/Verification-072.md)与[072交付](Docs/Delivery-072.md)分别记录玩法范围、当前私有下载与剩余限制。历史0711521项、八条路线观察、英国受控IV原生与私有包上传/读回保留原身份，见[071交付](Docs/Delivery-071.md)；0.12/0.11及更早样本同理。
 
 实体双Mac、跨网卡/防火墙、长窗延迟/性能、签名公证Release及Windows/Linux/Intel Mac分别未验收。可信LAN提供完整世界投影，没有竞技防作弊、加密、公网匹配/NAT/中继或主机迁移，同版本不同构建可能拒绝连接。原创场景编辑、四个项目革命分支和经营/集结改进已落入代码，完整文明制度/卡池/商业场景、美术/语音与海战仍有差距。[完成状态](Docs/Completion-Status.md)、[限制](Docs/Known-Issues.md)、[后续方向](Docs/AoE3-Gap-Roadmap.md)。

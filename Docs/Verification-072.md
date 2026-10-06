@@ -1,6 +1,6 @@
 # 0.15.0 验证记录 · 072
 
-2026-10-06。运行提交 `bc127e02638caaeefd2310a1a3eff858f4f4cb2f`；718个输入（Assets、Packages、ProjectSettings、Tools）的指纹为 `04698dad49278a42db8a13a2ab997870bfb008c52f95313130026da5a7f35f62`。文档与原件归档不改变这些运行输入。源码/自动化/构建及本GUID五进程的9个声明原生范围已闭合；正常16局实际关闭，独立Consistent、路线9/16达到，原状态observed_routes_incomplete；私有交付待验。
+2026-10-06。运行提交 `bc127e02638caaeefd2310a1a3eff858f4f4cb2f`；718个输入（Assets、Packages、ProjectSettings、Tools）的指纹为 `04698dad49278a42db8a13a2ab997870bfb008c52f95313130026da5a7f35f62`。文档与原件归档不改变这些运行输入。源码/自动化/构建及本GUID五进程的9个声明原生范围已闭合；正常16局实际关闭，独立Consistent、路线9/16达到，原状态observed_routes_incomplete；私有交付已上传并完成11远端文件字节/SHA与owner-only读回，见[Delivery072](Delivery-072.md)。
 
 ## 正式完整回归与构建
 
@@ -109,9 +109,13 @@ G与D初始完整World/Controller、52公共锚点及前65117事件字节一致�
 
 这不是完整42m32对局、固定FPS、隔离硬件基准或零泄漏认证。实际存在追赶和速度差；原始Player.log关闭Mono/MemoryLeaks诊断保留（D3296486、E3259006 allocatedMemory），exit0不代表没有泄漏。旧47/f991 NativeA卡顿、NativeC丢clock及Focused19刷新失败仍保持原身份。
 
-## 私有交付 · 待验
+## 私有交付 · 11远端文件字节/SHA闭合
 
-**PENDING_DELIVERY**。已按原图选定10张GalleryFinal1素材（8张E/D、1张G港区、1张F新Settler），不修改像素；选图/PNG CRC与复制检查不等于终包或云端交付。`Diagnostics/072-gallery-selection-final1.json`记录实际选择与原路径/SHA。新身份包、独立成员CRC/SHA/bytes/模式核验、owner-only上传/权限与字节读回尚待完成。未建立新Drive完成链接、公开发行或扩大分享。历史071交付见[Delivery-071](Delivery-071.md)，不重新标成072。
+**uploaded_owner_only_all_remote_bytes_sha256_verified**。[072私有目录](https://drive.google.com/drive/folders/1hdezEOqw10bCPAUZ6YIG0btx8Rbw-0I5)实际11文件458,466,879B，目录/文件shared=false、仅owner、父目录/名称/大小一致；真正下载11文件并对全部响应字节算SHA，全部与本地一致。[实际读回](Evidence/072/Delivery/drive072-final-delivery-readback.json)SHA `6c7d3beac46bf54f1ec47dc018d711e8417c727d04c5a090c502abc2baac2094`，不是仅元数据证明。
+
+本地5ZIP456,136,823B/2465members的CRC/SHA/bytes/type/mode/path和Git/四inventory经[独立检查](Evidence/072/Delivery/072-final-five-archives-independent-review.md)全核。云端4个完整ZIP+3个Normal原字节分片+包清单+分片清单/脚本/README；209,058,503B完整NormalZIP因100MiB连接器上限在action前被413拒绝，三片按原字节重组。[独立传输](Evidence/072/Delivery/072-normal-transport-independent-review.md)37checks/0fail及[实际合并](Evidence/072/Delivery/normal072-transport-assembly-review.json)4例/全ZIP CRC+SHA分别保留，不重复游戏验收。
+
+源码快照8490保留1518跟踪文件/718运行输入，明确省略3635旧Evidence路径，070/071/072保留；该ZIP不是完整Git树。画廊10张原PNG（8张E/D、1张G港区、1张F新Settler）保持像素和元数据，选图原件仍在外部。新[Delivery072](Delivery-072.md)及[22份选定交付原件](Evidence/072/Delivery/README.md)于源码快照后另行归档，不重打包或扩大分享。历史[Delivery071](Delivery-071.md)保持原身份；最终Git文档commit/push尚由root另做，不据此声称完成。
 
 ## 当前原件位置
 

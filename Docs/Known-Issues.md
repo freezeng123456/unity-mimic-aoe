@@ -1,6 +1,6 @@
 # 当前范围与限制 · 0.15.0 经营延续与军队调度候选
 
-2026-10-06。当前运行提交 `bc127e02638caaeefd2310a1a3eff858f4f4cb2f`、718输入、指纹 `04698dad49278a42db8a13a2ab997870bfb008c52f95313130026da5a7f35f62`。正式1158Edit+409Play共1567项全部Passed，0Failed/Skipped/Inconclusive；BuildFinal1实际Succeeded/exit0，GUID `3288d9fe24e844748a1183f756874fbf`。D/E/F/G/H本GUID9个声明原生范围已闭合，NormalRoutesFinal1的16正常局已退出0并独立Consistent，但路线仅9/16达到、原状态observed_routes_incomplete；私有交付仍待验。[当前状态](Completion-Status.md)、[内容](Content-072.md)、[操作](Player-Guide-072.md)、[验证](Verification-072.md)。
+2026-10-06。当前运行提交 `bc127e02638caaeefd2310a1a3eff858f4f4cb2f`、718输入、指纹 `04698dad49278a42db8a13a2ab997870bfb008c52f95313130026da5a7f35f62`。正式1158Edit+409Play共1567项全部Passed，0Failed/Skipped/Inconclusive；BuildFinal1实际Succeeded/exit0，GUID `3288d9fe24e844748a1183f756874fbf`。D/E/F/G/H本GUID9个声明原生范围已闭合，NormalRoutesFinal1的16正常局已退出0并独立Consistent，但路线仅9/16达到、原状态observed_routes_incomplete；私有交付11文件已完成真实远端字节/SHA及owner-only核验，游戏范围和限制继续保留，见[Delivery072](Delivery-072.md)。[当前状态](Completion-Status.md)、[内容](Content-072.md)、[操作](Player-Guide-072.md)、[验证](Verification-072.md)。
 
 ## 自然经营与恢复预算
 
@@ -63,4 +63,4 @@
 - LAN限可信同包与手动地址，历史同机双进程不证明双物理Mac、Wi-Fi/防火墙、自然合作整局或本版网络成本；没有公网匹配/NAT中继、主机迁移、加密、竞技防作弊与敌情隔离。
 - 程序人物/船只、枢轴动画和合成反馈仍有质量差距，缺商业骨骼/布料、完整装填/建筑破坏、完整单位语音。平台基线为macOS Apple silicon Development/Mono，Release/签名公证/Windows/Linux/Intel Mac未验收；长窗声画帧耗时/GC/内存及网络延迟/带宽未完成，不能承诺60FPS或零泄漏。
 
-更早存储、浮点、输入、海军、模型与LAN边界见[069快照](Known-Issues-069.md)、[070快照](Known-Issues-070.md)。071原交付和原截图保持旧身份；072私有交付仍pending，未生成新共享或Drive完成声明。
+更早存储、浮点、输入、海军、模型与LAN边界见[069快照](Known-Issues-069.md)、[070快照](Known-Issues-070.md)。071原交付和原截图保持旧身份；072已完成[私有交付](Delivery-072.md)及11远端文件完整字节/SHA/owner-only核验，不扩大共享；SourceSnapshot8490内历史pending原文保持原状。原始NormalZIP209,058,503B以三片传输，下载后需按普通Python3重组，不能把任一分片当可直接打开的完整ZIP。源码包省略3635旧Evidence跟踪路径、保留070/071/072及1518跟踪文件，非完整Git证据树；本地ZIP核验不覆盖macOS ACL/xattrs/resource fork或签名公证，也不追加玩法/平衡/长窗性能验收。最终Git交付文档推送尚由root独立完成。
