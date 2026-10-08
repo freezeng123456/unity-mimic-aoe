@@ -97,6 +97,14 @@ namespace Frontier.Tests
         }
         IEnumerator RightTerrain(Vector2 point)
         {var screen=ScreenPoint(point,game.World.SurfaceHeight(point));AssertWorldPoint(screen);yield return Click(screen,MouseButton.Right);}
+        void AssertEnvoyRallyDisplay(EntityState explorer)
+        {
+            var flag=game.View.GetComponentsInChildren<LineRenderer>().Single(line=>line.isActiveAndEnabled&&line.name=="Owned rally intention");
+            Assert.IsTrue(flag.useWorldSpace);Assert.AreEqual(5,flag.positionCount);
+            var foot=flag.GetPosition(0);Assert.Less(Vector2.Distance(new Vector2(foot.x,foot.z),explorer.rally),.025f);
+            Assert.AreEqual(game.World.SurfaceHeight(explorer.rally)+.15f,foot.y,.025f,"Flag must stand on the actual rally surface");
+            Assert.IsTrue(session.GetComponentsInChildren<Text>().Any(text=>text.isActiveAndEnabled&&text.text.Contains("Envoy rally")),"Selected Dutch producer must describe the actual Envoy rally");
+        }
 
         [UnityTest] public IEnumerator DutchExplorerTrainAndQueueCancellationUseRealButtonsAndAccounts()
         {
@@ -117,11 +125,19 @@ namespace Frontier.Tests
         [UnityTest] public IEnumerator EnvoyRallyWorldAndMinimapPointerChangeOnlyTheFlagNotExplorerTravel()
         {
             yield return Civilization("river");var explorer=Own("explorer");yield return SelectByPointer(explorer);
-            yield return RightTerrain(explorer.position+new Vector2(8,-4));var travel=explorer.orders.Single();var position=explorer.position;
+            // The old (39,28) click overlaps the existing treasure at (40,30).
+            // Choose actual empty ground and verify the rendered command pick,
+            // so a legal Claim cannot masquerade as this movement fixture.
+            var travelPoint=explorer.position+new Vector2(7,-10);var travelScreen=ScreenPoint(travelPoint,game.World.SurfaceHeight(travelPoint));AssertWorldPoint(travelScreen);
+            var picked=typeof(RtsInput).GetMethod("Pick",PrivateInstance).Invoke(game.Controls,new object[]{travelScreen,true,false,false});
+            Assert.IsNull(picked,"Initial travel fixture must hit terrain without an entity target");
+            yield return RightTerrain(travelPoint);var travel=explorer.orders.Single();var position=explorer.position;
+            Assert.AreEqual(OrderKind.Move,travel.kind);Assert.AreEqual(0,travel.target);Assert.Less(Vector2.Distance(travelPoint,travel.point),.1f);
             yield return ClickAction("ENVOY RALLY");Assert.IsTrue(game.Controls.EnvoyRallyMode);
             var destination=explorer.position+new Vector2(5,7);var screen=ScreenPoint(destination);AssertWorldPoint(screen);
             yield return Click(screen);Assert.IsFalse(game.Controls.EnvoyRallyMode);Assert.Less(Vector2.Distance(destination,explorer.rally),.1f);
             Assert.AreSame(travel,explorer.orders.Single());Assert.AreEqual(position,explorer.position);Assert.AreEqual(OrderKind.Move,travel.kind);
+            AssertEnvoyRallyDisplay(explorer);
             yield return ClickAction("ENVOY RALLY");
             var mini=session.GetComponentsInChildren<RawImage>().Single(i=>i.isActiveAndEnabled&&i.name=="Interactive minimap").rectTransform;
             var terrain=new Vector2(44,24);var local=new Vector2(Mathf.Lerp(mini.rect.xMin,mini.rect.xMax,terrain.x/128),Mathf.Lerp(mini.rect.yMin,mini.rect.yMax,terrain.y/128));
@@ -129,9 +145,14 @@ namespace Frontier.Tests
             Assert.Less(Vector2.Distance(decoded,terrain),.01f);yield return Click(pointer);
             Assert.IsFalse(game.Controls.EnvoyRallyMode);Assert.Less(Vector2.Distance(explorer.rally,terrain),.1f);
             Assert.AreSame(travel,explorer.orders.Single());Assert.AreEqual(position,explorer.position);
+            AssertEnvoyRallyDisplay(explorer);
             Assert.AreEqual(2,game.World.Events.Count(e=>e.kind=="RallySet"&&e.entity==explorer.id));
             game.Controls.Focus(explorer.position);yield return Ready();yield return ClickAction("ENVOY RALLY");yield return Press(Key.Escape);
             Assert.IsFalse(game.Controls.EnvoyRallyMode);Assert.AreSame(travel,explorer.orders.Single());
+            yield return Civilization("france");yield return new WaitForSecondsRealtime(.25f);yield return SelectByPointer(Own("explorer"));
+            Assert.IsFalse(Actions().Any(action=>action.StartsWith("ENVOY RALLY")),"An ordinary French Pathfinder gains no Dutch producer controls");
+            Assert.IsFalse(game.View.GetComponentsInChildren<LineRenderer>().Any(line=>line.isActiveAndEnabled&&line.name=="Owned rally intention"));
+            Assert.IsFalse(session.GetComponentsInChildren<Text>().Any(text=>text.isActiveAndEnabled&&text.text.Contains("Envoy rally")));
         }
 
         [UnityTest] public IEnumerator EnvoyBuildMenuAndRightClickFoundationAllowOnlyItsTradePostCapability()
@@ -150,8 +171,13 @@ namespace Frontier.Tests
             var choices=session.GetComponentsInChildren<Button>().Where(b=>b.isActiveAndEnabled&&buildings.Any(prefix=>b.name.StartsWith(prefix))).ToArray();
             Assert.AreEqual(1,choices.Length);StringAssert.StartsWith(game.Rules.Entity("trade_post").name+"  ·",choices[0].name);
             yield return Click(ButtonCenter(choices[0]));Assert.AreEqual("trade_post",game.Controls.BuildingToPlace);
-            var funds=w.Players[0].resources;var targetPoint=ScreenPoint(socket.position);AssertWorldPoint(targetPoint);yield return Click(targetPoint);
-            Assert.IsEmpty(game.Controls.BuildingToPlace);var post=Own("trade_post");Assert.IsFalse(post.Complete);
+            Assert.IsEmpty(w.CanBuild(0,"trade_post",socket.position),"The actual visible socket must admit a paid foundation");
+            // BeginBuild deliberately suppresses pointer click-through for .22s
+            // after the modal closes. Let that real UI transition finish.
+            yield return new WaitForSecondsRealtime(.25f);yield return Ready();
+            var funds=w.Players[0].resources;var targetPoint=ScreenPoint(socket.position,w.SurfaceHeight(socket.position));AssertWorldPoint(targetPoint);
+            Assert.Less(Vector2.Distance(socket.position,game.Controls.GroundPoint(targetPoint)),.025f);yield return Click(targetPoint);
+            Assert.IsEmpty(game.Controls.BuildingToPlace,game.Notice);var post=Own("trade_post");Assert.IsFalse(post.Complete);
             Assert.AreEqual(funds.wood-200,w.Players[0].resources.wood);Assert.AreEqual(200,post.paidConstruction.wood);
             yield return Press(Key.S);Assert.IsEmpty(envoy.orders);
             var foundation=ScreenPoint(post.position,.8f);AssertWorldPoint(foundation);yield return Click(foundation,MouseButton.Right);

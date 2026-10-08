@@ -57,7 +57,9 @@ namespace Frontier
                 return rescue?.position??opening;
             }
         }
-        bool IsThreat(EntityState enemy)=>enemy.Alive&&world.AreEnemies(player,enemy.owner)&&enemy.Military&&
+        // Owned scouts remain outside soldiers/waves below. An observed enemy
+        // scout with a real weapon can nevertheless require economic defense.
+        bool IsThreat(EntityState enemy)=>enemy.Alive&&world.AreEnemies(player,enemy.owner)&&(enemy.Military||enemy.Scout)&&
             (enemy.def.tags&Tags.Explorer)==0&&(enemy.def.damage>0||enemy.def.meleeDamage>0||enemy.def.siegeDamage>0)&&world.IsVisible(player,enemy);
         bool IsArmedBuilding(EntityState enemy)=>enemy.Alive&&enemy.Complete&&enemy.def.kind==EntityKind.Building&&
             world.AreEnemies(player,enemy.owner)&&(enemy.def.damage>0||enemy.def.siegeDamage>0)&&world.IsVisible(player,enemy);

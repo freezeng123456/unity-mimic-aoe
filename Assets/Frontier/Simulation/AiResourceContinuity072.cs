@@ -230,8 +230,10 @@ namespace Frontier
                 else committed+=cost;
             }
         }
+        // Scout is a support/cohort role, not immunity from enemy safety checks.
+        // Its actual visible weapon still endangers gathering and construction.
         public static bool EconomicThreat(World world,int player,EntityState e)=>e!=null&&e.Alive&&
-            (world.AreEnemies(player,e.owner)&&(e.Military||e.Complete&&e.def.kind==EntityKind.Building&&(e.def.damage>0||e.def.siegeDamage>0))||
+            (world.AreEnemies(player,e.owner)&&(e.Military||e.Scout&&(e.def.damage>0||e.def.meleeDamage>0||e.def.siegeDamage>0)||e.Complete&&e.def.kind==EntityKind.Building&&(e.def.damage>0||e.def.siegeDamage>0))||
              e.owner<0&&World.Guardian(e)&&(e.def.damage>0||e.def.meleeDamage>0||e.def.siegeDamage>0))&&
             (e.def.tags&Tags.Explorer)==0&&world.IsVisible(player,e);
         static bool HasRelevantThreat(World world,int player,List<EntityState> visible)

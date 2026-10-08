@@ -323,7 +323,9 @@ namespace Frontier
             foreach(int id in game.Controls.Selected)
             {
                 var building=world.Get(id);
-                if(building==null||!building.Alive||building.owner!=game.ObserverPlayer||building.def.kind!=EntityKind.Building)continue;
+                if(building==null||!building.Alive||building.owner!=game.ObserverPlayer)continue;
+                bool envoyProducer=building.def.id=="explorer"&&building.Complete&&building.garrisonedIn==0&&world.Players[building.owner].civilization=="river";
+                if(building.def.kind!=EntityKind.Building&&!envoyProducer)continue;
                 if(rallyFlags.Count<=used)rallyFlags.Add(NewLine("Owned rally intention",.09f));
                 var flag=rallyFlags[used++];flag.gameObject.SetActive(true);flag.positionCount=5;
                 // This is the player's remembered destination, not a query of a

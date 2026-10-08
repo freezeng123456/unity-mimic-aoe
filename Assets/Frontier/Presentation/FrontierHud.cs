@@ -301,6 +301,8 @@ namespace Frontier
                 else details.text+="\n"+w.LandmarkDescription(game.ObserverPlayer,selected);
                 if(selected.owner==game.ObserverPlayer&&selected.def.kind==EntityKind.Building)
                     details.text+="\nRally: "+(selected.rallyTarget==0?"move to flag":"gather "+selected.rallyResource+" near resource flag");
+                else if(selected.owner==game.ObserverPlayer&&selected.def.id=="explorer"&&selected.Alive&&selected.Complete&&selected.garrisonedIn==0&&p.civilization=="river")
+                    details.text+="\nEnvoy rally: move to flag";
             }
             if(lastShift!=game.Controls.Shift){lastShift=game.Controls.Shift;InvalidateActions();}
             int key=CurrentActionKey(selected);
