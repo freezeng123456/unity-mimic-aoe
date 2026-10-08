@@ -1,0 +1,2451 @@
+{
+  "schema": "native-dutch075-readonly-audit-v1",
+  "status": "PASS_WITH_EXPLICIT_SCOPE_LIMITS",
+  "createdUtc": "2026-10-08T18:33:58.993687+00:00",
+  "authorRole": "Runtime contributor validating evidence, not independent implementation audit",
+  "method": "Read-only compressed JSON SHA256/event-prefix/input-log/capture validation; four actual PNGs visually inspected; no Unity/GUI invocation",
+  "identity": {
+    "appVersion": "0.18.0",
+    "buildGuid": "67594b51e2dd40f593ec8e956f6f4960",
+    "sourceFingerprint": "a3e1e3518a23d000f6ce1e80bef628f72bd55c631fcb9ddcd6e9f2be80066594",
+    "matchId": "807730546eeb4a9ebaa740617c5d00a7",
+    "rulesHash": "a941dc6b9b680e4c1c7d8e2fa3f60088f22fbe9a2cd3b310bbba8e79394bd213",
+    "seed": 42,
+    "actualMap": "winding",
+    "originalCliMap": "winding_valley",
+    "originalCliValid": false,
+    "actualUiCorrectionConfirmedByWorldAndCaptures": true,
+    "manualPlayer": 0,
+    "opponentAI": [
+      1
+    ]
+  },
+  "buildBinding": {
+    "runner": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Build1/runner-receipt075.json",
+      "bytes": 98253,
+      "sha256": "2675b7827e2217fe0d3a026e5660cef48468a0ddc421d45d873f44b871ccd8c0"
+    },
+    "exitCode": 0,
+    "sourceStable": true,
+    "executable": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Build1/Frontier Reckoning.app/Contents/MacOS/Frontier Reckoning",
+      "bytes": 35151,
+      "sha256": "65bc56b11079eb6466acd8f194557cd37e1d04f778b546015fac515521744c8d"
+    },
+    "bootConfig": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Build1/Frontier Reckoning.app/Contents/Resources/Data/boot.config",
+      "bytes": 342,
+      "sha256": "9ed37c7741f24fa0bf7c4196358fba3f4822af6561b1b6228338cea32be0e9c5"
+    }
+  },
+  "paidProduction": {
+    "payment": {
+      "line1Based": 425,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": -50.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": -50.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 100.0,
+            "wood": 300.0,
+            "coin": 400.0
+          },
+          "balanceAfter": {
+            "food": 50.0,
+            "wood": 300.0,
+            "coin": 400.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 6,
+          "reserved": 0,
+          "capacity": 20
+        },
+        "time": 24.200056076049805,
+        "kind": "Payment",
+        "message": "Envoy ×1: 50 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 8,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 31.0,
+          "y": 32.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    "queued": {
+      "line1Based": 426,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 6,
+          "reserved": 0,
+          "capacity": 20
+        },
+        "time": 24.200056076049805,
+        "kind": "ProductionQueued",
+        "message": "envoy ×1",
+        "player": 0,
+        "entity": 8,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 1.0,
+        "position": {
+          "x": 31.0,
+          "y": 32.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    "trainCommand": {
+      "recordIndex0Based": 0,
+      "completedStep": 242,
+      "ordinal": 0,
+      "kind": 0,
+      "hasCommand": true,
+      "commandActorsNull": false,
+      "commandItemNull": false,
+      "commandChoiceNull": false,
+      "command": {
+        "player": 0,
+        "kind": 2,
+        "actors": [
+          8
+        ],
+        "order": 0,
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "target": 0,
+        "index": 0,
+        "count": 1,
+        "item": "envoy",
+        "choice": "",
+        "append": false
+      },
+      "selection": [],
+      "paused": false,
+      "accepted": true,
+      "reason": "Added to production queue",
+      "eventHash": "1bdff4312f68f132bf79814a9d409fdae7a0b206a375f6b2ccaf45f60b2a0190",
+      "eventCount": 426
+    },
+    "slot1": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Saves/slot-1.json",
+      "bytes": 31845,
+      "sha256": "34b0b62922286b7546aa46934ccfa9e3cc8c7048b621926a80f0600494e5d0d1",
+      "payloadSha256": "a520cb06ae361d2ceb560bd339d90a560ac0077aeda0e108054e6295b219d314",
+      "payloadBytes": 982342,
+      "time": 24.30005645751953,
+      "stepCount": 243,
+      "paused": true,
+      "selection": [
+        8
+      ],
+      "producerState": {
+        "id": 8,
+        "owner": 0,
+        "position": {
+          "x": 31.0,
+          "y": 32.0
+        },
+        "previousPosition": {
+          "x": 31.0,
+          "y": 32.0
+        },
+        "origin": {
+          "x": 31.0,
+          "y": 32.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "rally": {
+          "x": 31.0,
+          "y": 28.5
+        },
+        "tradeMode": 0,
+        "rallyResource": 0,
+        "hp": 450.0,
+        "construction": 1.0,
+        "remaining": 0.0,
+        "attackReadyAt": 0.0,
+        "fireAt": -1.0,
+        "deployUntil": 0.0,
+        "scanAt": 24.525054931640625,
+        "stuckFor": 0.0,
+        "pathRetryAt": 0.0,
+        "recoveryProgressPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "recoveryProgressAt": 0.0,
+        "progressGoal": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "detour": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "progressDistance": 3.4028234663852886e+38,
+        "progressAt": 0.0,
+        "detourUntil": 0.0,
+        "pathGoal": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "isDeployed": false,
+        "shotMelee": false,
+        "nextEconomyLog": 0.0,
+        "paidConstruction": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "attackTarget": 0,
+        "garrisonedIn": 0,
+        "rallyTarget": 0,
+        "pathVersion": -1,
+        "hold": false,
+        "dead": false,
+        "forceMelee": false,
+        "routeTown": 0,
+        "routeStation": 0,
+        "routeLeg": 0,
+        "routeDistance": 0.0,
+        "shieldReadyAt": 0.0,
+        "cargoPaid": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "shielded": false,
+        "stealth": false,
+        "stealthReadyAt": 0.0,
+        "revealedUntil": 0.0,
+        "autoRecruitElapsed": 0.0,
+        "autoRecruitPaused": false,
+        "factoryMode": "food",
+        "factoryElapsed": 0.0,
+        "pathAvoidsAllies": false,
+        "pathIndex": 0,
+        "status": "Idle",
+        "work": {
+          "kind": 0,
+          "target": 0,
+          "resource": 0,
+          "time": 0.0
+        }
+      },
+      "queue": [
+        {
+          "item": "envoy",
+          "kind": "Train",
+          "count": 1,
+          "population": 0,
+          "paid": {
+            "food": 50.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "elapsed": 0.10000000149011612,
+          "duration": 15.0,
+          "choice": ""
+        }
+      ],
+      "coldLoadExercised": false
+    },
+    "spawn": {
+      "line1Based": 613,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 6,
+          "reserved": 0,
+          "capacity": 20
+        },
+        "time": 39.199974060058594,
+        "kind": "Spawn",
+        "message": "Envoy",
+        "player": 0,
+        "entity": 136,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 41.675865173339844,
+          "y": 38.7121696472168
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    "trained": {
+      "line1Based": 615,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 39.199974060058594,
+        "kind": "UnitTrained",
+        "message": "envoy",
+        "player": 0,
+        "entity": 8,
+        "target": 136,
+        "visibilityMask": 1,
+        "amount": 1.0,
+        "position": {
+          "x": 39.175865173339844,
+          "y": 38.7121696472168
+        },
+        "facing": {
+          "x": 0.880702793598175,
+          "y": 0.47366923093795776
+        }
+      }
+    },
+    "observedTrainSeconds": 14.999917984008789,
+    "populationCost": 0
+  },
+  "rallyAndMobileProducer": {
+    "command": {
+      "recordIndex0Based": 3,
+      "completedStep": 257,
+      "ordinal": 0,
+      "kind": 0,
+      "hasCommand": true,
+      "commandActorsNull": false,
+      "commandItemNull": false,
+      "commandChoiceNull": false,
+      "command": {
+        "player": 0,
+        "kind": 8,
+        "actors": [
+          8
+        ],
+        "order": 0,
+        "point": {
+          "x": 36.75925827026367,
+          "y": 30.72052001953125
+        },
+        "target": 0,
+        "index": 0,
+        "count": 1,
+        "item": "",
+        "choice": "",
+        "append": false
+      },
+      "selection": [],
+      "paused": false,
+      "accepted": true,
+      "reason": "Rally point set",
+      "eventHash": "a3c34430ba8794de10ca3d0208d6e45e2171b0a7bc9bcfb39144b40f711afde6",
+      "eventCount": 445
+    },
+    "rallySet": {
+      "line1Based": 445,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 25.700061798095703,
+        "kind": "RallySet",
+        "message": "Location rally set",
+        "player": 0,
+        "entity": 8,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 1.0,
+        "position": {
+          "x": 36.75925827026367,
+          "y": 30.72052001953125
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    "rallyAssigned": {
+      "line1Based": 616,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 39.199974060058594,
+        "kind": "RallyAssigned",
+        "message": "Automatic rally destination",
+        "player": 0,
+        "entity": 136,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 36.75925827026367,
+          "y": 30.72052001953125
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    "worldFlagPoint": {
+      "x": 36.75925827026367,
+      "y": 30.72052001953125
+    },
+    "actualGamePointer": {
+      "x": 1225,
+      "y": 584
+    },
+    "operatorReportedDesktopPointer": {
+      "x": 1225,
+      "y": 560
+    },
+    "coordinateTransformIndependentlyVerified": false,
+    "actualArrival": {
+      "entity": 136,
+      "garrisonedIn": 0,
+      "load": 0,
+      "capacity": 0,
+      "target": 0,
+      "definition": "envoy",
+      "status": "Idle",
+      "order": "",
+      "position": {
+        "x": 36.75925827026367,
+        "y": 30.72052001953125
+      },
+      "destination": {
+        "x": 36.75925827026367,
+        "y": 30.72052001953125
+      },
+      "hp": 120.0,
+      "cargo": []
+    },
+    "attackMove": {
+      "recordIndex0Based": 4,
+      "completedStep": 260,
+      "ordinal": 0,
+      "kind": 0,
+      "hasCommand": true,
+      "commandActorsNull": false,
+      "commandItemNull": false,
+      "commandChoiceNull": false,
+      "command": {
+        "player": 0,
+        "kind": 0,
+        "actors": [
+          8
+        ],
+        "order": 2,
+        "point": {
+          "x": 21.11111068725586,
+          "y": 35.74876403808594
+        },
+        "target": 0,
+        "index": 0,
+        "count": 1,
+        "item": "",
+        "choice": "",
+        "append": false
+      },
+      "selection": [],
+      "paused": false,
+      "accepted": true,
+      "reason": "AttackMove order accepted",
+      "eventHash": "a7c4dc83240f503d33b6ebacb960ad1f66f812165c38d34238e229066ddab508",
+      "eventCount": 447
+    },
+    "producerAtBirth": {
+      "x": 39.175865173339844,
+      "y": 38.7121696472168
+    },
+    "spawnAtBirth": {
+      "x": 41.675865173339844,
+      "y": 38.7121696472168
+    },
+    "guardianDamageEvents": [
+      {
+        "line1Based": 489,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": false,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 0,
+            "reserved": 0,
+            "capacity": 0
+          },
+          "time": 29.700077056884766,
+          "kind": "Damage",
+          "message": "Melee",
+          "player": 0,
+          "entity": 8,
+          "target": 122,
+          "visibilityMask": 1,
+          "amount": 14.0,
+          "position": {
+            "x": 40.65053176879883,
+            "y": 39.50529098510742
+          },
+          "facing": {
+            "x": 0.8807004690170288,
+            "y": 0.47367361187934875
+          }
+        }
+      },
+      {
+        "line1Based": 518,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": false,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 0,
+            "reserved": 0,
+            "capacity": 0
+          },
+          "time": 31.700084686279297,
+          "kind": "Damage",
+          "message": "Melee",
+          "player": 0,
+          "entity": 8,
+          "target": 122,
+          "visibilityMask": 1,
+          "amount": 14.0,
+          "position": {
+            "x": 40.65053176879883,
+            "y": 39.50529098510742
+          },
+          "facing": {
+            "x": 0.880702793598175,
+            "y": 0.47366923093795776
+          }
+        }
+      },
+      {
+        "line1Based": 548,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": false,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 0,
+            "reserved": 0,
+            "capacity": 0
+          },
+          "time": 33.80005645751953,
+          "kind": "Damage",
+          "message": "Melee",
+          "player": 0,
+          "entity": 8,
+          "target": 122,
+          "visibilityMask": 1,
+          "amount": 14.0,
+          "position": {
+            "x": 40.65053176879883,
+            "y": 39.50529098510742
+          },
+          "facing": {
+            "x": 0.880702793598175,
+            "y": 0.47366923093795776
+          }
+        }
+      },
+      {
+        "line1Based": 570,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": false,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 0,
+            "reserved": 0,
+            "capacity": 0
+          },
+          "time": 35.9000244140625,
+          "kind": "Damage",
+          "message": "Melee",
+          "player": 0,
+          "entity": 8,
+          "target": 122,
+          "visibilityMask": 1,
+          "amount": 14.0,
+          "position": {
+            "x": 40.65053176879883,
+            "y": 39.50529098510742
+          },
+          "facing": {
+            "x": 0.880702793598175,
+            "y": 0.47366923093795776
+          }
+        }
+      },
+      {
+        "line1Based": 600,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": false,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 0,
+            "reserved": 0,
+            "capacity": 0
+          },
+          "time": 37.99999237060547,
+          "kind": "Damage",
+          "message": "Melee",
+          "player": 0,
+          "entity": 8,
+          "target": 122,
+          "visibilityMask": 1,
+          "amount": 14.0,
+          "position": {
+            "x": 40.65053176879883,
+            "y": 39.50529098510742
+          },
+          "facing": {
+            "x": 0.880702793598175,
+            "y": 0.47366923093795776
+          }
+        }
+      },
+      {
+        "line1Based": 632,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": false,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 0,
+            "reserved": 0,
+            "capacity": 0
+          },
+          "time": 40.09996032714844,
+          "kind": "Damage",
+          "message": "Melee",
+          "player": 0,
+          "entity": 8,
+          "target": 122,
+          "visibilityMask": 1,
+          "amount": 14.0,
+          "position": {
+            "x": 40.65053176879883,
+            "y": 39.50529098510742
+          },
+          "facing": {
+            "x": 0.880702793598175,
+            "y": 0.47366923093795776
+          }
+        }
+      },
+      {
+        "line1Based": 657,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": false,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 0,
+            "reserved": 0,
+            "capacity": 0
+          },
+          "time": 42.199928283691406,
+          "kind": "Damage",
+          "message": "Melee",
+          "player": 0,
+          "entity": 8,
+          "target": 122,
+          "visibilityMask": 1,
+          "amount": 14.0,
+          "position": {
+            "x": 40.65053176879883,
+            "y": 39.50529098510742
+          },
+          "facing": {
+            "x": 0.880702793598175,
+            "y": 0.47366923093795776
+          }
+        }
+      },
+      {
+        "line1Based": 679,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": false,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 0,
+            "reserved": 0,
+            "capacity": 0
+          },
+          "time": 44.299896240234375,
+          "kind": "Damage",
+          "message": "Melee",
+          "player": 0,
+          "entity": 8,
+          "target": 123,
+          "visibilityMask": 1,
+          "amount": 14.0,
+          "position": {
+            "x": 40.76145935058594,
+            "y": 38.26155090332031
+          },
+          "facing": {
+            "x": 0.9619088768959045,
+            "y": -0.2733701765537262
+          }
+        }
+      },
+      {
+        "line1Based": 701,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": false,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 0,
+            "reserved": 0,
+            "capacity": 0
+          },
+          "time": 46.399864196777344,
+          "kind": "Damage",
+          "message": "Melee",
+          "player": 0,
+          "entity": 8,
+          "target": 123,
+          "visibilityMask": 1,
+          "amount": 14.0,
+          "position": {
+            "x": 40.76145935058594,
+            "y": 38.26155090332031
+          },
+          "facing": {
+            "x": 0.9619088768959045,
+            "y": -0.2733701765537262
+          }
+        }
+      },
+      {
+        "line1Based": 720,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": false,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 0,
+            "reserved": 0,
+            "capacity": 0
+          },
+          "time": 48.49983215332031,
+          "kind": "Damage",
+          "message": "Melee",
+          "player": 0,
+          "entity": 8,
+          "target": 123,
+          "visibilityMask": 1,
+          "amount": 14.0,
+          "position": {
+            "x": 40.76145935058594,
+            "y": 38.26155090332031
+          },
+          "facing": {
+            "x": 0.9619088768959045,
+            "y": -0.2733701765537262
+          }
+        }
+      },
+      {
+        "line1Based": 743,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": false,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 0,
+            "reserved": 0,
+            "capacity": 0
+          },
+          "time": 50.59980010986328,
+          "kind": "Damage",
+          "message": "Melee",
+          "player": 0,
+          "entity": 8,
+          "target": 123,
+          "visibilityMask": 1,
+          "amount": 14.0,
+          "position": {
+            "x": 40.76145935058594,
+            "y": 38.26155090332031
+          },
+          "facing": {
+            "x": 0.9619088768959045,
+            "y": -0.2733701765537262
+          }
+        }
+      },
+      {
+        "line1Based": 774,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": false,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 0,
+            "reserved": 0,
+            "capacity": 0
+          },
+          "time": 52.69976806640625,
+          "kind": "Damage",
+          "message": "Melee",
+          "player": 0,
+          "entity": 8,
+          "target": 123,
+          "visibilityMask": 1,
+          "amount": 14.0,
+          "position": {
+            "x": 40.76145935058594,
+            "y": 38.26155090332031
+          },
+          "facing": {
+            "x": 0.9619088768959045,
+            "y": -0.2733701765537262
+          }
+        }
+      },
+      {
+        "line1Based": 801,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": false,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 0,
+            "reserved": 0,
+            "capacity": 0
+          },
+          "time": 54.79973602294922,
+          "kind": "Damage",
+          "message": "Melee",
+          "player": 0,
+          "entity": 8,
+          "target": 123,
+          "visibilityMask": 1,
+          "amount": 14.0,
+          "position": {
+            "x": 40.76145935058594,
+            "y": 38.26155090332031
+          },
+          "facing": {
+            "x": 0.9619088768959045,
+            "y": -0.2733701765537262
+          }
+        }
+      },
+      {
+        "line1Based": 833,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": false,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 0,
+            "reserved": 0,
+            "capacity": 0
+          },
+          "time": 56.89970397949219,
+          "kind": "Damage",
+          "message": "Melee",
+          "player": 0,
+          "entity": 8,
+          "target": 123,
+          "visibilityMask": 1,
+          "amount": 14.0,
+          "position": {
+            "x": 40.76145935058594,
+            "y": 38.26155090332031
+          },
+          "facing": {
+            "x": 0.9619088768959045,
+            "y": -0.2733701765537262
+          }
+        }
+      }
+    ],
+    "pureRallySameFrameDisplacementProved": false,
+    "scope": "No immediate before/after native snapshot isolates Rally zero displacement; movement follows separately recorded AttackMove."
+  },
+  "autoScout": {
+    "command": {
+      "recordIndex0Based": 5,
+      "completedStep": 870,
+      "ordinal": 0,
+      "kind": 0,
+      "hasCommand": true,
+      "commandActorsNull": false,
+      "commandItemNull": false,
+      "commandChoiceNull": false,
+      "command": {
+        "player": 0,
+        "kind": 0,
+        "actors": [
+          136
+        ],
+        "order": 16,
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "target": 0,
+        "index": 0,
+        "count": 1,
+        "item": "",
+        "choice": "",
+        "append": false
+      },
+      "selection": [],
+      "paused": false,
+      "accepted": true,
+      "reason": "Scout order accepted",
+      "eventHash": "f4241f67b4b1d73d08182a4a58282f9302bb0557111c69c018f9957270c56a60",
+      "eventCount": 1204
+    },
+    "event": {
+      "line1Based": 1204,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 86.9992446899414,
+        "kind": "Command",
+        "message": "Scout ×1",
+        "player": 0,
+        "entity": 136,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 1.0,
+        "position": {
+          "x": 36.32915496826172,
+          "y": 41.18624496459961
+        },
+        "facing": {
+          "x": 0.11650127917528152,
+          "y": 0.993190586566925
+        }
+      }
+    },
+    "twoCaptureStates": [
+      {
+        "metadata": {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181636-821-f21562-8009653d018a4074a9eefc7166dd59f3.json",
+          "bytes": 11005,
+          "sha256": "c2b1c357fe49ad6c38b4469a6b05c2e76d20e62323700444454fc988dc9b8c4c"
+        },
+        "png": {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181636-821-f21562-8009653d018a4074a9eefc7166dd59f3.png",
+          "bytes": 1499700,
+          "sha256": "de701871f70a0eb0718429e67d5499574d5c49923caa950441c4876a9cd7523a"
+        },
+        "worldTime": 87.0992431640625,
+        "inMenu": false,
+        "paused": false,
+        "camera": {
+          "focus": {
+            "x": 24.0,
+            "y": 28.0
+          },
+          "pointer": {
+            "x": 1010.0,
+            "y": 77.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 26.0
+        },
+        "units": [
+          {
+            "entity": 8,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "explorer",
+            "status": "Moving",
+            "order": "",
+            "position": {
+              "x": 27.187957763671875,
+              "y": 41.164554595947266
+            },
+            "destination": {
+              "x": 27.187957763671875,
+              "y": 41.164554595947266
+            },
+            "hp": 306.0,
+            "cargo": []
+          },
+          {
+            "entity": 136,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "envoy",
+            "status": "Scouting",
+            "order": "Scout",
+            "position": {
+              "x": 36.32915496826172,
+              "y": 40.68624496459961
+            },
+            "destination": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "hp": 120.0,
+            "cargo": []
+          }
+        ]
+      },
+      {
+        "metadata": {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181641-814-f21856-3a79433913ac451aba180b7dae8535e5.json",
+          "bytes": 11033,
+          "sha256": "7a3f66cca4773f5e802a2a20cd6943fbe8b917420b554ca702e319553afff4c5"
+        },
+        "png": {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181641-814-f21856-3a79433913ac451aba180b7dae8535e5.png",
+          "bytes": 546123,
+          "sha256": "34fae2a837fac21322e0c443e578d73e013c8b6a1da0177f139c1a4bb4240c59"
+        },
+        "worldTime": 92.09916687011719,
+        "inMenu": false,
+        "paused": true,
+        "camera": {
+          "focus": {
+            "x": 28.805004119873047,
+            "y": 18.489255905151367
+          },
+          "pointer": {
+            "x": 1010.0,
+            "y": 77.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 26.0
+        },
+        "units": [
+          {
+            "entity": 8,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "explorer",
+            "status": "Reloading",
+            "order": "",
+            "position": {
+              "x": 42.18006896972656,
+              "y": 40.29759979248047
+            },
+            "destination": {
+              "x": 42.18006896972656,
+              "y": 40.29759979248047
+            },
+            "hp": 306.0,
+            "cargo": []
+          },
+          {
+            "entity": 136,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "envoy",
+            "status": "Scouting",
+            "order": "Scout",
+            "position": {
+              "x": 28.805004119873047,
+              "y": 18.489255905151367
+            },
+            "destination": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "hp": 120.0,
+            "cargo": []
+          }
+        ]
+      }
+    ],
+    "distanceBetweenBoundCaptures": 23.437558944876763,
+    "laterCameraFocusMatchesEnvoy": true,
+    "finalOrder": {
+      "kind": 16,
+      "point": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "target": 0,
+      "elapsed": 37.0,
+      "resolvedPoint": {
+        "x": 18.0,
+        "y": 6.0
+      },
+      "hasResolvedPoint": true,
+      "destinationVersion": 52,
+      "destinationCursor": 0,
+      "destinationRetryAt": 92.39917755126953
+    },
+    "fogExploredByAnchor": [
+      {
+        "step": 0,
+        "time": 0.0,
+        "exploredPlayer0": 1859
+      },
+      {
+        "step": 300,
+        "time": 30.000078201293945,
+        "exploredPlayer0": 2443
+      },
+      {
+        "step": 600,
+        "time": 59.999656677246094,
+        "exploredPlayer0": 3279
+      },
+      {
+        "step": 900,
+        "time": 89.99919891357422,
+        "exploredPlayer0": 3681
+      },
+      {
+        "step": 921,
+        "time": 92.09916687011719,
+        "exploredPlayer0": 3934
+      }
+    ],
+    "fogScope": "Team fog grows; producer and scout both reveal, so growth is not attributed solely to Envoy and is not whole-map completion."
+  },
+  "replay": {
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Replays/replay-ea761e9c946545a884d259dd03c1afa7.replay.json",
+    "bytes": 133981,
+    "sha256": "0f0905d5dbcfd721d7242102d2df59226d18f3f00bd449c07fa441b7ec2a52a1",
+    "payloadSha256": "137337342b8aae2897f758301c45d3824315559b79e37bbb3b68f9af51539488",
+    "payloadBytes": 4362569,
+    "segmentId": "ea761e9c946545a884d259dd03c1afa7",
+    "startKind": "normal",
+    "finishReason": "quit",
+    "incomplete": false,
+    "recordCount": 8,
+    "anchorCount": 5,
+    "eventCount": 1277,
+    "finalStep": 921,
+    "externalEventsExactlyMatch": true,
+    "savedAndQuitFinalized": true,
+    "playbackOrSeekExercised": false,
+    "runtimeReplayVerificationClaimed": false,
+    "anchorWorldEventsScope": "Replay anchors intentionally omit world.events; actual full events are stored once in replay.events and matched to quit-events.jsonl."
+  },
+  "quit": {
+    "report": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Reports/20261008-182107-196-807730546eeb4a9ebaa740617c5d00a7-quit.json",
+      "bytes": 5309,
+      "sha256": "420c1e6acbd397d21f3f8cc8bf67cd2d148a6bbd65ff79dba60692906006f8b0"
+    },
+    "reason": "quit",
+    "winner": -1,
+    "simulationSeconds": 92.09916687011719,
+    "eventCount": 1277,
+    "onApplicationQuitLog": true,
+    "engineShutdownLog": true,
+    "pid": 69195,
+    "pidAbsentAtAudit": true,
+    "nativeProcessExitCode": null,
+    "exitCodeScope": "No standalone native process exit receipt exists; graceful quit finalization/shutdown plus absent PID proved, exit0 not invented."
+  },
+  "notExercised": [
+    "slot2 save file absent",
+    "slot1 cold restore",
+    "replay playback seek verified reconstruction",
+    "Envoy Trade Post construction",
+    "queued Scout manual followup",
+    "complete map exploration",
+    "full match terminal victory",
+    "French stealth separate run",
+    "performance regression/FPS attribution",
+    "pure Rally exact same-frame producer displacement"
+  ],
+  "capturedPairs": [
+    {
+      "metadata": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181025-112-f3671-1b4b38e7db894a4c9d7767212bf410ac.json",
+        "bytes": 5808,
+        "sha256": "3c94b8ae0eccde0ad336d23cbb4b6f40654f8607c844a541084d2bc5845afecb"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181025-112-f3671-1b4b38e7db894a4c9d7767212bf410ac.png",
+        "bytes": 490036,
+        "sha256": "b431e83ace3e5b52bde9b2897925c386a40a018dff6cc5a78b6a4cf14b5f3eba"
+      },
+      "worldTime": 0.0,
+      "inMenu": true,
+      "paused": false,
+      "camera": {
+        "focus": {
+          "x": 25.0,
+          "y": 25.0
+        },
+        "pointer": {
+          "x": 1023.0,
+          "y": -285.0
+        },
+        "applicationFocused": true,
+        "orthographicSize": 26.0
+      },
+      "units": []
+    },
+    {
+      "metadata": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181259-304-f8874-8760407c98224299a3729c50e7ac4efa.json",
+        "bytes": 10430,
+        "sha256": "e0eb591d2353854eab481319d3b6c4e93865711c843f4f5eb4987cd60b305605"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181259-304-f8874-8760407c98224299a3729c50e7ac4efa.png",
+        "bytes": 1158596,
+        "sha256": "5ffbce985c99aead9286bd2c5ade00f12898ca31f75ac78602737fdfc5d7e61f"
+      },
+      "worldTime": 1.0000001192092896,
+      "inMenu": false,
+      "paused": false,
+      "camera": {
+        "focus": {
+          "x": 24.0,
+          "y": 28.0
+        },
+        "pointer": {
+          "x": 1580.0,
+          "y": 297.0
+        },
+        "applicationFocused": true,
+        "orthographicSize": 26.0
+      },
+      "units": [
+        {
+          "entity": 8,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "explorer",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 31.0,
+            "y": 32.0
+          },
+          "destination": {
+            "x": 31.0,
+            "y": 32.0
+          },
+          "hp": 450.0,
+          "cargo": []
+        }
+      ]
+    },
+    {
+      "metadata": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181322-189-f10240-f96b4174ec844f4a9c834c7bb57eec27.json",
+        "bytes": 10434,
+        "sha256": "8202b47a83fe34e77005932fbcfd116ed6f41251d44c6d8f1c96521e0b5d41c7"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181322-189-f10240-f96b4174ec844f4a9c834c7bb57eec27.png",
+        "bytes": 1192605,
+        "sha256": "814c0f68ce658b95f914490ef3e15e95c880c1bcd854497474fde163dfc45e99"
+      },
+      "worldTime": 24.200056076049805,
+      "inMenu": false,
+      "paused": false,
+      "camera": {
+        "focus": {
+          "x": 24.0,
+          "y": 28.0
+        },
+        "pointer": {
+          "x": 1208.0,
+          "y": 77.0
+        },
+        "applicationFocused": true,
+        "orthographicSize": 26.0
+      },
+      "units": [
+        {
+          "entity": 8,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "explorer",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 31.0,
+            "y": 32.0
+          },
+          "destination": {
+            "x": 31.0,
+            "y": 32.0
+          },
+          "hp": 450.0,
+          "cargo": []
+        }
+      ]
+    },
+    {
+      "metadata": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181553-860-f19094-b168bf593362407884f1101c2d4d419f.json",
+        "bytes": 11042,
+        "sha256": "bedaf3d22e89ecbc4e43caa3db0b321bed14a547f3d507a2149c5bd74e4bee77"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181553-860-f19094-b168bf593362407884f1101c2d4d419f.png",
+        "bytes": 1416072,
+        "sha256": "e94553d88f7fdafa28204d289f9b21ad623eefe3cd7993cf890b2adf97fb950f"
+      },
+      "worldTime": 44.09989929199219,
+      "inMenu": false,
+      "paused": false,
+      "camera": {
+        "focus": {
+          "x": 24.0,
+          "y": 28.0
+        },
+        "pointer": {
+          "x": 900.0,
+          "y": 664.0
+        },
+        "applicationFocused": true,
+        "orthographicSize": 26.0
+      },
+      "units": [
+        {
+          "entity": 8,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "explorer",
+          "status": "Preparing attack",
+          "order": "AttackMove",
+          "position": {
+            "x": 39.175865173339844,
+            "y": 38.7121696472168
+          },
+          "destination": {
+            "x": 21.11111068725586,
+            "y": 35.74876403808594
+          },
+          "hp": 354.0,
+          "cargo": []
+        },
+        {
+          "entity": 136,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "envoy",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 36.75925827026367,
+            "y": 30.72052001953125
+          },
+          "destination": {
+            "x": 36.75925827026367,
+            "y": 30.72052001953125
+          },
+          "hp": 120.0,
+          "cargo": []
+        }
+      ]
+    },
+    {
+      "metadata": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181636-821-f21562-8009653d018a4074a9eefc7166dd59f3.json",
+        "bytes": 11005,
+        "sha256": "c2b1c357fe49ad6c38b4469a6b05c2e76d20e62323700444454fc988dc9b8c4c"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181636-821-f21562-8009653d018a4074a9eefc7166dd59f3.png",
+        "bytes": 1499700,
+        "sha256": "de701871f70a0eb0718429e67d5499574d5c49923caa950441c4876a9cd7523a"
+      },
+      "worldTime": 87.0992431640625,
+      "inMenu": false,
+      "paused": false,
+      "camera": {
+        "focus": {
+          "x": 24.0,
+          "y": 28.0
+        },
+        "pointer": {
+          "x": 1010.0,
+          "y": 77.0
+        },
+        "applicationFocused": true,
+        "orthographicSize": 26.0
+      },
+      "units": [
+        {
+          "entity": 8,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "explorer",
+          "status": "Moving",
+          "order": "",
+          "position": {
+            "x": 27.187957763671875,
+            "y": 41.164554595947266
+          },
+          "destination": {
+            "x": 27.187957763671875,
+            "y": 41.164554595947266
+          },
+          "hp": 306.0,
+          "cargo": []
+        },
+        {
+          "entity": 136,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "envoy",
+          "status": "Scouting",
+          "order": "Scout",
+          "position": {
+            "x": 36.32915496826172,
+            "y": 40.68624496459961
+          },
+          "destination": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "hp": 120.0,
+          "cargo": []
+        }
+      ]
+    },
+    {
+      "metadata": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181641-814-f21856-3a79433913ac451aba180b7dae8535e5.json",
+        "bytes": 11033,
+        "sha256": "7a3f66cca4773f5e802a2a20cd6943fbe8b917420b554ca702e319553afff4c5"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181641-814-f21856-3a79433913ac451aba180b7dae8535e5.png",
+        "bytes": 546123,
+        "sha256": "34fae2a837fac21322e0c443e578d73e013c8b6a1da0177f139c1a4bb4240c59"
+      },
+      "worldTime": 92.09916687011719,
+      "inMenu": false,
+      "paused": true,
+      "camera": {
+        "focus": {
+          "x": 28.805004119873047,
+          "y": 18.489255905151367
+        },
+        "pointer": {
+          "x": 1010.0,
+          "y": 77.0
+        },
+        "applicationFocused": true,
+        "orthographicSize": 26.0
+      },
+      "units": [
+        {
+          "entity": 8,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "explorer",
+          "status": "Reloading",
+          "order": "",
+          "position": {
+            "x": 42.18006896972656,
+            "y": 40.29759979248047
+          },
+          "destination": {
+            "x": 42.18006896972656,
+            "y": 40.29759979248047
+          },
+          "hp": 306.0,
+          "cargo": []
+        },
+        {
+          "entity": 136,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "envoy",
+          "status": "Scouting",
+          "order": "Scout",
+          "position": {
+            "x": 28.805004119873047,
+            "y": 18.489255905151367
+          },
+          "destination": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "hp": 120.0,
+          "cargo": []
+        }
+      ]
+    }
+  ],
+  "logEvidence": {
+    "action=BEGIN SKIRMISH": [
+      {
+        "line1Based": 81,
+        "text": "FRONTIER_UI action=BEGIN SKIRMISH world=0.000 frame=8873"
+      }
+    ],
+    "action=Envoy 50F": [
+      {
+        "line1Based": 119,
+        "text": "FRONTIER_UI action=Envoy 50F world=24.200 frame=10239"
+      }
+    ],
+    "FRONTIER_SAVE slot=1": [
+      {
+        "line1Based": 157,
+        "text": "FRONTIER_SAVE slot=1 match=807730546eeb4a9ebaa740617c5d00a7 time=24.30006"
+      }
+    ],
+    "action=ENVOY RALLY": [
+      {
+        "line1Based": 204,
+        "text": "FRONTIER_UI action=ENVOY RALLY world=25.200 frame=17972"
+      }
+    ],
+    "p=(1225.00, 584.00)": [
+      {
+        "line1Based": 206,
+        "text": "FRONTIER_INPUT Left None down p=(1225.00, 584.00) shift=False save=False t=424.9378"
+      },
+      {
+        "line1Based": 207,
+        "text": "FRONTIER_UI raycast p=(1225.00, 584.00) hit= frame=18001"
+      },
+      {
+        "line1Based": 208,
+        "text": "FRONTIER_INPUT Left None up p=(1225.00, 584.00) shift=False save=False t=424.9877"
+      },
+      {
+        "line1Based": 209,
+        "text": "FRONTIER_INPUT Key A down p=(1225.00, 584.00) shift=False save=False t=425.0048"
+      }
+    ],
+    "action=AUTO SCOUT": [
+      {
+        "line1Based": 249,
+        "text": "FRONTIER_UI action=AUTO SCOUT world=86.999 frame=21561"
+      }
+    ],
+    "action=SAVE REPLAY": [
+      {
+        "line1Based": 311,
+        "text": "FRONTIER_UI action=SAVE REPLAY world=92.099 frame=35507"
+      }
+    ],
+    "FRONTIER_REPLAY_SAVED": [
+      {
+        "line1Based": 313,
+        "text": "FRONTIER_REPLAY_SAVED file=/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Replays/replay-ea761e9c946545a884d259dd03c1afa7.replay.json"
+      }
+    ],
+    "FRONTIER_REPORT": [
+      {
+        "line1Based": 328,
+        "text": "FRONTIER_REPORT /Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Reports/20261008-182107-196-807730546eeb4a9ebaa740617c5d00a7-quit.json"
+      }
+    ],
+    "OnApplicationQuit": [
+      {
+        "line1Based": 337,
+        "text": "Frontier.GameController:OnApplicationQuit () (at /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Presentation/GameController.cs:336)"
+      }
+    ],
+    "Input System module state changed to: Shutdown.": [
+      {
+        "line1Based": 347,
+        "text": "Input System module state changed to: Shutdown."
+      }
+    ],
+    "CodeReloadManager destroyed": [
+      {
+        "line1Based": 353,
+        "text": "CodeReloadManager destroyed"
+      }
+    ]
+  },
+  "originalFiles": {
+    "Data/Captures/Frontier-20261008-181025-112-f3671-1b4b38e7db894a4c9d7767212bf410ac.json": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181025-112-f3671-1b4b38e7db894a4c9d7767212bf410ac.json",
+      "bytes": 5808,
+      "sha256": "3c94b8ae0eccde0ad336d23cbb4b6f40654f8607c844a541084d2bc5845afecb"
+    },
+    "Data/Captures/Frontier-20261008-181025-112-f3671-1b4b38e7db894a4c9d7767212bf410ac.png": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181025-112-f3671-1b4b38e7db894a4c9d7767212bf410ac.png",
+      "bytes": 490036,
+      "sha256": "b431e83ace3e5b52bde9b2897925c386a40a018dff6cc5a78b6a4cf14b5f3eba"
+    },
+    "Data/Captures/Frontier-20261008-181259-304-f8874-8760407c98224299a3729c50e7ac4efa.json": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181259-304-f8874-8760407c98224299a3729c50e7ac4efa.json",
+      "bytes": 10430,
+      "sha256": "e0eb591d2353854eab481319d3b6c4e93865711c843f4f5eb4987cd60b305605"
+    },
+    "Data/Captures/Frontier-20261008-181259-304-f8874-8760407c98224299a3729c50e7ac4efa.png": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181259-304-f8874-8760407c98224299a3729c50e7ac4efa.png",
+      "bytes": 1158596,
+      "sha256": "5ffbce985c99aead9286bd2c5ade00f12898ca31f75ac78602737fdfc5d7e61f"
+    },
+    "Data/Captures/Frontier-20261008-181322-189-f10240-f96b4174ec844f4a9c834c7bb57eec27.json": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181322-189-f10240-f96b4174ec844f4a9c834c7bb57eec27.json",
+      "bytes": 10434,
+      "sha256": "8202b47a83fe34e77005932fbcfd116ed6f41251d44c6d8f1c96521e0b5d41c7"
+    },
+    "Data/Captures/Frontier-20261008-181322-189-f10240-f96b4174ec844f4a9c834c7bb57eec27.png": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181322-189-f10240-f96b4174ec844f4a9c834c7bb57eec27.png",
+      "bytes": 1192605,
+      "sha256": "814c0f68ce658b95f914490ef3e15e95c880c1bcd854497474fde163dfc45e99"
+    },
+    "Data/Captures/Frontier-20261008-181553-860-f19094-b168bf593362407884f1101c2d4d419f.json": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181553-860-f19094-b168bf593362407884f1101c2d4d419f.json",
+      "bytes": 11042,
+      "sha256": "bedaf3d22e89ecbc4e43caa3db0b321bed14a547f3d507a2149c5bd74e4bee77"
+    },
+    "Data/Captures/Frontier-20261008-181553-860-f19094-b168bf593362407884f1101c2d4d419f.png": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181553-860-f19094-b168bf593362407884f1101c2d4d419f.png",
+      "bytes": 1416072,
+      "sha256": "e94553d88f7fdafa28204d289f9b21ad623eefe3cd7993cf890b2adf97fb950f"
+    },
+    "Data/Captures/Frontier-20261008-181636-821-f21562-8009653d018a4074a9eefc7166dd59f3.json": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181636-821-f21562-8009653d018a4074a9eefc7166dd59f3.json",
+      "bytes": 11005,
+      "sha256": "c2b1c357fe49ad6c38b4469a6b05c2e76d20e62323700444454fc988dc9b8c4c"
+    },
+    "Data/Captures/Frontier-20261008-181636-821-f21562-8009653d018a4074a9eefc7166dd59f3.png": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181636-821-f21562-8009653d018a4074a9eefc7166dd59f3.png",
+      "bytes": 1499700,
+      "sha256": "de701871f70a0eb0718429e67d5499574d5c49923caa950441c4876a9cd7523a"
+    },
+    "Data/Captures/Frontier-20261008-181641-814-f21856-3a79433913ac451aba180b7dae8535e5.json": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181641-814-f21856-3a79433913ac451aba180b7dae8535e5.json",
+      "bytes": 11033,
+      "sha256": "7a3f66cca4773f5e802a2a20cd6943fbe8b917420b554ca702e319553afff4c5"
+    },
+    "Data/Captures/Frontier-20261008-181641-814-f21856-3a79433913ac451aba180b7dae8535e5.png": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Captures/Frontier-20261008-181641-814-f21856-3a79433913ac451aba180b7dae8535e5.png",
+      "bytes": 546123,
+      "sha256": "34fae2a837fac21322e0c443e578d73e013c8b6a1da0177f139c1a4bb4240c59"
+    },
+    "Data/Replays/replay-ea761e9c946545a884d259dd03c1afa7.replay.json": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Replays/replay-ea761e9c946545a884d259dd03c1afa7.replay.json",
+      "bytes": 133981,
+      "sha256": "0f0905d5dbcfd721d7242102d2df59226d18f3f00bd449c07fa441b7ec2a52a1"
+    },
+    "Data/Reports/20261008-182107-196-807730546eeb4a9ebaa740617c5d00a7-quit-events.jsonl": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Reports/20261008-182107-196-807730546eeb4a9ebaa740617c5d00a7-quit-events.jsonl",
+      "bytes": 823346,
+      "sha256": "3d542735bbbdbbe4162187d49555c0641ead73349f0f8c4e3e45120ca4b83f37"
+    },
+    "Data/Reports/20261008-182107-196-807730546eeb4a9ebaa740617c5d00a7-quit.json": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Reports/20261008-182107-196-807730546eeb4a9ebaa740617c5d00a7-quit.json",
+      "bytes": 5309,
+      "sha256": "420c1e6acbd397d21f3f8cc8bf67cd2d148a6bbd65ff79dba60692906006f8b0"
+    },
+    "Data/Saves/slot-1.json": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/Data/Saves/slot-1.json",
+      "bytes": 31845,
+      "sha256": "34b0b62922286b7546aa46934ccfa9e3cc8c7048b621926a80f0600494e5d0d1"
+    },
+    "launch-receipt075.json": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/launch-receipt075.json",
+      "bytes": 1403,
+      "sha256": "3d367e84c1299e640c5232af2a1934d7ec95255f2182baf1e7ad852ab8c54c8e"
+    },
+    "player.log": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/player.log",
+      "bytes": 33585,
+      "sha256": "db465ae3f358cda21ff41bfbafef4e750e40571ddd54f342daa92a80e7315f39"
+    },
+    "stdout.log": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Native1/dutch/stdout.log",
+      "bytes": 1853,
+      "sha256": "9d82fc59cc2c195c9dfe973c037469a51222684f5d1b07101c64176e5564a625"
+    }
+  },
+  "checks": [
+    {
+      "check": "slot-1.json compressed schema",
+      "passed": true
+    },
+    {
+      "check": "slot-1.json decoded payload digest",
+      "passed": true
+    },
+    {
+      "check": "replay-ea761e9c946545a884d259dd03c1afa7.replay.json compressed schema",
+      "passed": true
+    },
+    {
+      "check": "replay-ea761e9c946545a884d259dd03c1afa7.replay.json decoded payload digest",
+      "passed": true
+    },
+    {
+      "check": "event stream equals saved replay events",
+      "passed": true
+    },
+    {
+      "check": "quit event count",
+      "passed": true
+    },
+    {
+      "check": "slot event prefix",
+      "passed": true
+    },
+    {
+      "check": "successful stable actual build",
+      "passed": true
+    },
+    {
+      "check": "launch source binding",
+      "passed": true
+    },
+    {
+      "check": "launch executable and build receipt SHA",
+      "passed": true
+    },
+    {
+      "check": "actual native build GUID",
+      "passed": true
+    },
+    {
+      "check": "same actual version match",
+      "passed": true
+    },
+    {
+      "check": "same world rules identity",
+      "passed": true
+    },
+    {
+      "check": "actual winding seed42",
+      "passed": true
+    },
+    {
+      "check": "wrong CLI map preserved",
+      "passed": true
+    },
+    {
+      "check": "complete normal replay quit",
+      "passed": true
+    },
+    {
+      "check": "final anchor endpoint agrees",
+      "passed": true
+    },
+    {
+      "check": "manualplayer0 opponentAI",
+      "passed": true
+    },
+    {
+      "check": "ownership and entity identity",
+      "passed": true
+    },
+    {
+      "check": "no opening Envoy",
+      "passed": true
+    },
+    {
+      "check": "actual50F debit and adjacent queue",
+      "passed": true
+    },
+    {
+      "check": "saved actual paid production progress",
+      "passed": true
+    },
+    {
+      "check": "paid real birth15simseconds",
+      "passed": true
+    },
+    {
+      "check": "four accepted commands exact actor identity",
+      "passed": true
+    },
+    {
+      "check": "rally command event state assignment",
+      "passed": true
+    },
+    {
+      "check": "PNG identity hash dimensions Frontier-20261008-181025-112-f3671-1b4b38e7db894a4c9d7767212bf410ac.json",
+      "passed": true
+    },
+    {
+      "check": "PNG identity hash dimensions Frontier-20261008-181259-304-f8874-8760407c98224299a3729c50e7ac4efa.json",
+      "passed": true
+    },
+    {
+      "check": "HUD frame world pairing Frontier-20261008-181259-304-f8874-8760407c98224299a3729c50e7ac4efa.json",
+      "passed": true
+    },
+    {
+      "check": "PNG identity hash dimensions Frontier-20261008-181322-189-f10240-f96b4174ec844f4a9c834c7bb57eec27.json",
+      "passed": true
+    },
+    {
+      "check": "HUD frame world pairing Frontier-20261008-181322-189-f10240-f96b4174ec844f4a9c834c7bb57eec27.json",
+      "passed": true
+    },
+    {
+      "check": "PNG identity hash dimensions Frontier-20261008-181553-860-f19094-b168bf593362407884f1101c2d4d419f.json",
+      "passed": true
+    },
+    {
+      "check": "HUD frame world pairing Frontier-20261008-181553-860-f19094-b168bf593362407884f1101c2d4d419f.json",
+      "passed": true
+    },
+    {
+      "check": "PNG identity hash dimensions Frontier-20261008-181636-821-f21562-8009653d018a4074a9eefc7166dd59f3.json",
+      "passed": true
+    },
+    {
+      "check": "HUD frame world pairing Frontier-20261008-181636-821-f21562-8009653d018a4074a9eefc7166dd59f3.json",
+      "passed": true
+    },
+    {
+      "check": "PNG identity hash dimensions Frontier-20261008-181641-814-f21856-3a79433913ac451aba180b7dae8535e5.json",
+      "passed": true
+    },
+    {
+      "check": "HUD frame world pairing Frontier-20261008-181641-814-f21856-3a79433913ac451aba180b7dae8535e5.json",
+      "passed": true
+    },
+    {
+      "check": "envoy actual exact rally arrival",
+      "passed": true
+    },
+    {
+      "check": "actual Scout movement two bound frames",
+      "passed": true
+    },
+    {
+      "check": "later camera focus exact Envoy position",
+      "passed": true
+    },
+    {
+      "check": "mobileproducer actual spawn near current position",
+      "passed": true
+    },
+    {
+      "check": "producer real neutral guardian damage",
+      "passed": true
+    },
+    {
+      "check": "input save replay quit shutdown actual log",
+      "passed": true
+    },
+    {
+      "check": "original native PID absent",
+      "passed": true
+    },
+    {
+      "check": "slot2 absent never accepted",
+      "passed": true
+    },
+    {
+      "check": "original evidence unchanged",
+      "passed": true
+    }
+  ],
+  "checksPassed": 45,
+  "originalEvidenceUnchanged": true
+}
