@@ -137,7 +137,8 @@ namespace Frontier.Tests
             var destination=explorer.position+new Vector2(5,7);var screen=ScreenPoint(destination);AssertWorldPoint(screen);
             yield return Click(screen);Assert.IsFalse(game.Controls.EnvoyRallyMode);Assert.Less(Vector2.Distance(destination,explorer.rally),.1f);
             Assert.AreSame(travel,explorer.orders.Single());Assert.AreEqual(position,explorer.position);Assert.AreEqual(OrderKind.Move,travel.kind);
-            AssertEnvoyRallyDisplay(explorer);
+            // Input and view both run in LateUpdate; observe the next rendered frame.
+            yield return Ready();AssertEnvoyRallyDisplay(explorer);
             yield return ClickAction("ENVOY RALLY");
             var mini=session.GetComponentsInChildren<RawImage>().Single(i=>i.isActiveAndEnabled&&i.name=="Interactive minimap").rectTransform;
             var terrain=new Vector2(44,24);var local=new Vector2(Mathf.Lerp(mini.rect.xMin,mini.rect.xMax,terrain.x/128),Mathf.Lerp(mini.rect.yMin,mini.rect.yMax,terrain.y/128));
@@ -145,7 +146,8 @@ namespace Frontier.Tests
             Assert.Less(Vector2.Distance(decoded,terrain),.01f);yield return Click(pointer);
             Assert.IsFalse(game.Controls.EnvoyRallyMode);Assert.Less(Vector2.Distance(explorer.rally,terrain),.1f);
             Assert.AreSame(travel,explorer.orders.Single());Assert.AreEqual(position,explorer.position);
-            AssertEnvoyRallyDisplay(explorer);
+            // Input and view both run in LateUpdate; observe the next rendered frame.
+            yield return Ready();AssertEnvoyRallyDisplay(explorer);
             Assert.AreEqual(2,game.World.Events.Count(e=>e.kind=="RallySet"&&e.entity==explorer.id));
             game.Controls.Focus(explorer.position);yield return Ready();yield return ClickAction("ENVOY RALLY");yield return Press(Key.Escape);
             Assert.IsFalse(game.Controls.EnvoyRallyMode);Assert.AreSame(travel,explorer.orders.Single());
