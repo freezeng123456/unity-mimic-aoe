@@ -145,7 +145,6 @@ namespace Frontier
             var economyTarget=EconomyTarget(own,workers,enemies,saveForAge,investWorkers,firstBank,politicalReserve)+continuity.Evaluate().ResourceNeed;
             ChooseFactoryProduction(own,army,economyTarget,dt);
             workforce.Assign(workers,economyTarget,economicThreats);
-            ReviewScouts075(own,workers,economicThreats,progressReserve+workerReserve+bankReserve+specialReserve+civilizationResearchReserve,!saveForAge&&!underAttack&&workers.Count>=12);
             revolution.CollectCrates(army,economicThreats);
             EnsureSustainableEconomy(own,workers,p);
             if(continuity.Evaluate().TradeBootstrap||p.age>=2&&!underAttack&&!saveForAge&&workers.Count>=16)InvestInRoute(own,workers,economicThreats);
@@ -230,6 +229,9 @@ namespace Frontier
                     Send(new GameCommand{kind=CommandKind.Research,actors=new[]{producer.id},item=t.id});break;
                 }
             }
+            // Support scouting spends only after military queues and research,
+            // so an Envoy cannot consume the first available skirmisher budget.
+            ReviewScouts075(own,workers,economicThreats,progressReserve+workerReserve+bankReserve+specialReserve+civilizationResearchReserve+siegeReserve,!saveForAge&&!underAttack&&workers.Count>=12);
             foreach(var unit in army)if((unit.def.tags&Tags.Explorer)!=0)Explore(unit);
             // Memory remains observations at their original position; the army
             // planner owns cohorts, defense, rally and transport-compatible dispatch.
