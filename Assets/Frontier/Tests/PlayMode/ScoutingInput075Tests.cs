@@ -99,7 +99,7 @@ namespace Frontier.Tests
         {var screen=ScreenPoint(point,game.World.SurfaceHeight(point));AssertWorldPoint(screen);yield return Click(screen,MouseButton.Right);}
         void AssertEnvoyRallyDisplay(EntityState explorer)
         {
-            var flag=game.View.GetComponentsInChildren<LineRenderer>().Single(line=>line.isActiveAndEnabled&&line.name=="Owned rally intention");
+            var flag=game.View.GetComponentsInChildren<LineRenderer>().Single(line=>line.enabled&&line.gameObject.activeInHierarchy&&line.name=="Owned rally intention");
             Assert.IsTrue(flag.useWorldSpace);Assert.AreEqual(5,flag.positionCount);
             var foot=flag.GetPosition(0);Assert.Less(Vector2.Distance(new Vector2(foot.x,foot.z),explorer.rally),.025f);
             Assert.AreEqual(game.World.SurfaceHeight(explorer.rally)+.15f,foot.y,.025f,"Flag must stand on the actual rally surface");
@@ -151,7 +151,7 @@ namespace Frontier.Tests
             Assert.IsFalse(game.Controls.EnvoyRallyMode);Assert.AreSame(travel,explorer.orders.Single());
             yield return Civilization("france");yield return new WaitForSecondsRealtime(.25f);yield return SelectByPointer(Own("explorer"));
             Assert.IsFalse(Actions().Any(action=>action.StartsWith("ENVOY RALLY")),"An ordinary French Pathfinder gains no Dutch producer controls");
-            Assert.IsFalse(game.View.GetComponentsInChildren<LineRenderer>().Any(line=>line.isActiveAndEnabled&&line.name=="Owned rally intention"));
+            Assert.IsFalse(game.View.GetComponentsInChildren<LineRenderer>().Any(line=>line.enabled&&line.gameObject.activeInHierarchy&&line.name=="Owned rally intention"));
             Assert.IsFalse(session.GetComponentsInChildren<Text>().Any(text=>text.isActiveAndEnabled&&text.text.Contains("Envoy rally")));
         }
 
