@@ -19,8 +19,8 @@ namespace Frontier
         {
             if(actor==null||actor.owner!=player||!CanScout(actor)||!actor.Scout||!actor.def.canStealth)return "Select your active stealth scout";
             if(actor.stealth)return "";
-            if(Time<actor.stealthReadyAt)return "Stealth is recovering";
             if(!HasOtherSurvivingUnit075(actor))return "Your last surviving unit cannot hide";
+            if(Time<actor.stealthReadyAt)return "Stealth is recovering";
             var order=actor.orders.Count>0?actor.orders.Peek():null;
             if(actor.fireAt>=0||order!=null&&(order.kind==OrderKind.Attack||order.kind==OrderKind.AttackMove||order.kind==OrderKind.Build||order.kind==OrderKind.Claim))
                 return "Finish the attack or construction before hiding";
