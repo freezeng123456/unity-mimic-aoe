@@ -8,7 +8,7 @@ namespace Frontier
         public UnitPoseState state;
         public WorkerTool tool;
         public bool moving,melee,bow,polearm,deployed,reloading;
-        public bool shielded,loadedCargo,sweepingMelee;
+        public bool shielded,loadedCargo,sweepingMelee,stealth;
         public float locomotionPhase,actionPhase,hurt,death;
     }
     // Read-only pose evaluation. Event times come from the incremental presentation
@@ -19,13 +19,15 @@ namespace Frontier
         {
             var pose=new AnimationPose{state=UnitPoseState.Idle};if(entity==null)return pose;
             pose.melee=entity.shotMelee||entity.forceMelee||entity.def.damageKind==DamageKind.Melee;
-            pose.bow=entity.def.id=="longbow";pose.polearm=entity.def.id=="pike"||entity.def.id=="escort"||entity.def.id=="shield_guard"||entity.def.id=="halberdier";pose.deployed=entity.isDeployed;
+            pose.bow=entity.def.id=="longbow"||entity.def.id=="native_scout";pose.polearm=entity.def.id=="pike"||entity.def.id=="escort"||entity.def.id=="shield_guard"||entity.def.id=="halberdier";pose.deployed=entity.isDeployed;
+            pose.stealth=entity.stealth;
             pose.shielded=entity.shielded;pose.loadedCargo=entity.cargoPaid.food+entity.cargoPaid.wood+entity.cargoPaid.coin>0;
             pose.sweepingMelee=entity.def.meleeSplash>0;
             pose.hurt=Mathf.Clamp01(1-(time-hurtAt)/.2f);
             if(!entity.Alive){pose.state=UnitPoseState.Death;pose.death=Mathf.Clamp01((time-deathAt)/.65f);return pose;}
-            bool moving=(entity.status=="Moving"||entity.def.id=="caravan")&&(entity.position-entity.previousPosition).sqrMagnitude>.0001f;
-            pose.moving=moving;pose.locomotionPhase=time*Mathf.Max(.5f,entity.def.speed)*2.2f+entity.id*.6f;
+            bool moving=(entity.status=="Moving"||entity.status=="Scouting"||entity.def.id=="caravan")&&(entity.position-entity.previousPosition).sqrMagnitude>.0001f;
+            float gaitSpeed=entity.def.speed*(entity.stealth&&entity.def.canStealth?entity.def.stealthSpeedMultiplier:1);
+            pose.moving=moving;pose.locomotionPhase=time*Mathf.Max(.5f,gaitSpeed)*2.2f+entity.id*.6f;
             pose.reloading=entity.fireAt<0&&time<entity.attackReadyAt;
             if(time-firedAt>=0&&time-firedAt<.22f)
             {pose.state=UnitPoseState.Fire;pose.actionPhase=(time-firedAt)/.22f;}
@@ -68,6 +70,12 @@ namespace Frontier
                 if(pose.moving){Rotate(rig.LeftWheel,0,pose.locomotionPhase*57,0);Rotate(rig.RightWheel,0,pose.locomotionPhase*57,0);}
                 return;
             }
+            if(pose.stealth&&rig.ScoutBody!=null)
+            {
+                rig.ScoutBody.localPosition+=Vector3.down*.13f;
+                Rotate(rig.LeftLeg,-16,0,0);Rotate(rig.RightLeg,-16,0,0);
+                Rotate(rig.LeftKnee,28,0,0);Rotate(rig.RightKnee,28,0,0);
+            }
             if(pose.moving)
             {
                 if(!mounted){Rotate(rig.LeftLeg,stride*28,0,0);Rotate(rig.RightLeg,-stride*28,0,0);}
@@ -93,8 +101,16 @@ namespace Frontier
                 else if(pose.melee)
                 {
                     float swing=pose.state==UnitPoseState.Fire?pose.actionPhase:0;
-                    Arm(rig,false,new Vector3(.24f+(pose.sweepingMelee?.3f*Mathf.Sin(swing*Mathf.PI):0),1.48f-.5f*swing,.3f));
-                    WeaponRotation(rig,Quaternion.Euler(Mathf.Lerp(20,125,swing),pose.sweepingMelee?Mathf.Lerp(-40,40,swing):0,-20));
+                    if(rig.Unarmed)
+                    {
+                        Arm(rig,true,new Vector3(-.23f,1.19f,.30f));
+                        Arm(rig,false,new Vector3(.21f,1.20f,.29f+.35f*Mathf.Sin(swing*Mathf.PI)));
+                    }
+                    else
+                    {
+                        Arm(rig,false,new Vector3(.24f+(pose.sweepingMelee?.3f*Mathf.Sin(swing*Mathf.PI):0),1.48f-.5f*swing,.3f));
+                        WeaponRotation(rig,Quaternion.Euler(Mathf.Lerp(20,125,swing),pose.sweepingMelee?Mathf.Lerp(-40,40,swing):0,-20));
+                    }
                 }
                 else if(pose.bow)
                 {
@@ -102,7 +118,7 @@ namespace Frontier
                     Arm(rig,true,new Vector3(-.22f,1.28f,.65f));
                     WeaponRotation(rig,Quaternion.identity);
                     var grip=rig.transform.InverseTransformPoint(rig.LeftHand.position);
-                    var nock=new Vector3(grip.x,grip.y,grip.z-.24f-.32f*draw);
+                    var nock=new Vector3(grip.x,grip.y,grip.z+rig.BowUpperTip.z-.32f*draw);
                     Arm(rig,false,nock-new Vector3(0,RiderHeight(rig),0));
                 }
                 else
@@ -129,15 +145,15 @@ namespace Frontier
             {Rotate(rig.RightShoulder,-18,0,-6);Rotate(rig.LeftShoulder,-12,0,6);}
             if(rig.BowStringUpper!=null)
             {
-                Vector3 nock=new Vector3(0,0,-.24f);
+                Vector3 nock=new Vector3(0,0,rig.BowUpperTip.z);
                 if(pose.state==UnitPoseState.PreparingAttack||pose.state==UnitPoseState.Fire)nock=rig.Weapon.InverseTransformPoint(rig.RightHand.position);
-                StringSegment(rig.BowStringUpper,new Vector3(0,.88f,-.24f),nock);
-                StringSegment(rig.BowStringLower,new Vector3(0,-.88f,-.24f),nock);
+                StringSegment(rig.BowStringUpper,rig.BowUpperTip,nock);
+                StringSegment(rig.BowStringLower,rig.BowLowerTip,nock);
             }
         }
         internal static bool SameRigPose(AnimationPose a,AnimationPose b)
         {
-            return a.state==b.state&&a.tool==b.tool&&a.moving==b.moving&&a.melee==b.melee&&a.bow==b.bow&&a.polearm==b.polearm&&a.deployed==b.deployed&&a.reloading==b.reloading&&a.shielded==b.shielded&&a.loadedCargo==b.loadedCargo&&a.sweepingMelee==b.sweepingMelee
+            return a.state==b.state&&a.tool==b.tool&&a.moving==b.moving&&a.melee==b.melee&&a.bow==b.bow&&a.polearm==b.polearm&&a.deployed==b.deployed&&a.reloading==b.reloading&&a.shielded==b.shielded&&a.loadedCargo==b.loadedCargo&&a.sweepingMelee==b.sweepingMelee&&a.stealth==b.stealth
                 &&(!a.moving||a.locomotionPhase==b.locomotionPhase)
                 &&((!a.reloading&&(a.state==UnitPoseState.Idle||a.state==UnitPoseState.Move||a.state==UnitPoseState.Death))||a.actionPhase==b.actionPhase);
         }

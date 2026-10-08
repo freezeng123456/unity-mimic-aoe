@@ -11,6 +11,8 @@ namespace Frontier
 
         private CommandResult SetRally(GameCommand command)
         {
+            bool Eligible(EntityState actor)=>actor!=null&&actor.Alive&&actor.owner==command.player&&
+                (actor.def.kind==EntityKind.Building||actor.def.id=="explorer"&&actor.Complete&&actor.garrisonedIn==0&&Players[command.player].civilization=="river");
             var target=Get(command.target);
             // Validate before touching any selected building. Hidden or invalid
             // targets cannot overwrite a previously valid player intention.
@@ -20,20 +22,21 @@ namespace Frontier
             foreach(int id in command.actors)
             {
                 var building=Get(id);
-                if(building==null||!building.Alive||building.owner!=command.player||building.def.kind!=EntityKind.Building)continue;
+                if(!Eligible(building))continue;
+                if(building.def.kind==EntityKind.Unit&&target!=null)return CommandResult.Fail("Envoys use a terrain rally point, not a gathering target");
                 if(target!=null&&(building.def.id=="dock")!=target.def.waterborne)return CommandResult.Fail("Docks rally to fish; land buildings rally to land resources");
             }
             int count=0;
             foreach(int id in command.actors)
             {
                 var building=Get(id);
-                if(building==null||!building.Alive||building.owner!=command.player||building.def.kind!=EntityKind.Building)continue;
+                if(!Eligible(building))continue;
                 var navigation=building.def.id=="dock"?NavigationFor(Rules.Entity("fishing_boat")):Navigation;
                 Vector2 point=navigation.NearestWalkable(target?.position??command.point,building.def.id=="dock"?.65f:.5f);
                 building.rally=point;building.rallyTarget=command.target;building.rallyResource=target?.def.resource??ResourceKind.None;count++;
                 Emit("RallySet",command.player,building.id,command.target==0?"Location rally set":"Resource rally set",1,command.target,point);
             }
-            if(count==0)return CommandResult.Fail("Select a building");
+            if(count==0)return CommandResult.Fail("Select a building or your available Dutch Pathfinder");
             return CommandResult.Ok(command.target==0?"Rally point set":"Resource rally set — eligible workers will gather");
         }
 

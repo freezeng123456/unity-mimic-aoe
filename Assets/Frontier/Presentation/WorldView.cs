@@ -382,10 +382,18 @@ namespace Frontier
                 float t=Mathf.InverseLerp(p.firedAt,p.hitAt,world.Time);var target=world.Get(p.target);Vector2 end=target!=null&&world.IsVisible(game.ObserverPlayer,target)?target.position:p.end;
                 var source=world.Get(p.source);
                 Vector3 start=new Vector3(p.start.x,world.SurfaceHeight(p.start,source?.def.waterborne??false)+(source?.def.id=="gunboat"?.83f:1.25f),p.start.y),finish=new Vector3(end.x,world.SurfaceHeight(end,target?.def.waterborne??false)+.8f,end.y);Vector3 pos=Vector3.Lerp(start,finish,t);pos.y+=Mathf.Sin(t*Mathf.PI)*(p.splash>0?1.5f:.15f);
-                Vector3 tail=pos-(finish-start).normalized*(p.splash>0?.65f:.4f);
+                bool arrow=source?.def.id=="native_scout"||source?.def.id=="longbow";
+                Vector3 direction=(finish-start).normalized;
+                Vector3 tail=pos-direction*(arrow?.75f:p.splash>0?.65f:.4f);
                 if(world.Fog.At(game.ObserverPlayer,new Vector2(pos.x,pos.z))!=VisibilityState.Visible||world.Fog.At(game.ObserverPlayer,new Vector2(tail.x,tail.z))!=VisibilityState.Visible)continue;
-                while(projectiles.Count<=used)projectiles.Add(NewLine("Projectile",.055f));var line=projectiles[used++];line.gameObject.SetActive(true);line.positionCount=2;
-                line.SetPosition(0,pos);line.SetPosition(1,tail);TintLine(line,new Color(1,.83f,.4f));
+                while(projectiles.Count<=used)projectiles.Add(NewLine("Projectile",.055f));var line=projectiles[used++];line.gameObject.SetActive(true);line.positionCount=arrow?5:2;
+                line.SetPosition(0,tail);line.SetPosition(1,pos);
+                if(arrow)
+                {
+                    Vector3 side=Vector3.Cross(direction,Vector3.up).normalized*.12f;
+                    line.SetPosition(2,pos-direction*.2f+side);line.SetPosition(3,pos);line.SetPosition(4,pos-direction*.2f-side);
+                }
+                TintLine(line,arrow?new Color(.74f,.57f,.34f):new Color(1,.83f,.4f));
             }
             for(int i=used;i<projectiles.Count;i++)projectiles[i].gameObject.SetActive(false);
         }

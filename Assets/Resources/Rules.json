@@ -132,7 +132,100 @@
       "gatherRate": 0,
       "buildXp": 0,
       "trainXp": 0,
-      "killXp": 20
+      "killXp": 20,
+      "detectionRange": 8
+    },
+    {
+      "id": "envoy",
+      "name": "Envoy",
+      "description": "Dutch reconnaissance unit trained by the Pathfinder. Pays full cost to construct trade posts only. Project balance: 50 food, 15s, 0 population; age I-V limits 3/5/8/13/18; weak melee, no treasure claim.",
+      "producer": "explorer",
+      "civilization": "river",
+      "kind": 0,
+      "tags": 4096,
+      "scout": true,
+      "canStealth": false,
+      "stealthSpeedMultiplier": 0.6,
+      "detectionRange": 8,
+      "constructs": [
+        "trade_post"
+      ],
+      "cost": {
+        "food": 50,
+        "wood": 0,
+        "coin": 0
+      },
+      "hp": 120,
+      "radius": 0.4,
+      "width": 1,
+      "depth": 1,
+      "speed": 5,
+      "vision": 28,
+      "damage": 4,
+      "meleeDamage": 4,
+      "siegeDamage": 0,
+      "range": 1.3,
+      "minRange": 0,
+      "period": 2,
+      "windup": 0.35,
+      "projectileSpeed": 0,
+      "splash": 0,
+      "damageKind": 0,
+      "time": 15,
+      "population": 0,
+      "capacity": 0,
+      "age": 1,
+      "batch": 1,
+      "garrison": 0,
+      "trainXp": 3,
+      "killXp": 5,
+      "bonuses": [],
+      "meleeBonuses": []
+    },
+    {
+      "id": "native_scout",
+      "name": "Native Scout",
+      "description": "French reconnaissance archer trained at the town center. Can enter stealth at 60% movement speed; detectors reveal nearby scouts. Project balance: 50 food + 25 wood, 18s, 1 population, limit 4; no gathering, construction or treasure claim.",
+      "producer": "town",
+      "civilization": "france",
+      "kind": 0,
+      "tags": 4096,
+      "scout": true,
+      "canStealth": true,
+      "stealthSpeedMultiplier": 0.6,
+      "detectionRange": 8,
+      "constructs": [],
+      "cost": {
+        "food": 50,
+        "wood": 25,
+        "coin": 0
+      },
+      "hp": 100,
+      "radius": 0.4,
+      "width": 1,
+      "depth": 1,
+      "speed": 5,
+      "vision": 28,
+      "damage": 7,
+      "meleeDamage": 3,
+      "siegeDamage": 0,
+      "range": 12,
+      "minRange": 0,
+      "period": 2,
+      "windup": 0.35,
+      "projectileSpeed": 25,
+      "splash": 0,
+      "damageKind": 1,
+      "time": 18,
+      "population": 1,
+      "capacity": 0,
+      "age": 1,
+      "batch": 1,
+      "garrison": 0,
+      "trainXp": 3,
+      "killXp": 5,
+      "bonuses": [],
+      "meleeBonuses": []
     },
     {
       "id": "pike",
@@ -559,7 +652,8 @@
       "garrisonAttackTags": 128,
       "buildXp": 75,
       "trainXp": 0,
-      "killXp": 75
+      "killXp": 75,
+      "detectionRange": 8
     },
     {
       "id": "house",
@@ -829,7 +923,8 @@
       "gatherRate": 0,
       "buildXp": 30,
       "trainXp": 0,
-      "killXp": 30
+      "killXp": 30,
+      "detectionRange": 8
     },
     {
       "id": "farm",
@@ -1454,7 +1549,8 @@
       "population": 0,
       "buildXp": 0,
       "trainXp": 0,
-      "killXp": 8
+      "killXp": 8,
+      "detectionRange": 8
     },
     {
       "id": "treasure_wood",

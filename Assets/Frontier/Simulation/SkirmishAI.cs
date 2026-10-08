@@ -145,6 +145,7 @@ namespace Frontier
             var economyTarget=EconomyTarget(own,workers,enemies,saveForAge,investWorkers,firstBank,politicalReserve)+continuity.Evaluate().ResourceNeed;
             ChooseFactoryProduction(own,army,economyTarget,dt);
             workforce.Assign(workers,economyTarget,economicThreats);
+            ReviewScouts075(own,workers,economicThreats,progressReserve+workerReserve+bankReserve+specialReserve+civilizationResearchReserve,!saveForAge&&!underAttack&&workers.Count>=12);
             revolution.CollectCrates(army,economicThreats);
             EnsureSustainableEconomy(own,workers,p);
             if(continuity.Evaluate().TradeBootstrap||p.age>=2&&!underAttack&&!saveForAge&&workers.Count>=16)InvestInRoute(own,workers,economicThreats);
@@ -200,7 +201,7 @@ namespace Frontier
                 if(!producer.Complete||producer.queue.Count>0)continue;
                 bool artillery=producer.def.id=="foundry";
                 var choices=new List<EntityDef>();foreach(var d in world.Rules.entities)
-                    if(d.kind==EntityKind.Unit&&!d.civilian&&!d.waterborne&&d.producer==producer.def.id&&(d.tags&Tags.Villager)==0&&world.EntityAvailable(player,d)&&world.UnitAge(player,d)<=p.age)choices.Add(d);
+                    if(d.kind==EntityKind.Unit&&!d.civilian&&!d.scout&&!d.waterborne&&d.producer==producer.def.id&&(d.tags&Tags.Villager)==0&&world.EntityAvailable(player,d)&&world.UnitAge(player,d)<=p.age)choices.Add(d);
                 if(artillery)choices.Sort((a,b)=>(a.id=="cannon"?0:1).CompareTo(b.id=="cannon"?0:1));
                 else choices.Sort((a,b)=>CounterScore(b,enemies).CompareTo(CounterScore(a,enemies)));
                 if(p.age>=2&&(!saveForAge||underAttack))for(int i=0;i<choices.Count;i++)
@@ -346,6 +347,25 @@ namespace Frontier
             }
             if(unit.orders.Count==0){Vector2 point=(unit.position-enemyStart).sqrMagnitude>200?enemyStart:new Vector2(64,64);point=waterEconomy.LandArmyDestination(unit,point);Send(new GameCommand{kind=CommandKind.Order,actors=new[]{unit.id},order=OrderKind.Move,point=point});}
         }
+        private void ReviewScouts075(List<EntityState> own,List<EntityState> workers,List<EntityState> visible,Cost reserve,bool recruit)
+        {
+            foreach(var scout in own)if(scout.Scout&&world.CanScout(scout)&&!scout.hold)
+            {
+                if(scout.orders.Count==0)Send(new GameCommand{kind=CommandKind.Order,actors=new[]{scout.id},order=OrderKind.Scout,point=scout.position});
+                if(scout.orders.Count==1&&scout.orders.Peek().kind==OrderKind.Scout&&!scout.stealth&&world.StealthReason(player,scout)=="")
+                    Send(new GameCommand{kind=CommandKind.ToggleStealth,actors=new[]{scout.id}});
+            }
+            if(!recruit)return;
+            // One dedicated scout, counting the paid queue, is enough. These
+            // support units never enter counter selection or army strength.
+            foreach(var definition in world.Rules.entities)if(definition.scout&&world.EntityAvailable(player,definition))
+            {
+                if(world.UnitCountIncludingProduction(player,definition.id)>0)continue;
+                var producer=own.Find(e=>e.Alive&&e.Complete&&e.garrisonedIn==0&&e.def.id==definition.producer&&e.queue.Count==0);
+                if(producer!=null&&world.ProductionReason(player,producer,definition.id)==""&&CanSpend(world.UnitCost(player,definition),reserve))
+                {Send(new GameCommand{kind=CommandKind.Train,actors=new[]{producer.id},item=definition.id});return;}
+            }
+        }
         private void InvestInRoute(List<EntityState> own,List<EntityState> workers,List<EntityState> visible)
         {
             if(Find(own,"trade_post")!=null||world.Rules.landmarks==null)return;
@@ -356,8 +376,15 @@ namespace Frontier
                 var socket=world.Get(site.entity);if(!world.IsVisible(player,socket)||world.CanBuild(player,"trade_post",socket.position)!="")continue;
                 var plan=continuity.Evaluate();
                 var reserve=plan.TradeBootstrap?new Cost():agePlan.Reserve+revolution.Reserve;
-                if(!CanSpend(cost,reserve,"trade_post")||
-                    !AiResourceContinuity072.TryConstructionWorker(world,player,definition,socket.position,workers,visible,out var builder))continue;
+                if(!CanSpend(cost,reserve,"trade_post"))continue;
+                if(!AiResourceContinuity072.TryConstructionWorker(world,player,definition,socket.position,workers,visible,out var builder))
+                {
+                    var routes=new AiGatherRoutes074(world,player,visible);
+                    var preview=new EntityState{def=definition,position=socket.position};
+                    builder=own.Find(e=>e.Scout&&!e.hold&&world.CanConstruct(e,definition.id)&&e.orders.Count<=1&&
+                        (e.orders.Count==0||e.orders.Peek().kind==OrderKind.Scout)&&routes.OrdinaryPathSafe(e,world.WorkPoint(preview,e)));
+                    if(builder==null)continue;
+                }
                 if(Send(new GameCommand{kind=CommandKind.Build,actors=new[]{builder.id},item="trade_post",point=socket.position}).accepted){own.Add(world.Entities.Find(e=>e.Alive&&e.owner==player&&e.def.id=="trade_post"));return;}
             }
         }

@@ -87,6 +87,8 @@ namespace Frontier
             }
             if(e.def.id=="musketeer")
             {AuthoredInfantry.Attach(root,rig,team);Equip(e,rig,false);DetailedUnits.Refine(root,rig,e,team);rig.CaptureInitialPose();return root;}
+            if(e.def.id=="envoy"||e.def.id=="native_scout")
+            {ScoutingFigure(root,rig,e,team);Equip(e,rig,false);DetailedUnits.Refine(root,rig,e,team);rig.CaptureInitialPose();return root;}
             rig.RiderSeatHeight=.95f;float riderY=horse?rig.RiderSeatHeight:0;
             if(horse)
             {
@@ -135,6 +137,65 @@ namespace Frontier
             DetailedUnits.Refine(root,rig,e,team);
             rig.CaptureInitialPose();
             return root;
+        }
+        private static void ScoutingFigure(Transform root,UnitRig rig,EntityState e,Color team)
+        {
+            // Original role silhouettes use the ordinary limb lengths, so hand IK
+            // and animation pooling keep the same contract as the other figures.
+            bool envoy=e.def.id=="envoy";rig.Unarmed=envoy;
+            Color skin=new Color(.77f,.59f,.40f),leather=new Color(.20f,.13f,.075f),linen=new Color(.87f,.83f,.67f);
+            Color cloth=envoy?new Color(.19f,.30f,.33f):new Color(.44f,.48f,.32f);
+            rig.ScoutBody=Pivot(root,"Scouting torso pivot",Vector3.zero);var body=rig.ScoutBody;
+            Section(body,envoy?"Envoy narrow long coat":"Scout short tunic",new Vector3(0,1.10f,0),new Vector2(.40f,.28f),new Vector2(.54f,.37f),.58f,cloth);
+            Section(body,"Head",new Vector3(0,1.55f,.035f),new Vector2(.29f,.31f),new Vector2(.33f,.33f),.34f,skin);
+            Section(body,"Hair at nape",new Vector3(0,1.60f,-.13f),new Vector2(.27f,.10f),new Vector2(.30f,.10f),.17f,leather);
+            if(envoy)
+            {
+                Color felt=new Color(.09f,.13f,.14f);
+                Section(body,"Envoy narrow hat brim",new Vector3(0,1.765f,0),new Vector2(.62f,.45f),new Vector2(.62f,.45f),.045f,felt);
+                Section(body,"Envoy tall hat crown",new Vector3(0,1.945f,0),new Vector2(.32f,.30f),new Vector2(.28f,.26f),.32f,felt);
+                Section(body,"Envoy hat ribbon",new Vector3(0,1.815f,0),new Vector2(.335f,.315f),new Vector2(.325f,.305f),.075f,team);
+                foreach(float side in new[]{-1f,1f})
+                    Section(body,side<0?"Left split coat tail":"Right split coat tail",new Vector3(side*.12f,.64f,-.14f),new Vector2(.20f,.11f),new Vector2(.22f,.20f),.55f,cloth);
+                Section(body,"Envoy pale document satchel",new Vector3(.33f,.83f,.01f),new Vector2(.25f,.13f),new Vector2(.28f,.14f),.33f,linen);
+                Section(body,"Document satchel flap",new Vector3(.33f,.95f,.09f),new Vector2(.285f,.035f),new Vector2(.27f,.035f),.12f,linen*.83f);
+                Beam(body,"Document satchel shoulder strap",new Vector3(-.23f,1.37f,.195f),new Vector3(.33f,.97f,.16f),.045f,.022f,leather);
+                Beam(body,"Document satchel rear strap",new Vector3(-.23f,1.37f,-.19f),new Vector3(.33f,.97f,-.075f),.045f,.022f,leather);
+                Section(body,"Visible paper folio",new Vector3(.34f,1.055f,.01f),new Vector2(.18f,.065f),new Vector2(.18f,.065f),.16f,linen*1.08f);
+            }
+            else
+            {
+                Section(body,"Scout low cloth headwrap",new Vector3(0,1.697f,.015f),new Vector2(.365f,.355f),new Vector2(.35f,.335f),.13f,linen);
+                Section(body,"Scout headwrap team seam",new Vector3(0,1.70f,.015f),new Vector2(.37f,.36f),new Vector2(.37f,.36f),.032f,team);
+                Beam(body,"Scout headwrap cloth tie",new Vector3(-.12f,1.68f,-.16f),new Vector3(-.18f,1.48f,-.20f),.065f,.022f,linen);
+                // The left mantle hangs lower than the right; there is no blanket pack.
+                MeshPart(body,"Scout asymmetric short mantle",new[]{new Vector3(-.36f,1.35f,-.20f),new Vector3(.30f,1.33f,-.20f),new Vector3(.27f,1.04f,-.24f),new Vector3(-.31f,.91f,-.24f),new Vector3(-.36f,1.35f,-.235f),new Vector3(.30f,1.33f,-.235f),new Vector3(.27f,1.04f,-.275f),new Vector3(-.31f,.91f,-.275f)},new[]{0,1,2,0,2,3,4,6,5,4,7,6,0,4,5,0,5,1,1,5,6,1,6,2,2,6,7,2,7,3,3,7,4,3,4,0},cloth*.76f);
+                Beam(body,"Scout diagonal quiver strap",new Vector3(.25f,1.36f,.20f),new Vector3(-.24f,.91f,.20f),.065f,.028f,leather);
+                var quiver=Pivot(body,"Scout rear quiver",new Vector3(.20f,1.16f,-.34f));quiver.localRotation=Quaternion.Euler(0,0,-12);
+                Section(quiver,"Scout quiver leather case",Vector3.zero,new Vector2(.17f,.17f),new Vector2(.21f,.20f),.56f,leather);
+                Section(quiver,"Scout quiver team binding",new Vector3(0,.15f,0),new Vector2(.215f,.205f),new Vector2(.215f,.205f),.065f,team);
+                for(int i=0;i<3;i++)
+                {
+                    float x=-.055f+i*.055f;
+                    Beam(quiver,"Scout carried arrow",new Vector3(x,.20f,0),new Vector3(x,.48f,0),.014f,.014f,new Color(.54f,.37f,.18f));
+                    Section(quiver,"Scout arrow fletching",new Vector3(x,.435f,0),new Vector2(.05f,.025f),new Vector2(.035f,.025f),.095f,linen);
+                }
+            }
+            rig.LeftShoulder=Pivot(body,"Left shoulder",new Vector3(-.28f,1.25f,.05f));rig.RightShoulder=Pivot(body,"Right shoulder",new Vector3(.28f,1.25f,.05f));
+            rig.LeftElbow=Pivot(rig.LeftShoulder,"Left elbow",new Vector3(0,-.36f,0));rig.RightElbow=Pivot(rig.RightShoulder,"Right elbow",new Vector3(0,-.36f,0));
+            rig.LeftHand=Pivot(rig.LeftElbow,"Left hand",new Vector3(0,-.34f,0));rig.RightHand=Pivot(rig.RightElbow,"Right hand",new Vector3(0,-.34f,0));
+            foreach(float side in new[]{-1f,1f})
+            {
+                var shoulder=side<0?rig.LeftShoulder:rig.RightShoulder;var elbow=side<0?rig.LeftElbow:rig.RightElbow;var hand=side<0?rig.LeftHand:rig.RightHand;
+                Section(shoulder,"Coat sleeve",new Vector3(0,-.18f,0),new Vector2(.16f,.18f),new Vector2(.21f,.20f),.36f,cloth);
+                Section(elbow,"Forearm",new Vector3(0,-.17f,0),new Vector2(.14f,.16f),new Vector2(.17f,.18f),.34f,cloth);
+                Section(hand,"Empty hand",Vector3.zero,new Vector2(.17f,.18f),new Vector2(.16f,.17f),.18f,skin);
+                var leg=Pivot(root,side<0?"Left leg":"Right leg",new Vector3(side*.17f,.65f,0));if(side<0)rig.LeftLeg=leg;else rig.RightLeg=leg;
+                Section(leg,"Breeches",new Vector3(0,-.17f,0),new Vector2(.20f,.22f),new Vector2(.24f,.24f),.34f,envoy?new Color(.57f,.60f,.56f):new Color(.48f,.42f,.28f));
+                var knee=Pivot(leg,"Knee",new Vector3(0,-.34f,0));if(side<0)rig.LeftKnee=knee;else rig.RightKnee=knee;
+                Section(knee,"Boot shaft",new Vector3(0,-.14f,0),new Vector2(.19f,.21f),new Vector2(.22f,.22f),.30f,leather);
+                Section(knee,"Boot toe",new Vector3(0,-.27f,.07f),new Vector2(.24f,.35f),new Vector2(.21f,.32f),.14f,leather);
+            }
         }
         private static void Headwear(Transform root,EntityState e,float riderY,Color team)
         {
@@ -254,8 +315,16 @@ namespace Frontier
         }
         private static void Equip(EntityState e,UnitRig rig,bool horse)
         {
+            if(e.def.id=="envoy")
+            {
+                // Only actual construction unpacks a hammer; weak melee uses
+                // the empty fist, with no worker gathering equipment or gun.
+                rig.WeaponPivot=Pivot(rig.RightHand,"Construction tool grip",Vector3.zero);
+                rig.WorkerEquipment=rig.gameObject.AddComponent<WorkerEquipment>();rig.WorkerEquipment.InitializeConstructionOnly(rig);return;
+            }
             Color wood=new Color(.24f,.15f,.085f),iron=new Color(.19f,.22f,.22f);
-            rig.WeaponPivot=Pivot(e.def.id=="longbow"?rig.LeftHand:rig.RightHand,"Weapon pivot",Vector3.zero);
+            bool bow=e.def.id=="longbow"||e.def.id=="native_scout";
+            rig.WeaponPivot=Pivot(bow?rig.LeftHand:rig.RightHand,"Weapon pivot",Vector3.zero);
             if(e.def.id=="pike"||e.def.id=="escort"||e.def.id=="shield_guard"||e.def.id=="halberdier"||e.def.id=="ally_highland_guard")
             {
                 rig.Weapon=Part(rig.WeaponPivot,"Pike shaft",PrimitiveType.Cylinder,new Vector3(0,.9f,0),new Vector3(.055f,1.5f,.055f),wood).transform;
@@ -268,10 +337,12 @@ namespace Frontier
                     Beam(rig.WeaponPivot,"Halberd rear hook",new Vector3(0,2.26f,0),new Vector3(-.29f,2.16f,0),.075f,.065f,iron);
                 }
             }
-            else if(e.def.id=="longbow")
+            else if(bow)
             {
-                rig.Weapon=Pivot(rig.WeaponPivot,"Longbow",Vector3.zero);
-                var curve=new[]{new Vector3(0,-.88f,-.24f),new Vector3(0,-.65f,-.11f),new Vector3(0,-.36f,-.02f),Vector3.zero,new Vector3(0,.36f,-.02f),new Vector3(0,.65f,-.11f),new Vector3(0,.88f,-.24f)};
+                bool compact=e.def.id=="native_scout";float height=compact?.63f:.88f,tipBack=compact?-.19f:-.24f;
+                rig.Weapon=Pivot(rig.WeaponPivot,compact?"Scout compact bow":"Longbow",Vector3.zero);
+                rig.BowUpperTip=new Vector3(0,height,tipBack);rig.BowLowerTip=new Vector3(0,-height,tipBack);
+                var curve=compact?new[]{rig.BowLowerTip,new Vector3(0,-.47f,-.087f),new Vector3(0,-.26f,-.016f),Vector3.zero,new Vector3(0,.26f,-.016f),new Vector3(0,.47f,-.087f),rig.BowUpperTip}:new[]{new Vector3(0,-.88f,-.24f),new Vector3(0,-.65f,-.11f),new Vector3(0,-.36f,-.02f),Vector3.zero,new Vector3(0,.36f,-.02f),new Vector3(0,.65f,-.11f),new Vector3(0,.88f,-.24f)};
                 var vertices=new List<Vector3>();var faces=new List<int>();
                 for(int i=0;i<curve.Length;i++)
                 {
@@ -281,8 +352,8 @@ namespace Frontier
                     if(i==0)continue;for(int j=0;j<6;j++){int x=(i-1)*6+j,y=(i-1)*6+(j+1)%6;faces.AddRange(new[]{x,y,x+6,y,y+6,x+6});}
                 }
                 MeshPart(rig.Weapon,"Curved bow stave",vertices.ToArray(),faces.ToArray(),wood);
-                rig.BowStringUpper=Part(rig.Weapon,"Upper bow string",PrimitiveType.Cube,new Vector3(0,.44f,-.24f),new Vector3(.014f,.88f,.014f),new Color(.8f,.72f,.52f)).transform;
-                rig.BowStringLower=Part(rig.Weapon,"Lower bow string",PrimitiveType.Cube,new Vector3(0,-.44f,-.24f),new Vector3(.014f,.88f,.014f),new Color(.8f,.72f,.52f)).transform;
+                rig.BowStringUpper=Part(rig.Weapon,"Upper bow string",PrimitiveType.Cube,new Vector3(0,height*.5f,tipBack),new Vector3(.014f,height,.014f),new Color(.8f,.72f,.52f)).transform;
+                rig.BowStringLower=Part(rig.Weapon,"Lower bow string",PrimitiveType.Cube,new Vector3(0,-height*.5f,tipBack),new Vector3(.014f,height,.014f),new Color(.8f,.72f,.52f)).transform;
             }
             else if(e.def.id=="cuirassier")
             {

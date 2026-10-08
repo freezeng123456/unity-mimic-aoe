@@ -97,7 +97,9 @@ namespace Frontier
         }
         public void Remove(EntityState e,int killerOwner=-1)
         {
-            if(e==null||!e.Alive)return;e.dead=true;e.hp=0;
+            if(e==null||!e.Alive)return;bool concealed=e.stealth;int observed=0;
+            if(concealed)for(int player=0;player<Players.Length;player++)if(CanObserveStealth075(player,e))observed|=1<<player;
+            e.stealth=false;e.dead=true;e.hp=0;
             if(e.def.kind==EntityKind.Building)SetBuildingObstacle(e,false);
             OnEntityRemoved(e);
             if(e.owner>=0&&e.def.kind!=EntityKind.Resource)Players[e.owner].losses++;
@@ -105,13 +107,14 @@ namespace Frontier
             {if(Guardian(e))Players[killerOwner].guardiansDefeated++;else Players[killerOwner].kills++;AwardXp(killerOwner,e.def.killXp,e.id,"Combat bounty");}
             bool removedTransport=HandleTransportRemoval(e,killerOwner);
             if(e.occupants.Count>0&&!removedTransport)EvacuateDestroyedBuilding(e);
-            Emit("Death",e.owner,e.id,e.def.name+" lost",0,killerOwner);
+            var death=Emit("Death",e.owner,e.id,e.def.name+" lost",0,killerOwner);if(concealed)death.visibilityMask&=observed;
         }
-        public bool IsVisible(int player,EntityState e)=>e!=null&&e.Alive&&e.garrisonedIn==0&&Fog.IsVisible(player,e);
+        public bool IsVisible(int player,EntityState e)=>e!=null&&e.Alive&&e.garrisonedIn==0&&Fog.IsVisible(player,e)&&CanObserveStealth075(player,e);
         public SimEvent Emit(string kind,int player,int entity,string message,float amount=0,int target=0,Vector2? position=null)
         {
             var e=Get(entity);Vector2 point=position??e?.position??Vector2.zero;int visible=0;
-            for(int observer=0;observer<Players.Length;observer++)if(Fog.At(observer,point)==VisibilityState.Visible)visible|=1<<observer;
+            for(int observer=0;observer<Players.Length;observer++)if(Fog.At(observer,point)==VisibilityState.Visible&&
+                (e==null||CanObserveStealth075(observer,e)))visible|=1<<observer;
             var ev = new SimEvent{time=Time,kind=kind,player=player,entity=entity,target=target,message=message,amount=amount,position=point,facing=Get(entity)?.facing??Vector2.zero,visibilityMask=visible};
             if(RecordsPopulation(kind)&&player>=0&&player<Players.Length)
             {ev.hasPopulation=true;ev.population=PopulationSnapshot.From(Players[player]);}
@@ -134,6 +137,7 @@ namespace Frontier
             if(c.kind==CommandKind.Market)return ExchangeAtMarket(c);
             if(c.kind==CommandKind.Manufacture)return StartManufacture(c);
             if(c.kind==CommandKind.ToggleShield)return ToggleShield(c);
+            if(c.kind==CommandKind.ToggleStealth)return ToggleStealth075(c);
             if(TryHandleNavalTransportCommand(c,out var navalResult))return navalResult;
             if(c.kind==CommandKind.NeutralAlliance||c.kind==CommandKind.NeutralRecruit||c.kind==CommandKind.NeutralResearch)return IssueNeutralCommand(c);
             if(c.kind==CommandKind.Order)return IssueOrders(c);
@@ -144,11 +148,14 @@ namespace Frontier
                     if(!ReleaseGarrison(e,false))continue;n++;}
                 return n>0?CommandResult.Ok():CommandResult.Fail("Garrison exit blocked or no valid building");
             }
-            return HandleEconomicCommand(c);
+            var economic=HandleEconomicCommand(c);
+            if(economic.accepted&&c.kind==CommandKind.Build)foreach(int id in c.actors){var actor=Get(id);if(actor!=null&&actor.owner==c.player)BreakStealth075(actor);}
+            return economic;
         }
         private CommandResult IssueOrders(GameCommand c)
         {
             if(!System.Enum.IsDefined(typeof(OrderKind),c.order))return CommandResult.Fail("Invalid order");
+            if(c.order==OrderKind.Scout&&c.target!=0)return CommandResult.Fail("Scout orders do not target an entity");
             if(c.order==OrderKind.Embark||c.order==OrderKind.Disembark||c.order==OrderKind.TransportBerth||c.order==OrderKind.DockRepair)return CommandResult.Fail("Use the transport or harbor command");
             var actors=new List<EntityState>();
             foreach(int id in c.actors){var e=Get(id);if(e!=null&&e.Alive&&e.owner==c.player&&e.def.kind==EntityKind.Unit&&e.garrisonedIn==0){actors.Add(e);}}
@@ -184,19 +191,23 @@ namespace Frontier
             for(int i=0;i<actors.Count;i++)
             {
                 var e=actors[i];if(c.order==OrderKind.Claim&&(e.def.tags&Tags.Explorer)==0)continue;
+                if(c.order==OrderKind.Scout&&!CanScout(e))continue;
                 if(c.order==OrderKind.Gather&&!CanGather(e,target))continue;
-                if((c.order==OrderKind.Build||c.order==OrderKind.Manufacture)&&(!e.Worker||e.def.waterborne))continue;
+                if(c.order==OrderKind.Build&&!CanConstruct(e,target.def.id))continue;
+                if(c.order==OrderKind.Manufacture&&(!e.Worker||e.def.waterborne))continue;
                 if(c.order==OrderKind.Build&&target.def.id=="factory")continue;
                 if(c.order==OrderKind.Garrison&&e.def.waterborne)continue;
                 if(c.order==OrderKind.Attack&&!CanAttackTarget(e,target))continue;
                 if(c.order==OrderKind.Repair&&!(e.Worker&&target.def.kind==EntityKind.Building||e.def.repairArtillery&&(target.def.tags&Tags.Artillery)!=0))continue;
                 if(e.def.civilian&&(c.order==OrderKind.Attack||c.order==OrderKind.AttackMove))continue;
+                if(c.order==OrderKind.Attack||c.order==OrderKind.AttackMove||c.order==OrderKind.Build||c.order==OrderKind.Claim)BreakStealth075(e);
                 CancelCaravan(e,"Manual order");
                 if(e.shielded&&c.order!=OrderKind.Hold&&c.order!=OrderKind.Attack){e.shielded=false;e.shieldReadyAt=Time+2;}
                 var previous=e.orders.Count>0?e.orders.Peek():null;
                 var requested=targeted?target.position:needsSlots?slots[i]:c.point;
-                bool sameTravel=!c.append&&SameTravelIntent(previous,c.order,requested,c.target);
-                if(!c.append)
+                bool append=c.append&&c.order!=OrderKind.Stop&&c.order!=OrderKind.Hold;
+                bool sameTravel=!append&&SameTravelIntent(previous,c.order,requested,c.target);
+                if(!append)
                 {
                     bool keepPreparation=sameTravel&&(c.order==OrderKind.AttackMove||c.order==OrderKind.Attack&&e.attackTarget==c.target);
                     e.orders.Clear();
@@ -204,7 +215,7 @@ namespace Frontier
                     if(!keepPreparation){e.fireAt=-1;e.attackTarget=0;}
                 }
                 if(c.order==OrderKind.Stop||c.order==OrderKind.Hold){e.hold=c.order==OrderKind.Hold;e.status=e.hold?"Holding":"Idle";}
-                else {e.hold=false;e.orders.Enqueue(sameTravel?previous:new UnitOrder(c.order,requested,c.target));e.status=c.order.ToString();}
+                else {e.hold=false;e.orders.Enqueue(sameTravel?previous:new UnitOrder(c.order,requested,c.order==OrderKind.Scout?0:c.target));e.status=c.order.ToString();}
                 accepted++;
             }
             if(accepted==0)return CommandResult.Fail("No selected unit can perform that order");
@@ -229,8 +240,10 @@ namespace Frontier
             if(Paused||IsMatchEnded||dt<=0)return;
             Time+=dt;foreach(var e in Entities)e.previousPosition=e.position;TickEvacuations();
             RebuildSpatial();
+            MaintainStealth075();
             var sw=System.Diagnostics.Stopwatch.StartNew();TickMovementCombat(dt);LastCombatMs=Mathf.Max(0,(float)sw.Elapsed.TotalMilliseconds-LastNavigationMs);
             TickTransportCargo();
+            MaintainStealth075();
             sw.Restart();TickEconomy(dt);TickLandmarks(dt);TickNeutralAllies(dt);TickMapObjectives(dt);scenarioRuntime?.Tick(dt);LastEconomyMs=(float)sw.Elapsed.TotalMilliseconds;
             if(Time>=fogAt){fogAt=Time+.4f;Fog.Tick(Entities);RecordLandmarkDiscoveries();}
             if(!IsMatchEnded)EvaluateElimination();

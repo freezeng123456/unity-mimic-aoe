@@ -33,6 +33,14 @@ namespace Frontier
         {
             return DeckLibrary.Validate(Rules,Players[player].civilization,deck);
         }
+        public bool CanConstruct(EntityState actor,string buildingId)
+        {
+            var building=Rules.Entity(buildingId);
+            return actor!=null&&actor.Alive&&actor.Complete&&actor.garrisonedIn==0&&actor.def.kind==EntityKind.Unit&&!actor.def.waterborne&&
+                P(actor.owner)!=null&&IsPlayerActive(actor.owner)&&EntityAvailable(actor.owner,actor.def)&&building!=null&&
+                building.kind==EntityKind.Building&&building.id!="factory"&&EntityAvailable(actor.owner,building)&&
+                (actor.Worker||Array.IndexOf(actor.def.constructs??Array.Empty<string>(),buildingId)>=0);
+        }
         public string CanBuild(int player,string id,Vector2 point)
         {
             var p=P(player);var d=Rules.Entity(id);
@@ -80,7 +88,11 @@ namespace Frontier
         }
         public string ProductionReason(int player,EntityState b,string item,bool research=false,int count=1)
         {
-            if(b==null||!b.Alive||b.owner!=player||b.def.kind!=EntityKind.Building||!b.Complete)return "Select a completed production building";
+            if(P(player)==null||!IsPlayerActive(player)||b==null||!b.Alive||b.owner!=player||!b.Complete||b.garrisonedIn!=0)return "Select your completed, available producer";
+            // The sole mobile producer is the Dutch Pathfinder training an
+            // Envoy. A unit must never become an arbitrary research facility.
+            bool mobileProducer=b.def.kind==EntityKind.Unit&&b.def.id=="explorer"&&!research&&item=="envoy";
+            if(b.def.kind!=EntityKind.Building&&!mobileProducer)return "Select a completed production building";
             var p=P(player);
             if(!research&&b.def.id=="factory")return "Use factory artillery mode";
             if(b.queue.Count>=6)return "Production queue full";
@@ -135,8 +147,8 @@ namespace Frontier
             {
                 c.point=BuildPoint(c.player,c.item,c.point);
                 var reason=CanBuild(c.player,c.item,c.point);if(reason!="")return CommandResult.Fail(reason);
-                var workers=new List<EntityState>();foreach(int id in c.actors){var w=Get(id);if(w!=null&&w.Alive&&w.owner==c.player&&w.Worker&&!w.def.waterborne&&w.garrisonedIn==0)workers.Add(w);}
-                if(workers.Count==0)return CommandResult.Fail("Select villagers to construct");
+                var workers=new List<EntityState>();foreach(int id in c.actors??Array.Empty<int>()){var w=Get(id);if(w!=null&&w.owner==c.player&&CanConstruct(w,c.item)&&!workers.Contains(w))workers.Add(w);}
+                if(workers.Count==0)return CommandResult.Fail("Select an eligible constructor");
                 var d=Rules.Entity(c.item);var cost=EntityCost(c.player,d);Pay(c.player,cost,workers[0].id,"Foundation "+d.name);
                 var placed=Spawn(c.item,c.player,c.point,false);placed.paidConstruction=cost;ApplyPrefab(placed);
                 foreach(var w in workers){if(!c.append){w.orders.Clear();w.path.Clear();w.fireAt=-1;}w.orders.Enqueue(new UnitOrder(OrderKind.Build,c.point,placed.id));}
@@ -209,21 +221,21 @@ namespace Frontier
             for(int i=0;i<originalCount;i++)
             {
                 var e=Entities[i];if(!e.Alive||e.garrisonedIn!=0||e.owner>=0&&!IsPlayerActive(e.owner))continue;
-                if((e.Worker||e.def.repairArtillery||e.def.fishingBoat||e.def.revolutionary)&&e.orders.Count>0)
+                if((e.Worker||e.def.repairArtillery||e.def.fishingBoat||e.def.revolutionary||e.def.constructs!=null&&e.def.constructs.Length>0)&&e.orders.Count>0)
                 {
                     var o=e.orders.Peek();var target=Get(o.target);
-                    if(o.kind==OrderKind.Gather)Gather(e,o,dt);
+                    if(o.kind==OrderKind.Gather&&(e.Worker||e.def.fishingBoat||e.def.revolutionary))Gather(e,o,dt);
                     else if(o.kind==OrderKind.Manufacture&&e.Worker)
                     {
                         if(target==null||!target.Alive||!target.Complete){e.orders.Dequeue();e.status="Workshop lost";continue;}
                         if(EdgeDistance(e,target)<=1.5f){e.status=target.queue.Count>0?"Manufacturing":"Workshop awaiting orders";if(dt>0&&target.queue.Count>0)e.work=new WorkActivity{kind=WorkKind.Manufacture,target=target.id,time=Time};}
                     }
-                    else if(o.kind==OrderKind.Build&&e.Worker||o.kind==OrderKind.Repair&&(e.Worker||e.def.repairArtillery))
+                    else if(o.kind==OrderKind.Build&&(e.Worker||e.def.constructs!=null&&e.def.constructs.Length>0)||o.kind==OrderKind.Repair&&(e.Worker||e.def.repairArtillery))
                     {
-                        if(target==null||!target.Alive||target.garrisonedIn!=0){e.orders.Dequeue();e.status="Target lost";continue;}
+                        if(target==null||!target.Alive||target.garrisonedIn!=0||target.owner!=e.owner){e.orders.Dequeue();e.status="Target lost";continue;}
                         if(EdgeDistance(e,target)>1.5f)continue;
                         if(o.kind==OrderKind.Build)
-                        {if(target.Complete||target.def.id=="factory"){e.orders.Dequeue();e.status="Idle";continue;}builders.TryGetValue(target.id,out float n);builders[target.id]=n+1;e.status="Constructing";buildWorkers.Add(e.id);if(dt>0)e.work=new WorkActivity{kind=WorkKind.Build,target=target.id,time=Time};}
+                        {if(target.Complete||!CanConstruct(e,target.def.id)){e.orders.Dequeue();e.status="Idle";continue;}builders.TryGetValue(target.id,out float n);builders[target.id]=n+1;e.status="Constructing";buildWorkers.Add(e.id);if(dt>0)e.work=new WorkActivity{kind=WorkKind.Build,target=target.id,time=Time};}
                         else Repair(e,target,dt);
                     }
                 }
@@ -353,6 +365,9 @@ namespace Frontier
             {
                 float angle=k*Mathf.PI*2/24;Vector2 point=receiver.position+new Vector2(Mathf.Cos(angle),Mathf.Sin(angle))*(Mathf.Max(receiver.def.width,receiver.def.depth)*.5f+2+ring*1.5f);
                 if(!Navigation.IsWalkable(point,radius))continue;bool blocked=false;
+                // A moving land producer cannot eject its unit across water,
+                // a wall or an enclosed obstacle just because an outer ring is free.
+                if(receiver.id>0&&receiver.def.kind==EntityKind.Unit&&!Navigation.ClearLine(receiver.position,point,radius))continue;
                 foreach(var e in Entities)if(e.Alive&&e.garrisonedIn==0&&e.def.kind!=EntityKind.Building&&(e.position-point).sqrMagnitude<Mathf.Pow(radius+e.def.radius+.15f,2)){blocked=true;break;}
                 foreach(var p in positions)if((p-point).sqrMagnitude<Mathf.Pow(radius*2+.3f,2))blocked=true;
                 if(!blocked)positions.Add(point);
@@ -451,7 +466,7 @@ namespace Frontier
         public float Attack(EntityState e)
         {float factor=1;var p=P(e.owner);if(p!=null)foreach(var id in p.technologies){var t=Rules.Tech(id);if(t!=null&&Applies(t,e))factor+=t.attack;}return (e.forceMelee&&e.def.meleeDamage>0?e.def.meleeDamage:e.def.damage)*factor*(e.def.garrisonAttackLimit>0?GarrisonFirepowerCount(e):1);}
         public float Speed(EntityState e)
-        {float factor=1;var p=P(e.owner);if(p!=null)foreach(var id in p.technologies){var t=Rules.Tech(id);if(t!=null&&Applies(t,e))factor+=t.speed;}return e.def.speed*factor;}
+        {float factor=1;var p=P(e.owner);if(p!=null)foreach(var id in p.technologies){var t=Rules.Tech(id);if(t!=null&&Applies(t,e))factor+=t.speed;}return e.def.speed*factor*(e.stealth&&e.def.canStealth?e.def.stealthSpeedMultiplier:1);}
         public float GatherRate(EntityState worker,EntityState resource)
         {float factor=1;foreach(var id in Players[worker.owner].technologies){var t=Rules.Tech(id);if(t!=null&&Applies(t,worker)&&(t.resource==ResourceKind.None||t.resource==resource.def.resource))factor+=t.gather;}float mine=resource.def.id=="mine"?Rules.Civ(Players[worker.owner].civilization).mineGatherMultiplier:1;return resource.def.gatherRate*factor*worker.def.gatherMultiplier*mine;}
     }

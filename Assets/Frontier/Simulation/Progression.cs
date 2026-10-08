@@ -38,7 +38,17 @@ namespace Frontier
             foreach(var id in Players[player].technologies)limit+=Rules.Tech(id)?.villagerLimit??0;
             return Mathf.Clamp(limit,0,Rules.populationLimit);
         }
-        public int UnitLimit(int player,EntityDef definition)=>(definition.tags&Tags.Villager)!=0?WorkerLimit(player):int.MaxValue;
+        public int UnitLimit(int player,EntityDef definition)
+        {
+            if((definition.tags&Tags.Villager)!=0)return WorkerLimit(player);
+            if(definition.id=="native_scout")return 4;
+            if(definition.id=="envoy")
+            {
+                // Project balance curve by actual current age: I/II/III/IV/V.
+                switch(Players[player].age){case 1:return 3;case 2:return 5;case 3:return 8;case 4:return 13;default:return 18;}
+            }
+            return int.MaxValue;
+        }
         public int WorkerCountIncludingProduction(int player)
         {
             int count=0;foreach(var entity in Entities)

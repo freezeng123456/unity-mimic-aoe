@@ -229,6 +229,7 @@ namespace Frontier
                 Vector2.Distance(passenger.position,ship.position)>ship.def.radius+passenger.def.radius+3.85f)return;
             if(TransportLoad(ship)+TransportSlotCost(passenger)>ship.def.transportCapacity)return;
             FlushGather(passenger.id);passenger.garrisonedIn=ship.id;ship.occupants.Add(passenger.id);
+            if(passenger.stealth){passenger.stealth=false;passenger.stealthReadyAt=Mathf.Max(passenger.stealthReadyAt,Time+3);}
             passenger.orders.Clear();InvalidateCommandPath(passenger);passenger.fireAt=-1;passenger.attackTarget=0;passenger.work=default;
             passenger.position=passenger.previousPosition=ship.position;passenger.status="Embarked";
             Emit("Embarked",passenger.owner,passenger.id,"Aboard transport",TransportSlotCost(passenger),ship.id,berth.point);

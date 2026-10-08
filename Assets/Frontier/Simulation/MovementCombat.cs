@@ -25,13 +25,15 @@ namespace Frontier
                         var windingTarget=Get(e.attackTarget);
                         if(e.shotMelee&&!e.hold&&(!e.Worker||e.orders.Count>0&&e.orders.Peek().kind==OrderKind.Attack)&&
                             e.def.kind==EntityKind.Unit&&windingTarget!=null&&windingTarget.Alive&&
-                            windingTarget.def.kind==EntityKind.Unit&&windingTarget.garrisonedIn==0&&Observes(e,windingTarget)&&
+                            windingTarget.def.kind==EntityKind.Unit&&windingTarget.garrisonedIn==0&&Observes075(e,windingTarget)&&
                             CanAttackTarget(e,windingTarget)&&EdgeDistance(e,windingTarget)>1)
                             MoveTowardsTarget(e,WorkPoint(windingTarget,e),dt,.04f);
                         e.status="Preparing attack";continue;
                     }
                 }
                 UnitOrder order=e.orders.Count>0?e.orders.Peek():null;
+                if(order!=null&&(order.kind==OrderKind.Attack||order.kind==OrderKind.AttackMove||order.kind==OrderKind.Build||order.kind==OrderKind.Claim))BreakStealth075(e);
+                if(order!=null&&order.kind==OrderKind.Scout){TickScoutOrder075(e,order,dt);continue;}
                 if(order!=null&&TickNavalTransportOrder(e,order,dt))continue;
                 if(order!=null&&order.kind==OrderKind.DeployFactory){TickFactoryDeployment(e,order,dt);continue;}
                 if(order!=null&&(order.kind==OrderKind.Gather||order.kind==OrderKind.Build||order.kind==OrderKind.Repair||order.kind==OrderKind.Garrison||order.kind==OrderKind.Claim||order.kind==OrderKind.Manufacture))
@@ -39,7 +41,7 @@ namespace Frontier
                     var target=Get(order.target);if(e.def.waterborne&&order.kind==OrderKind.Garrison){e.orders.Dequeue();e.status="Cannot garrison a ship";continue;}if(target==null||!target.Alive||target.garrisonedIn!=0){if(order.kind!=OrderKind.Gather){e.orders.Dequeue();e.status="Target lost";}continue;}
                     if(order.kind==OrderKind.Garrison&&EdgeDistance(e,target)<=1.5f)
                     {
-                        if(target.def.kind==EntityKind.Building&&target.owner==e.owner&&target.occupants.Count<target.def.garrison){e.garrisonedIn=target.id;e.orders.Clear();e.path.Clear();target.occupants.Add(e.id);e.status="Garrisoned";Emit("Garrison",e.owner,e.id,"Entered "+target.def.name,0,target.id);}
+                        if(target.def.kind==EntityKind.Building&&target.owner==e.owner&&target.occupants.Count<target.def.garrison){BreakStealth075(e);e.garrisonedIn=target.id;e.orders.Clear();e.path.Clear();target.occupants.Add(e.id);e.status="Garrisoned";Emit("Garrison",e.owner,e.id,"Entered "+target.def.name,0,target.id);}
                         else {e.status="Garrison full";e.orders.Dequeue();}continue;
                     }
                     if(EdgeDistance(e,target)>1.35f)MoveTowardsTarget(e,WorkPoint(target,e),dt);
@@ -63,12 +65,12 @@ namespace Frontier
                 if(order!=null&&order.kind==OrderKind.Attack)
                 {
                     enemy=Get(order.target);
-                    if(enemy==null||!enemy.Alive||!Observes(e,enemy)||!CanAttackTarget(e,enemy)){e.orders.Dequeue();e.attackTarget=0;e.status="Target lost";continue;}
+                    if(enemy==null||!enemy.Alive||!Observes075(e,enemy)||!CanAttackTarget(e,enemy)){e.orders.Dequeue();e.attackTarget=0;e.status="Target lost";continue;}
                 }
                 else
                 {
                     var remembered=Get(e.attackTarget);
-                    if(remembered!=null&&remembered.Alive&&IsHostileTarget(e.owner,remembered)&&Observes(e,remembered)&&EdgeDistance(e,remembered)<e.def.vision&&CanStationaryAutoTarget(e,remembered))enemy=remembered;
+                    if(remembered!=null&&remembered.Alive&&IsHostileTarget(e.owner,remembered)&&Observes075(e,remembered)&&EdgeDistance(e,remembered)<e.def.vision&&CanStationaryAutoTarget(e,remembered))enemy=remembered;
                     if(enemy==null&&Time>=e.scanAt&&HasFirepower(e))
                     {e.scanAt=Time+.55f+(e.id%5)*.025f;enemy=FindEnemy(e);e.attackTarget=enemy?.id??0;}
                 }
@@ -145,6 +147,7 @@ namespace Frontier
         }
         private bool CanStationaryAutoTarget(EntityState actor,EntityState target)
         {
+            if(actor.stealth)return false;
             if(!CanAttackTarget(actor,target))return false;
             // A different channel cannot be chased indefinitely. Auto-fire only
             // chooses a cross-channel target already in effective weapon range.
@@ -160,7 +163,7 @@ namespace Frontier
             float vision=e.Worker?2:e.hold||e.def.kind==EntityKind.Building?e.def.range+5:e.def.vision;
             foreach(var target in Nearby(e.position,vision))
             {
-                if((target.owner<0&&!Guardian(target))||!IsHostileTarget(e.owner,target)||target.def.kind==EntityKind.Resource||!Observes(e,target))continue;
+                if((target.owner<0&&!Guardian(target))||!IsHostileTarget(e.owner,target)||target.def.kind==EntityKind.Resource||!Observes075(e,target))continue;
                 if(Guardian(e)&&(target.def.kind!=EntityKind.Unit||Vector2.Distance(target.position,e.origin)>Rules.landmarks.guardLeash))continue;
                 if(e.def.id=="mortar"&&target.def.kind!=EntityKind.Building)continue;
                 float distance=EdgeDistance(e,target);
@@ -302,13 +305,14 @@ namespace Frontier
         private void TryAttack(EntityState e,EntityState target,bool melee)
         {
             if(Time<e.attackReadyAt){e.status="Reloading";return;}
+            BreakStealth075(e);
             e.shotMelee=melee;e.attackTarget=target.id;e.fireAt=Time+Mathf.Max(.1f,e.def.windup);
             e.attackReadyAt=Time+Mathf.Max(e.def.period,e.def.windup+.1f);e.status="Preparing attack";
             Emit("AttackPrepared",e.owner,e.id,"Attack prepared",0,target.id);
         }
         private void Fire(EntityState e)
         {
-            var target=Get(e.attackTarget);if(target==null||!target.Alive||!Observes(e,target)||target.garrisonedIn!=0||!HasFirepower(e)||!CanAttackTarget(e,target))return;
+            var target=Get(e.attackTarget);if(target==null||!target.Alive||!Observes075(e,target)||target.garrisonedIn!=0||!HasFirepower(e)||!CanAttackTarget(e,target))return;
             bool melee=e.shotMelee&&e.def.meleeDamage>0&&e.def.waterborne==target.def.waterborne;float range=melee?1.5f:e.def.range;
             float distance=EdgeDistance(e,target);
             // A target can cross the inner boundary while the weapon is preparing.
@@ -349,6 +353,7 @@ namespace Frontier
             float resistance=kind==DamageKind.Melee?target.def.meleeResist:kind==DamageKind.Ranged?target.def.rangedResist:target.def.siegeResist;
             if(kind==DamageKind.Ranged&&target.shielded&&Time>=target.shieldReadyAt)resistance+=.35f;
             float damage=Mathf.Max(0,raw)*(1-Mathf.Clamp01(resistance));
+            RevealHitScout075(target,damage);
             Emit("Damage",owner,source,kind.ToString(),damage,target.id,target.position);
             if(damage>=target.hp){Remove(target,owner);return;}target.hp-=damage;
             if(target.Worker&&target.orders.Count>0&&target.orders.Peek().kind==OrderKind.Gather)

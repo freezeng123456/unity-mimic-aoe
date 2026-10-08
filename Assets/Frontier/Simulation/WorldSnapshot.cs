@@ -189,13 +189,21 @@ namespace Frontier
             {
                 var e=saved?.state;Require(e!=null&&e.id>0&&ids.Add(e.id)&&e.owner>=-1&&e.owner<count&&rules.Entity(saved.definition)!=null,"entity identity");max=Math.Max(max,e.id);
                 Require(SnapshotCodec.Finite(e.position)&&SnapshotCodec.Finite(e.hp)&&SnapshotCodec.Finite(e.construction)&&SnapshotCodec.Finite(e.remaining),"entity values");
+                var definition=rules.Entity(saved.definition);
+                Require(SnapshotCodec.Finite(e.stealthReadyAt)&&e.stealthReadyAt>=0&&SnapshotCodec.Finite(e.revealedUntil)&&e.revealedUntil>=0,"stealth timers");
+                Require(!e.stealth||(definition.canStealth&&definition.scout&&definition.kind==EntityKind.Unit&&!definition.waterborne&&e.owner>=0&&e.Alive&&e.Complete&&e.garrisonedIn==0),"stealth capability or actor state");
                 Require(SnapshotCodec.Finite(e.factoryElapsed)&&e.factoryElapsed>=0,"factory progress");
                 if(saved.definition=="factory")Require(e.factoryMode=="food"||e.factoryMode=="wood"||e.factoryMode=="coin"||e.factoryMode=="artillery","factory mode");
                 // Clearing a completed/working path deliberately retains its old
                 // cursor; it is reset when a new path is assigned. This is a legal
                 // boundary state and must be preserved by an exact checkpoint.
                 Require(saved.orders!=null&&saved.path!=null&&saved.queue!=null&&saved.occupants!=null&&e.pathIndex>=0&&(saved.path.Length==0||e.pathIndex<=saved.path.Length),"entity collections");
-                foreach(var order in saved.orders)Require(order!=null&&Enum.IsDefined(typeof(OrderKind),order.kind)&&SnapshotCodec.Finite(order.point)&&SnapshotCodec.Finite(order.elapsed)&&(!order.hasResolvedPoint||SnapshotCodec.Finite(order.resolvedPoint)),"order");
+                foreach(var order in saved.orders)
+                {
+                    Require(order!=null&&Enum.IsDefined(typeof(OrderKind),order.kind)&&SnapshotCodec.Finite(order.point)&&SnapshotCodec.Finite(order.elapsed)&&(!order.hasResolvedPoint||SnapshotCodec.Finite(order.resolvedPoint)),"order");
+                    if(order.kind==OrderKind.Scout)
+                        Require((definition.scout||(definition.tags&Tags.Explorer)!=0)&&definition.kind==EntityKind.Unit&&!definition.waterborne&&order.target==0&&order.elapsed>=0&&order.elapsed<=1024&&order.elapsed==Mathf.Floor(order.elapsed),"scouting order capability or cursor");
+                }
                 foreach(var job in saved.queue)
                 {
                     Require(job!=null&&SnapshotCodec.Finite(job.elapsed)&&job.elapsed>=0&&SnapshotCodec.Finite(job.duration)&&job.duration>=0&&SnapshotCodec.Finite(job.paid)&&job.count>0,"production");
@@ -206,6 +214,13 @@ namespace Frontier
                     else if(job.kind=="Age")known=int.TryParse(job.item,out int age)&&age>=2&&age<=s.maxAge&&rules.Age(age)!=null;
                     else if(job.kind=="Revolution")known=Array.Exists(rules.revolutions??Array.Empty<RevolutionDef>(),r=>r.id==job.item);
                     Require(known,"unknown production kind or item");
+                    if(definition.kind==EntityKind.Unit)
+                        Require(definition.id=="explorer"&&e.owner>=0&&s.players[e.owner].state.civilization=="river"&&job.kind=="Train"&&job.item=="envoy"&&job.count==1&&job.population==0,"mobile producer queue");
+                    if(job.kind=="Train"&&(job.item=="envoy"||job.item=="native_scout"))
+                    {
+                        var unit=rules.Entity(job.item);
+                        Require(e.owner>=0&&definition.id==unit.producer&&s.players[e.owner].state.civilization==unit.civilization&&job.count==1&&job.population==unit.population,"scout production queue");
+                    }
                 }
             }
             Require(s.nextId>max&&s.nextId<int.MaxValue,"next entity id");

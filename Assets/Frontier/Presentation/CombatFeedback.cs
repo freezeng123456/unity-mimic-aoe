@@ -45,7 +45,11 @@ namespace Frontier
             {
                 var ev=world.Events[eventCursor];float duration;Vector3 scale;Color color;
                 if(ev.kind=="Fire"&&ev.message!="Melee")
-                {duration=.13f;scale=Vector3.one*.5f;color=new Color(1,.75f,.23f);}
+                {
+                    var source=world.Get(ev.entity);
+                    if(source?.def.id=="longbow"||source?.def.id=="native_scout")continue;
+                    duration=.13f;scale=Vector3.one*.5f;color=new Color(1,.75f,.23f);
+                }
                 else if(ev.kind=="Impact")
                 {duration=.28f;scale=new Vector3(.8f,.4f,.8f);color=new Color(.7f,.54f,.3f);}
                 else if(ev.kind=="Death")

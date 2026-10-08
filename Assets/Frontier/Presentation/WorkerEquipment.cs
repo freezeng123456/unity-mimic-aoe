@@ -11,6 +11,12 @@ namespace Frontier
         Transform basket;
         public WorkerTool CurrentTool { get; private set; }=(WorkerTool)(-1);
         static readonly Color Wood=new Color(.32f,.19f,.09f),Steel=new Color(.43f,.48f,.49f),Wicker=new Color(.65f,.44f,.21f);
+        public void InitializeConstructionOnly(UnitRig rig)
+        {
+            var hammer=Root(rig.WeaponPivot,WorkerTool.Hammer);Handle(hammer,.52f);
+            ProceduralArt.Part(hammer,"Hammer head",PrimitiveType.Cube,new Vector3(0,.31f,0),new Vector3(.38f,.19f,.17f),Steel);
+            Show(WorkerTool.None);
+        }
         public void Initialize(UnitRig rig)
         {
             var axe=Root(rig.WeaponPivot,WorkerTool.Axe);Handle(axe,.8f);

@@ -21,10 +21,55 @@ namespace Frontier
 
         public static void Refine(Transform root,UnitRig rig,EntityState e,Color team)
         {
-            if(e.def.id=="caravan")Freight(root,rig);
+            if(e.def.id=="envoy"||e.def.id=="native_scout")ScoutingFigure(root,rig,e,team);
+            else if(e.def.id=="caravan")Freight(root,rig);
             else if(rig.Barrel!=null)Gun(root,rig,e.def.id);
             else Figure(root,rig,e,team);
             Bake(root,rig);
+        }
+
+        static void ScoutingFigure(Transform root,UnitRig rig,EntityState e,Color team)
+        {
+            // Do not inherit the infantry crossbelt, ammunition pouch or coat cut.
+            bool envoy=e.def.id=="envoy";var torso=rig.ScoutBody;
+            Replace(torso.Find("Head"),s=>s.Loft(new[]{-.17f,-.105f,.025f,.105f,.17f},new[]{.105f,.149f,.171f,.163f,.13f},new[]{.12f,.16f,.168f,.15f,.12f},16,Color.white));
+            Replace(torso.Find(envoy?"Envoy narrow long coat":"Scout short tunic"),s=>s.Loft(new[]{-.29f,-.15f,.04f,.20f,.29f},new[]{.20f,.205f,.25f,.27f,.25f},new[]{.14f,.16f,.18f,.185f,.17f},16,Color.white));
+            var detail=new Surface();
+            detail.Ellipsoid(new Vector3(0,1.50f,.211f),new Vector3(.042f,.064f,.060f),Skin,10,6);
+            foreach(float side in new[]{-1f,1f})
+            {
+                detail.Ellipsoid(new Vector3(side*.075f,1.565f,.181f),new Vector3(.016f,.014f,.010f),Dark,8,4);
+                detail.Ellipsoid(new Vector3(side*.164f,1.54f,.008f),new Vector3(.034f,.059f,.033f),Skin,8,5);
+                if(envoy)
+                {
+                    detail.Plate(new[]{new Vector3(side*.045f,1.36f,.191f),new Vector3(side*.21f,1.36f,.16f),new Vector3(side*.115f,1.13f,.205f),new Vector3(side*.037f,1.07f,.205f)},.024f,Linen);
+                    detail.Beam(new Vector3(side*.095f,.91f,-.185f),new Vector3(side*.10f,.39f,-.20f),.012f,.017f,team);
+                }
+            }
+            if(envoy)
+            {
+                for(int i=0;i<4;i++)detail.Ellipsoid(new Vector3(0,1.19f-i*.075f,.213f),new Vector3(.019f,.019f,.013f),Brass,8,4);
+                detail.Box(new Vector3(.33f,.935f,.113f),new Vector3(.045f,.048f,.023f),Brass);
+                detail.Beam(new Vector3(.255f,1.09f,.045f),new Vector3(.425f,1.09f,.045f),.009f,.009f,Leather);
+            }
+            else
+            {
+                detail.Beam(new Vector3(-.31f,.94f,-.283f),new Vector3(.265f,1.065f,-.283f),.025f,.018f,team);
+                detail.Box(new Vector3(-.205f,.94f,.22f),new Vector3(.078f,.064f,.035f),Brass);
+            }
+            detail.Finish(torso,envoy?"Envoy folio and tailored facings":"Scout mantle edging and strap fastening");
+            foreach(var shoulder in new[]{rig.LeftShoulder,rig.RightShoulder})
+                Replace(shoulder.Find("Coat sleeve"),s=>s.Loft(new[]{-.18f,-.10f,.04f,.13f,.18f},new[]{.077f,.092f,.108f,.102f,.073f},new[]{.085f,.097f,.105f,.10f,.075f},14,Color.white));
+            foreach(var hand in new[]{rig.LeftHand,rig.RightHand})
+                Replace(hand.Find("Empty hand"),s=>s.Ellipsoid(Vector3.zero,new Vector3(.083f,.091f,.079f),Color.white,14,8));
+            foreach(var elbow in new[]{rig.LeftElbow,rig.RightElbow})
+            {
+                var cuff=new Surface();cuff.Band(new Vector3(0,-.273f,0),.084f,.091f,.065f,envoy?Linen:team);cuff.Finish(elbow,"Scouting sleeve cuff");
+            }
+            if(!envoy)
+            {
+                var grip=new Surface();grip.Band(Vector3.zero,.046f,.042f,.16f,Leather);grip.Finish(rig.Weapon,"Scout bow leather grip");
+            }
         }
 
         static void Figure(Transform root,UnitRig rig,EntityState e,Color team)
@@ -310,7 +355,7 @@ namespace Frontier
 
         static void Bake(Transform root,UnitRig rig)
         {
-            var joints=new HashSet<Transform>{root,rig.LeftShoulder,rig.RightShoulder,rig.LeftElbow,rig.RightElbow,rig.LeftHand,rig.RightHand,rig.LeftLeg,rig.RightLeg,rig.LeftKnee,rig.RightKnee,rig.WeaponPivot,rig.Weapon,rig.MeleeWeapon,rig.Barrel,rig.Carriage,rig.LeftWheel,rig.RightWheel,rig.LeftHorseLeg,rig.RightHorseLeg,rig.RearLeftHorseLeg,rig.RearRightHorseLeg,rig.HorseHead,rig.HorseTail,rig.Shield,rig.Cargo,rig.RepairWeapon,rig.WorkerFirearm,rig.BowStringLower,rig.BowStringUpper};
+            var joints=new HashSet<Transform>{root,rig.ScoutBody,rig.LeftShoulder,rig.RightShoulder,rig.LeftElbow,rig.RightElbow,rig.LeftHand,rig.RightHand,rig.LeftLeg,rig.RightLeg,rig.LeftKnee,rig.RightKnee,rig.WeaponPivot,rig.Weapon,rig.MeleeWeapon,rig.Barrel,rig.Carriage,rig.LeftWheel,rig.RightWheel,rig.LeftHorseLeg,rig.RightHorseLeg,rig.RearLeftHorseLeg,rig.RearRightHorseLeg,rig.HorseHead,rig.HorseTail,rig.Shield,rig.Cargo,rig.RepairWeapon,rig.WorkerFirearm,rig.BowStringLower,rig.BowStringUpper};
             foreach(var wheel in rig.CartWheels)joints.Add(wheel);
             foreach(var t in root.GetComponentsInChildren<Transform>(true))if(!t.gameObject.activeSelf||t.name=="Axe"||t.name=="Pick"||t.name=="Hammer"||t.name=="Basket")joints.Add(t);
             var groups=new Dictionary<Transform,List<MeshRenderer>>();

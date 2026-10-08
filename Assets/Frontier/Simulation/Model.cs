@@ -7,9 +7,9 @@ namespace Frontier
     public enum EntityKind { Unit, Building, Resource }
     public enum ResourceKind { None, Food, Wood, Coin }
     public enum DamageKind { Melee, Ranged, Siege }
-    [Flags] public enum Tags { None=0, Infantry=1, HeavyInfantry=2, LightInfantry=4, Cavalry=8, HeavyCavalry=16, LightCavalry=32, Artillery=64, Villager=128, Building=256, Explorer=512, Guardian=1024, Naval=2048 }
-    public enum OrderKind { Move, Attack, AttackMove, Gather, Build, Repair, Garrison, Stop, Hold, Claim, Manufacture, DeployFactory, Embark, Disembark, TransportBerth, DockRepair }
-    public enum CommandKind { Order, Build, Train, CancelQueue, CancelBuilding, Research, AdvanceAge, Ship, Rally, Ungarrison, ToggleMode, Demolish, Resign, TradeMode, TradeRoute, Manufacture, ToggleShield, ToggleRecruitment, FactoryMode, Embark, Disembark, DockRepair, NeutralAlliance, NeutralRecruit, NeutralResearch, Revolution, Disband, Market }
+    [Flags] public enum Tags { None=0, Infantry=1, HeavyInfantry=2, LightInfantry=4, Cavalry=8, HeavyCavalry=16, LightCavalry=32, Artillery=64, Villager=128, Building=256, Explorer=512, Guardian=1024, Naval=2048, Scout=4096 }
+    public enum OrderKind { Move, Attack, AttackMove, Gather, Build, Repair, Garrison, Stop, Hold, Claim, Manufacture, DeployFactory, Embark, Disembark, TransportBerth, DockRepair, Scout }
+    public enum CommandKind { Order, Build, Train, CancelQueue, CancelBuilding, Research, AdvanceAge, Ship, Rally, Ungarrison, ToggleMode, Demolish, Resign, TradeMode, TradeRoute, Manufacture, ToggleShield, ToggleRecruitment, FactoryMode, Embark, Disembark, DockRepair, NeutralAlliance, NeutralRecruit, NeutralResearch, Revolution, Disband, Market, ToggleStealth }
     public enum PoliticalPhase { Empire, Revolutionary, CivilianRebuilt }
     [Serializable] public struct Cost
     {
@@ -25,6 +25,9 @@ namespace Frontier
         public string id, name, description, producer, civilization="";
         public string[] excludedCivilizations=Array.Empty<string>();
         public bool civilian,repairArtillery,shieldAbility,waterborne,fishingBoat,transportShip,revolutionary;
+        public bool scout,canStealth;
+        public float stealthSpeedMultiplier=.6f,detectionRange;
+        public string[] constructs=Array.Empty<string>();
         public int transportCapacity;
         public float gatherMultiplier=1,meleeSplash;
         public EntityKind kind; public Tags tags; public Cost cost,repairCost;
@@ -130,6 +133,8 @@ namespace Frontier
         public float routeDistance,shieldReadyAt;
         public Cost cargoPaid;
         public bool shielded;
+        public bool stealth;
+        public float stealthReadyAt,revealedUntil;
         public float autoRecruitElapsed;
         public bool autoRecruitPaused;
         public string factoryMode="food";
@@ -144,7 +149,7 @@ namespace Frontier
         public WorkActivity work;
         public bool IsWorkingAt(float time)
         {
-            if(!Alive||(!Worker&&!def.repairArtillery&&!def.fishingBoat&&!def.revolutionary)||garrisonedIn!=0||work.kind==WorkKind.None||Mathf.Abs(work.time-time)>.0001f||orders.Count==0)return false;
+            if(!Alive||(!Worker&&!def.repairArtillery&&!def.fishingBoat&&!def.revolutionary&&!(work.kind==WorkKind.Build&&def.constructs!=null&&def.constructs.Length>0))||garrisonedIn!=0||work.kind==WorkKind.None||Mathf.Abs(work.time-time)>.0001f||orders.Count==0)return false;
             var order=orders.Peek();
             return order.target==work.target&&(work.kind==WorkKind.Gather&&order.kind==OrderKind.Gather
                 ||work.kind==WorkKind.Build&&order.kind==OrderKind.Build||work.kind==WorkKind.Repair&&order.kind==OrderKind.Repair||work.kind==WorkKind.Manufacture&&order.kind==OrderKind.Manufacture);
@@ -152,7 +157,8 @@ namespace Frontier
         public bool Alive => !dead && hp>0;
         public bool Complete => construction>=1;
         public bool Worker => (def.tags & Tags.Villager)!=0;
-        public bool Military => def.kind==EntityKind.Unit && !Worker && !def.civilian;
+        public bool Scout => def.scout;
+        public bool Military => def.kind==EntityKind.Unit && !Worker && !def.civilian && !Scout;
     }
     [Serializable] public class PlayerState
     {

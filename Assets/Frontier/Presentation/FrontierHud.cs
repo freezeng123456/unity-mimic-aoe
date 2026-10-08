@@ -96,6 +96,15 @@ namespace Frontier
         private int CurrentActionKey(EntityState selected)
         {
             var p=game.World.Players[game.ObserverPlayer];int key=(selected?.id??0)*10000+p.age*100+p.technologies.Count*10+(selected?.queue.Count??0);
+            // Orders can change through world input or the fixed-step scheduler,
+            // without a HUD callback. Refresh scouting controls at that boundary.
+            foreach(int id in game.Controls.Selected)
+            {
+                var actor=game.World.Get(id);if(actor==null||!actor.Alive)continue;
+                int state=(actor.stealth?1:0)+(actor.stealthReadyAt>game.World.Time?2:0)+
+                    (actor.orders.Count>0&&actor.orders.Peek().kind==OrderKind.Scout?4:0);
+                unchecked{key=key*31+state;}
+            }
             // Arrival and release change the Ungarrison count and availability.
             // The existing pointer-capture guard still defers same-context rebuilds.
             key=unchecked((((key*397+(selected?.occupants.Count??0))*31+(selected?.shielded==true?1:0))*31+(selected?.autoRecruitPaused==true?1:0))*31+(selected?.factoryMode?.GetHashCode()??0));
@@ -270,7 +279,7 @@ namespace Frontier
             RefreshObjectiveSummary(w);
             if(lastClockLabel!=clockLabel||lastClockSeconds!=(int)w.Time||lastIdle!=idle)
             {UpdateExpansionPanels();clockLabel.text=$"{(int)w.Time/60:00}:{(int)w.Time%60:00}   IDLE {idle}";lastClockLabel=clockLabel;lastClockSeconds=(int)w.Time;lastIdle=idle;}
-            orders.text=DynamicBindingLabel(game.Controls.EmbarkMode?"BOARD — CHOOSE YOUR TROOP TRANSPORT":game.Controls.DisembarkMode?"UNLOAD — CHOOSE AN OPEN LAND SHORE":game.Controls.DockRepairMode?"HARBOR REPAIR — CHOOSE YOUR COMPLETED DOCK":game.Controls.BuildingToPlace!=""?"PLACING  "+game.Rules.Entity(game.Controls.BuildingToPlace).name:game.Controls.RepairMode?"REPAIR [R] — CHOOSE A DAMAGED FRIENDLY TARGET":game.Controls.GarrisonMode?"GARRISON [G] — CHOOSE A FRIENDLY SHELTER":game.Controls.AttackMode?"ATTACK MOVE — CHOOSE DESTINATION":"[V] Idle settler     [T] Town center     [M] Military     [B] Build");
+            orders.text=DynamicBindingLabel(game.Controls.EnvoyRallyMode?"ENVOY RALLY — CHOOSE TERRAIN":game.Controls.EmbarkMode?"BOARD — CHOOSE YOUR TROOP TRANSPORT":game.Controls.DisembarkMode?"UNLOAD — CHOOSE AN OPEN LAND SHORE":game.Controls.DockRepairMode?"HARBOR REPAIR — CHOOSE YOUR COMPLETED DOCK":game.Controls.BuildingToPlace!=""?"PLACING  "+game.Rules.Entity(game.Controls.BuildingToPlace).name:game.Controls.RepairMode?"REPAIR [R] — CHOOSE A DAMAGED FRIENDLY TARGET":game.Controls.GarrisonMode?"GARRISON [G] — CHOOSE A FRIENDLY SHELTER":game.Controls.AttackMode?"ATTACK MOVE — CHOOSE DESTINATION":"[V] Idle settler     [T] Town center     [M] Military     [B] Build");
             if(game.IsWatching||game.Autoplay)orders.text=game.Autoplay?"AI OBSERVATION · camera and selection · army orders are controlled by AI":"WATCHING · camera and selection · recorded orders are read-only";
             notice.text=game.Notice;
             help.text=Help;
@@ -280,6 +289,7 @@ namespace Frontier
             {
                 selection.text=game.Controls.Selected.Count>1?game.Controls.Selected.Count+" SELECTED  ·  "+selected.def.name:selected.def.name.ToUpperInvariant();
                 details.text=$"HP {selected.hp:0}/{w.MaxHp(selected):0}     ATK {w.Attack(selected):0}     RANGE {(selected.forceMelee?1.4f:selected.def.range):0.#}     POP {selected.def.population}\n{selected.status}  ·  Orders {selected.orders.Count}";
+                if(selected.def.canStealth&&selected.owner==game.ObserverPlayer)details.text+="\nStealth: "+(selected.stealth?(selected.revealedUntil>w.Time?"REVEALED · "+(selected.revealedUntil-w.Time).ToString("0.0")+"s":"ACTIVE · detector proximity can reveal you"):"OFF")+" · Vision "+selected.def.vision;
                 if(selected.def.transportShip)details.text+="\nCargo "+w.TransportLoad(selected)+"/"+selected.def.transportCapacity+" population slots · "+selected.occupants.Count+" passengers";
                 else if(selected.owner==game.ObserverPlayer&&selected.def.id=="town"&&w.AutoRecruitSeconds(game.ObserverPlayer)>0)details.text+="\n"+AutoRecruitSummary(selected);
                 else if(selected.def.id=="caravan")details.text+="\n"+CaravanSummary(selected);
@@ -312,10 +322,10 @@ namespace Frontier
             if(e.owner!=game.LocalPlayerSlot){add("DETAILS",()=>ShowObjectDetails(e),"Read attributes, resistances and counters.",true);return;}
             if(e.def.kind==EntityKind.Unit)
             {
-                add("ATTACK MOVE [A]",()=>game.Controls.BeginAttackMove(),"Attack enemies encountered while travelling.",true);
+                add("ATTACK MOVE [A]",()=>game.Controls.BeginAttackMove(),"Selected armed units attack enemies encountered while travelling.",game.Controls.HasCombatSelection);
                 add("STOP [S]",()=>game.Controls.IssueOrder(OrderKind.Stop,Vector2.zero),"Stop orders. Attack cooldown continues.",true);
                 add("HOLD [J]",()=>game.Controls.IssueOrder(OrderKind.Hold,Vector2.zero),"Defend this position without chasing.",true);
-                if(e.Worker)add("BUILD [B]",ShowBuildMenu,"Choose a building. Shift placement queues construction.",true);
+                if(e.Worker||(e.def.constructs?.Length??0)>0)add("BUILD [B]",ShowBuildMenu,"Choose a building this unit can construct. Shift placement queues construction.",true);
                 if(e.def.id=="factory_wagon")add("BUILD FACTORY",()=>game.Controls.BeginBuild("factory"),"Place an industrial factory in current vision. This wagon is consumed when the foundation is placed.",true);
                 add("FOCUS [F]",()=>game.Controls.Focus(e.position),"Center the camera on selection.",true);
                 if(!e.Worker&&e.def.meleeDamage>0&&e.def.range>2)add(e.forceMelee?"RANGED MODE":"MELEE MODE",()=>{SubmitUiCommand(new GameCommand{player=game.LocalPlayerSlot,kind=CommandKind.ToggleMode,actors=game.Controls.Selected.ToArray()});},"Switch the selected unit's preferred combat mode.",true);
@@ -368,6 +378,7 @@ namespace Frontier
             if(e.def.id=="caravan")add("TRADE ROUTE",()=>ShowCaravanRoutes(e,0),"Choose a completed waystation. The cart loads paid cargo at a nearby town and earns coin only on arrival. Move / Stop abandons cargo without refund.",true);
             if(e.def.shieldAbility)add(e.shielded?"FOLD SHIELD":"BRACE SHIELD",()=>{SubmitUiCommand(new GameCommand{player=game.LocalPlayerSlot,kind=CommandKind.ToggleShield,actors=game.Controls.Selected.ToArray()});InvalidateActions();},"Changing stance takes 2 seconds. Bracing protects against ranged fire and prevents movement; moving or pursuing an attack folds the shield first.",game.World.Time>=e.shieldReadyAt);
             if(e.def.kind==EntityKind.Unit&&!e.def.waterborne)add("DISBAND",ShowDisband071,"Dismiss selected land units to release population. No refund or combat XP.",e.garrisonedIn==0);
+            AddScoutingActions075(e,add);
         }
         private void RebuildQueue(EntityState e)
         {
@@ -431,10 +442,10 @@ namespace Frontier
         {
             if(!game.CanSubmitOrders)return;
             game.Controls.CancelTargetMode();
-            bool worker=game.Controls.Selected.Exists(id=>game.World.Get(id)?.Worker==true),wagon=game.Controls.Selected.Exists(id=>game.World.Get(id)?.def.id=="factory_wagon");
-            if(game.Controls.FirstSelected==null||(!worker&&!wagon)){game.Notify("Select settlers or a factory wagon before opening the building menu");return;}
+            bool builder=game.Controls.Selected.Exists(id=>{var actor=game.World.Get(id);return actor!=null&&actor.owner==game.LocalPlayerSlot&&game.World.CanConstruct(actor,"trade_post");}),wagon=game.Controls.Selected.Exists(id=>{var actor=game.World.Get(id);return actor!=null&&actor.Alive&&actor.owner==game.LocalPlayerSlot&&actor.garrisonedIn==0&&actor.def.id=="factory_wagon";});
+            if(game.Controls.FirstSelected==null||(!builder&&!wagon)){game.Notify("Select settlers, an Envoy or a factory wagon before opening the building menu");return;}
             var box=Modal("CONSTRUCTION",640);int n=0;var p=game.World.Players[game.LocalPlayerSlot];
-            foreach(var d in game.Rules.entities)if(d.kind==EntityKind.Building&&game.World.EntityAvailable(game.LocalPlayerSlot,d)&&(d.id!="dock"||game.World.Layout.HasWater)&&(d.id=="factory"?wagon:worker))
+            foreach(var d in game.Rules.entities)if(d.kind==EntityKind.Building&&game.World.EntityAvailable(game.LocalPlayerSlot,d)&&(d.id!="dock"||game.World.Layout.HasWater)&&(d.id=="factory"?wagon:game.Controls.Selected.Exists(id=>{var actor=game.World.Get(id);return actor!=null&&actor.owner==game.LocalPlayerSlot&&game.World.CanConstruct(actor,d.id);})))
             {var def=d;int i=n++;int age=game.World.UnitAge(game.LocalPlayerSlot,d);Button(box,d.name+"  ·  "+ShortCost(game.World.EntityCost(game.LocalPlayerSlot,d))+"\nAge "+age+"  ·  "+d.time+"s",new Rect(25+(i%3)*275,90+(i/3)*133,265,117),()=>{CloseModal();game.Controls.BeginBuild(def.id);},d.description,p.age>=age);}
         }
         public void ShowGroups()
