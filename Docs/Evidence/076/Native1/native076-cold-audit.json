@@ -1,0 +1,2748 @@
+{
+  "schema": 1,
+  "createdUtc": "2026-10-09T21:48:34.388326+00:00",
+  "status": "native_cold_load_manual_healing_resume_to_full_proved",
+  "scope": "ColdPID97963 live loaded gameplay only, ending exact214348-190 report. Later recording-library playback excluded by Cold1 log prefix and replayWatching=false. No original evidence/source edits.",
+  "identity": {
+    "oldPid": 78563,
+    "newPid": 97963,
+    "matchId": "ccc7b9fd6eb44cc3817dce2432df64af",
+    "version": "0.19.0",
+    "buildGuid": "a86c515f3ab040649ea505e507193ff3",
+    "sourceFingerprint": "dabf34d26490cece872959764b8b9e515749584b180f3d7899f38d79b69a6f8f",
+    "oldAndNewExecutableShaEqual": true,
+    "executableSha256": "c2e121c781dc29e7b5551a5631c493899bebb4c37f7279edb0e30cec60d0266b"
+  },
+  "oldLaunch": {
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Native1/british/launch-receipt076.json",
+    "name": "launch-receipt076.json",
+    "bytes": 1478,
+    "sha256": "b1162786a3c39c8d6392322963de84f0a28fa7134b5e457cb00610669da30a9c"
+  },
+  "coldLaunch": {
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Native1/british/Cold1/launch-receipt076.json",
+    "name": "launch-receipt076.json",
+    "bytes": 1482,
+    "sha256": "a1b6f9137e92acb55fdbc60ac36ea661c72183a3b01eddf179554842ca2bef1a"
+  },
+  "coldLaunchReceipt": {
+    "schema": 1,
+    "status": "launched_not_accepted",
+    "phase": "cold",
+    "case": "british",
+    "pid": 97963,
+    "startedUtc": "2026-10-09T21:41:26.120159+00:00",
+    "command": [
+      "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Build1/Frontier Reckoning.app/Contents/MacOS/Frontier Reckoning",
+      "-frontierDataDirectory",
+      "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Native1/british/Data",
+      "-frontierPlayerCiv",
+      "coast",
+      "-frontierOpponentCiv",
+      "ottoman",
+      "-frontierMap",
+      "winding",
+      "-frontierSeed",
+      "42",
+      "-frontierFormat",
+      "duel",
+      "-frontierInputTrace",
+      "-screen-width",
+      "1920",
+      "-screen-height",
+      "1080",
+      "-screen-fullscreen",
+      "0",
+      "-logFile",
+      "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Native1/british/Cold1/player.log"
+    ],
+    "appPath": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Build1/Frontier Reckoning.app",
+    "buildGuid": "a86c515f3ab040649ea505e507193ff3",
+    "executableSha256": "c2e121c781dc29e7b5551a5631c493899bebb4c37f7279edb0e30cec60d0266b",
+    "buildReceiptSha256": "3a1e5945930a399cdf7609705435791ef58144910e9070cbb6b8dee21c5afa2f",
+    "sourceFingerprint": "dabf34d26490cece872959764b8b9e515749584b180f3d7899f38d79b69a6f8f",
+    "dataDirectory": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Native1/british/Data"
+  },
+  "activationRace": {
+    "file": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Native1/british/Cold1/activation-race076.json",
+      "name": "activation-race076.json",
+      "bytes": 641,
+      "sha256": "2c16cc0e0a7e7e7a4fb9a73b48bf1ea02ded57235a9516aade698884d151573b"
+    },
+    "receipt": {
+      "schema": 1,
+      "observedUtc": "2026-10-09T21:43:40.581379+00:00",
+      "intendedPid": 97963,
+      "transientDuplicatePid": 97964,
+      "cause": "open -a activation was issued before cold process registered, creating no-argument default-data menu instance",
+      "duplicateAction": "Opened read-only LOAD MATCH menu showing old0.7 slots; no slot loaded or written; BACK then actual QUIT",
+      "resolution": "Waited for duplicate exit, exact-path activation then only97963 exists; proper menu British/Ottoman/Winding42 and actual slot1@6:21",
+      "bounds": "Save file SHA unchanged; no global data rewrite; never count duplicate UI as cold restoration"
+    },
+    "countAsLoadedValidation": false
+  },
+  "save": {
+    "file": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Native1/british/Data/Saves/slot-1.json",
+      "name": "slot-1.json",
+      "bytes": 147801,
+      "sha256": "a654ba3b084a98003976d89907e0c1d58e2d58b7407662e1099ee7223d2bee05"
+    },
+    "shaEqualPaidRunAudit": true,
+    "decodedPayloadSha256": "566780b7a4ef44a5b600b3027202c96ee9d8d2549a8cfee478585e199b5a2ab2",
+    "schema": 5,
+    "paused": true,
+    "worldTime": 381.3140563964844,
+    "eventCount": 6318,
+    "selected": [
+      153
+    ],
+    "patient": {
+      "definition": "explorer",
+      "state": {
+        "id": 8,
+        "owner": 0,
+        "position": {
+          "x": 16.344446182250977,
+          "y": 25.000913619995117
+        },
+        "previousPosition": {
+          "x": 16.344446182250977,
+          "y": 25.000913619995117
+        },
+        "origin": {
+          "x": 31.0,
+          "y": 32.0
+        },
+        "facing": {
+          "x": -0.632955014705658,
+          "y": -0.7741885185241699
+        },
+        "rally": {
+          "x": 31.0,
+          "y": 28.5
+        },
+        "tradeMode": 0,
+        "rallyResource": 0,
+        "hp": 297.0,
+        "construction": 1.0,
+        "remaining": 0.0,
+        "attackReadyAt": 328.6107177734375,
+        "fireAt": -1.0,
+        "deployUntil": 0.0,
+        "scanAt": 381.43902587890625,
+        "stuckFor": 0.0,
+        "pathRetryAt": 358.3126525878906,
+        "recoveryProgressPosition": {
+          "x": 16.344446182250977,
+          "y": 25.000913619995117
+        },
+        "recoveryProgressAt": 358.3126525878906,
+        "progressGoal": {
+          "x": 16.344446182250977,
+          "y": 25.000913619995117
+        },
+        "detour": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "progressDistance": 3.4028234663852886e+38,
+        "progressAt": 358.3126525878906,
+        "detourUntil": 0.0,
+        "pathGoal": {
+          "x": 16.344446182250977,
+          "y": 25.000913619995117
+        },
+        "isDeployed": false,
+        "shotMelee": true,
+        "nextEconomyLog": 0.0,
+        "paidConstruction": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "attackTarget": 0,
+        "garrisonedIn": 0,
+        "rallyTarget": 0,
+        "pathVersion": -1,
+        "hold": true,
+        "dead": false,
+        "forceMelee": false,
+        "routeTown": 0,
+        "routeStation": 0,
+        "routeLeg": 0,
+        "routeDistance": 0.0,
+        "shieldReadyAt": 0.0,
+        "cargoPaid": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "shielded": false,
+        "stealth": false,
+        "stealthReadyAt": 0.0,
+        "revealedUntil": 0.0,
+        "autoHeal": false,
+        "healingTarget": 0,
+        "healingReviewAt": 0.0,
+        "healingBlockedUntil": 330.0107421875,
+        "autoRecruitElapsed": 0.0,
+        "autoRecruitPaused": false,
+        "factoryMode": "food",
+        "factoryElapsed": 0.0,
+        "pathAvoidsAllies": false,
+        "pathIndex": 0,
+        "status": "Holding",
+        "work": {
+          "kind": 0,
+          "target": 0,
+          "resource": 0,
+          "time": 0.0
+        }
+      },
+      "orders": [],
+      "path": [],
+      "queue": [],
+      "occupants": []
+    },
+    "doctor": {
+      "definition": "priest",
+      "state": {
+        "id": 153,
+        "owner": 0,
+        "position": {
+          "x": 13.0,
+          "y": 26.5
+        },
+        "previousPosition": {
+          "x": 13.0,
+          "y": 26.5
+        },
+        "origin": {
+          "x": 16.5,
+          "y": 31.0
+        },
+        "facing": {
+          "x": 0.9125244617462158,
+          "y": -0.4090222716331482
+        },
+        "rally": {
+          "x": 16.5,
+          "y": 27.5
+        },
+        "tradeMode": 0,
+        "rallyResource": 0,
+        "hp": 200.0,
+        "construction": 1.0,
+        "remaining": 0.0,
+        "attackReadyAt": 0.0,
+        "fireAt": -1.0,
+        "deployUntil": 0.0,
+        "scanAt": 0.0,
+        "stuckFor": 0.0,
+        "pathRetryAt": 381.1140441894531,
+        "recoveryProgressPosition": {
+          "x": 13.0,
+          "y": 26.5
+        },
+        "recoveryProgressAt": 381.1140441894531,
+        "progressGoal": {
+          "x": 13.0,
+          "y": 26.5
+        },
+        "detour": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "progressDistance": 3.4028234663852886e+38,
+        "progressAt": 381.1140441894531,
+        "detourUntil": 0.0,
+        "pathGoal": {
+          "x": 13.0,
+          "y": 26.5
+        },
+        "isDeployed": false,
+        "shotMelee": false,
+        "nextEconomyLog": 0.0,
+        "paidConstruction": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "attackTarget": 0,
+        "garrisonedIn": 0,
+        "rallyTarget": 0,
+        "pathVersion": -1,
+        "hold": false,
+        "dead": false,
+        "forceMelee": false,
+        "routeTown": 0,
+        "routeStation": 0,
+        "routeLeg": 0,
+        "routeDistance": 0.0,
+        "shieldReadyAt": 0.0,
+        "cargoPaid": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "shielded": false,
+        "stealth": false,
+        "stealthReadyAt": 0.0,
+        "revealedUntil": 0.0,
+        "autoHeal": false,
+        "healingTarget": 8,
+        "healingReviewAt": 0.0,
+        "healingBlockedUntil": 0.0,
+        "autoRecruitElapsed": 0.0,
+        "autoRecruitPaused": false,
+        "factoryMode": "food",
+        "factoryElapsed": 0.0,
+        "pathAvoidsAllies": false,
+        "pathIndex": 0,
+        "status": "Healing",
+        "work": {
+          "kind": 5,
+          "target": 8,
+          "resource": 0,
+          "time": 381.3140563964844
+        }
+      },
+      "orders": [
+        {
+          "kind": 17,
+          "point": {
+            "x": 16.344446182250977,
+            "y": 25.000913619995117
+          },
+          "target": 8,
+          "elapsed": 0.0,
+          "resolvedPoint": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "hasResolvedPoint": false,
+          "destinationVersion": 0,
+          "destinationCursor": 0,
+          "destinationRetryAt": 0.0
+        }
+      ],
+      "path": [],
+      "queue": [],
+      "occupants": []
+    }
+  },
+  "captures": [
+    {
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Native1/british/Data/Captures/Frontier-20261009-214235-487-f3829-8bb9fe348ee14708b4f31ce9f184e426.json",
+        "name": "Frontier-20261009-214235-487-f3829-8bb9fe348ee14708b4f31ce9f184e426.json",
+        "bytes": 17387,
+        "sha256": "8834361d14f688a0c9dd6caed9824f332edb3ce4633251087346ada936dc3fc4"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Native1/british/Data/Captures/Frontier-20261009-214235-487-f3829-8bb9fe348ee14708b4f31ce9f184e426.png",
+        "name": "Frontier-20261009-214235-487-f3829-8bb9fe348ee14708b4f31ce9f184e426.png",
+        "bytes": 466692,
+        "sha256": "6f351131f4d59bf5c32a219f077bbd33443c084b8c3cda570bd19376dae17912"
+      },
+      "utc": "2026-10-09T21:42:35.4256840Z",
+      "worldTime": 381.3140563964844,
+      "frame": 3829,
+      "paused": true,
+      "resources": {
+        "food": 752.3831787109375,
+        "wood": 150.0,
+        "coin": 0.0
+      },
+      "population": {
+        "used": 9,
+        "reserved": 0,
+        "capacity": 20
+      },
+      "camera": {
+        "focus": {
+          "x": 24.0,
+          "y": 28.0
+        },
+        "pointer": {
+          "x": 922.0,
+          "y": 748.0
+        },
+        "applicationFocused": true,
+        "orthographicSize": 26.0
+      },
+      "medicalUnits": [
+        {
+          "entity": 8,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "healingTarget": 0,
+          "definition": "explorer",
+          "status": "Holding",
+          "order": "",
+          "work": "None",
+          "healingPauseReason": "",
+          "position": {
+            "x": 16.344446182250977,
+            "y": 25.000913619995117
+          },
+          "destination": {
+            "x": 16.344446182250977,
+            "y": 25.000913619995117
+          },
+          "hp": 297.0,
+          "maxHp": 450.0,
+          "healRate": 0.0,
+          "healRange": 0.0,
+          "healingReviewAt": 0.0,
+          "healingBlockedUntil": 330.0107421875,
+          "healingRecoverySeconds": 0.0,
+          "workTime": 0.0,
+          "healer": false,
+          "autoHeal": false,
+          "canReceiveHealing": true,
+          "healingTargetVisible": false,
+          "cargo": []
+        },
+        {
+          "entity": 153,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 8,
+          "healingTarget": 8,
+          "definition": "priest",
+          "status": "Healing",
+          "order": "Heal",
+          "work": "Heal",
+          "healingPauseReason": "",
+          "position": {
+            "x": 13.0,
+            "y": 26.5
+          },
+          "destination": {
+            "x": 16.344446182250977,
+            "y": 25.000913619995117
+          },
+          "hp": 200.0,
+          "maxHp": 200.0,
+          "healRate": 10.0,
+          "healRange": 12.0,
+          "healingReviewAt": 0.0,
+          "healingBlockedUntil": 0.0,
+          "healingRecoverySeconds": 0.0,
+          "workTime": 381.3140563964844,
+          "healer": true,
+          "autoHeal": false,
+          "canReceiveHealing": true,
+          "healingTargetVisible": true,
+          "cargo": []
+        }
+      ],
+      "replayWatching": false,
+      "sameFrameHudWorldAndPngHash": true
+    },
+    {
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Native1/british/Data/Captures/Frontier-20261009-214252-488-f4834-15405fa824e647e1a670c4cfac2ede42.json",
+        "name": "Frontier-20261009-214252-488-f4834-15405fa824e647e1a670c4cfac2ede42.json",
+        "bytes": 17391,
+        "sha256": "f4d971d0fbeb485f9ff252e5b6d0dca7b2e1ee2cf2aa414bdb7c404f000e8e07"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Native1/british/Data/Captures/Frontier-20261009-214252-488-f4834-15405fa824e647e1a670c4cfac2ede42.png",
+        "name": "Frontier-20261009-214252-488-f4834-15405fa824e647e1a670c4cfac2ede42.png",
+        "bytes": 1438379,
+        "sha256": "406421ceeaad3edbe91769cac0e710ac7c89307de0a21a6d8a98928f005f69ad"
+      },
+      "utc": "2026-10-09T21:42:52.4021770Z",
+      "worldTime": 391.9147033691406,
+      "frame": 4834,
+      "paused": false,
+      "resources": {
+        "food": 795.0057373046875,
+        "wood": 150.0,
+        "coin": 0.0
+      },
+      "population": {
+        "used": 9,
+        "reserved": 0,
+        "capacity": 20
+      },
+      "camera": {
+        "focus": {
+          "x": 24.0,
+          "y": 28.0
+        },
+        "pointer": {
+          "x": 922.0,
+          "y": 748.0
+        },
+        "applicationFocused": true,
+        "orthographicSize": 26.0
+      },
+      "medicalUnits": [
+        {
+          "entity": 8,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "healingTarget": 0,
+          "definition": "explorer",
+          "status": "Holding",
+          "order": "",
+          "work": "None",
+          "healingPauseReason": "",
+          "position": {
+            "x": 16.344446182250977,
+            "y": 25.000913619995117
+          },
+          "destination": {
+            "x": 16.344446182250977,
+            "y": 25.000913619995117
+          },
+          "hp": 403.0,
+          "maxHp": 450.0,
+          "healRate": 0.0,
+          "healRange": 0.0,
+          "healingReviewAt": 0.0,
+          "healingBlockedUntil": 330.0107421875,
+          "healingRecoverySeconds": 0.0,
+          "workTime": 0.0,
+          "healer": false,
+          "autoHeal": false,
+          "canReceiveHealing": true,
+          "healingTargetVisible": false,
+          "cargo": []
+        },
+        {
+          "entity": 153,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 8,
+          "healingTarget": 8,
+          "definition": "priest",
+          "status": "Healing",
+          "order": "Heal",
+          "work": "Heal",
+          "healingPauseReason": "",
+          "position": {
+            "x": 13.0,
+            "y": 26.5
+          },
+          "destination": {
+            "x": 16.344446182250977,
+            "y": 25.000913619995117
+          },
+          "hp": 200.0,
+          "maxHp": 200.0,
+          "healRate": 10.0,
+          "healRange": 12.0,
+          "healingReviewAt": 0.0,
+          "healingBlockedUntil": 0.0,
+          "healingRecoverySeconds": 0.0,
+          "workTime": 391.9147033691406,
+          "healer": true,
+          "autoHeal": false,
+          "canReceiveHealing": true,
+          "healingTargetVisible": true,
+          "cargo": []
+        }
+      ],
+      "replayWatching": false,
+      "sameFrameHudWorldAndPngHash": true
+    },
+    {
+      "json": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Native1/british/Data/Captures/Frontier-20261009-214322-422-f6616-eb81e6ba52754829a7ce88a6f2c7c328.json",
+        "name": "Frontier-20261009-214322-422-f6616-eb81e6ba52754829a7ce88a6f2c7c328.json",
+        "bytes": 17343,
+        "sha256": "99c93aa3bdba600e34908799ccf872245b20c1de0baddc89ba5d4d6df2ee7881"
+      },
+      "png": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Native1/british/Data/Captures/Frontier-20261009-214322-422-f6616-eb81e6ba52754829a7ce88a6f2c7c328.png",
+        "name": "Frontier-20261009-214322-422-f6616-eb81e6ba52754829a7ce88a6f2c7c328.png",
+        "bytes": 1390294,
+        "sha256": "cfbc384fbb8767312d4261ad12dc0cb9a66fac1b92ea1b5a9ef9ed36f6634cdd"
+      },
+      "utc": "2026-10-09T21:43:22.3371020Z",
+      "worldTime": 400.3152160644531,
+      "frame": 6616,
+      "paused": false,
+      "resources": {
+        "food": 828.7821044921875,
+        "wood": 150.0,
+        "coin": 0.0
+      },
+      "population": {
+        "used": 9,
+        "reserved": 0,
+        "capacity": 20
+      },
+      "camera": {
+        "focus": {
+          "x": 13.0,
+          "y": 26.5
+        },
+        "pointer": {
+          "x": 922.0,
+          "y": 748.0
+        },
+        "applicationFocused": true,
+        "orthographicSize": 22.0
+      },
+      "medicalUnits": [
+        {
+          "entity": 8,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "healingTarget": 0,
+          "definition": "explorer",
+          "status": "Holding",
+          "order": "",
+          "work": "None",
+          "healingPauseReason": "",
+          "position": {
+            "x": 16.344446182250977,
+            "y": 25.000913619995117
+          },
+          "destination": {
+            "x": 16.344446182250977,
+            "y": 25.000913619995117
+          },
+          "hp": 450.0,
+          "maxHp": 450.0,
+          "healRate": 0.0,
+          "healRange": 0.0,
+          "healingReviewAt": 0.0,
+          "healingBlockedUntil": 330.0107421875,
+          "healingRecoverySeconds": 0.0,
+          "workTime": 0.0,
+          "healer": false,
+          "autoHeal": false,
+          "canReceiveHealing": true,
+          "healingTargetVisible": false,
+          "cargo": []
+        },
+        {
+          "entity": 153,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "healingTarget": 0,
+          "definition": "priest",
+          "status": "Idle",
+          "order": "",
+          "work": "None",
+          "healingPauseReason": "",
+          "position": {
+            "x": 13.0,
+            "y": 26.5
+          },
+          "destination": {
+            "x": 13.0,
+            "y": 26.5
+          },
+          "hp": 200.0,
+          "maxHp": 200.0,
+          "healRate": 10.0,
+          "healRange": 12.0,
+          "healingReviewAt": 0.0,
+          "healingBlockedUntil": 0.0,
+          "healingRecoverySeconds": 0.0,
+          "workTime": 0.0,
+          "healer": true,
+          "autoHeal": false,
+          "canReceiveHealing": true,
+          "healingTargetVisible": false,
+          "cargo": []
+        }
+      ],
+      "replayWatching": false,
+      "sameFrameHudWorldAndPngHash": true
+    }
+  ],
+  "report": {
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Native1/british/Data/Reports/20261009-214348-190-ccc7b9fd6eb44cc3817dce2432df64af-menu_exit.json",
+    "name": "20261009-214348-190-ccc7b9fd6eb44cc3817dce2432df64af-menu_exit.json",
+    "bytes": 5446,
+    "sha256": "5df388ee6bffa707d457a3f55fce0146ff647a37b1a9d4368fa1db38c1991622"
+  },
+  "eventFile": {
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Native1/british/Data/Reports/20261009-214348-190-ccc7b9fd6eb44cc3817dce2432df64af-menu_exit-events.jsonl",
+    "name": "20261009-214348-190-ccc7b9fd6eb44cc3817dce2432df64af-menu_exit-events.jsonl",
+    "bytes": 5248599,
+    "sha256": "d2893856f621ab0ea6aca06ba94beaf7728d565b16ddcc6c2f6cf76a0ffea13a"
+  },
+  "reportSummary": {
+    "mapId": "winding",
+    "aiDifficulty": "standard",
+    "aiDecisionSeconds": 1.2000000476837158,
+    "aiArmySeconds": 7.0,
+    "eventSchemaVersion": 2,
+    "matchId": "ccc7b9fd6eb44cc3817dce2432df64af",
+    "appVersion": "0.19.0",
+    "buildGuid": "a86c515f3ab040649ea505e507193ff3",
+    "version": "6000.6.3f1",
+    "platform": "OSXPlayer",
+    "device": "Apple M3 Pro",
+    "gpu": "Apple M3 Pro",
+    "resolution": "1920x1080",
+    "reason": "menu_exit",
+    "seed": 42,
+    "winner": -1,
+    "eventCount": 6888,
+    "maxAge": 5,
+    "time": 400.41522216796875,
+    "meanFrameMs": 16.978595733642578,
+    "p95FrameMs": 17.206830978393555,
+    "simulationSpeed": 1.0,
+    "autoplay": false,
+    "managedBytes": 23597056,
+    "players": [
+      {
+        "civilization": "coast",
+        "player": 0,
+        "team": 0,
+        "age": 2,
+        "kills": 1,
+        "losses": 0,
+        "shipments": 0,
+        "population": 9,
+        "treasures": 0,
+        "guardians": 2,
+        "marketFoodPressure": 0,
+        "marketWoodPressure": 0,
+        "eliminated": false,
+        "resigned": false,
+        "gathered": {
+          "food": 1329.2525634765625,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "spent": {
+          "food": 800.0,
+          "wood": 150.0,
+          "coin": 100.0
+        },
+        "passiveIncome": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "tradeIncome": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "marketIncome": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "marketSold": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "marketBought": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "resources": {
+          "food": 829.1842041015625,
+          "wood": 150.0,
+          "coin": 0.0
+        },
+        "refunded": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "ageHistory": [
+          "I @ 0s",
+          "2 @ 312.8s"
+        ]
+      },
+      {
+        "civilization": "ottoman",
+        "player": 1,
+        "team": 1,
+        "age": 2,
+        "kills": 0,
+        "losses": 1,
+        "shipments": 3,
+        "population": 22,
+        "treasures": 5,
+        "guardians": 4,
+        "marketFoodPressure": 0,
+        "marketWoodPressure": 0,
+        "eliminated": false,
+        "resigned": false,
+        "gathered": {
+          "food": 1775.0885009765625,
+          "wood": 1146.8326416015625,
+          "coin": 213.65455627441406
+        },
+        "spent": {
+          "food": 1200.0,
+          "wood": 1200.0,
+          "coin": 300.0
+        },
+        "passiveIncome": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "tradeIncome": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "marketIncome": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "marketSold": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "marketBought": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "resources": {
+          "food": 875.18212890625,
+          "wood": 246.7921600341797,
+          "coin": 13.657125473022461
+        },
+        "refunded": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "ageHistory": [
+          "I @ 0s",
+          "2 @ 291.7s"
+        ]
+      }
+    ],
+    "guided": {
+      "schema": 1,
+      "catalogRevision": 1,
+      "stageIndex": 0,
+      "revision": 0,
+      "startEventIndex": 0,
+      "resultEventIndex": -1,
+      "definitionId": "",
+      "attemptId": "",
+      "rulesHash": "",
+      "reason": "",
+      "scenarioHash": "",
+      "status": 0,
+      "completedSeconds": 0.0,
+      "startingWood": 0.0,
+      "town": 0,
+      "scout": 0,
+      "firstTarget": 0,
+      "secondTarget": 0,
+      "transport": 0,
+      "neutralSite": 0,
+      "workers": [],
+      "soldiers": [],
+      "selection": [],
+      "stageEvents": [],
+      "movePoint": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "contactPoint": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "boardingPoint": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "landingPoint": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "buildPoint": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "barracksPoint": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "raidIssued": false,
+      "commands": [],
+      "shipmentCard": ""
+    }
+  },
+  "coldEventProof": {
+    "fullEventCount": 6888,
+    "restoredSaveEventPrefixCount": 6318,
+    "prefixEqualsSave": true,
+    "newEventCount": 570,
+    "newPositiveHealCount": 153,
+    "newPositiveHealHp": 153.0,
+    "startPatientHp": 297,
+    "finalPatientHp": 450,
+    "noP0CommandPaymentTrainingAfterLoad": true,
+    "newHealReceipts": [
+      {
+        "zeroBasedEventIndex": 6319,
+        "time": 381.4140625,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 297.0,
+        "hpAfter": 298.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6321,
+        "time": 381.5140686035156,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 298.0,
+        "hpAfter": 299.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6323,
+        "time": 381.61407470703125,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 299.0,
+        "hpAfter": 300.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6330,
+        "time": 381.7140808105469,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 300.0,
+        "hpAfter": 301.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6332,
+        "time": 381.8140869140625,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 301.0,
+        "hpAfter": 302.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6334,
+        "time": 381.9140930175781,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 302.0,
+        "hpAfter": 303.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6339,
+        "time": 382.01409912109375,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 303.0,
+        "hpAfter": 304.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6340,
+        "time": 382.1141052246094,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 304.0,
+        "hpAfter": 305.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6344,
+        "time": 382.214111328125,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 305.0,
+        "hpAfter": 306.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6347,
+        "time": 382.3141174316406,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 306.0,
+        "hpAfter": 307.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6349,
+        "time": 382.41412353515625,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 307.0,
+        "hpAfter": 308.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6351,
+        "time": 382.5141296386719,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 308.0,
+        "hpAfter": 309.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6353,
+        "time": 382.6141357421875,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 309.0,
+        "hpAfter": 310.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6358,
+        "time": 382.7141418457031,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 310.0,
+        "hpAfter": 311.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6360,
+        "time": 382.81414794921875,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 311.0,
+        "hpAfter": 312.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6362,
+        "time": 382.9141540527344,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 312.0,
+        "hpAfter": 313.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6367,
+        "time": 383.01416015625,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 313.0,
+        "hpAfter": 314.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6371,
+        "time": 383.1141662597656,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 314.0,
+        "hpAfter": 315.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6377,
+        "time": 383.21417236328125,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 315.0,
+        "hpAfter": 316.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6380,
+        "time": 383.3141784667969,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 316.0,
+        "hpAfter": 317.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6382,
+        "time": 383.4141845703125,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 317.0,
+        "hpAfter": 318.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6384,
+        "time": 383.5141906738281,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 318.0,
+        "hpAfter": 319.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6386,
+        "time": 383.61419677734375,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 319.0,
+        "hpAfter": 320.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6391,
+        "time": 383.7142028808594,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 320.0,
+        "hpAfter": 321.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6393,
+        "time": 383.814208984375,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 321.0,
+        "hpAfter": 322.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6395,
+        "time": 383.9142150878906,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 322.0,
+        "hpAfter": 323.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6400,
+        "time": 384.01422119140625,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 323.0,
+        "hpAfter": 324.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6405,
+        "time": 384.1142272949219,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 324.0,
+        "hpAfter": 325.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6410,
+        "time": 384.2142333984375,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 325.0,
+        "hpAfter": 326.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6413,
+        "time": 384.3142395019531,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 326.0,
+        "hpAfter": 327.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6415,
+        "time": 384.41424560546875,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 327.0,
+        "hpAfter": 328.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6417,
+        "time": 384.5142517089844,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 328.0,
+        "hpAfter": 329.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6419,
+        "time": 384.6142578125,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 329.0,
+        "hpAfter": 330.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6424,
+        "time": 384.7142639160156,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 330.0,
+        "hpAfter": 331.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6426,
+        "time": 384.81427001953125,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 331.0,
+        "hpAfter": 332.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6428,
+        "time": 384.9142761230469,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 332.0,
+        "hpAfter": 333.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6433,
+        "time": 385.0142822265625,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 333.0,
+        "hpAfter": 334.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6436,
+        "time": 385.1142883300781,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 334.0,
+        "hpAfter": 335.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6441,
+        "time": 385.21429443359375,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 335.0,
+        "hpAfter": 336.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6444,
+        "time": 385.3143005371094,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 336.0,
+        "hpAfter": 337.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6446,
+        "time": 385.414306640625,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 337.0,
+        "hpAfter": 338.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6448,
+        "time": 385.5143127441406,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 338.0,
+        "hpAfter": 339.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6450,
+        "time": 385.61431884765625,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 339.0,
+        "hpAfter": 340.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6455,
+        "time": 385.7143249511719,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 340.0,
+        "hpAfter": 341.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6457,
+        "time": 385.8143310546875,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 341.0,
+        "hpAfter": 342.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6459,
+        "time": 385.9143371582031,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 342.0,
+        "hpAfter": 343.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6464,
+        "time": 386.01434326171875,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 343.0,
+        "hpAfter": 344.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6466,
+        "time": 386.1143493652344,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 344.0,
+        "hpAfter": 345.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6471,
+        "time": 386.21435546875,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 345.0,
+        "hpAfter": 346.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6474,
+        "time": 386.3143615722656,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 346.0,
+        "hpAfter": 347.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6476,
+        "time": 386.41436767578125,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 347.0,
+        "hpAfter": 348.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6478,
+        "time": 386.5143737792969,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 348.0,
+        "hpAfter": 349.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6480,
+        "time": 386.6143798828125,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 349.0,
+        "hpAfter": 350.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6485,
+        "time": 386.7143859863281,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 350.0,
+        "hpAfter": 351.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6487,
+        "time": 386.81439208984375,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 351.0,
+        "hpAfter": 352.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6489,
+        "time": 386.9143981933594,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 352.0,
+        "hpAfter": 353.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6494,
+        "time": 387.014404296875,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 353.0,
+        "hpAfter": 354.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6496,
+        "time": 387.1144104003906,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 354.0,
+        "hpAfter": 355.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6501,
+        "time": 387.21441650390625,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 355.0,
+        "hpAfter": 356.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6504,
+        "time": 387.3144226074219,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 356.0,
+        "hpAfter": 357.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6506,
+        "time": 387.4144287109375,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 357.0,
+        "hpAfter": 358.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6508,
+        "time": 387.5144348144531,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 358.0,
+        "hpAfter": 359.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6510,
+        "time": 387.61444091796875,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 359.0,
+        "hpAfter": 360.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6516,
+        "time": 387.7144470214844,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 360.0,
+        "hpAfter": 361.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6518,
+        "time": 387.814453125,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 361.0,
+        "hpAfter": 362.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6520,
+        "time": 387.9144592285156,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 362.0,
+        "hpAfter": 363.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6525,
+        "time": 388.01446533203125,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 363.0,
+        "hpAfter": 364.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6527,
+        "time": 388.1144714355469,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 364.0,
+        "hpAfter": 365.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6532,
+        "time": 388.2144775390625,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 365.0,
+        "hpAfter": 366.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6535,
+        "time": 388.3144836425781,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 366.0,
+        "hpAfter": 367.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6536,
+        "time": 388.41448974609375,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 367.0,
+        "hpAfter": 368.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6538,
+        "time": 388.5144958496094,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 368.0,
+        "hpAfter": 369.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6540,
+        "time": 388.614501953125,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 369.0,
+        "hpAfter": 370.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6545,
+        "time": 388.7145080566406,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 370.0,
+        "hpAfter": 371.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6547,
+        "time": 388.81451416015625,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 371.0,
+        "hpAfter": 372.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6551,
+        "time": 388.9145202636719,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 372.0,
+        "hpAfter": 373.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6556,
+        "time": 389.0145263671875,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 373.0,
+        "hpAfter": 374.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6558,
+        "time": 389.1145324707031,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 374.0,
+        "hpAfter": 375.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6563,
+        "time": 389.21453857421875,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 375.0,
+        "hpAfter": 376.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6566,
+        "time": 389.3145446777344,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 376.0,
+        "hpAfter": 377.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6567,
+        "time": 389.41455078125,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 377.0,
+        "hpAfter": 378.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6569,
+        "time": 389.5145568847656,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 378.0,
+        "hpAfter": 379.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6571,
+        "time": 389.61456298828125,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 379.0,
+        "hpAfter": 380.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6576,
+        "time": 389.7145690917969,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 380.0,
+        "hpAfter": 381.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6578,
+        "time": 389.8145751953125,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 381.0,
+        "hpAfter": 382.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6580,
+        "time": 389.9145812988281,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 382.0,
+        "hpAfter": 383.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6585,
+        "time": 390.01458740234375,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 383.0,
+        "hpAfter": 384.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6587,
+        "time": 390.1145935058594,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 384.0,
+        "hpAfter": 385.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6592,
+        "time": 390.214599609375,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 385.0,
+        "hpAfter": 386.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6595,
+        "time": 390.3146057128906,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 386.0,
+        "hpAfter": 387.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6596,
+        "time": 390.41461181640625,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 387.0,
+        "hpAfter": 388.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6598,
+        "time": 390.5146179199219,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 388.0,
+        "hpAfter": 389.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6600,
+        "time": 390.6146240234375,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 389.0,
+        "hpAfter": 390.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6605,
+        "time": 390.7146301269531,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 390.0,
+        "hpAfter": 391.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6607,
+        "time": 390.81463623046875,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 391.0,
+        "hpAfter": 392.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6609,
+        "time": 390.9146423339844,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 392.0,
+        "hpAfter": 393.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6614,
+        "time": 391.0146484375,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 393.0,
+        "hpAfter": 394.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6616,
+        "time": 391.1146545410156,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 394.0,
+        "hpAfter": 395.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6621,
+        "time": 391.21466064453125,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 395.0,
+        "hpAfter": 396.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6625,
+        "time": 391.3146667480469,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 396.0,
+        "hpAfter": 397.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6626,
+        "time": 391.4146728515625,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 397.0,
+        "hpAfter": 398.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6628,
+        "time": 391.5146789550781,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 398.0,
+        "hpAfter": 399.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6630,
+        "time": 391.61468505859375,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 399.0,
+        "hpAfter": 400.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6635,
+        "time": 391.7146911621094,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 400.0,
+        "hpAfter": 401.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6637,
+        "time": 391.814697265625,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 401.0,
+        "hpAfter": 402.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6639,
+        "time": 391.9147033691406,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 402.0,
+        "hpAfter": 403.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6644,
+        "time": 392.01470947265625,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 403.0,
+        "hpAfter": 404.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6646,
+        "time": 392.1147155761719,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 404.0,
+        "hpAfter": 405.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6653,
+        "time": 392.2147216796875,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 405.0,
+        "hpAfter": 406.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6656,
+        "time": 392.3147277832031,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 406.0,
+        "hpAfter": 407.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6657,
+        "time": 392.41473388671875,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 407.0,
+        "hpAfter": 408.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6660,
+        "time": 392.5147399902344,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 408.0,
+        "hpAfter": 409.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6662,
+        "time": 392.61474609375,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 409.0,
+        "hpAfter": 410.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6667,
+        "time": 392.7147521972656,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 410.0,
+        "hpAfter": 411.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6669,
+        "time": 392.81475830078125,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 411.0,
+        "hpAfter": 412.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6671,
+        "time": 392.9147644042969,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 412.0,
+        "hpAfter": 413.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6676,
+        "time": 393.0147705078125,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 413.0,
+        "hpAfter": 414.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6678,
+        "time": 393.1147766113281,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 414.0,
+        "hpAfter": 415.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6683,
+        "time": 393.21478271484375,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 415.0,
+        "hpAfter": 416.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6686,
+        "time": 393.3147888183594,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 416.0,
+        "hpAfter": 417.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6687,
+        "time": 393.414794921875,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 417.0,
+        "hpAfter": 418.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6689,
+        "time": 393.5148010253906,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 418.0,
+        "hpAfter": 419.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6691,
+        "time": 393.61480712890625,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 419.0,
+        "hpAfter": 420.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6699,
+        "time": 393.7148132324219,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 420.0,
+        "hpAfter": 421.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6701,
+        "time": 393.8148193359375,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 421.0,
+        "hpAfter": 422.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6703,
+        "time": 393.9148254394531,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 422.0,
+        "hpAfter": 423.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6707,
+        "time": 394.01483154296875,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 423.0,
+        "hpAfter": 424.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6709,
+        "time": 394.1148376464844,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 424.0,
+        "hpAfter": 425.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6714,
+        "time": 394.21484375,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 425.0,
+        "hpAfter": 426.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6717,
+        "time": 394.3148498535156,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 426.0,
+        "hpAfter": 427.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6718,
+        "time": 394.41485595703125,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 427.0,
+        "hpAfter": 428.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6719,
+        "time": 394.5148620605469,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 428.0,
+        "hpAfter": 429.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6723,
+        "time": 394.6148681640625,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 429.0,
+        "hpAfter": 430.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6728,
+        "time": 394.7148742675781,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 430.0,
+        "hpAfter": 431.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6730,
+        "time": 394.81488037109375,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 431.0,
+        "hpAfter": 432.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6732,
+        "time": 394.9148864746094,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 432.0,
+        "hpAfter": 433.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6736,
+        "time": 395.014892578125,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 433.0,
+        "hpAfter": 434.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6738,
+        "time": 395.1148986816406,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 434.0,
+        "hpAfter": 435.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6743,
+        "time": 395.21490478515625,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 435.0,
+        "hpAfter": 436.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6748,
+        "time": 395.3149108886719,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 436.0,
+        "hpAfter": 437.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6749,
+        "time": 395.4149169921875,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 437.0,
+        "hpAfter": 438.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6750,
+        "time": 395.5149230957031,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 438.0,
+        "hpAfter": 439.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6753,
+        "time": 395.61492919921875,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 439.0,
+        "hpAfter": 440.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6758,
+        "time": 395.7149353027344,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 440.0,
+        "hpAfter": 441.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6760,
+        "time": 395.81494140625,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 441.0,
+        "hpAfter": 442.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6762,
+        "time": 395.9149475097656,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 442.0,
+        "hpAfter": 443.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6766,
+        "time": 396.01495361328125,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 443.0,
+        "hpAfter": 444.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6772,
+        "time": 396.1149597167969,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 444.0,
+        "hpAfter": 445.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6777,
+        "time": 396.2149658203125,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 445.0,
+        "hpAfter": 446.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6781,
+        "time": 396.3149719238281,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 446.0,
+        "hpAfter": 447.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6782,
+        "time": 396.41497802734375,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 447.0,
+        "hpAfter": 448.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6783,
+        "time": 396.5149841308594,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 448.0,
+        "hpAfter": 449.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      },
+      {
+        "zeroBasedEventIndex": 6786,
+        "time": 396.614990234375,
+        "source": 153,
+        "target": 8,
+        "hpBefore": 449.0,
+        "hpAfter": 450.0,
+        "maxHp": 450.0,
+        "actual": 1.0,
+        "rate": 10.0
+      }
+    ],
+    "pauseResume": [
+      {
+        "zeroBasedEventIndex": 6318,
+        "time": 381.3140563964844,
+        "kind": "PauseChanged",
+        "message": "manual_resume",
+        "player": 0
+      },
+      {
+        "zeroBasedEventIndex": 6651,
+        "time": 392.1147155761719,
+        "kind": "PauseChanged",
+        "message": "manual_pause",
+        "player": 0
+      },
+      {
+        "zeroBasedEventIndex": 6652,
+        "time": 392.1147155761719,
+        "kind": "PauseChanged",
+        "message": "manual_resume",
+        "player": 0
+      },
+      {
+        "zeroBasedEventIndex": 6867,
+        "time": 400.41522216796875,
+        "kind": "PauseChanged",
+        "message": "manual_pause",
+        "player": 0
+      }
+    ],
+    "noHealAfterFull": true,
+    "note": "The original6337 report contains19post-save same-time Gather flushes. Coldfork shares save6318 prefix, not all6337originalreport events; do not concatenate both reports."
+  },
+  "replay": {
+    "file": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Native1/british/Data/Replays/replay-adea3e8512e44f20acd4cefc3c420b1b.replay.json",
+      "name": "replay-adea3e8512e44f20acd4cefc3c420b1b.replay.json",
+      "bytes": 187757,
+      "sha256": "d1a0959e5afe48c9362b65d119210acf6d70806b8351489a874de1f7dd1f3c8c"
+    },
+    "decodedPayloadSha256": "35a1dccf15099eb9f848f4fc75fc85b2935eeae1ea6fc190b176b6a8134d5da9",
+    "payloadHashValid": true,
+    "startKind": "loaded_checkpoint",
+    "finishReason": "menu_exit",
+    "segmentId": "adea3e8512e44f20acd4cefc3c420b1b",
+    "incomplete": false,
+    "anchorCount": 2,
+    "recordCount": 5,
+    "eventCount": 6888,
+    "eventsEqualColdReport": true,
+    "firstAnchor": {
+      "completedStep": 3813,
+      "recordIndex": 0,
+      "eventCount": 6318,
+      "hasGuided": false,
+      "eventHash": "4b320a8ed3976f19457e09e659323ff0003ef498cbc44f68aad481739df1f3ef",
+      "inputHash": "825d884c51afbb8ed50721fafe401f3195d84093257eded9f616fd259527cac8",
+      "stateDigest": "a20a6901fff4c11a5debbfb1a999a64e65b09c9a3c48b933cf7d8370d93b5f56"
+    },
+    "lastAnchor": {
+      "completedStep": 4004,
+      "recordIndex": 5,
+      "eventCount": 6888,
+      "hasGuided": false,
+      "eventHash": "f70abbcc2a853f3b6a12434caf9dca80cf74ab9e20199ebbe25ad0d5158fc094",
+      "inputHash": "75abd8c1453de721c0449fe17f253dded1605d6528a60bf250b95f3aa61d290f",
+      "stateDigest": "f44c1ddd87773ec3834836093fe640e98db90d2c309fda296e4c10b1b2a532ea"
+    },
+    "restoredWorldEntitiesExactlyEqualSave": true,
+    "worldDifferenceKeys": [
+      "events"
+    ],
+    "simulationDifferenceKeys": [
+      "accumulator"
+    ],
+    "knownRepresentationDifferences": {
+      "anchorWorldEvents": 0,
+      "savedWorldEvents": 6318,
+      "anchorSimulationAccumulator": 0.0,
+      "savedSimulationAccumulator": 0.0944029688835144
+    },
+    "nativePlaybackIncluded": false
+  },
+  "logPrefix": {
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Native1/british/Cold1/player.log",
+    "byteOffset": 0,
+    "byteLength": 15910,
+    "sha256": "a14f940e62e3aa498e4b3bb23c722f851e92d8ce95c47d25f1628a525efdcd42",
+    "lineCount": 164,
+    "selectedLines": [
+      {
+        "line": 50,
+        "text": "FRONTIER_UI action=LOAD SAVED MATCH world=0.000 frame=3319"
+      },
+      {
+        "line": 58,
+        "text": "FRONTIER_UI action=SLOT 1 · Winding River Valley · 6:21 world=0.000 frame=3827"
+      },
+      {
+        "line": 59,
+        "text": "FRONTIER_LOAD slot=1 match=ccc7b9fd6eb44cc3817dce2432df64af time=381.3141"
+      },
+      {
+        "line": 84,
+        "text": "FRONTIER_CAPTURE_OK /Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Native1/british/Data/Captures/Frontier-20261009-214235-487-f3829-8bb9fe348ee14708b4f31ce9f184e426.json"
+      },
+      {
+        "line": 97,
+        "text": "FRONTIER_PAUSE paused=False reason=manual_resume world=381.314100 realtime=75.101429 frame=4204"
+      },
+      {
+        "line": 100,
+        "text": "FRONTIER_CAPTURE_OK /Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Native1/british/Data/Captures/Frontier-20261009-214252-488-f4834-15405fa824e647e1a670c4cfac2ede42.json"
+      },
+      {
+        "line": 113,
+        "text": "FRONTIER_PAUSE paused=True reason=manual_pause world=392.114700 realtime=85.818607 frame=4835"
+      },
+      {
+        "line": 116,
+        "text": "FRONTIER_PAUSE paused=False reason=manual_resume world=392.114700 realtime=107.432886 frame=6127"
+      },
+      {
+        "line": 122,
+        "text": "FRONTIER_CAPTURE_OK /Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Native1/british/Data/Captures/Frontier-20261009-214322-422-f6616-eb81e6ba52754829a7ce88a6f2c7c328.json"
+      },
+      {
+        "line": 135,
+        "text": "FRONTIER_PAUSE paused=True reason=manual_pause world=400.415200 realtime=115.751353 frame=6617"
+      },
+      {
+        "line": 143,
+        "text": "FRONTIER_UI action=SAVE REPLAY world=400.415 frame=7649"
+      },
+      {
+        "line": 145,
+        "text": "FRONTIER_REPLAY_SAVED file=/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Native1/british/Data/Replays/replay-adea3e8512e44f20acd4cefc3c420b1b.replay.json"
+      },
+      {
+        "line": 163,
+        "text": "FRONTIER_UI action=RETURN TO MENU world=400.415 frame=8145"
+      },
+      {
+        "line": 164,
+        "text": "FRONTIER_REPORT /Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Native1/british/Data/Reports/20261009-214348-190-ccc7b9fd6eb44cc3817dce2432df64af-menu_exit.json"
+      }
+    ],
+    "note": "Coldprocess log continues into recording playback; whole-file later hash is deliberately not bound."
+  },
+  "bounds": [
+    "Actual cold restore and live continuation are proved, not just SaveFile parsing.",
+    "Same paid Priest153 continues manualHeal withauto=false and no reissuedP0command, samePatient8, until450HP thenIdle/target0.",
+    "Transient noargsPID97964 menu instance is documented, excluded fromrestoreproof and claimed to leave oldslot untouched in its boundedreceipt.",
+    "Native recorded playback is separate and not counted here.",
+    "menu_exit/winner-1 is not fullhumanmatchwin; noFPSacceptance."
+  ]
+}
