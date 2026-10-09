@@ -63,13 +63,9 @@ namespace Frontier
                 // The bank query excludes bridges, leaving a real channel under
                 // the bridge deck instead of raising the riverbed into its roof.
                 vertices[i]=new Vector3(x,layout.BankHeight(p),z);uv[i]=p/128;
-                float distance=layout.SignedBankDistance(p);
-                float tidal=layout.Id==MapTopology.Estuary?Mathf.SmoothStep(0,1,(z-78)/18f):0;
-                float noise=Mathf.PerlinNoise(x*.13f+3,z*.11f+8)-.5f;
-                float damp=1-Mathf.SmoothStep(0,1,(distance-.25f-noise*.25f)/Mathf.Lerp(2.6f,3.7f,tidal));
-                float shoulder=1-Mathf.SmoothStep(0,1,(distance-1.5f-noise*.65f)/Mathf.Lerp(4,6,tidal));
-                float sand=(1-damp)*shoulder;
-                layers[i]=new Color(damp,sand,1-damp-sand,1);
+                // Shared map-owned bend profile: inner sediment lobes and outer
+                // cut-banks agree with picking/heights, not a second shore mask.
+                layers[i]=layout.BankLayers(p);
             }
             for(int z=0;z<count-1;z++)for(int x=0;x<count-1;x++)
             {

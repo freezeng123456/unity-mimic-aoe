@@ -87,18 +87,21 @@ namespace Frontier
             if(HasWater&&id!=MapTopology.River)
             {
                 shore=new float[Resolution*Resolution];nearestCenter=new Vector2[shore.Length];
+                PrepareBankBendCache();
                 if(Generated||HasScenario)MapGeneration.BuildShoreCache(Channels,shore,nearestCenter,Resolution,Cell);
                 else for(int z=0;z<Resolution;z++)for(int x=0;x<Resolution;x++)
                 {
                     int index=x+z*Resolution;Vector2 point=new Vector2(x*Cell,z*Cell);float best=float.MaxValue;Vector2 center=Vector2.zero;
+                    int bankSegment=-1;float bankFraction=0;
                     foreach(var channel in Channels)for(int i=0;i<channel.Centers.Length-1;i++)
                     {
                         Vector2 a=channel.Centers[i],delta=channel.Centers[i+1]-a;
                         float t=Mathf.Clamp01(Vector2.Dot(point-a,delta)/Mathf.Max(.000001f,delta.sqrMagnitude));
                         Vector2 candidate=a+delta*t;float distance=(point-candidate).magnitude-Mathf.Lerp(channel.HalfWidths[i],channel.HalfWidths[i+1],t);
-                        if(distance<best){best=distance;center=candidate;}
+                        if(distance<best){best=distance;center=candidate;bankSegment=i;bankFraction=t;}
                     }
                     shore[index]=best;nearestCenter[index]=center;
+                    StoreBankBend(index,point,center,bankSegment,bankFraction);
                 }
             }
             if(HasScenario)
@@ -157,7 +160,12 @@ namespace Frontier
             if(!HasWater||Id==MapTopology.River)return 0;
             float distance=CachedShore(point);
             if(distance<=0)return Mathf.Lerp(WaterHeight-.02f,-.9f,Mathf.SmoothStep(0,1,-distance/4));
-            return (WaterHeight-.02f)*(1-Mathf.SmoothStep(0,1,distance/3));
+            // Winding's low outer cut-bank uses the same profile as its visible
+            // sediment layers. Water, river bed, inland land and bridges retain
+            // their historical geometry; no new slope blockers are implied.
+            if(bankBend!=null&&distance>=3)return 0;
+            float rise=bankBend==null?3:BankProfile(point,distance).RiseWidth;
+            return (WaterHeight-.02f)*(1-Mathf.SmoothStep(0,1,distance/rise));
         }
         public float GroundHeight(Vector2 point)
         {
