@@ -1,6 +1,8 @@
 # 当前完成状态 · 0.19.0医护开发中
 
-2026-10-10。076源代码接入四经典文明的付费Imam/Priest、Church、医疗研究、实际Heal/AutoHeal/战斗锁/不叠加、支援角色与伤员整补AI、原创新模型/动作/HUD。六文明、72实体、222科技、169卡、72时代选择只是内容清单，不能替代策略/平衡验证。[内容](Content-076.md)、[合同](Content-076-Contract.md)、[验证](Verification-076.md)。
+2026-10-10。**C1私有交付已闭合；C2正在新增医护真实曲河／驻扎／运输专项，当前新FP尚未执行，C1下列1795与原GUID不是当前树的自动验收。** [C2合同](Content-076-River-Contract.md)、[C2运行记录](Verification-076-River.md)。
+
+076源代码接入四经典文明的付费Imam/Priest、Church、医疗研究、实际Heal/AutoHeal/战斗锁/不叠加、支援角色与伤员整补AI、原创新模型/动作/HUD。六文明、72实体、222科技、169卡、72时代选择只是内容清单，不能替代策略/平衡验证。[内容](Content-076.md)、[合同](Content-076-Contract.md)、[验证](Verification-076.md)。
 
 新源码专项第四轮实际83项EditMode与29项PlayMode全过、指纹稳定；全回归实际1347 Edit+448 Play共1795项全过且指纹稳定；同源码新macOS构建exit0/GUID a86c515f3ab040649ea505e507193ff3；两局默认普通AI实际5名付费医生、34条严格整补回火链已发生，但不是平衡／收益对照。
 
