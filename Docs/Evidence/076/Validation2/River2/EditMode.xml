@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="8" result="Failed(Child)" total="8" passed="6" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-09 22:25:19Z" end-time="2026-10-09 22:27:38Z" duration="138.8102545">
+  <test-suite type="TestSuite" id="1000" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="1355" result="Failed" site="Child" start-time="2026-10-09 22:25:19Z" end-time="2026-10-09 22:27:38Z" duration="138.810255" total="8" passed="6" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="2606" name="Frontier.EditMode.dll" fullname="/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Library/ScriptAssemblies/Frontier.EditMode.dll" runstate="Runnable" testcasecount="1355" result="Failed" site="Child" start-time="2026-10-09 22:25:19Z" end-time="2026-10-09 22:27:38Z" duration="138.804091" total="8" passed="6" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="33255" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="2607" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="1349" result="Failed" site="Child" start-time="2026-10-09 22:25:19Z" end-time="2026-10-09 22:27:38Z" duration="138.795574" total="8" passed="6" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="2608" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="1349" result="Failed" site="Child" start-time="2026-10-09 22:25:19Z" end-time="2026-10-09 22:27:38Z" duration="138.792702" total="8" passed="6" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1535" name="Healing076RiverLifecycleTests" fullname="Frontier.Tests.Healing076RiverLifecycleTests" classname="Frontier.Tests.Healing076RiverLifecycleTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-09 22:25:19Z" end-time="2026-10-09 22:27:38Z" duration="138.776730" total="8" passed="6" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="1544" name="ActualGarrisonCleansOnlyContainerRelatedHealingAndColdExitNeedsFreshIntent" fullname="Frontier.Tests.Healing076RiverLifecycleTests.ActualGarrisonCleansOnlyContainerRelatedHealingAndColdExitNeedsFreshIntent" classname="Frontier.Tests.Healing076RiverLifecycleTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-09 22:25:19Z" end-time="2026-10-09 22:25:49Z" duration="29.558508" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1542" name="ActualGarrisonCleansOnlyContainerRelatedHealingAndColdExitNeedsFreshIntent(False)" fullname="Frontier.Tests.Healing076RiverLifecycleTests.ActualGarrisonCleansOnlyContainerRelatedHealingAndColdExitNeedsFreshIntent(False)" methodname="ActualGarrisonCleansOnlyContainerRelatedHealingAndColdExitNeedsFreshIntent" classname="Frontier.Tests.Healing076RiverLifecycleTests" runstate="Runnable" seed="1373511314" result="Passed" start-time="2026-10-09 22:25:19Z" end-time="2026-10-09 22:25:34Z" duration="14.903738" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Garrison: id=137; host=1; step=9; t=0.9000001; hp=68.5; expectedQueues=2
+Disk checkpoint: step=9; t=0.9000001; schema=5; bytes=22269; selected=137
+]]></output>
+              </test-case>
+              <test-case id="1543" name="ActualGarrisonCleansOnlyContainerRelatedHealingAndColdExitNeedsFreshIntent(True)" fullname="Frontier.Tests.Healing076RiverLifecycleTests.ActualGarrisonCleansOnlyContainerRelatedHealingAndColdExitNeedsFreshIntent(True)" methodname="ActualGarrisonCleansOnlyContainerRelatedHealingAndColdExitNeedsFreshIntent" classname="Frontier.Tests.Healing076RiverLifecycleTests" runstate="Runnable" seed="999643022" result="Passed" start-time="2026-10-09 22:25:34Z" end-time="2026-10-09 22:25:49Z" duration="14.650365" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Garrison: id=134; host=1; step=16; t=1.60000026; hp=31.0000019; expectedQueues=2
+Disk checkpoint: step=16; t=1.60000026; schema=5; bytes=22577; selected=134
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1538" name="ExplicitHealPhysicallyCrossesWindingBridgeAndSurvivesColdCheckpoint" fullname="Frontier.Tests.Healing076RiverLifecycleTests.ExplicitHealPhysicallyCrossesWindingBridgeAndSurvivesColdCheckpoint" classname="Frontier.Tests.Healing076RiverLifecycleTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-09 22:25:49Z" end-time="2026-10-09 22:27:26Z" duration="97.629993" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1536" name="ExplicitHealPhysicallyCrossesWindingBridgeAndSurvivesColdCheckpoint(0)" fullname="Frontier.Tests.Healing076RiverLifecycleTests.ExplicitHealPhysicallyCrossesWindingBridgeAndSurvivesColdCheckpoint(0)" methodname="ExplicitHealPhysicallyCrossesWindingBridgeAndSurvivesColdCheckpoint" classname="Frontier.Tests.Healing076RiverLifecycleTests" runstate="Runnable" seed="297166986" result="Passed" start-time="2026-10-09 22:25:49Z" end-time="2026-10-09 22:26:37Z" duration="48.489096" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Disk checkpoint: step=30; t=2.99999928; schema=5; bytes=21801; selected=134
+Bridge 0: center=(57.54, 39.00); start=(45.79, 53.14); patient=(82.05, 18.33); actualDoctor=(72.92, 27.10); heals=383
+]]></output>
+              </test-case>
+              <test-case id="1537" name="ExplicitHealPhysicallyCrossesWindingBridgeAndSurvivesColdCheckpoint(1)" fullname="Frontier.Tests.Healing076RiverLifecycleTests.ExplicitHealPhysicallyCrossesWindingBridgeAndSurvivesColdCheckpoint(1)" methodname="ExplicitHealPhysicallyCrossesWindingBridgeAndSurvivesColdCheckpoint" classname="Frontier.Tests.Healing076RiverLifecycleTests" runstate="Runnable" seed="575273818" result="Passed" start-time="2026-10-09 22:26:37Z" end-time="2026-10-09 22:27:26Z" duration="49.139584" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Disk checkpoint: step=38; t=3.79999852; schema=5; bytes=22005; selected=134
+Bridge 1: center=(61.81, 89.00); start=(48.61, 71.45); patient=(82.56, 114.69); actualDoctor=(74.79, 104.80); heals=383
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1547" name="PaidWindingTransportCleansHealingAndColdDisembarkRestoresEligibility" fullname="Frontier.Tests.Healing076RiverLifecycleTests.PaidWindingTransportCleansHealingAndColdDisembarkRestoresEligibility" classname="Frontier.Tests.Healing076RiverLifecycleTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 22:27:26Z" end-time="2026-10-09 22:27:37Z" duration="10.946126" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1545" name="PaidWindingTransportCleansHealingAndColdDisembarkRestoresEligibility(False)" fullname="Frontier.Tests.Healing076RiverLifecycleTests.PaidWindingTransportCleansHealingAndColdDisembarkRestoresEligibility(False)" methodname="PaidWindingTransportCleansHealingAndColdDisembarkRestoresEligibility" classname="Frontier.Tests.Healing076RiverLifecycleTests" runstate="Runnable" seed="2032238590" result="Failed" start-time="2026-10-09 22:27:26Z" end-time="2026-10-09 22:27:32Z" duration="5.469243" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fixture must bind the actual common shore, not an assumed requested point
+  Expected: less than 0.00100000005f
+  But was:  1.0f
+]]></message>
+                  <stack-trace><![CDATA[at Frontier.Tests.Healing076RiverLifecycleTests.PaidWindingTransportCleansHealingAndColdDisembarkRestoresEligibility (System.Boolean enteringHealer) [0x00294] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/Healing076RiverLifecycleTests.cs:469
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[Ordinary sail: requestedBerth=(46.57, 30.96); formationSlot=(51.07, 26.46); finalGoal=(51.07, 26.46); actualShip=(51.07, 26.46)
+]]></output>
+              </test-case>
+              <test-case id="1546" name="PaidWindingTransportCleansHealingAndColdDisembarkRestoresEligibility(True)" fullname="Frontier.Tests.Healing076RiverLifecycleTests.PaidWindingTransportCleansHealingAndColdDisembarkRestoresEligibility(True)" methodname="PaidWindingTransportCleansHealingAndColdDisembarkRestoresEligibility" classname="Frontier.Tests.Healing076RiverLifecycleTests" runstate="Runnable" seed="317339528" result="Failed" start-time="2026-10-09 22:27:32Z" end-time="2026-10-09 22:27:37Z" duration="5.461859" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fixture must bind the actual common shore, not an assumed requested point
+  Expected: less than 0.00100000005f
+  But was:  1.0f
+]]></message>
+                  <stack-trace><![CDATA[at Frontier.Tests.Healing076RiverLifecycleTests.PaidWindingTransportCleansHealingAndColdDisembarkRestoresEligibility (System.Boolean enteringHealer) [0x00294] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/Healing076RiverLifecycleTests.cs:469
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[Ordinary sail: requestedBerth=(46.57, 30.96); formationSlot=(51.07, 26.46); finalGoal=(51.07, 26.46); actualShip=(51.07, 26.46)
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1541" name="WindingRailingBlocksNearStationaryCareUntilOrdinaryDetour" fullname="Frontier.Tests.Healing076RiverLifecycleTests.WindingRailingBlocksNearStationaryCareUntilOrdinaryDetour" classname="Frontier.Tests.Healing076RiverLifecycleTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-09 22:27:37Z" end-time="2026-10-09 22:27:38Z" duration="0.640249" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1539" name="WindingRailingBlocksNearStationaryCareUntilOrdinaryDetour(0)" fullname="Frontier.Tests.Healing076RiverLifecycleTests.WindingRailingBlocksNearStationaryCareUntilOrdinaryDetour(0)" methodname="WindingRailingBlocksNearStationaryCareUntilOrdinaryDetour" classname="Frontier.Tests.Healing076RiverLifecycleTests" runstate="Runnable" seed="1977021221" result="Passed" start-time="2026-10-09 22:27:37Z" end-time="2026-10-09 22:27:38Z" duration="0.322501" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Railing 0: bodyPoints=(66.79, 35.91)/(69.37, 38.97); local=(9.07, 3.60)/(9.07, 7.60); firstHeal=6.699996; actualDoctor=(76.81, 33.11)
+]]></output>
+              </test-case>
+              <test-case id="1540" name="WindingRailingBlocksNearStationaryCareUntilOrdinaryDetour(1)" fullname="Frontier.Tests.Healing076RiverLifecycleTests.WindingRailingBlocksNearStationaryCareUntilOrdinaryDetour(1)" methodname="WindingRailingBlocksNearStationaryCareUntilOrdinaryDetour" classname="Frontier.Tests.Healing076RiverLifecycleTests" runstate="Runnable" seed="1714697194" result="Passed" start-time="2026-10-09 22:27:38Z" end-time="2026-10-09 22:27:38Z" duration="0.316813" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Railing 1: bodyPoints=(65.31, 99.06)/(61.81, 101.88); local=(10.02, 3.60)/(10.02, 8.10); firstHeal=6.499996; actualDoctor=(68.28, 108.88)
+Saving results to: /Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,6 +1,15 @@
 # 076验收分层矩阵
 
-**C2补充（2026-10-10）：** River3 / HEAD9b7a5a8 / FPe35a3b72真实8/8通过，覆盖原始Winding两桥跨越／侧栏遮挡、patient及healer真实Town出入、付费运输上下船与各实际入口磁盘冷读。[精确证据与限制](Verification-076-River.md)。以下表格仍为冻结C1，不重写历史待验措辞；C2完整回归／构建／原生不由这8项推定。
+**C2实际补充（2026-10-10）：** River3专项8/8后，同源码HEAD `09e07a40fb0008cdb69719336a674cb228129244`／776输入FP `e35a3b72c2a7b33371eb2c9b34a6c1838bc758b66dd73aacc1e707eeffe71a91` 的Full1实际1803/1803、Build1 exit0／新GUID `ed29410c2b27484abeac486c8f57b81b`。[精确证据与限制](Verification-076-River.md)。旧1795项全保留、新8项加入；旧93项兼容是完整回归内子集。
+
+|C2层级|已执行证据|独立缺口|
+|---|---|---|
+|完整回归／构建|1355 Edit＋448 Play全部通过，776输入三份hash一致；298文件新app与manifest bytes／SHA／mode一致|构建不等于完整原生医疗或内容完成|
+|Winding医疗地形／容器|两桥整跨／侧栏、patient及healer真实Town及付费船出入、各实际入口磁盘冷读、出容器fresh Heal均通过|受控AgeII／初始医生及伤势／5000资源fixture；其他曲河医疗原生仍待验|
+|奥斯曼原生默认经济|普通300F/300W/100C、真实100W Mosque136及施工；新GUID八组PNG/sidecar身份与SHA一致|Explorer8 t358.212646实际阵亡；无Imam／P0升级／付费军事训练；Heal0，医疗与返战链未完成|
+|原生记录与退出|menu_exit／winner=-1／8608事件，replay完整记录与JSONL一致，菜单后QUIT且PID55949退出|录像未播放Verified、无奥斯曼冷存档读回；不是自然完整人工胜负或FPS验收|
+
+**以下表格及末尾三项是冻结C1历史记录，保持旧版本待验原文；本页076验收事实以以上C2历史增补为准；后续077／0.20.0另验，不把旧GUID或英国UI外推为新奥斯曼验收。**
 
 2026-10-10。以[预先合同](Content-076-Contract.md)为门槛，[运行记录](Verification-076.md)为当前事实。Focused4身份b1a9b6a、FPdabf34d26490cece872959764b8b9e515749584b180f3d7899f38d79b69a6f8f：新增56 Edit+16 Play=72项；同轮旧兼容40项。下表区分专项、[普通观察](Ordinary-076-Results.md)与[原生实测](Native-076.md)，不把其中一层自动扩大为另一层。
 
@@ -21,7 +30,9 @@
 
 两原创文明本轮没有独立医生生产链。075旧1723项、GUID、原生图像、冷恢复与云盘文件保持原验收身份，不计作076新增验证。0.19候选私有交付已有独立实际证据：f0封包快照／b1a9运行时身份分离，原Delivery1体积超限exit2／size-only审计FAIL保留，无损transport独立审计PASS，十二云盘文件全字节／SHA／owner-only／父目录和子ID集合及远端完整拼接已核验；既有private／open／draft PR1的f0快照已读回，后补交付文档HEAD1f74195亦已独立GET读回private／open／draft及main不变，后续receipt归档不改变运行时／封包。[076交付](Delivery-076.md)。完整人工胜局、原生FPS、双物理Mac及跨版本迁移仍不因专项或交付通过而自动成立。
 
-## 下一组最小区分测试（本轮冻结后）
+## C1冻结时的下一组最小区分测试（历史门槛）
+
+以下三项现已由C2 River3及Full1内的新8项实际覆盖，保留原计划以便追溯；不再作为当前机制层待执行清单。
 
 1. 真实Winding两座桥：西岸医生→东岸患者，逐Tick验证单位半径移动段合法；静止且医疗细线可达才发生Heal，途中冷恢复；桥侧近距离但隔栏时不得提前治疗。
 2. 真实Garrison/Ungarrison，以医生/患者参数化：清掉外部医护的相关active/queued Heal、保留其无关Shift Move、立即冷读，出驻后旧目标不得自行复活；进入者自身orders按原容器规则全清。
