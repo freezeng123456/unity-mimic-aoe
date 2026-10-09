@@ -22,6 +22,19 @@ namespace Frontier.Tests
             ground=terrain.Find("Continuous sculpted land and river bed").GetComponent<MeshFilter>().sharedMesh;
         }
         [TearDown] public void TearDown(){if(stage!=null)Object.DestroyImmediate(stage);}
+        [Test] public void WindingSedimentPaletteHasItsOwnMaterialAndDoesNotLeakIntoOtherRiverMaps()
+        {
+            var material=terrain.Find("Continuous sculpted land and river bed").GetComponent<MeshRenderer>().sharedMaterial;
+            Assert.AreEqual(new Color(.74f,.67f,.48f),material.GetColor("_SandColor"));
+            foreach(var map in new[]{MapTopology.Tributaries,MapTopology.Estuary,MapTopology.Tropical})
+            {
+                var other=WaterPresentation.BuildTerrain(stage.transform,new World(Catalog.Load(),44,"coast","ottoman",5,map));
+                var otherMaterial=other.Find("Continuous sculpted land and river bed").GetComponent<MeshRenderer>().sharedMaterial;
+                Assert.AreNotSame(material,otherMaterial,"Winding cannot recolor "+map+" via cached material");
+                Assert.AreEqual(map==MapTopology.Tropical?new Color(.66f,.57f,.38f):new Color(.62f,.555f,.37f),otherMaterial.GetColor("_SandColor"));
+            }
+            Assert.AreEqual(new Color(.74f,.67f,.48f),material.GetColor("_SandColor"),"Other-map construction must not overwrite the Winding material");
+        }
         [Test] public void ActualGroundMeshColorsAndHeightsEqualTheSharedMapQueries()
         {
             Assert.AreEqual(129*129,ground.vertexCount);Assert.AreEqual(1,ground.subMeshCount);

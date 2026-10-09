@@ -17,7 +17,11 @@ namespace Frontier
 
         static Material GroundMaterial(string map)
         {
-            bool tropical=map==MapTopology.Tropical;string key=tropical?"tropical":"temperate";
+            bool tropical=map==MapTopology.Tropical,winding=map==MapTopology.Winding;
+            // Winding owns its sediment palette; never tint other temperate
+            // rivers through the shared material cache. Protected pads retain
+            // their old height/layer profiles, not their former sand tint.
+            string key=tropical?"tropical":winding?"winding":"temperate";
             if(groundMaterials.TryGetValue(key,out var cached)&&cached!=null)return cached;
             var shader=Resources.Load<Shader>("RiverGround");if(shader==null)return LandscapePresentation.GroundMaterial();
             cached=new Material(shader){name="Frontier / continuous "+key+" riverbank layers"};
@@ -26,7 +30,7 @@ namespace Frontier
             cached.SetTexture("_SoilMap",soil.GetTexture("_BaseMap"));cached.SetTexture("_SoilNormals",soil.GetTexture("_BumpMap"));
             cached.SetColor("_TurfTint",tropical?new Color(.96f,1.10f,.88f):Color.white);
             cached.SetColor("_MudColor",tropical?new Color(.43f,.32f,.205f):new Color(.39f,.335f,.225f));
-            cached.SetColor("_SandColor",tropical?new Color(.66f,.57f,.38f):new Color(.62f,.555f,.37f));
+            cached.SetColor("_SandColor",tropical?new Color(.66f,.57f,.38f):winding?new Color(.74f,.67f,.48f):new Color(.62f,.555f,.37f));
             groundMaterials[key]=cached;return cached;
         }
 
