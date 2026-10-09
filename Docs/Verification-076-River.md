@@ -15,3 +15,14 @@ HEAD `d917cab0e4da15a5fa090136e464db791f45bcae`，776输入FP `d73591041dae31d39
 HEAD `2d9889b7b87c8a6c37cdb57fbebe58f1e93be66f`，FP `5d1e5ca1fb2abc421d9b6e2baec5866ddddce56a9f6511f57b12e6b058c59270`，源指纹稳定；实际仍6/8，exit2，XML138.810秒，原件保留。新增日志确认普通Move请求泊点 `(46.57,30.96)`、实际槽位及船位置 `(51.07,26.46)`，与4.5米对角槽偏移一致。普通Move目标修正已通过；两失败前进到第469行：预勘测使用.9米陆地半径，真实乘客半径所得shore相差1米，故把勘测请求点当实际入口仍是夹具错误。
 
 下一修正仅将入船前的公共 `TryTransportShore` 查询使用该真实乘客半径（与生产入口同样下限.4），严格比对实际Embark shore和resolved berth均小于.001米；短路程和首Tick步行断言也绑定该实际shore。医疗、真实船程和冷读门槛不变；未改生产逻辑，尚未宣称船载链通过。
+
+## River3：8/8实际通过
+
+HEAD `9b7a5a8`，776输入FP `e35a3b72c2a7b33371eb2c9b34a6c1838bc758b66dd73aacc1e707eeffe71a91`，运行前后一致；8过、0失败／跳过／不确定，exit0，XML250.638秒。原始 `River3/EditMode.xml`、log及receipt保留，独立审计另存Diagnostics。
+
+- 两整桥例均真实跨桥后完成383条正数治疗；途中真实磁盘schema5检查点分别step30／38，warm/cold全世界／会话／digest逐Tick一致。
+- 两侧栏例先静止30Tick无治疗，显式绕桥口后分别t6.70／6.50首次正数Heal，未删细线遮挡或身体扫掠门槛。
+- patient137／healer134真实Town步行入驻分别t.9／1.6，相关active／queued Heal清除、2名外部医护无关完整队列保留；原步冷读，真实退出后需fresh Heal。
+- 付费Dock、真实训练的ship141两例均真实Embark（step1263／t126.298645），patient76.5HP／healer31.0000019HP仍受伤，人口7。真实入口 `(43,33)` 与泊点 `(46.66,31.40)` 严格绑定，不再混用预勘测 `(42,33)` 或普通Move槽位。各在入船该步真实磁盘冷读（25481／25377B），连续50Tick船载同步且无治疗；实际航行到另一岸 `(60.92,101.78)`、卸船、fresh Heal正数恢复，warm/cold一直相同。
+
+仅覆盖受控AgeII／5000资源／初始医生与伤势／无AI、原始地形和定义的机制链，不等于原生鼠标、默认经济、普通AI、完整胜局、FPS或平衡。3秒owned Editor sample是诊断附件，不作FPS验收。为避免重复跑同一批fixture，下一步直接完整Edit＋Play（含旧93项运输／曲河／驻扎兼容）并构建同源码新app；未生成前不预填通过数／GUID。原1795及C1包保持原身份。

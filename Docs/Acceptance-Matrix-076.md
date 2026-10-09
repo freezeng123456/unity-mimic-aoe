@@ -1,5 +1,7 @@
 # 076验收分层矩阵
 
+**C2补充（2026-10-10）：** River3 / HEAD9b7a5a8 / FPe35a3b72真实8/8通过，覆盖原始Winding两桥跨越／侧栏遮挡、patient及healer真实Town出入、付费运输上下船与各实际入口磁盘冷读。[精确证据与限制](Verification-076-River.md)。以下表格仍为冻结C1，不重写历史待验措辞；C2完整回归／构建／原生不由这8项推定。
+
 2026-10-10。以[预先合同](Content-076-Contract.md)为门槛，[运行记录](Verification-076.md)为当前事实。Focused4身份b1a9b6a、FPdabf34d26490cece872959764b8b9e515749584b180f3d7899f38d79b69a6f8f：新增56 Edit+16 Play=72项；同轮旧兼容40项。下表区分专项、[普通观察](Ordinary-076-Results.md)与[原生实测](Native-076.md)，不把其中一层自动扩大为另一层。
 
 |层级|专项实际证据|仍独立待验|
