@@ -451,10 +451,15 @@ namespace Frontier.Tests
         {
             var f=new Fixture();var w=f.World;var g=InitialGroup(f,true);var ship=PaidTransport(f,g.Builder,out _);
             var shore=Shore(w,ship,0,out var berth);MoveGroupToShore(f,g,shore);
-            // Real sail into the chosen berth before medical links are created:
-            // this keeps the short wounded-patient entry discriminator bounded.
-            Order(f,ship.id,OrderKind.Move,point:berth);Until(f,()=>ship.orders.Count==0,90,"Paid vessel reaches actual common berth");
-            Assert.Less(Vector2.Distance(ship.position,berth),.1f);
+            // Ordinary Move chooses a water formation slot, not the exact naval
+            // berth. Bind its actual destination; only real Embark is entitled
+            // to resolve the final shore/berth pair with the passenger's radius.
+            Order(f,ship.id,OrderKind.Move,point:berth);var sailOrder=ship.orders.Peek();var sailSlot=sailOrder.point;
+            Until(f,()=>ship.orders.Count==0,90,"Paid vessel reaches its assigned water Move destination");
+            var sailGoal=sailOrder.hasResolvedPoint?sailOrder.resolvedPoint:sailOrder.point;
+            Assert.Less(Vector2.Distance(ship.position,sailGoal),.1f);
+            Assert.IsTrue(w.WaterNavigation.IsWalkable(ship.position,ship.def.radius));
+            TestContext.WriteLine($"Ordinary sail: requestedBerth={berth}; formationSlot={sailSlot}; finalGoal={sailGoal}; actualShip={ship.position}");
             int entrant=EstablishRelatedIntents(f,g,enteringHealer,out var expected);var actor=w.Get(entrant);
             Assert.Less(PathLength(w,actor,shore),w.Speed(actor)*10,"Prepared shoreline entry must be genuinely short");
             int population=w.Players[0].usedPopulation;var resources=w.Players[0].resources;float initialHp=actor.hp;int events=w.Events.Count;float started=w.Time;var start=actor.position;
@@ -464,9 +469,14 @@ namespace Frontier.Tests
             Assert.Less(Vector2.Distance(shore,actualShore),.001f,"Fixture must bind the actual common shore, not an assumed requested point");
             Assert.Greater(Vector2.Distance(actor.position,actualShore),w.Speed(actor)*Dt+.35f+.001f,
                 "Need a genuinely distant first-tick boarding discriminator before asserting no instant entry");
-            Assert.AreEqual(OrderKind.TransportBerth,ship.orders.Peek().kind);Step(f);
+            Assert.AreEqual(OrderKind.TransportBerth,ship.orders.Peek().kind);
+            var boardingOrder=ship.orders.Peek();Assert.IsTrue(boardingOrder.hasResolvedPoint);
+            Assert.IsTrue(w.WaterNavigation.IsWalkable(boardingOrder.resolvedPoint,ship.def.radius));
+            TestContext.WriteLine($"Real Embark: requestedShore={shore}; actualShore={actualShore}; actualBerth={boardingOrder.resolvedPoint}; preEntryShip={ship.position}");
+            Step(f);
             Assert.AreEqual(0,actor.garrisonedIn,"A distant shore command must walk, not instantly board");Assert.Greater(Vector2.Distance(start,actor.position),0);
             Until(f,()=>actor.garrisonedIn==ship.id,12,"Actual short-route boarding into paid transport");
+            Assert.LessOrEqual(Vector2.Distance(ship.position,boardingOrder.resolvedPoint),.251f,"Actual entry requires the ship at its real resolved naval berth");
             Assert.LessOrEqual(w.Time-started,12.101f);AssertEntryCleanup(f,entrant,ship.id,expected,events,"Embarked");
             Assert.AreEqual(resources,w.Players[0].resources);Assert.GreaterOrEqual(actor.hp,initialHp);
             var cold=Fixture.Cold(f,entrant);StopExternalPair(f,cold,g,entrant);float containedHp=actor.hp;int containedEvents=w.Events.Count;
