@@ -194,7 +194,7 @@ namespace Frontier
                 if(!Patient(e)||e.hp>=world.MaxHp(e)*.85f||world.Time>=r.deadline)
                 {
                     bool restored=Patient(e)&&e.hp>=world.MaxHp(e)*.85f;
-                    Release(i,e==null||!e.Alive?"Recovery member lost":restored?"Reached 85% health; ordinary army may rejoin":"Bounded recovery window expired",!restored);
+                    Release(i,e==null||!e.Alive?"Recovery member lost":!Patient(e)?"Recovery member unavailable":restored?"Reached 85% health; ordinary army may rejoin":"Bounded recovery window expired",!restored);
                     continue;
                 }
                 if(!ExpectedOrder(e,r)){Release(i,"A different order overrides medical recovery",true);continue;}

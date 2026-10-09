@@ -277,6 +277,56 @@ namespace Frontier.Tests
                     "The stale assignment is cleared through an accepted authority Hold command");
             }
         }
+        [Test] public void ActualReleaseCooldownSurvivesImmediateColdRestoreBlocksWholeWindowAndExpiresIntoRealReadmission()
+        {
+            var a=BusyDoctorRecovery();var w=a.World;var patient=a.Soldiers[0];float injured=patient.hp;
+            for(int i=0;i<950&&a.Medical.IsRecovering(patient.id);i++){w.Tick(.1f);a.Support();}
+            Assert.IsFalse(a.Medical.IsRecovering(patient.id));Assert.AreEqual(injured,patient.hp);
+            var returned=w.Events.Single(e=>e.kind=="AIMedicalReturn"&&e.entity==patient.id);
+            Assert.AreEqual("Bounded recovery window expired",returned.message);
+            var saved=SnapshotCodec.Clone(a.Medical.CaptureState());Assert.AreEqual(1,saved.cooldowns.Length);
+            var retry=saved.cooldowns.Single();Assert.AreEqual(patient.id,retry.id);Assert.AreEqual(returned.time+30,retry.retryAt,.001f);
+            Assert.Greater(retry.retryAt,w.Time);
+            // This cold boundary is AFTER the real release created the timer,
+            // rather than before the two worlds independently generate it.
+            var cold=World.Restore(w.Rules,SnapshotCodec.Clone(w.CaptureState()));
+            var restored=new AiMedicalSupport076(cold,0);restored.RestoreState(saved);
+            Assert.AreEqual(JsonUtility.ToJson(a.Medical.CaptureState()),JsonUtility.ToJson(restored.CaptureState()));
+            Assert.AreEqual(JsonUtility.ToJson(w.CaptureState()),JsonUtility.ToJson(cold.CaptureState()));
+            void StepBoth()
+            {
+                w.Tick(.1f);cold.Tick(.1f);a.Support();
+                var own=cold.Entities.Where(e=>e.Alive&&e.owner==0).ToList();
+                restored.ReviewSupport(own,own.Where(e=>e.Military&&!e.def.waterborne).ToList(),
+                    cold.Entities.Where(e=>AiResourceContinuity072.EconomicThreat(cold,0,e)).ToList(),cold.OpeningTownPosition(0));
+            }
+            // Keep the still-wounded, available patient in an otherwise eligible
+            // Hold, proving cooldown exclusion itself survives every remaining tick.
+            Assert.IsTrue(patient.hold);Assert.IsEmpty(patient.orders);Assert.Less(patient.hp,w.MaxHp(patient)*.45f);
+            for(int i=0;i<320&&w.Time<retry.retryAt;i++)
+            {
+                StepBoth();
+                if(w.Time<retry.retryAt)
+                {
+                    Assert.IsFalse(a.Medical.IsRecovering(patient.id));Assert.IsFalse(restored.IsRecovering(patient.id));
+                    Assert.AreEqual(1,w.Events.Count(e=>e.kind=="AIMedicalRetreat"&&e.entity==patient.id));
+                    Assert.AreEqual(1,a.Medical.CaptureState().cooldowns.Length);Assert.AreEqual(1,restored.CaptureState().cooldowns.Length);
+                }
+            }
+            Assert.GreaterOrEqual(w.Time,retry.retryAt);Assert.AreEqual(injured,patient.hp);
+            // Admission resumes only after expiry and the next real AI review;
+            // it must issue a new authority Move, not merely clear a timer DTO.
+            for(int i=0;i<30&&!a.Medical.IsRecovering(patient.id);i++)StepBoth();
+            Assert.IsTrue(a.Medical.IsRecovering(patient.id));Assert.IsTrue(restored.IsRecovering(patient.id));
+            Assert.IsEmpty(a.Medical.CaptureState().cooldowns);Assert.IsEmpty(restored.CaptureState().cooldowns);
+            var readmitted=w.Events.Where(e=>e.kind=="AIMedicalRetreat"&&e.entity==patient.id).ToArray();
+            Assert.AreEqual(2,readmitted.Length);Assert.GreaterOrEqual(readmitted[1].time,retry.retryAt);
+            Assert.IsTrue(w.Events.Any(e=>e.kind=="Command"&&e.entity==patient.id&&e.message.StartsWith("Move")&&e.time>=retry.retryAt));
+            Assert.AreEqual(OrderKind.Move,patient.orders.Peek().kind);
+            Assert.AreEqual(JsonUtility.ToJson(a.Medical.CaptureState()),JsonUtility.ToJson(restored.CaptureState()));
+            Assert.AreEqual(JsonUtility.ToJson(w.CaptureState()),JsonUtility.ToJson(cold.CaptureState()));
+        }
+
         [Test] public void RetryCooldownRejectsForgedRolesTimesDuplicatesAndCleansExpiredOrDeadMembers()
         {
             var a=new Arena(doctors:1);var w=a.World;var patient=a.Soldiers[0];var state=a.Medical.CaptureState();
