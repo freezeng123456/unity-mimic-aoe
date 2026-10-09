@@ -461,16 +461,18 @@ namespace Frontier.Tests
             Assert.IsTrue(w.WaterNavigation.IsWalkable(ship.position,ship.def.radius));
             TestContext.WriteLine($"Ordinary sail: requestedBerth={berth}; formationSlot={sailSlot}; finalGoal={sailGoal}; actualShip={ship.position}");
             int entrant=EstablishRelatedIntents(f,g,enteringHealer,out var expected);var actor=w.Get(entrant);
-            Assert.Less(PathLength(w,actor,shore),w.Speed(actor)*10,"Prepared shoreline entry must be genuinely short");
+            Assert.IsTrue(w.TryTransportShore(ship,shore,Mathf.Max(.4f,actor.def.radius),out var expectedShore,out var expectedBerth));
+            Assert.Less(PathLength(w,actor,expectedShore),w.Speed(actor)*10,"Prepared actual shoreline entry must be genuinely short");
             int population=w.Players[0].usedPopulation;var resources=w.Players[0].resources;float initialHp=actor.hp;int events=w.Events.Count;float started=w.Time;var start=actor.position;
             Accepted(w.Issue(new GameCommand{player=0,kind=CommandKind.Embark,actors=new[]{entrant},target=ship.id,point=shore}));
             Assert.AreEqual(0,actor.garrisonedIn);Assert.AreEqual(OrderKind.Embark,actor.orders.Peek().kind);
             var actualShore=actor.orders.Peek().point;
-            Assert.Less(Vector2.Distance(shore,actualShore),.001f,"Fixture must bind the actual common shore, not an assumed requested point");
+            Assert.Less(Vector2.Distance(expectedShore,actualShore),.001f,"Bind the actual common shore resolved with this passenger's real radius, not the preliminary .9m survey");
             Assert.Greater(Vector2.Distance(actor.position,actualShore),w.Speed(actor)*Dt+.35f+.001f,
                 "Need a genuinely distant first-tick boarding discriminator before asserting no instant entry");
             Assert.AreEqual(OrderKind.TransportBerth,ship.orders.Peek().kind);
             var boardingOrder=ship.orders.Peek();Assert.IsTrue(boardingOrder.hasResolvedPoint);
+            Assert.Less(Vector2.Distance(expectedBerth,boardingOrder.resolvedPoint),.001f,"Actual naval berth must match the public passenger-radius resolver");
             Assert.IsTrue(w.WaterNavigation.IsWalkable(boardingOrder.resolvedPoint,ship.def.radius));
             TestContext.WriteLine($"Real Embark: requestedShore={shore}; actualShore={actualShore}; actualBerth={boardingOrder.resolvedPoint}; preEntryShip={ship.position}");
             Step(f);
