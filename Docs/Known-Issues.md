@@ -8,4 +8,4 @@
 
 新增验收边界：Imam实际按钮付费生产已过Play受控测试；四经典文明医护付费规则已过Edit，英国Church/Priest原生默认经济和实际按钮已执行。原生第二局87自动+2手动Heal后保存297HP，真正新PID载入后续疗153HP到450并Idle；两段录像库无seek连续到Verified，首次失败原件未覆盖。原生Otto Imam、out-of-range手动接近、治疗后返战Fire、实际桥位／侧栏Heal接近、驻扎／登船与医生联动仍未覆盖，不以普通寻路或仅在曲河开局代替。
 
-两局默认AI已经实际5次付费出生和34条严格同患者“撤回→正数治疗→85%返回→再次Fire”，不再列为从未观察；医疗关闭matched-seed对照、更多文明／地图、完整AI医疗磁盘保存与录像仍待验。原生second-run食物浮点残差-0.068359375F保留。完整自然人工比赛、FPS／双Mac仍未验。076封包／上传则已有独立实际证据：原Delivery1体积超限exit2／size-only审计FAIL原样保留，无损二片transport独立审计PASS，十二云盘文件及远端完整拼接的字节／SHA／owner-only／父目录／子ID集合均已核验；既有私有draft PR1的f0快照已读回，后补文档最终HEAD／PR读回仍待验。[076交付范围](Delivery-076.md)不扩大上述玩法／性能门槛。
+两局默认AI已经实际5次付费出生和34条严格同患者“撤回→正数治疗→85%返回→再次Fire”，不再列为从未观察；医疗关闭matched-seed对照、更多文明／地图、完整AI医疗磁盘保存与录像仍待验。原生second-run食物浮点残差-0.068359375F保留。完整自然人工比赛、FPS／双Mac仍未验。076封包／上传则已有独立实际证据：原Delivery1体积超限exit2／size-only审计FAIL原样保留，无损二片transport独立审计PASS，十二云盘文件及远端完整拼接的字节／SHA／owner-only／父目录／子ID集合均已核验；既有私有draft PR1的f0快照已读回，后补文档HEAD1f74195亦已独立GET读回private／open／draft及main不变，后续只归档receipt不改变运行时／封包。[076交付范围](Delivery-076.md)不扩大上述玩法／性能门槛。

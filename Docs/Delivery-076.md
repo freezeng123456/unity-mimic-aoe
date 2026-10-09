@@ -8,7 +8,7 @@
 - **封包源码快照**：`f0f829bc2ae5550fb13f3c1ebab403652c921065`，区别于运行时提交；此快照增加已验证文档与证据，不改变上述运行时输入。`source.zip`为该快照的实际Git archive流转换的可移植源码ZIP，1201个文件；它不是稍后交付文档提交的快照。
 - **实际app**：0.19.0，GUID `a86c515f3ab040649ea505e507193ff3`；`macOS.zip`保持原Build1，解包清单298文件／191062651字节，与原始Build1逐文件SHA一致。ZIP大小另列下表，不混同解包总量。
 - 既有私有分支 `codex/land-rts-completion` 的快照 `f0f829bc2ae5550fb13f3c1ebab403652c921065` 已推送；[既有draft PR1](https://github.com/freezeng123456/unity-mimic-aoe/pull/1)已实际更新并读回为private／open／draft、该head与原main。实际标题为 **Expand Frontier Reckoning with paid medical support and army recovery**，正文精确读回通过；main仍为 `0bb044adbe40d0cab952e8c3b44e40eca8a6d3fe`，无合并、Release或部署。[快照PR读回原件](Evidence/076/Delivery/github076-snapshot-draft-readback.json)。
-- **后补交付文档／receipt提交后的最终分支HEAD及draft PR最终读回仍待独立核验**。本页不预填后续提交号，不以f0快照的读回代替后续HEAD的验证；本页及后补交付receipt也不声称已在冻结ZIP或云盘十二文件之内。
+- 后补交付文档提交 `1f74195c8cf5647ae9eaa4c2e757564dac6eabd3` 已实际非强制推送，并由独立GET再次核验private／open／draft、精确标题正文／HEAD及main不变，见[文档交付HEAD读回](Evidence/076/Delivery/github076-delivery-readback.json)。后续仅归档此receipt与本文的提交不改变运行时或封包，其最新HEAD另用包外只读receipt核验，不递归把本文自己的提交号写入自身。本页与后补receipt均不声称已在冻结ZIP或云盘十二文件之内。
 
 ## 原始封包失败与独立传输审计：两个结论分别保留
 

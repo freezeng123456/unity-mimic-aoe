@@ -67,4 +67,4 @@
 3. 完整AI医疗调度的磁盘MatchSave／录像、更广地图文明、医疗开关matched-seed对照与经济代价／平衡结论仍独立待验；普通两局的5次付费／34条整补回火是已观察事实。
 4. 原生FPS／音画听感阈值／大军同屏、双物理Mac、完整人类自然胜负、跨版本迁移和Release公证未验。
 5. second-run食物余额与ledger估算的浮点残差为 **-0.068359375F**，原件保留，未伪称账目严格零残差。
-6. 076十二文件私有交付与远端字节／SHA／owner-only／父目录／子ID集合已分别验证，原体积失败和独立transport PASS保留各自结论；f0快照的既有private／open／draft PR1已精确读回，后补交付文档最终HEAD／PR读回仍待验。[交付记录](Delivery-076.md)不增加本页未验玩法。既有075九文件owner-only交付保持原身份，不重命名为076，整体内容差距目标继续进行中。
+6. 076十二文件私有交付与远端字节／SHA／owner-only／父目录／子ID集合已分别验证，原体积失败和独立transport PASS保留各自结论；f0快照的既有private／open／draft PR1已精确读回，后补交付文档HEAD1f74195亦已独立GET读回private／open／draft及main不变，后续receipt归档不改变运行时／封包。[交付记录](Delivery-076.md)不增加本页未验玩法。既有075九文件owner-only交付保持原身份，不重命名为076，整体内容差距目标继续进行中。
