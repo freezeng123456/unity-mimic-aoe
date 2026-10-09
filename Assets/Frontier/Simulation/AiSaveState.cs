@@ -25,8 +25,14 @@ namespace Frontier
     { public float manufactureAt; }
     [Serializable] public sealed class AiMedicalRecovery076Snapshot
     { public int id;public float deadline;public Vector2 point;public bool waiting; }
+    [Serializable] public sealed class AiMedicalRetry076Snapshot
+    { public int id;public float retryAt; }
     [Serializable] public sealed class AiMedicalSupport076Snapshot
-    { public int schema=1;public float reviewAt;public bool hasStation;public Vector2 station;public AiMedicalRecovery076Snapshot[] recovering=Array.Empty<AiMedicalRecovery076Snapshot>(); }
+    {
+        public int schema=1;public float reviewAt;public bool hasStation;public Vector2 station;
+        public AiMedicalRecovery076Snapshot[] recovering=Array.Empty<AiMedicalRecovery076Snapshot>();
+        public AiMedicalRetry076Snapshot[] cooldowns=Array.Empty<AiMedicalRetry076Snapshot>();
+    }
     [Serializable] public sealed class AiSnapshot
     {
         public int player,expeditionSize,rotation,buildSerial;

@@ -190,6 +190,118 @@ namespace Frontier.Tests
             Assert.Throws<ArgumentException>(()=>restored.RestoreState(bad));
         }
 
+        static Arena BusyDoctorRecovery()
+        {
+            var a=new Arena(doctors:1);Wound(a);var w=a.World;var doctor=a.Own().Single(e=>e.def.healer);
+            a.Support();Assert.IsTrue(a.Medical.IsRecovering(a.Soldiers[0].id));
+            // Real queued movement keeps the doctor occupied for longer than
+            // the recovery deadline. There are no HP edits after this opening
+            // wound, no fake clocks and no direct order-queue mutations.
+            Accepted(w.Issue(new GameCommand{player=0,kind=CommandKind.Order,actors=new[]{doctor.id},order=OrderKind.Stop}));
+            for(int i=0;i<40;i++)Accepted(w.Issue(new GameCommand{player=0,kind=CommandKind.Order,actors=new[]{doctor.id},
+                order=OrderKind.Move,append=i>0,point=i%2==0?new Vector2(50,18):new Vector2(32,18)}));
+            Assert.IsFalse(doctor.autoHeal);Assert.AreEqual(40,doctor.orders.Count);return a;
+        }
+        static void OrdinaryArmyReview(World w,AiMedicalSupport076 medical)
+        {
+            var profile=AiDifficultyProfile.From(w.Rules,"standard");var plan=new AiArmyPlan072(w,0,profile);
+            var own=w.Entities.Where(e=>e.Alive&&e.owner==0).ToList();
+            plan.Review(own,own.Where(e=>e.Military&&!e.def.waterborne).ToList(),new List<EntityState>(),w.OpeningTownPosition(1),true,
+                new AiSearchPlan(w,0,w.OpeningTownPosition(1)),new AiWaterEconomy(w,0),new AiRevolution071(w,0,profile),new AiCivilizationEconomy(w,0),medical);
+        }
+        [Test] public void BlockedDoctorTimeoutReleasesToArmyWithoutSameTurnReadmissionAndColdContinuationAgrees()
+        {
+            var a=BusyDoctorRecovery();var w=a.World;var patient=a.Soldiers[0];float injured=patient.hp;
+            for(int i=0;i<880;i++){w.Tick(.1f);a.Support();}
+            Assert.IsTrue(a.Medical.IsRecovering(patient.id));Assert.AreEqual(injured,patient.hp);
+            Assert.Greater(a.Own().Single(e=>e.def.healer).orders.Count,1,"The doctor is still genuinely committed to its queued movement");
+            var cold=World.Restore(w.Rules,w.CaptureState());var restored=new AiMedicalSupport076(cold,0);
+            restored.RestoreState(SnapshotCodec.Clone(a.Medical.CaptureState()));
+            for(int i=0;i<50&&a.Medical.IsRecovering(patient.id);i++)
+            {
+                w.Tick(.1f);cold.Tick(.1f);a.Support();
+                var own=cold.Entities.Where(e=>e.Alive&&e.owner==0).ToList();
+                restored.ReviewSupport(own,own.Where(e=>e.Military&&!e.def.waterborne).ToList(),new List<EntityState>(),cold.OpeningTownPosition(0));
+            }
+            Assert.IsFalse(a.Medical.IsRecovering(patient.id));Assert.IsFalse(restored.IsRecovering(patient.id));
+            Assert.AreEqual(injured,patient.hp);Assert.AreEqual(1,w.Events.Count(e=>e.kind=="AIMedicalRetreat"&&e.entity==patient.id));
+            Assert.IsFalse(a.Own().Single(e=>e.def.healer).orders.Any(o=>o.kind==OrderKind.Heal&&o.target==patient.id),
+                "A released patient is not followed by a stale medical assignment");
+            var returned=w.Events.Single(e=>e.kind=="AIMedicalReturn"&&e.entity==patient.id);
+            Assert.AreEqual("Bounded recovery window expired",returned.message);Assert.GreaterOrEqual(returned.time,90);Assert.Less(returned.time,92);
+            var retry=a.Medical.CaptureState().cooldowns.Single();Assert.AreEqual(patient.id,retry.id);Assert.AreEqual(returned.time+30,retry.retryAt,.001f);
+            Assert.AreEqual(JsonUtility.ToJson(a.Medical.CaptureState()),JsonUtility.ToJson(restored.CaptureState()));
+            Assert.AreEqual(JsonUtility.ToJson(w.CaptureState()),JsonUtility.ToJson(cold.CaptureState()));
+            // The normal planner gets an actual command opportunity before any
+            // later medical retry, rather than another renewed90-second Hold.
+            OrdinaryArmyReview(w,a.Medical);OrdinaryArmyReview(cold,restored);
+            Assert.IsFalse(patient.hold);Assert.AreEqual(OrderKind.Move,patient.orders.Peek().kind);
+            for(int i=0;i<25;i++)
+            {
+                w.Tick(.1f);cold.Tick(.1f);a.Support();
+                var own=cold.Entities.Where(e=>e.Alive&&e.owner==0).ToList();
+                restored.ReviewSupport(own,own.Where(e=>e.Military&&!e.def.waterborne).ToList(),new List<EntityState>(),cold.OpeningTownPosition(0));
+                Assert.IsFalse(a.Medical.IsRecovering(patient.id));Assert.IsFalse(restored.IsRecovering(patient.id));
+            }
+            Assert.AreEqual(1,w.Events.Count(e=>e.kind=="AIMedicalRetreat"&&e.entity==patient.id));
+            Assert.AreEqual(JsonUtility.ToJson(a.Medical.CaptureState()),JsonUtility.ToJson(restored.CaptureState()));
+            Assert.AreEqual(JsonUtility.ToJson(w.CaptureState()),JsonUtility.ToJson(cold.CaptureState()));
+        }
+        [TestCase(false)][TestCase(true)]
+        public void ReleaseClearsSingleKnownHealThroughHoldButPreservesQueuedIntent(bool queued)
+        {
+            var a=new Arena(doctors:1);Wound(a);var w=a.World;var patient=a.Soldiers[0];var doctor=a.Own().Single(e=>e.def.healer);
+            a.Support();
+            for(int i=0;i<500&&!(doctor.orders.Count==1&&doctor.orders.Peek().kind==OrderKind.Heal&&doctor.orders.Peek().target==patient.id);i++)
+            {w.Tick(.1f);a.Support();}
+            Assert.IsTrue(a.Medical.IsRecovering(patient.id));Assert.AreEqual(1,doctor.orders.Count);
+            Assert.AreEqual(OrderKind.Heal,doctor.orders.Peek().kind);Assert.AreEqual(patient.id,doctor.orders.Peek().target);
+            if(queued)Accepted(w.Issue(new GameCommand{player=0,kind=CommandKind.Order,actors=new[]{doctor.id},
+                order=OrderKind.Move,append=true,point=new Vector2(50,18)}));
+            float overriddenAt=w.Time;
+            Accepted(w.Issue(new GameCommand{player=0,kind=CommandKind.Order,actors=new[]{patient.id},order=OrderKind.Move,point=new Vector2(55,22)}));
+            for(int i=0;i<30&&a.Medical.IsRecovering(patient.id);i++){w.Tick(.1f);a.Support();}
+            Assert.IsFalse(a.Medical.IsRecovering(patient.id));Assert.AreEqual(patient.id,a.Medical.CaptureState().cooldowns.Single().id);
+            Assert.IsTrue(w.Events.Any(e=>e.kind=="AIMedicalReturn"&&e.entity==patient.id&&e.message.Contains("different order")));
+            Assert.IsTrue(doctor.autoHeal,"Ending an AI assignment does not disable automatic healing");
+            if(queued)
+            {
+                Assert.AreEqual(2,doctor.orders.Count);Assert.AreEqual(OrderKind.Heal,doctor.orders.Peek().kind);
+                Assert.AreEqual(patient.id,doctor.orders.Peek().target);Assert.AreEqual(OrderKind.Move,doctor.orders.Last().kind);
+                Assert.IsFalse(w.Events.Any(e=>e.time>=overriddenAt&&e.kind=="Command"&&e.entity==doctor.id&&e.message.StartsWith("Hold")));
+            }
+            else
+            {
+                Assert.IsEmpty(doctor.orders);Assert.IsTrue(doctor.hold);
+                Assert.IsTrue(w.Events.Any(e=>e.time>=overriddenAt&&e.kind=="Command"&&e.entity==doctor.id&&e.message.StartsWith("Hold")),
+                    "The stale assignment is cleared through an accepted authority Hold command");
+            }
+        }
+        [Test] public void RetryCooldownRejectsForgedRolesTimesDuplicatesAndCleansExpiredOrDeadMembers()
+        {
+            var a=new Arena(doctors:1);var w=a.World;var patient=a.Soldiers[0];var state=a.Medical.CaptureState();
+            state.cooldowns=new[]{new AiMedicalRetry076Snapshot{id=patient.id,retryAt=w.Time+20}};
+            a.Medical.RestoreState(state);Assert.AreEqual(1,a.Medical.CaptureState().cooldowns.Length);
+            for(int mutation=0;mutation<8;mutation++)
+            {
+                var bad=SnapshotCodec.Clone(state);
+                if(mutation==0)bad.cooldowns=null;
+                if(mutation==1)bad.cooldowns[0].retryAt=float.NaN;
+                if(mutation==2)bad.cooldowns[0].retryAt=w.Time;
+                if(mutation==3)bad.cooldowns[0].retryAt=w.Time+31;
+                if(mutation==4)bad.cooldowns[0].id=a.Own().Single(e=>e.def.healer).id;
+                if(mutation==5)bad.cooldowns[0].id=w.Entities.First(e=>e.owner==1).id;
+                if(mutation==6)bad.cooldowns=new[]{bad.cooldowns[0],SnapshotCodec.Clone(bad.cooldowns[0])};
+                if(mutation==7)bad.recovering=new[]{new AiMedicalRecovery076Snapshot{id=patient.id,deadline=w.Time+90,point=patient.position}};
+                Assert.Throws<ArgumentException>(()=>a.Medical.RestoreState(bad),"Invalid medical retry state "+mutation);
+            }
+            state.cooldowns[0].retryAt=w.Time+.2f;a.Medical.RestoreState(state);Steps(w,3);
+            Assert.IsEmpty(a.Medical.CaptureState().cooldowns,"Expired records are absent even before the next scheduled review");
+            state.cooldowns[0].retryAt=w.Time+20;a.Medical.RestoreState(state);w.Remove(patient);
+            Assert.IsEmpty(a.Medical.CaptureState().cooldowns,"A dead patient never persists a retry reservation");
+            var cold=World.Restore(w.Rules,w.CaptureState());new AiMedicalSupport076(cold,0).RestoreState(a.Medical.CaptureState());
+        }
+
         [Test] public void RecoveryKeepsFourDefendersRejectsBlockedRoutesAndDoesNotReadHiddenThreats()
         {
             var a=new Arena(doctors:1);Wound(a,6);a.Support();Assert.AreEqual(2,a.Medical.RecoveryMembers.Length);

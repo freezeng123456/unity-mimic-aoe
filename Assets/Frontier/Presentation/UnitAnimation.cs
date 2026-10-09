@@ -92,9 +92,13 @@ namespace Frontier
             {
                 // Medical work is a book and open-hand gesture, never a repair hammer.
                 float breath=Mathf.Sin(pose.actionPhase*Mathf.PI*2);
+                float reach=Mathf.Cos(pose.actionPhase*Mathf.PI*2);
                 if(rig.HealerBody!=null)rig.HealerBody.localPosition+=Vector3.up*(breath*.012f);
                 Arm(rig,true,new Vector3(-.23f,1.03f,.39f));
-                Arm(rig,false,new Vector3(.27f,1.23f+breath*.035f,.51f));
+                // A small, readable forward reach accompanies the raised palm.
+                // Two axes avoid the near-static sine trough of the old 3.5 cm
+                // vertical-only breath; all targets remain inside arm reach.
+                Arm(rig,false,new Vector3(.27f+reach*.035f,1.23f+breath*.07f,.47f+reach*.10f));
                 if(rig.HealerBook!=null)rig.HealerBook.rotation=rig.transform.rotation*Quaternion.Euler(-18,0,-8);
             }
             else if(pose.state==UnitPoseState.Gather||pose.state==UnitPoseState.Build||pose.state==UnitPoseState.Repair)

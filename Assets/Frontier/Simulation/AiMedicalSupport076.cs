@@ -11,8 +11,9 @@ namespace Frontier
     {
         readonly World world;readonly int player;readonly AiResourceContinuity072 continuity;
         readonly List<AiMedicalRecovery076Snapshot> recovering=new List<AiMedicalRecovery076Snapshot>();
+        readonly List<AiMedicalRetry076Snapshot> cooldowns=new List<AiMedicalRetry076Snapshot>();
         float reviewAt;bool hasStation;Vector2 station;
-        const float RecoverySeconds=90,ReviewSeconds=1.2f;
+        const float RecoverySeconds=90,ReviewSeconds=1.2f,RetrySeconds=30;
         const int RecoveryLimit=2;
         public AiMedicalSupport076(World world,int player,AiResourceContinuity072 continuity=null)
         {this.world=world??throw new ArgumentNullException(nameof(world));this.player=player;this.continuity=continuity??new AiResourceContinuity072(world,player);}
@@ -23,8 +24,11 @@ namespace Frontier
         public string UnitId=>world.Players[player].civilization=="ottoman"?"imam":Classic?"priest":"";
         bool Classic=>world.Players[player].civilization=="coast"||world.Players[player].civilization=="river"||world.Players[player].civilization=="france";
         public string Building=>UnitId=="imam"?"mosque":UnitId=="priest"?"church":"";
-        bool Patient(EntityState e)=>e!=null&&e.Alive&&e.Complete&&e.owner==player&&e.Military&&!e.def.waterborne&&
-            e.def.canReceiveHealing&&e.garrisonedIn==0&&(e.def.tags&Tags.Explorer)==0;
+        bool PatientRole(EntityState e)=>e!=null&&e.Alive&&e.Complete&&e.owner==player&&e.Military&&!e.def.waterborne&&
+            e.def.canReceiveHealing&&(e.def.tags&Tags.Explorer)==0;
+        bool Patient(EntityState e)=>PatientRole(e)&&e.garrisonedIn==0;
+        bool CoolingDown(int id)=>cooldowns.Exists(r=>r.id==id&&world.Time<r.retryAt);
+        void CleanCooldowns()=>cooldowns.RemoveAll(r=>r.retryAt<=world.Time||!PatientRole(world.Get(r.id)));
         int DoctorCount()=>UnitId==""?0:world.UnitCountIncludingProduction(player,UnitId);
         float Deficit(List<EntityState> own)
         {float missing=0;foreach(var e in own)if(Patient(e))missing+=Mathf.Max(0,world.MaxHp(e)-e.hp);return missing;}
@@ -65,12 +69,19 @@ namespace Frontier
         {
             var copy=new AiMedicalRecovery076Snapshot[recovering.Count];
             for(int i=0;i<copy.Length;i++){var r=recovering[i];copy[i]=new AiMedicalRecovery076Snapshot{id=r.id,deadline=r.deadline,point=r.point,waiting=r.waiting};}
-            return new AiMedicalSupport076Snapshot{reviewAt=reviewAt,hasStation=hasStation,station=station,recovering=copy};
+            // A pending save contains only live, unexpired owned cooldowns,
+            // even when a death occurred between scheduled AI reviews.
+            var retries=new List<AiMedicalRetry076Snapshot>();
+            foreach(var r in cooldowns)if(r.retryAt>world.Time&&PatientRole(world.Get(r.id)))
+                retries.Add(new AiMedicalRetry076Snapshot{id=r.id,retryAt=r.retryAt});
+            retries.Sort((a,b)=>a.id.CompareTo(b.id));
+            return new AiMedicalSupport076Snapshot{reviewAt=reviewAt,hasStation=hasStation,station=station,recovering=copy,cooldowns=retries.ToArray()};
         }
         public void RestoreState(AiMedicalSupport076Snapshot state)
         {
             AiSaveValidation.Require(state!=null&&state.schema==1&&AiSaveValidation.Clock(state.reviewAt)&&state.reviewAt<=world.Time+ReviewSeconds+.11f&&
-                InMap(state.station)&&state.recovering!=null&&state.recovering.Length<=RecoveryLimit,"medical support state");
+                InMap(state.station)&&state.recovering!=null&&state.recovering.Length<=RecoveryLimit&&
+                state.cooldowns!=null&&state.cooldowns.Length<=world.Rules.populationLimit,"medical support state");
             var seen=new HashSet<int>();
             foreach(var r in state.recovering)
             {
@@ -81,8 +92,12 @@ namespace Frontier
                     e.def.canReceiveHealing&&!e.def.waterborne&&(e.def.tags&Tags.Explorer)==0&&
                     AiSaveValidation.Clock(r.deadline)&&r.deadline<=world.Time+RecoverySeconds+.11f&&InMap(r.point),"medical recovery member");
             }
-            reviewAt=state.reviewAt;hasStation=state.hasStation;station=state.station;recovering.Clear();
+            foreach(var r in state.cooldowns)
+                AiSaveValidation.Require(r!=null&&r.id>0&&seen.Add(r.id)&&PatientRole(world.Get(r.id))&&
+                    AiSaveValidation.Clock(r.retryAt)&&r.retryAt>world.Time&&r.retryAt<=world.Time+RetrySeconds+.11f,"medical retry cooldown");
+            reviewAt=state.reviewAt;hasStation=state.hasStation;station=state.station;recovering.Clear();cooldowns.Clear();
             foreach(var r in state.recovering)recovering.Add(new AiMedicalRecovery076Snapshot{id=r.id,deadline=r.deadline,point=r.point,waiting=r.waiting});
+            foreach(var r in state.cooldowns)cooldowns.Add(new AiMedicalRetry076Snapshot{id=r.id,retryAt=r.retryAt});
         }
         bool InMap(Vector2 p)=>SnapshotCodec.Finite(p)&&p.x>=0&&p.y>=0&&p.x<=world.Navigation.Width&&p.y<=world.Navigation.Height;
         bool Known(Vector2 point)=>world.Fog.At(player,point)!=VisibilityState.Unexplored;
@@ -144,9 +159,21 @@ namespace Frontier
             }
             return false;
         }
-        void Release(int index,string reason)
+        void Release(int index,string reason,bool retry=false)
         {
             int id=recovering[index].id;recovering.RemoveAt(index);
+            if(retry&&PatientRole(world.Get(id)))
+            {
+                cooldowns.RemoveAll(r=>r.id==id);
+                cooldowns.Add(new AiMedicalRetry076Snapshot{id=id,retryAt=world.Time+RetrySeconds});
+            }
+            // End only this known recovery assignment. A single stale Heal
+            // would otherwise follow the returning soldier towards the front;
+            // queued or unrelated intent still belongs to its original owner.
+            foreach(var doctor in world.Entities)
+                if(doctor.Alive&&doctor.Complete&&doctor.owner==player&&doctor.def.healer&&doctor.garrisonedIn==0&&
+                    doctor.orders.Count==1&&doctor.orders.Peek().kind==OrderKind.Heal&&doctor.orders.Peek().target==id)
+                    Send(new GameCommand{kind=CommandKind.Order,actors=new[]{doctor.id},order=OrderKind.Hold});
             world.Emit("AIMedicalReturn",player,id,reason,0,0,world.Get(id)?.position??station);
             // No forced attack: the ordinary army planner decides the next
             // real formation command after this owned unit leaves recovery.
@@ -157,7 +184,7 @@ namespace Frontier
         public void ReviewSupport(List<EntityState> own,List<EntityState> army,List<EntityState> visible,Vector2 home)
         {
             if(world.Paused||world.IsMatchEnded||!world.IsPlayerActive(player)||world.Time<reviewAt)return;
-            reviewAt=world.Time+ReviewSeconds;
+            reviewAt=world.Time+ReviewSeconds;CleanCooldowns();
             var doctors=own.FindAll(e=>e.Alive&&e.Complete&&e.owner==player&&e.def.healer&&e.garrisonedIn==0);
             doctors.Sort((a,b)=>a.id.CompareTo(b.id));
             bool ready=SelectStation(own,doctors,visible,home);
@@ -165,13 +192,17 @@ namespace Frontier
             {
                 var r=recovering[i];var e=world.Get(r.id);
                 if(!Patient(e)||e.hp>=world.MaxHp(e)*.85f||world.Time>=r.deadline)
-                {Release(i,e==null||!e.Alive?"Recovery member lost":e.hp>=world.MaxHp(e)*.85f?"Reached 85% health; ordinary army may rejoin":"Bounded recovery window expired");continue;}
-                if(!ExpectedOrder(e,r)){Release(i,"A different order overrides medical recovery");continue;}
+                {
+                    bool restored=Patient(e)&&e.hp>=world.MaxHp(e)*.85f;
+                    Release(i,e==null||!e.Alive?"Recovery member lost":restored?"Reached 85% health; ordinary army may rejoin":"Bounded recovery window expired",!restored);
+                    continue;
+                }
+                if(!ExpectedOrder(e,r)){Release(i,"A different order overrides medical recovery",true);continue;}
                 if(!ready||!AiResourceContinuity072.Safe(world,player,r.point,visible))
-                {Release(i,"Medical station no longer has observed safe access");continue;}
+                {Release(i,"Medical station no longer has observed safe access",true);continue;}
                 if((r.point-station).sqrMagnitude>6*6)
                 {
-                    if(!Route(e,station,visible)){Release(i,"New station has no observed safe ordinary route");continue;}
+                    if(!Route(e,station,visible)){Release(i,"New station has no observed safe ordinary route",true);continue;}
                     r.point=station;r.waiting=false;
                     if(Send(new GameCommand{kind=CommandKind.Order,actors=new[]{e.id},order=OrderKind.Move,point=r.point}).accepted&&e.orders.Count>0)
                         r.point=e.orders.Peek().point;
@@ -185,7 +216,7 @@ namespace Frontier
             }
             if(!ready)return;
             int available=0;foreach(var e in army)if(Patient(e)&&!IsRecovering(e.id))available++;
-            var candidates=army.FindAll(e=>Patient(e)&&!IsRecovering(e.id)&&e.hp<world.MaxHp(e)*.45f&&e.fireAt<0&&e.healingBlockedUntil<=world.Time&&
+            var candidates=army.FindAll(e=>Patient(e)&&!IsRecovering(e.id)&&!CoolingDown(e.id)&&e.hp<world.MaxHp(e)*.45f&&e.fireAt<0&&e.healingBlockedUntil<=world.Time&&
                 (e.orders.Count==0||e.orders.Count==1&&(e.orders.Peek().kind==OrderKind.AttackMove)));
             // Health deficit and real paid value, then stable ID. Never look at
             // fog-hidden enemy positions or alter HP to create a medical demand.

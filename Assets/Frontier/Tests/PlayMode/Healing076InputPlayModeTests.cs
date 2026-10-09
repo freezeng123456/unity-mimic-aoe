@@ -213,6 +213,10 @@ namespace Frontier.Tests
             actor.work=new WorkActivity{kind=WorkKind.Heal,target=patient.id,time=2};string before=JsonUtility.ToJson(actor);var pose=UnitAnimation.Evaluate(actor,2,workTarget:patient);
             Assert.AreEqual(UnitPoseState.Heal,pose.state);Assert.AreEqual(WorkerTool.None,pose.tool);UnitAnimation.Apply(rig,pose);var hand=rig.RightHand.position;
             UnitAnimation.Apply(rig,new AnimationPose{state=UnitPoseState.Heal,actionPhase=.7f});Assert.Greater(Vector3.Distance(hand,rig.RightHand.position),.005f);
+            var cycle=new Vector3[4];
+            for(int i=0;i<cycle.Length;i++){UnitAnimation.Apply(rig,new AnimationPose{state=UnitPoseState.Heal,actionPhase=i*.25f});cycle[i]=rig.transform.InverseTransformPoint(rig.RightHand.position);}
+            Assert.Greater(cycle.Max(p=>p.y)-cycle.Min(p=>p.y),.12f,"Actual medical gesture needs a readable raised-palm height change");
+            Assert.Greater(cycle.Max(p=>p.z)-cycle.Min(p=>p.z),.18f,"Actual medical gesture needs a readable forward reach, not just sub-pixel breathing");
             UnitAnimation.Apply(rig,new AnimationPose{state=UnitPoseState.Idle});Assert.AreEqual(bodyPosition,rig.HealerBody.localPosition);Assert.AreEqual(bookPosition,rig.HealerBook.localPosition);Assert.AreEqual(bookScale,rig.HealerBook.localScale);
             rig.RestoreInitialPose();Assert.AreEqual(Quaternion.identity,rig.HealerBook.localRotation);Assert.AreEqual(before,JsonUtility.ToJson(actor));
             Assert.AreEqual(UnitPoseState.Idle,UnitAnimation.Evaluate(actor,2.1f).state,"Stale work does not loop the heal gesture");
