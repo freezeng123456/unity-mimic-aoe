@@ -25,15 +25,27 @@ namespace Frontier.Tests
         [Test] public void WindingSedimentPaletteHasItsOwnMaterialAndDoesNotLeakIntoOtherRiverMaps()
         {
             var material=terrain.Find("Continuous sculpted land and river bed").GetComponent<MeshRenderer>().sharedMaterial;
-            Assert.AreEqual(new Color(.74f,.67f,.48f),material.GetColor("_SandColor"));
+            AssertPalette(new Color(.74f,.67f,.48f),material.GetColor("_SandColor"),"Initial Winding");
             foreach(var map in new[]{MapTopology.Tributaries,MapTopology.Estuary,MapTopology.Tropical})
             {
                 var other=WaterPresentation.BuildTerrain(stage.transform,new World(Catalog.Load(),44,"coast","ottoman",5,map));
                 var otherMaterial=other.Find("Continuous sculpted land and river bed").GetComponent<MeshRenderer>().sharedMaterial;
                 Assert.AreNotSame(material,otherMaterial,"Winding cannot recolor "+map+" via cached material");
-                Assert.AreEqual(map==MapTopology.Tropical?new Color(.66f,.57f,.38f):new Color(.62f,.555f,.37f),otherMaterial.GetColor("_SandColor"));
+                AssertPalette(map==MapTopology.Tropical?new Color(.66f,.57f,.38f):new Color(.62f,.555f,.37f),otherMaterial.GetColor("_SandColor"),map.ToString());
             }
-            Assert.AreEqual(new Color(.74f,.67f,.48f),material.GetColor("_SandColor"),"Other-map construction must not overwrite the Winding material");
+            AssertPalette(new Color(.74f,.67f,.48f),material.GetColor("_SandColor"),"Winding after other-map construction");
+        }
+        static void AssertPalette(Color expected,Color actual,string label)
+        {
+            // Material Color properties can roundtrip with tiny float changes.
+            // Keep strict per-channel bounds and print full precision; material
+            // identity/other-map isolation and mesh/geographic checks stay exact.
+            TestContext.WriteLine(label+" expected="+expected.r.ToString("R")+","+expected.g.ToString("R")+","+expected.b.ToString("R")+","+expected.a.ToString("R")+
+                " actual="+actual.r.ToString("R")+","+actual.g.ToString("R")+","+actual.b.ToString("R")+","+actual.a.ToString("R"));
+            Assert.AreEqual(expected.r,actual.r,.000001f,label+" red");
+            Assert.AreEqual(expected.g,actual.g,.000001f,label+" green");
+            Assert.AreEqual(expected.b,actual.b,.000001f,label+" blue");
+            Assert.AreEqual(expected.a,actual.a,.000001f,label+" alpha");
         }
         [Test] public void ActualGroundMeshColorsAndHeightsEqualTheSharedMapQueries()
         {
