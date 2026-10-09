@@ -4,11 +4,11 @@
 
 ## 身份与原件边界
 
-- 冻结源码 `b1a9b6a977a60b63cd3e9f9632179c1787f3d00d`，774输入FP `dabf34d26490cece872959764b8b9e515749584b180f3d7899f38d79b69a6f8f`，与Focused4／Full1／Build1／NormalObserved1一致。
+- 冻结运行时代码 `b1a9b6a977a60b63cd3e9f9632179c1787f3d00d`，774输入FP `dabf34d26490cece872959764b8b9e515749584b180f3d7899f38d79b69a6f8f`，与Focused4／Full1／Build1／NormalObserved1一致。
 - App版本 `0.19.0`，新GUID `a86c515f3ab040649ea505e507193ff3`。原PID `78563`，真正冷启动PID `97963`；同可执行文件SHA256 `c2e121c781dc29e7b5551a5631c493899bebb4c37f7279edb0e30cec60d0266b`。
 - 原生窗口为 British（`coast`）对 Ottoman、Winding seed42、standard AI；默认AgeI／钱包／单位，由真实GUI采集／建造／升级／训练。没有途中资源、单位、伤势或保存文件编辑。
 - 外部原件根：`/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Native1/british/`。F9的PNG／JSON原件在其 `Data/Captures/`，报告、事件、存档、录像分别在 `Data/Reports/`、`Data/Saves/`、`Data/Replays/`。原文件名、SHA及帧身份保留。
-- 审计四组原件根：`/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Diagnostics/`，名称分别为 `native076-first-run-audit`、`native076-paid-medical-audit`、`native076-cold-audit`、`native076-playback-audit` 的JSON／Markdown。四组审计、全部30组F9配对与生命周期receipt已复制入repo，[copy-index](Evidence/076/Native1/copy-index076.json) 的78个索引对象共41731871B，逐个bytes／SHA256复核通过；索引文件自身另计。原始完整日志／报告／存档／录像仍在外部原件根，不混称已全部复制入repo。当前封包／上传尚未发生，不把证据拷贝当作已发布。
+- 审计四组原件根：`/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate1/Diagnostics/`，名称分别为 `native076-first-run-audit`、`native076-paid-medical-audit`、`native076-cold-audit`、`native076-playback-audit` 的JSON／Markdown。四组审计、全部30组F9配对与生命周期receipt已复制入repo，[copy-index](Evidence/076/Native1/copy-index076.json) 的78个索引对象共41731871B，逐个bytes／SHA256复核通过；索引文件自身另计。原始完整日志／报告／存档／录像仍在外部原件根，且已完整保留于冻结evidence ZIP，不混称先前78项拷贝就是全部原始材料。封包源码快照为 `f0f829bc2ae5550fb13f3c1ebab403652c921065`，与运行时提交区分：原Delivery1体积超限失败保留，独立无损transport已审计PASS，十二云盘文件全字节／SHA／owner-only读回及远端完整拼接核验通过。[076交付](Delivery-076.md)单列封包／后补receipt身份，不把证据拷贝本身当作发布。
 - [原生闭合receipt](Evidence/076/Native1/native076-closure.json)记录三个相关PID均在真实GUI QUIT后已不存在；未观测OS exit code，**不填写exit0**。
 
 ## 首次尝试失败保留，不计自然败局
@@ -67,4 +67,4 @@
 3. 完整AI医疗调度的磁盘MatchSave／录像、更广地图文明、医疗开关matched-seed对照与经济代价／平衡结论仍独立待验；普通两局的5次付费／34条整补回火是已观察事实。
 4. 原生FPS／音画听感阈值／大军同屏、双物理Mac、完整人类自然胜负、跨版本迁移和Release公证未验。
 5. second-run食物余额与ledger估算的浮点残差为 **-0.068359375F**，原件保留，未伪称账目严格零残差。
-6. 当前076尚未封包／上传；既有075九文件owner-only交付保持原身份，不重命名为076，整体内容差距目标继续保持进行中。
+6. 076十二文件私有交付与远端字节／SHA／owner-only／父目录／子ID集合已分别验证，原体积失败和独立transport PASS保留各自结论；f0快照的既有private／open／draft PR1已精确读回，后补交付文档最终HEAD／PR读回仍待验。[交付记录](Delivery-076.md)不增加本页未验玩法。既有075九文件owner-only交付保持原身份，不重命名为076，整体内容差距目标继续进行中。

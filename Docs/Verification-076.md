@@ -14,7 +14,7 @@
 |macOS构建|Build1实际exit0、源码稳定同FP；app Info.plist版本0.19.0，boot.config新GUID `a86c515f3ab040649ea505e507193ff3`。实际app清单298文件/191062651字节（解包文件总量，不是ZIP大小）；原生验收另列下行，不由build成功推导。|
 |普通AI|NormalObserved1 exit0、源码稳定同FP；首局t1768.615自然P0胜，曲河t2400.091观察cap、不计胜。5次真实付款/出生、34条同患者撤回→正数Heal→85%返回→后续Fire链；原事件87266/175321条与manifest/final一致，详见[普通结果](Ordinary-076-Results.md)。平均Step3.179/11.329ms，最大2102.354/2199.317ms，不是原生FPS或平衡对照。|
 |新GUID原生|British/Winding42／standard默认开局已实际150W Church→800F LocalDefence AgeII→100C Priest153；自然受伤patient8 208→295（87自动Heal）→Stop→手动2HP→保存297。旧PID78563退出、新PID97963 LOAD schema5原slot1后同医生／订单续疗153HP至450且Idle；两段原生录像库实际无seek连续播放到Verified（冷段3813→4004／1x，开局0→3813／4x）。首局失败与restart_exit原件保留，不计自然败局；详细原件、帧／事件／进程边界与待验见[原生记录](Native-076.md)。|
-|私有交付|尚未封包/上传，不覆盖075|
+|私有交付|封包快照f0f829b与运行时b1a9b6a区分：原Delivery1 exit2／原独立审计FAIL仅完整evidence ZIP超过100MiB，全部原件保留；独立transport审计PASS、十二文件294999523B已全字节／SHA／owner-only／父目录及子ID集合读回，远端两片完整拼接SHA一致。既有private／open／draft PR1已按f0快照精确读回且main不变；后补交付文档HEAD／PR最终读回仍待核验，详见[076交付](Delivery-076.md)，不覆盖075。|
 
 专项第四轮112项中，本轮新增医护用例为56 Edit（核心28、AI19、复制/保存9）与16 Play（输入10、表现6），共72；其余40是相同新源码下的旧兼容回归，不宣称112项全是新功能用例。
 
