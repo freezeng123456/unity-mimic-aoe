@@ -25,6 +25,7 @@ namespace Frontier.Tests
             healer=world.Spawn("imam",0,world.Navigation.NearestWalkable(new Vector2(30,30),.4f));
             patient=world.Spawn("pike",2,world.Navigation.NearestWalkable(healer.position+Vector2.right*3,.4f));
             patient.hp=world.MaxHp(patient)*.5f;
+            Assert.IsTrue(world.Issue(new GameCommand{player=patient.owner,kind=CommandKind.Order,actors=new[]{patient.id},order=OrderKind.Hold}).accepted);
             world.Fog.Tick(world.Entities);return world;
         }
         static GameCommand Heal(EntityState healer,EntityState target)=>new GameCommand{player=healer.owner,

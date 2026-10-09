@@ -99,7 +99,7 @@ namespace Frontier
         {
             if(e==null||!e.Alive)return;bool concealed=e.stealth;int observed=0;
             if(concealed)for(int player=0;player<Players.Length;player++)if(CanObserveStealth075(player,e))observed|=1<<player;
-            e.stealth=false;e.dead=true;e.hp=0;ClearHealing076(e);e.autoHeal=false;ClearPatientHealingLinks076(e);
+            e.stealth=false;e.dead=true;e.hp=0;ClearHealing076(e);e.autoHeal=false;if(e.Healer)e.orders.Clear();ClearPatientHealingLinks076(e);
             if(e.def.kind==EntityKind.Building)SetBuildingObstacle(e,false);
             OnEntityRemoved(e);
             if(e.owner>=0&&e.def.kind!=EntityKind.Resource)Players[e.owner].losses++;

@@ -267,6 +267,18 @@ namespace Frontier
                     Require(patient.id!=actor.id&&patient.Alive&&patient.Complete&&patient.garrisonedIn==0&&patient.owner>=0&&patientDef.kind==EntityKind.Unit&&
                         !patientDef.waterborne&&patientDef.canReceiveHealing&&!snapshot.players[patient.owner].state.eliminated&&!snapshot.players[patient.owner].state.resigned&&snapshot.players[actor.owner].state.team==snapshot.players[patient.owner].state.team,"healing patient state");
                 }
+                foreach(var order in saved.orders)if(order.kind==OrderKind.Heal)
+                {
+                    Require(definition.healer&&actor.owner>=0&&actor.Alive&&actor.Complete&&actor.garrisonedIn==0&&
+                        !snapshot.players[actor.owner].state.eliminated&&!snapshot.players[actor.owner].state.resigned,"queued healer state");
+                    Require(entities.TryGetValue(order.target,out var patientSaved),"queued healing reference");
+                    var patient=patientSaved.state;var patientDef=rules.Entity(patientSaved.definition);
+                    // Full HP is legal here: another healer may restore a later
+                    // Shift target before this queued order reaches the front.
+                    Require(patient.id!=actor.id&&patient.Alive&&patient.Complete&&patient.garrisonedIn==0&&patient.owner>=0&&patientDef.kind==EntityKind.Unit&&
+                        !patientDef.waterborne&&patientDef.canReceiveHealing&&!snapshot.players[patient.owner].state.eliminated&&!snapshot.players[patient.owner].state.resigned&&
+                        snapshot.players[actor.owner].state.team==snapshot.players[patient.owner].state.team,"queued healing patient state");
+                }
                 foreach(var job in saved.queue)if(job.kind=="Train"&&rules.Entity(job.item)?.healer==true)
                 {
                     var unit=rules.Entity(job.item);Require(actor.owner>=0,"healer producer owner");var owner=snapshot.players[actor.owner].state;

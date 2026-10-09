@@ -66,8 +66,8 @@ namespace Frontier.Tests
         [Test] public void RealTeamPatientAcceptedButEnemyNeutralBuildingAndUndeclaredCargoReject()
         {
             var f=new Fixture(true);var w=f.World;var ally=f.Spawn("musketeer",2,new Vector2(44,22));ally.hp=50;
-            var enemy=f.Spawn("musketeer",1,new Vector2(46,22));enemy.hp=50;
-            var neutral=f.Spawn("guardian",-1,new Vector2(48,22));neutral.hp=20;
+            var enemy=f.Spawn("musketeer",1,new Vector2(100,70));enemy.hp=50;
+            var neutral=f.Spawn("guardian",-1,new Vector2(100,75));neutral.hp=20;
             var cargo=f.Spawn("factory_wagon",0,new Vector2(43,23));cargo.hp=20;
             Accepted(w.Issue(Order(f.Medic,OrderKind.Heal,ally.id)));
             foreach(var invalid in new[]{enemy,neutral,cargo,w.Entities.First(e=>e.owner==0&&e.def.id=="town")})
@@ -294,6 +294,18 @@ namespace Frontier.Tests
             save=w.CaptureState();save.events.Last(e=>e.hasHealing).healing.actual=-1;Assert.Throws<ArgumentException>(()=>World.Restore(w.Rules,save));
             save=w.CaptureState();save.entities.First(e=>e.state.id==f.Medic.id).state.work=new WorkActivity{kind=WorkKind.Heal,target=f.Medic.id,time=w.Time};Assert.Throws<ArgumentException>(()=>World.Restore(w.Rules,save));
             save=w.CaptureState();save.schema=4;Assert.Throws<ArgumentException>(()=>World.Restore(w.Rules,save));
+        }
+        [Test] public void HealingSnapshotRejectsForgedQueuedPatientButAllowsAlreadyRestoredQueuedPatient()
+        {
+            var f=new Fixture();var w=f.World;var second=f.Spawn("musketeer",0,new Vector2(46,23));second.hp=80;
+            Accepted(w.Issue(Order(f.Medic,OrderKind.Heal,f.Patient.id)));Accepted(w.Issue(Order(f.Medic,OrderKind.Heal,second.id,true)));
+            second.hp=w.MaxHp(second);World.Restore(w.Rules,w.CaptureState());
+            var saved=w.CaptureState();saved.entities.First(e=>e.state.id==f.Medic.id).orders[1].target=f.Medic.id;
+            Assert.Throws<ArgumentException>(()=>World.Restore(w.Rules,saved));
+            saved=w.CaptureState();saved.entities.First(e=>e.state.id==f.Medic.id).orders[1].target=int.MaxValue;
+            Assert.Throws<ArgumentException>(()=>World.Restore(w.Rules,saved));
+            var enemy=f.Spawn("musketeer",1,new Vector2(100,70));saved=w.CaptureState();saved.entities.First(e=>e.state.id==f.Medic.id).orders[1].target=enemy.id;
+            Assert.Throws<ArgumentException>(()=>World.Restore(w.Rules,saved));
         }
         [Test] public void HealingSnapshotRejectsExcessPaidTrainingReservations()
         {
