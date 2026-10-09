@@ -114,7 +114,10 @@ namespace Frontier
                 LanQueueIndex.Validate(next,delta.queues);
                 if(LanProjection.Digest(next,delta.queues)!=delta.digest)throw new ArgumentException("Network delta digest mismatch");
                 var events=new List<SimEvent>();foreach(var e in delta.events)
-                {if(e==null||e.schemaVersion!=SimEvent.CurrentSchemaVersion||e.player< -2||e.player>=next.players.Length||(e.visibilityMask&~((1<<next.players.Length)-1))!=0||!SnapshotCodec.Finite(e.time)||!SnapshotCodec.Finite(e.position))throw new ArgumentException("Invalid network event");events.Add(ReplayEventCopy.Copy(e));}
+                {if(e==null||e.schemaVersion!=SimEvent.CurrentSchemaVersion||e.player< -2||e.player>=next.players.Length||(e.visibilityMask&~((1<<next.players.Length)-1))!=0||!SnapshotCodec.Finite(e.time)||!SnapshotCodec.Finite(e.position))throw new ArgumentException("Invalid network event");
+                    if(e.kind=="Heal"&&!e.hasHealing)throw new ArgumentException("Missing network healing receipt");
+                    if(e.hasHealing&&(e.kind!="Heal"||e.healing==null||e.healing.source!=e.entity||e.healing.target!=e.target||e.healing.source<1||e.healing.target<1||e.healing.source==e.healing.target||!SnapshotCodec.Finite(e.healing.hpBefore)||!SnapshotCodec.Finite(e.healing.hpAfter)||!SnapshotCodec.Finite(e.healing.maxHp)||!SnapshotCodec.Finite(e.healing.actual)||!SnapshotCodec.Finite(e.healing.rate)||e.healing.hpBefore<=0||e.healing.hpAfter<=e.healing.hpBefore||e.healing.maxHp<e.healing.hpAfter||e.healing.actual<=0||e.healing.rate<=0||Math.Abs((e.healing.hpAfter-e.healing.hpBefore)-e.healing.actual)>=.001f||!SnapshotCodec.Finite(e.amount)||Math.Abs(e.amount-e.healing.actual)>=.001f))throw new ArgumentException("Invalid network healing receipt");
+                    events.Add(ReplayEventCopy.Copy(e));}
                 // Validation completes before either the rendered world or its
                 // event cursor can change. Repeated and rejected deltas play no audio.
                 World.ApplyReplica(next);Queues.Replace(delta.queues);queueSnapshot=CopyQueues(delta.queues);World.Events.AddRange(events);

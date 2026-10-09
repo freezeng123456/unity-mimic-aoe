@@ -52,7 +52,7 @@ namespace Frontier
                     case "stable": Stable();break;case "foundry": Foundry();break;case "market": Market();break;
                     case "tower": Tower();break;case "farm": Farm();break;case "bank": Bank();break;
                     case "estate": Estate();break;case "trade_post": TradePost();break;
-                    case "waystation": Waystation();break;case "workshop": Workshop();break;case "mosque": Mosque();break;case "factory": Factory();break;
+                    case "waystation": Waystation();break;case "workshop": Workshop();break;case "mosque": Mosque();break;case "church": Church076();break;case "factory": Factory();break;
                     default: House();break;
                 }
                 var model=root.gameObject.AddComponent<ArchitectureModel>();model.Civilization=civ;model.Age=age;
@@ -319,6 +319,31 @@ namespace Frontier
                 crane.Lathe(p+new Vector3(-.68f,.74f,0),new[]{new Vector2(.09f,0),new Vector2(.09f,.10f)},iron,12);Feature(crane,"Workshop loading crane",1);
                 for(int n=0;n<4;n++)detail.Box(new Vector3(w*.56f,.28f+n*.13f,-d*.63f),new Vector3(.78f,.105f,.30f),wood);
                 Wheel(new Vector3(-w*.58f,.60f,-d*.62f),.32f);Flag(new Vector3(-w*.74f,2.66f,d*.48f));
+            }
+            void Church076()
+            {
+                // Original village church: a long nave, smaller rear apse and
+                // a real entry bell tower rather than a renamed house facade.
+                Hall(new Vector3(0,0,d*.18f),w*.65f,d*.69f,2.40f,true);
+                Hall(new Vector3(0,0,d*.80f),w*.42f,d*.25f,1.82f,false);
+                var tower=new Vector3(-w*.40f,.23f,-d*.60f);float hw=w*.25f,hd=d*.26f;
+                wall.Box(tower+Vector3.up*1.65f,new Vector3(hw*2,3.30f,hd*2),facade);
+                Cornice(tower+Vector3.up*2.55f,hw+.07f,hd+.07f,.13f,trim);
+                Cornice(tower+Vector3.up*3.25f,hw+.09f,hd+.09f,.13f,trim);
+                Door(tower+new Vector3(0,0,-hd-.015f),.62f,1.38f,0,true);
+                foreach(int side in new[]{-1,1})
+                {
+                    Window(tower+new Vector3(0,2.57f,side*(hd+.015f)),.39f,.62f,side==1?180:0,true);
+                    Window(tower+new Vector3(side*(hw+.015f),2.57f,0),.39f,.62f,side==1?-90:90,true);
+                }
+                var spire=new ArchitecturalGeometry();
+                spire.Lathe(tower,new[]{new Vector2(Mathf.Max(hw,hd)*1.30f,3.32f),new Vector2(Mathf.Max(hw,hd)*.94f,3.55f),new Vector2(.035f,4.45f)},roofMat,8);
+                Feature(spire,"Church octagonal bell spire",2);
+                var cross=new ArchitecturalGeometry();
+                cross.Box(tower+Vector3.up*4.66f,new Vector3(.055f,.47f,.055f),iron);
+                cross.Box(tower+Vector3.up*4.73f,new Vector3(.29f,.055f,.055f),iron);
+                Feature(cross,"Church spire cross",3);
+                Flag(new Vector3(w*.56f,2.65f,-d*.45f));
             }
             void Mosque()
             {

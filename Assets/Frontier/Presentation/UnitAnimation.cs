@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Frontier
 {
-    public enum UnitPoseState { Idle,Move,Gather,Build,Repair,PreparingAttack,Fire,Reloading,Deploying,Death }
+    public enum UnitPoseState { Idle,Move,Gather,Build,Repair,PreparingAttack,Fire,Reloading,Deploying,Death,Heal }
     public struct AnimationPose
     {
         public UnitPoseState state;
@@ -36,6 +36,8 @@ namespace Frontier
             else if(entity.deployUntil>time&&!entity.isDeployed)
             {pose.state=UnitPoseState.Deploying;pose.actionPhase=1-Mathf.Clamp01((entity.deployUntil-time)/2);}
             else if(moving)pose.state=UnitPoseState.Move;
+            else if(entity.IsWorkingAt(time)&&entity.work.kind==WorkKind.Heal)
+            {pose.state=UnitPoseState.Heal;pose.actionPhase=Mathf.Repeat(time*.65f+entity.id*.13f,1);}
             else if(entity.IsWorkingAt(time))
             {
                 pose.state=entity.work.kind==WorkKind.Gather?UnitPoseState.Gather:entity.work.kind==WorkKind.Build||entity.work.kind==WorkKind.Manufacture?UnitPoseState.Build:UnitPoseState.Repair;
@@ -86,7 +88,16 @@ namespace Frontier
                     Rotate(rig.HorseHead,stride*3,0,0);Rotate(rig.HorseTail,0,stride*12,0);
                 }
             }
-            if(pose.state==UnitPoseState.Gather||pose.state==UnitPoseState.Build||pose.state==UnitPoseState.Repair)
+            if(pose.state==UnitPoseState.Heal)
+            {
+                // Medical work is a book and open-hand gesture, never a repair hammer.
+                float breath=Mathf.Sin(pose.actionPhase*Mathf.PI*2);
+                if(rig.HealerBody!=null)rig.HealerBody.localPosition+=Vector3.up*(breath*.012f);
+                Arm(rig,true,new Vector3(-.23f,1.03f,.39f));
+                Arm(rig,false,new Vector3(.27f,1.23f+breath*.035f,.51f));
+                if(rig.HealerBook!=null)rig.HealerBook.rotation=rig.transform.rotation*Quaternion.Euler(-18,0,-8);
+            }
+            else if(pose.state==UnitPoseState.Gather||pose.state==UnitPoseState.Build||pose.state==UnitPoseState.Repair)
             {
                 WorkerPose(rig,pose);
             }
@@ -141,6 +152,8 @@ namespace Frontier
                 Arm(rig,false,new Vector3(.24f,1.10f,.26f));
                 WeaponRotation(rig,pose.melee?Quaternion.Euler(15,0,-16):Quaternion.Euler(-28,0,0));
             }
+            else if(rig.HealerBook!=null)
+            {Arm(rig,true,new Vector3(-.23f,1.02f,.24f));rig.HealerBook.rotation=rig.transform.rotation*Quaternion.Euler(-25,0,-8);Rotate(rig.RightShoulder,-18,0,-6);}
             else
             {Rotate(rig.RightShoulder,-18,0,-6);Rotate(rig.LeftShoulder,-12,0,6);}
             if(rig.BowStringUpper!=null)

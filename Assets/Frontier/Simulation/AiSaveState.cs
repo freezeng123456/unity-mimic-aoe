@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Frontier
 {
@@ -22,6 +23,10 @@ namespace Frontier
     { public int surveyor;public float patrolAt;public AiNavalOperationsSnapshot navalOperations; }
     [Serializable] public sealed class AiCivilizationEconomySnapshot
     { public float manufactureAt; }
+    [Serializable] public sealed class AiMedicalRecovery076Snapshot
+    { public int id;public float deadline;public Vector2 point;public bool waiting; }
+    [Serializable] public sealed class AiMedicalSupport076Snapshot
+    { public int schema=1;public float reviewAt;public bool hasStation;public Vector2 station;public AiMedicalRecovery076Snapshot[] recovering=Array.Empty<AiMedicalRecovery076Snapshot>(); }
     [Serializable] public sealed class AiSnapshot
     {
         public int player,expeditionSize,rotation,buildSerial;
@@ -34,6 +39,7 @@ namespace Frontier
         public AiWaterEconomySnapshot waterEconomy;
         public AiCivilizationEconomySnapshot civilizationEconomy;
         public AiArmyPlan072Snapshot armyPlan;
+        public AiMedicalSupport076Snapshot medicalSupport;
     }
     [Serializable] public sealed class MatchSimulationSnapshot
     {

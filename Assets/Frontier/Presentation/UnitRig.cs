@@ -9,6 +9,7 @@ namespace Frontier
         public Transform BowStringUpper,BowStringLower;
         public Vector3 BowUpperTip=new Vector3(0,.88f,-.24f),BowLowerTip=new Vector3(0,-.88f,-.24f);
         public Transform ScoutBody;
+        public Transform HealerBody,HealerBook;
         public bool Unarmed;
         public Transform Barrel,Carriage,LeftWheel,RightWheel,LeftHorseLeg,RightHorseLeg,RearLeftHorseLeg,RearRightHorseLeg;
         public Transform LeftKnee,RightKnee,HorseHead,HorseTail;
@@ -22,7 +23,7 @@ namespace Frontier
         AnimationPose lastPose;Quaternion basketOrientation;bool poseReady;
         public int PoseApplicationCount { get; private set; }
         public bool FoldingPavise { get; private set; }
-        public void CaptureInitialPose(){var bones=new System.Collections.Generic.List<Transform>{ScoutBody,LeftShoulder,RightShoulder,LeftElbow,RightElbow,LeftHand,RightHand,LeftLeg,RightLeg,LeftKnee,RightKnee,WeaponPivot,Weapon,BowStringUpper,BowStringLower,Barrel,Carriage,LeftWheel,RightWheel,LeftHorseLeg,RightHorseLeg,RearLeftHorseLeg,RearRightHorseLeg,HorseHead,HorseTail,Shield};bones.AddRange(CartWheels);cached=bones.ToArray();initialPosition=new Vector3[cached.Length];initialRotation=new Quaternion[cached.Length];initialScale=new Vector3[cached.Length];for(int i=0;i<cached.Length;i++)if(cached[i]!=null){initialPosition[i]=cached[i].localPosition;initialRotation[i]=cached[i].localRotation;initialScale[i]=cached[i].localScale;}FoldingPavise=Shield!=null&&Shield.name=="Folding pavise";poseReady=false;}
+        public void CaptureInitialPose(){var bones=new System.Collections.Generic.List<Transform>{HealerBody,HealerBook,ScoutBody,LeftShoulder,RightShoulder,LeftElbow,RightElbow,LeftHand,RightHand,LeftLeg,RightLeg,LeftKnee,RightKnee,WeaponPivot,Weapon,BowStringUpper,BowStringLower,Barrel,Carriage,LeftWheel,RightWheel,LeftHorseLeg,RightHorseLeg,RearLeftHorseLeg,RearRightHorseLeg,HorseHead,HorseTail,Shield};bones.AddRange(CartWheels);cached=bones.ToArray();initialPosition=new Vector3[cached.Length];initialRotation=new Quaternion[cached.Length];initialScale=new Vector3[cached.Length];for(int i=0;i<cached.Length;i++)if(cached[i]!=null){initialPosition[i]=cached[i].localPosition;initialRotation[i]=cached[i].localRotation;initialScale[i]=cached[i].localScale;}FoldingPavise=Shield!=null&&Shield.name=="Folding pavise";poseReady=false;}
         public void RestoreInitialPose(){poseReady=false;if(cached==null)return;for(int i=0;i<cached.Length;i++)if(cached[i]!=null){if(!cached[i].localPosition.Equals(initialPosition[i]))cached[i].localPosition=initialPosition[i];if(!cached[i].localRotation.Equals(initialRotation[i]))cached[i].localRotation=initialRotation[i];if(!cached[i].localScale.Equals(initialScale[i]))cached[i].localScale=initialScale[i];}}
         internal bool BeginPose(AnimationPose pose)
         {

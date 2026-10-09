@@ -326,7 +326,12 @@ namespace Frontier
                 int artisans=AssignedArtisans(b);if(artisans==0){b.status="Assign settlers to manufacture";return;}
                 dt*=(.5f+.5f*artisans)*CivilizationFactor(b.owner,t=>t.manufactureSpeed);
             }
-            if(j.kind=="Train")dt*=CivilizationFactor(b.owner,t=>t.trainSpeed);
+            if(j.kind=="Train")
+            {
+                dt*=CivilizationFactor(b.owner,t=>t.trainSpeed);
+                var trained=Rules.Entity(j.item);
+                if(trained!=null&&trained.healer)dt*=HealerTrainingSpeed076(b.owner,trained);
+            }
             j.elapsed=Mathf.Min(j.duration,j.elapsed+dt);if(j.elapsed<j.duration)return;
             if(j.kind=="Manufacture"){Players[b.owner].prefabCharges+=j.count;b.queue.RemoveAt(0);Emit("ManufactureComplete",b.owner,b.id,j.item,j.count);b.status="Prefabrication kit ready";return;}
             if(j.kind=="Research"){ApplyTechnology(b.owner,j.item);if(j.item==CivilianRebuildingTechnology)CompleteCivilianRebuilding(b.owner,b.id);b.queue.RemoveAt(0);Emit("ResearchComplete",b.owner,b.id,Rules.Tech(j.item).name);return;}

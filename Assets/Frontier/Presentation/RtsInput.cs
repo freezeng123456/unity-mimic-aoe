@@ -23,6 +23,7 @@ namespace Frontier
         public bool AttackMode;
         public bool GarrisonMode;
         public bool RepairMode;
+        public bool HealMode;
         public bool EmbarkMode,DisembarkMode,DockRepairMode;
         public bool EnvoyRallyMode;
         public bool Dragging {get;private set;}
@@ -70,7 +71,7 @@ namespace Frontier
             ResetSelection();if(members==null||game.World==null)return;
             foreach(int id in members){var e=game.World.Get(id);if(e!=null&&e.Alive&&e.owner>=-1&&e.owner<game.World.Players.Length&&game.World.IsVisible(Observer,e)&&!Selected.Contains(id))Selected.Add(id);}game.Hud?.InvalidateActions();
         }
-        public void ResetSelection(){targetGeneration++;ResetDoubleClick();Selected.Clear();groups.Clear();BuildingToPlace="";AttackMode=false;GarrisonMode=false;RepairMode=false;EmbarkMode=false;DisembarkMode=false;DockRepairMode=false;EnvoyRallyMode=false;Dragging=false;beganWorld=false;beganMinimap=false;input?.Clear();game?.Hud?.CancelUiPointer();}
+        public void ResetSelection(){targetGeneration++;ResetDoubleClick();Selected.Clear();groups.Clear();BuildingToPlace="";AttackMode=false;GarrisonMode=false;RepairMode=false;HealMode=false;EmbarkMode=false;DisembarkMode=false;DockRepairMode=false;EnvoyRallyMode=false;Dragging=false;beganWorld=false;beganMinimap=false;input?.Clear();game?.Hud?.CancelUiPointer();}
         private void UpdateCamera()
         {
             if(game.GameCamera==null)return;
@@ -100,7 +101,7 @@ namespace Frontier
             game.Hud.InvalidateActions();if(FirstSelected!=null)Focus(FirstSelected.position);
         }
         public void BeginBuild(string id){if(!game.CanSubmitOrders){CancelTargetMode();return;}SuppressWorldInput();CancelTargetMode();BuildingToPlace=id;game.Notify("Place "+game.Rules.Entity(id).name+". Right click or Esc cancels.");}
-        public void CancelTargetMode(){targetGeneration++;ResetDoubleClick();BuildingToPlace="";AttackMode=false;GarrisonMode=false;RepairMode=false;EmbarkMode=false;DisembarkMode=false;DockRepairMode=false;EnvoyRallyMode=false;}
+        public void CancelTargetMode(){targetGeneration++;ResetDoubleClick();BuildingToPlace="";AttackMode=false;GarrisonMode=false;RepairMode=false;HealMode=false;EmbarkMode=false;DisembarkMode=false;DockRepairMode=false;EnvoyRallyMode=false;}
         public bool HasCombatSelection=>Selected.Exists(id=>{var e=game.World?.Get(id);return e!=null&&e.Alive&&e.owner==LocalPlayer&&e.garrisonedIn==0&&e.def.kind==EntityKind.Unit&&!e.def.civilian&&(e.def.damage>0||e.def.meleeDamage>0||e.def.siegeDamage>0);});
         public void BeginAttackMove(){if(!game.CanSubmitOrders){CancelTargetMode();return;}if(!HasCombatSelection){game.Notify("Select units with weapons before attacking");return;}CancelTargetMode();AttackMode=true;game.Notify("Attack move: choose a destination");}
         public void BeginEnvoyRally()
@@ -134,6 +135,38 @@ namespace Frontier
             if(!capable){game.Notify("Select settlers or field engineers before repairing");return;}
             CancelTargetMode();RepairMode=true;game.Notify("Repair: settlers repair buildings; field engineers repair artillery. "+game.Settings.BindingLabel(PlayerAction.Repair)+" / right click / Esc cancels.");
         }
+        public void BeginHeal()
+        {
+            if(!game.CanSubmitOrders){CancelTargetMode();return;}
+            if(HealMode){CancelTargetMode();game.Notify("Healing targeting cancelled");return;}
+            bool capable=Selected.Exists(id=>{var actor=game.World?.Get(id);return actor!=null&&actor.owner==LocalPlayer&&game.World.CanHeal(actor)&&game.World.IsVisible(Observer,actor);});
+            if(!capable){game.Notify("Select available medical units before healing");return;}
+            SuppressWorldInput();CancelTargetMode();HealMode=true;
+            game.Notify("Heal: choose a wounded friendly or allied land unit. Shift queues targets; right click / Esc cancels.");
+        }
+        public void SelectHealers()
+        {
+            if(game.World==null)return;CancelTargetMode();SuppressWorldInput();Selected.Clear();
+            foreach(var actor in game.World.Entities)
+                if(actor.Alive&&actor.owner==GroupOwner&&actor.Healer&&actor.garrisonedIn==0&&game.World.IsVisible(Observer,actor))Selected.Add(actor.id);
+            game.Hud?.InvalidateActions();if(FirstSelected!=null)Focus(FirstSelected.position);else game.Notify("No visible medical units");
+        }
+        private EntityState PickHealingTarget(Vector2 screen)
+        {
+            // Explicit treatment prioritizes a compatible visible patient over
+            // overlapping enemies, buildings or resources. No hidden target probe.
+            EntityState best=null;float nearest=float.MaxValue;
+            foreach(var target in game.World.Entities)
+            {
+                if(!game.World.IsVisible(Observer,target))continue;
+                bool compatible=Selected.Exists(id=>game.World.HealingTargetReason(LocalPlayer,game.World.Get(id),target)=="");
+                if(!compatible)continue;
+                var point=game.GameCamera.WorldToScreenPoint(new Vector3(target.position.x,game.World.SurfaceHeight(target.position)+1,target.position.y));
+                float distance=Vector2.Distance(screen,point),threshold=Mathf.Max(13,Screen.height/game.GameCamera.orthographicSize*.35f);
+                if(point.z>0&&distance<=threshold&&distance<nearest){nearest=distance;best=target;}
+            }
+            return best;
+        }
         public void IssueOrder(OrderKind kind,Vector2 point,int target=0){if(kind==OrderKind.Stop||kind==OrderKind.Hold)CancelTargetMode();IssueOrder(kind,point,target,Shift);}
         private void IssueOrder(OrderKind kind,Vector2 point,int target,bool append,System.Action accepted=null)
         {ResetDoubleClick();if(!game.CanSubmitOrders)return;game.SubmitCommand(new GameCommand{player=LocalPlayer,kind=CommandKind.Order,actors=Selected.ToArray(),order=kind,point=point,target=target,append=append},accepted==null?null:GuardTargetResult(accepted));}
@@ -147,7 +180,7 @@ namespace Frontier
                 accepted?.Invoke();
             };
         }
-        private string TargetSignature()=>BuildingToPlace+"/"+AttackMode+"/"+GarrisonMode+"/"+RepairMode+"/"+EmbarkMode+"/"+DisembarkMode+"/"+DockRepairMode+"/"+EnvoyRallyMode;
+        private string TargetSignature()=>BuildingToPlace+"/"+AttackMode+"/"+GarrisonMode+"/"+RepairMode+"/"+HealMode+"/"+EmbarkMode+"/"+DisembarkMode+"/"+DockRepairMode+"/"+EnvoyRallyMode;
         public void MinimapOrder(Vector2 point,bool right)=>MinimapOrder(point,right,Shift);
         private void MinimapOrder(Vector2 point,bool right,bool append)
         {
@@ -156,6 +189,7 @@ namespace Frontier
             else if(EnvoyRallyMode)SubmitEnvoyRally(point);
             else if(DisembarkMode)game.SubmitCommand(new GameCommand{player=LocalPlayer,kind=CommandKind.Disembark,actors=Selected.ToArray(),point=point},GuardTargetResult(CancelTargetMode));
             else if(EmbarkMode||DockRepairMode)game.Notify("Choose a visible transport or friendly harbor in the world view");
+            else if(HealMode)game.Notify("Heal: choose a visible wounded friendly or allied land unit in the world view");
             else if(RepairMode)game.Notify("Repair: choose a visible damaged friendly target");
             else if(GarrisonMode)game.Notify("Garrison: choose a visible shelter in the world view");
             else if(AttackMode)IssueOrder(OrderKind.AttackMove,point,0,append,CancelTargetMode);
@@ -168,7 +202,7 @@ namespace Frontier
         private void LateUpdate()
         {
             if(game==null||input==null)return;
-            if((game.IsWatching||game.IsLan&&!game.CanSubmitOrders)&&(BuildingToPlace!=""||AttackMode||GarrisonMode||RepairMode||EmbarkMode||DisembarkMode||DockRepairMode||EnvoyRallyMode))CancelTargetMode();
+            if((game.IsWatching||game.IsLan&&!game.CanSubmitOrders)&&(BuildingToPlace!=""||AttackMode||GarrisonMode||RepairMode||HealMode||EmbarkMode||DisembarkMode||DockRepairMode||EnvoyRallyMode))CancelTargetMode();
             if(input.TakePointerReset())
             {ResetDoubleClick();game.Hud.CancelUiPointer();beganWorld=false;beganMinimap=false;Dragging=false;}
             // Only UI edges wait for newly rebuilt graphics. World commands and
@@ -220,7 +254,7 @@ namespace Frontier
             if(game.IsLan)
             {
                 if(game.InMenu)game.Hud.ShowLanLobby();
-                else if(BuildingToPlace!=""||AttackMode||GarrisonMode||RepairMode||EmbarkMode||DisembarkMode||DockRepairMode||EnvoyRallyMode)CancelTargetMode();
+                else if(BuildingToPlace!=""||AttackMode||GarrisonMode||RepairMode||HealMode||EmbarkMode||DisembarkMode||DockRepairMode||EnvoyRallyMode)CancelTargetMode();
                 else if(game.LocalMenuPaused)game.CloseLocalMenu();
                 else if(game.Hud.ResultVisible)game.TogglePause();
                 else if(game.Hud.ModalVisible)game.Hud.CloseModal();
@@ -229,7 +263,7 @@ namespace Frontier
             }
             if(game.IsWatching)
             {CancelTargetMode();if(game.Hud.ModalVisible)game.Hud.CloseModal();else game.ToggleReplayPlayback();SuppressWorldInput();return;}
-            if(BuildingToPlace!=""||AttackMode||GarrisonMode||RepairMode||EmbarkMode||DisembarkMode||DockRepairMode||EnvoyRallyMode){CancelTargetMode();game.Notify("Targeting cancelled");}
+            if(BuildingToPlace!=""||AttackMode||GarrisonMode||RepairMode||HealMode||EmbarkMode||DisembarkMode||DockRepairMode||EnvoyRallyMode){CancelTargetMode();game.Notify("Targeting cancelled");}
             else if(game.Hud.ResultVisible)game.ReturnToMenu();
             else if(game.IsPaused)game.TogglePause();
             else if(game.Hud.ModalVisible)game.Hud.CloseModal();
@@ -270,7 +304,7 @@ namespace Frontier
         {
             ResetDoubleClick();beganWorld=false;beganMinimap=false;Dragging=false;
             if(!game.CanSubmitOrders){CancelTargetMode();return;}
-            if(BuildingToPlace!=""||AttackMode||GarrisonMode||RepairMode||EmbarkMode||DisembarkMode||DockRepairMode||EnvoyRallyMode){CancelTargetMode();return;}
+            if(BuildingToPlace!=""||AttackMode||GarrisonMode||RepairMode||HealMode||EmbarkMode||DisembarkMode||DockRepairMode||EnvoyRallyMode){CancelTargetMode();return;}
             if(game.Hud.TryMinimapPoint(edge.position,out var mini)){MinimapOrder(mini,true,edge.shift);return;}
             if(!game.Hud.BlocksWorldInput(edge.position))ContextOrder(GroundPoint(edge.position),Pick(edge.position,true),edge.shift);
         }
@@ -293,6 +327,16 @@ namespace Frontier
                 {
                     var target=Pick(pointer,true,true);var command=EmbarkMode?CommandKind.Embark:DisembarkMode?CommandKind.Disembark:CommandKind.DockRepair;
                     game.SubmitCommand(new GameCommand{player=LocalPlayer,kind=command,actors=Selected.ToArray(),target=target?.id??0,point=command==CommandKind.Embark?Vector2.zero:point,append=edge.shift},GuardTargetResult(CancelTargetMode));
+                    beganWorld=false;return;
+                }
+                if(HealMode)
+                {
+                    var target=PickHealingTarget(pointer);var actors=new List<int>();
+                    if(target!=null)foreach(int id in Selected)
+                        if(!actors.Contains(id)&&game.World.HealingTargetReason(LocalPlayer,game.World.Get(id),target)=="")actors.Add(id);
+                    bool append=edge.shift;
+                    if(actors.Count>0)game.SubmitCommand(new GameCommand{player=LocalPlayer,kind=CommandKind.Order,actors=actors.ToArray(),order=OrderKind.Heal,point=target.position,target=target.id,append=append},GuardTargetResult(()=>{if(!append)CancelTargetMode();}));
+                    else game.Notify("Heal: choose a visible wounded friendly or allied land unit compatible with the selected medical units");
                     beganWorld=false;return;
                 }
                 if(RepairMode)
@@ -362,6 +406,7 @@ namespace Frontier
                     else if(target.owner==LocalPlayer&&target.def.id=="dock"&&actor.def.waterborne&&actor.hp<game.World.MaxHp(actor)-1)kind=OrderKind.DockRepair;
                     else if(target.owner==LocalPlayer&&target.def.kind==EntityKind.Building)
                     {if(!target.Complete&&game.World.CanConstruct(actor,target.def.id))kind=OrderKind.Build;else if(actor.Worker&&target.Complete&&target.def.id=="workshop")kind=OrderKind.Manufacture;else if(actor.Worker&&target.hp<game.World.MaxHp(target)-1)kind=OrderKind.Repair;else if(target.Complete&&target.def.garrison>0)kind=OrderKind.Garrison;}
+                    else if(game.World.HealingTargetReason(LocalPlayer,actor,target)=="")kind=OrderKind.Heal;
                     else if(target.owner==LocalPlayer&&actor.def.repairArtillery&&(target.def.tags&Tags.Artillery)!=0&&target.hp<game.World.MaxHp(target)-1)kind=OrderKind.Repair;
                 }
                 if(!groups.TryGetValue(kind,out var actors)){actors=new List<int>();groups.Add(kind,actors);kinds.Add(kind);}actors.Add(id);

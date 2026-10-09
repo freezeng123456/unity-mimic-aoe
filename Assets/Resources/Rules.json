@@ -85,7 +85,8 @@
       "killXp": 10,
       "excludedCivilizations": [
         "france"
-      ]
+      ],
+      "canReceiveHealing": true
     },
     {
       "id": "explorer",
@@ -133,7 +134,8 @@
       "buildXp": 0,
       "trainXp": 0,
       "killXp": 20,
-      "detectionRange": 8
+      "detectionRange": 8,
+      "canReceiveHealing": true
     },
     {
       "id": "envoy",
@@ -180,7 +182,8 @@
       "trainXp": 3,
       "killXp": 5,
       "bonuses": [],
-      "meleeBonuses": []
+      "meleeBonuses": [],
+      "canReceiveHealing": true
     },
     {
       "id": "native_scout",
@@ -225,7 +228,101 @@
       "trainXp": 3,
       "killXp": 5,
       "bonuses": [],
+      "meleeBonuses": [],
+      "canReceiveHealing": true
+    },
+    {
+      "id": "imam",
+      "name": "Imam",
+      "description": "Imam provides single-target, non-stacking out-of-combat care through Heal or idle Auto Heal. Project balance: 115 food, 30s, Age II, 1 population, cap 10, 200 HP, 10 HP/s, edge range 12, 3s combat recovery. No gathering, building, repair, treasure claiming or automatic combat pursuit.",
+      "producer": "mosque",
+      "civilization": "ottoman",
+      "kind": 0,
+      "tags": 8192,
+      "healer": true,
+      "canReceiveHealing": true,
+      "healRate": 10,
+      "healRange": 12,
+      "trainingLimit": 10,
+      "cost": {
+        "food": 115
+      },
+      "hp": 200,
+      "radius": 0.4,
+      "width": 1,
+      "depth": 1,
+      "speed": 4,
+      "vision": 18,
+      "damage": 5,
+      "meleeDamage": 5,
+      "siegeDamage": 0,
+      "range": 1.3,
+      "minRange": 0,
+      "period": 1.5,
+      "windup": 0.35,
+      "projectileSpeed": 0,
+      "splash": 0,
+      "damageKind": 0,
+      "time": 30,
+      "population": 1,
+      "capacity": 0,
+      "age": 2,
+      "batch": 1,
+      "garrison": 0,
+      "trainXp": 5,
+      "killXp": 10,
+      "constructs": [],
+      "bonuses": [],
       "meleeBonuses": []
+    },
+    {
+      "id": "priest",
+      "name": "Priest",
+      "description": "Priest provides single-target, non-stacking out-of-combat care through Heal or idle Auto Heal. Project balance: 100 coin, 30s, Age II, 1 population, cap 10, 200 HP, 10 HP/s, edge range 12, 3s combat recovery. No gathering, building, repair, treasure claiming or automatic combat pursuit.",
+      "producer": "church",
+      "civilization": "",
+      "kind": 0,
+      "tags": 8192,
+      "healer": true,
+      "canReceiveHealing": true,
+      "healRate": 10,
+      "healRange": 12,
+      "trainingLimit": 10,
+      "cost": {
+        "coin": 100
+      },
+      "hp": 200,
+      "radius": 0.4,
+      "width": 1,
+      "depth": 1,
+      "speed": 4,
+      "vision": 18,
+      "damage": 5,
+      "meleeDamage": 5,
+      "siegeDamage": 0,
+      "range": 1.3,
+      "minRange": 0,
+      "period": 1.5,
+      "windup": 0.35,
+      "projectileSpeed": 0,
+      "splash": 0,
+      "damageKind": 0,
+      "time": 30,
+      "population": 1,
+      "capacity": 0,
+      "age": 2,
+      "batch": 1,
+      "garrison": 0,
+      "trainXp": 5,
+      "killXp": 10,
+      "constructs": [],
+      "bonuses": [],
+      "meleeBonuses": [],
+      "excludedCivilizations": [
+        "wayfarer",
+        "highland",
+        "ottoman"
+      ]
     },
     {
       "id": "pike",
@@ -282,7 +379,8 @@
         "wayfarer",
         "highland",
         "ottoman"
-      ]
+      ],
+      "canReceiveHealing": true
     },
     {
       "id": "musketeer",
@@ -339,7 +437,8 @@
           "tags": 8,
           "multiplier": 3
         }
-      ]
+      ],
+      "canReceiveHealing": true
     },
     {
       "id": "skirmisher",
@@ -396,7 +495,8 @@
         "wayfarer",
         "coast",
         "ottoman"
-      ]
+      ],
+      "canReceiveHealing": true
     },
     {
       "id": "hussar",
@@ -446,7 +546,8 @@
       "killXp": 20,
       "excludedCivilizations": [
         "wayfarer"
-      ]
+      ],
+      "canReceiveHealing": true
     },
     {
       "id": "dragoon",
@@ -502,7 +603,8 @@
       "excludedCivilizations": [
         "river",
         "ottoman"
-      ]
+      ],
+      "canReceiveHealing": true
     },
     {
       "id": "cannon",
@@ -558,7 +660,8 @@
       "gatherRate": 0,
       "buildXp": 0,
       "trainXp": 18,
-      "killXp": 35
+      "killXp": 35,
+      "canReceiveHealing": true
     },
     {
       "id": "mortar",
@@ -605,7 +708,8 @@
       "gatherRate": 0,
       "buildXp": 0,
       "trainXp": 20,
-      "killXp": 40
+      "killXp": 40,
+      "canReceiveHealing": true
     },
     {
       "id": "town",
@@ -653,7 +757,8 @@
       "buildXp": 75,
       "trainXp": 0,
       "killXp": 75,
-      "detectionRange": 8
+      "detectionRange": 8,
+      "canReceiveHealing": false
     },
     {
       "id": "house",
@@ -698,7 +803,8 @@
       "gatherRate": 0,
       "buildXp": 20,
       "trainXp": 0,
-      "killXp": 20
+      "killXp": 20,
+      "canReceiveHealing": false
     },
     {
       "id": "barracks",
@@ -743,7 +849,8 @@
       "gatherRate": 0,
       "buildXp": 30,
       "trainXp": 0,
-      "killXp": 30
+      "killXp": 30,
+      "canReceiveHealing": false
     },
     {
       "id": "stable",
@@ -788,7 +895,8 @@
       "gatherRate": 0,
       "buildXp": 30,
       "trainXp": 0,
-      "killXp": 30
+      "killXp": 30,
+      "canReceiveHealing": false
     },
     {
       "id": "foundry",
@@ -833,7 +941,8 @@
       "gatherRate": 0,
       "buildXp": 45,
       "trainXp": 0,
-      "killXp": 45
+      "killXp": 45,
+      "canReceiveHealing": false
     },
     {
       "id": "market",
@@ -878,7 +987,8 @@
       "gatherRate": 0,
       "buildXp": 15,
       "trainXp": 0,
-      "killXp": 15
+      "killXp": 15,
+      "canReceiveHealing": false
     },
     {
       "id": "tower",
@@ -924,7 +1034,8 @@
       "buildXp": 30,
       "trainXp": 0,
       "killXp": 30,
-      "detectionRange": 8
+      "detectionRange": 8,
+      "canReceiveHealing": false
     },
     {
       "id": "farm",
@@ -969,7 +1080,8 @@
       "gatherRate": 0.5,
       "buildXp": 45,
       "trainXp": 0,
-      "killXp": 45
+      "killXp": 45,
+      "canReceiveHealing": false
     },
     {
       "id": "bank",
@@ -1015,7 +1127,8 @@
       "gatherRate": 0,
       "buildXp": 30,
       "trainXp": 0,
-      "killXp": 30
+      "killXp": 30,
+      "canReceiveHealing": false
     },
     {
       "id": "berry",
@@ -1062,7 +1175,8 @@
       "gatherRate": 0.67,
       "buildXp": 0,
       "trainXp": 0,
-      "killXp": 0
+      "killXp": 0,
+      "canReceiveHealing": false
     },
     {
       "id": "deer",
@@ -1109,7 +1223,8 @@
       "gatherRate": 0.84,
       "buildXp": 0,
       "trainXp": 0,
-      "killXp": 0
+      "killXp": 0,
+      "canReceiveHealing": false
     },
     {
       "id": "tree",
@@ -1156,7 +1271,8 @@
       "gatherRate": 0.5,
       "buildXp": 0,
       "trainXp": 0,
-      "killXp": 0
+      "killXp": 0,
+      "canReceiveHealing": false
     },
     {
       "id": "mine",
@@ -1203,7 +1319,8 @@
       "gatherRate": 0.6,
       "buildXp": 0,
       "trainXp": 0,
-      "killXp": 0
+      "killXp": 0,
+      "canReceiveHealing": false
     },
     {
       "id": "crate_food",
@@ -1250,7 +1367,8 @@
       "gatherRate": 6,
       "buildXp": 0,
       "trainXp": 0,
-      "killXp": 0
+      "killXp": 0,
+      "canReceiveHealing": false
     },
     {
       "id": "crate_wood",
@@ -1297,7 +1415,8 @@
       "gatherRate": 6,
       "buildXp": 0,
       "trainXp": 0,
-      "killXp": 0
+      "killXp": 0,
+      "canReceiveHealing": false
     },
     {
       "id": "crate_coin",
@@ -1344,7 +1463,8 @@
       "gatherRate": 6,
       "buildXp": 0,
       "trainXp": 0,
-      "killXp": 0
+      "killXp": 0,
+      "canReceiveHealing": false
     },
     {
       "id": "longbow",
@@ -1395,7 +1515,8 @@
       "gatherRate": 0,
       "buildXp": 0,
       "trainXp": 6,
-      "killXp": 11
+      "killXp": 11,
+      "canReceiveHealing": true
     },
     {
       "id": "carabineer",
@@ -1446,7 +1567,8 @@
       "gatherRate": 0,
       "buildXp": 0,
       "trainXp": 6,
-      "killXp": 11
+      "killXp": 11,
+      "canReceiveHealing": true
     },
     {
       "id": "estate",
@@ -1491,7 +1613,8 @@
       "gatherRate": 0.45,
       "buildXp": 45,
       "trainXp": 0,
-      "killXp": 45
+      "killXp": 45,
+      "canReceiveHealing": false
     },
     {
       "id": "trade_socket",
@@ -1505,7 +1628,8 @@
       "population": 0,
       "buildXp": 0,
       "trainXp": 0,
-      "killXp": 0
+      "killXp": 0,
+      "canReceiveHealing": false
     },
     {
       "id": "trade_post",
@@ -1527,7 +1651,8 @@
       "time": 60,
       "buildXp": 40,
       "trainXp": 0,
-      "killXp": 40
+      "killXp": 40,
+      "canReceiveHealing": false
     },
     {
       "id": "guardian",
@@ -1550,7 +1675,8 @@
       "buildXp": 0,
       "trainXp": 0,
       "killXp": 8,
-      "detectionRange": 8
+      "detectionRange": 8,
+      "canReceiveHealing": false
     },
     {
       "id": "treasure_wood",
@@ -1564,7 +1690,8 @@
       "population": 0,
       "buildXp": 0,
       "trainXp": 0,
-      "killXp": 0
+      "killXp": 0,
+      "canReceiveHealing": false
     },
     {
       "id": "treasure_xp",
@@ -1578,7 +1705,8 @@
       "population": 0,
       "buildXp": 0,
       "trainXp": 0,
-      "killXp": 0
+      "killXp": 0,
+      "canReceiveHealing": false
     },
     {
       "id": "treasure_coin",
@@ -1592,7 +1720,8 @@
       "population": 0,
       "buildXp": 0,
       "trainXp": 0,
-      "killXp": 0
+      "killXp": 0,
+      "canReceiveHealing": false
     },
     {
       "id": "waystation",
@@ -1637,7 +1766,8 @@
       "gatherRate": 0,
       "buildXp": 30,
       "trainXp": 0,
-      "killXp": 30
+      "killXp": 30,
+      "canReceiveHealing": false
     },
     {
       "id": "caravan",
@@ -1684,7 +1814,8 @@
       "buildXp": 0,
       "trainXp": 8,
       "killXp": 18,
-      "civilian": true
+      "civilian": true,
+      "canReceiveHealing": false
     },
     {
       "id": "escort",
@@ -1736,7 +1867,8 @@
       "buildXp": 0,
       "trainXp": 5,
       "killXp": 10,
-      "excludedCivilizations": []
+      "excludedCivilizations": [],
+      "canReceiveHealing": true
     },
     {
       "id": "outrider",
@@ -1788,7 +1920,8 @@
       "buildXp": 0,
       "trainXp": 10,
       "killXp": 20,
-      "excludedCivilizations": []
+      "excludedCivilizations": [],
+      "canReceiveHealing": true
     },
     {
       "id": "convoy_gunner",
@@ -1840,7 +1973,8 @@
       "buildXp": 0,
       "trainXp": 6,
       "killXp": 12,
-      "excludedCivilizations": []
+      "excludedCivilizations": [],
+      "canReceiveHealing": true
     },
     {
       "id": "workshop",
@@ -1887,7 +2021,8 @@
       "buildXp": 45,
       "trainXp": 0,
       "killXp": 45,
-      "garrisonAttackLimit": 0
+      "garrisonAttackLimit": 0,
+      "canReceiveHealing": false
     },
     {
       "id": "field_engineer",
@@ -1934,7 +2069,8 @@
       "buildXp": 0,
       "trainXp": 5,
       "killXp": 10,
-      "repairArtillery": true
+      "repairArtillery": true,
+      "canReceiveHealing": true
     },
     {
       "id": "culverin",
@@ -1985,7 +2121,8 @@
       "gatherRate": 0,
       "buildXp": 0,
       "trainXp": 18,
-      "killXp": 35
+      "killXp": 35,
+      "canReceiveHealing": true
     },
     {
       "id": "shield_guard",
@@ -2038,7 +2175,8 @@
       "trainXp": 5,
       "killXp": 10,
       "excludedCivilizations": [],
-      "shieldAbility": true
+      "shieldAbility": true,
+      "canReceiveHealing": true
     },
     {
       "id": "coureur",
@@ -2085,7 +2223,8 @@
       "trainXp": 5,
       "killXp": 10,
       "excludedCivilizations": [],
-      "gatherMultiplier": 1.25
+      "gatherMultiplier": 1.25,
+      "canReceiveHealing": true
     },
     {
       "id": "cuirassier",
@@ -2133,7 +2272,8 @@
       "trainXp": 14,
       "killXp": 28,
       "excludedCivilizations": [],
-      "meleeSplash": 2
+      "meleeSplash": 2,
+      "canReceiveHealing": true
     },
     {
       "id": "janissary",
@@ -2186,7 +2326,8 @@
           "tags": 8,
           "multiplier": 2
         }
-      ]
+      ],
+      "canReceiveHealing": true
     },
     {
       "id": "abus",
@@ -2238,7 +2379,8 @@
       "buildXp": 0,
       "trainXp": 10,
       "killXp": 20,
-      "excludedCivilizations": []
+      "excludedCivilizations": [],
+      "canReceiveHealing": true
     },
     {
       "id": "spahi",
@@ -2285,7 +2427,8 @@
       "buildXp": 0,
       "trainXp": 16,
       "killXp": 32,
-      "excludedCivilizations": []
+      "excludedCivilizations": [],
+      "canReceiveHealing": true
     },
     {
       "id": "halberdier",
@@ -2337,12 +2480,13 @@
       "buildXp": 0,
       "trainXp": 7,
       "killXp": 14,
-      "excludedCivilizations": []
+      "excludedCivilizations": [],
+      "canReceiveHealing": true
     },
     {
       "id": "mosque",
       "name": "Mosque",
-      "description": "Ottoman economic research building. Buy worker-limit and recruitment-speed improvements here; the building alone does not raise either.",
+      "description": "Ottoman research and medical building. Buy worker-limit and recruitment-speed improvements, train paid Age II Imams and research Mission Fervor. The building alone grants no free units, healing or worker upgrades.",
       "producer": "",
       "civilization": "ottoman",
       "kind": 1,
@@ -2382,7 +2526,59 @@
       "gatherRate": 0,
       "buildXp": 15,
       "trainXp": 0,
-      "killXp": 15
+      "killXp": 15,
+      "canReceiveHealing": false
+    },
+    {
+      "id": "church",
+      "name": "Church",
+      "description": "British, Dutch and French medical building. Project balance: 150 wood, 25s, Age I; trains paid Age II Priests and researches Mission Fervor. No passive healing, passive XP or free units.",
+      "producer": "",
+      "civilization": "",
+      "kind": 1,
+      "tags": 256,
+      "cost": {
+        "wood": 150
+      },
+      "hp": 1200,
+      "radius": 0.4,
+      "width": 3,
+      "depth": 3,
+      "speed": 0,
+      "vision": 18,
+      "damage": 0,
+      "meleeDamage": 0,
+      "siegeDamage": 0,
+      "range": 1,
+      "minRange": 0,
+      "period": 2,
+      "windup": 0.35,
+      "projectileSpeed": 30,
+      "splash": 0,
+      "damageKind": 0,
+      "meleeResist": 0,
+      "rangedResist": 0,
+      "siegeResist": 0,
+      "time": 25,
+      "population": 0,
+      "capacity": 0,
+      "age": 1,
+      "batch": 1,
+      "garrison": 0,
+      "deploy": false,
+      "bonuses": [],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 15,
+      "trainXp": 0,
+      "killXp": 15,
+      "canReceiveHealing": false,
+      "excludedCivilizations": [
+        "wayfarer",
+        "highland",
+        "ottoman"
+      ]
     },
     {
       "id": "dock",
@@ -2427,7 +2623,8 @@
       "gatherRate": 0,
       "buildXp": 30,
       "trainXp": 0,
-      "killXp": 30
+      "killXp": 30,
+      "canReceiveHealing": false
     },
     {
       "id": "fishing_boat",
@@ -2482,7 +2679,8 @@
       "repairCost": {
         "wood": 70,
         "coin": 0
-      }
+      },
+      "canReceiveHealing": false
     },
     {
       "id": "gunboat",
@@ -2535,7 +2733,8 @@
       "repairCost": {
         "wood": 150,
         "coin": 100
-      }
+      },
+      "canReceiveHealing": false
     },
     {
       "id": "fish",
@@ -2587,7 +2786,8 @@
       "repairCost": {
         "wood": 0,
         "coin": 0
-      }
+      },
+      "canReceiveHealing": false
     },
     {
       "id": "factory",
@@ -2642,7 +2842,8 @@
       ],
       "repairCost": {
         "wood": 1000
-      }
+      },
+      "canReceiveHealing": false
     },
     {
       "id": "factory_wagon",
@@ -2694,7 +2895,8 @@
         "wayfarer",
         "highland"
       ],
-      "civilian": true
+      "civilian": true,
+      "canReceiveHealing": false
     },
     {
       "id": "heavy_cannon",
@@ -2756,7 +2958,8 @@
       "repairCost": {
         "wood": 200,
         "coin": 500
-      }
+      },
+      "canReceiveHealing": true
     },
     {
       "id": "rocket",
@@ -2813,7 +3016,8 @@
       "repairCost": {
         "wood": 100,
         "coin": 500
-      }
+      },
+      "canReceiveHealing": true
     },
     {
       "id": "great_bombard",
@@ -2870,7 +3074,8 @@
       "repairCost": {
         "wood": 100,
         "coin": 600
-      }
+      },
+      "canReceiveHealing": true
     },
     {
       "id": "transport_ship",
@@ -2924,7 +3129,8 @@
       "repairCost": {
         "wood": 200,
         "coin": 75
-      }
+      },
+      "canReceiveHealing": false
     },
     {
       "id": "frigate",
@@ -2981,7 +3187,8 @@
       "repairCost": {
         "wood": 350,
         "coin": 250
-      }
+      },
+      "canReceiveHealing": false
     },
     {
       "id": "monitor",
@@ -3033,7 +3240,8 @@
       "repairCost": {
         "wood": 400,
         "coin": 350
-      }
+      },
+      "canReceiveHealing": false
     },
     {
       "id": "objective_cart",
@@ -3077,7 +3285,8 @@
       "buildXp": 0,
       "trainXp": 0,
       "killXp": 18,
-      "civilian": true
+      "civilian": true,
+      "canReceiveHealing": false
     },
     {
       "id": "ally_river_guard",
@@ -3126,7 +3335,8 @@
       "killXp": 16,
       "waterborne": false,
       "civilian": false,
-      "repairCost": {}
+      "repairCost": {},
+      "canReceiveHealing": true
     },
     {
       "id": "ally_highland_guard",
@@ -3180,7 +3390,8 @@
       "killXp": 16,
       "waterborne": false,
       "civilian": false,
-      "repairCost": {}
+      "repairCost": {},
+      "canReceiveHealing": true
     },
     {
       "id": "ally_coastal_guard",
@@ -3234,7 +3445,8 @@
       "killXp": 16,
       "waterborne": false,
       "civilian": false,
-      "repairCost": {}
+      "repairCost": {},
+      "canReceiveHealing": true
     },
     {
       "id": "revolutionary",
@@ -3292,7 +3504,8 @@
           "multiplier": 3
         }
       ],
-      "revolutionary": true
+      "revolutionary": true,
+      "canReceiveHealing": true
     }
   ],
   "techs": [
@@ -6793,6 +7006,42 @@
       },
       "time": 60,
       "requiresRevolution": true
+    },
+    {
+      "id": "mission_fervor",
+      "name": "Mission Fervor",
+      "description": "Project balance: Age III, 200 wood + 150 coin, 40s. Healers gain +50% base HP, +50% healer-only training speed and +100% healing rate. Existing HP preserves its health ratio; no effect on combat-unit training or damage.",
+      "building": "mosque",
+      "civilization": "ottoman",
+      "age": 3,
+      "cost": {
+        "wood": 200,
+        "coin": 150
+      },
+      "time": 40,
+      "requires": "",
+      "tags": 8192,
+      "health": 0.5,
+      "healing": 1,
+      "healerTrainSpeed": 0.5
+    },
+    {
+      "id": "mission_fervor_church",
+      "name": "Mission Fervor",
+      "description": "Project balance: Age III, 200 wood + 150 coin, 40s. Healers gain +50% base HP, +50% healer-only training speed and +100% healing rate. Existing HP preserves its health ratio; no effect on combat-unit training or damage.",
+      "building": "church",
+      "civilization": "",
+      "age": 3,
+      "cost": {
+        "wood": 200,
+        "coin": 150
+      },
+      "time": 40,
+      "requires": "",
+      "tags": 8192,
+      "health": 0.5,
+      "healing": 1,
+      "healerTrainSpeed": 0.5
     }
   ],
   "cards": [

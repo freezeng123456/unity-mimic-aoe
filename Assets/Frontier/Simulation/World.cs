@@ -81,7 +81,7 @@ namespace Frontier
             if(owner< -1||owner>=Players.Length)throw new ArgumentOutOfRangeException(nameof(owner));
             var d=Rules.Entity(definition);if(d==null)throw new ArgumentException("Undefined entity: "+definition);
             var e=new EntityState{id=nextId++,owner=owner,def=d,position=position,previousPosition=position,origin=position,
-                hp=complete?d.hp:Mathf.Max(1,d.hp*.05f),construction=complete?1:0,remaining=d.amount,rally=position+new Vector2(0,-d.depth*.5f-3)};
+                autoHeal=d.healer,hp=complete?d.hp:Mathf.Max(1,d.hp*.05f),construction=complete?1:0,remaining=d.amount,rally=position+new Vector2(0,-d.depth*.5f-3)};
             Entities.Add(e);byId[e.id]=e;
             if(d.kind==EntityKind.Building)SetBuildingObstacle(e,true);
             OnEntitySpawned(e);e.hp=complete?MaxHp(e):Mathf.Max(1,MaxHp(e)*.05f);
@@ -99,7 +99,7 @@ namespace Frontier
         {
             if(e==null||!e.Alive)return;bool concealed=e.stealth;int observed=0;
             if(concealed)for(int player=0;player<Players.Length;player++)if(CanObserveStealth075(player,e))observed|=1<<player;
-            e.stealth=false;e.dead=true;e.hp=0;
+            e.stealth=false;e.dead=true;e.hp=0;ClearHealing076(e);e.autoHeal=false;ClearPatientHealingLinks076(e);
             if(e.def.kind==EntityKind.Building)SetBuildingObstacle(e,false);
             OnEntityRemoved(e);
             if(e.owner>=0&&e.def.kind!=EntityKind.Resource)Players[e.owner].losses++;
@@ -138,6 +138,7 @@ namespace Frontier
             if(c.kind==CommandKind.Manufacture)return StartManufacture(c);
             if(c.kind==CommandKind.ToggleShield)return ToggleShield(c);
             if(c.kind==CommandKind.ToggleStealth)return ToggleStealth075(c);
+            if(c.kind==CommandKind.ToggleAutoHeal)return ToggleAutoHeal076(c);
             if(TryHandleNavalTransportCommand(c,out var navalResult))return navalResult;
             if(c.kind==CommandKind.NeutralAlliance||c.kind==CommandKind.NeutralRecruit||c.kind==CommandKind.NeutralResearch)return IssueNeutralCommand(c);
             if(c.kind==CommandKind.Order)return IssueOrders(c);
@@ -155,6 +156,7 @@ namespace Frontier
         private CommandResult IssueOrders(GameCommand c)
         {
             if(!System.Enum.IsDefined(typeof(OrderKind),c.order))return CommandResult.Fail("Invalid order");
+            if(c.order==OrderKind.Heal)return IssueHealOrders076(c);
             if(c.order==OrderKind.Scout&&c.target!=0)return CommandResult.Fail("Scout orders do not target an entity");
             if(c.order==OrderKind.Embark||c.order==OrderKind.Disembark||c.order==OrderKind.TransportBerth||c.order==OrderKind.DockRepair)return CommandResult.Fail("Use the transport or harbor command");
             var actors=new List<EntityState>();
@@ -209,6 +211,8 @@ namespace Frontier
                 bool sameTravel=!append&&SameTravelIntent(previous,c.order,requested,c.target);
                 if(!append)
                 {
+                    ClearHealing076(e);
+                    if(c.order==OrderKind.Stop)e.autoHeal=false;
                     bool keepPreparation=sameTravel&&(c.order==OrderKind.AttackMove||c.order==OrderKind.Attack&&e.attackTarget==c.target);
                     e.orders.Clear();
                     if(!sameTravel)InvalidateCommandPath(e);
@@ -244,6 +248,7 @@ namespace Frontier
             var sw=System.Diagnostics.Stopwatch.StartNew();TickMovementCombat(dt);LastCombatMs=Mathf.Max(0,(float)sw.Elapsed.TotalMilliseconds-LastNavigationMs);
             TickTransportCargo();
             MaintainStealth075();
+            TickHealing076(dt);
             sw.Restart();TickEconomy(dt);TickLandmarks(dt);TickNeutralAllies(dt);TickMapObjectives(dt);scenarioRuntime?.Tick(dt);LastEconomyMs=(float)sw.Elapsed.TotalMilliseconds;
             if(Time>=fogAt){fogAt=Time+.4f;Fog.Tick(Entities);RecordLandmarkDiscoveries();}
             if(!IsMatchEnded)EvaluateElimination();

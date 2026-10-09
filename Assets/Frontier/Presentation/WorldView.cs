@@ -203,7 +203,7 @@ namespace Frontier
                 v=new EntityVisual{key=key,root=root,model=model,circle=circle,health=health,bar=bar,rig=model.GetComponent<UnitRig>(),boatMotion=model.GetComponent<BoatPresentationMotion>(),architecture=architecture,roleMarker=BuildRoleMarker(entity,root)};
             }
             v.root.gameObject.SetActive(true);v.root.name="Entity "+entity.id;v.root.position=EntityPosition(entity);v.model.localScale=Vector3.one;v.model.localPosition=Vector3.zero;
-            v.firedAt=v.hurtAt=v.deathAt=-1000;v.pickReady=false;v.pickRootPosition=v.root.position;v.poseSeen=false;v.nextOffscreenPose=0;v.ringTintReady=false;v.healthFraction=-1;v.facing=entity.facing.sqrMagnitude>.001f?Quaternion.LookRotation(new Vector3(entity.facing.x,0,entity.facing.y)):Quaternion.identity;if(entity.def.id=="dock"){var direction=game.World.DockWaterDirection(entity.position);v.facing=Quaternion.Euler(0,-Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg,0);}
+            v.firedAt=v.hurtAt=v.deathAt=-1000;v.pickReady=false;v.pickRootPosition=v.root.position;v.poseSeen=false;v.nextOffscreenPose=0;v.ringTintReady=false;v.healthFraction=-1;v.facing=CanShowMedicalActivity076(game.World,game.ObserverPlayer,entity)&&entity.facing.sqrMagnitude>.001f?Quaternion.LookRotation(new Vector3(entity.facing.x,0,entity.facing.y)):Quaternion.identity;if(entity.def.id=="dock"){var direction=game.World.DockWaterDirection(entity.position);v.facing=Quaternion.Euler(0,-Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg,0);}
             if(v.roleMarker!=null)TintLine(v.roleMarker,game.World.AreAllies(game.ObserverPlayer,entity.owner)?new Color(.16f,.78f,.89f):new Color(.98f,.96f,.78f));
             v.model.rotation=v.facing;v.rig?.RestoreInitialPose();return v;
         }
@@ -248,7 +248,7 @@ namespace Frontier
                 SetActive(visual.root.gameObject,true);var targetPosition=EntityPosition(entity);
                 if(!game.IsPaused&&!visual.root.position.Equals(targetPosition))visual.root.position=Vector3.Lerp(visual.root.position,targetPosition,.55f);
                 if((visual.root.position-targetPosition).sqrMagnitude>16)visual.root.position=targetPosition;
-                if(!game.IsPaused&&world.Time-visual.firedAt>=.22f&&entity.def.kind==EntityKind.Unit&&entity.facing.sqrMagnitude>.01f)visual.facing=Quaternion.Slerp(visual.facing,Quaternion.LookRotation(new Vector3(entity.facing.x,0,entity.facing.y)),.35f);
+                if(!game.IsPaused&&world.Time-visual.firedAt>=.22f&&entity.def.kind==EntityKind.Unit&&CanShowMedicalActivity076(world,game.ObserverPlayer,entity)&&entity.facing.sqrMagnitude>.01f)visual.facing=Quaternion.Slerp(visual.facing,Quaternion.LookRotation(new Vector3(entity.facing.x,0,entity.facing.y)),.35f);
                 if(visual.architecture!=null&&visual.constructionStage!=visual.architecture.ConstructionStage(entity.construction))
                 {visual.architecture.SetConstruction(entity.construction);visual.constructionStage=visual.architecture.ConstructionStage(entity.construction);visual.pickReady=false;}
                 // Units use their projected selection radius. Only static building/resource
@@ -336,9 +336,14 @@ namespace Frontier
             }
             for(int i=used;i<rallyFlags.Count;i++)rallyFlags[i].gameObject.SetActive(false);
         }
-        private static void ApplyPose(EntityVisual visual,EntityState entity,World world)
+        public static bool CanShowMedicalActivity076(World world,int observer,EntityState actor)
+        {return actor==null||!actor.Healer||actor.healingTarget==0||world.IsVisible(observer,world.Get(actor.healingTarget));}
+        private void ApplyPose(EntityVisual visual,EntityState entity,World world)
         {
-            var pose=UnitAnimation.Evaluate(entity,world.Time,visual.firedAt,visual.hurtAt,visual.deathAt,world.Get(entity.work.target));UnitAnimation.Apply(visual.rig,pose);
+            var pose=UnitAnimation.Evaluate(entity,world.Time,visual.firedAt,visual.hurtAt,visual.deathAt,world.Get(entity.work.target));
+            if(pose.state==UnitPoseState.Heal&&!CanShowMedicalActivity076(world,game.ObserverPlayer,entity))
+            {pose.state=UnitPoseState.Idle;pose.actionPhase=0;}
+            UnitAnimation.Apply(visual.rig,pose);
             visual.boatMotion?.Apply(pose,world.Time);
             float bob=pose.moving?Mathf.Abs(Mathf.Sin(pose.locomotionPhase))*.035f:0;
             var position=new Vector3(0,bob-pose.death*.28f,0);if(!visual.model.localPosition.Equals(position))visual.model.localPosition=position;

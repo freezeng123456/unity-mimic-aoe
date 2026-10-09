@@ -5,7 +5,7 @@ namespace Frontier
 {
     public sealed class EventAudio : MonoBehaviour
     {
-        public enum SoundCategory { Gun,Cannon,Melee,Impact,Notice,Footstep,Hoof,Wheel,Woodcut,Mine,Handling,Build }
+        public enum SoundCategory { Gun,Cannon,Melee,Impact,Notice,Footstep,Hoof,Wheel,Woodcut,Mine,Handling,Build,Heal }
         private sealed class Channel { public AudioSource source;public bool notice,activity;public float last=-999,until;public int actor;public float baseVolume; }
         private GameController game;
         private PlayerSettingsService settings;
@@ -13,6 +13,7 @@ namespace Frontier
         public float EffectiveSfxVolume=>options.muted?0:options.masterVolume*options.sfxVolume;
         private readonly List<Channel> channels=new List<Channel>();
         private readonly Dictionary<SoundCategory,float> lastByCategory=new Dictionary<SoundCategory,float>();
+        private readonly Dictionary<int,float> lastHealingEvent=new Dictionary<int,float>();
         private readonly Dictionary<SoundCategory,AudioClip> clips=new Dictionary<SoundCategory,AudioClip>();
         private readonly Dictionary<NoticeCue,AudioClip> notices=new Dictionary<NoticeCue,AudioClip>();
         private readonly UnitActivityAudio activity=new UnitActivityAudio();
@@ -36,7 +37,7 @@ namespace Frontier
             clips[SoundCategory.Melee]=Synthesize("Melee contact",320,.075f,.3f);
             clips[SoundCategory.Impact]=Synthesize("Impact",110,.09f,.5f);
             foreach(NoticeCue cue in System.Enum.GetValues(typeof(NoticeCue)))if(cue!=NoticeCue.None)notices[cue]=NoticeSoundClips.Create(cue);
-            foreach(var category in new[]{SoundCategory.Footstep,SoundCategory.Hoof,SoundCategory.Wheel,SoundCategory.Woodcut,SoundCategory.Mine,SoundCategory.Handling,SoundCategory.Build})
+            foreach(var category in new[]{SoundCategory.Footstep,SoundCategory.Hoof,SoundCategory.Wheel,SoundCategory.Woodcut,SoundCategory.Mine,SoundCategory.Handling,SoundCategory.Build,SoundCategory.Heal})
                 clips[category]=ActivitySoundClips.Create(category);
         }
         public void OnEvent(SimEvent ev)
@@ -48,6 +49,13 @@ namespace Frontier
             {
                 var source=game.World.Get(ev.entity);
                 category=ev.message=="Melee"?SoundCategory.Melee:source!=null&&(source.def.tags&(Tags.Artillery|Tags.Naval))!=0?SoundCategory.Cannon:SoundCategory.Gun;
+            }
+            else if(ev.kind=="Heal"&&ev.hasHealing&&ev.healing!=null&&ev.healing.actual>0)
+            {
+                if(lastHealingEvent.TryGetValue(ev.entity,out float latest)&&ev.time<=latest)return;
+                lastHealingEvent[ev.entity]=ev.time;
+                if(!game.World.IsVisible(game.ObserverPlayer,game.World.Get(ev.entity))||!game.World.IsVisible(game.ObserverPlayer,game.World.Get(ev.target)))return;
+                category=SoundCategory.Heal;
             }
             else if(ev.kind=="Impact")category=SoundCategory.Impact;
             else if(NoticeSoundClips.TryClassify(ev.kind,out noticeCue))category=SoundCategory.Notice;
@@ -61,7 +69,7 @@ namespace Frontier
                 if(Vector2.Distance(new Vector2(camera.x,camera.z),ev.position)>65)return;
             }
             float now=Time.unscaledTime;
-            float interval=category==SoundCategory.Impact?.035f:notice?.08f:.06f;
+            float interval=category==SoundCategory.Heal?.8f:category==SoundCategory.Impact?.035f:notice?.08f:.06f;
             if(lastByCategory.TryGetValue(category,out float last)&&now-last<interval)return;
             Channel chosen=null;
             foreach(var channel in channels)
@@ -124,7 +132,7 @@ namespace Frontier
         public void ResetMatch()
         {
             foreach(var channel in channels)if(channel.source!=null){channel.source.Stop();channel.last=-999;channel.actor=0;channel.until=0;}
-            lastByCategory.Clear();activity.Reset(game?.World);lastActivity=-999;PlayedCount=0;ActivityPlayedCount=0;LastNotice=NoticeCue.None;
+            lastByCategory.Clear();lastHealingEvent.Clear();activity.Reset(game?.World);lastActivity=-999;PlayedCount=0;ActivityPlayedCount=0;LastNotice=NoticeCue.None;
             game?.Ambience?.ResetMatch();
         }
         public void PauseAll(bool paused)

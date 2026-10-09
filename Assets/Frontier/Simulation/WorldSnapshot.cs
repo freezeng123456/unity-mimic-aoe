@@ -28,7 +28,7 @@ namespace Frontier
     [Serializable] public sealed class LandmarkDiscoverySnapshot {public int[] entities;}
     [Serializable] public sealed class WorldSnapshot
     {
-        public const int CurrentSchema=4;
+        public const int CurrentSchema=5;
         public int schema=CurrentSchema,seed,maxAge,winner,nextId,caravanWaypoint,caravanDirection;
         public string rulesHash,mapId;public float time,fogAt,nextEvacuation;public bool paused;
         public PlayerSnapshot[] players;public EntitySnapshot[] entities;
@@ -156,7 +156,7 @@ namespace Frontier
             void Require(bool valid,string message){if(!valid)throw new ArgumentException("Invalid saved match: "+message);}
             Require(rules!=null&&s!=null,"missing state");Require(s.schema==2||s.schema==3||s.schema==WorldSnapshot.CurrentSchema,"unsupported schema");
             Require(s.rulesHash==SnapshotCodec.RulesHash(rules),"rules changed; this save needs its original game version");
-            Require((s.hasScenarioDocument?s.schema==4&&s.mapId==MapTopology.Scenario:MapTopology.IsValid(s.mapId))&&s.maxAge>=1&&s.maxAge<=rules.ages.Length,"map or age cap");
+            Require((s.hasScenarioDocument?s.schema==WorldSnapshot.CurrentSchema&&s.mapId==MapTopology.Scenario:MapTopology.IsValid(s.mapId))&&s.maxAge>=1&&s.maxAge<=rules.ages.Length,"map or age cap");
             if(s.hasScenarioDocument)
             {
                 Require(ScenarioCodec.Validate(s.scenarioDocument,rules)==""&&s.scenarioHash==ScenarioCodec.ContentHash(s.scenarioDocument)&&s.seed==s.scenarioDocument.seed,"scenario document identity");
@@ -192,6 +192,13 @@ namespace Frontier
                 var definition=rules.Entity(saved.definition);
                 Require(SnapshotCodec.Finite(e.stealthReadyAt)&&e.stealthReadyAt>=0&&SnapshotCodec.Finite(e.revealedUntil)&&e.revealedUntil>=0,"stealth timers");
                 Require(!e.stealth||(definition.canStealth&&definition.scout&&definition.kind==EntityKind.Unit&&!definition.waterborne&&e.owner>=0&&e.Alive&&e.Complete&&e.garrisonedIn==0),"stealth capability or actor state");
+                Require(SnapshotCodec.Finite(e.healingBlockedUntil)&&e.healingBlockedUntil>=0&&e.healingBlockedUntil<=s.time+HealingCombatDelay076+.01f&&SnapshotCodec.Finite(e.healingReviewAt)&&e.healingReviewAt>=0&&e.healingReviewAt<=s.time+HealingReviewDelay076+.01f,"healing timers");
+                Require(e.healingTarget>=0,"healing target identity");
+                Require(definition.healer||!e.autoHeal&&e.healingTarget==0&&e.healingReviewAt==0,"healing capability");
+                Require(!definition.healer||definition.kind==EntityKind.Unit&&!definition.waterborne&&definition.healRate>0&&definition.healRange>0,"healer definition");
+                if(e.work.kind==WorkKind.Heal)
+                    Require(definition.healer&&e.work.target>0&&SnapshotCodec.Finite(e.work.time)&&e.work.time>=0&&
+                        (Mathf.Abs(e.work.time-s.time)>.0001f||e.healingTarget==e.work.target),"healing work activity");
                 Require(SnapshotCodec.Finite(e.factoryElapsed)&&e.factoryElapsed>=0,"factory progress");
                 if(saved.definition=="factory")Require(e.factoryMode=="food"||e.factoryMode=="wood"||e.factoryMode=="coin"||e.factoryMode=="artillery","factory mode");
                 // Clearing a completed/working path deliberately retains its old
@@ -201,6 +208,7 @@ namespace Frontier
                 foreach(var order in saved.orders)
                 {
                     Require(order!=null&&Enum.IsDefined(typeof(OrderKind),order.kind)&&SnapshotCodec.Finite(order.point)&&SnapshotCodec.Finite(order.elapsed)&&(!order.hasResolvedPoint||SnapshotCodec.Finite(order.resolvedPoint)),"order");
+                    if(order.kind==OrderKind.Heal)Require(definition.healer&&e.owner>=0&&order.target>0,"healing order capability");
                     if(order.kind==OrderKind.Scout)
                         Require((definition.scout||(definition.tags&Tags.Explorer)!=0)&&definition.kind==EntityKind.Unit&&!definition.waterborne&&order.target==0&&order.elapsed>=0&&order.elapsed<=1024&&order.elapsed==Mathf.Floor(order.elapsed),"scouting order capability or cursor");
                 }
@@ -224,6 +232,7 @@ namespace Frontier
                 }
             }
             Require(s.nextId>max&&s.nextId<int.MaxValue,"next entity id");
+            ValidateHealingSnapshot076(rules,s);
             ValidateTransportSnapshot(rules,s.entities);
             ValidateNeutralAlliesSnapshot(rules,s.neutralAllies,s.entities,s.players,s.hasScenarioDocument?s.scenarioDocument:null,s.hasScenarioDocument?s.scenarioState:null);
             ValidateRevolutionSnapshot(rules,s);

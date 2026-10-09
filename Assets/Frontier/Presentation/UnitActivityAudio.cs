@@ -37,7 +37,11 @@ namespace Frontier
                 float stride=(unit.def.tags&Tags.Artillery)!=0?1.8f:(unit.def.tags&Tags.Cavalry)!=0?2.2f:1.4f;
                 if(unit.status=="Moving"&&moved>.001f&&moved<=Mathf.Max(1,unit.def.speed*.3f))rhythm.distance=Mathf.Min(stride,rhythm.distance+moved);
                 else rhythm.distance=0;
-                bool work=unit.IsWorkingAt(world.Time);EventAudio.SoundCategory category;
+                bool work=unit.IsWorkingAt(world.Time);
+                // Healing audio consumes positive, visibility-filtered Heal events,
+                // not a persistent order or this worker rhythm sampler.
+                if(work&&unit.work.kind==WorkKind.Heal)continue;
+                EventAudio.SoundCategory category;
                 if(work)
                 {
                     if(world.Time<rhythm.nextWork)continue;

@@ -54,7 +54,7 @@ namespace Frontier
         private void DeactivatePlayer(int player)
         {
             foreach(var e in Entities)if(e.owner==player)
-            {e.orders.Clear();e.path.Clear();e.fireAt=-1;e.attackTarget=0;e.status="Eliminated";}
+            {ClearHealing076(e);e.autoHeal=false;ClearPatientHealingLinks076(e);e.orders.Clear();e.path.Clear();e.fireAt=-1;e.attackTarget=0;e.status="Eliminated";}
             foreach(var state in NeutralAllies)if(state.owner==player||state.claimant==player)LoseNeutralAlliance(state,"Player eliminated");
         }
         private void EvaluateElimination()

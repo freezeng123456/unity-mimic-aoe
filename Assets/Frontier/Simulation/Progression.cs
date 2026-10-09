@@ -47,7 +47,7 @@ namespace Frontier
                 // Project balance curve by actual current age: I/II/III/IV/V.
                 switch(Players[player].age){case 1:return 3;case 2:return 5;case 3:return 8;case 4:return 13;default:return 18;}
             }
-            return int.MaxValue;
+            return definition.trainingLimit>0?definition.trainingLimit:int.MaxValue;
         }
         public int WorkerCountIncludingProduction(int player)
         {

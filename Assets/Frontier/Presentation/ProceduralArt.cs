@@ -73,6 +73,7 @@ namespace Frontier
             if(e.def.kind==EntityKind.Resource){Resource(root,e);return root;}
             if(e.def.kind==EntityKind.Building){DetailedArchitecture.Build(root,e,team,civilization,age);return root;}
             var rig=root.gameObject.AddComponent<UnitRig>();
+            if(e.Healer){MedicalFigure076(root,rig,e,team);DetailedUnits.BakeAuthored(root,rig);rig.CaptureInitialPose();return root;}
             if(e.def.id=="factory_wagon"){FactoryWagon(root,rig,team);DetailedUnits.BakeAuthored(root,rig);rig.CaptureInitialPose();return root;}
             if(e.def.id=="caravan"||e.def.id=="objective_cart"){CargoCaravan(root,rig,team);DetailedUnits.Refine(root,rig,e,team);rig.CaptureInitialPose();return root;}
             bool horse=(e.def.tags&Tags.Cavalry)!=0;
@@ -137,6 +138,63 @@ namespace Frontier
             DetailedUnits.Refine(root,rig,e,team);
             rig.CaptureInitialPose();
             return root;
+        }
+        private static void MedicalFigure076(Transform root,UnitRig rig,EntityState e,Color team)
+        {
+            // Original support silhouettes: long unarmed robes, an Ottoman
+            // wrapped turban or a European square cap, and a joint-bound book.
+            bool imam=e.def.id=="imam";rig.Unarmed=true;
+            Color linen=new Color(.87f,.83f,.69f),cloth=imam?new Color(.72f,.72f,.58f):new Color(.16f,.18f,.20f);
+            Color skin=new Color(.77f,.59f,.40f),leather=new Color(.21f,.12f,.065f);
+            rig.HealerBody=Pivot(root,"Medical torso pivot",Vector3.zero);var body=rig.HealerBody;
+            Section(body,imam?"Imam long kaftan":"Priest full cassock",new Vector3(0,.79f,0),new Vector2(.74f,.51f),new Vector2(.52f,.37f),1.05f,cloth);
+            Section(body,"Medical fitted shoulders",new Vector3(0,1.24f,0),new Vector2(.53f,.38f),new Vector2(.57f,.40f),.23f,cloth);
+            Section(body,"Head",new Vector3(0,1.55f,.035f),new Vector2(.29f,.31f),new Vector2(.33f,.33f),.34f,skin);
+            Section(body,"Medical collar",new Vector3(0,1.35f,.04f),new Vector2(.31f,.29f),new Vector2(.32f,.29f),.09f,linen);
+            foreach(float side in new[]{-1f,1f})
+            {
+                Beam(body,"Medical robe front trim",new Vector3(side*.12f,.32f,.25f),new Vector3(side*.085f,1.30f,.205f),.045f,.022f,imam?team:linen);
+                Section(body,"Robe folded hem",new Vector3(side*.23f,.31f,.03f),new Vector2(.13f,.47f),new Vector2(.11f,.44f),.10f,cloth*.8f);
+                Part(body,"Medical visible eye",PrimitiveType.Sphere,new Vector3(side*.072f,1.57f,.199f),new Vector3(.025f,.022f,.018f),leather);
+            }
+            Part(body,"Medical nose",PrimitiveType.Sphere,new Vector3(0,1.51f,.218f),new Vector3(.065f,.10f,.07f),skin);
+            if(imam)
+            {
+                Section(body,"Imam felt cap",new Vector3(0,1.84f,.015f),new Vector2(.29f,.29f),new Vector2(.25f,.25f),.24f,team);
+                for(int band=0;band<3;band++)
+                    Section(body,"Imam layered turban wrap",new Vector3(0,1.72f+band*.045f,.015f),new Vector2(.48f-band*.035f,.43f-band*.025f),new Vector2(.47f-band*.035f,.42f-band*.025f),.072f,linen*(1-band*.025f));
+                Beam(body,"Imam rear cloth tail",new Vector3(-.13f,1.76f,-.19f),new Vector3(-.15f,1.39f,-.23f),.10f,.027f,linen);
+                Section(body,"Imam short beard",new Vector3(0,1.40f,.16f),new Vector2(.10f,.08f),new Vector2(.23f,.10f),.18f,leather);
+                Section(body,"Imam woven waist sash",new Vector3(0,.87f,0),new Vector2(.64f,.435f),new Vector2(.62f,.425f),.12f,team);
+            }
+            else
+            {
+                Section(body,"Priest square biretta",new Vector3(0,1.77f,.015f),new Vector2(.41f,.39f),new Vector2(.37f,.35f),.17f,cloth*.65f);
+                foreach(float side in new[]{-1f,1f})
+                    Beam(body,"Priest cap raised ridge",new Vector3(side*.15f,1.86f,-.16f),new Vector3(side*.15f,1.86f,.16f),.055f,.055f,cloth*.7f);
+                Part(body,"Priest cap tuft",PrimitiveType.Sphere,new Vector3(0,1.89f,.015f),new Vector3(.09f,.08f,.09f),cloth*.6f);
+                foreach(float side in new[]{-1f,1f})Beam(body,"Priest team stole",new Vector3(side*.17f,1.31f,.22f),new Vector3(side*.17f,.49f,.26f),.080f,.026f,team);
+                for(int button=0;button<6;button++)Part(body,"Cassock front button",PrimitiveType.Sphere,new Vector3(0,.59f+button*.11f,.257f),new Vector3(.028f,.028f,.025f),linen);
+            }
+            rig.LeftShoulder=Pivot(body,"Left shoulder",new Vector3(-.28f,1.25f,.05f));rig.RightShoulder=Pivot(body,"Right shoulder",new Vector3(.28f,1.25f,.05f));
+            rig.LeftElbow=Pivot(rig.LeftShoulder,"Left elbow",new Vector3(0,-.36f,0));rig.RightElbow=Pivot(rig.RightShoulder,"Right elbow",new Vector3(0,-.36f,0));
+            rig.LeftHand=Pivot(rig.LeftElbow,"Left hand",new Vector3(0,-.34f,0));rig.RightHand=Pivot(rig.RightElbow,"Right hand",new Vector3(0,-.34f,0));
+            foreach(float side in new[]{-1f,1f})
+            {
+                var shoulder=side<0?rig.LeftShoulder:rig.RightShoulder;var elbow=side<0?rig.LeftElbow:rig.RightElbow;var hand=side<0?rig.LeftHand:rig.RightHand;
+                Section(shoulder,"Medical loose sleeve",new Vector3(0,-.18f,0),new Vector2(.22f,.23f),new Vector2(.24f,.23f),.36f,cloth);
+                Section(elbow,"Medical lower sleeve",new Vector3(0,-.15f,0),new Vector2(.17f,.19f),new Vector2(.21f,.22f),.30f,cloth);
+                Section(elbow,"Medical linen cuff",new Vector3(0,-.29f,0),new Vector2(.18f,.20f),new Vector2(.18f,.20f),.07f,linen);
+                Part(hand,"Medical open hand",PrimitiveType.Sphere,Vector3.zero,new Vector3(.13f,.15f,.13f),skin);
+                var leg=Pivot(root,side<0?"Left leg":"Right leg",new Vector3(side*.17f,.63f,0));
+                var knee=Pivot(leg,"Knee",new Vector3(0,-.32f,0));
+                Section(knee,"Medical shoe",new Vector3(0,-.22f,.07f),new Vector2(.20f,.35f),new Vector2(.20f,.30f),.17f,leather);
+                if(side<0){rig.LeftLeg=leg;rig.LeftKnee=knee;}else{rig.RightLeg=leg;rig.RightKnee=knee;}
+            }
+            rig.HealerBook=Pivot(rig.LeftHand,"Medical book pivot",Vector3.zero);
+            Part(rig.HealerBook,"Medical book leather binding",PrimitiveType.Cube,Vector3.zero,new Vector3(.28f,.045f,.35f),leather);
+            Part(rig.HealerBook,"Medical book visible pages",PrimitiveType.Cube,new Vector3(0,.033f,0),new Vector3(.25f,.027f,.32f),linen);
+            Beam(rig.HealerBook,"Medical book centre seam",new Vector3(0,.052f,-.155f),new Vector3(0,.052f,.155f),.013f,.013f,leather*.8f);
         }
         private static void ScoutingFigure(Transform root,UnitRig rig,EntityState e,Color team)
         {

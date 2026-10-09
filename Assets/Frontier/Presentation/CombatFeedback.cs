@@ -10,10 +10,12 @@ namespace Frontier
         {
             public GameObject go;public Renderer renderer;public readonly MaterialPropertyBlock tint=new MaterialPropertyBlock();
             public float start,duration;public Vector3 origin,scale;
+            public int healer,patient;
         }
         private World world;private Transform parent;private int observer,eventCursor;
         private readonly List<Effect> active=new List<Effect>();
         private readonly Stack<Effect> pool=new Stack<Effect>();
+        private readonly Dictionary<int,float> healingShownAt=new Dictionary<int,float>();
         private Material material;
         public const int Capacity=24;
         public int ActiveCount=>active.Count;
@@ -34,7 +36,8 @@ namespace Frontier
             for(int i=active.Count-1;i>=0;i--)
             {
                 var effect=active[i];float elapsed=world.Time-effect.start;
-                if(elapsed>=effect.duration||world.Fog.At(observer,new Vector2(effect.origin.x,effect.origin.z))!=VisibilityState.Visible)
+                if(elapsed>=effect.duration||world.Fog.At(observer,new Vector2(effect.origin.x,effect.origin.z))!=VisibilityState.Visible||
+                    effect.patient!=0&&(!world.IsVisible(observer,world.Get(effect.patient))||!world.IsVisible(observer,world.Get(effect.healer))))
                 {Recycle(effect);active.RemoveAt(i);continue;}
                 float t=Mathf.Clamp01(elapsed/effect.duration);
                 effect.go.transform.position=effect.origin+Vector3.up*(t*.4f);
@@ -54,10 +57,18 @@ namespace Frontier
                 {duration=.28f;scale=new Vector3(.8f,.4f,.8f);color=new Color(.7f,.54f,.3f);}
                 else if(ev.kind=="Death")
                 {duration=.6f;scale=new Vector3(1,.8f,1);color=new Color(.46f,.38f,.28f);}
+                else if(ev.kind=="Heal"&&ev.hasHealing&&ev.healing!=null&&ev.healing.actual>0)
+                {
+                    if(!world.IsVisible(observer,world.Get(ev.entity))||!world.IsVisible(observer,world.Get(ev.target)))continue;
+                    if(healingShownAt.TryGetValue(ev.target,out float shown)&&ev.time-shown<.7f)continue;
+                    duration=.36f;scale=new Vector3(.32f,.12f,.32f);color=new Color(.77f,.88f,.72f);
+                }
                 else continue;
                 if(world.Time-ev.time>=duration||!CanDisplay(world,observer,ev)||active.Count>=Capacity)continue;
                 var effect=pool.Count>0?pool.Pop():Create();effect.start=ev.time;effect.duration=duration;effect.scale=scale;
-                var entity=world.Get(ev.kind=="Impact"?ev.target:ev.entity);
+                effect.healer=ev.kind=="Heal"?ev.entity:0;effect.patient=ev.kind=="Heal"?ev.target:0;
+                if(effect.patient!=0)healingShownAt[effect.patient]=ev.time;
+                var entity=world.Get(ev.kind=="Impact"||ev.kind=="Heal"?ev.target:ev.entity);
                 float height=world.SurfaceHeight(ev.position,entity?.def.waterborne??false);
                 effect.origin=new Vector3(ev.position.x,height+(ev.kind=="Fire"?(entity?.def.id=="gunboat"?.83f:1.2f):.6f),ev.position.y);
                 effect.go.transform.SetParent(parent,false);effect.go.transform.position=effect.origin;
@@ -79,7 +90,7 @@ namespace Frontier
         {
             foreach(var effect in active)if(effect.go!=null){effect.go.SetActive(false);Destroy(effect.go);}active.Clear();
             while(pool.Count>0){var effect=pool.Pop();if(effect.go!=null)Destroy(effect.go);}
-            if(material!=null)Destroy(material);material=null;world=null;eventCursor=0;
+            if(material!=null)Destroy(material);material=null;world=null;eventCursor=0;healingShownAt.Clear();
         }
         private void OnDestroy(){Dispose();}
     }

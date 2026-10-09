@@ -102,14 +102,14 @@ namespace Frontier
             {
                 var actor=game.World.Get(id);if(actor==null||!actor.Alive)continue;
                 int state=(actor.stealth?1:0)+(actor.stealthReadyAt>game.World.Time?2:0)+
-                    (actor.orders.Count>0&&actor.orders.Peek().kind==OrderKind.Scout?4:0);
+                    (actor.orders.Count>0&&actor.orders.Peek().kind==OrderKind.Scout?4:0)+(actor.autoHeal?8:0);
                 unchecked{key=key*31+state;}
             }
             // Arrival and release change the Ungarrison count and availability.
             // The existing pointer-capture guard still defers same-context rebuilds.
             key=unchecked((((key*397+(selected?.occupants.Count??0))*31+(selected?.shielded==true?1:0))*31+(selected?.autoRecruitPaused==true?1:0))*31+(selected?.factoryMode?.GetHashCode()??0));
             key=unchecked((key*31+(int)p.politicalPhase)*31+(selected?.def.id?.GetHashCode()??0));
-            return unchecked(key*31+(game.CanSubmitOrders?1:0));
+            return unchecked((key*31+(game.CanSubmitOrders?1:0))*31+(game.Controls.HealMode?1:0));
         }
         private RectTransform Rect(Transform parent,string name,Rect r,bool bottom=false)
         {
@@ -279,16 +279,18 @@ namespace Frontier
             RefreshObjectiveSummary(w);
             if(lastClockLabel!=clockLabel||lastClockSeconds!=(int)w.Time||lastIdle!=idle)
             {UpdateExpansionPanels();clockLabel.text=$"{(int)w.Time/60:00}:{(int)w.Time%60:00}   IDLE {idle}";lastClockLabel=clockLabel;lastClockSeconds=(int)w.Time;lastIdle=idle;}
-            orders.text=DynamicBindingLabel(game.Controls.EnvoyRallyMode?"ENVOY RALLY — CHOOSE TERRAIN":game.Controls.EmbarkMode?"BOARD — CHOOSE YOUR TROOP TRANSPORT":game.Controls.DisembarkMode?"UNLOAD — CHOOSE AN OPEN LAND SHORE":game.Controls.DockRepairMode?"HARBOR REPAIR — CHOOSE YOUR COMPLETED DOCK":game.Controls.BuildingToPlace!=""?"PLACING  "+game.Rules.Entity(game.Controls.BuildingToPlace).name:game.Controls.RepairMode?"REPAIR [R] — CHOOSE A DAMAGED FRIENDLY TARGET":game.Controls.GarrisonMode?"GARRISON [G] — CHOOSE A FRIENDLY SHELTER":game.Controls.AttackMode?"ATTACK MOVE — CHOOSE DESTINATION":"[V] Idle settler     [T] Town center     [M] Military     [B] Build");
+            orders.text=DynamicBindingLabel(game.Controls.EnvoyRallyMode?"ENVOY RALLY — CHOOSE TERRAIN":game.Controls.EmbarkMode?"BOARD — CHOOSE YOUR TROOP TRANSPORT":game.Controls.DisembarkMode?"UNLOAD — CHOOSE AN OPEN LAND SHORE":game.Controls.DockRepairMode?"HARBOR REPAIR — CHOOSE YOUR COMPLETED DOCK":game.Controls.BuildingToPlace!=""?"PLACING  "+game.Rules.Entity(game.Controls.BuildingToPlace).name:game.Controls.HealMode?"HEAL — CHOOSE A WOUNDED FRIENDLY / ALLIED UNIT":game.Controls.RepairMode?"REPAIR [R] — CHOOSE A DAMAGED FRIENDLY TARGET":game.Controls.GarrisonMode?"GARRISON [G] — CHOOSE A FRIENDLY SHELTER":game.Controls.AttackMode?"ATTACK MOVE — CHOOSE DESTINATION":"[V] Idle settler     [T] Town center     [M] Military     [B] Build");
             if(game.IsWatching||game.Autoplay)orders.text=game.Autoplay?"AI OBSERVATION · camera and selection · army orders are controlled by AI":"WATCHING · camera and selection · recorded orders are read-only";
             notice.text=game.Notice;
             help.text=Help;
             var selected=game.Controls.FirstSelected;
+            details.resizeTextForBestFit=selected?.Healer==true;details.resizeTextMinSize=11;details.resizeTextMaxSize=15;
             if(selected==null){selection.text="THE FRONTIER AWAITS";details.text=game.Autoplay||game.IsWatching?"Select objects to inspect them.\nMove the camera to follow the match.\nObservation keeps army orders read-only.":"Select units or drag a selection box.\nRight click to move, gather, build or attack.\nShift queues orders · Ctrl+0–9 saves groups.";}
             else
             {
                 selection.text=game.Controls.Selected.Count>1?game.Controls.Selected.Count+" SELECTED  ·  "+selected.def.name:selected.def.name.ToUpperInvariant();
                 details.text=$"HP {selected.hp:0}/{w.MaxHp(selected):0}     ATK {w.Attack(selected):0}     RANGE {(selected.forceMelee?1.4f:selected.def.range):0.#}     POP {selected.def.population}\n{selected.status}  ·  Orders {selected.orders.Count}";
+                if(selected.Healer&&selected.owner==game.ObserverPlayer)details.text+="\n"+HealingSummary076(selected);
                 if(selected.def.canStealth&&selected.owner==game.ObserverPlayer)details.text+="\nStealth: "+(selected.stealth?(selected.revealedUntil>w.Time?"REVEALED · "+(selected.revealedUntil-w.Time).ToString("0.0")+"s":"ACTIVE · detector proximity can reveal you"):"OFF")+" · Vision "+selected.def.vision;
                 if(selected.def.transportShip)details.text+="\nCargo "+w.TransportLoad(selected)+"/"+selected.def.transportCapacity+" population slots · "+selected.occupants.Count+" passengers";
                 else if(selected.owner==game.ObserverPlayer&&selected.def.id=="town"&&w.AutoRecruitSeconds(game.ObserverPlayer)>0)details.text+="\n"+AutoRecruitSummary(selected);
@@ -298,7 +300,7 @@ namespace Frontier
                 else if(selected.def.shieldAbility)details.text+="\nShield: "+(selected.shieldReadyAt>w.Time?"CHANGING STANCE · "+(selected.shieldReadyAt-w.Time).ToString("0.0")+"s":selected.shielded?"BRACED · movement folds shield":"FOLDED · mobile");
                 else if(selected.def.resource!=ResourceKind.None)details.text+=$"\n{selected.def.resource}: {(World.Sustainable(selected)?"sustainable":selected.remaining.ToString("0"))}  ·  {selected.def.gatherRate:0.##}/s per settler";
                 else if(selected.def.garrisonAttackLimit>0)details.text+=$"\nSheltered {selected.occupants.Count}/{selected.def.garrison} · Firing settlers {w.GarrisonFirepowerCount(selected)}/{selected.def.garrisonAttackLimit}";
-                else details.text+="\n"+w.LandmarkDescription(game.ObserverPlayer,selected);
+                else if(!selected.Healer)details.text+="\n"+w.LandmarkDescription(game.ObserverPlayer,selected);
                 if(selected.owner==game.ObserverPlayer&&selected.def.kind==EntityKind.Building)
                     details.text+="\nRally: "+(selected.rallyTarget==0?"move to flag":"gather "+selected.rallyResource+" near resource flag");
                 else if(selected.owner==game.ObserverPlayer&&selected.def.id=="explorer"&&selected.Alive&&selected.Complete&&selected.garrisonedIn==0&&p.civilization=="river")
@@ -381,6 +383,7 @@ namespace Frontier
             if(e.def.shieldAbility)add(e.shielded?"FOLD SHIELD":"BRACE SHIELD",()=>{SubmitUiCommand(new GameCommand{player=game.LocalPlayerSlot,kind=CommandKind.ToggleShield,actors=game.Controls.Selected.ToArray()});InvalidateActions();},"Changing stance takes 2 seconds. Bracing protects against ranged fire and prevents movement; moving or pursuing an attack folds the shield first.",game.World.Time>=e.shieldReadyAt);
             if(e.def.kind==EntityKind.Unit&&!e.def.waterborne)add("DISBAND",ShowDisband071,"Dismiss selected land units to release population. No refund or combat XP.",e.garrisonedIn==0);
             AddScoutingActions075(e,add);
+            AddHealingActions076(e,add);
         }
         private void RebuildQueue(EntityState e)
         {
@@ -490,6 +493,8 @@ namespace Frontier
             if(t.caravanProfit!=0)parts.Add("caravan profit +"+(t.caravanProfit*100).ToString("0")+"%");
             if(t.manufactureSpeed!=0)parts.Add("manufacture +"+(t.manufactureSpeed*100).ToString("0")+"%");
             if(t.buildSpeed!=0)parts.Add("construction +"+(t.buildSpeed*100).ToString("0")+"%");
+            if(t.healing!=0)parts.Add("healing +"+(t.healing*100).ToString("0")+"%");
+            if(t.healerTrainSpeed!=0)parts.Add("medical training +"+(t.healerTrainSpeed*100).ToString("0")+"%");
             if(t.trainSpeed!=0)parts.Add("training +"+(t.trainSpeed*100).ToString("0")+"%");
             if(t.villagerLimit!=0)parts.Add("settler limit +"+t.villagerLimit);
             if(t.autoVillagerSpeed!=0)parts.Add("automatic settlers +"+(t.autoVillagerSpeed*100).ToString("0")+"% speed");
@@ -508,6 +513,7 @@ namespace Frontier
             text+=$"Health {entity.hp:0}/{w.MaxHp(entity):0}    Preferred attack {w.Attack(entity):0.#}    Base siege {d.siegeDamage:0.#}\n";
             text+=$"Range {(entity.forceMelee?1.4f:d.range):0.#}    Minimum {d.minRange:0.#}    Attack interval {d.period:0.#}s    Preparation {d.windup:0.##}s\n";
             text+=$"Speed {w.Speed(entity):0.#}    Vision {d.vision:0.#}    Population {d.population}\n";
+            if(entity.Healer)text+="Healing: "+w.HealRate(entity).ToString("0.#")+" HP/s · range "+w.HealRange(entity).ToString("0.#")+" · one healer per patient, combat recovery required.\n";
             text+=$"Experience: build {d.buildXp:0.#} / paid training {d.trainXp:0.#} / enemy kill {d.killXp:0.#}\n";
             text+=$"Resistance: melee {d.meleeResist*100:0}% / ranged {d.rangedResist*100:0}% / siege {d.siegeResist*100:0}%\n\n";
             text+="Target bonuses (highest matching bonus applies):\n";foreach(var bonus in d.bonuses)text+=bonus.tags+" ×"+bonus.multiplier.ToString("0.##")+"    ";

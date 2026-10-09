@@ -7,9 +7,9 @@ namespace Frontier
     public enum EntityKind { Unit, Building, Resource }
     public enum ResourceKind { None, Food, Wood, Coin }
     public enum DamageKind { Melee, Ranged, Siege }
-    [Flags] public enum Tags { None=0, Infantry=1, HeavyInfantry=2, LightInfantry=4, Cavalry=8, HeavyCavalry=16, LightCavalry=32, Artillery=64, Villager=128, Building=256, Explorer=512, Guardian=1024, Naval=2048, Scout=4096 }
-    public enum OrderKind { Move, Attack, AttackMove, Gather, Build, Repair, Garrison, Stop, Hold, Claim, Manufacture, DeployFactory, Embark, Disembark, TransportBerth, DockRepair, Scout }
-    public enum CommandKind { Order, Build, Train, CancelQueue, CancelBuilding, Research, AdvanceAge, Ship, Rally, Ungarrison, ToggleMode, Demolish, Resign, TradeMode, TradeRoute, Manufacture, ToggleShield, ToggleRecruitment, FactoryMode, Embark, Disembark, DockRepair, NeutralAlliance, NeutralRecruit, NeutralResearch, Revolution, Disband, Market, ToggleStealth }
+    [Flags] public enum Tags { None=0, Infantry=1, HeavyInfantry=2, LightInfantry=4, Cavalry=8, HeavyCavalry=16, LightCavalry=32, Artillery=64, Villager=128, Building=256, Explorer=512, Guardian=1024, Naval=2048, Scout=4096, Healer=8192 }
+    public enum OrderKind { Move, Attack, AttackMove, Gather, Build, Repair, Garrison, Stop, Hold, Claim, Manufacture, DeployFactory, Embark, Disembark, TransportBerth, DockRepair, Scout, Heal }
+    public enum CommandKind { Order, Build, Train, CancelQueue, CancelBuilding, Research, AdvanceAge, Ship, Rally, Ungarrison, ToggleMode, Demolish, Resign, TradeMode, TradeRoute, Manufacture, ToggleShield, ToggleRecruitment, FactoryMode, Embark, Disembark, DockRepair, NeutralAlliance, NeutralRecruit, NeutralResearch, Revolution, Disband, Market, ToggleStealth, ToggleAutoHeal }
     public enum PoliticalPhase { Empire, Revolutionary, CivilianRebuilt }
     [Serializable] public struct Cost
     {
@@ -26,6 +26,9 @@ namespace Frontier
         public string[] excludedCivilizations=Array.Empty<string>();
         public bool civilian,repairArtillery,shieldAbility,waterborne,fishingBoat,transportShip,revolutionary;
         public bool scout,canStealth;
+        public bool healer,canReceiveHealing;
+        public float healRate,healRange;
+        public int trainingLimit;
         public float stealthSpeedMultiplier=.6f,detectionRange;
         public string[] constructs=Array.Empty<string>();
         public int transportCapacity;
@@ -48,6 +51,7 @@ namespace Frontier
         public string[] units=Array.Empty<string>(); public int bankLimit; public float bankIncome;
         public float caravanProfit,manufactureSpeed,buildSpeed,trainSpeed;
         public float factoryIncome,factoryArtillerySpeed,navalRepair;
+        public float healing,healerTrainSpeed;
         public int villagerLimit; public float autoVillagerSpeed; public bool requiresRevolution;
     }
     [Serializable] public class CardDef
@@ -115,7 +119,7 @@ namespace Frontier
     }
     [Serializable] public class RewardJob { public Cost crates; public string unit=""; public int count; public string waiting=""; }
     [Serializable] public class ShipmentJob { public string card; public float elapsed; public string waiting=""; }
-    public enum WorkKind { None,Gather,Build,Repair,Manufacture }
+    public enum WorkKind { None,Gather,Build,Repair,Manufacture,Heal }
     [Serializable] public struct WorkActivity
     {
         public WorkKind kind;public int target;public ResourceKind resource;public float time;
@@ -135,6 +139,9 @@ namespace Frontier
         public bool shielded;
         public bool stealth;
         public float stealthReadyAt,revealedUntil;
+        public bool autoHeal;
+        public int healingTarget;
+        public float healingReviewAt,healingBlockedUntil;
         public float autoRecruitElapsed;
         public bool autoRecruitPaused;
         public string factoryMode="food";
@@ -149,6 +156,7 @@ namespace Frontier
         public WorkActivity work;
         public bool IsWorkingAt(float time)
         {
+            if(work.kind==WorkKind.Heal)return Alive&&Healer&&garrisonedIn==0&&healingTarget==work.target&&Mathf.Abs(work.time-time)<=.0001f;
             if(!Alive||(!Worker&&!def.repairArtillery&&!def.fishingBoat&&!def.revolutionary&&!(work.kind==WorkKind.Build&&def.constructs!=null&&def.constructs.Length>0))||garrisonedIn!=0||work.kind==WorkKind.None||Mathf.Abs(work.time-time)>.0001f||orders.Count==0)return false;
             var order=orders.Peek();
             return order.target==work.target&&(work.kind==WorkKind.Gather&&order.kind==OrderKind.Gather
@@ -158,7 +166,8 @@ namespace Frontier
         public bool Complete => construction>=1;
         public bool Worker => (def.tags & Tags.Villager)!=0;
         public bool Scout => def.scout;
-        public bool Military => def.kind==EntityKind.Unit && !Worker && !def.civilian && !Scout;
+        public bool Healer => def.healer;
+        public bool Military => def.kind==EntityKind.Unit && !Worker && !def.civilian && !Scout && !Healer;
     }
     [Serializable] public class PlayerState
     {
@@ -187,12 +196,18 @@ namespace Frontier
         public static CommandResult Ok(string why="Accepted") => new CommandResult{accepted=true,reason=why};
         public static CommandResult Fail(string why) => new CommandResult{accepted=false,reason=why};
     }
+    [Serializable] public class HealingReceipt
+    {
+        public int source,target;
+        public float hpBefore,hpAfter,maxHp,actual,rate;
+    }
     [Serializable] public class SimEvent
     {
         public const int CurrentSchemaVersion = 2;
         public int schemaVersion = CurrentSchemaVersion;
         // Explicit presence flags: Unity JSON deserialization can create default nested objects.
-        public bool hasEconomy, hasPopulation;
+        public bool hasEconomy, hasPopulation, hasHealing;
+        public HealingReceipt healing;
         public EconomyTransaction economy;
         public PopulationSnapshot population;
         public float time; public string kind,message; public int player,entity,target,visibilityMask; public float amount; public Vector2 position,facing;

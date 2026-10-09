@@ -355,7 +355,7 @@ namespace Frontier
 
         static void Bake(Transform root,UnitRig rig)
         {
-            var joints=new HashSet<Transform>{root,rig.ScoutBody,rig.LeftShoulder,rig.RightShoulder,rig.LeftElbow,rig.RightElbow,rig.LeftHand,rig.RightHand,rig.LeftLeg,rig.RightLeg,rig.LeftKnee,rig.RightKnee,rig.WeaponPivot,rig.Weapon,rig.MeleeWeapon,rig.Barrel,rig.Carriage,rig.LeftWheel,rig.RightWheel,rig.LeftHorseLeg,rig.RightHorseLeg,rig.RearLeftHorseLeg,rig.RearRightHorseLeg,rig.HorseHead,rig.HorseTail,rig.Shield,rig.Cargo,rig.RepairWeapon,rig.WorkerFirearm,rig.BowStringLower,rig.BowStringUpper};
+            var joints=new HashSet<Transform>{root,rig.HealerBody,rig.HealerBook,rig.ScoutBody,rig.LeftShoulder,rig.RightShoulder,rig.LeftElbow,rig.RightElbow,rig.LeftHand,rig.RightHand,rig.LeftLeg,rig.RightLeg,rig.LeftKnee,rig.RightKnee,rig.WeaponPivot,rig.Weapon,rig.MeleeWeapon,rig.Barrel,rig.Carriage,rig.LeftWheel,rig.RightWheel,rig.LeftHorseLeg,rig.RightHorseLeg,rig.RearLeftHorseLeg,rig.RearRightHorseLeg,rig.HorseHead,rig.HorseTail,rig.Shield,rig.Cargo,rig.RepairWeapon,rig.WorkerFirearm,rig.BowStringLower,rig.BowStringUpper};
             foreach(var wheel in rig.CartWheels)joints.Add(wheel);
             foreach(var t in root.GetComponentsInChildren<Transform>(true))if(!t.gameObject.activeSelf||t.name=="Axe"||t.name=="Pick"||t.name=="Hammer"||t.name=="Basket")joints.Add(t);
             var groups=new Dictionary<Transform,List<MeshRenderer>>();

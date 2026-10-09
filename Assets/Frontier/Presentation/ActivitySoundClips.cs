@@ -30,6 +30,8 @@ namespace Frontier
                     frequency = 320; seconds = .085f; noise = .66f; tone = .34f; seed = 1921; break;
                 case EventAudio.SoundCategory.Build:
                     frequency = 118; seconds = .27f; noise = .48f; tone = .52f; seed = 1927; break;
+                case EventAudio.SoundCategory.Heal:
+                    frequency = 235; seconds = .23f; noise = .88f; tone = .12f; seed = 1931; break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(category), category, "Activity cue required");
             }

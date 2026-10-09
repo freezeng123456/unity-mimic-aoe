@@ -200,11 +200,12 @@ namespace Frontier
         public static SimEvent Copy(SimEvent e)
         {
             if(e==null)throw new ArgumentException("Missing replay event");
-            var transaction=e.economy;var population=e.population;
+            var transaction=e.economy;var population=e.population;var healing=e.healing;
             // Explicit presence flags carry absence, while initialized nested
             // DTOs keep Unity JSON round trips canonical across save/load.
-            return new SimEvent{schemaVersion=e.schemaVersion,hasEconomy=e.hasEconomy,hasPopulation=e.hasPopulation,time=e.time,kind=e.kind,message=e.message,player=e.player,entity=e.entity,target=e.target,visibilityMask=e.visibilityMask,amount=e.amount,position=e.position,facing=e.facing,
+            return new SimEvent{schemaVersion=e.schemaVersion,hasEconomy=e.hasEconomy,hasPopulation=e.hasPopulation,hasHealing=e.hasHealing,time=e.time,kind=e.kind,message=e.message,player=e.player,entity=e.entity,target=e.target,visibilityMask=e.visibilityMask,amount=e.amount,position=e.position,facing=e.facing,
                 economy=transaction==null?new EconomyTransaction():new EconomyTransaction{requestedDelta=transaction.requestedDelta,actualDelta=transaction.actualDelta,balanceBefore=transaction.balanceBefore,balanceAfter=transaction.balanceAfter,hasRepair=transaction.hasRepair,healthTarget=transaction.healthTarget,hpBefore=transaction.hpBefore,hpAfter=transaction.hpAfter},
+                healing=healing==null?new HealingReceipt():new HealingReceipt{source=healing.source,target=healing.target,hpBefore=healing.hpBefore,hpAfter=healing.hpAfter,maxHp=healing.maxHp,actual=healing.actual,rate=healing.rate},
                 population=population==null?new PopulationSnapshot():new PopulationSnapshot{used=population.used,reserved=population.reserved,capacity=population.capacity}};
         }
     }

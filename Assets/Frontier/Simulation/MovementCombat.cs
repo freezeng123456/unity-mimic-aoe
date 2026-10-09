@@ -33,6 +33,7 @@ namespace Frontier
                 }
                 UnitOrder order=e.orders.Count>0?e.orders.Peek():null;
                 if(order!=null&&(order.kind==OrderKind.Attack||order.kind==OrderKind.AttackMove||order.kind==OrderKind.Build||order.kind==OrderKind.Claim))BreakStealth075(e);
+                if(order!=null&&order.kind==OrderKind.Heal){TickHealApproach076(e,order,dt);continue;}
                 if(order!=null&&order.kind==OrderKind.Scout){TickScoutOrder075(e,order,dt);continue;}
                 if(order!=null&&TickNavalTransportOrder(e,order,dt))continue;
                 if(order!=null&&order.kind==OrderKind.DeployFactory){TickFactoryDeployment(e,order,dt);continue;}
@@ -41,7 +42,7 @@ namespace Frontier
                     var target=Get(order.target);if(e.def.waterborne&&order.kind==OrderKind.Garrison){e.orders.Dequeue();e.status="Cannot garrison a ship";continue;}if(target==null||!target.Alive||target.garrisonedIn!=0){if(order.kind!=OrderKind.Gather){e.orders.Dequeue();e.status="Target lost";}continue;}
                     if(order.kind==OrderKind.Garrison&&EdgeDistance(e,target)<=1.5f)
                     {
-                        if(target.def.kind==EntityKind.Building&&target.owner==e.owner&&target.occupants.Count<target.def.garrison){BreakStealth075(e);e.garrisonedIn=target.id;e.orders.Clear();e.path.Clear();target.occupants.Add(e.id);e.status="Garrisoned";Emit("Garrison",e.owner,e.id,"Entered "+target.def.name,0,target.id);}
+                        if(target.def.kind==EntityKind.Building&&target.owner==e.owner&&target.occupants.Count<target.def.garrison){BreakStealth075(e);e.garrisonedIn=target.id;ClearHealing076(e);ClearPatientHealingLinks076(e);e.orders.Clear();e.path.Clear();target.occupants.Add(e.id);e.status="Garrisoned";Emit("Garrison",e.owner,e.id,"Entered "+target.def.name,0,target.id);}
                         else {e.status="Garrison full";e.orders.Dequeue();}continue;
                     }
                     if(EdgeDistance(e,target)>1.35f)MoveTowardsTarget(e,WorkPoint(target,e),dt);
@@ -67,7 +68,7 @@ namespace Frontier
                     enemy=Get(order.target);
                     if(enemy==null||!enemy.Alive||!Observes075(e,enemy)||!CanAttackTarget(e,enemy)){e.orders.Dequeue();e.attackTarget=0;e.status="Target lost";continue;}
                 }
-                else
+                else if(!e.Healer||order!=null&&order.kind==OrderKind.AttackMove)
                 {
                     var remembered=Get(e.attackTarget);
                     if(remembered!=null&&remembered.Alive&&IsHostileTarget(e.owner,remembered)&&Observes075(e,remembered)&&EdgeDistance(e,remembered)<e.def.vision&&CanStationaryAutoTarget(e,remembered))enemy=remembered;
@@ -306,6 +307,7 @@ namespace Frontier
         {
             if(Time<e.attackReadyAt){e.status="Reloading";return;}
             BreakStealth075(e);
+            BlockHealing076(e);
             e.shotMelee=melee;e.attackTarget=target.id;e.fireAt=Time+Mathf.Max(.1f,e.def.windup);
             e.attackReadyAt=Time+Mathf.Max(e.def.period,e.def.windup+.1f);e.status="Preparing attack";
             Emit("AttackPrepared",e.owner,e.id,"Attack prepared",0,target.id);
@@ -319,6 +321,7 @@ namespace Frontier
             // Abort only this pending shot; the already committed reload stays spent.
             if(distance<e.def.minRange){Emit("AttackCancelled",e.owner,e.id,"Target inside minimum range",0,target.id);return;}
             if(distance>range+1)return;
+            BlockHealing076(e);
             DamageKind kind=melee?DamageKind.Melee:e.def.damageKind;
             float factor=Attack(e)/Mathf.Max(1,e.forceMelee?e.def.meleeDamage:e.def.damage);
             float damage=(melee?e.def.meleeDamage:e.def.damage)*factor;float baseDamage=damage;DamageKind baseKind=kind;
@@ -353,6 +356,7 @@ namespace Frontier
             float resistance=kind==DamageKind.Melee?target.def.meleeResist:kind==DamageKind.Ranged?target.def.rangedResist:target.def.siegeResist;
             if(kind==DamageKind.Ranged&&target.shielded&&Time>=target.shieldReadyAt)resistance+=.35f;
             float damage=Mathf.Max(0,raw)*(1-Mathf.Clamp01(resistance));
+            if(damage>0)BlockHealing076(target);
             RevealHitScout075(target,damage);
             Emit("Damage",owner,source,kind.ToString(),damage,target.id,target.position);
             if(damage>=target.hp){Remove(target,owner);return;}target.hp-=damage;

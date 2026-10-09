@@ -11,7 +11,7 @@ namespace Frontier
 {
     [Serializable] public sealed class CaptureMetadata
     {
-        public int schemaVersion = 6, eventSchemaVersion = SimEvent.CurrentSchemaVersion;
+        public int schemaVersion = 7, eventSchemaVersion = SimEvent.CurrentSchemaVersion;
         public string pngFile, pngSha256, utc, appVersion, buildGuid, unityVersion, matchId, requestMatchId;
         public int requestFrame, captureFrame, width, height, seed;
         public float requestWorldTime, worldTime;
@@ -91,7 +91,20 @@ namespace Frontier
             }
             result.production = buildings.ToArray();
             var units=new List<CaptureUnit>();foreach(var unit in w.Entities)if(unit.Alive&&unit.owner==observer&&unit.def.kind==EntityKind.Unit)
-            {var order=unit.orders.Count>0?unit.orders.Peek():null;units.Add(new CaptureUnit{entity=unit.id,definition=unit.def.id,status=unit.status,position=unit.position,hp=unit.hp,garrisonedIn=unit.garrisonedIn,cargo=unit.occupants.ToArray(),load=unit.def.transportShip?w.TransportLoad(unit):0,capacity=unit.def.transportCapacity,order=order?.kind.ToString()??"",target=order?.target??0,destination=order?.point??unit.position});}result.units=units.ToArray();
+            {
+                var order=unit.orders.Count>0?unit.orders.Peek():null;
+                var patient=w.Get(unit.healingTarget);bool patientVisible=w.IsVisible(observer,patient);
+                int orderTarget=order?.target??0;
+                if(order?.kind==OrderKind.Heal&&!w.IsVisible(observer,w.Get(orderTarget)))orderTarget=0;
+                units.Add(new CaptureUnit{entity=unit.id,definition=unit.def.id,status=unit.status,position=unit.position,hp=unit.hp,maxHp=w.MaxHp(unit),garrisonedIn=unit.garrisonedIn,cargo=unit.occupants.ToArray(),load=unit.def.transportShip?w.TransportLoad(unit):0,capacity=unit.def.transportCapacity,order=order?.kind.ToString()??"",target=orderTarget,destination=order?.point??unit.position,
+                    healer=unit.Healer,autoHeal=unit.autoHeal,canReceiveHealing=unit.def.canReceiveHealing,
+                    healRate=unit.Healer?w.HealRate(unit):0,healRange=unit.Healer?w.HealRange(unit):0,
+                    healingTarget=patientVisible?unit.healingTarget:0,healingTargetVisible=patientVisible,
+                    healingReviewAt=unit.healingReviewAt,healingBlockedUntil=unit.healingBlockedUntil,
+                    healingRecoverySeconds=Mathf.Max(0,Mathf.Max(unit.healingBlockedUntil,patientVisible?patient.healingBlockedUntil:0)-w.Time),
+                    healingPauseReason=unit.Healer?(patient==null?"":patientVisible?w.HealingPauseReason(unit,patient):"Patient not currently visible"):"",
+                    work=unit.work.kind.ToString(),workTime=unit.work.time});
+            }result.units=units.ToArray();
             var neutral=new List<CaptureNeutralService>();foreach(var state in w.NeutralAllies)if(w.IsVisible(observer,w.Get(state.site)))
             {var job=state.owner==observer&&state.jobs.Count>0?state.jobs[0]:null;neutral.Add(new CaptureNeutralService{id=state.id,site=state.site,owner=state.owner,claimant=state.claimant,contested=state.contested,claimProgress=state.claimant==observer?state.claimProgress:0,service=job?.kind??"",item=job?.item??"",elapsed=job?.elapsed??0,duration=job?.duration??0});}result.neutralServices=neutral.ToArray();
             return result;
@@ -173,7 +186,14 @@ namespace Frontier
         }
     }
     [Serializable] public sealed class CaptureUnit
-    {public int entity,garrisonedIn,load,capacity,target;public string definition,status,order;public Vector2 position,destination;public float hp;public int[] cargo;}
+    {
+        public int entity,garrisonedIn,load,capacity,target,healingTarget;
+        public string definition,status,order,work,healingPauseReason;
+        public Vector2 position,destination;
+        public float hp,maxHp,healRate,healRange,healingReviewAt,healingBlockedUntil,healingRecoverySeconds,workTime;
+        public bool healer,autoHeal,canReceiveHealing,healingTargetVisible;
+        public int[] cargo;
+    }
     [Serializable] public sealed class CapturePlayer
     {public int slot,team;public string civilization;public bool resigned,eliminated,winner;}
     [Serializable] public sealed class CaptureNeutralService

@@ -75,7 +75,7 @@ namespace Frontier
         private void SetNavalOrder(EntityState unit,UnitOrder order,bool append=false)
         {
             FlushGather(unit.id);CancelCaravan(unit,"Naval order");
-            if(!append){unit.orders.Clear();InvalidateCommandPath(unit);}
+            if(!append){unit.orders.Clear();InvalidateCommandPath(unit);ClearHealing076(unit);}
             unit.fireAt=-1;unit.attackTarget=0;unit.hold=false;unit.work=default;
             if(unit.shielded){unit.shielded=false;unit.shieldReadyAt=Time+2;}
             unit.orders.Enqueue(order);unit.status="Moving";
@@ -228,7 +228,7 @@ namespace Frontier
             if(!berth.hasResolvedPoint||(ship.position-berth.resolvedPoint).sqrMagnitude>.25f*.25f||
                 Vector2.Distance(passenger.position,ship.position)>ship.def.radius+passenger.def.radius+3.85f)return;
             if(TransportLoad(ship)+TransportSlotCost(passenger)>ship.def.transportCapacity)return;
-            FlushGather(passenger.id);passenger.garrisonedIn=ship.id;ship.occupants.Add(passenger.id);
+            FlushGather(passenger.id);passenger.garrisonedIn=ship.id;ClearHealing076(passenger);ClearPatientHealingLinks076(passenger);ship.occupants.Add(passenger.id);
             if(passenger.stealth){passenger.stealth=false;passenger.stealthReadyAt=Mathf.Max(passenger.stealthReadyAt,Time+3);}
             passenger.orders.Clear();InvalidateCommandPath(passenger);passenger.fireAt=-1;passenger.attackTarget=0;passenger.work=default;
             passenger.position=passenger.previousPosition=ship.position;passenger.status="Embarked";

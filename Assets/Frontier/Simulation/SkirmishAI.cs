@@ -24,12 +24,13 @@ namespace Frontier
         private readonly AiConstruction construction;
         private readonly AiSearchPlan search;
         private readonly AiCivilizationEconomy civilizationEconomy;
+        private readonly AiMedicalSupport076 medicalSupport;
         private readonly AiWaterEconomy waterEconomy;
         private bool searchingLastReview;
         private int rotation,buildSerial;
         public SkirmishAI(World world,int player):this(world,player,AiDifficultyProfile.From(world.Rules,"standard")){}
         public SkirmishAI(World world,int player,AiDifficultyProfile difficulty)
-        {this.world=world??throw new ArgumentNullException(nameof(world));if(player<0||player>=world.Players.Length)throw new ArgumentOutOfRangeException(nameof(player));this.player=player;Difficulty=difficulty??throw new ArgumentNullException(nameof(difficulty));workforce=new AiWorkforce(world,player);agePlan=new AiAgePlan(world,player);revolution=new AiRevolution071(world,player,Difficulty);construction=new AiConstruction(world,player);continuity=new AiResourceContinuity072(world,player,()=>agePlan.Reserve+revolution.Reserve);civilizationEconomy=new AiCivilizationEconomy(world,player,continuity);waterEconomy=new AiWaterEconomy(world,player,continuity);armyPlan=new AiArmyPlan072(world,player,Difficulty);search=new AiSearchPlan(world,player,enemyStart);}
+        {this.world=world??throw new ArgumentNullException(nameof(world));if(player<0||player>=world.Players.Length)throw new ArgumentOutOfRangeException(nameof(player));this.player=player;Difficulty=difficulty??throw new ArgumentNullException(nameof(difficulty));workforce=new AiWorkforce(world,player);agePlan=new AiAgePlan(world,player);revolution=new AiRevolution071(world,player,Difficulty);construction=new AiConstruction(world,player);continuity=new AiResourceContinuity072(world,player,()=>agePlan.Reserve+revolution.Reserve);civilizationEconomy=new AiCivilizationEconomy(world,player,continuity);medicalSupport=new AiMedicalSupport076(world,player,continuity);waterEconomy=new AiWaterEconomy(world,player,continuity);armyPlan=new AiArmyPlan072(world,player,Difficulty);search=new AiSearchPlan(world,player,enemyStart);}
         public AiSnapshot CaptureState()
         {
             var remembered=new List<IntPointSnapshot>();
@@ -38,7 +39,7 @@ namespace Frontier
             return new AiSnapshot{player=player,thinkAt=thinkAt,armyAt=armyAt,expedition=expedition,expeditionSize=expeditionSize,
                 searchingLastReview=searchingLastReview,rotation=rotation,buildSerial=buildSerial,memory=remembered.ToArray(),
                 armyPlan=armyPlan.CaptureState(),agePlan=agePlan.CaptureState(),workforce=workforce.CaptureState(),search=search.CaptureState(),
-                waterEconomy=waterEconomy.CaptureState(),civilizationEconomy=civilizationEconomy.CaptureState()};
+                waterEconomy=waterEconomy.CaptureState(),civilizationEconomy=civilizationEconomy.CaptureState(),medicalSupport=medicalSupport.CaptureState()};
         }
         internal static SkirmishAI Restore(World world,AiSnapshot state,AiDifficultyProfile difficulty)
         {
@@ -56,6 +57,9 @@ namespace Frontier
             }
             result.armyPlan.RestoreState(state.armyPlan);result.agePlan.RestoreState(state.agePlan);result.workforce.RestoreState(state.workforce);result.search.RestoreState(state.search);
             result.waterEconomy.RestoreState(state.waterEconomy);result.civilizationEconomy.RestoreState(state.civilizationEconomy);
+            result.medicalSupport.RestoreState(state.medicalSupport);
+            foreach(int id in result.medicalSupport.RecoveryMembers)
+                AiSaveValidation.Require(Array.IndexOf(result.armyPlan.WaveMembers,id)<0&&Array.IndexOf(result.armyPlan.GuardMembers,id)<0,"medical and army cohort overlap");
             result.thinkAt=state.thinkAt;result.armyAt=state.armyAt;result.expedition=state.expedition;result.expeditionSize=state.expeditionSize;
             result.searchingLastReview=state.searchingLastReview;result.rotation=state.rotation;result.buildSerial=state.buildSerial;return result;
         }
@@ -92,7 +96,7 @@ namespace Frontier
             bool underAttack=armyPlan.HasImmediateThreat(own,enemies);
             bool rangedRaid=enemies.Exists(e=>(e.def.tags&Tags.Infantry)!=0&&e.def.range>=16&&(e.position-home).sqrMagnitude<40*40);
             bool investWorkers=!world.WorkerSourcesClosed(player)&&world.CivilianWorkersEnabled(player)&&workers.Count<workerGoal&&(!underAttack||soldierCount>=6||workers.Count<12);
-            int raiders=enemies.FindAll(e=>e.Military&&(e.def.tags&Tags.Explorer)==0&&(e.position-home).sqrMagnitude<34*34).Count;
+            int raiders=enemies.FindAll(e=>(e.Military||(e.Scout||e.def.healer)&&(e.def.damage>0||e.def.meleeDamage>0||e.def.siegeDamage>0))&&(e.def.tags&Tags.Explorer)==0&&(e.position-home).sqrMagnitude<34*34).Count;
             agePlan.Tick(town,workers.Count,soldierCount,raiders,advancing,revolution.AllowsAgeAdvance);
             var politicalReserve=revolution.Reserve;
             bool saveForAge=agePlan.Saving||politicalReserve.food+politicalReserve.wood+politicalReserve.coin>0;
@@ -138,8 +142,9 @@ namespace Frontier
                 if(p.age>=world.UnitAge(player,world.Rules.Entity("foundry"))&&Find(own,"foundry")==null)Build(own,workers,"foundry");
             }
             foreach(var e in own)if(e.def.garrison>0&&e.occupants.Count>0&&economicThreats.Find(x=>(x.position-e.position).sqrMagnitude<24*24)==null)Send(new GameCommand{kind=CommandKind.Ungarrison,actors=new[]{e.id}});
-            Cost civilizationResearchReserve=civilizationEconomy.TechnologyReserve(own,saveForAge,underAttack);
-            civilizationEconomy.Tick(own,workers,economicThreats,continuity.Evaluate().ProtectedReserve(workerReserve+bankReserve+progressReserve),saveForAge,underAttack);
+            bool medicalPriority=!saveForAge&&!underAttack&&medicalSupport.YieldNoncriticalMosqueResearch(own,workers.Count,soldierCount);
+            Cost civilizationResearchReserve=civilizationEconomy.TechnologyReserve(own,saveForAge,underAttack,medicalPriority);
+            civilizationEconomy.Tick(own,workers,economicThreats,continuity.Evaluate().ProtectedReserve(workerReserve+bankReserve+progressReserve),saveForAge,underAttack,medicalPriority);
             bool riverInvestment=workers.Count>=12&&soldierCount>=4&&own.Exists(e=>e.def.id=="barracks"&&e.Complete);
             waterEconomy.Tick(own,workers,enemies,continuity.Evaluate().ProtectedReserve(workerReserve+bankReserve+specialReserve+progressReserve),saveForAge||!riverInvestment,underAttack,economicThreats);
             var economyTarget=EconomyTarget(own,workers,enemies,saveForAge,investWorkers,firstBank,politicalReserve)+continuity.Evaluate().ResourceNeed;
@@ -200,7 +205,7 @@ namespace Frontier
                 if(!producer.Complete||producer.queue.Count>0)continue;
                 bool artillery=producer.def.id=="foundry";
                 var choices=new List<EntityDef>();foreach(var d in world.Rules.entities)
-                    if(d.kind==EntityKind.Unit&&!d.civilian&&!d.scout&&!d.waterborne&&d.producer==producer.def.id&&(d.tags&Tags.Villager)==0&&world.EntityAvailable(player,d)&&world.UnitAge(player,d)<=p.age)choices.Add(d);
+                    if(d.kind==EntityKind.Unit&&!d.civilian&&!d.scout&&!d.healer&&!d.waterborne&&d.producer==producer.def.id&&(d.tags&Tags.Villager)==0&&world.EntityAvailable(player,d)&&world.UnitAge(player,d)<=p.age)choices.Add(d);
                 if(artillery)choices.Sort((a,b)=>(a.id=="cannon"?0:1).CompareTo(b.id=="cannon"?0:1));
                 else choices.Sort((a,b)=>CounterScore(b,enemies).CompareTo(CounterScore(a,enemies)));
                 if(p.age>=2&&(!saveForAge||underAttack))for(int i=0;i<choices.Count;i++)
@@ -217,9 +222,10 @@ namespace Frontier
                     }
                     if(queued)break;
                 }
-                if(producer.queue.Count>0||saveForAge||underAttack&&soldierCount<6)continue;
+                if(producer.queue.Count>0||saveForAge||underAttack&&soldierCount<6||medicalPriority&&producer.def.id=="mosque")continue;
                 foreach(var t in world.Rules.techs)
                 {
+                    if(t.healing>0||t.healerTrainSpeed>0)continue; // Medical investment owns this optional support budget.
                     if(world.ProductionReason(player,producer,t.id,true)!="")continue;
                     // Unit upgrades need a meaningful existing force; economy can invest sooner.
                     if(t.units!=null&&t.units.Length>0&&world.UnitCountIncludingProduction(player,t.units[0])<4)continue;
@@ -229,6 +235,17 @@ namespace Frontier
                     Send(new GameCommand{kind=CommandKind.Research,actors=new[]{producer.id},item=t.id});break;
                 }
             }
+            // Medical spending follows ordinary military queues and protects
+            // all economic, political, civilization and siege commitments.
+            var supportReserve=progressReserve+workerReserve+bankReserve+specialReserve+civilizationResearchReserve+siegeReserve;
+            bool investMedical=!saveForAge&&!underAttack;
+            if(investMedical&&medicalSupport.NeedsBuilding(own,workers.Count,soldierCount))
+            {
+                var medicalBuilding=world.Rules.Entity(medicalSupport.Building);
+                if(medicalBuilding!=null&&CanSpend(world.EntityCost(player,medicalBuilding),supportReserve))Build(own,workers,medicalBuilding.id);
+            }
+            medicalSupport.TryInvest(own,workers.Count,soldierCount,supportReserve,investMedical);
+            medicalSupport.ReviewSupport(own,army,economicThreats,home);
             // Support scouting spends only after military queues and research,
             // so an Envoy cannot consume the first available skirmisher budget.
             ReviewScouts075(own,workers,economicThreats,progressReserve+workerReserve+bankReserve+specialReserve+civilizationResearchReserve+siegeReserve,!saveForAge&&!underAttack&&workers.Count>=12);
@@ -244,7 +261,7 @@ namespace Frontier
                 if(distance<nearest){nearest=distance;destination=pair.Value;knownTarget=true;}
             }
             if(removeId!=0)ForgetMemory(removeId);
-            armyPlan.Review(own,army,enemies,destination,knownTarget,search,waterEconomy,revolution,civilizationEconomy);
+            armyPlan.Review(own,army,enemies,destination,knownTarget,search,waterEconomy,revolution,civilizationEconomy,medicalSupport);
         }
         private void UseNeutralSettlement(List<EntityState> own,Cost reserve)
         {
@@ -413,7 +430,7 @@ namespace Frontier
                 EntityDef candidate=null;float score=float.MinValue;
                 foreach(var d in world.Rules.entities)
                 {
-                    if(d.kind!=EntityKind.Unit||d.civilian||d.waterborne||(d.tags&Tags.Villager)!=0||d.producer!=producer.def.id||world.UnitAge(player,d)>p.age||!world.EntityAvailable(player,d))continue;
+                    if(d.kind!=EntityKind.Unit||d.civilian||d.scout||d.healer||d.waterborne||(d.tags&Tags.Villager)!=0||d.producer!=producer.def.id||world.UnitAge(player,d)>p.age||!world.EntityAvailable(player,d))continue;
                     float value=CounterScore(d,visible);if(value>score){score=value;candidate=d;}
                 }
                 if(candidate!=null)target+=world.UnitCost(player,candidate)*(60/candidate.time);
@@ -421,7 +438,7 @@ namespace Frontier
             if(Find(own,"town")==null)target+=world.EntityCost(player,world.Rules.Entity("town"));
             // Keep a modest infrastructure reserve when the next army is already funded.
             if(p.age>=2)target.wood+=world.EntityCost(player,world.Rules.Entity("house")).wood;
-            return target+civilizationEconomy.Forecast(own,save)+waterEconomy.Forecast(own,save);
+            return target+civilizationEconomy.Forecast(own,save)+waterEconomy.Forecast(own,save)+(save?new Cost():medicalSupport.Forecast(own,workers.Count,own.FindAll(e=>e.Military&&!e.def.waterborne&&(e.def.tags&Tags.Explorer)==0).Count));
         }
         private void EnsureSustainableEconomy(List<EntityState> ownEconomy,List<EntityState> workers,PlayerState p)
         {

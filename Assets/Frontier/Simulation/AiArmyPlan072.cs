@@ -59,7 +59,7 @@ namespace Frontier
         }
         // Owned scouts remain outside soldiers/waves below. An observed enemy
         // scout with a real weapon can nevertheless require economic defense.
-        bool IsThreat(EntityState enemy)=>enemy.Alive&&world.AreEnemies(player,enemy.owner)&&(enemy.Military||enemy.Scout)&&
+        bool IsThreat(EntityState enemy)=>enemy.Alive&&world.AreEnemies(player,enemy.owner)&&(enemy.Military||enemy.Scout||enemy.def.healer)&&
             (enemy.def.tags&Tags.Explorer)==0&&(enemy.def.damage>0||enemy.def.meleeDamage>0||enemy.def.siegeDamage>0)&&world.IsVisible(player,enemy);
         bool IsArmedBuilding(EntityState enemy)=>enemy.Alive&&enemy.Complete&&enemy.def.kind==EntityKind.Building&&
             world.AreEnemies(player,enemy.owner)&&(enemy.def.damage>0||enemy.def.siegeDamage>0)&&world.IsVisible(player,enemy);
@@ -211,14 +211,19 @@ namespace Frontier
         }
         public void Review(List<EntityState> own,List<EntityState> landArmy,List<EntityState> visibleEnemies,
             Vector2 rememberedOrOpeningDestination,bool hasKnownTarget,AiSearchPlan search,AiWaterEconomy water,
-            AiRevolution071 revolution,AiCivilizationEconomy civilization)
+            AiRevolution071 revolution,AiCivilizationEconomy civilization,AiMedicalSupport076 medical=null)
         {
-            if(world.Paused||world.IsMatchEnded||!world.IsPlayerActive(player)||world.Time<reviewAt)return;
+            if(world.Paused||world.IsMatchEnded||!world.IsPlayerActive(player))return;
+            // Recovery admission takes effect even between scheduled strategic
+            // reviews, so a save never puts one unit in both cohorts.
+            if(medical!=null){wave.RemoveAll(medical.IsRecovering);guards.RemoveAll(medical.IsRecovering);}
+            if(world.Time<reviewAt)return;
             reviewAt=world.Time+difficulty.ArmySeconds;
             var soldiers=new List<EntityState>();
             foreach(var e in landArmy)
             {
                 if(!e.Alive||e.owner!=player||!e.Military||e.def.waterborne||e.garrisonedIn!=0||(e.def.tags&Tags.Explorer)!=0)continue;
+                if(medical!=null&&medical.IsRecovering(e.id))continue;
                 if(revolution.KeepSupplyGuard(e,visibleEnemies)||e.orders.Count>0&&e.orders.Peek().kind==OrderKind.Embark)continue;
                 if(e.hp<world.MaxHp(e)*.22f&&visibleEnemies.Count>landArmy.Count)
                 {if(e.orders.Count==0||e.orders.Peek().kind!=OrderKind.Move)Send(new GameCommand{kind=CommandKind.Order,actors=new[]{e.id},order=OrderKind.Move,point=water.LandArmyDestination(e,Home)});continue;}

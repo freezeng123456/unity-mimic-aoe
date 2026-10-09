@@ -28,4 +28,4 @@
 
 同GUID原生已实际付费训练两国新兵、荷兰移动生产者/集结/出兵、自动侦察、法国潜行及slot2新进程冷恢复/继续移动/解除潜行。15对F9与53原始文件身份/字节核对完成。荷兰slot2未落盘；原生录像仅保存未播放，FPS、自然完整人工比赛、双物理Mac未验收；有真实Quit/cleanup/PID消失，没有额外机器exitCode receipt。[内容](Content-075.md)、[验证](Verification-075.md)、[原生](Native-075.md)、[限制](Known-Issues.md)。
 
-仅更新既有私有开发分支与[draft PR1](https://github.com/freezeng123456/unity-mimic-aoe/pull/1)，最末head以包外远端读回为准。旧074及更早原件、GUID和结果保持原身份。治疗、皇家升级、完整国别制度/卡池、海战和性能仍继续推进，075交付不代表整体目标已完成。
+仅更新既有私有开发分支与[draft PR1](https://github.com/freezeng123456/unity-mimic-aoe/pull/1)，075交付head为`e411875c55ba57a2aac4a890aac0b8166e9988af`，已实际读回private/open/draft、精确标题正文且main不变，见[远端收据](Evidence/075/Delivery/github075-final-draft-readback-001.json)。后续076开发沿用该分支，不改变075封包身份。旧074及更早原件、GUID和结果保持原身份。治疗、皇家升级、完整国别制度/卡池、海战和性能仍继续推进，075交付不代表整体目标已完成。
