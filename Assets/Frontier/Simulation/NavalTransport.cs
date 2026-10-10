@@ -4,6 +4,13 @@ using UnityEngine;
 
 namespace Frontier
 {
+    public readonly struct TransportCargoSummary
+    {
+        public readonly int AboardSlots,AboardUnits,IncomingSlots,IncomingUnits,Capacity;
+        internal TransportCargoSummary(int aboardSlots,int aboardUnits,int incomingSlots,int incomingUnits,int capacity)
+        {AboardSlots=aboardSlots;AboardUnits=aboardUnits;IncomingSlots=incomingSlots;IncomingUnits=incomingUnits;Capacity=capacity;}
+    }
+
     public partial class World
     {
         private const int NavalShoreAttempts=6;
@@ -20,11 +27,37 @@ namespace Frontier
             int slots=0;
             foreach(var passenger in Entities)
             {
-                if(!passenger.Alive||passenger.garrisonedIn!=0||excluded!=null&&excluded.Contains(passenger.id))continue;
-                foreach(var order in passenger.orders)if(order.kind==OrderKind.Embark&&order.target==ship.id)
-                {slots+=TransportSlotCost(passenger);break;}
+                if(excluded!=null&&excluded.Contains(passenger.id))continue;
+                if(HasTransportReservation(passenger,ship))slots+=TransportSlotCost(passenger);
             }
             return slots;
+        }
+        private static bool HasTransportReservation(EntityState passenger,EntityState ship)
+        {
+            if(!passenger.Alive||passenger.garrisonedIn!=0)return false;
+            foreach(var order in passenger.orders)if(order.kind==OrderKind.Embark&&order.target==ship.id)return true;
+            return false;
+        }
+        // A presentation query over existing cargo and authoritative Embark orders.
+        // No endpoint search, navigation update or cached gameplay state is involved.
+        // A foreign ship (or foreign stale reservation) discloses no passenger data.
+        public bool TryGetTransportCargoSummary(int player,EntityState ship,out TransportCargoSummary summary)
+        {
+            summary=default;
+            if(player<0||player>=Players.Length||NavalTransportReason(player,ship)!=""||!ReferenceEquals(Get(ship.id),ship))return false;
+            int aboardSlots=0,aboardUnits=0,incomingSlots=0,incomingUnits=0;var seen=new HashSet<int>();
+            foreach(int id in ship.occupants)
+            {
+                var passenger=Get(id);
+                if(passenger==null||!passenger.Alive||passenger.owner!=player||passenger.garrisonedIn!=ship.id||!seen.Add(id))continue;
+                aboardSlots+=TransportSlotCost(passenger);aboardUnits++;
+            }
+            foreach(var passenger in Entities)
+            {
+                if(passenger.owner!=player||!HasTransportReservation(passenger,ship)||!seen.Add(passenger.id))continue;
+                incomingSlots+=TransportSlotCost(passenger);incomingUnits++;
+            }
+            summary=new TransportCargoSummary(aboardSlots,aboardUnits,incomingSlots,incomingUnits,ship.def.transportCapacity);return true;
         }
         public string NavalTransportReason(int player,EntityState ship)
         {

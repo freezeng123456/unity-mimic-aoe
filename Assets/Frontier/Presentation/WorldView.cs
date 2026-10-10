@@ -406,8 +406,10 @@ namespace Frontier
         }
         private void UpdatePreview()
         {
-            var id=game.IsWatching?"":game.Controls.BuildingToPlace;preview.gameObject.SetActive(!string.IsNullOrEmpty(id));previewJetty.gameObject.SetActive(id=="dock");if(string.IsNullOrEmpty(id))return;
-            var d=game.Rules.Entity(id);var p=game.World.BuildPoint(game.ObserverPlayer,id,game.Controls.GroundMouse);bool valid=game.World.CanBuild(game.ObserverPlayer,id,p)=="";
+            var placement=game.Controls.CaptureBuildPlacementPreview079();
+            game.Hud.RefreshOrderSummary079(placement);
+            preview.gameObject.SetActive(placement.Active);previewJetty.gameObject.SetActive(placement.Active&&placement.BuildingId=="dock");if(!placement.Active)return;
+            var d=game.Rules.Entity(placement.BuildingId);var p=placement.Point;bool valid=placement.Valid;
             TintLine(preview,valid?new Color(.5f,1,.35f):new Color(1,.22f,.12f));
             var corners=game.World.BuildingFootprintCorners(d,p);
             for(int i=0;i<4;i++)preview.SetPosition(i,new Vector3(corners[i].x,game.World.SurfaceHeight(corners[i])+.2f,corners[i].y));

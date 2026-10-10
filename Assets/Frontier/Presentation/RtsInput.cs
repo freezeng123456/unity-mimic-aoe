@@ -101,6 +101,12 @@ namespace Frontier
             game.Hud.InvalidateActions();if(FirstSelected!=null)Focus(FirstSelected.position);
         }
         public void BeginBuild(string id){if(!game.CanSubmitOrders){CancelTargetMode();return;}SuppressWorldInput();CancelTargetMode();BuildingToPlace=id;game.Notify("Place "+game.Rules.Entity(id).name+". Right click or Esc cancels.");}
+        public BuildPlacementPreview079 CaptureBuildPlacementPreview079()
+        {
+            if(game==null||!game.CanSubmitOrders||string.IsNullOrEmpty(BuildingToPlace))return default;
+            var pointer=Mouse.current;
+            return BuildPlacementPreview079.Evaluate(game.World,LocalPlayer,BuildingToPlace,pointer!=null?HoverGroundPoint(pointer.position.ReadValue()):GroundMouse);
+        }
         public void CancelTargetMode(){targetGeneration++;ResetDoubleClick();BuildingToPlace="";AttackMode=false;GarrisonMode=false;RepairMode=false;HealMode=false;EmbarkMode=false;DisembarkMode=false;DockRepairMode=false;EnvoyRallyMode=false;}
         public bool HasCombatSelection=>Selected.Exists(id=>{var e=game.World?.Get(id);return e!=null&&e.Alive&&e.owner==LocalPlayer&&e.garrisonedIn==0&&e.def.kind==EntityKind.Unit&&!e.def.civilian&&(e.def.damage>0||e.def.meleeDamage>0||e.def.siegeDamage>0);});
         public void BeginAttackMove(){if(!game.CanSubmitOrders){CancelTargetMode();return;}if(!HasCombatSelection){game.Notify("Select units with weapons before attacking");return;}CancelTargetMode();AttackMode=true;game.Notify("Attack move: choose a destination");}

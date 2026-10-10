@@ -78,7 +78,7 @@ namespace Frontier.Tests
         {
             // Re-run the 077 bank-profile/palette comparison in the 078 runtime;
             // this is not historical077 evidence or the 078 grid-density pair.
-            Assert.AreEqual("0.21.0",Application.version,"Integrate the 078 version identity before this retained study");
+            Assert.AreEqual("0.22.0",Application.version,"Integrate the 079 version identity before this retained 078-geometry study");
             Assert.IsTrue(GraphicsSettings.currentRenderPipeline is UniversalRenderPipelineAsset,"Study requires the project's actual URP asset");
             output=Environment.GetEnvironmentVariable("FRONTIER_BANK_STUDY_DIR");
             if(string.IsNullOrWhiteSpace(output))output=Path.Combine(Application.temporaryCachePath,"FrontierRiverBankRender077-"+Guid.NewGuid().ToString("N"));

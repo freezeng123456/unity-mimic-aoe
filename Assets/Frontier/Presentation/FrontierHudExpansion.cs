@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,11 +8,13 @@ namespace Frontier
     public sealed partial class FrontierHud
     {
         private Texture2D mapPreview;
+        private Text transportCargoHeading079,transportCargoPassengers079;
+        private int transportCargoShip079=-1,transportCargoModalGeneration079=-1;
         private int neutralModalSite=-1;private string neutralModalSignature="";
         private string NeutralSignature(int site)
         {var state=game.World?.NeutralAt(site);if(state==null)return "";var p=game.World.Players[game.ObserverPlayer];return state.owner+"/"+state.claimant+"/"+(int)state.claimProgress+"/"+state.contested+"/"+state.jobs.Count+"/"+(state.jobs.Count>0?(int)state.jobs[0].elapsed:0)+"/"+(int)p.resources.food+"/"+(int)p.resources.wood+"/"+(int)p.resources.coin+"/"+p.technologies.Count+"/"+p.usedPopulation+"/"+p.reservedPopulation;}
         private void UpdateExpansionPanels()
-        {if(neutralModalSite>=0&&ModalVisible&&!(uiPointer?.IsPressed??false)&&neutralModalSignature!=NeutralSignature(neutralModalSite))ShowNeutralSettlement(neutralModalSite);}
+        {RefreshTransportCargo079();if(neutralModalSite>=0&&ModalVisible&&!(uiPointer?.IsPressed??false)&&neutralModalSignature!=NeutralSignature(neutralModalSite))ShowNeutralSettlement(neutralModalSite);}
         private void ShowMapOptions()
         {
             var authored=game.SelectedScenario;var preview=authored==null?new World(game.Rules,game.MatchSeed,game.RosterCivilizations(),game.RosterTeams(),game.AgeLimit,game.SelectedMap):new World(game.Rules,authored,game.RosterCivilizations(),game.RosterTeams(),game.AgeLimit);
@@ -80,9 +83,29 @@ namespace Frontier
         private void ShowTransportCargo(EntityState ship)
         {
             var box=Modal("TRANSPORT PASSENGERS",560);
-            Label(box,"Load "+game.World.TransportLoad(ship)+" / "+ship.def.transportCapacity+" population slots\nSinking loses the passengers. Use UNLOAD and choose an open land shore.",new Rect(25,80,780,85),20,gold);
-            string names="";foreach(int id in ship.occupants){var unit=game.World.Get(id);if(unit?.Alive==true)names+=unit.def.name+" · "+Math.Max(1,unit.def.population)+" slots · HP "+unit.hp.ToString("0")+"\n";}
-            Label(box,names==""?"No passengers aboard":names,new Rect(25,186,780,330),18);
+            transportCargoShip079=ship.id;transportCargoModalGeneration079=modalGeneration;
+            transportCargoHeading079=Label(box,"",new Rect(25,80,780,85),20,gold);
+            transportCargoPassengers079=Label(box,"",new Rect(25,186,780,330),18);RefreshTransportCargo079();
+        }
+        public static string FormatTransportCargoSummary079(TransportCargoSummary summary)=>
+            "Cargo "+summary.AboardSlots+" + "+summary.IncomingSlots+" incoming /"+summary.Capacity+" slots · "+summary.AboardUnits+" aboard · "+summary.IncomingUnits+" incoming";
+        public string TransportCargoSummary079(EntityState ship)=>game.World!=null&&game.World.TryGetTransportCargoSummary(game.ObserverPlayer,ship,out var summary)?FormatTransportCargoSummary079(summary):"";
+        private void RefreshTransportCargo079()
+        {
+            if(!ModalVisible||transportCargoModalGeneration079!=modalGeneration||transportCargoHeading079==null||transportCargoPassengers079==null)return;
+            var ship=game.World?.Get(transportCargoShip079);
+            string summary=TransportCargoSummary079(ship);
+            if(summary=="")
+            {transportCargoHeading079.text="Passenger details are available for your own living transport.";transportCargoPassengers079.text="";return;}
+            transportCargoHeading079.text=summary+"\nSinking loses the passengers. Use UNLOAD and choose an open land shore.";
+            string names="";var seen=new HashSet<int>();
+            foreach(int id in ship.occupants)
+            {
+                var unit=game.World.Get(id);
+                if(unit?.Alive==true&&unit.owner==game.ObserverPlayer&&unit.garrisonedIn==ship.id&&seen.Add(id))
+                    names+=unit.def.name+" · "+game.World.TransportSlotCost(unit)+" slots · HP "+unit.hp.ToString("0")+"\n";
+            }
+            transportCargoPassengers079.text=names==""?"No passengers aboard":names;
         }
         private void OnDestroy(){if(mapPreview!=null)Destroy(mapPreview);if(editorMap069!=null)Destroy(editorMap069);}
     }

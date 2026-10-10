@@ -16,6 +16,7 @@ namespace Frontier
         private RectTransform minimapRect;
         private Text resources,selection,details,notice,help,orders,clockLabel,homeTransit,homeTitle,objectiveLabel;
         public string ResourceSummary => resources != null ? resources.text : "";
+        public string OrderSummary=>orders!=null?orders.text:"";
         public int ResourceSummaryFrame { get; private set; } = -1;
         public float ResourceSummaryTime { get; private set; }
         public string ResourceSummaryMatchId { get; private set; } = "";
@@ -279,8 +280,7 @@ namespace Frontier
             RefreshObjectiveSummary(w);
             if(lastClockLabel!=clockLabel||lastClockSeconds!=(int)w.Time||lastIdle!=idle)
             {UpdateExpansionPanels();clockLabel.text=$"{(int)w.Time/60:00}:{(int)w.Time%60:00}   IDLE {idle}";lastClockLabel=clockLabel;lastClockSeconds=(int)w.Time;lastIdle=idle;}
-            orders.text=DynamicBindingLabel(game.Controls.EnvoyRallyMode?"ENVOY RALLY — CHOOSE TERRAIN":game.Controls.EmbarkMode?"BOARD — CHOOSE YOUR TROOP TRANSPORT":game.Controls.DisembarkMode?"UNLOAD — CHOOSE AN OPEN LAND SHORE":game.Controls.DockRepairMode?"HARBOR REPAIR — CHOOSE YOUR COMPLETED DOCK":game.Controls.BuildingToPlace!=""?"PLACING  "+game.Rules.Entity(game.Controls.BuildingToPlace).name:game.Controls.HealMode?"HEAL — CHOOSE A WOUNDED FRIENDLY / ALLIED UNIT":game.Controls.RepairMode?"REPAIR [R] — CHOOSE A DAMAGED FRIENDLY TARGET":game.Controls.GarrisonMode?"GARRISON [G] — CHOOSE A FRIENDLY SHELTER":game.Controls.AttackMode?"ATTACK MOVE — CHOOSE DESTINATION":"[V] Idle settler     [T] Town center     [M] Military     [B] Build");
-            if(game.IsWatching||game.Autoplay)orders.text=game.Autoplay?"AI OBSERVATION · camera and selection · army orders are controlled by AI":"WATCHING · camera and selection · recorded orders are read-only";
+            RefreshOrderSummary079(game.Controls.CaptureBuildPlacementPreview079());
             notice.text=game.Notice;
             help.text=Help;
             var selected=game.Controls.FirstSelected;
@@ -292,7 +292,7 @@ namespace Frontier
                 details.text=$"HP {selected.hp:0}/{w.MaxHp(selected):0}     ATK {w.Attack(selected):0}     RANGE {(selected.forceMelee?1.4f:selected.def.range):0.#}     POP {selected.def.population}\n{selected.status}  ·  Orders {selected.orders.Count}";
                 if(selected.Healer&&selected.owner==game.ObserverPlayer)details.text+="\n"+HealingSummary076(selected);
                 if(selected.def.canStealth&&selected.owner==game.ObserverPlayer)details.text+="\nStealth: "+(selected.stealth?(selected.revealedUntil>w.Time?"REVEALED · "+(selected.revealedUntil-w.Time).ToString("0.0")+"s":"ACTIVE · detector proximity can reveal you"):"OFF")+" · Vision "+selected.def.vision;
-                if(selected.def.transportShip)details.text+="\nCargo "+w.TransportLoad(selected)+"/"+selected.def.transportCapacity+" population slots · "+selected.occupants.Count+" passengers";
+                if(selected.def.transportShip){var cargo=TransportCargoSummary079(selected);if(cargo!="")details.text+="\n"+cargo;}
                 else if(selected.owner==game.ObserverPlayer&&selected.def.id=="town"&&w.AutoRecruitSeconds(game.ObserverPlayer)>0)details.text+="\n"+AutoRecruitSummary(selected);
                 else if(selected.def.id=="caravan")details.text+="\n"+CaravanSummary(selected);
                 else if(selected.def.id=="workshop")details.text+=$"\nArtisans in place: {w.AssignedArtisans(selected)} · Prefabs: {p.prefabCharges}";
@@ -559,6 +559,14 @@ namespace Frontier
                 if(!string.IsNullOrEmpty(choice.tech))rewards.Add(game.Rules.Tech(choice.tech)?.name+": "+TechSummary(game.Rules.Tech(choice.tech)));
                 Button(box,choice.name.ToUpperInvariant()+"\n"+choice.description+"\n"+string.Join(" · ",rewards),new Rect(25,145+i*139,815,128),()=>{SubmitModalCommand(new GameCommand{player=game.LocalPlayerSlot,kind=CommandKind.AdvanceAge,actors=new[]{e.id},choice=choice.id},box,r=>{if(r.accepted)CloseModal();});},"Rewards and the selected technology arrive when this age completes. "+game.World.AgeReason(game.LocalPlayerSlot,e),game.World.AgeReason(game.LocalPlayerSlot,e)=="");
             }
+        }
+        // WorldView also passes its exact outline snapshot after camera/input
+        // updates, so edge-pan cannot leave the displayed reason a frame behind.
+        public void RefreshOrderSummary079(BuildPlacementPreview079 placement)
+        {
+            if(orders==null)return;orders.fontSize=placement.Active?14:17;
+            orders.text=placement.Active?placement.Label:DynamicBindingLabel(game.Controls.EnvoyRallyMode?"ENVOY RALLY — CHOOSE TERRAIN":game.Controls.EmbarkMode?"BOARD — CHOOSE YOUR TROOP TRANSPORT":game.Controls.DisembarkMode?"UNLOAD — CHOOSE AN OPEN LAND SHORE":game.Controls.DockRepairMode?"HARBOR REPAIR — CHOOSE YOUR COMPLETED DOCK":game.Controls.HealMode?"HEAL — CHOOSE A WOUNDED FRIENDLY / ALLIED UNIT":game.Controls.RepairMode?"REPAIR [R] — CHOOSE A DAMAGED FRIENDLY TARGET":game.Controls.GarrisonMode?"GARRISON [G] — CHOOSE A FRIENDLY SHELTER":game.Controls.AttackMode?"ATTACK MOVE — CHOOSE DESTINATION":"[V] Idle settler     [T] Town center     [M] Military     [B] Build");
+            if(game.IsWatching||game.Autoplay)orders.text=game.Autoplay?"AI OBSERVATION · camera and selection · army orders are controlled by AI":"WATCHING · camera and selection · recorded orders are read-only";
         }
         private string CaravanSummary(EntityState cart)
         {
