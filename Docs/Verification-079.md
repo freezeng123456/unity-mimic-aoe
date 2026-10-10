@@ -20,4 +20,8 @@ Full1 已实际结束：EditMode 1381/1381、PlayMode 473/473，共 1854/1854，
 
 原始报告：`Builds/Tests/run-Krple98p`。EditMode XML SHA256：`543c792a9bea72e1e56d06729bbd08037b7027e2a6ea02ffe9eebf39a7a612cb`。测试运行时 HEAD 为 `9dc5419a1b0880acf35a7576c8ed04bf4eece03f`，包含本轮尚未提交的改动；后续提交按这份 800 输入清单逐字节绑定，不把旧 HEAD 称为已包含本轮实现。
 
-当前尚未把新 macOS 构建、原生窗口、云盘或 GitHub 同步记为已完成。旧 078 交付仍然独立有效。
+独立只读审查已核对两份原始 XML、完整 source-evidence、前后/当前 800 输入和全部 1854 个用例；前版 1835 个用例全部保留，本版恰新增 19 个。
+
+Build1 已实际完成并退出 0，构建时提交 `5400e1f793a53bfc240bf72bb5d22c08ef7b988a`、800 输入指纹与上述测试完全一致；实际 Info.plist 版本为 0.22.0，`codesign --verify --deep --strict` 退出 0。构建后冻结 298 个 app 文件的字节数、SHA256 与 Unix mode，清单 SHA256 为 `8511a3945cb17b4ee719abbd43b39c12428139d9b558318142f540e6d784c427`。
+
+本轮尚未把原生窗口、云盘或 GitHub 同步记为已完成。旧 078 交付仍然独立有效。
