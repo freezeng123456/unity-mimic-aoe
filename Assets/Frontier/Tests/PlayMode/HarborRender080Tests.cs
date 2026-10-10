@@ -100,9 +100,9 @@ namespace Frontier.Tests
         {
             Assert.IsTrue(GraphicsSettings.currentRenderPipeline is UniversalRenderPipelineAsset);Assert.AreEqual(ColorSpace.Linear,QualitySettings.activeColorSpace);
             string expectedVersion=Environment.GetEnvironmentVariable("FRONTIER_HARBOR_EXPECTED_VERSION"),role=Environment.GetEnvironmentVariable("FRONTIER_HARBOR_CAPTURE_ROLE");
-            if(string.IsNullOrWhiteSpace(expectedVersion))expectedVersion="0.23.0";if(string.IsNullOrWhiteSpace(role))role="candidate-current-0.23";
-            Assert.That(expectedVersion,Is.EqualTo("0.22.0").Or.EqualTo("0.23.0"));Assert.AreEqual(expectedVersion=="0.22.0"?"baseline-old-0.22":"candidate-current-0.23",role,"Exact recorded role/version association");
-            Assert.AreEqual(expectedVersion,Application.version,"Current full/CI defaults to exact0.23; old baseline requires explicit version and matching role; no proposed-art oracle here");
+            if(string.IsNullOrWhiteSpace(expectedVersion))expectedVersion="0.24.0";if(string.IsNullOrWhiteSpace(role))role="candidate-current-0.24";
+            Assert.That(expectedVersion,Is.EqualTo("0.22.0").Or.EqualTo("0.23.0").Or.EqualTo("0.24.0"));Assert.AreEqual(expectedVersion=="0.22.0"?"baseline-old-0.22":expectedVersion=="0.23.0"?"candidate-current-0.23":"candidate-current-0.24",role,"Exact recorded role/version association");
+            Assert.AreEqual(expectedVersion,Application.version,"Current full/CI defaults to exact0.24; old baseline requires explicit version and matching role; no proposed-art oracle here");
             string output=Environment.GetEnvironmentVariable("FRONTIER_HARBOR_OUTPUT"),expected=Environment.GetEnvironmentVariable("FRONTIER_SOURCE_FINGERPRINT");
             if(string.IsNullOrWhiteSpace(output))output=Path.Combine(Application.temporaryCachePath,"FrontierHarbor080-"+Guid.NewGuid().ToString("N"));
             Assert.IsFalse(string.IsNullOrWhiteSpace(expected),"Keep the existing runner's strict source binding");output=Path.GetFullPath(output);
@@ -114,7 +114,7 @@ namespace Frontier.Tests
                 defaultZoom=camera.orthographicSize,worldTime=game.World.Time,simulationSteps=game.Simulation.StepCount,rulesSha256=SnapshotCodec.RulesHash(game.World.Rules),linearColorSpace=QualitySettings.activeColorSpace==ColorSpace.Linear,
                 actors=actors.Select(e=>new Actor{id=e.id,definition=e.def.id,position=e.position,facing=e.facing,radius=e.def.radius}).ToArray(),centralDockCandidates=centralCandidates,
                 dockPairNormalDot=Vector2.Dot(game.World.DockWaterDirection(actors[0].position),game.World.DockWaterDirection(actors[1].position))};
-            Assert.That(run.role,Is.EqualTo("baseline-old-0.22").Or.EqualTo("candidate-current-0.23"));Assert.AreEqual(42,run.seed);Assert.AreEqual(MapTopology.Winding,game.World.MapId);Assert.AreEqual(26,run.defaultZoom);Assert.AreEqual(0,run.worldTime);Assert.AreEqual(0,run.simulationSteps);
+            Assert.That(run.role,Is.EqualTo("baseline-old-0.22").Or.EqualTo("candidate-current-0.23").Or.EqualTo("candidate-current-0.24"));Assert.AreEqual(42,run.seed);Assert.AreEqual(MapTopology.Winding,game.World.MapId);Assert.AreEqual(26,run.defaultZoom);Assert.AreEqual(0,run.worldTime);Assert.AreEqual(0,run.simulationSteps);
             var layers=session.GetComponentsInChildren<Transform>(true).ToDictionary(t=>t.gameObject,t=>t.gameObject.layer);
             var behaviours=session.GetComponentsInChildren<MonoBehaviour>(true);var enabled=behaviours.Select(b=>b.enabled).ToArray();
             var canvases=session.GetComponentsInChildren<Canvas>(true);var canvasEnabled=canvases.Select(c=>c.enabled).ToArray();

@@ -22,7 +22,11 @@ namespace Frontier.Tests
             Assert.IsEmpty(root.GetComponentsInChildren<Collider>());
             var ground=root.Find("Continuous sculpted land and river bed").GetComponent<MeshFilter>().sharedMesh;
             int expectedCount=map==MapTopology.Winding?257:129;
-            Assert.AreEqual(expectedCount*expectedCount,ground.vertexCount);Assert.LessOrEqual(ground.bounds.max.y,.001f);
+            Assert.AreEqual(expectedCount*expectedCount,ground.vertexCount);
+            // 081 adds a bounded physical dry shoulder only to Tropical. Keep
+            // the historical flat-land cap for every other authored river.
+            Assert.LessOrEqual(ground.bounds.max.y,map==MapTopology.Tropical?.14f:.001f);
+            if(map==MapTopology.Tropical)Assert.Greater(ground.bounds.max.y,.05f,"The declared dry shoulder must be actual geometry, not only a tint");
             Assert.AreEqual(1,ground.subMeshCount,"Shore layers must blend on one surface rather than making hard cell-sized material boundaries");
             Assert.AreEqual(ground.vertexCount,ground.colors.Length);
             Assert.IsTrue(ground.colors.Any(c=>c.r>.1f&&c.r<.9f&&c.g>.05f),"Mud and dry sand overlap continuously instead of ending in a grid staircase");
@@ -35,7 +39,20 @@ namespace Frontier.Tests
             Assert.AreEqual("Frontier/River Ground",groundMaterial.shader.name);Assert.IsTrue(groundMaterial.shader.isSupported);
             Assert.Less(ground.bounds.min.y,-.89f,"The bed remains below vessels even under elevated bridges");
             Assert.AreEqual(-.4f,world.Layout.WaterHeight,.0001f,"The valley exposes real banks above its lowered river level");
-            foreach(var p in ground.vertices)Assert.AreEqual(world.Layout.BankHeight(new Vector2(p.x,p.z)),p.y,.0001f);
+            foreach(var p in ground.vertices)
+            {
+                var point=new Vector2(p.x,p.z);
+                Assert.AreEqual(world.Layout.BankHeight(point),p.y,.0001f);
+                if(map==MapTopology.Tropical)
+                {
+                    if(p.y>.001f)
+                    {
+                        Assert.IsFalse(world.Layout.IsWater(point),"The081 dry shoulder must not raise the actual channel");
+                        Assert.Greater(world.Layout.TropicalPreservationWeight081(point),0,"Protected historical pads must not acquire a shoulder");
+                    }
+                    if(world.Layout.IsWater(point))Assert.LessOrEqual(p.y,world.Layout.WaterHeight-.0199f,"Every actual water vertex keeps its submerged bed");
+                }
+            }
             var surfaces=root.Cast<Transform>().Where(t=>t.name=="Continuous navigable river"||t.name.StartsWith("Navigable tributary")).ToArray();
             Assert.AreEqual(1,surfaces.Length,"Adjoining channels must have one union surface instead of coplanar overlapping renderers");
             foreach(var surface in surfaces)
@@ -113,12 +130,19 @@ namespace Frontier.Tests
                 Assert.IsFalse(world.IsWater(point));Assert.IsFalse(world.IsBridgeApproach(point));
                 if(world.Fog.At(0,point)==VisibilityState.Unexplored)Assert.IsFalse(palm.GetComponent<MeshRenderer>().enabled,"A high canopy must not reveal an unexplored bank over the flat fog plane");
             }
-            var scenery=tropical.GetComponent<RiverSceneryVisibility>();Assert.AreEqual(palms.Length,scenery.ClusterCount);
-            var first=palms[0];Vector2 center=new Vector2(first.position.x,first.position.z);
-            world.Fog.Reveal(0,center,5);scenery.Refresh();Assert.IsTrue(first.GetComponent<MeshRenderer>().enabled);
-            var building=world.Spawn("house",0,center);scenery.Refresh(true);
-            Assert.IsFalse(first.GetComponent<MeshRenderer>().enabled,"A later player building must not intersect a decorative tree cluster");
-            building.hp=0;scenery.Refresh(true);Assert.IsTrue(first.GetComponent<MeshRenderer>().enabled);
+            var landmarks=tropical.Cast<Transform>().Where(t=>t.name.StartsWith("Tropical081 ")).ToArray();
+            Assert.AreEqual(2,landmarks.Length,"Both named081 palm/low-stone batches share the original visibility budget");
+            var scenery=tropical.GetComponent<RiverSceneryVisibility>();
+            Assert.AreEqual(palms.Length+landmarks.Length,scenery.ClusterCount);
+            Assert.That(scenery.ClusterCount,Is.InRange(1,8),"Count every registered palm/landmark batch, not only the legacy name prefix");
+            foreach(var cluster in palms.Concat(landmarks))
+            {
+                Vector2 center=new Vector2(cluster.position.x,cluster.position.z);
+                world.Fog.Reveal(0,center,5);scenery.Refresh();Assert.IsTrue(cluster.GetComponent<MeshRenderer>().enabled);
+                var building=world.Spawn("house",0,center);scenery.Refresh(true);
+                Assert.IsFalse(cluster.GetComponent<MeshRenderer>().enabled,"A later player building must not intersect any registered palm/landmark cluster");
+                building.hp=0;scenery.Refresh(true);Assert.IsTrue(cluster.GetComponent<MeshRenderer>().enabled);
+            }
             var temperate=new World(Catalog.Load(),71,"coast","france",5,MapTopology.Winding);
             var valley=WaterPresentation.BuildTerrain(stage.transform,temperate);
             Assert.IsFalse(valley.Cast<Transform>().Any(t=>t.name.StartsWith("Tropical palm")),"The warm river bay owns its distinct palm silhouette");

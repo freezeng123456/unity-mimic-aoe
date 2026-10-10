@@ -122,7 +122,7 @@ namespace Frontier.Tests
 
         [Test] public void RefinedBoundaryRemovesMeasuredCoarseTriangleOcclusionsWithoutMovingAuthorityWaterOrBridges()
         {
-            Assert.AreEqual("0.23.0",Application.version);Assert.AreEqual(257*257,ground.vertexCount);
+            Assert.AreEqual("0.24.0",Application.version);Assert.AreEqual(257*257,ground.vertexCount);
             CheckRegularTopology(ground,257);var coarse=ReconstructCoarseGround(world.Layout);
             try
             {
@@ -155,7 +155,7 @@ namespace Frontier.Tests
 
         [Test] public void RefinedWindingMeshRetainsEveryCoarseVertexAndAllSharedQueryValues()
         {
-            Assert.AreEqual("0.23.0",Application.version);Assert.AreEqual(257*257,ground.vertexCount);Assert.AreEqual(IndexFormat.UInt32,ground.indexFormat);
+            Assert.AreEqual("0.24.0",Application.version);Assert.AreEqual(257*257,ground.vertexCount);Assert.AreEqual(IndexFormat.UInt32,ground.indexFormat);
             Assert.IsEmpty(terrain.GetComponentsInChildren<Collider>());CheckRegularTopology(ground,257);CheckVertices(ground,world.Layout,257);
             var coarse=ReconstructCoarseGround(world.Layout);
             try

@@ -71,8 +71,20 @@ namespace Frontier
                 if(y>=58&&y<=70)continue;
                 var o=new Vector3(64,y,1.8f);TerrainObstacles.Add(o);Navigation.SetBlocked(new Vector2(o.x,o.y),o.z,true);
             }
-            Place("mine",-1,new Vector2(53,66));Place("mine",-1,new Vector2(75,62));
-            for(int i=0;i<8;i++)Place("tree",-1,new Vector2(30+i*2.5f,73));
+            if(TropicalBayContent081.Applies(Layout))
+            {
+                // Reassign only the existing two central mines/eight trees.
+                // Home recipes and both original safe forward groups stay exact.
+                for(int bank=0;bank<2;bank++)
+                {var mine=TropicalBayContent081.HeadlandMine(bank);Place(mine.Definition,-1,mine.Position);}
+                for(int bank=0;bank<2;bank++)for(int i=0;i<TropicalBayContent081.WoodCount;i++)
+                {var wood=TropicalBayContent081.HeadlandWood(bank,i);Place(wood.Definition,-1,wood.Position);}
+            }
+            else
+            {
+                Place("mine",-1,new Vector2(53,66));Place("mine",-1,new Vector2(75,62));
+                for(int i=0;i<8;i++)Place("tree",-1,new Vector2(30+i*2.5f,73));
+            }
             if(Layout.HasWater)foreach(var point in Layout.FishPoints)Spawn("fish",-1,point);
         }
         public EntityState Get(int id)=>byId.TryGetValue(id,out var e)?e:null;

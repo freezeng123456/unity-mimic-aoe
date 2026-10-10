@@ -117,7 +117,13 @@ namespace Frontier
             DockSites=id==MapTopology.River?new[]{new[]{new Vector2(55,28),new Vector2(55,100)},new[]{new Vector2(73,100),new Vector2(73,28)}}:
                 HasWater?new[]{BankSites(0),BankSites(1)}:new[]{Array.Empty<Vector2>(),Array.Empty<Vector2>()};
             if(Generated){DockSites[1]=MapGeneration.Mirror(DockSites[0]);LandingSites=MapGeneration.Landings(this);IslandLandingSites=RequiresTransport?MapGeneration.IslandLandings(this):Array.Empty<Vector2>();}
-            else{LandingSites=new[]{Array.Empty<Vector2>(),Array.Empty<Vector2>()};IslandLandingSites=Array.Empty<Vector2>();}
+            else
+            {
+                LandingSites=TropicalBayContent081.Applies(this)
+                    ?new[]{new[]{TropicalBayContent081.Landing(0,0),TropicalBayContent081.Landing(0,1)},new[]{TropicalBayContent081.Landing(1,0),TropicalBayContent081.Landing(1,1)}}
+                    :new[]{Array.Empty<Vector2>(),Array.Empty<Vector2>()};
+                IslandLandingSites=Array.Empty<Vector2>();
+            }
         }
         public static MapLayout Create(string id)
         {
@@ -165,7 +171,8 @@ namespace Frontier
             // their historical geometry; no new slope blockers are implied.
             if(bankBend!=null&&distance>=3)return 0;
             float rise=bankBend==null?3:BankProfile(point,distance).RiseWidth;
-            return (WaterHeight-.02f)*(1-Mathf.SmoothStep(0,1,distance/rise));
+            float historical=(WaterHeight-.02f)*(1-Mathf.SmoothStep(0,1,distance/rise));
+            return TropicalBayContent081.Applies(this)?TropicalBankHeight081(point,distance,historical):historical;
         }
         public float GroundHeight(Vector2 point)
         {

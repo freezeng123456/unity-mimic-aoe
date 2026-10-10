@@ -15,7 +15,7 @@ namespace Frontier.Tests
         Mesh ground;
         [SetUp] public void SetUp()
         {
-            Assert.AreEqual("0.23.0",Application.version,"Apply the 079 version identity before retained bank-mesh acceptance");
+            Assert.AreEqual("0.24.0",Application.version,"Apply the 081 version identity before retained bank-mesh acceptance");
             stage=new GameObject("Shared Winding bank mesh 077");
             world=new World(Catalog.Load(),44,"ottoman","coast",5,MapTopology.Winding);
             terrain=WaterPresentation.BuildTerrain(stage.transform,world);

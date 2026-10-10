@@ -7,7 +7,7 @@ namespace Frontier
 {
     // All visible shore heights and bridge transforms come from the same layout
     // used by navigation. These meshes contain no colliders or game authority.
-    public static class RiverLandscapePresentation
+    public static partial class RiverLandscapePresentation
     {
         static Material Wood=>ArchitecturalMaterials.Get(Surface.Wood,new Color(.40f,.275f,.15f));
         static Material PaleWood=>ArchitecturalMaterials.Get(Surface.Wood,new Color(.63f,.47f,.28f));
@@ -211,7 +211,7 @@ namespace Frontier
             var bark=ArchitecturalMaterials.Get(Surface.Wood,new Color(.46f,.345f,.22f));
             var leaves=ArchitecturalMaterials.Get(Surface.Cloth,new Color(.21f,.40f,.155f));
             var sunLeaves=ArchitecturalMaterials.Get(Surface.Cloth,new Color(.37f,.50f,.205f));
-            var channel=world.Layout.Channels[0];int count=0;
+            var channel=world.Layout.Channels[0];int count=BuildTropicalBayLandmarks081(root,world,visibility,bark,leaves,sunLeaves);
             // At most eight modest batches, not per-leaf GameObjects. Their map
             // sites are deterministic and give both banks a distinct silhouette.
             for(int i=16;i<channel.Centers.Length-16&&count<8;i+=23)
