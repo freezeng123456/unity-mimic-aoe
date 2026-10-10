@@ -1,0 +1,40 @@
+{
+  "scope": "Harmless external stdin transport probe only. Neither Drive helper was imported/invoked; no cloud call or repository/Unity/Git edit.",
+  "tty": true,
+  "stty": "-echo -icanon min 1 time 0",
+  "readinessMarker": "DRIVE077_STDIN_READY",
+  "secretInput": false,
+  "inputFixture": "ASCII dummy JSON with 12000-character X field and multiline decoded string",
+  "records": [
+    {
+      "mode": "compact",
+      "exitCode": 0,
+      "readyObserved": true,
+      "noInputEchoObserved": true,
+      "outputBytes": 212,
+      "result": {
+        "mode": "compact",
+        "bytes": 12093,
+        "sha256": "aa65e8e4c55211412ba9dd476de1506c7fa44b51dc2c8fab38b62fd89c91717d",
+        "decodedMultiline": true,
+        "longCharacters": 12000,
+        "roundTripExact": true
+      }
+    },
+    {
+      "mode": "multiline",
+      "exitCode": 0,
+      "readyObserved": true,
+      "noInputEchoObserved": true,
+      "outputBytes": 214,
+      "result": {
+        "mode": "multiline",
+        "bytes": 12110,
+        "sha256": "76f0cdfb7f3143c656011fb7c656ecd93ef875a3b51b8f2db71098c9d4b157b4",
+        "decodedMultiline": true,
+        "longCharacters": 12000,
+        "roundTripExact": true
+      }
+    }
+  ]
+}

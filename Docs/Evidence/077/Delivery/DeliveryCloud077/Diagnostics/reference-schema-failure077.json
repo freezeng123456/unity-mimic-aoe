@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "utc": "2026-10-10T00:35:21.508490+00:00",
+  "phase": "First manifest raw readback before HTTPS command",
+  "fileId": "1CPcKPnCh2VRZXMuHFDbtdGn_VMB-M-t0",
+  "attemptDirectories": [
+    "Readback1",
+    "Readback2"
+  ],
+  "failure": "Authenticated connector file_uri is a dictionary with download_url; original verifier recognized only url or uri.",
+  "observedReferenceKeys": [
+    "download_url",
+    "file_id",
+    "mime_type",
+    "file_name"
+  ],
+  "referenceFileIdIsOpaqueAndDifferentFromDriveId": true,
+  "referenceNameAndMimeMatchPlan": true,
+  "signedReferenceSaved": false,
+  "partialFileCount": 0,
+  "uploadsRepeated": false,
+  "remedy": "New external verifier recognizes exact returned download_url; Drive identity binds fresh metadata to fetch wrapper.id. Same uploaded DriveID, fresh readback directory; no re-upload."
+}

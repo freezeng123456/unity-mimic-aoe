@@ -56,7 +56,7 @@
 ## 剩余验收
 
 - 当前最终源码Full2已1824/1824，同源Build1 exit0／源稳定，新GUID `6d3fd495bd8f48be852c1e6c62bcb02f`。
-- 普通原生单Explorer Move到点、到点后Hold、26／16镜头、七组F9、menu_exit与QUIT已独立限定验收，详见[077原生](Native-077.md)。封包／私有交付另验。
+- 普通原生单Explorer Move到点、到点后Hold、26／16镜头、七组F9、menu_exit与QUIT已独立限定验收，详见[077原生](Native-077.md)。三包独立校验及十七云盘文件全字节SHA／owner-only／精确子ID集合、远端证据重组已闭合；既有私有draft PR1按冻结快照读回，后补文档HEAD另验，详见[077交付](Delivery-077.md)。
 - 原生付费港区／指定攻击调度、性能和完整人工对局另验，未由网格测试覆盖。
 
 076医疗 fixture 中部分版本字符串是显式合成存读 envelope 参数，不代表0.20运行时版本，也不代表旧存档跨版本兼容。新077网格验收直接检查 Application.version；原生构建另以自身GUID与版本绑定。
