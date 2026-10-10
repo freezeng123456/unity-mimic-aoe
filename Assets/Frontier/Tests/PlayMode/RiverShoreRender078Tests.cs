@@ -71,7 +71,7 @@ namespace Frontier.Tests
 
         [UnityTest] public IEnumerator ActualCandidateAndReconstructedCoarseGroundRenderAtOrdinaryCameraScales()
         {
-            Assert.AreEqual("0.22.0",Application.version,"Run this retained 078-geometry study with the reviewed 079 version identity");
+            Assert.AreEqual("0.23.0",Application.version,"Run this retained 078-geometry study with the reviewed 080 version identity");
             Assert.IsTrue(GraphicsSettings.currentRenderPipeline is UniversalRenderPipelineAsset,"Use the actual project URP asset");
             output=Environment.GetEnvironmentVariable("FRONTIER_SHORE_RENDER_DIR");
             if(string.IsNullOrWhiteSpace(output))output=Path.Combine(Application.temporaryCachePath,"FrontierShore078-"+Guid.NewGuid().ToString("N"));

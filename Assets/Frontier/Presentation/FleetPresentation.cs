@@ -15,15 +15,26 @@ namespace Frontier
             var cloth=ArchitecturalMaterials.Get(Surface.Cloth,team);
             if(transport)
             {
-                deck.Box(new Vector3(0,.58f,-.6f),new Vector3(1.12f,.65f,1.42f),Wood);
-                deck.Box(new Vector3(0,.94f,-.6f),new Vector3(1.22f,.10f,1.54f),Canvas);
-                foreach(float x in new[]{-.57f,.57f})for(int i=0;i<3;i++)deck.Box(new Vector3(x,.71f,-1.04f+i*.41f),new Vector3(.035f,.21f,.20f),Iron);
+                // A low pitched troop canopy leaves broad open side bays,
+                // unlike the opaque fighting casemate on the monitor.
+                foreach(float side in new[]{-1f,1f})
+                {
+                    foreach(float z in new[]{-1.25f,.05f})deck.Cylinder(new Vector3(side*.55f,.90f,z),.042f,1.10f,DarkWood,8);
+                    var aft=new Vector3(side*.61f,1.45f,-1.37f);var fore=new Vector3(side*.61f,1.45f,.17f);
+                    var aftRidge=new Vector3(0,1.72f,-1.37f);var foreRidge=new Vector3(0,1.72f,.17f);
+                    deck.Quad(aft,fore,foreRidge,aftRidge,Canvas);deck.Quad(aftRidge,foreRidge,fore,aft,Canvas);
+                    // Team cloth is a shallow valance, not a solid cabin wall.
+                    var drop=Vector3.down*.14f;
+                    deck.Quad(aft+drop,aft,fore,fore+drop,cloth);deck.Quad(fore+drop,fore,aft,aft+drop,cloth);
+                }
+                deck.Beam(new Vector3(0,1.72f,-1.37f),new Vector3(0,1.72f,.17f),.045f,.045f,PaleWood);
+                deck.Box(new Vector3(0,.58f,-1.25f),new Vector3(1.05f,.35f,.09f),Wood);
                 // A visible hatch and stowed boarding gangway distinguish the troop carrier.
                 deck.Box(new Vector3(0,.43f,.55f),new Vector3(.73f,.12f,.94f),DarkWood);
                 for(int i=0;i<6;i++)deck.Box(new Vector3(0,.51f,.18f+i*.13f),new Vector3(.7f,.045f,.045f),PaleWood);
                 foreach(float x in new[]{-.67f,.67f})deck.Box(new Vector3(x,.57f,-.08f),new Vector3(.18f,.12f,1.45f),PaleWood);
                 Barrel(deck,new Vector3(-.50f,.39f,1.22f),.17f,.39f);Barrel(deck,new Vector3(.48f,.39f,1.22f),.17f,.39f);
-                Crew(deck,new Vector3(-.32f,.40f,1.0f),team,true);Crew(deck,new Vector3(.27f,.99f,-.74f),team,true);
+                Crew(deck,new Vector3(-.32f,.40f,1.0f),team,true);Crew(deck,new Vector3(.27f,.40f,-.74f),team,true);
             }
             else if(frigate)
             {
@@ -38,7 +49,15 @@ namespace Frontier
                 foreach(float z in new[]{-.9f,.84f})
                 {
                     deck.Cylinder(new Vector3(0,1.11f,z),.055f,1.55f,DarkWood,10);
-                    deck.Cylinder(new Vector3(0,1.71f,z),.10f,1.35f,Canvas,10,Quaternion.Euler(0,0,90));
+                    // Thick folded canvas reads as two low rigging masses at
+                    // strategy zoom, while every vertex remains under the flag.
+                    var a=new Vector3(-.64f,1.84f,z-.04f);var b=new Vector3(.64f,1.84f,z-.04f);
+                    var c=new Vector3(.48f,1.38f,z+.26f);var d=new Vector3(-.48f,1.38f,z+.26f);
+                    var fold=Vector3.forward*.08f;
+                    deck.Quad(a,b,c,d,Canvas);deck.Quad(d+fold,c+fold,b+fold,a+fold,Canvas);
+                    deck.Quad(a+fold,b+fold,b,a,Canvas);deck.Quad(d,c,c+fold,d+fold,Canvas);
+                    deck.Quad(a+fold,a,d,d+fold,Canvas);deck.Quad(b,b+fold,c+fold,c,Canvas);
+                    deck.Beam(new Vector3(-.56f,1.61f,z+.10f),new Vector3(.56f,1.61f,z+.10f),.035f,.035f,Rope);
                     foreach(float side in new[]{-1f,1f})deck.Beam(new Vector3(0,1.88f,z),new Vector3(side*.86f,.47f,z+.45f),.022f,.022f,Rope);
                 }
                 Crew(deck,new Vector3(-.23f,.40f,-1.77f),team,true);Crew(deck,new Vector3(.25f,.70f,-.94f),team,true);

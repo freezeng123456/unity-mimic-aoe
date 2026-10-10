@@ -158,11 +158,13 @@ namespace Frontier
             roof.Triangle(new Vector3(-.045f,1.78f,1.46f),new Vector3(-.95f,2.31f,1.46f),new Vector3(-1.86f,1.78f,1.46f),Wood);
             var banner=ArchitecturalMaterials.Get(Surface.Cloth,team);
             detail.Box(new Vector3(-.11f,1.55f,.02f),new Vector3(.06f,.21f,1.17f),banner);
-            detail.Cylinder(new Vector3(.65f,1.30f,-1.05f),.11f,2.16f,DarkWood,12);
-            detail.Beam(new Vector3(.65f,2.27f,-1.05f),new Vector3(1.76f,2.03f,-1.05f),.14f,.16f,Wood);
-            detail.Beam(new Vector3(.65f,1.4f,-1.05f),new Vector3(1.67f,2.03f,-1.05f),.075f,.075f,PaleWood);
-            detail.Beam(new Vector3(1.69f,2.03f,-1.05f),new Vector3(1.69f,.82f,-1.05f),.025f,.025f,Rope);
-            detail.Cylinder(new Vector3(1.69f,.78f,-1.05f),.065f,.15f,Iron,10);
+            // One clear diagonal hoist reaches over the occupied quay; it adds
+            // no navigable berth or separate renderers beyond the detail batch.
+            detail.Cylinder(new Vector3(.65f,1.55f,-1.05f),.14f,2.64f,DarkWood,12);
+            detail.Beam(new Vector3(.65f,2.72f,-1.05f),new Vector3(3.35f,2.48f,-1.05f),.20f,.22f,Wood);
+            detail.Beam(new Vector3(.65f,1.52f,-1.05f),new Vector3(2.95f,2.52f,-1.05f),.10f,.12f,PaleWood);
+            detail.Beam(new Vector3(3.28f,2.49f,-1.05f),new Vector3(3.28f,.92f,-1.05f),.03f,.03f,Rope);
+            detail.Cylinder(new Vector3(3.28f,.83f,-1.05f),.09f,.18f,Iron,10);
             Barrel(detail,new Vector3(.37f,.25f,.97f),.23f,.60f);Barrel(detail,new Vector3(.90f,.25f,1.02f),.22f,.52f);
             detail.Box(new Vector3(.61f,.43f,.45f),new Vector3(.55f,.36f,.44f),Wood);
             for(int i=0;i<5;i++)detail.Beam(new Vector3(.20f,.62f,.17f+i*.1f),new Vector3(1.12f,.31f,.17f+i*.1f),.02f,.02f,Rope);
@@ -188,10 +190,14 @@ namespace Frontier
             float slipAngle=Mathf.Atan2(-.17f,2.55f)*Mathf.Rad2Deg;
             foundation.Box(new Vector3(3.56f,.135f,0),new Vector3(2.56f,.075f,1.33f),PaleWood,Quaternion.Euler(0,0,slipAngle));
             for(int i=0;i<10;i++)foundation.Box(new Vector3(2.43f+i*.24f,.23f-i*.016f,0),new Vector3(.03f,.035f,1.35f),DarkWood);
-            foundation.Create(root,"Dock piles and plank platform");var wallRoot=walls.Create(root,"Dock warehouse walls");var roofRoot=roof.Create(root,"Dock pitched canvas roof");var details=detail.Create(root,"Dock crane rope cargo and team sign");
+            var platform=foundation.Create(root,"Dock piles and plank platform");var wallRoot=walls.Create(root,"Dock warehouse walls");var roofRoot=roof.Create(root,"Dock pitched canvas roof");var details=detail.Create(root,"Dock crane rope cargo and team sign");
             var architecture=root.gameObject.AddComponent<ArchitectureModel>();architecture.Civilization="dock";architecture.Age=1;
             architecture.Walls=wallRoot;architecture.Roofs=roofRoot;architecture.Details=details;
-            architecture.LocalBounds=new Bounds(new Vector3(1.52f,.64f,0),new Vector3(6.96f,3.4f,3.88f));
+            // These four authored sections share identity transforms in dock
+            // space. Real mesh bounds include both submerged piles and the hoist.
+            var authoredBounds=platform.GetComponent<MeshFilter>().sharedMesh.bounds;
+            foreach(var section in new[]{wallRoot,roofRoot,details})authoredBounds.Encapsulate(section.GetComponent<MeshFilter>().sharedMesh.bounds);
+            architecture.LocalBounds=authoredBounds;
             architecture.SetConstruction(1);
         }
 
