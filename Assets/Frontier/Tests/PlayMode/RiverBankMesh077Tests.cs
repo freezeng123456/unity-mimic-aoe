@@ -5,8 +5,8 @@ using UnityEngine;
 namespace Frontier.Tests
 {
     // Actual generated MeshFilter/sharedMesh integration, not a rendered-frame
-    // or native-client claim. Stage 077 changes saved-layout height semantics,
-    // so its integration deliberately requires the new 0.20.0 app version.
+    // or native-client claim. Retain the 077 shared-query/palette contracts in
+    // the 078 runtime; historical 077 receipts remain bound to their old source.
     public sealed class RiverBankMesh077Tests
     {
         GameObject stage;
@@ -15,7 +15,7 @@ namespace Frontier.Tests
         Mesh ground;
         [SetUp] public void SetUp()
         {
-            Assert.AreEqual("0.20.0",Application.version,"Apply the staged version bump before new map acceptance");
+            Assert.AreEqual("0.21.0",Application.version,"Apply the 078 version identity before new map acceptance");
             stage=new GameObject("Shared Winding bank mesh 077");
             world=new World(Catalog.Load(),44,"ottoman","coast",5,MapTopology.Winding);
             terrain=WaterPresentation.BuildTerrain(stage.transform,world);
@@ -49,7 +49,7 @@ namespace Frontier.Tests
         }
         [Test] public void ActualGroundMeshColorsAndHeightsEqualTheSharedMapQueries()
         {
-            Assert.AreEqual(129*129,ground.vertexCount);Assert.AreEqual(1,ground.subMeshCount);
+            Assert.AreEqual(257*257,ground.vertexCount);Assert.AreEqual(1,ground.subMeshCount);
             Assert.IsEmpty(terrain.GetComponentsInChildren<Collider>());
             var points=ground.vertices;var colors=ground.colors;Assert.AreEqual(points.Length,colors.Length);
             int genuinelyChangedLayers=0;

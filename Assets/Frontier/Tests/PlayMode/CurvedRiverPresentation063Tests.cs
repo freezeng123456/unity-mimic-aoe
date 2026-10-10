@@ -21,7 +21,8 @@ namespace Frontier.Tests
             var root=WaterPresentation.BuildTerrain(stage.transform,world);Assert.IsNotNull(root);
             Assert.IsEmpty(root.GetComponentsInChildren<Collider>());
             var ground=root.Find("Continuous sculpted land and river bed").GetComponent<MeshFilter>().sharedMesh;
-            Assert.AreEqual(129*129,ground.vertexCount);Assert.LessOrEqual(ground.bounds.max.y,.001f);
+            int expectedCount=map==MapTopology.Winding?257:129;
+            Assert.AreEqual(expectedCount*expectedCount,ground.vertexCount);Assert.LessOrEqual(ground.bounds.max.y,.001f);
             Assert.AreEqual(1,ground.subMeshCount,"Shore layers must blend on one surface rather than making hard cell-sized material boundaries");
             Assert.AreEqual(ground.vertexCount,ground.colors.Length);
             Assert.IsTrue(ground.colors.Any(c=>c.r>.1f&&c.r<.9f&&c.g>.05f),"Mud and dry sand overlap continuously instead of ending in a grid staircase");

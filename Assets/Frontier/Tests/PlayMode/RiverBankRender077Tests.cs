@@ -76,7 +76,9 @@ namespace Frontier.Tests
 
         [UnityTest] public IEnumerator OrdinaryCameraPairsCompareReconstructedHistoricalGroundWithNewBankProfile()
         {
-            Assert.AreEqual("0.20.0",Application.version,"Integrate the 077 version identity before this study");
+            // Re-run the 077 bank-profile/palette comparison in the 078 runtime;
+            // this is not historical077 evidence or the 078 grid-density pair.
+            Assert.AreEqual("0.21.0",Application.version,"Integrate the 078 version identity before this retained study");
             Assert.IsTrue(GraphicsSettings.currentRenderPipeline is UniversalRenderPipelineAsset,"Study requires the project's actual URP asset");
             output=Environment.GetEnvironmentVariable("FRONTIER_BANK_STUDY_DIR");
             if(string.IsNullOrWhiteSpace(output))output=Path.Combine(Application.temporaryCachePath,"FrontierRiverBankRender077-"+Guid.NewGuid().ToString("N"));
@@ -106,7 +108,7 @@ namespace Frontier.Tests
                 yield return Settle(savedLayers);
                 var matches=session.GetComponentsInChildren<MeshFilter>(true).Where(f=>f.name=="Continuous sculpted land and river bed").ToArray();
                 Assert.AreEqual(1,matches.Length,"Use the real WorldView ground, not a second terrain fixture");ground=matches[0].sharedMesh;
-                Assert.AreEqual(129*129,ground.vertexCount);Assert.AreEqual(1,ground.subMeshCount);
+                Assert.AreEqual(257*257,ground.vertexCount);Assert.AreEqual(1,ground.subMeshCount);
                 currentVertices=ground.vertices;currentColors=ground.colors;currentNormals=ground.normals;currentTangents=ground.tangents;currentBounds=ground.bounds;
                 Assert.AreEqual(currentVertices.Length,currentColors.Length);currentMeshHash=MeshHash(ground);
                 var historicalVertices=(Vector3[])currentVertices.Clone();var historicalColors=new Color[currentColors.Length];int changedGroundVertices=0;

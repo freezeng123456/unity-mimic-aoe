@@ -58,15 +58,22 @@ namespace Frontier
 
         static void BuildGround(Transform root,MapLayout layout)
         {
-            const int count=129;var vertices=new Vector3[count*count];var uv=new Vector2[vertices.Length];var layers=new Color[vertices.Length];
+            // The 1m triangle planes can occlude the narrow outer Winding shore
+            // even when BankHeight at the water edge is submerged. Match this
+            // map's .5m authority sampling without changing its height queries,
+            // water strip, colliders or navigation. Other/scenario maps retain
+            // their existing geometry and cost; aligned 1m vertices are kept.
+            int count=layout.Id==MapTopology.Winding&&!layout.HasScenario?257:129;
+            float cell=128f/(count-1);
+            var vertices=new Vector3[count*count];var uv=new Vector2[vertices.Length];var layers=new Color[vertices.Length];
             var triangles=new List<int>();
             var authored=layout.HasScenario?new[]{new List<int>(),new List<int>(),new List<int>(),new List<int>()}:null;
             for(int z=0;z<count;z++)for(int x=0;x<count;x++)
             {
-                int i=x+z*count;var p=new Vector2(x,z);
+                int i=x+z*count;var p=new Vector2(x*cell,z*cell);
                 // The bank query excludes bridges, leaving a real channel under
                 // the bridge deck instead of raising the riverbed into its roof.
-                vertices[i]=new Vector3(x,layout.BankHeight(p),z);uv[i]=p/128;
+                vertices[i]=new Vector3(p.x,layout.BankHeight(p),p.y);uv[i]=p/128;
                 // Shared map-owned bend profile: inner sediment lobes and outer
                 // cut-banks agree with picking/heights, not a second shore mask.
                 layers[i]=layout.BankLayers(p);
@@ -74,7 +81,7 @@ namespace Frontier
             for(int z=0;z<count-1;z++)for(int x=0;x<count-1;x++)
             {
                 int a=x+z*count,b=a+count,c=b+1,d=a+1;
-                if(authored!=null)authored[layout.SurfaceKind(new Vector2(x+.5f,z+.5f))].AddRange(new[]{a,b,c,a,c,d});
+                if(authored!=null)authored[layout.SurfaceKind(new Vector2((x+.5f)*cell,(z+.5f)*cell))].AddRange(new[]{a,b,c,a,c,d});
                 else triangles.AddRange(new[]{a,b,c,a,c,d});
             }
             var mesh=new Mesh{name="River valley ground with submerged bed",indexFormat=IndexFormat.UInt32};
