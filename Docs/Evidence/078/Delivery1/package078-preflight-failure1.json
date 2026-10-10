@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "status": "preflight_failed_before_output_creation",
+  "checkedUtc": "2026-10-10T03:54:47.014947+00:00",
+  "snapshot": "e06e8e1d15bbbfd6957376684a392988a14c1f94",
+  "helper": "prepare-packages078-native2.py",
+  "reason": "Four selected native logs matched repository ignore patterns and were absent from Git snapshot; exact portable source/Git-blob gate stopped with KeyError on Native1 player.log.",
+  "packagesOutputExists": false,
+  "repair": "Explicitly track the four byte-identical selected original native logs, commit documentation/evidence only, then rerun same strict helper against new clean snapshot. No source/test/app/native gate relaxation."
+}
