@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-09 23:42:17Z" end-time="2026-10-09 23:42:22Z" duration="5.3000342">
+  <test-suite type="TestSuite" id="1558" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="452" result="Passed" start-time="2026-10-09 23:42:17Z" end-time="2026-10-09 23:42:22Z" duration="5.300034" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1552" name="Frontier.PlayMode.dll" fullname="/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Library/ScriptAssemblies/Frontier.PlayMode.dll" runstate="Runnable" testcasecount="452" result="Passed" start-time="2026-10-09 23:42:17Z" end-time="2026-10-09 23:42:22Z" duration="5.290853" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="94435" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1553" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="452" result="Passed" start-time="2026-10-09 23:42:17Z" end-time="2026-10-09 23:42:22Z" duration="5.287628" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1554" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="452" result="Passed" start-time="2026-10-09 23:42:17Z" end-time="2026-10-09 23:42:22Z" duration="5.282086" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1426" name="RiverBankMesh077Tests" fullname="Frontier.Tests.RiverBankMesh077Tests" classname="Frontier.Tests.RiverBankMesh077Tests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-09 23:42:17Z" end-time="2026-10-09 23:42:22Z" duration="5.274070" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1429" name="ActualEasternMeanderMeshHasBroaderSandOnItsLiteralWestInnerBank" fullname="Frontier.Tests.RiverBankMesh077Tests.ActualEasternMeanderMeshHasBroaderSandOnItsLiteralWestInnerBank" methodname="ActualEasternMeanderMeshHasBroaderSandOnItsLiteralWestInnerBank" classname="Frontier.Tests.RiverBankMesh077Tests" runstate="Runnable" seed="1489569009" result="Passed" start-time="2026-10-09 23:42:17Z" end-time="2026-10-09 23:42:18Z" duration="1.480298" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Eastern meander actual mesh: westInnerCount=5 sand=0.7177923 eastOuterCount=4 sand=0.07755104
+]]></output>
+            </test-case>
+            <test-case id="1428" name="ActualGroundMeshColorsAndHeightsEqualTheSharedMapQueries" fullname="Frontier.Tests.RiverBankMesh077Tests.ActualGroundMeshColorsAndHeightsEqualTheSharedMapQueries" methodname="ActualGroundMeshColorsAndHeightsEqualTheSharedMapQueries" classname="Frontier.Tests.RiverBankMesh077Tests" runstate="Runnable" seed="1713674092" result="Passed" start-time="2026-10-09 23:42:18Z" end-time="2026-10-09 23:42:18Z" duration="0.257703" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Actual shared-query ground mesh: vertices=16641 changedSandVertices=436
+]]></output>
+            </test-case>
+            <test-case id="1427" name="WindingSedimentPaletteHasItsOwnMaterialAndDoesNotLeakIntoOtherRiverMaps" fullname="Frontier.Tests.RiverBankMesh077Tests.WindingSedimentPaletteHasItsOwnMaterialAndDoesNotLeakIntoOtherRiverMaps" methodname="WindingSedimentPaletteHasItsOwnMaterialAndDoesNotLeakIntoOtherRiverMaps" classname="Frontier.Tests.RiverBankMesh077Tests" runstate="Runnable" seed="374094633" result="Passed" start-time="2026-10-09 23:42:18Z" end-time="2026-10-09 23:42:22Z" duration="3.530702" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Initial Winding expected=0.74,0.67,0.48,1 actual=0.74,0.67,0.479999959,1
+tributaries expected=0.62,0.555,0.37,1 actual=0.62,0.555,0.369999975,1
+estuary expected=0.62,0.555,0.37,1 actual=0.62,0.555,0.369999975,1
+tropical expected=0.66,0.57,0.38,1 actual=0.659999967,0.569999933,0.379999936,1
+Winding after other-map construction expected=0.74,0.67,0.48,1 actual=0.74,0.67,0.479999959,1
+Saving results to: /Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

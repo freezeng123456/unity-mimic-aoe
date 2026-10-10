@@ -1,0 +1,717 @@
+{
+  "schema": 1,
+  "kind": "bank1-mutation-independent-evidence-audit077",
+  "status": "PASS",
+  "auditedAtUtc": "2026-10-09T23:12:17.327019+00:00",
+  "errors": [],
+  "checks": [
+    {
+      "name": "Bank1 closed source-stable exit zero",
+      "passed": true
+    },
+    {
+      "name": "Bank1 receipt and verification manifest bind identical 782 inputs",
+      "passed": true
+    },
+    {
+      "name": "Both Bank1 owned commands completed exit zero with exact filters",
+      "passed": true
+    },
+    {
+      "name": "Integration binds nine exact reviewed paths and same tested fingerprint",
+      "passed": true
+    },
+    {
+      "name": "Each integrated input hash equals recorded Bank1 source inventory",
+      "passed": true
+    },
+    {
+      "name": "Original reviewed patch SHA matches integration receipt",
+      "passed": true
+    },
+    {
+      "name": "EditMode contains exactly complete passing executable instances",
+      "passed": true
+    },
+    {
+      "name": "EditMode original XML hash/summary agree with receipt and verification manifest",
+      "passed": true
+    },
+    {
+      "name": "EditMode actual case identities unique",
+      "passed": true
+    },
+    {
+      "name": "PlayMode contains exactly complete passing executable instances",
+      "passed": true
+    },
+    {
+      "name": "PlayMode original XML hash/summary agree with receipt and verification manifest",
+      "passed": true
+    },
+    {
+      "name": "PlayMode actual case identities unique",
+      "passed": true
+    },
+    {
+      "name": "19 unmodified bank cases passed; negative controls are not added as passes",
+      "passed": true
+    },
+    {
+      "name": "Recorded Bank1 source dictionaries are internally hash-complete",
+      "passed": true
+    },
+    {
+      "name": "Mutation receipt closed with two expected failures and full restoration fingerprint",
+      "passed": true
+    },
+    {
+      "name": "reversed-side original replacement site is unique",
+      "passed": true
+    },
+    {
+      "name": "reversed-side saved original exactly equals Bank1 and restored hash",
+      "passed": true
+    },
+    {
+      "name": "reversed-side independently reconstructed altered bytes and inventory match declared mutation",
+      "passed": true
+    },
+    {
+      "name": "reversed-side exact single executable assertion fails with original exit2",
+      "passed": true
+    },
+    {
+      "name": "reversed-side exact XML checksum/result/failure message match receipt and located assertion",
+      "passed": true
+    },
+    {
+      "name": "reversed-side receipt confirms restored complete source fingerprint",
+      "passed": true
+    },
+    {
+      "name": "reversed-side active affected file retains restored original at audit observation",
+      "passed": true
+    },
+    {
+      "name": "disconnected-mesh-colors original replacement site is unique",
+      "passed": true
+    },
+    {
+      "name": "disconnected-mesh-colors saved original exactly equals Bank1 and restored hash",
+      "passed": true
+    },
+    {
+      "name": "disconnected-mesh-colors independently reconstructed altered bytes and inventory match declared mutation",
+      "passed": true
+    },
+    {
+      "name": "disconnected-mesh-colors exact single executable assertion fails with original exit2",
+      "passed": true
+    },
+    {
+      "name": "disconnected-mesh-colors exact XML checksum/result/failure message match receipt and located assertion",
+      "passed": true
+    },
+    {
+      "name": "disconnected-mesh-colors receipt confirms restored complete source fingerprint",
+      "passed": true
+    },
+    {
+      "name": "disconnected-mesh-colors active affected file retains restored original at audit observation",
+      "passed": true
+    },
+    {
+      "name": "Both mutations exercise distinct faulty source inventories",
+      "passed": true
+    },
+    {
+      "name": "All original execution/provenance artifacts remain stable during audit",
+      "passed": true
+    }
+  ],
+  "historicalBank1Identity": {
+    "version": "0.20.0",
+    "baseGitHeadBefore": "09e07a40fb0008cdb69719336a674cb228129244",
+    "baseCommitNotCompletePatchedTree": true,
+    "sourceFingerprint": "fdd60bfa136f944cee07e75b157bf8143a7ca63da11171d517feafb57a56716d",
+    "inputCount": 782,
+    "receiptInventoryFingerprintRecomputed": "fdd60bfa136f944cee07e75b157bf8143a7ca63da11171d517feafb57a56716d",
+    "verificationInventoryFingerprintRecomputed": "fdd60bfa136f944cee07e75b157bf8143a7ca63da11171d517feafb57a56716d",
+    "sourceStable": true,
+    "runnerWallSeconds": 39.746990833,
+    "integrationReceipt": {
+      "schema": 1,
+      "appliedUtc": "2026-10-09T23:08:09.686460+00:00",
+      "baseHead": "09e07a40fb0008cdb69719336a674cb228129244",
+      "patch": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate2/Planning/Bank077Staging/V2Final/bank077-v2-final.patch",
+      "patchSha256": "8afef9bac7ab00a1ad2ddf0a6dba95ea22b7a8b7b77d0ba0f276eb3f07a230b4",
+      "sourceFingerprintAfter": "fdd60bfa136f944cee07e75b157bf8143a7ca63da11171d517feafb57a56716d",
+      "paths": [
+        {
+          "path": "Assets/Frontier/Presentation/RiverLandscapePresentation.cs",
+          "new": false,
+          "bytes": 19833,
+          "sha256": "e1d6260436a3ee45a926f0139aaa98af3c0e25cacdc26ec2ed474f49cd7b2786",
+          "baselineSha256": "dc79c6546f7bd52d3ba0d2f9e951df4d704dd91b9e8a4ed96ae7020e1db021c3"
+        },
+        {
+          "path": "Assets/Frontier/Simulation/MapLayout.cs",
+          "new": false,
+          "bytes": 22892,
+          "sha256": "2776bc34ad691bd67eb29daddb254202526e772b222c711f54e6713b2984eaa0",
+          "baselineSha256": "327694f23759d644c4ce997593dbe27373c1a5434931654844582b64908e1fb5"
+        },
+        {
+          "path": "Assets/Frontier/Simulation/RiverBankProfile.cs",
+          "new": true,
+          "bytes": 6205,
+          "sha256": "23e2b47d6fa4572535dfc008b42309e4f1231d7cf8f9c78352738b48026f466f",
+          "baselineSha256": null
+        },
+        {
+          "path": "Assets/Frontier/Simulation/RiverBankProfile.cs.meta",
+          "new": true,
+          "bytes": 60,
+          "sha256": "4157bcc4a997996e0e8693a127d4293294b90c5499e5d27da9b6ed1ac83ea86a",
+          "baselineSha256": null
+        },
+        {
+          "path": "Assets/Frontier/Tests/EditMode/RiverBankAsymmetry077Tests.cs",
+          "new": true,
+          "bytes": 18609,
+          "sha256": "bd5562de5a50030cdc4179bfa4b51058085994e265f8e9c3405e2aa00d06b2e2",
+          "baselineSha256": null
+        },
+        {
+          "path": "Assets/Frontier/Tests/EditMode/RiverBankAsymmetry077Tests.cs.meta",
+          "new": true,
+          "bytes": 60,
+          "sha256": "aee5b957a0345ee7bcd827d4106662e45b0435a8a6ce39304a4eacfa90396e35",
+          "baselineSha256": null
+        },
+        {
+          "path": "Assets/Frontier/Tests/PlayMode/RiverBankMesh077Tests.cs",
+          "new": true,
+          "bytes": 4991,
+          "sha256": "737e8f59599dd753493661aca813e240f66c251f299a79cdb07c753e28a67212",
+          "baselineSha256": null
+        },
+        {
+          "path": "Assets/Frontier/Tests/PlayMode/RiverBankMesh077Tests.cs.meta",
+          "new": true,
+          "bytes": 60,
+          "sha256": "d0795e990660e7c21953b8cc331c95f87430435a03865e716dd0e2928c3d929e",
+          "baselineSha256": null
+        },
+        {
+          "path": "ProjectSettings/ProjectSettings.asset",
+          "new": false,
+          "bytes": 20770,
+          "sha256": "bb110637cc3326e5c6c1509acb9d820478ed7b14cf10128a32da4beab5e2cbc6",
+          "baselineSha256": "6e4dcf28e43f61b7fbaf0ba73c3e317728fcada6c176ce4af29f4f7970973a0f"
+        }
+      ],
+      "scope": "9 exact reviewed paths, 0.20.0 bank profile and tests. C2 receipts remain historical0.19; no tests/build/render claimed by apply."
+    },
+    "commands": [
+      {
+        "command": [
+          "/Applications/Unity/Hub/Editor/6000.6.3f1/Unity.app/Contents/MacOS/Unity",
+          "-batchmode",
+          "-projectPath",
+          "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project",
+          "-nographics",
+          "-runTests",
+          "-testPlatform",
+          "EditMode",
+          "-testFilter",
+          "Frontier.Tests.RiverBankAsymmetry077Tests",
+          "-testResults",
+          "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Bank1/EditMode.xml",
+          "-logFile",
+          "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Bank1/EditMode.log"
+        ],
+        "startedUtc": "2026-10-09T23:08:09.842235+00:00",
+        "status": "closed",
+        "pid": 67226,
+        "exitCode": 0,
+        "finishedUtc": "2026-10-09T23:08:37.943233+00:00"
+      },
+      {
+        "command": [
+          "/Applications/Unity/Hub/Editor/6000.6.3f1/Unity.app/Contents/MacOS/Unity",
+          "-batchmode",
+          "-projectPath",
+          "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project",
+          "-runTests",
+          "-testPlatform",
+          "PlayMode",
+          "-testFilter",
+          "Frontier.Tests.RiverBankMesh077Tests",
+          "-testResults",
+          "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Bank1/PlayMode.xml",
+          "-logFile",
+          "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Bank1/PlayMode.log"
+        ],
+        "startedUtc": "2026-10-09T23:08:37.944952+00:00",
+        "status": "closed",
+        "pid": 67594,
+        "exitCode": 0,
+        "finishedUtc": "2026-10-09T23:08:49.449308+00:00"
+      }
+    ]
+  },
+  "liveSourceObservation": {
+    "fingerprint": "3fcc6a6d9a31e8a49e0d5c34f711d9c3d771c4f413d4f3642a8391ee49daac4a",
+    "inputCount": 784,
+    "sameAsHistoricalBank1": false,
+    "changedOrAddedOrRemovedPaths": [
+      "Assets/InitTestScenee502fa07-1efd-4906-9380-78a5290462b7.unity",
+      "Assets/InitTestScenee502fa07-1efd-4906-9380-78a5290462b7.unity.meta"
+    ],
+    "changedHistoricalInputPaths": [],
+    "boundary": "Historical Bank1 is proven by its frozen 782-file inventories. Any later live files or changes are listed separately and do not inherit Bank1 acceptance.",
+    "extraPathClassification": "Only an InitTestScene Unity scene and its .meta were observed during the separately running compatibility tests. These are transient Editor-test-scene candidates by filename, not reported as integrated render-proposal source; cleanup was not awaited or operated by this audit."
+  },
+  "originalArtifacts": [
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Bank1/EditMode.log",
+      "role": "Original Bank1 successful execution evidence",
+      "bytes": 80068,
+      "sha256": "b1cb3617714c8058a314d4125974f98d75f34a223f2bfc9729585744c2b0234a"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Bank1/EditMode.xml",
+      "role": "Original Bank1 successful execution evidence",
+      "bytes": 16759,
+      "sha256": "588cb5dca81830046bc8f02d7b1fa066df3211c5c6191c33662fd131f09419a8"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Bank1/PlayMode.log",
+      "role": "Original Bank1 successful execution evidence",
+      "bytes": 95992,
+      "sha256": "9984f65a606179a62ee0bd5b1bf528e2ba2844216efbc70149542ce478e2b289"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Bank1/PlayMode.xml",
+      "role": "Original Bank1 successful execution evidence",
+      "bytes": 4295,
+      "sha256": "9ad53fcb2c42ab566cfa239a99760dd993d3be323314f2f3d3b17950144584ff"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Bank1/runner-receipt077.json",
+      "role": "Original Bank1 successful execution evidence",
+      "bytes": 103455,
+      "sha256": "5576cf398fdd532f19173437dc9d888b4b97b19a1286d9efa2f9070c5a273bf3"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Bank1/source-evidence.json",
+      "role": "Original Bank1 successful execution evidence",
+      "bytes": 100684,
+      "sha256": "2e45cc0e32037d66b57b439ff78a5b96a88a7b8f5a29297afb791ea3af2b9779"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Bank1/stdout-0.log",
+      "role": "Original Bank1 successful execution evidence",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Bank1/stdout-1.log",
+      "role": "Original Bank1 successful execution evidence",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Mutations1/disconnected-mesh-colors/PlayMode.log",
+      "role": "Original deliberately failing mutation evidence or saved original",
+      "bytes": 98410,
+      "sha256": "fcedbff788e3ce62de49dd01d2696b5ae1b27f7498ef04bd896a9bb2bf41b8a3"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Mutations1/disconnected-mesh-colors/PlayMode.xml",
+      "role": "Original deliberately failing mutation evidence or saved original",
+      "bytes": 4540,
+      "sha256": "b1409e2e8c4c3c8fc64607142cb88f52a79e690660835871f36b520e21b92447"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Mutations1/disconnected-mesh-colors/original.txt",
+      "role": "Original deliberately failing mutation evidence or saved original",
+      "bytes": 19833,
+      "sha256": "e1d6260436a3ee45a926f0139aaa98af3c0e25cacdc26ec2ed474f49cd7b2786"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Mutations1/disconnected-mesh-colors/stdout.log",
+      "role": "Original deliberately failing mutation evidence or saved original",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Mutations1/mutation-receipt077.json",
+      "role": "Original deliberately failing mutation evidence or saved original",
+      "bytes": 5059,
+      "sha256": "0cc65ca9a852748e10fbe1bbf16d3595c46486d9ea0756475eaaf76ad24d7834"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Mutations1/reversed-side/EditMode.log",
+      "role": "Original deliberately failing mutation evidence or saved original",
+      "bytes": 90680,
+      "sha256": "b65924d603f478ba2dd7afd85aa105eb9e7f546916a458c94ec594955a6b40fa"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Mutations1/reversed-side/EditMode.xml",
+      "role": "Original deliberately failing mutation evidence or saved original",
+      "bytes": 4623,
+      "sha256": "419d4c0502e8c981795896a7d6803c4bca87ed8820e07562c4ee883733ba7667"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Mutations1/reversed-side/original.txt",
+      "role": "Original deliberately failing mutation evidence or saved original",
+      "bytes": 6205,
+      "sha256": "23e2b47d6fa4572535dfc008b42309e4f1231d7cf8f9c78352738b48026f466f"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Mutations1/reversed-side/stdout.log",
+      "role": "Original deliberately failing mutation evidence or saved original",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/run077.py",
+      "role": "Read-only runner provenance",
+      "bytes": 5267,
+      "sha256": "be88aa758ff6392f6093136178fd7619a0229c286c84cfad2b8a134bc582b3c2"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/mutate077.py",
+      "role": "Read-only mutation/restore implementation provenance",
+      "bytes": 3617,
+      "sha256": "a97e2cdf2ffa04a22694067b154a8c6c1faea4bad54ac965018455241707cf26"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/integration077.json",
+      "role": "Exact nine-path integration provenance",
+      "bytes": 2931,
+      "sha256": "3a286627d110ead5ef99f1702a848839537f55a7c67f21e38291c54cd0146b23"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate2/Planning/Bank077Staging/V2Final/bank077-v2-final.patch",
+      "role": "Original reviewed integrated patch",
+      "bytes": 36269,
+      "sha256": "8afef9bac7ab00a1ad2ddf0a6dba95ea22b7a8b7b77d0ba0f276eb3f07a230b4"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate2/Planning/Bank077Staging/V2Final/Baseline/Assets/Frontier/Presentation/RiverLandscapePresentation.cs",
+      "role": "Historical color formula used by the disconnected-color negative control",
+      "bytes": 20168,
+      "sha256": "dc79c6546f7bd52d3ba0d2f9e951df4d704dd91b9e8a4ed96ae7020e1db021c3"
+    }
+  ],
+  "bank1Results": {
+    "EditMode": {
+      "attributes": {
+        "id": "2",
+        "testcasecount": "17",
+        "result": "Passed",
+        "total": "17",
+        "passed": "17",
+        "failed": "0",
+        "inconclusive": "0",
+        "skipped": "0",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-10-09 23:08:21Z",
+        "end-time": "2026-10-09 23:08:36Z",
+        "duration": "14.475513"
+      },
+      "xmlSha256": "588cb5dca81830046bc8f02d7b1fa066df3211c5c6191c33662fd131f09419a8",
+      "actualCaseCount": 17
+    },
+    "PlayMode": {
+      "attributes": {
+        "id": "2",
+        "testcasecount": "2",
+        "result": "Passed",
+        "total": "2",
+        "passed": "2",
+        "failed": "0",
+        "inconclusive": "0",
+        "skipped": "0",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-10-09 23:08:46Z",
+        "end-time": "2026-10-09 23:08:48Z",
+        "duration": "1.8277828"
+      },
+      "xmlSha256": "9ad53fcb2c42ab566cfa239a99760dd993d3be323314f2f3d3b17950144584ff",
+      "actualCaseCount": 2
+    }
+  },
+  "bank1Cases": [
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.DenseActualWalkableBankStepsKeepTheExistingPointFourPhysicalSlopeContract",
+      "result": "Passed",
+      "durationSeconds": 1.223139,
+      "diagnosticOutput": "Winding dense bank probes=58478 peakGrade=0.3542763 at=(63.25, 31.25)\n"
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.InsideBendSignWorksForBothTurnDirections(-1)",
+      "result": "Passed",
+      "durationSeconds": 0.002536,
+      "diagnosticOutput": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.InsideBendSignWorksForBothTurnDirections(1)",
+      "result": "Passed",
+      "durationSeconds": 4.1e-05,
+      "diagnosticOutput": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.LiteralEasternMeanderHasItsInnerBankWestAndOuterBankEastInTheStoredQuery",
+      "result": "Passed",
+      "durationSeconds": 0.001036,
+      "diagnosticOutput": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.OriginalWindingControlsFishStartsAndTerrainHashesStayUnchanged",
+      "result": "Passed",
+      "durationSeconds": 0.045081,
+      "diagnosticOutput": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.OtherRiverLayoutsRetainTheirHistoricalBankHeightsAndLayers(\"river\")",
+      "result": "Passed",
+      "durationSeconds": 0.043884,
+      "diagnosticOutput": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.OtherRiverLayoutsRetainTheirHistoricalBankHeightsAndLayers(\"tropical\")",
+      "result": "Passed",
+      "durationSeconds": 0.921407,
+      "diagnosticOutput": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.OtherRiverLayoutsRetainTheirHistoricalBankHeightsAndLayers(\"tributaries\")",
+      "result": "Passed",
+      "durationSeconds": 1.516383,
+      "diagnosticOutput": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.OtherRiverLayoutsRetainTheirHistoricalBankHeightsAndLayers(\"estuary\")",
+      "result": "Passed",
+      "durationSeconds": 0.958505,
+      "diagnosticOutput": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.OtherRiverLayoutsRetainTheirHistoricalBankHeightsAndLayers(\"generated_river\")",
+      "result": "Passed",
+      "durationSeconds": 0.135463,
+      "diagnosticOutput": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.OtherRiverLayoutsRetainTheirHistoricalBankHeightsAndLayers(\"generated_delta\")",
+      "result": "Passed",
+      "durationSeconds": 0.175416,
+      "diagnosticOutput": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.OtherRiverLayoutsRetainTheirHistoricalBankHeightsAndLayers(\"generated_strait\")",
+      "result": "Passed",
+      "durationSeconds": 0.145609,
+      "diagnosticOutput": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.ProtectedBridgeRampsHarborPadsAndTownPadsKeepTheirOldProfile",
+      "result": "Passed",
+      "durationSeconds": 0.049103,
+      "diagnosticOutput": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.RiverBedWaterLevelAndBeyondThreeMeterInlandGroundRetainHistoricalHeights",
+      "result": "Passed",
+      "durationSeconds": 0.211682,
+      "diagnosticOutput": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.SharedLayersAreNormalizedAndTwoSeparatedBendPairsHaveUsefulInnerOuterContrast",
+      "result": "Passed",
+      "durationSeconds": 0.088416,
+      "diagnosticOutput": "Useful bank pair center=(64.98, 46.66) inner=0.3350409 outer=0.2036147 sandContrast=0.1676592\nUseful bank pair center=(74.96, 58.50) inner=0.9903398 outer=0.9714984 sandContrast=0.6969938\nUseful bank pair center=(76.83, 74.57) inner=0.9963535 outer=0.9978492 sandContrast=0.7930517\n"
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.SharedLayoutRestoredWorldConsumerContinuesRealMovementAndMatchesWarmState",
+      "result": "Passed",
+      "durationSeconds": 8.898335,
+      "diagnosticOutput": "Shared-layout warm/cold consumers: moveSteps=212 changedBankSteps=40 assigned=(89.29, 67.99)\n"
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.StraightOrDegenerateSamplesHaveNoInventedBend",
+      "result": "Passed",
+      "durationSeconds": 0.000194,
+      "diagnosticOutput": "Saving results to: /Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml\n"
+    },
+    {
+      "mode": "PlayMode",
+      "fullname": "Frontier.Tests.RiverBankMesh077Tests.ActualEasternMeanderMeshHasBroaderSandOnItsLiteralWestInnerBank",
+      "result": "Passed",
+      "durationSeconds": 1.538214,
+      "diagnosticOutput": "Eastern meander actual mesh: westInnerCount=5 sand=0.7177923 eastOuterCount=4 sand=0.07755104\n"
+    },
+    {
+      "mode": "PlayMode",
+      "fullname": "Frontier.Tests.RiverBankMesh077Tests.ActualGroundMeshColorsAndHeightsEqualTheSharedMapQueries",
+      "result": "Passed",
+      "durationSeconds": 0.256013,
+      "diagnosticOutput": "Actual shared-query ground mesh: vertices=16641 changedSandVertices=436\nSaving results to: /Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml\n"
+    }
+  ],
+  "unmodifiedPassCount": 19,
+  "expectedNegativeControlFailureCount": 2,
+  "mutationResults": [
+    {
+      "name": "reversed-side",
+      "mode": "EditMode",
+      "filter": "Frontier.Tests.RiverBankAsymmetry077Tests.LiteralEasternMeanderHasItsInnerBankWestAndOuterBankEastInTheStoredQuery",
+      "command": [
+        "/Applications/Unity/Hub/Editor/6000.6.3f1/Unity.app/Contents/MacOS/Unity",
+        "-batchmode",
+        "-projectPath",
+        "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project",
+        "-nographics",
+        "-runTests",
+        "-testPlatform",
+        "EditMode",
+        "-testFilter",
+        "Frontier.Tests.RiverBankAsymmetry077Tests.LiteralEasternMeanderHasItsInnerBankWestAndOuterBankEastInTheStoredQuery",
+        "-testResults",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Mutations1/reversed-side/EditMode.xml",
+        "-logFile",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Mutations1/reversed-side/EditMode.log"
+      ],
+      "pid": 68425,
+      "exitCode": 2,
+      "xmlAttributes": {
+        "id": "2",
+        "testcasecount": "1",
+        "result": "Failed(Child)",
+        "total": "1",
+        "passed": "0",
+        "failed": "1",
+        "inconclusive": "0",
+        "skipped": "0",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-10-09 23:09:46Z",
+        "end-time": "2026-10-09 23:09:47Z",
+        "duration": "0.9761705"
+      },
+      "xmlSha256": "419d4c0502e8c981795896a7d6803c4bca87ed8820e07562c4ee883733ba7667",
+      "failureMessage": "  Stored/query west offset must be the known inner side\n  Expected: greater than 0.75f\n  But was:  0.0f\n",
+      "failureStackTrace": "at Frontier.Tests.RiverBankAsymmetry077Tests.LiteralEasternMeanderHasItsInnerBankWestAndOuterBankEastInTheStoredQuery () [0x00176] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/RiverBankAsymmetry077Tests.cs:202\n",
+      "negativeControlExpectedFailure": true,
+      "originalSourcePath": "Assets/Frontier/Simulation/RiverBankProfile.cs",
+      "originalSha256Recomputed": "23e2b47d6fa4572535dfc008b42309e4f1231d7cf8f9c78352738b48026f466f",
+      "mutatedSha256Reconstructed": "8b0d56f914c1111a1b7338b2e1c333729d191e8a6f668e42909edf17b99f3eb9",
+      "mutatedFingerprintReconstructed": "8c6ec6102f454f6548a14afa5bb56bf31a68b0404b611e118f8d87e59c84b050",
+      "restoredFingerprintRecorded": "fdd60bfa136f944cee07e75b157bf8143a7ca63da11171d517feafb57a56716d",
+      "affectedLiveSourceRestored": true,
+      "restoredLiveSha256": "23e2b47d6fa4572535dfc008b42309e4f1231d7cf8f9c78352738b48026f466f",
+      "mutationReconstruction": {
+        "uniqueNeedle": "Vector2.Lerp(a.tangent,b.tangent,fraction),point-center);",
+        "replacement": "Vector2.Lerp(a.tangent,b.tangent,fraction),center-point);",
+        "historicalFormulaArtifact": null
+      }
+    },
+    {
+      "name": "disconnected-mesh-colors",
+      "mode": "PlayMode",
+      "filter": "Frontier.Tests.RiverBankMesh077Tests.ActualGroundMeshColorsAndHeightsEqualTheSharedMapQueries",
+      "command": [
+        "/Applications/Unity/Hub/Editor/6000.6.3f1/Unity.app/Contents/MacOS/Unity",
+        "-batchmode",
+        "-projectPath",
+        "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project",
+        "-runTests",
+        "-testPlatform",
+        "PlayMode",
+        "-testFilter",
+        "Frontier.Tests.RiverBankMesh077Tests.ActualGroundMeshColorsAndHeightsEqualTheSharedMapQueries",
+        "-testResults",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Mutations1/disconnected-mesh-colors/PlayMode.xml",
+        "-logFile",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Mutations1/disconnected-mesh-colors/PlayMode.log"
+      ],
+      "pid": 68622,
+      "exitCode": 2,
+      "xmlAttributes": {
+        "id": "2",
+        "testcasecount": "1",
+        "result": "Failed(Child)",
+        "total": "1",
+        "passed": "0",
+        "failed": "1",
+        "inconclusive": "0",
+        "skipped": "0",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-10-09 23:09:59Z",
+        "end-time": "2026-10-09 23:10:01Z",
+        "duration": "1.5683108"
+      },
+      "xmlSha256": "b1409e2e8c4c3c8fc64607142cb88f52a79e690660835871f36b520e21b92447",
+      "failureMessage": "  Shared sand at vertex 47\n  Expected: 0.024863243103027344d +/- 9.9999999747524271E-07d\n  But was:  0.0067351460456848145d\n",
+      "failureStackTrace": "at Frontier.Tests.RiverBankMesh077Tests.ActualGroundMeshColorsAndHeightsEqualTheSharedMapQueries () [0x00131] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/PlayMode/RiverBankMesh077Tests.cs:36\n",
+      "negativeControlExpectedFailure": true,
+      "originalSourcePath": "Assets/Frontier/Presentation/RiverLandscapePresentation.cs",
+      "originalSha256Recomputed": "e1d6260436a3ee45a926f0139aaa98af3c0e25cacdc26ec2ed474f49cd7b2786",
+      "mutatedSha256Reconstructed": "4f797360e67e68ecda9e85ce10f2efbbaf3086154c96b6c06ecbfc2bf9bc9570",
+      "mutatedFingerprintReconstructed": "64f1050b563ca4a914448155b6fbb941685fc2ff8104bbc9c984873805a985d6",
+      "restoredFingerprintRecorded": "fdd60bfa136f944cee07e75b157bf8143a7ca63da11171d517feafb57a56716d",
+      "affectedLiveSourceRestored": true,
+      "restoredLiveSha256": "e1d6260436a3ee45a926f0139aaa98af3c0e25cacdc26ec2ed474f49cd7b2786",
+      "mutationReconstruction": {
+        "uniqueNeedle": "                layers[i]=layout.BankLayers(p);",
+        "replacement": "                float distance=layout.SignedBankDistance(p);\n                float tidal=layout.Id==MapTopology.Estuary?Mathf.SmoothStep(0,1,(z-78)/18f):0;\n                float noise=Mathf.PerlinNoise(x*.13f+3,z*.11f+8)-.5f;\n                float damp=1-Mathf.SmoothStep(0,1,(distance-.25f-noise*.25f)/Mathf.Lerp(2.6f,3.7f,tidal));\n                float shoulder=1-Mathf.SmoothStep(0,1,(distance-1.5f-noise*.65f)/Mathf.Lerp(4,6,tidal));\n                float sand=(1-damp)*shoulder;\n                layers[i]=new Color(damp,sand,1-damp-sand,1);",
+        "historicalFormulaArtifact": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate2/Planning/Bank077Staging/V2Final/Baseline/Assets/Frontier/Presentation/RiverLandscapePresentation.cs"
+      }
+    }
+  ],
+  "mutationReceiptStatus": "closed",
+  "mutationReceiptBefore": "fdd60bfa136f944cee07e75b157bf8143a7ca63da11171d517feafb57a56716d",
+  "mutationReceiptAfter": "fdd60bfa136f944cee07e75b157bf8143a7ca63da11171d517feafb57a56716d",
+  "limitations": [
+    "PASS is an independent evidence/hash/provenance audit, not another Unity execution. Only Bank1 actual 17 EditMode + 2 PlayMode cases are unmodified-source passes.",
+    "The two exit-2 single-case failures are deliberate negative controls that establish sensitivity to reversed inside/outside query sign and disconnected actual mesh colors. They remain failed originals, not passing production cases.",
+    "Bank1 ran a patched working tree: gitHeadBefore names the pre-existing base commit, not a committed 077 tree. Its exact 782 input hashes, integration patch receipt and source-evidence fingerprint are the tested identity.",
+    "Mutation altered-source fingerprints are independently reconstructed from the Bank1 inventory plus exact retained original/replacement bytes; the audit does not execute the mutator. Restoration receipts and affected live file hashes agree with the original tested source.",
+    "Later live-source additions/changes, if any, are listed separately; they do not retrospectively inherit Bank1. No clean-working-tree or latest-HEAD acceptance is inferred.",
+    "Dense slope scanning used zero-radius legal points; actual restored World/MatchSimulation consumer movement separately checked actual Explorer body/swept segments and the same cached MapLayout. This is not independent fresh map reconstruction or native disk reload.",
+    "The two PlayMode cases inspect real generated sharedMesh vertices/colors/heights and independent literal west/east contrast; they are not rendered PNG, native visual quality, FPS or user playtest acceptance.",
+    "Only Winding receives the new asymmetry; the other seven river layout instances establish historical height/layer preservation, not new morphology on those maps.",
+    "Compatibility1 is a separate run and was not audited or relabeled here. No full regression, new app build, cloud upload, broader river lifecycle or whole-goal completion is asserted.",
+    "Only the fresh external Diagnostics JSON/Markdown are written. No source/repo edits, Git commands, Unity execution/process intervention or cloud operations were performed.",
+    "The live 784-input snapshot differs only by the observed InitTestScene scene/.meta while another test run is active; all historical 782 inputs are unchanged. This transient observation is separated from tested Bank1 and is not a new render-source acceptance."
+  ]
+}

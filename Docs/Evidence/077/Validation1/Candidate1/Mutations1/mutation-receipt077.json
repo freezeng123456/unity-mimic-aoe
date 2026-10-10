@@ -1,0 +1,111 @@
+{
+  "schema": 1,
+  "purpose": "Deliberate failure sensitivity, not a passing production-source run",
+  "startedUtc": "2026-10-09T23:09:36.270485+00:00",
+  "sourceFingerprintBefore": "fdd60bfa136f944cee07e75b157bf8143a7ca63da11171d517feafb57a56716d",
+  "mutations": [
+    {
+      "name": "reversed-side",
+      "path": "Assets/Frontier/Simulation/RiverBankProfile.cs",
+      "mode": "EditMode",
+      "filter": "Frontier.Tests.RiverBankAsymmetry077Tests.LiteralEasternMeanderHasItsInnerBankWestAndOuterBankEastInTheStoredQuery",
+      "originalSha256": "23e2b47d6fa4572535dfc008b42309e4f1231d7cf8f9c78352738b48026f466f",
+      "mutatedSha256": "8b0d56f914c1111a1b7338b2e1c333729d191e8a6f668e42909edf17b99f3eb9",
+      "mutatedFingerprint": "8c6ec6102f454f6548a14afa5bb56bf31a68b0404b611e118f8d87e59c84b050",
+      "command": [
+        "/Applications/Unity/Hub/Editor/6000.6.3f1/Unity.app/Contents/MacOS/Unity",
+        "-batchmode",
+        "-projectPath",
+        "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project",
+        "-nographics",
+        "-runTests",
+        "-testPlatform",
+        "EditMode",
+        "-testFilter",
+        "Frontier.Tests.RiverBankAsymmetry077Tests.LiteralEasternMeanderHasItsInnerBankWestAndOuterBankEastInTheStoredQuery",
+        "-testResults",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Mutations1/reversed-side/EditMode.xml",
+        "-logFile",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Mutations1/reversed-side/EditMode.log"
+      ],
+      "pid": 68425,
+      "exitCode": 2,
+      "result": {
+        "id": "2",
+        "testcasecount": "1",
+        "result": "Failed(Child)",
+        "total": "1",
+        "passed": "0",
+        "failed": "1",
+        "inconclusive": "0",
+        "skipped": "0",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-10-09 23:09:46Z",
+        "end-time": "2026-10-09 23:09:47Z",
+        "duration": "0.9761705"
+      },
+      "xmlSha256": "419d4c0502e8c981795896a7d6803c4bca87ed8820e07562c4ee883733ba7667",
+      "failureMessages": [
+        "  Stored/query west offset must be the known inner side\n  Expected: greater than 0.75f\n  But was:  0.0f\n"
+      ],
+      "expectedFailureObserved": true,
+      "restoredSha256": "23e2b47d6fa4572535dfc008b42309e4f1231d7cf8f9c78352738b48026f466f",
+      "sourceFingerprintAfterRestore": "fdd60bfa136f944cee07e75b157bf8143a7ca63da11171d517feafb57a56716d"
+    },
+    {
+      "name": "disconnected-mesh-colors",
+      "path": "Assets/Frontier/Presentation/RiverLandscapePresentation.cs",
+      "mode": "PlayMode",
+      "filter": "Frontier.Tests.RiverBankMesh077Tests.ActualGroundMeshColorsAndHeightsEqualTheSharedMapQueries",
+      "originalSha256": "e1d6260436a3ee45a926f0139aaa98af3c0e25cacdc26ec2ed474f49cd7b2786",
+      "mutatedSha256": "4f797360e67e68ecda9e85ce10f2efbbaf3086154c96b6c06ecbfc2bf9bc9570",
+      "mutatedFingerprint": "64f1050b563ca4a914448155b6fbb941685fc2ff8104bbc9c984873805a985d6",
+      "command": [
+        "/Applications/Unity/Hub/Editor/6000.6.3f1/Unity.app/Contents/MacOS/Unity",
+        "-batchmode",
+        "-projectPath",
+        "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project",
+        "-runTests",
+        "-testPlatform",
+        "PlayMode",
+        "-testFilter",
+        "Frontier.Tests.RiverBankMesh077Tests.ActualGroundMeshColorsAndHeightsEqualTheSharedMapQueries",
+        "-testResults",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Mutations1/disconnected-mesh-colors/PlayMode.xml",
+        "-logFile",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Mutations1/disconnected-mesh-colors/PlayMode.log"
+      ],
+      "pid": 68622,
+      "exitCode": 2,
+      "result": {
+        "id": "2",
+        "testcasecount": "1",
+        "result": "Failed(Child)",
+        "total": "1",
+        "passed": "0",
+        "failed": "1",
+        "inconclusive": "0",
+        "skipped": "0",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-10-09 23:09:59Z",
+        "end-time": "2026-10-09 23:10:01Z",
+        "duration": "1.5683108"
+      },
+      "xmlSha256": "b1409e2e8c4c3c8fc64607142cb88f52a79e690660835871f36b520e21b92447",
+      "failureMessages": [
+        "  Shared sand at vertex 47\n  Expected: 0.024863243103027344d +/- 9.9999999747524271E-07d\n  But was:  0.0067351460456848145d\n"
+      ],
+      "expectedFailureObserved": true,
+      "restoredSha256": "e1d6260436a3ee45a926f0139aaa98af3c0e25cacdc26ec2ed474f49cd7b2786",
+      "sourceFingerprintAfterRestore": "fdd60bfa136f944cee07e75b157bf8143a7ca63da11171d517feafb57a56716d"
+    }
+  ],
+  "finishedUtc": "2026-10-09T23:10:03.110118+00:00",
+  "sourceFingerprintAfter": "fdd60bfa136f944cee07e75b157bf8143a7ca63da11171d517feafb57a56716d",
+  "status": "closed",
+  "sensitivityConfirmed": true
+}
