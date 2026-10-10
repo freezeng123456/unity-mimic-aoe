@@ -23,3 +23,11 @@ CLI配置英国／奥斯曼、Winding42／duel，真实主菜单点击BEGIN SKIR
 真实暂停菜单RETURN TO MENU生成 `bbe9d6ade4e14d9594af8d4aa21ca552` 的menu_exit报告、事件JSONL及录制段；随后从可见主菜单点击QUIT。退出后不调用自动激活UI探测，PID消失只能证明进程已离开，不推定等待得到OS exit0。七组实际F9 PNG／JSON及完整原始日志保留，独立只读审查另附 `native-audit077.json`／`.md`。
 
 未执行付费港区／船运／医护链、存档冷恢复、录像播放、完整胜败比赛或FPS。记录到录像文件不等于播放验收。其他河图与港船新精修不计作本轮已完成。
+
+## 独立只读闭合
+
+审查状态 `accepted_bounded_move_hold_camera_capture_menu_exit_quit`，JSON61995B／SHA `6060428ea4747f29572f36801118b0311e8ef736637b947a0e374be547928580`；MD7476B／SHA `aa12477fd13aea5827da171de2a794aab667304b8e41732fb21c99c8c8485836`。20份原件8725394B未改变，298文件实际app清单／源码指纹／Full2绑定均匹配。
+
+报告与录像完整520事件账本一致，gzip解压2535927B／SHA `903c3ee17083c1f540c4098131a05ce9aa0f229522d70ea4181ee198b1d9d79a`与容器声明匹配。anchor的world.events为空，只核对eventCount游标，不称作内嵌前缀重算。Hold在抵达后下达；后续Holding截图间隔约2.8秒，不声明中途Hold取消或连续逐帧位置证明。
+
+保留6条线程提前终结和1条PlayerConnection泄漏告警；Build1也保留licensing Access token及Curl42非致命诊断，构建实际exit0不等于零警告。独立PS确认所有本项目Editor／原生PID均已离开；未获得OS wait退出码。

@@ -2,7 +2,7 @@
 
 独立 Unity 即时战略游戏：英国、荷兰、法国、奥斯曼四个经典文明核心玩法，加上远驿盟市、山岭工联两个原创文明，共六文明。五个时代、25张卡组与XP船运、银行、实车贸易、工坊制造、守卫宝藏和炮兵攻城，配有原创模型、动画与音频。使用本项目规则和候选数值，与 Age of Empires 及其发行商无关联。
 
-**当前源码版本为0.20.0曲河精修中，目标平台macOS Apple silicon。** 077先改一张Winding：内弯加宽沉积沙带、外弯缩窄湿岸与低切坡，地表使用共享岸形查询，桥头／港址保留原几何与层权重；Winding独立暖沙色板不改变其他河图。19项初始专项、144项兼容、两项实际破坏检测和两轮URP对照已执行，完整回归Full1一项新增Color精确比较失败保留，逐分量修正后Bank2 20/20与最终Full2 1824/1824通过、源码稳定；构建／原生／私有交付另记。[077内容](Docs/Content-077.md)、[077验证](Docs/Verification-077.md)、[状态](Docs/Completion-Status.md)。
+**当前源码版本为0.20.0曲河精修中，目标平台macOS Apple silicon。** 077先改一张Winding：内弯加宽沉积沙带、外弯缩窄湿岸与低切坡，地表使用共享岸形查询，桥头／港址保留原几何与层权重；Winding独立暖沙色板不改变其他河图。19项初始专项、144项兼容、两项实际破坏检测和两轮URP对照已执行，完整回归Full1一项新增Color精确比较失败保留，逐分量修正后Bank2 20/20与最终Full2 1824/1824通过、源码稳定；同源Mac构建exit0，普通Winding42原生单Explorer Move到点／到点后Hold／26与16镜头、七组F9及菜单退出已限定验收；私有交付待闭合。[077原生](Docs/Native-077.md)、[077交付](Docs/Delivery-077.md)、[077内容](Docs/Content-077.md)、[077验证](Docs/Verification-077.md)、[状态](Docs/Completion-Status.md)。
 
 **076保留已闭合医疗成果。** C1的1795项、英国付费Priest／冷恢复／两段原生连续录像及owner-only云盘保持原身份；C2为1803/1803、新GUID `ed29410c2b27484abeac486c8f57b81b`，桥／驻扎／登船医疗受控专项成立，但奥斯曼原生只完成100W Mosque、Explorer阵亡、0条Heal，医疗闭环未完成。[076验证](Docs/Verification-076.md)、[C2记录](Docs/Verification-076-River.md)、[076交付](Docs/Delivery-076.md)。
 

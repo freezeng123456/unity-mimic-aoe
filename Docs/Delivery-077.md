@@ -6,7 +6,7 @@
 
 - 最终784输入FP `8c858fe82932c1c4909af27aea8dab71a183812902c937ee4931003f33840335`，生产代码与Render2一致，仅新增材质读回测试使用逐RGBA 1e-6精度及R格式诊断。
 - 原Full1实际1823通过／1失败、exit2与原始PNG/XML/日志保留；Bank2实际20/20，不将其替代最终完整回归。
-- 最终Full2实际1372 Edit＋452 Play＝1824/1824、exit0／源稳定，原失败Full1保留。独立同源Build1与实际新GUID、普通原生限定交互各自验收，尚未把后两项预填通过。
+- 最终Full2实际1372 Edit＋452 Play＝1824/1824、exit0／源稳定，原失败Full1保留。同源Build1实际exit0／GUID `6d3fd495bd8f48be852c1e6c62bcb02f`；普通原生七组F9、Move抵达／到点后Hold、26／16镜头、menu_exit与QUIT已独立限定验收。付费港区／编组攻击／FPS仍另验。
 
 ## 计划封包结构
 

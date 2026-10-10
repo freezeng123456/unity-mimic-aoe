@@ -55,8 +55,8 @@
 
 ## 剩余验收
 
-- 当前最终源码Full2已1824/1824；新app构建与原生另闭合。
-- 同最终源码Build1已实际exit0／源稳定，新GUID `6d3fd495bd8f48be852c1e6c62bcb02f`；普通原生Move／Hold／曲河F9已执行，独立审查闭合后另列。
+- 当前最终源码Full2已1824/1824，同源Build1 exit0／源稳定，新GUID `6d3fd495bd8f48be852c1e6c62bcb02f`。
+- 普通原生单Explorer Move到点、到点后Hold、26／16镜头、七组F9、menu_exit与QUIT已独立限定验收，详见[077原生](Native-077.md)。封包／私有交付另验。
 - 原生付费港区／指定攻击调度、性能和完整人工对局另验，未由网格测试覆盖。
 
 076医疗 fixture 中部分版本字符串是显式合成存读 envelope 参数，不代表0.20运行时版本，也不代表旧存档跨版本兼容。新077网格验收直接检查 Application.version；原生构建另以自身GUID与版本绑定。
@@ -64,3 +64,11 @@
 ## Build1
 
 同最终784输入FP的实际macOS Build1已exit0、源码前后稳定；Application版本0.20.0，GUID `6d3fd495bd8f48be852c1e6c62bcb02f`。完整app 298文件／191066644B、arm64 Development Mono，codesign严格校验exit0；并非Release公证或FPS验收。实际app清单SHA `3ba141de6d4faa290b1009b116c2ec65e256efe92c144c79cc1cb6c56dfde0df`，逐文件字节／SHA／Unix模式绑定Build1 runner与最终源码。
+
+## Native1：普通曲河限定验收
+
+同Build1实际PID10729，英国／奥斯曼Winding42普通AgeI开局，Explorer8实际Move到点，抵达后接受Hold，后续F9保持位置／450HP；镜头26→16→26，七组原始PNG／JSON保留。Hold在抵达后下达，不推定移动中取消能力。最后zoom26帧已恢复运行，上一异步帧处于暂停，保留其真实身份。
+
+menu_exit世界39.199974秒、520条事件，与录制段完整账本一致；序列化anchor的world.events为空，只核对eventCount游标，不称作内嵌事件前缀重算。录制容器gzip／CRC与解压SHA复核通过，但未播放验证。可见QUIT、日志及PID消失成立，OS退出码未知。原生6条线程提前终结／1条PlayerConnection泄漏告警及构建非致命licensing／Curl42诊断保留，不声明零告警。
+
+独立审查状态 `accepted_bounded_move_hold_camera_capture_menu_exit_quit`；20份原件8725394B未改变，完整298文件app／GUID／源码／Full2身份再次核对。JSON SHA `6060428ea4747f29572f36801118b0311e8ef736637b947a0e374be547928580`，MD SHA `aa12477fd13aea5827da171de2a794aab667304b8e41732fb21c99c8c8485836`。原件位于 `Docs/Evidence/077/Validation1/Candidate1/Native1/winding-view/`。
