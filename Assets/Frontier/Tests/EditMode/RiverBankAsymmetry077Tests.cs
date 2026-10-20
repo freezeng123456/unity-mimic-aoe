@@ -125,7 +125,7 @@ namespace Frontier.Tests
                 for(int i=0;i<32;i++){float a=i*Mathf.PI/16;Check(start.Town+new Vector2(Mathf.Cos(a),Mathf.Sin(a))*11.5f);Check(start.Town);}
             Assert.Greater(checkedPoints,1000);
         }
-        [TestCase(MapTopology.River)] [TestCase(MapTopology.Tributaries)]
+        [TestCase(MapTopology.River)] // Tributaries migrates to strict local082 profile/actual old frozen-world gates.
         [TestCase(MapTopology.Estuary)] [TestCase(MapTopology.GeneratedRiver)]
         [TestCase(MapTopology.GeneratedDelta)] [TestCase(MapTopology.GeneratedStrait)]
         public void OtherRiverLayoutsRetainTheirHistoricalBankHeightsAndLayers(string map)

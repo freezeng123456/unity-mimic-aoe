@@ -121,7 +121,9 @@ namespace Frontier
             {
                 LandingSites=TropicalBayContent081.Applies(this)
                     ?new[]{new[]{TropicalBayContent081.Landing(0,0),TropicalBayContent081.Landing(0,1)},new[]{TropicalBayContent081.Landing(1,0),TropicalBayContent081.Landing(1,1)}}
-                    :new[]{Array.Empty<Vector2>(),Array.Empty<Vector2>()};
+                    :ConfluenceContent082.Applies(this)
+                        ?new[]{new[]{ConfluenceContent082.SouthLanding,ConfluenceContent082.NorthLanding},new[]{ConfluenceContent082.SouthLanding,ConfluenceContent082.NorthLanding}}
+                        :new[]{Array.Empty<Vector2>(),Array.Empty<Vector2>()};
                 IslandLandingSites=Array.Empty<Vector2>();
             }
         }
@@ -172,7 +174,8 @@ namespace Frontier
             if(bankBend!=null&&distance>=3)return 0;
             float rise=bankBend==null?3:BankProfile(point,distance).RiseWidth;
             float historical=(WaterHeight-.02f)*(1-Mathf.SmoothStep(0,1,distance/rise));
-            return TropicalBayContent081.Applies(this)?TropicalBankHeight081(point,distance,historical):historical;
+            if(TropicalBayContent081.Applies(this))return TropicalBankHeight081(point,distance,historical);
+            return ConfluenceContent082.Applies(this)?ConfluenceBankHeight082(point,distance,historical):historical;
         }
         public float GroundHeight(Vector2 point)
         {

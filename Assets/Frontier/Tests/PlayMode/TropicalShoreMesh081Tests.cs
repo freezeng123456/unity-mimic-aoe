@@ -38,8 +38,8 @@ namespace Frontier.Tests
         [Test] public void ActualTropicalGroundTrianglesRecordBothWaterEdgesBeforeAnyRefinementDecision()
         {
             string version=Environment.GetEnvironmentVariable("FRONTIER_TROPICAL_EXPECTED_VERSION"),role=Environment.GetEnvironmentVariable("FRONTIER_TROPICAL_CAPTURE_ROLE");
-            if(string.IsNullOrWhiteSpace(version))version="0.24.0";if(string.IsNullOrWhiteSpace(role))role="candidate-tropical-0.24";
-            Assert.That(version,Is.EqualTo("0.23.0").Or.EqualTo("0.24.0"));Assert.AreEqual(version=="0.23.0"?"baseline-tropical-0.23":"candidate-tropical-0.24",role);Assert.AreEqual(version,Application.version);
+            if(string.IsNullOrWhiteSpace(version))version="0.25.0";if(string.IsNullOrWhiteSpace(role))role="candidate-tropical-0.25";
+            Assert.That(version,Is.EqualTo("0.23.0").Or.EqualTo("0.24.0").Or.EqualTo("0.25.0"));Assert.AreEqual(version=="0.23.0"?"baseline-tropical-0.23":version=="0.24.0"?"candidate-tropical-0.24":"candidate-tropical-0.25",role);Assert.AreEqual(version,Application.version);
             var sources=Inventory();string before=Fingerprint(sources),expected=Environment.GetEnvironmentVariable("FRONTIER_SOURCE_FINGERPRINT");Assert.IsFalse(string.IsNullOrWhiteSpace(expected));Assert.AreEqual(expected,before);
             string output=Environment.GetEnvironmentVariable("FRONTIER_TROPICAL_SHORE_OUTPUT");if(string.IsNullOrWhiteSpace(output))output=Path.Combine(Application.temporaryCachePath,"FrontierTropicalShore081-"+Guid.NewGuid().ToString("N"));
             output=Path.GetFullPath(output);Directory.CreateDirectory(output);Assert.IsFalse(Directory.EnumerateFileSystemEntries(output).Any(),"Fresh actual probe output, never overwrite old evidence");

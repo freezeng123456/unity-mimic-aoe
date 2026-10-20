@@ -130,9 +130,9 @@ namespace Frontier.Tests
         {
             Assert.IsTrue(GraphicsSettings.currentRenderPipeline is UniversalRenderPipelineAsset);Assert.AreEqual(ColorSpace.Linear,QualitySettings.activeColorSpace);
             string expectedVersion=Environment.GetEnvironmentVariable("FRONTIER_TROPICAL_EXPECTED_VERSION"),role=Environment.GetEnvironmentVariable("FRONTIER_TROPICAL_CAPTURE_ROLE");
-            if(string.IsNullOrWhiteSpace(expectedVersion))expectedVersion="0.24.0";if(string.IsNullOrWhiteSpace(role))role="candidate-tropical-0.24";
-            Assert.That(expectedVersion,Is.EqualTo("0.23.0").Or.EqualTo("0.24.0"));Assert.AreEqual(expectedVersion=="0.23.0"?"baseline-tropical-0.23":"candidate-tropical-0.24",role,"Exact recorded role/version association");
-            Assert.AreEqual(expectedVersion,Application.version,"Current full/CI defaults to exact0.24; old0.23 baseline requires explicit version and matching role");
+            if(string.IsNullOrWhiteSpace(expectedVersion))expectedVersion="0.25.0";if(string.IsNullOrWhiteSpace(role))role="candidate-tropical-0.25";
+            Assert.That(expectedVersion,Is.EqualTo("0.23.0").Or.EqualTo("0.24.0").Or.EqualTo("0.25.0"));Assert.AreEqual(expectedVersion=="0.23.0"?"baseline-tropical-0.23":expectedVersion=="0.24.0"?"candidate-tropical-0.24":"candidate-tropical-0.25",role,"Exact recorded role/version association");
+            Assert.AreEqual(expectedVersion,Application.version,"Current full/CI defaults to exact0.25; old0.23 baseline requires explicit version and matching role");
             string output=Environment.GetEnvironmentVariable("FRONTIER_TROPICAL_OUTPUT"),expected=Environment.GetEnvironmentVariable("FRONTIER_SOURCE_FINGERPRINT");
             if(string.IsNullOrWhiteSpace(output))output=Path.Combine(Application.temporaryCachePath,"FrontierTropical081-"+Guid.NewGuid().ToString("N"));
             Assert.IsFalse(string.IsNullOrWhiteSpace(expected),"Keep the existing runner's strict source binding");output=Path.GetFullPath(output);
@@ -145,7 +145,7 @@ namespace Frontier.Tests
                 defaultZoom=camera.orthographicSize,worldTime=game.World.Time,simulationSteps=game.Simulation.StepCount,rulesSha256=SnapshotCodec.RulesHash(game.World.Rules),linearColorSpace=QualitySettings.activeColorSpace==ColorSpace.Linear,
                 actors=actors.Select(e=>new Actor{id=e.id,definition=e.def.id,position=e.position,facing=e.facing,radius=e.def.radius}).ToArray(),centralDockCandidates=centralCandidates,
                 dockPairNormalDot=Vector2.Dot(game.World.DockWaterDirection(actors[0].position),game.World.DockWaterDirection(actors[1].position))};
-            Assert.That(run.role,Is.EqualTo("baseline-tropical-0.23").Or.EqualTo("candidate-tropical-0.24"));Assert.AreEqual(42,run.seed);Assert.AreEqual(MapTopology.Tropical,game.World.MapId);Assert.AreEqual(26,run.defaultZoom);Assert.AreEqual(0,run.worldTime);Assert.AreEqual(0,run.simulationSteps);
+            Assert.That(run.role,Is.EqualTo("baseline-tropical-0.23").Or.EqualTo("candidate-tropical-0.24").Or.EqualTo("candidate-tropical-0.25"));Assert.AreEqual(42,run.seed);Assert.AreEqual(MapTopology.Tropical,game.World.MapId);Assert.AreEqual(26,run.defaultZoom);Assert.AreEqual(0,run.worldTime);Assert.AreEqual(0,run.simulationSteps);
             var layers=session.GetComponentsInChildren<Transform>(true).ToDictionary(t=>t.gameObject,t=>t.gameObject.layer);
             var behaviours=session.GetComponentsInChildren<MonoBehaviour>(true);var enabled=behaviours.Select(b=>b.enabled).ToArray();
             var canvases=session.GetComponentsInChildren<Canvas>(true);var canvasEnabled=canvases.Select(c=>c.enabled).ToArray();

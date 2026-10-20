@@ -172,7 +172,7 @@ namespace Frontier.Tests
         }
         [TestCase(0)] [TestCase(1)] public void NormalPaidMixedCargoUsesBothNamedBanksAndColdSavesThenGathersHeadlandCoinAndWood(int playerId)
         {
-            Assert.AreEqual("0.24.0",Application.version);var f=new Fixture(playerId);var w=f.W;var player=w.Players[playerId];
+            Assert.AreEqual("0.25.0",Application.version);var f=new Fixture(playerId);var w=f.W;var player=w.Players[playerId];
             var home=TropicalBayContent081.Landing(playerId,0);int other=1-playerId;var forward=TropicalBayContent081.Landing(other,1);
             ClearInterferingGuardians(f,home,other); // Before resource spending can send workers to the guarded safe forward mine.
             f.Paid(new GameCommand{player=playerId,kind=CommandKind.AdvanceAge,actors=new[]{f.Town.id},choice="coast_homestead_2"},w.Rules.Age(2).cost);

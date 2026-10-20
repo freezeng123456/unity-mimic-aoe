@@ -122,7 +122,7 @@ namespace Frontier.Tests
 
         [Test] public void RefinedBoundaryRemovesMeasuredCoarseTriangleOcclusionsWithoutMovingAuthorityWaterOrBridges()
         {
-            Assert.AreEqual("0.24.0",Application.version);Assert.AreEqual(257*257,ground.vertexCount);
+            Assert.AreEqual("0.25.0",Application.version);Assert.AreEqual(257*257,ground.vertexCount);
             CheckRegularTopology(ground,257);var coarse=ReconstructCoarseGround(world.Layout);
             try
             {
@@ -155,7 +155,7 @@ namespace Frontier.Tests
 
         [Test] public void RefinedWindingMeshRetainsEveryCoarseVertexAndAllSharedQueryValues()
         {
-            Assert.AreEqual("0.24.0",Application.version);Assert.AreEqual(257*257,ground.vertexCount);Assert.AreEqual(IndexFormat.UInt32,ground.indexFormat);
+            Assert.AreEqual("0.25.0",Application.version);Assert.AreEqual(257*257,ground.vertexCount);Assert.AreEqual(IndexFormat.UInt32,ground.indexFormat);
             Assert.IsEmpty(terrain.GetComponentsInChildren<Collider>());CheckRegularTopology(ground,257);CheckVertices(ground,world.Layout,257);
             var coarse=ReconstructCoarseGround(world.Layout);
             try
@@ -202,16 +202,17 @@ namespace Frontier.Tests
         {
             var other=new World(Catalog.Load(),42,"coast","ottoman",5,map);var root=WaterPresentation.BuildTerrain(stage.transform,other);
             var mesh=root.Find("Continuous sculpted land and river bed").GetComponent<MeshFilter>().sharedMesh;
-            var expected=ReconstructCoarseGround(other.Layout);
+            bool confluence=Application.version=="0.25.0"&&map==MapTopology.Tributaries;
+            var expected=ReconstructCoarseGround(other.Layout,confluence);
             try
-            {Assert.AreEqual(129*129,mesh.vertexCount);Assert.AreEqual(MeshHash(expected),MeshHash(mesh),"No presentation-density or geometry change to "+map);CheckRegularTopology(mesh,129);CheckVertices(mesh,other.Layout,129);}
+            {Assert.AreEqual(129*129,mesh.vertexCount);Assert.AreEqual(MeshHash(expected),MeshHash(mesh),confluence?"082 Tributaries must use the measured center-error diagonal policy":"No presentation-density or geometry change to "+map);CheckRegularTopology(mesh,129,confluence,other.Layout);CheckVertices(mesh,other.Layout,129);}
             finally{UnityEngine.Object.DestroyImmediate(expected);}
         }
 
         static bool OnBorder(Vector3 p)=>p.x<=0||p.x>=128||p.z<=0||p.z>=128;
         static int RegularGridCount(Mesh mesh)
         {int count=Mathf.RoundToInt(Mathf.Sqrt(mesh.vertexCount));Assert.AreEqual(count*count,mesh.vertexCount);return count;}
-        static void CheckRegularTopology(Mesh mesh,int count)
+        static void CheckRegularTopology(Mesh mesh,int count,bool confluence=false,MapLayout layout=null)
         {
             Assert.AreEqual(1,mesh.subMeshCount);var v=mesh.vertices;var t=mesh.triangles;
             Assert.AreEqual((count-1)*(count-1)*6,t.Length);float cell=128f/(count-1);int triangle=0;
@@ -220,7 +221,8 @@ namespace Frontier.Tests
             for(int z=0;z<count-1;z++)for(int x=0;x<count-1;x++)
             {
                 int a=x+z*count,b=a+count,c=b+1,d=a+1;
-                foreach(int expected in new[]{a,b,c,a,c,d}){Assert.AreEqual(expected,t[triangle++],"Actual fixed-diagonal topology");Assert.That(expected,Is.InRange(0,v.Length-1));}
+                bool reverse=confluence&&Mathf.Abs((v[b].y+v[d].y)*.5f-layout.BankHeight(new Vector2(x+.5f,z+.5f)))+.000001f<Mathf.Abs((v[a].y+v[c].y)*.5f-layout.BankHeight(new Vector2(x+.5f,z+.5f)));
+                foreach(int expected in (reverse?new[]{a,b,d,b,c,d}:new[]{a,b,c,a,c,d})){Assert.AreEqual(expected,t[triangle++],confluence?"Measured center-error diagonal topology":"Actual fixed-diagonal topology");Assert.That(expected,Is.InRange(0,v.Length-1));}
                 Assert.Greater(Vector3.Cross(v[b]-v[a],v[c]-v[a]).sqrMagnitude,.0000001f);
                 Assert.Greater(Vector3.Cross(v[c]-v[a],v[d]-v[a]).sqrMagnitude,.0000001f);
             }
@@ -261,11 +263,11 @@ namespace Frontier.Tests
             }
             return result;
         }
-        static Mesh ReconstructCoarseGround(MapLayout layout)
+        static Mesh ReconstructCoarseGround(MapLayout layout,bool confluence=false)
         {
             const int count=129;var v=new Vector3[count*count];var uv=new Vector2[v.Length];var color=new Color[v.Length];var triangles=new int[128*128*6];int n=0;
             for(int z=0;z<count;z++)for(int x=0;x<count;x++){int i=x+z*count;var p=new Vector2(x,z);v[i]=new Vector3(x,layout.BankHeight(p),z);uv[i]=p/128;color[i]=layout.BankLayers(p);}
-            for(int z=0;z<128;z++)for(int x=0;x<128;x++){int a=x+z*count,b=a+count,c=b+1,d=a+1;foreach(int i in new[]{a,b,c,a,c,d})triangles[n++]=i;}
+            for(int z=0;z<128;z++)for(int x=0;x<128;x++){int a=x+z*count,b=a+count,c=b+1,d=a+1;var p=new Vector2(x+.5f,z+.5f);bool reverse=confluence&&Mathf.Abs((v[b].y+v[d].y)*.5f-layout.BankHeight(p))+.000001f<Mathf.Abs((v[a].y+v[c].y)*.5f-layout.BankHeight(p));foreach(int i in (reverse?new[]{a,b,d,b,c,d}:new[]{a,b,c,a,c,d}))triangles[n++]=i;}
             var mesh=new Mesh{name="Reconstructed077 one meter ground control",indexFormat=IndexFormat.UInt32};mesh.vertices=v;mesh.uv=uv;mesh.colors=color;mesh.SetTriangles(triangles,0);mesh.RecalculateNormals();mesh.RecalculateTangents();mesh.RecalculateBounds();return mesh;
         }
         static Mesh ReconstructWater077(RiverChannel channel,float waterHeight)

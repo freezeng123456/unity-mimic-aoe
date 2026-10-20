@@ -20,7 +20,7 @@ namespace Frontier.Tests
         {if(!nav.IsWalkable(from,radius)||!nav.IsWalkable(to,radius))return false;if(nav.ClearLine(from,to,radius))return true;var path=nav.FindPath(from,to,radius);return path.Count>0&&Vector2.Distance(path.Last(),to)<.001f;}
         [Test] public void BothHomeRecipesAndExistingSafeForwardResourcesAreExactlyTheActualOldOpening()
         {
-            Assert.AreEqual("0.24.0",Application.version);var w=Opening();
+            Assert.AreEqual("0.25.0",Application.version);var w=Opening();
             Assert.AreEqual("e7a6e32b927e15b27701b9441464f50d749d705ab36ad331fcaa3312ed25bf6d",SnapshotCodec.Hash(JsonUtility.ToJson(new Rows{rows=w.Entities.Where(e=>e.id>=1&&e.id<=36).Select(Describe).ToArray()})));
             Assert.AreEqual("b09870176fbae42cb0053e01b5b7ff9a193325697609360b18e1c00ef4906b1b",SnapshotCodec.Hash(JsonUtility.ToJson(new Rows{rows=w.Entities.Where(e=>e.id>=52&&e.id<=87).Select(Describe).ToArray()})));
             Check(w,37,"mine",new Vector2(44f,35f));

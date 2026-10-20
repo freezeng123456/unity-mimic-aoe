@@ -30,7 +30,7 @@ namespace Frontier.Tests
         [TearDown] public void TearDown(){if(stage!=null)UnityEngine.Object.DestroyImmediate(stage);}
         [Test] public void RealOneMeterGroundKeepsFrozenWaterBridgesAndNavigationMasks()
         {
-            string before=JsonUtility.ToJson(world.CaptureState());Assert.AreEqual("0.24.0",Application.version);
+            string before=JsonUtility.ToJson(world.CaptureState());Assert.AreEqual("0.25.0",Application.version);
             Assert.AreEqual(16641,ground.vertexCount);Assert.AreEqual(32768,ground.triangles.Length/3);
             Assert.AreEqual(OriginalWater,MeshHash(water));Assert.AreEqual(OriginalBridges,BridgeHash(terrain));Assert.AreEqual(OriginalMasks,GridHash(world,false));
             Assert.AreNotEqual(OriginalQuery,GridHash(world,true),"A physical profile change, not only a renamed tropical palette");

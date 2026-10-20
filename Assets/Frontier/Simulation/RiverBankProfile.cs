@@ -114,7 +114,8 @@ namespace Frontier
             float shoulder=1-Mathf.SmoothStep(0,1,(distance-1.5f-noise*.65f)/sandWidth);
             float sand=(1-damp)*shoulder;
             var historical=new Color(damp,sand,1-damp-sand,1);
-            return TropicalBayContent081.Applies(this)?TropicalBankLayers081(point,distance,historical):historical;
+            if(TropicalBayContent081.Applies(this))return TropicalBankLayers081(point,distance,historical);
+            return ConfluenceContent082.Applies(this)?ConfluenceBankLayers082(point,distance,historical):historical;
         }
     }
 }

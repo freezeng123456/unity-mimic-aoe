@@ -43,6 +43,7 @@ namespace Frontier
             else foreach(var channel in world.Layout.Channels)BuildChannel(root,channel,water,index++,world.Layout.WaterHeight);
             if(world.Layout.HasWater)BuildBanks(root,world);
             if(world.MapId==MapTopology.Tropical)BuildTropicalPalms(root,world);
+            BuildConfluenceLandmark082(root,world);
             index=0;foreach(var bridge in world.Layout.Bridges)BuildBridge(root,bridge,index++);
             return root;
         }
@@ -82,6 +83,17 @@ namespace Frontier
             {
                 int a=x+z*count,b=a+count,c=b+1,d=a+1;
                 if(authored!=null)authored[layout.SurfaceKind(new Vector2((x+.5f)*cell,(z+.5f)*cell))].AddRange(new[]{a,b,c,a,c,d});
+                else if(ConfluenceContent082.Applies(layout))
+                {
+                    // At a curved bank, a fixed diagonal can cross a submerged
+                    // query with a raised 1m plane. Choose the diagonal whose
+                    // midpoint best matches the same physical height authority.
+                    // No special failed coordinate, extra geometry or bed offset.
+                    float middle=layout.BankHeight(new Vector2(x+.5f,z+.5f));
+                    float ac=Mathf.Abs((vertices[a].y+vertices[c].y)*.5f-middle);
+                    float bd=Mathf.Abs((vertices[b].y+vertices[d].y)*.5f-middle);
+                    triangles.AddRange(bd+.000001f<ac?new[]{a,b,d,b,c,d}:new[]{a,b,c,a,c,d});
+                }
                 else triangles.AddRange(new[]{a,b,c,a,c,d});
             }
             var mesh=new Mesh{name="River valley ground with submerged bed",indexFormat=IndexFormat.UInt32};
