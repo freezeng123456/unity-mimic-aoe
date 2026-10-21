@@ -254,18 +254,34 @@ namespace Frontier
             Vector2 velocity=ChooseVelocity(e,to,goal,dt);float maxStep=Speed(e)*dt;
             Vector2 move=Vector2.ClampMagnitude(velocity*dt,maxStep),candidate=e.position+move;
             bool walked=false;
-            if(navigation.ClearLine(e.position,candidate,e.def.radius)&&AllyMovementSegmentFree(e,e.position,candidate)){e.position=candidate;walked=true;}
+            if(navigation.ClearLine(e.position,candidate,e.def.radius)&&AllyMovementSegmentFree(e,e.position,candidate)){CommitMovementPosition(e,candidate);walked=true;}
             else
             {
                 Vector2 xOnly=e.position+new Vector2(move.x,0),zOnly=e.position+new Vector2(0,move.y);
-                if(navigation.ClearLine(e.position,xOnly,e.def.radius)&&AllyMovementSegmentFree(e,e.position,xOnly)&&(xOnly-e.position).sqrMagnitude>.0001f){e.position=xOnly;walked=true;}
-                else if(navigation.ClearLine(e.position,zOnly,e.def.radius)&&AllyMovementSegmentFree(e,e.position,zOnly)){e.position=zOnly;walked=true;}
+                if(navigation.ClearLine(e.position,xOnly,e.def.radius)&&AllyMovementSegmentFree(e,e.position,xOnly)&&(xOnly-e.position).sqrMagnitude>.0001f){CommitMovementPosition(e,xOnly);walked=true;}
+                else if(navigation.ClearLine(e.position,zOnly,e.def.radius)&&AllyMovementSegmentFree(e,e.position,zOnly)){CommitMovementPosition(e,zOnly);walked=true;}
             }
             if(walked&&(e.position-e.previousPosition).sqrMagnitude>.0001f){e.facing=(e.position-e.previousPosition).normalized;e.stuckFor=0;e.status="Moving";}
             else
             {
                 e.stuckFor+=dt;if(e.stuckFor>1.5f){e.pathVersion=-1;e.pathRetryAt=Time;e.stuckFor=0;}
             }
+        }
+        private void CommitMovementPosition(EntityState unit,Vector2 point)
+        {
+            int before=Mathf.FloorToInt(unit.position.x/8)+Mathf.FloorToInt(unit.position.y/8)*32;
+            int after=Mathf.FloorToInt(point.x/8)+Mathf.FloorToInt(point.y/8)*32;
+            unit.position=point;
+            if(before==after)return;
+            // Tick movement is sequential. Later actors must query the current
+            // body's bucket after an earlier actor crosses an eight-metre edge.
+            if(spatial.TryGetValue(before,out var oldBucket))oldBucket.Remove(unit);
+            if(!spatial.TryGetValue(after,out var newBucket))
+            {newBucket=new List<EntityState>();spatial[after]=newBucket;}
+            // Restore rebuilds buckets in entity order. Keep that same order
+            // during movement so cold restoration preserves neighbor scans.
+            int insertion=newBucket.FindIndex(other=>other.id>unit.id);
+            if(insertion<0)newBucket.Add(unit);else newBucket.Insert(insertion,unit);
         }
         private readonly List<EntityState> movementNeighbors=new List<EntityState>(24);
         private static readonly float[] steeringAngles={0,30,-30,60,-60,90,-90,120,-120,180};
@@ -276,7 +292,7 @@ namespace Frontier
             // Follow an exact recovery corridor when it has an unoccupied next step.
             // Lateral steering must not bend that corridor back into a parked ally.
             Vector2 recoveryStep=e.position+forward*speed*dt;
-            if(e.pathAvoidsAllies&&navigation.ClearLine(e.position,recoveryStep,e.def.radius)&&AllySegmentFree(e,e.position,recoveryStep))return forward*speed;
+            if(e.pathAvoidsAllies&&navigation.ClearLine(e.position,recoveryStep,e.def.radius)&&AllyMovementSegmentFree(e,e.position,recoveryStep))return forward*speed;
             movementNeighbors.Clear();foreach(var other in Nearby(e.position,3.5f))if(other.id!=e.id&&other.def.kind==EntityKind.Unit&&other.garrisonedIn==0&&other.def.waterborne==e.def.waterborne)movementNeighbors.Add(other);
             if(movementNeighbors.Count==0)return forward*speed;
             Vector2 best=Vector2.zero;float bestScore=float.MaxValue;float distance=to.magnitude;Vector2 steeringGoal=e.position+to;

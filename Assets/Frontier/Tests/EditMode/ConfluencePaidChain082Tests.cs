@@ -280,53 +280,63 @@ namespace Frontier.Tests
             CollectionAssert.AreEquivalent(new[]{-1,1},directions);Assert.AreEqual(deliveries*w.Rules.landmarks.tradeXp,w.Players[f.P].xp-xp,.002f);EqualCost(funds,w.Players[f.P].resources);EqualCost(income,w.Players[f.P].tradeIncome);
             TestContext.WriteLine($"Confluence082 normal paid200W trade station receives both directions elapsed={w.Time-start:R}; existing public route caravan, not a newly trained player caravan");
         }
-        static float WalkClone(World normal,int[] ids,Vector2 destination)
+        [Serializable] sealed class LandTravel
         {
-            string frozen=State(normal);var w=World.Restore(normal.Rules,SnapshotCodec.Clone(normal.CaptureState()));float start=w.Time;int cursor=w.Events.Count;var distances=ids.ToDictionary(id=>id,id=>0f);var decks=new HashSet<int>();var initialHp=ids.ToDictionary(id=>id,id=>w.Get(id).hp);
-            var cannons=ids.Where(id=>w.Get(id)?.def.id=="cannon").ToArray();
-            var workers=ids.Where(id=>w.Get(id)?.Worker==true).ToArray();
-            bool intercepted=false;
-            if(cannons.Length>0)Accepted(w.Issue(new GameCommand{player=0,kind=CommandKind.Order,order=OrderKind.AttackMove,actors=cannons,point=destination}));
-            // The cannon is the escort: let it establish a real lead before
-            // the faster villager receives its public move order.
-            if(cannons.Length>0&&workers.Length>0)
-                for(int lead=0;lead<600&&cannons.Any(id=>w.Get(id).orders.Count>0);lead++)
-                {
-                    var previous=w.Get(cannons[0]).position;int beforeEvents=w.Events.Count;w.Tick(.1f);var moved=Vector2.Distance(previous,w.Get(cannons[0]).position);distances[cannons[0]]+=moved;
-                    if(w.Players[0].losses!=0)
-                    {
-                        intercepted=true;TestContext.WriteLine("WalkClone escort lead intercepted events="+string.Join(" | ",w.Events.Skip(beforeEvents).Select(e=>e.kind+":"+e.entity+":"+e.target+":"+e.amount)));break;
-                    }
-                    Assert.IsFalse(w.IsMatchEnded);
-                }
-            if(intercepted){TestContext.WriteLine("Confluence082 land escort ended at the first natural opponent contact before the full destination; ferry remains the safe paid option");Assert.AreEqual(frozen,State(normal));return w.Time-start;}
-            if(workers.Length>0)Accepted(w.Issue(new GameCommand{player=0,kind=CommandKind.Order,order=OrderKind.Move,actors=workers,point=destination}));
-            if(cannons.Length==0&&workers.Length==0)Accepted(w.Issue(new GameCommand{player=0,kind=CommandKind.Order,order=OrderKind.Move,actors=ids,point=destination}));
-            for(int step=0;step<1800&&ids.Any(id=>w.Get(id).orders.Count>0);step++)
+            public bool completed,intercepted;
+            public float completedTravelSeconds,elapsedToFailure;
+            public string commonPaidSnapshot,sourceFingerprint;
+            public int[] casualties;
+        }
+        static LandTravel ObserveLandClone(World normal,int[] ids,Vector2 destination)
+        {
+            string frozen=State(normal);var w=World.Restore(normal.Rules,SnapshotCodec.Clone(normal.CaptureState()));float start=w.Time;int cursor=w.Events.Count,losses=w.Players[0].losses;
+            var distances=ids.ToDictionary(id=>id,id=>0f);var decks=ids.ToDictionary(id=>id,id=>new HashSet<int>());var initialHp=ids.ToDictionary(id=>id,id=>w.Get(id).hp);
+            var result=new LandTravel{commonPaidSnapshot=SnapshotCodec.Hash(frozen),sourceFingerprint=Environment.GetEnvironmentVariable("FRONTIER_SOURCE_FINGERPRINT"),casualties=Array.Empty<int>()};
+            bool StepClone()
             {
-                var positions=ids.ToDictionary(id=>id,id=>w.Get(id).position);int beforeEvents=w.Events.Count;w.Tick(.1f);Assert.IsFalse(w.IsMatchEnded);
-                if(w.Players[0].losses!=0)
+                float remaining=180-(w.Time-start);Assert.Greater(remaining,0,"Whole land observation budget includes the escort lead");float dt=Mathf.Min(.1f,remaining);
+                var positions=ids.ToDictionary(id=>id,id=>w.Get(id).position);w.Tick(dt);Assert.IsFalse(w.IsMatchEnded);
+                if(w.Players[0].losses!=losses)
                 {
-                    intercepted=true;TestContext.WriteLine("WalkClone natural interception events="+string.Join(" | ",w.Events.Skip(beforeEvents).Select(e=>e.kind+":"+e.entity+":"+e.target+":"+e.amount+"/"+w.Get(e.entity)?.def.id+"->"+w.Get(e.target)?.def.id)));break;
+                    result.casualties=ids.Where(id=>!w.Get(id).Alive).ToArray();Assert.IsNotEmpty(result.casualties,"Observation ended only for an identified convoy casualty");result.intercepted=true;return false;
                 }
                 foreach(int id in ids)
                 {
                     var e=w.Get(id);Assert.IsTrue(e.Alive&&e.garrisonedIn==0);Vector2 previous=positions[id];float moved=Vector2.Distance(previous,e.position);distances[id]+=moved;
                     Assert.IsTrue(w.Navigation.IsWalkable(e.position,e.def.radius)&&(!w.IsWater(e.position)||w.IsBridge(e.position)));Assert.IsTrue(w.Navigation.ClearLine(previous,e.position,e.def.radius));
-                    Assert.LessOrEqual(moved,w.Speed(e)*.1f+.0001f);Assert.LessOrEqual(Mathf.Abs(w.SurfaceHeight(previous)-w.SurfaceHeight(e.position)),moved*.4f+.0002f);
-                    int samples=Mathf.Max(1,Mathf.CeilToInt(moved/.25f));for(int s=0;s<=samples;s++)for(int b=0;b<w.Layout.Bridges.Length;b++)if(w.Layout.Bridges[b].Contains(Vector2.Lerp(previous,e.position,(float)s/samples)))decks.Add(b);
+                    Assert.LessOrEqual(moved,w.Speed(e)*dt+.0001f);Assert.LessOrEqual(Mathf.Abs(w.SurfaceHeight(previous)-w.SurfaceHeight(e.position)),moved*.4f+.0002f);
+                    int samples=Mathf.Max(1,Mathf.CeilToInt(moved/.25f));for(int sample=0;sample<=samples;sample++)for(int bridge=0;bridge<w.Layout.Bridges.Length;bridge++)if(w.Layout.Bridges[bridge].Contains(Vector2.Lerp(previous,e.position,(float)sample/samples)))decks[id].Add(bridge);
                 }
+                return true;
             }
-            if(intercepted)
+            var cannons=ids.Where(id=>w.Get(id)?.def.id=="cannon").ToArray();var workers=ids.Where(id=>w.Get(id)?.Worker==true).ToArray();
+            if(cannons.Length>0)Accepted(w.Issue(new GameCommand{player=0,kind=CommandKind.Order,order=OrderKind.AttackMove,actors=cannons,point=destination}));
+            for(int lead=0;lead<600&&cannons.Any(id=>w.Get(id).orders.Count>0)&&!result.intercepted;lead++)StepClone();
+            if(!result.intercepted)
             {
-                var casualties=ids.Where(id=>!w.Get(id).Alive).ToArray();Assert.Greater(casualties.Length,0,"Natural interception must identify a paid convoy casualty");
-                TestContext.WriteLine($"Confluence082 natural land clone intercepted before destination actors={string.Join(",",casualties)} bridgeDecks={string.Join(",",decks.OrderBy(i=>i))}; retained as an observed tactical risk, not counted as a ferry failure");
-                Assert.AreEqual(frozen,State(normal));return w.Time-start;
+                if(workers.Length>0)Accepted(w.Issue(new GameCommand{player=0,kind=CommandKind.Order,order=OrderKind.Move,actors=workers,point=destination}));
+                if(cannons.Length==0&&workers.Length==0)Accepted(w.Issue(new GameCommand{player=0,kind=CommandKind.Order,order=OrderKind.Move,actors=ids,point=destination}));
+                while(w.Time-start<180&&ids.Any(id=>w.Get(id).orders.Count>0)&&!result.intercepted)StepClone();
             }
-            foreach(int id in ids){var e=w.Get(id);Assert.IsTrue(e.Alive);Assert.IsEmpty(e.orders);Assert.Less(Vector2.Distance(e.position,destination),6.01f);TestContext.WriteLine($"Confluence082 natural land clone actor={id}/{e.def.id} length={distances[id]:R} hpBefore={initialHp[id]:R} hpAfter={e.hp:R} destination={e.position}");}
-            Assert.IsTrue(decks.Contains(0)&&decks.Contains(1),"Actual detour traverses both main-river bridges; not assumed upstream-branch shortcut");
-            foreach(var ev in w.Events.Skip(cursor).Where(e=>e.kind=="Fire"||e.kind=="Damage"))TestContext.WriteLine($"Confluence082 natural land threat time={ev.time:R} event={ev.kind} source={ev.entity}/{w.Get(ev.entity)?.def.id} target={ev.target}/{w.Get(ev.target)?.def.id} amount={ev.amount:R}");
-            Assert.AreEqual(frozen,State(normal),"Walking branch never mutates or advances original paid World");TestContext.WriteLine($"Confluence082 land actual elapsed={w.Time-start:R} bridgeDecks={string.Join(",",decks.OrderBy(i=>i))} commonPaidSnapshot={SnapshotCodec.Hash(frozen)}; no guardian/enemy Hold/removal/spawn; enemy exposure is not a controlled pure movement benchmark");return w.Time-start;
+            if(!result.intercepted)
+            {
+                foreach(int id in ids)
+                {
+                    var e=w.Get(id);Assert.IsTrue(e.Alive&&e.garrisonedIn==0);Assert.IsEmpty(e.orders,"Land route timed out; this is not a completed journey");Assert.Less(Vector2.Distance(e.position,destination),6.01f);
+                    Assert.IsTrue(decks[id].Contains(0)&&decks[id].Contains(1),"Each actual actor must traverse both main bridge decks");
+                    TestContext.WriteLine($"Confluence082 completed land actor={id}/{e.def.id} length={distances[id]:R} hpBefore={initialHp[id]:R} hpAfter={e.hp:R} destination={e.position}");
+                }
+                Assert.AreEqual(losses,w.Players[0].losses);result.completed=true;result.completedTravelSeconds=w.Time-start;
+            }
+            else
+            {
+                result.elapsedToFailure=w.Time-start;
+                Assert.IsTrue(w.Events.Skip(cursor).Any(e=>e.kind=="Damage"&&result.casualties.Contains(e.target)),"Natural combat must explain the observed casualty");
+                TestContext.WriteLine($"Confluence082 land observation FAILED arrival: casualties={string.Join(",",result.casualties)} elapsedToFailure={result.elapsedToFailure:R}; no completed travel time or saving can be computed");
+            }
+            Assert.AreEqual(frozen,State(normal),"Observation never mutates or advances the normal paid World");
+            string directory=Environment.GetEnvironmentVariable("FRONTIER082_OUTPUT");if(!string.IsNullOrWhiteSpace(directory)){Directory.CreateDirectory(directory);File.WriteAllText(Path.Combine(directory,"land-route082.json"),JsonUtility.ToJson(result,true));}
+            return result;
         }
         [Test] public void NormalPaidWorkerAndFieldCannonFerryUsesExistingResourcesAndRecordsActualLandTradeoffs()
         {
@@ -341,19 +351,22 @@ namespace Frontier.Tests
             var passengers=new[]{f.Workers[0],cannon};var ids=passengers.Select(e=>e.id).ToArray();f.StopGatherers();
             Assert.IsTrue(w.TryTransportShore(ship,south,cannon.def.radius,out var actualSouth,out var southBerth));Assert.AreEqual(south,actualSouth,"Paid dock must not redirect southern loading request");
             Assert.IsTrue(w.TryTransportShore(ship,north,cannon.def.radius,out var actualNorth,out _));Assert.AreEqual(north,actualNorth);
-            // Issue separate public moves so the first unit does not occupy
-            // the exact landing anchor and strand the larger cannon in a
-            // formation slot. Both orders remain ordinary player movement.
+            // Distinct surveyed slots keep the first arrival from occupying
+            // the second actor's destination. Require both real Move orders
+            // to finish; entering loading range does not complete movement.
             foreach(var passenger in passengers)
             {
-                f.Order(passenger,OrderKind.Move,point:south);
-                f.Until(()=>passenger.orders.Count==0||Vector2.Distance(passenger.position,south)<6.01f,150,"Paid passenger physically stage south "+passenger.def.id);
-                if(passenger.orders.Count>0)f.Order(passenger,OrderKind.Hold);
+                var staging=passenger.Worker?south:south+new Vector2(-4,-1.5f);
+                f.Order(passenger,OrderKind.Move,point:staging);
+                var assigned=passenger.orders.Peek();
+                f.Until(()=>passenger.orders.Count==0,150,"Paid passenger completes distinct southern Move "+passenger.def.id);
+                Assert.Less(Vector2.Distance(passenger.position,assigned.hasResolvedPoint?assigned.resolvedPoint:assigned.point),.051f,"Actual assigned movement endpoint");
                 Assert.Less(Vector2.Distance(passenger.position,south),6.01f);
                 Assert.IsTrue(passenger.Alive&&passenger.garrisonedIn==0);
             }
+            Assert.GreaterOrEqual(Vector2.Distance(passengers[0].position,passengers[1].position),passengers[0].def.radius+passengers[1].def.radius+.15f-.001f);
             f.Order(ship,OrderKind.Move,point:southBerth);f.Until(()=>ship.orders.Count==0,150,"Paid transport physically prepositions at south berth");f.Order(ship,OrderKind.Hold);
-            string common=State(w);float investmentTime=w.Time;var investmentSpent=player.spent;var investmentGathered=player.gathered;var investmentFunds=player.resources;float landSeconds=WalkClone(w,ids,north);Assert.AreEqual(common,State(w));
+            string common=State(w);string diagnosisRoot=Environment.GetEnvironmentVariable("FRONTIER082_OUTPUT");if(!string.IsNullOrWhiteSpace(diagnosisRoot)){Directory.CreateDirectory(diagnosisRoot);File.WriteAllText(Path.Combine(diagnosisRoot,"common-paid-world082.json"),common);}float investmentTime=w.Time;var investmentSpent=player.spent;var investmentGathered=player.gathered;var investmentFunds=player.resources;var land=ObserveLandClone(w,ids,north);ConfluenceSafeLand082Evidence.Verify(w,ids[0],ids[1]);Assert.AreEqual(common,State(w));
             TestContext.WriteLine($"Confluence082 first-use investment elapsed={investmentTime:R} spent={JsonUtility.ToJson(investmentSpent)} gathered={JsonUtility.ToJson(investmentGathered)} funds={JsonUtility.ToJson(investmentFunds)}; includes paidAgeII/III+Dock/fisher/transport/foundry/cannon/tradePost, genuine age reward crates; no sunk-cost-free first-use shortcut claim");
             float ferryStart=w.Time;int population=player.usedPopulation;var funds=player.resources;cursor=w.Events.Count;
             Accepted(w.Issue(new GameCommand{player=0,kind=CommandKind.Embark,actors=ids,target=ship.id,point=south}));Assert.IsTrue(passengers.All(e=>e.garrisonedIn==0));f.Step();
@@ -370,7 +383,8 @@ namespace Frontier.Tests
                 Assert.Greater(Vector2.Dot(w.Layout.WaterDirection(e.position),w.Layout.WaterDirection(north)),.5f);Assert.Greater(Vector2.Dot(e.position-south,north-south),(north-south).sqrMagnitude*.5f);
                 foreach(var other in passengers.Where(a=>a.id!=e.id))Assert.GreaterOrEqual(Vector2.Distance(e.position,other.position),e.def.radius+other.def.radius+.15f-.001f);
             }
-            float ferrySeconds=w.Time-ferryStart;TestContext.WriteLine($"Confluence082 same paid snapshot actual ferry elapsed={ferrySeconds:R} boarding={sailingStart-ferryStart:R} sailUnload={w.Time-sailingStart:R} shipLength={sailed:R} land={landSeconds:R} signedSavings={landSeconds-ferrySeconds:R}; same starting state, same northern destination region, natural unequal threat exposure, existing-boat marginal time only; not parity/FPS/native");
+            float ferrySeconds=w.Time-ferryStart;TestContext.WriteLine($"Confluence082 same paid snapshot actual ferry elapsed={ferrySeconds:R} boarding={sailingStart-ferryStart:R} sailUnload={w.Time-sailingStart:R} shipLength={sailed:R} landCompleted={land.completed} landFailureElapsed={land.elapsedToFailure:R}; arrival failure has no travel-time comparison; same starting state and destination region, natural unequal threat exposure, existing-boat marginal time only; not parity/FPS/native");
+            if(land.completed)TestContext.WriteLine($"Confluence082 completed land elapsed={land.completedTravelSeconds:R} ferry elapsed={ferrySeconds:R} difference={land.completedTravelSeconds-ferrySeconds:R}; both full arrivals only, marginal transport comparison");
             f.Order(cannon,OrderKind.Hold);GatherExistingNorthernResource(f,f.Workers[0],ConfluenceContent082.NorthMine);GatherExistingNorthernResource(f,f.Workers[0],ConfluenceContent082.NorthWood(3));Assert.AreEqual(3,player.age);Assert.AreEqual(f.RulesHash,SnapshotCodec.RulesHash(w.Rules));Assert.AreEqual(population,player.usedPopulation);Assert.AreEqual(0,player.losses);
             TestContext.WriteLine($"ConfluencePaid082 t={w.Time:R} worker={ids[0]} cannon={ids[1]} dock={dock.position} source={Environment.GetEnvironmentVariable("FRONTIER_SOURCE_FINGERPRINT")}; no original resource relocation, economic grants, normal actor spawn, enemy Hold, native/fullmatch/FPS claim");
         }

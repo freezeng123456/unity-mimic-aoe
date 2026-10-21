@@ -169,7 +169,30 @@ namespace Frontier
             // Recover through the actual free space without weakening body collision.
             return distance>=physical*physical&&distance<buffered*buffered?physical+.00001f:buffered;
         }
-        private bool AllyMovementSegmentFree(EntityState unit,Vector2 start,Vector2 end)=>AllySegmentFree(unit,start,end,unit.pathAvoidsAllies);
+        private bool AllyMovementSegmentFree(EntityState unit,Vector2 start,Vector2 end)
+        {
+            // Keep stationary recovery/parking buffers in the existing planner.
+            if(!AllySegmentFree(unit,start,end,unit.pathAvoidsAllies))return false;
+            var segment=end-start;float lengthSquared=segment.sqrMagnitude;
+            if(lengthSquared<.000000000001f)return true;
+            // A moving ally is still a physical body. Test the entire submitted
+            // short step, including sub-centimetre steps; soft steering alone
+            // cannot guarantee separation. Moving bodies get no parking buffer.
+            foreach(var other in Nearby((start+end)*.5f,segment.magnitude*.5f+3.5f))
+            {
+                if(!PhysicalMovementAlly(unit,other))continue;
+                float radius=unit.def.radius+other.def.radius,radiusSquared=radius*radius;
+                float startSquared=(other.position-start).sqrMagnitude;
+                float along=Vector2.Dot(other.position-start,segment)/lengthSquared;
+                // Existing contacts may separate monotonically. Never snap,
+                // deepen a contact, or cross the body while leaving it.
+                if(startSquared<radiusSquared&&along<=0&&
+                    (other.position-end).sqrMagnitude+.0000001f>=startSquared)continue;
+                var closest=start+segment*Mathf.Clamp01(along);
+                if((closest-other.position).sqrMagnitude<radiusSquared)return false;
+            }
+            return true;
+        }
         private bool AllySegmentFree(EntityState unit,Vector2 start,Vector2 end,bool preferredBuffer=true)
         {
             var segment=end-start;float lengthSquared=segment.sqrMagnitude;if(lengthSquared<.0001f)return true;

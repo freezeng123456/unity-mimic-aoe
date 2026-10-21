@@ -270,6 +270,10 @@ namespace Frontier
             foreach(var bucket in spatial.Values)bucket.Clear();
             foreach(var e in Entities)if(e.Alive&&e.garrisonedIn==0)
             {int key=Mathf.FloorToInt(e.position.x/8)+Mathf.FloorToInt(e.position.y/8)*32;if(!spatial.TryGetValue(key,out var bucket)){bucket=new List<EntityState>();spatial[key]=bucket;}bucket.Add(e);}
+            // Valid saved entity arrays can arrive in a different order. Keep
+            // neighbor scans identical to incremental cross-bucket movement.
+            foreach(var bucket in spatial.Values)for(int i=1;i<bucket.Count;i++)
+                if(bucket[i-1].id>bucket[i].id){bucket.Sort((a,b)=>a.id.CompareTo(b.id));break;}
         }
         public IEnumerable<EntityState> Nearby(Vector2 center,float radius)
         {

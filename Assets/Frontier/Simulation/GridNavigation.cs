@@ -366,10 +366,13 @@ namespace Frontier
         }
         public List<Vector2> FormationSlots(Vector2 center,int count,float spacing)
         {
-            spacing=Mathf.Max(.9f,spacing);center=new Vector2(Mathf.Clamp(center.x,8,Width-9),Mathf.Clamp(center.y,8,Height-9));var result=new List<Vector2>(count);
+            spacing=Mathf.Max(.9f,spacing);float radius=spacing*.38f;
+            // Keep a legal requested center. The slot body, rather than a fixed
+            // eight-cell inset, defines its safe distance from the map frame.
+            center=new Vector2(Mathf.Clamp(center.x,.5f+radius,Width-1.5f-radius),Mathf.Clamp(center.y,.5f+radius,Height-1.5f-radius));var result=new List<Vector2>(count);
             for(int ring=0;ring<Mathf.Max(Width,Height)&&result.Count<count;ring++)for(int y=-ring;y<=ring&&result.Count<count;y++)for(int x=-ring;x<=ring&&result.Count<count;x++)
             {
-                if(ring>0&&Mathf.Abs(x)!=ring&&Mathf.Abs(y)!=ring)continue;var point=center+new Vector2(x,y)*spacing;if(!IsWalkable(point,spacing*.38f))continue;result.Add(point);
+                if(ring>0&&Mathf.Abs(x)!=ring&&Mathf.Abs(y)!=ring)continue;var point=center+new Vector2(x,y)*spacing;if(!IsWalkable(point,radius))continue;result.Add(point);
             }
             return result;
         }

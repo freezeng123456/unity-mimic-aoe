@@ -78,7 +78,11 @@ namespace Frontier
                 building.occupants.Remove(unit.id);released.Add(unit);
             }
             if(!destroyed)AssignProducerRally(building,released);
-            if(released.Count>0)Emit("Ungarrison",building.owner,building.id,destroyed?"Evacuated destroyed building":"Released to rally",released.Count);
+            if(released.Count>0)
+            {
+                RebuildSpatial();
+                Emit("Ungarrison",building.owner,building.id,destroyed?"Evacuated destroyed building":"Released to rally",released.Count);
+            }
             return building.occupants.Count==0;
         }
         private void EvacuateDestroyedBuilding(EntityState building)

@@ -23,11 +23,13 @@ namespace Frontier.Tests
             var ground=root.Find("Continuous sculpted land and river bed").GetComponent<MeshFilter>().sharedMesh;
             int expectedCount=map==MapTopology.Winding?257:129;
             Assert.AreEqual(expectedCount*expectedCount,ground.vertexCount);
-            // Bounded physical dry shoulders:081 Tropical14cm,082 confluence9cm.
-            // The two untouched authored rivers retain the historical flat cap.
-            Assert.LessOrEqual(ground.bounds.max.y,map==MapTopology.Tropical?.14f:map==MapTopology.Tributaries?.09f:.001f);
+            // Bounded physical dry shoulders:081 Tropical14cm,082 confluence9cm,
+            // 083 Estuary9cm (one micrometre for float interpolation).
+            // Winding retains its historical flat cap.
+            Assert.LessOrEqual(ground.bounds.max.y,map==MapTopology.Tropical?.14f:map==MapTopology.Tributaries?.09f:map==MapTopology.Estuary?.090001f:.001f);
             if(map==MapTopology.Tropical)Assert.Greater(ground.bounds.max.y,.05f,"The declared dry shoulder must be actual geometry, not only a tint");
             if(map==MapTopology.Tributaries)Assert.Greater(ground.bounds.max.y,.02f,"The confluence shoulder must be real geometry");
+            if(map==MapTopology.Estuary)Assert.Greater(ground.bounds.max.y,.02f,"The estuary dry shoulder must be real geometry");
             Assert.AreEqual(1,ground.subMeshCount,"Shore layers must blend on one surface rather than making hard cell-sized material boundaries");
             Assert.AreEqual(ground.vertexCount,ground.colors.Length);
             Assert.IsTrue(ground.colors.Any(c=>c.r>.1f&&c.r<.9f&&c.g>.05f),"Mud and dry sand overlap continuously instead of ending in a grid staircase");
@@ -44,6 +46,11 @@ namespace Frontier.Tests
             {
                 var point=new Vector2(p.x,p.z);
                 Assert.AreEqual(world.Layout.BankHeight(point),p.y,.0001f);
+                if(map==MapTopology.Estuary)
+                {
+                    if(p.y>.001f){Assert.IsFalse(world.Layout.IsWater(point));Assert.Greater(world.Layout.EstuaryPreservationWeight083(point),0);}
+                    if(world.Layout.IsWater(point))Assert.LessOrEqual(p.y,world.Layout.WaterHeight-.0199f,"The estuary shoulder cannot raise any wet bed vertex");
+                }
                 if(map==MapTopology.Tributaries)
                 {
                     if(p.y>.001f){Assert.IsFalse(world.Layout.IsWater(point));Assert.Greater(world.Layout.ConfluencePreservationWeight082(point),0);}

@@ -295,6 +295,9 @@ namespace Frontier
                 passenger.orders.Clear();InvalidateCommandPath(passenger);passenger.fireAt=-1;passenger.attackTarget=0;passenger.work=default;passenger.status="Idle";
                 ship.occupants.Remove(passenger.id);Emit("Disembarked",passenger.owner,passenger.id,"Landed on navigable shore",TransportSlotCost(passenger),ship.id,points[i]);
             }
+            // The tick's initial index excluded contained passengers. Later
+            // movers must see every released body immediately, even in-place.
+            RebuildSpatial();
             return true;
         }
         public void TickTransportCargo()

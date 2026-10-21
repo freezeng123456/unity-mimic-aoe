@@ -60,9 +60,12 @@ namespace Frontier
         {int order=a.score.CompareTo(b.score);if(order!=0)return order;order=a.point.x.CompareTo(b.point.x);return order!=0?order:a.point.y.CompareTo(b.point.y);}
         private static void ResetDestinationPath(EntityState unit)
         {unit.pathVersion=-1;unit.detourUntil=0;unit.progressDistance=float.MaxValue;unit.stuckFor=0;}
+        private bool PhysicalMovementAlly(EntityState unit,EntityState other)=>
+            other.id!=unit.id&&other.Alive&&ShareMovementSide(other.owner,unit.owner)&&other.garrisonedIn==0&&
+            other.def.kind==EntityKind.Unit&&other.def.waterborne==unit.def.waterborne;
         private bool StationaryAlly(EntityState unit,EntityState other)
         {
-            if(other.id==unit.id||!other.Alive||!ShareMovementSide(other.owner,unit.owner)||other.garrisonedIn!=0||other.def.kind!=EntityKind.Unit||other.def.waterborne!=unit.def.waterborne)return false;
+            if(!PhysicalMovementAlly(unit,other))return false;
             if(other.orders.Count==0||other.hold)return true;
             var kind=other.orders.Peek().kind;
             return kind!=OrderKind.Move&&kind!=OrderKind.AttackMove&&other.status!="Moving";
