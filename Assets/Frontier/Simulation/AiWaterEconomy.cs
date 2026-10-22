@@ -12,10 +12,13 @@ namespace Frontier
         private readonly int player;
         private readonly AiResourceContinuity072 continuity;
         private readonly AiNavalOperations navalOperations;
+        private readonly AiWaterInvestment084 investment;
         private int surveyor;
         private float patrolAt;
         public AiWaterEconomy(World world,int player,AiResourceContinuity072 continuity=null)
-        {this.world=world;this.player=player;this.continuity=continuity??new AiResourceContinuity072(world,player);navalOperations=new AiNavalOperations(world,player,this.continuity);}
+        {this.world=world;this.player=player;this.continuity=continuity??new AiResourceContinuity072(world,player);navalOperations=new AiNavalOperations(world,player,this.continuity);investment=new AiWaterInvestment084(world,player);}
+        public void BindBridgeArmy(AiArmyPlan072 army,AiRevolution071 revolution,AiMedicalSupport076 medical)=>navalOperations.BindBridgeArmy(army,revolution,medical);
+        public void ValidateBridgeState()=>navalOperations.ValidateBridgeState();
         public AiWaterEconomySnapshot CaptureState()=>new AiWaterEconomySnapshot{surveyor=surveyor,patrolAt=patrolAt,navalOperations=navalOperations.CaptureState()};
         public void RestoreState(AiWaterEconomySnapshot state)
         {
@@ -77,43 +80,28 @@ namespace Frontier
         {
             if(!world.Layout.HasWater||world.Paused||world.IsMatchEnded||!world.IsPlayerActive(player))return;
             var safety=economicThreats??visibleEnemies;
-            var dock=own.Find(e=>e.Alive&&e.def.id=="dock");
             navalOperations.Tick(own,visibleEnemies,underAttack);
             AssignFishing(own,safety);
             CommandFleet(own,visibleEnemies);
             if(world.Players[player].age<2||saving||underAttack)return;
+            var plan=investment.Evaluate(own);var dock=world.Get(plan.dockId);
             if(dock==null)
             {
-                if(!CanSpend(world.EntityCost(player,world.Rules.Entity("dock")),reserve))return;
-                SurveyAndBuild(workers,safety);return;
+                if(plan.survey)SurveyAndBuild(workers,safety,plan.dockPoint,plan.buildDock&&CanSpend(plan.cost,reserve));
+                return;
             }
             if(!dock.Complete||dock.queue.Count>0)return;
-            var fish=NearestFish(dock.position,safety);
-            string next=NextShip(own,fish!=null);
-            if(next==""||!CanSpend(world.UnitCost(player,world.Rules.Entity(next)),reserve))return;
-            if(fish!=null)Send(new GameCommand{kind=CommandKind.Rally,actors=new[]{dock.id},target=fish.id});
+            string next=plan.nextShip;
+            if(next==""||world.ProductionReason(player,dock,next)!=""||!CanSpend(plan.cost,reserve))return;
+            if(next=="fishing_boat"&&plan.fish!=null)Send(new GameCommand{kind=CommandKind.Rally,actors=new[]{dock.id},target=plan.fish.id});
             Send(new GameCommand{kind=CommandKind.Train,actors=new[]{dock.id},item=next});
         }
         public Cost Forecast(List<EntityState> own,bool saving)
         {
             if(!world.Layout.HasWater||world.Players[player].age<2||saving)return new Cost();
-            if(!own.Exists(e=>e.Alive&&e.def.id=="dock"))return world.EntityCost(player,world.Rules.Entity("dock"));
-            var dock=own.Find(e=>e.Alive&&e.def.id=="dock");
-            string next=NextShip(own,dock!=null&&NearestFish(dock.position,new List<EntityState>())!=null);
-            return next!=""?world.UnitCost(player,world.Rules.Entity(next)):new Cost();
+            return investment.Evaluate(own).cost;
         }
-        private string NextShip(List<EntityState> own,bool fish)
-        {
-            // An isolated starting landmass needs a paid transport before the
-            // optional second fishing boat or expanded combat fleet.
-            if(navalOperations.NeedsTransport&&world.UnitCountIncludingProduction(player,"transport_ship")==0)return "transport_ship";
-            if(fish&&world.UnitCountIncludingProduction(player,"fishing_boat")<2)return "fishing_boat";
-            if(world.UnitCountIncludingProduction(player,"gunboat")<2)return "gunboat";
-            foreach(string id in new[]{"frigate","monitor"})
-            {var definition=world.Rules.Entity(id);if(definition!=null&&world.UnitAge(player,definition)<=world.Players[player].age&&world.UnitCountIncludingProduction(player,id)<1)return id;}
-            return "";
-        }
-        private void SurveyAndBuild(List<EntityState> workers,List<EntityState> visible)
+        private void SurveyAndBuild(List<EntityState> workers,List<EntityState> visible,Vector2 site,bool build)
         {
             // Public terrain is known; occupants and construction authority still
             // require current vision. A settler must physically survey the bank.
@@ -125,7 +113,7 @@ namespace Frontier
                     Send(new GameCommand{kind=CommandKind.Order,actors=new[]{worker.id},order=OrderKind.Stop});
                 surveyor=0;return;
             }
-            var sites=world.Layout.DockSites[player];if(sites.Length==0)return;
+            var sites=new[]{site};
             if(worker==null)
             {
                 float best=float.MaxValue;
@@ -159,24 +147,13 @@ namespace Frontier
                         Send(new GameCommand{kind=CommandKind.Order,actors=new[]{worker.id},order=OrderKind.Move,point=survey});
                     return;
                 }
+                if(!build)return;
                 if(world.CanBuild(player,"dock",point)!="")continue;
                 if(!AiResourceContinuity072.TryConstructionWorker(world,player,world.Rules.Entity("dock"),point,
                     new List<EntityState>{worker},visible,out _))continue;
                 if(Send(new GameCommand{kind=CommandKind.Build,actors=new[]{worker.id},item="dock",point=point}).accepted)surveyor=0;
                 return;
             }
-        }
-        private EntityState NearestFish(Vector2 point,List<EntityState> enemies)
-        {
-            EntityState chosen=null;float nearest=float.MaxValue;
-            foreach(var fish in world.Entities)
-            {
-                if(fish.def.id!="fish"||!world.GatherableResource(player,fish))continue;
-                if(Threatened(fish.position,enemies))continue;
-                float distance=(fish.position-point).sqrMagnitude;
-                if(distance<nearest){nearest=distance;chosen=fish;}
-            }
-            return chosen;
         }
         private void AssignFishing(List<EntityState> own,List<EntityState> enemies)
         {
@@ -187,13 +164,13 @@ namespace Frontier
                 if(boat.orders.Count>0&&boat.orders.Peek().kind==OrderKind.Gather)
                 {
                     var current=world.Get(boat.orders.Peek().target);
-                    dangerousGather=current!=null&&current.Alive&&Threatened(current.position,enemies);
-                    if(world.CanGather(boat,current)&&!dangerousGather&&!Threatened(boat.position,enemies))continue;
+                    dangerousGather=!investment.FishingRouteSafe(boat,current,enemies);
+                    if(!dangerousGather)continue;
                 }
-                var fish=NearestFish(boat.position,enemies);
+                var fish=investment.NearestFish(boat,enemies,out _,out _);
                 if(fish!=null)
                 {
-                    if(boat.orders.Count==0||boat.orders.Peek().kind!=OrderKind.Gather||boat.orders.Peek().target!=fish.id)
+                    if(dangerousGather||boat.orders.Count==0||boat.orders.Peek().kind!=OrderKind.Gather||boat.orders.Peek().target!=fish.id)
                         Send(new GameCommand{kind=CommandKind.Order,actors=new[]{boat.id},order=OrderKind.Gather,target=fish.id});
                 }
                 else if(dangerousGather||Threatened(boat.position,enemies))RetreatFishingBoat(boat,own,enemies);
@@ -220,7 +197,7 @@ namespace Frontier
                 }
             foreach(var candidate in candidates)
             {
-                if(Threatened(candidate,enemies)||!world.NavigationFor(boat).IsWalkable(candidate,boat.def.radius))continue;
+                if(Threatened(candidate,enemies)||!investment.EscapeWaterRouteSafe(boat,candidate,enemies))continue;
                 float distance=(candidate-boat.position).sqrMagnitude;if(distance<best){goal=candidate;best=distance;}
             }
             if(best==float.MaxValue)

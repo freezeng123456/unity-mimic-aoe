@@ -245,9 +245,57 @@ namespace Frontier
         }
         private void UpdateBoardingShore(EntityState ship,Vector2 shore)
         {
+            // A changed landing invalidates both the approach turn and saved
+            // local waiting slots. TransportBerth.target is its current queue head.
+            if(ship.orders.Count>0&&ship.orders.Peek().kind==OrderKind.TransportBerth)ship.orders.Peek().target=0;
             foreach(var passenger in Entities)if(passenger.Alive&&passenger.garrisonedIn==0)
                 foreach(var order in passenger.orders)if(order.kind==OrderKind.Embark&&order.target==ship.id)
-                {order.point=shore;InvalidateCommandPath(passenger);}
+                {order.point=shore;order.hasResolvedPoint=false;InvalidateCommandPath(passenger);}
+        }
+        private bool HasCurrentBoardingOrder(EntityState passenger,EntityState ship)=>
+            passenger!=null&&passenger.Alive&&passenger.owner==ship.owner&&passenger.garrisonedIn==0&&
+            passenger.def.kind==EntityKind.Unit&&!passenger.def.waterborne&&
+            passenger.orders.Count>0&&passenger.orders.Peek().kind==OrderKind.Embark&&passenger.orders.Peek().target==ship.id;
+        private EntityState BoardingHead(EntityState ship,UnitOrder berth)
+        {
+            var head=Get(berth.target);if(HasCurrentBoardingOrder(head,ship))return head;
+            head=null;float nearest=float.MaxValue;
+            foreach(var passenger in Entities)
+            {
+                if(!HasCurrentBoardingOrder(passenger,ship))continue;
+                float distance=(passenger.position-berth.point).sqrMagnitude;
+                if(distance<nearest||distance==nearest&&(head==null||passenger.id<head.id))
+                {head=passenger;nearest=distance;}
+            }
+            berth.target=head?.id??0;return head;
+        }
+        private bool TryBoardingWaitPoint(EntityState passenger,EntityState head,Vector2 shore,out Vector2 waiting)
+        {
+            waiting=default;Vector2 outward=(passenger.position-shore).normalized;
+            if(outward.sqrMagnitude<.5f)outward=-Layout.WaterDirection(shore);
+            float apron=passenger.def.radius+head.def.radius+.75f;
+            var ignored=new HashSet<int>{passenger.id};
+            // Saved approach slots let passengers walk toward shore in parallel
+            // while leaving the single boarding aperture body-clear. Search
+            // stays local to shore and in the same reachable navigation domain.
+            foreach(var candidate in Navigation.FormationSlots(shore+outward*(apron+1),128,passenger.def.radius*2+.35f))
+            {
+                float distance=(candidate-shore).sqrMagnitude;
+                if(distance<apron*apron||distance>64||IsWater(candidate)||IsBridge(candidate)||IsBridgeApproach(candidate)||
+                    !Navigation.IsWalkable(candidate,passenger.def.radius)||PositionOccupied(candidate,passenger.def.radius,ignored))continue;
+                bool reserved=false;
+                foreach(var other in Entities)
+                {
+                    if(other.id==passenger.id||!other.Alive||other.garrisonedIn!=0||other.orders.Count==0)continue;
+                    var otherOrder=other.orders.Peek();
+                    if(otherOrder.kind!=OrderKind.Embark||otherOrder.target!=passenger.orders.Peek().target||!otherOrder.hasResolvedPoint)continue;
+                    float space=passenger.def.radius+other.def.radius+.35f;
+                    if((candidate-otherOrder.resolvedPoint).sqrMagnitude<space*space){reserved=true;break;}
+                }
+                if(reserved||!NavalPathExists(Navigation,passenger.position,candidate,passenger.def.radius))continue;
+                waiting=candidate;return true;
+            }
+            return false;
         }
         private void TickEmbark(EntityState passenger,UnitOrder order,float dt)
         {
@@ -255,6 +303,20 @@ namespace Frontier
             if(passenger.def.waterborne||NavalTransportReason(passenger.owner,ship)!=""||ship.orders.Count==0||ship.orders.Peek().kind!=OrderKind.TransportBerth)
             {passenger.orders.Dequeue();passenger.path.Clear();passenger.status="Boarding cancelled";return;}
             var berth=ship.orders.Peek();order.point=berth.point;
+            var head=BoardingHead(ship,berth);
+            if(head!=passenger)
+            {
+                if(order.hasResolvedPoint&&(!Navigation.IsWalkable(order.resolvedPoint,passenger.def.radius)||order.destinationVersion!=Navigation.Version))
+                {order.hasResolvedPoint=false;InvalidateCommandPath(passenger);}
+                if(head!=null&&!order.hasResolvedPoint&&
+                    TryBoardingWaitPoint(passenger,head,order.point,out var waiting))
+                {order.resolvedPoint=waiting;order.hasResolvedPoint=true;order.destinationVersion=Navigation.Version;InvalidateCommandPath(passenger);}
+                if(order.hasResolvedPoint&&(passenger.position-order.resolvedPoint).sqrMagnitude>.05f*.05f)
+                {passenger.status="Moving";MoveTowardsTarget(passenger,order.resolvedPoint,dt,.04f);}
+                else {passenger.path.Clear();passenger.status="Waiting for boarding turn";}
+                return;
+            }
+            if(order.hasResolvedPoint){order.hasResolvedPoint=false;InvalidateCommandPath(passenger);}
             MoveTowardsTarget(passenger,order.point,dt);
             if((passenger.position-order.point).sqrMagnitude>.35f*.35f){passenger.status="Moving";return;}
             passenger.path.Clear();passenger.status="Waiting to board";
@@ -265,6 +327,7 @@ namespace Frontier
             if(passenger.stealth){passenger.stealth=false;passenger.stealthReadyAt=Mathf.Max(passenger.stealthReadyAt,Time+3);}
             passenger.orders.Clear();InvalidateCommandPath(passenger);passenger.fireAt=-1;passenger.attackTarget=0;passenger.work=default;
             passenger.position=passenger.previousPosition=ship.position;passenger.status="Embarked";
+            berth.target=0;
             Emit("Embarked",passenger.owner,passenger.id,"Aboard transport",TransportSlotCost(passenger),ship.id,berth.point);
         }
         private bool TryUnloadTransport(EntityState ship,Vector2 shore)

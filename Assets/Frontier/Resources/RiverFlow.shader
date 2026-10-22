@@ -40,6 +40,20 @@ Shader "Frontier/River Flow"
                 o.unionFlow=dot(v.flow,v.flow)>.01?1:0;
                 o.flow=o.unionFlow>.5?v.flow:float2(0,1);return o;
             }
+            float CurrentStreak(float2 p,float2 flow,float unionFlow)
+            {
+                if(unionFlow>.5)
+                {
+                    // Union meshes carry the actual blended channel direction.
+                    // Orient ribbons in that local frame rather than world Z.
+                    p.x/=2.4;float lengthSquared=dot(flow,flow);
+                    float2 downstream=lengthSquared>.0001?flow*rsqrt(max(.0001,lengthSquared)):float2(0,1);
+                    p=float2(dot(p,float2(downstream.y,-downstream.x))*2.4,dot(p,downstream));
+                }
+                float ribbon=sin(p.x*28+sin(p.y*2.8)*1.1);
+                float broken=sin(p.y*6+p.x*3);
+                return smoothstep(.64,.96,ribbon)*smoothstep(-.2,.7,broken);
+            }
             half4 frag(Varyings i):SV_Target
             {
                 // U crosses a channel; V is accumulated river arc length. The
@@ -59,7 +73,20 @@ Shader "Frontier/River Flow"
                     wave=lerp(wave,sin(other.y*44+sin(other.x*19)*.65),blend);
                     second=lerp(second,cos(other.y*71-other.x*13),blend);
                 }
-                half3 n=normalize(half3(wave*.045,1,second*.065));
+                // A broad current layer survives the strategy camera while fine
+                // ripples keep the close view. It shares the same periodic
+                // advection blend; no vertex displacement or extra water mesh.
+                float swell=sin(flowing.y*9+sin(flowing.x*5)*.8);
+                float crossSwell=cos(flowing.x*11+flowing.y*6);
+                float streak=CurrentStreak(flowing,i.flow,i.unionFlow);
+                if(i.unionFlow>.5)
+                {
+                    float2 other=basis-velocity*frac(phase+.5);float blend=abs(phase*2-1);
+                    swell=lerp(swell,sin(other.y*9+sin(other.x*5)*.8),blend);
+                    crossSwell=lerp(crossSwell,cos(other.x*11+other.y*6),blend);
+                    streak=lerp(streak,CurrentStreak(other,i.flow,i.unionFlow),blend);
+                }
+                half3 n=normalize(half3(wave*.075+swell*.060,1,second*.080+crossSwell*.042));
                 Light sun=GetMainLight(TransformWorldToShadowCoord(i.positionWS));
                 half lit=.55+.45*saturate(dot(n,sun.direction))*sun.shadowAttenuation;
                 half3 view=normalize(GetWorldSpaceViewDir(i.positionWS));
@@ -67,13 +94,28 @@ Shader "Frontier/River Flow"
                 half glint=pow(saturate(dot(n,normalize(view+sun.direction))),80)*sun.shadowAttenuation;
                 // Green-grey shallows come from per-vertex depth, not a painted
                 // rectangular shore. Intersections share one continuous plane.
-                half depth=i.color.r;
-                half3 shallow=lerp(half3(.255,.415,.33),half3(.32,.49,.435),_RiverTheme);
-                half3 deep=lerp(half3(.075,.235,.255),half3(.085,.26,.33),_RiverTheme);
-                half3 col=lerp(shallow,deep,depth)*lit;
-                col+=fine*.15+half3(.24,.34,.36)*fresnel+sun.color*glint*.3;
-                half foam=saturate((1-depth-.81)*6)*(.5+.5*sin(flowing.y*63))* .11;
-                return half4((col+foam)*_BaseColor.rgb,1);
+                half depth=saturate(i.color.r);
+                half tropical=saturate(1-abs(_RiverTheme-.45)/.45);
+                half estuary=saturate((_RiverTheme-.45)/.55);
+                half3 shallow=lerp(half3(.23,.43,.34),half3(.28,.52,.42),tropical);
+                shallow=lerp(shallow,half3(.34,.45,.36),estuary);
+                half3 deep=lerp(half3(.045,.18,.215),half3(.045,.22,.255),tropical);
+                deep=lerp(deep,half3(.045,.17,.25),estuary);
+                // Depth stays the original mesh-owned value. The slight
+                // sediment variation is confined to real shallows, so tributary
+                // joins do not acquire a fictitious internal shoreline.
+                half silt=(swell*.5+.5)*(1-depth)*(1-depth);
+                half3 col=lerp(shallow,deep,smoothstep(.08,.86,depth))*lit;
+                col*=1+swell*.080+crossSwell*.035;
+                col=lerp(col,col*half3(1.10,1.055,.94),silt*.32);
+                // Center the fine sample instead of washing the entire deep
+                // channel with its average brightness. Broken longitudinal
+                // ribbons show current at zoom26 without an opaque foam ring.
+                col+=(fine-.5)*.055+half3(.15,.23,.25)*fresnel+sun.color*glint*.23;
+                col+=half3(.12,.19,.17)*streak*.16;
+                half shoreBreak=saturate(.35+swell*.35+second*.20);
+                half foam=saturate((1-depth-.81)*6)*shoreBreak*.035;
+                return half4(saturate((col+foam)*_BaseColor.rgb),1);
             }
             ENDHLSL
         }

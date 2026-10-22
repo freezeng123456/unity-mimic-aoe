@@ -26,7 +26,12 @@ namespace Frontier
         const int StagePositions=65,StageCandidates=StagePositions*2,StagePathBudget=6;
         public AiArmyPlan072(World world,int player,AiDifficultyProfile difficulty)
         {this.world=world??throw new ArgumentNullException(nameof(world));this.player=player;this.difficulty=difficulty??throw new ArgumentNullException(nameof(difficulty));}
+        private Func<int,bool> transportOwns;
+        public void BindTransport(Func<int,bool> owns)=>transportOwns=owns;
+        bool TransportOwns(int id)=>transportOwns!=null&&transportOwns(id);
+        bool HasTransportWave=>wave.Exists(TransportOwns);
         public AiArmyPhase072 Phase=>phase;
+        public Vector2 Destination=>destination;
         public Vector2 RallyPoint=>hasStage?stage:Home;
         public int[] WaveMembers=>wave.ToArray();
         public int[] GuardMembers=>guards.ToArray();
@@ -147,8 +152,12 @@ namespace Frontier
             var exit=world.Navigation.NearestWalkable(home,radius);
             int pathBudget=StagePathBudget;
             int nextAnchor=0;foreach(var e in own)if(e.Alive&&e.def.id=="town"&&(e.position-home).sqrMagnitude<.01f){nextAnchor=e.id;break;}
+            // A committed wave keeps its still-safe, body-clear and reachable
+            // rally center when nearby construction only trims the empty-area
+            // margin. New/rebuilt musters still require the original5x5 room.
+            bool committedMarch=phase==AiArmyPhase072.March&&wave.Count>=Math.Max(3,initialWaveSize/2);
             if(hasStage&&anchor==nextAnchor&&(home-lastHome).sqrMagnitude<1&&Safe(stage,enemies)&&
-                world.Navigation.IsAreaFree(stage,5,5)&&Reachable(exit,stage,radius,ref pathBudget,out _))
+                (committedMarch||world.Navigation.IsAreaFree(stage,5,5))&&Reachable(exit,stage,radius,ref pathBudget,out _))
             {stageSearchCursor=0;stageNavigationVersion=world.Navigation.Version;return true;}
             var desired=home+Vector2.ClampMagnitude(new Vector2(world.Navigation.Width*.5f,world.Navigation.Height*.5f)-home,12);
             // Keep the original25 spacious candidates first. A bounded outer
@@ -197,6 +206,7 @@ namespace Frontier
             var ids=new List<int>();var parked=new List<int>();
             foreach(var e in group)
             {
+                if(TransportOwns(e.id))continue;
                 if(holdAtStage&&AtStage(e))
                 {if(!e.hold)parked.Add(e.id);continue;}
                 Vector2 goal=water.LandArmyDestination(e,point);
@@ -222,7 +232,7 @@ namespace Frontier
             var soldiers=new List<EntityState>();
             foreach(var e in landArmy)
             {
-                if(!e.Alive||e.owner!=player||!e.Military||e.def.waterborne||e.garrisonedIn!=0||(e.def.tags&Tags.Explorer)!=0)continue;
+                if(!e.Alive||e.owner!=player||!e.Military||e.def.waterborne||e.garrisonedIn!=0||(e.def.tags&Tags.Explorer)!=0||TransportOwns(e.id))continue;
                 if(medical!=null&&medical.IsRecovering(e.id))continue;
                 if(revolution.KeepSupplyGuard(e,visibleEnemies)||e.orders.Count>0&&e.orders.Peek().kind==OrderKind.Embark)continue;
                 if(e.hp<world.MaxHp(e)*.22f&&visibleEnemies.Count>landArmy.Count)
@@ -230,7 +240,9 @@ namespace Frontier
                 if(civilization.Support(e,landArmy,visibleEnemies))continue;soldiers.Add(e);
             }
             soldiers.Sort((a,b)=>a.id.CompareTo(b.id));var available=new HashSet<int>();foreach(var e in soldiers)available.Add(e.id);
-            wave.RemoveAll(id=>!available.Contains(id));guards.RemoveAll(id=>!available.Contains(id));
+            // Real Embark/aboard ownership survives availability filtering. It is
+            // not combat loss and receives no competing land dispatch.
+            wave.RemoveAll(id=>!available.Contains(id)&&!TransportOwns(id));guards.RemoveAll(id=>!available.Contains(id));
             search.ObserveStart(soldiers);
             // An observed weapon can invalidate yesterday's assembly point even
             // while the army must defend immediately. Correct production rally
@@ -243,8 +255,9 @@ namespace Frontier
                 ChangePhase(AiArmyPhase072.Defend,"Visible military threatens owned economy");
                 Dispatch(soldiers,OrderKind.AttackMove,threat.position,water);return;
             }
+            if(phase==AiArmyPhase072.Defend&&HasTransportWave)return;
             if(phase==AiArmyPhase072.Defend){wave.Clear();guards.Clear();initialWaveSize=0;ChangePhase(AiArmyPhase072.Muster,"Visible raid cleared; assemble again");}
-            if(phase==AiArmyPhase072.March&&wave.Count<Math.Max(3,initialWaveSize/2))
+            if(phase==AiArmyPhase072.March&&!HasTransportWave&&wave.Count<Math.Max(3,initialWaveSize/2))
             {wave.Clear();guards.Clear();initialWaveSize=0;ChangePhase(AiArmyPhase072.Muster,"Combat losses require a new cohort");}
             if(!stageReady)return;
             int muster=world.Players[player].age<=2?6:world.Players[player].age==3?10:14;

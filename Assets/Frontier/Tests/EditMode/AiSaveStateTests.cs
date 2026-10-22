@@ -108,6 +108,20 @@ namespace Frontier.Tests
             for(int i=0;i<180;i++){Assert.IsTrue(simulation.Step());Assert.IsTrue(restored.Step());}
             SameState(simulation,restored);
             var continued=restored.CaptureState().controllers.Single(c=>c.player==0).armyPlan;
+            if(plan.stage!=continued.stage)
+            {
+                // Read-only diagnosis before the original strict failure. The
+                // live/cold SameState above remains the determinism authority.
+                var diagnostic=restored.World;float radius=soldiers.Max(e=>e.def.radius);var exit=diagnostic.Navigation.NearestWalkable(plan.lastHome,radius);
+                var path=diagnostic.Navigation.ClearLine(exit,plan.stage,radius)?new System.Collections.Generic.List<Vector2>{plan.stage}:diagnostic.Navigation.FindPath(exit,plan.stage,radius);
+                TestContext.WriteLine("Stage changed in BOTH deterministic branches: old="+plan.stage+" new="+continued.stage+" phase="+continued.phase+" oldAnchor="+plan.anchor+" newAnchor="+continued.anchor+" oldHome="+plan.lastHome+" newHome="+continued.lastHome+" oldNav="+plan.stageNavigationVersion+" currentNav="+diagnostic.Navigation.Version+" oldArea5="+diagnostic.Navigation.IsAreaFree(plan.stage,5,5)+" oldCenterWalkable="+diagnostic.Navigation.IsWalkable(plan.stage,radius)+" exit="+exit+" oldCenterRouteNodes="+path.Count+" routeEnd="+(path.Count==0?exit:path.Last()));
+                foreach(var e in diagnostic.Entities.Where(e=>e.Alive&&e.def.kind==EntityKind.Building))
+                {
+                    var cells=diagnostic.BuildingFootprintCells(e.def,e.position).ToArray();
+                    if(cells.Any(c=>Mathf.Abs(c.x-plan.stage.x)<=3&&Mathf.Abs(c.y-plan.stage.y)<=3))TestContext.WriteLine("Old5x5area intersects current building ID="+e.id+" def="+e.def.id+" owner="+e.owner+" pos="+e.position+" complete="+e.Complete+" construction="+e.construction);
+                }
+                foreach(var e in diagnostic.Entities.Where(e=>e.Alive&&diagnostic.AreEnemies(0,e.owner)&&diagnostic.IsVisible(0,e)))TestContext.WriteLine("Visible enemy after stage change ID="+e.id+" def="+e.def.id+" pos="+e.position+" range="+e.def.range+" damage="+e.def.damage);
+            }
             Assert.AreEqual(AiArmyPhase072.March,continued.phase);Assert.AreEqual(6,continued.initialWaveSize);
             CollectionAssert.AreEqual(ids,continued.wave);CollectionAssert.AreEqual(plan.guards,continued.guards);Assert.AreEqual(plan.stage,continued.stage);
             Assert.AreEqual(1,restored.World.Events.Count(e=>e.player==0&&e.kind=="AIArmyPhase"&&e.message==departure),"Loading must not launch the existing wave a second time");

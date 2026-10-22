@@ -208,6 +208,11 @@ namespace Frontier
                 foreach(var order in saved.orders)
                 {
                     Require(order!=null&&Enum.IsDefined(typeof(OrderKind),order.kind)&&SnapshotCodec.Finite(order.point)&&SnapshotCodec.Finite(order.elapsed)&&(!order.hasResolvedPoint||SnapshotCodec.Finite(order.resolvedPoint)),"order");
+                    Require(order.bridgeTransitIndex>=0&&order.bridgeTransitIndex<=savedLayout.Bridges.Length&&
+                        (order.bridgeTransitIndex==0?order.bridgeTransitDirection==0:order.bridgeTransitDirection==1||order.bridgeTransitDirection==-1),"bridge transit identity");
+                    if(order.bridgeTransitIndex>0)
+                        Require(definition.kind==EntityKind.Unit&&!definition.waterborne&&e.garrisonedIn==0&&ReferenceEquals(order,saved.orders[0])&&
+                            order.kind!=OrderKind.Stop&&order.kind!=OrderKind.Hold&&savedLayout.Bridges[order.bridgeTransitIndex-1].Approach(e.position),"bridge transit actor or position");
                     if(order.kind==OrderKind.Heal)Require(definition.healer&&e.owner>=0&&order.target>0,"healing order capability");
                     if(order.kind==OrderKind.Scout)
                         Require((definition.scout||(definition.tags&Tags.Explorer)!=0)&&definition.kind==EntityKind.Unit&&!definition.waterborne&&order.target==0&&order.elapsed>=0&&order.elapsed<=1024&&order.elapsed==Mathf.Floor(order.elapsed),"scouting order capability or cursor");

@@ -111,6 +111,9 @@ namespace Frontier
         // Preserve the command's original point while navigation resolves a taken endpoint.
         public Vector2 resolvedPoint;public bool hasResolvedPoint;
         public int destinationVersion,destinationCursor;public float destinationRetryAt;
+        // Current through-bridge direction survives a local path rebuild. Zero
+        // is no transit; the one-based index belongs to this order and Layout.
+        public int bridgeTransitIndex,bridgeTransitDirection;
         public UnitOrder(OrderKind k,Vector2 p,int t=0) {kind=k;point=p;target=t;}
     }
     [Serializable] public class ProductionJob

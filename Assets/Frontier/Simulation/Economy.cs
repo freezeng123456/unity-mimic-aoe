@@ -358,6 +358,7 @@ namespace Frontier
             foreach(var point in points)
             {
                 var unit=Spawn(d.id,b.owner,point);produced.Add(unit);
+                if(j.kind=="Gift"&&b.def.id=="house")Emit("ManorWorkerProduced",b.owner,b.id,d.id,1,unit.id);
                 if(j.kind=="Train"){owner.trained++;AwardXp(b.owner,d.trainXp,b.id,"Unit trained");Emit("UnitTrained",b.owner,b.id,d.id,1,unit.id);}
             }
             AssignProducerRally(b,produced);

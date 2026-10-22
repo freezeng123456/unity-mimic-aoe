@@ -28,22 +28,23 @@ namespace Frontier
             var meadow=LandscapePresentation.GroundMaterial();var soil=ArchitecturalMaterials.Get(Surface.Earth,Color.white);
             cached.SetTexture("_GrassMap",meadow.GetTexture("_BaseMap"));cached.SetTexture("_GrassNormals",meadow.GetTexture("_BumpMap"));
             cached.SetTexture("_SoilMap",soil.GetTexture("_BaseMap"));cached.SetTexture("_SoilNormals",soil.GetTexture("_BumpMap"));
-            cached.SetColor("_TurfTint",tropical?new Color(.96f,1.10f,.88f):Color.white);
-            cached.SetColor("_MudColor",tropical?new Color(.43f,.32f,.205f):new Color(.39f,.335f,.225f));
-            cached.SetColor("_SandColor",tropical?new Color(.66f,.57f,.38f):winding?new Color(.74f,.67f,.48f):new Color(.62f,.555f,.37f));
+            cached.SetColor("_TurfTint",tropical?new Color(.79f,1.06f,.76f):new Color(.82f,.98f,.77f));
+            cached.SetColor("_MudColor",tropical?new Color(.43f,.335f,.22f):new Color(.42f,.385f,.285f));
+            cached.SetColor("_SandColor",tropical?new Color(.69f,.57f,.36f):winding?new Color(.72f,.63f,.43f):new Color(.65f,.59f,.42f));
             groundMaterials[key]=cached;return cached;
         }
 
         public static Transform Build(Transform parent,World world,Material water)
         {
             var root=new GameObject("Sculpted "+world.MapId+" river valley").transform;root.SetParent(parent,false);
-            BuildGround(root,world.Layout);
+            BuildGround(root,world.Layout,world.Seed);
             int index=0;
             if(world.Layout.Channels.Length>1)ConfluenceWaterPresentation.Build(root,world.Layout,water);
             else foreach(var channel in world.Layout.Channels)BuildChannel(root,channel,water,index++,world.Layout.WaterHeight);
             if(world.Layout.HasWater)BuildBanks(root,world);
             if(world.MapId==MapTopology.Tropical)BuildTropicalPalms(root,world);
             BuildConfluenceLandmark082(root,world);
+            if(world.Layout.HasWater)BuildBankDetail084(root,world);
             index=0;foreach(var bridge in world.Layout.Bridges)BuildBridge(root,bridge,index++);
             return root;
         }
@@ -57,7 +58,7 @@ namespace Frontier
             return go.transform;
         }
 
-        static void BuildGround(Transform root,MapLayout layout)
+        static void BuildGround(Transform root,MapLayout layout,int visualSeed)
         {
             // The 1m triangle planes can occlude the narrow outer Winding shore
             // even when BankHeight at the water edge is submerged. Match this
@@ -105,7 +106,8 @@ namespace Frontier
                 ArchitecturalMaterials.Get(Surface.Earth,new Color(.62f,.555f,.37f)),
                 ArchitecturalMaterials.Get(Surface.Earth,new Color(.39f,.335f,.225f)),
                 ArchitecturalMaterials.Get(Surface.Stone,new Color(.42f,.45f,.43f))};
-            MeshObject(root,"Continuous sculpted land and river bed",mesh,materials);
+            var ground=MeshObject(root,"Continuous sculpted land and river bed",mesh,materials);
+            if(authored==null)ApplyGroundDetail084(ground.GetComponent<MeshRenderer>(),layout.Id,visualSeed);
         }
 
         static void BuildChannel(Transform root,RiverChannel channel,Material water,int index,float waterHeight)

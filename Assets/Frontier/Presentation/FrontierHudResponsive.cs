@@ -89,9 +89,10 @@ namespace Frontier
                 if(button!=null)
                 {
                     var label=child.GetComponentInChildren<Text>();string title=label.text;
-                    float half=(leftWidth-10)*.5f;
-                    if(title=="LOAD SAVED MATCH")Position(rt,45,474,half,48);
-                    else if(title=="SCENARIO WORKSHOP")Position(rt,45+half+10,474,half,48);
+                    float third=(leftWidth-20)/3;
+                    if(title=="LOAD SAVED MATCH")Position(rt,45,474,third,48);
+                    else if(title=="SCENARIO WORKSHOP")Position(rt,45+third+10,474,third,48);
+                    else if(title=="CLASSIC CIVILIZATIONS")Position(rt,45+2*(third+10),474,third,48);
                     else if(title=="MAP, SEED & OBJECTIVES")Position(rt,45,538,leftWidth,48);
                     else {float cell=(leftWidth+10)/3;Position(rt,45+(expansion%3)*cell,338+(expansion/3)*65,cell-10,52);expansion++;}
                     Position(label.rectTransform,10,4,rt.sizeDelta.x-20,rt.sizeDelta.y-8);

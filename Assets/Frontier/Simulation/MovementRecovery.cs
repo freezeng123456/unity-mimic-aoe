@@ -16,7 +16,7 @@ namespace Frontier
         private GridNavigation fineRecoveryNavigation,recoveryNavigation;
         private float recoveryRadius;
         private byte[] fineRecoveryPointMemo;
-        private int fineRecoveryAttempts,fineRecoveryFailures,fineRecoveryDeferrals,allyRecoveryCoarseAttempts;private double fineRecoveryPeakMs;
+        private int fineRecoveryAttempts,fineRecoveryFailures,fineRecoveryDeferrals,allyRecoveryCoarseAttempts,allyRecoveryRouteRejections;private double fineRecoveryPeakMs;
         private bool fineRecoveryDeferred;private int fineRecoverySlots=1;
         private sealed class FineRecoveryRequest {public EntityState unit;public UnitOrder order;}
         private readonly Queue<FineRecoveryRequest> pendingFineRecoveryQueue=new Queue<FineRecoveryRequest>();
@@ -59,6 +59,7 @@ namespace Frontier
         // point and segment query local without mutating the building grid.
         private bool TryAllyRecovery(EntityState unit,Vector2 goal)
         {
+            PrepareBridgeTraffic(unit,goal,unit.path);
             fineRecoveryDeferred=false;
             bool queued=pendingFineRecoveries.TryGetValue(unit.id,out var pending);
             var order=unit.orders.Count>0?unit.orders.Peek():null;
@@ -78,11 +79,20 @@ namespace Frontier
             }
             if(recoveryDiscs.Count==0)return false;while(recoveryVisits.Length<recoveryDiscs.Count)Array.Resize(ref recoveryVisits,recoveryVisits.Length*2);
             if(recoveryFilter==null)recoveryFilter=RecoveryPointFree;if(recoverySegmentFilter==null)recoverySegmentFilter=RecoverySegmentFree;
+            bool SafeRoute(List<Vector2> candidate)
+            {
+                if(candidate.Count<2||(candidate[0]-unit.position).sqrMagnitude>.0001f||
+                    (candidate[candidate.Count-1]-goal).sqrMagnitude>.0001f)return false;
+                PrepareBridgeTraffic(unit,goal,candidate);
+                for(int i=1;i<candidate.Count;i++)
+                    if(!MovementLineFree(unit,candidate[i-1],candidate[i])||!RecoverySegmentFree(candidate[i-1],candidate[i]))return false;
+                return true;
+            }
             // This queued query already failed on the coarse graph. Its turn
             // rebuilds the current collision snapshot and searches the fine graph
             // directly; waiting actors do neither search until their reservation.
             var route=new List<Vector2>();
-            if(!queued){allyRecoveryCoarseAttempts++;route=navigation.FindPath(unit.position,goal,unit.def.radius,recoveryFilter,recoverySegmentFilter);}
+            if(!queued){allyRecoveryCoarseAttempts++;route=FindMovementPath(unit,goal,recoveryFilter,recoverySegmentFilter);}
             if(route.Count<2||(route[route.Count-1]-goal).sqrMagnitude>.0001f)
             {
                 // A one-meter graph may miss a body-clear passage between parked
@@ -101,13 +111,30 @@ namespace Frontier
                 fineRecoveryPeakMs=Math.Max(fineRecoveryPeakMs,(System.Diagnostics.Stopwatch.GetTimestamp()-fineStart)*1000.0/System.Diagnostics.Stopwatch.Frequency);
                 if(fine.Count<2){fineRecoveryFailures++;return false;}route.Clear();foreach(var point in fine)route.Add(point*.25f);
                 if((route[route.Count-1]-goal).sqrMagnitude>.0001f){fineRecoveryFailures++;return false;}
+                // A fine query can choose a bridge absent from its seed route.
+                // Validate under the returned path's own rules before committing
+                // waypoints. Only an unsafe candidate pays for fresh coarse
+                // closure; this slot never issues a second fine query.
+                if(!SafeRoute(route))
+                {
+                    fineRecoveryFailures++;allyRecoveryCoarseAttempts++;
+                    route=FindMovementPath(unit,goal,recoveryFilter,recoverySegmentFilter);
+                    if(!SafeRoute(route)){PrepareBridgeTraffic(unit,goal,unit.path);return false;}
+                }
             }
-            pendingFineRecoveries.Remove(unit.id);unit.path.Clear();unit.path.Add(route[0]);
+            var staged=new List<Vector2>{route[0]};
             for(int i=1;i<route.Count;i++)
             {
                 int pieces=Mathf.Max(1,Mathf.CeilToInt(Vector2.Distance(route[i-1],route[i])/8));
-                for(int piece=1;piece<=pieces;piece++)unit.path.Add(Vector2.Lerp(route[i-1],route[i],(float)piece/pieces));
+                for(int piece=1;piece<=pieces;piece++)staged.Add(Vector2.Lerp(route[i-1],route[i],(float)piece/pieces));
             }
+            // Segment subdivision changes the sampled points. Validate exactly
+            // the list being saved for both coarse and fine recovery, before
+            // replacing the old route. A fine reservation has already consumed
+            // its one query; a rejected candidate never refunds that budget.
+            if(!SafeRoute(staged))
+            {allyRecoveryRouteRejections++;PrepareBridgeTraffic(unit,goal,unit.path);return false;}
+            pendingFineRecoveries.Remove(unit.id);unit.path.Clear();unit.path.AddRange(staged);
             unit.pathIndex=1;unit.pathGoal=goal;
             unit.pathVersion=navigation.Version;unit.pathRetryAt=Time+1.2f;unit.pathAvoidsAllies=true;
             return true;
@@ -121,12 +148,12 @@ namespace Frontier
             bool node=point.x==x&&point.y==y&&x>=0&&y>=0&&x<fineRecoveryNavigation.Width&&y<fineRecoveryNavigation.Height;
             int index=node?x+y*fineRecoveryNavigation.Width:0;
             if(node&&fineRecoveryPointMemo[index]!=0)return fineRecoveryPointMemo[index]==2;
-            point*=.25f;bool free=recoveryNavigation.IsWalkable(point,recoveryRadius)&&RecoveryPointFree(point);
+            point*=.25f;bool free=recoveryNavigation.IsWalkable(point,recoveryRadius)&&BridgeTrafficPointFree(point)&&RecoveryPointFree(point);
             if(node)fineRecoveryPointMemo[index]=(byte)(free?2:1);
             return free;
         }
         private bool FineRecoverySegmentFree(Vector2 start,Vector2 end)
-        {start*=.25f;end*=.25f;return recoveryNavigation.ClearLine(start,end,recoveryRadius)&&RecoverySegmentFree(start,end);}
+        {start*=.25f;end*=.25f;return recoveryNavigation.ClearLine(start,end,recoveryRadius)&&BridgeTrafficSegmentFree(start,end)&&RecoverySegmentFree(start,end);}
         private bool RecoveryPointFree(Vector2 point)
         {
             var bin=recoveryBins[Mathf.Clamp(Mathf.FloorToInt(point.x/4),0,31)+Mathf.Clamp(Mathf.FloorToInt(point.y/4),0,31)*32];

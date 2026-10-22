@@ -9,6 +9,9 @@ namespace Frontier
         public int ship,phase,landingIndex,landingAttempts,landingPlayer;
         public float startedAt,retryAt;
         public int[] passengers=Array.Empty<int>();
+        public bool hasBridgeCandidate,hasBridgeMission;
+        public AiBridgeCandidate084 bridgeCandidate;public AiBridgeMission084 bridgeMission;
+        public AiBridgeReview084 bridgeReview;public float bridgeRetryAt;
     }
     // This plan knows authored terrain, not hidden enemy entities. Purchases,
     // boarding and landings use precisely the public human commands.
@@ -19,23 +22,48 @@ namespace Frontier
         private int shipId,phase,landingIndex,landingAttempts,landingPlayer;
         private float startedAt,retryAt;
         private readonly List<int> passengers=new List<int>();
+        private AiBridgeTransport084 bridge;
+        public void BindBridgeArmy(AiArmyPlan072 army,AiRevolution071 revolution,AiMedicalSupport076 medical)
+        {bridge=new AiBridgeTransport084(world,player,army,revolution,medical);army.BindTransport(OwnsBridgeMember);}
+        public bool OwnsBridgeMember(int id)=>bridge!=null&&bridge.Owns(id);
+        public void ValidateBridgeState()=>bridge?.ValidateOwnership();
         public AiNavalOperations(World world,int player,AiResourceContinuity072 continuity=null)
         {this.world=world;this.player=player;this.continuity=continuity;landingPlayer=world.FirstEnemyPlayer(player);}
         public AiNavalOperationsSnapshot CaptureState()=>new AiNavalOperationsSnapshot
-        {ship=shipId,phase=phase,landingIndex=landingIndex,landingAttempts=landingAttempts,landingPlayer=landingPlayer,startedAt=startedAt,retryAt=retryAt,passengers=passengers.ToArray()};
+        {ship=shipId,phase=phase,landingIndex=landingIndex,landingAttempts=landingAttempts,landingPlayer=landingPlayer,startedAt=startedAt,retryAt=retryAt,passengers=passengers.ToArray(),hasBridgeCandidate=bridge?.Candidate!=null,hasBridgeMission=bridge?.Mission!=null,bridgeCandidate=bridge?.Candidate==null?null:SnapshotCodec.Clone(bridge.Candidate),bridgeMission=bridge?.Mission==null?null:SnapshotCodec.Clone(bridge.Mission),bridgeReview=bridge?.LastReview??AiBridgeReview084.None,bridgeRetryAt=bridge?.RetryAt??0};
+        // Unity inline serialization replaces null DTOs with default instances.
+        // Markers distinguish absence; only truly empty unmarked payloads may
+        // be ignored, so a corrupt active plan cannot silently become idle.
+        static bool Empty(Array values)=>values==null||values.Length==0;
+        static bool Zero(Vector2 point)=>point.x==0&&point.y==0;
+        static bool EmptyBridgeCandidate(AiBridgeCandidate084 value)=>value==null||
+            (value.schema==0||value.schema==1)&&value.ship==0&&value.navigationVersion==0&&value.waterVersion==0&&value.pair==0&&value.cursor==0&&
+            Zero(value.destination)&&Zero(value.shipOrigin)&&Zero(value.boardingShore)&&Zero(value.boardingWater)&&Zero(value.landingShore)&&Zero(value.landingWater)&&
+            Empty(value.members)&&Empty(value.origins)&&Empty(value.landingSlots)&&Empty(value.directIntents)&&Empty(value.continuationIntents)&&
+            Empty(value.direct)&&Empty(value.boarding)&&Empty(value.continuation)&&value.shipApproach==0&&value.sea==0;
+        static bool EmptyBridgeMission(AiBridgeMission084 value)=>value==null||
+            (value.schema==0||value.schema==1)&&value.ship==0&&(value.phase==0||value.phase==1)&&value.attempts==0&&value.originalCount==0&&
+            Zero(value.destination)&&Zero(value.boardingShore)&&Zero(value.boardingWater)&&Zero(value.landingShore)&&Zero(value.landingWater)&&
+            Empty(value.members)&&Empty(value.landed)&&value.startedAt==0&&value.retryAt==0&&value.directSeconds==0&&value.transportSeconds==0&&!value.invalidLanding;
         public void RestoreState(AiNavalOperationsSnapshot state)
         {
             AiSaveValidation.Require(state!=null&&state.ship>=0&&state.phase>=0&&state.phase<=2&&state.landingIndex>=0&&state.landingAttempts>=0&&state.landingAttempts<=6&&
                 state.landingPlayer>=0&&state.landingPlayer<world.Players.Length&&AiSaveValidation.Clock(state.startedAt)&&AiSaveValidation.Clock(state.retryAt)&&state.passengers!=null,"naval operations state");
             AiSaveValidation.Require(state.landingPlayer==player||world.AreEnemies(player,state.landingPlayer),"naval landing faction");
             var seen=new HashSet<int>();foreach(int id in state.passengers)AiSaveValidation.Require(id>0&&seen.Add(id),"naval passengers");
+            AiSaveValidation.Require((state.hasBridgeCandidate?state.bridgeCandidate!=null:EmptyBridgeCandidate(state.bridgeCandidate))&&
+                (state.hasBridgeMission?state.bridgeMission!=null:EmptyBridgeMission(state.bridgeMission)),"bridge plan presence");
+            AiSaveValidation.Require(bridge!=null||!state.hasBridgeCandidate&&!state.hasBridgeMission&&state.bridgeReview==AiBridgeReview084.None&&state.bridgeRetryAt==0,"unbound bridge plan");
             shipId=state.ship;phase=state.phase;landingIndex=state.landingIndex;landingAttempts=state.landingAttempts;landingPlayer=state.landingPlayer;
             startedAt=state.startedAt;retryAt=state.retryAt;passengers.Clear();passengers.AddRange(state.passengers);
+            bridge?.Restore(state.hasBridgeCandidate?state.bridgeCandidate:null,state.hasBridgeMission?state.bridgeMission:null,state.bridgeReview,state.bridgeRetryAt);
         }
         public bool NeedsTransport=>world.Layout.RequiresTransport&&world.Players[player].age>=2&&world.Rules.Entity("transport_ship")!=null;
         public bool Tick(List<EntityState> own,List<EntityState> visibleEnemies,bool underAttack)
         {
-            if(!NeedsTransport||world.Paused||world.IsMatchEnded||!world.IsPlayerActive(player))return false;
+            if(world.Paused||world.IsMatchEnded||!world.IsPlayerActive(player))return false;
+            if(!world.Layout.RequiresTransport)return world.Layout.HasWater&&world.Players[player].age>=2&&bridge!=null&&bridge.Tick(own,visibleEnemies,underAttack);
+            if(!NeedsTransport)return false;
             var ship=world.Get(shipId);
             if(world.NavalTransportReason(player,ship)!="")
             {

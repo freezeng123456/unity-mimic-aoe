@@ -7,7 +7,7 @@ namespace Frontier
     {
         private void TickMovementCombat(float dt)
         {
-            LastNavigationMs=0;BeginFineRecoveryTick();int count=Entities.Count;
+            LastNavigationMs=0;BeginFineRecoveryTick();BeginSteeringFrame084(dt);int count=Entities.Count;
             for(int i=0;i<count;i++)
             {
                 var e=Entities[i];if(!e.Alive||!e.Complete||e.garrisonedIn!=0||e.def.kind==EntityKind.Resource||e.owner>=0&&!IsPlayerActive(e.owner))continue;
@@ -183,6 +183,8 @@ namespace Frontier
             if(e.def.kind!=EntityKind.Unit||e.shielded||Time<e.shieldReadyAt)return;
             var navigation=NavigationFor(e);e.isDeployed=false;e.deployUntil=0;
             Vector2 requestedGoal=goal;
+            PrepareBridgeTraffic(e,requestedGoal,e.path);
+            CommitBridgeTransit082(e,requestedGoal);
             if(!e.def.waterborne&&Layout.RequiresTransport)
             {
                 int originRegion=Layout.LandRegion(e.position),goalRegion=Layout.LandRegion(navigation.NearestWalkable(goal,e.def.radius));
@@ -220,7 +222,7 @@ namespace Frontier
                         Vector2 detourCandidate=navigation.NearestWalkable(e.position+side*(sign*7)+forward*4,e.def.radius);
                         // Recovery is a local maneuver. A point across a wall can
                         // be walkable but would send the actor back through the gate.
-                        if(!navigation.ClearLine(e.position,detourCandidate,e.def.radius))continue;
+                        if(!MovementLineFree(e,e.position,detourCandidate))continue;
                         float score=Vector2.Distance(detourCandidate,requestedGoal);
                         foreach(var other in Nearby(detourCandidate,4))if(other.id!=e.id&&other.def.kind==EntityKind.Unit&&other.def.waterborne==e.def.waterborne)score+=8*Mathf.Max(0,4-Vector2.Distance(detourCandidate,other.position));
                         if(navigation.IsWalkable(detourCandidate,e.def.radius)&&score<best){best=score;chosen=detourCandidate;}
@@ -231,7 +233,7 @@ namespace Frontier
                 }
             }
             if((e.position-goal).sqrMagnitude<.02f*.02f){e.path.Clear();return;}
-            bool routeOccluded=e.pathIndex<e.path.Count&&!navigation.ClearLine(e.position,e.path[e.pathIndex],e.def.radius);
+            bool routeOccluded=e.pathIndex<e.path.Count&&!MovementLineFree(e,e.position,e.path[e.pathIndex]);
             bool allyRouteOccluded=e.pathAvoidsAllies&&e.pathIndex<e.path.Count&&
                 (!AllySegmentFree(e,e.position,e.path[e.pathIndex])||e.pathIndex<e.path.Count-1&&(e.position-e.path[e.pathIndex]).sqrMagnitude<.04f&&!AllySegmentFree(e,e.position,e.path[e.pathIndex+1]));
             if(e.pathVersion!=navigation.Version||(e.pathGoal-goal).sqrMagnitude>retargetDistanceSquared||routeOccluded||allyRouteOccluded||e.pathIndex>=e.path.Count&&Time>=e.pathRetryAt)
@@ -239,7 +241,7 @@ namespace Frontier
                 if(!e.pathAvoidsAllies||!TryAllyRecovery(e,goal))
                 {
                     if(e.pathAvoidsAllies&&fineRecoveryDeferred){e.status="Waiting for passage";return;}
-                    e.path.Clear();e.path.AddRange(navigation.FindPath(e.position,goal,e.def.radius));e.pathIndex=e.path.Count>1?1:0;
+                    e.path.Clear();e.path.AddRange(FindMovementPath(e,goal));e.pathIndex=e.path.Count>1?1:0;
                     e.pathGoal=goal;e.pathVersion=navigation.Version;e.pathRetryAt=Time+1.2f;e.pathAvoidsAllies=false;
                 }
                 // A new route has a different remaining length. Comparing it to
@@ -250,22 +252,24 @@ namespace Frontier
             Vector2 waypoint=e.path[e.pathIndex],to=waypoint-e.position;
             // Avoidance can move an actor past a corner without touching its exact
             // waypoint. Take the next visible leg instead of orbiting an occupied corner.
-            while(e.pathIndex<e.path.Count-1&&navigation.ClearLine(e.position,e.path[e.pathIndex+1],e.def.radius)&&(!e.pathAvoidsAllies||AllySegmentFree(e,e.position,e.path[e.pathIndex+1]))){e.pathIndex++;waypoint=e.path[e.pathIndex];to=waypoint-e.position;}
+            while(e.pathIndex<e.path.Count-1&&MovementLineFree(e,e.position,e.path[e.pathIndex+1])&&(!e.pathAvoidsAllies||AllySegmentFree(e,e.position,e.path[e.pathIndex+1]))){e.pathIndex++;waypoint=e.path[e.pathIndex];to=waypoint-e.position;}
+            CommitBridgeTransit082(e,requestedGoal);
             Vector2 velocity=ChooseVelocity(e,to,goal,dt);float maxStep=Speed(e)*dt;
             Vector2 move=Vector2.ClampMagnitude(velocity*dt,maxStep),candidate=e.position+move;
             bool walked=false;
-            if(navigation.ClearLine(e.position,candidate,e.def.radius)&&AllyMovementSegmentFree(e,e.position,candidate)){CommitMovementPosition(e,candidate);walked=true;}
+            if(MovementLineFree(e,e.position,candidate)&&AllyMovementSegmentFree(e,e.position,candidate)){CommitMovementPosition(e,candidate);walked=true;}
             else
             {
                 Vector2 xOnly=e.position+new Vector2(move.x,0),zOnly=e.position+new Vector2(0,move.y);
-                if(navigation.ClearLine(e.position,xOnly,e.def.radius)&&AllyMovementSegmentFree(e,e.position,xOnly)&&(xOnly-e.position).sqrMagnitude>.0001f){CommitMovementPosition(e,xOnly);walked=true;}
-                else if(navigation.ClearLine(e.position,zOnly,e.def.radius)&&AllyMovementSegmentFree(e,e.position,zOnly)){CommitMovementPosition(e,zOnly);walked=true;}
+                if(MovementLineFree(e,e.position,xOnly)&&AllyMovementSegmentFree(e,e.position,xOnly)&&(xOnly-e.position).sqrMagnitude>.0001f){CommitMovementPosition(e,xOnly);walked=true;}
+                else if(MovementLineFree(e,e.position,zOnly)&&AllyMovementSegmentFree(e,e.position,zOnly)){CommitMovementPosition(e,zOnly);walked=true;}
             }
             if(walked&&(e.position-e.previousPosition).sqrMagnitude>.0001f){e.facing=(e.position-e.previousPosition).normalized;e.stuckFor=0;e.status="Moving";}
             else
             {
                 e.stuckFor+=dt;if(e.stuckFor>1.5f){e.pathVersion=-1;e.pathRetryAt=Time;e.stuckFor=0;}
             }
+            CommitBridgeTransit082(e,requestedGoal);
         }
         private void CommitMovementPosition(EntityState unit,Vector2 point)
         {
@@ -283,40 +287,9 @@ namespace Frontier
             int insertion=newBucket.FindIndex(other=>other.id>unit.id);
             if(insertion<0)newBucket.Add(unit);else newBucket.Insert(insertion,unit);
         }
-        private readonly List<EntityState> movementNeighbors=new List<EntityState>(24);
-        private static readonly float[] steeringAngles={0,30,-30,60,-60,90,-90,120,-120,180};
         private Vector2 ChooseVelocity(EntityState e,Vector2 to,Vector2 goal,float dt)
         {
-            var navigation=NavigationFor(e);
-            float speed=Mathf.Min(Speed(e),to.magnitude/Mathf.Max(.001f,dt));Vector2 forward=to.normalized;
-            // Follow an exact recovery corridor when it has an unoccupied next step.
-            // Lateral steering must not bend that corridor back into a parked ally.
-            Vector2 recoveryStep=e.position+forward*speed*dt;
-            if(e.pathAvoidsAllies&&navigation.ClearLine(e.position,recoveryStep,e.def.radius)&&AllyMovementSegmentFree(e,e.position,recoveryStep))return forward*speed;
-            movementNeighbors.Clear();foreach(var other in Nearby(e.position,3.5f))if(other.id!=e.id&&other.def.kind==EntityKind.Unit&&other.garrisonedIn==0&&other.def.waterborne==e.def.waterborne)movementNeighbors.Add(other);
-            if(movementNeighbors.Count==0)return forward*speed;
-            Vector2 best=Vector2.zero;float bestScore=float.MaxValue;float distance=to.magnitude;Vector2 steeringGoal=e.position+to;
-            foreach(float angle in steeringAngles)
-            {
-                float radians=angle*Mathf.Deg2Rad;Vector2 direction=new Vector2(forward.x*Mathf.Cos(radians)-forward.y*Mathf.Sin(radians),forward.x*Mathf.Sin(radians)+forward.y*Mathf.Cos(radians));
-                Vector2 velocity=direction*speed,step=e.position+velocity*dt;
-                if(!navigation.ClearLine(e.position,step,e.def.radius)||!AllyMovementSegmentFree(e,e.position,step))continue;
-                // Do not score a projection beyond a nearby corner: doing so made
-                // units orbit the waypoint instead of completing the safe turn.
-                Vector2 predicted=e.position+velocity*Mathf.Min(.45f,distance/Mathf.Max(.001f,speed));
-                float score=(steeringGoal-predicted).magnitude-distance+Mathf.Abs(angle)*.0008f;
-                foreach(var other in movementNeighbors)
-                {
-                    float clearance=e.def.radius+other.def.radius+.09f;
-                    float overlap=Mathf.Max(0,clearance-(predicted-other.position).magnitude);
-                    float immediate=Mathf.Max(0,clearance-(step-other.position).magnitude);
-                    score+=overlap*overlap*18+immediate*immediate*8;
-                }
-                // Stable tie break avoids two symmetric alternatives switching every tick.
-                score+=(angle<0?(e.id%2==0?.0001f:0):(e.id%2!=0?.0001f:0));
-                if(score<bestScore){bestScore=score;best=velocity;}
-            }
-            return best;
+            return ChooseSteeringVelocity084(e,to,goal,dt);
         }
         private bool HasFirepower(EntityState e)=>e.def.damage>0&&(e.def.garrisonAttackLimit<=0||GarrisonFirepowerCount(e)>0);
         private void TryAttack(EntityState e,EntityState target,bool melee)

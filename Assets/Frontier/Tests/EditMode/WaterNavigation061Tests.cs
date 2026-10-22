@@ -227,6 +227,7 @@ namespace Frontier.Tests
             var missed=actors.Where(e=>Vector2.Distance(e.position,goals[e.id])>=1).ToList();
             int landArrived=actors.Count(e=>!e.def.waterborne&&Vector2.Distance(e.position,goals[e.id])<1),shipsArrived=actors.Count(e=>e.def.waterborne&&Vector2.Distance(e.position,goals[e.id])<1);
             TestContext.WriteLine($"River maneuver: land={count}; landArrived={landArrived}; ships=12; shipsArrived={shipsArrived}; crossed={crossed.Count}; simSeconds={stepsTaken*.1f:F1}; peakPlanarStep={peakStep:F5}; peakHeightStep={peakHeightStep:F5}; peakTickMs={peakTickMs:F4}");
+            if(missed.Count>0)TestContext.WriteLine("Unmodified crowd failure: "+CrowdFailureEvidence082.Capture(arena,actors,goals,"straight-river"));
             Assert.AreEqual(0,missed.Count,$"{missed.Count}/{actors.Count} did not arrive within 240 simulation seconds: "+string.Join("; ",missed.Take(12).Select(e=>$"{e.id} {e.def.id} {e.position} -> {goals[e.id]} {e.status}")));
             Assert.AreEqual(actors.Count,crossed.Count,"Every land unit crossed a bridge and every ship crossed below one");
         }

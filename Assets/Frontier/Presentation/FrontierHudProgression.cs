@@ -18,6 +18,24 @@ namespace Frontier
             Button(parent,game.SkirmishModeLabel+" / ROSTER",new Rect(766,464,208,52),ShowRoster);
             Button(parent,"RECORDING LIBRARY",new Rect(100,525,208,52),ShowReplayLibrary);
             Button(parent,"LAN CO-OP",new Rect(322,525,208,52),ShowLanOptions);
+            Button(parent,"CLASSIC CIVILIZATIONS",new Rect(100,620,874,40),ShowClassicCivilizations,"四国正常开局发展与基础使用练习：英国、荷兰、法国、奥斯曼。");
+        }
+        public void ShowClassicCivilizations()
+        {
+            if(game.IsLan){game.Notify("Leave LAN play before opening civilization practice");return;}
+            var box=Modal("CLASSIC CIVILIZATIONS",720);
+            Label(box,"四国正常开局发展与基础使用练习\n从时代 I 经营起步，完成付费生产、研究和指定攻击。",new Rect(25,76,820,55),18,muted);
+            var routes=new[]{ClassicCivilizationRoutes084.British,ClassicCivilizationRoutes084.Dutch,ClassicCivilizationRoutes084.French,ClassicCivilizationRoutes084.Ottoman};
+            var titles=new[]{"英国：庄园与长弓","荷兰：银行与轻骑兵","法国：猎民与胸甲骑兵","奥斯曼：自动招工与禁卫 / Abus 发展"};
+            var descriptions=new[]{"庄园招工、长弓付费生产、老兵升级与指定攻击。","钱币村民、银行实际收入、Ruyter 生产升级与指定攻击。","新募猎民采集、胸甲骑兵生产升级与指定攻击。","自动招工、清真寺升级、禁卫军与 Abus 生产及分别指定攻击。"};
+            for(int i=0;i<routes.Length;i++)
+            {
+                var d=GuidedPlayCatalog.Find(routes[i]);bool unlocked=game.Progress.IsUnlocked(d.Id);
+                string status=game.Progress.IsCompleted(d.Id)?"[已完成] ":unlocked?"":"[未解锁] ";
+                Button(box,status+titles[i]+"\n"+descriptions[i],new Rect(25,144+i*120,815,108),()=>game.StartGuided(d.Id),d.StartingSetupDescription,unlocked);
+            }
+            Label(box,"可保存、读档与重试，完成记录沿用现有进度。",new Rect(25,630,535,48),16,muted);
+            Button(box,"BACK / 返回主菜单",new Rect(590,648,250,48),()=>{CloseModal();ShowMenu();});
         }
         public void ShowGuidedLibrary(bool campaign,int page=0)
         {
@@ -26,7 +44,7 @@ namespace Frontier
             foreach(var d in GuidedPlayCatalog.Definitions)if((d.Kind==GuidedPlayKind.Campaign)==campaign)items.Add(d);
             int pages=Mathf.Max(1,Mathf.CeilToInt(items.Count/4f));page=Mathf.Clamp(page,0,pages-1);
             var box=Modal(campaign?"ORIGINAL RIVER CAMPAIGN":"GUIDED LESSONS",720);
-            Label(box,campaign?items.Count+" original missions in two expeditions. Each expedition unlocks its following chapters.":"Seven practical lessons. Objectives require your real orders and their results.",new Rect(25,76,820,55),18,muted);
+            Label(box,campaign?items.Count+" original missions in two expeditions. Each expedition unlocks its following chapters.":"七项操作课程与四国付费发展路线。新路线从真实时代 I 经营起步。",new Rect(25,76,820,55),18,muted);
             for(int i=0;i<4&&page*4+i<items.Count;i++)
             {
                 var d=items[page*4+i];bool unlocked=game.Progress.IsUnlocked(d.Id);
@@ -69,7 +87,7 @@ namespace Frontier
             var s=game.Guided;if(s==null)return;var box=Modal(s.Definition.Title,720);
             Label(box,s.StartingSetupDescription,new Rect(25,77,820,100),19,muted);
             var b=new StringBuilder();foreach(var item in s.Checklist)b.Append(item.Complete?"[DONE] ":item.Current?"> ":"  ").Append(item.Text).Append("  ").Append(item.Progress.ToString("0")).Append('/').Append(item.Required.ToString("0")).Append('\n');
-            Label(box,b.ToString(),new Rect(25,188,820,350),19,gold);
+            Label(box,b.ToString(),new Rect(25,188,820,350),s.Checklist.Count>9?15:19,gold);
             Label(box,"Use your normal unit and building controls. Save/Load preserves this attempt and checklist. Retry creates a new attempt on the same seed.",new Rect(25,550,815,60),18,muted);
             Button(box,"LOCATE",new Rect(25,640,250,52),()=>{CloseModal();game.Controls.Focus(s.ObjectivePoint);});
             Button(box,"CONTINUE",new Rect(590,640,250,52),CloseModal);

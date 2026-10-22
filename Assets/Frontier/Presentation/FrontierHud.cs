@@ -289,7 +289,7 @@ namespace Frontier
             else
             {
                 selection.text=game.Controls.Selected.Count>1?game.Controls.Selected.Count+" SELECTED  ·  "+selected.def.name:selected.def.name.ToUpperInvariant();
-                details.text=$"HP {selected.hp:0}/{w.MaxHp(selected):0}     ATK {w.Attack(selected):0}     RANGE {(selected.forceMelee?1.4f:selected.def.range):0.#}     POP {selected.def.population}\n{selected.status}  ·  Orders {selected.orders.Count}";
+                details.text=$"HP {selected.hp:0}/{w.MaxHp(selected):0}     ATK {w.Attack(selected):0}     RANGE {(selected.forceMelee?1.4f:selected.def.range):0.#}     POP {selected.def.population}\n{MovementStatus084(selected)}  ·  Orders {selected.orders.Count}";
                 if(selected.Healer&&selected.owner==game.ObserverPlayer)details.text+="\n"+HealingSummary076(selected);
                 if(selected.def.canStealth&&selected.owner==game.ObserverPlayer)details.text+="\nStealth: "+(selected.stealth?(selected.revealedUntil>w.Time?"REVEALED · "+(selected.revealedUntil-w.Time).ToString("0.0")+"s":"ACTIVE · detector proximity can reveal you"):"OFF")+" · Vision "+selected.def.vision;
                 if(selected.def.transportShip){var cargo=TransportCargoSummary079(selected);if(cargo!="")details.text+="\n"+cargo;}
@@ -566,6 +566,12 @@ namespace Frontier
         {
             if(orders==null)return;orders.fontSize=placement.Active?14:17;
             orders.text=placement.Active?placement.Label:DynamicBindingLabel(game.Controls.EnvoyRallyMode?"ENVOY RALLY — CHOOSE TERRAIN":game.Controls.EmbarkMode?"BOARD — CHOOSE YOUR TROOP TRANSPORT":game.Controls.DisembarkMode?"UNLOAD — CHOOSE AN OPEN LAND SHORE":game.Controls.DockRepairMode?"HARBOR REPAIR — CHOOSE YOUR COMPLETED DOCK":game.Controls.HealMode?"HEAL — CHOOSE A WOUNDED FRIENDLY / ALLIED UNIT":game.Controls.RepairMode?"REPAIR [R] — CHOOSE A DAMAGED FRIENDLY TARGET":game.Controls.GarrisonMode?"GARRISON [G] — CHOOSE A FRIENDLY SHELTER":game.Controls.AttackMode?"ATTACK MOVE — CHOOSE DESTINATION":"[V] Idle settler     [T] Town center     [M] Military     [B] Build");
+            bool choosingTarget=game.Controls.EnvoyRallyMode||game.Controls.EmbarkMode||game.Controls.DisembarkMode||game.Controls.DockRepairMode||game.Controls.HealMode||game.Controls.RepairMode||game.Controls.GarrisonMode||game.Controls.AttackMode;
+            orders.resizeTextForBestFit=false;orders.horizontalOverflow=HorizontalWrapMode.Wrap;orders.verticalOverflow=VerticalWrapMode.Overflow;
+            if(!placement.Active&&!choosingTarget&&TryMovementFeedback084(game.Controls.FirstSelected,out string movement,out _))
+            {
+                orders.text=movement;orders.fontSize=14;orders.resizeTextForBestFit=true;orders.resizeTextMinSize=11;orders.resizeTextMaxSize=14;orders.verticalOverflow=VerticalWrapMode.Truncate;
+            }
             if(game.IsWatching||game.Autoplay)orders.text=game.Autoplay?"AI OBSERVATION · camera and selection · army orders are controlled by AI":"WATCHING · camera and selection · recorded orders are read-only";
         }
         private string CaravanSummary(EntityState cart)

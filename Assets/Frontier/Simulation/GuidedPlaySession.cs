@@ -45,6 +45,7 @@ namespace Frontier
             get
             {
                 if(IsAuthored)return AuthoredObjectivePoint;
+                if(IsCivilizationRoute084)return CivilizationObjectivePoint084;
                 switch(Stage?.Goal)
                 {
                     case GuidedPlayGoal.Contact:case GuidedPlayGoal.TradingPost:case GuidedPlayGoal.Alliance:case GuidedPlayGoal.Recruit:return state.contactPoint;
@@ -63,6 +64,7 @@ namespace Frontier
             get
             {
                 if(IsAuthored)return AuthoredSuggestedTarget;
+                if(IsCivilizationRoute084)return Stage?.Goal==GuidedPlayGoal.PaidDamage084&&World.IsVisible(0,World.Get(state.firstTarget))?state.firstTarget:0;
                 switch(Stage?.Goal)
                 {
                     case GuidedPlayGoal.DestroyFirst:case GuidedPlayGoal.Defend:return state.firstTarget;
@@ -78,6 +80,7 @@ namespace Frontier
             get
             {
                 if(IsAuthored)return AuthoredSuggestedActors;
+                if(IsCivilizationRoute084)return CivilizationSuggestedActors084;
                 switch(Stage?.Goal)
                 {
                     case GuidedPlayGoal.Selection:case GuidedPlayGoal.Contact:return new[]{state.scout};
@@ -110,7 +113,7 @@ namespace Frontier
         {
             var definition=GuidedPlayCatalog.Find(id)??throw new ArgumentException("Unknown guided scenario",nameof(id));
             attemptId??=Guid.NewGuid().ToString("N");Require(ValidAttempt(attemptId),"attempt ID");
-            var world=definition.AuthoredScenarioId==""?new World(rules,definition.Seed,"coast","france",5,definition.MapId):
+            var world=definition.AuthoredScenarioId==""?new World(rules,definition.Seed,definition.PlayerCivilization,"france",5,definition.MapId):
                 new World(rules,RiverContent070.Build(rules,definition.AuthoredScenarioId),new[]{"coast","france"},new[]{0,1},5);
             var saved=new GuidedPlaySnapshot{definitionId=id,attemptId=attemptId,rulesHash=SnapshotCodec.RulesHash(rules),startingWood=world.Players[0].gathered.wood,scenarioHash=world.HasScenario?world.ScenarioHash:""};
             Configure(world,definition,saved);var simulation=new MatchSimulation(world,Array.Empty<int>(),"standard");
@@ -124,7 +127,7 @@ namespace Frontier
             var definition=GuidedPlayCatalog.Find(saved.definitionId);Require(definition!=null,"unknown scenario");
             Require(saved.schema==1&&saved.catalogRevision==GuidedPlayCatalog.Revision,"schema or catalog revision");
             Require(ValidAttempt(saved.attemptId)&&saved.rulesHash==SnapshotCodec.RulesHash(world.Rules),"attempt or rules");
-            Require(world.MapId==definition.MapId&&world.Seed==definition.Seed&&world.MaxAge==5&&world.Players.Length==2&&world.Players[0].civilization=="coast"&&world.Players[1].civilization=="france","scenario/world identity");
+            Require(world.MapId==definition.MapId&&world.Seed==definition.Seed&&world.MaxAge==5&&world.Players.Length==2&&world.Players[0].civilization==definition.PlayerCivilization&&world.Players[1].civilization=="france","scenario/world identity");
             if(definition.AuthoredScenarioId!="")
                 Require(world.HasScenario&&saved.scenarioHash==world.ScenarioHash&&world.ScenarioHash==ScenarioCodec.ContentHash(RiverContent070.Build(world.Rules,definition.AuthoredScenarioId)),"authored campaign content identity");
             else Require(!world.HasScenario&&saved.scenarioHash=="","unexpected authored campaign identity");
@@ -156,6 +159,7 @@ namespace Frontier
             else Require(saved.resultEventIndex==-1&&saved.completedSeconds==0&&saved.reason=="","running result");
             Require(!saved.raidIssued||world.Events.Any(e=>e.kind=="GuidedRaid"&&e.player==1&&e.message==saved.attemptId),"raid witness");
             if(definition.AuthoredScenarioId!="")ValidateAuthoredProgress(world,definition,saved);
+            if(ClassicCivilizationRoutes084.Contains(definition.Id))ValidateCivilizationProgress084(world,simulation,definition,saved);
             // Restoring only adopts validated existing state. No Start, Spawn,
             // grant, command, stage evaluation or event is run here.
             return new GuidedPlaySession(world,simulation,definition,SnapshotCodec.Clone(saved));
@@ -188,6 +192,7 @@ namespace Frontier
         {
             if(disposed||Status!=GuidedPlayStatus.Running)return;
             if(IsAuthored){TickAuthored();return;}
+            if(IsCivilizationRoute084&&CivilizationFailure084())return;
             if(World.Get(state.town)?.Alive!=true||World.Players[0].resigned||World.Players[0].eliminated){Finish(GuidedPlayStatus.Failed,"城镇中心已失守或己方退出；同种子重试可重新开始。");return;}
             if(state.transport!=0&&(World.Get(state.transport)?.Alive!=true||state.soldiers.All(id=>World.Get(id)?.Alive!=true))){Finish(GuidedPlayStatus.Failed,"运输舰或登陆队全部损失；请重新安排登陆行动。");return;}
             if(World.Time>=Definition.TimeLimit){Finish(GuidedPlayStatus.Failed,"场景时限已到；可按同一地图种子重试。");return;}
@@ -251,6 +256,7 @@ namespace Frontier
         float Progress(GuidedPlayStage stage)
         {
             if(IsAuthored)return AuthoredProgress(stage);
+            if(IsCivilizationRoute084)return CivilizationProgress084(stage);
             switch(stage.Goal)
             {
                 case GuidedPlayGoal.Selection:return state.selection.Contains(state.scout)?1:0;
@@ -320,6 +326,7 @@ namespace Frontier
             s.town=w.Entities.First(e=>e.owner==0&&e.def.id=="town").id;s.scout=w.Entities.First(e=>e.owner==0&&e.def.id=="explorer").id;
             s.workers=w.Entities.Where(e=>e.owner==0&&e.Worker).Select(e=>e.id).ToArray();
             if(d.AuthoredScenarioId!=""){ConfigureAuthored(w,d,s);return;}
+            if(ClassicCivilizationRoutes084.Contains(d.Id)){ConfigureCivilization084(w,d,s);return;}
             w.Players[0].age=d.StartingAge;w.Players[1].age=d.StartingAge;
             var grant=d.ScenarioGrant;
             if(grant.food+grant.wood+grant.coin>0){w.Players[0].resources+=grant;w.Emit("GuidedScenarioGrant",0,0,d.StartingSetupDescription,grant.food+grant.wood+grant.coin);}

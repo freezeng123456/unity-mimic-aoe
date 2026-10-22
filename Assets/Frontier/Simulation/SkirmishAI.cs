@@ -30,7 +30,7 @@ namespace Frontier
         private int rotation,buildSerial;
         public SkirmishAI(World world,int player):this(world,player,AiDifficultyProfile.From(world.Rules,"standard")){}
         public SkirmishAI(World world,int player,AiDifficultyProfile difficulty)
-        {this.world=world??throw new ArgumentNullException(nameof(world));if(player<0||player>=world.Players.Length)throw new ArgumentOutOfRangeException(nameof(player));this.player=player;Difficulty=difficulty??throw new ArgumentNullException(nameof(difficulty));workforce=new AiWorkforce(world,player);agePlan=new AiAgePlan(world,player);revolution=new AiRevolution071(world,player,Difficulty);construction=new AiConstruction(world,player);continuity=new AiResourceContinuity072(world,player,()=>agePlan.Reserve+revolution.Reserve);civilizationEconomy=new AiCivilizationEconomy(world,player,continuity);medicalSupport=new AiMedicalSupport076(world,player,continuity);waterEconomy=new AiWaterEconomy(world,player,continuity);armyPlan=new AiArmyPlan072(world,player,Difficulty);search=new AiSearchPlan(world,player,enemyStart);}
+        {this.world=world??throw new ArgumentNullException(nameof(world));if(player<0||player>=world.Players.Length)throw new ArgumentOutOfRangeException(nameof(player));this.player=player;Difficulty=difficulty??throw new ArgumentNullException(nameof(difficulty));workforce=new AiWorkforce(world,player);agePlan=new AiAgePlan(world,player);revolution=new AiRevolution071(world,player,Difficulty);construction=new AiConstruction(world,player);continuity=new AiResourceContinuity072(world,player,()=>agePlan.Reserve+revolution.Reserve);civilizationEconomy=new AiCivilizationEconomy(world,player,continuity);medicalSupport=new AiMedicalSupport076(world,player,continuity);waterEconomy=new AiWaterEconomy(world,player,continuity);armyPlan=new AiArmyPlan072(world,player,Difficulty);search=new AiSearchPlan(world,player,enemyStart);waterEconomy.BindBridgeArmy(armyPlan,revolution,medicalSupport);}
         public AiSnapshot CaptureState()
         {
             var remembered=new List<IntPointSnapshot>();
@@ -58,6 +58,7 @@ namespace Frontier
             result.armyPlan.RestoreState(state.armyPlan);result.agePlan.RestoreState(state.agePlan);result.workforce.RestoreState(state.workforce);result.search.RestoreState(state.search);
             result.waterEconomy.RestoreState(state.waterEconomy);result.civilizationEconomy.RestoreState(state.civilizationEconomy);
             result.medicalSupport.RestoreState(state.medicalSupport);
+            result.waterEconomy.ValidateBridgeState();
             foreach(int id in result.medicalSupport.RecoveryMembers)
                 AiSaveValidation.Require(Array.IndexOf(result.armyPlan.WaveMembers,id)<0&&Array.IndexOf(result.armyPlan.GuardMembers,id)<0,"medical and army cohort overlap");
             result.thinkAt=state.thinkAt;result.armyAt=state.armyAt;result.expedition=state.expedition;result.expeditionSize=state.expeditionSize;

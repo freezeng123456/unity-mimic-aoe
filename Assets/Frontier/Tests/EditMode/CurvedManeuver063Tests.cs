@@ -51,6 +51,7 @@ namespace Frontier.Tests
             for(int step=0;step<2400;step++)
             {
                 watch.Restart();world.Tick(.1f);watch.Stop();tickMs.Add(watch.Elapsed.TotalMilliseconds);stepsTaken++;
+                CrowdFailureEvidence082.Progress(world,actors,goals,"curved063",step+1);
                 bool arrived=true;
                 foreach(var actor in actors)
                 {
@@ -80,6 +81,7 @@ namespace Frontier.Tests
             tickMs.Sort();double p95=Percentile(.95),p99=Percentile(.99),peak=tickMs[tickMs.Count-1];
             TestContext.WriteLine($"Curved maneuver: map={map}; land={count}; landArrived={armyArrived}; ships=12; shipsArrived={shipsArrived}; crossed={visitedBridge.Count}; simSeconds={stepsTaken*.1f:F1}; peakPlanarStep={peakPlanarStep:F5}; peakHeightStep={peakHeightStep:F5}; peakTickMs={peak:F4}; tickP95Ms={p95:F4}; tickP99Ms={p99:F4}");
             WriteFineRecoveryDiagnostics(world);
+            if(missed.Length>0)TestContext.WriteLine("Complete unchanged crowd failure evidence: "+CrowdFailureEvidence082.Capture(world,actors,goals,"curved063"));
             foreach(var actor in missed)
             {
                 SaveRecoverySnapshot(world,actor,goals[actor.id]);
@@ -145,7 +147,7 @@ namespace Frontier.Tests
         {
             var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
             object Field(string name)=>typeof(World).GetField(name,flags).GetValue(world);
-            TestContext.WriteLine($"Fine recovery: coarseAttempts={Field("allyRecoveryCoarseAttempts")}; attempts={Field("fineRecoveryAttempts")}; failures={Field("fineRecoveryFailures")}; deferred={Field("fineRecoveryDeferrals")}; peakQueryMs={Field("fineRecoveryPeakMs")}");
+            TestContext.WriteLine($"Fine recovery: coarseAttempts={Field("allyRecoveryCoarseAttempts")}; attempts={Field("fineRecoveryAttempts")}; failures={Field("fineRecoveryFailures")}; deferred={Field("fineRecoveryDeferrals")}; rejectedSavedRoutes={Field("allyRecoveryRouteRejections")}; peakQueryMs={Field("fineRecoveryPeakMs")}");
         }
         private static World RestoreRecoverySnapshot(RecoverySnapshot snapshot)
         {
@@ -187,11 +189,11 @@ namespace Frontier.Tests
             var placed=(bool[])typeof(GridNavigation).GetField("blocked",flags).GetValue(navigation);
             var terrain=(bool[])typeof(GridNavigation).GetField("terrainBlocked",flags).GetValue(navigation);
             var cells=new bool[placed.Length];for(int i=0;i<cells.Length;i++)cells[i]=placed[i]||terrain[i];
-            var stationary=typeof(World).GetMethod("StationaryAlly",System.Reflection.BindingFlags.Static|System.Reflection.BindingFlags.NonPublic);
+            var stationary=typeof(World).GetMethod("StationaryAlly",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic);
             var snapshot=new RecoverySnapshot{mapId=world.MapId,seed=world.Seed,time=world.Time,actorId=actor.id,goal=goal,width=navigation.Width,height=navigation.Height,blockedCells=cells,ruleJson=JsonUtility.ToJson(world.Rules),
                 entities=world.Entities.Where(e=>e.Alive).Select(e=>new SnapshotEntity{
                     id=e.id,owner=e.owner,definition=e.def.id,status=e.status,radius=e.def.radius,hp=e.hp,construction=e.construction,garrisonedIn=e.garrisonedIn,
-                    position=e.position,previousPosition=e.previousPosition,origin=e.origin,facing=e.facing,hold=e.hold,stationary=(bool)stationary.Invoke(null,new object[]{actor,e}),
+                    position=e.position,previousPosition=e.previousPosition,origin=e.origin,facing=e.facing,hold=e.hold,stationary=(bool)stationary.Invoke(world,new object[]{actor,e}),
                     pathGoal=e.pathGoal,progressGoal=e.progressGoal,detour=e.detour,recoveryProgressPosition=e.recoveryProgressPosition,pathAvoidsAllies=e.pathAvoidsAllies,pathIndex=e.pathIndex,pathVersion=e.pathVersion,
                     pathRetryAt=e.pathRetryAt,progressAt=e.progressAt,progressDistance=e.progressDistance,detourUntil=e.detourUntil,recoveryProgressAt=e.recoveryProgressAt,path=e.path.ToArray(),
                     orders=e.orders.Select(o=>new SnapshotOrder{kind=o.kind,point=o.point,resolvedPoint=o.resolvedPoint,hasResolvedPoint=o.hasResolvedPoint,target=o.target}).ToArray()

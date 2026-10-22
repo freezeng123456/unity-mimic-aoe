@@ -5,12 +5,13 @@ namespace Frontier
 {
     public enum GuidedPlayKind { Lesson, Campaign }
     public enum GuidedPlayStatus { Running, Completed, Failed }
-    public enum GuidedPlayGoal { Selection, Move, GatherWood, House, Age, Barracks, Train, SendShipment, ShipmentArrival, DestroyFirst, DestroySecond, Contact, TradingPost, Alliance, Recruit, Embark, Land, HoldLanding, Defend, ScenarioObjective }
+    public enum GuidedPlayGoal { Selection, Move, GatherWood, House, Age, Barracks, Train, SendShipment, ShipmentArrival, DestroyFirst, DestroySecond, Contact, TradingPost, Alliance, Recruit, Embark, Land, HoldLanding, Defend, ScenarioObjective, PaidBuilding084, PaidTrain084, PaidResearch084, PaidAge084, CivilizationEconomy084, PaidDamage084 }
     public sealed class GuidedPlayStage
     {
         public string Id {get; internal set;}
         public string Title {get; internal set;}
         public string Instruction {get; internal set;}
+        public string Item {get; internal set;}="";
         public GuidedPlayGoal Goal {get; internal set;}
         public float Required {get; internal set;}
     }
@@ -21,6 +22,8 @@ namespace Frontier
         public string Description {get; internal set;}
         public GuidedPlayKind Kind {get; internal set;}
         public string MapId {get; internal set;}
+        // A default retains the identity of all revision-1 lessons and checkpoints.
+        public string PlayerCivilization {get; internal set;}="coast";
         public int Seed {get; internal set;}
         public int StartingAge {get; internal set;}
         public Cost ScenarioGrant {get; internal set;}
@@ -100,7 +103,7 @@ namespace Frontier
                 if(i>0)additions[i].UnlockAfterId=additions[i-1].Id;
                 if(i+1<additions.Length)additions[i].NextId=additions[i+1].Id;
             }
-            var all=new List<GuidedPlayDefinition>(a);all.AddRange(additions);return all.ToArray();
+            var all=new List<GuidedPlayDefinition>(a);all.AddRange(additions);all.AddRange(ClassicCivilizationRoutes084.Definitions());return all.ToArray();
         }
     }
 }

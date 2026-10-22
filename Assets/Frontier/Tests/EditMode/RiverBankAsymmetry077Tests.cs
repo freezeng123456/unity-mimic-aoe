@@ -130,13 +130,75 @@ namespace Frontier.Tests
         [TestCase(MapTopology.GeneratedDelta)] [TestCase(MapTopology.GeneratedStrait)]
         public void OtherRiverLayoutsRetainTheirHistoricalBankHeightsAndLayers(string map)
         {
-            var layout=MapLayout.Create(map,314159);
+            var layout=MapLayout.Create(map,314159);bool estuary=EstuaryContent083.Applies(layout);
+            int changed083=0,legacyExact=0;float peak083Slope=0;
             for(float y=0;y<=128;y+=2)for(float x=0;x<=128;x+=2)
             {
                 var p=new Vector2(x,y);var profile=layout.BankProfile(p);
                 Assert.AreEqual(0,profile.InnerBend);Assert.AreEqual(0,profile.OuterBend);Assert.AreEqual(0,profile.Influence);
-                Assert.AreEqual(HistoricalBank(layout,p),layout.BankHeight(p));EqualColor(HistoricalLayers(layout,p),layout.BankLayers(p),map+" "+p);
+                float oldHeight=HistoricalBank(layout,p),height=layout.BankHeight(p);var oldLayers=HistoricalLayers(layout,p);var layers=layout.BankLayers(p);
+                if(!estuary)
+                {
+                    Assert.AreEqual(oldHeight,height);EqualColor(oldLayers,layers,map+" "+p);continue;
+                }
+                // Keep both original legacy oracles. The approved083 dry-bank
+                // exception is bounded independently, never expected=production083().
+                float d=layout.SignedBankDistance(p),mouth=layout.EstuaryMouthWeight083(p),preserve=layout.EstuaryPreservationWeight083(p);
+                Assert.That(mouth,Is.InRange(0,1));Assert.That(preserve,Is.InRange(0,1));
+                Assert.AreEqual(DeclaredEstuaryMouth083(layout,p),mouth,.000001f,"Same old channel authority, not an expanded south exception");
+                if(IndependentEstuaryPad083(layout,p))Assert.AreEqual(0,preserve,"Original physical pad must remain exactly protected "+p);
+                float weight=mouth*preserve;bool allowed=d>0&&d<10&&weight>0;
+                if(!allowed)
+                {
+                    Assert.AreEqual(oldHeight,height,"Wet/pad/south/outside10m must retain original height "+p);EqualColor(oldLayers,layers,"Original layers outside declared083 support "+p);legacyExact++;
+                }
+                else
+                {
+                    // Design envelope: short edge lip, -0.34m low flat, inland
+                    // recovery, then nonnegative shoulder capped at9cm. No new
+                    // wet-bed exception and no cut/lift outside the shared weight.
+                    float targetMin=d<.8f?layout.WaterHeight-.02f:d<7?layout.WaterHeight+.06f:0;
+                    float targetMax=d<=2?layout.WaterHeight+.06f:d<=5?0:.09f;
+                    Assert.GreaterOrEqual(height,oldHeight+weight*(targetMin-oldHeight)-.000001f,"Weighted lower083 envelope "+p);
+                    Assert.LessOrEqual(height,oldHeight+weight*(targetMax-oldHeight)+.000001f,"Weighted upper083 envelope "+p);
+                    Assert.LessOrEqual(height,.090001f);Assert.IsFalse(float.IsNaN(height)||float.IsInfinity(height));
+                    // Broader existing mud/sand treatment can add wetness and
+                    // reduce turf only; each channel remains a weighted mixture.
+                    Assert.GreaterOrEqual(layers.r,oldLayers.r-.000001f);Assert.LessOrEqual(layers.r,oldLayers.r+weight*(1-oldLayers.r)+.000001f);
+                    Assert.GreaterOrEqual(layers.g,oldLayers.g*(1-weight)-.000001f);Assert.LessOrEqual(layers.g,oldLayers.g+weight*(1-oldLayers.g)+.000001f);
+                    Assert.GreaterOrEqual(layers.b,oldLayers.b*(1-weight)-.000001f);Assert.LessOrEqual(layers.b,oldLayers.b+.000001f);
+                    Assert.That(layers.r,Is.InRange(0,1));Assert.That(layers.g,Is.InRange(0,1));Assert.That(layers.b,Is.InRange(0,1));Assert.AreEqual(1,layers.r+layers.g+layers.b,.000001f);Assert.AreEqual(oldLayers.a,layers.a);
+                    if(Mathf.Abs(height-oldHeight)>.000001f||Mathf.Abs(layers.r-oldLayers.r)>.000001f||Mathf.Abs(layers.g-oldLayers.g)>.000001f||Mathf.Abs(layers.b-oldLayers.b)>.000001f)changed083++;
+                }
+                if(d<=0)Assert.LessOrEqual(height,layout.WaterHeight-.019f,"No wet-bed relaxation");
+                foreach(var offset in new[]{new Vector2(.25f,0),new Vector2(0,.25f)})
+                {
+                    var q=p+offset;if(q.x>128||q.y>128)continue;float grade=Mathf.Abs(layout.BankHeight(q)-height)/.25f;peak083Slope=Mathf.Max(peak083Slope,grade);Assert.LessOrEqual(grade,.4f,"Retained physical slope limit "+p+" -> "+q);
+                }
             }
+            if(estuary){Assert.Greater(changed083,0,"The specifically approved content must exist");Assert.Greater(legacyExact,0);TestContext.WriteLine("Retained077 Estuary legacy-exact="+legacyExact+" declared083 changes="+changed083+" peakQuarterAxisGrade="+peak083Slope);}
+        }
+        // Independent declaration checks at this retained test's2m grid, all
+        // exactly aligned to the old0.5m nearest-channel cache. Neither helper
+        // calls the new height/layer authority to manufacture its expected value.
+        static float DeclaredEstuaryMouth083(MapLayout layout,Vector2 point)
+        {
+            float best=float.MaxValue,centerY=0;
+            foreach(var channel in layout.Channels)for(int i=0;i<channel.Centers.Length-1;i++)
+            {
+                var a=channel.Centers[i];var delta=channel.Centers[i+1]-a;float t=Mathf.Clamp01(Vector2.Dot(point-a,delta)/Mathf.Max(.000001f,delta.sqrMagnitude));var center=a+delta*t;
+                float signed=(point-center).magnitude-Mathf.Lerp(channel.HalfWidths[i],channel.HalfWidths[i+1],t);if(signed<best){best=signed;centerY=center.y;}
+            }
+            return Mathf.SmoothStep(0,1,(centerY-80)/32);
+        }
+        static bool IndependentEstuaryPad083(MapLayout layout,Vector2 point)
+        {
+            foreach(var bridge in layout.Bridges){var p=bridge.Local(point);if(Mathf.Abs(p.x)<=bridge.HalfLength+bridge.RampLength+2&&Mathf.Abs(p.y)<=bridge.HalfWidth+2)return true;}
+            foreach(var start in layout.Starts)if(Vector2.Distance(point,start.Town)<=12)return true;
+            foreach(var bank in layout.DockSites)foreach(var dock in bank)if(Vector2.Distance(point,dock)<=8)return true;
+            foreach(var landing in new[]{new Vector2(41,92),new Vector2(72,92)})if(Vector2.Distance(point,landing)<=3)return true;
+            for(int i=0;i<layout.TradeRoute.Length-1;i++){var a=layout.TradeRoute[i];var delta=layout.TradeRoute[i+1]-a;float t=Mathf.Clamp01(Vector2.Dot(point-a,delta)/Mathf.Max(.000001f,delta.sqrMagnitude));if(Vector2.Distance(point,a+delta*t)<=4)return true;}
+            return false;
         }
         [Test] public void DenseActualWalkableBankStepsKeepTheExistingPointFourPhysicalSlopeContract()
         {
