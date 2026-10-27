@@ -212,10 +212,10 @@ namespace Frontier.Tests
         static readonly string[] Routes={ClassicCivilizationRoutes084.British,ClassicCivilizationRoutes084.Dutch,ClassicCivilizationRoutes084.French,ClassicCivilizationRoutes084.Ottoman};
         [Test] public void AdditionsKeepAllThirteenLegacyIdsDefaultCivilizationAndCatalogRevision()
         {
-            Assert.AreEqual(1,GuidedPlayCatalog.Revision);Assert.AreEqual(17,GuidedPlayCatalog.Definitions.Count);
+            Assert.AreEqual(1,GuidedPlayCatalog.Revision);Assert.AreEqual(17,GuidedPlayCatalog.Definitions.Count(d=>!ClassicCivilizationTactics084.Contains(d.Id)));
             Assert.AreEqual(7,GuidedPlayCatalog.Definitions.Count(d=>d.Kind==GuidedPlayKind.Lesson&&!ClassicCivilizationRoutes084.Contains(d.Id)));
             Assert.AreEqual(6,GuidedPlayCatalog.Definitions.Count(d=>d.Kind==GuidedPlayKind.Campaign));
-            foreach(var d in GuidedPlayCatalog.Definitions.Where(d=>!ClassicCivilizationRoutes084.Contains(d.Id)))Assert.AreEqual("coast",d.PlayerCivilization);
+            foreach(var d in GuidedPlayCatalog.Definitions.Where(d=>!ClassicCivilizationRoutes084.Contains(d.Id)&&!ClassicCivilizationTactics084.Contains(d.Id)))Assert.AreEqual("coast",d.PlayerCivilization);
             Assert.AreEqual("campaign_bridge",GuidedPlayCatalog.Find("campaign_supply").NextId);
             Assert.AreEqual("campaign_estuary",GuidedPlayCatalog.Find("campaign_bridge").NextId);
             foreach(string id in Routes)Assert.IsTrue(AccountProgressStore.Load(memoryOnly:true).IsUnlocked(id));

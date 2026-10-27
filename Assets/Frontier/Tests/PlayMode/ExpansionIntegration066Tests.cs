@@ -141,7 +141,7 @@ namespace Frontier.Tests
             game.ReturnToMenu();
             foreach(bool campaign in new[]{false,true})
             {
-                int pages=Mathf.CeilToInt(GuidedPlayCatalog.Definitions.Count(d=>(d.Kind==GuidedPlayKind.Campaign)==campaign)/4f);
+                int pages=Mathf.CeilToInt(GuidedPlayCatalog.Definitions.Count(d=>d.Kind==(campaign?GuidedPlayKind.Campaign:GuidedPlayKind.Lesson))/4f);
                 for(int page=0;page<pages;page++)
                 {game.Hud.ShowGuidedLibrary(campaign,page);yield return Ready();AssertRenderedChinese();}
             }

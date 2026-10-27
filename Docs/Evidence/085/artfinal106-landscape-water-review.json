@@ -1,0 +1,56 @@
+{
+  "kind": "artfinal106-landscape-water-readonly-review",
+  "recordedUtc": "2026-10-22T18:14:21.227312+00:00",
+  "receipt": {
+    "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.25.0/Candidate1/ArtFinal106/runner-receipt082.json",
+    "sha256": "7272b37a85973de478294913ad421b3fa7af4bfce5ecbbf36f769bbd7c7a4e07",
+    "status": "closed",
+    "exitCode": 0,
+    "sourceStable": true,
+    "sourceFingerprint": "33ae5fed3d5c5bae5bbe88dccac3cae8ead2f71e1cc6d34689f55efd05f29be4",
+    "xmlAttributes": {
+      "id": "2",
+      "testcasecount": "15",
+      "result": "Passed",
+      "total": "15",
+      "passed": "15",
+      "failed": "0",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-10-22 18:06:53Z",
+      "end-time": "2026-10-22 18:07:59Z",
+      "duration": "66.0550638"
+    }
+  },
+  "sourceFiles": {
+    "Assets/Frontier/Presentation/LandscapeDetail084.cs": "3aa03a15a0900849a7dcba71435358c8c0f742a7ba3e5953ea71fce5fd8f8b5d",
+    "Assets/Frontier/Presentation/LandscapeArt085.cs": "dd825f0c83eff2895e0cbe8e7acc72f756c5c2fa2617d0446c29365d273348a9",
+    "Assets/Frontier/Presentation/RiverLandscapePresentation.cs": "33f90690c25c2a7ec3c43829beaa7cfc99ff42a3e0438cda32c9bd10fd755be0",
+    "Assets/Frontier/Presentation/ProceduralMeshLifetime.cs": "32810cd3c6d56df4fadee6a51ddcc33a59b3047da6f12b2959441813920f5eff",
+    "Assets/Frontier/Resources/RiverGround.shader": "12dce480f93e100f2f881e7f1990637b399f286fd9c5e10040898b1c90a3a3dc",
+    "Assets/Frontier/Resources/RiverFlow.shader": "aecf4fecab1f878c2598bdb95cde3cf01943e9373b8533fb878fbb197eb08187",
+    "Assets/Frontier/Resources/Meadow085.bytes": "2cd96c1c2b5dea4f230b9026bdbe1d0854c77334f9fb178fd3b0d1ad625b1c7b"
+  },
+  "viewedImages": [
+    {
+      "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.25.0/Candidate1/ArtFinal106/Winding/bank0-zoom26-original.png",
+      "sha256": "5c9bfd90efdbcb31afe1f1cc6c18bd5720c72c9f743bab70a592f6cd818038a5"
+    },
+    {
+      "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.25.0/Candidate1/ArtFinal106/Estuary/outer-mouth-zoom26-original.png",
+      "sha256": "eac0340161ba9ab33430790c7ea979f8a3cc7b0875ee74c3f72aca637ac21030"
+    }
+  ],
+  "landscapeSourceFinding": "No concrete material or mesh-lifetime blocker found in the source reviewed. Shrub uses seven stems, three six-sided lathe crowns and three stones; maximum 870 vertices including two driftwood beams, retaining four shared materials and the existing cluster count, selection, LOD and fog/building gate. Meadow is decoded once into a static shared non-readable texture; cached ground materials are reused, not created per cluster or seed.",
+  "visualFeedback": {
+    "shrubs": "Visible low clumps are clearer than earlier sparse stalks in the two viewed frames; no observed bridge or harbor obstruction in these frames.",
+    "meadow": "Fine texture reads as subdued terrain grain in the two viewed frames.",
+    "water": "New long bright blue-white ribbons cross much of the channel in both viewed frames, especially the upper Estuary and bridge approaches. Current Water2 appearance exceeds the intended restrained fine-flow detail.",
+    "waterVisualAcceptance": false,
+    "suggestedNarrowAdjustment": "Reduce the newly added surface.w glimmer coefficient .022 toward .004 or omit that added line; keep depth and other flow layers. The suspected cause is an inference from the image and source, not an experimentally isolated result."
+  },
+  "scope": "Read-only source and actual saved-image inspection after 106 closed. No Unity, World, native UI, Git, cloud, source edits or new tests. Fifteen bounded checks are not full regression, native, performance or final visual acceptance."
+}

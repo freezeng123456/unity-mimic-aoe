@@ -44,6 +44,7 @@ namespace Frontier
         {
             get
             {
+                if(IsTactic084)return TacticObjectivePoint084;
                 if(IsAuthored)return AuthoredObjectivePoint;
                 if(IsCivilizationRoute084)return CivilizationObjectivePoint084;
                 switch(Stage?.Goal)
@@ -63,6 +64,7 @@ namespace Frontier
         {
             get
             {
+                if(IsTactic084)return TacticSuggestedTarget084;
                 if(IsAuthored)return AuthoredSuggestedTarget;
                 if(IsCivilizationRoute084)return Stage?.Goal==GuidedPlayGoal.PaidDamage084&&World.IsVisible(0,World.Get(state.firstTarget))?state.firstTarget:0;
                 switch(Stage?.Goal)
@@ -79,6 +81,7 @@ namespace Frontier
         {
             get
             {
+                if(IsTactic084)return TacticSuggestedActors084;
                 if(IsAuthored)return AuthoredSuggestedActors;
                 if(IsCivilizationRoute084)return CivilizationSuggestedActors084;
                 switch(Stage?.Goal)
@@ -114,7 +117,7 @@ namespace Frontier
             var definition=GuidedPlayCatalog.Find(id)??throw new ArgumentException("Unknown guided scenario",nameof(id));
             attemptId??=Guid.NewGuid().ToString("N");Require(ValidAttempt(attemptId),"attempt ID");
             var world=definition.AuthoredScenarioId==""?new World(rules,definition.Seed,definition.PlayerCivilization,"france",5,definition.MapId):
-                new World(rules,RiverContent070.Build(rules,definition.AuthoredScenarioId),new[]{"coast","france"},new[]{0,1},5);
+                new World(rules,BuildGuidedDocument084(rules,definition),new[]{definition.PlayerCivilization,"france"},new[]{0,1},5);
             var saved=new GuidedPlaySnapshot{definitionId=id,attemptId=attemptId,rulesHash=SnapshotCodec.RulesHash(rules),startingWood=world.Players[0].gathered.wood,scenarioHash=world.HasScenario?world.ScenarioHash:""};
             Configure(world,definition,saved);var simulation=new MatchSimulation(world,Array.Empty<int>(),"standard");
             saved.startEventIndex=world.Events.Count;
@@ -129,7 +132,7 @@ namespace Frontier
             Require(ValidAttempt(saved.attemptId)&&saved.rulesHash==SnapshotCodec.RulesHash(world.Rules),"attempt or rules");
             Require(world.MapId==definition.MapId&&world.Seed==definition.Seed&&world.MaxAge==5&&world.Players.Length==2&&world.Players[0].civilization==definition.PlayerCivilization&&world.Players[1].civilization=="france","scenario/world identity");
             if(definition.AuthoredScenarioId!="")
-                Require(world.HasScenario&&saved.scenarioHash==world.ScenarioHash&&world.ScenarioHash==ScenarioCodec.ContentHash(RiverContent070.Build(world.Rules,definition.AuthoredScenarioId)),"authored campaign content identity");
+                Require(world.HasScenario&&saved.scenarioHash==world.ScenarioHash&&world.ScenarioHash==ScenarioCodec.ContentHash(BuildGuidedDocument084(world.Rules,definition)),"authored campaign content identity");
             else Require(!world.HasScenario&&saved.scenarioHash=="","unexpected authored campaign identity");
             Require(Enum.IsDefined(typeof(GuidedPlayStatus),saved.status)&&saved.stageIndex>=0&&saved.stageIndex<=definition.Stages.Count&&saved.revision>=0,"status or stage");
             Require(saved.reason!=null&&saved.reason.Length<=512&&SnapshotCodec.Finite(saved.completedSeconds)&&saved.completedSeconds>=0&&saved.completedSeconds<=world.Time+.001f&&SnapshotCodec.Finite(saved.startingWood)&&saved.startingWood>=0,"result clock");
@@ -158,7 +161,8 @@ namespace Frontier
             if(saved.status!=GuidedPlayStatus.Running)Require(world.Paused&&saved.resultEventIndex>previous&&EventIs(world,saved.resultEventIndex,saved.status==GuidedPlayStatus.Completed?"GuidedCompleted":"GuidedFailed",ResultMarker(saved)),"result witness");
             else Require(saved.resultEventIndex==-1&&saved.completedSeconds==0&&saved.reason=="","running result");
             Require(!saved.raidIssued||world.Events.Any(e=>e.kind=="GuidedRaid"&&e.player==1&&e.message==saved.attemptId),"raid witness");
-            if(definition.AuthoredScenarioId!="")ValidateAuthoredProgress(world,definition,saved);
+            if(ClassicCivilizationTactics084.Contains(definition.Id))ValidateTacticProgress084(world,simulation,definition,saved);
+            else if(definition.AuthoredScenarioId!="")ValidateAuthoredProgress(world,definition,saved);
             if(ClassicCivilizationRoutes084.Contains(definition.Id))ValidateCivilizationProgress084(world,simulation,definition,saved);
             // Restoring only adopts validated existing state. No Start, Spawn,
             // grant, command, stage evaluation or event is run here.
@@ -191,6 +195,7 @@ namespace Frontier
         public void Tick()
         {
             if(disposed||Status!=GuidedPlayStatus.Running)return;
+            if(IsTactic084){TickTactic084();return;}
             if(IsAuthored){TickAuthored();return;}
             if(IsCivilizationRoute084&&CivilizationFailure084())return;
             if(World.Get(state.town)?.Alive!=true||World.Players[0].resigned||World.Players[0].eliminated){Finish(GuidedPlayStatus.Failed,"城镇中心已失守或己方退出；同种子重试可重新开始。");return;}
@@ -255,6 +260,7 @@ namespace Frontier
         }
         float Progress(GuidedPlayStage stage)
         {
+            if(IsTactic084)return TacticProgress084(stage);
             if(IsAuthored)return AuthoredProgress(stage);
             if(IsCivilizationRoute084)return CivilizationProgress084(stage);
             switch(stage.Goal)
@@ -325,6 +331,7 @@ namespace Frontier
         {
             s.town=w.Entities.First(e=>e.owner==0&&e.def.id=="town").id;s.scout=w.Entities.First(e=>e.owner==0&&e.def.id=="explorer").id;
             s.workers=w.Entities.Where(e=>e.owner==0&&e.Worker).Select(e=>e.id).ToArray();
+            if(ClassicCivilizationTactics084.Contains(d.Id)){ConfigureTactic084(w,d,s);return;}
             if(d.AuthoredScenarioId!=""){ConfigureAuthored(w,d,s);return;}
             if(ClassicCivilizationRoutes084.Contains(d.Id)){ConfigureCivilization084(w,d,s);return;}
             w.Players[0].age=d.StartingAge;w.Players[1].age=d.StartingAge;

@@ -18,7 +18,7 @@ namespace Frontier
             Button(parent,game.SkirmishModeLabel+" / ROSTER",new Rect(766,464,208,52),ShowRoster);
             Button(parent,"RECORDING LIBRARY",new Rect(100,525,208,52),ShowReplayLibrary);
             Button(parent,"LAN CO-OP",new Rect(322,525,208,52),ShowLanOptions);
-            Button(parent,"CLASSIC CIVILIZATIONS",new Rect(100,620,874,40),ShowClassicCivilizations,"四国正常开局发展与基础使用练习：英国、荷兰、法国、奥斯曼。");
+            Button(parent,"CLASSIC CIVILIZATIONS",new Rect(100,620,874,40),ShowClassicCivilizations,"四国正常开局发展练习与独立受控战术遭遇。");
         }
         public void ShowClassicCivilizations()
         {
@@ -34,14 +34,27 @@ namespace Frontier
                 string status=game.Progress.IsCompleted(d.Id)?"[已完成] ":unlocked?"":"[未解锁] ";
                 Button(box,status+titles[i]+"\n"+descriptions[i],new Rect(25,144+i*120,815,108),()=>game.StartGuided(d.Id),d.StartingSetupDescription,unlocked);
             }
-            Label(box,"可保存、读档与重试，完成记录沿用现有进度。",new Rect(25,630,535,48),16,muted);
+            Button(box,"战术遭遇 / 受控兵力",new Rect(25,648,535,48),ShowClassicTactics084,"独立受控时代与原始兵力，不替代正常发展路线。");
+            Button(box,"BACK / 返回主菜单",new Rect(590,648,250,48),()=>{CloseModal();ShowMenu();});
+        }
+        public void ShowClassicTactics084()
+        {
+            if(game.IsLan){game.Notify("Leave LAN play before opening tactical encounters");return;}
+            var box=Modal("四国战术遭遇 / 受控兵力",720);
+            Label(box,"独立原创演习：固定时代、原始部队、两波敌军。\n真实移动与战斗验收；可保存、读档、失败重试。",new Rect(25,76,820,55),18,muted);
+            int i=0;foreach(var d in ClassicCivilizationTactics084.Definitions())
+            {
+                string status=game.Progress.IsCompleted(d.Id)?"[已完成] ":"";
+                Button(box,status+d.Title+"\n"+d.Description,new Rect(25,144+i*120,815,108),()=>game.StartGuided(d.Id),d.StartingSetupDescription);i++;
+            }
+            Button(box,"发展练习 / 正常时代 I 开局",new Rect(25,648,535,48),ShowClassicCivilizations);
             Button(box,"BACK / 返回主菜单",new Rect(590,648,250,48),()=>{CloseModal();ShowMenu();});
         }
         public void ShowGuidedLibrary(bool campaign,int page=0)
         {
             if(game.IsLan){game.Notify("Leave LAN play before opening guided missions");return;}
             var items=new System.Collections.Generic.List<GuidedPlayDefinition>();
-            foreach(var d in GuidedPlayCatalog.Definitions)if((d.Kind==GuidedPlayKind.Campaign)==campaign)items.Add(d);
+            foreach(var d in GuidedPlayCatalog.Definitions)if(!ClassicCivilizationTactics084.Contains(d.Id)&&(d.Kind==GuidedPlayKind.Campaign)==campaign)items.Add(d);
             int pages=Mathf.Max(1,Mathf.CeilToInt(items.Count/4f));page=Mathf.Clamp(page,0,pages-1);
             var box=Modal(campaign?"ORIGINAL RIVER CAMPAIGN":"GUIDED LESSONS",720);
             Label(box,campaign?items.Count+" original missions in two expeditions. Each expedition unlocks its following chapters.":"七项操作课程与四国付费发展路线。新路线从真实时代 I 经营起步。",new Rect(25,76,820,55),18,muted);

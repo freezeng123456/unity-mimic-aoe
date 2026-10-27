@@ -54,6 +54,22 @@ Shader "Frontier/River Flow"
                 float broken=sin(p.y*6+p.x*3);
                 return smoothstep(.64,.96,ribbon)*smoothstep(-.2,.7,broken);
             }
+            float4 RiverSurface085(float2 p,float2 flow,float unionFlow)
+            {
+                if(unionFlow>.5)
+                {
+                    // Use the same channel frame as CurrentStreak. Only pigment
+                    // and the shading normal vary; the surface stays on its mesh.
+                    p.x/=2.4;float lengthSquared=dot(flow,flow);
+                    float2 downstream=lengthSquared>.0001?flow*rsqrt(max(.0001,lengthSquared)):float2(0,1);
+                    p=float2(dot(p,float2(downstream.y,-downstream.x))*2.4,dot(p,downstream));
+                }
+                float lane=sin(p.x*15+sin(p.y*1.7)*.75);
+                float ripples=sin(p.y*29+sin(p.x*8.5+p.y*3.1)*1.2);
+                float fine=sin(p.y*83-p.x*17+lane*.6);
+                float broken=smoothstep(.70,.98,ripples)*smoothstep(-.25,.75,sin(p.y*6-p.x*3.5));
+                return float4(lane*.6+ripples*.4,ripples,fine,broken);
+            }
             half4 frag(Varyings i):SV_Target
             {
                 // U crosses a channel; V is accumulated river arc length. The
@@ -79,12 +95,14 @@ Shader "Frontier/River Flow"
                 float swell=sin(flowing.y*9+sin(flowing.x*5)*.8);
                 float crossSwell=cos(flowing.x*11+flowing.y*6);
                 float streak=CurrentStreak(flowing,i.flow,i.unionFlow);
+                float4 surface=RiverSurface085(flowing,i.flow,i.unionFlow);
                 if(i.unionFlow>.5)
                 {
                     float2 other=basis-velocity*frac(phase+.5);float blend=abs(phase*2-1);
                     swell=lerp(swell,sin(other.y*9+sin(other.x*5)*.8),blend);
                     crossSwell=lerp(crossSwell,cos(other.x*11+other.y*6),blend);
                     streak=lerp(streak,CurrentStreak(other,i.flow,i.unionFlow),blend);
+                    surface=lerp(surface,RiverSurface085(other,i.flow,i.unionFlow),blend);
                 }
                 half3 n=normalize(half3(wave*.075+swell*.060,1,second*.080+crossSwell*.042));
                 Light sun=GetMainLight(TransformWorldToShadowCoord(i.positionWS));
@@ -104,15 +122,20 @@ Shader "Frontier/River Flow"
                 // Depth stays the original mesh-owned value. The slight
                 // sediment variation is confined to real shallows, so tributary
                 // joins do not acquire a fictitious internal shoreline.
-                half silt=(swell*.5+.5)*(1-depth)*(1-depth);
+                half silt=(surface.x*.5+.5)*(1-depth)*(1-depth);
                 half3 col=lerp(shallow,deep,smoothstep(.08,.86,depth))*lit;
                 col*=1+swell*.080+crossSwell*.035;
+                // Two readable scales break up the broad colour bands. The
+                // variation stays low contrast, with no foam sheet or white noise.
+                col*=1+surface.x*.050+surface.z*.015;
                 col=lerp(col,col*half3(1.10,1.055,.94),silt*.32);
                 // Center the fine sample instead of washing the entire deep
                 // channel with its average brightness. Broken longitudinal
                 // ribbons show current at zoom26 without an opaque foam ring.
                 col+=(fine-.5)*.055+half3(.15,.23,.25)*fresnel+sun.color*glint*.23;
                 col+=half3(.12,.19,.17)*streak*.16;
+                // Preserve the original reflection normal and highlight energy;
+                // the added current detail remains a low-contrast pigment layer.
                 half shoreBreak=saturate(.35+swell*.35+second*.20);
                 half foam=saturate((1-depth-.81)*6)*shoreBreak*.035;
                 return half4(saturate((col+foam)*_BaseColor.rgb),1);

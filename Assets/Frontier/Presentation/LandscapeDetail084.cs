@@ -146,10 +146,12 @@ namespace Frontier
                 }
                 // A compact fan, rather than isolated hairline stalks. Each
                 // blade is double-sided geometry within one shared batch.
-                for(int stem=0;stem<11;stem++)
+                bool shrub=index%3!=2;
+                int stems=shrub?7:11;
+                for(int stem=0;stem<stems;stem++)
                 {
                     float a=stem*2.39996f+LandscapeUnit084(key+3)*6.28f;
-                    float spread=.18f+Mathf.Sqrt(stem/10f)*.70f;
+                    float spread=.18f+Mathf.Sqrt(stem/(float)(stems-1))*.70f;
                     Vector3 foot=Foot(new Vector2(Mathf.Cos(a)*spread,Mathf.Sin(a)*spread*.54f));
                     float height=(.60f+LandscapeUnit084(key+unchecked((uint)stem)+5)*.45f)*(estuary?.80f:1);
                     var tip=foot+new Vector3(Mathf.Cos(a)*.15f,height,Mathf.Sin(a)*.15f);
@@ -163,7 +165,17 @@ namespace Frontier
                         g.Triangle(start+cross,end,start-cross,blade==1?lightLeaf:leaf);
                     }
                 }
-                for(int stone=0;stone<4;stone++)
+                if(shrub)for(int crown=0;crown<3;crown++)
+                {
+                    // Broad, low foliage reads at strategy distance. Unequal
+                    // crowns break up the former repeated grass-and-stone fans.
+                    float size=.70f+LandscapeUnit084(key+unchecked((uint)crown)+51)*.22f;
+                    var foot=Foot(new Vector2((crown-1)*.55f,-.38f+(crown%2)*.18f));
+                    g.Lathe(foot,new[]{new Vector2(.06f,.04f),new Vector2(.42f*size,.16f),
+                        new Vector2(.50f*size,.39f*size),new Vector2(.33f*size,.70f*size),new Vector2(0,.86f*size)},
+                        crown==1?lightLeaf:leaf,6,Quaternion.Euler(0,crown*47+LandscapeUnit084(key+53)*90,0));
+                }
+                for(int stone=0;stone<(shrub?3:4);stone++)
                 {
                     float x=stone==0?-.92f:stone==1?-.48f:stone==2?.28f:.78f;
                     float z=stone==0?.48f:stone==1?.82f:stone==2?.80f:.46f;

@@ -31,6 +31,7 @@ namespace Frontier
             cached.SetColor("_TurfTint",tropical?new Color(.79f,1.06f,.76f):new Color(.82f,.98f,.77f));
             cached.SetColor("_MudColor",tropical?new Color(.43f,.335f,.22f):new Color(.42f,.385f,.285f));
             cached.SetColor("_SandColor",tropical?new Color(.69f,.57f,.36f):winding?new Color(.72f,.63f,.43f):new Color(.65f,.59f,.42f));
+            LandscapeArt085.ApplyRiver(cached);
             groundMaterials[key]=cached;return cached;
         }
 
@@ -102,7 +103,7 @@ namespace Frontier
             if(authored!=null){mesh.subMeshCount=4;for(int i=0;i<4;i++)mesh.SetTriangles(authored[i],i);}
             else mesh.SetTriangles(triangles,0);
             mesh.RecalculateNormals();mesh.RecalculateTangents();mesh.RecalculateBounds();
-            var materials=authored==null?new[]{GroundMaterial(layout.Id)}:new[]{LandscapePresentation.GroundMaterial(),
+            var materials=authored==null?new[]{GroundMaterial(layout.Id)}:new[]{LandscapeArt085.GroundMaterial(),
                 ArchitecturalMaterials.Get(Surface.Earth,new Color(.62f,.555f,.37f)),
                 ArchitecturalMaterials.Get(Surface.Earth,new Color(.39f,.335f,.225f)),
                 ArchitecturalMaterials.Get(Surface.Stone,new Color(.42f,.45f,.43f))};

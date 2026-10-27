@@ -337,6 +337,7 @@ namespace Frontier
                 }
             }
             else Projectiles.Add(new ProjectileState{source=e.id,target=target.id,owner=e.owner,start=e.position,end=target.position,firedAt=Time,hitAt=Time+Mathf.Max(.08f,Vector2.Distance(e.position,target.position)/e.def.projectileSpeed),damage=damage,baseDamage=baseDamage,siegeDamage=e.def.siegeDamage*factor,baseKind=baseKind,splash=e.def.splash,kind=kind});
+            ObserveTacticShot084(e,target,kind,distance);
             Emit("Fire",e.owner,e.id,kind.ToString(),damage,target.id);e.status="Reloading";
         }
         public void ApplyDamage(EntityState target,float raw,DamageKind kind,int owner,int source=0)

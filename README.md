@@ -1,6 +1,10 @@
 # 烽岸纪元 · Frontier Reckoning
 
-**最近已交付：[0.24.0／081 私有 Google Drive](https://drive.google.com/drive/folders/1U9lTHF0b9HbVE6DyhoTqNPRvdSSG6zHN)。** 热带河湾增量的Mac客户端、源码和验收证据；完整回归1877项。该交付不含082支流改动。[081验收与边界](Docs/Verification-081.md)。
+**当前私有下载：[0.25.0 四国发展预览与原图](https://drive.google.com/drive/folders/135YyVrETv164RbU0spprFQ0Rh-eogfnV)**，客户端91包含四国正常付费发展练习，237项相关检查通过，完整回归继续单独验收，交付范围见[084交付](Docs/Delivery-084.md)
+
+**最新源码增量：[085美术优化](Docs/Art-085.md)**，四国兵种、城镇与港仓、船型、草地与低矮灌丛已合入，106的15项模型与画面检查及107的4项水图渲染分别通过，原图标明实际来源，云盘客户端91尚未包含这些后续改动
+
+历史[0.24.0／081私有交付](https://drive.google.com/drive/folders/1U9lTHF0b9HbVE6DyhoTqNPRvdSSG6zHN)的1877项完整回归与原包保持原身份，见[081验收](Docs/Verification-081.md)
 
 独立 Unity 即时战略游戏：英国、荷兰、法国、奥斯曼四个经典文明核心玩法，加上远驿盟市、山岭工联两个原创文明，共六文明。五个时代、25张卡组与XP船运、银行、实车贸易、工坊制造、守卫宝藏和炮兵攻城，配有原创模型、动画与音频。使用本项目规则和候选数值，与 Age of Empires 及其发行商无关联。
 
@@ -10,7 +14,7 @@
 
 主菜单CLASSIC CIVILIZATIONS可直接选择四国练习，操作步骤见[四国手册](Docs/Playbook-084.md)
 
-400人验收按用户要求暂缓，原规模失败保留，当前属于开发候选，原生试玩、构建和私有交付继续验收，全量回归与性能仍待完成
+400人验收按用户要求暂缓，原规模失败保留，当前继续优先美术与可玩内容，全量回归、原生连续试玩、新客户端和性能继续独立验收
 
 [084内容](Docs/Content-084.md) · [实际进度](Docs/Verification-084.md) · [完整框架](Docs/Implementation-Framework-084.md)
 

@@ -152,10 +152,7 @@ namespace Frontier
             foreach(float z in new[]{-.83f,.92f})
             {walls.Box(new Vector3(-.168f,1.22f,z),new Vector3(.06f,.49f,.43f),DarkWood);walls.Box(new Vector3(-.12f,1.22f,z),new Vector3(.024f,.035f,.44f),PaleWood);walls.Box(new Vector3(-.12f,1.22f,z),new Vector3(.024f,.49f,.035f),PaleWood);}
             foreach(float z in new[]{-1.3f,1.3f})foreach(float x in new[]{-1.73f,-.17f})walls.Box(new Vector3(x,1.0f,z),new Vector3(.13f,1.61f,.13f),PaleWood);
-            roof.Quad(new Vector3(-1.86f,1.78f,-1.46f),new Vector3(-1.86f,1.78f,1.46f),new Vector3(-.95f,2.31f,1.46f),new Vector3(-.95f,2.31f,-1.46f),Canvas);
-            roof.Quad(new Vector3(-.95f,2.31f,-1.46f),new Vector3(-.95f,2.31f,1.46f),new Vector3(-.045f,1.78f,1.46f),new Vector3(-.045f,1.78f,-1.46f),Canvas);
-            roof.Triangle(new Vector3(-1.86f,1.78f,-1.46f),new Vector3(-.95f,2.31f,-1.46f),new Vector3(-.045f,1.78f,-1.46f),Wood);
-            roof.Triangle(new Vector3(-.045f,1.78f,1.46f),new Vector3(-.95f,2.31f,1.46f),new Vector3(-1.86f,1.78f,1.46f),Wood);
+            BuildDockRoof085(roof);
             var banner=ArchitecturalMaterials.Get(Surface.Cloth,team);
             detail.Box(new Vector3(-.11f,1.55f,.02f),new Vector3(.06f,.21f,1.17f),banner);
             // One clear diagonal hoist reaches over the occupied quay; it adds
@@ -190,6 +187,7 @@ namespace Frontier
             float slipAngle=Mathf.Atan2(-.17f,2.55f)*Mathf.Rad2Deg;
             foundation.Box(new Vector3(3.56f,.135f,0),new Vector3(2.56f,.075f,1.33f),PaleWood,Quaternion.Euler(0,0,slipAngle));
             for(int i=0;i<10;i++)foundation.Box(new Vector3(2.43f+i*.24f,.23f-i*.016f,0),new Vector3(.03f,.035f,1.35f),DarkWood);
+            RefineDockArchitecture085(foundation,walls);
             var platform=foundation.Create(root,"Dock piles and plank platform");var wallRoot=walls.Create(root,"Dock warehouse walls");var roofRoot=roof.Create(root,"Dock pitched canvas roof");var details=detail.Create(root,"Dock crane rope cargo and team sign");
             var architecture=root.gameObject.AddComponent<ArchitectureModel>();architecture.Civilization="dock";architecture.Age=1;
             architecture.Walls=wallRoot;architecture.Roofs=roofRoot;architecture.Details=details;
@@ -207,7 +205,7 @@ namespace Frontier
             var motion=root.gameObject.AddComponent<BoatPresentationMotion>();
             var hull=new ArchitecturalGeometry();var cargo=new ArchitecturalGeometry();
             float width=gunboat?.76f:.63f,length=gunboat?1.92f:1.64f;
-            Hull(hull,width,length,team);
+            Hull(hull,width,length,team,gunboat?"gunboat":"fishing_boat");
             var cloth=ArchitecturalMaterials.Get(Surface.Cloth,team);
             if(gunboat)
             {
@@ -229,8 +227,7 @@ namespace Frontier
             {
                 // Low open canopy and furled mast fit underneath both bridges.
                 foreach(float x in new[]{-.43f,.43f})foreach(float z in new[]{-.76f,.15f})cargo.Cylinder(new Vector3(x,.88f,z),.038f,1.10f,DarkWood,8);
-                cargo.Quad(new Vector3(-.52f,1.43f,-.90f),new Vector3(-.52f,1.43f,.29f),new Vector3(.52f,1.49f,.29f),new Vector3(.52f,1.49f,-.90f),Canvas);
-                cargo.Quad(new Vector3(.52f,1.49f,-.90f),new Vector3(.52f,1.49f,.29f),new Vector3(-.52f,1.43f,.29f),new Vector3(-.52f,1.43f,-.90f),Canvas);
+                BuildFishingCanopy085(cargo);
                 Barrel(cargo,new Vector3(-.24f,.39f,.69f),.18f,.43f);
                 cargo.Box(new Vector3(.19f,.50f,-.52f),new Vector3(.38f,.20f,.57f),PaleWood);
                 for(int i=0;i<7;i++)cargo.Beam(new Vector3(-.43f,.74f,.37f+i*.065f),new Vector3(.42f,.39f,.37f+i*.065f),.015f,.015f,Rope);
@@ -303,7 +300,7 @@ namespace Frontier
             mesh.RecalculateTangents();motion.Wake=t.GetComponent<MeshRenderer>();motion.Wake.shadowCastingMode=ShadowCastingMode.Off;motion.Wake.enabled=false;
         }
 
-        static void Hull(ArchitecturalGeometry g,float width,float length,Color team)
+        static void Hull(ArchitecturalGeometry g,float width,float length,Color team,string role=null)
         {
             const int segments=16;Vector3 P(int i,float y,float scale)
             {
@@ -315,7 +312,7 @@ namespace Frontier
             for(int ring=0;ring<4;ring++)for(int i=0;i<segments;i++)
             {
                 float lower=-.12f+ring*.125f,upper=lower+.119f,lo=.58f+ring*.105f,hi=lo+.105f;
-                g.Quad(P(i+1,lower,lo),P(i+1,upper,hi),P(i,upper,hi),P(i,lower,lo),ring==3?paint:ring%2==0?Wood:DarkWood);
+                g.Quad(P(i+1,lower,lo),P(i+1,upper,hi),P(i,upper,hi),P(i,lower,lo),HullStrake085(role,ring,paint));
             }
             for(int i=0;i<segments;i++)
             {

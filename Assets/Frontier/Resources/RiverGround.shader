@@ -4,6 +4,9 @@ Shader "Frontier/River Ground"
     {
         _GrassMap("Meadow texture",2D)="white"{}
         _GrassNormals("Meadow normals",2D)="bump"{}
+        _MeadowDetail("Original painted meadow",2D)="white"{}
+        _PaintedStrength("Painted surface blend",Range(0,1))=0
+        _MeadowOnly("Use legacy meadow surface",Float)=0
         _SoilMap("Soil and sand texture",2D)="white"{}
         _SoilNormals("Soil normals",2D)="bump"{}
         _TurfTint("Meadow tint",Color)=(1,1,1,1)
@@ -27,11 +30,13 @@ Shader "Frontier/River Ground"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
             TEXTURE2D(_GrassMap); SAMPLER(sampler_GrassMap);
             TEXTURE2D(_GrassNormals); SAMPLER(sampler_GrassNormals);
+            TEXTURE2D(_MeadowDetail); SAMPLER(sampler_MeadowDetail);
             TEXTURE2D(_SoilMap); SAMPLER(sampler_SoilMap);
             TEXTURE2D(_SoilNormals); SAMPLER(sampler_SoilNormals);
             CBUFFER_START(UnityPerMaterial)
             half4 _TurfTint,_MudColor,_SandColor;
             float4 _DetailOrigin;
+            half _PaintedStrength,_MeadowOnly;
             CBUFFER_END
             struct Attributes {float4 positionOS:POSITION;float3 normalOS:NORMAL;float4 tangentOS:TANGENT;float4 color:COLOR;};
             struct Varyings {float4 positionCS:SV_POSITION;float3 positionWS:TEXCOORD0;half3 normalWS:TEXCOORD1;half3 tangentWS:TEXCOORD2;half3 bitangentWS:TEXCOORD3;half3 layers:TEXCOORD4;};
@@ -71,8 +76,18 @@ Shader "Frontier/River Ground"
                 half turf=saturate(weights.b+(patch-.48)*1.45*weights.g);
                 half wet=min(1-turf,smoothstep(.70,.98,weights.r));
                 weights=half3(wet,max(0,1-wet-turf),turf);
+                weights=lerp(weights,half3(0,0,1),saturate(_MeadowOnly));
                 float2 meadowUV=i.positionWS.xz/128,soilUV=i.positionWS.xz*.5;
                 half3 grass=SAMPLE_TEXTURE2D(_GrassMap,sampler_GrassMap,meadowUV).rgb*_TurfTint.rgb;
+                // Independent scales soften obvious tiling; broad pigment and
+                // authored shoreline weights remain shared with the map.
+                float2 paintedUV=(i.positionWS.xz+_DetailOrigin.xy)/14;
+                half3 painted=SAMPLE_TEXTURE2D(_MeadowDetail,sampler_MeadowDetail,paintedUV).rgb;
+                half3 turned=SAMPLE_TEXTURE2D(_MeadowDetail,sampler_MeadowDetail,float2(-paintedUV.y,paintedUV.x)*.63+float2(.31,.57)).rgb;
+                painted=lerp(painted,turned,.28);
+                half paintedValue=dot(painted,half3(.2126,.7152,.0722));
+                painted=lerp(paintedValue.xxx,painted,.65)*.92;
+                grass=lerp(grass,painted*_TurfTint.rgb,saturate(_PaintedStrength));
                 half3 soil=SAMPLE_TEXTURE2D(_SoilMap,sampler_SoilMap,soilUV).rgb;
                 // Low-frequency cool growth patches and warm dry flecks remain
                 // readable at the ordinary strategy camera, with subdued grit.

@@ -51,7 +51,7 @@ namespace Frontier
             var ground=new GameObject("Ground");ground.transform.SetParent(terrain,false);ground.AddComponent<MeshFilter>().sharedMesh=mesh;
             ground.AddComponent<ProceduralMeshLifetime>().OwnedMesh=mesh;
             var uv=new Vector2[vertices.Count];for(int i=0;i<uv.Length;i++)uv[i]=new Vector2(vertices[i].x/128,vertices[i].z/128);mesh.uv=uv;mesh.RecalculateTangents();
-            ground.AddComponent<MeshRenderer>().sharedMaterial=LandscapePresentation.GroundMaterial();
+            ground.AddComponent<MeshRenderer>().sharedMaterial=LandscapeArt085.GroundMaterial();
             fogTexture=new Texture2D(128,128,TextureFormat.RGBA32,false);fogTexture.filterMode=FilterMode.Bilinear;fogTexture.wrapMode=TextureWrapMode.Clamp;
             Minimap=new Texture2D(128,128,TextureFormat.RGBA32,false);Minimap.filterMode=FilterMode.Point;
             var fog=GameObject.CreatePrimitive(PrimitiveType.Quad);fog.name="Three-state visibility surface";fog.transform.SetParent(terrain,false);fog.transform.position=new Vector3(64,.08f,64);fog.transform.rotation=Quaternion.Euler(90,0,0);fog.transform.localScale=new Vector3(128,128,1);Destroy(fog.GetComponent<Collider>());

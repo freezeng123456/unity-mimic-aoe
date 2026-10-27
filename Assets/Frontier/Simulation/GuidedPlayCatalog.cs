@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Frontier
 {
-    public enum GuidedPlayKind { Lesson, Campaign }
+    public enum GuidedPlayKind { Lesson, Campaign, TacticalEncounter084 }
     public enum GuidedPlayStatus { Running, Completed, Failed }
     public enum GuidedPlayGoal { Selection, Move, GatherWood, House, Age, Barracks, Train, SendShipment, ShipmentArrival, DestroyFirst, DestroySecond, Contact, TradingPost, Alliance, Recruit, Embark, Land, HoldLanding, Defend, ScenarioObjective, PaidBuilding084, PaidTrain084, PaidResearch084, PaidAge084, CivilizationEconomy084, PaidDamage084 }
     public sealed class GuidedPlayStage
@@ -103,7 +103,7 @@ namespace Frontier
                 if(i>0)additions[i].UnlockAfterId=additions[i-1].Id;
                 if(i+1<additions.Length)additions[i].NextId=additions[i+1].Id;
             }
-            var all=new List<GuidedPlayDefinition>(a);all.AddRange(additions);all.AddRange(ClassicCivilizationRoutes084.Definitions());return all.ToArray();
+            var all=new List<GuidedPlayDefinition>(a);all.AddRange(additions);all.AddRange(ClassicCivilizationRoutes084.Definitions());all.AddRange(ClassicCivilizationTactics084.Definitions());return all.ToArray();
         }
     }
 }

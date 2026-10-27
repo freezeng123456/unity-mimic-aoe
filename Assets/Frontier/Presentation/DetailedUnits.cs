@@ -8,7 +8,7 @@ namespace Frontier
 {
     // Original model refinement. Geometry stays on the gameplay rig; each independently
     // animated or hidden group is baked separately, never across a joint/tool boundary.
-    public static class DetailedUnits
+    public static partial class DetailedUnits
     {
         static readonly Color Skin=new Color(.77f,.59f,.40f),Leather=new Color(.18f,.105f,.057f),Dark=new Color(.055f,.048f,.040f);
         static readonly Color Linen=new Color(.84f,.79f,.64f),Brass=new Color(.64f,.47f,.23f),Steel=new Color(.43f,.48f,.49f);
@@ -25,6 +25,7 @@ namespace Frontier
             else if(e.def.id=="caravan")Freight(root,rig);
             else if(rig.Barrel!=null)Gun(root,rig,e.def.id);
             else Figure(root,rig,e,team);
+            ClassicReadability085(root,rig,e.def.id,team);
             Bake(root,rig);
         }
 

@@ -7,7 +7,7 @@ namespace Frontier
 {
     // Original modular architecture, inspired by early-modern craft and the
     // readable tabletop proportions of classic historical strategy games.
-    public static class DetailedArchitecture
+    public static partial class DetailedArchitecture
     {
         public static string CivilizationFor(EntityState e,string requested)
         {
@@ -18,7 +18,7 @@ namespace Frontier
         }
         public static void Build(Transform root,EntityState entity,Color team,string civilization,int age)
         {new Builder(root,entity,team,CivilizationFor(entity,civilization),Mathf.Clamp(age,1,5)).Build();}
-        sealed class Builder
+        sealed partial class Builder
         {
             readonly Transform root;readonly EntityState entity;readonly string civ;readonly int age;readonly float w,d;
             readonly ArchitecturalGeometry ground=new ArchitecturalGeometry(),wall=new ArchitecturalGeometry(),roof=new ArchitecturalGeometry(),detail=new ArchitecturalGeometry();
@@ -55,6 +55,7 @@ namespace Frontier
                     case "waystation": Waystation();break;case "workshop": Workshop();break;case "mosque": Mosque();break;case "church": Church076();break;case "factory": Factory();break;
                     default: House();break;
                 }
+                RefineArchitecture085();
                 var model=root.gameObject.AddComponent<ArchitectureModel>();model.Civilization=civ;model.Age=age;
                 ground.Create(root,"Foundation and ground dressing");model.Walls=wall.Create(root,"Masonry and structural joinery");
                 model.Roofs=roof.Create(root,"Crafted roof silhouette");model.Details=detail.Create(root,"Doors windows ironwork and livelihood");
@@ -87,7 +88,7 @@ namespace Frontier
                 float mainHeight=2.62f+age*.06f;
                 Hall(new Vector3(0,0,d*.12f),w*.68f,d*.69f,mainHeight,true);
                 foreach(int s in new[]{-1,1})Hall(new Vector3(s*w*.78f,0,d*.22f),w*.16f,d*.52f,1.74f,false);
-                Porch(new Vector3(0,.22f,-d*.75f),w*.51f,.43f,1.53f);
+                CivicPortico085(new Vector3(0,.22f,-d*.75f),w*.51f,.43f,1.53f);
                 if(age>=2)
                 {
                     float mainRise=Mathf.Clamp(w*.68f*(dutch?.95f:french?.94f:.78f),.24f,1.55f);
@@ -382,6 +383,7 @@ namespace Frontier
                     float doorHeight=Mathf.Min(1.35f,height*.72f),doorWidth=Mathf.Min(.61f,halfWidth*.63f);
                     Door(p+new Vector3(0,bottom,-halfDepth-.012f),doorWidth,doorHeight,0,ottoman||wayfarer);
                     float opening=Mathf.Min(.40f,halfWidth*.38f),windowHeight=Mathf.Min(.62f,height*.32f),windowY=bottom+height*.61f;
+                    RefineHallOpenings085(halfWidth,height,ref opening,ref windowHeight);
                     foreach(int side in new[]{-1,1})foreach(int i in new[]{-1,1})
                         Window(p+new Vector3(i*halfWidth*.66f,windowY,side*(halfDepth+.013f)),opening,windowHeight,side==1?180:0,ottoman);
                     if(age>=2)foreach(int side in new[]{-1,1})
