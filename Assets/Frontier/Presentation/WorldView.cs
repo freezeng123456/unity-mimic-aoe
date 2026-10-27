@@ -155,23 +155,93 @@ namespace Frontier
                 }
             }
         }
+        // A small presentation-only rounding keeps the visual track close to the
+        // simulated caravan path. Bridge approaches retain their authored shape.
+        private static List<Vector2> RoadCenterline087(World world,Vector2[] route)
+        {
+            var result=new List<Vector2>();
+            if(route.Length==0)return result;
+            result.Add(route[0]);
+            for(int i=1;i<route.Length-1;i++)
+            {
+                Vector2 corner=route[i],before=corner-route[i-1],after=route[i+1]-corner;
+                float beforeLength=before.magnitude,afterLength=after.magnitude;
+                if(beforeLength<.01f||afterLength<.01f){result.Add(corner);continue;}
+                before/=beforeLength;after/=afterLength;
+                // Tight turns, including reversals, stay on the original route.
+                if(Vector2.Dot(before,after)<-.35f){result.Add(corner);continue;}
+                float radius=Mathf.Min(.7f,Mathf.Min(beforeLength,afterLength)*.2f);
+                Vector2 entry=corner-before*radius,exit=corner+after*radius;
+                bool clear=true;
+                for(int step=0;step<=4&&clear;step++)
+                {
+                    float t=step/4f;
+                    Vector2 p=(1-t)*(1-t)*entry+2*(1-t)*t*corner+t*t*exit;
+                    // Leave room for the road width near water and bridge ramps.
+                    foreach(var offset in new[]{Vector2.zero,Vector2.right,Vector2.left,Vector2.up,Vector2.down})
+                    {
+                        var probe=p+offset*1.1f;
+                        if(world.IsWater(probe)||world.IsBridgeApproach(probe)||world.Layout.IsBridgeSideBarrier(probe)){clear=false;break;}
+                    }
+                }
+                if(!clear){result.Add(corner);continue;}
+                result.Add(entry);
+                for(int step=1;step<=4;step++)
+                {
+                    float t=step/4f;
+                    result.Add((1-t)*(1-t)*entry+2*(1-t)*t*corner+t*t*exit);
+                }
+            }
+            if(route.Length>1)result.Add(route[route.Length-1]);
+            return result;
+        }
+
+        private static void AppendRoadRun087(World world,List<Vector2> run,List<Vector3> vertices,List<int> indices)
+        {
+            if(run.Count<2)return;
+            int first=vertices.Count;
+            for(int i=0;i<run.Count;i++)
+            {
+                Vector2 incoming=i==0?run[1]-run[0]:run[i]-run[i-1];
+                Vector2 outgoing=i==run.Count-1?run[i]-run[i-1]:run[i+1]-run[i];
+                if(incoming.sqrMagnitude<.000001f)incoming=outgoing;
+                if(outgoing.sqrMagnitude<.000001f)outgoing=incoming;
+                if(incoming.sqrMagnitude<.000001f)incoming=outgoing=Vector2.right;
+                incoming.Normalize();outgoing.Normalize();
+                Vector2 leftA=new Vector2(-incoming.y,incoming.x),leftB=new Vector2(-outgoing.y,outgoing.x);
+                Vector2 join=leftA+leftB;
+                if(join.sqrMagnitude<.000001f)join=leftB;else join.Normalize();
+                float width=Mathf.Min(.86f,.6f/Mathf.Max(.7f,Mathf.Abs(Vector2.Dot(join,leftB))));
+                Vector2 left=run[i]+join*width,right=run[i]-join*width;
+                vertices.Add(new Vector3(left.x,world.SurfaceHeight(left)+.025f,left.y));
+                vertices.Add(new Vector3(right.x,world.SurfaceHeight(right)+.025f,right.y));
+            }
+            for(int i=0;i<run.Count-1;i++)
+            {
+                int n=first+i*2;
+                indices.AddRange(new[]{n,n+2,n+1,n+1,n+2,n+3});
+            }
+        }
+
         private void CreateTradeViews()
         {
-            var route=game.World.TradeRoute;var vertices=new List<Vector3>();var indices=new List<int>();
-            for(int i=1;i<route.Length;i++)
+            var world=game.World;var route=RoadCenterline087(world,world.TradeRoute);
+            var vertices=new List<Vector3>();var indices=new List<int>();var run=new List<Vector2>();
+            void Flush(){AppendRoadRun087(world,run,vertices,indices);run.Clear();}
+            for(int i=1;i<route.Count;i++)
             {
-                var start=route[i-1];var end=route[i];var direction=(end-start).normalized;var side=new Vector2(-direction.y,direction.x)*.6f;
-                int pieces=game.World.Layout.HasWater||game.World.Layout.HasScenario?Mathf.CeilToInt(Vector2.Distance(start,end)*2):1;
+                var start=route[i-1];var end=route[i];
+                int pieces=Mathf.Max(1,Mathf.CeilToInt(Vector2.Distance(start,end)*2));
                 for(int piece=0;piece<pieces;piece++)
                 {
                     var a=Vector2.Lerp(start,end,piece/(float)pieces);var b=Vector2.Lerp(start,end,(piece+1)/(float)pieces);
                     // Timber decks and ramps already provide the road surface.
-                    if(game.World.IsBridgeApproach((a+b)*.5f))continue;
-                    int n=vertices.Count;
-                    foreach(var point in new[]{a-side,b-side,b+side,a+side})vertices.Add(new Vector3(point.x,game.World.SurfaceHeight(point)+.025f,point.y));
-                    indices.AddRange(new[]{n,n+2,n+1,n,n+3,n+2});
+                    if(world.IsBridgeApproach((a+b)*.5f)){Flush();continue;}
+                    if(run.Count==0)run.Add(a);
+                    if((b-run[run.Count-1]).sqrMagnitude>.000001f)run.Add(b);
                 }
             }
+            Flush();
             tradeRoad=ProceduralArt.MeshPart(terrain,"Caravan road",vertices.ToArray(),indices.ToArray(),new Color(.52f,.43f,.27f)).transform;
             var roadMesh=tradeRoad.GetComponent<MeshFilter>().sharedMesh;roadMesh.uv=vertices.ConvertAll(v=>new Vector2(v.x,v.z)).ToArray();roadMesh.RecalculateTangents();
             tradeRoad.GetComponent<Renderer>().sharedMaterial=LandscapePresentation.RoadMaterial();
