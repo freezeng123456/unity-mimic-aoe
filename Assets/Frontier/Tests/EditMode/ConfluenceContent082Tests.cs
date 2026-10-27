@@ -22,11 +22,14 @@ namespace Frontier.Tests
         [Test] public void EntireInitialWorldRetainsTheActualOldResourcesEventsEconomyFogAndNavigation()
         {
             Assert.AreEqual("0.25.0",Application.version);var w=Opening();
-            // Actual GameplayBaseline1, installed old0.24 instrumented source
-            // d1c1ba2c...; this hashes the full snapshot, not selected budgets.
-            Assert.AreEqual("402e03c1a484d71b3c359234e1374b60b6f16eb3aa770b4dd392c3f5a58eeced",SnapshotCodec.Hash(JsonUtility.ToJson(w.CaptureState())));
+            // Actual GameplayBaseline1, installed old0.24 instrumented source.
+            // Assert the new complete rules identity first, then normalize ONLY
+            // the snapshot rule-hash field to compare every old world field.
+            MapBaselineNeutral088.AssertExpandedRules(w.Rules);
+            var snapshot=w.CaptureState();Assert.AreEqual(MapBaselineNeutral088.CurrentRulesHash,snapshot.rulesHash);
+            snapshot.rulesHash=NeutralSaveMigration088.LegacyRulesHash;
+            Assert.AreEqual("402e03c1a484d71b3c359234e1374b60b6f16eb3aa770b4dd392c3f5a58eeced",SnapshotCodec.Hash(JsonUtility.ToJson(snapshot)),"Full world after normalizing only its rule identity");
             Assert.AreEqual(135,w.Entities.Count);Assert.AreEqual(0,w.Time);Assert.IsFalse(w.Layout.RequiresTransport);
-            Assert.AreEqual("ad70350d6ed009c853117f4d4beafaa4c9d5d6bbd55e80da72dff02c07e4243b",SnapshotCodec.RulesHash(w.Rules));
             var mine=ConfluenceContent082.NorthMine;Assert.AreEqual(mine.Position,w.Get(103).position);Assert.AreEqual(mine.Definition,w.Get(103).def.id);Assert.AreEqual(1200,w.Get(103).remaining);
             for(int i=0;i<4;i++){var wood=ConfluenceContent082.NorthWood(i);Assert.AreEqual(wood.Position,w.Get(109+i).position);Assert.AreEqual(wood.Definition,w.Get(109+i).def.id);Assert.AreEqual(1500,w.Get(109+i).remaining);}
         }

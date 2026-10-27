@@ -24,7 +24,7 @@ namespace Frontier.Tests
         [Serializable] sealed class Receipt
         {
             public string sourceFingerprint,fixtureWorldSha256,fixtureRulesSha256;public int ticks,changedRoutes,fineQueries;public bool worldQueriesUnchanged=true;public Row[] rows;
-            public string scope="Unmodified actual45 World/rules restored; historical pure queries or up to50 actual ticks; no path injection, queue injection,400-arrival or throughput claim";
+            public string scope="Actual45 World/rules restored with only rules identity normalized for empty DTO additions; historical pure queries or up to50 actual ticks; no path injection, queue injection,400-arrival or throughput claim";
         }
         static string Hash(string path){using(var sha=SHA256.Create())return BitConverter.ToString(sha.ComputeHash(File.ReadAllBytes(path))).Replace("-","").ToLowerInvariant();}
         static World Load(out Receipt receipt)
@@ -34,7 +34,7 @@ namespace Frontier.Tests
             Assert.AreEqual("858345a364967e98369b1f4cebd063c0f2d5870b837e1ebe60e7105b3c6fc850",Hash(world));
             Assert.AreEqual("b08413261c770b536bcc25f39187f237b5d83e753c93a55b4cfd6cc8b3ad0ba4",Hash(rules));
             receipt=new Receipt{sourceFingerprint=Environment.GetEnvironmentVariable("FRONTIER_SOURCE_FINGERPRINT"),fixtureWorldSha256=Hash(world),fixtureRulesSha256=Hash(rules)};
-            return World.Restore(JsonUtility.FromJson<RuleCatalog>(File.ReadAllText(rules)),JsonUtility.FromJson<WorldSnapshot>(File.ReadAllText(world)));
+            return MapBaselineNeutral088.RestoreHistoricalFixture(File.ReadAllText(rules),File.ReadAllText(world));
         }
         static Row Inspect(World w,EntityState actor,int tick,bool atPlanningOrigin=false)
         {

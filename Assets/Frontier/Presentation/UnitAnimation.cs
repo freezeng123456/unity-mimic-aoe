@@ -19,7 +19,7 @@ namespace Frontier
         {
             var pose=new AnimationPose{state=UnitPoseState.Idle};if(entity==null)return pose;
             pose.melee=entity.shotMelee||entity.forceMelee||entity.def.damageKind==DamageKind.Melee;
-            pose.bow=entity.def.id=="longbow"||entity.def.id=="native_scout";pose.polearm=entity.def.id=="pike"||entity.def.id=="escort"||entity.def.id=="shield_guard"||entity.def.id=="halberdier";pose.deployed=entity.isDeployed;
+            pose.bow=entity.def.id=="longbow"||entity.def.id=="native_scout";pose.polearm=entity.def.id=="pike"||entity.def.id=="escort"||entity.def.id=="shield_guard"||entity.def.id=="halberdier"||entity.def.id=="ally_highland_guard"||entity.def.id=="ally_river_pike"||entity.def.id=="ally_coastal_marine";pose.deployed=entity.isDeployed;
             pose.stealth=entity.stealth;
             pose.shielded=entity.shielded;pose.loadedCargo=entity.cargoPaid.food+entity.cargoPaid.wood+entity.cargoPaid.coin>0;
             pose.sweepingMelee=entity.def.meleeSplash>0;

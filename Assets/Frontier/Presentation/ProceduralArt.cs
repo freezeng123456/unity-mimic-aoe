@@ -104,9 +104,9 @@ namespace Frontier
             else if(e.def.id=="janissary")coat=new Color(.76f,.71f,.56f);
             else if(e.def.id=="abus")coat=new Color(.46f,.25f,.19f);
             else if(e.def.id=="spahi")coat=new Color(.45f,.22f,.19f);
-            if(e.def.id=="ally_river_guard")coat=new Color(.25f,.43f,.38f);
-            else if(e.def.id=="ally_highland_guard")coat=new Color(.42f,.35f,.24f);
-            else if(e.def.id=="ally_coastal_guard")coat=new Color(.22f,.30f,.42f);
+            if(e.def.id=="ally_river_guard"||e.def.id=="ally_river_pike")coat=new Color(.25f,.43f,.38f);
+            else if(e.def.id=="ally_highland_guard"||e.def.id=="ally_highland_rifle")coat=new Color(.42f,.35f,.24f);
+            else if(e.def.id=="ally_coastal_guard"||e.def.id=="ally_coastal_marine")coat=new Color(.22f,.30f,.42f);
             if((e.def.tags&Tags.Explorer)!=0)coat=new Color(.33f,.39f,.25f);
             Section(root,"Tailored coat",new Vector3(0,1.025f+riderY,0),new Vector2(.40f,.30f),new Vector2(.65f,.42f),.55f,coat);
             Section(root,"Coat skirts",new Vector3(0,.72f+riderY,0),new Vector2(.62f,.40f),new Vector2(.40f,.30f),.32f,coat);
@@ -135,6 +135,7 @@ namespace Frontier
             if(e.def.revolutionary)rig.SupplyCollectorWeapon=rig.Weapon;
             ExpansionEquipment(root,e,rig,team,riderY);
             ClassicEquipment(root,e,rig,team,riderY);
+            NeutralAllyEquipment089(root,e,team,riderY);
             DetailedUnits.Refine(root,rig,e,team);
             rig.CaptureInitialPose();
             return root;
@@ -257,7 +258,7 @@ namespace Frontier
         }
         private static void Headwear(Transform root,EntityState e,float riderY,Color team)
         {
-            if(ClassicHeadwear(root,e,riderY,team))return;
+            if(NeutralAllyHeadwear089(root,e,riderY,team)||ClassicHeadwear(root,e,riderY,team))return;
             bool broad=e.Worker||e.def.revolutionary||e.def.id=="explorer"||e.def.id=="skirmisher"||e.def.id=="longbow";
             Color felt=e.Worker?new Color(.65f,.49f,.25f):new Color(.12f,.16f,.17f);
             Section(root,"Hat brim",new Vector3(0,1.73f+riderY,0),new Vector2(broad?.70f:.48f,broad?.58f:.44f),new Vector2(broad?.70f:.48f,broad?.58f:.44f),.055f,felt);
@@ -265,6 +266,58 @@ namespace Frontier
             Section(root,"Hat crown",new Vector3(0,1.76f+height*.5f+riderY,0),new Vector2(.37f,.36f),new Vector2(.29f,.29f),height,felt);
             Section(root,"Hat team ribbon",new Vector3(0,1.80f+riderY,0),new Vector2(.38f,.37f),new Vector2(.36f,.35f),.07f,team);
             if(e.def.id=="hussar")Section(root,"Cap plume",new Vector3(.12f,2.06f+riderY,0),new Vector2(.09f,.08f),new Vector2(.13f,.10f),.20f,new Color(.86f,.78f,.56f));
+        }
+        // Original neutral factions: each settlement has a distinct silhouette
+        // and retains an explicit player-colour band at ordinary strategy scale.
+        private static bool NeutralAllyHeadwear089(Transform root,EntityState e,float y,Color team)
+        {
+            string id=e.def.id;bool river=id=="ally_river_guard"||id=="ally_river_pike";
+            bool highland=id=="ally_highland_guard"||id=="ally_highland_rifle";
+            bool coastal=id=="ally_coastal_guard"||id=="ally_coastal_marine";
+            if(!river&&!highland&&!coastal)return false;
+            Color leather=new Color(.30f,.23f,.16f),felt=new Color(.19f,.21f,.20f),iron=new Color(.43f,.47f,.47f);
+            if(river)
+            {
+                Section(root,"River trader broad hat",new Vector3(0,1.73f+y,0),new Vector2(.69f,.57f),new Vector2(.69f,.57f),.065f,leather);
+                Section(root,"River trader crown",new Vector3(0,1.84f+y,0),new Vector2(.39f,.38f),new Vector2(.31f,.31f),.20f,leather);
+                Section(root,"River trader team band",new Vector3(0,1.78f+y,0),new Vector2(.41f,.40f),new Vector2(.39f,.38f),.07f,team);
+            }
+            else if(highland)
+            {
+                Section(root,"Highland wool cap",new Vector3(0,1.81f+y,0),new Vector2(.52f,.48f),new Vector2(.42f,.39f),.22f,felt);
+                Section(root,"Highland team band",new Vector3(0,1.74f+y,0),new Vector2(.53f,.49f),new Vector2(.51f,.47f),.07f,team);
+                Section(root,"Highland cap tuft",new Vector3(0,1.99f+y,-.02f),new Vector2(.11f,.11f),new Vector2(.07f,.07f),.14f,new Color(.78f,.71f,.55f));
+            }
+            else
+            {
+                Section(root,"Coastal iron helmet",new Vector3(0,1.82f+y,0),new Vector2(.47f,.44f),new Vector2(.32f,.31f),.28f,iron);
+                Part(root,"Coastal helmet peak",PrimitiveType.Cube,new Vector3(0,1.72f+y,.20f),new Vector3(.48f,.06f,.20f),iron);
+                Section(root,"Coastal team ribbon",new Vector3(0,1.75f+y,0),new Vector2(.48f,.45f),new Vector2(.46f,.43f),.07f,team);
+            }
+            return true;
+        }
+        private static void NeutralAllyEquipment089(Transform root,EntityState e,Color team,float y)
+        {
+            string id=e.def.id;bool river=id=="ally_river_guard"||id=="ally_river_pike";
+            bool highland=id=="ally_highland_guard"||id=="ally_highland_rifle";
+            bool coastal=id=="ally_coastal_guard"||id=="ally_coastal_marine";
+            Color leather=new Color(.29f,.20f,.12f),linen=new Color(.78f,.74f,.61f);
+            if(river)
+            {
+                Beam(root,"River guild diagonal sash",new Vector3(-.23f,1.31f+y,.215f),new Vector3(.21f,.79f+y,.24f),.10f,.035f,team);
+                Part(root,"River guild belt pouch",PrimitiveType.Cube,new Vector3(.35f,.84f+y,-.01f),new Vector3(.22f,.25f,.21f),leather);
+            }
+            else if(highland)
+            {
+                Part(root,"Highland shoulder mantle",PrimitiveType.Cube,new Vector3(-.23f,1.13f+y,-.24f),new Vector3(.25f,.61f,.065f),linen);
+                Beam(root,"Highland mantle stripe",new Vector3(-.23f,1.40f+y,-.28f),new Vector3(-.23f,.86f+y,-.28f),.07f,.035f,team);
+                Part(root,"Highland field pack",PrimitiveType.Cube,new Vector3(.06f,1.01f+y,-.32f),new Vector3(.42f,.45f,.21f),leather);
+            }
+            else if(coastal)
+            {
+                foreach(float x in new[]{-.22f,.22f})Beam(root,"Coastal cross belt",new Vector3(x,1.31f+y,.20f),new Vector3(-x,.82f+y,.24f),.065f,.035f,linen);
+                Part(root,"Coastal team breast badge",PrimitiveType.Cube,new Vector3(0,1.10f+y,.27f),new Vector3(.15f,.16f,.04f),team);
+            }
         }
         private static void Horse(Transform root,UnitRig rig,Color team)
         {
@@ -383,7 +436,7 @@ namespace Frontier
             Color wood=new Color(.24f,.15f,.085f),iron=new Color(.19f,.22f,.22f);
             bool bow=e.def.id=="longbow"||e.def.id=="native_scout";
             rig.WeaponPivot=Pivot(bow?rig.LeftHand:rig.RightHand,"Weapon pivot",Vector3.zero);
-            if(e.def.id=="pike"||e.def.id=="escort"||e.def.id=="shield_guard"||e.def.id=="halberdier"||e.def.id=="ally_highland_guard")
+            if(e.def.id=="pike"||e.def.id=="escort"||e.def.id=="shield_guard"||e.def.id=="halberdier"||e.def.id=="ally_highland_guard"||e.def.id=="ally_river_pike"||e.def.id=="ally_coastal_marine")
             {
                 rig.Weapon=Part(rig.WeaponPivot,"Pike shaft",PrimitiveType.Cylinder,new Vector3(0,.9f,0),new Vector3(.055f,1.5f,.055f),wood).transform;
                 MeshPart(rig.WeaponPivot,"Pike steel head",new[]{new Vector3(-.08f,2.35f,0),new Vector3(.08f,2.35f,0),new Vector3(0,2.8f,0),new Vector3(0,2.4f,.07f)},new[]{0,2,1,0,3,2,1,2,3,0,1,3},iron);

@@ -54,7 +54,7 @@ namespace Frontier.Tests
             Check(w,101,"deer",new Vector2(89f,71f));
             Check(w,102,"deer",new Vector2(93f,77f));
             var p=w.Players[0];Assert.AreEqual(new Cost(300,300,100),p.resources);Assert.AreEqual(1,p.age);Assert.AreEqual(6,w.Entities.Count(e=>e.owner==0&&e.Worker));
-            Assert.AreEqual("ad70350d6ed009c853117f4d4beafaa4c9d5d6bbd55e80da72dff02c07e4243b",SnapshotCodec.RulesHash(w.Rules));Assert.IsFalse(w.Layout.RequiresTransport);
+            MapBaselineNeutral088.AssertExpandedRules(w.Rules);Assert.IsFalse(w.Layout.RequiresTransport);
         }
         [Test] public void AllFiniteResourceBudgetsAreRetainedAndOnlyTheCentralOutpostBudgetIsReassigned()
         {

@@ -7,7 +7,7 @@ namespace Frontier
     // This class never changes terrain heights, collision, fog or simulation state.
     public static class LandscapePresentation
     {
-        private static Material groundMaterial;
+        private static Material groundMaterial,roadMaterial;
 
         public static Material GroundMaterial()
         {
@@ -61,7 +61,15 @@ namespace Frontier
 
         // The visible road follows the supplied simulation route, not a painted
         // approximation in GroundMaterial. UVs are in metres, matching buildings.
-        public static Material RoadMaterial() => ArchitecturalMaterials.Get(Surface.Earth, new Color(.58f, .48f, .32f));
+        public static Material RoadMaterial()
+        {
+            if(roadMaterial!=null)return roadMaterial;
+            var earth=ArchitecturalMaterials.Get(Surface.Earth,new Color(.58f,.48f,.32f));
+            roadMaterial=new Material(Shader.Find("Frontier/Road Shoulder")){name="Frontier / soft road shoulder"};
+            roadMaterial.SetTexture("_BaseMap",earth.GetTexture("_BaseMap"));
+            roadMaterial.SetColor("_BaseColor",earth.GetColor("_BaseColor"));
+            return roadMaterial;
+        }
 
         private static float Hash(int x, int y)
         {

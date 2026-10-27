@@ -45,6 +45,58 @@ namespace Frontier.Tests
             for(int i=0;i<3;i++)yield return Click(ButtonCenter(FindButton("NEXT ")));
             Assert.IsTrue(FindButton("NEXT ").name.StartsWith("NEXT 4/"));CollectionAssert.AreEqual(deck,game.SelectedDeck);
         }
+        [UnityTest] public IEnumerator NeutralServicePagesAndEligibilityRefreshWithoutReopening()
+        {
+            var world=game.World;var state=world.NeutralAllies[0];var def=world.NeutralDefinition(state.id);
+            var previousUnits=def.additionalUnits;var previousTechs=def.additionalTechs;
+            try
+            {
+                // A third valid catalog item exercises pagination; configuration is restored afterwards.
+                def.additionalUnits=new[]{previousUnits[0],"hussar"};
+                def.additionalTechs=new[]{previousTechs[0],world.NeutralDefinition(world.NeutralAllies[1].id).tech};
+                var socket=world.Get(state.site);var post=world.Spawn("trade_post",0,socket.position);
+                world.Spawn("villager",0,socket.position+new Vector2(2,0));world.Fog.Reveal(0,socket.position,12);
+                state.owner=0;state.post=post.id;world.Players[0].age=1;world.Players[0].resources=new Cost(5000,5000,5000);
+                game.Controls.Select(socket);yield return Ready();yield return Click(ButtonCenter(FindButton("SETTLEMENT")));
+                string first=world.Rules.Entity(def.unit).name;
+                Assert.IsFalse(FindButton(first).interactable,"Age I lacks the age II recruit");
+                world.Players[0].age=2;
+                Assert.AreEqual("",world.NeutralCommandReason(0,state.site,CommandKind.NeutralRecruit,def.unit),"Fixture must satisfy all real command requirements after the age change");
+                yield return Ready();
+                Assert.IsTrue(FindButton(first).interactable,"Age change refreshes the existing settlement menu");
+                yield return Click(ButtonCenter(FindButton("NEXT RECRUIT")));
+                Assert.IsNotNull(FindButton(world.Rules.Entity("hussar").name),"Third recruit is accessible");
+                yield return Click(ButtonCenter(FindButton("NEXT RESEARCH")));
+                Assert.IsNotNull(FindButton(world.Rules.Tech(def.additionalTechs[1]).name),"Third research is accessible");
+                world.Remove(post);yield return Ready();
+                Assert.IsFalse(FindButton(world.Rules.Entity("hussar").name).interactable,"Post removal refreshes the existing page");
+            }
+            finally{def.additionalUnits=previousUnits;def.additionalTechs=previousTechs;}
+        }
+        [UnityTest] public IEnumerator NeutralServiceCountdownIsVisibleOnlyToItsOwningObserver()
+        {
+            var world=game.World;var state=world.NeutralAllies[0];var definition=world.NeutralDefinition(state.id);var socket=world.Get(state.site);
+            // Controlled post ownership/contact: both services themselves are
+            // accepted paid commands, not manufactured progress labels.
+            world.Players[1].age=5;world.Players[1].resources=new Cost(5000,5000,5000);
+            var enemyPost=world.Spawn("trade_post",1,socket.position);
+            world.Spawn("villager",1,world.Navigation.NearestWalkable(socket.position+new Vector2(5,0),.4f));
+            state.owner=1;state.post=enemyPost.id;world.Fog.Tick(world.Entities);world.Fog.Reveal(0,socket.position,12);
+            var enemy=world.Issue(new GameCommand{player=1,kind=CommandKind.NeutralResearch,target=state.site,item=definition.tech});
+            Assert.IsTrue(enemy.accepted,enemy.reason);Assert.AreEqual("Research",state.jobs.Single().kind);
+            game.Controls.Select(socket);yield return Ready();yield return Click(ButtonCenter(FindButton("SETTLEMENT")));
+            string EnemyLabel()=>session.GetComponentsInChildren<Text>().Single(t=>t.text.StartsWith("Treaty:")).text;
+            Assert.IsFalse(EnemyLabel().Contains("Service "),"Enemy service existence and countdown must not appear in the modal");
+            game.Hud.CloseModal();world.Remove(enemyPost);world.Tick(.1f);Assert.AreEqual(-1,state.owner);
+            world.Players[0].age=5;world.Players[0].resources=new Cost(5000,5000,5000);
+            var ownPost=world.Spawn("trade_post",0,socket.position);
+            world.Spawn("villager",0,world.Navigation.NearestWalkable(socket.position+new Vector2(-5,0),.4f));
+            state.owner=0;state.post=ownPost.id;world.Fog.Tick(world.Entities);
+            var own=world.Issue(new GameCommand{player=0,kind=CommandKind.NeutralResearch,target=state.site,item=definition.tech});
+            Assert.IsTrue(own.accepted,own.reason);Assert.AreEqual("Research",state.jobs.Single().kind);
+            game.Controls.Select(socket);yield return Ready();yield return Click(ButtonCenter(FindButton("SETTLEMENT")));
+            Assert.IsTrue(EnemyLabel().Contains("Service "),"The owner can see its own paid service countdown");
+        }
         [UnityTest] public IEnumerator NewCivilizationRosterHidesReplacedUnits()
         {
             game.World.Players[0].civilization="wayfarer";game.World.Players[0].age=5;

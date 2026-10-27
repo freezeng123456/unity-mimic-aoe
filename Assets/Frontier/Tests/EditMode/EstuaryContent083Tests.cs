@@ -24,8 +24,11 @@ namespace Frontier.Tests
         }
         [Test] public void ActualBaseline20OpeningRemainsByteExactIncludingResourceIdentitiesAndNavigation()
         {
-            var w=Opening();Assert.AreEqual("3f4f78e59cd69a4bd88b0eced04bc2b029e62a3dbdce3e733b495bf17bbfa0ab",SnapshotCodec.Hash(JsonUtility.ToJson(w.CaptureState())),"Recorded actual unmodified EstuaryBaseline20, seed42 coast/coast agecap5");
-            Assert.AreEqual("ad70350d6ed009c853117f4d4beafaa4c9d5d6bbd55e80da72dff02c07e4243b",SnapshotCodec.RulesHash(w.Rules));
+            var w=Opening();MapBaselineNeutral088.AssertExpandedRules(w.Rules);
+            // Compare every historical opening field after normalizing only the rule identity.
+            var snapshot=w.CaptureState();Assert.AreEqual(MapBaselineNeutral088.CurrentRulesHash,snapshot.rulesHash);
+            snapshot.rulesHash=NeutralSaveMigration088.LegacyRulesHash;
+            Assert.AreEqual("3f4f78e59cd69a4bd88b0eced04bc2b029e62a3dbdce3e733b495bf17bbfa0ab",SnapshotCodec.Hash(JsonUtility.ToJson(snapshot)),"Recorded EstuaryBaseline20 after rule-identity normalization, seed42 coast/coast agecap5");
             Assert.AreEqual(new Vector2(48,70),w.Get(103).position);Assert.AreEqual("mine",w.Get(103).def.id);Assert.AreEqual(new Vector2(82,93),w.Get(88).position);Assert.AreEqual("mine",w.Get(88).def.id);
             Assert.AreEqual(6,w.Entities.Count(e=>e.def.id=="mine"));Assert.AreEqual(62,w.Entities.Count(e=>e.def.id=="tree"));Assert.AreEqual(6,w.Entities.Count(e=>e.def.id=="fish"));Assert.AreEqual(0,w.Time);Assert.IsFalse(w.Layout.RequiresTransport);
             CollectionAssert.AreEqual(new[]{new Vector2(44,25),new Vector2(38,103)},w.Layout.DockSites[0]);CollectionAssert.AreEqual(new[]{new Vector2(79,103),new Vector2(62,19)},w.Layout.DockSites[1]);

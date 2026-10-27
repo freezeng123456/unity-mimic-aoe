@@ -196,7 +196,7 @@ namespace Frontier
             return result;
         }
 
-        private static void AppendRoadRun087(World world,List<Vector2> run,List<Vector3> vertices,List<int> indices)
+        private static void AppendRoadRun087(World world,List<Vector2> run,List<Vector3> vertices,List<Color> colors,List<int> indices)
         {
             if(run.Count<2)return;
             int first=vertices.Count;
@@ -213,21 +213,30 @@ namespace Frontier
                 if(join.sqrMagnitude<.000001f)join=leftB;else join.Normalize();
                 float width=Mathf.Min(.86f,.6f/Mathf.Max(.7f,Mathf.Abs(Vector2.Dot(join,leftB))));
                 Vector2 left=run[i]+join*width,right=run[i]-join*width;
-                vertices.Add(new Vector3(left.x,world.SurfaceHeight(left)+.025f,left.y));
-                vertices.Add(new Vector3(right.x,world.SurfaceHeight(right)+.025f,right.y));
+                Vector2 outerLeft=run[i]+join*(width+.30f),outerRight=run[i]-join*(width+.30f);
+                // Never grow the soft shoulder over navigable water, a bridge
+                // ramp, or a bridge-side barrier. The simulation is unchanged.
+                bool Safe(Vector2 p)=>!world.IsWater(p)&&!world.IsBridgeApproach(p)&&!world.Layout.IsBridgeSideBarrier(p);
+                if(!Safe(outerLeft))outerLeft=left;if(!Safe(outerRight))outerRight=right;
+                float end=(i==0||i==run.Count-1)?.38f:1f;
+                foreach(var point in new[]{outerLeft,left,right,outerRight})
+                    vertices.Add(new Vector3(point.x,world.SurfaceHeight(point)+.025f,point.y));
+                colors.Add(new Color(1,1,1,0));colors.Add(new Color(1,1,1,end));
+                colors.Add(new Color(1,1,1,end));colors.Add(new Color(1,1,1,0));
             }
             for(int i=0;i<run.Count-1;i++)
             {
-                int n=first+i*2;
-                indices.AddRange(new[]{n,n+2,n+1,n+1,n+2,n+3});
+                int n=first+i*4;
+                for(int lane=0;lane<3;lane++)
+                    indices.AddRange(new[]{n+lane,n+lane+4,n+lane+1,n+lane+1,n+lane+4,n+lane+5});
             }
         }
 
         private void CreateTradeViews()
         {
             var world=game.World;var route=RoadCenterline087(world,world.TradeRoute);
-            var vertices=new List<Vector3>();var indices=new List<int>();var run=new List<Vector2>();
-            void Flush(){AppendRoadRun087(world,run,vertices,indices);run.Clear();}
+            var vertices=new List<Vector3>();var colors=new List<Color>();var indices=new List<int>();var run=new List<Vector2>();
+            void Flush(){AppendRoadRun087(world,run,vertices,colors,indices);run.Clear();}
             for(int i=1;i<route.Count;i++)
             {
                 var start=route[i-1];var end=route[i];
@@ -243,8 +252,10 @@ namespace Frontier
             }
             Flush();
             tradeRoad=ProceduralArt.MeshPart(terrain,"Caravan road",vertices.ToArray(),indices.ToArray(),new Color(.52f,.43f,.27f)).transform;
-            var roadMesh=tradeRoad.GetComponent<MeshFilter>().sharedMesh;roadMesh.uv=vertices.ConvertAll(v=>new Vector2(v.x,v.z)).ToArray();roadMesh.RecalculateTangents();
-            tradeRoad.GetComponent<Renderer>().sharedMaterial=LandscapePresentation.RoadMaterial();
+            var roadMesh=tradeRoad.GetComponent<MeshFilter>().sharedMesh;roadMesh.uv=vertices.ConvertAll(v=>new Vector2(v.x,v.z)).ToArray();roadMesh.colors=colors.ToArray();roadMesh.RecalculateTangents();
+            var roadRenderer=tradeRoad.GetComponent<Renderer>();
+            roadRenderer.sharedMaterial=LandscapePresentation.RoadMaterial();
+            roadRenderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;
             caravan=new GameObject("Neutral caravan").transform;caravan.SetParent(terrain,false);var caravanStart=game.World.CaravanPosition;caravan.position=new Vector3(caravanStart.x,0,caravanStart.y);
             LandscapePresentation.BuildNeutralCaravan(caravan);
             caravan.gameObject.SetActive(false);
@@ -431,7 +442,7 @@ namespace Frontier
             for(int y=0;y<128;y++)for(int x=0;x<128;x++)
             {
                 var visibility=world.Fog.At(game.ObserverPlayer,new Vector2(x,y));int i=y*128+x;
-                fogPixels[i]=new Color32(12,21,25,(byte)(visibility==VisibilityState.Visible?0:visibility==VisibilityState.Explored?170:252));
+                fogPixels[i]=new Color32(12,21,25,(byte)(visibility==VisibilityState.Visible?0:visibility==VisibilityState.Explored?170:255));
                 mapPixels[i]=visibility==VisibilityState.Unexplored?new Color32(12,22,27,255):world.IsWater(new Vector2(x,y))?(world.IsBridge(new Vector2(x,y))?new Color32(133,111,73,255):visibility==VisibilityState.Explored?new Color32(26,55,64,255):new Color32(45,106,127,255)):visibility==VisibilityState.Explored?new Color32(44,53,43,255):new Color32(87,103,57,255);
                 if(world.Layout.HasScenario&&visibility!=VisibilityState.Unexplored&&!world.IsWater(new Vector2(x,y)))
                 {

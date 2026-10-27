@@ -7,6 +7,8 @@ namespace Frontier
     [Serializable] public sealed class NeutralAllyDef
     {
         public string id,name,unit,tech;
+        // Optional extra services; legacy definitions and commands retain their defaults.
+        public string[] additionalUnits=Array.Empty<string>(),additionalTechs=Array.Empty<string>();
         public int socketIndex;
         public Cost allianceCost;
         public float allianceSeconds=8,controlRadius=9,lossSeconds=15;
@@ -32,11 +34,44 @@ namespace Frontier
         public readonly List<NeutralAllianceState> NeutralAllies=new List<NeutralAllianceState>();
         public NeutralAllyDef NeutralDefinition(string id)
         {foreach(var d in Rules.neutralAllies??Array.Empty<NeutralAllyDef>())if(d.id==id)return d;return null;}
+        public static string[] NeutralOptions(NeutralAllyDef definition,CommandKind kind)
+        {
+            if(definition==null)return Array.Empty<string>();
+            string first=kind==CommandKind.NeutralRecruit?definition.unit:kind==CommandKind.NeutralResearch?definition.tech:null;
+            if(string.IsNullOrEmpty(first))return Array.Empty<string>();
+            var extra=kind==CommandKind.NeutralRecruit?definition.additionalUnits:definition.additionalTechs;
+            var options=new List<string>{first};
+            foreach(var id in extra??Array.Empty<string>())if(!string.IsNullOrEmpty(id)&&!options.Contains(id))options.Add(id);
+            return options.ToArray();
+        }
+        public static bool NeutralOffers(NeutralAllyDef definition,CommandKind kind,string item)
+        {return Array.Exists(NeutralOptions(definition,kind),id=>id==item);}
         public NeutralAllianceState NeutralAt(int site)
         {foreach(var state in NeutralAllies)if(state.site==site)return state;return null;}
 
+        // Validate optional services for both map-generated and authored-scenario
+        // worlds. Legacy null arrays mean no extras; invalid or duplicate IDs are
+        // rejected instead of silently hiding buttons or corrupting a paid queue.
+        private static void ValidateNeutralServices(RuleCatalog rules)
+        {
+            foreach(var definition in rules.neutralAllies??Array.Empty<NeutralAllyDef>())
+            {
+                if(definition==null)throw new ArgumentException("Invalid neutral service definition");
+                var units=new HashSet<string>();var techs=new HashSet<string>();
+                bool Unit(string id)
+                {
+                    if(string.IsNullOrWhiteSpace(id)||!units.Add(id))return false;
+                    var unit=rules.Entity(id);return unit!=null&&unit.kind==EntityKind.Unit&&!unit.waterborne;
+                }
+                bool Tech(string id)=>!string.IsNullOrWhiteSpace(id)&&techs.Add(id)&&rules.Tech(id)!=null;
+                if(!Unit(definition.unit)||!Tech(definition.tech))throw new ArgumentException("Invalid neutral default service");
+                foreach(string id in definition.additionalUnits??Array.Empty<string>())if(!Unit(id))throw new ArgumentException("Invalid neutral recruit service: "+id);
+                foreach(string id in definition.additionalTechs??Array.Empty<string>())if(!Tech(id))throw new ArgumentException("Invalid neutral technology service: "+id);
+            }
+        }
         private void InitializeNeutralAllies()
         {
+            ValidateNeutralServices(Rules);
             if(HasScenario){InitializeScenarioNeutralAllies();return;}
             var ids=new HashSet<string>();var sockets=new HashSet<int>();
             foreach(var d in Rules.neutralAllies??Array.Empty<NeutralAllyDef>())
@@ -59,7 +94,7 @@ namespace Frontier
                     (!militaryOnly||e.Military)&&(e.position-point).sqrMagnitude<=radius*radius)return true;
             return false;
         }
-        public string NeutralCommandReason(int player,int site,CommandKind kind)
+        public string NeutralCommandReason(int player,int site,CommandKind kind,string item="")
         {
             if(player<0||player>=Players.Length)return "Invalid player";
             if(IsMatchEnded)return "Match has ended";
@@ -82,7 +117,9 @@ namespace Frontier
             if(state.jobs.Count>0)return "Settlement service is already in progress";
             if(kind==CommandKind.NeutralRecruit)
             {
-                var unit=Rules.Entity(d.unit);if(unit==null||unit.kind!=EntityKind.Unit||unit.waterborne)return "Invalid allied unit";
+                string selected=string.IsNullOrEmpty(item)?d.unit:item;
+                if(!NeutralOffers(d,kind,selected))return "This settlement does not offer that unit";
+                var unit=Rules.Entity(selected);if(unit==null||unit.kind!=EntityKind.Unit||unit.waterborne)return "Invalid allied unit";
                 if(Players[player].age<UnitAge(player,unit))return "Requires age "+UnitAge(player,unit);
                 if(!EntityAvailable(player,unit))return "Civilization requirement";
                 string limit=UnitLimitReason(player,unit,1);if(limit!="")return limit;
@@ -92,7 +129,9 @@ namespace Frontier
             }
             if(kind==CommandKind.NeutralResearch)
             {
-                var tech=Rules.Tech(d.tech);if(tech==null)return "Invalid allied technology";
+                string selected=string.IsNullOrEmpty(item)?d.tech:item;
+                if(!NeutralOffers(d,kind,selected))return "This settlement does not offer that technology";
+                var tech=Rules.Tech(selected);if(tech==null)return "Invalid allied technology";
                 if(Players[player].age<tech.age)return "Requires age "+tech.age;
                 if(tech.units!=null&&tech.units.Length>0&&!Array.Exists(tech.units,id=>EntityAvailable(player,Rules.Entity(id))))return "No available units use this technology";
                 if(Players[player].technologies.Contains(tech.id)||TechnologyQueued(player,tech.id))return "Already completed or queued";
@@ -109,7 +148,7 @@ namespace Frontier
             if(command==null)return CommandResult.Fail("Missing command");
             if(command.kind!=CommandKind.NeutralAlliance&&command.kind!=CommandKind.NeutralRecruit&&command.kind!=CommandKind.NeutralResearch)return CommandResult.Fail("Unknown neutral service");
             if(command.count!=1)return CommandResult.Fail("Recruit one allied unit at a time");
-            string reason=NeutralCommandReason(command.player,command.target,command.kind);if(reason!="")return CommandResult.Fail(reason);
+            string reason=NeutralCommandReason(command.player,command.target,command.kind,command.item);if(reason!="")return CommandResult.Fail(reason);
             var state=NeutralAt(command.target);var d=NeutralDefinition(state.id);var post=TradingPostAt(state.site);int player=command.player;
             if(command.kind==CommandKind.NeutralAlliance)
             {
@@ -119,14 +158,14 @@ namespace Frontier
             }
             else if(command.kind==CommandKind.NeutralRecruit)
             {
-                var unit=Rules.Entity(d.unit);Cost cost=UnitCost(player,unit);Pay(player,cost,state.site,d.name+" recruitment");
+                var unit=Rules.Entity(string.IsNullOrEmpty(command.item)?d.unit:command.item);Cost cost=UnitCost(player,unit);Pay(player,cost,state.site,d.name+" recruitment");
                 Players[player].reservedPopulation+=unit.population;
                 state.jobs.Add(new NeutralJobState{kind="Train",item=unit.id,paid=cost,duration=unit.time,population=unit.population});
                 var queued=Emit("NeutralRecruitQueued",player,state.site,unit.id,unit.population);queued.hasPopulation=true;queued.population=PopulationSnapshot.From(Players[player]);
             }
             else
             {
-                var tech=Rules.Tech(d.tech);Pay(player,tech.cost,state.site,d.name+" research");
+                var tech=Rules.Tech(string.IsNullOrEmpty(command.item)?d.tech:command.item);Pay(player,tech.cost,state.site,d.name+" research");
                 state.jobs.Add(new NeutralJobState{kind="Research",item=tech.id,paid=tech.cost,duration=tech.time});
                 Emit("NeutralResearchQueued",player,state.site,tech.id);
             }
@@ -205,7 +244,7 @@ namespace Frontier
                 foreach(var job in state.jobs)
                 {
                     Require(job!=null&&state.owner>=0&&SnapshotCodec.Finite(job.elapsed)&&job.elapsed>=0&&SnapshotCodec.Finite(job.duration)&&job.duration>=0&&job.elapsed<=job.duration+.001f&&SnapshotCodec.Finite(job.paid)&&job.paid.food>=0&&job.paid.wood>=0&&job.paid.coin>=0);
-                    Require(job.kind=="Train"?job.item==d.unit&&rules.Entity(job.item)!=null&&job.population==rules.Entity(job.item).population:job.kind=="Research"&&job.item==d.tech&&rules.Tech(job.item)!=null&&job.population==0);
+                    Require(job.kind=="Train"?NeutralOffers(d,CommandKind.NeutralRecruit,job.item)&&rules.Entity(job.item)!=null&&job.population==rules.Entity(job.item).population:job.kind=="Research"&&NeutralOffers(d,CommandKind.NeutralResearch,job.item)&&rules.Tech(job.item)!=null&&job.population==0);
                     reserved[player]+=job.population;
                 }
             }

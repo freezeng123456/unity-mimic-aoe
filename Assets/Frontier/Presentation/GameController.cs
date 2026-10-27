@@ -72,7 +72,7 @@ namespace Frontier
         public string SaveSlotLabel(int slot)
         {
             string path=MatchSaveStore.SlotPath(SaveDirectory,slot);if(!File.Exists(path))return "SLOT "+slot+" · EMPTY";
-            try{var save=MatchSaveStore.Read(path);if(save.appVersion!=Application.version)return "SLOT "+slot+" · REQUIRES GAME "+save.appVersion;return "SLOT "+slot+" · "+MapTopology.Name(save.world.mapId)+" · "+((int)save.world.time/60)+":"+((int)save.world.time%60).ToString("00");}
+            try{var save=MatchSaveStore.Read(path);if(save.appVersion!=Application.version)return "SLOT "+slot+" · REQUIRES GAME "+save.appVersion;if(save.world.rulesHash!=SnapshotCodec.RulesHash(Rules))return "SLOT "+slot+" · ORIGINAL RULES REQUIRED";return "SLOT "+slot+" · "+MapTopology.Name(save.world.mapId)+" · "+((int)save.world.time/60)+":"+((int)save.world.time%60).ToString("00");}
             catch(Exception){return "SLOT "+slot+" · UNREADABLE";}
         }
         public bool SaveMatch(int slot)

@@ -51,11 +51,11 @@ namespace Frontier.Tests
             string worldFile=Path.Combine(root,"tributaries-headway62-world.json"),rulesFile=Path.Combine(root,"tributaries-headway62-rules.json");
             Assert.AreEqual("63361ed86a753d0752ec62543cb4bbca9662955062a4175f6c796d54a5ff1462",SnapshotCodec.Hash(File.ReadAllText(worldFile)));
             Assert.AreEqual("b08413261c770b536bcc25f39187f237b5d83e753c93a55b4cfd6cc8b3ad0ba4",SnapshotCodec.Hash(File.ReadAllText(rulesFile)));
-            var rules=JsonUtility.FromJson<RuleCatalog>(File.ReadAllText(rulesFile));
-            var world=World.Restore(rules,JsonUtility.FromJson<WorldSnapshot>(File.ReadAllText(worldFile)));
+            var world=MapBaselineNeutral088.RestoreHistoricalFixture(File.ReadAllText(rulesFile),File.ReadAllText(worldFile));
+            var rules=world.Rules;
             var actors=new[]{world.Get(233),world.Get(459)};foreach(var actor in actors)Assert.NotNull(actor);
             var receipt=new Receipt{sourceFingerprint=Environment.GetEnvironmentVariable("FRONTIER_SOURCE_FINGERPRINT"),scene="actual62-full-world-front-pair",status="running",
-                scope="Unmodified full actual62 World/rules,50 real Tick continuation, focused actors233/459, full-state cold/Nav/body/speed/slope; no path injection and not original240s400-arrival acceptance",
+                scope="Actual62 World/rules with only rules identity normalized for empty DTO additions,50 real Tick continuation, focused actors233/459, full-state cold/Nav/body/speed/slope; no path injection and not original240s400-arrival acceptance",
                 actors=actors.Select(e=>e.id).ToArray(),starts=actors.Select(e=>e.position).ToArray(),goals=actors.Select(e=>e.orders.Peek().point).ToArray(),beforeWorldSha256=SnapshotCodec.Hash(State(world))};
             try
             {

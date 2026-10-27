@@ -273,13 +273,36 @@ namespace Frontier
                 if(world.NeutralCommandReason(player,state.site,CommandKind.NeutralAlliance)==""&&CanSpend(definition.allianceCost,reserve))
                 {Send(new GameCommand{kind=CommandKind.NeutralAlliance,target=state.site});return;}
                 if(state.owner!=player)continue;
-                int units=own.FindAll(e=>e.Alive&&e.def.id==definition.unit).Count;
-                var tech=world.Rules.Tech(definition.tech);
-                if(units>=3&&world.NeutralCommandReason(player,state.site,CommandKind.NeutralResearch)==""&&CanSpend(tech.cost,reserve))
-                {Send(new GameCommand{kind=CommandKind.NeutralResearch,target=state.site});return;}
-                var unit=world.Rules.Entity(definition.unit);
-                if(units<5&&world.NeutralCommandReason(player,state.site,CommandKind.NeutralRecruit)==""&&CanSpend(world.UnitCost(player,unit),reserve))
-                {Send(new GameCommand{kind=CommandKind.NeutralRecruit,target=state.site});return;}
+                var units=World.NeutralOptions(definition,CommandKind.NeutralRecruit);
+                var techs=World.NeutralOptions(definition,CommandKind.NeutralResearch);
+                int total=0;var counts=new Dictionary<string,int>();
+                foreach(string id in units)
+                {
+                    int count=own.FindAll(e=>e.Alive&&e.owner==player&&e.def.id==id).Count;
+                    counts[id]=count;total+=count;
+                }
+                // Research only for allied units already fielded: two matching
+                // troops make both distinct service branches worth investing in.
+                foreach(string id in techs)
+                {
+                    var tech=world.Rules.Tech(id);if(tech==null)continue;
+                    int beneficiaries=own.FindAll(e=>e.Alive&&e.owner==player&&counts.ContainsKey(e.def.id)&&
+                        (tech.units==null||tech.units.Length==0||Array.IndexOf(tech.units,e.def.id)>=0)&&
+                        (tech.tags==Tags.None||(tech.tags&e.def.tags)!=0)).Count;
+                    if(beneficiaries>=2&&world.NeutralCommandReason(player,state.site,CommandKind.NeutralResearch,id)==""&&CanSpend(tech.cost,reserve))
+                    {Send(new GameCommand{kind=CommandKind.NeutralResearch,target=state.site,item=id});return;}
+                }
+                if(total>=5)continue;
+                // Prefer the least numerous available ally so new options are
+                // actually used; equal counts retain the declared option order.
+                string choice=null;int fewest=int.MaxValue;
+                foreach(string id in units)
+                {
+                    var unit=world.Rules.Entity(id);if(unit==null||counts[id]>=fewest)continue;
+                    if(world.NeutralCommandReason(player,state.site,CommandKind.NeutralRecruit,id)!=""||!CanSpend(world.UnitCost(player,unit),reserve))continue;
+                    choice=id;fewest=counts[id];
+                }
+                if(choice!=null){Send(new GameCommand{kind=CommandKind.NeutralRecruit,target=state.site,item=choice});return;}
             }
         }
         private void ForgetMemory(int id)

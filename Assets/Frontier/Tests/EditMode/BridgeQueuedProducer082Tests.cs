@@ -30,7 +30,7 @@ namespace Frontier.Tests
             public string sourceFingerprint,fixtureWorldSha256,fixtureRulesSha256;public float fixedTime;
             public int initialRequests,maxRounds,rounds,fineQueries,acceptedRoutes,acceptedFineRoutes;public bool positionsUnchanged=true,timeUnchanged=true,worldQueriesUnchanged=true;
             public Row[] rows;
-            public string scope="Real queued planning fixture: production BeginFineRecoveryTick/TryAllyRecovery(existing head,real pathGoal)/EndFineRecoveryTick reservation rounds; no World.Tick, movement, time advance, path/queue/request injection,400-arrival or throughput claim";
+            public string scope="Real queued planning fixture with only rules identity normalized for empty DTO additions: production BeginFineRecoveryTick/TryAllyRecovery(existing head,real pathGoal)/EndFineRecoveryTick reservation rounds; no World.Tick, movement, time advance, path/queue/request injection,400-arrival or throughput claim";
         }
         static string Hash(string path){using(var sha=SHA256.Create())return BitConverter.ToString(sha.ComputeHash(File.ReadAllBytes(path))).Replace("-","").ToLowerInvariant();}
         static int Attempts(World w)=>(int)typeof(World).GetField("fineRecoveryAttempts",Flags).GetValue(w);
@@ -50,7 +50,7 @@ namespace Frontier.Tests
             string worldHash=Hash(world),rulesHash=Hash(rules);
             Assert.AreEqual("858345a364967e98369b1f4cebd063c0f2d5870b837e1ebe60e7105b3c6fc850",worldHash);
             Assert.AreEqual("b08413261c770b536bcc25f39187f237b5d83e753c93a55b4cfd6cc8b3ad0ba4",rulesHash);
-            var w=World.Restore(JsonUtility.FromJson<RuleCatalog>(File.ReadAllText(rules)),JsonUtility.FromJson<WorldSnapshot>(File.ReadAllText(world)));
+            var w=MapBaselineNeutral088.RestoreHistoricalFixture(File.ReadAllText(rules),File.ReadAllText(world));
             var initial=w.CaptureState();var positions=w.Entities.ToDictionary(e=>e.id,e=>e.position);var rows=new List<Row>();var failures=new List<string>();
             var receipt=new Receipt{sourceFingerprint=Environment.GetEnvironmentVariable("FRONTIER_SOURCE_FINGERPRINT"),fixtureWorldSha256=worldHash,fixtureRulesSha256=rulesHash,
                 fixedTime=w.Time,initialRequests=initial.fineRecoveryQueue.Length,maxRounds=initial.fineRecoveryQueue.Length*2};

@@ -83,6 +83,84 @@ namespace Frontier.Tests
             world.Remove(enemy);world.Spawn("villager",0,site.position+new Vector2(-5,0));world.Fog.Tick(world.Entities);Alliance(world,state);
             Assert.AreEqual(0,world.Entities.Count(e=>e.Alive&&e.def.id==definition.unit),"Reacquiring control cannot replay a forfeited job");
         }
+        [TestCase(0)] [TestCase(1)] [TestCase(2)]
+        public void AdditionalServiceIsPaidRestrictedAndSurvivesColdRestore(int index)
+        {
+            var world=Fixture(index,out var state,out _);var definition=world.NeutralDefinition(state.id);
+            string secondUnit=definition.additionalUnits.Single(),secondTech=definition.additionalTechs.Single();
+            var unit=world.Rules.Entity(secondUnit);var technology=world.Rules.Tech(secondTech);
+            // Fixture zeroes damage to isolate diplomacy; restore this recruited
+            // unit's real attack so attack-only research can be measured.
+            unit.damage=Catalog.Load().Entity(secondUnit).damage;
+            Assert.IsEmpty(unit.excludedCivilizations??Array.Empty<string>());
+            Assert.AreEqual("",unit.producer);Assert.AreEqual(1,unit.batch);Assert.AreEqual("",technology.building);
+            unit.time=.5f;technology.time=.5f;Alliance(world,state);
+            var invalid=new GameCommand{player=0,kind=CommandKind.NeutralRecruit,target=state.site,item="hussar"};
+            var before=world.Players[0].resources;
+            Assert.IsFalse(world.Issue(invalid).accepted,"Knowing a settlement cannot unlock an unoffered unit");
+            Assert.AreEqual(before.food,world.Players[0].resources.food,.001f);
+            Assert.IsTrue(world.Issue(new GameCommand{player=0,kind=CommandKind.NeutralRecruit,target=state.site,item=secondUnit}).accepted);
+            Assert.AreEqual(before.food-world.UnitCost(0,unit).food,world.Players[0].resources.food,.001f);
+            var cold=World.Restore(world.Rules,SnapshotCodec.Clone(world.CaptureState()));Tick(world);Tick(cold);
+            Assert.AreEqual(JsonUtility.ToJson(world.CaptureState()),JsonUtility.ToJson(cold.CaptureState()));
+            var recruited=world.Entities.Single(e=>e.Alive&&e.def.id==secondUnit);float oldHp=world.MaxHp(recruited),oldAttack=world.Attack(recruited);
+            Assert.IsTrue(world.Issue(new GameCommand{player=0,kind=CommandKind.NeutralResearch,target=state.site,item=secondTech}).accepted);
+            cold=World.Restore(world.Rules,SnapshotCodec.Clone(world.CaptureState()));Tick(world);Tick(cold);
+            Assert.AreEqual(JsonUtility.ToJson(world.CaptureState()),JsonUtility.ToJson(cold.CaptureState()));
+            Assert.IsTrue(world.Players[0].technologies.Contains(secondTech));
+            Assert.IsTrue(world.MaxHp(recruited)>oldHp||world.Attack(recruited)>oldAttack,"The new research modifies actual stats");
+            Assert.IsFalse(world.Issue(new GameCommand{player=0,kind=CommandKind.NeutralResearch,target=state.site,item=secondTech}).accepted);
+            Assert.AreEqual(3,world.Events.Count(e=>e.kind=="Payment"&&e.entity==state.site));
+        }
+        [TestCase("missing-unit",false)] [TestCase("missing-unit",true)]
+        [TestCase("building",false)] [TestCase("building",true)]
+        [TestCase("water-unit",false)] [TestCase("water-unit",true)]
+        [TestCase("duplicate-unit",false)] [TestCase("duplicate-unit",true)]
+        [TestCase("missing-tech",false)] [TestCase("missing-tech",true)]
+        [TestCase("duplicate-tech",false)] [TestCase("duplicate-tech",true)]
+        [TestCase("blank-unit",false)] [TestCase("blank-unit",true)]
+        public void InvalidAdditionalServiceDefinitionsCannotStartAnyWorld(string defect,bool scenario)
+        {
+            var rules=SnapshotCodec.Clone(Catalog.Load());
+            // Build an authored document while the baseline rules are valid.
+            var document=scenario?ScenarioEditorSession.FromMap(rules,"frontier",314159,2):null;
+            var d=rules.neutralAllies[0];
+            switch(defect)
+            {
+                case "missing-unit": d.additionalUnits=new[]{"not_a_unit"};break;
+                case "building": d.additionalUnits=new[]{"barracks"};break;
+                case "water-unit": d.additionalUnits=new[]{"fishing_boat"};break;
+                case "duplicate-unit": d.additionalUnits=new[]{d.unit};break;
+                case "missing-tech": d.additionalTechs=new[]{"not_a_technology"};break;
+                case "duplicate-tech": d.additionalTechs=new[]{d.tech};break;
+                case "blank-unit": d.additionalUnits=new[]{" "};break;
+                default:Assert.Fail("Unknown fixture");break;
+            }
+            if(!scenario)
+                Assert.Throws<ArgumentException>(()=>new World(rules,maxAge:5));
+            else
+            {
+                document.rulesHash=SnapshotCodec.RulesHash(rules);
+                Assert.AreEqual("",ScenarioCompiler.Validate(document,rules,2),"Fixture must reach world service validation");
+                var error=Assert.Throws<ArgumentException>(()=>new World(rules,document,document.starts.Select(x=>x.civilization).ToArray(),document.starts.Select(x=>x.team).ToArray(),5));
+                StringAssert.Contains("Invalid neutral",error.Message);
+            }
+        }
+        [Test] public void LegacyNullAdditionalServiceArraysStillPermitOrdinaryAndScenarioWorlds()
+        {
+            var rules=SnapshotCodec.Clone(Catalog.Load());foreach(var d in rules.neutralAllies){d.additionalUnits=null;d.additionalTechs=null;}
+            Assert.DoesNotThrow(()=>new World(rules,maxAge:5));
+            var document=ScenarioEditorSession.FromMap(rules,"frontier",314159,2);
+            Assert.DoesNotThrow(()=>new World(rules,document,document.starts.Select(x=>x.civilization).ToArray(),document.starts.Select(x=>x.team).ToArray(),5));
+        }
+        [Test] public void ForgedSavedServiceCannotUseUnlistedUnit()
+        {
+            var world=Fixture(0,out var state,out _);var definition=world.NeutralDefinition(state.id);
+            world.Rules.Entity(definition.additionalUnits[0]).time=.5f;Alliance(world,state);
+            Assert.IsTrue(world.Issue(new GameCommand{player=0,kind=CommandKind.NeutralRecruit,target=state.site,item=definition.additionalUnits[0]}).accepted);
+            var save=world.CaptureState();save.neutralAllies[0].jobs[0].item="hussar";
+            Assert.Throws<ArgumentException>(()=>World.Restore(world.Rules,save));
+        }
         [Test] public void DestroyedPostEndsPendingTreatyAndColdSaveCannotRepeatCompletion()
         {
             var world=Fixture(1,out var state,out _);Assert.IsTrue(Service(world,state,CommandKind.NeutralAlliance).accepted);Tick(world,2);

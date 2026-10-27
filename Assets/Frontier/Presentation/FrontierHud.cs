@@ -278,8 +278,9 @@ namespace Frontier
             ResourceSummaryFrame=Time.frameCount;ResourceSummaryTime=w.Time;ResourceSummaryMatchId=game.MatchId;
             UpdateHomeCity();
             RefreshObjectiveSummary(w);
+            UpdateExpansionPanels();
             if(lastClockLabel!=clockLabel||lastClockSeconds!=(int)w.Time||lastIdle!=idle)
-            {UpdateExpansionPanels();clockLabel.text=$"{(int)w.Time/60:00}:{(int)w.Time%60:00}   IDLE {idle}";lastClockLabel=clockLabel;lastClockSeconds=(int)w.Time;lastIdle=idle;}
+            {clockLabel.text=$"{(int)w.Time/60:00}:{(int)w.Time%60:00}   IDLE {idle}";lastClockLabel=clockLabel;lastClockSeconds=(int)w.Time;lastIdle=idle;}
             RefreshOrderSummary079(game.Controls.CaptureBuildPlacementPreview079());
             notice.text=game.Notice;
             help.text=Help;
@@ -639,9 +640,29 @@ namespace Frontier
             for(int i=1;i<=3;i++)
             {
                 int slot=i;bool exists=System.IO.File.Exists(MatchSaveStore.SlotPath(game.SaveDirectory,slot));
-                Button(box,game.SaveSlotLabel(slot),new Rect(25,145+(slot-1)*90,815,70),()=>{if(saving){game.SaveMatch(slot);ShowSaveSlots(true);}else game.LoadMatch(slot);},"",saving||exists);
+                bool legacy=!saving&&exists&&game.IsLegacyMatchCandidate(slot);
+                string title=legacy?"SLOT "+slot+" · OLD CHECKPOINT · COPY REQUIRED":game.SaveSlotLabel(slot);
+                Button(box,title,new Rect(25,145+(slot-1)*90,815,70),()=>{if(saving){game.SaveMatch(slot);ShowSaveSlots(true);}else if(legacy)ShowLegacySaveCopy(slot);else game.LoadMatch(slot);},"",saving||exists);
             }
             Button(box,"BACK",new Rect(25,425,815,60),Back);
+        }
+        private void ShowLegacySaveCopy(int sourceSlot,string error="")
+        {
+            var box=Modal("COPY OLD CHECKPOINT",570,()=>ShowSaveSlots(false));
+            Label(box,"Slot "+sourceSlot+" uses an earlier rules version. Copy it to an empty slot to use the new game rules.\nThe original stays in slot "+sourceSlot+"; the game will validate both versions before copying.\nChallenges, authored scenarios and replays require their original version.",new Rect(25,80,815,75),18,muted);
+            for(int i=1;i<=3;i++)
+            {
+                int destination=i;bool available=destination!=sourceSlot&&!System.IO.File.Exists(MatchSaveStore.SlotPath(game.SaveDirectory,destination));
+                string title=destination==sourceSlot?"SLOT "+destination+" · ORIGINAL":available?"COPY TO SLOT "+destination+" · EMPTY":"SLOT "+destination+" · OCCUPIED";
+                Button(box,title,new Rect(25,170+(destination-1)*78,815,64),()=>{if(game.CopyLegacyMatch(sourceSlot,destination))ShowSaveSlots(false);else ShowLegacySaveCopy(sourceSlot,game.Notice);},"",available);
+            }
+            if(!string.IsNullOrEmpty(error))
+            {
+                var failure=Label(box,error,new Rect(25,406,815,55),18,gold);
+                failure.gameObject.name="Checkpoint copy error";failure.resizeTextForBestFit=true;
+                failure.resizeTextMinSize=13;failure.resizeTextMaxSize=18;
+            }
+            Button(box,"BACK",new Rect(25,485,815,60),()=>ShowSaveSlots(false));
         }
         public void ShowResult()
         {

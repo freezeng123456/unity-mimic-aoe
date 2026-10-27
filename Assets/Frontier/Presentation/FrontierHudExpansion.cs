@@ -11,8 +11,28 @@ namespace Frontier
         private Text transportCargoHeading079,transportCargoPassengers079;
         private int transportCargoShip079=-1,transportCargoModalGeneration079=-1;
         private int neutralModalSite=-1;private string neutralModalSignature="";
+        private int neutralServiceSite=-1,neutralRecruitPage,neutralResearchPage;
         private string NeutralSignature(int site)
-        {var state=game.World?.NeutralAt(site);if(state==null)return "";var p=game.World.Players[game.ObserverPlayer];return state.owner+"/"+state.claimant+"/"+(int)state.claimProgress+"/"+state.contested+"/"+state.jobs.Count+"/"+(state.jobs.Count>0?(int)state.jobs[0].elapsed:0)+"/"+(int)p.resources.food+"/"+(int)p.resources.wood+"/"+(int)p.resources.coin+"/"+p.technologies.Count+"/"+p.usedPopulation+"/"+p.reservedPopulation;}
+        {
+            var world=game.World;var state=world?.NeutralAt(site);if(state==null)return "";
+            var player=world.Players[game.ObserverPlayer];var definition=world.NeutralDefinition(state.id);
+            bool ownService=state.owner==game.ObserverPlayer;
+            var signature=new System.Text.StringBuilder();
+            signature.Append(state.owner).Append('/').Append(state.claimant).Append('/').Append((int)state.claimProgress)
+                .Append('/').Append(state.contested).Append('/').Append(ownService?state.jobs.Count:0)
+                .Append('/').Append(ownService&&state.jobs.Count>0?(int)state.jobs[0].elapsed:0)
+                .Append('/').Append((int)player.resources.food).Append('/').Append((int)player.resources.wood)
+                .Append('/').Append((int)player.resources.coin).Append('/').Append(player.technologies.Count)
+                .Append('/').Append(player.usedPopulation).Append('/').Append(player.reservedPopulation)
+                .Append('/').Append(player.age).Append('/').Append(game.CanSubmitOrders);
+            // Query the same authority that enables each button, so visibility,
+            // contact, post destruction, contest and other eligibility changes refresh it.
+            signature.Append('|').Append(world.NeutralCommandReason(game.LocalPlayerSlot,site,CommandKind.NeutralAlliance));
+            foreach(var kind in new[]{CommandKind.NeutralRecruit,CommandKind.NeutralResearch})
+                foreach(var id in World.NeutralOptions(definition,kind))
+                    signature.Append('|').Append(id).Append(':').Append(world.NeutralCommandReason(game.LocalPlayerSlot,site,kind,id));
+            return signature.ToString();
+        }
         private void UpdateExpansionPanels()
         {RefreshTransportCargo079();if(neutralModalSite>=0&&ModalVisible&&!(uiPointer?.IsPressed??false)&&neutralModalSignature!=NeutralSignature(neutralModalSite))ShowNeutralSettlement(neutralModalSite);}
         private void ShowMapOptions()
@@ -67,18 +87,45 @@ namespace Frontier
         private void ShowNeutralSettlement(int site)
         {
             var world=game.World;var state=world.NeutralAt(site);if(state==null)return;var d=world.NeutralDefinition(state.id);
-            var unit=world.Rules.Entity(d.unit);var tech=world.Rules.Tech(d.tech);var box=Modal(d.name.ToUpperInvariant(),560);
+            if(neutralServiceSite!=site){neutralServiceSite=site;neutralRecruitPage=0;neutralResearchPage=0;}
+            var units=World.NeutralOptions(d,CommandKind.NeutralRecruit);
+            var techs=World.NeutralOptions(d,CommandKind.NeutralResearch);
+            int unitPages=Mathf.Max(1,(units.Length+1)/2),techPages=Mathf.Max(1,(techs.Length+1)/2);
+            neutralRecruitPage=Mathf.Clamp(neutralRecruitPage,0,unitPages-1);
+            neutralResearchPage=Mathf.Clamp(neutralResearchPage,0,techPages-1);
+            var box=Modal(d.name.ToUpperInvariant(),560);
             neutralModalSite=site;neutralModalSignature=NeutralSignature(site);
-            Label(box,unit.description+"\n\n"+tech.description,new Rect(25,82,780,120),19);
-            Label(box,"Treaty: "+(state.owner<0?state.claimant<0?"unclaimed":"negotiating":"player "+(state.owner+1))+" · "+(state.contested?"contested":"open")+(state.jobs.Count>0?" · Service "+Mathf.Max(0,state.jobs[0].duration-state.jobs[0].elapsed).ToString("0")+"s":"")+"\nBuild your trading post here and keep a land unit nearby to use settlement services.",new Rect(25,214,780,85),18,muted);
-            void Service(CommandKind kind,string title,string description,int y)
+            Label(box,"Treaty: "+(state.owner<0?state.claimant<0?"unclaimed":"negotiating":"player "+(state.owner+1))+" · "+(state.contested?"contested":"open")+(state.owner==game.ObserverPlayer&&state.jobs.Count>0?" · Service "+Mathf.Max(0,state.jobs[0].duration-state.jobs[0].elapsed).ToString("0")+"s":"")+"\nBuild your trading post and keep a land unit nearby. Enemy troops contest service.",new Rect(25,82,780,90),18,muted);
+            void Service(CommandKind kind,string item,string title,string description,Rect bounds)
             {
-                string reason=world.NeutralCommandReason(game.LocalPlayerSlot,site,kind);
-                Button(box,title,new Rect(25,y,780,62),()=>{SubmitModalCommand(new GameCommand{player=game.LocalPlayerSlot,kind=kind,target=site},box,r=>ShowNeutralSettlement(site));},description+"\n"+reason,game.CanSubmitOrders&&reason=="");
+                string reason=world.NeutralCommandReason(game.LocalPlayerSlot,site,kind,item);
+                Button(box,title,bounds,()=>{SubmitModalCommand(new GameCommand{player=game.LocalPlayerSlot,kind=kind,target=site,item=item},box,r=>ShowNeutralSettlement(site));},description+"\n"+reason,game.CanSubmitOrders&&reason=="");
             }
-            Service(CommandKind.NeutralAlliance,"NEGOTIATE · "+ShortCost(d.allianceCost),"Paid treaty; enemy presence pauses or disrupts service.",310);
-            Service(CommandKind.NeutralRecruit,"RECRUIT "+unit.name+" · "+ShortCost(world.UnitCost(game.LocalPlayerSlot,unit)),unit.description,385);
-            Service(CommandKind.NeutralResearch,"RESEARCH "+tech.name+" · "+ShortCost(tech.cost),tech.description,460);
+            Service(CommandKind.NeutralAlliance,"","NEGOTIATE · "+ShortCost(d.allianceCost),"Paid treaty; enemy presence pauses or disrupts service.",new Rect(25,185,780,60));
+            Label(box,"RECRUIT "+(neutralRecruitPage+1)+"/"+unitPages,new Rect(25,260,380,30),18,gold);
+            Label(box,"RESEARCH "+(neutralResearchPage+1)+"/"+techPages,new Rect(425,260,380,30),18,gold);
+            for(int row=0;row<2;row++)
+            {
+                int i=neutralRecruitPage*2+row;if(i>=units.Length)break;
+                var unit=world.Rules.Entity(units[i]);if(unit==null)continue;
+                Service(CommandKind.NeutralRecruit,unit.id,unit.name+" · "+ShortCost(world.UnitCost(game.LocalPlayerSlot,unit)),unit.description,new Rect(25,298+row*78,380,62));
+            }
+            for(int row=0;row<2;row++)
+            {
+                int i=neutralResearchPage*2+row;if(i>=techs.Length)break;
+                var tech=world.Rules.Tech(techs[i]);if(tech==null)continue;
+                Service(CommandKind.NeutralResearch,tech.id,tech.name+" · "+ShortCost(tech.cost),tech.description,new Rect(425,298+row*78,380,62));
+            }
+            if(unitPages>1)
+            {
+                Button(box,"PREV RECRUIT",new Rect(25,458,180,48),()=>{neutralRecruitPage--;ShowNeutralSettlement(site);},"Previous recruits",neutralRecruitPage>0);
+                Button(box,"NEXT RECRUIT",new Rect(225,458,180,48),()=>{neutralRecruitPage++;ShowNeutralSettlement(site);},"More recruits",neutralRecruitPage+1<unitPages);
+            }
+            if(techPages>1)
+            {
+                Button(box,"PREV RESEARCH",new Rect(425,458,180,48),()=>{neutralResearchPage--;ShowNeutralSettlement(site);},"Previous research",neutralResearchPage>0);
+                Button(box,"NEXT RESEARCH",new Rect(625,458,180,48),()=>{neutralResearchPage++;ShowNeutralSettlement(site);},"More research",neutralResearchPage+1<techPages);
+            }
         }
         private void ShowTransportCargo(EntityState ship)
         {

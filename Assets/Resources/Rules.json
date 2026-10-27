@@ -3506,6 +3506,168 @@
       ],
       "revolutionary": true,
       "canReceiveHealing": true
+    },
+    {
+      "id": "ally_river_pike",
+      "name": "River Guild Pike",
+      "description": "River merchants field a close combat pikeman to protect their marksmen from cavalry. Recruited through a paid settlement treaty. Project rules P.",
+      "producer": "",
+      "civilization": "",
+      "kind": 0,
+      "tags": 3,
+      "cost": {
+        "food": 60,
+        "wood": 40,
+        "coin": 0
+      },
+      "hp": 180,
+      "radius": 0.4,
+      "width": 1,
+      "depth": 1,
+      "speed": 4,
+      "vision": 18,
+      "damage": 18,
+      "meleeDamage": 18,
+      "siegeDamage": 10,
+      "range": 1,
+      "minRange": 0,
+      "period": 2,
+      "windup": 0.35,
+      "projectileSpeed": 0,
+      "splash": 0,
+      "damageKind": 0,
+      "meleeResist": 0,
+      "rangedResist": 0,
+      "siegeResist": 0,
+      "time": 22,
+      "population": 1,
+      "capacity": 0,
+      "age": 2,
+      "batch": 1,
+      "garrison": 0,
+      "deploy": false,
+      "bonuses": [
+        {
+          "tags": 8,
+          "multiplier": 3
+        }
+      ],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 0,
+      "trainXp": 5,
+      "killXp": 10,
+      "excludedCivilizations": [],
+      "canReceiveHealing": true
+    },
+    {
+      "id": "ally_highland_rifle",
+      "name": "Highland Covenant Rifle",
+      "description": "Highland allies field a ranged marksman to support their spear guards. Recruited through a paid settlement treaty. Project rules P.",
+      "producer": "",
+      "civilization": "",
+      "kind": 0,
+      "tags": 5,
+      "cost": {
+        "food": 60,
+        "wood": 0,
+        "coin": 60
+      },
+      "hp": 140,
+      "radius": 0.4,
+      "width": 1,
+      "depth": 1,
+      "speed": 4,
+      "vision": 18,
+      "damage": 20,
+      "meleeDamage": 0,
+      "siegeDamage": 10,
+      "range": 16,
+      "minRange": 0,
+      "period": 3,
+      "windup": 0.35,
+      "projectileSpeed": 30,
+      "splash": 0,
+      "damageKind": 1,
+      "meleeResist": 0,
+      "rangedResist": 0,
+      "siegeResist": 0,
+      "time": 28,
+      "population": 1,
+      "capacity": 0,
+      "age": 2,
+      "batch": 1,
+      "garrison": 0,
+      "deploy": false,
+      "bonuses": [
+        {
+          "tags": 2,
+          "multiplier": 2
+        }
+      ],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 0,
+      "trainXp": 6,
+      "killXp": 12,
+      "excludedCivilizations": [],
+      "canReceiveHealing": true
+    },
+    {
+      "id": "ally_coastal_marine",
+      "name": "Coastal League Marine",
+      "description": "Coastal marines protect their gunners against charging cavalry. Recruited through a paid settlement treaty. Project rules P.",
+      "producer": "",
+      "civilization": "",
+      "kind": 0,
+      "tags": 3,
+      "cost": {
+        "food": 60,
+        "wood": 40,
+        "coin": 0
+      },
+      "hp": 180,
+      "radius": 0.4,
+      "width": 1,
+      "depth": 1,
+      "speed": 4,
+      "vision": 18,
+      "damage": 18,
+      "meleeDamage": 18,
+      "siegeDamage": 10,
+      "range": 1,
+      "minRange": 0,
+      "period": 2,
+      "windup": 0.35,
+      "projectileSpeed": 0,
+      "splash": 0,
+      "damageKind": 0,
+      "meleeResist": 0,
+      "rangedResist": 0,
+      "siegeResist": 0,
+      "time": 22,
+      "population": 1,
+      "capacity": 0,
+      "age": 2,
+      "batch": 1,
+      "garrison": 0,
+      "deploy": false,
+      "bonuses": [
+        {
+          "tags": 8,
+          "multiplier": 3
+        }
+      ],
+      "resource": 0,
+      "amount": 0,
+      "gatherRate": 0,
+      "buildXp": 0,
+      "trainXp": 5,
+      "killXp": 10,
+      "excludedCivilizations": [],
+      "canReceiveHealing": true
     }
   ],
   "techs": [
@@ -7042,6 +7204,54 @@
       "health": 0.5,
       "healing": 1,
       "healerTrainSpeed": 0.5
+    },
+    {
+      "id": "ally_river_pike_drill",
+      "name": "River Guild Pike Drill",
+      "description": "River Guild Pike gains 15% maximum health. Paid settlement service. Project rules P.",
+      "building": "",
+      "age": 2,
+      "cost": {
+        "food": 150,
+        "coin": 150
+      },
+      "time": 35,
+      "units": [
+        "ally_river_pike"
+      ],
+      "health": 0.15
+    },
+    {
+      "id": "ally_highland_rifle_drill",
+      "name": "Highland Rifle Drill",
+      "description": "Highland Covenant Rifle gains 15% attack. Paid settlement service. Project rules P.",
+      "building": "",
+      "age": 2,
+      "cost": {
+        "food": 200,
+        "coin": 100
+      },
+      "time": 40,
+      "units": [
+        "ally_highland_rifle"
+      ],
+      "attack": 0.15
+    },
+    {
+      "id": "ally_coastal_marine_drill",
+      "name": "Coastal Marine Drill",
+      "description": "Coastal League Marine gains 15% maximum health. Paid settlement service. Project rules P.",
+      "building": "",
+      "age": 2,
+      "cost": {
+        "wood": 100,
+        "coin": 200
+      },
+      "time": 40,
+      "units": [
+        "ally_coastal_marine"
+      ],
+      "health": 0.15
     }
   ],
   "cards": [
@@ -10157,6 +10367,8 @@
       "socketIndex": 0,
       "unit": "ally_river_guard",
       "tech": "ally_river_logistics",
+      "additionalUnits": ["ally_river_pike"],
+      "additionalTechs": ["ally_river_pike_drill"],
       "allianceCost": {
         "wood": 100,
         "coin": 100
@@ -10171,6 +10383,8 @@
       "socketIndex": 1,
       "unit": "ally_highland_guard",
       "tech": "ally_highland_drill",
+      "additionalUnits": ["ally_highland_rifle"],
+      "additionalTechs": ["ally_highland_rifle_drill"],
       "allianceCost": {
         "food": 150,
         "coin": 100
@@ -10185,6 +10399,8 @@
       "socketIndex": 2,
       "unit": "ally_coastal_guard",
       "tech": "ally_coastal_scopes",
+      "additionalUnits": ["ally_coastal_marine"],
+      "additionalTechs": ["ally_coastal_marine_drill"],
       "allianceCost": {
         "wood": 150,
         "coin": 100
