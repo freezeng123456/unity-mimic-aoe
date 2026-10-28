@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Failed(Child)" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-02 02:35:07Z" end-time="2026-10-02 02:35:07Z" duration="0.7675849">
+  <test-suite type="TestSuite" id="1226" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="181" result="Failed" site="Child" start-time="2026-10-02 02:35:07Z" end-time="2026-10-02 02:35:07Z" duration="0.767585" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1220" name="Frontier.PlayMode.dll" fullname="/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Library/ScriptAssemblies/Frontier.PlayMode.dll" runstate="Runnable" testcasecount="181" result="Failed" site="Child" start-time="2026-10-02 02:35:07Z" end-time="2026-10-02 02:35:07Z" duration="0.762194" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="1254" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1221" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="181" result="Failed" site="Child" start-time="2026-10-02 02:35:07Z" end-time="2026-10-02 02:35:07Z" duration="0.758685" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1222" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="181" result="Failed" site="Child" start-time="2026-10-02 02:35:07Z" end-time="2026-10-02 02:35:07Z" duration="0.754159" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1179" name="SelectionLifetimeTests" fullname="Frontier.Tests.SelectionLifetimeTests" classname="Frontier.Tests.SelectionLifetimeTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-10-02 02:35:07Z" end-time="2026-10-02 02:35:07Z" duration="0.749042" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1187" name="HeldQueueCancelCannotCancelSuccessorAfterProductionCompletes" fullname="Frontier.Tests.SelectionLifetimeTests.HeldQueueCancelCannotCancelSuccessorAfterProductionCompletes" methodname="HeldQueueCancelCannotCancelSuccessorAfterProductionCompletes" classname="Frontier.Tests.SelectionLifetimeTests" runstate="Runnable" seed="1108098962" result="Failed" start-time="2026-10-02 02:35:07Z" end-time="2026-10-02 02:35:07Z" duration="0.411288" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Releasing a completed order's button must leave its successor queued
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.SelectionLifetimeTests+<HeldQueueCancelCannotCancelSuccessorAfterProductionCompletes>d__14.MoveNext () [0x0032b] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/PlayMode/SelectionLifetimeTests.cs:88
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1188" name="HeldQueueCancelFollowsClickedJobWhenEarlierProductionCompletes" fullname="Frontier.Tests.SelectionLifetimeTests.HeldQueueCancelFollowsClickedJobWhenEarlierProductionCompletes" methodname="HeldQueueCancelFollowsClickedJobWhenEarlierProductionCompletes" classname="Frontier.Tests.SelectionLifetimeTests" runstate="Runnable" seed="112916982" result="Failed" start-time="2026-10-02 02:35:07Z" end-time="2026-10-02 02:35:07Z" duration="0.331234" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The originally clicked order must remain cancellable after moving to the front
+  Expected: <empty>
+  But was:  < <Frontier.ProductionJob> >
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.SelectionLifetimeTests+<HeldQueueCancelFollowsClickedJobWhenEarlierProductionCompletes>d__15.MoveNext () [0x0032b] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/PlayMode/SelectionLifetimeTests.cs:105
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[Saving results to: /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "archivedAtUtc": "2026-10-05T16:12:08.347671+00:00",
+  "candidate": "Candidate1",
+  "isCurrentFinalAcceptance": false,
+  "runDirectory": "Builds/Tests/run-A7qUCXDB",
+  "runtimeCommit": "89fff770611a5e2b565e99e6dcbfb57235f56b45",
+  "sourceFingerprint": "814a79ac7a1023b6a256985b1bf68d6d8824199d0cdbb343b713edd2345db3ef",
+  "sourceFileCount": 630,
+  "totalPassed": 1184,
+  "reports": {
+    "EditMode": {
+      "result": "Passed",
+      "total": "817",
+      "passed": "817",
+      "failed": "0",
+      "skipped": "0",
+      "inconclusive": "0",
+      "start-time": "2026-10-05 15:54:31Z",
+      "end-time": "2026-10-05 15:58:05Z",
+      "duration": "214.4067156"
+    },
+    "PlayMode": {
+      "result": "Passed",
+      "total": "367",
+      "passed": "367",
+      "failed": "0",
+      "skipped": "0",
+      "inconclusive": "0",
+      "start-time": "2026-10-05 15:58:17Z",
+      "end-time": "2026-10-05 16:01:20Z",
+      "duration": "182.5931413"
+    }
+  },
+  "sourceBinding": "The manifest and all 630 source blobs were independently bound to the frozen historical commit; later runtime repairs require a new complete run.",
+  "redactionRule": {
+    "regex": "^(?P<prefix>[ \\t]*(?:\\[[^\\]\\r\\n]*Licens[^\\]\\r\\n]*\\][ \\t]*)?(?P<field>Machine[ \\t]*Id|Serial[ \\t]+number)[ \\t]*:[ \\t]*)(?P<value>[^\\r\\n]*)(?P<ending>\\r?\\n)?$",
+    "flags": "IGNORECASE",
+    "replacement": "[REDACTED_DEVICE_ID]",
+    "reference": "Docs/Evidence/067/Tests/archive-receipt.json",
+    "scope": "Actual anchored Machine Id / Serial number field values only; raw values never recorded here."
+  },
+  "redactionCounts": {
+    "machineId": 2,
+    "licenseSerial": 0
+  },
+  "files": [
+    {
+      "file": "EditMode.xml",
+      "source": "Builds/Tests/run-A7qUCXDB/EditMode.xml",
+      "originalBytes": 659281,
+      "originalSha256": "a65d558f1b8495976a994e98989274d37c0133ada41a913609474596b9f2e765",
+      "archivedBytes": 659281,
+      "archivedSha256": "a65d558f1b8495976a994e98989274d37c0133ada41a913609474596b9f2e765",
+      "mode": "0644",
+      "transform": "copy",
+      "redactions": [],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "PlayMode.xml",
+      "source": "Builds/Tests/run-A7qUCXDB/PlayMode.xml",
+      "originalBytes": 480093,
+      "originalSha256": "5338a50c6647c1f546d508cb68487937d4c86f30ff45cb8361e684b252880e8f",
+      "archivedBytes": 480093,
+      "archivedSha256": "5338a50c6647c1f546d508cb68487937d4c86f30ff45cb8361e684b252880e8f",
+      "mode": "0644",
+      "transform": "copy",
+      "redactions": [],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "source-evidence.json",
+      "source": "Builds/Tests/run-A7qUCXDB/source-evidence.json",
+      "originalBytes": 80693,
+      "originalSha256": "f78c2627c111da5c0a8fb07c4b2050f609d62c9bfca4e353a6749d471664b186",
+      "archivedBytes": 80693,
+      "archivedSha256": "f78c2627c111da5c0a8fb07c4b2050f609d62c9bfca4e353a6749d471664b186",
+      "mode": "0644",
+      "transform": "copy",
+      "redactions": [],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "EditMode.log",
+      "source": "Builds/Tests/run-A7qUCXDB/EditMode.log",
+      "originalBytes": 78578,
+      "originalSha256": "da6accd917f347f0cb20a663bab159513da1a9a0a469f7f1a5f20d88726193c0",
+      "archivedBytes": 78570,
+      "archivedSha256": "1af5a730700206d94d6d61ad91fcf1666bf20989c6e34fc2c7a240053b6d9916",
+      "mode": "0644",
+      "transform": "licensing-device-redaction",
+      "redactions": [
+        {
+          "line": 85,
+          "field": "Machine Id",
+          "type": "machineId",
+          "rule": "anchored-licensing-device-field"
+        }
+      ],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "PlayMode.log",
+      "source": "Builds/Tests/run-A7qUCXDB/PlayMode.log",
+      "originalBytes": 1084481,
+      "originalSha256": "01df3db73c4f2de438fcde3bcd83469ab4179df7afb59196d9db602f77e11930",
+      "archivedBytes": 1084473,
+      "archivedSha256": "4e067789417c195ac6e4dd901b16e07fb77828729c8581a5842b442a45e9c10e",
+      "mode": "0644",
+      "transform": "licensing-device-redaction",
+      "redactions": [
+        {
+          "line": 84,
+          "field": "Machine Id",
+          "type": "machineId",
+          "rule": "anchored-licensing-device-field"
+        }
+      ],
+      "allOtherBytesPreserved": true
+    }
+  ],
+  "independentReview": {
+    "file": "independent-review.json",
+    "bytes": 11447,
+    "sha256": "e75c4541d92ac6d481cb4af457828137c88ce9ebc9b7414263151f0720f25c8c"
+  },
+  "rawSourcesUnchanged": true,
+  "diagnosticsRetained": "All non-redacted bytes remain exact, including unavailable-token, serialization, engine warnings, test and exit output."
+}

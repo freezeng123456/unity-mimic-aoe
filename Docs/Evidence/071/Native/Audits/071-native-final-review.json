@@ -1,0 +1,950 @@
+{
+  "schema": 1,
+  "reviewedUtc": "2026-10-06T06:34:25.343922+00:00",
+  "status": "final_receipt_matches_originals_with_shutdown_limitations",
+  "scope": "Independent read of final journal and actual final exit0 checker receipt. Historical observed findings retained explicitly as historical. No checker rerun, Unity/GUI, repository edit or original modification.",
+  "inputs": [
+    {
+      "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Diagnostics/native-journal071-observed.json",
+      "bytes": 137686,
+      "sha256": "f687c7c7f0f0d24542e518c53070aaf36045f320e6b6ccf24c28cb45b3dfb3e4"
+    },
+    {
+      "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Diagnostics/independent-native071-observed.json",
+      "bytes": 59550,
+      "sha256": "d577adadbc58f6dcbaa18fcc698a3017e3baf98c4b485be0e68067ba6c4dd460"
+    },
+    {
+      "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Diagnostics/independent-native-071.py",
+      "bytes": 38876,
+      "sha256": "79f44c8de040d4d67c64620125e274ad12a8e96dc307e0546eea3b42f7b05f99"
+    },
+    {
+      "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Build/build-identity.json",
+      "bytes": 1197,
+      "sha256": "03bed3da30fb83a34e9f15a9667b43bef8310e840c7f429d942be3a6900e887d"
+    }
+  ],
+  "identity": {
+    "runtimeCommit": "3aeb0cb4b5f63ecd18553254583726b88cef9079",
+    "sourceFingerprint": "098e5c97eb8e1a3f5cff1e0dd7db30a7fe761fc8f480c6b8517811fab5d8795a",
+    "sourceInputs": 704,
+    "buildGuid": "2d39f78f9f234ef092e172a35f800cae",
+    "rulesHash": "e0aca57faf2e1d08be2a6e341391be985fc368e296e410397327b38292024583"
+  },
+  "receipt": {
+    "status": "passed_observed_native_scope",
+    "errors": [],
+    "missingPending": [],
+    "observedScope": [
+      "accepted_Disband",
+      "accepted_Research",
+      "accepted_Revolution",
+      "accepted_Train",
+      "capture",
+      "civilian_rebuilt",
+      "cold_restore",
+      "exit_events",
+      "native_forward_replay",
+      "native_worker_ui",
+      "process",
+      "revolution_completed",
+      "slot",
+      "unit_disbanded",
+      "worker_trained"
+    ],
+    "scopeCount": 15,
+    "checkCount": 68,
+    "checkKindCounts": {
+      "processes": 8,
+      "captures": 46,
+      "slots": 3,
+      "reports": 3,
+      "replays": 3,
+      "coldRestores": 2,
+      "manualObservations": 3
+    },
+    "allChecksObservedVerified": true,
+    "inputFilesCount": 120,
+    "uniqueInputFilesCount": 120,
+    "inputBytes": 40957923,
+    "allReceiptReferencedFileHashesAndSizesRechecked": true,
+    "journalCheckerBuildHashesMatchActualReceipt": true
+  },
+  "coverage": {
+    "requiredProcessIds": [
+      "process1",
+      "process3",
+      "process4",
+      "process5",
+      "process6",
+      "process7",
+      "process8",
+      "process9"
+    ],
+    "requiredProcessCount": 8,
+    "allExitedCodeZero": true,
+    "F9MetadataCount": 46,
+    "F9PngCount": 46,
+    "allPngChecksumCrcAnd1600x1000Checked": true,
+    "slots": 3,
+    "replays": 3,
+    "reports": 3,
+    "coldRestores": 2,
+    "forwardReplayRanges": [
+      [
+        0,
+        904
+      ],
+      [
+        904,
+        2441
+      ],
+      [
+        2441,
+        5118
+      ]
+    ],
+    "process2Excluded": {
+      "metadata": {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process2/process.json",
+        "bytes": 1063,
+        "sha256": "2a18d6d868830d71ce69ab6748f4d935780072f799a1b51d5fc8d550be88b9da"
+      },
+      "pid": 58788,
+      "exitCode": 0,
+      "kind": "Relative-path launcher diagnostic without a match; not a required native gameplay/viewer/HUD process",
+      "declaredLogMissing": true
+    },
+    "nativeTreeFileCount": 142,
+    "nativeTreeTotalBytes": 41356637,
+    "selectedManualPixelCaptureCount": 5,
+    "unreviewedOrNotClaimedPixelCaptureCount": 41
+  },
+  "processes": [
+    {
+      "id": "process1",
+      "pid": 58342,
+      "exitCode": 0,
+      "status": "exited",
+      "metadata": {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process1/process.json",
+        "bytes": 1863,
+        "sha256": "d09f2041c515d968b6a107f12e928705d0a4a402cbddefc987300e9668b2d350"
+      },
+      "log": {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process1/Player.log",
+        "bytes": 38673,
+        "sha256": "ee08236ede96a2cb9b0a88d8dd85bb8b992b10b44eb98fbad5c77460fb30d77f"
+      },
+      "startedAtUtc": "2026-10-06T05:51:58.258204+00:00",
+      "endedAtUtc": "2026-10-06T05:59:22.861189+00:00"
+    },
+    {
+      "id": "process3",
+      "pid": 58827,
+      "exitCode": 0,
+      "status": "exited",
+      "metadata": {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process3/process.json",
+        "bytes": 1690,
+        "sha256": "e4919dca4e5c68e6dd22cab5a58535c205ba89d12bff5b64aa0d3e19550bbb6f"
+      },
+      "log": {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process3/Player.log",
+        "bytes": 44163,
+        "sha256": "6dc8a1c11f5ad13fca061475095200fbda797c5da5a0e23131afc2f40d49d992"
+      },
+      "startedAtUtc": "2026-10-06T06:00:21.923698+00:00",
+      "endedAtUtc": "2026-10-06T06:04:41.242516+00:00"
+    },
+    {
+      "id": "process4",
+      "pid": 59212,
+      "exitCode": 0,
+      "status": "exited",
+      "metadata": {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process4/process.json",
+        "bytes": 1690,
+        "sha256": "104e9a9c88ca39048618c74309a4c4b876cad86c9e3e95ce6ed50476d29d77f9"
+      },
+      "log": {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process4/Player.log",
+        "bytes": 54098,
+        "sha256": "91f2ff28ee0322ecd5e9642f794dfdf2799af12ba14fe4278ab4af44aff117f4"
+      },
+      "startedAtUtc": "2026-10-06T06:04:41.449279+00:00",
+      "endedAtUtc": "2026-10-06T06:12:26.414098+00:00"
+    },
+    {
+      "id": "process5",
+      "pid": 59826,
+      "exitCode": 0,
+      "status": "exited",
+      "metadata": {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process5/process.json",
+        "bytes": 1874,
+        "sha256": "0aa75998ce7325e1d41e3e61d7b36e506c60ac49fb6538145856d14ab5078db2"
+      },
+      "log": {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process5/Player.log",
+        "bytes": 14086,
+        "sha256": "76dfad4d7aa3cfa26c8e9268240c386e40350fd0a6f310628f1cf2de206967a9"
+      },
+      "startedAtUtc": "2026-10-06T06:12:26.478057+00:00",
+      "endedAtUtc": "2026-10-06T06:14:50.371797+00:00"
+    },
+    {
+      "id": "process6",
+      "pid": 59934,
+      "exitCode": 0,
+      "status": "exited",
+      "metadata": {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process6/process.json",
+        "bytes": 1874,
+        "sha256": "8883b4ed7fe2dd709052db611cf668fc0e39d6330dcc10062fd92044b06c81c9"
+      },
+      "log": {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process6/Player.log",
+        "bytes": 12763,
+        "sha256": "b759a439bfac459796325d2fb67c1805f3468c8c3efd636cdabbee9c9cb54d43"
+      },
+      "startedAtUtc": "2026-10-06T06:14:50.451045+00:00",
+      "endedAtUtc": "2026-10-06T06:16:47.360090+00:00"
+    },
+    {
+      "id": "process7",
+      "pid": 60122,
+      "exitCode": 0,
+      "status": "exited",
+      "metadata": {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process7/process.json",
+        "bytes": 1874,
+        "sha256": "610afae4b8f7bd2d0c360b087cbdb1eb7440d56e92d5105d1a7dd10c2edab7d5"
+      },
+      "log": {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process7/Player.log",
+        "bytes": 17108,
+        "sha256": "ca8ad007b9be0545d836bdf7b0eb38d09bec8dcf8694414f3f34188da3aa7b5f"
+      },
+      "startedAtUtc": "2026-10-06T06:16:47.449972+00:00",
+      "endedAtUtc": "2026-10-06T06:19:23.895680+00:00"
+    },
+    {
+      "id": "process8",
+      "pid": 60344,
+      "exitCode": 0,
+      "status": "exited",
+      "metadata": {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process8/process.json",
+        "bytes": 1877,
+        "sha256": "9352ffced631a8d656938033b5c7a7b3558e2cab160bde03c172324ebff54b3d"
+      },
+      "log": {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process8/Player.log",
+        "bytes": 14100,
+        "sha256": "58e6b44883cc695b4b13e21213293d2b715b932a84dd59ad75d6301db451dea6"
+      },
+      "startedAtUtc": "2026-10-06T06:19:24.018656+00:00",
+      "endedAtUtc": "2026-10-06T06:21:19.399106+00:00"
+    },
+    {
+      "id": "process9",
+      "pid": 60495,
+      "exitCode": 0,
+      "status": "exited",
+      "metadata": {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process9/process.json",
+        "bytes": 1857,
+        "sha256": "e6c0f14a3a6056bfc957a1edba366d7c872d026489ce6d347599dfac598a9d92"
+      },
+      "log": {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process9/Player.log",
+        "bytes": 14026,
+        "sha256": "684ec6911f8085da2ac28422ebbdf0ab4036296a1eaa2d1b18152dd2a581a511"
+      },
+      "startedAtUtc": "2026-10-06T06:21:19.494489+00:00",
+      "endedAtUtc": "2026-10-06T06:23:10.150986+00:00"
+    }
+  ],
+  "logDiagnostics": [
+    {
+      "process": "process1",
+      "pid": 58342,
+      "logLines": 379,
+      "prematureFinalizationCount": 6,
+      "prematureFinalizationRows": [
+        {
+          "line": 367,
+          "text": "Thread 0x16d1d7000 may have been prematurely finalized"
+        },
+        {
+          "line": 368,
+          "text": "Thread 0x16cc13000 may have been prematurely finalized"
+        },
+        {
+          "line": 374,
+          "text": "Thread 0x16bc37000 may have been prematurely finalized"
+        },
+        {
+          "line": 375,
+          "text": "Thread 0x16bb1f000 may have been prematurely finalized"
+        },
+        {
+          "line": 376,
+          "text": "Thread 0x16bbab000 may have been prematurely finalized"
+        },
+        {
+          "line": 377,
+          "text": "Thread 0x16bcc3000 may have been prematurely finalized"
+        }
+      ],
+      "structuredMemoryLeaks": [
+        {
+          "line": 379,
+          "prefix": "PlayerConnection::Cleanup",
+          "type": "MemoryLeaks",
+          "phase": "Immediate",
+          "version": 2,
+          "processId": 58342,
+          "allocatedMemory": 3159321,
+          "memoryLabelCount": 66,
+          "labelSum": 3171665,
+          "NewDelete": 2334399
+        }
+      ],
+      "textAllocationDiagnosticRows": [],
+      "exceptionOrFrontierFailedRows": [],
+      "existingCheckerWarnings": [],
+      "existingCheckerWarningFilterMissesPresentShutdownMessages": true,
+      "classification": "Actual shutdown thread and structured allocatedMemory diagnostics retained; cause and leak attribution unresolved. Normal exit does not establish zero leakage."
+    },
+    {
+      "process": "process3",
+      "pid": 58827,
+      "logLines": 428,
+      "prematureFinalizationCount": 7,
+      "prematureFinalizationRows": [
+        {
+          "line": 415,
+          "text": "Thread 0x171943000 may have been prematurely finalized"
+        },
+        {
+          "line": 416,
+          "text": "Thread 0x17140b000 may have been prematurely finalized"
+        },
+        {
+          "line": 422,
+          "text": "Thread 0x17042f000 may have been prematurely finalized"
+        },
+        {
+          "line": 423,
+          "text": "Thread 0x1703a3000 may have been prematurely finalized"
+        },
+        {
+          "line": 424,
+          "text": "Thread 0x170317000 may have been prematurely finalized"
+        },
+        {
+          "line": 425,
+          "text": "Thread 0x170547000 may have been prematurely finalized"
+        },
+        {
+          "line": 426,
+          "text": "Thread 0x1704bb000 may have been prematurely finalized"
+        }
+      ],
+      "structuredMemoryLeaks": [
+        {
+          "line": 428,
+          "prefix": "PlayerConnection::Cleanup",
+          "type": "MemoryLeaks",
+          "phase": "Immediate",
+          "version": 2,
+          "processId": 58827,
+          "allocatedMemory": 3151617,
+          "memoryLabelCount": 66,
+          "labelSum": 3163961,
+          "NewDelete": 2326695
+        }
+      ],
+      "textAllocationDiagnosticRows": [],
+      "exceptionOrFrontierFailedRows": [],
+      "existingCheckerWarnings": [],
+      "existingCheckerWarningFilterMissesPresentShutdownMessages": true,
+      "classification": "Actual shutdown thread and structured allocatedMemory diagnostics retained; cause and leak attribution unresolved. Normal exit does not establish zero leakage."
+    },
+    {
+      "process": "process4",
+      "pid": 59212,
+      "logLines": 518,
+      "prematureFinalizationCount": 6,
+      "prematureFinalizationRows": [
+        {
+          "line": 506,
+          "text": "Thread 0x16f15f000 may have been prematurely finalized"
+        },
+        {
+          "line": 507,
+          "text": "Thread 0x16ecb3000 may have been prematurely finalized"
+        },
+        {
+          "line": 513,
+          "text": "Thread 0x16dcd7000 may have been prematurely finalized"
+        },
+        {
+          "line": 514,
+          "text": "Thread 0x16dbbf000 may have been prematurely finalized"
+        },
+        {
+          "line": 515,
+          "text": "Thread 0x16dd63000 may have been prematurely finalized"
+        },
+        {
+          "line": 516,
+          "text": "Thread 0x16dc4b000 may have been prematurely finalized"
+        }
+      ],
+      "structuredMemoryLeaks": [
+        {
+          "line": 518,
+          "prefix": "PlayerConnection::Cleanup",
+          "type": "MemoryLeaks",
+          "phase": "Immediate",
+          "version": 2,
+          "processId": 59212,
+          "allocatedMemory": 3160117,
+          "memoryLabelCount": 66,
+          "labelSum": 3172461,
+          "NewDelete": 2335195
+        }
+      ],
+      "textAllocationDiagnosticRows": [],
+      "exceptionOrFrontierFailedRows": [],
+      "existingCheckerWarnings": [],
+      "existingCheckerWarningFilterMissesPresentShutdownMessages": true,
+      "classification": "Actual shutdown thread and structured allocatedMemory diagnostics retained; cause and leak attribution unresolved. Normal exit does not establish zero leakage."
+    },
+    {
+      "process": "process5",
+      "pid": 59826,
+      "logLines": 153,
+      "prematureFinalizationCount": 6,
+      "prematureFinalizationRows": [
+        {
+          "line": 141,
+          "text": "Thread 0x16f0d7000 may have been prematurely finalized"
+        },
+        {
+          "line": 142,
+          "text": "Thread 0x16eb13000 may have been prematurely finalized"
+        },
+        {
+          "line": 148,
+          "text": "Thread 0x16db37000 may have been prematurely finalized"
+        },
+        {
+          "line": 149,
+          "text": "Thread 0x16daab000 may have been prematurely finalized"
+        },
+        {
+          "line": 150,
+          "text": "Thread 0x16dbc3000 may have been prematurely finalized"
+        },
+        {
+          "line": 151,
+          "text": "Thread 0x16da1f000 may have been prematurely finalized"
+        }
+      ],
+      "structuredMemoryLeaks": [
+        {
+          "line": 153,
+          "prefix": "PlayerConnection::Cleanup",
+          "type": "MemoryLeaks",
+          "phase": "Immediate",
+          "version": 2,
+          "processId": 59826,
+          "allocatedMemory": 3154005,
+          "memoryLabelCount": 66,
+          "labelSum": 3166349,
+          "NewDelete": 2329083
+        }
+      ],
+      "textAllocationDiagnosticRows": [],
+      "exceptionOrFrontierFailedRows": [],
+      "existingCheckerWarnings": [],
+      "existingCheckerWarningFilterMissesPresentShutdownMessages": true,
+      "classification": "Actual shutdown thread and structured allocatedMemory diagnostics retained; cause and leak attribution unresolved. Normal exit does not establish zero leakage."
+    },
+    {
+      "process": "process6",
+      "pid": 59934,
+      "logLines": 142,
+      "prematureFinalizationCount": 7,
+      "prematureFinalizationRows": [
+        {
+          "line": 129,
+          "text": "Thread 0x17127b000 may have been prematurely finalized"
+        },
+        {
+          "line": 130,
+          "text": "Thread 0x170e5b000 may have been prematurely finalized"
+        },
+        {
+          "line": 136,
+          "text": "Thread 0x16ff0b000 may have been prematurely finalized"
+        },
+        {
+          "line": 137,
+          "text": "Thread 0x16fdf3000 may have been prematurely finalized"
+        },
+        {
+          "line": 138,
+          "text": "Thread 0x16fe7f000 may have been prematurely finalized"
+        },
+        {
+          "line": 139,
+          "text": "Thread 0x16fd67000 may have been prematurely finalized"
+        },
+        {
+          "line": 140,
+          "text": "Thread 0x16ff97000 may have been prematurely finalized"
+        }
+      ],
+      "structuredMemoryLeaks": [
+        {
+          "line": 142,
+          "prefix": "PlayerConnection::Cleanup",
+          "type": "MemoryLeaks",
+          "phase": "Immediate",
+          "version": 2,
+          "processId": 59934,
+          "allocatedMemory": 3154005,
+          "memoryLabelCount": 66,
+          "labelSum": 3166349,
+          "NewDelete": 2329083
+        }
+      ],
+      "textAllocationDiagnosticRows": [],
+      "exceptionOrFrontierFailedRows": [],
+      "existingCheckerWarnings": [],
+      "existingCheckerWarningFilterMissesPresentShutdownMessages": true,
+      "classification": "Actual shutdown thread and structured allocatedMemory diagnostics retained; cause and leak attribution unresolved. Normal exit does not establish zero leakage."
+    },
+    {
+      "process": "process7",
+      "pid": 60122,
+      "logLines": 180,
+      "prematureFinalizationCount": 6,
+      "prematureFinalizationRows": [
+        {
+          "line": 168,
+          "text": "Thread 0x16d0b7000 may have been prematurely finalized"
+        },
+        {
+          "line": 169,
+          "text": "Thread 0x16cb7f000 may have been prematurely finalized"
+        },
+        {
+          "line": 175,
+          "text": "Thread 0x16bc2f000 may have been prematurely finalized"
+        },
+        {
+          "line": 176,
+          "text": "Thread 0x16ba8b000 may have been prematurely finalized"
+        },
+        {
+          "line": 177,
+          "text": "Thread 0x16bba3000 may have been prematurely finalized"
+        },
+        {
+          "line": 178,
+          "text": "Thread 0x16bb17000 may have been prematurely finalized"
+        }
+      ],
+      "structuredMemoryLeaks": [
+        {
+          "line": 180,
+          "prefix": "PlayerConnection::Cleanup",
+          "type": "MemoryLeaks",
+          "phase": "Immediate",
+          "version": 2,
+          "processId": 60122,
+          "allocatedMemory": 3154005,
+          "memoryLabelCount": 66,
+          "labelSum": 3166349,
+          "NewDelete": 2329083
+        }
+      ],
+      "textAllocationDiagnosticRows": [],
+      "exceptionOrFrontierFailedRows": [],
+      "existingCheckerWarnings": [],
+      "existingCheckerWarningFilterMissesPresentShutdownMessages": true,
+      "classification": "Actual shutdown thread and structured allocatedMemory diagnostics retained; cause and leak attribution unresolved. Normal exit does not establish zero leakage."
+    },
+    {
+      "process": "process8",
+      "pid": 60344,
+      "logLines": 141,
+      "prematureFinalizationCount": 7,
+      "prematureFinalizationRows": [
+        {
+          "line": 128,
+          "text": "Thread 0x16fc97000 may have been prematurely finalized"
+        },
+        {
+          "line": 129,
+          "text": "Thread 0x16f75f000 may have been prematurely finalized"
+        },
+        {
+          "line": 135,
+          "text": "Thread 0x16e89b000 may have been prematurely finalized"
+        },
+        {
+          "line": 136,
+          "text": "Thread 0x16e783000 may have been prematurely finalized"
+        },
+        {
+          "line": 137,
+          "text": "Thread 0x16e80f000 may have been prematurely finalized"
+        },
+        {
+          "line": 138,
+          "text": "Thread 0x16e66b000 may have been prematurely finalized"
+        },
+        {
+          "line": 139,
+          "text": "Thread 0x16e6f7000 may have been prematurely finalized"
+        }
+      ],
+      "structuredMemoryLeaks": [
+        {
+          "line": 141,
+          "prefix": "PlayerConnection::Cleanup",
+          "type": "MemoryLeaks",
+          "phase": "Immediate",
+          "version": 2,
+          "processId": 60344,
+          "allocatedMemory": 3154037,
+          "memoryLabelCount": 66,
+          "labelSum": 3166381,
+          "NewDelete": 2329115
+        }
+      ],
+      "textAllocationDiagnosticRows": [],
+      "exceptionOrFrontierFailedRows": [],
+      "existingCheckerWarnings": [],
+      "existingCheckerWarningFilterMissesPresentShutdownMessages": true,
+      "classification": "Actual shutdown thread and structured allocatedMemory diagnostics retained; cause and leak attribution unresolved. Normal exit does not establish zero leakage."
+    },
+    {
+      "process": "process9",
+      "pid": 60495,
+      "logLines": 140,
+      "prematureFinalizationCount": 6,
+      "prematureFinalizationRows": [
+        {
+          "line": 128,
+          "text": "Thread 0x16fcef000 may have been prematurely finalized"
+        },
+        {
+          "line": 129,
+          "text": "Thread 0x16f69f000 may have been prematurely finalized"
+        },
+        {
+          "line": 135,
+          "text": "Thread 0x16e637000 may have been prematurely finalized"
+        },
+        {
+          "line": 136,
+          "text": "Thread 0x16e5ab000 may have been prematurely finalized"
+        },
+        {
+          "line": 137,
+          "text": "Thread 0x16e6c3000 may have been prematurely finalized"
+        },
+        {
+          "line": 138,
+          "text": "Thread 0x16e74f000 may have been prematurely finalized"
+        }
+      ],
+      "structuredMemoryLeaks": [
+        {
+          "line": 140,
+          "prefix": "PlayerConnection::Cleanup",
+          "type": "MemoryLeaks",
+          "phase": "Immediate",
+          "version": 2,
+          "processId": 60495,
+          "allocatedMemory": 3159141,
+          "memoryLabelCount": 66,
+          "labelSum": 3171485,
+          "NewDelete": 2334219
+        }
+      ],
+      "textAllocationDiagnosticRows": [],
+      "exceptionOrFrontierFailedRows": [],
+      "existingCheckerWarnings": [],
+      "existingCheckerWarningFilterMissesPresentShutdownMessages": true,
+      "classification": "Actual shutdown thread and structured allocatedMemory diagnostics retained; cause and leak attribution unresolved. Normal exit does not establish zero leakage."
+    }
+  ],
+  "manualObservations": [
+    {
+      "id": "HudComplete",
+      "reviewer": "Codex /root 实际GUI观察",
+      "humanUserIsNotClaimedAsObserver": true,
+      "selectedCaptureIds": [
+        "Frontier-20261006-062042-744-f4469-82d41b23caf7482a9b0aff8969aba53a"
+      ],
+      "description": "完成目标在世界时间0.5秒终局；root通过sky观察到结果窗与后台COMPLETED/FAILED摘要。仅受控真实触发器/截止时样本，不是正常战争终局。",
+      "receiptScope": "Root operator observation; this separate read-only audit does not interpret pixels."
+    },
+    {
+      "id": "HudFail",
+      "reviewer": "Codex /root 实际GUI观察",
+      "humanUserIsNotClaimedAsObserver": true,
+      "selectedCaptureIds": [
+        "Frontier-20261006-062211-939-f2884-2d4df323737e4a00bbd57654f7cc89e0"
+      ],
+      "description": "失败目标在世界时间0.5秒终局；root通过sky观察到结果窗与后台COMPLETED/FAILED摘要。仅受控真实触发器/截止时样本，不是正常战争终局。",
+      "receiptScope": "Root operator observation; this separate read-only audit does not interpret pixels."
+    },
+    {
+      "id": "native_worker_ui",
+      "reviewer": "Codex /root 实际GUI观察",
+      "humanUserIsNotClaimedAsObserver": true,
+      "selectedCaptureIds": [
+        "Frontier-20261006-060741-390-f10464-96182c92238946619d07db97d10a1852",
+        "Frontier-20261006-060804-890-f11866-36b5a33443184536950aa6c72c2eb146",
+        "Frontier-20261006-061056-941-f22108-8991a351bcd944e798d6b88384371b2d"
+      ],
+      "description": "root通过sky实际操作，并查看这里所引用的未编辑原始F9 PNG：革命军采己方食物箱时收枪，S停止后恢复火枪；政府重建后真实支付100食物招出新Settler，旧革命军仍在，新工人实际砍树增加木材。原生代表为英国受控IV场景；不是从I时代自然经营。编组在转换之后用SAVE1保存并跨第二次冷加载召回；不声称原生验证了转换前编组跨转换或已打开母城跨转换自动刷新。",
+      "receiptScope": "Root operator observation; this separate read-only audit does not interpret pixels."
+    }
+  ],
+  "metadataFindings": [
+    {
+      "id": "inherited_draft_status_fields",
+      "severity": "documentation_consistency",
+      "description": "Historical observed journal still carries pending/draft fields despite successful observed structured rows. Raw evidence/receipt remains consistent; root will create a separate final journal and receipt, preserving historical originals.",
+      "fields": [
+        {
+          "field": "title",
+          "currentValue": "071 native evidence draft"
+        },
+        {
+          "field": "releaseAcceptance",
+          "currentValue": "pending"
+        },
+        {
+          "field": "pending",
+          "currentValue": [
+            "Root manual pixel observations of original F9 captures with specific capture IDs.",
+            "Any further controlled terminal-HUD runs require separate exited-process evidence.",
+            "Final root acceptance of scope; this draft remains not a release acceptance receipt."
+          ]
+        },
+        {
+          "field": "draftState",
+          "currentValue": "raw_native_and_three_forward_playbacks_audited_manual_observation_pending"
+        },
+        {
+          "field": "manualObservationStatus",
+          "currentValue": "pending"
+        },
+        {
+          "field": "manualObservationDraftRequirements",
+          "currentValue": [
+            {
+              "id": "native_worker_ui",
+              "status": "pending",
+              "reviewer": null,
+              "captureIds": [],
+              "description": null,
+              "note": "Root must fill only actual visible native F9 observations; no automated receipt substitutes for pixels."
+            }
+          ]
+        }
+      ],
+      "appliesTo": "Historical native-journal071-observed.json and independent-native071-observed.json only",
+      "resolution": "Separate final journal/receipt removes inherited pending fields, completes full inventory, and preserves actual shutdown warnings. Historical originals unchanged."
+    },
+    {
+      "id": "legacy_originalFiles_coverage",
+      "severity": "documentation_consistency",
+      "description": "Inherited originalFiles array lacks eight Process8/9 and terminal HUD files. The successful checker inputFiles independently includes and validates them. Legacy inventory is not a complete final acceptance inventory.",
+      "receiptFilesAbsentFromLegacyInventory": [
+        "Process8/process.json",
+        "Process8/Player.log",
+        "Process9/process.json",
+        "Process9/Player.log",
+        "HudComplete/Captures/Frontier-20261006-062042-744-f4469-82d41b23caf7482a9b0aff8969aba53a.json",
+        "HudComplete/Captures/Frontier-20261006-062042-744-f4469-82d41b23caf7482a9b0aff8969aba53a.png",
+        "HudFail/Captures/Frontier-20261006-062211-939-f2884-2d4df323737e4a00bbd57654f7cc89e0.json",
+        "HudFail/Captures/Frontier-20261006-062211-939-f2884-2d4df323737e4a00bbd57654f7cc89e0.png"
+      ],
+      "appliesTo": "Historical native-journal071-observed.json and independent-native071-observed.json only",
+      "resolution": "Separate final journal/receipt removes inherited pending fields, completes full inventory, and preserves actual shutdown warnings. Historical originals unchanged."
+    },
+    {
+      "id": "checker_warning_filter_scope",
+      "severity": "diagnostic_limit",
+      "description": "Existing successful receipt has empty process warnings arrays; exact regexp omits actual prematurely finalized thread messages and compact MemoryLeaks spelling. No zero-leak or no-shutdown-diagnostic claim is justified.",
+      "appliesTo": "Historical native-journal071-observed.json and independent-native071-observed.json only",
+      "resolution": "Separate final journal/receipt removes inherited pending fields, completes full inventory, and preserves actual shutdown warnings. Historical originals unchanged."
+    }
+  ],
+  "originalInputsStableBeforeAfter": true,
+  "limitations": [
+    "Eight exit0 receipts and three verified forward playback boundaries do not certify zero native memory leakage.",
+    "All eight logs contain actual thread premature-finalization messages and Immediate MemoryLeaks/allocatedMemory. No additional profiler or engine/application attribution was performed; genuine exceptions/FRONTIER_FAILED text absent only within these exact logs.",
+    "Controlled ageIV British representative native behavior plus two controlled0.5s terminal HUD scenes; not ageI normal economy/all civilizations/balance/physical LAN/performance proof.",
+    "Human user is not the GUI observer. Actual root agent observations are selected and attributed explicitly; remaining captures are byte/cohort verified, not individually pixel reviewed here.",
+    "This audit preserves earlier slot353/finalreplay354 Gather-flush boundary and post-conversion group creation restrictions through the linked historical audits.",
+    "No Unity run, GUI operation, checker rerun, input copying or original file/source changes."
+  ],
+  "finalArtifactReview": {
+    "inputs": [
+      {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Diagnostics/native-journal071-final.json",
+        "bytes": 146612,
+        "sha256": "29b2c19ec1681b0b4915b118d67381da829f954fd704112bd1b67f4143a91650"
+      },
+      {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Diagnostics/independent-native071-final.json",
+        "bytes": 75571,
+        "sha256": "3d31cbf460baa2f312b527aa381c92db0012aed00cd0475555fd3003f22a2175"
+      },
+      {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Diagnostics/independent-native-071-final.py",
+        "bytes": 38904,
+        "sha256": "d6d6944a0a202ba714d351f2179ec69e408f096f6dc65a958763cf7072d9e59b"
+      },
+      {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Diagnostics/native-journal071-observed.json",
+        "bytes": 137686,
+        "sha256": "f687c7c7f0f0d24542e518c53070aaf36045f320e6b6ccf24c28cb45b3dfb3e4"
+      },
+      {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Diagnostics/independent-native071-observed.json",
+        "bytes": 59550,
+        "sha256": "d577adadbc58f6dcbaa18fcc698a3017e3baf98c4b485be0e68067ba6c4dd460"
+      },
+      {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Diagnostics/independent-native-071.py",
+        "bytes": 38876,
+        "sha256": "79f44c8de040d4d67c64620125e274ad12a8e96dc307e0546eea3b42f7b05f99"
+      },
+      {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Build/build-identity.json",
+        "bytes": 1197,
+        "sha256": "03bed3da30fb83a34e9f15a9667b43bef8310e840c7f429d942be3a6900e887d"
+      }
+    ],
+    "status": "passed_observed_native_scope",
+    "journalFileSha256": "29b2c19ec1681b0b4915b118d67381da829f954fd704112bd1b67f4143a91650",
+    "checkerFileSha256": "d6d6944a0a202ba714d351f2179ec69e408f096f6dc65a958763cf7072d9e59b",
+    "buildIdentityFileSha256": "03bed3da30fb83a34e9f15a9667b43bef8310e840c7f429d942be3a6900e887d",
+    "scopeCount": 15,
+    "checkCount": 68,
+    "errors": [],
+    "missingPending": [],
+    "inputFiles": 120,
+    "allInputsUnchangedFromHistoricalSuccessfulReceipt": true,
+    "fullNativeInventoryFiles": 142,
+    "fullNativeInventoryBytes": 41356637,
+    "inventoryExactlyCoversExistingNativeRegularFiles": true,
+    "all142OriginalHashesAndSizesIndependentlyRechecked": true,
+    "finalMetadataPendingPlaceholdersRemoved": true,
+    "selectedManualScopeExplicitAndHumanUserNotAttributed": true,
+    "actualWarningRows": [
+      {
+        "process": "process1",
+        "warningCount": 7,
+        "prematureThreadRows": 6,
+        "structuredMemoryLeaksRows": 1,
+        "allActualRowsExactlyPreserved": true
+      },
+      {
+        "process": "process3",
+        "warningCount": 8,
+        "prematureThreadRows": 7,
+        "structuredMemoryLeaksRows": 1,
+        "allActualRowsExactlyPreserved": true
+      },
+      {
+        "process": "process4",
+        "warningCount": 7,
+        "prematureThreadRows": 6,
+        "structuredMemoryLeaksRows": 1,
+        "allActualRowsExactlyPreserved": true
+      },
+      {
+        "process": "process5",
+        "warningCount": 7,
+        "prematureThreadRows": 6,
+        "structuredMemoryLeaksRows": 1,
+        "allActualRowsExactlyPreserved": true
+      },
+      {
+        "process": "process6",
+        "warningCount": 8,
+        "prematureThreadRows": 7,
+        "structuredMemoryLeaksRows": 1,
+        "allActualRowsExactlyPreserved": true
+      },
+      {
+        "process": "process7",
+        "warningCount": 7,
+        "prematureThreadRows": 6,
+        "structuredMemoryLeaksRows": 1,
+        "allActualRowsExactlyPreserved": true
+      },
+      {
+        "process": "process8",
+        "warningCount": 8,
+        "prematureThreadRows": 7,
+        "structuredMemoryLeaksRows": 1,
+        "allActualRowsExactlyPreserved": true
+      },
+      {
+        "process": "process9",
+        "warningCount": 7,
+        "prematureThreadRows": 6,
+        "structuredMemoryLeaksRows": 1,
+        "allActualRowsExactlyPreserved": true
+      }
+    ],
+    "totalRetainedWarningRows": 59,
+    "finalCheckerOnlyChangedOneWarningRegex": true,
+    "allOtherRawChecksUnchanged": true,
+    "manualDescriptionUpdates": [
+      {
+        "id": "HudComplete",
+        "sameSelectedCaptureIds": true,
+        "descriptionUpdatedAfterRootOriginalPixelReview": true,
+        "finalDescription": "真实受控目标在世界时间0.5秒完成；root通过sky现场看到VICTORY及后台COMPLETED，并逐像素查看所引用未编辑原始F9 PNG。同帧JSON记录elapsedSeconds=0.5。不是正常战争终局。"
+      },
+      {
+        "id": "HudFail",
+        "sameSelectedCaptureIds": true,
+        "descriptionUpdatedAfterRootOriginalPixelReview": true,
+        "finalDescription": "真实受控目标在世界时间0.5秒到截止时失败；root通过sky现场看到DEFEAT及后台FAILED，并逐像素查看所引用未编辑原始F9 PNG。不是正常战争终局。"
+      }
+    ],
+    "historicalJournalReceiptAndCheckerHashesUnchanged": true,
+    "noCheckerRerun": true,
+    "originalFilesStableBeforeAfter": true
+  },
+  "reviewRevisionHistory": [
+    {
+      "previousReview": {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Diagnostics/071-native-final-review.json",
+        "bytes": 29762,
+        "sha256": "09c06c10311dab56f4814361c27d01760b91fc9f8847817b46b7b00512002140"
+      },
+      "change": "Add final journal/receipt/inventory and actual warning-preservation review. Historical findings kept historical; two HUD descriptions reflect final root original-pixel review."
+    }
+  ]
+}

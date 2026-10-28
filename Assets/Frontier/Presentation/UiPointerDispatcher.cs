@@ -35,17 +35,31 @@ namespace Frontier
                 if(selected!=eventSystem.currentSelectedGameObject)eventSystem.SetSelectedGameObject(null,pointer);
                 pointer.pointerPress=ExecuteEvents.ExecuteHierarchy(over,pointer,ExecuteEvents.pointerDownHandler)
                     ??ExecuteEvents.GetEventHandler<IPointerClickHandler>(over);
+                pointer.pointerDrag=ExecuteEvents.GetEventHandler<IDragHandler>(over);pointer.dragging=false;
+                if(pointer.pointerDrag!=null)ExecuteEvents.Execute(pointer.pointerDrag,pointer,ExecuteEvents.initializePotentialDrag);
                 pointer.rawPointerPress=over;return true;
             }
             if(!IsPressed)return false;
-            var releasedOver=Raycast(position);var pressed=pointer.pointerPress;
+            Move(position);var releasedOver=Raycast(position);var pressed=pointer.pointerPress;
             bool click=pointer.eligibleForClick&&pressed!=null&&pressed==ExecuteEvents.GetEventHandler<IPointerClickHandler>(releasedOver);
             // Clear capture before invoking callbacks: a callback may close its
             // modal, restart the match or cancel pending world input.
             IsPressed=false;
             if(pressed!=null)ExecuteEvents.Execute(pressed,pointer,ExecuteEvents.pointerUpHandler);
+            if(pointer.dragging&&pointer.pointerDrag!=null)ExecuteEvents.Execute(pointer.pointerDrag,pointer,ExecuteEvents.endDragHandler);
             if(click&&pressed!=null)ExecuteEvents.Execute(pressed,pointer,ExecuteEvents.pointerClickHandler);
-            pointer.pointerPress=null;pointer.rawPointerPress=null;pointer.eligibleForClick=false;return true;
+            pointer.pointerPress=null;pointer.rawPointerPress=null;pointer.pointerDrag=null;pointer.dragging=false;pointer.eligibleForClick=false;return true;
+        }
+        public void Move(Vector2 position)
+        {
+            if(!IsPressed||pointer.pointerDrag==null)return;
+            pointer.delta=position-pointer.position;pointer.position=position;
+            if(!pointer.dragging&&(position-pointer.pressPosition).sqrMagnitude>=eventSystem.pixelDragThreshold*eventSystem.pixelDragThreshold)
+            {
+                ExecuteEvents.Execute(pointer.pointerDrag,pointer,ExecuteEvents.beginDragHandler);pointer.dragging=true;
+                if(pointer.pointerDrag!=pointer.pointerPress){if(pointer.pointerPress!=null)ExecuteEvents.Execute(pointer.pointerPress,pointer,ExecuteEvents.pointerUpHandler);pointer.pointerPress=null;pointer.eligibleForClick=false;}
+            }
+            if(pointer.dragging)ExecuteEvents.Execute(pointer.pointerDrag,pointer,ExecuteEvents.dragHandler);
         }
         public void CancelWithin(Transform first,Transform second)
         {
@@ -57,7 +71,8 @@ namespace Frontier
         public void Cancel()
         {
             if(IsPressed&&pointer.pointerPress!=null)ExecuteEvents.Execute(pointer.pointerPress,pointer,ExecuteEvents.pointerUpHandler);
-            IsPressed=false;pointer.pointerPress=null;pointer.rawPointerPress=null;pointer.eligibleForClick=false;
+            if(pointer.dragging&&pointer.pointerDrag!=null)ExecuteEvents.Execute(pointer.pointerDrag,pointer,ExecuteEvents.endDragHandler);
+            IsPressed=false;pointer.pointerPress=null;pointer.rawPointerPress=null;pointer.pointerDrag=null;pointer.dragging=false;pointer.eligibleForClick=false;
         }
     }
 }

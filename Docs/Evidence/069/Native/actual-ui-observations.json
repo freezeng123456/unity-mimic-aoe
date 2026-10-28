@@ -1,0 +1,242 @@
+{
+  "schema": 1,
+  "buildGuid": "4546189bdd6b40fa92789fe697f7f0a7",
+  "appVersion": "0.12.0",
+  "sourceCommit": "28cd1b3191fafd49417d544e60dc898986568aa8",
+  "sourceFingerprint": "4cbc889a5ba3d706768a2b568af42dc4ec8b4cf0d60e7b45a4cc706d9ddab3ad",
+  "recordedAtUtc": "2026-10-05T19:19:28.110081+00:00",
+  "scope": "Root actually observed Candidate2 native editor, cold embedded-map checkpoint, latest/export, and isolated cold forward replay; independent metadata inspection separate. Same physical Mac controlled small scenario only.",
+  "GUIresult": "PassedWithinDeclaredScope",
+  "observations": [
+    {
+      "phase": "menu",
+      "screenshot": "UI/01-main-menu.jpg",
+      "action": "Fresh PID36721 main menu",
+      "result": "LOAD SAVED MATCH and SCENARIO WORKSHOP visible in separate halves with distinct labels."
+    },
+    {
+      "phase": "load-entry",
+      "screenshot": "UI/02-load-entry-empty.jpg",
+      "action": "Click actual LOAD left half",
+      "result": "Opened empty 3-slot Load Match dialog, no workshop interception."
+    },
+    {
+      "phase": "editor-entry",
+      "screenshot": "UI/03-workshop-entry.jpg",
+      "action": "Back; click actual WORKSHOP right half",
+      "result": "Opened winding template terrain editor."
+    },
+    {
+      "phase": "import",
+      "screenshot": "UI/04-imported-authored-map.jpg",
+      "action": "Real IMPORT InputField of retained Candidate1 valid portable map",
+      "result": "Imported authored map with adapted resources/treasure. Prior Candidate1 frozen content is an input, not current build acceptance."
+    },
+    {
+      "phase": "terrain",
+      "screenshot": "UI/05-raised-terrain.jpg",
+      "action": "Sky.drag (344,384)->(369,404), raise50cm",
+      "result": "Edited terrain content. Current F9 hash 0c0ee068884ba806e3ea83a6d91d0765a7c29778fb00cfcf5a12a026b1cf3a9d."
+    },
+    {
+      "phase": "terrain-undo",
+      "screenshot": "UI/06-terrain-undo.jpg",
+      "action": "Click UNDO and F9",
+      "result": "Original imported hash 1cf6f7b7565f5cdc09696c1b2fe13cee267c2c54adb0240067c4651a385c42b4 returned."
+    },
+    {
+      "phase": "terrain-redo",
+      "screenshot": "UI/07-terrain-redo.jpg",
+      "action": "Click REDO and F9",
+      "result": "Edited hash restored. Same single brush undo/redo."
+    },
+    {
+      "phase": "save",
+      "screenshot": "UI/08-terrain-saved.jpg",
+      "action": "Click SAVE",
+      "result": "Owned native library file created; immutable stage01 copied after actual save."
+    },
+    {
+      "phase": "river-threshold",
+      "screenshot": "UI/09-curved-river-edit.jpg",
+      "action": "Move bend radius10, Sky.drag (687,574)->(682,574)",
+      "result": "5 px displacement selected control174 but did not exceed UI drag threshold. No draft mutation; immutable stage02 remains identical to01. Filename is not a success claim."
+    },
+    {
+      "phase": "river",
+      "screenshot": "UI/10-river-bend-moved.jpg",
+      "action": "Sky.drag (687,574)->(675,574), F9, SAVE",
+      "result": "Actual bend:38/341 controls155..192 changed, control174 X80.6->78.2m Z68 unchanged, only rivers DTO changed. Immutable stage03."
+    },
+    {
+      "phase": "mission-edit",
+      "screenshot": "UI/11-authored-mission-triggers.jpg",
+      "action": "Set title Curved River Workshop; select trigger2",
+      "result": "Existing imported finite Food50/time5 and manual objective/time180 triggers displayed."
+    },
+    {
+      "phase": "ready",
+      "screenshot": "UI/12-mission-ready-to-play.jpg",
+      "action": "Actual trigger2 time InputField180->90; SAVE; VALIDATE; F9",
+      "result": "Ready to play displayed; final H2b61502314cc6e653e4a80043145531748dab4fb430454b6fc4f5c85d91871a6, two factions. Final stage04 retained."
+    },
+    {
+      "phase": "playtest",
+      "screenshot": "UI/13-playtest-independent-world.jpg",
+      "action": "Click PLAYTEST; Escape; F9",
+      "result": "New owned world copy at0.4s, active objective, original author layout kept."
+    },
+    {
+      "phase": "town-focus",
+      "screenshot": "UI/14-playtest-town-focus.jpg",
+      "action": "Resume; T",
+      "result": "Camera focused actual P1 opening town; no arbitrary world edits."
+    },
+    {
+      "phase": "real-order",
+      "screenshot": "UI/15-worker-move-command.jpg",
+      "action": "Select worker897,576; right click670,521; F9",
+      "result": "Move order accepted, worker moving. First Food50 trigger fired, P1 balance350."
+    },
+    {
+      "phase": "checkpoint-pause",
+      "screenshot": "UI/16-after-reward-paused.jpg",
+      "action": "Escape at12.2s",
+      "result": "Paused after once reward and before goal; original writer process."
+    },
+    {
+      "phase": "checkpoint",
+      "screenshot": "UI/17-checkpoint-slot1-saved.jpg",
+      "action": "SAVE MATCH; actual empty SLOT1",
+      "result": "Saved full checkpoint atstep122/time12.2000103. Account/progression not updated."
+    },
+    {
+      "phase": "return-editor",
+      "screenshot": "UI/18-return-original-draft.jpg",
+      "action": "BACK; RETURN TO EDITOR; F9",
+      "result": "Original final draft content hash restored; gameplay did not mutate initial layout."
+    },
+    {
+      "phase": "history-undo",
+      "screenshot": "UI/19-original-history-undo.jpg",
+      "action": "Click UNDO; F9",
+      "result": "Same-process author history still usable; trigger2 time returned180, draftH8a193c3e549240a5d66cdd3a37c9473e8b3efbcca261812ec7e6501aac97f575."
+    },
+    {
+      "phase": "history-redo",
+      "screenshot": "UI/20-original-history-redo.jpg",
+      "action": "REDO; F9; normal super+q",
+      "result": "Final90s draft restored; owned PID36721 exit0, native latest persisted."
+    },
+    {
+      "phase": "cold-start-splash",
+      "screenshot": "UI/21-cold-main-menu.jpg",
+      "action": "Launch fresh PID37068 without scenario/editor args after moving library+latest into Protected",
+      "result": "Screenshot during initial startup; filename does not imply menu readiness."
+    },
+    {
+      "phase": "cold-start-splash",
+      "screenshot": "UI/22-cold-load-checkpoint.jpg",
+      "action": "Click LOAD position during startup; get state",
+      "result": "Screenshot still showed Unity splash; later actual menu state established separately."
+    },
+    {
+      "phase": "cold-load-entry",
+      "screenshot": "UI/23-cold-main-menu-ready.jpg",
+      "action": "Get actual state after startup",
+      "result": "Actual Load Match dialog from main menu with SLOT1 custom_scenario 0:12; no builtin match launched."
+    },
+    {
+      "phase": "cold-load",
+      "screenshot": "UI/24-cold-restored-frozen-world.jpg",
+      "action": "Click SLOT1; F9",
+      "result": "Restored embedded frozen map/runtime atstep122/time12.2 paused, library and latest source paths absent. Distinct earlier-template backup remains recorded in journal."
+    },
+    {
+      "phase": "cold-resume",
+      "screenshot": "UI/25-restored-match-resumed.jpg",
+      "action": "RESUME; F8 observational capture",
+      "result": "Actual simulation continued; no second loading operation."
+    },
+    {
+      "phase": "cold-continued",
+      "screenshot": "UI/26-cold-continued-then-paused.jpg",
+      "action": "F9; Escape at28.9s",
+      "result": "Worker completed move, goal remains active, Food350/trigger1=1."
+    },
+    {
+      "phase": "continued-checkpoint",
+      "screenshot": "UI/27-continued-checkpoint-slot2.jpg",
+      "action": "SAVE MATCH SLOT2; F9",
+      "result": "Second actual checkpoint atstep289/time28.900074. First295 events retained as exact prefix of468, one resource grant in both."
+    },
+    {
+      "phase": "continued-running",
+      "screenshot": "UI/28-cold-match-running.jpg",
+      "action": "BACK; RESUME",
+      "result": "Continuing same cold restored match at1x; no reload or seek."
+    },
+    {
+      "phase": "continued-73",
+      "screenshot": "UI/29-cold-match-continuing.jpg",
+      "action": "Continue native simulation; F9",
+      "result": "Time73.39945, once trigger1 remains1, goal active."
+    },
+    {
+      "phase": "goal-victory",
+      "screenshot": "UI/30-authored-mission-victory.jpg",
+      "action": "Continue to author time>=90; F9",
+      "result": "Atstep901/time90.0992 required objective completed, both triggers fires1, winner0. Actual VICTORY reason All required scenario objectives completed. Normal PID37068 exit0."
+    },
+    {
+      "phase": "cold-latest",
+      "screenshot": "UI/31-cold-latest-draft-recovered.jpg",
+      "action": "Restore exact retained native latest; fresh PID37203 with editor but no scenario path; F9",
+      "result": "FinalH recovered without library file; document recovered, new undo history empty."
+    },
+    {
+      "phase": "export",
+      "screenshot": "UI/32-portable-scenario-exported.jpg",
+      "action": "Actual EXPORT InputField to ScenarioExports/curved-river-workshop.scenario.json",
+      "result": "Exported portable file exists and matches final native draft bytes/hash. Native export toast had timed out when screenshot sampled; actual file retained. Normal PID37203 exit0."
+    },
+    {
+      "phase": "replay-open",
+      "screenshot": "UI/33-cold-replay-start-paused.jpg",
+      "action": "Fresh PID37251, fresh isolated replay-profile; CLI frontierReplay from native match_finished recording; F9",
+      "result": "Replay opened paused at its recorded startstep122/time12.2. Embedded mapH correct; no author map or save/account/progression files in isolated profile."
+    },
+    {
+      "phase": "replay-speed",
+      "screenshot": "UI/34-cold-replay-speed4.jpg",
+      "action": "Click speed twice with state reads",
+      "result": "Actual4x displayed. No timeline/seek/jump clicked."
+    },
+    {
+      "phase": "replay-play",
+      "screenshot": "UI/35-cold-replay-forward-start.jpg",
+      "action": "Click PLAY; F9",
+      "result": "Actual forward replay atstep123,4x, unverified, noerror/seek."
+    },
+    {
+      "phase": "replay-verified",
+      "screenshot": "UI/36-cold-replay-verified.jpg",
+      "action": "Native forward playback from122 to901; F9",
+      "result": "Recorded segment verified shown; goal completed/winner0, noerror/seek. This is complete recorded loaded-checkpoint segment, not a0-start whole match."
+    },
+    {
+      "phase": "replay-observer",
+      "screenshot": "UI/37-cold-replay-player2-view.jpg",
+      "action": "Click VIEW P1 to P2; F9; normal super+q",
+      "result": "P2 camera/resources/visibility displayed while replay remains901verified. PID37251exit0; source188273 bytes/SHA unchanged; isolated stores stay empty."
+    }
+  ],
+  "failures": [],
+  "limitations": [
+    "No natural full-match balance or hardware-portability/performance claim.",
+    "No two physical Mac custom-scenario LAN proof.",
+    "Cold editor restores document, not prior undo history.",
+    "Food once prefix comparison from12.2 to28.9 is before the90.0992 goal; the native final F9 and recorded segment cover conclusion.",
+    "Sky UI screenshots are unchanged JPEG bytes with .jpg filenames; F9 images are actual PNG."
+  ]
+}

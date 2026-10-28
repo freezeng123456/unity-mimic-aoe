@@ -1,0 +1,179 @@
+{
+  "schema": 1,
+  "appVersion": "0.9.0",
+  "buildGuid": "1969c7ee14f944879510f4ca0d0f241d",
+  "runtimeCommit": "c9747695d91fa203b05116a1fc0c15a8aac32de2",
+  "sourceFingerprint": "66cf7cc57e080eb40cfdf98310ee26affd93d690745dde2b457e8fb3eb0ee1ee",
+  "sourceFiles": 573,
+  "recordedUtc": "2026-10-05T02:56:08.699713+00:00",
+  "passed": true,
+  "nativeCapturePairs": 20,
+  "checks": {
+    "settingsColdRestart": {
+      "passed": true,
+      "masterVolume": 0.6196320056915283,
+      "uiScale": 1.2921777963638306,
+      "friendEnemyPatterns": true,
+      "highContrastMinimap": true,
+      "attackMoveBinding": "Q",
+      "method": "GUI settings write before the initial exit; early same-GUID settings screenshots have uncertain named-process attribution because get_app_state can auto-launch. Settings are independently confirmed unchanged in actual F9 preference readbacks and native UI after the explicitly observed later cold launches session-05 and session-06."
+    },
+    "guidedColdRestoreAndActualCompletion": {
+      "passed": true,
+      "lesson": "lesson_selection",
+      "attemptId": "22845495034a44a78e5374874f2950d5",
+      "checkpointSeconds": 21.000043869018555,
+      "checkpointStage": 1,
+      "completedSeconds": 31.200082778930664,
+      "completionCount": 1,
+      "method": "GUI select, Save Slot3, terminate old processes, new session-04 Load3, Resume, right click objective, actual arrival and automatic terminal pause; session-05 completed badge"
+    },
+    "teamsColdRestore": {
+      "passed": true,
+      "matchId": "58062d16dc194299b429a5799fb6170a",
+      "checkpointSeconds": 103.49899291992188,
+      "teams": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "aiSlots": [
+        1,
+        2,
+        3
+      ],
+      "trainedBySlot": [
+        0,
+        4,
+        4,
+        3
+      ],
+      "method": "session-05 GUI 2v2 start/save; all candidate processes absent before session-06 GUI Load3; same matchId/worldTime/roster restored paused"
+    },
+    "reboundAttackMove": {
+      "passed": true,
+      "key": "Q",
+      "commandEvidence": [
+        {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": false,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 0,
+            "reserved": 0,
+            "capacity": 0
+          },
+          "time": 66.59955596923828,
+          "kind": "Command",
+          "message": "AttackMove ×1",
+          "player": 0,
+          "entity": 8,
+          "target": 0,
+          "visibilityMask": 15,
+          "amount": 1.0,
+          "position": {
+            "x": 25.61652374267578,
+            "y": 37.97981262207031
+          },
+          "facing": {
+            "x": -0.03452315181493759,
+            "y": -0.9994038939476013
+          }
+        }
+      ],
+      "method": "Actual native GUI Q then left-click; screenshot shows AttackMove order accepted and moving; checkpoint contains player0 accepted Command"
+    },
+    "teamMemberResign": {
+      "passed": true,
+      "method": "session-06 GUI Resign; player0 resigned, ally alive, world time advances and no terminal winner"
+    },
+    "fourCivilizationFFA": {
+      "passed": true,
+      "teams": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "civilizations": [
+        "coast",
+        "river",
+        "france",
+        "ottoman"
+      ],
+      "method": "session-06 GUI roster and native start; F9 actual four players"
+    },
+    "cjkRendering": {
+      "passed": true,
+      "method": "Visual native inspection of library, objective and terminal Chinese text"
+    },
+    "singleSharedSightMinimap": {
+      "passed": true,
+      "method": "Independent agent inspected actual native PNG and source; one 128x128 texture with two allied explored regions"
+    },
+    "protectedStorageRestored": {
+      "passed": true,
+      "receipt": "storage-restoration.json"
+    }
+  },
+  "processes": [
+    {
+      "log": "session-01.log",
+      "exitCode": 0
+    },
+    {
+      "log": "session-02.log",
+      "exitCode": 143
+    },
+    {
+      "log": "session-03.log",
+      "exitCode": 143
+    },
+    {
+      "log": "session-04.log",
+      "exitCode": 0
+    },
+    {
+      "log": "session-05.log",
+      "exitCode": 0
+    },
+    {
+      "log": "session-06.log",
+      "exitCode": 0
+    }
+  ],
+  "diagnosticProcessNote": "Early get_app_state after quitting could automatically reopen the same candidate app; early settings/checkpoint screenshots are exact same-GUID artifacts, but are not assigned to session-02 or session-03. Their CLI logs contain initialization only; both known candidate CLI processes were explicitly terminated before session-04. Session-04 logs support the actual guided cold load/completion. After that quit, get_app_state transparently relaunched one unlogged candidate process PID 91152; it was explicitly terminated and excluded from passing proofs. Session-05 and session-06 started after candidate processes were absent and provide independently logged completion-badge/settings readback and team/FFA flows.",
+  "scope": "Native checks cover selected representative flows, not native completion of all 10 guided scenarios, four-player match victory, 400-unit performance, network/replay, signing/notarization, or Intel macOS. Automated scenario/relationship coverage is in Tests. Unity Development shutdown warnings are preserved in logs.",
+  "reportEvidence": {
+    "index": "Reports/index.json",
+    "sha256": "af4971da6d0c60c7e668d688026666670a47de18cc70efac82bf1528d1da76bf",
+    "scope": "Three original report/events pairs. Guided checkpoint 188-event and team checkpoint 3113-event prefixes independently match later report streams. All report world winners remain -1; guided completion and deliberate menu quits are not skirmish victories."
+  }
+}

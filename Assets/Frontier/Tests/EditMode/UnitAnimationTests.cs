@@ -44,6 +44,16 @@ namespace Frontier.Tests
             var a = UnitAnimation.Evaluate(unit, 7.25f); var b = UnitAnimation.Evaluate(unit, 7.25f);
             Assert.AreEqual(a.state, b.state); Assert.AreEqual(a.locomotionPhase, b.locomotionPhase); Assert.AreEqual(a.actionPhase, b.actionPhase);
         }
+        [TestCase("ally_highland_guard")]
+        [TestCase("ally_river_pike")]
+        [TestCase("ally_coastal_marine")]
+        public void AlliedPikemenUsePolearmAttackPose(string id)
+        {
+            var ally=world.Spawn(id,0,new Vector2(40,40));ally.fireAt=2.2f;
+            var pose=UnitAnimation.Evaluate(ally,2);
+            Assert.IsTrue(pose.polearm);Assert.IsTrue(pose.melee);
+            Assert.AreEqual(UnitPoseState.PreparingAttack,pose.state);
+        }
         [Test] public void EvaluationDoesNotMutateSimulationFields()
         {
             unit.status = "Preparing attack"; unit.fireAt = 3; unit.attackReadyAt = 8; unit.attackTarget = 17; unit.hp = 91;

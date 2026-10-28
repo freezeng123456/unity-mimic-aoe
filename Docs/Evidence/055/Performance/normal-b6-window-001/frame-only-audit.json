@@ -1,0 +1,137 @@
+{
+  "generatedAtUtc": "2026-10-02T15:05:46.228548+00:00",
+  "status": "pending_associated_match_report",
+  "scope": "Completed raw native F8 frame-window audit only; current match ongoing. Identity association with final report and actual Spawn/Death counts await natural end. This does not mark the complete performance gate passed.",
+  "captureIdentity": {
+    "appVersion": "0.2.31",
+    "buildGuid": "128a731d440e4b7a94abfcc74b88fa97",
+    "matchId": "d57aee12243c4599a9343986d5b2c1ab",
+    "currentMatchId": "d57aee12243c4599a9343986d5b2c1ab",
+    "platform": "OSXPlayer",
+    "unityVersion": "6000.6.3f1",
+    "resolution": "2560x1440",
+    "utcStart": "2026-10-02T14:51:50.4200380Z",
+    "utcEnd": "2026-10-02T15:01:50.4347600Z",
+    "stopReason": "wall_clock_limit",
+    "autoplay": false,
+    "benchmark": false,
+    "simulationSpeed": 1.0,
+    "singleSession": true,
+    "truncated": false
+  },
+  "frameAudit": {
+    "checks": {
+      "captureBoundsFiniteAndOrdered": true,
+      "allFrameDurationsFiniteAndNonnegative": true,
+      "rawDurationFitsWallEnvelope": true,
+      "eligibleDurationFitsWallEnvelope": true,
+      "frameCountMatches": true,
+      "eligibleFlagsMatchRecomputation": true,
+      "rawFrameStateAndOrderValid": true,
+      "includedFramesMatch": true,
+      "excludedFramesMatch": true,
+      "allFramesFocusedMatches": true,
+      "meanMatches": true,
+      "floorP95Matches": true,
+      "floorP99Matches": true
+    },
+    "issues": [],
+    "computed": {
+      "totalFrames": 35795,
+      "includedFrames": 15430,
+      "excludedFrames": 20365,
+      "eligibleUnpausedSeconds": 258.7099189605713,
+      "rawFrameIntervalSeconds": 599.9999995727578,
+      "sampledWallSeconds": 599.9981359160001,
+      "wallEndpointToleranceSeconds": 0.25,
+      "worldAdvancedSeconds": 258.79193115234375,
+      "wallSeconds": 600.0147245829994,
+      "meanFrameMs": 16.76668357849121,
+      "p95FrameMs": 17.319040298461914,
+      "p99FrameMs": 17.589250564575195,
+      "allFramesFocused": false
+    },
+    "excludedReasonCounts": {
+      "ineligibleStateOrTransition": 20365,
+      "pauseCurrentOrPrevious": 20365,
+      "pauseChangedEvent": 13,
+      "focusCurrentOrPrevious": 4910,
+      "focusLostCallback": 2
+    },
+    "reasonCountScope": "Reasons overlap; their counts are not a sum of excludedFrames",
+    "wallEnvelopeScope": "Summed intervals are bounded by capture realtime with a fixed 0.25-second endpoint phase allowance. The lower bound uses the last sampled realtime, admitting an unsampled stop interval. No individual delta is required to equal a LateUpdate realtime difference; the allowance cannot grow with a frame duration."
+  },
+  "minimumEligibleUnpausedSeconds": {
+    "required": 300,
+    "actual": 258.7099189605713,
+    "frameWindowMet": false,
+    "finalAssociatedReportValidated": false
+  },
+  "memoryInternalAudit": {
+    "sampleCount": 596,
+    "hasStartEndSamples": true,
+    "firstWorldMatchesStart": true,
+    "lastWorldMatchesEnd": true,
+    "allInternalChecksPassed": true,
+    "bounds": {
+      "managedBytes": {
+        "min": 11317248,
+        "max": 16265216,
+        "first": 11317248,
+        "last": 15994880
+      },
+      "unityAllocatedBytes": {
+        "min": 128090058,
+        "max": 129840973,
+        "first": 128090058,
+        "last": 129350696
+      },
+      "livingUnits": {
+        "min": 43,
+        "max": 59,
+        "first": 43,
+        "last": 50
+      },
+      "livingBuildings": {
+        "min": 9,
+        "max": 13,
+        "first": 9,
+        "last": 13
+      },
+      "totalEntities": {
+        "min": 172,
+        "max": 210,
+        "first": 172,
+        "last": 210
+      },
+      "viewportVisibleUnitCenters": {
+        "min": 17,
+        "max": 33,
+        "first": 17,
+        "last": 20
+      }
+    },
+    "scope": "Only captured memory values and self-consistency/bounds are checked. Actual Spawn/Death counts cannot be independently reconstructed without the final same-match journal; viewport centers do not prove unobstructed visibility."
+  },
+  "files": {
+    "Frontier-Performance-20261002-150150-438-c5391af178be49e089f280bb890ba33a.json": {
+      "bytes": 8879303,
+      "sha256": "7f3ad6f699eb6fe3b72572df872d8ac62e448b40529762d0b897b27566bc9f60"
+    },
+    "verify_performance.py": {
+      "bytes": 22853,
+      "sha256": "887cc94de3515f4be01acdb1085f30b4f198c235b23296bb6c2f6aeb3daaf5cc"
+    },
+    "README.md": {
+      "bytes": 2180,
+      "sha256": "46e90583d149cf6e05c67322221ab34b55a78455aeb596d2e32927fa4c4ca596"
+    }
+  },
+  "nativeOrigin": {
+    "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/PerformanceCaptures/Frontier-Performance-20261002-150150-438-c5391af178be49e089f280bb890ba33a.json",
+    "bytes": 8879303,
+    "sha256": "7f3ad6f699eb6fe3b72572df872d8ac62e448b40529762d0b897b27566bc9f60",
+    "archiveBytesMatchSource": true,
+    "sourceUnchangedDuringCopy": true
+  }
+}

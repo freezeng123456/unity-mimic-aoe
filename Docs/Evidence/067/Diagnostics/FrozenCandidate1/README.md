@@ -1,0 +1,3 @@
+# Frozen candidate 1: superseded by timeline layout repair
+
+The 1096/1096 test run and GUID2158 native long replay remain valid for their original 595 inputs / FP914. Native from-start replay reached step21503 and VERIFIED; ±30 seeks also passed. The visible timeline fill/handle overflow was then found in the actual window, so this candidate is not the final delivery. Its client and full raw evidence remain outside the repository under FinalCandidate/Diagnostics/FrozenCandidate1. Tests here retain exact original XML/source and sanitized logs. Final source has a separate formal test archive and build identity.

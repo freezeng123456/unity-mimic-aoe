@@ -1,0 +1,48 @@
+{
+  "schema": "frontier074-iteration-plan-v1",
+  "createdAtUtc": "2026-10-06T16:48:28.340216+00:00",
+  "baselineRuntimeCommit": "519d7d34a0be85f75ee19e53458c636d1ba0b3e4",
+  "baselineDeliveryHead": "07c56cb311bae656923c089cbfea39af15c03854",
+  "sourceImplementationScope": [
+    "Conservative AI Gather admission and review of actual ordinary WorkPoint/route",
+    "Town-first Home evaluation preserving selection/fallback semantics"
+  ],
+  "notClaimed": [
+    "Per-frame dynamic safe route constraint",
+    "Escort or new defense heuristics",
+    "Measured pure-performance speedup",
+    "Civilization balance or native FPS",
+    "Current-build native exchange/cold/replay"
+  ],
+  "plannedValidation": {
+    "focusedTests": "new Gather074/Home074 and retained related AI/navigation suites",
+    "fullRegression": "fresh Tools/test.sh exact-source run",
+    "build": "BuildTools.BuildMac without Prepare",
+    "normalCases": [
+      {
+        "map": "winding",
+        "civilization": "ottoman",
+        "seed": 44
+      },
+      {
+        "map": "winding",
+        "civilization": "ottoman",
+        "seed": 45
+      },
+      {
+        "map": "river_bend",
+        "civilization": "river",
+        "seed": 42
+      }
+    ],
+    "normalAge": 1,
+    "normalMaxAge": 5,
+    "difficulty": "standard",
+    "normalLimitSeconds": 2400,
+    "comparisonSeconds": 1500,
+    "sampleIntervalSeconds": 30,
+    "normalResourceInjection": false,
+    "normalForcedOrders": false
+  },
+  "authorizationScope": "Existing private non-force development branch, existing draft PR1, original owner-only Google Drive; no main merge/public release/deploy/ACL change"
+}

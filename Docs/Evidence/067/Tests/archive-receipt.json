@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "runDirectory": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-q8grIRWM",
+  "runtimeCommit": "2668c47a426f2cea8d4bc7b309cdbfa71533cc9d",
+  "sourceFingerprint": "8180b02b55ed3957b94042d779a6d74bdda78cd46073cf70d93353c330363466",
+  "sourceFileCount": 595,
+  "totalPassed": 1097,
+  "reports": {
+    "EditMode": {
+      "result": "Passed",
+      "total": "740",
+      "passed": "740",
+      "failed": "0",
+      "skipped": "0",
+      "inconclusive": "0",
+      "duration": "205.2043782",
+      "start-time": "2026-10-05 14:04:23Z",
+      "end-time": "2026-10-05 14:07:48Z"
+    },
+    "PlayMode": {
+      "result": "Passed",
+      "total": "357",
+      "passed": "357",
+      "failed": "0",
+      "skipped": "0",
+      "inconclusive": "0",
+      "duration": "164.4922186",
+      "start-time": "2026-10-05 14:07:58Z",
+      "end-time": "2026-10-05 14:10:43Z"
+    }
+  },
+  "sourceManifestVerifiedAgainstCurrentFiles": true,
+  "newReplayTests": {
+    "Frontier.Tests.Replay067Tests": {
+      "discovered": 10,
+      "passed": true
+    },
+    "Frontier.Tests.ReplayStore067Tests": {
+      "discovered": 20,
+      "passed": true
+    },
+    "Frontier.Tests.Replay067IntegrationTests": {
+      "discovered": 5,
+      "passed": true
+    }
+  },
+  "timelineGeometryTest": {
+    "fullname": "Frontier.Tests.Replay067IntegrationTests.TimelineFillAndHandleStayInsideTheRenderedTrackAndDraggingStillSeeks",
+    "result": "Passed",
+    "duration": "0.886252"
+  },
+  "redactionRule": {
+    "regex": "^(?P<prefix>[ \\t]*(?:\\[[^\\]\\r\\n]*Licens[^\\]\\r\\n]*\\][ \\t]*)?(?P<field>Machine[ \\t]*Id|Serial[ \\t]+number)[ \\t]*:[ \\t]*)(?P<value>[^\\r\\n]*)(?P<ending>\\r?\\n)?$",
+    "flags": "IGNORECASE",
+    "replacement": "[REDACTED_DEVICE_ID]",
+    "reference": "Diagnostics/FrozenCandidate1/Tests; raw EditMode line 95 and PlayMode line 94 match prior exact redaction"
+  },
+  "files": [
+    {
+      "file": "EditMode.xml",
+      "source": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-q8grIRWM/EditMode.xml",
+      "originalBytes": 598784,
+      "originalSha256": "1aa522d00f468f6dcd7268fd384dd6b1caee0a4fcdb62cfcdf612b53cae96519",
+      "archivedBytes": 598784,
+      "archivedSha256": "1aa522d00f468f6dcd7268fd384dd6b1caee0a4fcdb62cfcdf612b53cae96519",
+      "modified": false
+    },
+    {
+      "file": "PlayMode.xml",
+      "source": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-q8grIRWM/PlayMode.xml",
+      "originalBytes": 343088,
+      "originalSha256": "8d1a6cb813db3308e12ed9d99bbbc9f155963d6f3b6691b66b5a60ee7041c030",
+      "archivedBytes": 343088,
+      "archivedSha256": "8d1a6cb813db3308e12ed9d99bbbc9f155963d6f3b6691b66b5a60ee7041c030",
+      "modified": false
+    },
+    {
+      "file": "source-evidence.json",
+      "source": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-q8grIRWM/source-evidence.json",
+      "originalBytes": 76293,
+      "originalSha256": "ce66c97cfa1f737a011fc6575444c91ca632ccd3907e63e9972bc6c419fea851",
+      "archivedBytes": 76293,
+      "archivedSha256": "ce66c97cfa1f737a011fc6575444c91ca632ccd3907e63e9972bc6c419fea851",
+      "modified": false
+    },
+    {
+      "file": "EditMode.log",
+      "source": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-q8grIRWM/EditMode.log",
+      "originalBytes": 90502,
+      "originalSha256": "7ee00dbc71d4123d960a8fdbfece27b6d468095bf4e6e9f87b818b68fb12542f",
+      "archivedBytes": 90494,
+      "archivedSha256": "50325d81673dd5a0abac8810936330004f2e32c1542753ecaa7955498d8c21a5",
+      "modified": true,
+      "purpose": "Only license device identifiers redacted; all other bytes and diagnostic/exit text preserved",
+      "lineCount": 721,
+      "redactions": [
+        {
+          "line": 85,
+          "field": "Machine Id",
+          "rule": "license-device-identifier"
+        }
+      ],
+      "allOtherBytesPreserved": true,
+      "rawSource": {
+        "bytes": 90502,
+        "sha256": "7ee00dbc71d4123d960a8fdbfece27b6d468095bf4e6e9f87b818b68fb12542f"
+      },
+      "sanitized": {
+        "bytes": 90494,
+        "sha256": "50325d81673dd5a0abac8810936330004f2e32c1542753ecaa7955498d8c21a5"
+      },
+      "regex": "^(?P<prefix>[ \\t]*(?:\\[[^\\]\\r\\n]*Licens[^\\]\\r\\n]*\\][ \\t]*)?(?P<field>Machine[ \\t]*Id|Serial[ \\t]+number)[ \\t]*:[ \\t]*)(?P<value>[^\\r\\n]*)(?P<ending>\\r?\\n)?$",
+      "regexFlags": "IGNORECASE",
+      "replacement": "[REDACTED_DEVICE_ID]"
+    },
+    {
+      "file": "PlayMode.log",
+      "source": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-q8grIRWM/PlayMode.log",
+      "originalBytes": 853831,
+      "originalSha256": "fd1a47a0ee7bdb53dde0d7b1d0daa9471d74a19a3a9794e88d968b921b39339d",
+      "archivedBytes": 853823,
+      "archivedSha256": "d3106afd455587ade681c56194073d902e2e3925c1c708400b38f066b3259550",
+      "modified": true,
+      "purpose": "Only license device identifiers redacted; all other bytes and diagnostic/exit text preserved",
+      "lineCount": 5674,
+      "redactions": [
+        {
+          "line": 94,
+          "field": "Machine Id",
+          "rule": "license-device-identifier"
+        }
+      ],
+      "allOtherBytesPreserved": true,
+      "rawSource": {
+        "bytes": 853831,
+        "sha256": "fd1a47a0ee7bdb53dde0d7b1d0daa9471d74a19a3a9794e88d968b921b39339d"
+      },
+      "sanitized": {
+        "bytes": 853823,
+        "sha256": "d3106afd455587ade681c56194073d902e2e3925c1c708400b38f066b3259550"
+      },
+      "regex": "^(?P<prefix>[ \\t]*(?:\\[[^\\]\\r\\n]*Licens[^\\]\\r\\n]*\\][ \\t]*)?(?P<field>Machine[ \\t]*Id|Serial[ \\t]+number)[ \\t]*:[ \\t]*)(?P<value>[^\\r\\n]*)(?P<ending>\\r?\\n)?$",
+      "regexFlags": "IGNORECASE",
+      "replacement": "[REDACTED_DEVICE_ID]"
+    }
+  ],
+  "scope": "Actual frozen Unity EditMode/PlayMode XML and source binding only. Native rendering/playback, build, packaging and cloud delivery are separate evidence. Historical candidate 1 tests remain unchanged."
+}

@@ -1,0 +1,204 @@
+{
+  "schema": 1,
+  "archivedAtUtc": "2026-10-05T16:20:33.548373+00:00",
+  "runDirectory": "Builds/Tests/run-cJvXP8if",
+  "runtimeCommit": "be6665d53e9c0c7fc08c1e9f805dfad2c6906de4",
+  "sourceFingerprint": "38d592d516a6ad62d68bd42a5940f996851a7e469bfe20bb35bcc67b92428ad7",
+  "sourceFileCount": 630,
+  "totalPassed": 1185,
+  "reports": {
+    "EditMode": {
+      "result": "Passed",
+      "total": "817",
+      "passed": "817",
+      "failed": "0",
+      "skipped": "0",
+      "inconclusive": "0",
+      "start-time": "2026-10-05 16:08:55Z",
+      "end-time": "2026-10-05 16:12:29Z",
+      "duration": "213.5284914"
+    },
+    "PlayMode": {
+      "result": "Passed",
+      "total": "368",
+      "passed": "368",
+      "failed": "0",
+      "skipped": "0",
+      "inconclusive": "0",
+      "start-time": "2026-10-05 16:12:40Z",
+      "end-time": "2026-10-05 16:16:00Z",
+      "duration": "199.5829836"
+    }
+  },
+  "sourceBinding": "All 630 tested input bytes independently matched the frozen commit and current inputs at completed review; current-source verifier exit0. Native evidence is separate.",
+  "legacyBaselineTotal": 1097,
+  "legacyNonReplayTotal": 1062,
+  "legacyReplayTotal": 35,
+  "lanTotal": 88,
+  "lanFixtures": {
+    "Frontier.Tests.LanAuthority068Tests": {
+      "mode": "EditMode",
+      "cases": 41,
+      "results": {
+        "Passed": 41
+      }
+    },
+    "Frontier.Tests.LanBoundary068Tests": {
+      "mode": "EditMode",
+      "cases": 2,
+      "results": {
+        "Passed": 2
+      }
+    },
+    "Frontier.Tests.LanQueue068Tests": {
+      "mode": "EditMode",
+      "cases": 10,
+      "results": {
+        "Passed": 10
+      }
+    },
+    "Frontier.Tests.LanReplication068Tests": {
+      "mode": "EditMode",
+      "cases": 8,
+      "results": {
+        "Passed": 8
+      }
+    },
+    "Frontier.Tests.LanTransport068Tests": {
+      "mode": "EditMode",
+      "cases": 12,
+      "results": {
+        "Passed": 12
+      }
+    },
+    "Frontier.Tests.LanWire068Tests": {
+      "mode": "EditMode",
+      "cases": 4,
+      "results": {
+        "Passed": 4
+      }
+    },
+    "Frontier.Tests.LanLifecycle068Tests": {
+      "mode": "PlayMode",
+      "cases": 6,
+      "results": {
+        "Passed": 6
+      }
+    },
+    "Frontier.Tests.LanPresentation068Tests": {
+      "mode": "PlayMode",
+      "cases": 5,
+      "results": {
+        "Passed": 5
+      }
+    }
+  },
+  "newOfflineHostResumeRegression": [
+    {
+      "fullname": "Frontier.Tests.LanLifecycle068Tests.DisconnectedHostCanResumeTheSharedPauseThroughItsActualMenu",
+      "result": "Passed",
+      "durationSeconds": 1.29913
+    }
+  ],
+  "redactionRule": {
+    "regex": "^(?P<prefix>[ \\t]*(?:\\[[^\\]\\r\\n]*Licens[^\\]\\r\\n]*\\][ \\t]*)?(?P<field>Machine[ \\t]*Id|Serial[ \\t]+number)[ \\t]*:[ \\t]*)(?P<value>[^\\r\\n]*)(?P<ending>\\r?\\n)?$",
+    "flags": "IGNORECASE",
+    "replacement": "[REDACTED_DEVICE_ID]",
+    "reference": "Docs/Evidence/067/Tests/archive-receipt.json",
+    "scope": "Actual anchored licensing Machine Id / Serial number values only; no original values saved in this receipt."
+  },
+  "redactionCounts": {
+    "machineId": 2,
+    "licenseSerial": 0
+  },
+  "files": [
+    {
+      "file": "EditMode.xml",
+      "source": "Builds/Tests/run-cJvXP8if/EditMode.xml",
+      "originalBytes": 659248,
+      "originalSha256": "32635c6a7b8f70e825b77c2d543920b1fe6e3e596f19f51d97c3025ef3435688",
+      "archivedBytes": 659248,
+      "archivedSha256": "32635c6a7b8f70e825b77c2d543920b1fe6e3e596f19f51d97c3025ef3435688",
+      "mode": "0644",
+      "transform": "copy",
+      "lineCount": 5448,
+      "redactions": [],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "PlayMode.xml",
+      "source": "Builds/Tests/run-cJvXP8if/PlayMode.xml",
+      "originalBytes": 492873,
+      "originalSha256": "b27863775009068619287ecc0784fab5663cfebed85cd17f4bf8270fd20c36e9",
+      "archivedBytes": 492873,
+      "archivedSha256": "b27863775009068619287ecc0784fab5663cfebed85cd17f4bf8270fd20c36e9",
+      "mode": "0644",
+      "transform": "copy",
+      "lineCount": 4322,
+      "redactions": [],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "source-evidence.json",
+      "source": "Builds/Tests/run-cJvXP8if/source-evidence.json",
+      "originalBytes": 80693,
+      "originalSha256": "f0f0b7527ed6d243c28a88e08608402da9407737acdc83f505f949f5dcf21528",
+      "archivedBytes": 80693,
+      "archivedSha256": "f0f0b7527ed6d243c28a88e08608402da9407737acdc83f505f949f5dcf21528",
+      "mode": "0644",
+      "transform": "copy",
+      "lineCount": 649,
+      "redactions": [],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "EditMode.log",
+      "source": "Builds/Tests/run-cJvXP8if/EditMode.log",
+      "originalBytes": 87438,
+      "originalSha256": "5838247c5fe3a854fddff9487af9141ddc014207fdbf830cbe90370650c7175e",
+      "archivedBytes": 87430,
+      "archivedSha256": "6c85d290c9f372566a81901d8a3c605cee53b73b5b50beb939f1bd2c79610cb9",
+      "mode": "0644",
+      "transform": "licensing-device-redaction",
+      "lineCount": 688,
+      "redactions": [
+        {
+          "line": 87,
+          "field": "Machine Id",
+          "type": "machineId",
+          "rule": "anchored-licensing-device-field"
+        }
+      ],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "PlayMode.log",
+      "source": "Builds/Tests/run-cJvXP8if/PlayMode.log",
+      "originalBytes": 1109188,
+      "originalSha256": "395db5de9fdfe34e89319700b3641a1453a864449166fb52c648e7305e488f5e",
+      "archivedBytes": 1109180,
+      "archivedSha256": "2adaa63b34eaaa160534943b97e7107b30ac2305e1fb4856c259be0b28b9204e",
+      "mode": "0644",
+      "transform": "licensing-device-redaction",
+      "lineCount": 7814,
+      "redactions": [
+        {
+          "line": 94,
+          "field": "Machine Id",
+          "type": "machineId",
+          "rule": "anchored-licensing-device-field"
+        }
+      ],
+      "allOtherBytesPreserved": true
+    }
+  ],
+  "independentReview": {
+    "file": "independent-review.json",
+    "bytes": 13882,
+    "sha256": "656caa252523f5cae9ff602241117865a6ee131f36ab78f9a1968442ce0df1d8"
+  },
+  "rawSourcesUnchanged": true,
+  "diagnosticsRetained": "All other bytes remain unchanged including unavailable-token, serialization, engine/test diagnostics and exit output.",
+  "candidate1HistoricalArchive": "../Diagnostics/Candidate1-Tests/README.md",
+  "scope": "Completed source-bound EditMode/PlayMode regression. Native validation, performance, packaging and cloud delivery remain separately evidenced."
+}

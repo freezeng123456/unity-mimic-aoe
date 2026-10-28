@@ -1,0 +1,427 @@
+{
+  "schema": 1,
+  "recordedAtUtc": "2026-10-05T01:05:34.769185+00:00",
+  "status": "assembled_raw_gallery_with_scoped_captions",
+  "appVersion": "0.8.0",
+  "runtimeCommit": "c4365e31dbea9dd7e5d5c253b661ee2d3a25879a",
+  "sourceFingerprint": "d7bbe1e4f0e52210bf64b4787864449a438be87fb14952173cdd4d60d0563eb6",
+  "sourceFileCount": 531,
+  "nativeBuildGuid": "5fbcf668506b4814bc34d27b3902a237",
+  "unityVersion": "6000.6.3f1",
+  "architecture": "arm64",
+  "buildType": "Development / Mono",
+  "tests": {
+    "EditMode": 618,
+    "PlayMode": 340
+  },
+  "scope": "8 original current-GUID F9 PNG/JSON pairs, viewed and tied to actual frames. Only named bounded audits support gameplay; no package, upload, performance or natural-ended-match claim.",
+  "controlledScope": "Fleet/delta/bridge controlled age III; monitor age IV, resource grants and no AI. Normal is legacy checkpoint continued16x with bothAI and no grants. Entry scopes govern.",
+  "nativePairArchiveIdentity": {
+    "file": "native-capture-verification.json",
+    "sha256": "694dad991c24c043d779b1fb85d1d74f8d2709b0f0a443d4fcef2a410bda9d72",
+    "verifiedPairCount": 17,
+    "failedPairCount": 0,
+    "scope": "All17 archived pairs;8 selected. Identity alone is not gameplay acceptance."
+  },
+  "evidenceReferences": [
+    {
+      "file": "normal-native-save-fix-audit.json",
+      "sha256": "e1305426e74ccd66dfda20d0b11a577fec17946b4affbb303ac0062b6612ab2c",
+      "status": "normal_large_save_cold_resume_verified"
+    },
+    {
+      "file": "native-fleet-save-fix-audit.json",
+      "sha256": "bf8fd239a32a8f340869407abaec7b137282fbd96b54f2a5579d1701717326df",
+      "status": "controlled_fleet_save_cold_landing_group_verified"
+    },
+    {
+      "file": "native-scene-render-audit.json",
+      "sha256": "8430ce71007fe77d0b918b1f86c0768bfe5400912c82bb09f583ea2b4fd1d295",
+      "status": "limited_scene_render_and_monitor_control_verified"
+    },
+    {
+      "file": "preview-fixture-audit.json",
+      "sha256": "4bc6823e4dbdf112d97a2552d7086d3298ab7a4caddd083b840fdf5d3affb752",
+      "status": "verified_fixture_archive"
+    }
+  ],
+  "captures": [
+    {
+      "stage": "normal-cold-continued",
+      "title": "普通双 AI 局冷恢复后续跑",
+      "png": "Frontier-20261005-004041-719-f6042-169b2d41d1b545d8809282a1e0bb900d.png",
+      "metadata": "Frontier-20261005-004041-719-f6042-169b2d41d1b545d8809282a1e0bb900d.json",
+      "pngBytes": 1286654,
+      "pngSha256": "8f83efe72f2980d216bf94f7bcb48ff0739680ccec2d05edcaa28ce5ce8f07c8",
+      "jsonBytes": 60550,
+      "jsonSha256": "108b89113a4d065fc5d4a0fe9991a2eeae6b53b6e034da884b23adc1629a08f4",
+      "matchId": "d1eafccccf5e44cc973adaee2768b009",
+      "mapId": "generated_strait",
+      "seed": 314159,
+      "worldTime": 2217.312255859375,
+      "captureFrame": 6042,
+      "requestFrame": 6042,
+      "utc": "2026-10-05T00:40:41.6509810Z",
+      "width": 1600,
+      "height": 1000,
+      "caption": "普通局由原有约842秒存档在新客户端继续，截帧时2217.312秒，画面可见城镇、工厂、密集军队、舰船与追赶提示。双方初始300食物/300木/100币，无受控资源赠送，采用16倍速；这是冷恢复后的有限续跑，不是自然终局或FPS测量。",
+      "controlledScope": {
+        "controlled": false,
+        "initialResourcesEachPlayer": {
+          "food": 300,
+          "wood": 300,
+          "coin": 100
+        },
+        "controlledGrantEvents": 0,
+        "autoplayBothAI": true,
+        "simulationSpeed": 16,
+        "startedUnderEarlierBuild": true,
+        "normalNaturalVictory": false,
+        "performanceBenchmark": false
+      },
+      "visualReview": {
+        "method": "Independent direct original PNG inspection and same-stem raw JSON comparison; no keyboard-action reconstruction.",
+        "observed": "城镇、密集军队、港区与舰船可见；HUD为36:57/IV时代，并显示 Simulation is catching up — rendering load is high。"
+      }
+    },
+    {
+      "stage": "fleet-harbor",
+      "title": "岛岸港区与待登船部队",
+      "png": "Frontier-20261005-004245-530-f3670-ca1db65c4d174599a4234fee62b46b74.png",
+      "metadata": "Frontier-20261005-004245-530-f3670-ca1db65c4d174599a4234fee62b46b74.json",
+      "pngBytes": 1238282,
+      "pngSha256": "8d6de16e2c8f40fca3607c12f617be07482fa4a84868d5976a760a0856109076",
+      "jsonBytes": 10513,
+      "jsonSha256": "2c6d6bc4ae6e25c6013d62f37fa8a872750406b60d483de102db0a2d71785344",
+      "matchId": "naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07",
+      "mapId": "generated_strait",
+      "seed": 314159,
+      "worldTime": 485.62042236328125,
+      "captureFrame": 3670,
+      "requestFrame": 3670,
+      "utc": "2026-10-05T00:42:45.4556450Z",
+      "width": 1600,
+      "height": 1000,
+      "caption": "港区、三种船轮廓及两名选中陆军；截帧时485.620秒，运输船134空舱，132/133在岸上。受控III时代/上限III、无AI；玩家0各+8000食物/木/币，玩家1各+2000，随后付费建造和生产。不是普通开局升级或本次原生生产证明。",
+      "controlledScope": {
+        "controlled": true,
+        "fixture": "naval-strait-314159",
+        "controlledAge": 3,
+        "maxAge": 3,
+        "aiControllers": [],
+        "grants": [
+          {
+            "player": 0,
+            "amount": {
+              "food": 8000.0,
+              "wood": 8000.0,
+              "coin": 8000.0
+            }
+          },
+          {
+            "player": 1,
+            "amount": {
+              "food": 2000.0,
+              "wood": 2000.0,
+              "coin": 2000.0
+            }
+          }
+        ],
+        "populationGrant": false,
+        "healthGrant": false,
+        "normalAgeAdvancement": false,
+        "paidPreparationFromExport": true
+      },
+      "visualReview": {
+        "method": "Independent direct original PNG inspection and same-stem raw JSON comparison; no keyboard-action reconstruction.",
+        "observed": "2 SELECTED · Pikeman 面板及两名岸上陆军可见，运输船、护卫舰、炮艇和码头可见。"
+      }
+    },
+    {
+      "stage": "fleet-cargo",
+      "title": "运输船载员面板",
+      "png": "Frontier-20261005-004449-532-f11043-0006291d48734cd49dc31bbb74f6a325.png",
+      "metadata": "Frontier-20261005-004449-532-f11043-0006291d48734cd49dc31bbb74f6a325.json",
+      "pngBytes": 594982,
+      "pngSha256": "e7c7d163ee49416df05c2c7f352ebd49d19f4ef70cf55ec83c23ce5edad454d0",
+      "jsonBytes": 10576,
+      "jsonSha256": "8705aab8aec1bc6a831d1d451d5a38e8e7e55319f47ed55cb6c84e5c7f58b02b",
+      "matchId": "naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07",
+      "mapId": "generated_strait",
+      "seed": 314159,
+      "worldTime": 609.6981811523438,
+      "captureFrame": 11043,
+      "requestFrame": 11043,
+      "utc": "2026-10-05T00:44:49.4797840Z",
+      "width": 1600,
+      "height": 1000,
+      "caption": "乘员面板显示 Load 2/14、Pikeman HP180、Musketeer HP200；截帧时609.698秒，JSON载员为132/133且garrisonedIn=134。受控III时代、无AI，玩家0各+8000资源、玩家1各+2000；同场景真实进程退出/冷恢复的整档一致性另由检查点证明，不能只凭面板推断。",
+      "controlledScope": {
+        "controlled": true,
+        "fixture": "naval-strait-314159",
+        "controlledAge": 3,
+        "maxAge": 3,
+        "aiControllers": [],
+        "grants": [
+          {
+            "player": 0,
+            "amount": {
+              "food": 8000.0,
+              "wood": 8000.0,
+              "coin": 8000.0
+            }
+          },
+          {
+            "player": 1,
+            "amount": {
+              "food": 2000.0,
+              "wood": 2000.0,
+              "coin": 2000.0
+            }
+          }
+        ],
+        "populationGrant": false,
+        "healthGrant": false,
+        "normalAgeAdvancement": false,
+        "paidPreparationFromExport": true
+      },
+      "visualReview": {
+        "method": "Independent direct original PNG inspection and same-stem raw JSON comparison; no keyboard-action reconstruction.",
+        "observed": "TRANSPORT PASSENGERS 模态面板列出两种乘员、Load 2/14和生命值。"
+      }
+    },
+    {
+      "stage": "fleet-cold-landed",
+      "title": "冷恢复后跨岸登陆与编组召回",
+      "png": "Frontier-20261005-004756-005-f7867-f0555e3e690a474ea0bd26f1def6bf4b.png",
+      "metadata": "Frontier-20261005-004756-005-f7867-f0555e3e690a474ea0bd26f1def6bf4b.json",
+      "pngBytes": 1157170,
+      "pngSha256": "93def85295d33e321d3b83627ac8eb7da88012b509917e8f5ba5a24bbdbc9b0c",
+      "jsonBytes": 10810,
+      "jsonSha256": "a4183c2285c5745951e46d216036c2815a6644455b85ab1b3f72ff8544187208",
+      "matchId": "naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07",
+      "mapId": "generated_strait",
+      "seed": 314159,
+      "worldTime": 668.4838256835938,
+      "captureFrame": 7867,
+      "requestFrame": 7867,
+      "utc": "2026-10-05T00:47:55.9410960Z",
+      "width": 1600,
+      "height": 1000,
+      "caption": "截帧时668.484秒，两名陆军已在中央岛岸，运输船空舱，面板显示2 SELECTED。新进程冷恢复、登陆事件和编组4成员132/133保留见审查与存档；截图不记录按键过程。受控III时代、无AI，玩家0各+8000资源、玩家1各+2000，仅验证这一岸段与两名乘员。",
+      "controlledScope": {
+        "controlled": true,
+        "fixture": "naval-strait-314159",
+        "controlledAge": 3,
+        "maxAge": 3,
+        "aiControllers": [],
+        "grants": [
+          {
+            "player": 0,
+            "amount": {
+              "food": 8000.0,
+              "wood": 8000.0,
+              "coin": 8000.0
+            }
+          },
+          {
+            "player": 1,
+            "amount": {
+              "food": 2000.0,
+              "wood": 2000.0,
+              "coin": 2000.0
+            }
+          }
+        ],
+        "populationGrant": false,
+        "healthGrant": false,
+        "normalAgeAdvancement": false,
+        "paidPreparationFromExport": true
+      },
+      "visualReview": {
+        "method": "Independent direct original PNG inspection and same-stem raw JSON comparison; no keyboard-action reconstruction.",
+        "observed": "中央岛岸两名陆军有选择圈，面板2 SELECTED，运输船停在岸外。"
+      }
+    },
+    {
+      "stage": "delta-trading-post",
+      "title": "种子河湾与贸易站",
+      "png": "Frontier-20261005-005015-139-f16106-f2958092aa6b456d8e2fff3f3729f793.png",
+      "metadata": "Frontier-20261005-005015-139-f16106-f2958092aa6b456d8e2fff3f3729f793.json",
+      "pngBytes": 1123234,
+      "pngSha256": "1bfbbafad526aac06899eef46b27b78c1c737c4426ccd507ba463dd0d4be35f3",
+      "jsonBytes": 8634,
+      "jsonSha256": "19e46e588ad71f2f302ac403b70fd2b97ee6cef66a24f772ffdd2287eadbedee",
+      "matchId": "naval-preview-neutral-delta-271828-44bbf0b1ec4444cbaf05075c484c4423",
+      "mapId": "generated_delta",
+      "seed": 271828,
+      "worldTime": 325.7106628417969,
+      "captureFrame": 16106,
+      "requestFrame": 16106,
+      "utc": "2026-10-05T00:50:15.0722160Z",
+      "width": 1600,
+      "height": 1000,
+      "caption": "种子271828河湾岸线及已完工贸易站，截帧时325.711秒。受控III时代/上限III、无AI、玩家0各+8000食物/木/币；站点、盟约与已付费招募/研究来自导出夹具。本次原生显示选站，不表示重新建站或再次完成招募。",
+      "controlledScope": {
+        "controlled": true,
+        "fixture": "neutral-delta-271828",
+        "controlledAge": 3,
+        "maxAge": 3,
+        "aiControllers": [],
+        "grants": [
+          {
+            "player": 0,
+            "amount": {
+              "food": 8000.0,
+              "wood": 8000.0,
+              "coin": 8000.0
+            }
+          }
+        ],
+        "populationGrant": false,
+        "healthGrant": false,
+        "normalAgeAdvancement": false,
+        "paidPreparationFromExport": true
+      },
+      "visualReview": {
+        "method": "Independent direct original PNG inspection and same-stem raw JSON comparison; no keyboard-action reconstruction.",
+        "observed": "曲折河湾旁贸易站被选中，Trading Post 1600/1600面板与SETTLEMENT按钮可见。"
+      }
+    },
+    {
+      "stage": "delta-service-panel",
+      "title": "中立盟友服务菜单",
+      "png": "Frontier-20261005-005036-265-f17368-e37c547c81fb41fa8f1e340d82cd745a.png",
+      "metadata": "Frontier-20261005-005036-265-f17368-e37c547c81fb41fa8f1e340d82cd745a.json",
+      "pngBytes": 489552,
+      "pngSha256": "69a7825664ba9fa750f69503966a71f84706bca9367714e0835f6af71318c5ac",
+      "jsonBytes": 8634,
+      "jsonSha256": "e2878832b00bc1bf5232a45571fedd66f964122d4a991db13a94290f8c95afbe",
+      "matchId": "naval-preview-neutral-delta-271828-44bbf0b1ec4444cbaf05075c484c4423",
+      "mapId": "generated_delta",
+      "seed": 271828,
+      "worldTime": 346.9119567871094,
+      "captureFrame": 17368,
+      "requestFrame": 17368,
+      "utc": "2026-10-05T00:50:36.2210890Z",
+      "width": 1600,
+      "height": 1000,
+      "caption": "Riverbank Merchants面板显示协商100木100币、招募70食物70币、研究150食物150币及已有盟约。截帧时346.912秒；受控III时代、无AI、玩家0各+8000资源，既有服务来自付费导出夹具。本次原生只打开面板，未新点击招募或研究。",
+      "controlledScope": {
+        "controlled": true,
+        "fixture": "neutral-delta-271828",
+        "controlledAge": 3,
+        "maxAge": 3,
+        "aiControllers": [],
+        "grants": [
+          {
+            "player": 0,
+            "amount": {
+              "food": 8000.0,
+              "wood": 8000.0,
+              "coin": 8000.0
+            }
+          }
+        ],
+        "populationGrant": false,
+        "healthGrant": false,
+        "normalAgeAdvancement": false,
+        "paidPreparationFromExport": true
+      },
+      "visualReview": {
+        "method": "Independent direct original PNG inspection and same-stem raw JSON comparison; no keyboard-action reconstruction.",
+        "observed": "RIVERBANK MERCHANTS、Treaty: player 1 · open，以及三项服务和价格可读。"
+      }
+    },
+    {
+      "stage": "bridge-progress",
+      "title": "曲河斜桥与守备进度",
+      "png": "Frontier-20261005-005114-161-f19601-c23cba728ff84229b5b308755f9ad3c2.png",
+      "metadata": "Frontier-20261005-005114-161-f19601-c23cba728ff84229b5b308755f9ad3c2.json",
+      "pngBytes": 1263445,
+      "pngSha256": "fb75b7eaffd2fd925f4dbe4ce921aef8ac57ab702ebb6d48018cbcf9c3dee766",
+      "jsonBytes": 8600,
+      "jsonSha256": "5e99a5830c8b9920083124443f0b9de8711a738fe21222a2551dc1350b6fabe6",
+      "matchId": "naval-preview-bridge-river-161803-9a2397afd2e54992a69401505318e3a1",
+      "mapId": "generated_river",
+      "seed": 161803,
+      "worldTime": 132.49888610839844,
+      "captureFrame": 19601,
+      "requestFrame": 19601,
+      "utc": "2026-10-05T00:51:14.0915430Z",
+      "width": 1600,
+      "height": 1000,
+      "caption": "三名陆军位于曲河斜桥，截帧时132.499秒，Defend the Bridge为ACTIVE，真实进度10.900秒（UI约11/180）。受控III时代/上限III、无AI、玩家0各+8000资源；本图不证明新GUID完整守桥获胜。",
+      "controlledScope": {
+        "controlled": true,
+        "fixture": "bridge-river-161803",
+        "controlledAge": 3,
+        "maxAge": 3,
+        "aiControllers": [],
+        "grants": [
+          {
+            "player": 0,
+            "amount": {
+              "food": 8000.0,
+              "wood": 8000.0,
+              "coin": 8000.0
+            }
+          }
+        ],
+        "populationGrant": false,
+        "healthGrant": false,
+        "normalAgeAdvancement": false,
+        "paidPreparationFromExport": true
+      },
+      "visualReview": {
+        "method": "Independent direct original PNG inspection and same-stem raw JSON comparison; no keyboard-action reconstruction.",
+        "observed": "三名选中陆军在斜桥上，左上显示 DEFEND THE BRIDGE · ACTIVE 和11/180s。"
+      }
+    },
+    {
+      "stage": "monitor-holding",
+      "title": "岸轰舰轮廓与航移后停待",
+      "png": "Frontier-20261005-005244-033-f24916-767587513b6c4962b8c5fc5101786158.png",
+      "metadata": "Frontier-20261005-005244-033-f24916-767587513b6c4962b8c5fc5101786158.json",
+      "pngBytes": 1263615,
+      "pngSha256": "1e15219c25237176bb0abc53db469c73298a4c14441179707db893346197a25c",
+      "jsonBytes": 8027,
+      "jsonSha256": "8b57a85273471398e401cc8e336f73ad8cfe25d92e793e7f60c357549223b7fa",
+      "matchId": "naval-preview-monitor-harbor-161803-6deb03ba3d0e413c9600cb848f741c32",
+      "mapId": "river",
+      "seed": 161803,
+      "worldTime": 222.3043670654297,
+      "captureFrame": 24916,
+      "requestFrame": 24916,
+      "utc": "2026-10-05T00:52:43.9429470Z",
+      "width": 1600,
+      "height": 1000,
+      "caption": "岸轰舰137的重炮轮廓与Holding面板，截帧时222.304秒，850/850HP、射程27、人口6；画面显示Hold order accepted。受控IV时代/上限IV、无AI、玩家0各+8000资源，舰只通过付费导出流程获得。该帧已停待，不写成Moving、射击或本次维修成功。",
+      "controlledScope": {
+        "controlled": true,
+        "fixture": "monitor-harbor-161803",
+        "controlledAge": 4,
+        "maxAge": 4,
+        "aiControllers": [],
+        "grants": [
+          {
+            "player": 0,
+            "amount": {
+              "food": 8000.0,
+              "wood": 8000.0,
+              "coin": 8000.0
+            }
+          }
+        ],
+        "populationGrant": false,
+        "healthGrant": false,
+        "normalAgeAdvancement": false,
+        "paidPreparationFromExport": true
+      },
+      "visualReview": {
+        "method": "Independent direct original PNG inspection and same-stem raw JSON comparison; no keyboard-action reconstruction.",
+        "observed": "选中单门重炮船；面板Holding、850/850、RANGE27、POP6及Hold order accepted可读。"
+      }
+    }
+  ]
+}

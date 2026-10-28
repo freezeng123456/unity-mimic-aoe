@@ -1,0 +1,388 @@
+{
+  "schema": 1,
+  "recordedAtUtc": "2026-10-05T00:33:08.759905+00:00",
+  "status": "final_complete_automated_run_current_source_verified",
+  "scope": "Complete 0.8 automated run after bounded save-compression fix and current-source binding only. New native build, client interaction, large-match save/cold restoration, performance, packages, and delivery require independent evidence.",
+  "runId": "run-Wu2tGZSt",
+  "sourceDirectory": "Builds/Tests/run-Wu2tGZSt",
+  "runtimeCommit": "c4365e31dbea9dd7e5d5c253b661ee2d3a25879a",
+  "sourceFingerprint": "d7bbe1e4f0e52210bf64b4787864449a438be87fb14952173cdd4d60d0563eb6",
+  "sourceFileCount": 531,
+  "sourceEvidenceRecordedAtUtc": "2026-10-05T00:28:48.110552+00:00",
+  "total": 958,
+  "passed": 958,
+  "failed": 0,
+  "reports": {
+    "EditMode": {
+      "file": "EditMode.xml",
+      "bytes": 500368,
+      "sha256": "52690f77490580e1c537bf43b2d3fe887b792a3462def917532ef5ed7c70bb31",
+      "result": "Passed",
+      "total": "618",
+      "passed": "618",
+      "failed": "0",
+      "skipped": "0",
+      "inconclusive": "0",
+      "duration": "159.6913743",
+      "start-time": "2026-10-05 00:23:32Z",
+      "end-time": "2026-10-05 00:26:12Z"
+    },
+    "PlayMode": {
+      "file": "PlayMode.xml",
+      "bytes": 308961,
+      "sha256": "81b71bca87eeb0797cd11ae8b49c29b67747764aceaff556caa303cb28d91031",
+      "result": "Passed",
+      "total": "340",
+      "passed": "340",
+      "failed": "0",
+      "skipped": "0",
+      "inconclusive": "0",
+      "duration": "140.7207245",
+      "start-time": "2026-10-05 00:26:25Z",
+      "end-time": "2026-10-05 00:28:45Z"
+    }
+  },
+  "byteExactCopies": [
+    {
+      "file": "EditMode.xml",
+      "source": "Builds/Tests/run-Wu2tGZSt/EditMode.xml",
+      "sourceSha256": "52690f77490580e1c537bf43b2d3fe887b792a3462def917532ef5ed7c70bb31",
+      "archivedSha256": "52690f77490580e1c537bf43b2d3fe887b792a3462def917532ef5ed7c70bb31",
+      "byteExact": true
+    },
+    {
+      "file": "PlayMode.xml",
+      "source": "Builds/Tests/run-Wu2tGZSt/PlayMode.xml",
+      "sourceSha256": "81b71bca87eeb0797cd11ae8b49c29b67747764aceaff556caa303cb28d91031",
+      "archivedSha256": "81b71bca87eeb0797cd11ae8b49c29b67747764aceaff556caa303cb28d91031",
+      "byteExact": true
+    },
+    {
+      "file": "source-evidence.json",
+      "source": "Builds/Tests/run-Wu2tGZSt/source-evidence.json",
+      "sourceSha256": "37a0addd44931057f60113923dc488434346e686e1091d3a1072d14807bad6ce",
+      "archivedSha256": "37a0addd44931057f60113923dc488434346e686e1091d3a1072d14807bad6ce",
+      "byteExact": true
+    }
+  ],
+  "sanitization": {
+    "method": "Remove entire licensing, authorization, credential-pattern lines and complete PEM private-key blocks; retain all other bytes and line endings. Raw logs remain local; no removed text archived.",
+    "lineNumbers": "One-based original source line numbers.",
+    "patterns": {
+      "licensing": "(?i)(licens(?:ing|e|es|ed)|entitlement|serial(?: number)?\\s*[:=]|signature\\s*[:=])",
+      "authorization": "(?i)(authorization|authentication|authenticator|authenticated|bearer\\s)",
+      "credentialPattern": "(?i)(access[ _-]?token|refresh[ _-]?token|id[ _-]?token|api[ _-]?key|client[ _-]?secret|password|passwd|credential|(?:^|[\\s\\\"\\x27?&])(?:token|secret|sessionkey)\\s*[:=]|github_pat_[A-Za-z0-9_]+|gh[pousr]_[A-Za-z0-9]+|hf_[A-Za-z0-9]{8,}|nvapi-[A-Za-z0-9_-]{8,}|cfut_[A-Za-z0-9_-]{8,}|sk-[A-Za-z0-9_-]{16,}|ya29\\.[A-Za-z0-9_-]{8,}|eyJ[A-Za-z0-9_-]{10,}\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+)",
+      "privatePemBegin": "-----BEGIN (?:[A-Z0-9]+ )*PRIVATE KEY-----",
+      "privatePemEnd": "-----END (?:[A-Z0-9]+ )*PRIVATE KEY-----"
+    },
+    "logs": {
+      "EditMode": {
+        "source": "Builds/Tests/run-Wu2tGZSt/EditMode.log",
+        "rawBytes": 76939,
+        "rawSha256": "4c6fe3e43d7198b7d14cc7b3d7c94871c7bb9afb31024f4a73295232d82033e2",
+        "rawLines": 680,
+        "sanitized": {
+          "file": "EditMode.sanitized.log",
+          "bytes": 75667,
+          "sha256": "a69ea20ea07cb957eb37f57ec12dd5ec4cfd1c2fe6bc9c1e0fecfcf845b3c4fa"
+        },
+        "sanitizedLines": 664,
+        "removedLines": 16,
+        "removedSourceLines": [
+          {
+            "sourceLine": 14,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 15,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 80,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 86,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 87,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 88,
+            "categories": [
+              "credentialPattern",
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 89,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 90,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 95,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 96,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 98,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 163,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 166,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 370,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 670,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 671,
+            "categories": [
+              "licensing"
+            ]
+          }
+        ],
+        "remainingPatternMatches": 0
+      },
+      "PlayMode": {
+        "source": "Builds/Tests/run-Wu2tGZSt/PlayMode.log",
+        "rawBytes": 520348,
+        "rawSha256": "9ae54e4f56aa4835f10265eb5f865d8b756de3eb3ba6f026987b4621dd0ea71d",
+        "rawLines": 3422,
+        "sanitized": {
+          "file": "PlayMode.sanitized.log",
+          "bytes": 518952,
+          "sha256": "be41e06205889490810904cd517c21dcea3332168556a908d54649a07d42cab4"
+        },
+        "sanitizedLines": 3404,
+        "removedLines": 18,
+        "removedSourceLines": [
+          {
+            "sourceLine": 14,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 15,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 79,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 85,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 86,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 87,
+            "categories": [
+              "credentialPattern",
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 88,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 89,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 94,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 95,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 97,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 167,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 170,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 388,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 748,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 3356,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 3412,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 3413,
+            "categories": [
+              "licensing"
+            ]
+          }
+        ],
+        "remainingPatternMatches": 0
+      }
+    }
+  },
+  "normalOpeningTransport": [
+    {
+      "seed": 314159,
+      "result": "Passed",
+      "testWallSeconds": "1.170085",
+      "landingSimulationSeconds": "506.422",
+      "landingShipId": 171,
+      "disembarked": 12,
+      "independentTrainingPaymentWood": "200",
+      "independentTrainingPaymentCoin": "75",
+      "fineAttempts": 0,
+      "fineFailures": 0,
+      "trainingPaymentIdentityBoundToLandingShip": false
+    },
+    {
+      "seed": 271828,
+      "result": "Passed",
+      "testWallSeconds": "1.309427",
+      "landingSimulationSeconds": "504.022",
+      "landingShipId": 171,
+      "disembarked": 12,
+      "independentTrainingPaymentWood": "200",
+      "independentTrainingPaymentCoin": "75",
+      "fineAttempts": 3,
+      "fineFailures": 3,
+      "trainingPaymentIdentityBoundToLandingShip": false
+    }
+  ],
+  "currentSourceVerification": {
+    "command": "python3 -B Tools/verify-delivery.py --reports-dir Docs/Evidence/065/Tests --require-current-source",
+    "exitCode": 0,
+    "file": "verify-current-source.txt"
+  },
+  "archivedFiles": [
+    {
+      "file": "EditMode.xml",
+      "bytes": 500368,
+      "sha256": "52690f77490580e1c537bf43b2d3fe887b792a3462def917532ef5ed7c70bb31"
+    },
+    {
+      "file": "PlayMode.xml",
+      "bytes": 308961,
+      "sha256": "81b71bca87eeb0797cd11ae8b49c29b67747764aceaff556caa303cb28d91031"
+    },
+    {
+      "file": "source-evidence.json",
+      "bytes": 68093,
+      "sha256": "37a0addd44931057f60113923dc488434346e686e1091d3a1072d14807bad6ce"
+    },
+    {
+      "file": "EditMode.sanitized.log",
+      "bytes": 75667,
+      "sha256": "a69ea20ea07cb957eb37f57ec12dd5ec4cfd1c2fe6bc9c1e0fecfcf845b3c4fa"
+    },
+    {
+      "file": "PlayMode.sanitized.log",
+      "bytes": 518952,
+      "sha256": "be41e06205889490810904cd517c21dcea3332168556a908d54649a07d42cab4"
+    },
+    {
+      "file": "verify-current-source.txt",
+      "bytes": 681,
+      "sha256": "761e0a12d7a8c312ad4225979af7917629369d8e4f5b2d2d87664e08c79df5a6"
+    }
+  ],
+  "history": {
+    "previousPassed952": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Diagnostics/Tests-before-save-compression-fix",
+    "compileFailureNoTests": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Diagnostics/Compile-failure-save-compression-qqupofV6"
+  }
+}

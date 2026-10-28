@@ -1,0 +1,156 @@
+{
+  "schema": 1,
+  "appVersion": "0.10.0",
+  "expectedBuildGuid": "2d94fdd6d9734b259f5231c1fd3f2b99",
+  "runtimeCommit": "2668c47a426f2cea8d4bc7b309cdbfa71533cc9d",
+  "sourceFingerprint": "8180b02b55ed3957b94042d779a6d74bdda78cd46073cf70d93353c330363466",
+  "status": "representative_pass",
+  "operator": "Codex via Computer Use Sky; native Unity client",
+  "sessions": {
+    "recording": {
+      "log": "session-03-record-final.log",
+      "normalExitCode": 0,
+      "simulationSpeed": 4
+    },
+    "coldViewer": {
+      "log": "session-04-cold-final.log",
+      "normalExitCode": 0,
+      "forwardSpeed": 4
+    }
+  },
+  "sample": {
+    "file": "Replays/manual-export-bef1332be33c4e38b0594b3e4bf8eb13.replay.json",
+    "sha256": "4604fb4e4be31cb17df560fd6a055f471cebd1e940b8f63de2cc08a78598dda1",
+    "segmentId": "bef1332be33c4e38b0594b3e4bf8eb13",
+    "matchId": "4619263a37ba4ff3b3ea8d8a18d4d969",
+    "map": "generated_river",
+    "seed": 314159,
+    "mode": "FFA",
+    "civs": [
+      "coast",
+      "river",
+      "france",
+      "ottoman"
+    ],
+    "startStep": 0,
+    "endStep": 5622,
+    "worldTime": 562.2097778320312,
+    "finishReason": "manual_save",
+    "incomplete": false,
+    "ordinaryRulesAndStartingResources": true
+  },
+  "checks": {
+    "manualSave": {
+      "passed": true,
+      "capture": "Frontier-20261005-142139-930-f26347-9e1815012f764fe5831a4c1e759fa140.json",
+      "inspection": "recording-inspection.json",
+      "scope": "Actual SAVE REPLAY UI and atomic update; copied exact manual-save bytes before normal quit updated canonical file"
+    },
+    "acceptedHumanCommand": {
+      "passed": true,
+      "completedStep": 4819,
+      "kind": "Train",
+      "actors": [
+        1
+      ],
+      "item": "villager",
+      "accepted": true,
+      "reason": "Added to production queue"
+    },
+    "rejectedHumanCommand": {
+      "passed": true,
+      "completedStep": 5606,
+      "kind": "Order",
+      "order": "Stop",
+      "actors": [],
+      "accepted": false,
+      "reason": "Select mobile units"
+    },
+    "coldOpenAndFourObserverSlots": {
+      "passed": true,
+      "defaultPausedAt": 0,
+      "captures": [
+        "Frontier-20261005-142515-497-f8161-c76ab31704124c629f208c2852b75241.json",
+        "Frontier-20261005-142517-281-f8259-4fbdc2f972b04c0f851c4d878dc1ea6b.json",
+        "Frontier-20261005-142518-698-f8336-cdcbb8e948b2486298c086e725ae4d40.json",
+        "Frontier-20261005-142520-167-f8418-ac0e888674544c6ea79b26c721bb4781.json"
+      ]
+    },
+    "wholeSegmentSequentialForward": {
+      "passed": true,
+      "capture": "Frontier-20261005-143052-148-f28169-f8a14961e48f4017aca7137d0b6ad6ec.json",
+      "fromStep": 0,
+      "toStep": 5622,
+      "speed": 4,
+      "timelineSeeksDuringForward": false,
+      "ui": "RECORDED SEGMENT VERIFIED",
+      "scope": "Complete recorded segment, including acceptance/rejection and original pauses; segment ends at manual_save, not a natural victory"
+    },
+    "backAndForwardThirtySeconds": {
+      "passed": true,
+      "steps": [
+        5322,
+        5622
+      ],
+      "captures": [
+        "Frontier-20261005-143124-864-f30085-1549625d28d74d02bfb9591a31935200.json",
+        "Frontier-20261005-143126-497-f30168-efc799721361400cbf53bbfbf3874560.json"
+      ]
+    },
+    "timelineMidpointJump": {
+      "passed": true,
+      "step": 2807,
+      "capture": "Frontier-20261005-143716-406-f51020-645b648ae90149ce94afb5832fc465e0.json",
+      "scope": "Actual native drag and JUMP button"
+    },
+    "timelineVisualBounds": {
+      "passed": true,
+      "captures": [
+        "Frontier-20261005-142548-331-f10099-85f5e062ba8c4746b3fa40a238863d6a.json",
+        "Frontier-20261005-142549-551-f10169-2c891d8d41914df891243218576ad380.json",
+        "Frontier-20261005-142624-784-f12278-d2daf25bd85e4714beeb2f7f7fbbd3c1.json"
+      ],
+      "scope": "Actual start/mid/end preview fill and handle remain inside modal; fifth controller integration test also checks rendered world rectangles and pointer drag"
+    },
+    "cachedValidFileBecameCorrupt": {
+      "passed": true,
+      "capture": "Frontier-20261005-143813-787-f54441-a385a578287a4ddca59d231c2213c6df.json",
+      "receipt": "SupportingReceipts/corruption-check.json",
+      "scope": "Owned fixture only; explicit unreadable JSON UI; previous paused world at2807 and original replay identity preserved"
+    },
+    "storageProtection": {
+      "passed": true,
+      "receipt": "storage-protection.json",
+      "scope": "Exact before/after file lists, directory presence, bytes and SHA for personal Saves/Account/Preferences; viewer leaves two valid native replay files and two reports unchanged"
+    }
+  },
+  "capturePairs": 17,
+  "limitations": [
+    "No final-build normal-speed long performance, memory or export-latency acceptance.",
+    "No native direct targeted attack command asserted by this recording.",
+    "No natural-match victory, all courses/campaigns, networking, signed Release, Intel/Windows or two-machine LAN acceptance.",
+    "35:50 older candidate GUID2158 belongs only in Diagnostics/FrozenCandidate1; not current final build evidence."
+  ],
+  "supportingReceipts": [
+    {
+      "file": "SupportingReceipts/corruption-check.json",
+      "bytes": 963,
+      "sha256": "57d8e8d2ba44a94504b163e190331a3fe0a9e962f92e51ffa42096ed97675707"
+    },
+    {
+      "file": "SupportingReceipts/pre-watch-output-inventory.json",
+      "bytes": 738,
+      "sha256": "a4e3c2f87eee349340ea8cf1b604edf57eddb3d620d91764a85cd42090941d3b"
+    },
+    {
+      "file": "SupportingReceipts/post-watch-output-inventory.json",
+      "bytes": 738,
+      "sha256": "a4e3c2f87eee349340ea8cf1b604edf57eddb3d620d91764a85cd42090941d3b"
+    },
+    {
+      "file": "SupportingReceipts/final-capture-index.json",
+      "bytes": 5941,
+      "sha256": "5b7d037726aed49583a7cd7ffbfbb584b9cc566cf5398e11271cfb3750310310"
+    }
+  ]
+}

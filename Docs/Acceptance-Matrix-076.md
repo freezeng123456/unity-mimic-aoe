@@ -1,0 +1,41 @@
+# 076验收分层矩阵
+
+**C2实际补充（2026-10-10）：** River3专项8/8后，同源码HEAD `09e07a40fb0008cdb69719336a674cb228129244`／776输入FP `e35a3b72c2a7b33371eb2c9b34a6c1838bc758b66dd73aacc1e707eeffe71a91` 的Full1实际1803/1803、Build1 exit0／新GUID `ed29410c2b27484abeac486c8f57b81b`。[精确证据与限制](Verification-076-River.md)。旧1795项全保留、新8项加入；旧93项兼容是完整回归内子集。
+
+|C2层级|已执行证据|独立缺口|
+|---|---|---|
+|完整回归／构建|1355 Edit＋448 Play全部通过，776输入三份hash一致；298文件新app与manifest bytes／SHA／mode一致|构建不等于完整原生医疗或内容完成|
+|Winding医疗地形／容器|两桥整跨／侧栏、patient及healer真实Town及付费船出入、各实际入口磁盘冷读、出容器fresh Heal均通过|受控AgeII／初始医生及伤势／5000资源fixture；其他曲河医疗原生仍待验|
+|奥斯曼原生默认经济|普通300F/300W/100C、真实100W Mosque136及施工；新GUID八组PNG/sidecar身份与SHA一致|Explorer8 t358.212646实际阵亡；无Imam／P0升级／付费军事训练；Heal0，医疗与返战链未完成|
+|原生记录与退出|menu_exit／winner=-1／8608事件，replay完整记录与JSONL一致，菜单后QUIT且PID55949退出|录像未播放Verified、无奥斯曼冷存档读回；不是自然完整人工胜负或FPS验收|
+
+**以下表格及末尾三项是冻结C1历史记录，保持旧版本待验原文；本页076验收事实以以上C2历史增补为准；后续077／0.20.0另验，不把旧GUID或英国UI外推为新奥斯曼验收。**
+
+2026-10-10。以[预先合同](Content-076-Contract.md)为门槛，[运行记录](Verification-076.md)为当前事实。Focused4身份b1a9b6a、FPdabf34d26490cece872959764b8b9e515749584b180f3d7899f38d79b69a6f8f：新增56 Edit+16 Play=72项；同轮旧兼容40项。下表区分专项、[普通观察](Ordinary-076-Results.md)与[原生实测](Native-076.md)，不把其中一层自动扩大为另一层。
+
+|层级|专项实际证据|仍独立待验|
+|---|---|---|
+|默认经济|Core默认开局采集、Mosque/房屋、800F升级、115F Imam；英国新GUID原生默认开局150W Church→800F LocalDefence AgeII→100C Priest153，无途中注资/HP编辑|原生Otto Imam默认经济链仍待验；不把英国UI推广到四文明|
+|付费UI|Play实际鼠标点击Imam付款/人口预约/取消原款退款/再训练；英国原生Church/Priest实际建造/训练与支付已执行|Play为AgeII/钱包/Mosque fixture；其他文明原生按钮/取消/研究仍独立待验|
+|实弹整补|Core实弹→退回→等锁→正数Heal→返战；普通AI另有34条同患者自发严格闭环；原生Pathfinder真实受伤→87自动+2手动Heal及冷恢复153HP|Core医生是自定义fixture；原生受疗后返战Fire未验，不由普通AI链替代|
+|治疗规则|自身/患者移动与战斗阻断、权限、单患者仲裁、不叠加/不过疗、Shift/Stop/Hold、工作不中断、实体清理|真实曲河/桥位、实际驻扎/登船与医护联动、静止建造者的专门闭环|
+|路径|有限合成墙上的实际寻路/接近与不可直穿检查|实际Winding桥口与水岸实例|
+|AI|专项投资门槛/储备/cap、Move/Heal/85%释放、保留四兵、不读隐藏威胁、90s/30s重试；两局默认AI实际5次付费出生、34条撤回/Heal/85%返回/同人Fire|两局不是平衡或经济无损结论；matched-seed关闭医疗对照、更多地图/文明及普通超时释放分支仍待验|
+|AI冷状态|真实Release生成非空重试后立即World/AI序列化冷读，整个余窗阻止重入、到期真实Move重新接纳，warm/cold一致|带完整AI医疗调度的磁盘MatchSave/原生重启闭环|
+|磁盘存档|当前schema5严格校验/测试磁盘续演；新GUID原生暂停保存297HP、旧PID78563退出→新PID97963 LOAD→同Priest/订单续疗至450且Idle|完整AI医疗调度的磁盘会话、桥/容器医疗保存未验；实际恢复accumulator归零，不声称全会话字节不变|
+|录像|专项磁盘/严格收据/seek一致；原生冷段3813→4004 1x与开局0→3813 4x均从段首无seek连续到Verified|完整AI医疗调度录像、更广操作与首次失败段原生播放仍待验|
+|LAN|wire编解码、权威一次执行、队友权限、full/delta/重复包/坏收据原子拒绝/重装full|同进程协议测试不是两台物理Mac真实网络及GUI|
+|表现|两原创医生组件、Church施工显隐、可读手势幅度与池复用；正数治疗才发专属音类/稀疏反馈|原生镜头下轮廓辨识/听感、大军同屏及隐藏目标音画专验|
+|F9|schema7测试；新GUID原生first/paid/cold/playback的PNG/JSON原件配对、SHA/1920×1080、request/capture/HUD同帧及match/版本/GUID核验|隐藏来源/患者原生音画专验、大军同屏；保存297HP与此前F9的296HP不同帧，不混同|
+
+两原创文明本轮没有独立医生生产链。075旧1723项、GUID、原生图像、冷恢复与云盘文件保持原验收身份，不计作076新增验证。0.19候选私有交付已有独立实际证据：f0封包快照／b1a9运行时身份分离，原Delivery1体积超限exit2／size-only审计FAIL保留，无损transport独立审计PASS，十二云盘文件全字节／SHA／owner-only／父目录和子ID集合及远端完整拼接已核验；既有private／open／draft PR1的f0快照已读回，后补交付文档HEAD1f74195亦已独立GET读回private／open／draft及main不变，后续receipt归档不改变运行时／封包。[076交付](Delivery-076.md)。完整人工胜局、原生FPS、双物理Mac及跨版本迁移仍不因专项或交付通过而自动成立。
+
+## C1冻结时的下一组最小区分测试（历史门槛）
+
+以下三项现已由C2 River3及Full1内的新8项实际覆盖，保留原计划以便追溯；不再作为当前机制层待执行清单。
+
+1. 真实Winding两座桥：西岸医生→东岸患者，逐Tick验证单位半径移动段合法；静止且医疗细线可达才发生Heal，途中冷恢复；桥侧近距离但隔栏时不得提前治疗。
+2. 真实Garrison/Ungarrison，以医生/患者参数化：清掉外部医护的相关active/queued Heal、保留其无关Shift Move、立即冷读，出驻后旧目标不得自行复活；进入者自身orders按原容器规则全清。
+3. 复用现有Winding真实码头/船的付费运输fixture：医生/患者真实Embark、船上无治疗、冷恢复、Disembark后重新Heal。
+
+只读代码检查确认这些路径共用陆地GridNavigation及医疗清理钩子；该检查不替代上述实际运行，也未把极窄接近点遗漏假设当已证实缺陷。

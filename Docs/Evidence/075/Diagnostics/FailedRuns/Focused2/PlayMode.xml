@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="13" result="Failed(Child)" total="13" passed="11" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-08 17:22:48Z" end-time="2026-10-08 17:22:55Z" duration="6.508215">
+  <test-suite type="TestSuite" id="1532" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="432" result="Failed" site="Child" start-time="2026-10-08 17:22:48Z" end-time="2026-10-08 17:22:55Z" duration="6.508215" total="13" passed="11" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1526" name="Frontier.PlayMode.dll" fullname="/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Library/ScriptAssemblies/Frontier.PlayMode.dll" runstate="Runnable" testcasecount="432" result="Failed" site="Child" start-time="2026-10-08 17:22:48Z" end-time="2026-10-08 17:22:55Z" duration="6.497909" total="13" passed="11" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="65919" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1527" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="432" result="Failed" site="Child" start-time="2026-10-08 17:22:48Z" end-time="2026-10-08 17:22:55Z" duration="6.492338" total="13" passed="11" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1528" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="432" result="Failed" site="Child" start-time="2026-10-08 17:22:48Z" end-time="2026-10-08 17:22:55Z" duration="6.489040" total="13" passed="11" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1437" name="ScoutingInput075Tests" fullname="Frontier.Tests.ScoutingInput075Tests" classname="Frontier.Tests.ScoutingInput075Tests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-08 17:22:48Z" end-time="2026-10-08 17:22:55Z" duration="6.269582" total="6" passed="4" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1438" name="DutchExplorerTrainAndQueueCancellationUseRealButtonsAndAccounts" fullname="Frontier.Tests.ScoutingInput075Tests.DutchExplorerTrainAndQueueCancellationUseRealButtonsAndAccounts" methodname="DutchExplorerTrainAndQueueCancellationUseRealButtonsAndAccounts" classname="Frontier.Tests.ScoutingInput075Tests" runstate="Runnable" seed="627008320" result="Passed" start-time="2026-10-08 17:22:48Z" end-time="2026-10-08 17:22:50Z" duration="1.529392" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-scout-input-075-33a2e841ad06448893f3886de0d941f1/report/20261008-172250-079-0add552d57204b7c96db0518ad10af7e-restart_exit.json
+]]></output>
+            </test-case>
+            <test-case id="1440" name="EnvoyBuildMenuAndRightClickFoundationAllowOnlyItsTradePostCapability" fullname="Frontier.Tests.ScoutingInput075Tests.EnvoyBuildMenuAndRightClickFoundationAllowOnlyItsTradePostCapability" methodname="EnvoyBuildMenuAndRightClickFoundationAllowOnlyItsTradePostCapability" classname="Frontier.Tests.ScoutingInput075Tests" runstate="Runnable" seed="223831319" result="Failed" start-time="2026-10-08 17:22:50Z" end-time="2026-10-08 17:22:51Z" duration="0.832406" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: <empty>
+  But was:  "trade_post"
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.ScoutingInput075Tests+<EnvoyBuildMenuAndRightClickFoundationAllowOnlyItsTradePostCapability>d__18.MoveNext () [0x003f8] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/PlayMode/ScoutingInput075Tests.cs:154
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-scout-input-075-057cadb5fa9644e4854c3e3827666e9e/report/20261008-172250-816-32c6185af79f4c2d833403d66798a7bd-restart_exit.json
+]]></output>
+            </test-case>
+            <test-case id="1439" name="EnvoyRallyWorldAndMinimapPointerChangeOnlyTheFlagNotExplorerTravel" fullname="Frontier.Tests.ScoutingInput075Tests.EnvoyRallyWorldAndMinimapPointerChangeOnlyTheFlagNotExplorerTravel" methodname="EnvoyRallyWorldAndMinimapPointerChangeOnlyTheFlagNotExplorerTravel" classname="Frontier.Tests.ScoutingInput075Tests" runstate="Runnable" seed="832417115" result="Failed" start-time="2026-10-08 17:22:51Z" end-time="2026-10-08 17:22:51Z" duration="0.659282" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: Move
+  But was:  Claim
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.ScoutingInput075Tests+<EnvoyRallyWorldAndMinimapPointerChangeOnlyTheFlagNotExplorerTravel>d__17.MoveNext () [0x00239] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/PlayMode/ScoutingInput075Tests.cs:124
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@80f691d4262b/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:52
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-scout-input-075-1167794f88b945d29551c229403b713c/report/20261008-172251-645-11b5ba81aca944759fb0314fe0a4fcb3-restart_exit.json
+]]></output>
+            </test-case>
+            <test-case id="1441" name="FrenchPaidScoutUsesAutoScoutShiftQueueStopAndActualControlGroupKeys" fullname="Frontier.Tests.ScoutingInput075Tests.FrenchPaidScoutUsesAutoScoutShiftQueueStopAndActualControlGroupKeys" methodname="FrenchPaidScoutUsesAutoScoutShiftQueueStopAndActualControlGroupKeys" classname="Frontier.Tests.ScoutingInput075Tests" runstate="Runnable" seed="415522664" result="Passed" start-time="2026-10-08 17:22:51Z" end-time="2026-10-08 17:22:53Z" duration="1.282238" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-scout-input-075-894b21928ec143958af3d4decad890c9/report/20261008-172252-307-673252b24a6143dd8a26bfd52f9b7124-restart_exit.json
+]]></output>
+            </test-case>
+            <test-case id="1443" name="HiddenEnemyScoutCannotBePickedUntilThePaidDetectorPhysicallyApproaches" fullname="Frontier.Tests.ScoutingInput075Tests.HiddenEnemyScoutCannotBePickedUntilThePaidDetectorPhysicallyApproaches" methodname="HiddenEnemyScoutCannotBePickedUntilThePaidDetectorPhysicallyApproaches" classname="Frontier.Tests.ScoutingInput075Tests" runstate="Runnable" seed="908059474" result="Passed" start-time="2026-10-08 17:22:53Z" end-time="2026-10-08 17:22:54Z" duration="1.043619" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-scout-input-075-94699de8bf19450c8c293698db684758/report/20261008-172253-584-5cc9bbf5712340aebeb8a341ad1b27da-restart_exit.json
+]]></output>
+            </test-case>
+            <test-case id="1442" name="StealthButtonHidesFromOrdinarySightAndManualAttackBreaksItWithRealDamage" fullname="Frontier.Tests.ScoutingInput075Tests.StealthButtonHidesFromOrdinarySightAndManualAttackBreaksItWithRealDamage" methodname="StealthButtonHidesFromOrdinarySightAndManualAttackBreaksItWithRealDamage" classname="Frontier.Tests.ScoutingInput075Tests" runstate="Runnable" seed="1558229181" result="Passed" start-time="2026-10-08 17:22:54Z" end-time="2026-10-08 17:22:55Z" duration="0.914322" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-scout-input-075-48d7c063b2804a6cba74c31997f2fc91/report/20261008-172254-623-604831e03ecd42fb80bdf40bd1d347f4-restart_exit.json
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1444" name="ScoutingPresentation075Tests" fullname="Frontier.Tests.ScoutingPresentation075Tests" classname="Frontier.Tests.ScoutingPresentation075Tests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-08 17:22:55Z" end-time="2026-10-08 17:22:55Z" duration="0.203863" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1451" name="BowFireNeverCreatesMuzzleFlashWhileMusketAndImpactFeedbackStillWork" fullname="Frontier.Tests.ScoutingPresentation075Tests.BowFireNeverCreatesMuzzleFlashWhileMusketAndImpactFeedbackStillWork" methodname="BowFireNeverCreatesMuzzleFlashWhileMusketAndImpactFeedbackStillWork" classname="Frontier.Tests.ScoutingPresentation075Tests" runstate="Runnable" seed="2099761533" result="Passed" start-time="2026-10-08 17:22:55Z" end-time="2026-10-08 17:22:55Z" duration="0.079053" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1448" name="CompactBowDrawConnectsBothActualTipsToTheDrawingHandAndRestoresWithoutDrift" fullname="Frontier.Tests.ScoutingPresentation075Tests.CompactBowDrawConnectsBothActualTipsToTheDrawingHandAndRestoresWithoutDrift" methodname="CompactBowDrawConnectsBothActualTipsToTheDrawingHandAndRestoresWithoutDrift" classname="Frontier.Tests.ScoutingPresentation075Tests" runstate="Runnable" seed="455268031" result="Passed" start-time="2026-10-08 17:22:55Z" end-time="2026-10-08 17:22:55Z" duration="0.020010" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1446" name="EnvoyRendersTallNarrowHatSplitCoatAndDocumentSatchelWithEmptyFists" fullname="Frontier.Tests.ScoutingPresentation075Tests.EnvoyRendersTallNarrowHatSplitCoatAndDocumentSatchelWithEmptyFists" methodname="EnvoyRendersTallNarrowHatSplitCoatAndDocumentSatchelWithEmptyFists" classname="Frontier.Tests.ScoutingPresentation075Tests" runstate="Runnable" seed="2059428927" result="Passed" start-time="2026-10-08 17:22:55Z" end-time="2026-10-08 17:22:55Z" duration="0.007634" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1450" name="ExistingEngineerStillRendersRepairToolsAndApronWithoutChangingSimulationState" fullname="Frontier.Tests.ScoutingPresentation075Tests.ExistingEngineerStillRendersRepairToolsAndApronWithoutChangingSimulationState" methodname="ExistingEngineerStillRendersRepairToolsAndApronWithoutChangingSimulationState" classname="Frontier.Tests.ScoutingPresentation075Tests" runstate="Runnable" seed="391548382" result="Passed" start-time="2026-10-08 17:22:55Z" end-time="2026-10-08 17:22:55Z" duration="0.009563" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1447" name="NativeScoutRendersLowWrapAsymmetricMantleAndQuiverWithoutCoureurOrMusketEquipment" fullname="Frontier.Tests.ScoutingPresentation075Tests.NativeScoutRendersLowWrapAsymmetricMantleAndQuiverWithoutCoureurOrMusketEquipment" methodname="NativeScoutRendersLowWrapAsymmetricMantleAndQuiverWithoutCoureurOrMusketEquipment" classname="Frontier.Tests.ScoutingPresentation075Tests" runstate="Runnable" seed="1576788099" result="Passed" start-time="2026-10-08 17:22:55Z" end-time="2026-10-08 17:22:55Z" duration="0.010987" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1445" name="NewRolesKeepActualSurfacesBatchedAtTheirIndependentJoints" fullname="Frontier.Tests.ScoutingPresentation075Tests.NewRolesKeepActualSurfacesBatchedAtTheirIndependentJoints" methodname="NewRolesKeepActualSurfacesBatchedAtTheirIndependentJoints" classname="Frontier.Tests.ScoutingPresentation075Tests" runstate="Runnable" seed="1054736022" result="Passed" start-time="2026-10-08 17:22:55Z" end-time="2026-10-08 17:22:55Z" duration="0.055856" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1449" name="StealthPoseReadsTheRealFlagAndResetsTorsoLegsAndCachedPose" fullname="Frontier.Tests.ScoutingPresentation075Tests.StealthPoseReadsTheRealFlagAndResetsTorsoLegsAndCachedPose" methodname="StealthPoseReadsTheRealFlagAndResetsTorsoLegsAndCachedPose" classname="Frontier.Tests.ScoutingPresentation075Tests" runstate="Runnable" seed="362102695" result="Passed" start-time="2026-10-08 17:22:55Z" end-time="2026-10-08 17:22:55Z" duration="0.005894" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

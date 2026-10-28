@@ -1,0 +1,146 @@
+Mono path[0] = '/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.9.0/ClientBuild/Frontier Reckoning.app/Contents/Resources/Data/Managed'
+Mono config path = '/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.9.0/ClientBuild/Frontier Reckoning.app/Contents/MonoBleedingEdge/etc'
+CodeReloadManager initialized
+Found 1 interfaces on host : 0) 192.168.1.5
+Player connection [8472788864]  Target information:
+
+Player connection [8472788864]  * "[IP] 192.168.1.5 [Port] 55000 [Flags] 2 [Guid] 2293059996 [EditorId] 2289533245 [Version] 1048832 [Id] OSXPlayer(1,192.168.1.5) [Debug] 0 [PackageName] OSXPlayer [ProjectName] Frontier Reckoning" 
+
+Player connection [8472788864] Started UDP target info broadcast (1) on [225.0.0.222:54997].
+
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+ preferred device: Apple M3 Pro (high power)
+Metal devices available: 1
+0: Apple M3 Pro (high power)
+Using device Apple M3 Pro (high power)
+Initialize engine version: 6000.6.3f1 (45d8eee7de74)
+[EntityIdStore] init: VM path (explicit commit), pageSize=16384, blockCount=262144, entitiesPerBlock=1024, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path /Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.9.0/ClientBuild/Frontier Reckoning.app/Contents/Resources/Data/UnitySubsystems
+GfxDevice: creating device client; kGfxThreadingModeThreaded
+Initializing Metal device caps: Apple M3 Pro
+Mac GPU Family: 2
+Apple GPU Family: 9
+MSL Version: 3.0
+Has Float MSAA: 1
+Has Float Filtering: 1
+ReadWrite Texture Tier: 2
+Begin MonoManager ReloadAssembly
+- Finished resetting the current domain, in  0.005 seconds
+[Physics::Module] Selected backend (deferred post-plugins).
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Metal RecreateSurface[0x10fbf9930]: surface size 1920x1080
+UnloadTime: 0.524917 ms
+FRONTIER_LOAD slot=3 match=22845495034a44a78e5374874f2950d5 time=21.00004
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+Frontier.GameController:LoadMatch (int) (at /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Presentation/GameController.cs:106)
+Frontier.FrontierHud/<>c__DisplayClass116_1:<ShowSaveSlots>b__1 () (at /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Presentation/FrontierHud.cs:561)
+Frontier.FrontierHud/<>c__DisplayClass81_0:<Button>b__0 () (at /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Presentation/FrontierHud.cs:124)
+UnityEngine.Events.InvokableCall:Invoke () (at /Users/bokken/build/output/unity/unity/Runtime/Export/UnityEvent/UnityEvent.cs:181)
+UnityEngine.Events.UnityEvent:Invoke () (at /Users/bokken/build/output/unity/unity/artifacts/generated/UnityEvent/UnityEvent_0.cs:59)
+UnityEngine.UI.Button:Press () (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/UI/Core/Button.cs:71)
+UnityEngine.UI.Button:OnPointerClick (UnityEngine.EventSystems.PointerEventData) (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/UI/Core/Button.cs:115)
+UnityEngine.EventSystems.ExecuteEvents:Execute (UnityEngine.EventSystems.IPointerClickHandler,UnityEngine.EventSystems.BaseEventData) (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/EventSystem/ExecuteEvents.cs:57)
+UnityEngine.EventSystems.ExecuteEvents:Execute<UnityEngine.EventSystems.IPointerClickHandler> (UnityEngine.GameObject,UnityEngine.EventSystems.BaseEventData,UnityEngine.EventSystems.ExecuteEvents/EventFunction`1<UnityEngine.EventSystems.IPointerClickHandler>) (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/EventSystem/ExecuteEvents.cs:272)
+Frontier.UiPointerDispatcher:Process (UnityEngine.Vector2,bool) (at /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Presentation/UiPointerDispatcher.cs:50)
+Frontier.FrontierHud:ProcessUiPointer (UnityEngine.Vector2,bool) (at /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Presentation/FrontierHud.cs:223)
+Frontier.RtsInput:LateUpdate () (at /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Presentation/RtsInput.cs:140)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261005-024558-288-f1498-22fc76bb7e50482faa3bc0ad9f7b17b6.json
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+Frontier.NativeCapture/<AtFrameEnd>d__7:MoveNext () (at /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Presentation/NativeCapture.cs:149)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+FRONTIER_PAUSE paused=False reason=manual_resume world=21.000040 realtime=29.053998 frame=1529
+FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261005-024607-263-f2030-aa1d8e03fbd142578d7314feb095d97c.json
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+Frontier.NativeCapture/<AtFrameEnd>d__7:MoveNext () (at /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Presentation/NativeCapture.cs:149)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+FRONTIER_REPORT /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261005-024608-977-22845495034a44a78e5374874f2950d5-guided_finished.json
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+Frontier.GameController:SaveReport (string) (at /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Presentation/GameController.cs:283)
+Frontier.GameController:Update () (at /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Presentation/GameController.cs:263)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261005-024634-804-f3669-944cf63bccd34d35a5aad553401a4c7f.json
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+Frontier.NativeCapture/<AtFrameEnd>d__7:MoveNext () (at /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Presentation/NativeCapture.cs:149)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+FRONTIER_REPORT /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261005-024635-542-22845495034a44a78e5374874f2950d5-menu_exit.json
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[]) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/DebugLogHandler.cs:9)
+UnityEngine.Logger:Log (UnityEngine.LogType,object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Logging/Logger.cs:60)
+UnityEngine.Debug:Log (object) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs:130)
+Frontier.GameController:SaveReport (string) (at /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Presentation/GameController.cs:283)
+Frontier.GameController:ReturnToMenu () (at /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Presentation/GameController.cs:231)
+Frontier.FrontierHud/<>c__DisplayClass139_0:<ShowGuidedResult>b__3 () (at /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Presentation/FrontierHudProgression.cs:84)
+Frontier.FrontierHud/<>c__DisplayClass81_0:<Button>b__0 () (at /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Presentation/FrontierHud.cs:124)
+UnityEngine.Events.InvokableCall:Invoke () (at /Users/bokken/build/output/unity/unity/Runtime/Export/UnityEvent/UnityEvent.cs:181)
+UnityEngine.Events.UnityEvent:Invoke () (at /Users/bokken/build/output/unity/unity/artifacts/generated/UnityEvent/UnityEvent_0.cs:59)
+UnityEngine.UI.Button:Press () (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/UI/Core/Button.cs:71)
+UnityEngine.UI.Button:OnPointerClick (UnityEngine.EventSystems.PointerEventData) (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/UI/Core/Button.cs:115)
+UnityEngine.EventSystems.ExecuteEvents:Execute (UnityEngine.EventSystems.IPointerClickHandler,UnityEngine.EventSystems.BaseEventData) (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/EventSystem/ExecuteEvents.cs:57)
+UnityEngine.EventSystems.ExecuteEvents:Execute<UnityEngine.EventSystems.IPointerClickHandler> (UnityEngine.GameObject,UnityEngine.EventSystems.BaseEventData,UnityEngine.EventSystems.ExecuteEvents/EventFunction`1<UnityEngine.EventSystems.IPointerClickHandler>) (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/EventSystem/ExecuteEvents.cs:272)
+Frontier.UiPointerDispatcher:Process (UnityEngine.Vector2,bool) (at /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Presentation/UiPointerDispatcher.cs:50)
+Frontier.FrontierHud:ProcessUiPointer (UnityEngine.Vector2,bool) (at /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Presentation/FrontierHud.cs:223)
+Frontier.RtsInput:LateUpdate () (at /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Presentation/RtsInput.cs:140)
+
+(Filename: /Users/bokken/build/output/unity/unity/Runtime/Export/Debug/Debug.bindings.cs Line: 130)
+
+Thread 0x171727000 may have been prematurely finalized
+Thread 0x171163000 may have been prematurely finalized
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+Thread 0x170213000 may have been prematurely finalized
+Thread 0x170187000 may have been prematurely finalized
+Thread 0x1700fb000 may have been prematurely finalized
+Thread 0x17006f000 may have been prematurely finalized
+Thread 0x17029f000 may have been prematurely finalized
+CodeReloadManager destroyed
+PlayerConnection::Cleanup##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1791168416605,"processId":90991,"allocatedMemory":3150149,"memoryLabels":[{"Default":54543},{"Permanent":1472},{"NewDelete":2325239},{"Thread":8120},{"Manager":14983},{"VertexData":8},{"Geometry":408},{"Texture":16},{"Shader":78020},{"Material":68},{"GfxDevice":38776},{"GfxThread":400},{"Animation":880},{"FreeType":8},{"FontEngine":736},{"Physics":2000},{"Physics2D":16},{"Serialization":16592},{"Input":43216},{"JobScheduler":448},{"TextLib":280},{"Mono":56},{"ScriptingNativeRuntime":128},{"BaseObject":52112},{"Resource":564},{"Renderer":2448},{"Transform":6485},{"File":4600},{"WebCam":32},{"Culling":32},{"Terrain":11298},{"Wind":24},{"String":3103},{"Utility":316568},{"PoolAlloc":1536},{"AI":40},{"TypeTree":5512},{"ScriptManager":5696},{"CodeReload":440},{"RuntimeInitializeOnLoadManager":64},{"Sprites":78},{"SpriteAtlas":120},{"GI":7200},{"Director":8248},{"CloudService":144},{"WebRequest":520},{"VR":49402},{"SceneManager":408},{"Video":2080},{"LazyScriptCache":32},{"NativeArray":648},{"Camera":1169},{"Secure":241},{"SerializationCache":3608},{"APIUpdating":10320},{"Subsystems":336},{"VirtualTexturing":57496},{"Baselib":16},{"Analytics":80},{"Hierarchy":1452},{"UIElements":40},{"CoreStats":14536},{"Identifiers":7152},{"Gui":40},{"CoreBusinessMetrics":128},{"AssetReference":32}]}

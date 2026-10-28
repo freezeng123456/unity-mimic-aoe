@@ -1,0 +1,40 @@
+{
+  "generatedAtUtc": "2026-10-03T06:44:52.587299+00:00",
+  "status": "passed",
+  "checks": {
+    "eventFilesByteIdentical": true,
+    "onlyReportReasonAndManagedBytesDiffer": true,
+    "sameMatchId": true,
+    "reportCountMatchesRaw": true,
+    "matchFinishedReason": true,
+    "menuExitReason": true
+  },
+  "differences": {
+    "reason": {
+      "match_finished": "match_finished",
+      "menu_exit": "menu_exit"
+    },
+    "managedBytes": {
+      "match_finished": 13942784,
+      "menu_exit": 12455936
+    }
+  },
+  "sources": {
+    "20261003-063507-915-b4250e2ab6664083ad919de284cc0afb-match_finished.json": {
+      "bytes": 3233,
+      "sha256": "be27c2ac9e0c6c6211e91b41daf8079ebc257b48826ee1708e83d94be49e4631"
+    },
+    "20261003-063556-035-b4250e2ab6664083ad919de284cc0afb-menu_exit.json": {
+      "bytes": 3228,
+      "sha256": "b79944e42d374e8c425a077fb67590841484c3540cc983cc5bef8ca40d3080ad"
+    },
+    "20261003-063507-915-b4250e2ab6664083ad919de284cc0afb-match_finished-events.jsonl": {
+      "bytes": 23352580,
+      "sha256": "e761c0812724c022b623f08389a1e7e16c7ce7f3a207848d1d9ec36b4f4d11ea"
+    },
+    "20261003-063556-035-b4250e2ab6664083ad919de284cc0afb-menu_exit-events.jsonl": {
+      "bytes": 23352580,
+      "sha256": "e761c0812724c022b623f08389a1e7e16c7ce7f3a207848d1d9ec36b4f4d11ea"
+    }
+  }
+}

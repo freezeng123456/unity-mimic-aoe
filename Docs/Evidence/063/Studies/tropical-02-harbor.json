@@ -1,0 +1,297 @@
+{
+    "schema": "curved-river-worldview-study-capture-063",
+    "purpose": "Controlled river World/WorldView integration rendered through actual GameCamera and URP. Entities are fixture-spawned and repositioned; vision is explicitly revealed; AI is disabled; naval combat uses normal orders/ticks. Not native-client, paid construction, manual input, balance, frame-time or visual-quality acceptance.",
+    "file": "tropical-02-harbor.png",
+    "sha256": "e723a9a09f292169a14dbbe21265f904cbadbc93c7fe6fd372bc1a8ec7b20cf3",
+    "recordedAtUtc": "2026-10-04T16:13:47.8683850Z",
+    "appVersion": "0.6.0",
+    "unityVersion": "6000.6.3f1",
+    "graphicsDevice": "Apple M3 Pro",
+    "renderPipeline": "UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset",
+    "sourceFingerprint": "f634abbf679f22bc9fcf5d50921a65519eedd7668ef6bf241cf6505238d31dd8",
+    "sourceInventorySha256": "aa2688a4111174466bec81b92705cbb4c7f1647bcab7f6e0c5169927461d28ed",
+    "referenceRevision": "4f6f0e81e478c905f9229dd4b4cae948e062e79a",
+    "study": "Tropical River Bay; real WorldView pier, crewed hulls, fishing basket and bank slope; controlled fixture",
+    "mapId": "tropical",
+    "playerCivilization": "coast",
+    "opponentCivilization": "river",
+    "width": 2048,
+    "height": 1400,
+    "frame": 1333,
+    "seed": 314159,
+    "geometryChangedPixelSamples": 7520,
+    "fireEvents": 0,
+    "damageEvents": 0,
+    "activeProjectiles": 0,
+    "simulationTime": 0.10000000149011612,
+    "cameraOrthographicSize": 15.0,
+    "cameraAspect": 1.4628571271896362,
+    "cameraPosition": {
+        "x": 63.70644760131836,
+        "y": 24.0,
+        "z": 41.68584060668945
+    },
+    "cameraEuler": {
+        "x": 43.32286071777344,
+        "y": 230.5848846435547,
+        "z": 0.0
+    },
+    "cameraTarget": {
+        "x": 43.96439743041992,
+        "y": -0.10000000149011612,
+        "z": 25.460813522338867
+    },
+    "entities": [
+        {
+            "id": 136,
+            "owner": 0,
+            "visibleRenderers": 4,
+            "visibleVertices": 8942,
+            "visibleTriangles": 4470,
+            "definition": "dock",
+            "geometrySha256": "7992ea551eab90a50dc7e3797a6517ed07b8c805bcd50a8dae74bd4f12c63cf9",
+            "simulationPosition": {
+                "x": 41.0,
+                "y": 25.0
+            },
+            "facing": {
+                "x": 0.0,
+                "y": 1.0
+            },
+            "renderedRootPosition": {
+                "x": 41.0,
+                "y": 0.0,
+                "z": 25.0
+            },
+            "modelPosition": {
+                "x": 41.0,
+                "y": 0.0,
+                "z": 25.0
+            },
+            "modelEuler": {
+                "x": 0.0,
+                "y": 351.16412353515625,
+                "z": 0.0
+            },
+            "boundsCenter": {
+                "x": 42.51332473754883,
+                "y": 0.6650000810623169,
+                "z": 25.235246658325195
+            },
+            "boundsSize": {
+                "x": 7.428703308105469,
+                "y": 3.430000066757202,
+                "z": 4.857524871826172
+            },
+            "surfaceHeight": 0.0,
+            "hp": 2000.0,
+            "remaining": 0.0,
+            "construction": 1.0,
+            "waterborne": false,
+            "visibleToPlayer": true
+        },
+        {
+            "id": 137,
+            "owner": 0,
+            "visibleRenderers": 5,
+            "visibleVertices": 4192,
+            "visibleTriangles": 2088,
+            "definition": "fishing_boat",
+            "geometrySha256": "e26dc65f9df63e5cc9cf5f39076af38661f9a949af4887f693708ce7badfea85",
+            "simulationPosition": {
+                "x": 48.905059814453125,
+                "y": 26.228837966918945
+            },
+            "facing": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "renderedRootPosition": {
+                "x": 48.905059814453125,
+                "y": -0.4000000059604645,
+                "z": 26.228837966918945
+            },
+            "modelPosition": {
+                "x": 48.905059814453125,
+                "y": -0.4000000059604645,
+                "z": 26.228837966918945
+            },
+            "modelEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "boundsCenter": {
+                "x": 48.95427703857422,
+                "y": 0.48000001907348633,
+                "z": 26.227783203125
+            },
+            "boundsSize": {
+                "x": 1.3415679931640625,
+                "y": 2.120000123977661,
+                "z": 3.3635711669921875
+            },
+            "surfaceHeight": -0.4000000059604645,
+            "hp": 180.0,
+            "remaining": 0.0,
+            "construction": 1.0,
+            "waterborne": true,
+            "visibleToPlayer": true
+        },
+        {
+            "id": 138,
+            "owner": 0,
+            "visibleRenderers": 5,
+            "visibleVertices": 3968,
+            "visibleTriangles": 1976,
+            "definition": "gunboat",
+            "geometrySha256": "541c085f2ce661a3c2498fd1d4ca75797bcd99f702f1b78e02e74bc13b3d41af",
+            "simulationPosition": {
+                "x": 48.29064178466797,
+                "y": 30.181367874145508
+            },
+            "facing": {
+                "x": 0.9881324172019958,
+                "y": 0.15360476076602936
+            },
+            "renderedRootPosition": {
+                "x": 48.29064178466797,
+                "y": -0.4000000059604645,
+                "z": 30.181367874145508
+            },
+            "modelPosition": {
+                "x": 48.29064178466797,
+                "y": -0.4000000059604645,
+                "z": 30.181367874145508
+            },
+            "modelEuler": {
+                "x": 0.0,
+                "y": 81.16411590576172,
+                "z": 0.0
+            },
+            "boundsCenter": {
+                "x": 48.29417419433594,
+                "y": 0.47999995946884155,
+                "z": 30.152345657348633
+            },
+            "boundsSize": {
+                "x": 4.11431884765625,
+                "y": 2.120000123977661,
+                "z": 2.126476287841797
+            },
+            "surfaceHeight": -0.4000000059604645,
+            "hp": 450.0,
+            "remaining": 0.0,
+            "construction": 1.0,
+            "waterborne": true,
+            "visibleToPlayer": true
+        },
+        {
+            "id": 139,
+            "owner": -1,
+            "visibleRenderers": 2,
+            "visibleVertices": 365,
+            "visibleTriangles": 165,
+            "definition": "fish",
+            "geometrySha256": "45334c922c0a76fb666ceb3b011c89a297b594f0fae76e9fd2703934dc7001ff",
+            "simulationPosition": {
+                "x": 48.905059814453125,
+                "y": 26.228837966918945
+            },
+            "facing": {
+                "x": 0.0,
+                "y": 1.0
+            },
+            "renderedRootPosition": {
+                "x": 48.905059814453125,
+                "y": -0.4000000059604645,
+                "z": 26.228837966918945
+            },
+            "modelPosition": {
+                "x": 48.905059814453125,
+                "y": -0.4000000059604645,
+                "z": 26.228837966918945
+            },
+            "modelEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "boundsCenter": {
+                "x": 48.905059814453125,
+                "y": -0.24250000715255737,
+                "z": 26.228837966918945
+            },
+            "boundsSize": {
+                "x": 2.736003875732422,
+                "y": 0.2250000238418579,
+                "z": 2.1160011291503906
+            },
+            "surfaceHeight": -0.4000000059604645,
+            "hp": 100.0,
+            "remaining": 2499.919921875,
+            "construction": 1.0,
+            "waterborne": true,
+            "visibleToPlayer": true
+        },
+        {
+            "id": 140,
+            "owner": 0,
+            "visibleRenderers": 10,
+            "visibleVertices": 12183,
+            "visibleTriangles": 4061,
+            "definition": "musketeer",
+            "geometrySha256": "d1111765c5af55c74f54b29bb3e6a5bb62f616a552e3dbee2ce2208f93de0936",
+            "simulationPosition": {
+                "x": 37.04747009277344,
+                "y": 24.38558006286621
+            },
+            "facing": {
+                "x": 0.0,
+                "y": 1.0
+            },
+            "renderedRootPosition": {
+                "x": 37.04747009277344,
+                "y": 0.0,
+                "z": 24.38558006286621
+            },
+            "modelPosition": {
+                "x": 37.04747009277344,
+                "y": 0.0,
+                "z": 24.38558006286621
+            },
+            "modelEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "boundsCenter": {
+                "x": 37.07301330566406,
+                "y": 0.9654999375343323,
+                "z": 24.885648727416992
+            },
+            "boundsSize": {
+                "x": 0.8639106750488281,
+                "y": 1.8949998617172241,
+                "z": 1.4670143127441406
+            },
+            "surfaceHeight": 0.0,
+            "hp": 200.0,
+            "remaining": 0.0,
+            "construction": 1.0,
+            "waterborne": false,
+            "visibleToPlayer": true
+        }
+    ],
+    "commands": [
+        {
+            "time": 0.0,
+            "player": 0,
+            "actor": 137,
+            "target": 139,
+            "order": "Gather",
+            "reason": "Gather order accepted",
+            "accepted": true
+        }
+    ]
+}

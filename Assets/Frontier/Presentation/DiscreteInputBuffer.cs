@@ -19,22 +19,22 @@ namespace Frontier
             public Vector2 position;
             public bool pressed,shift,saveGroup;
             public Key key;
+            public PlayerAction action;
             public double time;
         }
-        private static readonly Key[] Keys={Key.Escape,Key.F9,Key.A,Key.S,Key.J,Key.H,Key.B,Key.G,Key.V,Key.Period,Key.T,Key.M,Key.F,
-            Key.Digit0,Key.Digit1,Key.Digit2,Key.Digit3,Key.Digit4,Key.Digit5,Key.Digit6,Key.Digit7,Key.Digit8,Key.Digit9};
+        private Key[] keys=Array.Empty<Key>();
         private readonly Queue<Edge> edges=new Queue<Edge>();
-        private readonly bool[] keyDown=new bool[Keys.Length];
-        private readonly bool[] keyBlocked=new bool[Keys.Length];
+        private bool[] keyDown=Array.Empty<bool>(),keyBlocked=Array.Empty<bool>();
+        private readonly PlayerBindings bindings;
         private Keyboard keyboard;
         private Mouse mouse;
         private Vector2 position;
         private bool leftDown,rightDown,shift,saveGroup;
         private bool focused=true,leftBlocked,rightBlocked,pointerResetPending;
         private readonly bool previousMerging,trace;
-        public DiscreteInputBuffer(bool trace)
+        public DiscreteInputBuffer(bool trace,PlayerSettingsService settings=null)
         {
-            this.trace=trace;previousMerging=InputSystem.settings.disableRedundantEventsMerging;
+            this.trace=trace;bindings=(settings??PlayerSettingsService.Load()).Bindings;previousMerging=InputSystem.settings.disableRedundantEventsMerging;
             InputSystem.settings.disableRedundantEventsMerging=true;InputSystem.onEvent+=Capture;InputSystem.onDeviceChange+=DeviceChanged;
         }
         public void Clear()=>edges.Clear();
@@ -43,7 +43,7 @@ namespace Frontier
             focused=value;
             if(value)return;
             edges.Clear();
-            for(int i=0;i<Keys.Length;i++)keyBlocked[i]|=keyDown[i];
+            for(int i=0;i<keys.Length;i++)keyBlocked[i]|=keyDown[i];
             leftBlocked|=leftDown;rightBlocked|=rightDown;
         }
         public bool TakePointerReset()
@@ -86,15 +86,28 @@ namespace Frontier
             if(device is Keyboard incomingKeyboard)
             {
                 if(keyboard!=incomingKeyboard)
-                {keyboard=incomingKeyboard;Array.Clear(keyBlocked,0,keyBlocked.Length);for(int i=0;i<Keys.Length;i++)keyDown[i]=keyboard[Keys[i]].isPressed;}
+                {
+                    keyboard=incomingKeyboard;
+                    // Capture actual controls, including keys which were never
+                    // default shortcuts. Rebinding is effective on the next edge.
+                    keys=new Key[keyboard.allKeys.Count];keyDown=new bool[keys.Length];keyBlocked=new bool[keys.Length];
+                    for(int i=0;i<keys.Length;i++){keys[i]=keyboard.allKeys[i].keyCode;keyDown[i]=keyboard.allKeys[i].isPressed;}
+                }
                 shift=Pressed(keyboard.leftShiftKey,ev)||Pressed(keyboard.rightShiftKey,ev);
                 saveGroup=Pressed(keyboard.leftCtrlKey,ev)||Pressed(keyboard.rightCtrlKey,ev)||Pressed(keyboard.leftMetaKey,ev)||Pressed(keyboard.rightMetaKey,ev);
-                for(int i=0;i<Keys.Length;i++)
+                for(int i=0;i<keys.Length;i++)
                 {
-                    if(!keyboard[Keys[i]].ReadValueFromEvent(ev,out float value))continue;
+                    if(!keyboard[keys[i]].ReadValueFromEvent(ev,out float value))continue;
                     bool down=value>=.5f;
                     if(!down)keyBlocked[i]=false;else if(!focused)keyBlocked[i]=true;
-                    if(focused&&down&&!keyDown[i]&&!keyBlocked[i])Enqueue(new Edge{kind=EdgeKind.Key,key=Keys[i],pressed=true,time=ev.time,shift=shift,saveGroup=saveGroup,position=position});
+                    if(focused&&down&&!keyDown[i]&&!keyBlocked[i])
+                    {
+                        var action=bindings.Resolve(keys[i]);
+                        // Modifier and unused-key state still updates, but must
+                        // not manufacture a world shortcut or interrupt a click.
+                        if(action!=PlayerAction.None||keys[i]==Key.Escape||keys[i]==Key.F9||keys[i]>=Key.Digit1&&keys[i]<=Key.Digit0)
+                            Enqueue(new Edge{kind=EdgeKind.Key,key=keys[i],action=action,pressed=true,time=ev.time,shift=shift,saveGroup=saveGroup,position=position});
+                    }
                     keyDown[i]=down;
                 }
                 return;

@@ -1,0 +1,870 @@
+{
+  "schema": 1,
+  "candidate": 2,
+  "release": "070",
+  "auditedAtUtc": "2026-10-06T02:49:24.080558+00:00",
+  "auditor": "content070_audit",
+  "method": "Independent SHA-256 of current input files, parsed actual NUnit leaves, source freeze/evidence equality, app boot GUID and receipt-bound binary/log bytes. No Unity launch; no source or project documentation edits.",
+  "allChecksPassed": true,
+  "checks": {
+    "head_matches_runtime_commit": true,
+    "source_worktree_clean": true,
+    "current_input_count_682": true,
+    "current_fingerprint_matches_expected": true,
+    "evidence_fingerprint_internally_valid": true,
+    "freeze_fingerprint_internally_valid": true,
+    "current_files_equal_tested_files": true,
+    "current_files_equal_frozen_files": true,
+    "freeze_identity_matches_expected": true,
+    "source_evidence_identity_matches_expected": true,
+    "EditMode_actual_leaves_all_passed": true,
+    "EditMode_root_totals_equal_leaves": true,
+    "EditMode_xml_sha_matches_evidence": true,
+    "PlayMode_actual_leaves_all_passed": true,
+    "PlayMode_root_totals_equal_leaves": true,
+    "PlayMode_xml_sha_matches_evidence": true,
+    "raid_fix_actual_case_passed": true,
+    "build_receipt_identity_matches_expected": true,
+    "application_boot_guid_matches_receipt": true,
+    "executable_bytes_and_sha_match_receipt": true,
+    "compiledRuntime_bytes_and_sha_match_receipt": true,
+    "build_log_sha_matches_receipt": true,
+    "build_log_records_actual_success": true,
+    "application_version_matches_receipt": true,
+    "build_started_after_final_test_evidence": true
+  },
+  "runtimeCommit": "8b6598d0939262571d0a595ba1499e053f00e1b7",
+  "sourceFingerprint": "ab5ae20e5ff0de9d5e3b2fdd9346ed9f158cb4082a05933e4d6b074cd7333047",
+  "sourceInputs": 682,
+  "testRun": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-u4J3ZXEB",
+  "passedTotal": 1364,
+  "sourceBinding": {
+    "frozenManifest": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.13.0/Candidate2/source-freeze-final.json",
+      "sha256": "f65263ebff2fe5c563d3c8b0500e2296ac4f4cec634a251278ff078fea8e15d0"
+    },
+    "testEvidence": {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-u4J3ZXEB/source-evidence.json",
+      "sha256": "19751f77e9f507bd250fac6dd2843c9a4a5fafbd4dd2763e7ae220a72dc26ad2",
+      "recordedAtUtc": "2026-10-06T02:43:32.670896+00:00"
+    },
+    "changedRuntimeInputs": [],
+    "changedOutsideInputScope": [
+      " M Docs/AoE3-Gap-Roadmap.md",
+      " M Docs/Completion-Status.md",
+      " M Docs/Content-070.md",
+      " M Docs/Known-Issues.md",
+      " M README.md",
+      "?? Docs/Evidence/070/",
+      "?? Docs/Player-Guide-070.md"
+    ]
+  },
+  "reports": {
+    "EditMode": {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-u4J3ZXEB/EditMode.xml",
+      "sha256": "79722d3a5cc1f75748d12abfa25118fcf5d52c73518ad8ef32a4b763d2a334af",
+      "leafCount": 967,
+      "leafResults": {
+        "Passed": 967
+      },
+      "root": {
+        "id": "2",
+        "testcasecount": "967",
+        "result": "Passed",
+        "total": "967",
+        "passed": "967",
+        "failed": "0",
+        "inconclusive": "0",
+        "skipped": "0",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-10-06 02:35:54Z",
+        "end-time": "2026-10-06 02:40:04Z",
+        "duration": "250.6050698"
+      },
+      "manifestReport": {
+        "file": "EditMode.xml",
+        "sha256": "79722d3a5cc1f75748d12abfa25118fcf5d52c73518ad8ef32a4b763d2a334af",
+        "passed": 967
+      },
+      "leafIdentitySha256": "a7abaee233f0748406c7031861885c886507b088acba7ff77c8e3e26edc7eff4"
+    },
+    "PlayMode": {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-u4J3ZXEB/PlayMode.xml",
+      "sha256": "1a28445bddce5fb860422a42718b05e8ffb42dd6b7a9872296e2d412caee7f7a",
+      "leafCount": 397,
+      "leafResults": {
+        "Passed": 397
+      },
+      "root": {
+        "id": "2",
+        "testcasecount": "397",
+        "result": "Passed",
+        "total": "397",
+        "passed": "397",
+        "failed": "0",
+        "inconclusive": "0",
+        "skipped": "0",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-10-06 02:40:14Z",
+        "end-time": "2026-10-06 02:43:30Z",
+        "duration": "196.0919649"
+      },
+      "manifestReport": {
+        "file": "PlayMode.xml",
+        "sha256": "1a28445bddce5fb860422a42718b05e8ffb42dd6b7a9872296e2d412caee7f7a",
+        "passed": 397
+      },
+      "leafIdentitySha256": "13837c94577e7bfa8cef967327bffa4f085336f5a0f3b68f1e5be61da93c5c4f"
+    }
+  },
+  "relevantSuites": {
+    "GuidedPlay066Tests": {
+      "mode": "EditMode",
+      "count": 29,
+      "allPassed": true,
+      "cases": [
+        {
+          "name": "AlteredScenarioStageCommandWitnessAndFutureRevisionAreRejectedWithoutMutation",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.AlteredScenarioStageCommandWitnessAndFutureRevisionAreRejectedWithoutMutation",
+          "result": "Passed",
+          "duration": "0.128027"
+        },
+        {
+          "name": "ColdCompletedResultCanBeRecordedOnlyOnceAndUnlocksNextCampaignChapter",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.ColdCompletedResultCanBeRecordedOnlyOnceAndUnlocksNextCampaignChapter",
+          "result": "Passed",
+          "duration": "0.307896"
+        },
+        {
+          "name": "ColdRestorePreservesCargoStageAndCommandsWithoutSpawningOrGranting",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.ColdRestorePreservesCargoStageAndCommandsWithoutSpawningOrGranting",
+          "result": "Passed",
+          "duration": "0.191791"
+        },
+        {
+          "name": "DestroyingCriticalBaseFailsAndRetryReusesSeedWithNewAttempt",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.DestroyingCriticalBaseFailsAndRetryReusesSeedWithNewAttempt",
+          "result": "Passed",
+          "duration": "0.028754"
+        },
+        {
+          "name": "DisposalStopsObservationAndScenarioCompletionIsIndependentFromWorldWinner",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.DisposalStopsObservationAndScenarioCompletionIsIndependentFromWorldWinner",
+          "result": "Passed",
+          "duration": "0.015626"
+        },
+        {
+          "name": "DurableAccountKeepsBestTimeAndMalformedUnknownOrFutureFilesAreNeverOverwritten",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.DurableAccountKeepsBestTimeAndMalformedUnknownOrFutureFilesAreNeverOverwritten",
+          "result": "Passed",
+          "duration": "0.116692"
+        },
+        {
+          "name": "EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"lesson_selection\")",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"lesson_selection\")",
+          "result": "Passed",
+          "duration": "0.076112"
+        },
+        {
+          "name": "EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"lesson_economy\")",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"lesson_economy\")",
+          "result": "Passed",
+          "duration": "0.082939"
+        },
+        {
+          "name": "EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"lesson_age_army\")",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"lesson_age_army\")",
+          "result": "Passed",
+          "duration": "0.160822"
+        },
+        {
+          "name": "EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"lesson_shipments\")",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"lesson_shipments\")",
+          "result": "Passed",
+          "duration": "0.099505"
+        },
+        {
+          "name": "EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"lesson_targeting\")",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"lesson_targeting\")",
+          "result": "Passed",
+          "duration": "0.121036"
+        },
+        {
+          "name": "EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"lesson_allies\")",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"lesson_allies\")",
+          "result": "Passed",
+          "duration": "0.264577"
+        },
+        {
+          "name": "EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"lesson_transport\")",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"lesson_transport\")",
+          "result": "Passed",
+          "duration": "0.080964"
+        },
+        {
+          "name": "EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"campaign_supply\")",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"campaign_supply\")",
+          "result": "Passed",
+          "duration": "0.138891"
+        },
+        {
+          "name": "EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"campaign_bridge\")",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"campaign_bridge\")",
+          "result": "Passed",
+          "duration": "0.158330"
+        },
+        {
+          "name": "EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"campaign_estuary\")",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.EveryScenarioContinuesAfterActualSlotRoundTripAtAStageBoundary(\"campaign_estuary\")",
+          "result": "Passed",
+          "duration": "0.236403"
+        },
+        {
+          "name": "EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"lesson_selection\")",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"lesson_selection\")",
+          "result": "Passed",
+          "duration": "0.019565"
+        },
+        {
+          "name": "EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"lesson_economy\")",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"lesson_economy\")",
+          "result": "Passed",
+          "duration": "0.026409"
+        },
+        {
+          "name": "EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"lesson_age_army\")",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"lesson_age_army\")",
+          "result": "Passed",
+          "duration": "0.100183"
+        },
+        {
+          "name": "EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"lesson_shipments\")",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"lesson_shipments\")",
+          "result": "Passed",
+          "duration": "0.037856"
+        },
+        {
+          "name": "EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"lesson_targeting\")",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"lesson_targeting\")",
+          "result": "Passed",
+          "duration": "0.064835"
+        },
+        {
+          "name": "EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"lesson_allies\")",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"lesson_allies\")",
+          "result": "Passed",
+          "duration": "0.086902"
+        },
+        {
+          "name": "EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"lesson_transport\")",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"lesson_transport\")",
+          "result": "Passed",
+          "duration": "0.029884"
+        },
+        {
+          "name": "EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"campaign_supply\")",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"campaign_supply\")",
+          "result": "Passed",
+          "duration": "0.079969"
+        },
+        {
+          "name": "EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"campaign_bridge\")",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"campaign_bridge\")",
+          "result": "Passed",
+          "duration": "0.083624"
+        },
+        {
+          "name": "EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"campaign_estuary\")",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.EveryScenarioIsSolvedByAcceptedRealOrdersAndWorldResults(\"campaign_estuary\")",
+          "result": "Passed",
+          "duration": "0.081708"
+        },
+        {
+          "name": "QueuedAgeAndPaidArmyRestoreMidJobWithoutAnotherPaymentOrDuplicateBirth",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.QueuedAgeAndPaidArmyRestoreMidJobWithoutAnotherPaymentOrDuplicateBirth",
+          "result": "Passed",
+          "duration": "0.218980"
+        },
+        {
+          "name": "RejectedCommandsForeignPlayersAndInitialUnitsCannotCompleteStages",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.RejectedCommandsForeignPlayersAndInitialUnitsCannotCompleteStages",
+          "result": "Passed",
+          "duration": "0.014630"
+        },
+        {
+          "name": "UnknownIdsFailedResultsAndOutOfOrderCampaignCannotUnlockProgress",
+          "fullname": "Frontier.Tests.GuidedPlay066Tests.UnknownIdsFailedResultsAndOutOfOrderCampaignCannotUnlockProgress",
+          "result": "Passed",
+          "duration": "0.107475"
+        }
+      ]
+    },
+    "ScenarioGroups070Tests": {
+      "mode": "EditMode",
+      "count": 27,
+      "allPassed": true,
+      "cases": [
+        {
+          "name": "AColdGroupMemberCannotKeepItsIdAndOriginButChangeItsAuthoredDefinition(\"soldier-a\",\"hussar\")",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.AColdGroupMemberCannotKeepItsIdAndOriginButChangeItsAuthoredDefinition(\"soldier-a\",\"hussar\")",
+          "result": "Passed",
+          "duration": "0.063548"
+        },
+        {
+          "name": "AColdGroupMemberCannotKeepItsIdAndOriginButChangeItsAuthoredDefinition(\"start-0-explorer\",\"musketeer\")",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.AColdGroupMemberCannotKeepItsIdAndOriginButChangeItsAuthoredDefinition(\"start-0-explorer\",\"musketeer\")",
+          "result": "Passed",
+          "duration": "0.045974"
+        },
+        {
+          "name": "AColdGroupMemberCannotKeepItsIdAndOriginButChangeItsAuthoredDefinition(\"camp-guard-0\",\"musketeer\")",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.AColdGroupMemberCannotKeepItsIdAndOriginButChangeItsAuthoredDefinition(\"camp-guard-0\",\"musketeer\")",
+          "result": "Passed",
+          "duration": "0.046602"
+        },
+        {
+          "name": "AForeignPlayersEmbarkObjectiveDoesNotCountTheOtherFactionCargo",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.AForeignPlayersEmbarkObjectiveDoesNotCountTheOtherFactionCargo",
+          "result": "Passed",
+          "duration": "0.093301"
+        },
+        {
+          "name": "AggregateBindingsAliasOnlyTheirExactOrderedInitialMembersAndReturnedArraysAreOwned",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.AggregateBindingsAliasOnlyTheirExactOrderedInitialMembersAndReturnedArraysAreOwned",
+          "result": "Passed",
+          "duration": "0.307610"
+        },
+        {
+          "name": "AttackMoveUsesNormalOwnedGroupCommandsAndColdRestoreDoesNotReissueTheTrigger",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.AttackMoveUsesNormalOwnedGroupCommandsAndColdRestoreDoesNotReissueTheTrigger",
+          "result": "Passed",
+          "duration": "0.081050"
+        },
+        {
+          "name": "CompleteLegacyPortableShapeChecksTheOriginalHashBeforeAddingEmptyFields",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.CompleteLegacyPortableShapeChecksTheOriginalHashBeforeAddingEmptyFields",
+          "result": "Passed",
+          "duration": "0.041813"
+        },
+        {
+          "name": "EmbarkGoalsCannotUseWorkersOrShipsAsTheirSpecifiedMilitaryGroup(\"cargo-worker\")",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.EmbarkGoalsCannotUseWorkersOrShipsAsTheirSpecifiedMilitaryGroup(\"cargo-worker\")",
+          "result": "Passed",
+          "duration": "0.013206"
+        },
+        {
+          "name": "EmbarkGoalsCannotUseWorkersOrShipsAsTheirSpecifiedMilitaryGroup(\"transport\")",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.EmbarkGoalsCannotUseWorkersOrShipsAsTheirSpecifiedMilitaryGroup(\"transport\")",
+          "result": "Passed",
+          "duration": "0.006791"
+        },
+        {
+          "name": "EmbarkGoalsRequireOneRealTransportAndPossibleIntegerThresholds",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.EmbarkGoalsRequireOneRealTransportAndPossibleIntegerThresholds",
+          "result": "Passed",
+          "duration": "0.046073"
+        },
+        {
+          "name": "EmptyFutureGroupsDoNotCountAsLossesAndTheirRealDeathsDo",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.EmptyFutureGroupsDoNotCountAsLossesAndTheirRealDeathsDo",
+          "result": "Passed",
+          "duration": "0.064237"
+        },
+        {
+          "name": "ExplorerWorkersAndTreasureGuardsCanBeInitialGroupMembers",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.ExplorerWorkersAndTreasureGuardsCanBeInitialGroupMembers",
+          "result": "Passed",
+          "duration": "0.077019"
+        },
+        {
+          "name": "FailedLegacyImportPreservesItsOriginalBytesAndAnExistingValidLibraryRow",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.FailedLegacyImportPreservesItsOriginalBytesAndAnExistingValidLibraryRow",
+          "result": "Passed",
+          "duration": "0.061742"
+        },
+        {
+          "name": "GroupIdentifiersAndMemberListsAreUniqueAndBounded",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.GroupIdentifiersAndMemberListsAreUniqueAndBounded",
+          "result": "Passed",
+          "duration": "0.057749"
+        },
+        {
+          "name": "GroupsRejectUnknownNestedBuildingAndResourceReferences(\"missing\")",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.GroupsRejectUnknownNestedBuildingAndResourceReferences(\"missing\")",
+          "result": "Passed",
+          "duration": "0.006779"
+        },
+        {
+          "name": "GroupsRejectUnknownNestedBuildingAndResourceReferences(\"start-0-town\")",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.GroupsRejectUnknownNestedBuildingAndResourceReferences(\"start-0-town\")",
+          "result": "Passed",
+          "duration": "0.006326"
+        },
+        {
+          "name": "GroupsRejectUnknownNestedBuildingAndResourceReferences(\"depot\")",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.GroupsRejectUnknownNestedBuildingAndResourceReferences(\"depot\")",
+          "result": "Passed",
+          "duration": "0.006520"
+        },
+        {
+          "name": "GroupsRejectUnknownNestedBuildingAndResourceReferences(\"berries\")",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.GroupsRejectUnknownNestedBuildingAndResourceReferences(\"berries\")",
+          "result": "Passed",
+          "duration": "0.006746"
+        },
+        {
+          "name": "GroupsRejectUnknownNestedBuildingAndResourceReferences(\"landing-force\")",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.GroupsRejectUnknownNestedBuildingAndResourceReferences(\"landing-force\")",
+          "result": "Passed",
+          "duration": "0.006441"
+        },
+        {
+          "name": "InitialGroupsCannotReferToFutureSpawnGroups",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.InitialGroupsCannotReferToFutureSpawnGroups",
+          "result": "Passed",
+          "duration": "0.006433"
+        },
+        {
+          "name": "LossThresholdsMustBePositiveBoundedIntegers(0)",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.LossThresholdsMustBePositiveBoundedIntegers(0)",
+          "result": "Passed",
+          "duration": "0.006651"
+        },
+        {
+          "name": "LossThresholdsMustBePositiveBoundedIntegers(0.5f)",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.LossThresholdsMustBePositiveBoundedIntegers(0.5f)",
+          "result": "Passed",
+          "duration": "0.006226"
+        },
+        {
+          "name": "LossThresholdsMustBePositiveBoundedIntegers(4097)",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.LossThresholdsMustBePositiveBoundedIntegers(4097)",
+          "result": "Passed",
+          "duration": "0.006418"
+        },
+        {
+          "name": "MissingOldFieldsMixedShapesAndUnknownFieldsAreNotLegacyCompatibility",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.MissingOldFieldsMixedShapesAndUnknownFieldsAreNotLegacyCompatibility",
+          "result": "Passed",
+          "duration": "0.035521"
+        },
+        {
+          "name": "OnlyTheSpecifiedLivingSoldiersInsideTheSpecifiedShipCompleteBoardingAfterColdRestore",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.OnlyTheSpecifiedLivingSoldiersInsideTheSpecifiedShipCompleteBoardingAfterColdRestore",
+          "result": "Passed",
+          "duration": "0.209914"
+        },
+        {
+          "name": "SinkingTheTransportRemovesCargoAndOnlySpecifiedActualLossesTriggerFailure",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.SinkingTheTransportRemovesCargoAndOnlySpecifiedActualLossesTriggerFailure",
+          "result": "Passed",
+          "duration": "0.184489"
+        },
+        {
+          "name": "StartingWorkerRolesUseTheActualOverriddenCivilizationAndNotTheEditableDocumentRoster",
+          "fullname": "Frontier.Tests.ScenarioGroups070Tests.StartingWorkerRolesUseTheActualOverriddenCivilizationAndNotTheEditableDocumentRoster",
+          "result": "Passed",
+          "duration": "0.112228"
+        }
+      ]
+    },
+    "RiverContent070Tests": {
+      "mode": "EditMode",
+      "count": 25,
+      "allPassed": true,
+      "cases": [
+        {
+          "name": "ActualAuthoredConvoyRecordingRebuildsCargoTriggersObjectivesAndGuidedResultForward",
+          "fullname": "Frontier.Tests.RiverContent070Tests.ActualAuthoredConvoyRecordingRebuildsCargoTriggersObjectivesAndGuidedResultForward",
+          "result": "Passed",
+          "duration": "3.814701"
+        },
+        {
+          "name": "AlteredFrozenChapterOrHashCannotEarnAnUnlockEvenWithRecomputedPortableHashes",
+          "fullname": "Frontier.Tests.RiverContent070Tests.AlteredFrozenChapterOrHashCannotEarnAnUnlockEvenWithRecomputedPortableHashes",
+          "result": "Passed",
+          "duration": "0.936099"
+        },
+        {
+          "name": "EmptyTransportCannotCompleteTheEscortByLeavingTheDesignatedPartyOnItsHomeShore",
+          "fullname": "Frontier.Tests.RiverContent070Tests.EmptyTransportCannotCompleteTheEscortByLeavingTheDesignatedPartyOnItsHomeShore",
+          "result": "Passed",
+          "duration": "0.671472"
+        },
+        {
+          "name": "FactoriesProduceLegalIndependentFrozenDocumentsAndPortableByteRoundtrips(\"traders_bend070\")",
+          "fullname": "Frontier.Tests.RiverContent070Tests.FactoriesProduceLegalIndependentFrozenDocumentsAndPortableByteRoundtrips(\"traders_bend070\")",
+          "result": "Passed",
+          "duration": "0.788258"
+        },
+        {
+          "name": "FactoriesProduceLegalIndependentFrozenDocumentsAndPortableByteRoundtrips(\"campaign_scout070\")",
+          "fullname": "Frontier.Tests.RiverContent070Tests.FactoriesProduceLegalIndependentFrozenDocumentsAndPortableByteRoundtrips(\"campaign_scout070\")",
+          "result": "Passed",
+          "duration": "0.411542"
+        },
+        {
+          "name": "FactoriesProduceLegalIndependentFrozenDocumentsAndPortableByteRoundtrips(\"campaign_convoy070\")",
+          "fullname": "Frontier.Tests.RiverContent070Tests.FactoriesProduceLegalIndependentFrozenDocumentsAndPortableByteRoundtrips(\"campaign_convoy070\")",
+          "result": "Passed",
+          "duration": "0.531303"
+        },
+        {
+          "name": "FactoriesProduceLegalIndependentFrozenDocumentsAndPortableByteRoundtrips(\"campaign_retreat070\")",
+          "fullname": "Frontier.Tests.RiverContent070Tests.FactoriesProduceLegalIndependentFrozenDocumentsAndPortableByteRoundtrips(\"campaign_retreat070\")",
+          "result": "Passed",
+          "duration": "0.416584"
+        },
+        {
+          "name": "GenuineResignationFailsAndRetryStartsANewUnrewardedAttempt(\"campaign_scout070\")",
+          "fullname": "Frontier.Tests.RiverContent070Tests.GenuineResignationFailsAndRetryStartsANewUnrewardedAttempt(\"campaign_scout070\")",
+          "result": "Passed",
+          "duration": "0.386100"
+        },
+        {
+          "name": "GenuineResignationFailsAndRetryStartsANewUnrewardedAttempt(\"campaign_convoy070\")",
+          "fullname": "Frontier.Tests.RiverContent070Tests.GenuineResignationFailsAndRetryStartsANewUnrewardedAttempt(\"campaign_convoy070\")",
+          "result": "Passed",
+          "duration": "0.496503"
+        },
+        {
+          "name": "GenuineResignationFailsAndRetryStartsANewUnrewardedAttempt(\"campaign_retreat070\")",
+          "fullname": "Frontier.Tests.RiverContent070Tests.GenuineResignationFailsAndRetryStartsANewUnrewardedAttempt(\"campaign_retreat070\")",
+          "result": "Passed",
+          "duration": "0.389940"
+        },
+        {
+          "name": "LosingThreeBoundTroopsFailsRatherThanAllowingWorkersOrReplacementUnitsToCount(\"campaign_convoy070\")",
+          "fullname": "Frontier.Tests.RiverContent070Tests.LosingThreeBoundTroopsFailsRatherThanAllowingWorkersOrReplacementUnitsToCount(\"campaign_convoy070\")",
+          "result": "Passed",
+          "duration": "0.240413"
+        },
+        {
+          "name": "LosingThreeBoundTroopsFailsRatherThanAllowingWorkersOrReplacementUnitsToCount(\"campaign_retreat070\")",
+          "fullname": "Frontier.Tests.RiverContent070Tests.LosingThreeBoundTroopsFailsRatherThanAllowingWorkersOrReplacementUnitsToCount(\"campaign_retreat070\")",
+          "result": "Passed",
+          "duration": "0.200392"
+        },
+        {
+          "name": "LossOfTheNamedProtectedAssetFailsEvenWhenOtherStartingUnitsSurvive(\"campaign_convoy070\",\"transport\")",
+          "fullname": "Frontier.Tests.RiverContent070Tests.LossOfTheNamedProtectedAssetFailsEvenWhenOtherStartingUnitsSurvive(\"campaign_convoy070\",\"transport\")",
+          "result": "Passed",
+          "duration": "0.238284"
+        },
+        {
+          "name": "LossOfTheNamedProtectedAssetFailsEvenWhenOtherStartingUnitsSurvive(\"campaign_retreat070\",\"forward-port\")",
+          "fullname": "Frontier.Tests.RiverContent070Tests.LossOfTheNamedProtectedAssetFailsEvenWhenOtherStartingUnitsSurvive(\"campaign_retreat070\",\"forward-port\")",
+          "result": "Passed",
+          "duration": "0.185864"
+        },
+        {
+          "name": "NewArcUnlocksSequentiallyOncePerActualAttemptAndPreservesTheRevisionOneLegacyAccount",
+          "fullname": "Frontier.Tests.RiverContent070Tests.NewArcUnlocksSequentiallyOncePerActualAttemptAndPreservesTheRevisionOneLegacyAccount",
+          "result": "Passed",
+          "duration": "4.564342"
+        },
+        {
+          "name": "NewChaptersAreWonByRealCommandsCombatCargoAndTimedWithdrawal(\"campaign_scout070\")",
+          "fullname": "Frontier.Tests.RiverContent070Tests.NewChaptersAreWonByRealCommandsCombatCargoAndTimedWithdrawal(\"campaign_scout070\")",
+          "result": "Passed",
+          "duration": "0.459576"
+        },
+        {
+          "name": "NewChaptersAreWonByRealCommandsCombatCargoAndTimedWithdrawal(\"campaign_convoy070\")",
+          "fullname": "Frontier.Tests.RiverContent070Tests.NewChaptersAreWonByRealCommandsCombatCargoAndTimedWithdrawal(\"campaign_convoy070\")",
+          "result": "Passed",
+          "duration": "0.639696"
+        },
+        {
+          "name": "NewChaptersAreWonByRealCommandsCombatCargoAndTimedWithdrawal(\"campaign_retreat070\")",
+          "fullname": "Frontier.Tests.RiverContent070Tests.NewChaptersAreWonByRealCommandsCombatCargoAndTimedWithdrawal(\"campaign_retreat070\")",
+          "result": "Passed",
+          "duration": "0.742736"
+        },
+        {
+          "name": "OrdinaryMapOffersBothBridgeRoutesAnUnbrokenShipChannelLegalPortsAndOppositeShoreLandings",
+          "fullname": "Frontier.Tests.RiverContent070Tests.OrdinaryMapOffersBothBridgeRoutesAnUnbrokenShipChannelLegalPortsAndOppositeShoreLandings",
+          "result": "Passed",
+          "duration": "0.226353"
+        },
+        {
+          "name": "OrdinaryMapStartsWithPaidRulesAndPairedHomeAndForwardResourceBudgets",
+          "fullname": "Frontier.Tests.RiverContent070Tests.OrdinaryMapStartsWithPaidRulesAndPairedHomeAndForwardResourceBudgets",
+          "result": "Passed",
+          "duration": "0.195197"
+        },
+        {
+          "name": "RearGuardCanChooseActualBoardSailAndUnloadWithdrawalAfterHoldingTheSamePort",
+          "fullname": "Frontier.Tests.RiverContent070Tests.RearGuardCanChooseActualBoardSailAndUnloadWithdrawalAfterHoldingTheSamePort",
+          "result": "Passed",
+          "duration": "0.617190"
+        },
+        {
+          "name": "ScoutRaidWaitsThroughTheDefaultCrossingThenReallyAttacksTheSupplyCamp",
+          "fullname": "Frontier.Tests.RiverContent070Tests.ScoutRaidWaitsThroughTheDefaultCrossingThenReallyAttacksTheSupplyCamp",
+          "result": "Passed",
+          "duration": "0.395074"
+        },
+        {
+          "name": "StageBoundaryColdSlotContinuesWithoutDuplicatingBodiesSuppliesOrWaves(\"campaign_scout070\")",
+          "fullname": "Frontier.Tests.RiverContent070Tests.StageBoundaryColdSlotContinuesWithoutDuplicatingBodiesSuppliesOrWaves(\"campaign_scout070\")",
+          "result": "Passed",
+          "duration": "0.781947"
+        },
+        {
+          "name": "StageBoundaryColdSlotContinuesWithoutDuplicatingBodiesSuppliesOrWaves(\"campaign_convoy070\")",
+          "fullname": "Frontier.Tests.RiverContent070Tests.StageBoundaryColdSlotContinuesWithoutDuplicatingBodiesSuppliesOrWaves(\"campaign_convoy070\")",
+          "result": "Passed",
+          "duration": "1.064796"
+        },
+        {
+          "name": "StageBoundaryColdSlotContinuesWithoutDuplicatingBodiesSuppliesOrWaves(\"campaign_retreat070\")",
+          "fullname": "Frontier.Tests.RiverContent070Tests.StageBoundaryColdSlotContinuesWithoutDuplicatingBodiesSuppliesOrWaves(\"campaign_retreat070\")",
+          "result": "Passed",
+          "duration": "1.106467"
+        }
+      ]
+    },
+    "RiverCampaignRestore070Tests": {
+      "mode": "EditMode",
+      "count": 16,
+      "allPassed": true,
+      "cases": [
+        {
+          "name": "ACompletedObjectiveEventDoesNotReplaceItsRequiredProgress",
+          "fullname": "Frontier.Tests.RiverCampaignRestore070Tests.ACompletedObjectiveEventDoesNotReplaceItsRequiredProgress",
+          "result": "Passed",
+          "duration": "0.877374"
+        },
+        {
+          "name": "AnActiveLaterGoalCannotBypassItsIncompletePrerequisite",
+          "fullname": "Frontier.Tests.RiverCampaignRestore070Tests.AnActiveLaterGoalCannotBypassItsIncompletePrerequisite",
+          "result": "Passed",
+          "duration": "0.475552"
+        },
+        {
+          "name": "AResultEventCannotBeHiddenByChangingTheObjectiveBackToActive",
+          "fullname": "Frontier.Tests.RiverCampaignRestore070Tests.AResultEventCannotBeHiddenByChangingTheObjectiveBackToActive",
+          "result": "Passed",
+          "duration": "0.481241"
+        },
+        {
+          "name": "CompletedGoalCannotPrecedeItsPrerequisiteResultEvent",
+          "fullname": "Frontier.Tests.RiverCampaignRestore070Tests.CompletedGoalCannotPrecedeItsPrerequisiteResultEvent",
+          "result": "Passed",
+          "duration": "0.485917"
+        },
+        {
+          "name": "GenuineInitialColdChapterAdoptsWithoutCreatingAnyEventsOrBodies(\"campaign_scout070\")",
+          "fullname": "Frontier.Tests.RiverCampaignRestore070Tests.GenuineInitialColdChapterAdoptsWithoutCreatingAnyEventsOrBodies(\"campaign_scout070\")",
+          "result": "Passed",
+          "duration": "0.454773"
+        },
+        {
+          "name": "GenuineInitialColdChapterAdoptsWithoutCreatingAnyEventsOrBodies(\"campaign_convoy070\")",
+          "fullname": "Frontier.Tests.RiverCampaignRestore070Tests.GenuineInitialColdChapterAdoptsWithoutCreatingAnyEventsOrBodies(\"campaign_convoy070\")",
+          "result": "Passed",
+          "duration": "0.962542"
+        },
+        {
+          "name": "GenuineInitialColdChapterAdoptsWithoutCreatingAnyEventsOrBodies(\"campaign_retreat070\")",
+          "fullname": "Frontier.Tests.RiverCampaignRestore070Tests.GenuineInitialColdChapterAdoptsWithoutCreatingAnyEventsOrBodies(\"campaign_retreat070\")",
+          "result": "Passed",
+          "duration": "0.806857"
+        },
+        {
+          "name": "HoldProgressCannotCreateFortySecondsFromAnUnadvancedClock",
+          "fullname": "Frontier.Tests.RiverCampaignRestore070Tests.HoldProgressCannotCreateFortySecondsFromAnUnadvancedClock",
+          "result": "Passed",
+          "duration": "0.245454"
+        },
+        {
+          "name": "RejectedStatusOnlyColdSlotKeepsItsOriginalBytes",
+          "fullname": "Frontier.Tests.RiverCampaignRestore070Tests.RejectedStatusOnlyColdSlotKeepsItsOriginalBytes",
+          "result": "Passed",
+          "duration": "0.449131"
+        },
+        {
+          "name": "StatusOnlyCompletionCannotGenerateGuidedWitnessesOrUnlockTheNextChapter(\"campaign_scout070\")",
+          "fullname": "Frontier.Tests.RiverCampaignRestore070Tests.StatusOnlyCompletionCannotGenerateGuidedWitnessesOrUnlockTheNextChapter(\"campaign_scout070\")",
+          "result": "Passed",
+          "duration": "0.472907"
+        },
+        {
+          "name": "StatusOnlyCompletionCannotGenerateGuidedWitnessesOrUnlockTheNextChapter(\"campaign_convoy070\")",
+          "fullname": "Frontier.Tests.RiverCampaignRestore070Tests.StatusOnlyCompletionCannotGenerateGuidedWitnessesOrUnlockTheNextChapter(\"campaign_convoy070\")",
+          "result": "Passed",
+          "duration": "0.593323"
+        },
+        {
+          "name": "StatusOnlyCompletionCannotGenerateGuidedWitnessesOrUnlockTheNextChapter(\"campaign_retreat070\")",
+          "fullname": "Frontier.Tests.RiverCampaignRestore070Tests.StatusOnlyCompletionCannotGenerateGuidedWitnessesOrUnlockTheNextChapter(\"campaign_retreat070\")",
+          "result": "Passed",
+          "duration": "0.486895"
+        },
+        {
+          "name": "TerminalObjectiveMustMatchOneExactExistingResultEvent(\"reason\")",
+          "fullname": "Frontier.Tests.RiverCampaignRestore070Tests.TerminalObjectiveMustMatchOneExactExistingResultEvent(\"reason\")",
+          "result": "Passed",
+          "duration": "0.485014"
+        },
+        {
+          "name": "TerminalObjectiveMustMatchOneExactExistingResultEvent(\"player\")",
+          "fullname": "Frontier.Tests.RiverCampaignRestore070Tests.TerminalObjectiveMustMatchOneExactExistingResultEvent(\"player\")",
+          "result": "Passed",
+          "duration": "0.471092"
+        },
+        {
+          "name": "TerminalObjectiveMustMatchOneExactExistingResultEvent(\"time\")",
+          "fullname": "Frontier.Tests.RiverCampaignRestore070Tests.TerminalObjectiveMustMatchOneExactExistingResultEvent(\"time\")",
+          "result": "Passed",
+          "duration": "0.472190"
+        },
+        {
+          "name": "TerminalObjectiveMustMatchOneExactExistingResultEvent(\"duplicate\")",
+          "fullname": "Frontier.Tests.RiverCampaignRestore070Tests.TerminalObjectiveMustMatchOneExactExistingResultEvent(\"duplicate\")",
+          "result": "Passed",
+          "duration": "0.468283"
+        }
+      ]
+    },
+    "RiverMissionBranches070Tests": {
+      "mode": "EditMode",
+      "count": 4,
+      "allPassed": true,
+      "cases": [
+        {
+          "name": "ActualCacheDestructionPaysOneRepairDeliveryAndColdRestoreDoesNotRepeatIt",
+          "fullname": "Frontier.Tests.RiverMissionBranches070Tests.ActualCacheDestructionPaysOneRepairDeliveryAndColdRestoreDoesNotRepeatIt",
+          "result": "Passed",
+          "duration": "0.989477"
+        },
+        {
+          "name": "ActualLookoutVisitAndRepeatedColdVisitsDeliverExactlyOneWoodShipment",
+          "fullname": "Frontier.Tests.RiverMissionBranches070Tests.ActualLookoutVisitAndRepeatedColdVisitsDeliverExactlyOneWoodShipment",
+          "result": "Passed",
+          "duration": "0.608353"
+        },
+        {
+          "name": "RealCounterattackDamageIsRepairedAtTheForwardDockWithActualPaidHealthReceipts",
+          "fullname": "Frontier.Tests.RiverMissionBranches070Tests.RealCounterattackDamageIsRepairedAtTheForwardDockWithActualPaidHealthReceipts",
+          "result": "Passed",
+          "duration": "1.032118"
+        },
+        {
+          "name": "TheSurveyDeadlineFailsThroughRealSchedulerStepsAndRetryHasNoOldRewardOrResult",
+          "fullname": "Frontier.Tests.RiverMissionBranches070Tests.TheSurveyDeadlineFailsThroughRealSchedulerStepsAndRetryHasNoOldRewardOrResult",
+          "result": "Passed",
+          "duration": "2.323099"
+        }
+      ]
+    },
+    "RiverContentController070Tests": {
+      "mode": "PlayMode",
+      "count": 6,
+      "allPassed": true,
+      "cases": [
+        {
+          "name": "AuthoredWorkshopCopyRetainsItsOwnGoalsAndCannotEarnChapterUnlocks",
+          "fullname": "Frontier.Tests.RiverContentController070Tests.AuthoredWorkshopCopyRetainsItsOwnGoalsAndCannotEarnChapterUnlocks",
+          "result": "Passed",
+          "duration": "1.592896"
+        },
+        {
+          "name": "ControllerColdSlotPreservesActualSurveyAndCompletesOnceThenUnlocksTheNextChapter",
+          "fullname": "Frontier.Tests.RiverContentController070Tests.ControllerColdSlotPreservesActualSurveyAndCompletesOnceThenUnlocksTheNextChapter",
+          "result": "Passed",
+          "duration": "2.749324"
+        },
+        {
+          "name": "LockedChaptersAndARejectedMapSelectionDoNotReplaceAPlayableWorld",
+          "fullname": "Frontier.Tests.RiverContentController070Tests.LockedChaptersAndARejectedMapSelectionDoNotReplaceAPlayableWorld",
+          "result": "Passed",
+          "duration": "1.169530"
+        },
+        {
+          "name": "RiverLibraryButtonsExposeTheNewIndependentArcAndLockedChapters",
+          "fullname": "Frontier.Tests.RiverContentController070Tests.RiverLibraryButtonsExposeTheNewIndependentArcAndLockedChapters",
+          "result": "Passed",
+          "duration": "0.564088"
+        },
+        {
+          "name": "StandardAuthoredMapDoesNotSilentlyIgnoreACustomaryBridgeObjective",
+          "fullname": "Frontier.Tests.RiverContentController070Tests.StandardAuthoredMapDoesNotSilentlyIgnoreACustomaryBridgeObjective",
+          "result": "Passed",
+          "duration": "0.761734"
+        },
+        {
+          "name": "StandardMapMenuSelectionStartsTheFrozenOrdinaryMapWithTheChosenCivilizations",
+          "fullname": "Frontier.Tests.RiverContentController070Tests.StandardMapMenuSelectionStartsTheFrozenOrdinaryMapWithTheChosenCivilizations",
+          "result": "Passed",
+          "duration": "0.564571"
+        }
+      ]
+    }
+  },
+  "build": {
+    "receiptPath": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.13.0/Candidate2/Build/build-identity.json",
+    "receiptSha256": "82544aee6ce63b98a6c00da127b273b1961651ccd46f0b62362e907bd47975c9",
+    "identity": {
+      "schema": 1,
+      "appVersion": "0.13.0",
+      "buildGuid": "1e9cea464e46478d9193c121b4ce3534",
+      "unityVersion": "6000.6.3f1",
+      "runtimeCommit": "8b6598d0939262571d0a595ba1499e053f00e1b7",
+      "sourceFingerprint": "ab5ae20e5ff0de9d5e3b2fdd9346ed9f158cb4082a05933e4d6b074cd7333047",
+      "sourceInputs": 682,
+      "appRelativePath": "Build/Frontier Reckoning.app",
+      "executable": {
+        "file": "Build/Frontier Reckoning.app/Contents/MacOS/Frontier Reckoning",
+        "bytes": 35151,
+        "sha256": "1bd40eec878cc11bc2da1c503be80ab81d8b50f51725dd7c294e8af025ebd1f4"
+      },
+      "compiledRuntime": {
+        "file": "Build/Frontier Reckoning.app/Contents/Resources/Data/Managed/Frontier.Runtime.dll",
+        "bytes": 1134080,
+        "sha256": "0973060049f798faf81fc6f42881b5c34d3f2bed9615e77beb11fa463239d767"
+      },
+      "method": "Frontier.Editor.BuildTools.BuildMac",
+      "testRun": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-u4J3ZXEB",
+      "buildResult": "Succeeded",
+      "startedAtUtc": "2026-10-06T02:44:16.779411+00:00",
+      "completedAtUtc": "2026-10-06T02:44:29.235097+00:00",
+      "buildLogSha256": "05e92374b6808be009cec219866edecfff547493c852712bcd6afa5f38cbc6d8"
+    },
+    "applicationVersion": "0.13.0",
+    "bootConfigSha256": "dee75b59c90d68deb3cfc20b704eccd49aa5717b2a4885223ac9f5f8bb982ece",
+    "bootBuildGuid": "1e9cea464e46478d9193c121b4ce3534",
+    "artifacts": {
+      "executable": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.13.0/Candidate2/Build/Frontier Reckoning.app/Contents/MacOS/Frontier Reckoning",
+        "bytes": 35151,
+        "sha256": "1bd40eec878cc11bc2da1c503be80ab81d8b50f51725dd7c294e8af025ebd1f4"
+      },
+      "compiledRuntime": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.13.0/Candidate2/Build/Frontier Reckoning.app/Contents/Resources/Data/Managed/Frontier.Runtime.dll",
+        "bytes": 1134080,
+        "sha256": "0973060049f798faf81fc6f42881b5c34d3f2bed9615e77beb11fa463239d767"
+      }
+    },
+    "buildLogSha256": "05e92374b6808be009cec219866edecfff547493c852712bcd6afa5f38cbc6d8"
+  },
+  "scopeLimits": [
+    "No Candidate2 native input/focus/performance/fresh-process cold-save acceptance was audited here.",
+    "No two-physical-device LAN acceptance was audited here.",
+    "Ordinary authored map geometry probes do not establish paid port/ship gameplay, complete AI elimination games or civilization/side balance.",
+    "Convoy direct winning tests exercise the west channel, not an independently completed eastern detour.",
+    "The reachable survey objective deadline is covered; the fixed mission 1200-second global timeout is not naturally reachable before required objective deadlines."
+  ],
+  "candidate1": {
+    "usedAsCandidate2Binding": false,
+    "preservedAuditFileSha256": {
+      "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.13.0/Candidate1/Diagnostics/independent070-audit.md": "1448a490965413356f6b3f54103198e2d756cd0d0e3cf292840eaf427be22c33",
+      "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.13.0/Candidate1/Diagnostics/independent070-test-audit.json": "44ccbb1b2370e453a816af8d4a16062db0e31dd3d6b2ee80518ef7b17c80772d"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "recordedAtUtc": "2026-10-02T12:48:38.551438+00:00",
+  "scope": "Tool preparation only. 17 controlled verifier tests, including temporary real-baseline-derived bytes/XML/app with mocked HEAD/baseline reads; no real .32 source/test/build/native acceptance.",
+  "toolTests": {
+    "passed": 17,
+    "failed": 0,
+    "log": "tool-tests.log",
+    "logSha256": "85ea14309576b8a96bb817389c20b96971ee156422f14b1eda796898dca72bc7"
+  },
+  "baselineCommit": "50d303b76519a3a9b448c27cd2cdeb22779a1e5d",
+  "baselineAll357HashesMatch": true,
+  "baselineSourceEvidenceDocumentSha256": "bf8ca06fcfc8e609e87b7b319bdf98a6ba6d70a4d130576b63cc50117742048b",
+  "currentFrozenSourceFingerprint": "1b45f97f3d90c9b76388419492a83c5622ccb2cf3a365030044403ccd309c1c7",
+  "expectedReleaseFingerprintOnlyInMemory": "7340a04ba7f4d10c35a4dde158a8c517e0205e875daacc1a58005dcb61730adf",
+  "controlledExpectedDelta": {
+    "fileCount": 357,
+    "changedFileCount": 2,
+    "unchangedFileCount": 355,
+    "changedFiles": [
+      {
+        "path": "Assets/Frontier/Presentation/FrontierHud.cs",
+        "oldSha256": "378db2404311bbce8d319cfa312d765253c3b303b228cc9b4cf09784406bf785",
+        "newSha256": "24e0b29d5973bd67ec983e22768a47b8e14dbc05e44bca88c4ebdbdb4e9b1c6d",
+        "exactApprovedBytes": true
+      },
+      {
+        "path": "ProjectSettings/ProjectSettings.asset",
+        "oldSha256": "4f4007c04b8ed1e0f514a8acb7e2ddb92511450d72c06de3a0a8c46695f86237",
+        "newSha256": "ea35dabb44c0af941ac12231892792152de962ec0a659a911cd16fb1b5ff977c",
+        "exactApprovedBytes": true
+      }
+    ],
+    "buildToolsBytesUnchanged": true
+  },
+  "preReleaseCLIProbe": {
+    "exitCode": 1,
+    "file": "release-equivalence-pre-release-probe.json",
+    "status": "failed",
+    "meaning": "Required .32 full tests/build evidence has not yet been produced; no release pass claimed."
+  },
+  "preparedFiles": {
+    "verify_release_equivalence.py": "42dc465d2e645dea3a2150b9b5ee61c79a00206fd75137332eb5d16f9c724397",
+    "test_verify_release_equivalence.py": "e860a0e78bbf2bf9250e61599ca441bc8a63a07f3d941fbf4b99171249baa0f4",
+    "README.md": "e3044db5453f3df4d08cf4197323d4000bf1082ac5451ff62bc83af9933fbc8d"
+  }
+}

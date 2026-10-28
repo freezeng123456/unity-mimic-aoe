@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-09 23:09:59Z" end-time="2026-10-09 23:10:01Z" duration="1.5683108">
+  <test-suite type="TestSuite" id="1555" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="450" result="Failed" site="Child" start-time="2026-10-09 23:09:59Z" end-time="2026-10-09 23:10:01Z" duration="1.568311" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1549" name="Frontier.PlayMode.dll" fullname="/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Library/ScriptAssemblies/Frontier.PlayMode.dll" runstate="Runnable" testcasecount="450" result="Failed" site="Child" start-time="2026-10-09 23:09:59Z" end-time="2026-10-09 23:10:01Z" duration="1.559983" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="68622" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1550" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="450" result="Failed" site="Child" start-time="2026-10-09 23:09:59Z" end-time="2026-10-09 23:10:01Z" duration="1.553340" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1551" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="450" result="Failed" site="Child" start-time="2026-10-09 23:09:59Z" end-time="2026-10-09 23:10:01Z" duration="1.547026" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1426" name="RiverBankMesh077Tests" fullname="Frontier.Tests.RiverBankMesh077Tests" classname="Frontier.Tests.RiverBankMesh077Tests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-09 23:09:59Z" end-time="2026-10-09 23:10:01Z" duration="1.537532" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1427" name="ActualGroundMeshColorsAndHeightsEqualTheSharedMapQueries" fullname="Frontier.Tests.RiverBankMesh077Tests.ActualGroundMeshColorsAndHeightsEqualTheSharedMapQueries" methodname="ActualGroundMeshColorsAndHeightsEqualTheSharedMapQueries" classname="Frontier.Tests.RiverBankMesh077Tests" runstate="Runnable" seed="1091900951" result="Failed" start-time="2026-10-09 23:09:59Z" end-time="2026-10-09 23:10:01Z" duration="1.531831" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Shared sand at vertex 47
+  Expected: 0.024863243103027344d +/- 9.9999999747524271E-07d
+  But was:  0.0067351460456848145d
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.RiverBankMesh077Tests.ActualGroundMeshColorsAndHeightsEqualTheSharedMapQueries () [0x00131] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/PlayMode/RiverBankMesh077Tests.cs:36
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[Saving results to: /Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

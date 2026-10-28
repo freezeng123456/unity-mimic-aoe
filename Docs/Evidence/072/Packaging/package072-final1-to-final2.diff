@@ -1,0 +1,75 @@
+--- package072-final1.py
++++ package072-final2.py
+@@ -567,6 +567,54 @@
+             'sourceAuditChecks': check_count, 'captureCount': len(captures),
+             'selectedPixelRecords': len(observations), 'limits': native['limits']}
+ 
++
++
++def matrix_audited_refs_gate072_final2(audit, seal, runtime, repo, matrix, inputs):
++    """Validate the fixed auditor's complete real 844-row unchanged-input list."""
++    rows = audit.get('filesUnchangedDuringAudit')
++    require(type(rows) is list and len(rows) == 844, 'Matrix audit requires exactly 844 actual audited-reference records')
++    require(len(runtime) == 718 and [(c['map'], c['civilization'], c['seed']) for c in matrix['cases']] == MATRIX,
++            'Audited-reference coverage requires the frozen 718-input / 16-case matrix')
++    repo = real_path(repo, True); root = real_path(seal['trees']['normal']['directory'], True)
++    expected = {str(repo / rel) for rel in runtime}
++    expected.update(str(root / name) for name in ('source-before.json', 'source-after.json', 'runner-receipt.json', 'matrix/manifest.json'))
++    expected.update((seal['matrixChecker']['path'], seal['inputs']['matrixDeclaration']['path']))
++    require(seal['matrixChecker']['path'] == str(HERE / 'independent-normal072.py') and seal['matrixChecker']['sha256'] == MATRIX_CHECKER_SHA,
++            'Audited-reference checker must retain the pinned fixed implementation')
++    for case in matrix['cases']:
++        require(case['id'] == '{}-{}-{}'.format(case['map'], case['civilization'], case['seed']), 'Audited-reference case identity differs')
++        names = ['result.json', 'opening-world.json', 'final-world.json', 'final-simulation.json', 'events.jsonl', 'samples.jsonl']
++        names.append('comparison-2400-world.json' if case['comparisonReached'] else 'early-terminal-world.json')
++        if case['map'] == 'traders_bend070':
++            names.append('opening-scenario.json')
++        expected.update(str(root / 'matrix' / case['id'] / name) for name in names)
++    require(len(expected) == 844, 'Matrix audited-reference namespaces overlap or expected coverage differs')
++    by_path = {}
++    for row in rows:
++        require(type(row) is dict and set(row) == {'path', 'bytes', 'sha256', 'identity'}, 'Malformed matrix audited-reference record')
++        path = row['path']; token = row['identity']
++        require(type(path) is str and Path(path).is_absolute() and str(Path(path).absolute()) == path and path in expected,
++                'Unexpected/noncanonical matrix audited-reference path')
++        require(path not in by_path, 'Duplicate matrix audited-reference path')
++        require(type(row['bytes']) is int and row['bytes'] >= 0 and type(row['sha256']) is str and re.fullmatch(r'[0-9a-f]{64}', row['sha256']),
++                'Malformed matrix audited-reference size/hash')
++        require(type(token) is list and len(token) == 6 and all(type(x) is int and x >= 0 for x in token)
++                and stat.S_ISREG(token[2]) and token[3] == row['bytes'], 'Malformed matrix audited-reference filesystem identity')
++        by_path[path] = row
++    require(set(by_path) == expected, 'Missing or extra matrix audited-reference coverage')
++    for key in ('matrixDeclaration', 'matrixManifest', 'matrixRunner', 'matrixSourceBefore', 'matrixSourceAfter'):
++        pinned = seal['inputs'][key]
++        require(pinned['path'] in by_path and {k: by_path[pinned['path']][k] for k in ('path', 'bytes', 'sha256')} == pinned,
++                'Matrix audited-reference differs from a sealed matrix input: ' + key)
++    checker = seal['matrixChecker']
++    require({k: by_path[checker['path']][k] for k in ('path', 'bytes', 'sha256')} == checker, 'Matrix audited-reference differs from pinned checker')
++    for rel, expected_hash in runtime.items():
++        require(by_path[str(repo / rel)]['sha256'] == expected_hash, 'Matrix audited runtime reference differs from frozen source map')
++    for row in rows:
++        actual = inputs.read(row['path'])
++        require(actual == row, 'Matrix audited-reference bytes/hash/identity no longer match: ' + row['path'])
++    require(inputs.unchanged() is True, 'Matrix audited-reference input stability failed')
++    return True
+ 
+ 
+ def check_gates(seal, inputs):
+@@ -624,7 +672,7 @@
+     require(matrix.get('appVersion') == VERSION and matrix.get('declaredSourceFingerprint') == fp and matrix.get('finishedUtc')
+             and matrix.get('declaredLimitSeconds') == 3600 and matrix.get('comparisonSeconds') == 2400
+             and [(c['map'], c['civilization'], c['seed']) for c in matrix['cases']] == MATRIX, 'Closed predeclared 16-case matrix required')
+-    require(audit.get('result') == 'Consistent' and audit.get('matrixExecuted') is True and audit.get('filesUnchangedDuringAudit') is True
++    require(audit.get('result') == 'Consistent' and audit.get('matrixExecuted') is True and matrix_audited_refs_gate072_final2(audit, seal, runtime, repo, matrix, inputs)
+             and audit.get('observedRoutesTotal') == 16 and len(audit.get('cases', [])) == 16
+             and audit.get('sourceBinding', {}).get('fingerprint') == fp and audit['sourceBinding'].get('inputs') == len(runtime), 'Independent 16-case matrix audit incomplete/inconsistent')
+     require(audit.get('observationStatus') == matrix.get('status') in ('observed_routes_incomplete', 'all_observed_routes_reached'), 'Route completion summary was changed')
+@@ -784,7 +832,7 @@
+     for key in ('result', 'matrixExecuted', 'sourceBinding', 'cases', 'observedRoutesReached', 'observedRoutesTotal',
+                 'observationStatus', 'balanceVerdict', 'filesUnchangedDuringAudit'):
+         require(actual.get(key) == previous.get(key), 'Matrix audit no longer matches frozen raw originals: ' + key)
+-    require(actual['result'] == 'Consistent' and actual['filesUnchangedDuringAudit'] is True, 'Independent matrix reread is not consistent/stable')
++    require(actual['result'] == 'Consistent' and matrix_audited_refs_gate072_final2(actual, seal, prepared['runtime'], prepared['repo'], prepared['documents']['matrixManifest'], inputs), 'Independent matrix reread is not consistent/stable')
+     inputs.read(seal['matrixChecker']['path'])
+     # Native source originals must be present in the separately frozen evidence tree.
+     evidence_root = Path(seal['trees']['evidence']['directory']).absolute()

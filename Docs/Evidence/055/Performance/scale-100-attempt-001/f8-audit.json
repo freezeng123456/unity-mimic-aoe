@@ -1,0 +1,1303 @@
+{
+  "generatedAtUtc": "2026-10-03T03:23:58.060034+00:00",
+  "scope": "Native 1x benchmark F8 diagnostic with capture overhead; synthetic elevated-HP pressure fixture, not normal-player or whole-match evidence",
+  "diagnostic": true,
+  "normalPlayerCapture": false,
+  "informationalChecksExcludedFromDiagnosticAcceptance": [
+    "normalPlayerCapture"
+  ],
+  "transitionScope": "Eligibility independently recomputed from raw previous/current state and recorded transition flags. Focus callbacks are not independently proven by match events; no render timestamp is inferred from an event simulation time.",
+  "requiredBuildGuid": "128a731d440e4b7a94abfcc74b88fa97",
+  "matchId": "fc76cd19184d47768cbc76cb7fcc9518",
+  "appVersion": "0.2.31",
+  "checks": {
+    "captureNativePlatform": true,
+    "matchNativePlatform": true,
+    "explicitBuildGuidMatchesBoth": true,
+    "matchIdentityMatches": true,
+    "versionMatchesAssociatedMatch": true,
+    "unityVersionMatchesAssociatedMatch": true,
+    "normalPlayerCapture": false,
+    "captureModeAllowed": true,
+    "singleSession": true,
+    "notTruncated": true,
+    "schemaRecognized": true,
+    "gcCountsNonnegative": true,
+    "hasEligibleSamples": true,
+    "positiveWorldAdvance": true,
+    "captureTimesValid": true,
+    "matchEventCountMatches": true,
+    "matchEventIdentitiesValid": true,
+    "associatedEventFilenameMatches": true,
+    "captureWithinEventCoverage": true,
+    "captureBoundsFiniteAndOrdered": true,
+    "allFrameDurationsFiniteAndNonnegative": true,
+    "rawDurationFitsWallEnvelope": true,
+    "eligibleDurationFitsWallEnvelope": true,
+    "frameCountMatches": true,
+    "eligibleFlagsMatchRecomputation": true,
+    "rawFrameStateAndOrderValid": true,
+    "includedFramesMatch": true,
+    "excludedFramesMatch": true,
+    "allFramesFocusedMatches": true,
+    "meanMatches": true,
+    "floorP95Matches": true,
+    "floorP99Matches": true,
+    "hasStartAndEndMemorySamples": true,
+    "memoryCountsAndBoundsValid": true,
+    "firstMemoryMatchesCaptureStartWorld": true,
+    "lastMemoryMatchesCaptureEndWorld": true
+  },
+  "requirements": {},
+  "status": "passed",
+  "minimumRequirementScope": "No duration/sample acceptance threshold imposed unless explicitly supplied",
+  "computed": {
+    "totalFrames": 2258,
+    "includedFrames": 1100,
+    "excludedFrames": 1158,
+    "eligibleUnpausedSeconds": 18.349424613952635,
+    "rawFrameIntervalSeconds": 37.7823426418304,
+    "sampledWallSeconds": 37.778206958000005,
+    "wallEndpointToleranceSeconds": 0.25,
+    "worldAdvancedSeconds": 18.400063037872314,
+    "wallSeconds": 37.79583145800001,
+    "meanFrameMs": 16.68129539489746,
+    "p95FrameMs": 16.671669006347656,
+    "p99FrameMs": 16.77812385559082,
+    "allFramesFocused": true
+  },
+  "frameAudit": {
+    "checks": {
+      "captureBoundsFiniteAndOrdered": true,
+      "allFrameDurationsFiniteAndNonnegative": true,
+      "rawDurationFitsWallEnvelope": true,
+      "eligibleDurationFitsWallEnvelope": true,
+      "frameCountMatches": true,
+      "eligibleFlagsMatchRecomputation": true,
+      "rawFrameStateAndOrderValid": true,
+      "includedFramesMatch": true,
+      "excludedFramesMatch": true,
+      "allFramesFocusedMatches": true,
+      "meanMatches": true,
+      "floorP95Matches": true,
+      "floorP99Matches": true
+    },
+    "issues": [],
+    "computed": {
+      "totalFrames": 2258,
+      "includedFrames": 1100,
+      "excludedFrames": 1158,
+      "eligibleUnpausedSeconds": 18.349424613952635,
+      "rawFrameIntervalSeconds": 37.7823426418304,
+      "sampledWallSeconds": 37.778206958000005,
+      "wallEndpointToleranceSeconds": 0.25,
+      "worldAdvancedSeconds": 18.400063037872314,
+      "wallSeconds": 37.79583145800001,
+      "meanFrameMs": 16.68129539489746,
+      "p95FrameMs": 16.671669006347656,
+      "p99FrameMs": 16.77812385559082,
+      "allFramesFocused": true
+    },
+    "excludedReasonCounts": {
+      "ineligibleStateOrTransition": 1158,
+      "pauseCurrentOrPrevious": 1158
+    },
+    "reasonCountScope": "Reasons overlap; their counts are not a sum of excludedFrames",
+    "wallEnvelopeScope": "Summed intervals are bounded by capture realtime with a fixed 0.25-second endpoint phase allowance. The lower bound uses the last sampled realtime, admitting an unsampled stop interval. No individual delta is required to equal a LateUpdate realtime difference; the allowance cannot grow with a frame duration."
+  },
+  "memoryAudit": {
+    "checks": {
+      "hasStartAndEndMemorySamples": true,
+      "memoryCountsAndBoundsValid": true,
+      "firstMemoryMatchesCaptureStartWorld": true,
+      "lastMemoryMatchesCaptureEndWorld": true
+    },
+    "issues": [],
+    "rows": [
+      {
+        "memoryIndex": 0,
+        "sample": {
+          "realtime": 6.640815672002267,
+          "worldTime": 6.599996089935303,
+          "managedBytes": 7815168,
+          "unityAllocatedBytes": 130891065,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 100,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 1,
+        "sample": {
+          "realtime": 7.651667506002268,
+          "worldTime": 7.599995136260986,
+          "managedBytes": 8024064,
+          "unityAllocatedBytes": 130951537,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 100,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 2,
+        "sample": {
+          "realtime": 8.65179196400227,
+          "worldTime": 8.599996566772461,
+          "managedBytes": 8257536,
+          "unityAllocatedBytes": 130983091,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 100,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 3,
+        "sample": {
+          "realtime": 9.65202525600227,
+          "worldTime": 9.600000381469727,
+          "managedBytes": 7938048,
+          "unityAllocatedBytes": 130982193,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 100,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 4,
+        "sample": {
+          "realtime": 10.66815067200227,
+          "worldTime": 10.600004196166992,
+          "managedBytes": 8138752,
+          "unityAllocatedBytes": 130993302,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 100,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 5,
+        "sample": {
+          "realtime": 11.66872142200227,
+          "worldTime": 11.600008010864258,
+          "managedBytes": 8388608,
+          "unityAllocatedBytes": 131031340,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 100,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 6,
+        "sample": {
+          "realtime": 12.68570638100227,
+          "worldTime": 12.600011825561523,
+          "managedBytes": 8011776,
+          "unityAllocatedBytes": 131078635,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 100,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 7,
+        "sample": {
+          "realtime": 13.703030756002269,
+          "worldTime": 13.700016021728516,
+          "managedBytes": 8269824,
+          "unityAllocatedBytes": 131131192,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 100,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 8,
+        "sample": {
+          "realtime": 14.71947563100227,
+          "worldTime": 14.700019836425781,
+          "managedBytes": 8515584,
+          "unityAllocatedBytes": 131160111,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 100,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 9,
+        "sample": {
+          "realtime": 15.735345422002268,
+          "worldTime": 15.700023651123047,
+          "managedBytes": 8179712,
+          "unityAllocatedBytes": 131196052,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 100,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 10,
+        "sample": {
+          "realtime": 16.73614413100227,
+          "worldTime": 16.700027465820312,
+          "managedBytes": 8409088,
+          "unityAllocatedBytes": 131194692,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 100,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 11,
+        "sample": {
+          "realtime": 17.75192988100227,
+          "worldTime": 17.700031280517578,
+          "managedBytes": 8663040,
+          "unityAllocatedBytes": 131195509,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 100,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 12,
+        "sample": {
+          "realtime": 18.75262179700227,
+          "worldTime": 18.700035095214844,
+          "managedBytes": 8261632,
+          "unityAllocatedBytes": 131195164,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 99,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 13,
+        "sample": {
+          "realtime": 19.768999214002267,
+          "worldTime": 19.70003890991211,
+          "managedBytes": 8486912,
+          "unityAllocatedBytes": 131196612,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 98,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 14,
+        "sample": {
+          "realtime": 20.78544546400227,
+          "worldTime": 20.700042724609375,
+          "managedBytes": 8728576,
+          "unityAllocatedBytes": 131195252,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 98,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 15,
+        "sample": {
+          "realtime": 21.785529131002267,
+          "worldTime": 21.70004653930664,
+          "managedBytes": 8298496,
+          "unityAllocatedBytes": 131195756,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 96,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 16,
+        "sample": {
+          "realtime": 22.78594450600227,
+          "worldTime": 22.700050354003906,
+          "managedBytes": 8507392,
+          "unityAllocatedBytes": 131194733,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 95,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 17,
+        "sample": {
+          "realtime": 23.802345672002268,
+          "worldTime": 23.8000545501709,
+          "managedBytes": 8794112,
+          "unityAllocatedBytes": 131195309,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 94,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 18,
+        "sample": {
+          "realtime": 24.802630214002267,
+          "worldTime": 24.800058364868164,
+          "managedBytes": 8343552,
+          "unityAllocatedBytes": 131196812,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 94,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 19,
+        "sample": {
+          "realtime": 25.81834892200227,
+          "worldTime": 25.000059127807617,
+          "managedBytes": 9379840,
+          "unityAllocatedBytes": 131261116,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 94,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 20,
+        "sample": {
+          "realtime": 26.818881131002268,
+          "worldTime": 25.000059127807617,
+          "managedBytes": 9420800,
+          "unityAllocatedBytes": 131254156,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 94,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 21,
+        "sample": {
+          "realtime": 27.83502175600227,
+          "worldTime": 25.000059127807617,
+          "managedBytes": 9478144,
+          "unityAllocatedBytes": 131254076,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 94,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 22,
+        "sample": {
+          "realtime": 28.835758506002268,
+          "worldTime": 25.000059127807617,
+          "managedBytes": 9551872,
+          "unityAllocatedBytes": 131253740,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 94,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 23,
+        "sample": {
+          "realtime": 29.85230592200227,
+          "worldTime": 25.000059127807617,
+          "managedBytes": 9629696,
+          "unityAllocatedBytes": 131253660,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 94,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 24,
+        "sample": {
+          "realtime": 30.868467714002268,
+          "worldTime": 25.000059127807617,
+          "managedBytes": 9703424,
+          "unityAllocatedBytes": 131254076,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 94,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 25,
+        "sample": {
+          "realtime": 31.86846675600227,
+          "worldTime": 25.000059127807617,
+          "managedBytes": 9785344,
+          "unityAllocatedBytes": 131240524,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 94,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 26,
+        "sample": {
+          "realtime": 32.86896679700227,
+          "worldTime": 25.000059127807617,
+          "managedBytes": 9854976,
+          "unityAllocatedBytes": 131240444,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 94,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 27,
+        "sample": {
+          "realtime": 33.86906313100227,
+          "worldTime": 25.000059127807617,
+          "managedBytes": 9928704,
+          "unityAllocatedBytes": 131240940,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 94,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 28,
+        "sample": {
+          "realtime": 34.88516821400227,
+          "worldTime": 25.000059127807617,
+          "managedBytes": 9998336,
+          "unityAllocatedBytes": 131240444,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 94,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 29,
+        "sample": {
+          "realtime": 35.88571004700227,
+          "worldTime": 25.000059127807617,
+          "managedBytes": 10072064,
+          "unityAllocatedBytes": 131240524,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 94,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 30,
+        "sample": {
+          "realtime": 36.901774756002276,
+          "worldTime": 25.000059127807617,
+          "managedBytes": 8192000,
+          "unityAllocatedBytes": 131240316,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 94,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 31,
+        "sample": {
+          "realtime": 37.902357547002275,
+          "worldTime": 25.000059127807617,
+          "managedBytes": 8224768,
+          "unityAllocatedBytes": 131242028,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 94,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 32,
+        "sample": {
+          "realtime": 38.918967172002276,
+          "worldTime": 25.000059127807617,
+          "managedBytes": 8269824,
+          "unityAllocatedBytes": 131240812,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 94,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 33,
+        "sample": {
+          "realtime": 39.93520404700227,
+          "worldTime": 25.000059127807617,
+          "managedBytes": 8335360,
+          "unityAllocatedBytes": 131240732,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 94,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 34,
+        "sample": {
+          "realtime": 40.93570183900227,
+          "worldTime": 25.000059127807617,
+          "managedBytes": 8409088,
+          "unityAllocatedBytes": 131240812,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 94,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 35,
+        "sample": {
+          "realtime": 41.951887339002276,
+          "worldTime": 25.000059127807617,
+          "managedBytes": 8482816,
+          "unityAllocatedBytes": 131240732,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 94,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 36,
+        "sample": {
+          "realtime": 42.96862650600227,
+          "worldTime": 25.000059127807617,
+          "managedBytes": 8556544,
+          "unityAllocatedBytes": 131240812,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 94,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 37,
+        "sample": {
+          "realtime": 43.985122339002274,
+          "worldTime": 25.000059127807617,
+          "managedBytes": 8634368,
+          "unityAllocatedBytes": 131240732,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 94,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      },
+      {
+        "memoryIndex": 38,
+        "sample": {
+          "realtime": 44.436331506002276,
+          "worldTime": 25.000059127807617,
+          "managedBytes": 8675328,
+          "unityAllocatedBytes": 131240644,
+          "livingUnits": 100,
+          "playerUnits0": 50,
+          "playerUnits1": 50,
+          "neutralUnits": 0,
+          "viewportVisibleUnitCenters": 94,
+          "livingBuildings": 0,
+          "totalEntities": 229
+        },
+        "checks": {
+          "nonnegativeCountsAndMemory": true,
+          "unitOwnerPartitionMatches": true,
+          "livingCountFitsHistoricalEntityCount": true,
+          "viewportMetricPresentAndInAliveRange": true,
+          "countsMatchActualSpawnDeathPrefix": true,
+          "realtimeWithinCaptureAndMonotonic": true,
+          "worldTimeWithinCaptureAndMonotonic": true
+        },
+        "matchingEventPrefixLines": [
+          307
+        ],
+        "sameTickAmbiguousPrefixes": false
+      }
+    ],
+    "countScope": "Living units include neutral guardians; totalEntities includes historical dead entities. Exact event prefix is allowed within a shared simulation tick; it does not provide render-frame timestamps for events.",
+    "viewportMetricScope": "Only presence and 0..livingUnits are audited for viewportVisibleUnitCenters. Camera/fog/viewport-center inclusion cannot be reconstructed independently from event time alone, and does not prove unobstructed or HUD-free visibility of all units."
+  },
+  "eventIssues": [],
+  "sources": {
+    "capture": {
+      "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/PerformanceCaptures/Frontier-Performance-20261003-032253-988-31eba6d8477240c8861c0ec65b683710.json",
+      "sha256": "9af1e06a39fde1c25a88f8525c7c4b958b5bbb7d78097adfcc3e76692716d943",
+      "archivedPath": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-100-attempt-001/Frontier-Performance-20261003-032253-988-31eba6d8477240c8861c0ec65b683710.json",
+      "archiveHashMatches": true
+    },
+    "matchReport": {
+      "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261003-032329-954-fc76cd19184d47768cbc76cb7fcc9518-menu_exit.json",
+      "sha256": "546dd3ccedced4f79a33b82b5c7ef940626c76199d2742d8d5e12992c097e3ae",
+      "archivedPath": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-100-attempt-001/20261003-032329-954-fc76cd19184d47768cbc76cb7fcc9518-menu_exit.json",
+      "archiveHashMatches": true
+    },
+    "events": {
+      "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261003-032329-954-fc76cd19184d47768cbc76cb7fcc9518-menu_exit-events.jsonl",
+      "sha256": "dfa166ff64677afce752001c29f702b57e22719b479865f4a7e7e0941bd427a6",
+      "archivedPath": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-100-attempt-001/20261003-032329-954-fc76cd19184d47768cbc76cb7fcc9518-menu_exit-events.jsonl",
+      "archiveHashMatches": true
+    },
+    "rules": {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Resources/Rules.json",
+      "sha256": "a438291dbb42e0996485fb069031b24a95b5323d9d180135a0aba44cb272c064",
+      "archivedPath": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-100-attempt-001/Rules.json",
+      "archiveHashMatches": true
+    },
+    "auditor": {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/verify_performance.py",
+      "sha256": "887cc94de3515f4be01acdb1085f30b4f198c235b23296bb6c2f6aeb3daaf5cc",
+      "archivedPath": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/Performance/scale-100-attempt-001/verify_performance.py",
+      "archiveHashMatches": true
+    }
+  },
+  "captureIdentity": {
+    "buildGuid": "128a731d440e4b7a94abfcc74b88fa97",
+    "unityVersion": "6000.6.3f1",
+    "platform": "OSXPlayer",
+    "cpu": "Apple M3 Pro",
+    "gpu": "Apple M3 Pro",
+    "resolution": "2560x1440",
+    "utcStart": "2026-10-03T03:22:16.1898400Z",
+    "utcEnd": "2026-10-03T03:22:53.9884110Z",
+    "stopReason": "f8",
+    "autoplay": false,
+    "benchmark": true,
+    "singleSession": true,
+    "truncated": false,
+    "gc0": 9,
+    "gc1": 9,
+    "gc2": 9
+  }
+}

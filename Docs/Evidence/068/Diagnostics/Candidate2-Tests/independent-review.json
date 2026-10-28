@@ -1,0 +1,477 @@
+{
+  "schema": 1,
+  "reviewedAtUtc": "2026-10-05T16:18:33.432117+00:00",
+  "status": "Passed",
+  "scope": "Independent read-only audit of completed full Unity EditMode/PlayMode reports and their exact frozen source. No Unity or test execution by this reviewer. Native two-process LAN, performance and delivery have separate evidence.",
+  "runDirectory": "Builds/Tests/run-cJvXP8if",
+  "runtimeCommit": "be6665d53e9c0c7fc08c1e9f805dfad2c6906de4",
+  "currentHeadAtReview": "be6665d53e9c0c7fc08c1e9f805dfad2c6906de4",
+  "sourceFingerprint": "38d592d516a6ad62d68bd42a5940f996851a7e469bfe20bb35bcc67b92428ad7",
+  "inputFiles": 630,
+  "sourceEvidence": {
+    "file": "Builds/Tests/run-cJvXP8if/source-evidence.json",
+    "bytes": 80693,
+    "sha256": "f0f0b7527ed6d243c28a88e08608402da9407737acdc83f505f949f5dcf21528"
+  },
+  "recordedAtUtc": "2026-10-05T16:16:02.369543+00:00",
+  "tests": {
+    "EditMode": {
+      "file": {
+        "file": "Builds/Tests/run-cJvXP8if/EditMode.xml",
+        "bytes": 659248,
+        "sha256": "32635c6a7b8f70e825b77c2d543920b1fe6e3e596f19f51d97c3025ef3435688"
+      },
+      "result": "Passed",
+      "counts": {
+        "total": 817,
+        "passed": 817,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "testcasecount": 817
+      },
+      "leafCases": 817,
+      "uniqueLeafNames": 817,
+      "leafStatuses": {
+        "Passed": 817
+      },
+      "startUtc": "2026-10-05 16:08:55Z",
+      "endUtc": "2026-10-05 16:12:29Z",
+      "durationSeconds": 213.5284914,
+      "sortedCaseNamesSha256": "f0ef64da3b983f77a38a1cc1b4ccd02518beb68094e28cd6a7ff2f59dcd9ec04"
+    },
+    "PlayMode": {
+      "file": {
+        "file": "Builds/Tests/run-cJvXP8if/PlayMode.xml",
+        "bytes": 492873,
+        "sha256": "b27863775009068619287ecc0784fab5663cfebed85cd17f4bf8270fd20c36e9"
+      },
+      "result": "Passed",
+      "counts": {
+        "total": 368,
+        "passed": 368,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0,
+        "testcasecount": 368
+      },
+      "leafCases": 368,
+      "uniqueLeafNames": 368,
+      "leafStatuses": {
+        "Passed": 368
+      },
+      "startUtc": "2026-10-05 16:12:40Z",
+      "endUtc": "2026-10-05 16:16:00Z",
+      "durationSeconds": 199.5829836,
+      "sortedCaseNamesSha256": "05b833f84ec57b9e44c4eaf810e89082aa728ffd0187026dda26a3defa6bb0b8"
+    }
+  },
+  "passedTotal": 1185,
+  "failedTotal": 0,
+  "skippedTotal": 0,
+  "inconclusiveTotal": 0,
+  "legacy067Baseline": {
+    "EditMode": {
+      "baselineFile": {
+        "file": "Docs/Evidence/067/Tests/EditMode.xml",
+        "bytes": 598784,
+        "sha256": "1aa522d00f468f6dcd7268fd384dd6b1caee0a4fcdb62cfcdf612b53cae96519"
+      },
+      "baselineCases": 740,
+      "allBaselineNamesFoundAndPassed": true,
+      "missingNames": [],
+      "notPassedNames": [],
+      "legacyNonReplayCases": 710,
+      "legacyReplayCases": 30,
+      "newCasesComparedWith067": 77
+    },
+    "PlayMode": {
+      "baselineFile": {
+        "file": "Docs/Evidence/067/Tests/PlayMode.xml",
+        "bytes": 343088,
+        "sha256": "8d1a6cb813db3308e12ed9d99bbbc9f155963d6f3b6691b66b5a60ee7041c030"
+      },
+      "baselineCases": 357,
+      "allBaselineNamesFoundAndPassed": true,
+      "missingNames": [],
+      "notPassedNames": [],
+      "legacyNonReplayCases": 352,
+      "legacyReplayCases": 5,
+      "newCasesComparedWith067": 11
+    }
+  },
+  "legacyBaselineTotal": 1097,
+  "legacyNonReplayTotal": 1062,
+  "legacyReplayTotal": 35,
+  "lanFixtures": {
+    "Frontier.Tests.LanAuthority068Tests": {
+      "mode": "EditMode",
+      "cases": 41,
+      "results": {
+        "Passed": 41
+      }
+    },
+    "Frontier.Tests.LanBoundary068Tests": {
+      "mode": "EditMode",
+      "cases": 2,
+      "results": {
+        "Passed": 2
+      }
+    },
+    "Frontier.Tests.LanQueue068Tests": {
+      "mode": "EditMode",
+      "cases": 10,
+      "results": {
+        "Passed": 10
+      }
+    },
+    "Frontier.Tests.LanReplication068Tests": {
+      "mode": "EditMode",
+      "cases": 8,
+      "results": {
+        "Passed": 8
+      }
+    },
+    "Frontier.Tests.LanTransport068Tests": {
+      "mode": "EditMode",
+      "cases": 12,
+      "results": {
+        "Passed": 12
+      }
+    },
+    "Frontier.Tests.LanWire068Tests": {
+      "mode": "EditMode",
+      "cases": 4,
+      "results": {
+        "Passed": 4
+      }
+    },
+    "Frontier.Tests.LanLifecycle068Tests": {
+      "mode": "PlayMode",
+      "cases": 6,
+      "results": {
+        "Passed": 6
+      }
+    },
+    "Frontier.Tests.LanPresentation068Tests": {
+      "mode": "PlayMode",
+      "cases": 5,
+      "results": {
+        "Passed": 5
+      }
+    }
+  },
+  "lanTotal": 88,
+  "replayFixtures": {
+    "Frontier.Tests.Replay067Tests": {
+      "mode": "EditMode",
+      "cases": 10,
+      "results": {
+        "Passed": 10
+      }
+    },
+    "Frontier.Tests.ReplayStore067Tests": {
+      "mode": "EditMode",
+      "cases": 20,
+      "results": {
+        "Passed": 20
+      }
+    },
+    "Frontier.Tests.Replay067IntegrationTests": {
+      "mode": "PlayMode",
+      "cases": 5,
+      "results": {
+        "Passed": 5
+      }
+    }
+  },
+  "candidate1DiscoveryDifference": {
+    "EditMode": {
+      "candidate1XML": {
+        "file": "Builds/Tests/run-A7qUCXDB/EditMode.xml",
+        "bytes": 659281,
+        "sha256": "a65d558f1b8495976a994e98989274d37c0133ada41a913609474596b9f2e765"
+      },
+      "addedNames": [],
+      "removedNames": [],
+      "addedCaseResults": []
+    },
+    "PlayMode": {
+      "candidate1XML": {
+        "file": "Builds/Tests/run-A7qUCXDB/PlayMode.xml",
+        "bytes": 480093,
+        "sha256": "5338a50c6647c1f546d508cb68487937d4c86f30ff45cb8361e684b252880e8f"
+      },
+      "addedNames": [
+        "Frontier.Tests.LanLifecycle068Tests.DisconnectedHostCanResumeTheSharedPauseThroughItsActualMenu"
+      ],
+      "removedNames": [],
+      "addedCaseResults": [
+        {
+          "fullname": "Frontier.Tests.LanLifecycle068Tests.DisconnectedHostCanResumeTheSharedPauseThroughItsActualMenu",
+          "result": "Passed",
+          "durationSeconds": 1.29913
+        }
+      ]
+    }
+  },
+  "currentSourceDriftDetected": false,
+  "transientInitTestScenesRemaining": [],
+  "verifier": {
+    "argv": [
+      "python3",
+      "Tools/verify-delivery.py",
+      "--reports-dir",
+      "Builds/Tests/run-cJvXP8if",
+      "--require-current-source"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS     Editor version — m_EditorVersion: 6000.6.3f1\nm_EditorVersionWithRevision: 6000.6.3f1 (45d8eee7de74)\nPASS     Locked direct dependencies\nPASS     Assets metadata\nPASS     Script importer execution order\nPASS     Enabled native scene\nPASS     Scene GameController reference\nPASS     Private absolute runtime dependencies\nPASS     Tests match current source — 38d592d516a6ad62d68bd42a5940f996851a7e469bfe20bb35bcc67b92428ad7\nPASS     EditMode — 817/817; failed=0; UTC 2026-10-05 16:12:29Z; EditMode.xml\nPASS     PlayMode — 368/368; failed=0; UTC 2026-10-05 16:16:00Z; PlayMode.xml\nNative input, sound, full-match experience and performance require separate evidence.\n",
+    "stderr": "",
+    "stdoutSha256": "06c804ca7ed04c912b9491cc9e9586465b05a97b85dcd864b2046b41acaa7f1a"
+  },
+  "checks": [
+    {
+      "name": "completed final run marker",
+      "passed": true,
+      "detail": "The final marker is written by Tools/test.sh after recording and current-source verification"
+    },
+    {
+      "name": "source manifest schema and canonical fingerprint",
+      "passed": true,
+      "detail": {
+        "recorded": "38d592d516a6ad62d68bd42a5940f996851a7e469bfe20bb35bcc67b92428ad7",
+        "computed": "38d592d516a6ad62d68bd42a5940f996851a7e469bfe20bb35bcc67b92428ad7",
+        "expected": "38d592d516a6ad62d68bd42a5940f996851a7e469bfe20bb35bcc67b92428ad7"
+      }
+    },
+    {
+      "name": "630 current inputs match frozen tested inputs",
+      "passed": true,
+      "detail": {
+        "inputFiles": 630,
+        "fingerprint": "38d592d516a6ad62d68bd42a5940f996851a7e469bfe20bb35bcc67b92428ad7",
+        "differencePaths": []
+      }
+    },
+    {
+      "name": "runtime commit exact tested source blobs",
+      "passed": true,
+      "detail": {
+        "commit": "be6665d53e9c0c7fc08c1e9f805dfad2c6906de4",
+        "sourceBlobs": 630,
+        "differencePaths": []
+      }
+    },
+    {
+      "name": "EditMode full summary and all leaf cases pass",
+      "passed": true,
+      "detail": {
+        "counts": {
+          "total": 817,
+          "passed": 817,
+          "failed": 0,
+          "skipped": 0,
+          "inconclusive": 0,
+          "testcasecount": 817
+        },
+        "uniqueLeafNames": 817,
+        "leafStatuses": {
+          "Passed": 817
+        }
+      }
+    },
+    {
+      "name": "EditMode XML bytes and count bound in source manifest",
+      "passed": true,
+      "detail": {
+        "file": "EditMode.xml",
+        "sha256": "32635c6a7b8f70e825b77c2d543920b1fe6e3e596f19f51d97c3025ef3435688",
+        "passed": 817
+      }
+    },
+    {
+      "name": "EditMode all old067 baseline names execute and pass",
+      "passed": true,
+      "detail": {
+        "baselineCases": 740,
+        "missing": [],
+        "notPassed": []
+      }
+    },
+    {
+      "name": "PlayMode full summary and all leaf cases pass",
+      "passed": true,
+      "detail": {
+        "counts": {
+          "total": 368,
+          "passed": 368,
+          "failed": 0,
+          "skipped": 0,
+          "inconclusive": 0,
+          "testcasecount": 368
+        },
+        "uniqueLeafNames": 368,
+        "leafStatuses": {
+          "Passed": 368
+        }
+      }
+    },
+    {
+      "name": "PlayMode XML bytes and count bound in source manifest",
+      "passed": true,
+      "detail": {
+        "file": "PlayMode.xml",
+        "sha256": "b27863775009068619287ecc0784fab5663cfebed85cd17f4bf8270fd20c36e9",
+        "passed": 368
+      }
+    },
+    {
+      "name": "PlayMode all old067 baseline names execute and pass",
+      "passed": true,
+      "detail": {
+        "baselineCases": 357,
+        "missing": [],
+        "notPassed": []
+      }
+    },
+    {
+      "name": "all eight LAN fixtures and 88 cases pass",
+      "passed": true,
+      "detail": {
+        "Frontier.Tests.LanAuthority068Tests": {
+          "mode": "EditMode",
+          "cases": 41,
+          "results": {
+            "Passed": 41
+          }
+        },
+        "Frontier.Tests.LanBoundary068Tests": {
+          "mode": "EditMode",
+          "cases": 2,
+          "results": {
+            "Passed": 2
+          }
+        },
+        "Frontier.Tests.LanQueue068Tests": {
+          "mode": "EditMode",
+          "cases": 10,
+          "results": {
+            "Passed": 10
+          }
+        },
+        "Frontier.Tests.LanReplication068Tests": {
+          "mode": "EditMode",
+          "cases": 8,
+          "results": {
+            "Passed": 8
+          }
+        },
+        "Frontier.Tests.LanTransport068Tests": {
+          "mode": "EditMode",
+          "cases": 12,
+          "results": {
+            "Passed": 12
+          }
+        },
+        "Frontier.Tests.LanWire068Tests": {
+          "mode": "EditMode",
+          "cases": 4,
+          "results": {
+            "Passed": 4
+          }
+        },
+        "Frontier.Tests.LanLifecycle068Tests": {
+          "mode": "PlayMode",
+          "cases": 6,
+          "results": {
+            "Passed": 6
+          }
+        },
+        "Frontier.Tests.LanPresentation068Tests": {
+          "mode": "PlayMode",
+          "cases": 5,
+          "results": {
+            "Passed": 5
+          }
+        }
+      }
+    },
+    {
+      "name": "all three old replay fixtures and 35 cases pass",
+      "passed": true,
+      "detail": {
+        "Frontier.Tests.Replay067Tests": {
+          "mode": "EditMode",
+          "cases": 10,
+          "results": {
+            "Passed": 10
+          }
+        },
+        "Frontier.Tests.ReplayStore067Tests": {
+          "mode": "EditMode",
+          "cases": 20,
+          "results": {
+            "Passed": 20
+          }
+        },
+        "Frontier.Tests.Replay067IntegrationTests": {
+          "mode": "PlayMode",
+          "cases": 5,
+          "results": {
+            "Passed": 5
+          }
+        }
+      }
+    },
+    {
+      "name": "new offline-host Resume regression actually discovered and passed",
+      "passed": true,
+      "detail": {
+        "EditMode": {
+          "candidate1XML": {
+            "file": "Builds/Tests/run-A7qUCXDB/EditMode.xml",
+            "bytes": 659281,
+            "sha256": "a65d558f1b8495976a994e98989274d37c0133ada41a913609474596b9f2e765"
+          },
+          "addedNames": [],
+          "removedNames": [],
+          "addedCaseResults": []
+        },
+        "PlayMode": {
+          "candidate1XML": {
+            "file": "Builds/Tests/run-A7qUCXDB/PlayMode.xml",
+            "bytes": 480093,
+            "sha256": "5338a50c6647c1f546d508cb68487937d4c86f30ff45cb8361e684b252880e8f"
+          },
+          "addedNames": [
+            "Frontier.Tests.LanLifecycle068Tests.DisconnectedHostCanResumeTheSharedPauseThroughItsActualMenu"
+          ],
+          "removedNames": [],
+          "addedCaseResults": [
+            {
+              "fullname": "Frontier.Tests.LanLifecycle068Tests.DisconnectedHostCanResumeTheSharedPauseThroughItsActualMenu",
+              "result": "Passed",
+              "durationSeconds": 1.29913
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "current-source verifier success",
+      "passed": true,
+      "detail": {
+        "exitCode": 0,
+        "passSections": 10
+      }
+    },
+    {
+      "name": "source and result bytes stayed frozen during review",
+      "passed": true,
+      "detail": "Source inventory, both XML and original manifest re-read unchanged at end"
+    }
+  ],
+  "preliminaryRunsIncluded": false,
+  "candidate1Receipt": "../Diagnostics/Candidate1-Tests/independent-review.json"
+}

@@ -1,0 +1,113 @@
+{
+  "approvedPayload": {
+    "applicationMembers": 319,
+    "applicationRoot": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.12.0/Candidate2/Build/Frontier Reckoning.app",
+    "clientExtraMembers": 6,
+    "galleryMembers": 66
+  },
+  "checks": {
+    "allMembersBytesSha256UnixModesTypesCrcPaths": "Passed",
+    "cachePersonalStorageOldCandidateExclusions": "Passed",
+    "clientApprovedInventoryCompleteness": "Passed",
+    "completeApplicationLstatInventory": "Passed",
+    "confinedRelativeSymlinkGraph": "Passed",
+    "currentSourceInputBytesAndModes": "Passed",
+    "galleryExactApprovedSelection": "Passed",
+    "immutableApplicationTreeAndBuildIdentity": "Passed",
+    "manifestApprovalAllZipsAndPayloadsUnchangedDuringReview": "Passed",
+    "manifestSchemaAndAuthorizedReleaseFreeze": "Passed",
+    "runtimeAndSnapshotInputGitBlobs": "Passed",
+    "source664InputFingerprint": "Passed",
+    "sourceGitAllowlistCompleteness": "Passed",
+    "sourceGitBlobBytesSha256Modes": "Passed",
+    "wholeZipBytesAndSha256": "Passed"
+  },
+  "createdUtc": "2026-10-05T19:29:17Z",
+  "identity": {
+    "buildGuid": "4546189bdd6b40fa92789fe697f7f0a7",
+    "release": "069",
+    "runtimeCommit": "28cd1b3191fafd49417d544e60dc898986568aa8",
+    "sourceFingerprint": "4cbc889a5ba3d706768a2b568af42dc4ec8b4cf0d60e7b45a4cc706d9ddab3ad",
+    "sourceInputs": 664,
+    "sourceSnapshotCommit": "ceae20928462716178bb740c914106730f890992",
+    "tests": {
+      "EditMode": 895,
+      "PlayMode": 391,
+      "result": "Passed",
+      "run": "run-0zP2pnt7",
+      "total": 1286
+    },
+    "version": "0.12.0"
+  },
+  "manifest": {
+    "bytes": 505512,
+    "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.12.0/Candidate2/Packaging/release-manifest.json",
+    "sha256": "5f1361b175aa1e9416985900a7b223cb1ddc91f8c9e43af14533fdc39adf4009"
+  },
+  "packageDirectory": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.12.0/Candidate2",
+  "packages": {
+    "client": {
+      "bytes": 76074373,
+      "file": "Frontier-Reckoning-0.12.0-macOS-arm64.zip",
+      "memberBytesShaModesTypesCrcAndPaths": "Passed",
+      "memberKinds": {
+        "directory": 23,
+        "file": 302,
+        "symlink": 0
+      },
+      "memberRawBytes": 191106021,
+      "members": 325,
+      "prefix": "Frontier-Reckoning-0.12.0",
+      "sha256": "00540dd11de0bf75a96a1848a15a349ead5d2317a5dc47d89f9cb387b7d4b667"
+    },
+    "gallery": {
+      "bytes": 14306755,
+      "file": "Frontier-Reckoning-0.12.0-native-gallery.zip",
+      "memberBytesShaModesTypesCrcAndPaths": "Passed",
+      "memberKinds": {
+        "directory": 0,
+        "file": 66,
+        "symlink": 0
+      },
+      "memberRawBytes": 15353401,
+      "members": 66,
+      "prefix": "Frontier-Reckoning-0.12.0-gallery",
+      "sha256": "6162eae70f133fd06e0ef0ba2ae0f374f0af015f11228aed53ff937c3b98a097"
+    },
+    "source": {
+      "bytes": 42632853,
+      "file": "Frontier-Reckoning-0.12.0-source.zip",
+      "memberBytesShaModesTypesCrcAndPaths": "Passed",
+      "memberKinds": {
+        "directory": 0,
+        "file": 1084,
+        "symlink": 0
+      },
+      "memberRawBytes": 61918990,
+      "members": 1084,
+      "prefix": "FrontierReckoning",
+      "sha256": "c4173ef26ce0c6ff66377d105a276fa680be07c63c7dfa7ed9446951e693cd81"
+    }
+  },
+  "payloadApproval": {
+    "bytes": 130238,
+    "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.12.0/Candidate2/Packaging/payload-approval-069.json",
+    "sha256": "d4e984b2b0babb73d69bd72c9ed683aea83a40eb549c596519c4e2cf70c0dea5"
+  },
+  "result": "Passed",
+  "schema": 1,
+  "scope": [
+    "Independent standard-library ZIP/Git/lstat verification; no packaging helper imports.",
+    "Every ZIP member is fully streamed and CRC/SHA/size/mode/type/path checked.",
+    "Every selected source file/symlink binds to sourceSnapshotCommit Git blob and mode; Git omits directory modes.",
+    "Client app must equal the complete separately frozen lstat tree, including directories and symlinks.",
+    "Client extras and gallery equal the exact separately approved source-file inventory.",
+    "No native gameplay, physical two-Mac, new test execution, performance, cloud download or remote hash claim."
+  ],
+  "verifier": {
+    "bytes": 60370,
+    "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.12.0/Candidate2/Packaging/independent-zip-verify-069-v2.py",
+    "implementation": "Independent standard-library ZIP streaming, Git-object hashing and complete lstat tree",
+    "sha256": "45ff87f054ebb4e4caeff671e999cc6215955e2cf8fb2034f4b17cf6b193ce5e"
+  }
+}

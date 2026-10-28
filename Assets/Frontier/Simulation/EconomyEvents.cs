@@ -48,6 +48,7 @@ namespace Frontier
         }
 
         private static bool RecordsPopulation(string kind) => kind == "Payment" || kind == "Refund" ||
-            kind == "ProductionQueued" || kind == "Spawn" || kind == "Death" || kind == "BuildingComplete";
+            kind == "ProductionQueued" || kind == "Spawn" || kind == "Death" || kind == "BuildingComplete" || kind == "AutomaticWorkerProduced" ||
+            kind == "RevolutionCompleted" || kind == "WorkerConverted" || kind == "CivilianRebuilt";
     }
 }

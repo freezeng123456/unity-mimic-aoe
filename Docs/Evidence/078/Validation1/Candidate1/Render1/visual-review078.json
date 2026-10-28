@@ -1,0 +1,515 @@
+{
+  "schema": "independent-original-render-review-078",
+  "recordedAtUtc": "2026-10-10T01:11:22.306342+00:00",
+  "status": "accepted-bounded-shoreline-visual-improvement-and-evidence-integrity",
+  "errors": [],
+  "independence": "Separate post-run read-only original-byte/XML/source/PNG decode audit and direct view_image inspection. This reviewer authored the fixture, so this is not an independently authored verifier or a second execution. No scene recreated, no source edits or Unity/native launch.",
+  "sourceFingerprint": "05dc944960c2724e08f2d6eeb02df282710d099ae36cf35bb7923d8918166217",
+  "sourceInputCount": 788,
+  "sourceInventorySha256": "16274d3072a303990c14489e2d71a0da4cfdb935845a473cb4185ae048251eed",
+  "referenceRevision": "0a5788e1ef22eea27b62b29d309684b303856f29",
+  "appVersion": "0.21.0",
+  "editorBuildGuidIsZeroNotNativeBuildIdentity": true,
+  "runner": {
+    "path": "runner-receipt078.json",
+    "sha256": "211c55373b315a8e9d720466c0e87d58edda4dbfd25639c3026ec877c4536a8e",
+    "status": "closed",
+    "exitCode": 0,
+    "sourceStable": true,
+    "changedSources": [],
+    "process": {
+      "command": [
+        "/Applications/Unity/Hub/Editor/6000.6.3f1/Unity.app/Contents/MacOS/Unity",
+        "-batchmode",
+        "-projectPath",
+        "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project",
+        "-runTests",
+        "-testPlatform",
+        "PlayMode",
+        "-testFilter",
+        "Frontier.Tests.RiverShoreRender078Tests",
+        "-testResults",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.21.0/Candidate1/Render1/PlayMode.xml",
+        "-logFile",
+        "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.21.0/Candidate1/Render1/PlayMode.log"
+      ],
+      "startedUtc": "2026-10-10T01:07:17.593199+00:00",
+      "status": "closed",
+      "pid": 60781,
+      "exitCode": 0,
+      "finishedUtc": "2026-10-10T01:07:48.312399+00:00"
+    },
+    "sourceBeforeMapMatchesInventory": true,
+    "currentWorkingTreeMatchesInventory": true
+  },
+  "testXml": {
+    "path": "PlayMode.xml",
+    "sha256": "2076da976a1399ba09cc20c13aa18479659eb6e45068176e8d2c0d1e7114925a",
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "duration": 21.252065,
+    "testFullName": "Frontier.Tests.RiverShoreRender078Tests.ActualCandidateAndReconstructedCoarseGroundRenderAtOrdinaryCameraScales"
+  },
+  "checks": {
+    "all12PngByteHashes": true,
+    "all12PngIhdrAndCrcDecode": true,
+    "all12RgbaHashes": true,
+    "rgbaHashOrientation": "Pillow top-down decoded rows reversed to match Unity GetPixels32 bottom-up byte order; no images re-encoded or edited",
+    "all4PairFilesMatchRunReceipt": true,
+    "all4CameraTriplesIdenticalWithinView": true,
+    "worldTimeAndSimulationFrozen": true,
+    "allSceneAndMaterialDigestReceiptsConsistent": true,
+    "materialIdentityScope": "Source-reviewed runtime SceneHash includes actual non-ground MeshFilter mesh bytes, transforms, activeSelf, MeshRenderer state and material EntityId/shader/renderQueue/keywords/properties/texture identity; external audit validates source mechanism, passing execution and matching digests, not an independently reconstructed Unity scene or texture pixel hash.",
+    "all4RepeatControlsIndependentlyDecoded": true,
+    "candidateMeshRestoredRuntimeChecksPassed": true,
+    "originalFilesUnchangedDuringAudit": true
+  },
+  "meshCounts": {
+    "coarseVertices": 16641,
+    "fineVertices": 66049,
+    "coarseTriangles": 32768,
+    "fineTriangles": 131072,
+    "costClaim": "4x ground triangles and about 3.97x ground vertices for this Winding candidate; no measured FPS or performance-neutrality claim"
+  },
+  "images": [
+    {
+      "file": "01-east-bend-default26-control-reconstructed-coarse-one-metre.png",
+      "bytes": 2671103,
+      "sha256": "a4dbafe4b58d3e34784081e28a6ed9022a165c3663beb1b8bd56a53ff9334cf1",
+      "pngIhdr": [
+        1920,
+        1080,
+        8,
+        6
+      ],
+      "rgbaBottomUpSha256": "ecf510cf3f639d692582c9092e5ba5cb709748251f75756138a0020c725046b3",
+      "allDeclaredIdentityFieldsMatched": true
+    },
+    {
+      "file": "01-east-bend-default26-current-fine-half-metre.png",
+      "bytes": 2669703,
+      "sha256": "384a1d1b24b78605091202dc7c8a6ee040a7a290c79048221946ed4901c99e9b",
+      "pngIhdr": [
+        1920,
+        1080,
+        8,
+        6
+      ],
+      "rgbaBottomUpSha256": "656ac2802e058efa2402970077131c077beb2526640f3e3f80531e95ee88bbca",
+      "allDeclaredIdentityFieldsMatched": true
+    },
+    {
+      "file": "01-east-bend-default26-repeat-current-fine-half-metre.png",
+      "bytes": 2669740,
+      "sha256": "1f21826850d0d0f78e4e04086f2a71aa21a76469f0aec0fecde799831bc26746",
+      "pngIhdr": [
+        1920,
+        1080,
+        8,
+        6
+      ],
+      "rgbaBottomUpSha256": "d49b391960e14cd1d6ddd10a379e9650f588c68eb59e48332c2fe3076dab450b",
+      "allDeclaredIdentityFieldsMatched": true
+    },
+    {
+      "file": "02-east-bend-close16-control-reconstructed-coarse-one-metre.png",
+      "bytes": 2320863,
+      "sha256": "052c409c72336207e175194dd458d323a1d3a3a5cea56370409ee157d427139b",
+      "pngIhdr": [
+        1920,
+        1080,
+        8,
+        6
+      ],
+      "rgbaBottomUpSha256": "02320600c7909ccf23e90cb6e5626e82b019326a83e077803ad06dc116df24f3",
+      "allDeclaredIdentityFieldsMatched": true
+    },
+    {
+      "file": "02-east-bend-close16-current-fine-half-metre.png",
+      "bytes": 2319019,
+      "sha256": "8e272ee09c8a1cfb2159a4b0030d7f3c011cfc90a48011a378c39046efab4524",
+      "pngIhdr": [
+        1920,
+        1080,
+        8,
+        6
+      ],
+      "rgbaBottomUpSha256": "ca6d0f398433c15343564e23cdf9097a058b207db80295bd89cdc23c94149d6e",
+      "allDeclaredIdentityFieldsMatched": true
+    },
+    {
+      "file": "02-east-bend-close16-repeat-current-fine-half-metre.png",
+      "bytes": 2319019,
+      "sha256": "8e272ee09c8a1cfb2159a4b0030d7f3c011cfc90a48011a378c39046efab4524",
+      "pngIhdr": [
+        1920,
+        1080,
+        8,
+        6
+      ],
+      "rgbaBottomUpSha256": "ca6d0f398433c15343564e23cdf9097a058b207db80295bd89cdc23c94149d6e",
+      "allDeclaredIdentityFieldsMatched": true
+    },
+    {
+      "file": "03-harbor-pad-default26-control-reconstructed-coarse-one-metre.png",
+      "bytes": 2302820,
+      "sha256": "055f52b2f0cda8ccf679d578e1ecfb18b804dbaeef06b09a7583874b65500e6e",
+      "pngIhdr": [
+        1920,
+        1080,
+        8,
+        6
+      ],
+      "rgbaBottomUpSha256": "f7b0a4541809029737fa0b16798953f528da1593b139813b0e6d24336561979f",
+      "allDeclaredIdentityFieldsMatched": true
+    },
+    {
+      "file": "03-harbor-pad-default26-current-fine-half-metre.png",
+      "bytes": 2304370,
+      "sha256": "99fd5fdc9bde0058ec6f1067a9d2d1545334feee46e376a3d8621338e18550a4",
+      "pngIhdr": [
+        1920,
+        1080,
+        8,
+        6
+      ],
+      "rgbaBottomUpSha256": "6aa928958b14507aa67870521b2a2a3b6921771a3e95d7523e004278f6b172f9",
+      "allDeclaredIdentityFieldsMatched": true
+    },
+    {
+      "file": "03-harbor-pad-default26-repeat-current-fine-half-metre.png",
+      "bytes": 2304370,
+      "sha256": "99fd5fdc9bde0058ec6f1067a9d2d1545334feee46e376a3d8621338e18550a4",
+      "pngIhdr": [
+        1920,
+        1080,
+        8,
+        6
+      ],
+      "rgbaBottomUpSha256": "6aa928958b14507aa67870521b2a2a3b6921771a3e95d7523e004278f6b172f9",
+      "allDeclaredIdentityFieldsMatched": true
+    },
+    {
+      "file": "04-bridge-default26-control-reconstructed-coarse-one-metre.png",
+      "bytes": 2677612,
+      "sha256": "ef6fbecb07b0b0e3cf66cfbfb93411a420aabffd14e0cf8987e6869e6d1740da",
+      "pngIhdr": [
+        1920,
+        1080,
+        8,
+        6
+      ],
+      "rgbaBottomUpSha256": "9279caf696f8ec696c1a0a3e4308c409a00c97507eee840a1b03aca5aaa7eb70",
+      "allDeclaredIdentityFieldsMatched": true
+    },
+    {
+      "file": "04-bridge-default26-current-fine-half-metre.png",
+      "bytes": 2676920,
+      "sha256": "562068c1361fe00474d2b1457fffc2f45ae21c06fddd63190ea41919f101ce8c",
+      "pngIhdr": [
+        1920,
+        1080,
+        8,
+        6
+      ],
+      "rgbaBottomUpSha256": "880947069330a99fbf55646d07b285043503c2e4cf299637709db7a339e39202",
+      "allDeclaredIdentityFieldsMatched": true
+    },
+    {
+      "file": "04-bridge-default26-repeat-current-fine-half-metre.png",
+      "bytes": 2676920,
+      "sha256": "562068c1361fe00474d2b1457fffc2f45ae21c06fddd63190ea41919f101ce8c",
+      "pngIhdr": [
+        1920,
+        1080,
+        8,
+        6
+      ],
+      "rgbaBottomUpSha256": "880947069330a99fbf55646d07b285043503c2e4cf299637709db7a339e39202",
+      "allDeclaredIdentityFieldsMatched": true
+    }
+  ],
+  "pairs": [
+    {
+      "view": "01-east-bend-default26",
+      "cameraFocus": {
+        "x": 78.63077545166016,
+        "y": 67.98796844482422
+      },
+      "cameraZoom": 26.0,
+      "signalIndependentlyDecoded": {
+        "changedPixelsAboveThreshold": 52333,
+        "anyRgbChangedPixels": 212907,
+        "meanAbsoluteRgbDelta": 0.23521508487654322,
+        "maxRgbChannelDelta": 148,
+        "rgbaBytesIdentical": false
+      },
+      "repeatIndependentlyDecoded": {
+        "changedPixelsAboveThreshold": 0,
+        "anyRgbChangedPixels": 5,
+        "meanAbsoluteRgbDelta": 8.037551440329218e-07,
+        "maxRgbChannelDelta": 1,
+        "rgbaBytesIdentical": false
+      },
+      "cameraWorldSceneReceiptConsistency": true,
+      "meshWorldSceneRestorationRuntimeAsserted": true
+    },
+    {
+      "view": "02-east-bend-close16",
+      "cameraFocus": {
+        "x": 78.63077545166016,
+        "y": 67.98796844482422
+      },
+      "cameraZoom": 16.0,
+      "signalIndependentlyDecoded": {
+        "changedPixelsAboveThreshold": 82874,
+        "anyRgbChangedPixels": 316227,
+        "meanAbsoluteRgbDelta": 0.38389065715020576,
+        "maxRgbChannelDelta": 138,
+        "rgbaBytesIdentical": false
+      },
+      "repeatIndependentlyDecoded": {
+        "changedPixelsAboveThreshold": 0,
+        "anyRgbChangedPixels": 0,
+        "meanAbsoluteRgbDelta": 0.0,
+        "maxRgbChannelDelta": 0,
+        "rgbaBytesIdentical": true
+      },
+      "cameraWorldSceneReceiptConsistency": true,
+      "meshWorldSceneRestorationRuntimeAsserted": true
+    },
+    {
+      "view": "03-harbor-pad-default26",
+      "cameraFocus": {
+        "x": 44.0,
+        "y": 25.0
+      },
+      "cameraZoom": 26.0,
+      "signalIndependentlyDecoded": {
+        "changedPixelsAboveThreshold": 37519,
+        "anyRgbChangedPixels": 191304,
+        "meanAbsoluteRgbDelta": 0.16921248070987654,
+        "maxRgbChannelDelta": 190,
+        "rgbaBytesIdentical": false
+      },
+      "repeatIndependentlyDecoded": {
+        "changedPixelsAboveThreshold": 0,
+        "anyRgbChangedPixels": 0,
+        "meanAbsoluteRgbDelta": 0.0,
+        "maxRgbChannelDelta": 0,
+        "rgbaBytesIdentical": true
+      },
+      "cameraWorldSceneReceiptConsistency": true,
+      "meshWorldSceneRestorationRuntimeAsserted": true
+    },
+    {
+      "view": "04-bridge-default26",
+      "cameraFocus": {
+        "x": 57.53639221191406,
+        "y": 39.0
+      },
+      "cameraZoom": 26.0,
+      "signalIndependentlyDecoded": {
+        "changedPixelsAboveThreshold": 43368,
+        "anyRgbChangedPixels": 220321,
+        "meanAbsoluteRgbDelta": 0.1963159079218107,
+        "maxRgbChannelDelta": 150,
+        "rgbaBytesIdentical": false
+      },
+      "repeatIndependentlyDecoded": {
+        "changedPixelsAboveThreshold": 0,
+        "anyRgbChangedPixels": 0,
+        "meanAbsoluteRgbDelta": 0.0,
+        "maxRgbChannelDelta": 0,
+        "rgbaBytesIdentical": true
+      },
+      "cameraWorldSceneReceiptConsistency": true,
+      "meshWorldSceneRestorationRuntimeAsserted": true
+    }
+  ],
+  "visualInspection": {
+    "method": "tools.view_image detail original on each of all eight coarse/current pair PNGs; no edited/composited/cropped/substitute images",
+    "originalsViewed": [
+      "01-east-bend-default26-control-reconstructed-coarse-one-metre.png",
+      "01-east-bend-default26-current-fine-half-metre.png",
+      "02-east-bend-close16-control-reconstructed-coarse-one-metre.png",
+      "02-east-bend-close16-current-fine-half-metre.png",
+      "03-harbor-pad-default26-control-reconstructed-coarse-one-metre.png",
+      "03-harbor-pad-default26-current-fine-half-metre.png",
+      "04-bridge-default26-control-reconstructed-coarse-one-metre.png",
+      "04-bridge-default26-current-fine-half-metre.png"
+    ],
+    "pairFindings": [
+      {
+        "view": "01-east-bend-default26",
+        "verdict": "bounded improvement accepted",
+        "observations": "At ordinary 26 zoom, the coarse ground shows repeated saw-tooth/triangular shoreline bites along the upper-right outer bank below the tree line. Fine current makes that contact edge visibly more continuous and keeps the broad warm inner-bank sediment lobe. No new visible terrain hole, disconnected shore band or scenery displacement in this view. Remaining finite polyline/antialias and water-foam modulation are not a contour-perfect claim."
+      },
+      {
+        "view": "02-east-bend-close16",
+        "verdict": "bounded improvement accepted",
+        "observations": "At close 16 zoom, the same coarse outer-tree-line staircase is easier to identify and is substantially reduced in fine current. The outer bank remains narrower/darker than the inner sand lobe. Visible bridge pier and reed/gravel bases retain apparent ground contact; no new seam or detached base seen. Some gentle polygonal silhouette/foam texture remains; no zero-defect whole-map claim."
+      },
+      {
+        "view": "03-harbor-pad-default26",
+        "verdict": "no new visible defect in reviewed context",
+        "observations": "The harbor context is an EMPTY reserved pad near the opening town, not a built or paid Dock. Fine current smooths the downstream shore contact without moving the town, bridge, units or tree clumps. Bridge pier feet and reeds show no newly visible detachment. Dark clear background beyond the map bounds appears in both controls and is not accepted as an in-map hole or gameplay evidence."
+      },
+      {
+        "view": "04-bridge-default26",
+        "verdict": "no new visible defect in reviewed context",
+        "observations": "Both bridge approaches, deck, visible masonry piers, river contact and bank reeds remain coherent in the same camera. Fine current reduces coarse serration on surrounding shores. No newly visible approach seam, floating pier foot, broken terrain patch or reed-base drift was seen at this view. This does not verify movement across the bridge or paid construction."
+      }
+    ],
+    "verdict": "Accept the shown Winding shoreline visual improvement at these four controlled views, contingent on separate actual-clearance/mesh contracts and broader regression. Not all geometric/visual defects on all map positions or seeds."
+  },
+  "scopeLimits": [
+    "Reconstructed coarse ground in this candidate, not an old executable or old-native image.",
+    "Offscreen actual URP fixture, not a native client screenshot or match.",
+    "Fog fixture revealed; world not ticked; no movement or bridge navigation acceptance.",
+    "Harbor is an EMPTY reserved pad, not built/paid Dock or ship validation.",
+    "No FPS, many-unit benchmark, full-map/other-map/other-seed visual guarantee.",
+    "All repeats have zero pixels above RGB threshold 3, but default26 repeat differs in a tiny number of decoded channels and PNG bytes; do not label all repeats byte-identical."
+  ],
+  "originalInputManifest": {
+    "Captures078/01-east-bend-default26-control-reconstructed-coarse-one-metre.json": {
+      "sha256": "a2e51bcfd2c57d9d74d40b6450e031c0aa3715b33b5afbc75348017a371c5786",
+      "bytes": 2343
+    },
+    "Captures078/01-east-bend-default26-control-reconstructed-coarse-one-metre.png": {
+      "sha256": "a4dbafe4b58d3e34784081e28a6ed9022a165c3663beb1b8bd56a53ff9334cf1",
+      "bytes": 2671103
+    },
+    "Captures078/01-east-bend-default26-current-fine-half-metre.json": {
+      "sha256": "8ec3205e2b40e2a52fb8b836ade73197bf87bb3a8275e0769f14ab1c1fa6e97b",
+      "bytes": 2314
+    },
+    "Captures078/01-east-bend-default26-current-fine-half-metre.png": {
+      "sha256": "384a1d1b24b78605091202dc7c8a6ee040a7a290c79048221946ed4901c99e9b",
+      "bytes": 2669703
+    },
+    "Captures078/01-east-bend-default26-pair.json": {
+      "sha256": "668f6d984414abf7a0947c6546dd17c855e9def1ed25099a0e68879bfc38f498",
+      "bytes": 1383
+    },
+    "Captures078/01-east-bend-default26-repeat-current-fine-half-metre.json": {
+      "sha256": "538583eed40cfffc5453f06aef1f7b626fb268f7e9f5274b94534909c2c29659",
+      "bytes": 2328
+    },
+    "Captures078/01-east-bend-default26-repeat-current-fine-half-metre.png": {
+      "sha256": "1f21826850d0d0f78e4e04086f2a71aa21a76469f0aec0fecde799831bc26746",
+      "bytes": 2669740
+    },
+    "Captures078/02-east-bend-close16-control-reconstructed-coarse-one-metre.json": {
+      "sha256": "3f7fb0ee774ee0b4096ad585e3f34b642aa17fdbe454df3abb11d3ef6eca47cb",
+      "bytes": 2340
+    },
+    "Captures078/02-east-bend-close16-control-reconstructed-coarse-one-metre.png": {
+      "sha256": "052c409c72336207e175194dd458d323a1d3a3a5cea56370409ee157d427139b",
+      "bytes": 2320863
+    },
+    "Captures078/02-east-bend-close16-current-fine-half-metre.json": {
+      "sha256": "40195d7a78c770d06b5d9cb9dd4deabf0210a9fda7f42c903c47e11106763233",
+      "bytes": 2311
+    },
+    "Captures078/02-east-bend-close16-current-fine-half-metre.png": {
+      "sha256": "8e272ee09c8a1cfb2159a4b0030d7f3c011cfc90a48011a378c39046efab4524",
+      "bytes": 2319019
+    },
+    "Captures078/02-east-bend-close16-pair.json": {
+      "sha256": "e9f2aff5071973eedad71ef57d4c094d8f2edc8b7e28ab7cff9c6e8522c5f15a",
+      "bytes": 1358
+    },
+    "Captures078/02-east-bend-close16-repeat-current-fine-half-metre.json": {
+      "sha256": "219fae5d420fd2149f92f67161f48cd1d9ea36e86156c14b04c2dfdcc07b8d0b",
+      "bytes": 2325
+    },
+    "Captures078/02-east-bend-close16-repeat-current-fine-half-metre.png": {
+      "sha256": "8e272ee09c8a1cfb2159a4b0030d7f3c011cfc90a48011a378c39046efab4524",
+      "bytes": 2319019
+    },
+    "Captures078/03-harbor-pad-default26-control-reconstructed-coarse-one-metre.json": {
+      "sha256": "51d552fcaaaef28a128a83103cb22fe2de1c10f0e2281065e396e11af22e1cd4",
+      "bytes": 2295
+    },
+    "Captures078/03-harbor-pad-default26-control-reconstructed-coarse-one-metre.png": {
+      "sha256": "055f52b2f0cda8ccf679d578e1ecfb18b804dbaeef06b09a7583874b65500e6e",
+      "bytes": 2302820
+    },
+    "Captures078/03-harbor-pad-default26-current-fine-half-metre.json": {
+      "sha256": "81da0f53ccb6f18644868235e2dfae70c2a2029b7e8cf57645ec2f0bfaf6b416",
+      "bytes": 2266
+    },
+    "Captures078/03-harbor-pad-default26-current-fine-half-metre.png": {
+      "sha256": "99fd5fdc9bde0058ec6f1067a9d2d1545334feee46e376a3d8621338e18550a4",
+      "bytes": 2304370
+    },
+    "Captures078/03-harbor-pad-default26-pair.json": {
+      "sha256": "478c7203184dfebe13eab352d6ed8399075c5019d5651156f2893b90d340203f",
+      "bytes": 1344
+    },
+    "Captures078/03-harbor-pad-default26-repeat-current-fine-half-metre.json": {
+      "sha256": "06f7897f0acd2913909e2fbc9428816316af2a9bae6bfa1d11fbf35c50f6c6a0",
+      "bytes": 2280
+    },
+    "Captures078/03-harbor-pad-default26-repeat-current-fine-half-metre.png": {
+      "sha256": "99fd5fdc9bde0058ec6f1067a9d2d1545334feee46e376a3d8621338e18550a4",
+      "bytes": 2304370
+    },
+    "Captures078/04-bridge-default26-control-reconstructed-coarse-one-metre.json": {
+      "sha256": "5412b3310750f352872e2c80734332abe3ae83cddac97d1067430e9d1d16df9e",
+      "bytes": 2312
+    },
+    "Captures078/04-bridge-default26-control-reconstructed-coarse-one-metre.png": {
+      "sha256": "ef6fbecb07b0b0e3cf66cfbfb93411a420aabffd14e0cf8987e6869e6d1740da",
+      "bytes": 2677612
+    },
+    "Captures078/04-bridge-default26-current-fine-half-metre.json": {
+      "sha256": "b4f5261f1f0a9b2c227b2ea92d32468d96e5747a5aebcd1f08c15dab96575736",
+      "bytes": 2283
+    },
+    "Captures078/04-bridge-default26-current-fine-half-metre.png": {
+      "sha256": "562068c1361fe00474d2b1457fffc2f45ae21c06fddd63190ea41919f101ce8c",
+      "bytes": 2676920
+    },
+    "Captures078/04-bridge-default26-pair.json": {
+      "sha256": "fd4a95993dc22a10f79dbd156b6dbb453d4815bf636e6f43921f591d2d2bd710",
+      "bytes": 1341
+    },
+    "Captures078/04-bridge-default26-repeat-current-fine-half-metre.json": {
+      "sha256": "dd91f49ec43386ebb308a366aac6772e8050e12cb0bc49477b0db43925a82aab",
+      "bytes": 2297
+    },
+    "Captures078/04-bridge-default26-repeat-current-fine-half-metre.png": {
+      "sha256": "562068c1361fe00474d2b1457fffc2f45ae21c06fddd63190ea41919f101ce8c",
+      "bytes": 2676920
+    },
+    "Captures078/source-inventory-shore078.json": {
+      "sha256": "16274d3072a303990c14489e2d71a0da4cfdb935845a473cb4185ae048251eed",
+      "bytes": 147285
+    },
+    "Captures078/study-run078.json": {
+      "sha256": "21dbe3ba0dceadc5faf1a788544ba9f1f783b21c534b15dc49b153738b3801d0",
+      "bytes": 7300
+    },
+    "PlayMode.log": {
+      "sha256": "2517257cf988ff4ad3327884e0191de86308730c453f8445560b97c0d1991e68",
+      "bytes": 80993
+    },
+    "PlayMode.xml": {
+      "sha256": "2076da976a1399ba09cc20c13aa18479659eb6e45068176e8d2c0d1e7114925a",
+      "bytes": 3527
+    },
+    "runner-receipt078.json": {
+      "sha256": "211c55373b315a8e9d720466c0e87d58edda4dbfd25639c3026ec877c4536a8e",
+      "bytes": 102920
+    },
+    "stdout-0.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  },
+  "originalInputCount": 34,
+  "originalInputBytes": 30287604
+}

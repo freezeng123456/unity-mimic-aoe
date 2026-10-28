@@ -1,0 +1,214 @@
+{
+  "schema": 1,
+  "archivedAtUtc": "2026-10-05T16:37:33.603426+00:00",
+  "candidate": "Candidate3",
+  "runDirectory": "Builds/Tests/run-Z47ikuJY",
+  "runtimeCommit": "dca073708b671c60a1fe9ff243a67e4ace3fe157",
+  "sourceFingerprint": "62240c2373c773b5aaf807c72815acab2e76577504f3a0569218702864730ebe",
+  "sourceFileCount": 630,
+  "totalPassed": 1185,
+  "reports": {
+    "EditMode": {
+      "result": "Passed",
+      "total": 817,
+      "passed": 817,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "testcasecount": 817,
+      "startUtc": "2026-10-05 16:26:48Z",
+      "endUtc": "2026-10-05 16:30:18Z",
+      "durationSeconds": 209.608975
+    },
+    "PlayMode": {
+      "result": "Passed",
+      "total": 368,
+      "passed": 368,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "testcasecount": 368,
+      "startUtc": "2026-10-05 16:30:28Z",
+      "endUtc": "2026-10-05 16:33:41Z",
+      "durationSeconds": 192.1841496
+    }
+  },
+  "sourceManifestAndFreezeVerifiedAgainstCurrentFiles": true,
+  "gitFrozenBlobsVerified": true,
+  "sourceDriftDetected": false,
+  "legacyBaselineTotal": 1097,
+  "legacyNonReplayTotal": 1062,
+  "legacyReplayTotal": 35,
+  "lanTotal": 88,
+  "lanFixtures": {
+    "Frontier.Tests.LanAuthority068Tests": {
+      "mode": "EditMode",
+      "cases": 41,
+      "results": {
+        "Passed": 41
+      }
+    },
+    "Frontier.Tests.LanBoundary068Tests": {
+      "mode": "EditMode",
+      "cases": 2,
+      "results": {
+        "Passed": 2
+      }
+    },
+    "Frontier.Tests.LanQueue068Tests": {
+      "mode": "EditMode",
+      "cases": 10,
+      "results": {
+        "Passed": 10
+      }
+    },
+    "Frontier.Tests.LanReplication068Tests": {
+      "mode": "EditMode",
+      "cases": 8,
+      "results": {
+        "Passed": 8
+      }
+    },
+    "Frontier.Tests.LanTransport068Tests": {
+      "mode": "EditMode",
+      "cases": 12,
+      "results": {
+        "Passed": 12
+      }
+    },
+    "Frontier.Tests.LanWire068Tests": {
+      "mode": "EditMode",
+      "cases": 4,
+      "results": {
+        "Passed": 4
+      }
+    },
+    "Frontier.Tests.LanLifecycle068Tests": {
+      "mode": "PlayMode",
+      "cases": 6,
+      "results": {
+        "Passed": 6
+      }
+    },
+    "Frontier.Tests.LanPresentation068Tests": {
+      "mode": "PlayMode",
+      "cases": 5,
+      "results": {
+        "Passed": 5
+      }
+    }
+  },
+  "redactionRule": {
+    "regex": "^(?P<prefix>[ \\t]*(?:\\[[^\\]\\r\\n]*Licens[^\\]\\r\\n]*\\][ \\t]*)?(?P<field>Machine[ \\t]*Id|Serial[ \\t]+number)[ \\t]*:[ \\t]*)(?P<value>[^\\r\\n]*)(?P<ending>\\r?\\n)?$",
+    "flags": "IGNORECASE",
+    "replacement": "[REDACTED_DEVICE_ID]",
+    "reference": "Docs/Evidence/067/Tests/archive-receipt.json",
+    "scope": "Only actual anchored Machine Id / Serial number values replaced; no original values in receipt."
+  },
+  "redactionCounts": {
+    "machineId": 2,
+    "licenseSerial": 0
+  },
+  "files": [
+    {
+      "file": "EditMode.xml",
+      "source": "Builds/Tests/run-Z47ikuJY/EditMode.xml",
+      "originalBytes": 659262,
+      "originalSha256": "240ff67065b7edd4d613dd898e325bad8a4d3165539509684f95eba06ea375ff",
+      "archivedBytes": 659262,
+      "archivedSha256": "240ff67065b7edd4d613dd898e325bad8a4d3165539509684f95eba06ea375ff",
+      "mode": "0644",
+      "transform": "copy",
+      "lineCount": 5448,
+      "redactions": [],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "PlayMode.xml",
+      "source": "Builds/Tests/run-Z47ikuJY/PlayMode.xml",
+      "originalBytes": 493344,
+      "originalSha256": "52f01787a9e261a993bc2216189fd768bac6ae2f9ee8f99656ff56c00b7d00c2",
+      "archivedBytes": 493344,
+      "archivedSha256": "52f01787a9e261a993bc2216189fd768bac6ae2f9ee8f99656ff56c00b7d00c2",
+      "mode": "0644",
+      "transform": "copy",
+      "lineCount": 4326,
+      "redactions": [],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "source-evidence.json",
+      "source": "Builds/Tests/run-Z47ikuJY/source-evidence.json",
+      "originalBytes": 80693,
+      "originalSha256": "f2bb4a42a3ce73fab245142c7ce8a1e66b4796177c956d492833fe6d292752b7",
+      "archivedBytes": 80693,
+      "archivedSha256": "f2bb4a42a3ce73fab245142c7ce8a1e66b4796177c956d492833fe6d292752b7",
+      "mode": "0644",
+      "transform": "copy",
+      "lineCount": 649,
+      "redactions": [],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "EditMode.log",
+      "source": "Builds/Tests/run-Z47ikuJY/EditMode.log",
+      "originalBytes": 87474,
+      "originalSha256": "826671c4291b462661c1a0977da243be7ef97465b17cc650855fdc090658723a",
+      "archivedBytes": 87466,
+      "archivedSha256": "104a75c54af078efe1e36e8281968824ac2142b176249911e76d3e771a2e005a",
+      "mode": "0644",
+      "transform": "licensing-device-redaction",
+      "lineCount": 689,
+      "redactions": [
+        {
+          "line": 95,
+          "field": "Machine Id",
+          "type": "machineId",
+          "rule": "anchored-licensing-device-field"
+        }
+      ],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "PlayMode.log",
+      "source": "Builds/Tests/run-Z47ikuJY/PlayMode.log",
+      "originalBytes": 1111039,
+      "originalSha256": "46a7234fe03a125a3d3dfb8af50844e4ad696556cd040c27da7b85934accb393",
+      "archivedBytes": 1111031,
+      "archivedSha256": "88da0890f34820bbffafe97cbc1e5a04ec1376ac5af55ebec5bd295e4c486175",
+      "mode": "0644",
+      "transform": "licensing-device-redaction",
+      "lineCount": 7831,
+      "redactions": [
+        {
+          "line": 94,
+          "field": "Machine Id",
+          "type": "machineId",
+          "rule": "anchored-licensing-device-field"
+        }
+      ],
+      "allOtherBytesPreserved": true
+    },
+    {
+      "file": "source-freeze.json",
+      "source": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.11.0/Candidate3/source-freeze.json",
+      "originalBytes": 80520,
+      "originalSha256": "9af0aad0dff10c1e35c30b627ec79665ce84ef9f50043c05965d15eba218982b",
+      "archivedBytes": 80520,
+      "archivedSha256": "9af0aad0dff10c1e35c30b627ec79665ce84ef9f50043c05965d15eba218982b",
+      "mode": "0644",
+      "transform": "copy",
+      "lineCount": 640,
+      "redactions": [],
+      "allOtherBytesPreserved": true
+    }
+  ],
+  "independentReview": {
+    "file": "independent-review.json",
+    "bytes": 13756,
+    "sha256": "7cc0d289ffd242ddb5e5f537dbb229ab8559790117c7c350c7428a10a79ca23e"
+  },
+  "rawSourcesUnchanged": true,
+  "diagnosticsRetained": "All other log bytes, line endings, warnings and test/exit diagnostics preserved.",
+  "scope": "Full automated regression bound to Candidate3 dca0737. Native acceptance, performance, packages and cloud delivery require separate evidence."
+}

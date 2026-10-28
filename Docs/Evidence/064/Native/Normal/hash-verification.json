@@ -1,0 +1,514 @@
+{
+  "schema": 1,
+  "recordedAtUtc": "2026-10-04T20:17:13.334358+00:00",
+  "scope": "Recorded native age-I save/overwrite/process-restart/load/re-save/continuation, with a separate short normal-economy performance sample.",
+  "sourceDirectory": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.7.0/Native/Normal",
+  "appVersion": "0.7.0",
+  "buildGuid": "48cbcf92c92f409c945f83eeb9b8d500",
+  "runtimeCommit": "5cce74ccf7222133af9bad633923f452b100bfb2",
+  "sourceFingerprint": "8342b85bf835fd48d5c4dfc8f612ed64770fc5b7d026d96c4f539caaa96d79b0",
+  "matchId": "1e167242b3c54d649f3e7b10fdd0b294",
+  "identityVerifiedAgainstBuildReceiptAndTests": true,
+  "buildReceipt": {
+    "file": "client-build.json",
+    "bytes": 1092,
+    "sha256": "d65ad21a4ed0b9c6e03e9c608d8a337e23f24d4ff715eeb25776c4fac02fca26"
+  },
+  "checkpoints": {
+    "checkpoint-A.json": {
+      "file": "checkpoint-A.json",
+      "bytes": 2350988,
+      "sha256": "833107a69cb28674f098ed4d3fda541bfc9628de4b06c38c9365606c47c73309",
+      "payloadSha256": "7e1b8f1cc9cc2da1440119314242fd2de5e7818ebe571eb91fc029e116266111",
+      "worldTime": 135.1990509033203,
+      "paused": true,
+      "player0Population": {
+        "used": 6,
+        "reserved": 1,
+        "capacity": 20
+      },
+      "player0Resources": {
+        "food": 651.7293701171875,
+        "wood": 300.0,
+        "coin": 100.0
+      },
+      "groups": [],
+      "simulationStepCount": 1352
+    },
+    "checkpoint-B.json": {
+      "file": "checkpoint-B.json",
+      "bytes": 3017924,
+      "sha256": "b54bd30d20e25a0b40274d9ed3a50899fd05386fa7833420651b7f51edb8c3eb",
+      "payloadSha256": "66de49e47aed2ec27fb6e2ed63d3186992bf97c88951fb0a2b0cd3a521d870df",
+      "worldTime": 184.0020294189453,
+      "paused": true,
+      "player0Population": {
+        "used": 7,
+        "reserved": 1,
+        "capacity": 20
+      },
+      "player0Resources": {
+        "food": 747.9539794921875,
+        "wood": 300.0,
+        "coin": 100.0
+      },
+      "groups": [
+        {
+          "number": 2,
+          "actors": [
+            1
+          ]
+        }
+      ],
+      "simulationStepCount": 1840
+    },
+    "checkpoint-cold-roundtrip.json": {
+      "file": "checkpoint-cold-roundtrip.json",
+      "bytes": 3017924,
+      "sha256": "b54bd30d20e25a0b40274d9ed3a50899fd05386fa7833420651b7f51edb8c3eb",
+      "payloadSha256": "66de49e47aed2ec27fb6e2ed63d3186992bf97c88951fb0a2b0cd3a521d870df",
+      "worldTime": 184.0020294189453,
+      "paused": true,
+      "player0Population": {
+        "used": 7,
+        "reserved": 1,
+        "capacity": 20
+      },
+      "player0Resources": {
+        "food": 747.9539794921875,
+        "wood": 300.0,
+        "coin": 100.0
+      },
+      "groups": [
+        {
+          "number": 2,
+          "actors": [
+            1
+          ]
+        }
+      ],
+      "simulationStepCount": 1840
+    },
+    "checkpoint-continued.json": {
+      "file": "checkpoint-continued.json",
+      "bytes": 4782539,
+      "sha256": "24e670cc987221d62a79609741687b16eb28dbf875faa8892f6922563e868ecf",
+      "payloadSha256": "131dbaf7978ff7d214ae316c7be608daacd5ad1a38694e6c8bd7d3bc28978efc",
+      "worldTime": 312.40985107421875,
+      "paused": true,
+      "player0Population": {
+        "used": 8,
+        "reserved": 0,
+        "capacity": 20
+      },
+      "player0Resources": {
+        "food": 1295.2984619140625,
+        "wood": 300.0,
+        "coin": 100.0
+      },
+      "groups": [
+        {
+          "number": 2,
+          "actors": [
+            1
+          ]
+        }
+      ],
+      "simulationStepCount": 3124
+    }
+  },
+  "checks": {
+    "saveEnvelopesSha256Valid": true,
+    "checkpointBAndColdRoundtripByteExact": true,
+    "allPayloadFieldsEqualBeforeAndAfterColdResave": true,
+    "aiControllerSnapshotEqualAfterColdResave": true,
+    "laterSimulationStepsAdvanced": true,
+    "historicalEventPrefixPreserved": true,
+    "nativeF9IdentityPngHashesAndDimensionsValid": true,
+    "beforeAndAfterColdF9ResourcesPopulationQueueCameraEqual": true,
+    "recordedProcessExitZeroInstancesAndNewPid": true,
+    "recordedSlotHashPreservedAfterQuit": true,
+    "originalQueueCompletedAndPopulation8": true,
+    "publicGatherCommandAfterCold": true
+  },
+  "processProofFile": "process-exit.json",
+  "coldLoadProofFile": "cold-load-verification.json",
+  "captures": [
+    {
+      "json": "Frontier-20261004-200216-465-f10567-e118af8bac2545a596dd7803a63aa119.json",
+      "png": "Frontier-20261004-200216-465-f10567-e118af8bac2545a596dd7803a63aa119.png",
+      "worldTime": 135.1990509033203,
+      "paused": true,
+      "population": {
+        "used": 6,
+        "reserved": 1,
+        "capacity": 20
+      },
+      "cameraFocus": {
+        "x": 76.37569427490234,
+        "y": 33.94475173950195
+      },
+      "pngHashAndDimensionsVerified": true
+    },
+    {
+      "json": "Frontier-20261004-200257-266-f12989-cbf4a6ac05e041fab6a501d892ab2024.json",
+      "png": "Frontier-20261004-200257-266-f12989-cbf4a6ac05e041fab6a501d892ab2024.png",
+      "worldTime": 135.1990509033203,
+      "paused": true,
+      "population": {
+        "used": 6,
+        "reserved": 1,
+        "capacity": 20
+      },
+      "cameraFocus": {
+        "x": 76.37569427490234,
+        "y": 33.94475173950195
+      },
+      "pngHashAndDimensionsVerified": true
+    },
+    {
+      "json": "Frontier-20261004-200536-879-f22450-fb24812a82e4446dae25234a8ad7e577.json",
+      "png": "Frontier-20261004-200536-879-f22450-fb24812a82e4446dae25234a8ad7e577.png",
+      "worldTime": 184.0020294189453,
+      "paused": true,
+      "population": {
+        "used": 7,
+        "reserved": 1,
+        "capacity": 20
+      },
+      "cameraFocus": {
+        "x": 76.37569427490234,
+        "y": 33.94475173950195
+      },
+      "pngHashAndDimensionsVerified": true
+    },
+    {
+      "json": "Frontier-20261004-200749-234-f3614-ce7ac0c82430412cb57c184797134fba.json",
+      "png": "Frontier-20261004-200749-234-f3614-ce7ac0c82430412cb57c184797134fba.png",
+      "worldTime": 184.0020294189453,
+      "paused": true,
+      "population": {
+        "used": 7,
+        "reserved": 1,
+        "capacity": 20
+      },
+      "cameraFocus": {
+        "x": 76.37569427490234,
+        "y": 33.94475173950195
+      },
+      "pngHashAndDimensionsVerified": true
+    },
+    {
+      "json": "Frontier-20261004-200915-954-f8740-30b271d422f54b489e7e28d1c13fc381.json",
+      "png": "Frontier-20261004-200915-954-f8740-30b271d422f54b489e7e28d1c13fc381.png",
+      "worldTime": 184.10203552246094,
+      "paused": false,
+      "population": {
+        "used": 7,
+        "reserved": 1,
+        "capacity": 20
+      },
+      "cameraFocus": {
+        "x": 24.0,
+        "y": 28.0
+      },
+      "pngHashAndDimensionsVerified": true
+    },
+    {
+      "json": "Frontier-20261004-201026-816-f12942-e4c03ba657814b4dadc128010d241773.json",
+      "png": "Frontier-20261004-201026-816-f12942-e4c03ba657814b4dadc128010d241773.png",
+      "worldTime": 254.90635681152344,
+      "paused": false,
+      "population": {
+        "used": 8,
+        "reserved": 0,
+        "capacity": 20
+      },
+      "cameraFocus": {
+        "x": 24.0,
+        "y": 28.0
+      },
+      "pngHashAndDimensionsVerified": true
+    },
+    {
+      "json": "Frontier-20261004-201125-083-f16380-adba47f2bb094961850604ee371f4302.json",
+      "png": "Frontier-20261004-201125-083-f16380-adba47f2bb094961850604ee371f4302.png",
+      "worldTime": 312.40985107421875,
+      "paused": true,
+      "population": {
+        "used": 8,
+        "reserved": 0,
+        "capacity": 20
+      },
+      "cameraFocus": {
+        "x": 24.0,
+        "y": 28.0
+      },
+      "pngHashAndDimensionsVerified": true
+    }
+  ],
+  "continuationEvents": [
+    {
+      "worldEventIndex": 3554,
+      "time": 204.0032501220703,
+      "kind": "Spawn",
+      "message": "Settler",
+      "player": 0,
+      "entity": 144,
+      "target": 0,
+      "amount": 0.0
+    },
+    {
+      "worldEventIndex": 3556,
+      "time": 204.0032501220703,
+      "kind": "RallyAssigned",
+      "message": "Automatic rally destination",
+      "player": 0,
+      "entity": 144,
+      "target": 0,
+      "amount": 0.0
+    },
+    {
+      "worldEventIndex": 4377,
+      "time": 254.90635681152344,
+      "kind": "Command",
+      "message": "Gather ×1",
+      "player": 0,
+      "entity": 143,
+      "target": 9,
+      "amount": 1.0
+    }
+  ],
+  "groupControlScope": "Operator confirmed HUD SAVE 2 and physical key 2 recall; snapshot restores group 2 actors [1]. Automated Meta+digit produced no group in checkpoint A; Ctrl/Command+digit creation shortcut is not claimed as natively validated.",
+  "performance": {
+    "appVersion": "0.7.0",
+    "buildGuid": "48cbcf92c92f409c945f83eeb9b8d500",
+    "matchId": "1e167242b3c54d649f3e7b10fdd0b294",
+    "platform": "OSXPlayer",
+    "cpu": "Apple M3 Pro",
+    "gpu": "Apple M3 Pro",
+    "resolution": "1600x1000",
+    "utcStart": "2026-10-04T20:00:23.0018440Z",
+    "utcEnd": "2026-10-04T20:01:51.4352780Z",
+    "worldTimeStart": 21.900047302246094,
+    "worldTimeEnd": 110.29888916015625,
+    "totalFrames": 5264,
+    "includedFrames": 5264,
+    "excludedFrames": 0,
+    "meanFrameMs": 16.79620933532715,
+    "p95FrameMs": 17.378463745117188,
+    "p99FrameMs": 17.605960845947266,
+    "simulationSteps": 884,
+    "meanAllocatedInFrameBytes": 9583.373860182372,
+    "renderThreadCounterSamples": 0,
+    "wallWindowSeconds": 88.43151645900001,
+    "includedFrameSeconds": 88.4152433204651,
+    "worldSeconds": 88.39884185791016,
+    "maximumFrameMs": 33.30908203125,
+    "over33_333Ms": 0,
+    "over50Ms": 0,
+    "over100Ms": 0,
+    "percentileMethod": "sorted[floor((n - 1) * p)], matching native report",
+    "memorySamples": 89,
+    "memoryEndpoints": [
+      {
+        "realtime": 68.64329770861679,
+        "worldTime": 21.900047302246094,
+        "managedBytes": 13127680,
+        "unityAllocatedBytes": 126834761
+      },
+      {
+        "realtime": 157.07444929161682,
+        "worldTime": 110.29888916015625,
+        "managedBytes": 15044608,
+        "unityAllocatedBytes": 130888607
+      }
+    ],
+    "scope": "Approximately 88 seconds of age-I small economy before the save/restart sequence; no pressure benchmark, full-match, long-run-memory, or Release claim."
+  },
+  "logSanitization": {
+    "method": "Remove complete lines matching licensing or credential patterns, and complete PEM private-key blocks. Preserve all other bytes and line endings. Raw logs remain local; archive includes only sanitized logs.",
+    "licensingRegex": "(?i)(licens(?:ing|e|es|ed)|entitlement|serial(?: number)?\\s*[:=]|signature\\s*[:=])",
+    "credentialRegex": "(?i)(access[ _-]?token|refresh[ _-]?token|id[ _-]?token|authorization|bearer\\s|api[ _-]?key|client[ _-]?secret|password|credential|(?:^|[\\s\\\"\\x27?&])(?:token|secret|sessionkey)\\s*[:=]|-----BEGIN .*PRIVATE KEY-----|github_pat_[A-Za-z0-9_]+|gh[pousr]_[A-Za-z0-9]+|sk-[A-Za-z0-9_-]{16,}|eyJ[A-Za-z0-9_-]{10,}\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+)",
+    "logs": {
+      "Player-after-cold-restart.log": {
+        "sourceFile": "Player-after-cold-restart.log",
+        "rawBytes": 17124,
+        "rawSha256": "a80c292fbdffccff579da4bd767e24c92b40793b42e21b6309f61f57e587ac40",
+        "rawLines": 154,
+        "sanitized": {
+          "file": "Player-after-cold-restart.sanitized.log",
+          "bytes": 17124,
+          "sha256": "a80c292fbdffccff579da4bd767e24c92b40793b42e21b6309f61f57e587ac40"
+        },
+        "removedSourceLines": [],
+        "removedLineCount": 0,
+        "remainingLicensingMatches": 0,
+        "remainingCredentialMatches": 0,
+        "saveLoadEvidence": [
+          {
+            "sourceLine": 39,
+            "text": "FRONTIER_LOAD slot=1 match=1e167242b3c54d649f3e7b10fdd0b294 time=184.002"
+          },
+          {
+            "sourceLine": 73,
+            "text": "FRONTIER_SAVE slot=2 match=1e167242b3c54d649f3e7b10fdd0b294 time=184.002"
+          },
+          {
+            "sourceLine": 121,
+            "text": "FRONTIER_SAVE slot=2 match=1e167242b3c54d649f3e7b10fdd0b294 time=312.4099"
+          }
+        ]
+      },
+      "Player-before-quit.log": {
+        "sourceFile": "Player-before-quit.log",
+        "rawBytes": 14158,
+        "rawSha256": "a8021be76bd3e9e5849412b9bf8ed7bc30da283086b05908cb3cef5221ad729b",
+        "rawLines": 133,
+        "sanitized": {
+          "file": "Player-before-quit.sanitized.log",
+          "bytes": 14158,
+          "sha256": "a8021be76bd3e9e5849412b9bf8ed7bc30da283086b05908cb3cef5221ad729b"
+        },
+        "removedSourceLines": [],
+        "removedLineCount": 0,
+        "remainingLicensingMatches": 0,
+        "remainingCredentialMatches": 0,
+        "saveLoadEvidence": [
+          {
+            "sourceLine": 64,
+            "text": "FRONTIER_SAVE slot=1 match=1e167242b3c54d649f3e7b10fdd0b294 time=135.1991"
+          },
+          {
+            "sourceLine": 100,
+            "text": "FRONTIER_SAVE slot=1 match=1e167242b3c54d649f3e7b10fdd0b294 time=184.002"
+          }
+        ]
+      }
+    }
+  },
+  "artifacts": [
+    {
+      "file": "Frontier-20261004-200216-465-f10567-e118af8bac2545a596dd7803a63aa119.json",
+      "bytes": 2220,
+      "sha256": "d5f9ecc60458750e1a5737d5eda866b72473a7683b49b8bc8d68388a42b26458"
+    },
+    {
+      "file": "Frontier-20261004-200216-465-f10567-e118af8bac2545a596dd7803a63aa119.png",
+      "bytes": 466342,
+      "sha256": "bab8aa01c908e1a1d6e4af79034ec3713169cc57ee01dbf4a8617338a7b5192a"
+    },
+    {
+      "file": "Frontier-20261004-200257-266-f12989-cbf4a6ac05e041fab6a501d892ab2024.json",
+      "bytes": 2221,
+      "sha256": "8e68583ab323ebbe200f4ca28058b6d1347486ee76359072de49c8a827d930b2"
+    },
+    {
+      "file": "Frontier-20261004-200257-266-f12989-cbf4a6ac05e041fab6a501d892ab2024.png",
+      "bytes": 481703,
+      "sha256": "51d7b0cece383dbf7022f9ebdece80a7b21d488ee0a85d51d9f538dc17ab89d7"
+    },
+    {
+      "file": "Frontier-20261004-200536-879-f22450-fb24812a82e4446dae25234a8ad7e577.json",
+      "bytes": 2205,
+      "sha256": "52a0c1acf794f71bb0d28c25af3048bd48b588bed4199ad4be43486ec52cea89"
+    },
+    {
+      "file": "Frontier-20261004-200536-879-f22450-fb24812a82e4446dae25234a8ad7e577.png",
+      "bytes": 486913,
+      "sha256": "70017e095cbfa5ff4eb641706e6354d7b2728d7c039b0ee05422470fc793ba24"
+    },
+    {
+      "file": "Frontier-20261004-200749-234-f3614-ce7ac0c82430412cb57c184797134fba.json",
+      "bytes": 2201,
+      "sha256": "f150afe438a93f89c8aad01cd87088489e16733af7ab4f9f2baef6f7578f7abd"
+    },
+    {
+      "file": "Frontier-20261004-200749-234-f3614-ce7ac0c82430412cb57c184797134fba.png",
+      "bytes": 471935,
+      "sha256": "c6ab02c3c254433e9c427db49395653701c8df80e2255bd20e0841c705c3919e"
+    },
+    {
+      "file": "Frontier-20261004-200915-954-f8740-30b271d422f54b489e7e28d1c13fc381.json",
+      "bytes": 2195,
+      "sha256": "2febcf44687bf6d1f8f6fc1529ed5fad9a444f400d4c54ee7b523c010551cb81"
+    },
+    {
+      "file": "Frontier-20261004-200915-954-f8740-30b271d422f54b489e7e28d1c13fc381.png",
+      "bytes": 1236097,
+      "sha256": "5b86387ae8dde7487fdcdfdf3623b0ed48c261cfdfb3930ae9c349784ee4025c"
+    },
+    {
+      "file": "Frontier-20261004-201026-816-f12942-e4c03ba657814b4dadc128010d241773.json",
+      "bytes": 1918,
+      "sha256": "a8ee8cda5b6d870ca1a6648d5b30ae80b9296f1ef9c187082e9f188d295e5fd1"
+    },
+    {
+      "file": "Frontier-20261004-201026-816-f12942-e4c03ba657814b4dadc128010d241773.png",
+      "bytes": 1237304,
+      "sha256": "666b71f529d32b084f8a038f72912983a85d26021e3265883628eec7e5a1074f"
+    },
+    {
+      "file": "Frontier-20261004-201125-083-f16380-adba47f2bb094961850604ee371f4302.json",
+      "bytes": 1917,
+      "sha256": "989e689fbdb10f6422dcb459ebd94a03c0186662c4a60a3b36951daaa37d58c2"
+    },
+    {
+      "file": "Frontier-20261004-201125-083-f16380-adba47f2bb094961850604ee371f4302.png",
+      "bytes": 576543,
+      "sha256": "870aeb53fdc2f9159969b2bfc34d0d7b83abff9b44bb981c583b98ea9233b8d1"
+    },
+    {
+      "file": "Player-after-cold-restart.sanitized.log",
+      "bytes": 17124,
+      "sha256": "a80c292fbdffccff579da4bd767e24c92b40793b42e21b6309f61f57e587ac40"
+    },
+    {
+      "file": "Player-before-quit.sanitized.log",
+      "bytes": 14158,
+      "sha256": "a8021be76bd3e9e5849412b9bf8ed7bc30da283086b05908cb3cef5221ad729b"
+    },
+    {
+      "file": "checkpoint-A.json",
+      "bytes": 2350988,
+      "sha256": "833107a69cb28674f098ed4d3fda541bfc9628de4b06c38c9365606c47c73309"
+    },
+    {
+      "file": "checkpoint-B.json",
+      "bytes": 3017924,
+      "sha256": "b54bd30d20e25a0b40274d9ed3a50899fd05386fa7833420651b7f51edb8c3eb"
+    },
+    {
+      "file": "checkpoint-cold-roundtrip.json",
+      "bytes": 3017924,
+      "sha256": "b54bd30d20e25a0b40274d9ed3a50899fd05386fa7833420651b7f51edb8c3eb"
+    },
+    {
+      "file": "checkpoint-continued.json",
+      "bytes": 4782539,
+      "sha256": "24e670cc987221d62a79609741687b16eb28dbf875faa8892f6922563e868ecf"
+    },
+    {
+      "file": "cold-load-verification.json",
+      "bytes": 1766,
+      "sha256": "60bf328e7de283570747717e03d31f97205d345f5639815c32eca5e70e227a27"
+    },
+    {
+      "file": "normal-economy-performance.json",
+      "bytes": 3405018,
+      "sha256": "2b5f649e7dbab1d08a9f643505c118e280f813cfe8c0b83467561db32c94460b"
+    },
+    {
+      "file": "process-exit.json",
+      "bytes": 250,
+      "sha256": "bf24bddade137ef4e243107ef34ec2df8891a0ccf1d2c2bdc0d1d489db880ad7"
+    }
+  ],
+  "limitations": [
+    "Single normal age-I economy scenario, not a natural ended match or industrial lifecycle.",
+    "Approximately 88-second F8 sample, below 300 seconds and not pressure or long-run acceptance.",
+    "Native evidence does not cover corruption/version rejection, forced interruption during overwrite, or Ctrl/Command group creation shortcuts.",
+    "Industrial native showcases, pressure benchmarks, packaging and cloud delivery require separate receipts."
+  ],
+  "manifestPolicy": "Does not hash itself or README. Later package receipts must be separate."
+}

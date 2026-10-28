@@ -1,0 +1,1888 @@
+{
+  "schemaVersion": 1,
+  "review": "C7 independent Veteran Musketeer old/current and newly paid unit visual review",
+  "matchId": "cd717dda89684d87b979629d3fbdf1a9",
+  "appVersion": "0.2.31",
+  "buildGuid": "128a731d440e4b7a94abfcc74b88fa97",
+  "result": "PASS",
+  "scope": "Only the representative same-old-unit before/after and post-technology newly paid Musketeer comparison. Does not replace the full C strict audit, natural-end, cannon, source/runtime or packaging audits.",
+  "method": "Read-only frozen full input log + raw archived final journal/report + directly viewed original C7 PNGs. No GUI, source, canonical generation, or previous-attempt unit identities used.",
+  "checks": {
+    "reportIdentityMatchesC7": true,
+    "fullEventCountMatchesReport": true,
+    "frozenAndArchivedFullInputLogsByteIdentical": true,
+    "captureIdentityAndPixelHashesMatch": true,
+    "captureHudFrameAndWorldTimeMatch": true,
+    "selectedEntityDerivedFromUninterruptedInputContextNotCaptureMetadata": true,
+    "sameOldEntity221BeforeAndAfter": true,
+    "oldEntityBornBeforePreCaptureAndAliveAtPostCapture": true,
+    "preCaptureBeforeResearchPayment": true,
+    "researchPaid100Food100Coin": true,
+    "singleTechnologyAndResearchCompletionAfterPaymentBeforePostCapture": true,
+    "newPaymentAndQueueAfterResearch": true,
+    "newPaidSingleUnit75Food25Coin": true,
+    "newPaymentQueueSpawnNoCompetingMuskOrQueueCancel": true,
+    "newSpawnFollowedByProducerTrainingExperience": true,
+    "newEntity290BornAfterResearchAndAliveAtSelectedCapture": true,
+    "oldPixelAttributes200HP24AttackThen240HP29Attack": true,
+    "newPaidPixelAttributes240HP29Attack": true,
+    "earlier1110CaptureExplicitlyExcludedForNoSelection": true
+  },
+  "sources": {
+    "Builds/NativeInput055-C7-preserved/Player-menu.log": {
+      "role": "frozen full input log read directly",
+      "bytes": 1996408,
+      "sha256": "56f13d4eaec6caf58aa14580cc2299cf7b2b9e884510f5b4251eb4788fe788ab"
+    },
+    "Docs/Evidence/055/NormalPlayer/river-attempt-007/native-input-full-Player-menu.log": {
+      "role": "byte-identical archived full input log",
+      "bytes": 1996408,
+      "sha256": "56f13d4eaec6caf58aa14580cc2299cf7b2b9e884510f5b4251eb4788fe788ab"
+    },
+    "Docs/Evidence/055/NormalPlayer/river-attempt-007/20261003-113916-806-cd717dda89684d87b979629d3fbdf1a9-match_finished-events.jsonl": {
+      "role": "archived full final event journal",
+      "bytes": 74602441,
+      "sha256": "ab855e1bb3d1f1790658e1f64744d49077128dba82166bc6d746818032b11c0d"
+    },
+    "Docs/Evidence/055/NormalPlayer/river-attempt-007/20261003-113916-806-cd717dda89684d87b979629d3fbdf1a9-match_finished.json": {
+      "role": "archived paired match report",
+      "bytes": 3313,
+      "sha256": "5428ca1a2f8092d02f66c85f96055b07aa89cd57a8258860b82c12305849208a"
+    },
+    "Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-095939-831-f1340498-4ac303abbc2f4e55b464a56f278ff8fc.json": {
+      "role": "oldBefore metadata",
+      "bytes": 4833,
+      "sha256": "435dbe413835096568dad63901bb7bd519c757b4fd346e86075695af6691208e"
+    },
+    "Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-095939-831-f1340498-4ac303abbc2f4e55b464a56f278ff8fc.png": {
+      "role": "oldBefore original pixels",
+      "bytes": 856256,
+      "sha256": "dae8941be82eea1995cd3d48ae8eac2c5783f7d7b699734fc7eb40f1669a92d0"
+    },
+    "Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-102401-827-f1381744-1002c8a44f534ac190b647f07e431f36.json": {
+      "role": "sameOldAfter metadata",
+      "bytes": 5336,
+      "sha256": "bea041228fa11dc6da34023d71d84a35cf419de1182bc64a1c6698ffe609c885"
+    },
+    "Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-102401-827-f1381744-1002c8a44f534ac190b647f07e431f36.png": {
+      "role": "sameOldAfter original pixels",
+      "bytes": 904402,
+      "sha256": "52d53ba5e10d77c9ee948f2fe0778494ed4efcd70a81c45750530aceaa2aabda"
+    },
+    "Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-103135-038-f1408689-9ff2ad7a9d184361a6074a43216fc145.json": {
+      "role": "newPaidAfter metadata",
+      "bytes": 5339,
+      "sha256": "5ca4865f79044143c6bd97f49eb4565d2703595137c2f97eceac1a5a2089ef7b"
+    },
+    "Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-103135-038-f1408689-9ff2ad7a9d184361a6074a43216fc145.png": {
+      "role": "newPaidAfter original pixels",
+      "bytes": 908528,
+      "sha256": "9abeddf1e0b54eca5b17f870427e39fb831cdf9c4dc644586592520e3ee63cd8"
+    },
+    "Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-103102-660-f1406760-8056abd2742a4dacb199575c2ef43f66.json": {
+      "role": "excludedEmptySelection metadata",
+      "bytes": 5326,
+      "sha256": "e2773ef25b200dcb0e11f74b77b76b32f09c53df90a946508945d091985e2839"
+    },
+    "Docs/Evidence/055/NormalPlayer/river-attempt-007/Frontier-20261003-103102-660-f1406760-8056abd2742a4dacb199575c2ef43f66.png": {
+      "role": "excludedEmptySelection original pixels",
+      "bytes": 902382,
+      "sha256": "f9c069ab48fc057ef1b84d5ce2e41f521dad18ec747c056db1cc0fd3c6ed2bd9"
+    }
+  },
+  "captures": {
+    "oldBefore": {
+      "jsonFile": "Frontier-20261003-095939-831-f1340498-4ac303abbc2f4e55b464a56f278ff8fc.json",
+      "pngFile": "Frontier-20261003-095939-831-f1340498-4ac303abbc2f4e55b464a56f278ff8fc.png",
+      "jsonSha256": "435dbe413835096568dad63901bb7bd519c757b4fd346e86075695af6691208e",
+      "pngSha256": "dae8941be82eea1995cd3d48ae8eac2c5783f7d7b699734fc7eb40f1669a92d0",
+      "worldTime": 860.5369262695312,
+      "frame": 1340498,
+      "matchId": "cd717dda89684d87b979629d3fbdf1a9",
+      "appVersion": "0.2.31",
+      "buildGuid": "128a731d440e4b7a94abfcc74b88fa97",
+      "width": 2560,
+      "height": 1440,
+      "hudWorldTime": 860.5369262695312,
+      "hudUpdatedFrame": 1340498,
+      "context": {
+        "fullLogLine": 16918,
+        "raw": "FRONTIER_UI context entity=221 count=1 world=860.037 frame=1340468",
+        "entity": 221,
+        "count": 1,
+        "worldTimeRounded": 860.037,
+        "frame": 1340468
+      },
+      "captureLogLine": 16920,
+      "captureLogRaw": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261003-095939-831-f1340498-4ac303abbc2f4e55b464a56f278ff8fc.json",
+      "noInterveningContextUpdate": true,
+      "metadataHasNoSelectedEntity": true,
+      "pixelObservation": {
+        "method": "Independent direct visual inspection of the original PNG via view_image; values are visually read, not metadata fields or OCR.",
+        "title": "MUSKETEER",
+        "hpCurrent": 200,
+        "hpMaximum": 200,
+        "attackDisplayed": 24,
+        "rangeDisplayed": 12,
+        "populationDisplayed": 1,
+        "ordersDisplayed": 0,
+        "stateText": "Holding"
+      },
+      "usedForAttributeComparison": true
+    },
+    "sameOldAfter": {
+      "jsonFile": "Frontier-20261003-102401-827-f1381744-1002c8a44f534ac190b647f07e431f36.json",
+      "pngFile": "Frontier-20261003-102401-827-f1381744-1002c8a44f534ac190b647f07e431f36.png",
+      "jsonSha256": "bea041228fa11dc6da34023d71d84a35cf419de1182bc64a1c6698ffe609c885",
+      "pngSha256": "52d53ba5e10d77c9ee948f2fe0778494ed4efcd70a81c45750530aceaa2aabda",
+      "worldTime": 990.5051879882812,
+      "frame": 1381744,
+      "matchId": "cd717dda89684d87b979629d3fbdf1a9",
+      "appVersion": "0.2.31",
+      "buildGuid": "128a731d440e4b7a94abfcc74b88fa97",
+      "width": 2560,
+      "height": 1440,
+      "hudWorldTime": 990.5051879882812,
+      "hudUpdatedFrame": 1381744,
+      "context": {
+        "fullLogLine": 17180,
+        "raw": "FRONTIER_UI context entity=221 count=1 world=989.905 frame=1381712",
+        "entity": 221,
+        "count": 1,
+        "worldTimeRounded": 989.905,
+        "frame": 1381712
+      },
+      "captureLogLine": 17182,
+      "captureLogRaw": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261003-102401-827-f1381744-1002c8a44f534ac190b647f07e431f36.json",
+      "noInterveningContextUpdate": true,
+      "metadataHasNoSelectedEntity": true,
+      "pixelObservation": {
+        "method": "Independent direct visual inspection of the original PNG via view_image; values are visually read, not metadata fields or OCR.",
+        "title": "MUSKETEER",
+        "hpCurrent": 240,
+        "hpMaximum": 240,
+        "attackDisplayed": 29,
+        "rangeDisplayed": 12,
+        "populationDisplayed": 1,
+        "ordersDisplayed": 0,
+        "stateText": "Reloading"
+      },
+      "usedForAttributeComparison": true
+    },
+    "newPaidAfter": {
+      "jsonFile": "Frontier-20261003-103135-038-f1408689-9ff2ad7a9d184361a6074a43216fc145.json",
+      "pngFile": "Frontier-20261003-103135-038-f1408689-9ff2ad7a9d184361a6074a43216fc145.png",
+      "jsonSha256": "5ca4865f79044143c6bd97f49eb4565d2703595137c2f97eceac1a5a2089ef7b",
+      "pngSha256": "9abeddf1e0b54eca5b17f870427e39fb831cdf9c4dc644586592520e3ee63cd8",
+      "worldTime": 1111.775634765625,
+      "frame": 1408689,
+      "matchId": "cd717dda89684d87b979629d3fbdf1a9",
+      "appVersion": "0.2.31",
+      "buildGuid": "128a731d440e4b7a94abfcc74b88fa97",
+      "width": 2560,
+      "height": 1440,
+      "hudWorldTime": 1111.775634765625,
+      "hudUpdatedFrame": 1408689,
+      "context": {
+        "fullLogLine": 17797,
+        "raw": "FRONTIER_UI context entity=290 count=1 world=1111.676 frame=1408688",
+        "entity": 290,
+        "count": 1,
+        "worldTimeRounded": 1111.676,
+        "frame": 1408688
+      },
+      "captureLogLine": 17799,
+      "captureLogRaw": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261003-103135-038-f1408689-9ff2ad7a9d184361a6074a43216fc145.json",
+      "noInterveningContextUpdate": true,
+      "metadataHasNoSelectedEntity": true,
+      "pixelObservation": {
+        "method": "Independent direct visual inspection of the original PNG via view_image; values are visually read, not metadata fields or OCR.",
+        "title": "MUSKETEER",
+        "hpCurrent": 240,
+        "hpMaximum": 240,
+        "attackDisplayed": 29,
+        "rangeDisplayed": 12,
+        "populationDisplayed": 1,
+        "ordersDisplayed": 0,
+        "stateText": "Idle"
+      },
+      "usedForAttributeComparison": true
+    },
+    "excludedEmptySelection": {
+      "jsonFile": "Frontier-20261003-103102-660-f1406760-8056abd2742a4dacb199575c2ef43f66.json",
+      "pngFile": "Frontier-20261003-103102-660-f1406760-8056abd2742a4dacb199575c2ef43f66.png",
+      "jsonSha256": "e2773ef25b200dcb0e11f74b77b76b32f09c53df90a946508945d091985e2839",
+      "pngSha256": "f9c069ab48fc057ef1b84d5ce2e41f521dad18ec747c056db1cc0fd3c6ed2bd9",
+      "worldTime": 1110.575927734375,
+      "frame": 1406760,
+      "matchId": "cd717dda89684d87b979629d3fbdf1a9",
+      "appVersion": "0.2.31",
+      "buildGuid": "128a731d440e4b7a94abfcc74b88fa97",
+      "width": 2560,
+      "height": 1440,
+      "hudWorldTime": 1110.575927734375,
+      "hudUpdatedFrame": 1406760,
+      "context": {
+        "fullLogLine": 17764,
+        "raw": "FRONTIER_UI context entity=0 count=0 world=1110.476 frame=1406759",
+        "entity": 0,
+        "count": 0,
+        "worldTimeRounded": 1110.476,
+        "frame": 1406759
+      },
+      "captureLogLine": 17766,
+      "captureLogRaw": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261003-103102-660-f1406760-8056abd2742a4dacb199575c2ef43f66.json",
+      "noInterveningContextUpdate": true,
+      "metadataHasNoSelectedEntity": true,
+      "pixelObservation": {
+        "method": "Independent direct visual inspection of the original PNG via view_image; values are visually read, not metadata fields or OCR.",
+        "title": "THE FRONTIER AWAITS",
+        "hpCurrent": null,
+        "hpMaximum": null,
+        "attackDisplayed": null,
+        "rangeDisplayed": null,
+        "populationDisplayed": null,
+        "ordersDisplayed": null,
+        "stateText": "Select units or drag a selection box."
+      },
+      "usedForAttributeComparison": false
+    }
+  },
+  "research": {
+    "paymentEventLine": 30585,
+    "paymentTime": 948.4154663085938,
+    "technologyEventLine": 32208,
+    "researchCompleteEventLine": 32209,
+    "completionTime": 988.5056762695312,
+    "observedElapsedSeconds": 40.0902099609375
+  },
+  "oldUnit": {
+    "entity": 221,
+    "spawnEventLine": 20632,
+    "spawnTime": 703.7752075195312,
+    "deathEventLine": 57182,
+    "deathTime": 1509.9783935546875,
+    "groupSaveLogLine": 16512,
+    "preRecallLogLine": 16917,
+    "postRecallLogLine": 17179
+  },
+  "newPaidUnit": {
+    "entity": 290,
+    "producer": 171,
+    "paymentEventLine": 36225,
+    "queueEventLine": 36226,
+    "paymentTime": 1078.2838134765625,
+    "spawnEventLine": 37253,
+    "spawnTime": 1104.2774658203125,
+    "observedPaymentToSpawnSeconds": 25.99365234375,
+    "deathEventLine": 49736,
+    "deathTime": 1357.315673828125,
+    "followupMoveEventLine": 37587,
+    "singleTrainIntervalEvidence": [
+      {
+        "line": 36225,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": true,
+          "hasPopulation": true,
+          "economy": {
+            "requestedDelta": {
+              "food": -75.0,
+              "wood": 0.0,
+              "coin": -25.0
+            },
+            "actualDelta": {
+              "food": -75.0,
+              "wood": 0.0,
+              "coin": -25.0
+            },
+            "balanceBefore": {
+              "food": 1082.31982421875,
+              "wood": 285.3246154785156,
+              "coin": 279.091064453125
+            },
+            "balanceAfter": {
+              "food": 1007.31982421875,
+              "wood": 285.3246154785156,
+              "coin": 254.091064453125
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 54,
+            "reserved": 0,
+            "capacity": 60
+          },
+          "time": 1078.2838134765625,
+          "kind": "Payment",
+          "message": "Musketeer ×1: 75 F / 0 W / 25 C",
+          "player": 0,
+          "entity": 171,
+          "target": 0,
+          "visibilityMask": 1,
+          "amount": 0.0,
+          "position": {
+            "x": 16.0,
+            "y": 32.0
+          },
+          "facing": {
+            "x": 0.0,
+            "y": 1.0
+          }
+        }
+      },
+      {
+        "line": 36226,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": true,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 54,
+            "reserved": 1,
+            "capacity": 60
+          },
+          "time": 1078.2838134765625,
+          "kind": "ProductionQueued",
+          "message": "musketeer ×1",
+          "player": 0,
+          "entity": 171,
+          "target": 0,
+          "visibilityMask": 1,
+          "amount": 1.0,
+          "position": {
+            "x": 16.0,
+            "y": 32.0
+          },
+          "facing": {
+            "x": 0.0,
+            "y": 1.0
+          }
+        }
+      },
+      {
+        "line": 37253,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": true,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 55,
+            "reserved": 1,
+            "capacity": 60
+          },
+          "time": 1104.2774658203125,
+          "kind": "Spawn",
+          "message": "Musketeer",
+          "player": 0,
+          "entity": 290,
+          "target": 0,
+          "visibilityMask": 1,
+          "amount": 0.0,
+          "position": {
+            "x": 18.47487449645996,
+            "y": 34.47487258911133
+          },
+          "facing": {
+            "x": 0.0,
+            "y": 1.0
+          }
+        }
+      }
+    ]
+  },
+  "rawEventExcerpts": [
+    {
+      "line": 19163,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": -375.0,
+            "wood": 0.0,
+            "coin": -125.0
+          },
+          "actualDelta": {
+            "food": -375.0,
+            "wood": 0.0,
+            "coin": -125.0
+          },
+          "balanceBefore": {
+            "food": 1634.0286865234375,
+            "wood": 220.1470947265625,
+            "coin": 834.2845458984375
+          },
+          "balanceAfter": {
+            "food": 1259.0286865234375,
+            "wood": 220.1470947265625,
+            "coin": 709.2845458984375
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 19,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 677.7815551757812,
+        "kind": "Payment",
+        "message": "Musketeer ×5: 375 F / 0 W / 125 C",
+        "player": 0,
+        "entity": 171,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 16.0,
+          "y": 32.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "line": 19164,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 19,
+          "reserved": 5,
+          "capacity": 30
+        },
+        "time": 677.7815551757812,
+        "kind": "ProductionQueued",
+        "message": "musketeer ×5",
+        "player": 0,
+        "entity": 171,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 5.0,
+        "position": {
+          "x": 16.0,
+          "y": 32.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "line": 20630,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 19,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 703.7752075195312,
+        "kind": "Spawn",
+        "message": "Musketeer",
+        "player": 0,
+        "entity": 220,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 19.5,
+          "y": 32.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "line": 20631,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 703.7752075195312,
+        "kind": "Experience",
+        "message": "Unit trained",
+        "player": 0,
+        "entity": 171,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 5.0,
+        "position": {
+          "x": 16.0,
+          "y": 32.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "line": 20632,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 703.7752075195312,
+        "kind": "Spawn",
+        "message": "Musketeer",
+        "player": 0,
+        "entity": 221,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 19.031089782714844,
+          "y": 33.75
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "line": 20633,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 703.7752075195312,
+        "kind": "Experience",
+        "message": "Unit trained",
+        "player": 0,
+        "entity": 171,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 5.0,
+        "position": {
+          "x": 16.0,
+          "y": 32.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "line": 20634,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 21,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 703.7752075195312,
+        "kind": "Spawn",
+        "message": "Musketeer",
+        "player": 0,
+        "entity": 222,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 17.75,
+          "y": 35.031089782714844
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "line": 20635,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 703.7752075195312,
+        "kind": "Experience",
+        "message": "Unit trained",
+        "player": 0,
+        "entity": 171,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 5.0,
+        "position": {
+          "x": 16.0,
+          "y": 32.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "line": 20636,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 22,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 703.7752075195312,
+        "kind": "Spawn",
+        "message": "Musketeer",
+        "player": 0,
+        "entity": 223,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 15.094133377075195,
+          "y": 35.380741119384766
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "line": 20637,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 703.7752075195312,
+        "kind": "Experience",
+        "message": "Unit trained",
+        "player": 0,
+        "entity": 171,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 5.0,
+        "position": {
+          "x": 16.0,
+          "y": 32.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "line": 20638,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 23,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 703.7752075195312,
+        "kind": "Spawn",
+        "message": "Musketeer",
+        "player": 0,
+        "entity": 224,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 13.525126457214355,
+          "y": 34.47487258911133
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "line": 20639,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 703.7752075195312,
+        "kind": "Experience",
+        "message": "Unit trained",
+        "player": 0,
+        "entity": 171,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 5.0,
+        "position": {
+          "x": 16.0,
+          "y": 32.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "line": 30585,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": -100.0,
+            "wood": 0.0,
+            "coin": -100.0
+          },
+          "actualDelta": {
+            "food": -100.0,
+            "wood": 0.0,
+            "coin": -100.0
+          },
+          "balanceBefore": {
+            "food": 1368.64892578125,
+            "wood": 111.52203369140625,
+            "coin": 354.5531005859375
+          },
+          "balanceAfter": {
+            "food": 1268.64892578125,
+            "wood": 111.52203369140625,
+            "coin": 254.5531005859375
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 26,
+          "reserved": 20,
+          "capacity": 60
+        },
+        "time": 948.4154663085938,
+        "kind": "Payment",
+        "message": "Veteran Musketeer: 100 F / 0 W / 100 C",
+        "player": 0,
+        "entity": 171,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 16.0,
+          "y": 32.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "line": 32208,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 988.5056762695312,
+        "kind": "Technology",
+        "message": "veteran_musketeer applied once to matching current and future entities",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    },
+    {
+      "line": 32209,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 988.5056762695312,
+        "kind": "ResearchComplete",
+        "message": "Veteran Musketeer",
+        "player": 0,
+        "entity": 171,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 16.0,
+          "y": 32.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "line": 36225,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": -75.0,
+            "wood": 0.0,
+            "coin": -25.0
+          },
+          "actualDelta": {
+            "food": -75.0,
+            "wood": 0.0,
+            "coin": -25.0
+          },
+          "balanceBefore": {
+            "food": 1082.31982421875,
+            "wood": 285.3246154785156,
+            "coin": 279.091064453125
+          },
+          "balanceAfter": {
+            "food": 1007.31982421875,
+            "wood": 285.3246154785156,
+            "coin": 254.091064453125
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 54,
+          "reserved": 0,
+          "capacity": 60
+        },
+        "time": 1078.2838134765625,
+        "kind": "Payment",
+        "message": "Musketeer ×1: 75 F / 0 W / 25 C",
+        "player": 0,
+        "entity": 171,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 16.0,
+          "y": 32.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "line": 36226,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 54,
+          "reserved": 1,
+          "capacity": 60
+        },
+        "time": 1078.2838134765625,
+        "kind": "ProductionQueued",
+        "message": "musketeer ×1",
+        "player": 0,
+        "entity": 171,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 1.0,
+        "position": {
+          "x": 16.0,
+          "y": 32.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "line": 36232,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1078.3837890625,
+        "kind": "RallySet",
+        "message": "Location rally set",
+        "player": 0,
+        "entity": 171,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 1.0,
+        "position": {
+          "x": 12.26388931274414,
+          "y": 30.264822006225586
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "line": 37253,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 55,
+          "reserved": 1,
+          "capacity": 60
+        },
+        "time": 1104.2774658203125,
+        "kind": "Spawn",
+        "message": "Musketeer",
+        "player": 0,
+        "entity": 290,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 18.47487449645996,
+          "y": 34.47487258911133
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "line": 37254,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1104.2774658203125,
+        "kind": "Experience",
+        "message": "Unit trained",
+        "player": 0,
+        "entity": 171,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 5.0,
+        "position": {
+          "x": 16.0,
+          "y": 32.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "line": 37255,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1104.2774658203125,
+        "kind": "RallyAssigned",
+        "message": "Automatic rally destination",
+        "player": 0,
+        "entity": 290,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 12.26388931274414,
+          "y": 30.264822006225586
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      }
+    },
+    {
+      "line": 37587,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 1112.37548828125,
+        "kind": "Command",
+        "message": "Move ×1",
+        "player": 0,
+        "entity": 290,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 1.0,
+        "position": {
+          "x": 12.339269638061523,
+          "y": 30.41864585876465
+        },
+        "facing": {
+          "x": -0.4400448203086853,
+          "y": -0.8979758024215698
+        }
+      }
+    },
+    {
+      "line": 49736,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 52,
+          "reserved": 0,
+          "capacity": 70
+        },
+        "time": 1357.315673828125,
+        "kind": "Death",
+        "message": "Musketeer lost",
+        "player": 0,
+        "entity": 290,
+        "target": 1,
+        "visibilityMask": 3,
+        "amount": 0.0,
+        "position": {
+          "x": 31.935895919799805,
+          "y": 42.49739074707031
+        },
+        "facing": {
+          "x": 0.8117286562919617,
+          "y": 0.58403480052948
+        }
+      }
+    },
+    {
+      "line": 57182,
+      "event": {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 51,
+          "reserved": 0,
+          "capacity": 70
+        },
+        "time": 1509.9783935546875,
+        "kind": "Death",
+        "message": "Musketeer lost",
+        "player": 0,
+        "entity": 221,
+        "target": 1,
+        "visibilityMask": 3,
+        "amount": 0.0,
+        "position": {
+          "x": 32.113670349121094,
+          "y": 46.72916793823242
+        },
+        "facing": {
+          "x": 0.7960151433944702,
+          "y": 0.6052767634391785
+        }
+      }
+    }
+  ],
+  "rawInputExcerpts": [
+    {
+      "line": 16497,
+      "text": "FRONTIER_UI context entity=221 count=1 world=716.772 frame=1304202"
+    },
+    {
+      "line": 16512,
+      "text": "FRONTIER_UI action=SAVE 1 world=717.472 frame=1304239"
+    },
+    {
+      "line": 16514,
+      "text": "FRONTIER_INPUT Key F9 down p=(1380.00, 1004.00) shift=False save=False t=21956.1638"
+    },
+    {
+      "line": 16515,
+      "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261003-094931-140-f1304263-7fd6406347394344a7ec5ea5f6e0bc39.json"
+    },
+    {
+      "line": 16917,
+      "text": "FRONTIER_INPUT Key Digit1 down p=(1405.00, 727.00) shift=False save=False t=22564.3488"
+    },
+    {
+      "line": 16918,
+      "text": "FRONTIER_UI context entity=221 count=1 world=860.037 frame=1340468"
+    },
+    {
+      "line": 16919,
+      "text": "FRONTIER_INPUT Key F9 down p=(1405.00, 727.00) shift=False save=False t=22564.8647"
+    },
+    {
+      "line": 16920,
+      "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261003-095939-831-f1340498-4ac303abbc2f4e55b464a56f278ff8fc.json"
+    },
+    {
+      "line": 17123,
+      "text": "FRONTIER_UI action=Veteran Musketeer · AGE 3 attack +20%, health +20% 100F 100C · 40s  world=948.416 frame=1378117"
+    },
+    {
+      "line": 17125,
+      "text": "FRONTIER_UI context entity=171 count=1 world=948.416 frame=1378118"
+    },
+    {
+      "line": 17179,
+      "text": "FRONTIER_INPUT Key Digit1 down p=(1500.00, 584.00) shift=False save=False t=24026.2981"
+    },
+    {
+      "line": 17180,
+      "text": "FRONTIER_UI context entity=221 count=1 world=989.905 frame=1381712"
+    },
+    {
+      "line": 17181,
+      "text": "FRONTIER_INPUT Key F9 down p=(1500.00, 584.00) shift=False save=False t=24026.8620"
+    },
+    {
+      "line": 17182,
+      "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261003-102401-827-f1381744-1002c8a44f534ac190b647f07e431f36.json"
+    },
+    {
+      "line": 17668,
+      "text": ""
+    },
+    {
+      "line": 17677,
+      "text": "FRONTIER_UI click object=TRAIN: BATCH p=(2120.00, 284.00) press=TRAIN: BATCH over=TRAIN: BATCH world=1078.184 frame=1403188"
+    },
+    {
+      "line": 17685,
+      "text": "FRONTIER_UI action=Musketeer 75F 25C world=1078.284 frame=1403197"
+    },
+    {
+      "line": 17687,
+      "text": "FRONTIER_UI context entity=171 count=1 world=1078.284 frame=1403198"
+    },
+    {
+      "line": 17764,
+      "text": "FRONTIER_UI context entity=0 count=0 world=1110.476 frame=1406759"
+    },
+    {
+      "line": 17765,
+      "text": "FRONTIER_INPUT Key F9 down p=(955.00, 769.00) shift=False save=False t=24447.6958"
+    },
+    {
+      "line": 17766,
+      "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261003-103102-660-f1406760-8056abd2742a4dacb199575c2ef43f66.json"
+    },
+    {
+      "line": 17785,
+      "text": "FRONTIER_SELECTION drag=True from=(940.00, 815.00) to=(974.00, 762.00) selected=1"
+    },
+    {
+      "line": 17797,
+      "text": "FRONTIER_UI context entity=290 count=1 world=1111.676 frame=1408688"
+    },
+    {
+      "line": 17798,
+      "text": "FRONTIER_INPUT Key F9 down p=(974.00, 762.00) shift=False save=False t=24480.0776"
+    },
+    {
+      "line": 17799,
+      "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261003-103135-038-f1408689-9ff2ad7a9d184361a6074a43216fc145.json"
+    },
+    {
+      "line": 17812,
+      "text": "FRONTIER_INPUT Right None up p=(1380.00, 854.00) shift=False save=False t=24480.7341"
+    },
+    {
+      "line": 17813,
+      "text": "FRONTIER_INPUT Left None down p=(1225.00, 559.00) shift=False save=False t=24480.8670"
+    }
+  ],
+  "limitations": [
+    "F9 metadata contains no selectedEntity field. Entity association is made from the immediately preceding FRONTIER_UI context, matching frames/times, unchanged context through capture, spawn/death history and original pixels.",
+    "The selected comparison captures happen to have count=1; single selection is an observation here, not a new acceptance gate.",
+    "Displayed ATK29 is a visual integer HUD value. This review does not assert that an underlying floating-point attack value is exactly29.",
+    "The valid new-unit F9 clock reads18:31 at1111.775635 simulated seconds; the prior18:30 capture has no selection. The approximate18:32 operational note is not used for timing.",
+    "No Ended F9 is invented or required by this technology-only review. Natural-end evidence remains with the separate full-match archive audit."
+  ]
+}

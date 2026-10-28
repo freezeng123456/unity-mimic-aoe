@@ -1,0 +1,150 @@
+{
+  "generatedAt": "2026-10-04T23:39:12.189994+08:00",
+  "kind": "Mono single immutable Unity snapshot query; not Unity/native profiling",
+  "fixture": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/Fixtures/estuary-formation-recovery420.json",
+  "fixtureSha256": "19cbb5c2e97a47181283d2623e822ee27b40dc025f4d7a4679f845b261253781",
+  "candidate": "memo-only.patch",
+  "candidateSha256": "d1a6dfe3e0aa241179f5a709a525ce99a0b0c8540c328b6c3a5390e8ba7e6f50",
+  "sourceSha256": "73f396004dde72666e37a9588a909daae2547c28f36450d0d1a238ce1e2f2fcb",
+  "fineDimensions": [
+    512,
+    512
+  ],
+  "memoPayloadBytes": 262144,
+  "coldClearanceMs": 19.524,
+  "queryTimingIncludesMemoArrayClear": true,
+  "genericPathSamplingUnchanged": true,
+  "exactOriginalStaticAndAllySweepsUnchanged": true,
+  "identicalRouteCoordinates": true,
+  "runs": {
+    "baseline": [
+      {
+        "i": 0,
+        "ms": 10.492,
+        "points": 25427,
+        "real_points": 25427,
+        "segments": 2957,
+        "expanded": 753,
+        "route": 12,
+        "body_clearance": 0.00318
+      },
+      {
+        "i": 1,
+        "ms": 11.792,
+        "points": 25427,
+        "real_points": 25427,
+        "segments": 2957,
+        "expanded": 753,
+        "route": 12,
+        "body_clearance": 0.00318
+      },
+      {
+        "i": 2,
+        "ms": 8.595,
+        "points": 25427,
+        "real_points": 25427,
+        "segments": 2957,
+        "expanded": 753,
+        "route": 12,
+        "body_clearance": 0.00318
+      },
+      {
+        "i": 3,
+        "ms": 8.387,
+        "points": 25427,
+        "real_points": 25427,
+        "segments": 2957,
+        "expanded": 753,
+        "route": 12,
+        "body_clearance": 0.00318
+      },
+      {
+        "i": 4,
+        "ms": 8.702,
+        "points": 25427,
+        "real_points": 25427,
+        "segments": 2957,
+        "expanded": 753,
+        "route": 12,
+        "body_clearance": 0.00318
+      },
+      {
+        "i": 5,
+        "ms": 8.27,
+        "points": 25427,
+        "real_points": 25427,
+        "segments": 2957,
+        "expanded": 753,
+        "route": 12,
+        "body_clearance": 0.00318
+      }
+    ],
+    "memo_only": [
+      {
+        "i": 0,
+        "ms": 6.531,
+        "points": 25427,
+        "real_points": 13892,
+        "segments": 2957,
+        "expanded": 753,
+        "route": 12,
+        "body_clearance": 0.00318
+      },
+      {
+        "i": 1,
+        "ms": 6.799,
+        "points": 25427,
+        "real_points": 13892,
+        "segments": 2957,
+        "expanded": 753,
+        "route": 12,
+        "body_clearance": 0.00318
+      },
+      {
+        "i": 2,
+        "ms": 6.568,
+        "points": 25427,
+        "real_points": 13892,
+        "segments": 2957,
+        "expanded": 753,
+        "route": 12,
+        "body_clearance": 0.00318
+      },
+      {
+        "i": 3,
+        "ms": 6.381,
+        "points": 25427,
+        "real_points": 13892,
+        "segments": 2957,
+        "expanded": 753,
+        "route": 12,
+        "body_clearance": 0.00318
+      },
+      {
+        "i": 4,
+        "ms": 6.512,
+        "points": 25427,
+        "real_points": 13892,
+        "segments": 2957,
+        "expanded": 753,
+        "route": 12,
+        "body_clearance": 0.00318
+      },
+      {
+        "i": 5,
+        "ms": 6.596,
+        "points": 25427,
+        "real_points": 13892,
+        "segments": 2957,
+        "expanded": 753,
+        "route": 12,
+        "body_clearance": 0.00318
+      }
+    ]
+  },
+  "medianMs": {
+    "baseline": 8.6485,
+    "memo_only": 6.5495
+  },
+  "relativeMedianReduction": 0.2427010464242354
+}

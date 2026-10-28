@@ -1,0 +1,1939 @@
+{
+  "schema": 1,
+  "kind": "independent-actual-full-failed-audit077",
+  "recordedAtUtc": "2026-10-09T23:42:29.062479+00:00",
+  "status": "FAIL",
+  "evidenceIntegrity": "PASS",
+  "errors": [],
+  "scope": "Actual failed Full1 originals, source identity, original C2 retention and render-receipt/PNG byte bindings only. No rerun, patch, new build/native acceptance, complete pixel metric recomputation or visual approval.",
+  "runner": {
+    "schema": 1,
+    "kind": "full",
+    "status": "closed",
+    "startedUtc": "2026-10-09T23:20:53.406568+00:00",
+    "sourceFingerprintBefore": "b7783d5d2af85f67a26ba96f32591e9f20664e56cf3f11693d29095ab5ab1484",
+    "gitHeadBefore": "43346c284b3c47963a30c728481ebe49f09c1d10",
+    "commands": [
+      {
+        "command": [
+          "bash",
+          "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Tools/test.sh"
+        ],
+        "startedUtc": "2026-10-09T23:20:53.424558+00:00",
+        "status": "closed",
+        "pid": 77712,
+        "exitCode": 2,
+        "finishedUtc": "2026-10-09T23:39:58.201241+00:00"
+      }
+    ],
+    "finishedUtc": "2026-10-09T23:39:58.262299+00:00",
+    "wallSeconds": 1144.8506057499999,
+    "exitCode": 2,
+    "sourceFingerprintAfter": "b7783d5d2af85f67a26ba96f32591e9f20664e56cf3f11693d29095ab5ab1484",
+    "sourceStable": true,
+    "changedSources": [],
+    "tests": {
+      "EditMode": {
+        "id": "2",
+        "testcasecount": "1372",
+        "result": "Passed",
+        "total": "1372",
+        "passed": "1372",
+        "failed": "0",
+        "inconclusive": "0",
+        "skipped": "0",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-10-09 23:21:00Z",
+        "end-time": "2026-10-09 23:35:40Z",
+        "duration": "879.3459527"
+      },
+      "PlayMode": {
+        "id": "2",
+        "testcasecount": "452",
+        "result": "Failed(Child)",
+        "total": "452",
+        "passed": "451",
+        "failed": "1",
+        "inconclusive": "0",
+        "skipped": "0",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-10-09 23:35:49Z",
+        "end-time": "2026-10-09 23:39:56Z",
+        "duration": "246.5583707"
+      }
+    },
+    "freshReportsDirectories": [
+      "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-La5Xze2I"
+    ],
+    "reportsDirectory": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-La5Xze2I",
+    "testsXmlSha256": {
+      "EditMode": "9356ee0a2fbcf364f091292f7866557d1328c51300a30826699802951d9d0768",
+      "PlayMode": "95453205b710588524f10273087f6ab17713c221ba922dd25ee47945c3d57c5b"
+    }
+  },
+  "sourceIdentity": {
+    "historicalVersion": "0.20.0",
+    "historicalRuntimeHead": "43346c284b3c47963a30c728481ebe49f09c1d10",
+    "historicalSourceInputCount": 784,
+    "historicalSourceFingerprint": "b7783d5d2af85f67a26ba96f32591e9f20664e56cf3f11693d29095ab5ab1484",
+    "historicalCommitObjectsVerified": true,
+    "observedHead": "a74fc436dc08c50f9d23dc506df92f7ff2942d76",
+    "observedSourceInputCount": 784,
+    "observedSourceFingerprint": "8c858fe82932c1c4909af27aea8dab71a183812902c937ee4931003f33840335",
+    "observedMapEqualOriginal": false,
+    "observedChangedSources": [
+      "Assets/Frontier/Tests/PlayMode/RiverBankMesh077Tests.cs"
+    ],
+    "docsOutsideRuntimeInventory": true
+  },
+  "tests": {
+    "EditMode": {
+      "xml": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-La5Xze2I/EditMode.xml",
+      "root": {
+        "id": "2",
+        "testcasecount": "1372",
+        "result": "Passed",
+        "total": "1372",
+        "passed": "1372",
+        "failed": "0",
+        "inconclusive": "0",
+        "skipped": "0",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-10-09 23:21:00Z",
+        "end-time": "2026-10-09 23:35:40Z",
+        "duration": "879.3459527"
+      },
+      "actualCaseCount": 1372,
+      "actualResultCounts": {
+        "Passed": 1372
+      },
+      "oldC2CaseCount": 1355,
+      "oldC2Retained": 1355,
+      "oldC2Missing": [],
+      "oldC2NonPassing": [],
+      "newCaseCount": 17
+    },
+    "PlayMode": {
+      "xml": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-La5Xze2I/PlayMode.xml",
+      "root": {
+        "id": "2",
+        "testcasecount": "452",
+        "result": "Failed(Child)",
+        "total": "452",
+        "passed": "451",
+        "failed": "1",
+        "inconclusive": "0",
+        "skipped": "0",
+        "asserts": "0",
+        "engine-version": "3.5.0.0",
+        "clr-version": "4.0.30319.42000",
+        "start-time": "2026-10-09 23:35:49Z",
+        "end-time": "2026-10-09 23:39:56Z",
+        "duration": "246.5583707"
+      },
+      "actualCaseCount": 452,
+      "actualResultCounts": {
+        "Passed": 451,
+        "Failed": 1
+      },
+      "oldC2CaseCount": 448,
+      "oldC2Retained": 448,
+      "oldC2Missing": [],
+      "oldC2NonPassing": [],
+      "newCaseCount": 4
+    }
+  },
+  "actualTotals": {
+    "total": 1824,
+    "passed": 1823,
+    "failed": 1,
+    "skipped": 0,
+    "oldC2RetainedPassing": 1803,
+    "newCases": 21,
+    "newPassing": 20,
+    "newFailed": 1
+  },
+  "oldC2Receipt": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate2/Full1/runner-receipt076.json",
+  "newCases": [
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.DenseActualWalkableBankStepsKeepTheExistingPointFourPhysicalSlopeContract",
+      "classname": "Frontier.Tests.RiverBankAsymmetry077Tests",
+      "methodname": "DenseActualWalkableBankStepsKeepTheExistingPointFourPhysicalSlopeContract",
+      "result": "Passed",
+      "duration": "0.276105",
+      "output": "Winding dense bank probes=58478 peakGrade=0.3542763 at=(63.25, 31.25)\n"
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.InsideBendSignWorksForBothTurnDirections(-1)",
+      "classname": "Frontier.Tests.RiverBankAsymmetry077Tests",
+      "methodname": "InsideBendSignWorksForBothTurnDirections",
+      "result": "Passed",
+      "duration": "0.000254",
+      "output": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.InsideBendSignWorksForBothTurnDirections(1)",
+      "classname": "Frontier.Tests.RiverBankAsymmetry077Tests",
+      "methodname": "InsideBendSignWorksForBothTurnDirections",
+      "result": "Passed",
+      "duration": "0.000029",
+      "output": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.LiteralEasternMeanderHasItsInnerBankWestAndOuterBankEastInTheStoredQuery",
+      "classname": "Frontier.Tests.RiverBankAsymmetry077Tests",
+      "methodname": "LiteralEasternMeanderHasItsInnerBankWestAndOuterBankEastInTheStoredQuery",
+      "result": "Passed",
+      "duration": "0.000636",
+      "output": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.OriginalWindingControlsFishStartsAndTerrainHashesStayUnchanged",
+      "classname": "Frontier.Tests.RiverBankAsymmetry077Tests",
+      "methodname": "OriginalWindingControlsFishStartsAndTerrainHashesStayUnchanged",
+      "result": "Passed",
+      "duration": "0.020567",
+      "output": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.OtherRiverLayoutsRetainTheirHistoricalBankHeightsAndLayers(\"river\")",
+      "classname": "Frontier.Tests.RiverBankAsymmetry077Tests",
+      "methodname": "OtherRiverLayoutsRetainTheirHistoricalBankHeightsAndLayers",
+      "result": "Passed",
+      "duration": "0.038838",
+      "output": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.OtherRiverLayoutsRetainTheirHistoricalBankHeightsAndLayers(\"tropical\")",
+      "classname": "Frontier.Tests.RiverBankAsymmetry077Tests",
+      "methodname": "OtherRiverLayoutsRetainTheirHistoricalBankHeightsAndLayers",
+      "result": "Passed",
+      "duration": "0.039870",
+      "output": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.OtherRiverLayoutsRetainTheirHistoricalBankHeightsAndLayers(\"tributaries\")",
+      "classname": "Frontier.Tests.RiverBankAsymmetry077Tests",
+      "methodname": "OtherRiverLayoutsRetainTheirHistoricalBankHeightsAndLayers",
+      "result": "Passed",
+      "duration": "0.040431",
+      "output": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.OtherRiverLayoutsRetainTheirHistoricalBankHeightsAndLayers(\"estuary\")",
+      "classname": "Frontier.Tests.RiverBankAsymmetry077Tests",
+      "methodname": "OtherRiverLayoutsRetainTheirHistoricalBankHeightsAndLayers",
+      "result": "Passed",
+      "duration": "0.043301",
+      "output": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.OtherRiverLayoutsRetainTheirHistoricalBankHeightsAndLayers(\"generated_river\")",
+      "classname": "Frontier.Tests.RiverBankAsymmetry077Tests",
+      "methodname": "OtherRiverLayoutsRetainTheirHistoricalBankHeightsAndLayers",
+      "result": "Passed",
+      "duration": "0.043586",
+      "output": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.OtherRiverLayoutsRetainTheirHistoricalBankHeightsAndLayers(\"generated_delta\")",
+      "classname": "Frontier.Tests.RiverBankAsymmetry077Tests",
+      "methodname": "OtherRiverLayoutsRetainTheirHistoricalBankHeightsAndLayers",
+      "result": "Passed",
+      "duration": "0.040793",
+      "output": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.OtherRiverLayoutsRetainTheirHistoricalBankHeightsAndLayers(\"generated_strait\")",
+      "classname": "Frontier.Tests.RiverBankAsymmetry077Tests",
+      "methodname": "OtherRiverLayoutsRetainTheirHistoricalBankHeightsAndLayers",
+      "result": "Passed",
+      "duration": "0.040143",
+      "output": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.ProtectedBridgeRampsHarborPadsAndTownPadsKeepTheirOldProfile",
+      "classname": "Frontier.Tests.RiverBankAsymmetry077Tests",
+      "methodname": "ProtectedBridgeRampsHarborPadsAndTownPadsKeepTheirOldProfile",
+      "result": "Passed",
+      "duration": "0.046633",
+      "output": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.RiverBedWaterLevelAndBeyondThreeMeterInlandGroundRetainHistoricalHeights",
+      "classname": "Frontier.Tests.RiverBankAsymmetry077Tests",
+      "methodname": "RiverBedWaterLevelAndBeyondThreeMeterInlandGroundRetainHistoricalHeights",
+      "result": "Passed",
+      "duration": "0.184620",
+      "output": ""
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.SharedLayersAreNormalizedAndTwoSeparatedBendPairsHaveUsefulInnerOuterContrast",
+      "classname": "Frontier.Tests.RiverBankAsymmetry077Tests",
+      "methodname": "SharedLayersAreNormalizedAndTwoSeparatedBendPairsHaveUsefulInnerOuterContrast",
+      "result": "Passed",
+      "duration": "0.083509",
+      "output": "Useful bank pair center=(64.98, 46.66) inner=0.3350409 outer=0.2036147 sandContrast=0.1676592\nUseful bank pair center=(74.96, 58.50) inner=0.9903398 outer=0.9714984 sandContrast=0.6969938\nUseful bank pair center=(76.83, 74.57) inner=0.9963535 outer=0.9978492 sandContrast=0.7930517\n"
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.SharedLayoutRestoredWorldConsumerContinuesRealMovementAndMatchesWarmState",
+      "classname": "Frontier.Tests.RiverBankAsymmetry077Tests",
+      "methodname": "SharedLayoutRestoredWorldConsumerContinuesRealMovementAndMatchesWarmState",
+      "result": "Passed",
+      "duration": "7.874575",
+      "output": "Shared-layout warm/cold consumers: moveSteps=212 changedBankSteps=40 assigned=(89.29, 67.99)\n"
+    },
+    {
+      "mode": "EditMode",
+      "fullname": "Frontier.Tests.RiverBankAsymmetry077Tests.StraightOrDegenerateSamplesHaveNoInventedBend",
+      "classname": "Frontier.Tests.RiverBankAsymmetry077Tests",
+      "methodname": "StraightOrDegenerateSamplesHaveNoInventedBend",
+      "result": "Passed",
+      "duration": "0.000238",
+      "output": ""
+    },
+    {
+      "mode": "PlayMode",
+      "fullname": "Frontier.Tests.RiverBankMesh077Tests.ActualEasternMeanderMeshHasBroaderSandOnItsLiteralWestInnerBank",
+      "classname": "Frontier.Tests.RiverBankMesh077Tests",
+      "methodname": "ActualEasternMeanderMeshHasBroaderSandOnItsLiteralWestInnerBank",
+      "result": "Passed",
+      "duration": "0.040704",
+      "output": "Eastern meander actual mesh: westInnerCount=5 sand=0.7177923 eastOuterCount=4 sand=0.07755104\n"
+    },
+    {
+      "mode": "PlayMode",
+      "fullname": "Frontier.Tests.RiverBankMesh077Tests.ActualGroundMeshColorsAndHeightsEqualTheSharedMapQueries",
+      "classname": "Frontier.Tests.RiverBankMesh077Tests",
+      "methodname": "ActualGroundMeshColorsAndHeightsEqualTheSharedMapQueries",
+      "result": "Passed",
+      "duration": "0.194410",
+      "output": "Actual shared-query ground mesh: vertices=16641 changedSandVertices=436\n"
+    },
+    {
+      "mode": "PlayMode",
+      "fullname": "Frontier.Tests.RiverBankMesh077Tests.WindingSedimentPaletteHasItsOwnMaterialAndDoesNotLeakIntoOtherRiverMaps",
+      "classname": "Frontier.Tests.RiverBankMesh077Tests",
+      "methodname": "WindingSedimentPaletteHasItsOwnMaterialAndDoesNotLeakIntoOtherRiverMaps",
+      "result": "Failed",
+      "duration": "0.039612",
+      "output": ""
+    },
+    {
+      "mode": "PlayMode",
+      "fullname": "Frontier.Tests.RiverBankRender077Tests.OrdinaryCameraPairsCompareReconstructedHistoricalGroundWithNewBankProfile",
+      "classname": "Frontier.Tests.RiverBankRender077Tests",
+      "methodname": "OrdinaryCameraPairsCompareReconstructedHistoricalGroundWithNewBankProfile",
+      "result": "Passed",
+      "duration": "12.401531",
+      "output": ""
+    }
+  ],
+  "exactFailures": [
+    {
+      "mode": "PlayMode",
+      "fullname": "Frontier.Tests.RiverBankMesh077Tests.WindingSedimentPaletteHasItsOwnMaterialAndDoesNotLeakIntoOtherRiverMaps",
+      "classname": "Frontier.Tests.RiverBankMesh077Tests",
+      "methodname": "WindingSedimentPaletteHasItsOwnMaterialAndDoesNotLeakIntoOtherRiverMaps",
+      "result": "Failed",
+      "duration": "0.039612",
+      "output": "",
+      "failureMessage": "  Expected: RGBA(0.740, 0.670, 0.480, 1.000)\n  But was:  RGBA(0.740, 0.670, 0.480, 1.000)\n",
+      "stackTrace": "at Frontier.Tests.RiverBankMesh077Tests.WindingSedimentPaletteHasItsOwnMaterialAndDoesNotLeakIntoOtherRiverMaps () [0x0001b] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/PlayMode/RiverBankMesh077Tests.cs:28\n"
+    }
+  ],
+  "classCounts": [
+    {
+      "mode": "EditMode",
+      "classname": "CombatNavigationTests",
+      "cases": 6
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.AiAgePlanTests",
+      "cases": 6
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.AiArmyHome074Tests",
+      "cases": 17
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.AiArmyPlan072Tests",
+      "cases": 12
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.AiArmyStage073Tests",
+      "cases": 8
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.AiCivilizationTests",
+      "cases": 13
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.AiConstructionTests",
+      "cases": 5
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.AiDifficultyTests",
+      "cases": 7
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.AiEndgameSearchTests",
+      "cases": 3
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.AiGatherRoutes074Tests",
+      "cases": 18
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.AiIndustrialSaveTests",
+      "cases": 4
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.AiResourceContinuity072Tests",
+      "cases": 17
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.AiRevolution071Tests",
+      "cases": 36
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.AiSaveStateTests",
+      "cases": 19
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.AiStrategyTests",
+      "cases": 7
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.AiWorkforceTests",
+      "cases": 4
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.AmbientSoundTests",
+      "cases": 1
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.AttackContinuationTests",
+      "cases": 6
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.AttackLifecycleTests",
+      "cases": 5
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.AttackReleaseTests",
+      "cases": 4
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.AudioCaptureBufferTests",
+      "cases": 6
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.CameraPanInputTests",
+      "cases": 6
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.CivilizationSystemsTests",
+      "cases": 19
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.ClassicCivilizationAiTests",
+      "cases": 8
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.ClassicCivilizationRulesTests",
+      "cases": 8
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.ClassicCivilizationSystemsTests",
+      "cases": 14
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.CombatEventTests",
+      "cases": 1
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.CombatRulesTests",
+      "cases": 5
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.CompressedMatchSave065Tests",
+      "cases": 6
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.ContentExpansionRulesTests",
+      "cases": 8
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.CurvedManeuver063Tests",
+      "cases": 9
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.DepletedRallyTests",
+      "cases": 4
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.DestinationLifecycleTests",
+      "cases": 2
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.DisconnectedArmy065Tests",
+      "cases": 1
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.DynamicDestinationTests",
+      "cases": 4
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.EconomyEvidenceTests",
+      "cases": 9
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.EconomyLifecycleTests",
+      "cases": 9
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.EconomyTests",
+      "cases": 5
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.ExperienceBountyTests",
+      "cases": 11
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.FilteredConnectivity072Tests",
+      "cases": 10
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.GarrisonExitTests",
+      "cases": 7
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.GarrisonFirepowerTests",
+      "cases": 8
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.GroupMovementTests",
+      "cases": 2
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.GuidedPlay066Tests",
+      "cases": 29
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.Healing076AiTests",
+      "cases": 19
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.Healing076CoreTests",
+      "cases": 28
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.Healing076ReplicationTests",
+      "cases": 9
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.Healing076RiverLifecycleTests",
+      "cases": 8
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.IndustrialEconomy064Tests",
+      "cases": 19
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.LanAuthority068Tests",
+      "cases": 41
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.LanBoundary068Tests",
+      "cases": 2
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.LanQueue068Tests",
+      "cases": 10
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.LanReplication068Tests",
+      "cases": 8
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.LanTransport068Tests",
+      "cases": 12
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.LanWire068Tests",
+      "cases": 4
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.LandmarkLifecycleTests",
+      "cases": 5
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.LandmarkObservationTests",
+      "cases": 5
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.LandmarkTests",
+      "cases": 9
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.MapLayout063Tests",
+      "cases": 28
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.MapObjectivesTests",
+      "cases": 8
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.MapOpening063Tests",
+      "cases": 8
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.Market073Tests",
+      "cases": 26
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.MatchSimulationTests",
+      "cases": 4
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.MovementQueueTests",
+      "cases": 4
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.NavalDeliveryTests",
+      "cases": 6
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.NavalTransport065Tests",
+      "cases": 17
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.NavigationClearanceTests",
+      "cases": 3
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.NavigationStressTests",
+      "cases": 4
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.NavigationSweep063Tests",
+      "cases": 9
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.NeutralAlliesTests",
+      "cases": 9
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.NoticeSoundTests",
+      "cases": 1
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.OptionalGuidedSave066Tests",
+      "cases": 5
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.OutcropGeometryTests",
+      "cases": 9
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.PerformanceCaptureTests",
+      "cases": 3
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.PlayerSettings066Tests",
+      "cases": 8
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.ProgressionTests",
+      "cases": 6
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.ProjectileLifecycleTests",
+      "cases": 3
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.RepeatedMovementTests",
+      "cases": 4
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.Replay067Tests",
+      "cases": 10
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.ReplayCatalogQuality071Tests",
+      "cases": 7
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.ReplayStore067Tests",
+      "cases": 20
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.ResourceRallyTests",
+      "cases": 10
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.Revolution071Tests",
+      "cases": 69
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.RevolutionLan071Tests",
+      "cases": 1
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.RevolutionShipment071Tests",
+      "cases": 2
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.RiverBankAsymmetry077Tests",
+      "cases": 17
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.RiverCampaignRestore070Tests",
+      "cases": 16
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.RiverContent070Tests",
+      "cases": 25
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.RiverMissionBranches070Tests",
+      "cases": 4
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.ScenarioDocument069Tests",
+      "cases": 44
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.ScenarioGroups070Tests",
+      "cases": 27
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.ScenarioRevolutionBinding071Tests",
+      "cases": 35
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.ScenarioRuntime069Tests",
+      "cases": 34
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.Scouting075Tests",
+      "cases": 24
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.ScoutingProduction075Tests",
+      "cases": 19
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.ScoutingReplication075Tests",
+      "cases": 15
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.ScoutingThreat075Tests",
+      "cases": 6
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.SeededMap065Tests",
+      "cases": 105
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.ShipmentTests",
+      "cases": 4
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.TargetReleaseVisibilityTests",
+      "cases": 2
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.TeamMatch066Tests",
+      "cases": 50
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.UnitAnimationTests",
+      "cases": 5
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.WaterEconomy061Tests",
+      "cases": 19
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.WaterEconomy063Tests",
+      "cases": 30
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.WaterNavigation061Tests",
+      "cases": 17
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.WorkerPoseStateTests",
+      "cases": 3
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.WorkerRecoveryTests",
+      "cases": 3
+    },
+    {
+      "mode": "EditMode",
+      "classname": "Frontier.Tests.WorldSaveTests",
+      "cases": 16
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.ActivityAudioCoverageTests",
+      "cases": 3
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.ActivityAudioTests",
+      "cases": 5
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.AiDifficultySetupTests",
+      "cases": 4
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.AmbientAudioTests",
+      "cases": 1
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.AnimationLifecycleTests",
+      "cases": 1
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.ArchitectureInput060Tests",
+      "cases": 3
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.ArchitectureReview060Tests",
+      "cases": 16
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.ArmyControl072Tests",
+      "cases": 4
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.ArmyTargetInputTests",
+      "cases": 3
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.AttackInputContinuationTests",
+      "cases": 2
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.CameraControlInputTests",
+      "cases": 3
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.CaptureMetadataTests",
+      "cases": 7
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.CharacterStudyTests",
+      "cases": 1
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.CivilizationExpansionArtTests",
+      "cases": 6
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.CivilizationExpansionUiTests",
+      "cases": 10
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.ClassicCivilizationArtTests",
+      "cases": 7
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.ClassicCivilizationUiTests",
+      "cases": 10
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.CombatPresentationTests",
+      "cases": 3
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.CurvedMapInput063Tests",
+      "cases": 4
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.CurvedRiverPresentation063Tests",
+      "cases": 9
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.CurvedRiverStudy063Tests",
+      "cases": 1
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.DetailedEnvironmentArtTests",
+      "cases": 22
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.DetailedModelStudy060Tests",
+      "cases": 1
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.DetailedUnitModelTests",
+      "cases": 3
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.DoubleClickSelectionTests",
+      "cases": 7
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.DynamicDestinationInputTests",
+      "cases": 1
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.ExpansionIntegration066Tests",
+      "cases": 6
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.ExplicitGarrisonInputTests",
+      "cases": 13
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.FocusHeldInputTests",
+      "cases": 3
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.FocusPauseTests",
+      "cases": 9
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.FogRenderAlignmentTests",
+      "cases": 1
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.FrontierArtStudy055Tests",
+      "cases": 1
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.Healing076InputPlayModeTests",
+      "cases": 10
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.Healing076PresentationPlayModeTests",
+      "cases": 6
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.HomeCityUiTests",
+      "cases": 16
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.ImportedCharacterTests",
+      "cases": 1
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.InputResetIsolationTests",
+      "cases": 4
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.InputResetTests",
+      "cases": 7
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.LanLifecycle068Tests",
+      "cases": 6
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.LanPresentation068Tests",
+      "cases": 5
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.LifecycleTests",
+      "cases": 1
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.Market073UiTests",
+      "cases": 10
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.ModalShortcutTests",
+      "cases": 9
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.NativePerformanceCapture069Tests",
+      "cases": 3
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.NavalMissionInputTests",
+      "cases": 10
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.NonModalPointerTests",
+      "cases": 4
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.NoticeAudioRoutingTests",
+      "cases": 2
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.OrderedInputTests",
+      "cases": 19
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.OutcropStudyTests",
+      "cases": 2
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.PauseAudioSettingsTests",
+      "cases": 2
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.PickingGeometryTests",
+      "cases": 10
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.PlayerSettingsInput066Tests",
+      "cases": 6
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.PointerTests",
+      "cases": 3
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.PresentationPerformance064Tests",
+      "cases": 4
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.ProceduralMeshOwnershipTests",
+      "cases": 2
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.ProceduralSilhouetteTests",
+      "cases": 20
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.ProductionDeathPresentationTests",
+      "cases": 2
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.Replay067IntegrationTests",
+      "cases": 5
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.ResourceContextTests",
+      "cases": 5
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.RevolutionHud071Tests",
+      "cases": 6
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.RiverBankMesh077Tests",
+      "cases": 3
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.RiverBankRender077Tests",
+      "cases": 1
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.RiverContentController070Tests",
+      "cases": 6
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.SaveLoadSessionTests",
+      "cases": 1
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.ScenarioEditorController069Tests",
+      "cases": 15
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.ScenarioTerrain069Tests",
+      "cases": 5
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.ScoutingInput075Tests",
+      "cases": 6
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.ScoutingPresentation075Tests",
+      "cases": 7
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.SelectionActionTests",
+      "cases": 6
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.SelectionLifetimeTests",
+      "cases": 9
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.SiegeInputIntegrationTests",
+      "cases": 4
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.SimulationDispatchTests",
+      "cases": 3
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.SkirmishSetupTests",
+      "cases": 4
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.TerminalObjectiveHud071Tests",
+      "cases": 2
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.UnexploredMovementInputTests",
+      "cases": 4
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.UnitRigTests",
+      "cases": 4
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.WaterInput061Tests",
+      "cases": 4
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.WaterPresentation061Tests",
+      "cases": 11
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.WaterStudy061Tests",
+      "cases": 2
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.WorkerEquipmentTests",
+      "cases": 4
+    },
+    {
+      "mode": "PlayMode",
+      "classname": "Frontier.Tests.WorkerStudyTests",
+      "cases": 1
+    }
+  ],
+  "passingSourceEvidence": {
+    "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-La5Xze2I/source-evidence.json",
+    "exists": false,
+    "meaning": "Expected absent: failed PlayMode makes set -e test.sh exit before verification_evidence.py --record."
+  },
+  "render": {
+    "study": {
+      "schema": "river-bank-render-study-077",
+      "status": "captured-ground-pairs-not-visual-approval",
+      "recordedAtUtc": "2026-10-09T23:39:11.7537270Z",
+      "appVersion": "0.20.0",
+      "sourceFingerprint": "b7783d5d2af85f67a26ba96f32591e9f20664e56cf3f11693d29095ab5ab1484",
+      "sourceInventorySha256": "6b6fa998fcb9e51d29d0f44ba7f497b31b4952d343af92d82484353803c85150",
+      "referenceRevision": "43346c284b3c47963a30c728481ebe49f09c1d10",
+      "scope": "Five controlled camera pairs plus repeat-current controls; historical ground reconstructed inside the new build. Not native/paid gameplay, old-build evidence, FPS or visual approval.",
+      "completed": true,
+      "meshRestoredExactly": true,
+      "defaultZoom": 26.0,
+      "pairs": [
+        {
+          "view": "01-bend-default26",
+          "controlFile": "01-bend-default26-control-current.png",
+          "historicalFile": "01-bend-default26-baseline-reconstructed-historical-ground.png",
+          "currentFile": "01-bend-default26-current-bank077.png",
+          "controlPngSha256": "a4dbafe4b58d3e34784081e28a6ed9022a165c3663beb1b8bd56a53ff9334cf1",
+          "historicalPngSha256": "f11e656098d6a2e4dc52d78e4499ca51fc8f226026563e4c4c0b270bf4294101",
+          "currentPngSha256": "a4dbafe4b58d3e34784081e28a6ed9022a165c3663beb1b8bd56a53ff9334cf1",
+          "worldSha256": "f0469e004504ab09ddaacbbbf76ea1ae0ad8b2796a379bd4110a68f35446df3c",
+          "currentGroundMeshSha256": "ba50da44c5dfa029da5d3d434f92f9620cc17dc2e13ce7fd8752e64b6bde1d71",
+          "historicalGroundMeshSha256": "e2e00adcd1adecfbf627556d8aff692d5d89c1d7e406f1e2d3bdf51f42018623",
+          "changedPixelsAboveThreshold": 121852,
+          "repeatControlChangedPixels": 0,
+          "pixelDeltaThreshold": 3,
+          "cameraZoom": 26.0,
+          "meanAbsoluteRgbDelta": 0.6499625444412231,
+          "repeatControlMeanAbsoluteRgbDelta": 0.0,
+          "focus": {
+            "x": 78.63077545166016,
+            "y": 67.98796844482422
+          },
+          "expectedVisibleDifference": true,
+          "meshRestoredExactly": true,
+          "worldUnchanged": true
+        },
+        {
+          "view": "02-bend-close16",
+          "controlFile": "02-bend-close16-control-current.png",
+          "historicalFile": "02-bend-close16-baseline-reconstructed-historical-ground.png",
+          "currentFile": "02-bend-close16-current-bank077.png",
+          "controlPngSha256": "052c409c72336207e175194dd458d323a1d3a3a5cea56370409ee157d427139b",
+          "historicalPngSha256": "bb85148e7ec3e449fa401d78e1b7b53f448993cf4ba9c87ccf02847a4e76bfa1",
+          "currentPngSha256": "052c409c72336207e175194dd458d323a1d3a3a5cea56370409ee157d427139b",
+          "worldSha256": "f0469e004504ab09ddaacbbbf76ea1ae0ad8b2796a379bd4110a68f35446df3c",
+          "currentGroundMeshSha256": "ba50da44c5dfa029da5d3d434f92f9620cc17dc2e13ce7fd8752e64b6bde1d71",
+          "historicalGroundMeshSha256": "e2e00adcd1adecfbf627556d8aff692d5d89c1d7e406f1e2d3bdf51f42018623",
+          "changedPixelsAboveThreshold": 236870,
+          "repeatControlChangedPixels": 0,
+          "pixelDeltaThreshold": 3,
+          "cameraZoom": 16.0,
+          "meanAbsoluteRgbDelta": 1.3604414463043213,
+          "repeatControlMeanAbsoluteRgbDelta": 0.0,
+          "focus": {
+            "x": 78.63077545166016,
+            "y": 67.98796844482422
+          },
+          "expectedVisibleDifference": true,
+          "meshRestoredExactly": true,
+          "worldUnchanged": true
+        },
+        {
+          "view": "03-winding-overview-default26",
+          "controlFile": "03-winding-overview-default26-control-current.png",
+          "historicalFile": "03-winding-overview-default26-baseline-reconstructed-historical-ground.png",
+          "currentFile": "03-winding-overview-default26-current-bank077.png",
+          "controlPngSha256": "64f81a9464a8493a11400305fac5ba14a97915d4f0eea1d4f77f1c733a8da81c",
+          "historicalPngSha256": "bed41110a6d65b3d0275cdd3a3c446a1494582beb313c0aa369f10ffa854283d",
+          "currentPngSha256": "64f81a9464a8493a11400305fac5ba14a97915d4f0eea1d4f77f1c733a8da81c",
+          "worldSha256": "f0469e004504ab09ddaacbbbf76ea1ae0ad8b2796a379bd4110a68f35446df3c",
+          "currentGroundMeshSha256": "ba50da44c5dfa029da5d3d434f92f9620cc17dc2e13ce7fd8752e64b6bde1d71",
+          "historicalGroundMeshSha256": "e2e00adcd1adecfbf627556d8aff692d5d89c1d7e406f1e2d3bdf51f42018623",
+          "changedPixelsAboveThreshold": 122168,
+          "repeatControlChangedPixels": 0,
+          "pixelDeltaThreshold": 3,
+          "cameraZoom": 26.0,
+          "meanAbsoluteRgbDelta": 0.6509815454483032,
+          "repeatControlMeanAbsoluteRgbDelta": 0.0,
+          "focus": {
+            "x": 64.0,
+            "y": 64.0
+          },
+          "expectedVisibleDifference": true,
+          "meshRestoredExactly": true,
+          "worldUnchanged": true
+        },
+        {
+          "view": "04-protected-harbor-pad-default26",
+          "controlFile": "04-protected-harbor-pad-default26-control-current.png",
+          "historicalFile": "04-protected-harbor-pad-default26-baseline-reconstructed-historical-ground.png",
+          "currentFile": "04-protected-harbor-pad-default26-current-bank077.png",
+          "controlPngSha256": "055f52b2f0cda8ccf679d578e1ecfb18b804dbaeef06b09a7583874b65500e6e",
+          "historicalPngSha256": "e10b3a2c84382bec4f8e9aeb98e1aa0a4f21c4cf931389cc08c55bfe9b6d5c57",
+          "currentPngSha256": "055f52b2f0cda8ccf679d578e1ecfb18b804dbaeef06b09a7583874b65500e6e",
+          "worldSha256": "f0469e004504ab09ddaacbbbf76ea1ae0ad8b2796a379bd4110a68f35446df3c",
+          "currentGroundMeshSha256": "ba50da44c5dfa029da5d3d434f92f9620cc17dc2e13ce7fd8752e64b6bde1d71",
+          "historicalGroundMeshSha256": "e2e00adcd1adecfbf627556d8aff692d5d89c1d7e406f1e2d3bdf51f42018623",
+          "changedPixelsAboveThreshold": 54201,
+          "repeatControlChangedPixels": 0,
+          "pixelDeltaThreshold": 3,
+          "cameraZoom": 26.0,
+          "meanAbsoluteRgbDelta": 0.25922420620918274,
+          "repeatControlMeanAbsoluteRgbDelta": 0.0,
+          "focus": {
+            "x": 44.0,
+            "y": 25.0
+          },
+          "expectedVisibleDifference": false,
+          "meshRestoredExactly": true,
+          "worldUnchanged": true
+        },
+        {
+          "view": "05-protected-bridge-default26",
+          "controlFile": "05-protected-bridge-default26-control-current.png",
+          "historicalFile": "05-protected-bridge-default26-baseline-reconstructed-historical-ground.png",
+          "currentFile": "05-protected-bridge-default26-current-bank077.png",
+          "controlPngSha256": "ef6fbecb07b0b0e3cf66cfbfb93411a420aabffd14e0cf8987e6869e6d1740da",
+          "historicalPngSha256": "1441e07e4320c120e39879c03f45d1197f05e6b55d3fec7a6076a9734020906e",
+          "currentPngSha256": "ef6fbecb07b0b0e3cf66cfbfb93411a420aabffd14e0cf8987e6869e6d1740da",
+          "worldSha256": "f0469e004504ab09ddaacbbbf76ea1ae0ad8b2796a379bd4110a68f35446df3c",
+          "currentGroundMeshSha256": "ba50da44c5dfa029da5d3d434f92f9620cc17dc2e13ce7fd8752e64b6bde1d71",
+          "historicalGroundMeshSha256": "e2e00adcd1adecfbf627556d8aff692d5d89c1d7e406f1e2d3bdf51f42018623",
+          "changedPixelsAboveThreshold": 93609,
+          "repeatControlChangedPixels": 0,
+          "pixelDeltaThreshold": 3,
+          "cameraZoom": 26.0,
+          "meanAbsoluteRgbDelta": 0.4960182011127472,
+          "repeatControlMeanAbsoluteRgbDelta": 0.0,
+          "focus": {
+            "x": 57.53639221191406,
+            "y": 39.0
+          },
+          "expectedVisibleDifference": false,
+          "meshRestoredExactly": true,
+          "worldUnchanged": true
+        }
+      ]
+    },
+    "sourceInventory": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/source-inventory-bank077.json",
+      "bytes": 146656,
+      "sha256": "6b6fa998fcb9e51d29d0f44ba7f497b31b4952d343af92d82484353803c85150",
+      "fileCount": 784
+    },
+    "pngCount": 15,
+    "pngDimensions": [
+      1920,
+      1080
+    ],
+    "pairs": [
+      {
+        "view": "01-bend-default26",
+        "controlFile": "01-bend-default26-control-current.png",
+        "historicalFile": "01-bend-default26-baseline-reconstructed-historical-ground.png",
+        "currentFile": "01-bend-default26-current-bank077.png",
+        "controlPngSha256": "a4dbafe4b58d3e34784081e28a6ed9022a165c3663beb1b8bd56a53ff9334cf1",
+        "historicalPngSha256": "f11e656098d6a2e4dc52d78e4499ca51fc8f226026563e4c4c0b270bf4294101",
+        "currentPngSha256": "a4dbafe4b58d3e34784081e28a6ed9022a165c3663beb1b8bd56a53ff9334cf1",
+        "worldSha256": "f0469e004504ab09ddaacbbbf76ea1ae0ad8b2796a379bd4110a68f35446df3c",
+        "currentGroundMeshSha256": "ba50da44c5dfa029da5d3d434f92f9620cc17dc2e13ce7fd8752e64b6bde1d71",
+        "historicalGroundMeshSha256": "e2e00adcd1adecfbf627556d8aff692d5d89c1d7e406f1e2d3bdf51f42018623",
+        "changedPixelsAboveThreshold": 121852,
+        "repeatControlChangedPixels": 0,
+        "pixelDeltaThreshold": 3,
+        "cameraZoom": 26.0,
+        "meanAbsoluteRgbDelta": 0.6499625444412231,
+        "repeatControlMeanAbsoluteRgbDelta": 0.0,
+        "focus": {
+          "x": 78.63077545166016,
+          "y": 67.98796844482422
+        },
+        "expectedVisibleDifference": true,
+        "meshRestoredExactly": true,
+        "worldUnchanged": true
+      },
+      {
+        "view": "02-bend-close16",
+        "controlFile": "02-bend-close16-control-current.png",
+        "historicalFile": "02-bend-close16-baseline-reconstructed-historical-ground.png",
+        "currentFile": "02-bend-close16-current-bank077.png",
+        "controlPngSha256": "052c409c72336207e175194dd458d323a1d3a3a5cea56370409ee157d427139b",
+        "historicalPngSha256": "bb85148e7ec3e449fa401d78e1b7b53f448993cf4ba9c87ccf02847a4e76bfa1",
+        "currentPngSha256": "052c409c72336207e175194dd458d323a1d3a3a5cea56370409ee157d427139b",
+        "worldSha256": "f0469e004504ab09ddaacbbbf76ea1ae0ad8b2796a379bd4110a68f35446df3c",
+        "currentGroundMeshSha256": "ba50da44c5dfa029da5d3d434f92f9620cc17dc2e13ce7fd8752e64b6bde1d71",
+        "historicalGroundMeshSha256": "e2e00adcd1adecfbf627556d8aff692d5d89c1d7e406f1e2d3bdf51f42018623",
+        "changedPixelsAboveThreshold": 236870,
+        "repeatControlChangedPixels": 0,
+        "pixelDeltaThreshold": 3,
+        "cameraZoom": 16.0,
+        "meanAbsoluteRgbDelta": 1.3604414463043213,
+        "repeatControlMeanAbsoluteRgbDelta": 0.0,
+        "focus": {
+          "x": 78.63077545166016,
+          "y": 67.98796844482422
+        },
+        "expectedVisibleDifference": true,
+        "meshRestoredExactly": true,
+        "worldUnchanged": true
+      },
+      {
+        "view": "03-winding-overview-default26",
+        "controlFile": "03-winding-overview-default26-control-current.png",
+        "historicalFile": "03-winding-overview-default26-baseline-reconstructed-historical-ground.png",
+        "currentFile": "03-winding-overview-default26-current-bank077.png",
+        "controlPngSha256": "64f81a9464a8493a11400305fac5ba14a97915d4f0eea1d4f77f1c733a8da81c",
+        "historicalPngSha256": "bed41110a6d65b3d0275cdd3a3c446a1494582beb313c0aa369f10ffa854283d",
+        "currentPngSha256": "64f81a9464a8493a11400305fac5ba14a97915d4f0eea1d4f77f1c733a8da81c",
+        "worldSha256": "f0469e004504ab09ddaacbbbf76ea1ae0ad8b2796a379bd4110a68f35446df3c",
+        "currentGroundMeshSha256": "ba50da44c5dfa029da5d3d434f92f9620cc17dc2e13ce7fd8752e64b6bde1d71",
+        "historicalGroundMeshSha256": "e2e00adcd1adecfbf627556d8aff692d5d89c1d7e406f1e2d3bdf51f42018623",
+        "changedPixelsAboveThreshold": 122168,
+        "repeatControlChangedPixels": 0,
+        "pixelDeltaThreshold": 3,
+        "cameraZoom": 26.0,
+        "meanAbsoluteRgbDelta": 0.6509815454483032,
+        "repeatControlMeanAbsoluteRgbDelta": 0.0,
+        "focus": {
+          "x": 64.0,
+          "y": 64.0
+        },
+        "expectedVisibleDifference": true,
+        "meshRestoredExactly": true,
+        "worldUnchanged": true
+      },
+      {
+        "view": "04-protected-harbor-pad-default26",
+        "controlFile": "04-protected-harbor-pad-default26-control-current.png",
+        "historicalFile": "04-protected-harbor-pad-default26-baseline-reconstructed-historical-ground.png",
+        "currentFile": "04-protected-harbor-pad-default26-current-bank077.png",
+        "controlPngSha256": "055f52b2f0cda8ccf679d578e1ecfb18b804dbaeef06b09a7583874b65500e6e",
+        "historicalPngSha256": "e10b3a2c84382bec4f8e9aeb98e1aa0a4f21c4cf931389cc08c55bfe9b6d5c57",
+        "currentPngSha256": "055f52b2f0cda8ccf679d578e1ecfb18b804dbaeef06b09a7583874b65500e6e",
+        "worldSha256": "f0469e004504ab09ddaacbbbf76ea1ae0ad8b2796a379bd4110a68f35446df3c",
+        "currentGroundMeshSha256": "ba50da44c5dfa029da5d3d434f92f9620cc17dc2e13ce7fd8752e64b6bde1d71",
+        "historicalGroundMeshSha256": "e2e00adcd1adecfbf627556d8aff692d5d89c1d7e406f1e2d3bdf51f42018623",
+        "changedPixelsAboveThreshold": 54201,
+        "repeatControlChangedPixels": 0,
+        "pixelDeltaThreshold": 3,
+        "cameraZoom": 26.0,
+        "meanAbsoluteRgbDelta": 0.25922420620918274,
+        "repeatControlMeanAbsoluteRgbDelta": 0.0,
+        "focus": {
+          "x": 44.0,
+          "y": 25.0
+        },
+        "expectedVisibleDifference": false,
+        "meshRestoredExactly": true,
+        "worldUnchanged": true
+      },
+      {
+        "view": "05-protected-bridge-default26",
+        "controlFile": "05-protected-bridge-default26-control-current.png",
+        "historicalFile": "05-protected-bridge-default26-baseline-reconstructed-historical-ground.png",
+        "currentFile": "05-protected-bridge-default26-current-bank077.png",
+        "controlPngSha256": "ef6fbecb07b0b0e3cf66cfbfb93411a420aabffd14e0cf8987e6869e6d1740da",
+        "historicalPngSha256": "1441e07e4320c120e39879c03f45d1197f05e6b55d3fec7a6076a9734020906e",
+        "currentPngSha256": "ef6fbecb07b0b0e3cf66cfbfb93411a420aabffd14e0cf8987e6869e6d1740da",
+        "worldSha256": "f0469e004504ab09ddaacbbbf76ea1ae0ad8b2796a379bd4110a68f35446df3c",
+        "currentGroundMeshSha256": "ba50da44c5dfa029da5d3d434f92f9620cc17dc2e13ce7fd8752e64b6bde1d71",
+        "historicalGroundMeshSha256": "e2e00adcd1adecfbf627556d8aff692d5d89c1d7e406f1e2d3bdf51f42018623",
+        "changedPixelsAboveThreshold": 93609,
+        "repeatControlChangedPixels": 0,
+        "pixelDeltaThreshold": 3,
+        "cameraZoom": 26.0,
+        "meanAbsoluteRgbDelta": 0.4960182011127472,
+        "repeatControlMeanAbsoluteRgbDelta": 0.0,
+        "focus": {
+          "x": 57.53639221191406,
+          "y": 39.0
+        },
+        "expectedVisibleDifference": false,
+        "meshRestoredExactly": true,
+        "worldUnchanged": true
+      }
+    ],
+    "actualRenderCase": [
+      {
+        "mode": "PlayMode",
+        "fullname": "Frontier.Tests.RiverBankRender077Tests.OrdinaryCameraPairsCompareReconstructedHistoricalGroundWithNewBankProfile",
+        "classname": "Frontier.Tests.RiverBankRender077Tests",
+        "methodname": "OrdinaryCameraPairsCompareReconstructedHistoricalGroundWithNewBankProfile",
+        "result": "Passed",
+        "duration": "12.401531",
+        "output": ""
+      }
+    ],
+    "meshCases": [
+      {
+        "mode": "PlayMode",
+        "fullname": "Frontier.Tests.RiverBankMesh077Tests.ActualEasternMeanderMeshHasBroaderSandOnItsLiteralWestInnerBank",
+        "classname": "Frontier.Tests.RiverBankMesh077Tests",
+        "methodname": "ActualEasternMeanderMeshHasBroaderSandOnItsLiteralWestInnerBank",
+        "result": "Passed",
+        "duration": "0.040704",
+        "output": "Eastern meander actual mesh: westInnerCount=5 sand=0.7177923 eastOuterCount=4 sand=0.07755104\n"
+      },
+      {
+        "mode": "PlayMode",
+        "fullname": "Frontier.Tests.RiverBankMesh077Tests.ActualGroundMeshColorsAndHeightsEqualTheSharedMapQueries",
+        "classname": "Frontier.Tests.RiverBankMesh077Tests",
+        "methodname": "ActualGroundMeshColorsAndHeightsEqualTheSharedMapQueries",
+        "result": "Passed",
+        "duration": "0.194410",
+        "output": "Actual shared-query ground mesh: vertices=16641 changedSandVertices=436\n"
+      },
+      {
+        "mode": "PlayMode",
+        "fullname": "Frontier.Tests.RiverBankMesh077Tests.WindingSedimentPaletteHasItsOwnMaterialAndDoesNotLeakIntoOtherRiverMaps",
+        "classname": "Frontier.Tests.RiverBankMesh077Tests",
+        "methodname": "WindingSedimentPaletteHasItsOwnMaterialAndDoesNotLeakIntoOtherRiverMaps",
+        "result": "Failed",
+        "duration": "0.039612",
+        "output": ""
+      }
+    ],
+    "fullPixelMetricsRecomputed": false,
+    "pngRgbaHashesRecomputed": false,
+    "verified": "Whole PNG byte hashes, IHDR dimensions, sidecar/source/pair bindings, recorded repeat/visible-threshold gates and exact actual XML execution.",
+    "paletteIsolationCoverage": "Initial exact Color equality fails at line28. AreNotSame and subsequent other-map/final-palette assertions in this case were not reached; material isolation remains unaccepted by Full1.",
+    "boundaries": [
+      "Editor GameCamera/WorldView URP frozen Winding fixture, seed42, no simulation ticks.",
+      "Historical ground reconstructed within new source, not a historical executable capture.",
+      "No native ordinary match, paid construction, command/mobility/combat, FPS or aesthetic acceptance.",
+      "Rounded Color printout does not prove exact float equality or identify the precise roundtrip cause."
+    ]
+  },
+  "originals": [
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/runner-receipt077.json",
+      "bytes": 102657,
+      "sha256": "6d0829ae5d1a6caaa615016d1853d37852dd24049fd360a8acefdc35cdbd26b1",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.19.0/Candidate2/Full1/runner-receipt076.json",
+      "bytes": 101580,
+      "sha256": "dee744ef3ce5d4e76dd213728caff9d4cc2ec715e26f903467afbe9523dab912",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-JENFOStU/source-evidence.json",
+      "bytes": 99895,
+      "sha256": "fdc9eee3fb643c184918abeaef1652513a616358c4a79ec690c32321e014c987",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-La5Xze2I/EditMode.xml",
+      "bytes": 1131811,
+      "sha256": "9356ee0a2fbcf364f091292f7866557d1328c51300a30826699802951d9d0768",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-JENFOStU/EditMode.xml",
+      "bytes": 1117340,
+      "sha256": "85b25538f34eced2090124fa31e595f2d94b7340e823c23cf91c53ded65b6ad4",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-La5Xze2I/PlayMode.xml",
+      "bytes": 606914,
+      "sha256": "95453205b710588524f10273087f6ab17713c221ba922dd25ee47945c3d57c5b",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-JENFOStU/PlayMode.xml",
+      "bytes": 601829,
+      "sha256": "602b205f8d22cc4fbc4ae6fe105d48c229778e34393d4e1bad35d3603460823a",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/stdout-0.log",
+      "bytes": 125,
+      "sha256": "c8f436479c9000197d6bc19bc5d72a318b12f10e37ebe54653d140ce34d47431",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-La5Xze2I/EditMode.log",
+      "bytes": 88401,
+      "sha256": "3833776814f8a63de7dc9d82377fd434fd1d51d3a33fc49cb3b8fbd4a5255c37",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/Tests/run-La5Xze2I/PlayMode.log",
+      "bytes": 1402555,
+      "sha256": "85fb05d4a5815a0980d1f05abe04f6a158be3e4094179a5bfdf82071f33e9dd6",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/run077.py",
+      "bytes": 5430,
+      "sha256": "196a57d568812aab47abd29ee6984db28a8a6033f4e3d19472c1071cb35649c1",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/source-inventory-bank077.json",
+      "bytes": 146656,
+      "sha256": "6b6fa998fcb9e51d29d0f44ba7f497b31b4952d343af92d82484353803c85150",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/study-run077.json",
+      "bytes": 7960,
+      "sha256": "2367305b8ee50bd7ca449936b1bc792afd12fd6a7e1ef45fda8f4ddad3aac767",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/01-bend-default26-baseline-reconstructed-historical-ground.png",
+      "bytes": 2667968,
+      "sha256": "f11e656098d6a2e4dc52d78e4499ca51fc8f226026563e4c4c0b270bf4294101",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/01-bend-default26-baseline-reconstructed-historical-ground.json",
+      "bytes": 2429,
+      "sha256": "425f3a2c1f604a7522df264bd12f0c04dbc8339f4f6dd9c7478327441af710f0",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/01-bend-default26-control-current.png",
+      "bytes": 2671103,
+      "sha256": "a4dbafe4b58d3e34784081e28a6ed9022a165c3663beb1b8bd56a53ff9334cf1",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/01-bend-default26-control-current.json",
+      "bytes": 2379,
+      "sha256": "f22f6033b881c92d914a95072bf59bd68f5d8b571371a500711a2bb25f82f805",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/01-bend-default26-current-bank077.png",
+      "bytes": 2671103,
+      "sha256": "a4dbafe4b58d3e34784081e28a6ed9022a165c3663beb1b8bd56a53ff9334cf1",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/01-bend-default26-current-bank077.json",
+      "bytes": 2379,
+      "sha256": "2cd8772bac6bdef1fa6a31150373bf95031886767d3c6861e67fe6ee4d9022e9",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/02-bend-close16-baseline-reconstructed-historical-ground.png",
+      "bytes": 2324256,
+      "sha256": "bb85148e7ec3e449fa401d78e1b7b53f448993cf4ba9c87ccf02847a4e76bfa1",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/02-bend-close16-baseline-reconstructed-historical-ground.json",
+      "bytes": 2425,
+      "sha256": "74c6e89e2ab83c3aeb2d22cfd96cb90690ddff1c1f18d559b48d8caeb57625b1",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/02-bend-close16-control-current.png",
+      "bytes": 2320863,
+      "sha256": "052c409c72336207e175194dd458d323a1d3a3a5cea56370409ee157d427139b",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/02-bend-close16-control-current.json",
+      "bytes": 2375,
+      "sha256": "a14b16daefc813a80ced5e743e361bc4177e0c0b441a9af6316e3a084d47e487",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/02-bend-close16-current-bank077.png",
+      "bytes": 2320863,
+      "sha256": "052c409c72336207e175194dd458d323a1d3a3a5cea56370409ee157d427139b",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/02-bend-close16-current-bank077.json",
+      "bytes": 2375,
+      "sha256": "683d294297fddac5fdc3d274a57c61afae0e2f71c601b5615a4bddaf42e9a37b",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/03-winding-overview-default26-baseline-reconstructed-historical-ground.png",
+      "bytes": 2681633,
+      "sha256": "bed41110a6d65b3d0275cdd3a3c446a1494582beb313c0aa369f10ffa854283d",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/03-winding-overview-default26-baseline-reconstructed-historical-ground.json",
+      "bytes": 2401,
+      "sha256": "ed95052727c8ef74c8ac2c3fd70ef0e3f98f74988f0f61169c37dba1fcdbf250",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/03-winding-overview-default26-control-current.png",
+      "bytes": 2681712,
+      "sha256": "64f81a9464a8493a11400305fac5ba14a97915d4f0eea1d4f77f1c733a8da81c",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/03-winding-overview-default26-control-current.json",
+      "bytes": 2351,
+      "sha256": "c0e21f1065ea56500517ceea258fedbc75aa8c4af712309d0bd14b147ed08901",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/03-winding-overview-default26-current-bank077.png",
+      "bytes": 2681712,
+      "sha256": "64f81a9464a8493a11400305fac5ba14a97915d4f0eea1d4f77f1c733a8da81c",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/03-winding-overview-default26-current-bank077.json",
+      "bytes": 2351,
+      "sha256": "639591c97128256bbe9dc6e2383b33b3ac67f645eb65299edbb4332c4b6da6a6",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/04-protected-harbor-pad-default26-baseline-reconstructed-historical-ground.png",
+      "bytes": 2301246,
+      "sha256": "e10b3a2c84382bec4f8e9aeb98e1aa0a4f21c4cf931389cc08c55bfe9b6d5c57",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/04-protected-harbor-pad-default26-baseline-reconstructed-historical-ground.json",
+      "bytes": 2410,
+      "sha256": "d9c6bc1e6ba1020c265ad078f3445b522e07bcb6ad8d9f58041c8ffe97b49fa4",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/04-protected-harbor-pad-default26-control-current.png",
+      "bytes": 2302820,
+      "sha256": "055f52b2f0cda8ccf679d578e1ecfb18b804dbaeef06b09a7583874b65500e6e",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/04-protected-harbor-pad-default26-control-current.json",
+      "bytes": 2360,
+      "sha256": "88ab46abe6bce09170c0c9a60627fdaeaccc5c506ebf74863f2b018eadcaa40d",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/04-protected-harbor-pad-default26-current-bank077.png",
+      "bytes": 2302820,
+      "sha256": "055f52b2f0cda8ccf679d578e1ecfb18b804dbaeef06b09a7583874b65500e6e",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/04-protected-harbor-pad-default26-current-bank077.json",
+      "bytes": 2360,
+      "sha256": "122aa02fae62b35bb20dfed168269e211c932674e0edf1c992ef3781514cf07a",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/05-protected-bridge-default26-baseline-reconstructed-historical-ground.png",
+      "bytes": 2675130,
+      "sha256": "1441e07e4320c120e39879c03f45d1197f05e6b55d3fec7a6076a9734020906e",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/05-protected-bridge-default26-baseline-reconstructed-historical-ground.json",
+      "bytes": 2427,
+      "sha256": "35d12e5ef649442cd38938c20bd1b8286da645947117bc6d96fe80cc0075811b",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/05-protected-bridge-default26-control-current.png",
+      "bytes": 2677612,
+      "sha256": "ef6fbecb07b0b0e3cf66cfbfb93411a420aabffd14e0cf8987e6869e6d1740da",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/05-protected-bridge-default26-control-current.json",
+      "bytes": 2377,
+      "sha256": "0b2315a9ff073a6cf53835ba95c6328dd9d4789a52146c2d3d318267aa0b16f2",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/05-protected-bridge-default26-current-bank077.png",
+      "bytes": 2677612,
+      "sha256": "ef6fbecb07b0b0e3cf66cfbfb93411a420aabffd14e0cf8987e6869e6d1740da",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/05-protected-bridge-default26-current-bank077.json",
+      "bytes": 2377,
+      "sha256": "31f7be7a540ac83584d51961049d7d5b4e066a7c1ba5d475620ac91cea8fd1ae",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/01-bend-default26-pair.json",
+      "bytes": 1223,
+      "sha256": "5322f77cbb45c75c9c728220452a490942852929c2013c2c41661cbb53fea46c",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/02-bend-close16-pair.json",
+      "bytes": 1215,
+      "sha256": "dec882df85769eab3639e1dc03e80b44ce5838bbd81f3bd76b1439798f218645",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/03-winding-overview-default26-pair.json",
+      "bytes": 1245,
+      "sha256": "9cfbcb02e88b95722b88b5f52896c03667f74e8d11919ea70c3455ce10cc6028",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/04-protected-harbor-pad-default26-pair.json",
+      "bytes": 1262,
+      "sha256": "06bad3d3eba1c8bb15411425d3ca178c979838a10ad6d57e1ace3b0ac0a412ac",
+      "unixMode": "0o644"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Full1/Captures/05-protected-bridge-default26-pair.json",
+      "bytes": 1258,
+      "sha256": "1e0a335b3a235225e6d04b9d35e1505132867dc0e8fbb75f57cbb40870cc9fc8",
+      "unixMode": "0o644"
+    }
+  ]
+}

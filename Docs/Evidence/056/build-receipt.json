@@ -1,0 +1,30 @@
+{
+  "appVersion": "0.2.32",
+  "bundleBuildNumber": "0",
+  "buildGuid": "947f7c0c0da44ec3a806c2dcb69ca04e",
+  "sourceFingerprint": "7340a04ba7f4d10c35a4dde158a8c517e0205e875daacc1a58005dcb61730adf",
+  "sourceCommit": "59a66b64c027224289761ad6bb409e8e41804fee",
+  "compiledRuntimeSha256": {
+    "Contents/Info.plist": "ab19cb47b68f3ddc90ad1526b05c2792247b154a1e47aceb3859dd3fa4efd027",
+    "Contents/MacOS/Frontier Reckoning": "d224cfd291b5622df450eda03569fe6cb84e1e934042be815000381e64a02f74",
+    "Contents/Resources/Data/Managed/Frontier.Runtime.dll": "ae73f6d91b84d39aa497c4fc7073b3f8561dd94bf5ebea9dfbb002d0fb5bdf9c"
+  },
+  "bundleFileCount": 299,
+  "bundleFileBytes": 173040973,
+  "recordedAtUtc": "2026-10-03T12:02:44.456263+00:00",
+  "unityVersion": "6000.6.3f1",
+  "unityRevision": "45d8eee7de74",
+  "platform": "macOS Apple silicon",
+  "architecture": "arm64",
+  "buildOptions": "Development / Mono",
+  "buildMethod": "Frontier.Editor.BuildTools.BuildMac (direct; existing scene retained; no Prepare)",
+  "buildLog": "Build.log",
+  "tests": "Tests/source-evidence.json",
+  "nativeSmoke": "NativeSmoke/README.md",
+  "verification": "Fresh 214/214 EditMode and 210/210 PlayMode tests passed on the recorded source fingerprint. Direct macOS arm64 build succeeded with exit 0. The separate new-client native check rendered the updated menu, started an ordinary 1x/non-autoplay match, accepted Gather and gathered 46.799976 Food, returned to menu, and quit normally. Full A-D gameplay/audio/performance acceptance remains bound to the preserved .31 evidence, including B10 and strict C7 17/17 with 19/19 same-match coverage.",
+  "limitations": [
+    "The .32 source changes are exactly the approved menu strings and bundleVersion; the separate release-equivalence audit binds the 355 unchanged files and all fresh test identities. No .31 observation is relabelled as .32 gameplay, audio or performance.",
+    "The .32 native check is a 27.400068-second ordinary start/gather/menu/quit smoke, not a completed match. The original A-D full-match evidence remains in 055.",
+    "Development / Mono build for tested macOS arm64. Windows/Linux/Intel Mac, cross-machine signing/notarization/install, saves, networking, campaign, naval combat and a map editor are outside this delivery."
+  ]
+}

@@ -1,0 +1,970 @@
+{
+  "generatedAtUTC": "2026-10-02T06:32:45.434139+00:00",
+  "scope": "Native client normal-rule AI autoplay; excludes zero-GUID editor/test fixtures. Does not certify human input, full five-era coverage, audio or normal-player performance.",
+  "requiredBuildGuid": "21261224be4f40e692a3629fc4cc42fe",
+  "reportsRoot": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports",
+  "rulesSource": {
+    "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Resources/Rules.json",
+    "sha256": "a438291dbb42e0996485fb069031b24a95b5323d9d180135a0aba44cb272c064"
+  },
+  "uniqueNativeMatches": 3,
+  "naturalEliminationMatches": 3,
+  "passedEventAudits": 3,
+  "ignoredReports": {
+    "otherOrZeroGuid": 57
+  },
+  "reportParseErrors": [],
+  "matches": [
+    {
+      "matchId": "6e1ab44d886e427fb25859505d2d74f8",
+      "buildGuid": "21261224be4f40e692a3629fc4cc42fe",
+      "appVersion": "0.2.30",
+      "unityVersion": "6000.6.3f1",
+      "platform": "OSXPlayer",
+      "reportReason": "match_finished",
+      "autoplay": true,
+      "simulationSpeed": 16.0,
+      "difficulty": "standard",
+      "seed": 314159,
+      "maxAge": 5,
+      "seconds": 2157.453857421875,
+      "winner": 0,
+      "eventCount": 125215,
+      "eventCounts": {
+        "AIConstructionResumed": 3,
+        "AIStrategy": 20,
+        "AgeAdvanced": 8,
+        "AgeRewardArrived": 8,
+        "AttackPrepared": 3985,
+        "BuildingComplete": 39,
+        "Command": 4766,
+        "Damage": 3587,
+        "Death": 364,
+        "DestinationAdjusted": 377,
+        "Experience": 625,
+        "Fire": 3634,
+        "Garrison": 105,
+        "Gather": 103842,
+        "Impact": 2143,
+        "MatchEnded": 1,
+        "MatchStarted": 1,
+        "Payment": 296,
+        "ProductionQueued": 205,
+        "RallyAssigned": 374,
+        "ResearchComplete": 19,
+        "ResourceDepleted": 50,
+        "ShipmentArrived": 27,
+        "ShipmentEarned": 27,
+        "ShipmentSent": 27,
+        "Spawn": 538,
+        "StartingResources": 2,
+        "Technology": 19,
+        "TradeDelivery": 61,
+        "TradeMode": 34,
+        "TradeSocket": 3,
+        "TreasureClaimed": 6,
+        "TreasurePlaced": 6,
+        "Ungarrison": 13
+      },
+      "reportSource": {
+        "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261002-063149-484-6e1ab44d886e427fb25859505d2d74f8-match_finished.json",
+        "sha256": "6344945a9e8c4bf6ba280ae6c20a7caa117d62d3070b5172eb2aea10359241c2",
+        "archivedPath": "20261002-063149-484-6e1ab44d886e427fb25859505d2d74f8-match_finished.json"
+      },
+      "eventsSource": {
+        "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261002-063149-484-6e1ab44d886e427fb25859505d2d74f8-match_finished-events.jsonl",
+        "sha256": "7a6892f4901993b8eb090bb77f040031d5883da3c3d1de58fddf8e2097bbd147",
+        "archivedPath": "20261002-063149-484-6e1ab44d886e427fb25859505d2d74f8-match_finished-events.jsonl"
+      },
+      "checks": {
+        "nativePlayerPlatform": true,
+        "oneMatchStarted": true,
+        "eventCountMatchesReport": true,
+        "allSpawnsRecognized": true,
+        "allTrainingQueuesHaveStructuredPayment": true,
+        "completeTrainingAttribution": true,
+        "oneNaturalEnd": true,
+        "winnerMatchesEndEvent": true,
+        "endTimeMatchesReport": true,
+        "loserHasNoLivingUnitsOrBuildings": true,
+        "bothPlayersGathered": true,
+        "bothPlayersPaidAndCompletedTraining": true,
+        "bothPlayersReceivedShipments": true,
+        "atLeastOneCannonDamagedEnemyBuilding": true
+      },
+      "status": "passed",
+      "naturalCompleteElimination": true,
+      "bothPlayersReachedAgeIII": true,
+      "players": [
+        {
+          "player": 0,
+          "civilization": "coast",
+          "age": 5,
+          "ageHistory": [
+            "I @ 0s",
+            "2 @ 214.9s",
+            "3 @ 695.7s",
+            "4 @ 1238.7s",
+            "5 @ 1909.3s"
+          ],
+          "spawnByDefinition": {
+            "barracks": 1,
+            "cannon": 12,
+            "crate_coin": 6,
+            "crate_food": 5,
+            "crate_wood": 7,
+            "dragoon": 13,
+            "estate": 1,
+            "explorer": 1,
+            "farm": 3,
+            "foundry": 1,
+            "house": 11,
+            "hussar": 31,
+            "longbow": 7,
+            "market": 1,
+            "musketeer": 30,
+            "pike": 26,
+            "skirmisher": 7,
+            "stable": 1,
+            "town": 1,
+            "trade_post": 5,
+            "villager": 52
+          },
+          "completedPaidTrainingByDefinition": {
+            "cannon": 11,
+            "dragoon": 11,
+            "hussar": 25,
+            "longbow": 7,
+            "musketeer": 27,
+            "pike": 23,
+            "skirmisher": 7,
+            "villager": 30
+          },
+          "productionJobsQueued": 114,
+          "payments": 156,
+          "gatherEvents": 54898,
+          "shipmentsSent": 15,
+          "shipmentsArrived": 15,
+          "firstCannonSpawnAt": 798.6520385742188,
+          "cannonFiresAtEnemyBuildings": 163,
+          "cannonDamageEventsAgainstEnemyBuildings": 145,
+          "cannonDamageTargets": [
+            52,
+            147,
+            148,
+            157,
+            162,
+            176,
+            193,
+            232,
+            258,
+            263,
+            291,
+            304,
+            332,
+            343,
+            402,
+            435,
+            438,
+            443,
+            447,
+            465,
+            471,
+            472,
+            481,
+            482,
+            483,
+            491,
+            492,
+            495,
+            498,
+            501,
+            502,
+            506,
+            507,
+            522
+          ],
+          "firstCannonBuildingDamage": {
+            "time": 1216.0501708984375,
+            "source": 315,
+            "target": 232,
+            "targetDefinition": "trade_post",
+            "amount": 130.0
+          },
+          "livingUnitsAndBuildingsAtEnd": 98,
+          "gathered": {
+            "food": 20914.90234375,
+            "wood": 15332.0546875,
+            "coin": 15624.3837890625
+          },
+          "spent": {
+            "food": 21625.0,
+            "wood": 9270.0,
+            "coin": 15700.0
+          },
+          "passiveIncome": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "tradeIncome": {
+            "food": 450.0,
+            "wood": 1062.5,
+            "coin": 250.0
+          },
+          "resources": {
+            "food": 22.95520782470703,
+            "wood": 7414.90234375,
+            "coin": 272.4842224121094
+          },
+          "economyLedgerResidual": {
+            "food": -16.94713592529297,
+            "wood": -9.65234375,
+            "coin": -1.899566650390625
+          },
+          "ledgerResidualScope": "Aggregate float accumulation diagnostic; no arbitrary pass tolerance imposed"
+        },
+        {
+          "player": 1,
+          "civilization": "coast",
+          "age": 5,
+          "ageHistory": [
+            "I @ 0s",
+            "2 @ 207.7s",
+            "3 @ 740.1s",
+            "4 @ 1117.6s",
+            "5 @ 1963.3s"
+          ],
+          "spawnByDefinition": {
+            "barracks": 1,
+            "cannon": 8,
+            "crate_coin": 5,
+            "crate_food": 3,
+            "crate_wood": 5,
+            "dragoon": 9,
+            "estate": 3,
+            "explorer": 1,
+            "farm": 17,
+            "foundry": 1,
+            "house": 7,
+            "hussar": 20,
+            "longbow": 14,
+            "market": 1,
+            "musketeer": 19,
+            "pike": 29,
+            "skirmisher": 10,
+            "stable": 2,
+            "town": 1,
+            "trade_post": 6,
+            "villager": 45
+          },
+          "completedPaidTrainingByDefinition": {
+            "cannon": 5,
+            "dragoon": 3,
+            "hussar": 18,
+            "longbow": 14,
+            "musketeer": 16,
+            "pike": 26,
+            "skirmisher": 4,
+            "villager": 28
+          },
+          "productionJobsQueued": 91,
+          "payments": 140,
+          "gatherEvents": 48944,
+          "shipmentsSent": 12,
+          "shipmentsArrived": 12,
+          "firstCannonSpawnAt": 873.0338745117188,
+          "cannonFiresAtEnemyBuildings": 31,
+          "cannonDamageEventsAgainstEnemyBuildings": 31,
+          "cannonDamageTargets": [
+            150,
+            244,
+            259,
+            324,
+            366
+          ],
+          "firstCannonBuildingDamage": {
+            "time": 935.4186401367188,
+            "source": 288,
+            "target": 244,
+            "targetDefinition": "farm",
+            "amount": 130.0
+          },
+          "livingUnitsAndBuildingsAtEnd": 0,
+          "gathered": {
+            "food": 16413.740234375,
+            "wood": 12633.662109375,
+            "coin": 10000.30078125
+          },
+          "spent": {
+            "food": 17470.0,
+            "wood": 12965.0,
+            "coin": 10225.0
+          },
+          "passiveIncome": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "tradeIncome": {
+            "food": 825.0,
+            "wood": 125.0,
+            "coin": 350.0
+          },
+          "resources": {
+            "food": 29.825172424316406,
+            "wood": 81.30819702148438,
+            "coin": 211.34011840820312
+          },
+          "economyLedgerResidual": {
+            "food": -38.915061950683594,
+            "wood": -12.353912353515625,
+            "coin": -13.960662841796875
+          },
+          "ledgerResidualScope": "Aggregate float accumulation diagnostic; no arbitrary pass tolerance imposed"
+        }
+      ],
+      "unknownSpawns": [],
+      "unpaidTrainingQueueEvents": [],
+      "unmatchedTrainingEvents": [],
+      "performanceScope": "Autoplay at the recorded speed; frame metrics are not normal-player performance acceptance",
+      "frameMeanMs": 17.272001266479492,
+      "frameP95Ms": 17.446876525878906,
+      "reportExportsForSameMatch": [
+        {
+          "reason": "match_finished",
+          "seconds": 2157.453857421875,
+          "source": {
+            "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261002-063149-484-6e1ab44d886e427fb25859505d2d74f8-match_finished.json",
+            "sha256": "6344945a9e8c4bf6ba280ae6c20a7caa117d62d3070b5172eb2aea10359241c2"
+          }
+        }
+      ]
+    },
+    {
+      "matchId": "8f89493cdc4c495cb62625bcdc9feb74",
+      "buildGuid": "21261224be4f40e692a3629fc4cc42fe",
+      "appVersion": "0.2.30",
+      "unityVersion": "6000.6.3f1",
+      "platform": "OSXPlayer",
+      "reportReason": "match_finished",
+      "autoplay": true,
+      "simulationSpeed": 16.0,
+      "difficulty": "standard",
+      "seed": 314159,
+      "maxAge": 5,
+      "seconds": 1942.4727783203125,
+      "winner": 0,
+      "eventCount": 106626,
+      "eventCounts": {
+        "AIStrategy": 17,
+        "AgeAdvanced": 7,
+        "AgeRewardArrived": 7,
+        "AttackCancelled": 3,
+        "AttackPrepared": 3403,
+        "BankIncome": 3026,
+        "BuildingComplete": 46,
+        "Command": 3935,
+        "Damage": 3076,
+        "Death": 359,
+        "DestinationAdjusted": 243,
+        "Experience": 623,
+        "Fire": 3132,
+        "Garrison": 118,
+        "Gather": 84950,
+        "Impact": 2031,
+        "MatchEnded": 1,
+        "MatchStarted": 1,
+        "Payment": 303,
+        "ProductionQueued": 199,
+        "RallyAssigned": 345,
+        "ResearchComplete": 20,
+        "ResourceDepleted": 52,
+        "ShipmentArrived": 26,
+        "ShipmentEarned": 27,
+        "ShipmentSent": 27,
+        "Spawn": 529,
+        "StartingResources": 2,
+        "Technology": 21,
+        "TradeDelivery": 48,
+        "TradeMode": 24,
+        "TradeSocket": 3,
+        "TreasureClaimed": 6,
+        "TreasurePlaced": 6,
+        "Ungarrison": 10
+      },
+      "reportSource": {
+        "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261002-062843-592-8f89493cdc4c495cb62625bcdc9feb74-match_finished.json",
+        "sha256": "b1877ba2857db3806d2286a5036f368bae9f2d65ed9f54b9b373d4e984f343e9",
+        "archivedPath": "20261002-062843-592-8f89493cdc4c495cb62625bcdc9feb74-match_finished.json"
+      },
+      "eventsSource": {
+        "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261002-062843-592-8f89493cdc4c495cb62625bcdc9feb74-match_finished-events.jsonl",
+        "sha256": "42d8f78e36ddfe4345a7f6a6f1f14daafe2dc0e182d5f47351240f8016dbeb8d",
+        "archivedPath": "20261002-062843-592-8f89493cdc4c495cb62625bcdc9feb74-match_finished-events.jsonl"
+      },
+      "checks": {
+        "nativePlayerPlatform": true,
+        "oneMatchStarted": true,
+        "eventCountMatchesReport": true,
+        "allSpawnsRecognized": true,
+        "allTrainingQueuesHaveStructuredPayment": true,
+        "completeTrainingAttribution": true,
+        "oneNaturalEnd": true,
+        "winnerMatchesEndEvent": true,
+        "endTimeMatchesReport": true,
+        "loserHasNoLivingUnitsOrBuildings": true,
+        "bothPlayersGathered": true,
+        "bothPlayersPaidAndCompletedTraining": true,
+        "bothPlayersReceivedShipments": true,
+        "atLeastOneCannonDamagedEnemyBuilding": true
+      },
+      "status": "passed",
+      "naturalCompleteElimination": true,
+      "bothPlayersReachedAgeIII": true,
+      "players": [
+        {
+          "player": 0,
+          "civilization": "river",
+          "age": 5,
+          "ageHistory": [
+            "I @ 0s",
+            "2 @ 231.7s",
+            "3 @ 728.1s",
+            "4 @ 1122.4s",
+            "5 @ 1725.7s"
+          ],
+          "spawnByDefinition": {
+            "bank": 7,
+            "barracks": 1,
+            "cannon": 20,
+            "carabineer": 15,
+            "crate_coin": 7,
+            "crate_food": 5,
+            "crate_wood": 7,
+            "dragoon": 10,
+            "estate": 1,
+            "explorer": 1,
+            "farm": 3,
+            "foundry": 1,
+            "house": 11,
+            "hussar": 29,
+            "market": 1,
+            "musketeer": 32,
+            "pike": 25,
+            "skirmisher": 7,
+            "stable": 1,
+            "town": 1,
+            "trade_post": 2,
+            "villager": 43
+          },
+          "completedPaidTrainingByDefinition": {
+            "cannon": 19,
+            "carabineer": 9,
+            "dragoon": 8,
+            "hussar": 23,
+            "musketeer": 32,
+            "pike": 25,
+            "skirmisher": 7,
+            "villager": 34
+          },
+          "productionJobsQueued": 117,
+          "payments": 165,
+          "gatherEvents": 45672,
+          "shipmentsSent": 15,
+          "shipmentsArrived": 15,
+          "firstCannonSpawnAt": 768.1594848632812,
+          "cannonFiresAtEnemyBuildings": 201,
+          "cannonDamageEventsAgainstEnemyBuildings": 177,
+          "cannonDamageTargets": [
+            52,
+            148,
+            149,
+            158,
+            160,
+            177,
+            189,
+            223,
+            260,
+            280,
+            297,
+            328,
+            335,
+            355,
+            356,
+            362,
+            375,
+            382,
+            383,
+            385,
+            390,
+            393,
+            398,
+            402,
+            403,
+            406,
+            407,
+            411,
+            418,
+            419,
+            425,
+            431,
+            481,
+            482,
+            496,
+            497,
+            498,
+            499,
+            500,
+            501,
+            502,
+            506
+          ],
+          "firstCannonBuildingDamage": {
+            "time": 879.2323608398438,
+            "source": 277,
+            "target": 177,
+            "targetDefinition": "house",
+            "amount": 130.0
+          },
+          "livingUnitsAndBuildingsAtEnd": 99,
+          "gathered": {
+            "food": 22322.21875,
+            "wood": 14412.8916015625,
+            "coin": 11081.05078125
+          },
+          "spent": {
+            "food": 20960.0,
+            "wood": 11400.0,
+            "coin": 21435.0
+          },
+          "passiveIncome": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 9567.5625
+          },
+          "tradeIncome": {
+            "food": 675.0,
+            "wood": 812.5,
+            "coin": 700.0
+          },
+          "resources": {
+            "food": 2131.5439453125,
+            "wood": 4118.04443359375,
+            "coin": 309.6009521484375
+          },
+          "economyLedgerResidual": {
+            "food": -5.6748046875,
+            "wood": -7.34716796875,
+            "coin": -4.0123291015625
+          },
+          "ledgerResidualScope": "Aggregate float accumulation diagnostic; no arbitrary pass tolerance imposed"
+        },
+        {
+          "player": 1,
+          "civilization": "coast",
+          "age": 4,
+          "ageHistory": [
+            "I @ 0s",
+            "2 @ 207.7s",
+            "3 @ 609.3s",
+            "4 @ 1260.3s"
+          ],
+          "spawnByDefinition": {
+            "barracks": 1,
+            "cannon": 10,
+            "crate_coin": 3,
+            "crate_food": 3,
+            "crate_wood": 3,
+            "dragoon": 7,
+            "estate": 3,
+            "explorer": 1,
+            "farm": 7,
+            "foundry": 1,
+            "house": 22,
+            "hussar": 13,
+            "longbow": 14,
+            "market": 1,
+            "musketeer": 8,
+            "pike": 31,
+            "skirmisher": 1,
+            "stable": 4,
+            "town": 3,
+            "trade_post": 5,
+            "villager": 49
+          },
+          "completedPaidTrainingByDefinition": {
+            "cannon": 5,
+            "dragoon": 5,
+            "hussar": 7,
+            "longbow": 14,
+            "musketeer": 5,
+            "pike": 31,
+            "skirmisher": 1,
+            "villager": 30
+          },
+          "productionJobsQueued": 82,
+          "payments": 138,
+          "gatherEvents": 39278,
+          "shipmentsSent": 12,
+          "shipmentsArrived": 11,
+          "firstCannonSpawnAt": 720.1712036132812,
+          "cannonFiresAtEnemyBuildings": 42,
+          "cannonDamageEventsAgainstEnemyBuildings": 40,
+          "cannonDamageTargets": [
+            153,
+            233,
+            247,
+            346,
+            368
+          ],
+          "firstCannonBuildingDamage": {
+            "time": 1572.3631591796875,
+            "source": 400,
+            "target": 233,
+            "targetDefinition": "trade_post",
+            "amount": 130.0
+          },
+          "livingUnitsAndBuildingsAtEnd": 0,
+          "gathered": {
+            "food": 13159.9931640625,
+            "wood": 13116.44140625,
+            "coin": 5155.001953125
+          },
+          "spent": {
+            "food": 11915.0,
+            "wood": 13390.0,
+            "coin": 5160.0
+          },
+          "passiveIncome": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "tradeIncome": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "resources": {
+            "food": 1526.7093505859375,
+            "wood": 6.2022705078125,
+            "coin": 93.96043395996094
+          },
+          "economyLedgerResidual": {
+            "food": -18.2838134765625,
+            "wood": -20.2391357421875,
+            "coin": -1.0415191650390625
+          },
+          "ledgerResidualScope": "Aggregate float accumulation diagnostic; no arbitrary pass tolerance imposed"
+        }
+      ],
+      "unknownSpawns": [],
+      "unpaidTrainingQueueEvents": [],
+      "unmatchedTrainingEvents": [],
+      "performanceScope": "Autoplay at the recorded speed; frame metrics are not normal-player performance acceptance",
+      "frameMeanMs": 17.17085838317871,
+      "frameP95Ms": 17.043210983276367,
+      "reportExportsForSameMatch": [
+        {
+          "reason": "match_finished",
+          "seconds": 1942.4727783203125,
+          "source": {
+            "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261002-062843-592-8f89493cdc4c495cb62625bcdc9feb74-match_finished.json",
+            "sha256": "b1877ba2857db3806d2286a5036f368bae9f2d65ed9f54b9b373d4e984f343e9"
+          }
+        },
+        {
+          "reason": "quit",
+          "seconds": 1942.4727783203125,
+          "source": {
+            "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261002-062931-411-8f89493cdc4c495cb62625bcdc9feb74-quit.json",
+            "sha256": "f39e821eeab03063390051aed925545b4c875528c16fb53291b4b380122dd659"
+          }
+        }
+      ]
+    },
+    {
+      "matchId": "a62fecb3c9a444f2a3c0b81a39a4835e",
+      "buildGuid": "21261224be4f40e692a3629fc4cc42fe",
+      "appVersion": "0.2.30",
+      "unityVersion": "6000.6.3f1",
+      "platform": "OSXPlayer",
+      "reportReason": "match_finished",
+      "autoplay": true,
+      "simulationSpeed": 16.0,
+      "difficulty": "standard",
+      "seed": 314159,
+      "maxAge": 5,
+      "seconds": 990.1052856445312,
+      "winner": 0,
+      "eventCount": 44343,
+      "eventCounts": {
+        "AIStrategy": 13,
+        "AgeAdvanced": 3,
+        "AgeRewardArrived": 3,
+        "AttackPrepared": 2506,
+        "BankIncome": 626,
+        "BuildingComplete": 20,
+        "Command": 1333,
+        "Damage": 2343,
+        "Death": 142,
+        "DestinationAdjusted": 62,
+        "Experience": 250,
+        "Fire": 2394,
+        "Garrison": 25,
+        "Gather": 32656,
+        "Impact": 1114,
+        "MatchEnded": 1,
+        "MatchStarted": 1,
+        "Payment": 151,
+        "ProductionQueued": 105,
+        "RallyAssigned": 136,
+        "ResearchComplete": 11,
+        "ResourceDepleted": 22,
+        "ShipmentArrived": 14,
+        "ShipmentEarned": 15,
+        "ShipmentSent": 15,
+        "Spawn": 303,
+        "StartingResources": 2,
+        "Technology": 12,
+        "TradeDelivery": 25,
+        "TradeMode": 21,
+        "TradeSocket": 3,
+        "TreasureClaimed": 6,
+        "TreasurePlaced": 6,
+        "Ungarrison": 4
+      },
+      "reportSource": {
+        "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261002-062539-120-a62fecb3c9a444f2a3c0b81a39a4835e-match_finished.json",
+        "sha256": "13e375ec024a5462e73d96ce9163b1c797cc3d62293e5feae438d0810e4293f9",
+        "archivedPath": "20261002-062539-120-a62fecb3c9a444f2a3c0b81a39a4835e-match_finished.json"
+      },
+      "eventsSource": {
+        "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261002-062539-120-a62fecb3c9a444f2a3c0b81a39a4835e-match_finished-events.jsonl",
+        "sha256": "b9ff761fcc555a08aa3192efb54e6fb67da99e78aca042411c9e4eb843e7e859",
+        "archivedPath": "20261002-062539-120-a62fecb3c9a444f2a3c0b81a39a4835e-match_finished-events.jsonl"
+      },
+      "checks": {
+        "nativePlayerPlatform": true,
+        "oneMatchStarted": true,
+        "eventCountMatchesReport": true,
+        "allSpawnsRecognized": true,
+        "allTrainingQueuesHaveStructuredPayment": true,
+        "completeTrainingAttribution": true,
+        "oneNaturalEnd": true,
+        "winnerMatchesEndEvent": true,
+        "endTimeMatchesReport": true,
+        "loserHasNoLivingUnitsOrBuildings": true,
+        "bothPlayersGathered": true,
+        "bothPlayersPaidAndCompletedTraining": true,
+        "bothPlayersReceivedShipments": true,
+        "atLeastOneCannonDamagedEnemyBuilding": true
+      },
+      "status": "passed",
+      "naturalCompleteElimination": true,
+      "bothPlayersReachedAgeIII": false,
+      "players": [
+        {
+          "player": 0,
+          "civilization": "coast",
+          "age": 3,
+          "ageHistory": [
+            "I @ 0s",
+            "2 @ 214.9s",
+            "3 @ 735.3s"
+          ],
+          "spawnByDefinition": {
+            "barracks": 1,
+            "cannon": 2,
+            "crate_coin": 2,
+            "crate_food": 3,
+            "crate_wood": 3,
+            "dragoon": 2,
+            "explorer": 1,
+            "farm": 2,
+            "foundry": 1,
+            "house": 6,
+            "hussar": 12,
+            "longbow": 6,
+            "market": 1,
+            "musketeer": 11,
+            "pike": 10,
+            "skirmisher": 3,
+            "stable": 1,
+            "town": 1,
+            "trade_post": 1,
+            "villager": 33
+          },
+          "completedPaidTrainingByDefinition": {
+            "cannon": 1,
+            "dragoon": 2,
+            "hussar": 10,
+            "longbow": 6,
+            "musketeer": 8,
+            "pike": 7,
+            "skirmisher": 3,
+            "villager": 16
+          },
+          "productionJobsQueued": 51,
+          "payments": 74,
+          "gatherEvents": 18964,
+          "shipmentsSent": 9,
+          "shipmentsArrived": 8,
+          "firstCannonSpawnAt": 823.8458862304688,
+          "cannonFiresAtEnemyBuildings": 36,
+          "cannonDamageEventsAgainstEnemyBuildings": 33,
+          "cannonDamageTargets": [
+            52,
+            151,
+            152,
+            153,
+            256,
+            273,
+            289,
+            290,
+            291,
+            293
+          ],
+          "firstCannonBuildingDamage": {
+            "time": 883.3313598632812,
+            "source": 279,
+            "target": 289,
+            "targetDefinition": "stable",
+            "amount": 130.0
+          },
+          "livingUnitsAndBuildingsAtEnd": 72,
+          "gathered": {
+            "food": 9774.8359375,
+            "wood": 3193.876708984375,
+            "coin": 4308.740234375
+          },
+          "spent": {
+            "food": 9070.0,
+            "wood": 3810.0,
+            "coin": 4565.0
+          },
+          "passiveIncome": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "tradeIncome": {
+            "food": 450.0,
+            "wood": 437.5,
+            "coin": 350.0
+          },
+          "resources": {
+            "food": 1453.6943359375,
+            "wood": 119.58836364746094,
+            "coin": 191.6190185546875
+          },
+          "economyLedgerResidual": {
+            "food": -1.1416015625,
+            "wood": -1.7883453369140625,
+            "coin": -2.1212158203125
+          },
+          "ledgerResidualScope": "Aggregate float accumulation diagnostic; no arbitrary pass tolerance imposed"
+        },
+        {
+          "player": 1,
+          "civilization": "river",
+          "age": 2,
+          "ageHistory": [
+            "I @ 0s",
+            "2 @ 230.5s"
+          ],
+          "spawnByDefinition": {
+            "bank": 1,
+            "barracks": 1,
+            "crate_coin": 3,
+            "crate_food": 3,
+            "crate_wood": 2,
+            "explorer": 1,
+            "farm": 2,
+            "house": 6,
+            "hussar": 13,
+            "market": 1,
+            "musketeer": 9,
+            "pike": 16,
+            "stable": 7,
+            "town": 1,
+            "villager": 26
+          },
+          "completedPaidTrainingByDefinition": {
+            "hussar": 11,
+            "musketeer": 9,
+            "pike": 16,
+            "villager": 17
+          },
+          "productionJobsQueued": 54,
+          "payments": 77,
+          "gatherEvents": 13692,
+          "shipmentsSent": 6,
+          "shipmentsArrived": 6,
+          "firstCannonSpawnAt": null,
+          "cannonFiresAtEnemyBuildings": 0,
+          "cannonDamageEventsAgainstEnemyBuildings": 0,
+          "cannonDamageTargets": [],
+          "firstCannonBuildingDamage": null,
+          "livingUnitsAndBuildingsAtEnd": 0,
+          "gathered": {
+            "food": 4652.29248046875,
+            "wood": 3944.891845703125,
+            "coin": 2191.91357421875
+          },
+          "spent": {
+            "food": 4325.0,
+            "wood": 4240.0,
+            "coin": 3010.0
+          },
+          "passiveIncome": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 1666.25
+          },
+          "tradeIncome": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "resources": {
+            "food": 426.99761962890625,
+            "wood": 1.007476806640625,
+            "coin": 1248.0841064453125
+          },
+          "economyLedgerResidual": {
+            "food": -0.29486083984375,
+            "wood": -3.884368896484375,
+            "coin": -0.0794677734375
+          },
+          "ledgerResidualScope": "Aggregate float accumulation diagnostic; no arbitrary pass tolerance imposed"
+        }
+      ],
+      "unknownSpawns": [],
+      "unpaidTrainingQueueEvents": [],
+      "unmatchedTrainingEvents": [],
+      "performanceScope": "Autoplay at the recorded speed; frame metrics are not normal-player performance acceptance",
+      "frameMeanMs": 17.55687713623047,
+      "frameP95Ms": 17.314456939697266,
+      "reportExportsForSameMatch": [
+        {
+          "reason": "match_finished",
+          "seconds": 990.1052856445312,
+          "source": {
+            "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261002-062539-120-a62fecb3c9a444f2a3c0b81a39a4835e-match_finished.json",
+            "sha256": "13e375ec024a5462e73d96ce9163b1c797cc3d62293e5feae438d0810e4293f9"
+          }
+        },
+        {
+          "reason": "quit",
+          "seconds": 990.1052856445312,
+          "source": {
+            "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261002-062638-815-a62fecb3c9a444f2a3c0b81a39a4835e-quit.json",
+            "sha256": "f9c05cb838d0cdfb33ef4503640c3e1f32982a65bb63112dd69aa60f548984dc"
+          }
+        }
+      ]
+    }
+  ]
+}

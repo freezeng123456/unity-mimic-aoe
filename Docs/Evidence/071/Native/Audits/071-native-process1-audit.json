@@ -1,0 +1,1216 @@
+{
+  "schema": 1,
+  "auditedUtc": "2026-10-06T06:06:37.066768+00:00",
+  "scope": "Original exited Process1/ProfileA only; paid/cancelled/requeued pending revolution; not completion or cold-load proof",
+  "status": "paid_cancelled_requeued_saved_control_group_not_saved",
+  "originalInputsStable": true,
+  "process": {
+    "schema": 1,
+    "appVersion": "0.14.0",
+    "buildGuid": "2d39f78f9f234ef092e172a35f800cae",
+    "bundleId": "com.frontierworkshop.reckoning",
+    "command": [
+      "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Build/Frontier Reckoning.app/Contents/MacOS/Frontier Reckoning",
+      "-screen-width",
+      "1600",
+      "-screen-height",
+      "1000",
+      "-frontierMaxAge",
+      "5",
+      "-frontierDataDirectory",
+      "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA",
+      "-frontierReportDirectory",
+      "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Reports",
+      "-frontierReplayDirectory",
+      "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Replays",
+      "-frontierInputTrace",
+      "-logFile",
+      "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process1/Player.log",
+      "-frontierScenarioPath",
+      "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/ControlledUiActions/controlled_iv_actions071.scenario.json"
+    ],
+    "profile": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA",
+    "startedAtUtc": "2026-10-06T05:51:58.258204+00:00",
+    "status": "exited",
+    "buildIdentitySha256": "03bed3da30fb83a34e9f15a9667b43bef8310e840c7f429d942be3a6900e887d",
+    "executableSha256": "a1ca2793cb64bee94e8b6a57d63892b842537236e5744c563b69e2e36d59aaa0",
+    "processId": 58342,
+    "pid": 58342,
+    "endedAtUtc": "2026-10-06T05:59:22.861189+00:00",
+    "exitCode": 0,
+    "log": {
+      "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process1/Player.log",
+      "bytes": 38673,
+      "sha256": "ee08236ede96a2cb9b0a88d8dd85bb8b992b10b44eb98fbad5c77460fb30d77f"
+    }
+  },
+  "binaryHashesIndependentlyRecomputed": false,
+  "identity": {
+    "matchId": "f496cf03970641248584b719cdf87515",
+    "appVersion": "0.14.0",
+    "buildGuid": "2d39f78f9f234ef092e172a35f800cae",
+    "rulesHash": "e0aca57faf2e1d08be2a6e341391be985fc368e296e410397327b38292024583",
+    "scenarioId": "controlled_iv_actions071",
+    "scenarioHash": "95eecd198899733720bcdb76556c2c8524e514881b002da9adf8756838977319",
+    "worldSchema": 4,
+    "replayIdentity": {
+      "appVersion": "0.14.0",
+      "buildIdentity": "2d39f78f9f234ef092e172a35f800cae",
+      "unityVersion": "6000.6.3f1",
+      "rulesHash": "e0aca57faf2e1d08be2a6e341391be985fc368e296e410397327b38292024583",
+      "mapGenerationVersion": 1,
+      "guidedCatalogRevision": 1,
+      "scenarioFormatVersion": 1,
+      "scenarioRuntimeVersion": 2
+    }
+  },
+  "saveEnvelope": {
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Saves/slot-1.json",
+    "fileSha256": "b21281969465c72f1cb8668a9df6188e57a6e44def5cb9552a722c0fc78722b8",
+    "payloadSha256": "ec7ab2b96e60db2192a9a3aefd5e71260f48f603bdc0c4edbb51199db8ae8099",
+    "payloadBytes": 718530,
+    "schema": 2,
+    "encoding": "gzip-base64",
+    "gzipSingleMemberCrcVerified": true,
+    "payloadShaVerified": true
+  },
+  "replayEnvelope": {
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Replays/replay-13e7410aa8e2409ab124e4144e8de9b5.replay.json",
+    "fileSha256": "d5b94c7d7c016d1fb08ad78689872c85ca7203fa0bfb9d3b03717283f49f8fd5",
+    "payloadSha256": "584a4c64fb643547c8f94abf89ffd4f614ab6294f120efd964a1adaf663e2026",
+    "payloadBytes": 3267427,
+    "schema": 2,
+    "encoding": "gzip-base64",
+    "gzipSingleMemberCrcVerified": true,
+    "payloadShaVerified": true
+  },
+  "timeline": [
+    {
+      "schemaVersion": 2,
+      "hasEconomy": true,
+      "hasPopulation": true,
+      "economy": {
+        "requestedDelta": {
+          "food": -800.0,
+          "wood": -800.0,
+          "coin": -800.0
+        },
+        "actualDelta": {
+          "food": -800.0,
+          "wood": -800.0,
+          "coin": -800.0
+        },
+        "balanceBefore": {
+          "food": 1300.0,
+          "wood": 800.0,
+          "coin": 1200.0
+        },
+        "balanceAfter": {
+          "food": 500.0,
+          "wood": 0.0,
+          "coin": 400.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 6,
+        "reserved": 0,
+        "capacity": 20
+      },
+      "time": 45.99987030029297,
+      "kind": "Payment",
+      "message": "Volunteer Assembly: 800 F / 800 W / 800 C",
+      "player": 0,
+      "entity": 1,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 22.0,
+        "y": 24.0
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 1.0
+      }
+    },
+    {
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": false,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 0,
+        "reserved": 0,
+        "capacity": 0
+      },
+      "time": 45.99987030029297,
+      "kind": "RevolutionQueued",
+      "message": "rev_coast",
+      "player": 0,
+      "entity": 1,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 22.0,
+        "y": 24.0
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 1.0
+      }
+    },
+    {
+      "schemaVersion": 2,
+      "hasEconomy": true,
+      "hasPopulation": true,
+      "economy": {
+        "requestedDelta": {
+          "food": 800.0,
+          "wood": 800.0,
+          "coin": 800.0
+        },
+        "actualDelta": {
+          "food": 800.0,
+          "wood": 800.0,
+          "coin": 800.0
+        },
+        "balanceBefore": {
+          "food": 500.0,
+          "wood": 0.0,
+          "coin": 400.0
+        },
+        "balanceAfter": {
+          "food": 1300.0,
+          "wood": 800.0,
+          "coin": 1200.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 6,
+        "reserved": 0,
+        "capacity": 20
+      },
+      "time": 61.599632263183594,
+      "kind": "Refund",
+      "message": "Cancelled rev_coast: 800 F / 800 W / 800 C",
+      "player": 0,
+      "entity": 1,
+      "target": 0,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 22.0,
+        "y": 24.0
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 1.0
+      }
+    },
+    {
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": false,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 0,
+        "reserved": 0,
+        "capacity": 0
+      },
+      "time": 61.599632263183594,
+      "kind": "RevolutionCancelled",
+      "message": "rev_coast",
+      "player": 0,
+      "entity": 1,
+      "target": 0,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 22.0,
+        "y": 24.0
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 1.0
+      }
+    },
+    {
+      "schemaVersion": 2,
+      "hasEconomy": true,
+      "hasPopulation": true,
+      "economy": {
+        "requestedDelta": {
+          "food": -800.0,
+          "wood": -800.0,
+          "coin": -800.0
+        },
+        "actualDelta": {
+          "food": -800.0,
+          "wood": -800.0,
+          "coin": -800.0
+        },
+        "balanceBefore": {
+          "food": 1300.0,
+          "wood": 800.0,
+          "coin": 1200.0
+        },
+        "balanceAfter": {
+          "food": 500.0,
+          "wood": 0.0,
+          "coin": 400.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 6,
+        "reserved": 0,
+        "capacity": 20
+      },
+      "time": 90.3991928100586,
+      "kind": "Payment",
+      "message": "Volunteer Assembly: 800 F / 800 W / 800 C",
+      "player": 0,
+      "entity": 1,
+      "target": 0,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 22.0,
+        "y": 24.0
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 1.0
+      }
+    },
+    {
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": false,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 0,
+        "reserved": 0,
+        "capacity": 0
+      },
+      "time": 90.3991928100586,
+      "kind": "RevolutionQueued",
+      "message": "rev_coast",
+      "player": 0,
+      "entity": 1,
+      "target": 0,
+      "visibilityMask": 3,
+      "amount": 0.0,
+      "position": {
+        "x": 22.0,
+        "y": 24.0
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 1.0
+      }
+    }
+  ],
+  "savedState": {
+    "worldTime": 90.3991928100586,
+    "paused": true,
+    "winner": -1,
+    "stepCount": 904,
+    "p0": {
+      "id": 0,
+      "team": 0,
+      "age": 4,
+      "usedPopulation": 6,
+      "reservedPopulation": 0,
+      "populationCap": 20,
+      "shipmentTokens": 0,
+      "xpLevels": 0,
+      "prefabCharges": 0,
+      "civilization": "coast",
+      "resources": {
+        "food": 500.0,
+        "wood": 0.0,
+        "coin": 400.0
+      },
+      "xp": 0.0,
+      "resigned": false,
+      "eliminated": false,
+      "politicalPhase": 0,
+      "revolutionId": "",
+      "revolutionAt": 0.0,
+      "civilianRebuiltAt": 0.0,
+      "gathered": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "spent": {
+        "food": 1600.0,
+        "wood": 1600.0,
+        "coin": 1600.0
+      },
+      "refunded": {
+        "food": 800.0,
+        "wood": 800.0,
+        "coin": 800.0
+      },
+      "passiveIncome": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "tradeIncome": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "kills": 0,
+      "losses": 0,
+      "trained": 0,
+      "shipsSent": 0,
+      "treasuresClaimed": 0,
+      "guardiansDefeated": 0
+    },
+    "townQueue": [
+      {
+        "item": "rev_coast",
+        "kind": "Revolution",
+        "count": 1,
+        "population": 0,
+        "paid": {
+          "food": 800.0,
+          "wood": 800.0,
+          "coin": 800.0
+        },
+        "elapsed": 0.0,
+        "duration": 90.0,
+        "choice": ""
+      }
+    ],
+    "workerIds": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "workerHp": [
+      150.0,
+      150.0,
+      150.0,
+      150.0,
+      150.0,
+      150.0
+    ],
+    "selection": [
+      1
+    ],
+    "selectedDefinition": "town",
+    "groups": [],
+    "controlGroupActuallyPersisted": false,
+    "autoplay": false,
+    "simulationSpeed": 1.0,
+    "hasGuided": false
+  },
+  "recording": {
+    "segmentId": "13e7410aa8e2409ab124e4144e8de9b5",
+    "startKind": "authored_scenario",
+    "finishReason": "menu_exit",
+    "incomplete": false,
+    "recordCount": 5,
+    "eventCount": 132,
+    "anchorCount": 5,
+    "records": [
+      {
+        "completedStep": 460,
+        "ordinal": 0,
+        "kind": 0,
+        "hasCommand": true,
+        "commandActorsNull": false,
+        "commandItemNull": false,
+        "commandChoiceNull": false,
+        "command": {
+          "player": 0,
+          "kind": 25,
+          "actors": [
+            1
+          ],
+          "order": 0,
+          "point": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "target": 0,
+          "index": 0,
+          "count": 1,
+          "item": "",
+          "choice": "",
+          "append": false
+        },
+        "selection": [],
+        "paused": false,
+        "accepted": true,
+        "reason": "Revolution queued; new settler training is closed until cancellation or civilian rebuilding",
+        "eventHash": "5f7e5d64245e6febaa6a6d2104611556bf53b3ac8930e7e405d2b0afb405ec18",
+        "eventCount": 112
+      },
+      {
+        "completedStep": 616,
+        "ordinal": 0,
+        "kind": 0,
+        "hasCommand": true,
+        "commandActorsNull": false,
+        "commandItemNull": false,
+        "commandChoiceNull": false,
+        "command": {
+          "player": 0,
+          "kind": 3,
+          "actors": [
+            1
+          ],
+          "order": 0,
+          "point": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "target": 0,
+          "index": 0,
+          "count": 1,
+          "item": "",
+          "choice": "",
+          "append": false
+        },
+        "selection": [],
+        "paused": false,
+        "accepted": true,
+        "reason": "Unfinished order refunded",
+        "eventHash": "f7caa889659352925424948513e8b6773c52338099e1e85b49452ae3581ee2ae",
+        "eventCount": 119
+      },
+      {
+        "completedStep": 904,
+        "ordinal": 0,
+        "kind": 0,
+        "hasCommand": true,
+        "commandActorsNull": false,
+        "commandItemNull": false,
+        "commandChoiceNull": false,
+        "command": {
+          "player": 0,
+          "kind": 25,
+          "actors": [
+            1
+          ],
+          "order": 0,
+          "point": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "target": 0,
+          "index": 0,
+          "count": 1,
+          "item": "",
+          "choice": "",
+          "append": false
+        },
+        "selection": [],
+        "paused": false,
+        "accepted": true,
+        "reason": "Revolution queued; new settler training is closed until cancellation or civilian rebuilding",
+        "eventHash": "777832eeaacf93abe288afbc64ec52a04d11c4e5202f51ac4e28d43392fad657",
+        "eventCount": 131
+      },
+      {
+        "completedStep": 904,
+        "ordinal": 1,
+        "kind": 1,
+        "hasCommand": false,
+        "commandActorsNull": false,
+        "commandItemNull": false,
+        "commandChoiceNull": false,
+        "command": {
+          "player": 0,
+          "kind": 0,
+          "actors": [],
+          "order": 0,
+          "point": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "target": 0,
+          "index": 0,
+          "count": 1,
+          "item": "",
+          "choice": "",
+          "append": false
+        },
+        "selection": [],
+        "paused": true,
+        "accepted": true,
+        "reason": "manual_pause",
+        "eventHash": "d076234db26053433ee71f854ce2e5534c1e3a0e11ee7d80022aa25ed6df6b46",
+        "eventCount": 132
+      },
+      {
+        "completedStep": 904,
+        "ordinal": 2,
+        "kind": 3,
+        "hasCommand": false,
+        "commandActorsNull": false,
+        "commandItemNull": false,
+        "commandChoiceNull": false,
+        "command": {
+          "player": 0,
+          "kind": 0,
+          "actors": [],
+          "order": 0,
+          "point": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "target": 0,
+          "index": 0,
+          "count": 1,
+          "item": "",
+          "choice": "",
+          "append": false
+        },
+        "selection": [],
+        "paused": false,
+        "accepted": true,
+        "reason": "",
+        "eventHash": "d076234db26053433ee71f854ce2e5534c1e3a0e11ee7d80022aa25ed6df6b46",
+        "eventCount": 132
+      }
+    ],
+    "lastAnchor": {
+      "completedStep": 904,
+      "recordIndex": 5,
+      "eventCount": 132,
+      "eventHash": "d076234db26053433ee71f854ce2e5534c1e3a0e11ee7d80022aa25ed6df6b46",
+      "inputHash": "b964fa2e67d3459f3b95860c7a65e9a756c6dc21066e82a18db1d2dc5d5566db",
+      "stateDigest": "2f69ea9aa16e879aabb4fccdc9c8abbce544345a4437ba8f0105872508564beb"
+    },
+    "anchorWorldDiff": [
+      "events"
+    ],
+    "anchorSimulationDiff": [
+      "accumulator"
+    ],
+    "forwardPlaybackExecuted": false
+  },
+  "crossFileEventAgreement": {
+    "savedWorld": 132,
+    "replay": 132,
+    "reportJsonl": 132,
+    "allEventsSemanticallyEqual": true,
+    "revolutionCompleted": false,
+    "workersConverted": false,
+    "civilianRebuilt": false,
+    "matchEnded": false
+  },
+  "controlGroupTrace": {
+    "digit1Lines": [
+      "FRONTIER_INPUT Key Digit1 down p=(608.00, 427.00) shift=False save=False t=359.6108"
+    ],
+    "savedGroupsEmpty": true
+  },
+  "f9Captures": [
+    {
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055631-278-f15985-fb850f80d93542a78ce3dad8d63d2748.json",
+      "metadataSha256": "e0ecac84d9c2f08fb186651ca60bc114b5ae8268928971982a614edb8946d75f",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055631-278-f15985-fb850f80d93542a78ce3dad8d63d2748.png",
+      "pngSha256": "acb068daa5e58b34826997023bcafe836caa2e9940d563dcf860539fd18e3ffb",
+      "worldTime": 0.0,
+      "paused": false,
+      "inMenu": true,
+      "hasPlayer": false,
+      "resources": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "hudResourcesText": "",
+      "hudWorldTime": 0.0,
+      "requestFrame": 15985,
+      "captureFrame": 15985,
+      "production": [],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    },
+    {
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055651-563-f17167-4803e5e5beb04d3490ee6b34d0f9b453.json",
+      "metadataSha256": "ed99de18b2fa82a73d948fe339c60fa70824f7dabcd2786c93a44ef7512beb07",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055651-563-f17167-4803e5e5beb04d3490ee6b34d0f9b453.png",
+      "pngSha256": "19f66e1d30f2a7c803f90320a4f55dea60b3fbd25aaaaaced6ff5269afbbf11e",
+      "worldTime": 13.900016784667969,
+      "paused": false,
+      "inMenu": false,
+      "hasPlayer": true,
+      "resources": {
+        "food": 1300.0,
+        "wood": 800.0,
+        "coin": 1200.0
+      },
+      "hudResourcesText": "FOOD  1300     WOOD  800     COIN  1200     POP  6+0/20     AGE  4     XP  0/150     SHIP  0",
+      "hudWorldTime": 13.900016784667969,
+      "requestFrame": 17167,
+      "captureFrame": 17167,
+      "production": [
+        {
+          "entity": 1,
+          "definition": "town",
+          "factoryMode": "",
+          "position": {
+            "x": 22.0,
+            "y": 24.0
+          },
+          "hp": 3500.0,
+          "construction": 1.0,
+          "factoryElapsed": 0.0,
+          "queue": []
+        }
+      ],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    },
+    {
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055716-345-f18641-b531bd657f2c4f589a82905b103132e3.json",
+      "metadataSha256": "c387c0663dff9707436e6f13fdc634aaf1297a8263ac17467491e00d8d01df1d",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055716-345-f18641-b531bd657f2c4f589a82905b103132e3.png",
+      "pngSha256": "db5b99ea96f8357152d7869eca2b89b51714a71996bd49076b31e05562ae311c",
+      "worldTime": 38.699981689453125,
+      "paused": false,
+      "inMenu": false,
+      "hasPlayer": true,
+      "resources": {
+        "food": 1300.0,
+        "wood": 800.0,
+        "coin": 1200.0
+      },
+      "hudResourcesText": "FOOD  1300     WOOD  800     COIN  1200     POP  6+0/20     AGE  4     XP  0/150     SHIP  0",
+      "hudWorldTime": 38.699981689453125,
+      "requestFrame": 18641,
+      "captureFrame": 18641,
+      "production": [
+        {
+          "entity": 1,
+          "definition": "town",
+          "factoryMode": "",
+          "position": {
+            "x": 22.0,
+            "y": 24.0
+          },
+          "hp": 3500.0,
+          "construction": 1.0,
+          "factoryElapsed": 0.0,
+          "queue": []
+        }
+      ],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    },
+    {
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055716-760-f18662-ae912081c1cc4e00a5e248cedf1798e5.json",
+      "metadataSha256": "da748e6b6ca0b6a13a7984122d4f0c77444f947e99624b94d0eb56417744fc73",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055716-760-f18662-ae912081c1cc4e00a5e248cedf1798e5.png",
+      "pngSha256": "b00d8cc5619910d2fddeb7ddae48746c4e68e0854fe3b0d69825d326ac390de8",
+      "worldTime": 39.0999755859375,
+      "paused": false,
+      "inMenu": false,
+      "hasPlayer": true,
+      "resources": {
+        "food": 1300.0,
+        "wood": 800.0,
+        "coin": 1200.0
+      },
+      "hudResourcesText": "FOOD  1300     WOOD  800     COIN  1200     POP  6+0/20     AGE  4     XP  0/150     SHIP  0",
+      "hudWorldTime": 39.0999755859375,
+      "requestFrame": 18662,
+      "captureFrame": 18662,
+      "production": [
+        {
+          "entity": 1,
+          "definition": "town",
+          "factoryMode": "",
+          "position": {
+            "x": 22.0,
+            "y": 24.0
+          },
+          "hp": 3500.0,
+          "construction": 1.0,
+          "factoryElapsed": 0.0,
+          "queue": []
+        }
+      ],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    },
+    {
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055723-634-f19069-f592d519c5c94929adfa529d68e8473e.json",
+      "metadataSha256": "2879ab3f6d3244b2c6566ee8c23f6b5949ca0009b6f554fd61403c9c5d268ca2",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055723-634-f19069-f592d519c5c94929adfa529d68e8473e.png",
+      "pngSha256": "3677ce8a6e7a837f8bf170f5c96cc77ee34acac2887fb5e2771a484032b7c872",
+      "worldTime": 45.99987030029297,
+      "paused": false,
+      "inMenu": false,
+      "hasPlayer": true,
+      "resources": {
+        "food": 500.0,
+        "wood": 0.0,
+        "coin": 400.0
+      },
+      "hudResourcesText": "FOOD  500     WOOD  0     COIN  400     POP  6+0/20     AGE  4     XP  0/150     SHIP  0",
+      "hudWorldTime": 45.99987030029297,
+      "requestFrame": 19069,
+      "captureFrame": 19069,
+      "production": [
+        {
+          "entity": 1,
+          "definition": "town",
+          "factoryMode": "",
+          "position": {
+            "x": 22.0,
+            "y": 24.0
+          },
+          "hp": 3500.0,
+          "construction": 1.0,
+          "factoryElapsed": 0.0,
+          "queue": [
+            {
+              "kind": "Revolution",
+              "item": "rev_coast",
+              "count": 1,
+              "population": 0,
+              "elapsed": 0.0,
+              "duration": 90.0
+            }
+          ]
+        }
+      ],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    },
+    {
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055739-328-f19999-8dedb95c04494a0480cb47e441964045.json",
+      "metadataSha256": "814f5b69ae67cb1c010798c5642bab354b4ac4e6b69d09eb5632f923b34a35e0",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055739-328-f19999-8dedb95c04494a0480cb47e441964045.png",
+      "pngSha256": "dd7fd1bd21893f00a850f88492768815d293dc27a7a33ec324cb309f0018eff1",
+      "worldTime": 61.69963073730469,
+      "paused": false,
+      "inMenu": false,
+      "hasPlayer": true,
+      "resources": {
+        "food": 1300.0,
+        "wood": 800.0,
+        "coin": 1200.0
+      },
+      "hudResourcesText": "FOOD  1300     WOOD  800     COIN  1200     POP  6+0/20     AGE  4     XP  0/150     SHIP  0",
+      "hudWorldTime": 61.69963073730469,
+      "requestFrame": 19999,
+      "captureFrame": 19999,
+      "production": [
+        {
+          "entity": 1,
+          "definition": "town",
+          "factoryMode": "",
+          "position": {
+            "x": 22.0,
+            "y": 24.0
+          },
+          "hp": 3500.0,
+          "construction": 1.0,
+          "factoryElapsed": 0.0,
+          "queue": []
+        }
+      ],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    },
+    {
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055800-579-f21263-8ddcafb7aac8436b8c13a33790a93c2d.json",
+      "metadataSha256": "34f1e12c8e16285c9454b13a1a121a112eb0584a8a8727c24b98844a82d5811e",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055800-579-f21263-8ddcafb7aac8436b8c13a33790a93c2d.png",
+      "pngSha256": "073a389ea1e867330378f43925c0fd2804d36adffe65d03771e04d0b9f4119f4",
+      "worldTime": 82.89930725097656,
+      "paused": false,
+      "inMenu": false,
+      "hasPlayer": true,
+      "resources": {
+        "food": 1300.0,
+        "wood": 800.0,
+        "coin": 1200.0
+      },
+      "hudResourcesText": "FOOD  1300     WOOD  800     COIN  1200     POP  6+0/20     AGE  4     XP  0/150     SHIP  0",
+      "hudWorldTime": 82.89930725097656,
+      "requestFrame": 21263,
+      "captureFrame": 21263,
+      "production": [
+        {
+          "entity": 1,
+          "definition": "town",
+          "factoryMode": "",
+          "position": {
+            "x": 22.0,
+            "y": 24.0
+          },
+          "hp": 3500.0,
+          "construction": 1.0,
+          "factoryElapsed": 0.0,
+          "queue": []
+        }
+      ],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    },
+    {
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055820-924-f22471-a10c23ef6f2c4fb59cc65a8bb3cc79ed.json",
+      "metadataSha256": "2e5d8b768ccf364df750a56b599610eb47d3d63f1a28f06ec4b95b834317c568",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055820-924-f22471-a10c23ef6f2c4fb59cc65a8bb3cc79ed.png",
+      "pngSha256": "95bf99c551a167e721406146f2bda949aa039c6f42179dd511512baa3202840f",
+      "worldTime": 90.3991928100586,
+      "paused": true,
+      "inMenu": false,
+      "hasPlayer": true,
+      "resources": {
+        "food": 500.0,
+        "wood": 0.0,
+        "coin": 400.0
+      },
+      "hudResourcesText": "FOOD  500     WOOD  0     COIN  400     POP  6+0/20     AGE  4     XP  0/150     SHIP  0",
+      "hudWorldTime": 90.3991928100586,
+      "requestFrame": 22471,
+      "captureFrame": 22471,
+      "production": [
+        {
+          "entity": 1,
+          "definition": "town",
+          "factoryMode": "",
+          "position": {
+            "x": 22.0,
+            "y": 24.0
+          },
+          "hp": 3500.0,
+          "construction": 1.0,
+          "factoryElapsed": 0.0,
+          "queue": [
+            {
+              "kind": "Revolution",
+              "item": "rev_coast",
+              "count": 1,
+              "population": 0,
+              "elapsed": 0.0,
+              "duration": 90.0
+            }
+          ]
+        }
+      ],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    },
+    {
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055835-659-f23341-a8822836ba574576afc2be8023681acc.json",
+      "metadataSha256": "921675323673e9341bd81fbb9cb129d670059b21100f928cd049cc6d5dab00f1",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055835-659-f23341-a8822836ba574576afc2be8023681acc.png",
+      "pngSha256": "c1ebb48a7d7dd1c1597fd7f00a54b89aa708e2f55e05aaa80dfc1773bf584528",
+      "worldTime": 90.3991928100586,
+      "paused": true,
+      "inMenu": false,
+      "hasPlayer": true,
+      "resources": {
+        "food": 500.0,
+        "wood": 0.0,
+        "coin": 400.0
+      },
+      "hudResourcesText": "FOOD  500     WOOD  0     COIN  400     POP  6+0/20     AGE  4     XP  0/150     SHIP  0",
+      "hudWorldTime": 90.3991928100586,
+      "requestFrame": 23341,
+      "captureFrame": 23341,
+      "production": [
+        {
+          "entity": 1,
+          "definition": "town",
+          "factoryMode": "",
+          "position": {
+            "x": 22.0,
+            "y": 24.0
+          },
+          "hp": 3500.0,
+          "construction": 1.0,
+          "factoryElapsed": 0.0,
+          "queue": [
+            {
+              "kind": "Revolution",
+              "item": "rev_coast",
+              "count": 1,
+              "population": 0,
+              "elapsed": 0.0,
+              "duration": 90.0
+            }
+          ]
+        }
+      ],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    }
+  ],
+  "originalFiles": [
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process1/Player.log",
+      "bytes": 38673,
+      "sha256": "ee08236ede96a2cb9b0a88d8dd85bb8b992b10b44eb98fbad5c77460fb30d77f"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process1/process.json",
+      "bytes": 1863,
+      "sha256": "d09f2041c515d968b6a107f12e928705d0a4a402cbddefc987300e9668b2d350"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process1/stdout.log",
+      "bytes": 1853,
+      "sha256": "9d82fc59cc2c195c9dfe973c037469a51222684f5d1b07101c64176e5564a625"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055631-278-f15985-fb850f80d93542a78ce3dad8d63d2748.json",
+      "bytes": 5809,
+      "sha256": "e0ecac84d9c2f08fb186651ca60bc114b5ae8268928971982a614edb8946d75f"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055631-278-f15985-fb850f80d93542a78ce3dad8d63d2748.png",
+      "bytes": 416854,
+      "sha256": "acb068daa5e58b34826997023bcafe836caa2e9940d563dcf860539fd18e3ffb"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055651-563-f17167-4803e5e5beb04d3490ee6b34d0f9b453.json",
+      "bytes": 10373,
+      "sha256": "ed99de18b2fa82a73d948fe339c60fa70824f7dabcd2786c93a44ef7512beb07"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055651-563-f17167-4803e5e5beb04d3490ee6b34d0f9b453.png",
+      "bytes": 1011502,
+      "sha256": "19f66e1d30f2a7c803f90320a4f55dea60b3fbd25aaaaaced6ff5269afbbf11e"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055716-345-f18641-b531bd657f2c4f589a82905b103132e3.json",
+      "bytes": 10430,
+      "sha256": "c387c0663dff9707436e6f13fdc634aaf1297a8263ac17467491e00d8d01df1d"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055716-345-f18641-b531bd657f2c4f589a82905b103132e3.png",
+      "bytes": 515642,
+      "sha256": "db5b99ea96f8357152d7869eca2b89b51714a71996bd49076b31e05562ae311c"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055716-760-f18662-ae912081c1cc4e00a5e248cedf1798e5.json",
+      "bytes": 10421,
+      "sha256": "da748e6b6ca0b6a13a7984122d4f0c77444f947e99624b94d0eb56417744fc73"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055716-760-f18662-ae912081c1cc4e00a5e248cedf1798e5.png",
+      "bytes": 1157274,
+      "sha256": "b00d8cc5619910d2fddeb7ddae48746c4e68e0854fe3b0d69825d326ac390de8"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055723-634-f19069-f592d519c5c94929adfa529d68e8473e.json",
+      "bytes": 10692,
+      "sha256": "2879ab3f6d3244b2c6566ee8c23f6b5949ca0009b6f554fd61403c9c5d268ca2"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055723-634-f19069-f592d519c5c94929adfa529d68e8473e.png",
+      "bytes": 1177226,
+      "sha256": "3677ce8a6e7a837f8bf170f5c96cc77ee34acac2887fb5e2771a484032b7c872"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055739-328-f19999-8dedb95c04494a0480cb47e441964045.json",
+      "bytes": 10423,
+      "sha256": "814f5b69ae67cb1c010798c5642bab354b4ac4e6b69d09eb5632f923b34a35e0"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055739-328-f19999-8dedb95c04494a0480cb47e441964045.png",
+      "bytes": 1169617,
+      "sha256": "dd7fd1bd21893f00a850f88492768815d293dc27a7a33ec324cb309f0018eff1"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055800-579-f21263-8ddcafb7aac8436b8c13a33790a93c2d.json",
+      "bytes": 10426,
+      "sha256": "34f1e12c8e16285c9454b13a1a121a112eb0584a8a8727c24b98844a82d5811e"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055800-579-f21263-8ddcafb7aac8436b8c13a33790a93c2d.png",
+      "bytes": 1128497,
+      "sha256": "073a389ea1e867330378f43925c0fd2804d36adffe65d03771e04d0b9f4119f4"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055820-924-f22471-a10c23ef6f2c4fb59cc65a8bb3cc79ed.json",
+      "bytes": 10685,
+      "sha256": "2e5d8b768ccf364df750a56b599610eb47d3d63f1a28f06ec4b95b834317c568"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055820-924-f22471-a10c23ef6f2c4fb59cc65a8bb3cc79ed.png",
+      "bytes": 396114,
+      "sha256": "95bf99c551a167e721406146f2bda949aa039c6f42179dd511512baa3202840f"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055835-659-f23341-a8822836ba574576afc2be8023681acc.json",
+      "bytes": 10685,
+      "sha256": "921675323673e9341bd81fbb9cb129d670059b21100f928cd049cc6d5dab00f1"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Captures/Frontier-20261006-055835-659-f23341-a8822836ba574576afc2be8023681acc.png",
+      "bytes": 537767,
+      "sha256": "c1ebb48a7d7dd1c1597fd7f00a54b89aa708e2f55e05aaa80dfc1773bf584528"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Replays/replay-13e7410aa8e2409ab124e4144e8de9b5.replay.json",
+      "bytes": 98553,
+      "sha256": "d5b94c7d7c016d1fb08ad78689872c85ca7203fa0bfb9d3b03717283f49f8fd5"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Reports/20261006-055905-308-f496cf03970641248584b719cdf87515-menu_exit-events.jsonl",
+      "bytes": 81607,
+      "sha256": "a60dda52f01b6951d70f2ce5474e45fbc20d3eb345a419e3b090e6d7565b4dde"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Reports/20261006-055905-308-f496cf03970641248584b719cdf87515-menu_exit.json",
+      "bytes": 4395,
+      "sha256": "9ea5c0c1e837382794e99ecc726382e4aacd09a7613121ffddad754951d605ae"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileA/Saves/slot-1.json",
+      "bytes": 24161,
+      "sha256": "b21281969465c72f1cb8668a9df6188e57a6e44def5cb9552a722c0fc78722b8"
+    }
+  ],
+  "limitations": [
+    "PNG bytes/metadata, not pixel visual appearance, were independently checked.",
+    "App/build binary hashes are process declarations, not recomputed under this Native-only scope.",
+    "Envelope payload SHA verified exact bytes; scenario/replay digest identities were compared, not recalculated by Unity serializers or executed ReplaySession.",
+    "World90.399s is queueelapsed0/duration90. Cold resume needs genuine remaining90s.",
+    "No persisted control group exists. Later genuine group/save evidence must be separate and preserve this original slot.",
+    "No GUI control, Unity execution, input mutation, copying or cold-load was performed by this audit."
+  ]
+}

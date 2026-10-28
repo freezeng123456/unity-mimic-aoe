@@ -1,0 +1,358 @@
+{
+  "actualMatrixAudit": {
+    "bytes": 393149,
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/independent-normal072-final1.json",
+    "sha256": "8c21268cdcc7bbbaf4db8a7f6c3bca7d1a7e2e59b88eff841e45cfc5b4f762b7"
+  },
+  "actualNormalInventory": {
+    "bytes": 34642,
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/normal072-final1-inventory.json",
+    "sha256": "2e563fa357b58ea015c84d6cad24e233fcacd34f40923ea7bb702927b139b471"
+  },
+  "actualPositive": {
+    "actualObservationStatus": "observed_routes_incomplete",
+    "actualRoutesReached": 9,
+    "actualRoutesTotal": 16,
+    "allReadRecordsEqualActualFrozenAuditor": true,
+    "auditedRefs": 844,
+    "checkerAndDeclarationRefs": 2,
+    "finalReleaseAccepted": false,
+    "normalAuditedRefs": 124,
+    "originalFileBytesRead": 4269608596,
+    "runtimeRefs": 718,
+    "status": "passed_real_844_refs_bytes_sha_identity_and_stability"
+  },
+  "actualReleasePackaged": false,
+  "astReview": {
+    "addedFunctions": [
+      "matrix_audited_refs_gate072_final2"
+    ],
+    "exactlyTwoBooleanExpectationSitesReplaced": true,
+    "fixedCheckerSemanticRereadArgvAndComparisonKeysUnchanged": true,
+    "functionsRestoredExactlyByInverseAdapter": true,
+    "modifiedFunctions": [
+      "check_gates",
+      "verify_audit_coverage"
+    ],
+    "nativeGateAstUnchanged": true,
+    "sourceFullTestsBuildInventoryZipAstUnchanged": true,
+    "unchangedTopLevelFunctionsClasses": [
+      "require",
+      "utc",
+      "sha",
+      "pairs",
+      "decode",
+      "encoded",
+      "fingerprint",
+      "identity",
+      "real_path",
+      "Inputs",
+      "safe",
+      "record",
+      "namespace",
+      "inventory",
+      "git",
+      "exact_commit",
+      "excluded_batch",
+      "runtime_path",
+      "git_records",
+      "source_map",
+      "runner",
+      "test_xml",
+      "same_identity",
+      "native_identity",
+      "runner_files",
+      "native_gate072_final1",
+      "zip_info",
+      "extra_fields",
+      "verify_zip",
+      "write_zip",
+      "pinned_parent",
+      "filesystem_supplier",
+      "frozen_trees",
+      "binary_gate",
+      "exclusive",
+      "template",
+      "self_test",
+      "main"
+    ]
+  },
+  "createdUtc": "2026-10-06T14:06:20.145089+00:00",
+  "fixedChecker": {
+    "bytes": 39553,
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/independent-normal072.py",
+    "sha256": "8579ec7a2bfdda5987c830a29bebfd94c1c0c17fc58b04af93f710c63661858c"
+  },
+  "newTool": {
+    "bytes": 71464,
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/package072-final2.py",
+    "sha256": "87d9670e315770da1fc5ca9d194a0d34a0c9c1011aec3c5f30af4b0d50b4db76"
+  },
+  "oldOriginalsPreserved": true,
+  "oldTool": {
+    "bytes": 67387,
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/package072-final1.py",
+    "sha256": "8144e8f5bb75c88e6f77dfedb15fb7f52a7384a27fe4f5845e5655da67b53f4c"
+  },
+  "schema": "package072-final2-matrix-schema-adapter-review-1",
+  "scope": "Exact existing844-reference schema adapter only. No raw auditor/matrix/source/native changes;16 consistency does not mean16routes reached or balance accepted. Historical final1 review remains unchanged.",
+  "semanticFixtureCount": 36,
+  "semanticFixtures": [
+    {
+      "actual": "accepted",
+      "expected": "accepted",
+      "name": "actual 844 frozen ref list in cached semantic fixture"
+    },
+    {
+      "actual": "rejected",
+      "error": "Matrix audit requires exactly 844 actual audited-reference records",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "boolean true insufficient"
+    },
+    {
+      "actual": "rejected",
+      "error": "Matrix audit requires exactly 844 actual audited-reference records",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "boolean false"
+    },
+    {
+      "actual": "rejected",
+      "error": "Matrix audit requires exactly 844 actual audited-reference records",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "missing value"
+    },
+    {
+      "actual": "rejected",
+      "error": "Matrix audit requires exactly 844 actual audited-reference records",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "object instead of list"
+    },
+    {
+      "actual": "rejected",
+      "error": "Matrix audit requires exactly 844 actual audited-reference records",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "empty list"
+    },
+    {
+      "actual": "rejected",
+      "error": "Matrix audit requires exactly 844 actual audited-reference records",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "missing property"
+    },
+    {
+      "actual": "rejected",
+      "error": "Matrix audit requires exactly 844 actual audited-reference records",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "843 refs missing a source"
+    },
+    {
+      "actual": "rejected",
+      "error": "Matrix audit requires exactly 844 actual audited-reference records",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "845 refs surplus duplicate"
+    },
+    {
+      "actual": "rejected",
+      "error": "Duplicate matrix audited-reference path",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "844 refs duplicate replacing required path"
+    },
+    {
+      "actual": "rejected",
+      "error": "Matrix audited-reference bytes/hash/identity no longer match: /Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/winding-ottoman-44/events.jsonl",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "tampered artifact hash"
+    },
+    {
+      "actual": "rejected",
+      "error": "Malformed matrix audited-reference filesystem identity",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "tampered artifact bytes"
+    },
+    {
+      "actual": "rejected",
+      "error": "Unexpected/noncanonical matrix audited-reference path",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "unrelated absolute path"
+    },
+    {
+      "actual": "rejected",
+      "error": "Unexpected/noncanonical matrix audited-reference path",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "relative path"
+    },
+    {
+      "actual": "rejected",
+      "error": "Malformed matrix audited-reference filesystem identity",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "truncated identity"
+    },
+    {
+      "actual": "rejected",
+      "error": "Malformed matrix audited-reference filesystem identity",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "boolean identity integer"
+    },
+    {
+      "actual": "rejected",
+      "error": "Malformed matrix audited-reference size/hash",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "malformed SHA"
+    },
+    {
+      "actual": "rejected",
+      "error": "Malformed matrix audited-reference size/hash",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "boolean size"
+    },
+    {
+      "actual": "rejected",
+      "error": "Malformed matrix audited-reference size/hash",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "negative size"
+    },
+    {
+      "actual": "rejected",
+      "error": "Malformed matrix audited-reference record",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "missing identity"
+    },
+    {
+      "actual": "rejected",
+      "error": "Malformed matrix audited-reference record",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "extra ref property"
+    },
+    {
+      "actual": "rejected",
+      "error": "Matrix audited-reference bytes/hash/identity no longer match: /Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/winding-ottoman-44/events.jsonl",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "same bytes/hash but changed filesystem inode"
+    },
+    {
+      "actual": "rejected",
+      "error": "Matrix audited-reference bytes/hash/identity no longer match: /Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/winding-ottoman-44/events.jsonl",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "same bytes/hash but changed filesystem ctime"
+    },
+    {
+      "actual": "rejected",
+      "error": "Malformed matrix audited-reference filesystem identity",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "directory mode instead of regular"
+    },
+    {
+      "actual": "rejected",
+      "error": "Matrix audited-reference input stability failed",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "false unchanged stability"
+    },
+    {
+      "actual": "rejected",
+      "error": "Matrix audited-reference bytes/hash/identity no longer match: /Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/winding-ottoman-44/events.jsonl",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "current read differs from stored audit row"
+    },
+    {
+      "actual": "rejected",
+      "error": "Matrix audited runtime reference differs from frozen source map",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "changed frozen runtime SHA"
+    },
+    {
+      "actual": "rejected",
+      "error": "Audited-reference coverage requires the frozen 718-input / 16-case matrix",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "missing frozen runtime input"
+    },
+    {
+      "actual": "rejected",
+      "error": "Audited-reference coverage requires the frozen 718-input / 16-case matrix",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "extra frozen runtime input"
+    },
+    {
+      "actual": "rejected",
+      "error": "Audited-reference checker must retain the pinned fixed implementation",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "tampered checker hash"
+    },
+    {
+      "actual": "rejected",
+      "error": "Audited-reference checker must retain the pinned fixed implementation",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "changed checker path"
+    },
+    {
+      "actual": "rejected",
+      "error": "Matrix audited-reference differs from a sealed matrix input: matrixManifest",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "sealed manifest bytes differ"
+    },
+    {
+      "actual": "rejected",
+      "error": "Matrix audited-reference differs from a sealed matrix input: matrixDeclaration",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "sealed declaration hash differs"
+    },
+    {
+      "actual": "rejected",
+      "error": "Unexpected/noncanonical matrix audited-reference path",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "projection branch coverage differs"
+    },
+    {
+      "actual": "rejected",
+      "error": "Audited-reference coverage requires the frozen 718-input / 16-case matrix",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "matrix case missing"
+    },
+    {
+      "actual": "rejected",
+      "error": "Audited-reference case identity differs",
+      "errorType": "ValueError",
+      "expected": "rejected",
+      "name": "matrix case identity differs"
+    }
+  ],
+  "status": "passed_exact_matrix_ref_schema_review",
+  "syntheticSelfTest": {
+    "bytes": 1252,
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/package072-final2-selftest.json",
+    "sha256": "f8a200d73b1654ad2f2afb583ba50b5ed7f4086e0c61dc57fcbda2ac34866f96"
+  }
+}

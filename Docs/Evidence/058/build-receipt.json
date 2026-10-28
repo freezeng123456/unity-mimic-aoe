@@ -1,0 +1,35 @@
+{
+  "appVersion": "0.3.1",
+  "bundleBuildNumber": "0",
+  "buildGuid": "c1e7fe583e4f4e288cfa4fcd9885a543",
+  "sourceFingerprint": "f49e6c08142d2b9513fe6e878a6e3df58ae3f802d1fbafd2078ba82e41b60577",
+  "sourceCommit": "4d2f24afecfd9155bff4661837fbf0e407878d38",
+  "compiledRuntimeSha256": {
+    "Contents/Info.plist": "7777f428d9caed3a8886c3aada5edb5df2b44f6804dd003dabeff187b2d9ceff",
+    "Contents/MacOS/Frontier Reckoning": "f8db2105b551df380ce0193f39d1f7db0d4495f87ea95e54a18e0416a6d0a2b4",
+    "Contents/Resources/Data/Managed/Frontier.Runtime.dll": "b6b82d6033c5f64feb3a9eba9ef23da5f28b3207e4765383a9135eeae3b8dadc"
+  },
+  "bundleFileCount": 299,
+  "bundleFileBytes": 173258624,
+  "recordedAtUtc": "2026-10-03T17:48:12.577174+00:00",
+  "unityVersion": "6000.6.3f1",
+  "unityRevision": "45d8eee7de74",
+  "platform": "macOS Apple silicon",
+  "architecture": "arm64",
+  "buildOptions": "Development / Mono",
+  "buildMethod": "Frontier.Editor.BuildTools.BuildMac (direct; existing scene retained; no Prepare)",
+  "buildLog": "Build.log",
+  "tests": "Tests/source-evidence.json",
+  "nativeSmoke": "Native/README.md",
+  "verification": "Final source passed 527 tests (284 EditMode, 243 PlayMode). Direct BuildMac succeeded with exit 0. Exact inventory comparison against initial core isolates only HUD menu layout and one new layout regression; rules, simulation and AI unchanged. The 35/36 matrix plus independent 3652-second highland completion and two full 16x native games retain their INITIAL fingerprint/GUID. Final GUID native menu observations are separate.",
+  "limitations": [
+    "Project candidate balance values and core classic civilization mechanics; not the complete commercial game or an exact official patch port.",
+    "Single fixed map/seed; original matrix timeout is retained and is not counted as a natural ending or a loss.",
+    "Native autoplay, manual opening, visual observations and historical audio/performance acceptance are separate scopes.",
+    "Development / Mono on local macOS arm64; other platforms, cross-machine signing and notarization unverified.",
+    "Final GUID native scope is menu layout only; no final-GUID full game or ordinary manual opening is claimed. Mouse automation returned noWindowsAvailable; keyboard capture and exit remained usable."
+  ],
+  "initialBuildGuid": "11d4fafce22a42ebb37dac73f0ef89fb",
+  "sourceContinuity": "menu-equivalence.json",
+  "initialNativeSmoke": "Native-Initial/README.md"
+}

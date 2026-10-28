@@ -1,0 +1,449 @@
+{
+  "schema": 1,
+  "utc": "2026-10-10T01:10:12.585943+00:00",
+  "status": "PASS_diagnostic_integrity_and_independent_sample_reaggregation",
+  "repairAccepted": false,
+  "visualAccepted": false,
+  "newTestsExecuted": 0,
+  "sourceFingerprint": "bb276a1a312d6ecfbf08cc7d29bb5205ce3c9f36884263005b84b96f806f0070",
+  "sourceEntries": 788,
+  "appVersion": "0.20.0",
+  "actualXml": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "case": "Frontier.Tests.RiverShoreMesh078Tests.ActualGroundWaterBoundaryProbeRecordsQueryAndBarycentricClearance",
+    "duration": "2.7325968",
+    "originalXmlSha256": "4f6ba17ef9ca6b3d5936b0594cbce125e8be95108599affe2e55d3456bf47ce4"
+  },
+  "originalFiles": [
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.21.0/Candidate1/run078.py",
+      "bytes": 6009,
+      "sha256": "0297ddc5b4d09fb9a4c63fb2aa6d3c9e17331c756682f3ceaa2fd58b2f471ced"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.21.0/Candidate1/Planning/unchanged-authority-baseline078.json",
+      "bytes": 18731,
+      "sha256": "04724695897f48d44787d665ff772b238fee899b52b4681f2b684edf53d514fc"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.21.0/Candidate1/Planning/shore078-pre-candidate-control-contract.json",
+      "bytes": 6231,
+      "sha256": "ab1dd65dfd280a92f3a4037b897134ac3fc54513fb1f8366db2b3f81a7e1ee9f"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.21.0/Candidate1/ProbeCoarse1/PlayMode.log",
+      "bytes": 72299,
+      "sha256": "119356b2ee7f0c648117409e97cbe9fa0aa1b1581388ddad50f85b0c0f3b61aa"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.21.0/Candidate1/ProbeCoarse1/runner-receipt078.json",
+      "bytes": 102457,
+      "sha256": "64af57e3bd54241761f0b2905d38c32feae5fd9a7476571e8855903bc4f83e78"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.21.0/Candidate1/ProbeCoarse1/stdout-0.log",
+      "bytes": 67,
+      "sha256": "a37c1c1e436570b4d07be72152958fddea58dbbc6f3aa9a85d50736cb3902e6f"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.21.0/Candidate1/ProbeCoarse2/Measurements078/shore-boundary-samples078.csv",
+      "bytes": 626707,
+      "sha256": "3c64b4148d3d3fced81de3a2827976a780563cefdbda33ec7de49ef13ea099d8"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.21.0/Candidate1/ProbeCoarse2/Measurements078/shore-mesh-probe078.json",
+      "bytes": 3692841,
+      "sha256": "a08e8a2a863b11f3fc7b7e3b544d62c0fe15ffa9ccd87cd8a6d5683e4e0d14d7"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.21.0/Candidate1/ProbeCoarse2/PlayMode.log",
+      "bytes": 97400,
+      "sha256": "d289758768a856740d07878eeb13ad67328e2524f0a6ed8768b252c4197fc847"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.21.0/Candidate1/ProbeCoarse2/PlayMode.xml",
+      "bytes": 7264,
+      "sha256": "4f6ba17ef9ca6b3d5936b0594cbce125e8be95108599affe2e55d3456bf47ce4"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.21.0/Candidate1/ProbeCoarse2/runner-receipt078.json",
+      "bytes": 102999,
+      "sha256": "224a7a80878832cefc4ec5132bad8c810bea26e60ac35d73e21af15cba1965e5"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.21.0/Candidate1/ProbeCoarse2/stdout-0.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "checks": [
+    {
+      "check": "ProbeCoarse2 closed exit0/sourceStable/no changedSources",
+      "pass": true
+    },
+    {
+      "check": "Runner before/after and measurement expected/source fingerprint agree with independently canonicalized 788-entry source map",
+      "pass": true
+    },
+    {
+      "check": "Measurement 788 unique path/hash entries exactly match runner inventory and canonical fingerprint",
+      "pass": true
+    },
+    {
+      "check": "All frozen unchanged-authority baseline file hashes match coarse runner inventory",
+      "pass": true
+    },
+    {
+      "check": "Actual coarse run correctly remains 0.20.0 129-grid diagnostic, not new0.21 repair acceptance",
+      "pass": true
+    },
+    {
+      "check": "Reported actual and reconstructed coarse complete mesh hashes agree",
+      "pass": true
+    },
+    {
+      "check": "Frozen pre-candidate control contract binds actual original measurement SHA/source",
+      "pass": true
+    },
+    {
+      "check": "Original XML full attributes and SHA match runner",
+      "pass": true
+    },
+    {
+      "check": "Actual exactly one diagnostic case passed; no repair assertion executed",
+      "pass": true
+    },
+    {
+      "check": "One actual Unity PlayMode process and exact test filter bound",
+      "pass": true
+    },
+    {
+      "check": "All eight original XML output summaries exactly match diagnostic JSON",
+      "pass": true
+    },
+    {
+      "check": "Original ProbeCoarse1 exit1/no XML/zero executed-test-result preserved",
+      "pass": true
+    },
+    {
+      "check": "Original failed probe had two actual obsolete GetInstanceID compile errors, not a passing or geometry-failing test",
+      "pass": true
+    },
+    {
+      "check": "JSON/CSV each contain3400 sample records",
+      "pass": true
+    },
+    {
+      "check": "CSV and JSON have exactly same23 sample fields",
+      "pass": true
+    },
+    {
+      "check": "Every JSON value equals CSV value after explicit Unity float32 R-roundtrip decoding",
+      "pass": true
+    },
+    {
+      "check": "All340 segments and both boundary rows0/4 sampled; no dropped segment or selected-row bias",
+      "pass": true
+    },
+    {
+      "check": "Each segment has endpoints+quarter samples in order; recorded positions match endpoint linear interpolation within2e-5m float arithmetic tolerance",
+      "pass": true
+    },
+    {
+      "check": "All exclusions, protected profiles, eastern focus, SDF water classification, exact-query flags and independent >2mm triangle classifications recomputed correctly",
+      "pass": true
+    },
+    {
+      "check": "All recorded clearances and interpolation errors exactly recompute in float32",
+      "pass": true
+    },
+    {
+      "check": "All3400 actual/coarse sampled plane heights exactly equal before repair",
+      "pass": true
+    },
+    {
+      "check": "Independently aggregated every summary counter, maximum and worst position exactly matches all eight declared summaries",
+      "pass": true
+    },
+    {
+      "check": "Exactly390 records excluded because an endpoint touches/clamps map border; no hidden other exclusions",
+      "pass": true
+    },
+    {
+      "check": "All adjacent segment end/start pairs agree exactly; duplicated endpoints are explicit sampling weight, not missing data",
+      "pass": true
+    },
+    {
+      "check": "Independent east-of-max-center plus\u00b110m focus resolves to133 row4 east-bank records without direct row selection",
+      "pass": true
+    },
+    {
+      "check": "All original probe/runner/baseline/control input bytes unchanged across this audit",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "reaggregatedSummaries": [
+    {
+      "group": "all-unclamped",
+      "role": "reconstructed077-coarse1m",
+      "samples": 3010,
+      "authorityWater": 2783,
+      "authorityDry": 227,
+      "exactQueryAtOrBelowWater": 3010,
+      "exactQueryAboveWater": 0,
+      "triangleOnlyOcclusions": 54,
+      "groundAboveWater": 54,
+      "maximumPositiveClearance": 0.020181715488433838,
+      "maximumTriangleOnlyClearance": 0.020181715488433838,
+      "maximumInterpolationError": 0.04018509387969971,
+      "worstTriangleOnlyPosition": {
+        "x": 80.3208236694336,
+        "y": 83.35005950927734
+      }
+    },
+    {
+      "group": "all-unclamped",
+      "role": "actual-candidate",
+      "samples": 3010,
+      "authorityWater": 2783,
+      "authorityDry": 227,
+      "exactQueryAtOrBelowWater": 3010,
+      "exactQueryAboveWater": 0,
+      "triangleOnlyOcclusions": 54,
+      "groundAboveWater": 54,
+      "maximumPositiveClearance": 0.020181715488433838,
+      "maximumTriangleOnlyClearance": 0.020181715488433838,
+      "maximumInterpolationError": 0.04018509387969971,
+      "worstTriangleOnlyPosition": {
+        "x": 80.3208236694336,
+        "y": 83.35005950927734
+      }
+    },
+    {
+      "group": "unprotected",
+      "role": "reconstructed077-coarse1m",
+      "samples": 1843,
+      "authorityWater": 1679,
+      "authorityDry": 164,
+      "exactQueryAtOrBelowWater": 1843,
+      "exactQueryAboveWater": 0,
+      "triangleOnlyOcclusions": 54,
+      "groundAboveWater": 54,
+      "maximumPositiveClearance": 0.020181715488433838,
+      "maximumTriangleOnlyClearance": 0.020181715488433838,
+      "maximumInterpolationError": 0.04018509387969971,
+      "worstTriangleOnlyPosition": {
+        "x": 80.3208236694336,
+        "y": 83.35005950927734
+      }
+    },
+    {
+      "group": "unprotected",
+      "role": "actual-candidate",
+      "samples": 1843,
+      "authorityWater": 1679,
+      "authorityDry": 164,
+      "exactQueryAtOrBelowWater": 1843,
+      "exactQueryAboveWater": 0,
+      "triangleOnlyOcclusions": 54,
+      "groundAboveWater": 54,
+      "maximumPositiveClearance": 0.020181715488433838,
+      "maximumTriangleOnlyClearance": 0.020181715488433838,
+      "maximumInterpolationError": 0.04018509387969971,
+      "worstTriangleOnlyPosition": {
+        "x": 80.3208236694336,
+        "y": 83.35005950927734
+      }
+    },
+    {
+      "group": "protected",
+      "role": "reconstructed077-coarse1m",
+      "samples": 1167,
+      "authorityWater": 1104,
+      "authorityDry": 63,
+      "exactQueryAtOrBelowWater": 1167,
+      "exactQueryAboveWater": 0,
+      "triangleOnlyOcclusions": 0,
+      "groundAboveWater": 0,
+      "maximumPositiveClearance": 0,
+      "maximumTriangleOnlyClearance": 0,
+      "maximumInterpolationError": 0.019335269927978516,
+      "worstTriangleOnlyPosition": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "protected",
+      "role": "actual-candidate",
+      "samples": 1167,
+      "authorityWater": 1104,
+      "authorityDry": 63,
+      "exactQueryAtOrBelowWater": 1167,
+      "exactQueryAboveWater": 0,
+      "triangleOnlyOcclusions": 0,
+      "groundAboveWater": 0,
+      "maximumPositiveClearance": 0,
+      "maximumTriangleOnlyClearance": 0,
+      "maximumInterpolationError": 0.019335269927978516,
+      "worstTriangleOnlyPosition": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "group": "focus-east-outer-unprotected",
+      "role": "reconstructed077-coarse1m",
+      "samples": 133,
+      "authorityWater": 127,
+      "authorityDry": 6,
+      "exactQueryAtOrBelowWater": 133,
+      "exactQueryAboveWater": 0,
+      "triangleOnlyOcclusions": 18,
+      "groundAboveWater": 18,
+      "maximumPositiveClearance": 0.009694486856460571,
+      "maximumTriangleOnlyClearance": 0.009694486856460571,
+      "maximumInterpolationError": 0.02981838583946228,
+      "worstTriangleOnlyPosition": {
+        "x": 86.27645874023438,
+        "y": 73.35321044921875
+      }
+    },
+    {
+      "group": "focus-east-outer-unprotected",
+      "role": "actual-candidate",
+      "samples": 133,
+      "authorityWater": 127,
+      "authorityDry": 6,
+      "exactQueryAtOrBelowWater": 133,
+      "exactQueryAboveWater": 0,
+      "triangleOnlyOcclusions": 18,
+      "groundAboveWater": 18,
+      "maximumPositiveClearance": 0.009694486856460571,
+      "maximumTriangleOnlyClearance": 0.009694486856460571,
+      "maximumInterpolationError": 0.02981838583946228,
+      "worstTriangleOnlyPosition": {
+        "x": 86.27645874023438,
+        "y": 73.35321044921875
+      }
+    }
+  ],
+  "sampling": {
+    "segments": 340,
+    "rows": [
+      0,
+      4
+    ],
+    "fractions": [
+      0,
+      0.25,
+      0.5,
+      0.75,
+      1
+    ],
+    "all": {
+      "records": 3400,
+      "uniqueRowPositionPoints": 2722,
+      "duplicateExtraRecords": 678,
+      "multiplicities": {
+        "1": 2044,
+        "2": 678
+      },
+      "occlusionRecords": 63,
+      "uniqueOcclusionRowPositionPoints": 53,
+      "authorityWaterOcclusionRecords": 53,
+      "authorityDryOcclusionRecords": 10,
+      "rows": {
+        "0": 1700,
+        "4": 1700
+      }
+    },
+    "included": {
+      "records": 3010,
+      "uniqueRowPositionPoints": 2410,
+      "duplicateExtraRecords": 600,
+      "multiplicities": {
+        "1": 1810,
+        "2": 600
+      },
+      "occlusionRecords": 54,
+      "uniqueOcclusionRowPositionPoints": 46,
+      "authorityWaterOcclusionRecords": 53,
+      "authorityDryOcclusionRecords": 1,
+      "rows": {
+        "4": 1535,
+        "0": 1475
+      }
+    },
+    "focusEastOuterUnprotected": {
+      "records": 133,
+      "uniqueRowPositionPoints": 106,
+      "duplicateExtraRecords": 27,
+      "multiplicities": {
+        "1": 79,
+        "2": 27
+      },
+      "occlusionRecords": 18,
+      "uniqueOcclusionRowPositionPoints": 15,
+      "authorityWaterOcclusionRecords": 18,
+      "authorityDryOcclusionRecords": 0,
+      "rows": {
+        "4": 133
+      }
+    },
+    "excluded": {
+      "records": 390,
+      "uniqueRowPositionPoints": 316,
+      "duplicateExtraRecords": 74,
+      "multiplicities": {
+        "1": 242,
+        "2": 74
+      },
+      "occlusionRecords": 9,
+      "uniqueOcclusionRowPositionPoints": 7,
+      "authorityWaterOcclusionRecords": 0,
+      "authorityDryOcclusionRecords": 9,
+      "rows": {
+        "0": 225,
+        "4": 165
+      }
+    },
+    "excludedExactQueryAboveWater": 125,
+    "exclusionRule": "Exclude all five samples of a segment when either endpoint is at x/z<=0 or >=128, or boundary segment collapses. All actual390 exclusions are border, no collapsed-only segment.",
+    "includedSignedBankDistanceDryRange": [
+      2.7658197154778463e-07,
+      0.004131761845201254
+    ]
+  },
+  "distinctionAB": {
+    "A": "54 included sample records have exact BankHeight at/below water but rendered coarse triangle clearance>2mm; 46 unique row-position points. 53 records are also authoritative water;1 is slightly authority dry.",
+    "B": "227 included sample records lie slightly outside SDF water authority (max dry signed distance0.004131761845201254m), but all included exact heights remain at/below water. This boundary/authority mismatch is separately present and not called a geometry-authority repair.",
+    "scope": "54 records are not54 unique independent visual notches; focus18 records are15 unique points. 390 excluded map-border records include125 exact-query-above-water, so interior diagnosis is not a map-edge fix."
+  },
+  "failedProbePreserved": {
+    "name": "ProbeCoarse1",
+    "exitCode": 1,
+    "sourceFingerprint": "503e9037204036546e039376b902b7e7ae972795a46d5b1d377823da4ec58d3d",
+    "xmlPresent": false,
+    "testResultsPresent": false,
+    "compileErrors": [
+      "Assets/Frontier/Tests/PlayMode/RiverShoreRender078Tests.cs(223,30): error CS0619: 'Object.GetInstanceID()' is obsolete: 'Use GetEntityId instead.'",
+      "Assets/Frontier/Tests/PlayMode/RiverShoreRender078Tests.cs(227,122): error CS0619: 'Object.GetInstanceID()' is obsolete: 'Use GetEntityId instead.'"
+    ]
+  },
+  "scopeLimits": [
+    "No Unity, native GUI, source/repo, Git or cloud writes; only this external audit and its external script.",
+    "Current root source is advancing to refined candidate concurrently; this audit binds original coarse runner/measurement source inventory, not current-source validation.",
+    "Actual mesh hash and barycentric results originate in Unity diagnostic; raw full mesh arrays were not separately exported, so independent audit reaggregates sample scalars and checks declared identities/topology-source logic, not an independent mesh reexecution.",
+    "All exact bank queries versus full regular-cell triangle interpolation use the same preserved077 geography; coarse equals actual so this is a genuine baseline defect, not after-fix improvement.",
+    "Quarter/end-point boundary samples are discrete coverage; they do not prove all continuous shoreline positions, render pixels, performance or native behavior.",
+    "Eastern bend scalar recorded at channel max-x; focus predicate independently re-evaluated from sample positions. This audit does not reconstruct the entire sampled channel to independently derive its max-x center."
+  ],
+  "scripts": {
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.21.0/Candidate1/Planning/audit-coarse-probe078.py",
+    "sha256": "98c3b02b3d7cc33d319ec653ee9233bc947f321c5cec3b6e7891f234a0e1c8de"
+  }
+}

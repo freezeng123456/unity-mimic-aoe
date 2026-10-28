@@ -1,0 +1,1642 @@
+{
+  "schema": 1,
+  "auditKind": "independent_selected_processe_save_replay_raw_audit",
+  "createdUtc": "2026-10-06T12:36:42.216170+00:00",
+  "status": "verified_selected_raw_save_replay_with_scope_limits",
+  "nativeAllPassed": false,
+  "finalReleaseAccepted": false,
+  "inputs": [
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Saves/slot-1.json",
+      "bytes": 33521,
+      "sha256Before": "c46875d4883e887d330fee45f97cd34d6fe79487ef5fd469b4530fd4376db8f8",
+      "payloadBytes": 882511,
+      "payloadSha256": "810f9a7d23117804330f9395deceee3496c75d286cae560373659c3f26c13bf6",
+      "envelopeSchema": 2,
+      "encoding": "gzip-base64",
+      "sha256After": "c46875d4883e887d330fee45f97cd34d6fe79487ef5fd469b4530fd4376db8f8",
+      "selectedFileStable": true
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NativeObserved/FinalGuid072/ProfileE/Replays/replay-2d5f4818ae50407cb7769a0971cc85ef.replay.json",
+      "bytes": 443529,
+      "sha256Before": "dab9e98aa9223ff9b1f112476aac02e9b0d168a032f6aaa589787d93e7b84a0e",
+      "payloadBytes": 13294680,
+      "payloadSha256": "3b0447c54f34d3c700fe8bcff06fd8aa51e17dc5ad4006a25a3c4ba4267471d9",
+      "envelopeSchema": 2,
+      "encoding": "gzip-base64",
+      "sha256After": "dab9e98aa9223ff9b1f112476aac02e9b0d168a032f6aaa589787d93e7b84a0e",
+      "selectedFileStable": true
+    }
+  ],
+  "inputScope": "Only the named slot and E replay were compared before and after. ProfileE is not a frozen directory; ColdF may add files.",
+  "identity": {
+    "matchId": "68c69480797e47e3850953863ce58aa9",
+    "appVersion": "0.15.0",
+    "replayBuildGuid": "3288d9fe24e844748a1183f756874fbf",
+    "slotContainsBuildGuid": false,
+    "guidBinding": "Replay identity explicitly contains the GUID. Slot is linked by identical match/version and full normalized final world/simulation/guided state, not by an explicit GUID field.",
+    "replayIdentity": {
+      "appVersion": "0.15.0",
+      "buildIdentity": "3288d9fe24e844748a1183f756874fbf",
+      "unityVersion": "6000.6.3f1",
+      "rulesHash": "e0aca57faf2e1d08be2a6e341391be985fc368e296e410397327b38292024583",
+      "mapGenerationVersion": 1,
+      "guidedCatalogRevision": 1,
+      "scenarioFormatVersion": 1,
+      "scenarioRuntimeVersion": 2
+    },
+    "scenarioId": "controlled_human_targets_nativec072",
+    "scenarioHash": "112a4daec06b75fe8d8046ca3cc34cb54adc21e9be8e288e3dd4a2b4a0c1a4c5",
+    "scenarioRawDocumentSha256": "112a4daec06b75fe8d8046ca3cc34cb54adc21e9be8e288e3dd4a2b4a0c1a4c5",
+    "scenarioSeed": 47072,
+    "mapId": "custom_scenario"
+  },
+  "replay": {
+    "segmentId": "2d5f4818ae50407cb7769a0971cc85ef",
+    "startKind": "authored_scenario",
+    "finishReason": "quit",
+    "incomplete": false,
+    "anchors": [
+      {
+        "index": 0,
+        "completedStep": 0,
+        "recordIndex": 0,
+        "eventCount": 104,
+        "worldTime": 0.0,
+        "eventHash": "8c3f527ba07ae5ce16b3e6987645fa0c52ba9d8f50482b0ec4e3cd091a2ddf69",
+        "inputHash": "825d884c51afbb8ed50721fafe401f3195d84093257eded9f616fd259527cac8",
+        "stateDigest": "596b1f136332b7e3512ff3b21b33fc9f8357832846edd514181718cd9092f1f6",
+        "independentlyRecomputed": true
+      },
+      {
+        "index": 1,
+        "completedStep": 300,
+        "recordIndex": 0,
+        "eventCount": 164,
+        "worldTime": 30.000078201293945,
+        "eventHash": "8a7d7ab9f1c269fc62a1cbcab2bb7d68075891cfa73746a527cd51e3459e0c18",
+        "inputHash": "825d884c51afbb8ed50721fafe401f3195d84093257eded9f616fd259527cac8",
+        "stateDigest": "e5827b2b66ae5ceaa04428b50ce69ec3c963083770bf1f9020848c26fff5ef28",
+        "independentlyRecomputed": true
+      },
+      {
+        "index": 2,
+        "completedStep": 600,
+        "recordIndex": 2,
+        "eventCount": 166,
+        "worldTime": 59.999656677246094,
+        "eventHash": "6ad2c24d368ff719508c8727b0dc9954388500cc8324ad3c709a3ef633418e23",
+        "inputHash": "720ca84f598d45ed32e31490be9036a44bedc35ed9937d3a3083721c3e563c9f",
+        "stateDigest": "549f5e4ff4562e757affc6f311d486baa5dbdc789c3aa141f169ef59437a1acd",
+        "independentlyRecomputed": true
+      },
+      {
+        "index": 3,
+        "completedStep": 900,
+        "recordIndex": 3,
+        "eventCount": 178,
+        "worldTime": 89.99919891357422,
+        "eventHash": "cb04be33ef652b6d0c612ec2b401e72dbb886573d7e8da21c81bfe6073ece323",
+        "inputHash": "8534a57c0f9274d94b35392fed583d1318e4f324ed2d2f3d80f16e7735d5cbe2",
+        "stateDigest": "6110ec83d3c101d93202a55f0eb1f48608280c87515731506f90c4d0f892fce8",
+        "independentlyRecomputed": true
+      },
+      {
+        "index": 4,
+        "completedStep": 1200,
+        "recordIndex": 3,
+        "eventCount": 178,
+        "worldTime": 119.99874114990234,
+        "eventHash": "cb04be33ef652b6d0c612ec2b401e72dbb886573d7e8da21c81bfe6073ece323",
+        "inputHash": "8534a57c0f9274d94b35392fed583d1318e4f324ed2d2f3d80f16e7735d5cbe2",
+        "stateDigest": "30b42e09e819824c091d68b5a052033882eda8e60cb45286b9525a2f895c0e2d",
+        "independentlyRecomputed": true
+      },
+      {
+        "index": 5,
+        "completedStep": 1500,
+        "recordIndex": 4,
+        "eventCount": 216,
+        "worldTime": 149.9999542236328,
+        "eventHash": "deac83efd1b96455a57ebd46da48742dde05323378d427ca594ef9fa5de7aee5",
+        "inputHash": "b96d183a796a2f2203238590962d4ff08d6f38f432ff4487c015dcfa2a94f1ac",
+        "stateDigest": "98b3a03fdcd5b832a6dec3e747d6cc567aa9d6b23e6fb52805595ad32ebf85a5",
+        "independentlyRecomputed": true
+      },
+      {
+        "index": 6,
+        "completedStep": 1800,
+        "recordIndex": 4,
+        "eventCount": 261,
+        "worldTime": 180.0017852783203,
+        "eventHash": "e24c675907de097a7409ff76bbf2df88330c085f478a1c0a4fc1d96f25d695ba",
+        "inputHash": "b96d183a796a2f2203238590962d4ff08d6f38f432ff4487c015dcfa2a94f1ac",
+        "stateDigest": "b4a5315fafe23840f853e8ba5e28d93e148c624b296a7d7827fbac1d8e9b03b0",
+        "independentlyRecomputed": true
+      },
+      {
+        "index": 7,
+        "completedStep": 2100,
+        "recordIndex": 4,
+        "eventCount": 306,
+        "worldTime": 210.0036163330078,
+        "eventHash": "6dec0cf5dff878ca04f9b2ba9fc321367b30700960cb8b462bd9a03dfd368c9f",
+        "inputHash": "b96d183a796a2f2203238590962d4ff08d6f38f432ff4487c015dcfa2a94f1ac",
+        "stateDigest": "5b57d15f48388953ba3af2ba672835f2e8f18e4177867cf4d3b51fd1ff1bbc5f",
+        "independentlyRecomputed": true
+      },
+      {
+        "index": 8,
+        "completedStep": 2400,
+        "recordIndex": 4,
+        "eventCount": 353,
+        "worldTime": 240.0054473876953,
+        "eventHash": "762a97b6d44c979202ab3d8eaa538491fd7c2b1d2e07ac11fa7700b3d0ac893c",
+        "inputHash": "b96d183a796a2f2203238590962d4ff08d6f38f432ff4487c015dcfa2a94f1ac",
+        "stateDigest": "d8bf42b02cd1f64506b5feb879f534f8f7b05881ea2d853dca0e29e261a65937",
+        "independentlyRecomputed": true
+      },
+      {
+        "index": 9,
+        "completedStep": 2700,
+        "recordIndex": 4,
+        "eventCount": 354,
+        "worldTime": 270.00726318359375,
+        "eventHash": "e1e024069e174eec064241526af062f905dbe2c41b5686894b2990aae8340ff3",
+        "inputHash": "b96d183a796a2f2203238590962d4ff08d6f38f432ff4487c015dcfa2a94f1ac",
+        "stateDigest": "b89b7f87acd12b4690eadd36d2e248f892028ef79046c4daa095b99561750928",
+        "independentlyRecomputed": true
+      },
+      {
+        "index": 10,
+        "completedStep": 3000,
+        "recordIndex": 4,
+        "eventCount": 354,
+        "worldTime": 300.00909423828125,
+        "eventHash": "e1e024069e174eec064241526af062f905dbe2c41b5686894b2990aae8340ff3",
+        "inputHash": "b96d183a796a2f2203238590962d4ff08d6f38f432ff4487c015dcfa2a94f1ac",
+        "stateDigest": "c770aa1eaad614e608ee1cb2120e7dc6bdf396b9c5dc936bbbc06f80074ad320",
+        "independentlyRecomputed": true
+      },
+      {
+        "index": 11,
+        "completedStep": 3300,
+        "recordIndex": 4,
+        "eventCount": 354,
+        "worldTime": 330.01092529296875,
+        "eventHash": "e1e024069e174eec064241526af062f905dbe2c41b5686894b2990aae8340ff3",
+        "inputHash": "b96d183a796a2f2203238590962d4ff08d6f38f432ff4487c015dcfa2a94f1ac",
+        "stateDigest": "5ab07610a677fcea17840e890d299661196bfac8bc8decb08773c310ddaf2f6b",
+        "independentlyRecomputed": true
+      },
+      {
+        "index": 12,
+        "completedStep": 3600,
+        "recordIndex": 4,
+        "eventCount": 354,
+        "worldTime": 360.01275634765625,
+        "eventHash": "e1e024069e174eec064241526af062f905dbe2c41b5686894b2990aae8340ff3",
+        "inputHash": "b96d183a796a2f2203238590962d4ff08d6f38f432ff4487c015dcfa2a94f1ac",
+        "stateDigest": "5508cac08d1b9f7de609746cf2dc779210b7fdc76a04291cce7e9911f970a251",
+        "independentlyRecomputed": true
+      },
+      {
+        "index": 13,
+        "completedStep": 3900,
+        "recordIndex": 4,
+        "eventCount": 354,
+        "worldTime": 390.01458740234375,
+        "eventHash": "e1e024069e174eec064241526af062f905dbe2c41b5686894b2990aae8340ff3",
+        "inputHash": "b96d183a796a2f2203238590962d4ff08d6f38f432ff4487c015dcfa2a94f1ac",
+        "stateDigest": "dfcca022b23b641d9bd17adc229dde05805a938d51fab12e77c24847b4976b68",
+        "independentlyRecomputed": true
+      },
+      {
+        "index": 14,
+        "completedStep": 4200,
+        "recordIndex": 5,
+        "eventCount": 356,
+        "worldTime": 420.01641845703125,
+        "eventHash": "9e286f11905831585a4801f11bbec034fb037f67602a5e74024c7540477e2716",
+        "inputHash": "1f9722691d5f20f64ff9be958fa56cfda24230f99b40616406bbb89be4664398",
+        "stateDigest": "d3f3f8d731c61e0755e54ed87c11bc21a3cf1c0defc40f71eb90977af42f0208",
+        "independentlyRecomputed": true
+      },
+      {
+        "index": 15,
+        "completedStep": 4500,
+        "recordIndex": 5,
+        "eventCount": 356,
+        "worldTime": 450.01824951171875,
+        "eventHash": "9e286f11905831585a4801f11bbec034fb037f67602a5e74024c7540477e2716",
+        "inputHash": "1f9722691d5f20f64ff9be958fa56cfda24230f99b40616406bbb89be4664398",
+        "stateDigest": "8fa52e06ab82c4b740e3ee5da2adf4e1897ede66d7a03ed26d609fb16dec6dcc",
+        "independentlyRecomputed": true
+      },
+      {
+        "index": 16,
+        "completedStep": 4800,
+        "recordIndex": 5,
+        "eventCount": 356,
+        "worldTime": 480.02008056640625,
+        "eventHash": "9e286f11905831585a4801f11bbec034fb037f67602a5e74024c7540477e2716",
+        "inputHash": "1f9722691d5f20f64ff9be958fa56cfda24230f99b40616406bbb89be4664398",
+        "stateDigest": "392b52464e7010e02fa2576f0d528424e8929d80dcf8cd6de1228d28e554e1ef",
+        "independentlyRecomputed": true
+      },
+      {
+        "index": 17,
+        "completedStep": 5100,
+        "recordIndex": 5,
+        "eventCount": 363,
+        "worldTime": 510.02191162109375,
+        "eventHash": "0e3caf0d0dc764ab393ab520a7f740e57d8372c66b790aaef0499daa4126f6b0",
+        "inputHash": "1f9722691d5f20f64ff9be958fa56cfda24230f99b40616406bbb89be4664398",
+        "stateDigest": "6e689d4a6948ae5e6854027b65cdf4306c6ab17f5f3c32298774769e301e6515",
+        "independentlyRecomputed": true
+      },
+      {
+        "index": 18,
+        "completedStep": 5400,
+        "recordIndex": 7,
+        "eventCount": 365,
+        "worldTime": 540.0151977539062,
+        "eventHash": "e616ecc04e87ceffaeb4528323d96b9699336ca3cadbe297372b6b8c6f344f30",
+        "inputHash": "e923462689e748e67e9a1d5229f776292088a36ef058eb808cee59ea36254f53",
+        "stateDigest": "2e14ab5af4633fd4fe68bf77b65ab5722736bd6c87ea02e9add9dc959cd8b688",
+        "independentlyRecomputed": true
+      },
+      {
+        "index": 19,
+        "completedStep": 5490,
+        "recordIndex": 10,
+        "eventCount": 367,
+        "worldTime": 549.0130004882812,
+        "eventHash": "1c9875c433c3149df23af8b49f212e0785b60aef577145320e297346d306645a",
+        "inputHash": "115e6e76f831f322c163c62f95d046eb04c795d188112eaf284ab601db9385e1",
+        "stateDigest": "2515c890b10d64b0c6ef3119fbd33de4754f1239dd51b28109b35f7aad01c3e7",
+        "independentlyRecomputed": true
+      }
+    ],
+    "records": [
+      {
+        "index": 0,
+        "completedStep": 303,
+        "ordinal": 0,
+        "kind": 1,
+        "hasCommand": false,
+        "command": null,
+        "paused": true,
+        "accepted": true,
+        "reason": "manual_pause",
+        "eventCount": 165,
+        "eventHash": "310be3e29aa7b29a8f9d5ea1281428ccf18db246add7b444aa3c689391b0cbba",
+        "inputPrefixHashAfter": "a7cad44471fab12b8a12744f20bcdee1ae38600fb7c6591d4e554d8fba5327e4"
+      },
+      {
+        "index": 1,
+        "completedStep": 303,
+        "ordinal": 1,
+        "kind": 1,
+        "hasCommand": false,
+        "command": null,
+        "paused": false,
+        "accepted": true,
+        "reason": "manual_resume",
+        "eventCount": 166,
+        "eventHash": "6ad2c24d368ff719508c8727b0dc9954388500cc8324ad3c709a3ef633418e23",
+        "inputPrefixHashAfter": "720ca84f598d45ed32e31490be9036a44bedc35ed9937d3a3083721c3e563c9f"
+      },
+      {
+        "index": 2,
+        "completedStep": 787,
+        "ordinal": 0,
+        "kind": 0,
+        "hasCommand": true,
+        "command": {
+          "player": 0,
+          "kind": 0,
+          "actors": [
+            77
+          ],
+          "order": 1,
+          "point": {
+            "x": 34.57451629638672,
+            "y": 51.244136810302734
+          },
+          "target": 84,
+          "index": 0,
+          "count": 1,
+          "item": "",
+          "choice": "",
+          "append": false
+        },
+        "paused": false,
+        "accepted": true,
+        "reason": "Attack order accepted",
+        "eventCount": 167,
+        "eventHash": "8cda4d7b1c4ad1a8e76cc80b3530877a75bb6ebf9d62913a94ec282cab17a447",
+        "inputPrefixHashAfter": "8534a57c0f9274d94b35392fed583d1318e4f324ed2d2f3d80f16e7735d5cbe2"
+      },
+      {
+        "index": 3,
+        "completedStep": 1232,
+        "ordinal": 0,
+        "kind": 0,
+        "hasCommand": true,
+        "command": {
+          "player": 0,
+          "kind": 0,
+          "actors": [
+            77
+          ],
+          "order": 1,
+          "point": {
+            "x": 30.088653564453125,
+            "y": 72.6413803100586
+          },
+          "target": 83,
+          "index": 0,
+          "count": 1,
+          "item": "",
+          "choice": "",
+          "append": false
+        },
+        "paused": false,
+        "accepted": true,
+        "reason": "Attack order accepted",
+        "eventCount": 179,
+        "eventHash": "3731a24356b5abfe8cc42af441c0b1632a88e7d60429d69dbc6abdd153a7087c",
+        "inputPrefixHashAfter": "b96d183a796a2f2203238590962d4ff08d6f38f432ff4487c015dcfa2a94f1ac"
+      },
+      {
+        "index": 4,
+        "completedStep": 4171,
+        "ordinal": 0,
+        "kind": 0,
+        "hasCommand": true,
+        "command": {
+          "player": 0,
+          "kind": 25,
+          "actors": [
+            1
+          ],
+          "order": 0,
+          "point": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "target": 0,
+          "index": 0,
+          "count": 1,
+          "item": "",
+          "choice": "",
+          "append": false
+        },
+        "paused": false,
+        "accepted": true,
+        "reason": "Revolution queued; new settler training is closed until cancellation or civilian rebuilding",
+        "eventCount": 356,
+        "eventHash": "9e286f11905831585a4801f11bbec034fb037f67602a5e74024c7540477e2716",
+        "inputPrefixHashAfter": "1f9722691d5f20f64ff9be958fa56cfda24230f99b40616406bbb89be4664398"
+      },
+      {
+        "index": 5,
+        "completedStep": 5281,
+        "ordinal": 0,
+        "kind": 0,
+        "hasCommand": true,
+        "command": {
+          "player": 0,
+          "kind": 5,
+          "actors": [
+            1
+          ],
+          "order": 0,
+          "point": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "target": 0,
+          "index": 0,
+          "count": 1,
+          "item": "civilian_rebuilding",
+          "choice": "",
+          "append": false
+        },
+        "paused": false,
+        "accepted": true,
+        "reason": "Added to production queue",
+        "eventCount": 364,
+        "eventHash": "6f8ba5442f38176beb44543401c97b501c8a42f1cb73f9e3093566b8e4f7a99f",
+        "inputPrefixHashAfter": "806c5f2d94e9ffdae4db52c2177898ab41c9d9c253d53ac3119c9cba3bf33264"
+      },
+      {
+        "index": 6,
+        "completedStep": 5375,
+        "ordinal": 0,
+        "kind": 0,
+        "hasCommand": true,
+        "command": {
+          "player": 0,
+          "kind": 3,
+          "actors": [
+            1
+          ],
+          "order": 0,
+          "point": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "target": 0,
+          "index": 0,
+          "count": 1,
+          "item": "",
+          "choice": "",
+          "append": false
+        },
+        "paused": false,
+        "accepted": true,
+        "reason": "Unfinished order refunded",
+        "eventCount": 365,
+        "eventHash": "e616ecc04e87ceffaeb4528323d96b9699336ca3cadbe297372b6b8c6f344f30",
+        "inputPrefixHashAfter": "e923462689e748e67e9a1d5229f776292088a36ef058eb808cee59ea36254f53"
+      },
+      {
+        "index": 7,
+        "completedStep": 5489,
+        "ordinal": 0,
+        "kind": 0,
+        "hasCommand": true,
+        "command": {
+          "player": 0,
+          "kind": 5,
+          "actors": [
+            1
+          ],
+          "order": 0,
+          "point": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "target": 0,
+          "index": 0,
+          "count": 1,
+          "item": "civilian_rebuilding",
+          "choice": "",
+          "append": false
+        },
+        "paused": false,
+        "accepted": true,
+        "reason": "Added to production queue",
+        "eventCount": 366,
+        "eventHash": "7a9b1a7048005e07870a6ebef66f8a9927d493bac079929ed676bff58d1333b6",
+        "inputPrefixHashAfter": "3a11c5b298c214fa5eb8e1f80fbc97e32fc0b65c98bc8ab71821422c2877b5e6"
+      },
+      {
+        "index": 8,
+        "completedStep": 5490,
+        "ordinal": 0,
+        "kind": 1,
+        "hasCommand": false,
+        "command": null,
+        "paused": true,
+        "accepted": true,
+        "reason": "manual_pause",
+        "eventCount": 367,
+        "eventHash": "1c9875c433c3149df23af8b49f212e0785b60aef577145320e297346d306645a",
+        "inputPrefixHashAfter": "7116d4dacb1e76c6d871fd21a55e3c93ab5aa071b89a460f53554bbfb7db9bce"
+      },
+      {
+        "index": 9,
+        "completedStep": 5490,
+        "ordinal": 1,
+        "kind": 3,
+        "hasCommand": false,
+        "command": null,
+        "paused": false,
+        "accepted": true,
+        "reason": "",
+        "eventCount": 367,
+        "eventHash": "1c9875c433c3149df23af8b49f212e0785b60aef577145320e297346d306645a",
+        "inputPrefixHashAfter": "115e6e76f831f322c163c62f95d046eb04c795d188112eaf284ab601db9385e1"
+      }
+    ],
+    "eventCount": 367,
+    "eventChainFinal": "1c9875c433c3149df23af8b49f212e0785b60aef577145320e297346d306645a",
+    "inputChainFinal": "115e6e76f831f322c163c62f95d046eb04c795d188112eaf284ab601db9385e1"
+  },
+  "save": {
+    "worldTime": 549.0130004882812,
+    "paused": true,
+    "winner": -1,
+    "simulationStep": 5490,
+    "rawAccumulator": 0.016640417277812958,
+    "normalizedAccumulator": 0,
+    "normalizedEvents": [],
+    "wholeWorldAndSimulationEqualFinalReplayAnchorAfterDocumentedNormalization": true,
+    "savedEventsEqualEntireReplayEvents": true,
+    "autoplay": false,
+    "simulationSpeed": 1.0,
+    "controllerPlayers": [
+      1
+    ],
+    "player0": {
+      "id": 0,
+      "team": 0,
+      "age": 4,
+      "usedPopulation": 19,
+      "reservedPopulation": 0,
+      "populationCap": 20,
+      "shipmentTokens": 0,
+      "xpLevels": 0,
+      "prefabCharges": 0,
+      "civilization": "coast",
+      "resources": {
+        "food": 100.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "xp": 48.0,
+      "resigned": false,
+      "eliminated": false,
+      "politicalPhase": 1,
+      "revolutionId": "rev_coast",
+      "revolutionAt": 507.22174072265625,
+      "civilianRebuiltAt": 0.0,
+      "gathered": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "spent": {
+        "food": 1600.0,
+        "wood": 800.0,
+        "coin": 1600.0
+      },
+      "refunded": {
+        "food": 400.0,
+        "wood": 0.0,
+        "coin": 400.0
+      },
+      "passiveIncome": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "tradeIncome": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "kills": 2,
+      "losses": 0,
+      "trained": 0,
+      "shipsSent": 0,
+      "treasuresClaimed": 0,
+      "guardiansDefeated": 1
+    },
+    "town1": {
+      "id": 1,
+      "definition": "town",
+      "state": {
+        "id": 1,
+        "owner": 0,
+        "position": {
+          "x": 22.0,
+          "y": 24.0
+        },
+        "previousPosition": {
+          "x": 22.0,
+          "y": 24.0
+        },
+        "origin": {
+          "x": 22.0,
+          "y": 24.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        },
+        "rally": {
+          "x": 22.0,
+          "y": 18.5
+        },
+        "tradeMode": 0,
+        "rallyResource": 0,
+        "hp": 3500.0,
+        "construction": 1.0,
+        "remaining": 0.0,
+        "attackReadyAt": 0.0,
+        "fireAt": -1.0,
+        "deployUntil": 0.0,
+        "scanAt": 0.0,
+        "stuckFor": 0.0,
+        "pathRetryAt": 0.0,
+        "recoveryProgressPosition": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "recoveryProgressAt": 0.0,
+        "progressGoal": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "detour": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "progressDistance": 3.4028234663852886e+38,
+        "progressAt": 0.0,
+        "detourUntil": 0.0,
+        "pathGoal": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "isDeployed": false,
+        "shotMelee": false,
+        "nextEconomyLog": 0.0,
+        "paidConstruction": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "attackTarget": 0,
+        "garrisonedIn": 0,
+        "rallyTarget": 0,
+        "pathVersion": -1,
+        "hold": false,
+        "dead": false,
+        "forceMelee": false,
+        "routeTown": 0,
+        "routeStation": 0,
+        "routeLeg": 0,
+        "routeDistance": 0.0,
+        "shieldReadyAt": 0.0,
+        "cargoPaid": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "shielded": false,
+        "autoRecruitElapsed": 0.0,
+        "autoRecruitPaused": false,
+        "factoryMode": "food",
+        "factoryElapsed": 0.0,
+        "pathAvoidsAllies": false,
+        "pathIndex": 0,
+        "status": "Idle",
+        "work": {
+          "kind": 0,
+          "target": 0,
+          "resource": 0,
+          "time": 0.0
+        }
+      },
+      "queue": [
+        {
+          "item": "civilian_rebuilding",
+          "kind": "Research",
+          "count": 1,
+          "population": 0,
+          "paid": {
+            "food": 400.0,
+            "wood": 0.0,
+            "coin": 400.0
+          },
+          "elapsed": 0.10000000149011612,
+          "duration": 60.0,
+          "choice": ""
+        }
+      ]
+    },
+    "revolutionaryOriginalIds": [
+      {
+        "id": 3,
+        "definition": "revolutionary",
+        "owner": 0,
+        "hp": 190.0,
+        "dead": false,
+        "position": {
+          "x": 30.0,
+          "y": 69.0
+        },
+        "garrisonedIn": 0,
+        "orders": []
+      },
+      {
+        "id": 4,
+        "definition": "revolutionary",
+        "owner": 0,
+        "hp": 190.0,
+        "dead": false,
+        "position": {
+          "x": 14.0,
+          "y": 16.0
+        },
+        "garrisonedIn": 0,
+        "orders": []
+      },
+      {
+        "id": 5,
+        "definition": "revolutionary",
+        "owner": 0,
+        "hp": 190.0,
+        "dead": false,
+        "position": {
+          "x": 17.0,
+          "y": 14.0
+        },
+        "garrisonedIn": 0,
+        "orders": []
+      },
+      {
+        "id": 6,
+        "definition": "revolutionary",
+        "owner": 0,
+        "hp": 190.0,
+        "dead": false,
+        "position": {
+          "x": 26.0,
+          "y": 14.0
+        },
+        "garrisonedIn": 0,
+        "orders": []
+      },
+      {
+        "id": 7,
+        "definition": "revolutionary",
+        "owner": 0,
+        "hp": 190.0,
+        "dead": false,
+        "position": {
+          "x": 30.0,
+          "y": 16.0
+        },
+        "garrisonedIn": 0,
+        "orders": []
+      },
+      {
+        "id": 8,
+        "definition": "revolutionary",
+        "owner": 0,
+        "hp": 190.0,
+        "dead": false,
+        "position": {
+          "x": 24.0,
+          "y": 59.0
+        },
+        "garrisonedIn": 0,
+        "orders": []
+      }
+    ],
+    "selection": [
+      1
+    ],
+    "playerHotkeyGroups": [],
+    "authoredForceGroup": [
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82
+    ],
+    "scenarioStateWinner": -1
+  },
+  "checks": [
+    {
+      "check": "slot-1.json regular non-symlink",
+      "passed": true
+    },
+    {
+      "check": "slot-1.json envelope fields",
+      "passed": true
+    },
+    {
+      "check": "slot-1.json schema2 gzip-base64",
+      "passed": true
+    },
+    {
+      "check": "slot-1.json exactly one complete gzip stream",
+      "passed": true
+    },
+    {
+      "check": "slot-1.json payload sha",
+      "passed": true
+    },
+    {
+      "check": "replay-2d5f4818ae50407cb7769a0971cc85ef.replay.json regular non-symlink",
+      "passed": true
+    },
+    {
+      "check": "replay-2d5f4818ae50407cb7769a0971cc85ef.replay.json envelope fields",
+      "passed": true
+    },
+    {
+      "check": "replay-2d5f4818ae50407cb7769a0971cc85ef.replay.json schema2 gzip-base64",
+      "passed": true
+    },
+    {
+      "check": "replay-2d5f4818ae50407cb7769a0971cc85ef.replay.json exactly one complete gzip stream",
+      "passed": true
+    },
+    {
+      "check": "replay-2d5f4818ae50407cb7769a0971cc85ef.replay.json payload sha",
+      "passed": true
+    },
+    {
+      "check": "raw event count",
+      "passed": true
+    },
+    {
+      "check": "raw record count",
+      "passed": true
+    },
+    {
+      "check": "raw anchor count",
+      "passed": true
+    },
+    {
+      "check": "anchor 0 indices",
+      "passed": true
+    },
+    {
+      "check": "anchor 0 event prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 0 input prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 0 state digest",
+      "passed": true
+    },
+    {
+      "check": "anchor 0 normalized replay state",
+      "passed": true
+    },
+    {
+      "check": "anchor 0 world step",
+      "passed": true
+    },
+    {
+      "check": "anchor 0 scenario hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 1 indices",
+      "passed": true
+    },
+    {
+      "check": "anchor 1 event prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 1 input prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 1 state digest",
+      "passed": true
+    },
+    {
+      "check": "anchor 1 normalized replay state",
+      "passed": true
+    },
+    {
+      "check": "anchor 1 world step",
+      "passed": true
+    },
+    {
+      "check": "anchor 1 scenario hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 2 indices",
+      "passed": true
+    },
+    {
+      "check": "anchor 2 event prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 2 input prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 2 state digest",
+      "passed": true
+    },
+    {
+      "check": "anchor 2 normalized replay state",
+      "passed": true
+    },
+    {
+      "check": "anchor 2 world step",
+      "passed": true
+    },
+    {
+      "check": "anchor 2 scenario hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 3 indices",
+      "passed": true
+    },
+    {
+      "check": "anchor 3 event prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 3 input prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 3 state digest",
+      "passed": true
+    },
+    {
+      "check": "anchor 3 normalized replay state",
+      "passed": true
+    },
+    {
+      "check": "anchor 3 world step",
+      "passed": true
+    },
+    {
+      "check": "anchor 3 scenario hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 4 indices",
+      "passed": true
+    },
+    {
+      "check": "anchor 4 event prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 4 input prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 4 state digest",
+      "passed": true
+    },
+    {
+      "check": "anchor 4 normalized replay state",
+      "passed": true
+    },
+    {
+      "check": "anchor 4 world step",
+      "passed": true
+    },
+    {
+      "check": "anchor 4 scenario hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 5 indices",
+      "passed": true
+    },
+    {
+      "check": "anchor 5 event prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 5 input prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 5 state digest",
+      "passed": true
+    },
+    {
+      "check": "anchor 5 normalized replay state",
+      "passed": true
+    },
+    {
+      "check": "anchor 5 world step",
+      "passed": true
+    },
+    {
+      "check": "anchor 5 scenario hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 6 indices",
+      "passed": true
+    },
+    {
+      "check": "anchor 6 event prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 6 input prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 6 state digest",
+      "passed": true
+    },
+    {
+      "check": "anchor 6 normalized replay state",
+      "passed": true
+    },
+    {
+      "check": "anchor 6 world step",
+      "passed": true
+    },
+    {
+      "check": "anchor 6 scenario hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 7 indices",
+      "passed": true
+    },
+    {
+      "check": "anchor 7 event prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 7 input prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 7 state digest",
+      "passed": true
+    },
+    {
+      "check": "anchor 7 normalized replay state",
+      "passed": true
+    },
+    {
+      "check": "anchor 7 world step",
+      "passed": true
+    },
+    {
+      "check": "anchor 7 scenario hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 8 indices",
+      "passed": true
+    },
+    {
+      "check": "anchor 8 event prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 8 input prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 8 state digest",
+      "passed": true
+    },
+    {
+      "check": "anchor 8 normalized replay state",
+      "passed": true
+    },
+    {
+      "check": "anchor 8 world step",
+      "passed": true
+    },
+    {
+      "check": "anchor 8 scenario hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 9 indices",
+      "passed": true
+    },
+    {
+      "check": "anchor 9 event prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 9 input prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 9 state digest",
+      "passed": true
+    },
+    {
+      "check": "anchor 9 normalized replay state",
+      "passed": true
+    },
+    {
+      "check": "anchor 9 world step",
+      "passed": true
+    },
+    {
+      "check": "anchor 9 scenario hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 10 indices",
+      "passed": true
+    },
+    {
+      "check": "anchor 10 event prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 10 input prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 10 state digest",
+      "passed": true
+    },
+    {
+      "check": "anchor 10 normalized replay state",
+      "passed": true
+    },
+    {
+      "check": "anchor 10 world step",
+      "passed": true
+    },
+    {
+      "check": "anchor 10 scenario hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 11 indices",
+      "passed": true
+    },
+    {
+      "check": "anchor 11 event prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 11 input prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 11 state digest",
+      "passed": true
+    },
+    {
+      "check": "anchor 11 normalized replay state",
+      "passed": true
+    },
+    {
+      "check": "anchor 11 world step",
+      "passed": true
+    },
+    {
+      "check": "anchor 11 scenario hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 12 indices",
+      "passed": true
+    },
+    {
+      "check": "anchor 12 event prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 12 input prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 12 state digest",
+      "passed": true
+    },
+    {
+      "check": "anchor 12 normalized replay state",
+      "passed": true
+    },
+    {
+      "check": "anchor 12 world step",
+      "passed": true
+    },
+    {
+      "check": "anchor 12 scenario hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 13 indices",
+      "passed": true
+    },
+    {
+      "check": "anchor 13 event prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 13 input prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 13 state digest",
+      "passed": true
+    },
+    {
+      "check": "anchor 13 normalized replay state",
+      "passed": true
+    },
+    {
+      "check": "anchor 13 world step",
+      "passed": true
+    },
+    {
+      "check": "anchor 13 scenario hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 14 indices",
+      "passed": true
+    },
+    {
+      "check": "anchor 14 event prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 14 input prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 14 state digest",
+      "passed": true
+    },
+    {
+      "check": "anchor 14 normalized replay state",
+      "passed": true
+    },
+    {
+      "check": "anchor 14 world step",
+      "passed": true
+    },
+    {
+      "check": "anchor 14 scenario hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 15 indices",
+      "passed": true
+    },
+    {
+      "check": "anchor 15 event prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 15 input prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 15 state digest",
+      "passed": true
+    },
+    {
+      "check": "anchor 15 normalized replay state",
+      "passed": true
+    },
+    {
+      "check": "anchor 15 world step",
+      "passed": true
+    },
+    {
+      "check": "anchor 15 scenario hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 16 indices",
+      "passed": true
+    },
+    {
+      "check": "anchor 16 event prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 16 input prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 16 state digest",
+      "passed": true
+    },
+    {
+      "check": "anchor 16 normalized replay state",
+      "passed": true
+    },
+    {
+      "check": "anchor 16 world step",
+      "passed": true
+    },
+    {
+      "check": "anchor 16 scenario hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 17 indices",
+      "passed": true
+    },
+    {
+      "check": "anchor 17 event prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 17 input prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 17 state digest",
+      "passed": true
+    },
+    {
+      "check": "anchor 17 normalized replay state",
+      "passed": true
+    },
+    {
+      "check": "anchor 17 world step",
+      "passed": true
+    },
+    {
+      "check": "anchor 17 scenario hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 18 indices",
+      "passed": true
+    },
+    {
+      "check": "anchor 18 event prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 18 input prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 18 state digest",
+      "passed": true
+    },
+    {
+      "check": "anchor 18 normalized replay state",
+      "passed": true
+    },
+    {
+      "check": "anchor 18 world step",
+      "passed": true
+    },
+    {
+      "check": "anchor 18 scenario hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 19 indices",
+      "passed": true
+    },
+    {
+      "check": "anchor 19 event prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 19 input prefix hash",
+      "passed": true
+    },
+    {
+      "check": "anchor 19 state digest",
+      "passed": true
+    },
+    {
+      "check": "anchor 19 normalized replay state",
+      "passed": true
+    },
+    {
+      "check": "anchor 19 world step",
+      "passed": true
+    },
+    {
+      "check": "anchor 19 scenario hash",
+      "passed": true
+    },
+    {
+      "check": "record 0 ordered",
+      "passed": true
+    },
+    {
+      "check": "record 0 event prefix",
+      "passed": true
+    },
+    {
+      "check": "record 0 accepted",
+      "passed": true
+    },
+    {
+      "check": "record 1 ordered",
+      "passed": true
+    },
+    {
+      "check": "record 1 event prefix",
+      "passed": true
+    },
+    {
+      "check": "record 1 accepted",
+      "passed": true
+    },
+    {
+      "check": "record 2 ordered",
+      "passed": true
+    },
+    {
+      "check": "record 2 event prefix",
+      "passed": true
+    },
+    {
+      "check": "record 2 accepted",
+      "passed": true
+    },
+    {
+      "check": "record 3 ordered",
+      "passed": true
+    },
+    {
+      "check": "record 3 event prefix",
+      "passed": true
+    },
+    {
+      "check": "record 3 accepted",
+      "passed": true
+    },
+    {
+      "check": "record 4 ordered",
+      "passed": true
+    },
+    {
+      "check": "record 4 event prefix",
+      "passed": true
+    },
+    {
+      "check": "record 4 accepted",
+      "passed": true
+    },
+    {
+      "check": "record 5 ordered",
+      "passed": true
+    },
+    {
+      "check": "record 5 event prefix",
+      "passed": true
+    },
+    {
+      "check": "record 5 accepted",
+      "passed": true
+    },
+    {
+      "check": "record 6 ordered",
+      "passed": true
+    },
+    {
+      "check": "record 6 event prefix",
+      "passed": true
+    },
+    {
+      "check": "record 6 accepted",
+      "passed": true
+    },
+    {
+      "check": "record 7 ordered",
+      "passed": true
+    },
+    {
+      "check": "record 7 event prefix",
+      "passed": true
+    },
+    {
+      "check": "record 7 accepted",
+      "passed": true
+    },
+    {
+      "check": "record 8 ordered",
+      "passed": true
+    },
+    {
+      "check": "record 8 event prefix",
+      "passed": true
+    },
+    {
+      "check": "record 8 accepted",
+      "passed": true
+    },
+    {
+      "check": "record 9 ordered",
+      "passed": true
+    },
+    {
+      "check": "record 9 event prefix",
+      "passed": true
+    },
+    {
+      "check": "record 9 accepted",
+      "passed": true
+    },
+    {
+      "check": "slot normalized whole world equals final anchor",
+      "passed": true
+    },
+    {
+      "check": "slot normalized whole simulation equals final anchor",
+      "passed": true
+    },
+    {
+      "check": "slot guided equals final anchor",
+      "passed": true
+    },
+    {
+      "check": "slot entire events equals replay events",
+      "passed": true
+    },
+    {
+      "check": "slot match/version equals replay",
+      "passed": true
+    },
+    {
+      "check": "replay final GUID",
+      "passed": true
+    },
+    {
+      "check": "replay completed quit",
+      "passed": true
+    },
+    {
+      "check": "no human autoplay controller",
+      "passed": true
+    },
+    {
+      "check": "final indices cover all",
+      "passed": true
+    },
+    {
+      "check": "scenario raw serialized document hash",
+      "passed": true
+    },
+    {
+      "check": "slot rules equals replay identity",
+      "passed": true
+    },
+    {
+      "check": "town1 queue exact single pending civilian rebuilding",
+      "passed": true
+    },
+    {
+      "check": "queue not completed",
+      "passed": true
+    },
+    {
+      "check": "slot final wallet",
+      "passed": true
+    },
+    {
+      "check": "slot political state",
+      "passed": true
+    },
+    {
+      "check": "same six original worker IDs now alive revolutionary",
+      "passed": true
+    },
+    {
+      "check": "stable scenario worker bindings",
+      "passed": true
+    },
+    {
+      "check": "authored force group stable",
+      "passed": true
+    },
+    {
+      "check": "target stable IDs",
+      "passed": true
+    },
+    {
+      "check": "no player hotkey groups",
+      "passed": true
+    },
+    {
+      "check": "slot-1.json before/after bytes",
+      "passed": true
+    },
+    {
+      "check": "replay-2d5f4818ae50407cb7769a0971cc85ef.replay.json before/after bytes",
+      "passed": true
+    }
+  ],
+  "checkCount": 205,
+  "failedChecks": 0,
+  "limitations": [
+    "This is an independent raw envelope/hash-chain and state-linkage audit, with no observer imports and no Unity execution.",
+    "Hash-chain recomputation establishes serialization consistency, not an actual forward replay execution.",
+    "Pending government research is 0.10000000149011612 of 60 seconds; no 0.7-second claim.",
+    "No cold-load entire-world equivalence is inferred from E raw files. ColdF is a separate observation.",
+    "No pixel review, host networking proof, performance certification, normal opening, moving-worker combat, all native acceptance or release approval is asserted.",
+    "Parent separately audits Attack, Fire, Damage, Payment, Cancel refund and conversion event semantics. This audit only checks all raw event bytes against chains and slot."
+  ]
+}

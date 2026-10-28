@@ -1,0 +1,89 @@
+Controlled 070 three-ZIP writer, Candidate2 preparation
+
+Writer: write-approved-zips-070.py (executable, standard-library Python plus Git).
+Dependency: audited local prepare-delivery-documents-070.py for ready-request,
+actual source/test/build identity and complete original payload approval checks.
+The independent checker is never imported/invoked during formal packaging.
+It is used only to check isolated temporary ZIP fixtures in --self-test.
+
+Current status: writer implemented; synthetic self-test 28 Passed. No actual
+Candidate2 ZIP was created by preparation. Runtime/source snapshot/native/gallery
+must remain governed by root's actual final request and approval.
+
+Actual request needs schema1, ready=true, expectedIdentity including final full
+sourceSnapshotCommit, existing actual frozen runtime/682 fingerprint/buildGUID,
+actual testDirectory, appRoot/buildIdentity/sourceFreeze, honest nativeScope,
+explicit gallery originals and packageDirectory/three distinct ZIP basenames.
+The initial identity draft is ready=false and will be refused. Generated original
+payload approval must still match the request and all originals byte-for-byte.
+
+Formal sequence after root finishes native observation and commits final docs:
+(run from this Delivery directory; all output filenames must be NEW)
+
+./prepare-delivery-documents-070.py payload --request delivery-request-070.json \
+  --output payload-approval-070.json
+
+./write-approved-zips-070.py --request delivery-request-070.json \
+  --approval payload-approval-070.json --output controlled-zip-writer-070.json
+
+./prepare-delivery-documents-070.py manifest --request delivery-request-070.json \
+  --approval payload-approval-070.json --output release-manifest.json
+
+./prepare-delivery-documents-070.py freeze --request delivery-request-070.json \
+  --approval payload-approval-070.json --manifest release-manifest.json \
+  --output independent-freeze-070.json
+
+python3 independent-zip-verify-070.py --freeze independent-freeze-070.json \
+  --manifest release-manifest.json \
+  --package-dir /Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.13.0/Candidate2/Delivery \
+  --repo /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project \
+  --payload-approval payload-approval-070.json \
+  --output independent-zip-verification-070.json
+
+Change package-dir and request packageDirectory together if root explicitly picks
+another real output directory. The writer output argument is a JSON receipt;
+ZIP names are taken from request.packages, never invented by the writer.
+
+Source reads the exact sourceSnapshotCommit allowlist via git cat-file --batch,
+verifies each Git object ID and SHA, and emits exact Git modes including executable
+files and literal symlink bodies. It does not read source payload bytes or modes
+from the working tree. Runtime working-tree inputs are still checked for the
+unchanged real 682-input freeze by the preparation helper.
+
+Client entries equal every app lstat member plus approved extras; gallery entries
+equal approved original selection. Directory records and app symlink bodies/modes
+are preserved. Each input is checked before and during reads and originals/ready
+identity are checked again after writes. Source symlinks cannot escape, dangle,
+cycle or traverse non-directory ancestors. No unapproved parent directory records
+are invented. Each approved PNG/JSON filename mapping is retained.
+
+ZIPs are written through exclusive O_EXCL/O_NOFOLLOW regular seekable files, with
+explicit Unix ZipInfo modes, fixed1980 timestamp, canonical UTF8 names as needed,
+no extras/comments/data descriptors or central ZIP64. The classic ZIP size and
+member bounds match the checker. Files use Deflate; directories/links use Store.
+All completed generated members are reread for CRC/size/SHA/mode correspondence.
+The writer receipt also records request/approval/helper/writer SHA and container
+SHA, and reports Written with independent acceptance still pending.
+
+Preflight refuses the whole batch if any ZIP or receipt path already exists,
+including dangling symlinks. ZIP paths are reserved exclusively before writing.
+If a later write fails, partial newly created ZIPs are PRESERVED and stderr/possible
+exclusive failure receipt reports Stopped and createdPaths. Never upload them or
+reuse those basenames. Resolve the failure and choose NEW basenames in a NEW ready
+request, NEW payload approval and NEW receipt. Existing evidence is not overwritten
+or deleted; the writer never cleans a failed real package.
+
+Self-test only:
+python3 write-approved-zips-070.py --self-test
+
+Tests use a temporary synthetic Git snapshot with changed working-tree README and
+chmod, excluded untracked/history/cache files, executable and confined symlink;
+a complete synthetic app and UnicodePNG+JSON gallery; independent raw ZIP parsing;
+mutated content/size/mode and symlink failures; exclusive output/partial preservation
+and pending-request refusal. Fixtures are automatically removed. Existing receipt
+controlled-zip-writer-self-test-070.json records the actual 28 Passed result and tool
+hashes. This is not actual release packaging, native gameplay or ZIP acceptance.
+
+No Unity, source/docs edit, app modification, upload or Candidate1 mutation is
+performed by the writer. Local package correspondence must be established later
+by the independent checker; uploaded/downloaded bytes require separate verification.

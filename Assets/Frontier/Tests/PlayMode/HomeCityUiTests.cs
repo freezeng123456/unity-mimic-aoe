@@ -36,6 +36,18 @@ namespace Frontier.Tests
         private void Click(Vector2 point)
         {InputSystem.QueueStateEvent(mouse,new MouseState{position=point}.WithButton(MouseButton.Left));InputSystem.QueueStateEvent(mouse,new MouseState{position=point});}
         private int Ships()=>game.World.Events.Count(e=>e.kind=="ShipmentSent"&&e.player==0);
+        private IEnumerator PrepareRecordedShipmentSlot()
+        {
+            // These four regressions replay a 0.2.5 input gesture, including one
+            // exact card rectangle. Pin its card to the recorded seventh slot;
+            // civilization preset ordering is separately tested and may evolve.
+            var deck=game.World.Players[0].deck;deck.Remove("food_supply_2");deck.Insert(6,"food_supply_2");
+            if(deck.Count>game.Rules.deckCapacity)deck.RemoveAt(deck.Count-1);
+            Assert.AreEqual(25,deck.Count);Assert.AreEqual("food_supply_2",deck[6]);
+            Assert.AreEqual("",DeckLibrary.Validate(game.Rules,game.World.Players[0].civilization,deck));
+            game.Hud.ShowHomeCity();yield return null;Canvas.ForceUpdateCanvases();yield return null;
+            Assert.IsNotNull(Find("NEXT 1/4"));Assert.IsNotNull(Find("FOOD CONVOY 2"));
+        }
         private IEnumerator FinishAutoplayFixture()
         {
             game.Hud.CloseModal();game.Autoplay=true;
@@ -70,6 +82,7 @@ namespace Frontier.Tests
         }
         [UnityTest] public IEnumerator UnlockingCardsUnderStationaryPointerDoesNotSendThemWhenNextIsClicked()
         {
+            yield return PrepareRecordedShipmentSlot();
             var player=game.World.Players[0];player.age=1;player.shipmentTokens=0;yield return null;
             var card=Find("FOOD CONVOY 2");InputSystem.QueueStateEvent(mouse,new MouseState{position=Center(card)});yield return null;
             Assert.IsFalse(card.interactable);player.age=2;player.shipmentTokens=1;yield return null;
@@ -78,6 +91,7 @@ namespace Frontier.Tests
         }
         [UnityTest] public IEnumerator NativeRecordedCardThenNextCoordinatesExplainOneShipmentAndPageTwo()
         {
+            yield return PrepareRecordedShipmentSlot();
             // 0.2.5 native received points, normalized from a 2560x1440 render.
             var canvas=(RectTransform)session.GetComponentInChildren<Canvas>().transform;
             System.Func<Vector2,Vector2> fromNative=point=>RectTransformUtility.WorldToScreenPoint(null,canvas.TransformPoint(new Vector2(canvas.rect.xMin+point.x/1.6f,canvas.rect.yMax-(1440-point.y)/1.6f)));
@@ -90,6 +104,7 @@ namespace Frontier.Tests
         }
         [UnityTest] public IEnumerator PressNextReleaseOverCardDoesNotSendEither()
         {
+            yield return PrepareRecordedShipmentSlot();
             InputSystem.QueueStateEvent(mouse,new MouseState{position=Center(Find("NEXT 1/"))}.WithButton(MouseButton.Left));yield return null;
             InputSystem.QueueStateEvent(mouse,new MouseState{position=Center(Find("FOOD CONVOY 2"))});yield return null;yield return null;
             Assert.AreEqual(0,Ships());Assert.IsNotNull(Find("NEXT 1/"));
@@ -145,6 +160,7 @@ namespace Frontier.Tests
         }
         [UnityTest] public IEnumerator CompletedNextClickThenMoveToCardCannotSendThatCard()
         {
+            yield return PrepareRecordedShipmentSlot();
             Click(Center(Find("NEXT 1/")));
             InputSystem.QueueStateEvent(mouse,new MouseState{position=Center(Find("FOOD CONVOY 2"))});
             yield return null;yield return null;

@@ -5,57 +5,71 @@ namespace Frontier
 {
     public sealed class EventAudio : MonoBehaviour
     {
-        public enum SoundCategory { Gun,Cannon,Melee,Impact,Notice,Footstep,Hoof,Wheel,Woodcut,Mine,Handling,Build }
-        private sealed class Channel { public AudioSource source;public bool notice,activity;public float last=-999,until;public int actor; }
+        public enum SoundCategory { Gun,Cannon,Melee,Impact,Notice,Footstep,Hoof,Wheel,Woodcut,Mine,Handling,Build,Heal }
+        private sealed class Channel { public AudioSource source;public bool notice,activity;public float last=-999,until;public int actor;public float baseVolume; }
         private GameController game;
+        private PlayerSettingsService settings;
+        private PlayerSettings options=PlayerSettings.Defaults();
+        public float EffectiveSfxVolume=>options.muted?0:options.masterVolume*options.sfxVolume;
         private readonly List<Channel> channels=new List<Channel>();
         private readonly Dictionary<SoundCategory,float> lastByCategory=new Dictionary<SoundCategory,float>();
+        private readonly Dictionary<int,float> lastHealingEvent=new Dictionary<int,float>();
         private readonly Dictionary<SoundCategory,AudioClip> clips=new Dictionary<SoundCategory,AudioClip>();
+        private readonly Dictionary<NoticeCue,AudioClip> notices=new Dictionary<NoticeCue,AudioClip>();
         private readonly UnitActivityAudio activity=new UnitActivityAudio();
         private float lastActivity=-999;
         public int PlayedCount { get; private set; }
         public int ActivityPlayedCount { get; private set; }
         public SoundCategory LastCategory { get; private set; }
+        public NoticeCue LastNotice { get; private set; }
         public int SourceCount=>channels.Count;
         public void Initialize(GameController controller)
         {
-            DisposeAudio();game=controller;
+            DisposeAudio();game=controller;settings=game.Settings;options=settings.Current;settings.Changed+=ApplySettings;
             for(int i=0;i<12;i++)
             {
                 var child=new GameObject("Event audio "+i);child.transform.SetParent(transform,false);
-                var source=child.AddComponent<AudioSource>();source.playOnAwake=false;source.spatialBlend=0;source.mute=game.Muted;
-                channels.Add(new Channel{source=source,notice=i>=10,activity=i>=8&&i<10});
+                var source=child.AddComponent<AudioSource>();source.playOnAwake=false;source.spatialBlend=0;source.mute=options.muted;source.volume=(i>=10?.3f:i>=8?.1f:.22f)*EffectiveSfxVolume;
+                channels.Add(new Channel{source=source,notice=i>=10,activity=i>=8&&i<10,baseVolume=i>=10?.3f:i>=8?.1f:.22f});
             }
             clips[SoundCategory.Gun]=Synthesize("Musket report",180,.12f,.7f);
             clips[SoundCategory.Cannon]=Synthesize("Cannon report",70,.3f,.8f);
             clips[SoundCategory.Melee]=Synthesize("Melee contact",320,.075f,.3f);
             clips[SoundCategory.Impact]=Synthesize("Impact",110,.09f,.5f);
-            clips[SoundCategory.Notice]=Synthesize("Notification",520,.16f,0);
-            foreach(var category in new[]{SoundCategory.Footstep,SoundCategory.Hoof,SoundCategory.Wheel,SoundCategory.Woodcut,SoundCategory.Mine,SoundCategory.Handling,SoundCategory.Build})
+            foreach(NoticeCue cue in System.Enum.GetValues(typeof(NoticeCue)))if(cue!=NoticeCue.None)notices[cue]=NoticeSoundClips.Create(cue);
+            foreach(var category in new[]{SoundCategory.Footstep,SoundCategory.Hoof,SoundCategory.Wheel,SoundCategory.Woodcut,SoundCategory.Mine,SoundCategory.Handling,SoundCategory.Build,SoundCategory.Heal})
                 clips[category]=ActivitySoundClips.Create(category);
         }
         public void OnEvent(SimEvent ev)
         {
-            if(game==null||ev==null||game.Muted||game.World==null||game.World.Paused)return;
+            if(game==null||ev==null||EffectiveSfxVolume<=0||game.World==null||game.IsPaused)return;
             SoundCategory category;
+            NoticeCue noticeCue=NoticeCue.None;
             if(ev.kind=="Fire")
             {
                 var source=game.World.Get(ev.entity);
-                category=ev.message=="Melee"?SoundCategory.Melee:source!=null&&(source.def.tags&Tags.Artillery)!=0?SoundCategory.Cannon:SoundCategory.Gun;
+                category=ev.message=="Melee"?SoundCategory.Melee:source!=null&&(source.def.tags&(Tags.Artillery|Tags.Naval))!=0?SoundCategory.Cannon:SoundCategory.Gun;
+            }
+            else if(ev.kind=="Heal"&&ev.hasHealing&&ev.healing!=null&&ev.healing.actual>0)
+            {
+                if(lastHealingEvent.TryGetValue(ev.entity,out float latest)&&ev.time<=latest)return;
+                lastHealingEvent[ev.entity]=ev.time;
+                if(!game.World.IsVisible(game.ObserverPlayer,game.World.Get(ev.entity))||!game.World.IsVisible(game.ObserverPlayer,game.World.Get(ev.target)))return;
+                category=SoundCategory.Heal;
             }
             else if(ev.kind=="Impact")category=SoundCategory.Impact;
-            else if(ev.kind=="ShipmentArrived"||ev.kind=="BuildingComplete"||ev.kind=="AgeAdvanced"||ev.kind=="PopulationShortage"||ev.kind=="ResourceDepleted"||ev.kind=="TreasureClaimed")category=SoundCategory.Notice;
+            else if(NoticeSoundClips.TryClassify(ev.kind,out noticeCue))category=SoundCategory.Notice;
             else return;
             bool notice=category==SoundCategory.Notice;
-            if(notice){if(ev.player!=0)return;}
+            if(notice){if(ev.player!=game.ObserverPlayer)return;}
             else
             {
-                if(!CombatFeedback.CanDisplay(game.World,0,ev)||game.World.Time-ev.time>.4f)return;
+                if(!CombatFeedback.CanDisplay(game.World,game.ObserverPlayer,ev)||game.World.Time-ev.time>.4f)return;
                 var camera=game.GameCamera.transform.position;
                 if(Vector2.Distance(new Vector2(camera.x,camera.z),ev.position)>65)return;
             }
             float now=Time.unscaledTime;
-            float interval=category==SoundCategory.Impact?.035f:notice?.08f:.06f;
+            float interval=category==SoundCategory.Heal?.8f:category==SoundCategory.Impact?.035f:notice?.08f:.06f;
             if(lastByCategory.TryGetValue(category,out float last)&&now-last<interval)return;
             Channel chosen=null;
             foreach(var channel in channels)
@@ -67,10 +81,10 @@ namespace Frontier
             if(chosen==null)return;
             // PlayOneShot can overlap multiple voices on a single source. Stop the
             // replaced voice first so twelve sources also means twelve voice slots.
-            chosen.source.Stop();chosen.last=now;chosen.source.volume=notice?.3f:.22f;
+            chosen.source.Stop();chosen.last=now;chosen.source.volume=chosen.baseVolume*EffectiveSfxVolume;
             chosen.source.transform.position=new Vector3(ev.position.x,0,ev.position.y);
-            chosen.source.PlayOneShot(clips[category]);lastByCategory[category]=now;
-            LastCategory=category;PlayedCount++;
+            chosen.source.PlayOneShot(notice?notices[noticeCue]:clips[category]);lastByCategory[category]=now;
+            LastCategory=category;LastNotice=noticeCue;PlayedCount++;
         }
         public void TickActivity()
         {
@@ -79,40 +93,53 @@ namespace Frontier
             // visibility or the viewport; a later reveal cannot resume it.
             foreach(var channel in channels)if(channel.activity&&channel.actor!=0)
             {
-                if(game.World==null||game.Muted||game.World.Paused||game.World.Winner>=0||!UnitActivityAudio.OnScreen(game,game.World.Get(channel.actor),out _))
+                if(game.World==null||EffectiveSfxVolume<=0||game.IsPaused||game.World.Winner>=0||!UnitActivityAudio.OnScreen(game,game.World.Get(channel.actor),out _))
                 {channel.source.Stop();channel.actor=0;channel.until=0;}
             }
             activity.Tick(game,this);
         }
         public bool TryPlayActivity(EntityState actor,SoundCategory category)
         {
-            if(game==null||game.World==null||game.Muted||game.World.Paused||game.World.Winner>=0||category<SoundCategory.Footstep
+            if(game==null||game.World==null||EffectiveSfxVolume<=0||game.IsPaused||game.World.Winner>=0||category<SoundCategory.Footstep
                 ||!UnitActivityAudio.OnScreen(game,actor,out var screen))return false;
             float now=Time.unscaledTime;if(now-lastActivity<.085f)return false;
             Channel chosen=null;foreach(var channel in channels)if(channel.activity&&now>=channel.until){chosen=channel;break;}
             if(chosen==null)return false;
-            var clip=clips[category];chosen.source.Stop();chosen.source.clip=clip;chosen.source.volume=.1f;
+            var clip=clips[category];chosen.source.Stop();chosen.source.clip=clip;chosen.source.volume=chosen.baseVolume*EffectiveSfxVolume;
             chosen.source.panStereo=Mathf.Clamp((screen.x-.5f)*1.5f,-.75f,.75f);
             chosen.source.transform.position=new Vector3(actor.position.x,0,actor.position.y);chosen.source.Play();
             chosen.actor=actor.id;chosen.last=now;chosen.until=now+clip.length;lastActivity=now;
-            LastCategory=category;PlayedCount++;ActivityPlayedCount++;
+            LastCategory=category;LastNotice=NoticeCue.None;PlayedCount++;ActivityPlayedCount++;
             return true;
+        }
+        private void ApplySettings()
+        {
+            options=settings.Current;
+            foreach(var channel in channels)
+            {
+                channel.source.volume=channel.baseVolume*EffectiveSfxVolume;channel.source.mute=options.muted;
+                if(EffectiveSfxVolume<=0){channel.source.Stop();channel.actor=0;channel.until=0;}
+            }
+            if(EffectiveSfxVolume<=0){activity.Reset(game?.World);lastActivity=-999;lastByCategory.Clear();}
         }
         public void SetMuted(bool muted)
         {
             foreach(var channel in channels)
             {channel.source.Stop();channel.source.mute=muted;channel.actor=0;channel.until=0;}
             activity.Reset(game?.World);lastActivity=-999;lastByCategory.Clear();
+            game?.Ambience?.SetMuted(muted);
         }
         public void ResetMatch()
         {
             foreach(var channel in channels)if(channel.source!=null){channel.source.Stop();channel.last=-999;channel.actor=0;channel.until=0;}
-            lastByCategory.Clear();activity.Reset(game?.World);lastActivity=-999;PlayedCount=0;ActivityPlayedCount=0;
+            lastByCategory.Clear();lastHealingEvent.Clear();activity.Reset(game?.World);lastActivity=-999;PlayedCount=0;ActivityPlayedCount=0;LastNotice=NoticeCue.None;
+            game?.Ambience?.ResetMatch();
         }
         public void PauseAll(bool paused)
         {
             activity.Reset(game?.World);
-            foreach(var channel in channels)if(paused)channel.source.Pause();else if(game!=null&&game.Muted)channel.source.Stop();else channel.source.UnPause();
+            foreach(var channel in channels)if(paused)channel.source.Pause();else if(EffectiveSfxVolume<=0)channel.source.Stop();else channel.source.UnPause();
+            game?.Ambience?.SetPaused(paused);
         }
         private AudioClip Synthesize(string name,float frequency,float seconds,float noiseMix)
         {
@@ -128,8 +155,10 @@ namespace Frontier
         }
         public void DisposeAudio()
         {
+            if(settings!=null)settings.Changed-=ApplySettings;settings=null;
             ResetMatch();foreach(var channel in channels)if(channel.source!=null)Destroy(channel.source.gameObject);channels.Clear();
-            foreach(var clip in clips.Values)if(clip!=null)Destroy(clip);clips.Clear();game=null;
+            foreach(var clip in clips.Values)if(clip!=null)Destroy(clip);clips.Clear();
+            foreach(var clip in notices.Values)if(clip!=null)Destroy(clip);notices.Clear();game=null;
         }
         private void OnDestroy(){DisposeAudio();}
     }

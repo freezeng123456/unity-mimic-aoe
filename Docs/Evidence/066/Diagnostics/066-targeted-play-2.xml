@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="12" result="Failed(Child)" total="12" passed="10" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-05 02:16:52Z" end-time="2026-10-05 02:17:01Z" duration="8.6201072">
+  <test-suite type="TestSuite" id="1439" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="352" result="Failed" site="Child" start-time="2026-10-05 02:16:52Z" end-time="2026-10-05 02:17:01Z" duration="8.620107" total="12" passed="10" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1433" name="Frontier.PlayMode.dll" fullname="/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Library/ScriptAssemblies/Frontier.PlayMode.dll" runstate="Runnable" testcasecount="352" result="Failed" site="Child" start-time="2026-10-05 02:16:52Z" end-time="2026-10-05 02:17:01Z" duration="8.613495" total="12" passed="10" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="87996" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1434" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="352" result="Failed" site="Child" start-time="2026-10-05 02:16:52Z" end-time="2026-10-05 02:17:01Z" duration="8.609179" total="12" passed="10" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1435" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="352" result="Failed" site="Child" start-time="2026-10-05 02:16:52Z" end-time="2026-10-05 02:17:01Z" duration="8.607534" total="12" passed="10" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1169" name="ExpansionIntegration066Tests" fullname="Frontier.Tests.ExpansionIntegration066Tests" classname="Frontier.Tests.ExpansionIntegration066Tests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-05 02:16:52Z" end-time="2026-10-05 02:16:58Z" duration="5.617520" total="6" passed="4" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1175" name="EnlargedUiSliderAndScrolledActionsRemainReachableThroughRealPointerGestures" fullname="Frontier.Tests.ExpansionIntegration066Tests.EnlargedUiSliderAndScrolledActionsRemainReachableThroughRealPointerGestures" methodname="EnlargedUiSliderAndScrolledActionsRemainReachableThroughRealPointerGestures" classname="Frontier.Tests.ExpansionIntegration066Tests" runstate="Runnable" seed="924886629" result="Passed" start-time="2026-10-05 02:16:52Z" end-time="2026-10-05 02:16:54Z" duration="1.823086" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_PAUSE paused=True reason=manual_pause world=0.000000 realtime=2.523881 frame=17
+FRONTIER_PAUSE paused=False reason=manual_resume world=0.000000 realtime=2.805291 frame=34
+]]></output>
+            </test-case>
+            <test-case id="1171" name="FreeForAllMenuColdLoadAndFinalResultRetainAllFourIndependentSlots" fullname="Frontier.Tests.ExpansionIntegration066Tests.FreeForAllMenuColdLoadAndFinalResultRetainAllFourIndependentSlots" methodname="FreeForAllMenuColdLoadAndFinalResultRetainAllFourIndependentSlots" classname="Frontier.Tests.ExpansionIntegration066Tests" runstate="Runnable" seed="80103461" result="Failed" start-time="2026-10-05 02:16:54Z" end-time="2026-10-05 02:16:55Z" duration="0.790128" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Exception] NullReferenceException: Object reference not set to an instance of an object'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[Frontier.FrontierHud.ShowRoster () (at Assets/Frontier/Presentation/FrontierHudProgression.cs:96)
+Frontier.FrontierHud.<ShowRoster>b__140_0 () (at Assets/Frontier/Presentation/FrontierHudProgression.cs:90)
+Frontier.FrontierHud+<>c__DisplayClass81_0.<Button>b__0 () (at Assets/Frontier/Presentation/FrontierHud.cs:124)
+UnityEngine.Events.InvokableCall.Invoke () (at /Users/bokken/build/output/unity/unity/Runtime/Export/UnityEvent/UnityEvent.cs:181)
+UnityEngine.Events.UnityEvent.Invoke () (at /Users/bokken/build/output/unity/unity/artifacts/generated/UnityEvent/UnityEvent_0.cs:59)
+UnityEngine.UI.Button.Press () (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/UI/Core/Button.cs:71)
+UnityEngine.UI.Button.OnPointerClick (UnityEngine.EventSystems.PointerEventData eventData) (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/UI/Core/Button.cs:115)
+UnityEngine.EventSystems.ExecuteEvents.Execute (UnityEngine.EventSystems.IPointerClickHandler handler, UnityEngine.EventSystems.BaseEventData eventData) (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/EventSystem/ExecuteEvents.cs:57)
+UnityEngine.EventSystems.ExecuteEvents.Execute[T] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.ExecuteEvents+EventFunction`1[T1] functor) (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/EventSystem/ExecuteEvents.cs:272)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1)
+Frontier.UiPointerDispatcher:Process(Vector2, Boolean) (at Assets/Frontier/Presentation/UiPointerDispatcher.cs:50)
+Frontier.FrontierHud:ProcessUiPointer(Vector2, Boolean) (at Assets/Frontier/Presentation/FrontierHud.cs:223)
+Frontier.RtsInput:LateUpdate() (at Assets/Frontier/Presentation/RtsInput.cs:140)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-expansion-integration-db105e72e538475e8ccbc23f4ff2e01f/Reports/20261005-021655-019-6c8f0649dfd843ae8e55e3c0003b4408-menu_exit.json
+NullReferenceException: Object reference not set to an instance of an object
+Frontier.FrontierHud.ShowRoster () (at Assets/Frontier/Presentation/FrontierHudProgression.cs:96)
+Frontier.FrontierHud.<ShowRoster>b__140_0 () (at Assets/Frontier/Presentation/FrontierHudProgression.cs:90)
+Frontier.FrontierHud+<>c__DisplayClass81_0.<Button>b__0 () (at Assets/Frontier/Presentation/FrontierHud.cs:124)
+UnityEngine.Events.InvokableCall.Invoke () (at /Users/bokken/build/output/unity/unity/Runtime/Export/UnityEvent/UnityEvent.cs:181)
+UnityEngine.Events.UnityEvent.Invoke () (at /Users/bokken/build/output/unity/unity/artifacts/generated/UnityEvent/UnityEvent_0.cs:59)
+UnityEngine.UI.Button.Press () (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/UI/Core/Button.cs:71)
+UnityEngine.UI.Button.OnPointerClick (UnityEngine.EventSystems.PointerEventData eventData) (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/UI/Core/Button.cs:115)
+UnityEngine.EventSystems.ExecuteEvents.Execute (UnityEngine.EventSystems.IPointerClickHandler handler, UnityEngine.EventSystems.BaseEventData eventData) (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/EventSystem/ExecuteEvents.cs:57)
+UnityEngine.EventSystems.ExecuteEvents.Execute[T] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.ExecuteEvents+EventFunction`1[T1] functor) (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/EventSystem/ExecuteEvents.cs:272)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1)
+Frontier.UiPointerDispatcher:Process(Vector2, Boolean) (at Assets/Frontier/Presentation/UiPointerDispatcher.cs:50)
+Frontier.FrontierHud:ProcessUiPointer(Vector2, Boolean) (at Assets/Frontier/Presentation/FrontierHud.cs:223)
+Frontier.RtsInput:LateUpdate() (at Assets/Frontier/Presentation/RtsInput.cs:140)
+
+FRONTIER_PAUSE paused=True reason=manual_pause world=3.499999 realtime=3.844441 frame=82
+FRONTIER_SAVE slot=1 match=552dcc00ee104e78b8d38969ab501ac5 time=3.499999
+FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-expansion-integration-db105e72e538475e8ccbc23f4ff2e01f/Reports/20261005-021655-324-552dcc00ee104e78b8d38969ab501ac5-menu_exit.json
+FRONTIER_LOAD slot=1 match=552dcc00ee104e78b8d38969ab501ac5 time=3.499999
+FRONTIER_PAUSE paused=False reason=manual_resume world=3.499999 realtime=4.060494 frame=84
+]]></output>
+            </test-case>
+            <test-case id="1173" name="GuidedSelectionProgressSurvivesControllerLoadAndPauseRestartCreatesANewLessonAttempt" fullname="Frontier.Tests.ExpansionIntegration066Tests.GuidedSelectionProgressSurvivesControllerLoadAndPauseRestartCreatesANewLessonAttempt" methodname="GuidedSelectionProgressSurvivesControllerLoadAndPauseRestartCreatesANewLessonAttempt" classname="Frontier.Tests.ExpansionIntegration066Tests" runstate="Runnable" seed="964516475" result="Passed" start-time="2026-10-05 02:16:55Z" end-time="2026-10-05 02:16:56Z" duration="0.942392" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-expansion-integration-97ed461bd9954aa6ad1df04a8e57e775/Reports/20261005-021655-829-59aaa2c2ffa64f61872ff494ccf15011-challenge_exit.json
+FRONTIER_PAUSE paused=True reason=manual_pause world=0.000000 realtime=4.827739 frame=117
+FRONTIER_SAVE slot=1 match=4b4e229b55584021b22e164d920ba821 time=0
+FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-expansion-integration-97ed461bd9954aa6ad1df04a8e57e775/Reports/20261005-021656-269-4b4e229b55584021b22e164d920ba821-menu_exit.json
+FRONTIER_LOAD slot=1 match=4b4e229b55584021b22e164d920ba821 time=0
+FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-expansion-integration-97ed461bd9954aa6ad1df04a8e57e775/Reports/20261005-021656-378-4b4e229b55584021b22e164d920ba821-challenge_exit.json
+]]></output>
+            </test-case>
+            <test-case id="1172" name="LessonAndCampaignPagesUseAFontContainingTheirRealChineseInstructions" fullname="Frontier.Tests.ExpansionIntegration066Tests.LessonAndCampaignPagesUseAFontContainingTheirRealChineseInstructions" methodname="LessonAndCampaignPagesUseAFontContainingTheirRealChineseInstructions" classname="Frontier.Tests.ExpansionIntegration066Tests" runstate="Runnable" seed="1141303011" result="Passed" start-time="2026-10-05 02:16:56Z" end-time="2026-10-05 02:16:57Z" duration="0.891988" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-expansion-integration-b8713451a8cd44609ab8b1dbc137785b/Reports/20261005-021656-746-ad6f8a461249496cb0bcb0249c257e1c-menu_exit.json
+]]></output>
+            </test-case>
+            <test-case id="1174" name="LoadingAnOlderMatchCannotOverwriteNewerDurablePlayerSettings" fullname="Frontier.Tests.ExpansionIntegration066Tests.LoadingAnOlderMatchCannotOverwriteNewerDurablePlayerSettings" methodname="LoadingAnOlderMatchCannotOverwriteNewerDurablePlayerSettings" classname="Frontier.Tests.ExpansionIntegration066Tests" runstate="Runnable" seed="895730131" result="Passed" start-time="2026-10-05 02:16:57Z" end-time="2026-10-05 02:16:58Z" duration="0.771972" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_PAUSE paused=True reason=manual_pause world=0.000000 realtime=6.246122 frame=174
+FRONTIER_SAVE slot=1 match=f4d237065b1e4d22b27d28b79ba35b3e time=0
+FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-expansion-integration-24c67bd1938748179e20efccce92304a/Reports/20261005-021657-714-f4d237065b1e4d22b27d28b79ba35b3e-load_exit.json
+FRONTIER_LOAD slot=1 match=f4d237065b1e4d22b27d28b79ba35b3e time=0
+FRONTIER_PAUSE paused=False reason=manual_resume world=0.000000 realtime=6.357505 frame=176
+]]></output>
+            </test-case>
+            <test-case id="1170" name="TeamRosterColdLoadRetainsFourEconomiesAndShowsVictoryForTheSurvivingAlly" fullname="Frontier.Tests.ExpansionIntegration066Tests.TeamRosterColdLoadRetainsFourEconomiesAndShowsVictoryForTheSurvivingAlly" methodname="TeamRosterColdLoadRetainsFourEconomiesAndShowsVictoryForTheSurvivingAlly" classname="Frontier.Tests.ExpansionIntegration066Tests" runstate="Runnable" seed="1984369712" result="Failed" start-time="2026-10-05 02:16:58Z" end-time="2026-10-05 02:16:58Z" duration="0.389399" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Exception] NullReferenceException: Object reference not set to an instance of an object'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[Frontier.FrontierHud.ShowRoster () (at Assets/Frontier/Presentation/FrontierHudProgression.cs:96)
+Frontier.FrontierHud.<ShowRoster>b__140_0 () (at Assets/Frontier/Presentation/FrontierHudProgression.cs:90)
+Frontier.FrontierHud+<>c__DisplayClass81_0.<Button>b__0 () (at Assets/Frontier/Presentation/FrontierHud.cs:124)
+UnityEngine.Events.InvokableCall.Invoke () (at /Users/bokken/build/output/unity/unity/Runtime/Export/UnityEvent/UnityEvent.cs:181)
+UnityEngine.Events.UnityEvent.Invoke () (at /Users/bokken/build/output/unity/unity/artifacts/generated/UnityEvent/UnityEvent_0.cs:59)
+UnityEngine.UI.Button.Press () (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/UI/Core/Button.cs:71)
+UnityEngine.UI.Button.OnPointerClick (UnityEngine.EventSystems.PointerEventData eventData) (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/UI/Core/Button.cs:115)
+UnityEngine.EventSystems.ExecuteEvents.Execute (UnityEngine.EventSystems.IPointerClickHandler handler, UnityEngine.EventSystems.BaseEventData eventData) (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/EventSystem/ExecuteEvents.cs:57)
+UnityEngine.EventSystems.ExecuteEvents.Execute[T] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.ExecuteEvents+EventFunction`1[T1] functor) (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/EventSystem/ExecuteEvents.cs:272)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1)
+Frontier.UiPointerDispatcher:Process(Vector2, Boolean) (at Assets/Frontier/Presentation/UiPointerDispatcher.cs:50)
+Frontier.FrontierHud:ProcessUiPointer(Vector2, Boolean) (at Assets/Frontier/Presentation/FrontierHud.cs:223)
+Frontier.RtsInput:LateUpdate() (at Assets/Frontier/Presentation/RtsInput.cs:140)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[FRONTIER_REPORT /var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/Frontier-expansion-integration-d8e7da925054427ebe6e76f38f6ea6a8/Reports/20261005-021658-409-8c12b820537846aca7e269f564c14d89-menu_exit.json
+NullReferenceException: Object reference not set to an instance of an object
+Frontier.FrontierHud.ShowRoster () (at Assets/Frontier/Presentation/FrontierHudProgression.cs:96)
+Frontier.FrontierHud.<ShowRoster>b__140_0 () (at Assets/Frontier/Presentation/FrontierHudProgression.cs:90)
+Frontier.FrontierHud+<>c__DisplayClass81_0.<Button>b__0 () (at Assets/Frontier/Presentation/FrontierHud.cs:124)
+UnityEngine.Events.InvokableCall.Invoke () (at /Users/bokken/build/output/unity/unity/Runtime/Export/UnityEvent/UnityEvent.cs:181)
+UnityEngine.Events.UnityEvent.Invoke () (at /Users/bokken/build/output/unity/unity/artifacts/generated/UnityEvent/UnityEvent_0.cs:59)
+UnityEngine.UI.Button.Press () (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/UI/Core/Button.cs:71)
+UnityEngine.UI.Button.OnPointerClick (UnityEngine.EventSystems.PointerEventData eventData) (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/UI/Core/Button.cs:115)
+UnityEngine.EventSystems.ExecuteEvents.Execute (UnityEngine.EventSystems.IPointerClickHandler handler, UnityEngine.EventSystems.BaseEventData eventData) (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/EventSystem/ExecuteEvents.cs:57)
+UnityEngine.EventSystems.ExecuteEvents.Execute[T] (UnityEngine.GameObject target, UnityEngine.EventSystems.BaseEventData eventData, UnityEngine.EventSystems.ExecuteEvents+EventFunction`1[T1] functor) (at ./Library/PackageCache/com.unity.ugui@0727b404f3a0/Runtime/UGUI/EventSystem/ExecuteEvents.cs:272)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1)
+Frontier.UiPointerDispatcher:Process(Vector2, Boolean) (at Assets/Frontier/Presentation/UiPointerDispatcher.cs:50)
+Frontier.FrontierHud:ProcessUiPointer(Vector2, Boolean) (at Assets/Frontier/Presentation/FrontierHud.cs:223)
+Frontier.RtsInput:LateUpdate() (at Assets/Frontier/Presentation/RtsInput.cs:140)
+
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1308" name="PlayerSettingsInput066Tests" fullname="Frontier.Tests.PlayerSettingsInput066Tests" classname="Frontier.Tests.PlayerSettingsInput066Tests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-05 02:16:58Z" end-time="2026-10-05 02:17:01Z" duration="2.973833" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1310" name="ChangingBindingsDiscardsPreviouslyCapturedEdgesAndNewShortcutOrdersTheFollowingNativeClick" fullname="Frontier.Tests.PlayerSettingsInput066Tests.ChangingBindingsDiscardsPreviouslyCapturedEdgesAndNewShortcutOrdersTheFollowingNativeClick" methodname="ChangingBindingsDiscardsPreviouslyCapturedEdgesAndNewShortcutOrdersTheFollowingNativeClick" classname="Frontier.Tests.PlayerSettingsInput066Tests" runstate="Runnable" seed="1405802978" result="Passed" start-time="2026-10-05 02:16:58Z" end-time="2026-10-05 02:16:59Z" duration="0.609571" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1313" name="LiveMasterAndCategoryVolumesChangeTheActualThreeAudioBuses" fullname="Frontier.Tests.PlayerSettingsInput066Tests.LiveMasterAndCategoryVolumesChangeTheActualThreeAudioBuses" methodname="LiveMasterAndCategoryVolumesChangeTheActualThreeAudioBuses" classname="Frontier.Tests.PlayerSettingsInput066Tests" runstate="Runnable" seed="370356358" result="Passed" start-time="2026-10-05 02:16:59Z" end-time="2026-10-05 02:16:59Z" duration="0.305839" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1311" name="ReboundCameraUsesHeldPhysicalKeysAndStopsForModalOrPause" fullname="Frontier.Tests.PlayerSettingsInput066Tests.ReboundCameraUsesHeldPhysicalKeysAndStopsForModalOrPause" methodname="ReboundCameraUsesHeldPhysicalKeysAndStopsForModalOrPause" classname="Frontier.Tests.PlayerSettingsInput066Tests" runstate="Runnable" seed="1216978818" result="Passed" start-time="2026-10-05 02:16:59Z" end-time="2026-10-05 02:16:59Z" duration="0.550766" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[FRONTIER_PAUSE paused=True reason=manual_pause world=0.000000 realtime=8.431611 frame=259
+FRONTIER_PAUSE paused=False reason=manual_resume world=0.000000 realtime=8.498120 frame=263
+]]></output>
+            </test-case>
+            <test-case id="1312" name="ReboundIdleWorkerRetiresBothOldShortcutsAndNewBoardingHotkeysActivateTargetModes" fullname="Frontier.Tests.PlayerSettingsInput066Tests.ReboundIdleWorkerRetiresBothOldShortcutsAndNewBoardingHotkeysActivateTargetModes" methodname="ReboundIdleWorkerRetiresBothOldShortcutsAndNewBoardingHotkeysActivateTargetModes" classname="Frontier.Tests.PlayerSettingsInput066Tests" runstate="Runnable" seed="344469624" result="Passed" start-time="2026-10-05 02:16:59Z" end-time="2026-10-05 02:17:00Z" duration="0.511577" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1309" name="ReboundNondefaultKeysReachActualAttackStopAndHoldDispatchAndOldKeysStopWorking" fullname="Frontier.Tests.PlayerSettingsInput066Tests.ReboundNondefaultKeysReachActualAttackStopAndHoldDispatchAndOldKeysStopWorking" methodname="ReboundNondefaultKeysReachActualAttackStopAndHoldDispatchAndOldKeysStopWorking" classname="Frontier.Tests.PlayerSettingsInput066Tests" runstate="Runnable" seed="606740806" result="Passed" start-time="2026-10-05 02:17:00Z" end-time="2026-10-05 02:17:01Z" duration="0.540648" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1314" name="ReboundRepairInstructionsAndZoomUseTheCurrentBindings" fullname="Frontier.Tests.PlayerSettingsInput066Tests.ReboundRepairInstructionsAndZoomUseTheCurrentBindings" methodname="ReboundRepairInstructionsAndZoomUseTheCurrentBindings" classname="Frontier.Tests.PlayerSettingsInput066Tests" runstate="Runnable" seed="1741412332" result="Passed" start-time="2026-10-05 02:17:01Z" end-time="2026-10-05 02:17:01Z" duration="0.440162" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

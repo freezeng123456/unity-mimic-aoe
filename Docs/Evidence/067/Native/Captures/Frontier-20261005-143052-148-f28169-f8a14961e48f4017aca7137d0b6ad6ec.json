@@ -1,0 +1,969 @@
+{
+    "schemaVersion": 4,
+    "eventSchemaVersion": 2,
+    "pngFile": "Frontier-20261005-143052-148-f28169-f8a14961e48f4017aca7137d0b6ad6ec.png",
+    "pngSha256": "699f98afbdbca1f421b29b0a85f7fb6120f082febf026fd67eb59d39c1478ed0",
+    "utc": "2026-10-05T14:30:52.0839100Z",
+    "appVersion": "0.10.0",
+    "buildGuid": "2d94fdd6d9734b259f5231c1fd3f2b99",
+    "unityVersion": "6000.6.3f1",
+    "matchId": "4619263a37ba4ff3b3ea8d8a18d4d969",
+    "requestMatchId": "4619263a37ba4ff3b3ea8d8a18d4d969",
+    "requestFrame": 28169,
+    "captureFrame": 28169,
+    "width": 1600,
+    "height": 900,
+    "seed": 314159,
+    "requestWorldTime": 562.2097778320313,
+    "worldTime": 562.2097778320313,
+    "inMenu": false,
+    "paused": true,
+    "hasPlayer": true,
+    "resources": {
+        "food": 35.7918586730957,
+        "wood": 28.52617645263672,
+        "coin": 859.288818359375
+    },
+    "population": {
+        "used": 30,
+        "reserved": 3,
+        "capacity": 40
+    },
+    "hudResources": "FOOD  36     WOOD  29     COIN  859     POP  30+3/40     AGE  2     XP  364/450     SHIP  0",
+    "hudMatchId": "4619263a37ba4ff3b3ea8d8a18d4d969",
+    "hudUpdatedFrame": 28169,
+    "hudWorldTime": 562.2097778320313,
+    "camera": {
+        "focus": {
+            "x": 23.0,
+            "y": 29.0
+        },
+        "pointer": {
+            "x": 1450.0,
+            "y": 538.0
+        },
+        "applicationFocused": true,
+        "orthographicSize": 26.0
+    },
+    "aiDifficulty": "standard",
+    "mapId": "generated_river",
+    "aiDecisionSeconds": 1.2000000476837158,
+    "aiArmySeconds": 7.0,
+    "production": [
+        {
+            "entity": 1,
+            "definition": "town",
+            "factoryMode": "",
+            "position": {
+                "x": 23.0,
+                "y": 29.0
+            },
+            "hp": 3788.800048828125,
+            "construction": 1.0,
+            "factoryElapsed": 0.0,
+            "queue": []
+        },
+        {
+            "entity": 266,
+            "definition": "barracks",
+            "factoryMode": "",
+            "position": {
+                "x": 32.0,
+                "y": 32.0
+            },
+            "hp": 1980.0,
+            "construction": 1.0,
+            "factoryElapsed": 0.0,
+            "queue": [
+                {
+                    "kind": "Train",
+                    "item": "musketeer",
+                    "count": 1,
+                    "population": 1,
+                    "elapsed": 11.400007247924805,
+                    "duration": 26.0
+                }
+            ]
+        },
+        {
+            "entity": 269,
+            "definition": "market",
+            "factoryMode": "",
+            "position": {
+                "x": 28.0,
+                "y": 36.0
+            },
+            "hp": 924.0,
+            "construction": 1.0,
+            "factoryElapsed": 0.0,
+            "queue": []
+        },
+        {
+            "entity": 274,
+            "definition": "house",
+            "factoryMode": "",
+            "position": {
+                "x": 16.0,
+                "y": 34.0
+            },
+            "hp": 989.9989013671875,
+            "construction": 1.0,
+            "factoryElapsed": 0.0,
+            "queue": []
+        },
+        {
+            "entity": 280,
+            "definition": "stable",
+            "factoryMode": "",
+            "position": {
+                "x": 14.0,
+                "y": 29.0
+            },
+            "hp": 1980.0,
+            "construction": 1.0,
+            "factoryElapsed": 0.0,
+            "queue": [
+                {
+                    "kind": "Train",
+                    "item": "hussar",
+                    "count": 1,
+                    "population": 2,
+                    "elapsed": 7.799994945526123,
+                    "duration": 35.0
+                }
+            ]
+        },
+        {
+            "entity": 281,
+            "definition": "trade_post",
+            "factoryMode": "",
+            "position": {
+                "x": 16.0,
+                "y": 16.0
+            },
+            "hp": 1760.0,
+            "construction": 1.0,
+            "factoryElapsed": 0.0,
+            "queue": []
+        },
+        {
+            "entity": 302,
+            "definition": "house",
+            "factoryMode": "",
+            "position": {
+                "x": 26.0,
+                "y": 20.0
+            },
+            "hp": 989.9989013671875,
+            "construction": 1.0,
+            "factoryElapsed": 0.0,
+            "queue": []
+        },
+        {
+            "entity": 323,
+            "definition": "dock",
+            "factoryMode": "",
+            "position": {
+                "x": 41.0,
+                "y": 35.0
+            },
+            "hp": 2199.996826171875,
+            "construction": 1.0,
+            "factoryElapsed": 0.0,
+            "queue": [
+                {
+                    "kind": "Research",
+                    "item": "careening",
+                    "count": 1,
+                    "population": 0,
+                    "elapsed": 21.000043869018555,
+                    "duration": 35.0
+                }
+            ]
+        }
+    ],
+    "generatedTerrain": true,
+    "requiresTransport": false,
+    "mapGeneratorVersion": 1,
+    "objective": {
+        "mode": "elimination",
+        "status": "inactive",
+        "reason": "",
+        "player": 0,
+        "target": 0,
+        "escort": 0,
+        "waypoint": 0,
+        "enemyPlayer": -1,
+        "center": {
+            "x": 0.0,
+            "y": 0.0
+        },
+        "route": [],
+        "elapsed": 0.0,
+        "progress": 0.0,
+        "enemyProgress": 0.0,
+        "nextProgressAt": 0.0,
+        "contested": false,
+        "moving": false
+    },
+    "units": [
+        {
+            "entity": 2,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 13,
+            "definition": "villager",
+            "status": "Gathering Food",
+            "order": "Gather",
+            "position": {
+                "x": 18.65652847290039,
+                "y": 35.33456039428711
+            },
+            "destination": {
+                "x": 18.600000381469727,
+                "y": 38.0
+            },
+            "hp": 136.0,
+            "cargo": []
+        },
+        {
+            "entity": 3,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 16,
+            "definition": "villager",
+            "status": "Gathering Coin",
+            "order": "Gather",
+            "position": {
+                "x": 15.341475486755371,
+                "y": 25.152385711669922
+            },
+            "destination": {
+                "x": 13.0,
+                "y": 24.0
+            },
+            "hp": 79.0,
+            "cargo": []
+        },
+        {
+            "entity": 4,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 37,
+            "definition": "villager",
+            "status": "Moving",
+            "order": "Gather",
+            "position": {
+                "x": 26.007610321044922,
+                "y": 33.99940490722656
+            },
+            "destination": {
+                "x": 37.0,
+                "y": 41.0
+            },
+            "hp": 150.0,
+            "cargo": []
+        },
+        {
+            "entity": 5,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 20,
+            "definition": "villager",
+            "status": "Gathering Wood",
+            "order": "Gather",
+            "position": {
+                "x": 17.830965042114258,
+                "y": 22.52864646911621
+            },
+            "destination": {
+                "x": 15.600000381469727,
+                "y": 21.0
+            },
+            "hp": 115.0,
+            "cargo": []
+        },
+        {
+            "entity": 6,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 16,
+            "definition": "villager",
+            "status": "Moving",
+            "order": "Gather",
+            "position": {
+                "x": 15.24984359741211,
+                "y": 26.650165557861328
+            },
+            "destination": {
+                "x": 13.0,
+                "y": 24.0
+            },
+            "hp": 126.0,
+            "cargo": []
+        },
+        {
+            "entity": 7,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 16,
+            "definition": "villager",
+            "status": "Gathering Coin",
+            "order": "Gather",
+            "position": {
+                "x": 14.655147552490234,
+                "y": 25.87824249267578
+            },
+            "destination": {
+                "x": 13.0,
+                "y": 24.0
+            },
+            "hp": 150.0,
+            "cargo": []
+        },
+        {
+            "entity": 228,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 37,
+            "definition": "villager",
+            "status": "Moving",
+            "order": "Gather",
+            "position": {
+                "x": 31.921815872192383,
+                "y": 35.05962371826172
+            },
+            "destination": {
+                "x": 37.0,
+                "y": 41.0
+            },
+            "hp": 150.0,
+            "cargo": []
+        },
+        {
+            "entity": 233,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 22,
+            "definition": "villager",
+            "status": "Gathering Wood",
+            "order": "Gather",
+            "position": {
+                "x": 22.06026840209961,
+                "y": 17.491634368896484
+            },
+            "destination": {
+                "x": 21.0,
+                "y": 15.0
+            },
+            "hp": 150.0,
+            "cargo": []
+        },
+        {
+            "entity": 238,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 19,
+            "definition": "villager",
+            "status": "Gathering Wood",
+            "order": "Gather",
+            "position": {
+                "x": 14.6383056640625,
+                "y": 20.73087501525879
+            },
+            "destination": {
+                "x": 12.399999618530273,
+                "y": 20.0
+            },
+            "hp": 79.0,
+            "cargo": []
+        },
+        {
+            "entity": 242,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 15,
+            "definition": "villager",
+            "status": "Gathering Food",
+            "order": "Gather",
+            "position": {
+                "x": 22.233976364135742,
+                "y": 35.39068603515625
+            },
+            "destination": {
+                "x": 22.200000762939453,
+                "y": 38.0
+            },
+            "hp": 112.0,
+            "cargo": []
+        },
+        {
+            "entity": 245,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 16,
+            "definition": "villager",
+            "status": "Moving",
+            "order": "Gather",
+            "position": {
+                "x": 16.396957397460938,
+                "y": 25.15802764892578
+            },
+            "destination": {
+                "x": 13.0,
+                "y": 24.0
+            },
+            "hp": 150.0,
+            "cargo": []
+        },
+        {
+            "entity": 249,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 16,
+            "definition": "villager",
+            "status": "Gathering Coin",
+            "order": "Gather",
+            "position": {
+                "x": 15.552602767944336,
+                "y": 24.32631492614746
+            },
+            "destination": {
+                "x": 13.0,
+                "y": 24.0
+            },
+            "hp": 126.0,
+            "cargo": []
+        },
+        {
+            "entity": 251,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 34,
+            "definition": "villager",
+            "status": "Gathering Wood",
+            "order": "Gather",
+            "position": {
+                "x": 22.18772315979004,
+                "y": 13.231657028198242
+            },
+            "destination": {
+                "x": 22.0,
+                "y": 10.600000381469727
+            },
+            "hp": 97.0,
+            "cargo": []
+        },
+        {
+            "entity": 252,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 16,
+            "definition": "villager",
+            "status": "Moving",
+            "order": "Gather",
+            "position": {
+                "x": 17.347793579101563,
+                "y": 24.841129302978516
+            },
+            "destination": {
+                "x": 13.0,
+                "y": 24.0
+            },
+            "hp": 80.0,
+            "cargo": []
+        },
+        {
+            "entity": 273,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 22,
+            "definition": "villager",
+            "status": "Gathering Wood",
+            "order": "Gather",
+            "position": {
+                "x": 21.057456970214844,
+                "y": 17.700450897216797
+            },
+            "destination": {
+                "x": 21.0,
+                "y": 15.0
+            },
+            "hp": 132.0,
+            "cargo": []
+        },
+        {
+            "entity": 277,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 19,
+            "definition": "villager",
+            "status": "Gathering Wood",
+            "order": "Gather",
+            "position": {
+                "x": 14.064079284667969,
+                "y": 21.764310836791992
+            },
+            "destination": {
+                "x": 12.399999618530273,
+                "y": 20.0
+            },
+            "hp": 138.0,
+            "cargo": []
+        },
+        {
+            "entity": 278,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 20,
+            "definition": "villager",
+            "status": "Gathering Wood",
+            "order": "Gather",
+            "position": {
+                "x": 16.197566986083984,
+                "y": 23.397254943847656
+            },
+            "destination": {
+                "x": 15.600000381469727,
+                "y": 21.0
+            },
+            "hp": 115.0,
+            "cargo": []
+        },
+        {
+            "entity": 279,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 18,
+            "definition": "villager",
+            "status": "Gathering Wood",
+            "order": "Gather",
+            "position": {
+                "x": 13.351971626281738,
+                "y": 19.05729866027832
+            },
+            "destination": {
+                "x": 11.199999809265137,
+                "y": 18.0
+            },
+            "hp": 136.0,
+            "cargo": []
+        },
+        {
+            "entity": 282,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 28,
+            "definition": "villager",
+            "status": "Gathering Wood",
+            "order": "Gather",
+            "position": {
+                "x": 22.996891021728516,
+                "y": 14.096683502197266
+            },
+            "destination": {
+                "x": 21.0,
+                "y": 12.800000190734863
+            },
+            "hp": 150.0,
+            "cargo": []
+        },
+        {
+            "entity": 284,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 20,
+            "definition": "villager",
+            "status": "Gathering Wood",
+            "order": "Gather",
+            "position": {
+                "x": 17.075075149536133,
+                "y": 23.16922950744629
+            },
+            "destination": {
+                "x": 15.600000381469727,
+                "y": 21.0
+            },
+            "hp": 112.0,
+            "cargo": []
+        },
+        {
+            "entity": 291,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 21,
+            "definition": "villager",
+            "status": "Gathering Wood",
+            "order": "Gather",
+            "position": {
+                "x": 19.68736457824707,
+                "y": 20.503427505493164
+            },
+            "destination": {
+                "x": 20.799999237060547,
+                "y": 18.0
+            },
+            "hp": 126.0,
+            "cargo": []
+        },
+        {
+            "entity": 299,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 20,
+            "definition": "villager",
+            "status": "Gathering Wood",
+            "order": "Gather",
+            "position": {
+                "x": 18.14772605895996,
+                "y": 21.669742584228516
+            },
+            "destination": {
+                "x": 15.600000381469727,
+                "y": 21.0
+            },
+            "hp": 126.0,
+            "cargo": []
+        },
+        {
+            "entity": 310,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 21,
+            "definition": "villager",
+            "status": "Gathering Wood",
+            "order": "Gather",
+            "position": {
+                "x": 20.947500228881836,
+                "y": 20.70415496826172
+            },
+            "destination": {
+                "x": 20.799999237060547,
+                "y": 18.0
+            },
+            "hp": 132.0,
+            "cargo": []
+        },
+        {
+            "entity": 319,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 21,
+            "definition": "villager",
+            "status": "Gathering Wood",
+            "order": "Gather",
+            "position": {
+                "x": 22.127668380737305,
+                "y": 20.041685104370117
+            },
+            "destination": {
+                "x": 20.799999237060547,
+                "y": 18.0
+            },
+            "hp": 132.0,
+            "cargo": []
+        },
+        {
+            "entity": 381,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 21,
+            "definition": "villager",
+            "status": "Gathering Wood",
+            "order": "Gather",
+            "position": {
+                "x": 22.81277847290039,
+                "y": 19.466693878173828
+            },
+            "destination": {
+                "x": 20.799999237060547,
+                "y": 18.0
+            },
+            "hp": 150.0,
+            "cargo": []
+        },
+        {
+            "entity": 383,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "pike",
+            "status": "Idle",
+            "order": "",
+            "position": {
+                "x": 34.969791412353516,
+                "y": 36.32229995727539
+            },
+            "destination": {
+                "x": 34.969791412353516,
+                "y": 36.32229995727539
+            },
+            "hp": 72.0,
+            "cargo": []
+        },
+        {
+            "entity": 393,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "pike",
+            "status": "Idle",
+            "order": "",
+            "position": {
+                "x": 34.550045013427734,
+                "y": 38.91959762573242
+            },
+            "destination": {
+                "x": 34.550045013427734,
+                "y": 38.91959762573242
+            },
+            "hp": 180.0,
+            "cargo": []
+        },
+        {
+            "entity": 400,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "pike",
+            "status": "Idle",
+            "order": "",
+            "position": {
+                "x": 30.805883407592773,
+                "y": 34.98116683959961
+            },
+            "destination": {
+                "x": 30.805883407592773,
+                "y": 34.98116683959961
+            },
+            "hp": 180.0,
+            "cargo": []
+        },
+        {
+            "entity": 403,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "hussar",
+            "status": "Idle",
+            "order": "",
+            "position": {
+                "x": 35.05600357055664,
+                "y": 34.58195877075195
+            },
+            "destination": {
+                "x": 35.05600357055664,
+                "y": 34.58195877075195
+            },
+            "hp": 380.0,
+            "cargo": []
+        }
+    ],
+    "neutralServices": [
+        {
+            "id": "coastal_league",
+            "service": "",
+            "item": "",
+            "site": 211,
+            "owner": -1,
+            "claimant": 0,
+            "contested": false,
+            "claimProgress": 2.9999992847442627,
+            "elapsed": 0.0,
+            "duration": 0.0
+        }
+    ],
+    "players": [
+        {
+            "slot": 0,
+            "team": 0,
+            "civilization": "coast",
+            "resigned": false,
+            "eliminated": false,
+            "winner": false
+        },
+        {
+            "slot": 1,
+            "team": 1,
+            "civilization": "river",
+            "resigned": false,
+            "eliminated": false,
+            "winner": false
+        },
+        {
+            "slot": 2,
+            "team": 2,
+            "civilization": "france",
+            "resigned": false,
+            "eliminated": false,
+            "winner": false
+        },
+        {
+            "slot": 3,
+            "team": 3,
+            "civilization": "ottoman",
+            "resigned": false,
+            "eliminated": false,
+            "winner": false
+        }
+    ],
+    "skirmishMode": "ffa",
+    "guidedId": "",
+    "guidedStatus": "",
+    "guidedStage": "",
+    "preferences": {
+        "masterVolume": 1.0,
+        "sfxVolume": 1.0,
+        "musicVolume": 1.0,
+        "environmentVolume": 1.0,
+        "uiScale": 1.0,
+        "muted": false,
+        "musicEnabled": true,
+        "environmentEnabled": true,
+        "friendEnemyPatterns": false,
+        "highContrastMinimap": false,
+        "subtitles": true,
+        "eventHints": true,
+        "hotkeys": [
+            {
+                "action": 1,
+                "key": 15
+            },
+            {
+                "action": 2,
+                "key": 33
+            },
+            {
+                "action": 3,
+                "key": 24
+            },
+            {
+                "action": 4,
+                "key": 21
+            },
+            {
+                "action": 5,
+                "key": 32
+            },
+            {
+                "action": 6,
+                "key": 22
+            },
+            {
+                "action": 7,
+                "key": 16
+            },
+            {
+                "action": 8,
+                "key": 36
+            },
+            {
+                "action": 9,
+                "key": 34
+            },
+            {
+                "action": 10,
+                "key": 27
+            },
+            {
+                "action": 11,
+                "key": 20
+            },
+            {
+                "action": 12,
+                "key": 19
+            },
+            {
+                "action": 13,
+                "key": 35
+            },
+            {
+                "action": 14,
+                "key": 25
+            },
+            {
+                "action": 15,
+                "key": 61
+            },
+            {
+                "action": 16,
+                "key": 62
+            },
+            {
+                "action": 17,
+                "key": 63
+            },
+            {
+                "action": 18,
+                "key": 64
+            },
+            {
+                "action": 19,
+                "key": 14
+            },
+            {
+                "action": 20,
+                "key": 13
+            }
+        ]
+    },
+    "observerPlayer": 0,
+    "replay": {
+        "watching": true,
+        "recording": false,
+        "seek": false,
+        "paused": true,
+        "worldPaused": true,
+        "verified": true,
+        "incomplete": false,
+        "segment": "bef1332be33c4e38b0594b3e4bf8eb13",
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.10.0/FinalCandidate/Native/Replays/manual-export-bef1332be33c4e38b0594b3e4bf8eb13.replay.json",
+        "lastSavedFile": "",
+        "error": "",
+        "incompleteReason": "",
+        "fileError": "",
+        "libraryError": "",
+        "startStep": 0,
+        "endStep": 5622,
+        "currentStep": 5622,
+        "observerPlayer": 0,
+        "speed": 4.0,
+        "identity": {
+            "appVersion": "0.10.0",
+            "buildIdentity": "2d94fdd6d9734b259f5231c1fd3f2b99",
+            "unityVersion": "6000.6.3f1",
+            "rulesHash": "5324ece4d54715613e941af737d8da34dcf2d5f517388373516b5e0f17b85d1f",
+            "mapGenerationVersion": 1,
+            "guidedCatalogRevision": 1
+        }
+    }
+}

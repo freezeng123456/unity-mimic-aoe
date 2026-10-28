@@ -1,0 +1,733 @@
+{
+  "schema": 1,
+  "generatedAtUtc": "2026-10-03T12:06:36.561295+00:00",
+  "scope": "Evidence-backed snapshot of completed original A-D acceptance on frozen .31 and passed independent .32 pre-packaging verification. Final source ZIP/guide/delivery manifest are generated from the subsequent clean commit; the external manifest proves actual delivery HEAD and archive hashes.",
+  "contract": "Docs/Development-Contract.md: A–D stages and original native completion gate; Stage-C-Implementation.md/Landmarks-Implementation.md detail the existing C scope.",
+  "identity": {
+    "appVersion": "0.2.31",
+    "buildGuid": "128a731d440e4b7a94abfcc74b88fa97",
+    "sourceFingerprint": "1b45f97f3d90c9b76388419492a83c5622ccb2cf3a365030044403ccd309c1c7",
+    "observedHead": "f201771be36853d627bcfbe1b97b036f33282c3f",
+    "headScope": "Observed HEAD, not the future packaging commit. Docs are still being finalized; packaging requires committing all files and recording the resulting actual HEAD."
+  },
+  "milestones": [
+    {
+      "id": "A",
+      "required": "Unity/URP project; camera, selection, commands, construction, population, production, gathering, basic combat and group navigation, with actual native runtime inspection.",
+      "current": "Passed: 424 source-bound Unity regressions, native independent build and actual ordinary operation retained in B10 and C1-C6 archives.",
+      "evidence": [
+        "Docs/Evidence/055/Tests",
+        "Docs/Evidence/055/Menu",
+        "Docs/Evidence/055/NormalPlayer",
+        "Docs/Evidence/055/Art"
+      ],
+      "closeout": [
+        "Retain current native operation observations/F9 identity and actual navigation/production behavior in the B/C playtest record; report any remaining observed interaction failure."
+      ],
+      "status": "passed"
+    },
+    {
+      "id": "B",
+      "required": "Normal coast mirror 1v1, I–III, legal deck/XP/actual shipments, fog and AI, menu to natural resolution; player must actually gather/build/advance/organize army/fight and cause cannon damage to an enemy building.",
+      "status": "passed",
+      "preservedAttempt": "Docs/Evidence/055/NormalPlayer/coast-attempt-010/summary.json",
+      "attemptStatus": "passed",
+      "actualPlayerCoverage": {
+        "ageII": true,
+        "ageIII": true,
+        "ageIV": false,
+        "ageV": false,
+        "paidWorkers": true,
+        "paidMilitary": true,
+        "paidCannon": true,
+        "cannonEnemyBuildingDamage": true,
+        "gathered": true,
+        "shipmentArrived": true,
+        "paidBank": false,
+        "bankIncome": false,
+        "specialUnit": false,
+        "paidTechnology": false,
+        "treasure": true,
+        "paidTradePost": false,
+        "tradeXP": false,
+        "resourceMode": false,
+        "resourceTradeDelivery": false
+      },
+      "closeout": [
+        "Archive a normally played 1x/non-autoplay coast mirror III-cap match with report/events, declared GUI deck/menu F9 and matching screenshots.",
+        "Independently audit paid worker/military/cannon completion, actual shipment arrival and Cannon→enemy Building Damage; preserve failures and timeouts.",
+        "Keep natural MatchEnded/no Resign and loser zero living units/buildings; TC death alone is insufficient. Record settlement and restart/menu navigation. Natural defeat may qualify if the required player path was genuinely completed."
+      ],
+      "current": "B10 normal coast mirror/Easy/III/Economy25, natural defeat958.612976 seconds,17/17 strict checks passed; paid workers/military/cannons, shipments and cannon enemy-building damage completed. Earlier failures unchanged.",
+      "historicalB3Observation": {
+        "matchId": "62dbc87afc3d4296a932fd41997856aa",
+        "version": "0.2.31",
+        "buildGuid": "128a731d440e4b7a94abfcc74b88fa97",
+        "simulationSeconds": 810.9490356445312,
+        "naturalEnd": true,
+        "loserRemainingUnitsAndBuildings": 0,
+        "actualAgeIII": false,
+        "paidPikeCompleted": 5,
+        "paidMusketeerCompleted": 5,
+        "ageIIIQueuedAt": 780.0565795898438,
+        "townDiedAt": 791.6537475585938,
+        "requiredCannonPathCompleted": false,
+        "archiveScope": "Historical observation at the earlier checklist snapshot; now archived unchanged under Docs/Evidence/055/NormalPlayer/coast-attempt-003. Not the current B result.",
+        "sources": [
+          {
+            "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261002-120047-817-62dbc87afc3d4296a932fd41997856aa-match_finished.json",
+            "sha256": "59399fa9810659bc7ad8d66bfad712b5d3d0fe07e8cf7bd82663778f756f7e41"
+          },
+          {
+            "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261002-120047-817-62dbc87afc3d4296a932fd41997856aa-match_finished-events.jsonl",
+            "sha256": "f6c1f3cb1da4aa4d15f9d101fb5335b6fd1655ba662f555878ddb3791cd44c03"
+          }
+        ]
+      }
+    },
+    {
+      "id": "C",
+      "required": "After B, second civilization and I–V; real coin-worker/house/bank differences, feature unit, paid upgrade behavior, trade/treasure, siege and AI.",
+      "status": "passed",
+      "current": "C7 completed the full normal river I-V route in one match: strict 17/17, coverage 19/19, zero gaps; natural Victory at 2528.415771 seconds. C1-C6 remain archived failures with 6/10/1/3/1/2 gaps. No cross-match coverage union. Same old Musketeer 221/new paid 290 visual audit passed 19/19; 97-file archive sealed and independently hash-verified.",
+      "evidence": [
+        "Docs/Stage-C-Implementation.md",
+        "Docs/Evidence/055/Landmarks/receipt.json",
+        "Docs/Evidence/055/AiMatrix/summary.json",
+        "Docs/Evidence/055/NormalPlayer/river-attempt-007/summary.json",
+        "Docs/Evidence/055/NormalPlayer/river-attempt-007/archive-receipt.json",
+        "Docs/Evidence/055/NormalPlayer/river-attempt-007/technology-visual-audit.json",
+        "Docs/Evidence/055/NormalPlayer/river-attempt-007/end-capture-deviation.json"
+      ],
+      "closeout": [
+        "C7 strict verification passed in one normal native river match; preserve the accepted archive and original .31 identity.",
+        "Keep the terminal capture deviation explicit; a real sky Victory image is not renamed as an F9 capture.",
+        "Keep C1-C6 historical failures and AI matrix coverage limitations separate; no cross-match coverage union or statistical balance claim.",
+        "Use the existing source-bound rules/upgrade/lifecycle tests for the wider matrix; acceptance does not require every technology or every trade mode in one player match."
+      ],
+      "preservedAttempts": [
+        {
+          "path": "Docs/Evidence/055/NormalPlayer/river-attempt-001/summary.json",
+          "status": "failed"
+        },
+        {
+          "path": "Docs/Evidence/055/NormalPlayer/river-attempt-002/summary.json",
+          "status": "failed"
+        },
+        {
+          "path": "Docs/Evidence/055/NormalPlayer/river-attempt-003/summary.json",
+          "status": "failed"
+        },
+        {
+          "path": "Docs/Evidence/055/NormalPlayer/river-attempt-004/summary.json",
+          "status": "failed",
+          "matchId": "b4250e2ab6664083ad919de284cc0afb",
+          "naturalEndSeconds": 994.5042114257812,
+          "strictChecksPassed": 16,
+          "strictChecksTotal": 17,
+          "coveragePassed": 16,
+          "coverageTotal": 19,
+          "coverageGaps": [
+            "ageIV",
+            "ageV",
+            "specialUnit"
+          ],
+          "archiveReceipt": "Docs/Evidence/055/NormalPlayer/river-attempt-004/archive-receipt.json",
+          "archiveReceiptSha256": "cc28fc8e47999c072aeb04a0df04af0f4e8536ac70daebbaea547a14f8647e59"
+        },
+        {
+          "path": "Docs/Evidence/055/NormalPlayer/river-attempt-005/summary.json",
+          "status": "failed",
+          "matchId": "d69b5316feda422f8a27d23545e13c5b",
+          "naturalEndSeconds": 1661.5413818359375,
+          "strictChecksPassed": 16,
+          "strictChecksTotal": 17,
+          "coveragePassed": 18,
+          "coverageTotal": 19,
+          "coverageGaps": [
+            "ageV"
+          ],
+          "archiveReceipt": "Docs/Evidence/055/NormalPlayer/river-attempt-005/archive-receipt.json",
+          "archiveReceiptSha256": "299eacd347eb2e951df0804e0a143de562adda1d1dfff469b08cee383bc026d0",
+          "technologyVisualAuditStatus": "passed"
+        },
+        {
+          "path": "Docs/Evidence/055/NormalPlayer/river-attempt-006/summary.json",
+          "status": "failed",
+          "matchId": "7558b19fc9984578a313082b633c6630",
+          "naturalEndSeconds": 1367.2132568359375,
+          "strictChecksPassed": 16,
+          "strictChecksTotal": 17,
+          "coveragePassed": 17,
+          "coverageTotal": 19,
+          "coverageGaps": [
+            "ageIV",
+            "ageV"
+          ],
+          "archiveReceipt": "Docs/Evidence/055/NormalPlayer/river-attempt-006/archive-receipt.json",
+          "archiveReceiptSha256": "a09a6581238f86db4f55ef882e8a754e94b0f82daf616c046019d9ca387127ee",
+          "archiveFiles": 63,
+          "archiveBytes": 94778838,
+          "f9Pairs": 11,
+          "rawEventCount": 60226,
+          "paidCannonEnemyBuildingDamage": {
+            "sourceEntity": 256,
+            "targetEntity": 266,
+            "targetDefinition": "farm",
+            "hits": 3,
+            "totalDamage": 390
+          },
+          "technologyVisualAuditStatus": "passed",
+          "technologyEntities": {
+            "sameOld": 162,
+            "new": 263
+          },
+          "frozenSourceRuntimeAudit": "Corrected 357-source/3-runtime audit and independent root reread passed; original failed hardcoded-fingerprint comparison probe retained."
+        }
+      ],
+      "latestArchivedCoverage": {
+        "ageII": true,
+        "ageIII": true,
+        "ageIV": true,
+        "ageV": true,
+        "paidWorkers": true,
+        "paidMilitary": true,
+        "paidCannon": true,
+        "cannonEnemyBuildingDamage": true,
+        "gathered": true,
+        "shipmentArrived": true,
+        "paidBank": true,
+        "bankIncome": true,
+        "specialUnit": true,
+        "paidTechnology": true,
+        "treasure": true,
+        "paidTradePost": true,
+        "tradeXP": true,
+        "resourceMode": true,
+        "resourceTradeDelivery": true
+      },
+      "coverageGaps": [],
+      "latestArchivedAttempt": "C7",
+      "acceptedAttempt": {
+        "label": "C7",
+        "matchId": "cd717dda89684d87b979629d3fbdf1a9",
+        "naturalEndSeconds": 2528.415771484375,
+        "winner": 0,
+        "strictChecksPassed": 17,
+        "strictChecksTotal": 17,
+        "coveragePassed": 19,
+        "coverageTotal": 19,
+        "coverageGaps": [],
+        "archiveReceipt": "Docs/Evidence/055/NormalPlayer/river-attempt-007/archive-receipt.json",
+        "terminalCaptureDeviation": "No terminal F9 or pre-menu ended-log copy. Real sky Victory JPEG, complete frozen menu log, terminal report/events and menu F9 retained; no fabricated replacement.",
+        "status": "passed",
+        "archiveReceiptSha256": "73304c7dcf6d9541950b34479ece0ff691f39642d48b996833ad8dd3ba44027e",
+        "archiveFiles": 97,
+        "archiveBytes": 220994877,
+        "f9Pairs": 24,
+        "rawEventCount": 116739,
+        "technologyVisualAuditStatus": "passed",
+        "technologyEntities": {
+          "sameOld": 221,
+          "new": 290
+        },
+        "paidCannonEnemyBuildingDamageExample": {
+          "sourceEntity": 261,
+          "targetEntity": 179,
+          "targetDefinition": "trade_post",
+          "time": 1039.2933349609375,
+          "damage": 130
+        },
+        "frozenIdentityAudit": "357 source files and 3 compiled runtime files independently verified before .32 source changes."
+      }
+    },
+    {
+      "id": "D",
+      "required": "Formal original art, animation, audio and broader scale validation.",
+      "status": "passed",
+      "current": "Original art/animation and actual20-second normal/pause/master-mute windows preserved; normal B9 one335.999332 eligible-second window and actual50/100/200/400-unit fixtures passed. 400attempt002 one317.674076 eligible-second window passed. Earlier short/defocused failures retained.",
+      "audio": {
+        "normal-mix": {
+          "path": "Docs/Evidence/055/Audio/normal-mix/audit.json",
+          "parserPassed": true,
+          "mixSeconds": 20.0,
+          "nonzeroPcmSamples": 1912524,
+          "subjectiveListeningVerdict": "not performed"
+        },
+        "paused": {
+          "path": "Docs/Evidence/055/Audio/paused/audit.json",
+          "parserPassed": true,
+          "mixSeconds": 20.0,
+          "nonzeroPcmSamples": 0,
+          "subjectiveListeningVerdict": "not performed"
+        },
+        "master-muted": {
+          "path": "Docs/Evidence/055/Audio/master-muted/audit.json",
+          "parserPassed": true,
+          "mixSeconds": 20.0,
+          "nonzeroPcmSamples": 0,
+          "subjectiveListeningVerdict": "not performed"
+        }
+      },
+      "artSidecarChecks": [
+        {
+          "sidecar": "Docs/Evidence/055/Art/buildings-strategy-055.json",
+          "png": "Docs/Evidence/055/Art/buildings-strategy-055.png",
+          "sha256Matches": true
+        },
+        {
+          "sidecar": "Docs/Evidence/055/Art/resources-strategy-055.json",
+          "png": "Docs/Evidence/055/Art/resources-strategy-055.png",
+          "sha256Matches": true
+        },
+        {
+          "sidecar": "Docs/Evidence/055/Art/resources-study-055.json",
+          "png": "Docs/Evidence/055/Art/resources-study-055.png",
+          "sha256Matches": true
+        },
+        {
+          "sidecar": "Docs/Evidence/055/Art/units-strategy-055.json",
+          "png": "Docs/Evidence/055/Art/units-strategy-055.png",
+          "sha256Matches": true
+        },
+        {
+          "sidecar": "Docs/Evidence/055/Art/units-study-055.json",
+          "png": "Docs/Evidence/055/Art/units-study-055.png",
+          "sha256Matches": true
+        }
+      ],
+      "normalPerformance": {
+        "path": "Docs/Evidence/055/Performance/normal-b9-final-001/f8-audit.json",
+        "parserStatus": "passed",
+        "eligibleUnpausedSeconds": 335.999332113266,
+        "meetsCurrent055Planned300SecondWindow": true,
+        "scope": "One actual normal-player window, not a sum of shorter windows."
+      },
+      "closeout": [
+        "Inspect ordinary native screenshots and actual work/combat/death/deployment against current art/animation and HUD readability; isolated study diagrams do not replace the normal client.",
+        "Keep audio lifecycle and nonzero/silence signal proof paired to actual captures. Do not label a waveform audit as subjective listening.",
+        "Complete the currently adopted 055 performance plan: at least 300 eligible normal-player seconds, current 50/100/200/400 activity fixtures and at least 300 eligible seconds for the 400 diagnostic window; explicit parameters, valid focus/pause intervals, real resolution, unit counts, frame quantiles and memory/GC. These numeric windows are the documented bounded 055 plan, not a new claim that the original D contract specified them.",
+        "Report viewport-center counts only for their actual metric; a diagnostic fixture does not prove player economy, natural victory, or visibility of every model."
+      ],
+      "historicalShortNormalPerformance": {
+        "path": "Docs/Evidence/055/Performance/normal-short/summary.json",
+        "parserStatus": "passed",
+        "eligibleUnpausedSeconds": 145.92413636302948,
+        "wallSeconds": 600.017564625,
+        "explicitDurationRequirements": {},
+        "meetsCurrent055Planned300SecondWindow": false
+      },
+      "scalePerformance": [
+        {
+          "path": "Docs/Evidence/055/Performance/scale-050-attempt-001/scale-summary.json",
+          "status": "passed",
+          "unitsRequested": 50,
+          "eligibleUnpausedSeconds": 18.94739351463318
+        },
+        {
+          "path": "Docs/Evidence/055/Performance/scale-100-attempt-001/scale-summary.json",
+          "status": "passed",
+          "unitsRequested": 100,
+          "eligibleUnpausedSeconds": 18.349424613952635
+        },
+        {
+          "path": "Docs/Evidence/055/Performance/scale-200-attempt-001/scale-summary.json",
+          "status": "passed",
+          "unitsRequested": 200,
+          "eligibleUnpausedSeconds": 18.49022881889343
+        },
+        {
+          "path": "Docs/Evidence/055/Performance/scale-400-attempt-002/scale-summary.json",
+          "status": "passed",
+          "unitsRequested": 400,
+          "eligibleUnpausedSeconds": 317.6740762023926
+        }
+      ],
+      "preservedFailedScaleAttempt": "Docs/Evidence/055/Performance/scale-400-attempt-001/scale-summary.json"
+    }
+  ],
+  "prohibitedExtraGates": [
+    "Cross-machine signing/notarization or platforms not actually built",
+    "All 400 units simultaneously unobstructed/HUD-free on screen",
+    "External human listening or subjective ear-hearing as a newly added exit condition",
+    "Every technology/every unit manually exercised in one match",
+    "Multiple maps inferred from new seed labels on this fixed authored map",
+    "Sea/naval combat, networking, campaign or map editor before original A–D completion"
+  ],
+  "menuOnlyFutureReleasePolicy": {
+    "currentDecision": "Original A-D acceptance complete on frozen .31, including strict C7 17/17, coverage 19/19 and sealed technology/native archive. Separate .32 fresh tests, arm64 build, normal start/gather/menu/quit smoke, exact two-file/three-text-location source-equivalence review and full client ZIP verification passed. Source packaging is ready after final clean commit; final actual delivery identity is recorded externally, without rewriting .31 observations.",
+    "requiredIfChanged": [
+      "Preserve .31 raw native evidence, GUID 128a731d440e4b7a94abfcc74b88fa97, source fingerprint, test XMLs, build receipt and complete client bundle manifest as a frozen evidence set.",
+      "For any menu/version edit, record the actual changed files and patch. Rerun full source-bound tests, build separately, and create a new version/GUID/client-bundle manifest/build receipt; do not overwrite .31 identity.",
+      "Perform fresh final-build menu/layout/start smoke checks. Record that .31 contains the observed B/C normal-player matches and that the new build contains the release-text changes and its own regression/smoke evidence.",
+      "A reviewed text-only delta can support a scoped continuity statement; it cannot make .31 report bytes, match IDs or gameplay tests become new-GUID observations. If rules/gameplay/presentation behavior changes, revalidate the affected actual path.",
+      "Update README, Full-Scope-Audit, Completion-Status, Milestones, Verification, Playtest guide and final delivery manifest with the exact distinction; use a separate evidence-set argument for the later identity."
+    ]
+  },
+  "cliChecks": [
+    {
+      "purpose": "Current .32 source-bound test verification, no Unity launch; frozen .31 sources remain in their archived evidence set.",
+      "command": "python3 Tools/verify-delivery.py --reports-dir Docs/Evidence/056/Tests --require-current-source"
+    },
+    {
+      "purpose": "Independent existing AI archive audit; explicit temporary output",
+      "command": "python3 Docs/Evidence/055/audit_ai_matrix.py Docs/Evidence/055/AiMatrix --output /tmp/frontier-ai-055-audit.json"
+    },
+    {
+      "purpose": "Parser/tool regression only, not native acceptance",
+      "command": "python3 -m unittest discover -s Docs/Evidence/055 -p \"test_verify_*.py\" -v"
+    },
+    {
+      "purpose": "New B evidence, replace explicit placeholders with actual archived sources",
+      "command": "python3 Docs/Evidence/055/verify_player.py <coast-match_finished.json> --build-guid 128a731d440e4b7a94abfcc74b88fa97 --app-version 0.2.31 --match-id <actual-id> --scenario coast-iii --deck-preset economy --menu-capture <paired-menu-F9.json> --output <new-audit.json>"
+    },
+    {
+      "purpose": "Recheck accepted C7 normal-player evidence from its own archived Military25 menu/report/events; no cross-match union.",
+      "command": "python3 Docs/Evidence/055/verify_player.py <river-match_finished.json> --build-guid 128a731d440e4b7a94abfcc74b88fa97 --app-version 0.2.31 --match-id <actual-id> --scenario river-v --deck-preset military --menu-capture <paired-menu-F9.json> --output <new-audit.json>"
+    },
+    {
+      "purpose": "After all finalized evidence/status files are committed and git status is clean; create the actual .32 source ZIP/guide/external manifest and verify the existing .32 client ZIP.",
+      "command": "python3 Docs/Evidence/055/package_delivery.py --repo . --output /Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.2.32 --evidence-set 056 --playtest-guide Docs/Playtest-056.md"
+    }
+  ],
+  "pathChecks": [
+    {
+      "path": "Docs/Development-Contract.md",
+      "exists": true
+    },
+    {
+      "path": "Docs/Stage-C-Implementation.md",
+      "exists": true
+    },
+    {
+      "path": "Docs/Landmarks-Implementation.md",
+      "exists": true
+    },
+    {
+      "path": "Docs/Milestones-055.md",
+      "exists": true
+    },
+    {
+      "path": "Docs/Verification-055.md",
+      "exists": true
+    },
+    {
+      "path": "Docs/Full-Scope-Audit.md",
+      "exists": true
+    },
+    {
+      "path": "Docs/Completion-Status.md",
+      "exists": true
+    },
+    {
+      "path": "README.md",
+      "exists": true
+    },
+    {
+      "path": "Docs/Playtest-055.md",
+      "exists": true
+    },
+    {
+      "path": "Docs/Performance-055.md",
+      "exists": true
+    },
+    {
+      "path": "Docs/Art-Animation-055.md",
+      "exists": true
+    },
+    {
+      "path": "Docs/AI-Matrix-055.md",
+      "exists": true
+    },
+    {
+      "path": "Docs/Independent-Capture-Audit-055.md",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/build-receipt.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/client-bundle-manifest.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/package_delivery.py",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/Tests/source-evidence.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/Tests/EditMode.xml",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/Tests/PlayMode.xml",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/coast-attempt-001/summary.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/Performance/normal-short/summary.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/Audio/normal-mix/audit.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/Audio/paused/audit.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/Audio/master-muted/audit.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/AiMatrix/summary.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/coast-attempt-010/summary.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/river-attempt-003/summary.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/Performance/normal-b9-final-001/f8-audit.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/Performance/scale-400-attempt-002/scale-summary.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/river-attempt-004/summary.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/river-attempt-004/archive-receipt.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/river-attempt-005/summary.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/river-attempt-005/archive-receipt.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/river-attempt-005/visual-and-technology-audit.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/river-attempt-006/summary.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/river-attempt-006/archive-receipt.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/river-attempt-006/visual-and-technology-audit.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/river-attempt-006/cannon-building-audit.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/river-attempt-006/frozen-build-audit-corrected.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/river-attempt-007/summary.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/river-attempt-007/archive-receipt.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/river-attempt-007/technology-visual-audit.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/055/NormalPlayer/river-attempt-007/end-capture-deviation.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/056/README.md",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/056/Tests/source-evidence.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/056/Tests/EditMode.xml",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/056/Tests/PlayMode.xml",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/056/build-receipt.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/056/client-bundle-manifest.json",
+      "exists": true
+    },
+    {
+      "path": "Docs/Evidence/056/release-equivalence-initial.json",
+      "exists": true
+    }
+  ],
+  "allListedExistingPathsPresent": true,
+  "packageToolTests": {
+    "scope": "Temporary synthetic ZIP fixtures testing the CLI auditor; not Unity or native gameplay evidence. Fixture files were automatically deleted.",
+    "result": "6/6 passed",
+    "cases": [
+      "Valid complete fixture",
+      "Extra file rejected",
+      "Different-size non-runtime resource mutation rejected",
+      "Same-size non-runtime resource mutation rejected",
+      "New GUID rejected despite otherwise regenerated file hashes",
+      "Repeated GUID rejected"
+    ],
+    "realClientReadOnlyVerification": "Passed against the actual .31 client ZIP; 299 app files/618 total ZIP files, exact version/runtime/GUID.",
+    "auditorSha256": "a119da50a1b90722c5dd96ca14546ce92bd5d97f424cec9f0b1be1929990291d",
+    "passed": 6,
+    "total": 6
+  },
+  "releaseVerification": {
+    "evidenceSet": "056",
+    "status": "ready_for_packaging",
+    "appVersion": "0.2.32",
+    "sourceCommit": "59a66b64c027224289761ad6bb409e8e41804fee",
+    "sourceFingerprint": "7340a04ba7f4d10c35a4dde158a8c517e0205e875daacc1a58005dcb61730adf",
+    "delta": {
+      "files": [
+        "Assets/Frontier/Presentation/FrontierHud.cs",
+        "ProjectSettings/ProjectSettings.asset"
+      ],
+      "changedTextLocations": 3,
+      "scope": "Two menu strings and bundleVersion; no rules/gameplay change."
+    },
+    "tests": {
+      "status": "passed",
+      "editModePassed": 214,
+      "playModePassed": 210,
+      "sourceEvidence": "Docs/Evidence/056/Tests/source-evidence.json"
+    },
+    "build": {
+      "status": "passed",
+      "exitCode": 0,
+      "appVersion": "0.2.32",
+      "buildGuid": "947f7c0c0da44ec3a806c2dcb69ca04e",
+      "architecture": "arm64",
+      "bundleFileCount": 299,
+      "bundleFileBytes": 173040973,
+      "compiledRuntimeSha256": {
+        "Contents/Info.plist": "ab19cb47b68f3ddc90ad1526b05c2792247b154a1e47aceb3859dd3fa4efd027",
+        "Contents/MacOS/Frontier Reckoning": "d224cfd291b5622df450eda03569fe6cb84e1e934042be815000381e64a02f74",
+        "Contents/Resources/Data/Managed/Frontier.Runtime.dll": "ae73f6d91b84d39aa497c4fc7073b3f8561dd94bf5ebea9dfbb002d0fb5bdf9c"
+      }
+    },
+    "guiSmoke": {
+      "status": "passed",
+      "matchId": "fd093483132f4bff991d9082260fd7a4",
+      "simulationSeconds": 27.400068283081055,
+      "simulationSpeed": 1,
+      "autoplay": false,
+      "gatheredFood": 46.79997634887695,
+      "winner": -1,
+      "scope": "Updated menu, ordinary start, actual Gather, return to menu and public QUIT. Short smoke, not a natural complete match.",
+      "evidence": "Docs/Evidence/056/NativeSmoke/README.md"
+    },
+    "equivalence": {
+      "status": "passed",
+      "initialEvidence": "Docs/Evidence/056/release-equivalence-initial.json",
+      "finalEvidence": "Docs/Evidence/056/release-equivalence.json",
+      "scope": "Final canonical audit passed after the final .31 receipt prose update: 355 frozen files unchanged, exactly two source files changed at three approved text locations, and all424 fresh unique tests passed."
+    },
+    "deliveryPackage": "ready_for_clean_commit_packaging",
+    "finalRecord": "Docs/Evidence/056/README.md",
+    "boundary": "Original .31 gameplay/scale evidence and identity are preserved; fresh .32 tests do not relabel old native match observations."
+  },
+  "status": "ready_for_packaging",
+  "historical055PackageChecks": {
+    "currentClientArchive": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.2.31/Frontier-Reckoning-0.2.31-macOS-arm64.zip",
+      "bytes": 61942199,
+      "sha256": "605d7d203ca50a2233e370a588fe22dd9ad75deceb3c17f99fcf8a5cc2426255"
+    },
+    "clientVersion": "0.2.31",
+    "clientGuidReadFromBootConfig": "128a731d440e4b7a94abfcc74b88fa97",
+    "localAppMatchesEveryZipBundleFile": true,
+    "bundleFiles": 299,
+    "bundleBytes": 173041007,
+    "allZipFilesIncludingAppleDouble": 618,
+    "currentSourceArchive": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.2.31/Frontier-Reckoning-0.2.31-Unity-Source.zip",
+      "exists": false
+    },
+    "currentDeliveryManifest": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.2.31/manifest.json",
+      "exists": false
+    },
+    "driver": "Docs/Evidence/055/package_delivery.py",
+    "mandatoryBeforePackage": [
+      "Finish B/C/D evidence and truthful final status docs; update build receipt verification/limitations without changing historical build identity.",
+      "Commit all source/art/docs/evidence so git status is clean.",
+      "Current Assets/Packages/ProjectSettings/Tools must still equal the passed source-evidence fingerprint; build receipt and full client manifest must identify that tested source/version/GUID.",
+      "Every client ZIP file size/SHA/mode and directory set must match the frozen bundle manifest; plist version and boot.config build-guid must match the receipt.",
+      "Source ZIP must contain the exact committed Git blobs for every tracked file, including Docs/SourceAssets, and exact SHA for all frozen test-source files; caches/builds must be excluded.",
+      "Run the packager only after clean commit, then check delivery manifest actual HEAD/version/GUID/archive SHA and ZIP CRC. The driver verifies content identity, not gameplay completion."
+    ],
+    "scope": "Historical .31 client ZIP audit snapshot, preserved unchanged except for this scope label. It is not the current .32 delivery target."
+  },
+  "packageChecks": {
+    "status": "ready_for_packaging",
+    "evidenceSet": "056",
+    "playtestGuide": "Docs/Playtest-056.md",
+    "currentClientArchive": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.2.32/Frontier-Reckoning-0.2.32-macOS-arm64.zip",
+      "bytes": 61942193,
+      "sha256": "f3ec2180ef38c602db43cc5a1db001cf162ec4634cc066704c02492eb16e9fef"
+    },
+    "clientVersion": "0.2.32",
+    "clientGuidReadFromBootConfig": "947f7c0c0da44ec3a806c2dcb69ca04e",
+    "localAppMatchesEveryZipBundleFile": true,
+    "bundleFiles": 299,
+    "bundleBytes": 173040973,
+    "allZipFilesIncludingAppleDouble": 618,
+    "clientBundleManifest": "Docs/Evidence/056/client-bundle-manifest.json",
+    "currentSourceArchive": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.2.32/Frontier-Reckoning-0.2.32-Unity-Source.zip",
+      "status": "generate_after_clean_commit"
+    },
+    "currentDeliveryManifest": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.2.32/manifest.json",
+      "status": "generate_after_clean_commit"
+    },
+    "driver": "Docs/Evidence/055/package_delivery.py",
+    "mandatoryBeforePackage": [
+      "Finalize and commit all source/art/docs/evidence; require clean git status and record actual HEAD.",
+      "Verify current Assets/Packages/ProjectSettings/Tools match passed 056 source fingerprint 7340a04ba7f4d10c35a4dde158a8c517e0205e875daacc1a58005dcb61730adf.",
+      "Use 056 build receipt/full client manifest; verify .32 version, GUID and every client ZIP byte/mode/directory.",
+      "Source ZIP must contain exact committed Git blobs for all tracked files, including Docs/SourceAssets, excluding caches/builds.",
+      "Run package_delivery.py with evidence-set 056, Playtest-056.md and output frontier-reckoning-0.2.32; independently verify external manifest actual HEAD, versions, hashes and ZIP CRC.",
+      "Keep final packaging identity in the external delivery manifest; do not create a self-referential source commit by rewriting its HEAD inside the committed checklist."
+    ]
+  }
+}

@@ -1,0 +1,264 @@
+{
+  "schema": 1,
+  "candidateDisposition": "candidate2-final-observed-scope",
+  "sourceReview": "Native/frozen-source-review-069-candidate2.json",
+  "RootDiagnosticDefects": 0,
+  "phases": [
+    {
+      "id": "terrain-stroke-undo-redo",
+      "captures": [
+        "Native/profile/Captures/Frontier-20261005-190733-650-f2929-e47821f32a814a0fa18a8d3d5633b6df.json",
+        "Native/profile/Captures/Frontier-20261005-190747-890-f3773-3a7d2c283fe34f33b8407079e21d6789.json",
+        "Native/profile/Captures/Frontier-20261005-190748-490-f3806-f66f68622043463bba9fe299e522a866.json",
+        "Native/profile/Captures/Frontier-20261005-190749-122-f3841-21ace5f7a85b4c51b786cf1344c1d64f.json"
+      ],
+      "expect": {
+        "scenario.editorOpen": true
+      },
+      "draftHashes": [
+        "1cf6f7b7565f5cdc09696c1b2fe13cee267c2c54adb0240067c4651a385c42b4",
+        "0c0ee068884ba806e3ea83a6d91d0765a7c29778fb00cfcf5a12a026b1cf3a9d",
+        "1cf6f7b7565f5cdc09696c1b2fe13cee267c2c54adb0240067c4651a385c42b4",
+        "0c0ee068884ba806e3ea83a6d91d0765a7c29778fb00cfcf5a12a026b1cf3a9d"
+      ]
+    },
+    {
+      "id": "river-under-threshold-selection",
+      "captures": [
+        "Native/profile/Captures/Frontier-20261005-190835-076-f6575-2c08e9f781d2411199c5d91ae03fc92c.json"
+      ],
+      "expect": {
+        "scenario.draftHash": "0c0ee068884ba806e3ea83a6d91d0765a7c29778fb00cfcf5a12a026b1cf3a9d"
+      },
+      "portableFiles": [
+        "Native/AuthoredStages/02-after-river.scenario.json"
+      ],
+      "documentHashEqualsCaptureDraft": true
+    },
+    {
+      "id": "actual-river-bend",
+      "captures": [
+        "Native/profile/Captures/Frontier-20261005-190905-640-f8393-079450918bf44b33a8a2003b0a04afb4.json"
+      ],
+      "expect": {
+        "scenario.draftHash": "8e00aa4a563759395dc51b0cc045fe34522f655c8d95a10f37d4bc5568e20bd8"
+      },
+      "portableFiles": [
+        "Native/AuthoredStages/03-after-river-move.scenario.json"
+      ],
+      "documentHashEqualsCaptureDraft": true
+    },
+    {
+      "id": "final-ready",
+      "captures": [
+        "Native/profile/Captures/Frontier-20261005-190954-349-f11276-ffde63aa02104bfab5852cb86abb89ae.json"
+      ],
+      "expect": {
+        "scenario.editorOpen": true,
+        "scenario.draftHash": "2b61502314cc6e653e4a80043145531748dab4fb430454b6fc4f5c85d91871a6"
+      },
+      "portableFiles": [
+        "Native/AuthoredStages/04-final-ready.scenario.json"
+      ],
+      "documentHashEqualsCaptureDraft": true
+    },
+    {
+      "id": "playtest-world",
+      "captures": [
+        "Native/profile/Captures/Frontier-20261005-191004-375-f11848-851c8682e9dd417992fcac0129cd1adb.json"
+      ],
+      "expect": {
+        "scenario.playtest": true,
+        "scenario.editorOpen": false,
+        "scenario.contentHash": "2b61502314cc6e653e4a80043145531748dab4fb430454b6fc4f5c85d91871a6"
+      },
+      "triggerFires": {
+        "trigger-1": 0,
+        "trigger-2": 0
+      },
+      "objectiveStates": {
+        "objective-1": "active"
+      }
+    },
+    {
+      "id": "reward-move-save",
+      "captures": [
+        "Native/profile/Captures/Frontier-20261005-191025-432-f13102-9083636455664f5c9597dfb4e2f7588a.json",
+        "Native/profile/Captures/Frontier-20261005-191053-846-f14794-142b2bae32ca4ebb8711f78f919c8aec.json"
+      ],
+      "expect": {
+        "scenario.playtest": true,
+        "scenario.contentHash": "2b61502314cc6e653e4a80043145531748dab4fb430454b6fc4f5c85d91871a6"
+      },
+      "triggerFires": {
+        "trigger-1": 1,
+        "trigger-2": 0
+      },
+      "objectiveStates": {
+        "objective-1": "active"
+      }
+    },
+    {
+      "id": "return-with-history",
+      "captures": [
+        "Native/profile/Captures/Frontier-20261005-191116-140-f16117-166952e2ba2648eda23dce69c1bb4366.json",
+        "Native/profile/Captures/Frontier-20261005-191116-836-f16155-21f7366df2b340ce835beb08d456cb5b.json",
+        "Native/profile/Captures/Frontier-20261005-191117-570-f16196-0fec27f5464e43a0b18dda1db3a67386.json"
+      ],
+      "expect": {
+        "scenario.editorOpen": true
+      },
+      "draftHashes": [
+        "2b61502314cc6e653e4a80043145531748dab4fb430454b6fc4f5c85d91871a6",
+        "8a193c3e549240a5d66cdd3a37c9473e8b3efbcca261812ec7e6501aac97f575",
+        "2b61502314cc6e653e4a80043145531748dab4fb430454b6fc4f5c85d91871a6"
+      ]
+    },
+    {
+      "id": "cold-embedded-restore",
+      "captures": [
+        "Native/profile/Captures/Frontier-20261005-191205-090-f1568-9989ccfc8a2744d7b365a4521b445c8a.json"
+      ],
+      "expect": {
+        "paused": true,
+        "scenario.playtest": false,
+        "scenario.contentHash": "2b61502314cc6e653e4a80043145531748dab4fb430454b6fc4f5c85d91871a6",
+        "worldTime": 12.200010299682617
+      },
+      "triggerFires": {
+        "trigger-1": 1,
+        "trigger-2": 0
+      }
+    },
+    {
+      "id": "cold-continued",
+      "captures": [
+        "Native/profile/Captures/Frontier-20261005-191222-376-f2595-2f7633c5ee5642e8bf4b07c1573c7438.json",
+        "Native/profile/Captures/Frontier-20261005-191224-587-f2718-54135cce806b49cb9b198dc2b4e298bf.json"
+      ],
+      "expect": {
+        "scenario.contentHash": "2b61502314cc6e653e4a80043145531748dab4fb430454b6fc4f5c85d91871a6",
+        "worldTime": 28.900074005126953
+      },
+      "triggerFires": {
+        "trigger-1": 1,
+        "trigger-2": 0
+      }
+    },
+    {
+      "id": "cold-running",
+      "captures": [
+        "Native/profile/Captures/Frontier-20261005-191318-890-f5954-08b2e1874f0040378e9166b386724f84.json"
+      ],
+      "expect": {
+        "scenario.contentHash": "2b61502314cc6e653e4a80043145531748dab4fb430454b6fc4f5c85d91871a6"
+      },
+      "triggerFires": {
+        "trigger-1": 1,
+        "trigger-2": 0
+      }
+    },
+    {
+      "id": "authored-victory",
+      "captures": [
+        "Native/profile/Captures/Frontier-20261005-191346-485-f7588-a3ce1851b54147fba20775a2e15f95a9.json"
+      ],
+      "expect": {
+        "scenario.contentHash": "2b61502314cc6e653e4a80043145531748dab4fb430454b6fc4f5c85d91871a6",
+        "scenario.winner": 0,
+        "worldTime": 90.09919738769531
+      },
+      "triggerFires": {
+        "trigger-1": 1,
+        "trigger-2": 1
+      },
+      "objectiveStates": {
+        "objective-1": "completed"
+      }
+    },
+    {
+      "id": "cold-latest-export",
+      "captures": [
+        "Native/profile/Captures/Frontier-20261005-191442-853-f818-c83accf39c7b4717866cd061df8eef7b.json"
+      ],
+      "expect": {
+        "scenario.editorOpen": true,
+        "scenario.draftHash": "2b61502314cc6e653e4a80043145531748dab4fb430454b6fc4f5c85d91871a6"
+      },
+      "portableFiles": [
+        "Native/AuthoredStages/05-latest-on-quit.scenario.json",
+        "Native/AuthoredStages/06-native-exported.scenario.json"
+      ],
+      "documentHashEqualsCaptureDraft": true
+    },
+    {
+      "id": "cold-replay-open",
+      "captures": [
+        "Native/replay-profile/Captures/Frontier-20261005-191623-457-f640-216bc6455e074edcb934d8c23a986030.json"
+      ],
+      "expect": {
+        "replay.watching": true,
+        "replay.paused": true,
+        "replay.currentStep": 122,
+        "replay.verified": false,
+        "replay.error": "",
+        "scenario.contentHash": "2b61502314cc6e653e4a80043145531748dab4fb430454b6fc4f5c85d91871a6"
+      }
+    },
+    {
+      "id": "cold-replay-forward-play",
+      "captures": [
+        "Native/replay-profile/Captures/Frontier-20261005-191637-704-f1488-18413ab4e9a14dfcafc84abc1140dc6f.json"
+      ],
+      "expect": {
+        "replay.currentStep": 123,
+        "replay.speed": 4.0,
+        "replay.seek": false,
+        "replay.error": "",
+        "scenario.contentHash": "2b61502314cc6e653e4a80043145531748dab4fb430454b6fc4f5c85d91871a6"
+      }
+    },
+    {
+      "id": "cold-replay-verified",
+      "captures": [
+        "Native/replay-profile/Captures/Frontier-20261005-191701-899-f2927-3f19841d386e475da67ec1c54f75a863.json"
+      ],
+      "expect": {
+        "replay.currentStep": 901,
+        "replay.verified": true,
+        "replay.seek": false,
+        "replay.error": "",
+        "scenario.contentHash": "2b61502314cc6e653e4a80043145531748dab4fb430454b6fc4f5c85d91871a6",
+        "scenario.winner": 0
+      },
+      "triggerFires": {
+        "trigger-1": 1,
+        "trigger-2": 1
+      },
+      "objectiveStates": {
+        "objective-1": "completed"
+      }
+    },
+    {
+      "id": "cold-replay-P2",
+      "captures": [
+        "Native/replay-profile/Captures/Frontier-20261005-191719-433-f3963-f7e8eb5c283b40c5928353e3792475a8.json"
+      ],
+      "expect": {
+        "replay.currentStep": 901,
+        "replay.verified": true,
+        "replay.observerPlayer": 1,
+        "observerPlayer": 1,
+        "replay.error": "",
+        "scenario.contentHash": "2b61502314cc6e653e4a80043145531748dab4fb430454b6fc4f5c85d91871a6"
+      }
+    }
+  ],
+  "checkpointComparison": {
+    "before": "Native/Checkpoint-fixtures/01-after-reward.json",
+    "after": "Native/Checkpoint-fixtures/02-after-cold-continuation.json",
+    "rewardCount": 1,
+    "triggerId": "trigger-1",
+    "deletedSource": "Native/profile/Scenarios/d6ae24fc2050471980bd20da24add1c9.json"
+  }
+}

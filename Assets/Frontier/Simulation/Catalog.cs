@@ -13,6 +13,9 @@ namespace Frontier
             cached = JsonUtility.FromJson<RuleCatalog>(asset.text) ?? new RuleCatalog();
             cached.entities ??= System.Array.Empty<EntityDef>(); cached.techs ??= System.Array.Empty<TechDef>();
             cached.cards ??= System.Array.Empty<CardDef>(); cached.ages ??= System.Array.Empty<AgeDef>(); cached.civs ??= System.Array.Empty<CivDef>();
+            cached.ageChoices ??= System.Array.Empty<AgeChoiceDef>(); cached.manufactureRecipes ??= System.Array.Empty<ManufactureRecipeDef>();
+            cached.revolutions ??= System.Array.Empty<RevolutionDef>();
+            foreach(var entity in cached.entities)if(entity!=null)entity.constructs ??= System.Array.Empty<string>();
             return cached;
         }
     }

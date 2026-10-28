@@ -1,0 +1,3 @@
+# Final native identity and protected-slot receipts
+
+Original final17-pair F9 verification and user-slot preservation/baseline/task-owned-slot ledger copied byte-exact. Final GUID5fbc,c4365/d7bbe/531,958 tests. The17 identity-verified pairs are not17 independent gameplay proofs; only selected pairs are included in the final gallery. Metadata/frame/hash matching and manual image review retain separate scope in their receipts. Slots1/2 remained unchanged; initially absent task-owned slot3 was removed only after its exact byte archive and matching ownership checks. Actual process exit observations are attributed to the parent operator, not inferred from shutdownlog text. See Normal,Fleet andScenes for gameplay scope.

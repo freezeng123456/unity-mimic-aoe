@@ -1,0 +1,195 @@
+{
+  "schema": 1,
+  "recordedAtUtc": "2026-10-05T16:33:18.143121+00:00",
+  "scope": "Candidate2 diagnostic only; root operated two owned native processes on one Mac. Statements below preserve root-reported actual UI observations; no automated script witnessed the clicks.",
+  "candidate": "Candidate2",
+  "buildGuid": "27816122099c4ea1909323eb6500bde3",
+  "matchId": "ee48c9c8fbaf47499af0077e0194ef38",
+  "status": "root_observed_diagnostic",
+  "physicalMacAcceptance": "pending",
+  "ownedProcesses": {
+    "source": "root process-session completion statement",
+    "host": {
+      "pid": 24867,
+      "session": 41326,
+      "exitCode": 0
+    },
+    "client": {
+      "pid": 24926,
+      "session": 96765,
+      "exitCode": 0
+    }
+  },
+  "observations": [
+    {
+      "id": "lobby_ready_start",
+      "status": "observed_by_root",
+      "fact": "Both READY and START worked; generated_river started with normal resources. The French remote player controls P3, the British host controls P1.",
+      "references": [
+        "client/Captures/Frontier-20261005-161904-993-f25321-7ae4f6673c514ebda5c78c047ced7e77.json"
+      ],
+      "savedEvidenceLimit": "The first saved client match frame is at 27.400068s; no saved READY/START lobby frame is included."
+    },
+    {
+      "id": "paid_french_train",
+      "status": "observed_by_root_and_metadata",
+      "fact": "P3 Train 1 French worker deducted 120 food from 300 to 180, and reserved one population slot.",
+      "references": [
+        "client/Captures/Frontier-20261005-161904-993-f25321-7ae4f6673c514ebda5c78c047ced7e77.json",
+        "client/Captures/Frontier-20261005-161940-370-f27086-aef6cf7f3c4e47039717d5086f934d5f.json",
+        "replay-inspection-final.json"
+      ],
+      "savedFacts": {
+        "foodBefore": 300.0,
+        "foodAfter": 180,
+        "populationUsed": 6,
+        "populationReserved": 1,
+        "queuedDefinition": "coureur"
+      }
+    },
+    {
+      "id": "paid_british_train",
+      "status": "observed_by_root_and_metadata",
+      "fact": "P1 Train 1 British settler deducted 100 food from 300 to 200.",
+      "references": [
+        "host/Captures/Frontier-20261005-162015-859-f31116-d8c66442fa42435ebab0976878362790.json",
+        "replay-inspection-final.json"
+      ],
+      "savedEvidenceLimit": "The saved host PNG/JSON shows 200 food and one reserved villager job; its 300-food initial state is in the replay initial anchor rather than a host PNG."
+    },
+    {
+      "id": "esc_local_menu",
+      "status": "observed_by_root_and_metadata",
+      "fact": "Root opened Esc local menu and observed client world time progress from about 45 to 62.8 seconds while sharedPaused remained false.",
+      "references": [
+        "client/Captures/Frontier-20261005-161940-370-f27086-aef6cf7f3c4e47039717d5086f934d5f.json"
+      ],
+      "savedEvidenceLimit": "The archived 62.7996139s capture has localMenuPaused=true/sharedPaused=false. No saved frame of the approximately 45s starting point is present."
+    },
+    {
+      "id": "shared_pause",
+      "status": "observed_by_root_and_metadata",
+      "fact": "Host shared pause stopped both worlds at the same immutable snapshot; client later closed its local menu while the shared pause remained.",
+      "references": [
+        "host/Captures/Frontier-20261005-162015-859-f31116-d8c66442fa42435ebab0976878362790.json",
+        "client/Captures/Frontier-20261005-162016-443-f28934-d7b9df9b48a44da48ee597e93512959d.json",
+        "client/Captures/Frontier-20261005-162101-127-f31274-7d5553ba92584f23a0bf71f725e54a5a.json",
+        "UI/host-shared-pause.png",
+        "UI/client-shared-pause-menu-closed.png",
+        "inspection-final.json"
+      ],
+      "savedFacts": {
+        "completedStep": 819,
+        "worldTime": 81.89932250976562,
+        "eventCursor": 1533,
+        "projectedDigest": "e0532840e76fc01096ffa7bc63fe197169f0203b32388a943b44dbe0f839ea55"
+      },
+      "savedEvidenceLimit": "This confirms these captured snapshots. It does not measure pause timing or validate a physical network."
+    },
+    {
+      "id": "client_resume_move",
+      "status": "observed_by_root_and_metadata",
+      "fact": "Client resumed the shared match, selected a worker with V and issued an accepted right-click Move.",
+      "references": [
+        "client/Captures/Frontier-20261005-162245-386-f36704-76f38e289c9148d5aa3cd9688d36c049.json",
+        "client/player.log",
+        "host/player.log",
+        "replay-inspection-final.json"
+      ],
+      "savedFacts": {
+        "moveActor": 104,
+        "moveCommandStep": 964,
+        "clientResultSequence": 3
+      },
+      "savedEvidenceLimit": "Metadata shows actor104 Move destination; root supplied the actual V/right-click observations. No command animation timing claim is made."
+    },
+    {
+      "id": "owned_process_suspend",
+      "status": "observed_by_root_with_fault_record",
+      "fact": "Root suspended the owned client process with SIGSTOP for 18 seconds and used try/finally SIGCONT. Root observed the host after reconnection; no saved host screenshot exists during the outage itself.",
+      "references": [
+        "fault-injection.json",
+        "UI/host-after-reconnect.png",
+        "UI/client-after-reconnect.png",
+        "host/Captures/Frontier-20261005-162345-953-f41378-a18525c0f55d4406b3a47705f97cc91d.json",
+        "client/Captures/Frontier-20261005-162344-348-f38753-567e96aa12764aea818a2e9437b79e5a.json",
+        "client/Captures/Frontier-20261005-162425-237-f40882-73863167c4eb47d092e00c5a66563cc4.json"
+      ],
+      "savedEvidenceLimit": "This is an owned-process suspend test on one Mac, not Wi-Fi/link failure or two-machine network validation."
+    },
+    {
+      "id": "same_match_reconnect",
+      "status": "observed_by_root_and_metadata",
+      "fact": "Client rejoined the same match while shared-paused; host and client later show the same stopped step/time/cursor and projection.",
+      "references": [
+        "host/Captures/Frontier-20261005-162345-953-f41378-a18525c0f55d4406b3a47705f97cc91d.json",
+        "client/Captures/Frontier-20261005-162344-348-f38753-567e96aa12764aea818a2e9437b79e5a.json",
+        "client/Captures/Frontier-20261005-162425-237-f40882-73863167c4eb47d092e00c5a66563cc4.json",
+        "UI/host-after-reconnect.png",
+        "UI/client-after-reconnect.png",
+        "inspection-final.json"
+      ],
+      "savedEvidenceLimit": "The client capture after SIGCONT initially says connected=false; the later client capture has connected=true. Both retain the same MatchId. No claim of a saved host outage frame is made."
+    },
+    {
+      "id": "host_save_replay",
+      "status": "observed_by_root_and_saved_file",
+      "fact": "Host SAVE REPLAY wrote the host-only recording. Subsequent saves updated the same segment file; the final archived file has finishReason menu_exit.",
+      "references": [
+        "host/player.log",
+        "host/Replays/replay-5810162ebf7a49b2a1a272b1fc7d040f.replay.json",
+        "replay-inspection-final.json"
+      ],
+      "savedEvidenceLimit": "The final file is the later closed segment; earlier manual prefix bytes were not separately retained and are not claimed here."
+    },
+    {
+      "id": "client_leave_host_continue",
+      "status": "observed_by_root_and_metadata",
+      "fact": "Client LEAVE returned to the main menu. Host resumed and the remote P3 resigned. Candidate2 still displayed a stale waiting-to-reconnect label after this permanent leave; this is retained as a diagnostic.",
+      "references": [
+        "host/Captures/Frontier-20261005-162513-395-f45711-85be92738e9a4c3f8b9adfceddbeb547.json",
+        "UI/host-after-partner-leave.png",
+        "replay-inspection-final.json"
+      ],
+      "savedFacts": {
+        "hostSharedPaused": false,
+        "hostLocalMenuPaused": true,
+        "hostConnected": false,
+        "resignedSlot": 2
+      },
+      "savedEvidenceLimit": "No saved client main-menu frame is present. The stale label is not reported as correct UI; Candidate3 is a separate candidate and requires its own evidence."
+    }
+  ],
+  "pendingOrUnobserved": [
+    {
+      "id": "host_outage_ui_frame",
+      "status": "pending",
+      "reason": "No host screenshot was saved during the SIGSTOP outage."
+    },
+    {
+      "id": "client_main_menu_after_leave_frame",
+      "status": "pending",
+      "reason": "Root observed the return; no saved client main-menu frame is included."
+    },
+    {
+      "id": "candidate3_ui_fixes",
+      "status": "pending",
+      "reason": "Candidate2 evidence cannot prove Candidate3 fixes."
+    },
+    {
+      "id": "native_cold_replay_playback",
+      "status": "pending",
+      "reason": "The replay file was inspected offline; this archive has no native cold playback observation."
+    },
+    {
+      "id": "two_physical_macs",
+      "status": "pending",
+      "reason": "Both native processes ran on one Mac."
+    },
+    {
+      "id": "native_1x_performance",
+      "status": "pending",
+      "reason": "No native frame-time/performance run is included."
+    }
+  ]
+}

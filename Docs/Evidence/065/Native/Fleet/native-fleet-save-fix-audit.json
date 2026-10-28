@@ -1,0 +1,2868 @@
+{
+  "schema": 1,
+  "recordedAtUtc": "2026-10-05T00:55:19.242344+00:00",
+  "status": "controlled_fleet_save_cold_landing_group_verified",
+  "buildGuid": "5fbcf668506b4814bc34d27b3902a237",
+  "sourceFingerprint": "d7bbe1e4f0e52210bf64b4787864449a438be87fb14952173cdd4d60d0563eb6",
+  "runtimeCommit": "c4365e31dbea9dd7e5d5c253b661ee2d3a25879a",
+  "buildReceipt": {
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/client-build.json",
+    "bytes": 1147,
+    "sha256": "0230a10294a5d5c98be387da5d66939d3d93077a0d0e037da87a1940690a9741"
+  },
+  "scope": "Controlled Age III generated_strait seed314159, no AI, explicit exporter resource grants and paid fixture actors. Native boarding, process restart/save, cargo group membership, landing and recall verified; not a normal opening, combat or repair re-acceptance.",
+  "fixture": {
+    "preview": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/PreviewSaves-verified/naval-strait-314159/preview.json",
+      "bytes": 26837,
+      "sha256": "bc71485cc02f2b69b6a833ae6566ea317a66c3599787959de6d13e5a9f0e9e47"
+    },
+    "receipt": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/PreviewSaves-verified/naval-strait-314159/receipt.json",
+      "bytes": 61933,
+      "sha256": "1932cb01e8f8d832322126309c25e2ad48c9caf58ae93e6e05a33bcd2370c159"
+    },
+    "manifest": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/PreviewSaves-verified/manifest.json",
+      "bytes": 196045,
+      "sha256": "94a541fd2ae796f54d977b417da9fb2d4bf267eb3556f5119529df865fedd76c"
+    },
+    "sourceFingerprintMatchesCurrentBuild": true,
+    "maxAge": 3,
+    "controlledGrants": [
+      {
+        "player": 0,
+        "previousAge": 1,
+        "controlledAge": 3,
+        "amount": {
+          "food": 8000.0,
+          "wood": 8000.0,
+          "coin": 8000.0
+        },
+        "before": {
+          "food": 300.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "after": {
+          "food": 8300.0,
+          "wood": 8300.0,
+          "coin": 8100.0
+        }
+      },
+      {
+        "player": 1,
+        "previousAge": 1,
+        "controlledAge": 3,
+        "amount": {
+          "food": 2000.0,
+          "wood": 2000.0,
+          "coin": 2000.0
+        },
+        "before": {
+          "food": 300.0,
+          "wood": 300.0,
+          "coin": 100.0
+        },
+        "after": {
+          "food": 2300.0,
+          "wood": 2300.0,
+          "coin": 2100.0
+        }
+      }
+    ],
+    "baselineEventCount": 246,
+    "paidActors": [
+      {
+        "birthReceipt": {
+          "entity": 132,
+          "producer": 130,
+          "player": 0,
+          "firstEvent": 191,
+          "paymentEvents": 1,
+          "spawnEvents": 1,
+          "definition": "pike",
+          "bornAt": 143.5995635986328
+        },
+        "payment": {
+          "schemaVersion": 2,
+          "hasEconomy": true,
+          "hasPopulation": true,
+          "economy": {
+            "requestedDelta": {
+              "food": -60.0,
+              "wood": -40.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": -60.0,
+              "wood": -40.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 8300.0,
+              "wood": 7765.0,
+              "coin": 8100.0
+            },
+            "balanceAfter": {
+              "food": 8240.0,
+              "wood": 7725.0,
+              "coin": 8100.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 7,
+            "reserved": 0,
+            "capacity": 30
+          },
+          "time": 121.59871673583984,
+          "kind": "Payment",
+          "message": "Pikeman ×1: 60 F / 40 W / 0 C",
+          "player": 0,
+          "entity": 130,
+          "target": 0,
+          "visibilityMask": 1,
+          "amount": 0.0,
+          "position": {
+            "x": 16.0,
+            "y": 31.0
+          },
+          "facing": {
+            "x": 0.0,
+            "y": 1.0
+          }
+        },
+        "queue": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": true,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 7,
+            "reserved": 1,
+            "capacity": 30
+          },
+          "time": 121.59871673583984,
+          "kind": "ProductionQueued",
+          "message": "pike ×1",
+          "player": 0,
+          "entity": 130,
+          "target": 0,
+          "visibilityMask": 1,
+          "amount": 1.0,
+          "position": {
+            "x": 16.0,
+            "y": 31.0
+          },
+          "facing": {
+            "x": 0.0,
+            "y": 1.0
+          }
+        },
+        "spawn": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": true,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 8,
+            "reserved": 0,
+            "capacity": 30
+          },
+          "time": 143.5995635986328,
+          "kind": "Spawn",
+          "message": "Pikeman",
+          "player": 0,
+          "entity": 132,
+          "target": 0,
+          "visibilityMask": 1,
+          "amount": 0.0,
+          "position": {
+            "x": 19.380741119384766,
+            "y": 31.905866622924805
+          },
+          "facing": {
+            "x": 0.0,
+            "y": 1.0
+          }
+        }
+      },
+      {
+        "birthReceipt": {
+          "entity": 133,
+          "producer": 130,
+          "player": 0,
+          "firstEvent": 196,
+          "paymentEvents": 1,
+          "spawnEvents": 1,
+          "definition": "musketeer",
+          "bornAt": 169.6011505126953
+        },
+        "payment": {
+          "schemaVersion": 2,
+          "hasEconomy": true,
+          "hasPopulation": true,
+          "economy": {
+            "requestedDelta": {
+              "food": -75.0,
+              "wood": 0.0,
+              "coin": -25.0
+            },
+            "actualDelta": {
+              "food": -75.0,
+              "wood": 0.0,
+              "coin": -25.0
+            },
+            "balanceBefore": {
+              "food": 8240.0,
+              "wood": 7725.0,
+              "coin": 8100.0
+            },
+            "balanceAfter": {
+              "food": 8165.0,
+              "wood": 7725.0,
+              "coin": 8075.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 8,
+            "reserved": 0,
+            "capacity": 30
+          },
+          "time": 143.5995635986328,
+          "kind": "Payment",
+          "message": "Musketeer ×1: 75 F / 0 W / 25 C",
+          "player": 0,
+          "entity": 130,
+          "target": 0,
+          "visibilityMask": 1,
+          "amount": 0.0,
+          "position": {
+            "x": 16.0,
+            "y": 31.0
+          },
+          "facing": {
+            "x": 0.0,
+            "y": 1.0
+          }
+        },
+        "queue": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": true,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 8,
+            "reserved": 1,
+            "capacity": 30
+          },
+          "time": 143.5995635986328,
+          "kind": "ProductionQueued",
+          "message": "musketeer ×1",
+          "player": 0,
+          "entity": 130,
+          "target": 0,
+          "visibilityMask": 1,
+          "amount": 1.0,
+          "position": {
+            "x": 16.0,
+            "y": 31.0
+          },
+          "facing": {
+            "x": 0.0,
+            "y": 1.0
+          }
+        },
+        "spawn": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": true,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 9,
+            "reserved": 0,
+            "capacity": 30
+          },
+          "time": 169.6011505126953,
+          "kind": "Spawn",
+          "message": "Musketeer",
+          "player": 0,
+          "entity": 133,
+          "target": 0,
+          "visibilityMask": 1,
+          "amount": 0.0,
+          "position": {
+            "x": 19.380741119384766,
+            "y": 31.905866622924805
+          },
+          "facing": {
+            "x": 0.0,
+            "y": 1.0
+          }
+        }
+      },
+      {
+        "birthReceipt": {
+          "entity": 134,
+          "producer": 128,
+          "player": 0,
+          "firstEvent": 201,
+          "paymentEvents": 1,
+          "spawnEvents": 1,
+          "definition": "transport_ship",
+          "bornAt": 214.7039031982422
+        },
+        "payment": {
+          "schemaVersion": 2,
+          "hasEconomy": true,
+          "hasPopulation": true,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": -200.0,
+              "coin": -75.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": -200.0,
+              "coin": -75.0
+            },
+            "balanceBefore": {
+              "food": 8165.0,
+              "wood": 7725.0,
+              "coin": 8075.0
+            },
+            "balanceAfter": {
+              "food": 8165.0,
+              "wood": 7525.0,
+              "coin": 8000.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 9,
+            "reserved": 0,
+            "capacity": 30
+          },
+          "time": 169.6011505126953,
+          "kind": "Payment",
+          "message": "Troop Transport ×1: 0 F / 200 W / 75 C",
+          "player": 0,
+          "entity": 128,
+          "target": 0,
+          "visibilityMask": 1,
+          "amount": 0.0,
+          "position": {
+            "x": 27.0,
+            "y": 29.0
+          },
+          "facing": {
+            "x": 0.0,
+            "y": 1.0
+          }
+        },
+        "queue": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": true,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 9,
+            "reserved": 3,
+            "capacity": 30
+          },
+          "time": 169.6011505126953,
+          "kind": "ProductionQueued",
+          "message": "transport_ship ×1",
+          "player": 0,
+          "entity": 128,
+          "target": 0,
+          "visibilityMask": 1,
+          "amount": 1.0,
+          "position": {
+            "x": 27.0,
+            "y": 29.0
+          },
+          "facing": {
+            "x": 0.0,
+            "y": 1.0
+          }
+        },
+        "spawn": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": true,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 12,
+            "reserved": 0,
+            "capacity": 30
+          },
+          "time": 214.7039031982422,
+          "kind": "Spawn",
+          "message": "Troop Transport",
+          "player": 0,
+          "entity": 134,
+          "target": 0,
+          "visibilityMask": 1,
+          "amount": 0.0,
+          "position": {
+            "x": 33.86052703857422,
+            "y": 30.263195037841797
+          },
+          "facing": {
+            "x": 0.0,
+            "y": 1.0
+          }
+        }
+      }
+    ],
+    "exporterColdContinuationSteps": 20,
+    "exporterColdScope": "20 steps recorded by exporter; separate from actual native process restart below."
+  },
+  "checkpoints": [
+    {
+      "label": "fleet-cargo-before-cold",
+      "file": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Checkpoints/fleet-cargo-before-cold.json",
+        "bytes": 27105,
+        "sha256": "c02c42f818ef8290623db33707b2b361552ead0a97831f000581e9793864aaef"
+      },
+      "receipt": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Checkpoints/fleet-cargo-before-cold.receipt.json",
+        "bytes": 2646,
+        "sha256": "d69b7d2857a2d95fd0afcfb44d60d219582b4c1b0fb65ad0a09d26e62208b5ab"
+      },
+      "schema": 2,
+      "rawPayloadBytes": 798198,
+      "rawPayloadSha256": "c9667ca88f714cb2b3523f434b199dc4df10a7144559dead8ebe22a4825f35ad",
+      "worldTime": 610.4979858398438,
+      "eventCount": 251,
+      "paused": true,
+      "allSessionFields": {
+        "matchId": "naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07",
+        "appVersion": "0.8.0",
+        "cameraPosition": {
+          "x": 26.965972900390625,
+          "y": 50.0,
+          "z": 3.0097732543945312
+        },
+        "cameraSize": 23.0,
+        "cameraFocus": {
+          "x": 26.965972900390625,
+          "y": 45.00977325439453
+        },
+        "selection": [
+          134
+        ],
+        "groups": [
+          {
+            "number": 4,
+            "actors": [
+              132,
+              133
+            ]
+          }
+        ],
+        "muted": false,
+        "environmentSound": true,
+        "music": true,
+        "autoplay": false,
+        "simulationSpeed": 1.0
+      },
+      "simulation": {
+        "difficultyId": "standard",
+        "stepCount": 6105,
+        "accumulator": 0.02105758897960186,
+        "controllers": []
+      },
+      "actors": [
+        {
+          "id": 132,
+          "definition": "pike",
+          "owner": 0,
+          "hp": 180.0,
+          "position": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "garrisonedIn": 134,
+          "status": "Embarked",
+          "occupants": [],
+          "orders": []
+        },
+        {
+          "id": 133,
+          "definition": "musketeer",
+          "owner": 0,
+          "hp": 200.0,
+          "position": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "garrisonedIn": 134,
+          "status": "Embarked",
+          "occupants": [],
+          "orders": []
+        },
+        {
+          "id": 134,
+          "definition": "transport_ship",
+          "owner": 0,
+          "hp": 650.0,
+          "position": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "garrisonedIn": 0,
+          "status": "Idle",
+          "occupants": [
+            132,
+            133
+          ],
+          "orders": []
+        }
+      ],
+      "fixtureEventPrefixExact": true
+    },
+    {
+      "label": "fleet-cargo-cold-resaved",
+      "file": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Checkpoints/fleet-cargo-cold-resaved.json",
+        "bytes": 27105,
+        "sha256": "c02c42f818ef8290623db33707b2b361552ead0a97831f000581e9793864aaef"
+      },
+      "receipt": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Checkpoints/fleet-cargo-cold-resaved.receipt.json",
+        "bytes": 2649,
+        "sha256": "136c5f09ed4de2a51bd0f6942284b31a2183240edc7c7a990c624f4abfb4b839"
+      },
+      "schema": 2,
+      "rawPayloadBytes": 798198,
+      "rawPayloadSha256": "c9667ca88f714cb2b3523f434b199dc4df10a7144559dead8ebe22a4825f35ad",
+      "worldTime": 610.4979858398438,
+      "eventCount": 251,
+      "paused": true,
+      "allSessionFields": {
+        "matchId": "naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07",
+        "appVersion": "0.8.0",
+        "cameraPosition": {
+          "x": 26.965972900390625,
+          "y": 50.0,
+          "z": 3.0097732543945312
+        },
+        "cameraSize": 23.0,
+        "cameraFocus": {
+          "x": 26.965972900390625,
+          "y": 45.00977325439453
+        },
+        "selection": [
+          134
+        ],
+        "groups": [
+          {
+            "number": 4,
+            "actors": [
+              132,
+              133
+            ]
+          }
+        ],
+        "muted": false,
+        "environmentSound": true,
+        "music": true,
+        "autoplay": false,
+        "simulationSpeed": 1.0
+      },
+      "simulation": {
+        "difficultyId": "standard",
+        "stepCount": 6105,
+        "accumulator": 0.02105758897960186,
+        "controllers": []
+      },
+      "actors": [
+        {
+          "id": 132,
+          "definition": "pike",
+          "owner": 0,
+          "hp": 180.0,
+          "position": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "garrisonedIn": 134,
+          "status": "Embarked",
+          "occupants": [],
+          "orders": []
+        },
+        {
+          "id": 133,
+          "definition": "musketeer",
+          "owner": 0,
+          "hp": 200.0,
+          "position": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "garrisonedIn": 134,
+          "status": "Embarked",
+          "occupants": [],
+          "orders": []
+        },
+        {
+          "id": 134,
+          "definition": "transport_ship",
+          "owner": 0,
+          "hp": 650.0,
+          "position": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "garrisonedIn": 0,
+          "status": "Idle",
+          "occupants": [
+            132,
+            133
+          ],
+          "orders": []
+        }
+      ],
+      "fixtureEventPrefixExact": true
+    },
+    {
+      "label": "fleet-cold-landed-recalled",
+      "file": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Checkpoints/fleet-cold-landed-recalled.json",
+        "bytes": 27585,
+        "sha256": "1635011058a30bbbabb489feaa5624adbfc264a026235e97c30cda566bbb66d7"
+      },
+      "receipt": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Checkpoints/fleet-cold-landed-recalled.receipt.json",
+        "bytes": 2083,
+        "sha256": "c7e13011b095dafcaa13798000ce13f6f3d671464db2bd46fadcf8c5fadb857c"
+      },
+      "schema": 2,
+      "rawPayloadBytes": 802718,
+      "rawPayloadSha256": "2932ae6ec697b11f134f2e6618cbef109a99f87aa58926de151b7a906167e944",
+      "worldTime": 668.5838012695312,
+      "eventCount": 258,
+      "paused": true,
+      "allSessionFields": {
+        "matchId": "naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07",
+        "appVersion": "0.8.0",
+        "cameraPosition": {
+          "x": 54.56597137451172,
+          "y": 50.0,
+          "z": 1.1386222839355469
+        },
+        "cameraSize": 23.0,
+        "cameraFocus": {
+          "x": 54.56597137451172,
+          "y": 43.13862228393555
+        },
+        "selection": [
+          132,
+          133
+        ],
+        "groups": [
+          {
+            "number": 4,
+            "actors": [
+              132,
+              133
+            ]
+          }
+        ],
+        "muted": false,
+        "environmentSound": true,
+        "music": true,
+        "autoplay": false,
+        "simulationSpeed": 1.0
+      },
+      "simulation": {
+        "difficultyId": "standard",
+        "stepCount": 6686,
+        "accumulator": 0.0681910440325737,
+        "controllers": []
+      },
+      "actors": [
+        {
+          "id": 132,
+          "definition": "pike",
+          "owner": 0,
+          "hp": 180.0,
+          "position": {
+            "x": 54.56597137451172,
+            "y": 43.13862228393555
+          },
+          "garrisonedIn": 0,
+          "status": "Idle",
+          "occupants": [],
+          "orders": []
+        },
+        {
+          "id": 133,
+          "definition": "musketeer",
+          "owner": 0,
+          "hp": 200.0,
+          "position": {
+            "x": 53.41596984863281,
+            "y": 41.98862075805664
+          },
+          "garrisonedIn": 0,
+          "status": "Idle",
+          "occupants": [],
+          "orders": []
+        },
+        {
+          "id": 134,
+          "definition": "transport_ship",
+          "owner": 0,
+          "hp": 650.0,
+          "position": {
+            "x": 49.937198638916016,
+            "y": 43.83997344970703
+          },
+          "garrisonedIn": 0,
+          "status": "Idle",
+          "occupants": [],
+          "orders": []
+        }
+      ],
+      "fixtureEventPrefixExact": true
+    }
+  ],
+  "coldRecovery": {
+    "wholeStoredFileBytesEqual": true,
+    "allWorldSimulationSessionFieldsEqual": true,
+    "storedBytes": 27105,
+    "storedSha256": "c02c42f818ef8290623db33707b2b361552ead0a97831f000581e9793864aaef",
+    "rawPayloadSha256": "c9667ca88f714cb2b3523f434b199dc4df10a7144559dead8ebe22a4825f35ad",
+    "processReceipt": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/fleet-cold-process-and-resave.json",
+      "bytes": 535,
+      "sha256": "5b3bfc531cac9b657a54244ce93efe04015aa71948b0daa91daea3c2ff736105"
+    },
+    "processObservation": {
+      "firstSession": 34159,
+      "actualFirstExitCode": 0,
+      "firstExitToolChunk": "6b55a4",
+      "matchingProcessesAfterQuit": 0,
+      "coldLaunchSession": 31732,
+      "coldProcessPid": 77300,
+      "storedBytes": 27105,
+      "beforeStoredSha256": "c02c42f818ef8290623db33707b2b361552ead0a97831f000581e9793864aaef",
+      "afterStoredSha256": "c02c42f818ef8290623db33707b2b361552ead0a97831f000581e9793864aaef",
+      "wholeFileBytesEqual": true,
+      "scope": "operator tool process/GUI observations with independent file equality; not log-parsed process status"
+    },
+    "observationScope": "CLI session exit0/process-zero/new PID and GUI action source is parent operator record; file bytes and evidence identities independently verified."
+  },
+  "nativeEvents": [
+    {
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": false,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 0,
+        "reserved": 0,
+        "capacity": 0
+      },
+      "time": 471.7195739746094,
+      "kind": "PauseChanged",
+      "message": "manual_resume",
+      "player": 0,
+      "entity": 0,
+      "target": 0,
+      "visibilityMask": 0,
+      "amount": 0.0,
+      "position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": false,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 0,
+        "reserved": 0,
+        "capacity": 0
+      },
+      "time": 543.0144653320312,
+      "kind": "EmbarkOrdered",
+      "message": "Land units walking to the boarding shore",
+      "player": 0,
+      "entity": 134,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 2.0,
+      "position": {
+        "x": 30.965972900390625,
+        "y": 45.00977325439453
+      },
+      "facing": {
+        "x": -0.15276570618152618,
+        "y": 0.988262414932251
+      }
+    },
+    {
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": false,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 0,
+        "reserved": 0,
+        "capacity": 0
+      },
+      "time": 545.3139038085938,
+      "kind": "Embarked",
+      "message": "Aboard transport",
+      "player": 0,
+      "entity": 132,
+      "target": 134,
+      "visibilityMask": 1,
+      "amount": 1.0,
+      "position": {
+        "x": 30.965972900390625,
+        "y": 45.00977325439453
+      },
+      "facing": {
+        "x": 1.0,
+        "y": 0.0
+      }
+    },
+    {
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": false,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 0,
+        "reserved": 0,
+        "capacity": 0
+      },
+      "time": 545.4138793945312,
+      "kind": "Embarked",
+      "message": "Aboard transport",
+      "player": 0,
+      "entity": 133,
+      "target": 134,
+      "visibilityMask": 1,
+      "amount": 1.0,
+      "position": {
+        "x": 30.965972900390625,
+        "y": 45.00977325439453
+      },
+      "facing": {
+        "x": 0.08605922013521194,
+        "y": -0.9962900280952454
+      }
+    },
+    {
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": false,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 0,
+        "reserved": 0,
+        "capacity": 0
+      },
+      "time": 610.4979858398438,
+      "kind": "PauseChanged",
+      "message": "manual_pause",
+      "player": 0,
+      "entity": 0,
+      "target": 0,
+      "visibilityMask": 0,
+      "amount": 1.0,
+      "position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": false,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 0,
+        "reserved": 0,
+        "capacity": 0
+      },
+      "time": 610.4979858398438,
+      "kind": "PauseChanged",
+      "message": "manual_resume",
+      "player": 0,
+      "entity": 0,
+      "target": 0,
+      "visibilityMask": 0,
+      "amount": 0.0,
+      "position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": false,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 0,
+        "reserved": 0,
+        "capacity": 0
+      },
+      "time": 638.7910766601562,
+      "kind": "DisembarkOrdered",
+      "message": "Sailing to a landing shore",
+      "player": 0,
+      "entity": 134,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 54.56597137451172,
+        "y": 43.13862228393555
+      },
+      "facing": {
+        "x": -0.018188929185271263,
+        "y": 0.9998345971107483
+      }
+    },
+    {
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": false,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 0,
+        "reserved": 0,
+        "capacity": 0
+      },
+      "time": 641.0905151367188,
+      "kind": "LandmarkDiscovered",
+      "message": "{\"seed\":314159,\"player\":0,\"entity\":111,\"objectType\":\"trade_socket\",\"position\":{\"x\":61.18335723876953,\"y\":34.0}}",
+      "player": 0,
+      "entity": 111,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 61.18335723876953,
+        "y": 34.0
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 1.0
+      }
+    },
+    {
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": false,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 0,
+        "reserved": 0,
+        "capacity": 0
+      },
+      "time": 643.0900268554688,
+      "kind": "LandmarkDiscovered",
+      "message": "{\"seed\":314159,\"player\":0,\"entity\":114,\"objectType\":\"treasure_wood\",\"position\":{\"x\":69.0,\"y\":48.0}}",
+      "player": 0,
+      "entity": 114,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 69.0,
+        "y": 48.0
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 1.0
+      }
+    },
+    {
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": false,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 0,
+        "reserved": 0,
+        "capacity": 0
+      },
+      "time": 643.4899291992188,
+      "kind": "Disembarked",
+      "message": "Landed on navigable shore",
+      "player": 0,
+      "entity": 132,
+      "target": 134,
+      "visibilityMask": 1,
+      "amount": 1.0,
+      "position": {
+        "x": 54.56597137451172,
+        "y": 43.13862228393555
+      },
+      "facing": {
+        "x": 1.0,
+        "y": 0.0
+      }
+    },
+    {
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": false,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 0,
+        "reserved": 0,
+        "capacity": 0
+      },
+      "time": 643.4899291992188,
+      "kind": "Disembarked",
+      "message": "Landed on navigable shore",
+      "player": 0,
+      "entity": 133,
+      "target": 134,
+      "visibilityMask": 1,
+      "amount": 1.0,
+      "position": {
+        "x": 53.41596984863281,
+        "y": 41.98862075805664
+      },
+      "facing": {
+        "x": 0.08605922013521194,
+        "y": -0.9962900280952454
+      }
+    },
+    {
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": false,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 0,
+        "reserved": 0,
+        "capacity": 0
+      },
+      "time": 668.5838012695312,
+      "kind": "PauseChanged",
+      "message": "manual_pause",
+      "player": 0,
+      "entity": 0,
+      "target": 0,
+      "visibilityMask": 0,
+      "amount": 1.0,
+      "position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    }
+  ],
+  "landing": {
+    "boardingEvents": [
+      {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 545.3139038085938,
+        "kind": "Embarked",
+        "message": "Aboard transport",
+        "player": 0,
+        "entity": 132,
+        "target": 134,
+        "visibilityMask": 1,
+        "amount": 1.0,
+        "position": {
+          "x": 30.965972900390625,
+          "y": 45.00977325439453
+        },
+        "facing": {
+          "x": 1.0,
+          "y": 0.0
+        }
+      },
+      {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 545.4138793945312,
+        "kind": "Embarked",
+        "message": "Aboard transport",
+        "player": 0,
+        "entity": 133,
+        "target": 134,
+        "visibilityMask": 1,
+        "amount": 1.0,
+        "position": {
+          "x": 30.965972900390625,
+          "y": 45.00977325439453
+        },
+        "facing": {
+          "x": 0.08605922013521194,
+          "y": -0.9962900280952454
+        }
+      }
+    ],
+    "landingEvents": [
+      {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 643.4899291992188,
+        "kind": "Disembarked",
+        "message": "Landed on navigable shore",
+        "player": 0,
+        "entity": 132,
+        "target": 134,
+        "visibilityMask": 1,
+        "amount": 1.0,
+        "position": {
+          "x": 54.56597137451172,
+          "y": 43.13862228393555
+        },
+        "facing": {
+          "x": 1.0,
+          "y": 0.0
+        }
+      },
+      {
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 643.4899291992188,
+        "kind": "Disembarked",
+        "message": "Landed on navigable shore",
+        "player": 0,
+        "entity": 133,
+        "target": 134,
+        "visibilityMask": 1,
+        "amount": 1.0,
+        "position": {
+          "x": 53.41596984863281,
+          "y": 41.98862075805664
+        },
+        "facing": {
+          "x": 0.08605922013521194,
+          "y": -0.9962900280952454
+        }
+      }
+    ],
+    "sameTransportAndPassengerIds": true,
+    "shipDisplacementWorldUnits": 15.04002964273492,
+    "cargoAfter": [],
+    "survivingPassengerIds": [
+      132,
+      133
+    ],
+    "finalGroup4": [
+      132,
+      133
+    ],
+    "finalSelection": [
+      132,
+      133
+    ],
+    "eventPrefixAcrossColdExact": true,
+    "normalSpawnOrGrantAfterImportCount": 0
+  },
+  "groupRecallEvidence": {
+    "groupMembershipInBeforeAndAfterSave": [
+      132,
+      133
+    ],
+    "onboardRecallScreenshot": "Frontier-20261005-004711-921-f5243-00c276bdc2ad4de39f11c3e90b6ae99b.png",
+    "onboardScreenshotObservedSelectionPanel": "THE FRONTIER AWAITS; no units selected",
+    "landedRecallScreenshot": "Frontier-20261005-004756-005-f7867-f0555e3e690a474ea0bd26f1def6bf4b.png",
+    "landedScreenshotObservedSelectionPanel": "2 SELECTED · Pikeman with two highlighted living land units",
+    "finalCheckpointSelection": [
+      132,
+      133
+    ],
+    "actualDigit4ActionSource": "Parent operator report; schema3 metadata has no selection field and no raw keyboard telemetry is claimed."
+  },
+  "captures": [
+    {
+      "json": "Frontier-20261005-004245-530-f3670-ca1db65c4d174599a4234fee62b46b74.json",
+      "status": "identity_verified",
+      "errors": [],
+      "jsonBytes": 10513,
+      "jsonSha256": "2c6d6bc4ae6e25c6013d62f37fa8a872750406b60d483de102db0a2d71785344",
+      "png": "Frontier-20261005-004245-530-f3670-ca1db65c4d174599a4234fee62b46b74.png",
+      "pngBytes": 1238282,
+      "pngSha256": "8d6de16e2c8f40fca3607c12f617be07482fa4a84868d5976a760a0856109076",
+      "width": 1600,
+      "height": 1000,
+      "utc": "2026-10-05T00:42:45.4556450Z",
+      "appVersion": "0.8.0",
+      "buildGuid": "5fbcf668506b4814bc34d27b3902a237",
+      "matchId": "naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07",
+      "inMenu": false,
+      "paused": false,
+      "seed": 314159,
+      "mapId": "generated_strait",
+      "worldTime": 485.62042236328125,
+      "requestWorldTime": 485.62042236328125,
+      "requestFrame": 3670,
+      "captureFrame": 3670,
+      "requestCaptureSameFrame": true,
+      "camera": {
+        "focus": {
+          "x": 34.21526336669922,
+          "y": 41.642127990722656
+        },
+        "pointer": {
+          "x": 560.0,
+          "y": 722.0
+        },
+        "applicationFocused": true,
+        "orthographicSize": 23.0
+      },
+      "hudResources": "FOOD  8165     WOOD  7025     COIN  7650     POP  20+0/30     AGE  3     XP  13/225     SHIP  1",
+      "hudUpdatedFrame": 3670,
+      "hudWorldTime": 485.62042236328125,
+      "hudMatchId": "naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07",
+      "hudConsistency": "same_match_frame_world_time_resources_population",
+      "hudAgeObserved": 3,
+      "objectiveMode": "elimination",
+      "objectiveStatus": "inactive",
+      "originalDirectory": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures",
+      "ownCargoActors": [
+        {
+          "entity": 132,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "pike",
+          "status": "Holding",
+          "order": "",
+          "position": {
+            "x": 26.965972900390625,
+            "y": 45.00977325439453
+          },
+          "destination": {
+            "x": 26.965972900390625,
+            "y": 45.00977325439453
+          },
+          "hp": 180.0,
+          "cargo": []
+        },
+        {
+          "entity": 133,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "musketeer",
+          "status": "Holding",
+          "order": "",
+          "position": {
+            "x": 26.16165542602539,
+            "y": 41.13521957397461
+          },
+          "destination": {
+            "x": 26.16165542602539,
+            "y": 41.13521957397461
+          },
+          "hp": 200.0,
+          "cargo": []
+        },
+        {
+          "entity": 134,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 14,
+          "target": 0,
+          "definition": "transport_ship",
+          "status": "Holding",
+          "order": "",
+          "position": {
+            "x": 35.03535461425781,
+            "y": 37.12196350097656
+          },
+          "destination": {
+            "x": 35.03535461425781,
+            "y": 37.12196350097656
+          },
+          "hp": 650.0,
+          "cargo": []
+        }
+      ],
+      "archiveFiles": [
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Frontier-20261005-004245-530-f3670-ca1db65c4d174599a4234fee62b46b74.json",
+          "bytes": 10513,
+          "sha256": "2c6d6bc4ae6e25c6013d62f37fa8a872750406b60d483de102db0a2d71785344"
+        },
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Frontier-20261005-004245-530-f3670-ca1db65c4d174599a4234fee62b46b74.png",
+          "bytes": 1238282,
+          "sha256": "8d6de16e2c8f40fca3607c12f617be07482fa4a84868d5976a760a0856109076"
+        }
+      ]
+    },
+    {
+      "json": "Frontier-20261005-004431-549-f9976-3faf70d400a640708f2c2b7e0d4de810.json",
+      "status": "identity_verified",
+      "errors": [],
+      "jsonBytes": 10571,
+      "jsonSha256": "a2e5113128033d33697730cf394ff62a69e6192d5057d9da26fe4445ed5109e4",
+      "png": "Frontier-20261005-004431-549-f9976-3faf70d400a640708f2c2b7e0d4de810.png",
+      "pngBytes": 1156224,
+      "pngSha256": "641ed1fcc3c8142398df2cf4967720fd7d3e4030d5a6176dd6219c1e8dc6d641",
+      "width": 1600,
+      "height": 1000,
+      "utc": "2026-10-05T00:44:31.4821760Z",
+      "appVersion": "0.8.0",
+      "buildGuid": "5fbcf668506b4814bc34d27b3902a237",
+      "matchId": "naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07",
+      "inMenu": false,
+      "paused": false,
+      "seed": 314159,
+      "mapId": "generated_strait",
+      "worldTime": 591.7025756835938,
+      "requestWorldTime": 591.7025756835938,
+      "requestFrame": 9976,
+      "captureFrame": 9976,
+      "requestCaptureSameFrame": true,
+      "camera": {
+        "focus": {
+          "x": 26.965972900390625,
+          "y": 45.00977325439453
+        },
+        "pointer": {
+          "x": 971.0,
+          "y": 489.0
+        },
+        "applicationFocused": true,
+        "orthographicSize": 23.0
+      },
+      "hudResources": "FOOD  8165     WOOD  7025     COIN  7650     POP  20+0/30     AGE  3     XP  13/225     SHIP  1",
+      "hudUpdatedFrame": 9976,
+      "hudWorldTime": 591.7025756835938,
+      "hudMatchId": "naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07",
+      "hudConsistency": "same_match_frame_world_time_resources_population",
+      "hudAgeObserved": 3,
+      "objectiveMode": "elimination",
+      "objectiveStatus": "inactive",
+      "originalDirectory": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures",
+      "ownCargoActors": [
+        {
+          "entity": 132,
+          "garrisonedIn": 134,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "pike",
+          "status": "Embarked",
+          "order": "",
+          "position": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "destination": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "hp": 180.0,
+          "cargo": []
+        },
+        {
+          "entity": 133,
+          "garrisonedIn": 134,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "musketeer",
+          "status": "Embarked",
+          "order": "",
+          "position": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "destination": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "hp": 200.0,
+          "cargo": []
+        },
+        {
+          "entity": 134,
+          "garrisonedIn": 0,
+          "load": 2,
+          "capacity": 14,
+          "target": 0,
+          "definition": "transport_ship",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "destination": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "hp": 650.0,
+          "cargo": [
+            132,
+            133
+          ]
+        }
+      ],
+      "archiveFiles": [
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Frontier-20261005-004431-549-f9976-3faf70d400a640708f2c2b7e0d4de810.json",
+          "bytes": 10571,
+          "sha256": "a2e5113128033d33697730cf394ff62a69e6192d5057d9da26fe4445ed5109e4"
+        },
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Frontier-20261005-004431-549-f9976-3faf70d400a640708f2c2b7e0d4de810.png",
+          "bytes": 1156224,
+          "sha256": "641ed1fcc3c8142398df2cf4967720fd7d3e4030d5a6176dd6219c1e8dc6d641"
+        }
+      ]
+    },
+    {
+      "json": "Frontier-20261005-004449-532-f11043-0006291d48734cd49dc31bbb74f6a325.json",
+      "status": "identity_verified",
+      "errors": [],
+      "jsonBytes": 10576,
+      "jsonSha256": "8705aab8aec1bc6a831d1d451d5a38e8e7e55319f47ed55cb6c84e5c7f58b02b",
+      "png": "Frontier-20261005-004449-532-f11043-0006291d48734cd49dc31bbb74f6a325.png",
+      "pngBytes": 594982,
+      "pngSha256": "e7c7d163ee49416df05c2c7f352ebd49d19f4ef70cf55ec83c23ce5edad454d0",
+      "width": 1600,
+      "height": 1000,
+      "utc": "2026-10-05T00:44:49.4797840Z",
+      "appVersion": "0.8.0",
+      "buildGuid": "5fbcf668506b4814bc34d27b3902a237",
+      "matchId": "naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07",
+      "inMenu": false,
+      "paused": false,
+      "seed": 314159,
+      "mapId": "generated_strait",
+      "worldTime": 609.6981811523438,
+      "requestWorldTime": 609.6981811523438,
+      "requestFrame": 11043,
+      "captureFrame": 11043,
+      "requestCaptureSameFrame": true,
+      "camera": {
+        "focus": {
+          "x": 26.965972900390625,
+          "y": 45.00977325439453
+        },
+        "pointer": {
+          "x": 1332.0,
+          "y": 120.0
+        },
+        "applicationFocused": true,
+        "orthographicSize": 23.0
+      },
+      "hudResources": "FOOD  8165     WOOD  7025     COIN  7650     POP  20+0/30     AGE  3     XP  13/225     SHIP  1",
+      "hudUpdatedFrame": 11043,
+      "hudWorldTime": 609.6981811523438,
+      "hudMatchId": "naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07",
+      "hudConsistency": "same_match_frame_world_time_resources_population",
+      "hudAgeObserved": 3,
+      "objectiveMode": "elimination",
+      "objectiveStatus": "inactive",
+      "originalDirectory": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures",
+      "ownCargoActors": [
+        {
+          "entity": 132,
+          "garrisonedIn": 134,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "pike",
+          "status": "Embarked",
+          "order": "",
+          "position": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "destination": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "hp": 180.0,
+          "cargo": []
+        },
+        {
+          "entity": 133,
+          "garrisonedIn": 134,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "musketeer",
+          "status": "Embarked",
+          "order": "",
+          "position": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "destination": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "hp": 200.0,
+          "cargo": []
+        },
+        {
+          "entity": 134,
+          "garrisonedIn": 0,
+          "load": 2,
+          "capacity": 14,
+          "target": 0,
+          "definition": "transport_ship",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "destination": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "hp": 650.0,
+          "cargo": [
+            132,
+            133
+          ]
+        }
+      ],
+      "archiveFiles": [
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Frontier-20261005-004449-532-f11043-0006291d48734cd49dc31bbb74f6a325.json",
+          "bytes": 10576,
+          "sha256": "8705aab8aec1bc6a831d1d451d5a38e8e7e55319f47ed55cb6c84e5c7f58b02b"
+        },
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Frontier-20261005-004449-532-f11043-0006291d48734cd49dc31bbb74f6a325.png",
+          "bytes": 594982,
+          "sha256": "e7c7d163ee49416df05c2c7f352ebd49d19f4ef70cf55ec83c23ce5edad454d0"
+        }
+      ]
+    },
+    {
+      "json": "Frontier-20261005-004618-924-f2122-b5cc58c3d5234cbf981dd775cb76ccd4.json",
+      "status": "identity_verified",
+      "errors": [],
+      "jsonBytes": 10570,
+      "jsonSha256": "171953ff644cfdb05ea0069bb2d1a4e12d85e63387ffb7b9427fa5bcbc712bf6",
+      "png": "Frontier-20261005-004618-924-f2122-b5cc58c3d5234cbf981dd775cb76ccd4.png",
+      "pngBytes": 522489,
+      "pngSha256": "e064db6acf5880a9d49711392f31bf4104cf5792ac88d6e1444bc7254a0cc527",
+      "width": 1600,
+      "height": 1000,
+      "utc": "2026-10-05T00:46:18.8759470Z",
+      "appVersion": "0.8.0",
+      "buildGuid": "5fbcf668506b4814bc34d27b3902a237",
+      "matchId": "naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07",
+      "inMenu": false,
+      "paused": true,
+      "seed": 314159,
+      "mapId": "generated_strait",
+      "worldTime": 610.4979858398438,
+      "requestWorldTime": 610.4979858398438,
+      "requestFrame": 2122,
+      "captureFrame": 2122,
+      "requestCaptureSameFrame": true,
+      "camera": {
+        "focus": {
+          "x": 26.965972900390625,
+          "y": 45.00977325439453
+        },
+        "pointer": {
+          "x": 743.0,
+          "y": 544.0
+        },
+        "applicationFocused": true,
+        "orthographicSize": 23.0
+      },
+      "hudResources": "FOOD  8165     WOOD  7025     COIN  7650     POP  20+0/30     AGE  3     XP  13/225     SHIP  1",
+      "hudUpdatedFrame": 2122,
+      "hudWorldTime": 610.4979858398438,
+      "hudMatchId": "naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07",
+      "hudConsistency": "same_match_frame_world_time_resources_population",
+      "hudAgeObserved": 3,
+      "objectiveMode": "elimination",
+      "objectiveStatus": "inactive",
+      "originalDirectory": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures",
+      "ownCargoActors": [
+        {
+          "entity": 132,
+          "garrisonedIn": 134,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "pike",
+          "status": "Embarked",
+          "order": "",
+          "position": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "destination": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "hp": 180.0,
+          "cargo": []
+        },
+        {
+          "entity": 133,
+          "garrisonedIn": 134,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "musketeer",
+          "status": "Embarked",
+          "order": "",
+          "position": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "destination": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "hp": 200.0,
+          "cargo": []
+        },
+        {
+          "entity": 134,
+          "garrisonedIn": 0,
+          "load": 2,
+          "capacity": 14,
+          "target": 0,
+          "definition": "transport_ship",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "destination": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "hp": 650.0,
+          "cargo": [
+            132,
+            133
+          ]
+        }
+      ],
+      "archiveFiles": [
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Frontier-20261005-004618-924-f2122-b5cc58c3d5234cbf981dd775cb76ccd4.json",
+          "bytes": 10570,
+          "sha256": "171953ff644cfdb05ea0069bb2d1a4e12d85e63387ffb7b9427fa5bcbc712bf6"
+        },
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Frontier-20261005-004618-924-f2122-b5cc58c3d5234cbf981dd775cb76ccd4.png",
+          "bytes": 522489,
+          "sha256": "e064db6acf5880a9d49711392f31bf4104cf5792ac88d6e1444bc7254a0cc527"
+        }
+      ]
+    },
+    {
+      "json": "Frontier-20261005-004711-921-f5243-00c276bdc2ad4de39f11c3e90b6ae99b.json",
+      "status": "identity_verified",
+      "errors": [],
+      "jsonBytes": 10571,
+      "jsonSha256": "691e192f016dfd6de0c34ea811e73a2747f40299e7709c11d1cfc57ffd086f30",
+      "png": "Frontier-20261005-004711-921-f5243-00c276bdc2ad4de39f11c3e90b6ae99b.png",
+      "pngBytes": 1173435,
+      "pngSha256": "3f0c3fc31cba7a10452d0b786e41d051987535e6d14af4d417e8daa7a08dbbdf",
+      "width": 1600,
+      "height": 1000,
+      "utc": "2026-10-05T00:47:11.8564260Z",
+      "appVersion": "0.8.0",
+      "buildGuid": "5fbcf668506b4814bc34d27b3902a237",
+      "matchId": "naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07",
+      "inMenu": false,
+      "paused": false,
+      "seed": 314159,
+      "mapId": "generated_strait",
+      "worldTime": 624.4945678710938,
+      "requestWorldTime": 624.4945678710938,
+      "requestFrame": 5243,
+      "captureFrame": 5243,
+      "requestCaptureSameFrame": true,
+      "camera": {
+        "focus": {
+          "x": 26.965972900390625,
+          "y": 45.00977325439453
+        },
+        "pointer": {
+          "x": 560.0,
+          "y": 722.0
+        },
+        "applicationFocused": true,
+        "orthographicSize": 23.0
+      },
+      "hudResources": "FOOD  8165     WOOD  7025     COIN  7650     POP  20+0/30     AGE  3     XP  13/225     SHIP  1",
+      "hudUpdatedFrame": 5243,
+      "hudWorldTime": 624.4945678710938,
+      "hudMatchId": "naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07",
+      "hudConsistency": "same_match_frame_world_time_resources_population",
+      "hudAgeObserved": 3,
+      "objectiveMode": "elimination",
+      "objectiveStatus": "inactive",
+      "originalDirectory": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures",
+      "ownCargoActors": [
+        {
+          "entity": 132,
+          "garrisonedIn": 134,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "pike",
+          "status": "Embarked",
+          "order": "",
+          "position": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "destination": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "hp": 180.0,
+          "cargo": []
+        },
+        {
+          "entity": 133,
+          "garrisonedIn": 134,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "musketeer",
+          "status": "Embarked",
+          "order": "",
+          "position": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "destination": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "hp": 200.0,
+          "cargo": []
+        },
+        {
+          "entity": 134,
+          "garrisonedIn": 0,
+          "load": 2,
+          "capacity": 14,
+          "target": 0,
+          "definition": "transport_ship",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "destination": {
+            "x": 34.904563903808594,
+            "y": 44.31155014038086
+          },
+          "hp": 650.0,
+          "cargo": [
+            132,
+            133
+          ]
+        }
+      ],
+      "archiveFiles": [
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Frontier-20261005-004711-921-f5243-00c276bdc2ad4de39f11c3e90b6ae99b.json",
+          "bytes": 10571,
+          "sha256": "691e192f016dfd6de0c34ea811e73a2747f40299e7709c11d1cfc57ffd086f30"
+        },
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Frontier-20261005-004711-921-f5243-00c276bdc2ad4de39f11c3e90b6ae99b.png",
+          "bytes": 1173435,
+          "sha256": "3f0c3fc31cba7a10452d0b786e41d051987535e6d14af4d417e8daa7a08dbbdf"
+        }
+      ]
+    },
+    {
+      "json": "Frontier-20261005-004756-005-f7867-f0555e3e690a474ea0bd26f1def6bf4b.json",
+      "status": "identity_verified",
+      "errors": [],
+      "jsonBytes": 10810,
+      "jsonSha256": "a4183c2285c5745951e46d216036c2815a6644455b85ab1b3f72ff8544187208",
+      "png": "Frontier-20261005-004756-005-f7867-f0555e3e690a474ea0bd26f1def6bf4b.png",
+      "pngBytes": 1157170,
+      "pngSha256": "93def85295d33e321d3b83627ac8eb7da88012b509917e8f5ba5a24bbdbc9b0c",
+      "width": 1600,
+      "height": 1000,
+      "utc": "2026-10-05T00:47:55.9410960Z",
+      "appVersion": "0.8.0",
+      "buildGuid": "5fbcf668506b4814bc34d27b3902a237",
+      "matchId": "naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07",
+      "inMenu": false,
+      "paused": false,
+      "seed": 314159,
+      "mapId": "generated_strait",
+      "worldTime": 668.4838256835938,
+      "requestWorldTime": 668.4838256835938,
+      "requestFrame": 7867,
+      "captureFrame": 7867,
+      "requestCaptureSameFrame": true,
+      "camera": {
+        "focus": {
+          "x": 54.56597137451172,
+          "y": 43.13862228393555
+        },
+        "pointer": {
+          "x": 1400.0,
+          "y": 464.0
+        },
+        "applicationFocused": true,
+        "orthographicSize": 23.0
+      },
+      "hudResources": "FOOD  8165     WOOD  7025     COIN  7650     POP  20+0/30     AGE  3     XP  13/225     SHIP  1",
+      "hudUpdatedFrame": 7867,
+      "hudWorldTime": 668.4838256835938,
+      "hudMatchId": "naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07",
+      "hudConsistency": "same_match_frame_world_time_resources_population",
+      "hudAgeObserved": 3,
+      "objectiveMode": "elimination",
+      "objectiveStatus": "inactive",
+      "originalDirectory": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures",
+      "ownCargoActors": [
+        {
+          "entity": 132,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "pike",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 54.56597137451172,
+            "y": 43.13862228393555
+          },
+          "destination": {
+            "x": 54.56597137451172,
+            "y": 43.13862228393555
+          },
+          "hp": 180.0,
+          "cargo": []
+        },
+        {
+          "entity": 133,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "musketeer",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 53.41596984863281,
+            "y": 41.98862075805664
+          },
+          "destination": {
+            "x": 53.41596984863281,
+            "y": 41.98862075805664
+          },
+          "hp": 200.0,
+          "cargo": []
+        },
+        {
+          "entity": 134,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 14,
+          "target": 0,
+          "definition": "transport_ship",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 49.937198638916016,
+            "y": 43.83997344970703
+          },
+          "destination": {
+            "x": 49.937198638916016,
+            "y": 43.83997344970703
+          },
+          "hp": 650.0,
+          "cargo": []
+        }
+      ],
+      "archiveFiles": [
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Frontier-20261005-004756-005-f7867-f0555e3e690a474ea0bd26f1def6bf4b.json",
+          "bytes": 10810,
+          "sha256": "a4183c2285c5745951e46d216036c2815a6644455b85ab1b3f72ff8544187208"
+        },
+        {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Frontier-20261005-004756-005-f7867-f0555e3e690a474ea0bd26f1def6bf4b.png",
+          "bytes": 1157170,
+          "sha256": "93def85295d33e321d3b83627ac8eb7da88012b509917e8f5ba5a24bbdbc9b0c"
+        }
+      ]
+    }
+  ],
+  "captureArchiveSynchronization": {
+    "status": "complete",
+    "pendingDestinations": [],
+    "scope": "Original user F9 PNG/JSON identities have already passed. Archive presence is tracked separately and must not be inferred from identity verification."
+  },
+  "reports": [
+    {
+      "report": {
+        "source": {
+          "path": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261005-004522-540-naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07-quit.json",
+          "bytes": 3134,
+          "sha256": "2fa991311c2505f9c76a3329b0f2e5e76804d2391856fae9de0b48f220cdea08"
+        },
+        "archive": {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Reports/20261005-004522-540-naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07-quit.json",
+          "bytes": 3134,
+          "sha256": "2fa991311c2505f9c76a3329b0f2e5e76804d2391856fae9de0b48f220cdea08"
+        }
+      },
+      "events": {
+        "source": {
+          "path": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261005-004522-540-naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07-quit-events.jsonl",
+          "bytes": 166672,
+          "sha256": "ef527f0e0a4889d3091b8d23aacde30a7be675c61faada4a4e5ce1c13fa3f5c3"
+        },
+        "archive": {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Reports/20261005-004522-540-naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07-quit-events.jsonl",
+          "bytes": 166672,
+          "sha256": "ef527f0e0a4889d3091b8d23aacde30a7be675c61faada4a4e5ce1c13fa3f5c3"
+        }
+      },
+      "reason": "quit",
+      "winner": -1,
+      "worldTime": 610.4979858398438,
+      "eventCount": 251,
+      "checkpoint": "fleet-cargo-before-cold",
+      "checkpointEventsExactPrefix": true,
+      "additionalReportEvents": []
+    },
+    {
+      "report": {
+        "source": {
+          "path": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261005-004842-851-naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07-menu_exit.json",
+          "bytes": 3140,
+          "sha256": "193cc45228f376c577b18a97c7fea8b855b18cf33c20c2374d6906c58db5f4ff"
+        },
+        "archive": {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Reports/20261005-004842-851-naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07-menu_exit.json",
+          "bytes": 3140,
+          "sha256": "193cc45228f376c577b18a97c7fea8b855b18cf33c20c2374d6906c58db5f4ff"
+        }
+      },
+      "events": {
+        "source": {
+          "path": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261005-004842-851-naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07-menu_exit-events.jsonl",
+          "bytes": 171199,
+          "sha256": "d0907321360a39726d14a197786c4965bfff2fd976032cf6382722f2d0fe5456"
+        },
+        "archive": {
+          "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Reports/20261005-004842-851-naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07-menu_exit-events.jsonl",
+          "bytes": 171199,
+          "sha256": "d0907321360a39726d14a197786c4965bfff2fd976032cf6382722f2d0fe5456"
+        }
+      },
+      "reason": "menu_exit",
+      "winner": -1,
+      "worldTime": 668.5838012695312,
+      "eventCount": 258,
+      "checkpoint": "fleet-cold-landed-recalled",
+      "checkpointEventsExactPrefix": true,
+      "additionalReportEvents": []
+    }
+  ],
+  "nativeLogs": [
+    {
+      "sourcePath": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Diagnostics/native-controlled-final.log",
+      "sourceScope": "entire frozen log",
+      "sourceLines": 145,
+      "sourceBytes": 16093,
+      "sourceSha256": "5b6abeaa844ce1c5a3eee7a8f39632b204015358c1fa15b23da6b25a03cc7285",
+      "sanitized": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Logs/native-controlled-final.sanitized.log",
+        "bytes": 16093,
+        "sha256": "5b6abeaa844ce1c5a3eee7a8f39632b204015358c1fa15b23da6b25a03cc7285"
+      },
+      "linePreservingSanitization": true,
+      "redactions": [],
+      "markers": [
+        {
+          "sourceLine": 39,
+          "text": "FRONTIER_LOAD slot=3 match=naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07 time=471.7196"
+        },
+        {
+          "sourceLine": 62,
+          "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261005-004245-530-f3670-ca1db65c4d174599a4234fee62b46b74.json"
+        },
+        {
+          "sourceLine": 74,
+          "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261005-004431-549-f9976-3faf70d400a640708f2c2b7e0d4de810.json"
+        },
+        {
+          "sourceLine": 86,
+          "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261005-004449-532-f11043-0006291d48734cd49dc31bbb74f6a325.json"
+        },
+        {
+          "sourceLine": 99,
+          "text": "FRONTIER_SAVE slot=3 match=naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07 time=610.498"
+        },
+        {
+          "sourceLine": 121,
+          "text": "FRONTIER_REPORT /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261005-004522-540-naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07-quit.json"
+        }
+      ],
+      "exceptionOrSaveLoadFailureMatches": [],
+      "shutdownTelemetry": [
+        {
+          "sourceLine": 133,
+          "text": "Thread 0x16d5b7000 may have been prematurely finalized"
+        },
+        {
+          "sourceLine": 134,
+          "text": "Thread 0x16d07f000 may have been prematurely finalized"
+        },
+        {
+          "sourceLine": 140,
+          "text": "Thread 0x16bf8b000 may have been prematurely finalized"
+        },
+        {
+          "sourceLine": 141,
+          "text": "Thread 0x16c017000 may have been prematurely finalized"
+        },
+        {
+          "sourceLine": 142,
+          "text": "Thread 0x16c12f000 may have been prematurely finalized"
+        },
+        {
+          "sourceLine": 143,
+          "text": "Thread 0x16c0a3000 may have been prematurely finalized"
+        }
+      ]
+    },
+    {
+      "sourcePath": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Diagnostics/native-controlled-cold-final.log",
+      "sourceScope": "immutable prefix through fleet menu_exit report; later template operations excluded",
+      "sourceLines": 143,
+      "sourceBytes": 16107,
+      "sourceSha256": "fc8c7cf70feee707c1b578a35f878e62d6a448f042d217a5b0b9b1b6b9543e1a",
+      "sanitized": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Logs/native-controlled-cold-final.fleet-prefix.sanitized.log",
+        "bytes": 16107,
+        "sha256": "fc8c7cf70feee707c1b578a35f878e62d6a448f042d217a5b0b9b1b6b9543e1a"
+      },
+      "linePreservingSanitization": true,
+      "redactions": [],
+      "markers": [
+        {
+          "sourceLine": 39,
+          "text": "FRONTIER_LOAD slot=3 match=naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07 time=610.498"
+        },
+        {
+          "sourceLine": 61,
+          "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261005-004618-924-f2122-b5cc58c3d5234cbf981dd775cb76ccd4.json"
+        },
+        {
+          "sourceLine": 73,
+          "text": "FRONTIER_SAVE slot=3 match=naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07 time=610.498"
+        },
+        {
+          "sourceLine": 96,
+          "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261005-004711-921-f5243-00c276bdc2ad4de39f11c3e90b6ae99b.json"
+        },
+        {
+          "sourceLine": 108,
+          "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261005-004756-005-f7867-f0555e3e690a474ea0bd26f1def6bf4b.json"
+        },
+        {
+          "sourceLine": 121,
+          "text": "FRONTIER_SAVE slot=3 match=naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07 time=668.5838"
+        },
+        {
+          "sourceLine": 143,
+          "text": "FRONTIER_REPORT /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261005-004842-851-naval-preview-naval-strait-314159-6d6830e3898143ed9b01f37b7bab7d07-menu_exit.json"
+        }
+      ],
+      "exceptionOrSaveLoadFailureMatches": [],
+      "shutdownTelemetry": []
+    },
+    {
+      "source": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Diagnostics/native-controlled-cold-final.log",
+        "bytes": 51013,
+        "sha256": "f1af89de985ab4e7daeb9a527f75feac07bc6e8cc1be4b5e993940845eb2e592"
+      },
+      "sourceScope": "entire final closed multi-scene native log",
+      "sanitized": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/Logs/native-controlled-cold-final.sanitized.log",
+        "bytes": 51013,
+        "sha256": "f1af89de985ab4e7daeb9a527f75feac07bc6e8cc1be4b5e993940845eb2e592"
+      },
+      "linePreservingSanitization": true,
+      "redactions": [],
+      "exceptionOrSaveLoadFailureMatches": [],
+      "shutdownTelemetry": [
+        {
+          "sourceLine": 390,
+          "text": "Thread 0x16dd7b000 may have been prematurely finalized"
+        },
+        {
+          "sourceLine": 391,
+          "text": "Thread 0x16d843000 may have been prematurely finalized"
+        },
+        {
+          "sourceLine": 397,
+          "text": "Thread 0x16c7db000 may have been prematurely finalized"
+        },
+        {
+          "sourceLine": 398,
+          "text": "Thread 0x16c867000 may have been prematurely finalized"
+        },
+        {
+          "sourceLine": 399,
+          "text": "Thread 0x16c8f3000 may have been prematurely finalized"
+        },
+        {
+          "sourceLine": 400,
+          "text": "Thread 0x16c74f000 may have been prematurely finalized"
+        }
+      ],
+      "scope": "Global runtime error-pattern scan only. This fleet audit does not infer functional acceptance of the other three scenes from a clean log."
+    }
+  ],
+  "visualReview": [
+    {
+      "png": "Frontier-20261005-004449-532-f11043-0006291d48734cd49dc31bbb74f6a325.png",
+      "observed": "TRANSPORT PASSENGERS modal lists Pikeman HP180 and Musketeer HP200, Load2/14; selected transport HP650."
+    },
+    {
+      "png": "Frontier-20261005-004711-921-f5243-00c276bdc2ad4de39f11c3e90b6ae99b.png",
+      "observed": "No units selected after operator-reported key4; metadata still records both passengers aboard134."
+    },
+    {
+      "png": "Frontier-20261005-004756-005-f7867-f0555e3e690a474ea0bd26f1def6bf4b.png",
+      "observed": "Two selected living infantry on the central-island shore, empty transport alongside; camera has followed recalled land group."
+    }
+  ],
+  "protectedSlots": [
+    {
+      "slot": 1,
+      "current": {
+        "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Saves/slot-1.json",
+        "bytes": 3017924,
+        "sha256": "b54bd30d20e25a0b40274d9ed3a50899fd05386fa7833420651b7f51edb8c3eb"
+      },
+      "unchanged": true
+    },
+    {
+      "slot": 2,
+      "current": {
+        "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Saves/slot-2.json",
+        "bytes": 4782539,
+        "sha256": "24e670cc987221d62a79609741687b16eb28dbf875faa8892f6922563e868ecf"
+      },
+      "unchanged": true
+    }
+  ],
+  "limitations": [
+    "Controlled AgeIII fixture grants: player0 +8000F/+8000W/+8000C, player1 +2000 each. Paid units/ship validated against actual exporter Payment/Queue/Spawn events; no claim of normal age advancement or native production.",
+    "Passenger group membership is an exact save fact; actual digit4 keypress is operator observation backed by screenshot results, not a hidden metadata field.",
+    "First fleet process exited; second process continued into separate scenarios after fleet menu_exit. Only its fleet log prefix is assessed here; no blanket result for its later lifetime.",
+    "The native observed route is one shore crossing with two passengers, not arbitrary-map transport coverage.",
+    "Combat and paid repair remain the separately scoped historical gameplay proof and are not newly claimed by this save-fix audit."
+  ],
+  "finalClosedProcessAndSavePreservation": {
+    "receipt": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/final-user-slot-preservation.json",
+      "bytes": 1100,
+      "sha256": "a92751363079b8c3b73ef3adac166eb89afe22ac6bd7c32145cf51cad0954ad1"
+    },
+    "recordedObservation": {
+      "recordedAtUtc": "2026-10-05T00:54:26.314218+00:00",
+      "buildGuid": "5fbcf668506b4814bc34d27b3902a237",
+      "nativeFinalSession": 31732,
+      "actualExitCode": 0,
+      "actualExitToolChunk": "52b01e",
+      "matchingProcesses": 0,
+      "slotsOneAndTwo": [
+        {
+          "slot": 1,
+          "bytes": 3017924,
+          "sha256": "b54bd30d20e25a0b40274d9ed3a50899fd05386fa7833420651b7f51edb8c3eb",
+          "unchanged": true
+        },
+        {
+          "slot": 2,
+          "bytes": 4782539,
+          "sha256": "24e670cc987221d62a79609741687b16eb28dbf875faa8892f6922563e868ecf",
+          "unchanged": true
+        }
+      ],
+      "slot3WasOriginallyAbsent": true,
+      "removedOnlyExactManagedSlot3": "1e774937261b8dd97da6b5182956457e23b631c170084f668aae964ac48675ca",
+      "archivedSlot3": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/SlotHistory/1e774937261b8dd97da6b5182956457e23b631c170084f668aae964ac48675ca.json",
+      "archivedBytes": 20429,
+      "slot3AbsentAfter": true,
+      "scope": "bounded cleanup of originally absent task-owned slot3 after byte archive; slots1/2 read only; operator actual exit tool receipt"
+    },
+    "independentChecks": {
+      "slot1And2": [
+        {
+          "slot": 1,
+          "current": {
+            "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Saves/slot-1.json",
+            "bytes": 3017924,
+            "sha256": "b54bd30d20e25a0b40274d9ed3a50899fd05386fa7833420651b7f51edb8c3eb"
+          },
+          "unchanged": true
+        },
+        {
+          "slot": 2,
+          "current": {
+            "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Saves/slot-2.json",
+            "bytes": 4782539,
+            "sha256": "24e670cc987221d62a79609741687b16eb28dbf875faa8892f6922563e868ecf"
+          },
+          "unchanged": true
+        }
+      ],
+      "slot3Absent": true,
+      "originalBaselineSlot3Absent": true,
+      "exactManagedArchive": {
+        "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.8.0/FinalCandidate/Native/SlotHistory/1e774937261b8dd97da6b5182956457e23b631c170084f668aae964ac48675ca.json",
+        "bytes": 20429,
+        "sha256": "1e774937261b8dd97da6b5182956457e23b631c170084f668aae964ac48675ca"
+      },
+      "archiveShaMatchesLedgerAndCleanupReceipt": true,
+      "archiveMatchIdMatchesManagedLedger": true
+    },
+    "processObservationScope": "Actual exit0 and process count are parent execution-tool observations; hashes, ownership ledger and final file existence checked independently."
+  },
+  "finalizedAtUtc": "2026-10-05T00:57:05.731946+00:00"
+}

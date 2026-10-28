@@ -1,0 +1,88 @@
+{
+  "schema": "frontier-isolated-step-probe072-1",
+  "status": "source_sealed_not_unity_compiled_or_run",
+  "executeMethod": "Frontier.Editor.EditorStepProbe072.Run",
+  "declaredFixedSteps": 250,
+  "scope": "OriginalNativeA true14700step anchor and full61290eventprefix restore; mainrepo readonly,250normalMatchSimulation.Step, nofutureexternalreplayinputs or rendering; no newWorldstate injection",
+  "inputs": [
+    {
+      "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/NativeAnchor1470/anchor.json",
+      "bytes": 1010613,
+      "sha256": "edb9e504bd6e7b8e37e501f42b2c14349fcb7ac1d0ebc31a42ae51e8522a5785"
+    },
+    {
+      "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/NativeAnchor1470/recorded-events-prefix.json",
+      "bytes": 39456727,
+      "sha256": "cd9907d6bcc1134c0a08272d8fa31230e3351e8b761613ee95e2f934de008336"
+    },
+    {
+      "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/NativeAnchor1470/extraction-receipt.json",
+      "bytes": 1924,
+      "sha256": "be1ad0751f2d903931f326df28798e44b4ca04c75c0b4689ef26c9d7bdc2b56a"
+    }
+  ],
+  "sourceFiles": [
+    {
+      "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Editor/EditorStepProbe072.cs",
+      "bytes": 8850,
+      "sha256": "be6375a391c125a082bac5ccdb97535ecc0ddd814707fdd4984508214e3f6fc1"
+    },
+    {
+      "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Editor/EditorStepProbe072.cs.meta",
+      "bytes": 60,
+      "sha256": "a17edfa3d018897aea0e448bdff2c9842c42de2450fcd3bd3729fec2c95d987d"
+    }
+  ],
+  "copiedRuntimeAdditionalInstrumentation": [
+    {
+      "path": "Assets/Frontier/Simulation/SkirmishAI.cs",
+      "main": {
+        "file": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Simulation/SkirmishAI.cs",
+        "bytes": 37607,
+        "sha256": "37b2cc8da6fc0c8c54d62feacb102888f0af0d9dcc5e3be660833a6827c46da1"
+      },
+      "copy": {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Simulation/SkirmishAI.cs",
+        "bytes": 37861,
+        "sha256": "faf893ecf94a1abf63661b4ff9ad383b67c98fc500793ca8e53e78659e175018"
+      },
+      "tokensIdenticalAfterRemovingInstrumentation": true
+    },
+    {
+      "path": "Assets/Frontier/Simulation/World.cs",
+      "main": {
+        "file": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Simulation/World.cs",
+        "bytes": 20080,
+        "sha256": "d7f41ecf0d2e92c4eac7e0e63c99830d15a3b788190a3ef4b02060c4aad7c0fa"
+      },
+      "copy": {
+        "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/project/Assets/Frontier/Simulation/World.cs",
+        "bytes": 20188,
+        "sha256": "13189bc9c0821df2a833814d0759f903e6310bc9b8942b384b4acf0e0b3ae93f"
+      },
+      "tokensIdenticalAfterRemovingInstrumentation": true
+    }
+  ],
+  "priorQueryInstrumentationAllHashesRemainUnchanged": true,
+  "additionalTimers": [
+    "SkirmishAI.Tick.P0/P1",
+    "SkirmishAI.ReviewDecision.P0/P1",
+    "World.Tick"
+  ],
+  "priorTimersCounters": "FindPathordinary/filtered,Survey/SourceAmount/ReachableSource/Home/Construction plus predicate/node counters unchanged",
+  "restoreMethod": "PublicWorld.Restore from clonedanchor projection hydrated onlywith actualrecordedprefix; exactMatchSimulation.Restore; publicReplayDigest.Compute mustmatch originalanchor.stateDigest beforeadvance",
+  "output": "steps.jsonl begin/end flush perstep; coarse inclusivewalltimer/counters; finalworld/simulation/new-events andreceipt oncompletion/exception; no perstep39MBledger serialization",
+  "limits": [
+    "Diagnostic instrument overhead/concurrentCPU retained",
+    "Navigationclearance caches restoredcold; not a releaseFPS measurement",
+    "ActualWorld progresses through lawfulAI commands andTick; no runtimefunds/HP/fog/forcedwinner",
+    "Futureexternalreplayrecords notapplied; cannotcallwholeplayback verification",
+    "Ifnaturalterminal before250steps preserve genuineearlystop insteadofresuming",
+    "Originalsealedquery code andRun1/2/3/4 outputs remainunchanged"
+  ],
+  "commandEnvironment": {
+    "FRONTIER_PERF_ANCHOR": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/NativeAnchor1470/anchor.json",
+    "FRONTIER_PERF_EVENTS_PREFIX": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/NativeAnchor1470/recorded-events-prefix.json",
+    "FRONTIER_PERF_OUTPUT": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/PerfProbe072/StepRun1"
+  }
+}

@@ -1,0 +1,4192 @@
+{
+  "schema": 1,
+  "auditedUtc": "2026-10-06T06:18:40.476270+00:00",
+  "scope": "Independent read of exited Process4/ProfileC plus original ProfileB slot2. No Unity/GUI/input or forward replay execution.",
+  "status": "raw_original_checks_passed",
+  "originalInputsStable": true,
+  "process": {
+    "schema": 1,
+    "appVersion": "0.14.0",
+    "buildGuid": "2d39f78f9f234ef092e172a35f800cae",
+    "bundleId": "com.frontierworkshop.reckoning",
+    "command": [
+      "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Build/Frontier Reckoning.app/Contents/MacOS/Frontier Reckoning",
+      "-screen-width",
+      "1600",
+      "-screen-height",
+      "1000",
+      "-frontierMaxAge",
+      "5",
+      "-frontierDataDirectory",
+      "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC",
+      "-frontierReportDirectory",
+      "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Reports",
+      "-frontierReplayDirectory",
+      "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Replays",
+      "-frontierInputTrace",
+      "-logFile",
+      "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process4/Player.log"
+    ],
+    "profile": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC",
+    "startedAtUtc": "2026-10-06T06:04:41.449279+00:00",
+    "status": "exited",
+    "buildIdentitySha256": "03bed3da30fb83a34e9f15a9667b43bef8310e840c7f429d942be3a6900e887d",
+    "executableSha256": "a1ca2793cb64bee94e8b6a57d63892b842537236e5744c563b69e2e36d59aaa0",
+    "processId": 59212,
+    "pid": 59212,
+    "endedAtUtc": "2026-10-06T06:12:26.414098+00:00",
+    "exitCode": 0,
+    "log": {
+      "file": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process4/Player.log",
+      "bytes": 54098,
+      "sha256": "91f2ff28ee0322ecd5e9642f794dfdf2799af12ba14fe4278ab4af44aff117f4"
+    }
+  },
+  "binaryHashesIndependentlyRecomputed": false,
+  "identity": {
+    "matchId": "f496cf03970641248584b719cdf87515",
+    "appVersion": "0.14.0",
+    "buildGuid": "2d39f78f9f234ef092e172a35f800cae",
+    "rulesHash": "e0aca57faf2e1d08be2a6e341391be985fc368e296e410397327b38292024583",
+    "scenarioId": "controlled_iv_actions071",
+    "scenarioHash": "95eecd198899733720bcdb76556c2c8524e514881b002da9adf8756838977319",
+    "worldSchema": 4,
+    "replayIdentity": {
+      "appVersion": "0.14.0",
+      "buildIdentity": "2d39f78f9f234ef092e172a35f800cae",
+      "unityVersion": "6000.6.3f1",
+      "rulesHash": "e0aca57faf2e1d08be2a6e341391be985fc368e296e410397327b38292024583",
+      "mapGenerationVersion": 1,
+      "guidedCatalogRevision": 1,
+      "scenarioFormatVersion": 1,
+      "scenarioRuntimeVersion": 2
+    }
+  },
+  "coldSource": {
+    "sourceEnvelope": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileB/Saves/slot-2.json",
+      "fileSha256": "ef322396a2c786d77c33c2f9464b8f58338dc53730f2e941fd2d24b9446bd134",
+      "payloadSha256": "657c16e97b46ee70b8ba9b7cda2424b90442bd2a23ffaa4ea67855c4d8919d2d",
+      "payloadBytes": 784550,
+      "schema": 2,
+      "encoding": "gzip-base64",
+      "gzipSingleMemberCrcVerified": true,
+      "payloadShaVerified": true
+    },
+    "profileCCopyEnvelope": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Saves/slot-2.json",
+      "fileSha256": "ef322396a2c786d77c33c2f9464b8f58338dc53730f2e941fd2d24b9446bd134",
+      "payloadSha256": "657c16e97b46ee70b8ba9b7cda2424b90442bd2a23ffaa4ea67855c4d8919d2d",
+      "payloadBytes": 784550,
+      "schema": 2,
+      "encoding": "gzip-base64",
+      "gzipSingleMemberCrcVerified": true,
+      "payloadShaVerified": true
+    },
+    "exactOriginalSlotBytesEqual": true,
+    "initialReplayWorldDiff": [
+      "events"
+    ],
+    "initialReplaySimulationDiff": [
+      "accumulator"
+    ],
+    "startStep": 2441,
+    "startWorldTime": 244.10569763183594
+  },
+  "slot3Envelope": {
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Saves/slot-3.json",
+    "fileSha256": "b928e8c29d9723d0e38b4f49f80089ef5e48e9fceb233917c1fe1f0537113ccc",
+    "payloadSha256": "2d8621cd8471dd77257a52d14969ff7fa5d4537db6e28bb6b613d8acc098f3ab",
+    "payloadBytes": 862259,
+    "schema": 2,
+    "encoding": "gzip-base64",
+    "gzipSingleMemberCrcVerified": true,
+    "payloadShaVerified": true
+  },
+  "replayEnvelope": {
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Replays/replay-4daa44293e8f42cd90a7ae97d7f851ed.replay.json",
+    "fileSha256": "9f2001b819bebf6bc8ff802d940cb5195ee87fedc8f0bdf4cc8626db542e450e",
+    "payloadSha256": "ef57e57e9ff3b44212bbbc3c37be7b281448cd1bb527374a797fb1ea8a1dfaa3",
+    "payloadBytes": 6622352,
+    "schema": 2,
+    "encoding": "gzip-base64",
+    "gzipSingleMemberCrcVerified": true,
+    "payloadShaVerified": true
+  },
+  "government": {
+    "payment": {
+      "schemaVersion": 2,
+      "hasEconomy": true,
+      "hasPopulation": true,
+      "economy": {
+        "requestedDelta": {
+          "food": -400.0,
+          "wood": 0.0,
+          "coin": -400.0
+        },
+        "actualDelta": {
+          "food": -400.0,
+          "wood": 0.0,
+          "coin": -400.0
+        },
+        "balanceBefore": {
+          "food": 500.0,
+          "wood": 0.0,
+          "coin": 400.0
+        },
+        "balanceAfter": {
+          "food": 100.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 6,
+        "reserved": 0,
+        "capacity": 20
+      },
+      "time": 244.10569763183594,
+      "kind": "Payment",
+      "message": "Rebuild Civilian Government: 400 F / 0 W / 400 C",
+      "player": 0,
+      "entity": 1,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 22.0,
+        "y": 24.0
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 1.0
+      }
+    },
+    "completed": {
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": true,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 6,
+        "reserved": 0,
+        "capacity": 20
+      },
+      "time": 304.2093505859375,
+      "kind": "CivilianRebuilt",
+      "message": "Settler sources restored; revolutionary soldiers and age IV commitment retained",
+      "player": 0,
+      "entity": 1,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 22.0,
+        "y": 24.0
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 1.0
+      }
+    },
+    "actualSimulationSeconds": 60.10365295410156,
+    "paidQueueAtColdLoad": {
+      "item": "civilian_rebuilding",
+      "kind": "Research",
+      "count": 1,
+      "population": 0,
+      "paid": {
+        "food": 400.0,
+        "wood": 0.0,
+        "coin": 400.0
+      },
+      "elapsed": 0.0,
+      "duration": 60.0,
+      "choice": ""
+    },
+    "finalPhase": 2,
+    "ageRetained": 4,
+    "noRepeatedRevolutionOrWorkerConversionAfterColdLoad": true
+  },
+  "worker": {
+    "payment": {
+      "schemaVersion": 2,
+      "hasEconomy": true,
+      "hasPopulation": true,
+      "economy": {
+        "requestedDelta": {
+          "food": -100.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": -100.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 317.8018493652344,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 217.80184936523438,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 6,
+        "reserved": 0,
+        "capacity": 20
+      },
+      "time": 328.01080322265625,
+      "kind": "Payment",
+      "message": "Settler ×1: 100 F / 0 W / 0 C",
+      "player": 0,
+      "entity": 1,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 22.0,
+        "y": 24.0
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 1.0
+      }
+    },
+    "trained": {
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": false,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 0,
+        "reserved": 0,
+        "capacity": 0
+      },
+      "time": 348.01202392578125,
+      "kind": "UnitTrained",
+      "message": "villager",
+      "player": 0,
+      "entity": 1,
+      "target": 80,
+      "visibilityMask": 1,
+      "amount": 1.0,
+      "position": {
+        "x": 22.0,
+        "y": 24.0
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 1.0
+      }
+    },
+    "actualSimulationSeconds": 20.001220703125,
+    "entityId": 80,
+    "finalDefinition": "villager",
+    "finalState": {
+      "id": 80,
+      "owner": 0,
+      "position": {
+        "x": 8.68880558013916,
+        "y": 32.24772262573242
+      },
+      "previousPosition": {
+        "x": 8.68880558013916,
+        "y": 32.24772262573242
+      },
+      "origin": {
+        "x": 26.5,
+        "y": 24.0
+      },
+      "facing": {
+        "x": -0.6939459443092346,
+        "y": 0.7200271487236023
+      },
+      "rally": {
+        "x": 26.5,
+        "y": 20.5
+      },
+      "tradeMode": 0,
+      "rallyResource": 0,
+      "hp": 150.0,
+      "construction": 1.0,
+      "remaining": 0.0,
+      "attackReadyAt": 0.0,
+      "fireAt": -1.0,
+      "deployUntil": 0.0,
+      "scanAt": 447.0680236816406,
+      "stuckFor": 0.0,
+      "pathRetryAt": 448.3180847167969,
+      "recoveryProgressPosition": {
+        "x": 9.238641738891602,
+        "y": 31.6666202545166
+      },
+      "recoveryProgressAt": 451.7183532714844,
+      "progressGoal": {
+        "x": 8.287659645080566,
+        "y": 32.67168045043945
+      },
+      "detour": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "progressDistance": 0.9836589694023132,
+      "progressAt": 451.818359375,
+      "detourUntil": 0.0,
+      "pathGoal": {
+        "x": 8.287659645080566,
+        "y": 32.67168045043945
+      },
+      "isDeployed": false,
+      "shotMelee": false,
+      "nextEconomyLog": 512.7220458984375,
+      "paidConstruction": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "attackTarget": 0,
+      "garrisonedIn": 0,
+      "rallyTarget": 0,
+      "pathVersion": 52,
+      "hold": false,
+      "dead": false,
+      "forceMelee": false,
+      "routeTown": 0,
+      "routeStation": 0,
+      "routeLeg": 0,
+      "routeDistance": 0.0,
+      "shieldReadyAt": 0.0,
+      "cargoPaid": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "shielded": false,
+      "autoRecruitElapsed": 0.0,
+      "autoRecruitPaused": false,
+      "factoryMode": "food",
+      "factoryElapsed": 0.0,
+      "pathAvoidsAllies": false,
+      "pathIndex": 2,
+      "status": "Gathering Wood",
+      "work": {
+        "kind": 1,
+        "target": 17,
+        "resource": 2,
+        "time": 511.822021484375
+      }
+    },
+    "ordinaryTrainingOnly": true
+  },
+  "gathering": {
+    "crate": {
+      "definition": "crate_food",
+      "entityId": 75,
+      "owner": 0,
+      "actor": 3,
+      "firstTime": 275.8076171875,
+      "lastLogTime": 420.2164306640625,
+      "eventCount": 38,
+      "loggedAmount": 217.79998290538788,
+      "playerGatheredFood": 217.80068969726562,
+      "sourceRemaining": 182.19778442382812,
+      "allPositive": true,
+      "controlledAuthoredInitialAmount": 400
+    },
+    "forest": {
+      "definition": "tree",
+      "entityId": 17,
+      "owner": -1,
+      "actor": 80,
+      "firstTime": 451.7183532714844,
+      "lastTime": 511.822021484375,
+      "eventCount": 62,
+      "loggedAmount": 30.100003577768803,
+      "playerGatheredWood": 30.09982681274414,
+      "sourceRemaining": 219.89816284179688,
+      "allPositive": true
+    },
+    "playerResources": {
+      "food": 217.80184936523438,
+      "wood": 30.09982681274414,
+      "coin": 0.0
+    },
+    "noPassiveOrTradeIncome": true,
+    "stopRecords": [
+      {
+        "completedStep": 3120,
+        "ordinal": 0,
+        "kind": 0,
+        "hasCommand": true,
+        "commandActorsNull": false,
+        "commandItemNull": false,
+        "commandChoiceNull": false,
+        "command": {
+          "player": 0,
+          "kind": 0,
+          "actors": [
+            3
+          ],
+          "order": 7,
+          "point": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "target": 0,
+          "index": 0,
+          "count": 1,
+          "item": "",
+          "choice": "",
+          "append": false
+        },
+        "selection": [],
+        "paused": false,
+        "accepted": true,
+        "reason": "Stop order accepted",
+        "eventHash": "c5f9098009b80af0bdf0d1006b106b50f9a271998cfb918028a7a9d971b8919b",
+        "eventCount": 277
+      },
+      {
+        "completedStep": 3564,
+        "ordinal": 0,
+        "kind": 0,
+        "hasCommand": true,
+        "commandActorsNull": false,
+        "commandItemNull": false,
+        "commandChoiceNull": false,
+        "command": {
+          "player": 0,
+          "kind": 0,
+          "actors": [
+            3
+          ],
+          "order": 7,
+          "point": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "target": 0,
+          "index": 0,
+          "count": 1,
+          "item": "",
+          "choice": "",
+          "append": false
+        },
+        "selection": [],
+        "paused": false,
+        "accepted": true,
+        "reason": "Stop order accepted",
+        "eventHash": "b5ff7721aa582004c7850ea95cc870236d34d4c569b2f91a835e5221beef10b5",
+        "eventCount": 285
+      },
+      {
+        "completedStep": 4089,
+        "ordinal": 0,
+        "kind": 0,
+        "hasCommand": true,
+        "commandActorsNull": false,
+        "commandItemNull": false,
+        "commandChoiceNull": false,
+        "command": {
+          "player": 0,
+          "kind": 0,
+          "actors": [
+            3
+          ],
+          "order": 7,
+          "point": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "target": 0,
+          "index": 0,
+          "count": 1,
+          "item": "",
+          "choice": "",
+          "append": false
+        },
+        "selection": [],
+        "paused": false,
+        "accepted": true,
+        "reason": "Stop order accepted",
+        "eventHash": "4e97f3b8a5f359bacb814e1b2a49bb13d62642b97a06c18738498bf4d202b113",
+        "eventCount": 287
+      }
+    ],
+    "stopInputTrace": [
+      {
+        "line": 169,
+        "text": "FRONTIER_INPUT Key S down p=(1292.00, 505.00) shift=False save=False t=187.0204"
+      },
+      {
+        "line": 224,
+        "text": "FRONTIER_INPUT Key S down p=(747.00, 777.00) shift=False save=False t=231.4371"
+      },
+      {
+        "line": 282,
+        "text": "FRONTIER_INPUT Key S down p=(251.00, 749.00) shift=False save=False t=283.9505"
+      }
+    ]
+  },
+  "controlGroup": {
+    "coldGroups": [
+      {
+        "number": 1,
+        "actors": [
+          3
+        ]
+      }
+    ],
+    "savedGroups": [
+      {
+        "number": 1,
+        "actors": [
+          3
+        ]
+      }
+    ],
+    "coldRecallTrace": [
+      {
+        "line": 70,
+        "text": "FRONTIER_INPUT Key Digit1 down p=(585.00, 723.00) shift=False save=False t=59.0847"
+      },
+      {
+        "line": 138,
+        "text": "FRONTIER_INPUT Key Digit1 down p=(585.00, 723.00) shift=False save=False t=119.1375"
+      },
+      {
+        "line": 140,
+        "text": "FRONTIER_UI context entity=3 count=1 world=244.106 frame=6883"
+      },
+      {
+        "line": 207,
+        "text": "FRONTIER_INPUT Key Digit1 down p=(842.00, 178.00) shift=False save=False t=218.5632"
+      },
+      {
+        "line": 313,
+        "text": "FRONTIER_INPUT Key Digit1 down p=(585.00, 638.00) shift=False save=False t=295.3476"
+      }
+    ],
+    "keepUnitsTrace": [
+      {
+        "line": 252,
+        "text": "FRONTIER_UI action=KEEP UNITS world=384.114 frame=15216"
+      }
+    ],
+    "noDisbandBeforeFinalConfirmation": true,
+    "acceptedDisband": {
+      "completedStep": 4202,
+      "ordinal": 0,
+      "kind": 0,
+      "hasCommand": true,
+      "commandActorsNull": false,
+      "commandItemNull": false,
+      "commandChoiceNull": false,
+      "command": {
+        "player": 0,
+        "kind": 26,
+        "actors": [
+          3
+        ],
+        "order": 0,
+        "point": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "target": 0,
+        "index": 0,
+        "count": 1,
+        "item": "",
+        "choice": "",
+        "append": false
+      },
+      "selection": [],
+      "paused": false,
+      "accepted": true,
+      "reason": "Disbanded 1 land units; population released",
+      "eventHash": "e1ec217d4d4d21f732265dc9592fb432e58ad3e9ee0d298e5bacb602b1452355",
+      "eventCount": 290
+    },
+    "disbandEvent": {
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": false,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 0,
+        "reserved": 0,
+        "capacity": 0
+      },
+      "time": 420.2164306640625,
+      "kind": "UnitDisbanded",
+      "message": "Land unit dismissed without refund or combat XP",
+      "player": 0,
+      "entity": 3,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 1.0,
+      "position": {
+        "x": 8.0,
+        "y": 34.0
+      },
+      "facing": {
+        "x": -0.993857741355896,
+        "y": -0.11066503077745438
+      }
+    },
+    "finalDeadActorId": 3,
+    "finalPopulation": {
+      "used": 6,
+      "reserved": 0,
+      "capacity": 20
+    },
+    "emptyRecallTrace": [
+      {
+        "line": 70,
+        "text": "FRONTIER_INPUT Key Digit1 down p=(585.00, 723.00) shift=False save=False t=59.0847"
+      },
+      {
+        "line": 138,
+        "text": "FRONTIER_INPUT Key Digit1 down p=(585.00, 723.00) shift=False save=False t=119.1375"
+      },
+      {
+        "line": 207,
+        "text": "FRONTIER_INPUT Key Digit1 down p=(842.00, 178.00) shift=False save=False t=218.5632"
+      },
+      {
+        "line": 300,
+        "text": "FRONTIER_UI context entity=0 count=0 world=420.216 frame=17372"
+      },
+      {
+        "line": 313,
+        "text": "FRONTIER_INPUT Key Digit1 down p=(585.00, 638.00) shift=False save=False t=295.3476"
+      },
+      {
+        "line": 315,
+        "text": "FRONTIER_UI context entity=0 count=0 world=420.316 frame=17374"
+      }
+    ],
+    "groupRetainsDeadReferenceButRecallFiltersIt": true,
+    "noSameTimeRefundPaymentOrCombatXp": true
+  },
+  "recording": {
+    "segmentId": "4daa44293e8f42cd90a7ae97d7f851ed",
+    "startKind": "loaded_checkpoint",
+    "finishReason": "menu_exit",
+    "incomplete": false,
+    "recordCount": 12,
+    "records": [
+      {
+        "completedStep": 2441,
+        "ordinal": 0,
+        "kind": 1,
+        "hasCommand": false,
+        "commandActorsNull": false,
+        "commandItemNull": false,
+        "commandChoiceNull": false,
+        "command": {
+          "player": 0,
+          "kind": 0,
+          "actors": [],
+          "order": 0,
+          "point": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "target": 0,
+          "index": 0,
+          "count": 1,
+          "item": "",
+          "choice": "",
+          "append": false
+        },
+        "selection": [],
+        "paused": false,
+        "accepted": true,
+        "reason": "manual_resume",
+        "eventHash": "fb3563c9d116f3ffbb4ebba39eb942c7af0af72e6f0b72f7a3f585ef1a7936b4",
+        "eventCount": 235
+      },
+      {
+        "completedStep": 2699,
+        "ordinal": 0,
+        "kind": 0,
+        "hasCommand": true,
+        "commandActorsNull": false,
+        "commandItemNull": false,
+        "commandChoiceNull": false,
+        "command": {
+          "player": 0,
+          "kind": 0,
+          "actors": [
+            3
+          ],
+          "order": 3,
+          "point": {
+            "x": 38.0,
+            "y": 18.0
+          },
+          "target": 75,
+          "index": 0,
+          "count": 1,
+          "item": "",
+          "choice": "",
+          "append": false
+        },
+        "selection": [],
+        "paused": false,
+        "accepted": true,
+        "reason": "Gather order accepted",
+        "eventHash": "c18aa64fb87c14d87ee4b63fc24c02554da4336f63c66f847f650f760d8ca1e4",
+        "eventCount": 236
+      },
+      {
+        "completedStep": 3120,
+        "ordinal": 0,
+        "kind": 0,
+        "hasCommand": true,
+        "commandActorsNull": false,
+        "commandItemNull": false,
+        "commandChoiceNull": false,
+        "command": {
+          "player": 0,
+          "kind": 0,
+          "actors": [
+            3
+          ],
+          "order": 7,
+          "point": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "target": 0,
+          "index": 0,
+          "count": 1,
+          "item": "",
+          "choice": "",
+          "append": false
+        },
+        "selection": [],
+        "paused": false,
+        "accepted": true,
+        "reason": "Stop order accepted",
+        "eventHash": "c5f9098009b80af0bdf0d1006b106b50f9a271998cfb918028a7a9d971b8919b",
+        "eventCount": 277
+      },
+      {
+        "completedStep": 3280,
+        "ordinal": 0,
+        "kind": 0,
+        "hasCommand": true,
+        "commandActorsNull": false,
+        "commandItemNull": false,
+        "commandChoiceNull": false,
+        "command": {
+          "player": 0,
+          "kind": 2,
+          "actors": [
+            1
+          ],
+          "order": 0,
+          "point": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "target": 0,
+          "index": 0,
+          "count": 1,
+          "item": "villager",
+          "choice": "",
+          "append": false
+        },
+        "selection": [],
+        "paused": false,
+        "accepted": true,
+        "reason": "Added to production queue",
+        "eventHash": "6137d1f13a6a3e13542f2f7ef99e55bcb54831d7b79b0e279ed20da4bf8960dd",
+        "eventCount": 279
+      },
+      {
+        "completedStep": 3436,
+        "ordinal": 0,
+        "kind": 0,
+        "hasCommand": true,
+        "commandActorsNull": false,
+        "commandItemNull": false,
+        "commandChoiceNull": false,
+        "command": {
+          "player": 0,
+          "kind": 0,
+          "actors": [
+            3
+          ],
+          "order": 0,
+          "point": {
+            "x": 32.882015228271484,
+            "y": 36.77033233642578
+          },
+          "target": 0,
+          "index": 0,
+          "count": 1,
+          "item": "",
+          "choice": "",
+          "append": false
+        },
+        "selection": [],
+        "paused": false,
+        "accepted": true,
+        "reason": "Move order accepted",
+        "eventHash": "1e4aedd2c31d15156da9a1bd98020d917a607a72f96d26fa836e8178b54e48cf",
+        "eventCount": 280
+      },
+      {
+        "completedStep": 3564,
+        "ordinal": 0,
+        "kind": 0,
+        "hasCommand": true,
+        "commandActorsNull": false,
+        "commandItemNull": false,
+        "commandChoiceNull": false,
+        "command": {
+          "player": 0,
+          "kind": 0,
+          "actors": [
+            3
+          ],
+          "order": 7,
+          "point": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "target": 0,
+          "index": 0,
+          "count": 1,
+          "item": "",
+          "choice": "",
+          "append": false
+        },
+        "selection": [],
+        "paused": false,
+        "accepted": true,
+        "reason": "Stop order accepted",
+        "eventHash": "b5ff7721aa582004c7850ea95cc870236d34d4c569b2f91a835e5221beef10b5",
+        "eventCount": 285
+      },
+      {
+        "completedStep": 3972,
+        "ordinal": 0,
+        "kind": 0,
+        "hasCommand": true,
+        "commandActorsNull": false,
+        "commandItemNull": false,
+        "commandChoiceNull": false,
+        "command": {
+          "player": 0,
+          "kind": 0,
+          "actors": [
+            3
+          ],
+          "order": 0,
+          "point": {
+            "x": 7.0,
+            "y": 34.0
+          },
+          "target": 0,
+          "index": 0,
+          "count": 1,
+          "item": "",
+          "choice": "",
+          "append": false
+        },
+        "selection": [],
+        "paused": false,
+        "accepted": true,
+        "reason": "Move order accepted",
+        "eventHash": "91a69e49a011a3ffaac29dd3067fc405fc25ac08f10da622791a4e555710c28b",
+        "eventCount": 286
+      },
+      {
+        "completedStep": 4089,
+        "ordinal": 0,
+        "kind": 0,
+        "hasCommand": true,
+        "commandActorsNull": false,
+        "commandItemNull": false,
+        "commandChoiceNull": false,
+        "command": {
+          "player": 0,
+          "kind": 0,
+          "actors": [
+            3
+          ],
+          "order": 7,
+          "point": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "target": 0,
+          "index": 0,
+          "count": 1,
+          "item": "",
+          "choice": "",
+          "append": false
+        },
+        "selection": [],
+        "paused": false,
+        "accepted": true,
+        "reason": "Stop order accepted",
+        "eventHash": "4e97f3b8a5f359bacb814e1b2a49bb13d62642b97a06c18738498bf4d202b113",
+        "eventCount": 287
+      },
+      {
+        "completedStep": 4202,
+        "ordinal": 0,
+        "kind": 0,
+        "hasCommand": true,
+        "commandActorsNull": false,
+        "commandItemNull": false,
+        "commandChoiceNull": false,
+        "command": {
+          "player": 0,
+          "kind": 26,
+          "actors": [
+            3
+          ],
+          "order": 0,
+          "point": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "target": 0,
+          "index": 0,
+          "count": 1,
+          "item": "",
+          "choice": "",
+          "append": false
+        },
+        "selection": [],
+        "paused": false,
+        "accepted": true,
+        "reason": "Disbanded 1 land units; population released",
+        "eventHash": "e1ec217d4d4d21f732265dc9592fb432e58ad3e9ee0d298e5bacb602b1452355",
+        "eventCount": 290
+      },
+      {
+        "completedStep": 4470,
+        "ordinal": 0,
+        "kind": 0,
+        "hasCommand": true,
+        "commandActorsNull": false,
+        "commandItemNull": false,
+        "commandChoiceNull": false,
+        "command": {
+          "player": 0,
+          "kind": 0,
+          "actors": [
+            80
+          ],
+          "order": 3,
+          "point": {
+            "x": 7.0,
+            "y": 34.0
+          },
+          "target": 17,
+          "index": 0,
+          "count": 1,
+          "item": "",
+          "choice": "",
+          "append": false
+        },
+        "selection": [],
+        "paused": false,
+        "accepted": true,
+        "reason": "Gather order accepted",
+        "eventHash": "5ade3c93ff27809f7b1c4ebcd6f7a4c3ad630c496df3d49fbc830ea3c76aed8d",
+        "eventCount": 291
+      },
+      {
+        "completedStep": 5118,
+        "ordinal": 0,
+        "kind": 1,
+        "hasCommand": false,
+        "commandActorsNull": false,
+        "commandItemNull": false,
+        "commandChoiceNull": false,
+        "command": {
+          "player": 0,
+          "kind": 0,
+          "actors": [],
+          "order": 0,
+          "point": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "target": 0,
+          "index": 0,
+          "count": 1,
+          "item": "",
+          "choice": "",
+          "append": false
+        },
+        "selection": [],
+        "paused": true,
+        "accepted": true,
+        "reason": "manual_pause",
+        "eventHash": "801751cef7f7a0fa1ef208c64ad01ae20a0ece38f95984d99e721dd252605781",
+        "eventCount": 353
+      },
+      {
+        "completedStep": 5118,
+        "ordinal": 1,
+        "kind": 3,
+        "hasCommand": false,
+        "commandActorsNull": false,
+        "commandItemNull": false,
+        "commandChoiceNull": false,
+        "command": {
+          "player": 0,
+          "kind": 0,
+          "actors": [],
+          "order": 0,
+          "point": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "target": 0,
+          "index": 0,
+          "count": 1,
+          "item": "",
+          "choice": "",
+          "append": false
+        },
+        "selection": [],
+        "paused": false,
+        "accepted": true,
+        "reason": "",
+        "eventHash": "dd30988e93a08a9cacca3772fbd5d8b28380a7ad36df4d900addcd3f2d9d7f79",
+        "eventCount": 354
+      }
+    ],
+    "eventCount": 354,
+    "inheritedEventCount": 234,
+    "newEventCount": 120,
+    "inheritedPrefixExactlyMatchesSource": true,
+    "reportEventsSemanticallyEqualReplay": true,
+    "slotEventsStrictPrefixOfFinalReplay": true,
+    "slotEventCount": 353,
+    "finalReplayEventCount": 354,
+    "appendedSameTimeGatherFlush": {
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": false,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 0,
+        "reserved": 0,
+        "capacity": 0
+      },
+      "time": 511.822021484375,
+      "kind": "Gather",
+      "message": "Wood",
+      "player": 0,
+      "entity": 80,
+      "target": 17,
+      "visibilityMask": 1,
+      "amount": 0.05000000074505806,
+      "position": {
+        "x": 8.68880558013916,
+        "y": 32.24772262573242
+      },
+      "facing": {
+        "x": -0.6939459443092346,
+        "y": 0.7200271487236023
+      }
+    },
+    "appendedFlushDoesNotChangePlayerBalances": true,
+    "firstAnchor": {
+      "completedStep": 2441,
+      "recordIndex": 0,
+      "eventCount": 234,
+      "eventHash": "12c503849f02b3a952bfeaba2cc17ff21d4766757a1d701fe1bf2f76d8505fcf",
+      "inputHash": "825d884c51afbb8ed50721fafe401f3195d84093257eded9f616fd259527cac8",
+      "stateDigest": "ad0064d963acd2a32dcb2d07c9e2bb1b478c1e6febbc63a26f47a79ecca28aca"
+    },
+    "lastAnchor": {
+      "completedStep": 5118,
+      "recordIndex": 12,
+      "eventCount": 354,
+      "eventHash": "dd30988e93a08a9cacca3772fbd5d8b28380a7ad36df4d900addcd3f2d9d7f79",
+      "inputHash": "a8caedb86783d6d14c4f3eedee31e533691ba235f84b86cc619c32b649132c0e",
+      "stateDigest": "fad7296ab1fb4b2c05100ebb45ed97a248347d0d02501325a13a8c06f2303371"
+    },
+    "lastWorldDiffFromSave": [
+      "events",
+      "incomes"
+    ],
+    "lastSimulationDiffFromSave": [
+      "accumulator"
+    ],
+    "forwardPlaybackExecuted": false
+  },
+  "report": {
+    "file": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Reports/20261006-061214-590-f496cf03970641248584b719cdf87515-menu_exit.json",
+      "bytes": 4504,
+      "sha256": "19a6ad6205f9f02ce2778aebf1055b82ccc025207ef2a561c021ea42e2437abb"
+    },
+    "eventsFile": {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Reports/20261006-061214-590-f496cf03970641248584b719cdf87515-menu_exit-events.jsonl",
+      "bytes": 222819,
+      "sha256": "424ee9de524c6c3908ded3873d6a1bdfa42de0fe51b78a22a85a115eee4bf20b"
+    },
+    "time": 511.822021484375,
+    "winner": -1,
+    "reason": "menu_exit",
+    "eventCount": 354
+  },
+  "f9Captures": [
+    {
+      "captureId": "Frontier-20261006-060532-830-f2852-9a18228893f5466380c9d01de4fb848a",
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060532-830-f2852-9a18228893f5466380c9d01de4fb848a.json",
+      "metadataSha256": "337dbb07bd24b7f3ed95a891c84cd785a2b2835cc2a6e75f37d5e8568220e946",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060532-830-f2852-9a18228893f5466380c9d01de4fb848a.png",
+      "pngSha256": "38f26abcb48792720b899765bfdabbfc835383c06d651d41e3cb9a3e98a1c868",
+      "utc": "2026-10-06T06:05:32.7890530Z",
+      "worldTime": 0.0,
+      "paused": false,
+      "inMenu": true,
+      "resources": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "hudResourcesText": "",
+      "hudWorldTime": 0.0,
+      "requestFrame": 2852,
+      "captureFrame": 2852,
+      "production": [],
+      "units": [],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    },
+    {
+      "captureId": "Frontier-20261006-060541-212-f3349-891e1a39efaf4d2088eb97113f6c59a1",
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060541-212-f3349-891e1a39efaf4d2088eb97113f6c59a1.json",
+      "metadataSha256": "77b686968de0108c12350eaa775598600bbc82af6b278a461ea0db59e6d5dcd3",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060541-212-f3349-891e1a39efaf4d2088eb97113f6c59a1.png",
+      "pngSha256": "b6ca2015947f3010f0506e3fbe082b96a6160e1cb484e8dc56d46571b58b099a",
+      "utc": "2026-10-06T06:05:41.1737310Z",
+      "worldTime": 0.0,
+      "paused": false,
+      "inMenu": true,
+      "resources": {
+        "food": 0.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "hudResourcesText": "",
+      "hudWorldTime": 0.0,
+      "requestFrame": 3349,
+      "captureFrame": 3349,
+      "production": [],
+      "units": [],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    },
+    {
+      "captureId": "Frontier-20261006-060641-035-f6873-16427bf079994fbb9020419c4cfb55fc",
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060641-035-f6873-16427bf079994fbb9020419c4cfb55fc.json",
+      "metadataSha256": "11c035a2327a49493547d72e78204f708905c58f884043424ad295475b3c7264",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060641-035-f6873-16427bf079994fbb9020419c4cfb55fc.png",
+      "pngSha256": "16267c4db5bbdc61a841cb391f63f8304900bb097c1b6f1063236f6b5d90c27b",
+      "utc": "2026-10-06T06:06:40.9879170Z",
+      "worldTime": 244.10569763183594,
+      "paused": true,
+      "inMenu": false,
+      "resources": {
+        "food": 100.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "hudResourcesText": "FOOD  100     WOOD  0     COIN  0     POP  6+0/20     AGE  4     XP  20/150     SHIP  0",
+      "hudWorldTime": 244.10569763183594,
+      "requestFrame": 6873,
+      "captureFrame": 6873,
+      "production": [
+        {
+          "entity": 1,
+          "definition": "town",
+          "factoryMode": "",
+          "position": {
+            "x": 22.0,
+            "y": 24.0
+          },
+          "hp": 3500.0,
+          "construction": 1.0,
+          "factoryElapsed": 0.0,
+          "queue": [
+            {
+              "kind": "Research",
+              "item": "civilian_rebuilding",
+              "count": 1,
+              "population": 0,
+              "elapsed": 0.0,
+              "duration": 60.0
+            }
+          ]
+        }
+      ],
+      "units": [
+        {
+          "entity": 2,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "explorer",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "destination": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "hp": 436.0,
+          "cargo": []
+        },
+        {
+          "entity": 3,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 12.383237838745117,
+            "y": 18.114580154418945
+          },
+          "destination": {
+            "x": 12.383237838745117,
+            "y": 18.114580154418945
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 4,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "destination": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 5,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "destination": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 6,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "destination": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 7,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "destination": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 8,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "destination": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "hp": 190.0,
+          "cargo": []
+        }
+      ],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    },
+    {
+      "captureId": "Frontier-20261006-060641-273-f6883-117e68acd1b54e20aeec3a37186709ef",
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060641-273-f6883-117e68acd1b54e20aeec3a37186709ef.json",
+      "metadataSha256": "2e7ac34a4d4d74ee8ed3bf9198f4ab5f548cc9e8fe9c84cee22d7cd6e72d3f60",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060641-273-f6883-117e68acd1b54e20aeec3a37186709ef.png",
+      "pngSha256": "e5f735df104df0dae1936003d9f1728b77b5302a56eea93b9590918391f8664c",
+      "utc": "2026-10-06T06:06:41.2085450Z",
+      "worldTime": 244.10569763183594,
+      "paused": false,
+      "inMenu": false,
+      "resources": {
+        "food": 100.0,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "hudResourcesText": "FOOD  100     WOOD  0     COIN  0     POP  6+0/20     AGE  4     XP  20/150     SHIP  0",
+      "hudWorldTime": 244.10569763183594,
+      "requestFrame": 6883,
+      "captureFrame": 6883,
+      "production": [
+        {
+          "entity": 1,
+          "definition": "town",
+          "factoryMode": "",
+          "position": {
+            "x": 22.0,
+            "y": 24.0
+          },
+          "hp": 3500.0,
+          "construction": 1.0,
+          "factoryElapsed": 0.0,
+          "queue": [
+            {
+              "kind": "Research",
+              "item": "civilian_rebuilding",
+              "count": 1,
+              "population": 0,
+              "elapsed": 0.0,
+              "duration": 60.0
+            }
+          ]
+        }
+      ],
+      "units": [
+        {
+          "entity": 2,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "explorer",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "destination": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "hp": 436.0,
+          "cargo": []
+        },
+        {
+          "entity": 3,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 12.383237838745117,
+            "y": 18.114580154418945
+          },
+          "destination": {
+            "x": 12.383237838745117,
+            "y": 18.114580154418945
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 4,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "destination": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 5,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "destination": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 6,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "destination": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 7,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "destination": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 8,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "destination": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "hp": 190.0,
+          "cargo": []
+        }
+      ],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    },
+    {
+      "captureId": "Frontier-20261006-060741-390-f10464-96182c92238946619d07db97d10a1852",
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060741-390-f10464-96182c92238946619d07db97d10a1852.json",
+      "metadataSha256": "27f8441a1cf897ff3c173005883972f38dc3e419e00692aa7e41ce8dcbdcdcac",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060741-390-f10464-96182c92238946619d07db97d10a1852.png",
+      "pngSha256": "5e8045bbf392f4db4257f33b9e1c7ff0c69998a00e63ce6d54490423c7171416",
+      "utc": "2026-10-06T06:07:41.3234320Z",
+      "worldTime": 304.2093505859375,
+      "paused": false,
+      "inMenu": false,
+      "resources": {
+        "food": 271.0013732910156,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "hudResourcesText": "FOOD  271     WOOD  0     COIN  0     POP  6+0/20     AGE  4     XP  37/150     SHIP  0",
+      "hudWorldTime": 304.2093505859375,
+      "requestFrame": 10464,
+      "captureFrame": 10464,
+      "production": [
+        {
+          "entity": 1,
+          "definition": "town",
+          "factoryMode": "",
+          "position": {
+            "x": 22.0,
+            "y": 24.0
+          },
+          "hp": 3500.0,
+          "construction": 1.0,
+          "factoryElapsed": 0.0,
+          "queue": []
+        }
+      ],
+      "units": [
+        {
+          "entity": 2,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "explorer",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "destination": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "hp": 436.0,
+          "cargo": []
+        },
+        {
+          "entity": 3,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 75,
+          "definition": "revolutionary",
+          "status": "Gathering Food",
+          "order": "Gather",
+          "position": {
+            "x": 35.63801574707031,
+            "y": 18.012264251708984
+          },
+          "destination": {
+            "x": 38.0,
+            "y": 18.0
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 4,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "destination": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 5,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "destination": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 6,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "destination": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 7,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "destination": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 8,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "destination": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "hp": 190.0,
+          "cargo": []
+        }
+      ],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    },
+    {
+      "captureId": "Frontier-20261006-060804-890-f11866-36b5a33443184536950aa6c72c2eb146",
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060804-890-f11866-36b5a33443184536950aa6c72c2eb146.json",
+      "metadataSha256": "b1bdd1df786460af76fa81d00142743fa5e09f04e327dc7eb69fac0035d7015b",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060804-890-f11866-36b5a33443184536950aa6c72c2eb146.png",
+      "pngSha256": "dbcc301a1dfcc11cf9ec310c88776012ae4c36c717e700437fd3b7205069def3",
+      "utc": "2026-10-06T06:08:04.8250360Z",
+      "worldTime": 327.7107849121094,
+      "paused": false,
+      "inMenu": false,
+      "resources": {
+        "food": 317.8018493652344,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "hudResourcesText": "FOOD  318     WOOD  0     COIN  0     POP  6+0/20     AGE  4     XP  42/150     SHIP  0",
+      "hudWorldTime": 327.7107849121094,
+      "requestFrame": 11866,
+      "captureFrame": 11866,
+      "production": [
+        {
+          "entity": 1,
+          "definition": "town",
+          "factoryMode": "",
+          "position": {
+            "x": 22.0,
+            "y": 24.0
+          },
+          "hp": 3500.0,
+          "construction": 1.0,
+          "factoryElapsed": 0.0,
+          "queue": []
+        }
+      ],
+      "units": [
+        {
+          "entity": 2,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "explorer",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "destination": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "hp": 436.0,
+          "cargo": []
+        },
+        {
+          "entity": 3,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 35.63801574707031,
+            "y": 18.012264251708984
+          },
+          "destination": {
+            "x": 35.63801574707031,
+            "y": 18.012264251708984
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 4,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "destination": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 5,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "destination": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 6,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "destination": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 7,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "destination": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 8,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "destination": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "hp": 190.0,
+          "cargo": []
+        }
+      ],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    },
+    {
+      "captureId": "Frontier-20261006-060805-179-f11879-5ba400ed720a49109b70a43689c187d7",
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060805-179-f11879-5ba400ed720a49109b70a43689c187d7.json",
+      "metadataSha256": "91940e4ad8291e6bc0843e777e1778f75b1c8a7806a5d37171368f6281b545a0",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060805-179-f11879-5ba400ed720a49109b70a43689c187d7.png",
+      "pngSha256": "9238bed1737d69a39785afc3e2da2f0217ebd27eabeb66179e1d6c361a7a98f8",
+      "utc": "2026-10-06T06:08:05.1080000Z",
+      "worldTime": 328.01080322265625,
+      "paused": false,
+      "inMenu": false,
+      "resources": {
+        "food": 217.80184936523438,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "hudResourcesText": "FOOD  218     WOOD  0     COIN  0     POP  6+1/20     AGE  4     XP  42/150     SHIP  0",
+      "hudWorldTime": 328.01080322265625,
+      "requestFrame": 11879,
+      "captureFrame": 11879,
+      "production": [
+        {
+          "entity": 1,
+          "definition": "town",
+          "factoryMode": "",
+          "position": {
+            "x": 22.0,
+            "y": 24.0
+          },
+          "hp": 3500.0,
+          "construction": 1.0,
+          "factoryElapsed": 0.0,
+          "queue": [
+            {
+              "kind": "Train",
+              "item": "villager",
+              "count": 1,
+              "population": 1,
+              "elapsed": 0.0,
+              "duration": 20.0
+            }
+          ]
+        }
+      ],
+      "units": [
+        {
+          "entity": 2,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "explorer",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "destination": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "hp": 436.0,
+          "cargo": []
+        },
+        {
+          "entity": 3,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 35.63801574707031,
+            "y": 18.012264251708984
+          },
+          "destination": {
+            "x": 35.63801574707031,
+            "y": 18.012264251708984
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 4,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "destination": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 5,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "destination": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 6,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "destination": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 7,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "destination": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 8,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "destination": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "hp": 190.0,
+          "cargo": []
+        }
+      ],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    },
+    {
+      "captureId": "Frontier-20261006-060820-864-f12810-d0827bfaa8b4423897a99cb6b6f9a4a4",
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060820-864-f12810-d0827bfaa8b4423897a99cb6b6f9a4a4.json",
+      "metadataSha256": "55887bdb126792e683233b9b859cae29634640f18c3292f6394e6f995192b97a",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060820-864-f12810-d0827bfaa8b4423897a99cb6b6f9a4a4.png",
+      "pngSha256": "df8f67f8848bf37b1ec3f71bd2218c4cd390b83f959fbf5a63ccce86d43e9c74",
+      "utc": "2026-10-06T06:08:20.7911600Z",
+      "worldTime": 343.7117614746094,
+      "paused": false,
+      "inMenu": false,
+      "resources": {
+        "food": 217.80184936523438,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "hudResourcesText": "FOOD  218     WOOD  0     COIN  0     POP  6+1/20     AGE  4     XP  42/150     SHIP  0",
+      "hudWorldTime": 343.7117614746094,
+      "requestFrame": 12810,
+      "captureFrame": 12810,
+      "production": [
+        {
+          "entity": 1,
+          "definition": "town",
+          "factoryMode": "",
+          "position": {
+            "x": 22.0,
+            "y": 24.0
+          },
+          "hp": 3500.0,
+          "construction": 1.0,
+          "factoryElapsed": 0.0,
+          "queue": [
+            {
+              "kind": "Train",
+              "item": "villager",
+              "count": 1,
+              "population": 1,
+              "elapsed": 15.700023651123047,
+              "duration": 20.0
+            }
+          ]
+        }
+      ],
+      "units": [
+        {
+          "entity": 2,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "explorer",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "destination": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "hp": 436.0,
+          "cargo": []
+        },
+        {
+          "entity": 3,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Moving",
+          "order": "Move",
+          "position": {
+            "x": 35.23801803588867,
+            "y": 18.010915756225586
+          },
+          "destination": {
+            "x": 32.882015228271484,
+            "y": 36.77033233642578
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 4,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "destination": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 5,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "destination": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 6,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "destination": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 7,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "destination": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 8,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "destination": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "hp": 190.0,
+          "cargo": []
+        }
+      ],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    },
+    {
+      "captureId": "Frontier-20261006-060901-004-f15207-997af79c3af6436d9350a23f3b18902f",
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060901-004-f15207-997af79c3af6436d9350a23f3b18902f.json",
+      "metadataSha256": "3646145ea3b589c2e809e2220cdc2cc4210593cd6de290a890590f40db625091",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060901-004-f15207-997af79c3af6436d9350a23f3b18902f.png",
+      "pngSha256": "fdafe1743c0677db15e2baf9c496bda0abab333e83123c554c52a3e480e55ffe",
+      "utc": "2026-10-06T06:09:00.9438590Z",
+      "worldTime": 383.814208984375,
+      "paused": false,
+      "inMenu": false,
+      "resources": {
+        "food": 217.80184936523438,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "hudResourcesText": "FOOD  218     WOOD  0     COIN  0     POP  7+0/20     AGE  4     XP  47/150     SHIP  0",
+      "hudWorldTime": 383.814208984375,
+      "requestFrame": 15207,
+      "captureFrame": 15207,
+      "production": [
+        {
+          "entity": 1,
+          "definition": "town",
+          "factoryMode": "",
+          "position": {
+            "x": 22.0,
+            "y": 24.0
+          },
+          "hp": 3500.0,
+          "construction": 1.0,
+          "factoryElapsed": 0.0,
+          "queue": []
+        }
+      ],
+      "units": [
+        {
+          "entity": 2,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "explorer",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "destination": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "hp": 436.0,
+          "cargo": []
+        },
+        {
+          "entity": 3,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 32.882015228271484,
+            "y": 36.77033233642578
+          },
+          "destination": {
+            "x": 32.882015228271484,
+            "y": 36.77033233642578
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 4,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "destination": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 5,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "destination": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 6,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "destination": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 7,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "destination": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 8,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "destination": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 80,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "villager",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 22.013490676879883,
+            "y": 18.51244354248047
+          },
+          "destination": {
+            "x": 22.013490676879883,
+            "y": 18.51244354248047
+          },
+          "hp": 150.0,
+          "cargo": []
+        }
+      ],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    },
+    {
+      "captureId": "Frontier-20261006-060901-247-f15217-77c524c2be7e4f12ada81373cccfaf55",
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060901-247-f15217-77c524c2be7e4f12ada81373cccfaf55.json",
+      "metadataSha256": "372eefd15d12d92ae0b3e3be92f91d7af1fd386de10ac067c455413c4d965da4",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060901-247-f15217-77c524c2be7e4f12ada81373cccfaf55.png",
+      "pngSha256": "24e6a3989a7614cc79256c797c3b6aab60f13da066a987c47fb2ac8bf11cfbf8",
+      "utc": "2026-10-06T06:09:01.1734280Z",
+      "worldTime": 384.1142272949219,
+      "paused": false,
+      "inMenu": false,
+      "resources": {
+        "food": 217.80184936523438,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "hudResourcesText": "FOOD  218     WOOD  0     COIN  0     POP  7+0/20     AGE  4     XP  47/150     SHIP  0",
+      "hudWorldTime": 384.1142272949219,
+      "requestFrame": 15217,
+      "captureFrame": 15217,
+      "production": [
+        {
+          "entity": 1,
+          "definition": "town",
+          "factoryMode": "",
+          "position": {
+            "x": 22.0,
+            "y": 24.0
+          },
+          "hp": 3500.0,
+          "construction": 1.0,
+          "factoryElapsed": 0.0,
+          "queue": []
+        }
+      ],
+      "units": [
+        {
+          "entity": 2,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "explorer",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "destination": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "hp": 436.0,
+          "cargo": []
+        },
+        {
+          "entity": 3,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 32.882015228271484,
+            "y": 36.77033233642578
+          },
+          "destination": {
+            "x": 32.882015228271484,
+            "y": 36.77033233642578
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 4,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "destination": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 5,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "destination": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 6,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "destination": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 7,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "destination": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 8,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "destination": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 80,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "villager",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 22.013490676879883,
+            "y": 18.51244354248047
+          },
+          "destination": {
+            "x": 22.013490676879883,
+            "y": 18.51244354248047
+          },
+          "hp": 150.0,
+          "cargo": []
+        }
+      ],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    },
+    {
+      "captureId": "Frontier-20261006-060914-428-f16001-5b3b8373fe76477d80d6a7816a1aa45f",
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060914-428-f16001-5b3b8373fe76477d80d6a7816a1aa45f.json",
+      "metadataSha256": "3c857509c8cc69c62306ab6da455ea488a46f23ae8d2b2039d6284d54886464c",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060914-428-f16001-5b3b8373fe76477d80d6a7816a1aa45f.png",
+      "pngSha256": "f9a8d6a307c5573fad80d5fcc66f2ee08d344bdfc44fbeddf072c1c240d4203d",
+      "utc": "2026-10-06T06:09:14.3565450Z",
+      "worldTime": 397.3150329589844,
+      "paused": false,
+      "inMenu": false,
+      "resources": {
+        "food": 217.80184936523438,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "hudResourcesText": "FOOD  218     WOOD  0     COIN  0     POP  7+0/20     AGE  4     XP  47/150     SHIP  0",
+      "hudWorldTime": 397.3150329589844,
+      "requestFrame": 16001,
+      "captureFrame": 16001,
+      "production": [
+        {
+          "entity": 1,
+          "definition": "town",
+          "factoryMode": "",
+          "position": {
+            "x": 22.0,
+            "y": 24.0
+          },
+          "hp": 3500.0,
+          "construction": 1.0,
+          "factoryElapsed": 0.0,
+          "queue": []
+        }
+      ],
+      "units": [
+        {
+          "entity": 2,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "explorer",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "destination": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "hp": 436.0,
+          "cargo": []
+        },
+        {
+          "entity": 3,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Moving",
+          "order": "Move",
+          "position": {
+            "x": 32.48447036743164,
+            "y": 36.726070404052734
+          },
+          "destination": {
+            "x": 8.0,
+            "y": 34.0
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 4,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "destination": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 5,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "destination": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 6,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "destination": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 7,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "destination": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 8,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "destination": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 80,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "villager",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 22.013490676879883,
+            "y": 18.51244354248047
+          },
+          "destination": {
+            "x": 22.013490676879883,
+            "y": 18.51244354248047
+          },
+          "hp": 150.0,
+          "cargo": []
+        }
+      ],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    },
+    {
+      "captureId": "Frontier-20261006-060937-384-f17372-233de0cabd1f416baa2732e0fb8e0691",
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060937-384-f17372-233de0cabd1f416baa2732e0fb8e0691.json",
+      "metadataSha256": "6455ac6bbe6a91b0624f595194d60a4815f233db590059cd7dd40c1ea4eba573",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060937-384-f17372-233de0cabd1f416baa2732e0fb8e0691.png",
+      "pngSha256": "5d6f1f02e609c14dca1e08e97da885669b89b8387eef2e3979b569eb80c27f80",
+      "utc": "2026-10-06T06:09:37.3131880Z",
+      "worldTime": 420.2164306640625,
+      "paused": false,
+      "inMenu": false,
+      "resources": {
+        "food": 217.80184936523438,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "hudResourcesText": "FOOD  218     WOOD  0     COIN  0     POP  6+0/20     AGE  4     XP  47/150     SHIP  0",
+      "hudWorldTime": 420.2164306640625,
+      "requestFrame": 17372,
+      "captureFrame": 17372,
+      "production": [
+        {
+          "entity": 1,
+          "definition": "town",
+          "factoryMode": "",
+          "position": {
+            "x": 22.0,
+            "y": 24.0
+          },
+          "hp": 3500.0,
+          "construction": 1.0,
+          "factoryElapsed": 0.0,
+          "queue": []
+        }
+      ],
+      "units": [
+        {
+          "entity": 2,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "explorer",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "destination": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "hp": 436.0,
+          "cargo": []
+        },
+        {
+          "entity": 4,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "destination": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 5,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "destination": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 6,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "destination": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 7,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "destination": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 8,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "destination": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 80,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "villager",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 22.013490676879883,
+            "y": 18.51244354248047
+          },
+          "destination": {
+            "x": 22.013490676879883,
+            "y": 18.51244354248047
+          },
+          "hp": 150.0,
+          "cargo": []
+        }
+      ],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    },
+    {
+      "captureId": "Frontier-20261006-060937-491-f17374-b24a639f9cad472bbeaeb370fc2bfc28",
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060937-491-f17374-b24a639f9cad472bbeaeb370fc2bfc28.json",
+      "metadataSha256": "52b5e960fb5259ab6f2f715abde2231d658b90db7c5ebae6d52d214f796e621c",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060937-491-f17374-b24a639f9cad472bbeaeb370fc2bfc28.png",
+      "pngSha256": "329fdcdee57b5c1b29c1fdc067639f149aa033448cb932fbdc2b5efd440c8639",
+      "utc": "2026-10-06T06:09:37.4214200Z",
+      "worldTime": 420.3164367675781,
+      "paused": false,
+      "inMenu": false,
+      "resources": {
+        "food": 217.80184936523438,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "hudResourcesText": "FOOD  218     WOOD  0     COIN  0     POP  6+0/20     AGE  4     XP  47/150     SHIP  0",
+      "hudWorldTime": 420.3164367675781,
+      "requestFrame": 17374,
+      "captureFrame": 17374,
+      "production": [
+        {
+          "entity": 1,
+          "definition": "town",
+          "factoryMode": "",
+          "position": {
+            "x": 22.0,
+            "y": 24.0
+          },
+          "hp": 3500.0,
+          "construction": 1.0,
+          "factoryElapsed": 0.0,
+          "queue": []
+        }
+      ],
+      "units": [
+        {
+          "entity": 2,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "explorer",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "destination": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "hp": 436.0,
+          "cargo": []
+        },
+        {
+          "entity": 4,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "destination": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 5,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "destination": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 6,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "destination": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 7,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "destination": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 8,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "destination": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 80,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "villager",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 22.013490676879883,
+            "y": 18.51244354248047
+          },
+          "destination": {
+            "x": 22.013490676879883,
+            "y": 18.51244354248047
+          },
+          "hp": 150.0,
+          "cargo": []
+        }
+      ],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    },
+    {
+      "captureId": "Frontier-20261006-061004-248-f18970-a598152418c14d488748cf7a96c8768c",
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-061004-248-f18970-a598152418c14d488748cf7a96c8768c.json",
+      "metadataSha256": "8d8dbd5ece2d328a98d2f6cbeb12c8fa5e6ad27c91d2d5427980e363d5ae8c4a",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-061004-248-f18970-a598152418c14d488748cf7a96c8768c.png",
+      "pngSha256": "f4b6fd155f96781372e87b99427bd4827f7e42794f556d5a9bc24a04c479bdb3",
+      "utc": "2026-10-06T06:10:04.1743000Z",
+      "worldTime": 447.1180725097656,
+      "paused": false,
+      "inMenu": false,
+      "resources": {
+        "food": 217.80184936523438,
+        "wood": 0.0,
+        "coin": 0.0
+      },
+      "hudResourcesText": "FOOD  218     WOOD  0     COIN  0     POP  6+0/20     AGE  4     XP  47/150     SHIP  0",
+      "hudWorldTime": 447.1180725097656,
+      "requestFrame": 18970,
+      "captureFrame": 18970,
+      "production": [
+        {
+          "entity": 1,
+          "definition": "town",
+          "factoryMode": "",
+          "position": {
+            "x": 22.0,
+            "y": 24.0
+          },
+          "hp": 3500.0,
+          "construction": 1.0,
+          "factoryElapsed": 0.0,
+          "queue": []
+        }
+      ],
+      "units": [
+        {
+          "entity": 2,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "explorer",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "destination": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "hp": 436.0,
+          "cargo": []
+        },
+        {
+          "entity": 4,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "destination": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 5,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "destination": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 6,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "destination": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 7,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "destination": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 8,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "destination": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 80,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 17,
+          "definition": "villager",
+          "status": "Moving",
+          "order": "Gather",
+          "position": {
+            "x": 21.72381591796875,
+            "y": 18.788284301757812
+          },
+          "destination": {
+            "x": 7.0,
+            "y": 34.0
+          },
+          "hp": 150.0,
+          "cargo": []
+        }
+      ],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    },
+    {
+      "captureId": "Frontier-20261006-061056-941-f22108-8991a351bcd944e798d6b88384371b2d",
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-061056-941-f22108-8991a351bcd944e798d6b88384371b2d.json",
+      "metadataSha256": "1bfde0dce0a7a7ce8bc8aa575108858bc894151bcc02abbbaaddb6f48c9c93b6",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-061056-941-f22108-8991a351bcd944e798d6b88384371b2d.png",
+      "pngSha256": "7b2a31e906d0cf0a1d6de9f13cf58ad5c6e80e0e8895ccd655834279437a420d",
+      "utc": "2026-10-06T06:10:56.8709630Z",
+      "worldTime": 499.8212890625,
+      "paused": false,
+      "inMenu": false,
+      "resources": {
+        "food": 217.80184936523438,
+        "wood": 24.099918365478516,
+        "coin": 0.0
+      },
+      "hudResourcesText": "FOOD  218     WOOD  24     COIN  0     POP  6+0/20     AGE  4     XP  49/150     SHIP  0",
+      "hudWorldTime": 499.8212890625,
+      "requestFrame": 22108,
+      "captureFrame": 22108,
+      "production": [
+        {
+          "entity": 1,
+          "definition": "town",
+          "factoryMode": "",
+          "position": {
+            "x": 22.0,
+            "y": 24.0
+          },
+          "hp": 3500.0,
+          "construction": 1.0,
+          "factoryElapsed": 0.0,
+          "queue": []
+        }
+      ],
+      "units": [
+        {
+          "entity": 2,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "explorer",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "destination": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "hp": 436.0,
+          "cargo": []
+        },
+        {
+          "entity": 4,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "destination": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 5,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "destination": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 6,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "destination": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 7,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "destination": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 8,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "destination": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 80,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 17,
+          "definition": "villager",
+          "status": "Gathering Wood",
+          "order": "Gather",
+          "position": {
+            "x": 8.68880558013916,
+            "y": 32.24772262573242
+          },
+          "destination": {
+            "x": 7.0,
+            "y": 34.0
+          },
+          "hp": 150.0,
+          "cargo": []
+        }
+      ],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    },
+    {
+      "captureId": "Frontier-20261006-061136-381-f24456-aa692847c6764a4791d221228a881088",
+      "metadata": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-061136-381-f24456-aa692847c6764a4791d221228a881088.json",
+      "metadataSha256": "c92790a7aa897091e75a1e7faa453c5e9e39cc543fa90b967262bf45bc5ac7d5",
+      "png": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-061136-381-f24456-aa692847c6764a4791d221228a881088.png",
+      "pngSha256": "fc0b9c57258477c2b0b11e6b3e0f9e0694e56bb386c3e8426331af5e77d538fc",
+      "utc": "2026-10-06T06:11:36.3256480Z",
+      "worldTime": 511.822021484375,
+      "paused": true,
+      "inMenu": false,
+      "resources": {
+        "food": 217.80184936523438,
+        "wood": 30.09982681274414,
+        "coin": 0.0
+      },
+      "hudResourcesText": "FOOD  218     WOOD  30     COIN  0     POP  6+0/20     AGE  4     XP  50/150     SHIP  0",
+      "hudWorldTime": 511.822021484375,
+      "requestFrame": 24456,
+      "captureFrame": 24456,
+      "production": [
+        {
+          "entity": 1,
+          "definition": "town",
+          "factoryMode": "",
+          "position": {
+            "x": 22.0,
+            "y": 24.0
+          },
+          "hp": 3500.0,
+          "construction": 1.0,
+          "factoryElapsed": 0.0,
+          "queue": []
+        }
+      ],
+      "units": [
+        {
+          "entity": 2,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "explorer",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "destination": {
+            "x": 20.901819229125977,
+            "y": 20.597854614257812
+          },
+          "hp": 436.0,
+          "cargo": []
+        },
+        {
+          "entity": 4,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "destination": {
+            "x": 15.417503356933594,
+            "y": 16.742080688476562
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 5,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "destination": {
+            "x": 18.25579071044922,
+            "y": 14.991462707519531
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 6,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "destination": {
+            "x": 26.679899215698242,
+            "y": 14.98880672454834
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 7,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "destination": {
+            "x": 30.235340118408203,
+            "y": 17.176698684692383
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 8,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 0,
+          "definition": "revolutionary",
+          "status": "Idle",
+          "order": "",
+          "position": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "destination": {
+            "x": 31.7171573638916,
+            "y": 18.2828426361084
+          },
+          "hp": 190.0,
+          "cargo": []
+        },
+        {
+          "entity": 80,
+          "garrisonedIn": 0,
+          "load": 0,
+          "capacity": 0,
+          "target": 17,
+          "definition": "villager",
+          "status": "Gathering Wood",
+          "order": "Gather",
+          "position": {
+            "x": 8.68880558013916,
+            "y": 32.24772262573242
+          },
+          "destination": {
+            "x": 7.0,
+            "y": 34.0
+          },
+          "hp": 150.0,
+          "cargo": []
+        }
+      ],
+      "pngDimensions": [
+        1600,
+        1000
+      ],
+      "pngChecksumVerified": true,
+      "requestAndHudCohortVerified": true
+    }
+  ],
+  "originalFiles": [
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process4/Player.log",
+      "bytes": 54098,
+      "sha256": "91f2ff28ee0322ecd5e9642f794dfdf2799af12ba14fe4278ab4af44aff117f4"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process4/process.json",
+      "bytes": 1690,
+      "sha256": "104e9a9c88ca39048618c74309a4c4b876cad86c9e3e95ce6ed50476d29d77f9"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/Process4/stdout.log",
+      "bytes": 1853,
+      "sha256": "9d82fc59cc2c195c9dfe973c037469a51222684f5d1b07101c64176e5564a625"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileB/Saves/slot-2.json",
+      "bytes": 28905,
+      "sha256": "ef322396a2c786d77c33c2f9464b8f58338dc53730f2e941fd2d24b9446bd134"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060532-830-f2852-9a18228893f5466380c9d01de4fb848a.json",
+      "bytes": 5806,
+      "sha256": "337dbb07bd24b7f3ed95a891c84cd785a2b2835cc2a6e75f37d5e8568220e946"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060532-830-f2852-9a18228893f5466380c9d01de4fb848a.png",
+      "bytes": 168443,
+      "sha256": "38f26abcb48792720b899765bfdabbfc835383c06d651d41e3cb9a3e98a1c868"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060541-212-f3349-891e1a39efaf4d2088eb97113f6c59a1.json",
+      "bytes": 5806,
+      "sha256": "77b686968de0108c12350eaa775598600bbc82af6b278a461ea0db59e6d5dcd3"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060541-212-f3349-891e1a39efaf4d2088eb97113f6c59a1.png",
+      "bytes": 168386,
+      "sha256": "b6ca2015947f3010f0506e3fbe082b96a6160e1cb484e8dc56d46571b58b099a"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060641-035-f6873-16427bf079994fbb9020419c4cfb55fc.json",
+      "bytes": 11052,
+      "sha256": "11c035a2327a49493547d72e78204f708905c58f884043424ad295475b3c7264"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060641-035-f6873-16427bf079994fbb9020419c4cfb55fc.png",
+      "bytes": 356533,
+      "sha256": "16267c4db5bbdc61a841cb391f63f8304900bb097c1b6f1063236f6b5d90c27b"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060641-273-f6883-117e68acd1b54e20aeec3a37186709ef.json",
+      "bytes": 11084,
+      "sha256": "2e7ac34a4d4d74ee8ed3bf9198f4ab5f548cc9e8fe9c84cee22d7cd6e72d3f60"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060641-273-f6883-117e68acd1b54e20aeec3a37186709ef.png",
+      "bytes": 1024686,
+      "sha256": "e5f735df104df0dae1936003d9f1728b77b5302a56eea93b9590918391f8664c"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060741-390-f10464-96182c92238946619d07db97d10a1852.json",
+      "bytes": 10804,
+      "sha256": "27f8441a1cf897ff3c173005883972f38dc3e419e00692aa7e41ce8dcbdcdcac"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060741-390-f10464-96182c92238946619d07db97d10a1852.png",
+      "bytes": 1027444,
+      "sha256": "5e8045bbf392f4db4257f33b9e1c7ff0c69998a00e63ce6d54490423c7171416"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060804-890-f11866-36b5a33443184536950aa6c72c2eb146.json",
+      "bytes": 10814,
+      "sha256": "b1bdd1df786460af76fa81d00142743fa5e09f04e327dc7eb69fac0035d7015b"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060804-890-f11866-36b5a33443184536950aa6c72c2eb146.png",
+      "bytes": 1027120,
+      "sha256": "dbcc301a1dfcc11cf9ec310c88776012ae4c36c717e700437fd3b7205069def3"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060805-179-f11879-5ba400ed720a49109b70a43689c187d7.json",
+      "bytes": 11057,
+      "sha256": "91940e4ad8291e6bc0843e777e1778f75b1c8a7806a5d37171368f6281b545a0"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060805-179-f11879-5ba400ed720a49109b70a43689c187d7.png",
+      "bytes": 1174022,
+      "sha256": "9238bed1737d69a39785afc3e2da2f0217ebd27eabeb66179e1d6c361a7a98f8"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060820-864-f12810-d0827bfaa8b4423897a99cb6b6f9a4a4.json",
+      "bytes": 11102,
+      "sha256": "55887bdb126792e683233b9b859cae29634640f18c3292f6394e6f995192b97a"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060820-864-f12810-d0827bfaa8b4423897a99cb6b6f9a4a4.png",
+      "bytes": 1274119,
+      "sha256": "df8f67f8848bf37b1ec3f71bd2218c4cd390b83f959fbf5a63ccce86d43e9c74"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060901-004-f15207-997af79c3af6436d9350a23f3b18902f.json",
+      "bytes": 11351,
+      "sha256": "3646145ea3b589c2e809e2220cdc2cc4210593cd6de290a890590f40db625091"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060901-004-f15207-997af79c3af6436d9350a23f3b18902f.png",
+      "bytes": 811548,
+      "sha256": "fdafe1743c0677db15e2baf9c496bda0abab333e83123c554c52a3e480e55ffe"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060901-247-f15217-77c524c2be7e4f12ada81373cccfaf55.json",
+      "bytes": 11354,
+      "sha256": "372eefd15d12d92ae0b3e3be92f91d7af1fd386de10ac067c455413c4d965da4"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060901-247-f15217-77c524c2be7e4f12ada81373cccfaf55.png",
+      "bytes": 1291079,
+      "sha256": "24e6a3989a7614cc79256c797c3b6aab60f13da066a987c47fb2ac8bf11cfbf8"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060914-428-f16001-5b3b8373fe76477d80d6a7816a1aa45f.json",
+      "bytes": 11331,
+      "sha256": "3c857509c8cc69c62306ab6da455ea488a46f23ae8d2b2039d6284d54886464c"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060914-428-f16001-5b3b8373fe76477d80d6a7816a1aa45f.png",
+      "bytes": 1285783,
+      "sha256": "f9a8d6a307c5573fad80d5fcc66f2ee08d344bdfc44fbeddf072c1c240d4203d"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060937-384-f17372-233de0cabd1f416baa2732e0fb8e0691.json",
+      "bytes": 10809,
+      "sha256": "6455ac6bbe6a91b0624f595194d60a4815f233db590059cd7dd40c1ea4eba573"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060937-384-f17372-233de0cabd1f416baa2732e0fb8e0691.png",
+      "bytes": 1253333,
+      "sha256": "5d6f1f02e609c14dca1e08e97da885669b89b8387eef2e3979b569eb80c27f80"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060937-491-f17374-b24a639f9cad472bbeaeb370fc2bfc28.json",
+      "bytes": 10809,
+      "sha256": "52b5e960fb5259ab6f2f715abde2231d658b90db7c5ebae6d52d214f796e621c"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-060937-491-f17374-b24a639f9cad472bbeaeb370fc2bfc28.png",
+      "bytes": 1261102,
+      "sha256": "329fdcdee57b5c1b29c1fdc067639f149aa033448cb932fbdc2b5efd440c8639"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-061004-248-f18970-a598152418c14d488748cf7a96c8768c.json",
+      "bytes": 10790,
+      "sha256": "8d8dbd5ece2d328a98d2f6cbeb12c8fa5e6ad27c91d2d5427980e363d5ae8c4a"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-061004-248-f18970-a598152418c14d488748cf7a96c8768c.png",
+      "bytes": 1258473,
+      "sha256": "f4b6fd155f96781372e87b99427bd4827f7e42794f556d5a9bc24a04c479bdb3"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-061056-941-f22108-8991a351bcd944e798d6b88384371b2d.json",
+      "bytes": 10803,
+      "sha256": "1bfde0dce0a7a7ce8bc8aa575108858bc894151bcc02abbbaaddb6f48c9c93b6"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-061056-941-f22108-8991a351bcd944e798d6b88384371b2d.png",
+      "bytes": 1255860,
+      "sha256": "7b2a31e906d0cf0a1d6de9f13cf58ad5c6e80e0e8895ccd655834279437a420d"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-061136-381-f24456-aa692847c6764a4791d221228a881088.json",
+      "bytes": 10804,
+      "sha256": "c92790a7aa897091e75a1e7faa453c5e9e39cc543fa90b967262bf45bc5ac7d5"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Captures/Frontier-20261006-061136-381-f24456-aa692847c6764a4791d221228a881088.png",
+      "bytes": 629569,
+      "sha256": "fc0b9c57258477c2b0b11e6b3e0f9e0694e56bb386c3e8426331af5e77d538fc"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Replays/replay-4daa44293e8f42cd90a7ae97d7f851ed.replay.json",
+      "bytes": 216557,
+      "sha256": "9f2001b819bebf6bc8ff802d940cb5195ee87fedc8f0bdf4cc8626db542e450e"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Reports/20261006-061214-590-f496cf03970641248584b719cdf87515-menu_exit-events.jsonl",
+      "bytes": 222819,
+      "sha256": "424ee9de524c6c3908ded3873d6a1bdfa42de0fe51b78a22a85a115eee4bf20b"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Reports/20261006-061214-590-f496cf03970641248584b719cdf87515-menu_exit.json",
+      "bytes": 4504,
+      "sha256": "19a6ad6205f9f02ce2778aebf1055b82ccc025207ef2a561c021ea42e2437abb"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Saves/slot-2.json",
+      "bytes": 28905,
+      "sha256": "ef322396a2c786d77c33c2f9464b8f58338dc53730f2e941fd2d24b9446bd134"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.14.0/Candidate1/Native/ProfileC/Saves/slot-3.json",
+      "bytes": 32933,
+      "sha256": "b928e8c29d9723d0e38b4f49f80089ef5e48e9fceb233917c1fe1f0537113ccc"
+    }
+  ],
+  "limitations": [
+    "Controlled ageIV coastal scenario with an explicitly authored own400F crate; not a normal ageI route, an earned shipment, or native proof for all four civilizations.",
+    "Pixel visual appearance, rifle pose after Stop, and dialog appearance require root manual observations; only original PNG bytes/cohort metadata and traces were checked.",
+    "Group1 was created after conversion in Process3, cold-restored and recalled in Process4; no pre-conversion saved-group proof. Raw slot3 still contains dead actor3; actual recall trace filters it to zero selection.",
+    "No already-open Home City cross-conversion refresh proof.",
+    "No forward ReplaySession execution by this audit. Playback capture IDs pending.",
+    "No Unity execution, GUI control, copying or mutation of any original file.",
+    "Runtime/source/build metadata and Unity serialized digests compared, not independently rebuilt or recomputed."
+  ]
+}

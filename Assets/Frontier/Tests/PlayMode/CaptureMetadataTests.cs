@@ -18,8 +18,11 @@ namespace Frontier.Tests
 
         [UnityTest] public IEnumerator SnapshotContainsPlayerTrainingPopulationAndHudFrame()
         {
-            yield return TrainSettler();var m=JsonUtility.FromJson<CaptureMetadata>(JsonUtility.ToJson(Read()));
+            yield return TrainSettler();var factory=game.World.Spawn("factory",0,new Vector2(42,22));factory.factoryMode="artillery";factory.factoryElapsed=42;
+            var m=JsonUtility.FromJson<CaptureMetadata>(JsonUtility.ToJson(Read()));
             Assert.IsTrue(m.hasPlayer);Assert.AreEqual(1,m.population.reserved);Assert.IsTrue(m.production.Any(p=>p.entity==Town().id&&p.queue.Any(j=>j.item=="villager")));
+            var capturedFactory=m.production.Single(p=>p.entity==factory.id);Assert.AreEqual("artillery",capturedFactory.factoryMode);Assert.AreEqual(42,capturedFactory.factoryElapsed);
+            factory.factoryElapsed=99;Assert.AreEqual(42,capturedFactory.factoryElapsed,"The industrial screenshot record must remain detached from later progress");
             Assert.AreEqual(game.Hud.ResourceSummary,m.hudResources);Assert.AreEqual(900,m.resources.food);StringAssert.Contains("POP  "+m.population.used+"+1/"+m.population.capacity,m.hudResources);Assert.GreaterOrEqual(m.hudUpdatedFrame,0);Assert.AreEqual(m.hudMatchId,m.matchId);Assert.GreaterOrEqual(m.captureFrame,m.hudUpdatedFrame);
         }
 

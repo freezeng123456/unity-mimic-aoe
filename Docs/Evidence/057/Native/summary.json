@@ -1,0 +1,914 @@
+{
+  "schemaVersion": 1,
+  "appVersion": "0.3.0",
+  "buildGuid": "e6f13b0328df478cb19cb1bc3989dc5b",
+  "platform": "OSXPlayer",
+  "unityVersion": "6000.6.3f1",
+  "device": "Apple M3 Pro",
+  "resolution": "1600x1000",
+  "seed": 314159,
+  "aiDifficulty": "standard",
+  "sourceReportDirectory": "~/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports",
+  "sourceCaptureDirectory": "~/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures",
+  "sourceLogsDirectory": "Builds/Native-0.3.0",
+  "counts": {
+    "reportJson": 5,
+    "eventArchives": 5,
+    "captureMetadata": 15,
+    "capturePng": 15,
+    "logs": 3,
+    "distinctMatches": 3,
+    "naturallyEndedAutoplayMatches": 2,
+    "unfinishedManualOpeningMatches": 1
+  },
+  "reports": [
+    {
+      "path": "Reports/20261003-164326-353-50e3780641784d269f2d913c41f11e35-match_finished.json",
+      "matchId": "50e3780641784d269f2d913c41f11e35",
+      "reason": "match_finished",
+      "eventArchive": "Reports/20261003-164326-353-50e3780641784d269f2d913c41f11e35-match_finished-events.jsonl.gz",
+      "rawEventsSha256": "9180adb3fe61131ba2e8c153477c61975047062b36ed18cdf52dffc690230541"
+    },
+    {
+      "path": "Reports/20261003-164349-702-50e3780641784d269f2d913c41f11e35-menu_exit.json",
+      "matchId": "50e3780641784d269f2d913c41f11e35",
+      "reason": "menu_exit",
+      "eventArchive": "Reports/20261003-164349-702-50e3780641784d269f2d913c41f11e35-menu_exit-events.jsonl.gz",
+      "rawEventsSha256": "9180adb3fe61131ba2e8c153477c61975047062b36ed18cdf52dffc690230541"
+    },
+    {
+      "path": "Reports/20261003-164553-488-a2725beba57d4b1982323301fcf3ec5f-match_finished.json",
+      "matchId": "a2725beba57d4b1982323301fcf3ec5f",
+      "reason": "match_finished",
+      "eventArchive": "Reports/20261003-164553-488-a2725beba57d4b1982323301fcf3ec5f-match_finished-events.jsonl.gz",
+      "rawEventsSha256": "5b7d2da6d52c5e572f709eeb01306474c28cf9764f03b8e6a595a3906aea8366"
+    },
+    {
+      "path": "Reports/20261003-164608-391-a2725beba57d4b1982323301fcf3ec5f-menu_exit.json",
+      "matchId": "a2725beba57d4b1982323301fcf3ec5f",
+      "reason": "menu_exit",
+      "eventArchive": "Reports/20261003-164608-391-a2725beba57d4b1982323301fcf3ec5f-menu_exit-events.jsonl.gz",
+      "rawEventsSha256": "5b7d2da6d52c5e572f709eeb01306474c28cf9764f03b8e6a595a3906aea8366"
+    },
+    {
+      "path": "Reports/20261003-165207-889-9c21044befae495fa1d901ac7cd40fba-quit.json",
+      "matchId": "9c21044befae495fa1d901ac7cd40fba",
+      "reason": "quit",
+      "eventArchive": "Reports/20261003-165207-889-9c21044befae495fa1d901ac7cd40fba-quit-events.jsonl.gz",
+      "rawEventsSha256": "15e542c00a5d7d3f91f85c4d70c2252f6a8719b9d23c71f2fb3e65abfcc6b35b"
+    }
+  ],
+  "matches": [
+    {
+      "matchId": "50e3780641784d269f2d913c41f11e35",
+      "autoplay": true,
+      "simulationSpeed": 16.0,
+      "time": 1303.6287841796875,
+      "winner": 1,
+      "civilizations": [
+        "highland",
+        "wayfarer"
+      ],
+      "ages": [
+        3,
+        4
+      ],
+      "eventCount": 52944,
+      "rawEventsSha256": "9180adb3fe61131ba2e8c153477c61975047062b36ed18cdf52dffc690230541",
+      "matchEnded": [
+        {
+          "time": 1303.6287841796875,
+          "kind": "MatchEnded",
+          "message": "All opposing units and buildings eliminated",
+          "player": 1,
+          "entity": 0,
+          "target": 0,
+          "amount": 0.0
+        }
+      ],
+      "resignCount": 0,
+      "eventKindCounts": {
+        "AIStrategy": 14,
+        "AgeAdvanced": 5,
+        "AgeRewardArrived": 5,
+        "AgeRouteChosen": 5,
+        "AttackPrepared": 2477,
+        "BuildingComplete": 27,
+        "CaravanDelivered": 85,
+        "CaravanLoaded": 85,
+        "CaravanRoute": 86,
+        "Command": 1994,
+        "Damage": 2288,
+        "Death": 186,
+        "DestinationAdjusted": 89,
+        "Experience": 418,
+        "Fire": 2332,
+        "Garrison": 95,
+        "Gather": 40511,
+        "Impact": 1024,
+        "LandmarkDiscovered": 25,
+        "LandmarkReachability": 34,
+        "ManufactureComplete": 2,
+        "ManufactureQueued": 2,
+        "MatchEnded": 1,
+        "MatchStarted": 1,
+        "Payment": 278,
+        "PrefabUsed": 2,
+        "ProductionQueued": 140,
+        "RallyAssigned": 199,
+        "ResearchComplete": 16,
+        "ResourceDepleted": 24,
+        "ShieldStance": 24,
+        "ShipmentArrived": 18,
+        "ShipmentEarned": 18,
+        "ShipmentSent": 18,
+        "Spawn": 350,
+        "StartingResources": 2,
+        "Technology": 25,
+        "TradeDelivery": 12,
+        "TradeMode": 3,
+        "TradeSocket": 3,
+        "TreasureClaimed": 6,
+        "TreasurePlaced": 6,
+        "Ungarrison": 9
+      },
+      "paidRepairTicks": 0,
+      "players": [
+        {
+          "civilization": "highland",
+          "age": 3,
+          "kills": 56,
+          "losses": 92,
+          "shipments": 8,
+          "population": 0,
+          "treasures": 3,
+          "guardians": 4,
+          "gathered": {
+            "food": 7323.38916015625,
+            "wood": 4399.28466796875,
+            "coin": 3133.642822265625
+          },
+          "spent": {
+            "food": 7575.0,
+            "wood": 4685.0,
+            "coin": 3225.0
+          },
+          "passiveIncome": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "tradeIncome": {
+            "food": 150.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "resources": {
+            "food": 199.80715942382812,
+            "wood": 59.602333068847656,
+            "coin": 7.52691650390625
+          },
+          "refunded": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "ageHistory": [
+            "I @ 0s",
+            "2 @ 214.9s",
+            "3 @ 742.5s"
+          ]
+        },
+        {
+          "civilization": "wayfarer",
+          "age": 4,
+          "kills": 92,
+          "losses": 56,
+          "shipments": 10,
+          "population": 95,
+          "treasures": 3,
+          "guardians": 4,
+          "gathered": {
+            "food": 15072.482421875,
+            "wood": 4463.43115234375,
+            "coin": 776.0767822265625
+          },
+          "spent": {
+            "food": 15720.0,
+            "wood": 4640.0,
+            "coin": 6135.0
+          },
+          "passiveIncome": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "tradeIncome": {
+            "food": 450.0,
+            "wood": 0.0,
+            "coin": 7697.5283203125
+          },
+          "resources": {
+            "food": 98.24271392822266,
+            "wood": 167.75900268554688,
+            "coin": 2488.523193359375
+          },
+          "refunded": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "ageHistory": [
+            "I @ 0s",
+            "2 @ 207.7s",
+            "3 @ 801.3s",
+            "4 @ 1243.5s"
+          ]
+        }
+      ],
+      "pauseTransitions": []
+    },
+    {
+      "matchId": "a2725beba57d4b1982323301fcf3ec5f",
+      "autoplay": true,
+      "simulationSpeed": 16.0,
+      "time": 1382.109619140625,
+      "winner": 0,
+      "civilizations": [
+        "wayfarer",
+        "highland"
+      ],
+      "ages": [
+        4,
+        3
+      ],
+      "eventCount": 60798,
+      "rawEventsSha256": "5b7d2da6d52c5e572f709eeb01306474c28cf9764f03b8e6a595a3906aea8366",
+      "matchEnded": [
+        {
+          "time": 1382.109619140625,
+          "kind": "MatchEnded",
+          "message": "All opposing units and buildings eliminated",
+          "player": 0,
+          "entity": 0,
+          "target": 0,
+          "amount": 0.0
+        }
+      ],
+      "resignCount": 0,
+      "eventKindCounts": {
+        "AIStrategy": 11,
+        "AgeAdvanced": 5,
+        "AgeRewardArrived": 5,
+        "AgeRouteChosen": 5,
+        "AttackPrepared": 2278,
+        "BuildingComplete": 30,
+        "CaravanDelivered": 70,
+        "CaravanLoaded": 70,
+        "CaravanRoute": 59,
+        "Command": 1969,
+        "Damage": 2103,
+        "Death": 210,
+        "DestinationAdjusted": 82,
+        "Experience": 443,
+        "Fire": 2144,
+        "Garrison": 41,
+        "Gather": 48999,
+        "Impact": 1007,
+        "LandmarkDiscovered": 22,
+        "LandmarkReachability": 34,
+        "ManufactureComplete": 2,
+        "ManufactureQueued": 2,
+        "MatchEnded": 1,
+        "MatchStarted": 1,
+        "Payment": 296,
+        "PrefabUsed": 2,
+        "ProductionQueued": 146,
+        "RallyAssigned": 180,
+        "ResearchComplete": 13,
+        "ResourceDepleted": 30,
+        "ShieldStance": 49,
+        "ShipmentArrived": 18,
+        "ShipmentEarned": 19,
+        "ShipmentSent": 19,
+        "Spawn": 368,
+        "StartingResources": 2,
+        "Technology": 24,
+        "TradeDelivery": 13,
+        "TradeMode": 3,
+        "TradeSocket": 3,
+        "TreasureClaimed": 6,
+        "TreasurePlaced": 6,
+        "Ungarrison": 8
+      },
+      "paidRepairTicks": 15,
+      "players": [
+        {
+          "civilization": "wayfarer",
+          "age": 4,
+          "kills": 114,
+          "losses": 52,
+          "shipments": 11,
+          "population": 96,
+          "treasures": 3,
+          "guardians": 4,
+          "gathered": {
+            "food": 17363.1015625,
+            "wood": 4418.66943359375,
+            "coin": 4613.34423828125
+          },
+          "spent": {
+            "food": 15300.0,
+            "wood": 5070.0,
+            "coin": 6980.0
+          },
+          "passiveIncome": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "tradeIncome": {
+            "food": 150.0,
+            "wood": 312.5,
+            "coin": 6635.037109375
+          },
+          "resources": {
+            "food": 2496.695556640625,
+            "wood": 6.50543212890625,
+            "coin": 4417.71337890625
+          },
+          "refunded": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "ageHistory": [
+            "I @ 0s",
+            "2 @ 214.9s",
+            "3 @ 668.1s",
+            "4 @ 1082.8s"
+          ]
+        },
+        {
+          "civilization": "highland",
+          "age": 3,
+          "kills": 52,
+          "losses": 114,
+          "shipments": 8,
+          "population": 0,
+          "treasures": 3,
+          "guardians": 4,
+          "gathered": {
+            "food": 7757.10546875,
+            "wood": 6062.896484375,
+            "coin": 2557.573486328125
+          },
+          "spent": {
+            "food": 8015.0,
+            "wood": 6335.91015625,
+            "coin": 2509.7724609375
+          },
+          "passiveIncome": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "tradeIncome": {
+            "food": 75.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "resources": {
+            "food": 123.0511474609375,
+            "wood": 77.00396728515625,
+            "coin": 147.58843994140625
+          },
+          "refunded": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "ageHistory": [
+            "I @ 0s",
+            "2 @ 237.7s",
+            "3 @ 806.1s"
+          ]
+        }
+      ],
+      "pauseTransitions": [],
+      "paidRepairDetails": {
+        "ticks": 15,
+        "player": 1,
+        "repairerEntity": 283,
+        "targetEntity": 288,
+        "startTime": 1058.388671875,
+        "endTime": 1059.788330078125,
+        "hpBefore": 194.0,
+        "hpAfter": 220.0,
+        "actualHpRestored": 26.0,
+        "actualResourcesPaid": {
+          "food": -0.0,
+          "wood": 5.9090423583984375,
+          "coin": 14.772598266601562
+        },
+        "interpretation": "One continuous repair interval; 15 payment ticks are not 15 independent repair jobs.",
+        "repairerSpawnName": "Field Engineer",
+        "targetSpawnName": "Field Cannon"
+      }
+    },
+    {
+      "matchId": "9c21044befae495fa1d901ac7cd40fba",
+      "autoplay": false,
+      "simulationSpeed": 1.0,
+      "time": 150.49998474121094,
+      "winner": -1,
+      "civilizations": [
+        "highland",
+        "highland"
+      ],
+      "ages": [
+        1,
+        1
+      ],
+      "eventCount": 2695,
+      "rawEventsSha256": "15e542c00a5d7d3f91f85c4d70c2252f6a8719b9d23c71f2fb3e65abfcc6b35b",
+      "matchEnded": [],
+      "resignCount": 0,
+      "eventKindCounts": {
+        "AIStrategy": 2,
+        "AttackPrepared": 105,
+        "Command": 27,
+        "Damage": 103,
+        "Death": 15,
+        "Experience": 14,
+        "Fire": 103,
+        "Gather": 2086,
+        "LandmarkDiscovered": 20,
+        "LandmarkReachability": 34,
+        "MatchStarted": 1,
+        "PauseChanged": 6,
+        "Payment": 7,
+        "ProductionQueued": 6,
+        "RallyAssigned": 6,
+        "ResourceDepleted": 5,
+        "ShipmentArrived": 1,
+        "ShipmentEarned": 1,
+        "ShipmentSent": 1,
+        "Spawn": 137,
+        "StartingResources": 2,
+        "Technology": 1,
+        "TradeSocket": 3,
+        "TreasureClaimed": 3,
+        "TreasurePlaced": 6
+      },
+      "paidRepairTicks": 0,
+      "players": [
+        {
+          "civilization": "highland",
+          "age": 1,
+          "kills": 1,
+          "losses": 0,
+          "shipments": 0,
+          "population": 6,
+          "treasures": 0,
+          "guardians": 2,
+          "gathered": {
+            "food": 827.123046875,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "spent": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "passiveIncome": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "tradeIncome": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "resources": {
+            "food": 1127.2166748046875,
+            "wood": 350.0,
+            "coin": 100.0
+          },
+          "refunded": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "ageHistory": [
+            "I @ 0s"
+          ]
+        },
+        {
+          "civilization": "highland",
+          "age": 1,
+          "kills": 0,
+          "losses": 1,
+          "shipments": 1,
+          "population": 12,
+          "treasures": 3,
+          "guardians": 4,
+          "gathered": {
+            "food": 1126.919921875,
+            "wood": 378.6801452636719,
+            "coin": 150.0
+          },
+          "spent": {
+            "food": 1400.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "passiveIncome": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "tradeIncome": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "resources": {
+            "food": 26.839271545410156,
+            "wood": 728.6708984375,
+            "coin": 250.0011749267578
+          },
+          "refunded": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "ageHistory": [
+            "I @ 0s"
+          ]
+        }
+      ],
+      "pauseTransitions": [
+        {
+          "time": 17.4000301361084,
+          "kind": "PauseChanged",
+          "message": "focus_lost",
+          "player": 0,
+          "entity": 0,
+          "target": 0,
+          "amount": 1.0
+        },
+        {
+          "time": 17.4000301361084,
+          "kind": "PauseChanged",
+          "message": "manual_resume",
+          "player": 0,
+          "entity": 0,
+          "target": 0,
+          "amount": 0.0
+        },
+        {
+          "time": 40.49995422363281,
+          "kind": "PauseChanged",
+          "message": "focus_lost",
+          "player": 0,
+          "entity": 0,
+          "target": 0,
+          "amount": 1.0
+        },
+        {
+          "time": 40.49995422363281,
+          "kind": "PauseChanged",
+          "message": "manual_resume",
+          "player": 0,
+          "entity": 0,
+          "target": 0,
+          "amount": 0.0
+        },
+        {
+          "time": 135.79908752441406,
+          "kind": "PauseChanged",
+          "message": "focus_lost",
+          "player": 0,
+          "entity": 0,
+          "target": 0,
+          "amount": 1.0
+        },
+        {
+          "time": 135.79908752441406,
+          "kind": "PauseChanged",
+          "message": "manual_resume",
+          "player": 0,
+          "entity": 0,
+          "target": 0,
+          "amount": 0.0
+        }
+      ],
+      "player0Commands": [
+        {
+          "time": 8.599996566772461,
+          "kind": "Command",
+          "message": "Gather ×6",
+          "player": 0,
+          "entity": 2,
+          "target": 35,
+          "amount": 6.0
+        }
+      ],
+      "player0PaymentCount": 0,
+      "player0AgeAdvancedCount": 0
+    }
+  ],
+  "captures": [
+    {
+      "metadata": "Captures/Frontier-20261003-163831-095-f1879-28c41127dde241a0a3464bf5f983070d.json",
+      "png": "Captures/Frontier-20261003-163831-095-f1879-28c41127dde241a0a3464bf5f983070d.png",
+      "pngSha256": "99c0574663eb406445dfd50ac21cf451f554f09192b08a318be63313db6b4adc",
+      "matchId": "",
+      "worldTime": 0.0,
+      "inMenu": true,
+      "paused": false,
+      "utc": "2026-10-03T16:38:31.0540790Z"
+    },
+    {
+      "metadata": "Captures/Frontier-20261003-164219-401-f842-bf616c7242504527967c5af59a4d2372.json",
+      "png": "Captures/Frontier-20261003-164219-401-f842-bf616c7242504527967c5af59a4d2372.png",
+      "pngSha256": "fa36917b2e0d8fcaa081a30fd58f249cffe583de5148b98981883e33bd5e835d",
+      "matchId": "50e3780641784d269f2d913c41f11e35",
+      "worldTime": 231.70494079589844,
+      "inMenu": false,
+      "paused": false,
+      "utc": "2026-10-03T16:42:19.3500390Z"
+    },
+    {
+      "metadata": "Captures/Frontier-20261003-164236-379-f1847-83b8b10bb41e4634a2e80353ff84ea40.json",
+      "png": "Captures/Frontier-20261003-164236-379-f1847-83b8b10bb41e4634a2e80353ff84ea40.png",
+      "pngSha256": "506d139db63427f8831c416f7d138eeecd5373f3df299d4c032260b36cb1780c",
+      "matchId": "50e3780641784d269f2d913c41f11e35",
+      "worldTime": 503.4215087890625,
+      "inMenu": false,
+      "paused": false,
+      "utc": "2026-10-03T16:42:36.3321240Z"
+    },
+    {
+      "metadata": "Captures/Frontier-20261003-164256-458-f3039-b7ab772866e24aa2a33e72210005e676.json",
+      "png": "Captures/Frontier-20261003-164256-458-f3039-b7ab772866e24aa2a33e72210005e676.png",
+      "pngSha256": "4ad2a58e7755851c2f9cc0c5ffad43ad9125e70f8042e0b3deee28483a69f18d",
+      "matchId": "50e3780641784d269f2d913c41f11e35",
+      "worldTime": 824.7456665039062,
+      "inMenu": false,
+      "paused": false,
+      "utc": "2026-10-03T16:42:56.4139260Z"
+    },
+    {
+      "metadata": "Captures/Frontier-20261003-164307-836-f3713-c43da8d9ee334c69a38bff5bc934a7f5.json",
+      "png": "Captures/Frontier-20261003-164307-836-f3713-c43da8d9ee334c69a38bff5bc934a7f5.png",
+      "pngSha256": "690e71d36a6e9707a6b4559289c1ca2e648734c1fa98df88e42171d7c545768d",
+      "matchId": "50e3780641784d269f2d913c41f11e35",
+      "worldTime": 1006.8012084960938,
+      "inMenu": false,
+      "paused": false,
+      "utc": "2026-10-03T16:43:07.8012800Z"
+    },
+    {
+      "metadata": "Captures/Frontier-20261003-164350-086-f6186-ac1d0b5688164a1f929ba44474ff7b82.json",
+      "png": "Captures/Frontier-20261003-164350-086-f6186-ac1d0b5688164a1f929ba44474ff7b82.png",
+      "pngSha256": "403ccfb082a2dff43f5db423a33e703dca8227522349a0d7bf038670857c4953",
+      "matchId": "",
+      "worldTime": 0.0,
+      "inMenu": true,
+      "paused": false,
+      "utc": "2026-10-03T16:43:50.0554950Z"
+    },
+    {
+      "metadata": "Captures/Frontier-20261003-164448-062-f1236-fce2eaefd7614a2da70e684cee4c0f05.json",
+      "png": "Captures/Frontier-20261003-164448-062-f1236-fce2eaefd7614a2da70e684cee4c0f05.png",
+      "pngSha256": "aa7ec915194a9916a41f270069b1eecb75b580760646e70292f603883f0f260e",
+      "matchId": "a2725beba57d4b1982323301fcf3ec5f",
+      "worldTime": 334.5111999511719,
+      "inMenu": false,
+      "paused": false,
+      "utc": "2026-10-03T16:44:48.0098370Z"
+    },
+    {
+      "metadata": "Captures/Frontier-20261003-164512-390-f2689-ac591b45b95544a3bc187d713edb5551.json",
+      "png": "Captures/Frontier-20261003-164512-390-f2689-ac591b45b95544a3bc187d713edb5551.png",
+      "pngSha256": "fe722a25bf41de02fea6d2a35b1ad91ca7dd6687c4c3aec05b1f8e8000e9d02c",
+      "matchId": "a2725beba57d4b1982323301fcf3ec5f",
+      "worldTime": 723.9702758789062,
+      "inMenu": false,
+      "paused": false,
+      "utc": "2026-10-03T16:45:12.3457670Z"
+    },
+    {
+      "metadata": "Captures/Frontier-20261003-164557-199-f5347-3a7e51e5f0e64d6f99d6bd08728295a8.json",
+      "png": "Captures/Frontier-20261003-164557-199-f5347-3a7e51e5f0e64d6f99d6bd08728295a8.png",
+      "pngSha256": "0731f059581efd9365fc7d01271a013a3f760d18743c617540119170a54dfbbf",
+      "matchId": "a2725beba57d4b1982323301fcf3ec5f",
+      "worldTime": 1382.109619140625,
+      "inMenu": false,
+      "paused": false,
+      "utc": "2026-10-03T16:45:57.1651660Z"
+    },
+    {
+      "metadata": "Captures/Frontier-20261003-164623-579-f6898-5da11923c9d6424c9a8322d93eccaa0f.json",
+      "png": "Captures/Frontier-20261003-164623-579-f6898-5da11923c9d6424c9a8322d93eccaa0f.png",
+      "pngSha256": "25a8e0bc6ae100b12796d271413d2686356e9bf813340ce57ea7eeea14f65ea2",
+      "matchId": "",
+      "worldTime": 0.0,
+      "inMenu": true,
+      "paused": false,
+      "utc": "2026-10-03T16:46:23.5421060Z"
+    },
+    {
+      "metadata": "Captures/Frontier-20261003-164644-032-f8112-e9013d8a827b4c2a952a5d456d8edb14.json",
+      "png": "Captures/Frontier-20261003-164644-032-f8112-e9013d8a827b4c2a952a5d456d8edb14.png",
+      "pngSha256": "6b5239d053ae1f3181b444610edc365d9ca3b1659f1895ddcd0aa1ce007e65e8",
+      "matchId": "",
+      "worldTime": 0.0,
+      "inMenu": true,
+      "paused": false,
+      "utc": "2026-10-03T16:46:43.9946260Z"
+    },
+    {
+      "metadata": "Captures/Frontier-20261003-164656-329-f8846-ccc110b2634f4e038eae41a468903c51.json",
+      "png": "Captures/Frontier-20261003-164656-329-f8846-ccc110b2634f4e038eae41a468903c51.png",
+      "pngSha256": "d0919ad87231be9b986921bf61eeb0984c87e05498c7635e669eb2bc41886e64",
+      "matchId": "",
+      "worldTime": 0.0,
+      "inMenu": true,
+      "paused": false,
+      "utc": "2026-10-03T16:46:56.2919340Z"
+    },
+    {
+      "metadata": "Captures/Frontier-20261003-164721-414-f10340-8aeba4c58251411098285c996a0848b7.json",
+      "png": "Captures/Frontier-20261003-164721-414-f10340-8aeba4c58251411098285c996a0848b7.png",
+      "pngSha256": "37a302568ca1e92e0834eead0c3a07b8315438e401be7ec8e32970914236135b",
+      "matchId": "9c21044befae495fa1d901ac7cd40fba",
+      "worldTime": 8.599996566772461,
+      "inMenu": false,
+      "paused": false,
+      "utc": "2026-10-03T16:47:21.3666770Z"
+    },
+    {
+      "metadata": "Captures/Frontier-20261003-164751-188-f12100-736a63c549504009974f810aa3045b92.json",
+      "png": "Captures/Frontier-20261003-164751-188-f12100-736a63c549504009974f810aa3045b92.png",
+      "pngSha256": "62b14457c949dc9d6ed4ef64f154aff84183563ccb75b4652c99ddc68b8f53fb",
+      "matchId": "9c21044befae495fa1d901ac7cd40fba",
+      "worldTime": 25.100059509277344,
+      "inMenu": false,
+      "paused": false,
+      "utc": "2026-10-03T16:47:51.1436480Z"
+    },
+    {
+      "metadata": "Captures/Frontier-20261003-165207-813-f25068-0360806ad167446194dad4f61d19d440.json",
+      "png": "Captures/Frontier-20261003-165207-813-f25068-0360806ad167446194dad4f61d19d440.png",
+      "pngSha256": "65371590f8356af7512b76302630e4baa7045de73bf6ba564471ddade434c4c5",
+      "matchId": "9c21044befae495fa1d901ac7cd40fba",
+      "worldTime": 150.3999786376953,
+      "inMenu": false,
+      "paused": false,
+      "utc": "2026-10-03T16:52:07.7593960Z"
+    }
+  ],
+  "logs": [
+    {
+      "path": "Logs/menu-player.log",
+      "prematureThreadFinalizationCount": 6,
+      "memoryLeaksDiagnosticCount": 1,
+      "exitDiagnostics": [
+        {
+          "line": 51,
+          "text": "Thread 0x17181f000 may have been prematurely finalized"
+        },
+        {
+          "line": 52,
+          "text": "Thread 0x1712e7000 may have been prematurely finalized"
+        },
+        {
+          "line": 58,
+          "text": "Thread 0x17027f000 may have been prematurely finalized"
+        },
+        {
+          "line": 59,
+          "text": "Thread 0x17030b000 may have been prematurely finalized"
+        },
+        {
+          "line": 60,
+          "text": "Thread 0x170397000 may have been prematurely finalized"
+        },
+        {
+          "line": 61,
+          "text": "Thread 0x1701f3000 may have been prematurely finalized"
+        },
+        {
+          "line": 63,
+          "text": "PlayerConnection::Cleanup##utp:{\"type\":\"MemoryLeaks\",\"version\":2,\"phase\":\"Immediate\",\"time\":1791045709723,\"processId\":30996,\"allocatedMemory\":3196347,\"memoryLabels\":[{\"Default\":54543},{\"Permanent\":1472},{\"NewDelete\":2371425},{\"Thread\":8120},{\"Manager\":14983},{\"VertexData\":8},{\"Geometry\":408},{\"Texture\":16},{\"Shader\":78020},{\"Material\":68},{\"GfxDevice\":38776},{\"GfxThread\":400},{\"Animation\":880},{\"FreeType\":8},{\"FontEngine\":736},{\"Physics\":2000},{\"Physics2D\":16},{\"Serialization\":16592},{\"Input\":43216},{\"JobScheduler\":448},{\"TextLib\":280},{\"Mono\":56},{\"ScriptingNativeRuntime\":128},{\"BaseObject\":52112},{\"Resource\":564},{\"Renderer\":2448},{\"Transform\":6485},{\"File\":4600},{\"WebCam\":32},{\"Culling\":32},{\"Terrain\":11298},{\"Wind\":24},{\"String\":3115},{\"Utility\":316568},{\"PoolAlloc\":1536},{\"AI\":40},{\"TypeTree\":5512},{\"ScriptManager\":5696},{\"CodeReload\":440},{\"RuntimeInitializeOnLoadManager\":64},{\"Sprites\":78},{\"SpriteAtlas\":120},{\"GI\":7200},{\"Director\":8248},{\"CloudService\":144},{\"WebRequest\":520},{\"VR\":49402},{\"SceneManager\":408},{\"Video\":2080},{\"LazyScriptCache\":32},{\"NativeArray\":648},{\"Camera\":1169},{\"Secure\":241},{\"SerializationCache\":3608},{\"APIUpdating\":10320},{\"Subsystems\":336},{\"VirtualTexturing\":57496},{\"Baselib\":16},{\"Analytics\":80},{\"Hierarchy\":1452},{\"UIElements\":40},{\"CoreStats\":14536},{\"Identifiers\":7152},{\"Gui\":40},{\"CoreBusinessMetrics\":128},{\"AssetReference\":32}]}"
+        }
+      ]
+    },
+    {
+      "path": "Logs/highland-autoplay.log",
+      "prematureThreadFinalizationCount": 6,
+      "memoryLeaksDiagnosticCount": 1,
+      "exitDiagnostics": [
+        {
+          "line": 367,
+          "text": "Thread 0x17206f000 may have been prematurely finalized"
+        },
+        {
+          "line": 368,
+          "text": "Thread 0x171b37000 may have been prematurely finalized"
+        },
+        {
+          "line": 374,
+          "text": "Thread 0x170acf000 may have been prematurely finalized"
+        },
+        {
+          "line": 375,
+          "text": "Thread 0x170a43000 may have been prematurely finalized"
+        },
+        {
+          "line": 376,
+          "text": "Thread 0x170b5b000 may have been prematurely finalized"
+        },
+        {
+          "line": 377,
+          "text": "Thread 0x170be7000 may have been prematurely finalized"
+        },
+        {
+          "line": 379,
+          "text": "PlayerConnection::Cleanup##utp:{\"type\":\"MemoryLeaks\",\"version\":2,\"phase\":\"Immediate\",\"time\":1791045856572,\"processId\":31962,\"allocatedMemory\":3167402,\"memoryLabels\":[{\"Default\":54543},{\"Permanent\":1472},{\"NewDelete\":2326096},{\"Thread\":8120},{\"Manager\":14983},{\"VertexData\":8},{\"Geometry\":408},{\"Texture\":16},{\"Shader\":78020},{\"Material\":68},{\"GfxDevice\":38776},{\"GfxThread\":400},{\"Animation\":880},{\"FreeType\":8},{\"FontEngine\":736},{\"Physics\":2000},{\"Physics2D\":16},{\"Serialization\":32976},{\"Input\":43216},{\"JobScheduler\":448},{\"TextLib\":280},{\"Mono\":56},{\"ScriptingNativeRuntime\":128},{\"BaseObject\":52112},{\"Resource\":564},{\"Renderer\":2448},{\"Transform\":6485},{\"File\":4600},{\"WebCam\":32},{\"Culling\":32},{\"Terrain\":11298},{\"Wind\":24},{\"String\":3115},{\"Utility\":316568},{\"PoolAlloc\":1536},{\"AI\":40},{\"TypeTree\":5512},{\"ScriptManager\":5696},{\"CodeReload\":440},{\"RuntimeInitializeOnLoadManager\":64},{\"Sprites\":78},{\"SpriteAtlas\":120},{\"GI\":7200},{\"Director\":8248},{\"CloudService\":144},{\"WebRequest\":520},{\"VR\":49402},{\"SceneManager\":408},{\"Video\":2080},{\"LazyScriptCache\":32},{\"NativeArray\":648},{\"Camera\":1169},{\"Secure\":241},{\"SerializationCache\":3608},{\"APIUpdating\":10320},{\"Subsystems\":336},{\"VirtualTexturing\":57496},{\"Baselib\":16},{\"Analytics\":80},{\"Hierarchy\":1452},{\"UIElements\":40},{\"CoreStats\":14536},{\"Identifiers\":7152},{\"Gui\":40},{\"CoreBusinessMetrics\":128},{\"AssetReference\":32}]}"
+        }
+      ]
+    },
+    {
+      "path": "Logs/wayfarer-autoplay.log",
+      "prematureThreadFinalizationCount": 6,
+      "memoryLeaksDiagnosticCount": 1,
+      "exitDiagnostics": [
+        {
+          "line": 453,
+          "text": "Thread 0x16d43b000 may have been prematurely finalized"
+        },
+        {
+          "line": 454,
+          "text": "Thread 0x16cf03000 may have been prematurely finalized"
+        },
+        {
+          "line": 460,
+          "text": "Thread 0x16be9b000 may have been prematurely finalized"
+        },
+        {
+          "line": 461,
+          "text": "Thread 0x16be0f000 may have been prematurely finalized"
+        },
+        {
+          "line": 462,
+          "text": "Thread 0x16bf27000 may have been prematurely finalized"
+        },
+        {
+          "line": 463,
+          "text": "Thread 0x16bfb3000 may have been prematurely finalized"
+        },
+        {
+          "line": 465,
+          "text": "PlayerConnection::Cleanup##utp:{\"type\":\"MemoryLeaks\",\"version\":2,\"phase\":\"Immediate\",\"time\":1791046328101,\"processId\":32634,\"allocatedMemory\":3171145,\"memoryLabels\":[{\"Default\":54543},{\"Permanent\":1472},{\"NewDelete\":2329839},{\"Thread\":8120},{\"Manager\":14983},{\"VertexData\":8},{\"Geometry\":408},{\"Texture\":16},{\"Shader\":78020},{\"Material\":68},{\"GfxDevice\":38776},{\"GfxThread\":400},{\"Animation\":880},{\"FreeType\":8},{\"FontEngine\":736},{\"Physics\":2000},{\"Physics2D\":16},{\"Serialization\":32976},{\"Input\":43216},{\"JobScheduler\":448},{\"TextLib\":280},{\"Mono\":56},{\"ScriptingNativeRuntime\":128},{\"BaseObject\":52112},{\"Resource\":564},{\"Renderer\":2448},{\"Transform\":6485},{\"File\":4600},{\"WebCam\":32},{\"Culling\":32},{\"Terrain\":11298},{\"Wind\":24},{\"String\":3115},{\"Utility\":316568},{\"PoolAlloc\":1536},{\"AI\":40},{\"TypeTree\":5512},{\"ScriptManager\":5696},{\"CodeReload\":440},{\"RuntimeInitializeOnLoadManager\":64},{\"Sprites\":78},{\"SpriteAtlas\":120},{\"GI\":7200},{\"Director\":8248},{\"CloudService\":144},{\"WebRequest\":520},{\"VR\":49402},{\"SceneManager\":408},{\"Video\":2080},{\"LazyScriptCache\":32},{\"NativeArray\":648},{\"Camera\":1169},{\"Secure\":241},{\"SerializationCache\":3608},{\"APIUpdating\":10320},{\"Subsystems\":336},{\"VirtualTexturing\":57496},{\"Baselib\":16},{\"Analytics\":80},{\"Hierarchy\":1452},{\"UIElements\":40},{\"CoreStats\":14536},{\"Identifiers\":7152},{\"Gui\":40},{\"CoreBusinessMetrics\":128},{\"AssetReference\":32}]}"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "allCopiedPayloadsByteIdenticalToSource": true,
+    "allFiveGzipEventsDecompressedByteEqualToSource": true,
+    "all15PngHashesMatchCaptureMetadata": true,
+    "duplicateFinishedAndMenuEventsIdenticalWithinMatch": true
+  },
+  "observationsAndLimits": {
+    "uiObservationSource": "Root operator observations plus the linked PNG files; not an input replay.",
+    "fourCivilizationModalCapture": "164623",
+    "technologyPresetDeckPageCapture": "164656; Deck 25/25, page 7/7",
+    "victoryCapture": "164557, second autoplay only",
+    "firstAutoplayFinalScreenshot": false,
+    "manualActionsObserved": [
+      "Box-selected villagers and right-clicked food crate; villagers subsequently gathered berries",
+      "T selected Town Center",
+      "Pause/resume",
+      "Cmd+Q quit"
+    ],
+    "manualProgress": "Opening smoke only: player 0 age I, no payments or AgeAdvanced; not a successful age-up or manual victory.",
+    "processExit": "Root operator confirmed all game processes exited with shell checks; no fresh process evidence is generated by this archive.",
+    "automationLimitation": "Coordinate clicks intermittently returned noWindowsAvailable, recovered temporarily and failed again near the end; keyboard quit worked. This does not isolate an engine defect.",
+    "performance": "Reports retain frame metrics, but this is not a performance acceptance run; autoplay used simulation speed 16.",
+    "diagnostics": "All three raw logs contain premature thread finalization and MemoryLeaks exit diagnostics; no warning-free or memory-leak-free claim.",
+    "excluded": "Accidental old 0.2.32 launch had a different build GUID and is excluded.",
+    "notCovered": [
+      "Native manual I–V progression",
+      "All four civilizations played manually",
+      "All deck cards played",
+      "Statistical balance or multiple maps"
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "schema": "frontier072-transport-assembly-review-1",
+  "status": "passed_actual_assembly_and_transport_checks",
+  "checks": [
+    {
+      "case": "missing",
+      "passed": true,
+      "rejectedBeforeOutput": true
+    },
+    {
+      "case": "corrupt",
+      "passed": true,
+      "rejectedBeforeOutput": true
+    },
+    {
+      "case": "actual",
+      "passed": true,
+      "assembledBytes": 209058503,
+      "assembledSha256": "036fde3891836a12f25a98f8af1bf3c0fa5974711580ffed72864b82d3c9c33a",
+      "completeZIPCRCReadToEOF": true
+    },
+    {
+      "case": "existing_output_preserved",
+      "passed": true
+    }
+  ],
+  "files": [
+    {
+      "file": "README-072-\u4e0b\u8f7d\u4e0e\u5bf9\u6218\u8bb0\u5f55\u5408\u5e76.md",
+      "bytes": 1151,
+      "sha256": "539281d7bc533d70e85586a5a13aa2e9052bee0b7311e8a614bc436ba0219b70"
+    },
+    {
+      "file": "assemble-normal072.py",
+      "bytes": 1657,
+      "sha256": "b6a311117ca8d535dc28cca15dc02ca082df0e30574d9a62142f5f6e9e950d20"
+    },
+    {
+      "file": "normal-routes-originals072.zip.part001",
+      "bytes": 80000000,
+      "sha256": "4aa0b88b5cbbe918de6025e92f10c7895df4d240070efd07997a542ab44caf34"
+    },
+    {
+      "file": "normal-routes-originals072.zip.part002",
+      "bytes": 80000000,
+      "sha256": "f53f4ff237a3c22315d01944682ad60adf6a25a2f032edfb819df90624f450b8"
+    },
+    {
+      "file": "normal-routes-originals072.zip.part003",
+      "bytes": 49058503,
+      "sha256": "82f739532ca60800658cc3b9d5403d832b8bfe500a1d8a148d083ec2a75dd8e8"
+    },
+    {
+      "file": "normal072-transport-manifest.json",
+      "bytes": 1187,
+      "sha256": "9886965934abd5e5e58b59f5ead5f52ebf5b305214e648bf1a4cee02be41aab8"
+    }
+  ],
+  "originalNormalZIPUnchanged": true,
+  "scope": "Transport only; original5ZIP/package manifest and gameplay acceptance unchanged."
+}

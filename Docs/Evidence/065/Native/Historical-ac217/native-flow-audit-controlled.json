@@ -1,0 +1,4540 @@
+{
+  "schema": 1,
+  "recordedAtUtc": "2026-10-04T23:56:48.509801+00:00",
+  "status": "controlled_native_scopes_verified_with_documented_display_limitation",
+  "scope": "Four controlled native fixture continuations linked to preserved preview/fleet/cold audits. Normal-opening, cleanup, performance and delivery remain separate; this does not certify native coverage of every mission/faction/civilization.",
+  "build": {
+    "path": "Native/client-build.json",
+    "bytes": 1147,
+    "sha256": "65016b7f95f8a6226dd4b78b93edde3bb039747da0b2a0471f54d18e4990dbd6",
+    "appVersion": "0.8.0",
+    "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+    "runtimeCommit": "eb19da3e9cad898240a52db152574b2e762410c9",
+    "sourceFingerprint": "fdf7e8ff5976a4e8235f86282d2f8e3ea1537d33ba2388839ebb516fdce1a60c",
+    "architecture": "arm64",
+    "buildType": "Development / Mono"
+  },
+  "tests": {
+    "EditMode": 612,
+    "PlayMode": 340
+  },
+  "previousAudits": [
+    {
+      "path": "native-flow-audit-partial.json",
+      "bytes": 42503,
+      "sha256": "c6f643a953ca04a558847e455ae1d58fc4295ca91b7f1ab17a73a9b0e323120c"
+    },
+    {
+      "path": "native-flow-audit-fleet.json",
+      "bytes": 184782,
+      "sha256": "a2f16862ab36767d12a2a05590b07d7f93759ef35f8ae1fea3154ff899e583b0"
+    }
+  ],
+  "previewAudit": {
+    "path": "preview-verified-audit.json",
+    "bytes": 8136,
+    "sha256": "039e4005e1b2fee9e7f36fb48af0aa74ee6cabcc0ed568811ee34f80af8d5d5a"
+  },
+  "fixtureBaselines": {
+    "naval-strait-314159": {
+      "path": "PreviewSaves-verified/naval-strait-314159/preview.json",
+      "bytes": 845717,
+      "sha256": "a67f70f773f7cbd372d3cbf3f7d1c1e429e9408e52bceb2556ce663a53eaf938",
+      "payloadSha256": "8eb872739bc270d81696f0d5d7fd2611e5665db159e3ff2e1e76796626a11d1c"
+    },
+    "neutral-delta-271828": {
+      "path": "PreviewSaves-verified/neutral-delta-271828/preview.json",
+      "bytes": 878417,
+      "sha256": "c0b678dfbbbcd8ac669c89e64b91f7d00d3558cb0a60da0ae307fd942117e158",
+      "payloadSha256": "9c9c51e451855d6ad01312194b2b882e2a0cb9306c17d47a4ff15ef75feeba14"
+    },
+    "bridge-river-161803": {
+      "path": "PreviewSaves-verified/bridge-river-161803/preview.json",
+      "bytes": 811661,
+      "sha256": "a3c4179f1a607450bce02477738201098fcd2e833a07420004cd5ba924c1df5a",
+      "payloadSha256": "758cc45d7af545df0db132af583fae6bb4004546af437da9d9f9d548291a6e8c"
+    },
+    "monitor-harbor-161803": {
+      "path": "PreviewSaves-verified/monitor-harbor-161803/preview.json",
+      "bytes": 808816,
+      "sha256": "c141414ed2f6dd974f4771a244523f8d59b2463806dc6c3daa3352c603b95771",
+      "payloadSha256": "b111ab799da519a96578097e848b07557e7ce70d2a8bfca405098f620909efd3"
+    }
+  },
+  "scopeMatrix": {
+    "fleet": "ControlledIII; boarded cargo, real process restart byte-identical save, groups, landing, explicit target shot and paid repair. Failed first death branch preserved.",
+    "neutral": "ControlledIII;2pre-completed paid treaties/research; native SETTLEMENT and one paid river recruit. No native first-time treaty/research/highland claim.",
+    "bridge": "ControlledIII/noAI;3pre-positioned paid guards, initial10.1progress; native continuation to180 objective win. No standard-opening victory.",
+    "monitor": "ControlledIV/capIV; paid preview vessel, native Move+Hold/displacement/rendered wake and Holding. No native monitor attack."
+  },
+  "completedPriorScopes": {
+    "coldAndBoarding": "partial_completed_flow_evidence_verified",
+    "coldSaveSha256": "35b15242b9399c170a8f041facc897c1e625f11a045c9e02556c97cd737ec696",
+    "fleetRepair": {
+      "status": "actual_cost_hp_movement_and_completion_verified",
+      "actualPaid": {
+        "food": -0.0,
+        "wood": 29.98046875,
+        "coin": 20.01953125
+      },
+      "hpBefore": 270,
+      "hpAfter": 450,
+      "explicitCommandDamage": 20,
+      "priorAutomaticDamage": 160
+    },
+    "failedCombat": "Both ships died; not repair pass. Original raw failed report/events now archived in Native/Reports with matching prior SHA."
+  },
+  "neutralNative": {
+    "status": "paid_recruit_and_ui_verified",
+    "checkpoint": {
+      "path": "Native/Checkpoints/delta-recruited.json",
+      "bytes": 886131,
+      "sha256": "ce6da53dca0e8d1c38ef0c5da76fa320a03a0557e8b78c8f52fcee6fe636b704",
+      "payloadSha256": "52b86d793f011710fc18076a91d35234e1dc419c4668a91ea9e71caf9f00d93a"
+    },
+    "baselinePopulation": 8,
+    "finalPopulation": 9,
+    "payment": {
+      "eventIndexZeroBased": 310,
+      "schemaVersion": 2,
+      "hasEconomy": true,
+      "hasPopulation": true,
+      "economy": {
+        "requestedDelta": {
+          "food": -70.0,
+          "wood": 0.0,
+          "coin": -70.0
+        },
+        "actualDelta": {
+          "food": -70.0,
+          "wood": 0.0,
+          "coin": -70.0
+        },
+        "balanceBefore": {
+          "food": 8020.0,
+          "wood": 7550.0,
+          "coin": 7380.0
+        },
+        "balanceAfter": {
+          "food": 7950.0,
+          "wood": 7550.0,
+          "coin": 7310.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 8,
+        "reserved": 0,
+        "capacity": 20
+      },
+      "time": 337.5113830566406,
+      "kind": "Payment",
+      "message": "Riverbank Merchants recruitment: 70 F / 0 W / 70 C",
+      "player": 0,
+      "entity": 109,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 16.0,
+        "y": 64.0
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 1.0
+      }
+    },
+    "queue": {
+      "eventIndexZeroBased": 311,
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": true,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 8,
+        "reserved": 1,
+        "capacity": 20
+      },
+      "time": 337.5113830566406,
+      "kind": "NeutralRecruitQueued",
+      "message": "ally_river_guard",
+      "player": 0,
+      "entity": 109,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 1.0,
+      "position": {
+        "x": 16.0,
+        "y": 64.0
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 1.0
+      }
+    },
+    "spawn": {
+      "eventIndexZeroBased": 312,
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": true,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 9,
+        "reserved": 0,
+        "capacity": 20
+      },
+      "time": 365.5130920410156,
+      "kind": "Spawn",
+      "message": "River Guild Marksman",
+      "player": 0,
+      "entity": 130,
+      "target": 0,
+      "visibilityMask": 1,
+      "amount": 0.0,
+      "position": {
+        "x": 19.86370277404785,
+        "y": 65.0352783203125
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 1.0
+      }
+    },
+    "completion": {
+      "eventIndexZeroBased": 314,
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": false,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 0,
+        "reserved": 0,
+        "capacity": 0
+      },
+      "time": 365.5130920410156,
+      "kind": "NeutralRecruitComplete",
+      "message": "ally_river_guard",
+      "player": 0,
+      "entity": 109,
+      "target": 130,
+      "visibilityMask": 1,
+      "amount": 1.0,
+      "position": {
+        "x": 16.0,
+        "y": 64.0
+      },
+      "facing": {
+        "x": 0.0,
+        "y": 1.0
+      }
+    },
+    "newEntity": {
+      "id": 130,
+      "definition": "ally_river_guard",
+      "hp": 180.0,
+      "position": {
+        "x": 19.86370277404785,
+        "y": 65.0352783203125
+      }
+    },
+    "selectedOldEntity": [
+      129
+    ],
+    "selectionLimit": "Portrait/selection is old129; new130verified by Spawn/Complete and saved entity.",
+    "preexistingTechnologies": [
+      "ally_coastal_scopes",
+      "ally_river_logistics"
+    ],
+    "noNewNativeResearchOrTreatyClaim": true,
+    "postFixtureEvents": [
+      {
+        "eventIndexZeroBased": 309,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 325.1106262207031,
+        "kind": "PauseChanged",
+        "message": "manual_resume",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 0,
+        "amount": 0.0,
+        "position": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 310,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": -70.0,
+            "wood": 0.0,
+            "coin": -70.0
+          },
+          "actualDelta": {
+            "food": -70.0,
+            "wood": 0.0,
+            "coin": -70.0
+          },
+          "balanceBefore": {
+            "food": 8020.0,
+            "wood": 7550.0,
+            "coin": 7380.0
+          },
+          "balanceAfter": {
+            "food": 7950.0,
+            "wood": 7550.0,
+            "coin": 7310.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 8,
+          "reserved": 0,
+          "capacity": 20
+        },
+        "time": 337.5113830566406,
+        "kind": "Payment",
+        "message": "Riverbank Merchants recruitment: 70 F / 0 W / 70 C",
+        "player": 0,
+        "entity": 109,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 16.0,
+          "y": 64.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 311,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 8,
+          "reserved": 1,
+          "capacity": 20
+        },
+        "time": 337.5113830566406,
+        "kind": "NeutralRecruitQueued",
+        "message": "ally_river_guard",
+        "player": 0,
+        "entity": 109,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 1.0,
+        "position": {
+          "x": 16.0,
+          "y": 64.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 312,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 9,
+          "reserved": 0,
+          "capacity": 20
+        },
+        "time": 365.5130920410156,
+        "kind": "Spawn",
+        "message": "River Guild Marksman",
+        "player": 0,
+        "entity": 130,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 19.86370277404785,
+          "y": 65.0352783203125
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 313,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 365.5130920410156,
+        "kind": "Experience",
+        "message": "Allied unit recruited",
+        "player": 0,
+        "entity": 109,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 8.0,
+        "position": {
+          "x": 16.0,
+          "y": 64.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 314,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 365.5130920410156,
+        "kind": "NeutralRecruitComplete",
+        "message": "ally_river_guard",
+        "player": 0,
+        "entity": 109,
+        "target": 130,
+        "visibilityMask": 1,
+        "amount": 1.0,
+        "position": {
+          "x": 16.0,
+          "y": 64.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 315,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 383.9142150878906,
+        "kind": "Experience",
+        "message": "Trade route delivery",
+        "player": 0,
+        "entity": 126,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 40.0,
+        "position": {
+          "x": 16.0,
+          "y": 16.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 316,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 383.9142150878906,
+        "kind": "TradeDelivery",
+        "message": "XP",
+        "player": 0,
+        "entity": 126,
+        "target": 111,
+        "visibilityMask": 1,
+        "amount": 40.0,
+        "position": {
+          "x": 16.0,
+          "y": 16.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 1.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 317,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 393.61480712890625,
+        "kind": "PauseChanged",
+        "message": "manual_pause",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 0,
+        "amount": 1.0,
+        "position": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    ],
+    "captures": [
+      "Frontier-20261004-234103-434-f56145-d05558a41d0340049db52db7442437f0.json",
+      "Frontier-20261004-234115-580-f56862-d23d1890cea64ae69a601e01b0c51681.json",
+      "Frontier-20261004-234155-941-f59251-ad0d786cf7bb4ad79344ef7c1ce06511.json",
+      "Frontier-20261004-234211-783-f60185-cc88549acbc54e0fbed077d77650c4cd.json"
+    ]
+  },
+  "bridgeNative": {
+    "status": "continuous_simulation_objective_win_verified",
+    "baselineWorldTime": 131.69883728027344,
+    "baselineProgress": 10.10000228881836,
+    "winner": 0,
+    "worldTime": 301.60919189453125,
+    "progress": 180,
+    "reason": "Bridge defended",
+    "nativeProgressEventCount": 34,
+    "noPauseOrOrdersAfterInitialResume": true,
+    "secondsContinued": 169.9103546142578,
+    "f9Progress": [
+      {
+        "capture": "Frontier-20261004-234319-129-f64143-4e7cf424d4b54cb88203a143460e5737.json",
+        "time": 131.69883728027344,
+        "status": "active",
+        "progress": 10.10000228881836,
+        "reason": ""
+      },
+      {
+        "capture": "Frontier-20261004-234412-731-f67334-3397296a84814ed4a3f59a2c7ba267d0.json",
+        "time": 185.30210876464844,
+        "status": "active",
+        "progress": 63.69960021972656,
+        "reason": ""
+      },
+      {
+        "capture": "Frontier-20261004-234507-582-f70609-bbf058b2fa834a5d8edca3db6851eaf6.json",
+        "time": 240.10545349121094,
+        "status": "active",
+        "progress": 118.49876403808594,
+        "reason": ""
+      },
+      {
+        "capture": "Frontier-20261004-234541-023-f72601-cfd6c9e0e3894fdb884ad456e8b8922e.json",
+        "time": 273.60748291015625,
+        "status": "active",
+        "progress": 152.0000762939453,
+        "reason": ""
+      },
+      {
+        "capture": "Frontier-20261004-234625-211-f75224-f8e162a030e24dad90224e885d704e0e.json",
+        "time": 301.60919189453125,
+        "status": "won",
+        "progress": 180.0,
+        "reason": "Bridge defended"
+      }
+    ],
+    "nativeEvents": [
+      {
+        "eventIndexZeroBased": 223,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 131.69883728027344,
+        "kind": "PauseChanged",
+        "message": "manual_resume",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 0,
+        "amount": 0.0,
+        "position": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 224,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 134.99903869628906,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 13.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 13.400014877319336,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 225,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 139.9993438720703,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 18.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 18.400033950805664,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 226,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 144.99964904785156,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 23.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 23.400053024291992,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 227,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 149.9999542236328,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 28.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 28.40007209777832,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 228,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 155.00025939941406,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 33.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 33.400062561035156,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 229,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 160.0005645751953,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 38.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 38.399986267089844,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 230,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 165.00086975097656,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 43.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 43.39990997314453,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 231,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 170.0011749267578,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 48.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 48.39983367919922,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 232,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 175.00148010253906,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 53.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 53.399757385253906,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 233,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 180.0017852783203,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 58.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 58.399681091308594,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 234,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 185.00209045410156,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 63.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 63.39960479736328,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 235,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 190.0023956298828,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 68.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 68.39952850341797,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 236,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 195.00270080566406,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 73.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 73.39945220947266,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 237,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 200.0030059814453,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 78.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 78.39937591552734,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 238,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 205.00331115722656,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 83.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 83.39929962158203,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 239,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 210.0036163330078,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 88.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 88.39922332763672,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 240,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 215.00392150878906,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 93.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 93.3991470336914,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 241,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 220.0042266845703,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 98.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 98.3990707397461,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 242,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 225.00453186035156,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 103.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 103.39899444580078,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 243,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 230.0048370361328,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 108.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 108.39891815185547,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 244,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 235.00514221191406,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 113.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 113.39884185791016,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 245,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 240.0054473876953,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 118.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 118.39876556396484,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 246,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 245.00575256347656,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 123.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 123.39868927001953,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 247,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 250.0060577392578,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 128.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 128.3986358642578,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 248,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 255.00636291503906,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 133.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 133.39894104003906,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 249,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 260.00665283203125,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 138.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 138.3992462158203,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 250,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 265.0069580078125,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 143.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 143.39955139160156,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 251,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 270.00726318359375,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 148.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 148.3998565673828,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 252,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 275.007568359375,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 153.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 153.40016174316406,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 253,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 280.00787353515625,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 158.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 158.4004669189453,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 254,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 285.0081787109375,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 163.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 163.40077209472656,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 255,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 290.00848388671875,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 168.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 168.4010772705078,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 256,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 295.0087890625,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 173.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 173.40138244628906,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 257,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 300.00909423828125,
+        "kind": "MapObjectiveProgress",
+        "message": "defend_bridge: 178.4",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 178.4016876220703,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 258,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 301.60919189453125,
+        "kind": "MapObjectiveWon",
+        "message": "Bridge defended",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 0.0,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      },
+      {
+        "eventIndexZeroBased": 259,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 301.60919189453125,
+        "kind": "MatchEnded",
+        "message": "Bridge defended",
+        "player": 0,
+        "entity": 0,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 0.0,
+        "position": {
+          "x": 50.500247955322266,
+          "y": 27.048778533935547
+        },
+        "facing": {
+          "x": 0.0,
+          "y": 0.0
+        }
+      }
+    ],
+    "finishedAndMenuExitEventsEqual": true,
+    "displayLimitation": "Victory modal says Bridge defended. Dimmed background target HUD retains ACTIVE179/180 from last pre-result update. Final metadata/events won180. Documented cosmetic stale background, not claimed fixed."
+  },
+  "monitorNative": {
+    "status": "real_move_hold_state_and_render_verified",
+    "checkpoint": {
+      "path": "Native/Checkpoints/monitor-moved-held.json",
+      "bytes": 811685,
+      "sha256": "0c642515d6eb38343fe8698e73e7d1336f49e06dfa898c730870a8f0d6b94458",
+      "payloadSha256": "ba7b10c144bc683456d47295f45eea11e17bc8a545f87a07ddd56f7e6a28bcf5"
+    },
+    "controlledAge": 4,
+    "maxAge": 4,
+    "entity": 137,
+    "hp": 850,
+    "startPosition": {
+      "x": 63.82044219970703,
+      "y": 18.78070640563965
+    },
+    "heldPosition": {
+      "x": 66.6284408569336,
+      "y": 13.305197715759277
+    },
+    "displacement": 6.153539783892003,
+    "nativeCommands": [
+      {
+        "eventIndexZeroBased": 208,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 182.4019317626953,
+        "kind": "Command",
+        "message": "Move ×1",
+        "player": 0,
+        "entity": 137,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 1.0,
+        "position": {
+          "x": 63.82044219970703,
+          "y": 18.78070640563965
+        },
+        "facing": {
+          "x": 0.22414711117744446,
+          "y": -0.9745553135871887
+        }
+      },
+      {
+        "eventIndexZeroBased": 209,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 197.30284118652344,
+        "kind": "Command",
+        "message": "Hold ×1",
+        "player": 0,
+        "entity": 137,
+        "target": 0,
+        "visibilityMask": 1,
+        "amount": 1.0,
+        "position": {
+          "x": 66.6284408569336,
+          "y": 13.305197715759277
+        },
+        "facing": {
+          "x": 0.45633259415626526,
+          "y": -0.889809250831604
+        }
+      }
+    ],
+    "finalHold": true,
+    "finalOrders": [],
+    "nativeResourceChange": false,
+    "captures": [
+      "Frontier-20261004-234712-095-f77980-23090109f15c4991bdcc66bf1403a788.json",
+      "Frontier-20261004-234724-740-f78724-441007a069374268affa420b70e75952.json",
+      "Frontier-20261004-234739-108-f79568-7e0f1a9aef0741c3a1403bc03ee32067.json"
+    ],
+    "inputAttribution": "Right-click Move and J reported by operator; actual Command events and accepted-order screenshots agree."
+  },
+  "rawReports": [
+    {
+      "report": {
+        "path": "Native/Reports/20261004-232214-271-304202dad14646b38f6ed823c2377714-load_exit.json",
+        "bytes": 2954,
+        "sha256": "10e3e3933d5f356406b76f71f8c1f8a563c7e1d54e15cb9fcb4877aa04d0e21b"
+      },
+      "events": {
+        "path": "Native/Reports/20261004-232214-271-304202dad14646b38f6ed823c2377714-load_exit-events.jsonl",
+        "bytes": 199589,
+        "sha256": "1363e32bbdf2c607a0dccc0e30aa8884a8cd6b1550f890ea27253628aa988bd5"
+      },
+      "matchId": "304202dad14646b38f6ed823c2377714",
+      "reason": "load_exit",
+      "eventCount": 300,
+      "worldTime": 19.500038146972656,
+      "winner": -1,
+      "maxAge": 5
+    },
+    {
+      "report": {
+        "path": "Native/Reports/20261004-232445-388-naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21-quit.json",
+        "bytes": 3135,
+        "sha256": "3f8066e0b5cb35c667c0fb53d4a697b62274fb9ca5e6eb57f71612c406d5647f"
+      },
+      "events": {
+        "path": "Native/Reports/20261004-232445-388-naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21-quit-events.jsonl",
+        "bytes": 166674,
+        "sha256": "2886f730335fcd695b4ed07abfb0a2301a9bbc7b8f097c7cf9215d2f52a2d1a2"
+      },
+      "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+      "reason": "quit",
+      "eventCount": 251,
+      "worldTime": 556.8110961914062,
+      "winner": -1,
+      "maxAge": 3
+    },
+    {
+      "report": {
+        "path": "Native/Reports/20261004-233239-458-naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21-load_exit.json",
+        "bytes": 3140,
+        "sha256": "3c85375344eab9563a2187aef59fa6769689be3214bca4d64519f9468296ecec"
+      },
+      "events": {
+        "path": "Native/Reports/20261004-233239-458-naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21-load_exit-events.jsonl",
+        "bytes": 295710,
+        "sha256": "97ba9bb30620baf197ee278763ff7ec3c397f229dfcb26d0479817ef8d0cfa94"
+      },
+      "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+      "reason": "load_exit",
+      "eventCount": 452,
+      "worldTime": 889.8297729492188,
+      "winner": -1,
+      "maxAge": 3
+    },
+    {
+      "report": {
+        "path": "Native/Reports/20261004-234049-515-naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21-load_exit.json",
+        "bytes": 3178,
+        "sha256": "650b4f41d359fb783cfc3a185a972e6bea04432c1a23c8a8a818ed463b341dca"
+      },
+      "events": {
+        "path": "Native/Reports/20261004-234049-515-naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21-load_exit-events.jsonl",
+        "bytes": 303660,
+        "sha256": "425e4c5cf57a0e8dce49a3bd01e6fb3852c34cbcf844a814abd3dc30d25d1ad6"
+      },
+      "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+      "reason": "load_exit",
+      "eventCount": 441,
+      "worldTime": 1023.1972045898438,
+      "winner": -1,
+      "maxAge": 3
+    },
+    {
+      "report": {
+        "path": "Native/Reports/20261004-234318-615-naval-preview-neutral-delta-271828-db255c7ee98d498882fa5f3fd76c412a-load_exit.json",
+        "bytes": 3051,
+        "sha256": "29b1956df683c248a7bfd43deaf76bf6ddd0462e6f71129165a4dedbb8714ed2"
+      },
+      "events": {
+        "path": "Native/Reports/20261004-234318-615-naval-preview-neutral-delta-271828-db255c7ee98d498882fa5f3fd76c412a-load_exit-events.jsonl",
+        "bytes": 210551,
+        "sha256": "da85321a0e5fd77bd051a0b963a386683144c5aff5d7aff254e94315d3b5768b"
+      },
+      "matchId": "naval-preview-neutral-delta-271828-db255c7ee98d498882fa5f3fd76c412a",
+      "reason": "load_exit",
+      "eventCount": 318,
+      "worldTime": 393.61480712890625,
+      "winner": -1,
+      "maxAge": 3
+    },
+    {
+      "report": {
+        "path": "Native/Reports/20261004-234608-904-naval-preview-bridge-river-161803-921ef4b27b564b5483df73f520993eda-match_finished.json",
+        "bytes": 3054,
+        "sha256": "c10fd17181250314a36375dda948b1cb553f6648d96b73e903b3a81faff88c3f"
+      },
+      "events": {
+        "path": "Native/Reports/20261004-234608-904-naval-preview-bridge-river-161803-921ef4b27b564b5483df73f520993eda-match_finished-events.jsonl",
+        "bytes": 173206,
+        "sha256": "b72e3e4b29e2cea8a976faa597bdb9e46a464b1555e6f36a78477b2e29087d43"
+      },
+      "matchId": "naval-preview-bridge-river-161803-921ef4b27b564b5483df73f520993eda",
+      "reason": "match_finished",
+      "eventCount": 260,
+      "worldTime": 301.60919189453125,
+      "winner": 0,
+      "maxAge": 3
+    },
+    {
+      "report": {
+        "path": "Native/Reports/20261004-234649-050-naval-preview-bridge-river-161803-921ef4b27b564b5483df73f520993eda-menu_exit.json",
+        "bytes": 3049,
+        "sha256": "594b2b9883767e086d14fc7a45fe302de12a8e7679145d4809bae10a4b69610e"
+      },
+      "events": {
+        "path": "Native/Reports/20261004-234649-050-naval-preview-bridge-river-161803-921ef4b27b564b5483df73f520993eda-menu_exit-events.jsonl",
+        "bytes": 173206,
+        "sha256": "b72e3e4b29e2cea8a976faa597bdb9e46a464b1555e6f36a78477b2e29087d43"
+      },
+      "matchId": "naval-preview-bridge-river-161803-921ef4b27b564b5483df73f520993eda",
+      "reason": "menu_exit",
+      "eventCount": 260,
+      "worldTime": 301.60919189453125,
+      "winner": 0,
+      "maxAge": 3
+    },
+    {
+      "report": {
+        "path": "Native/Reports/20261004-234805-955-naval-preview-monitor-harbor-161803-669319fbe9f24a3bbdddaa40b36e5336-quit.json",
+        "bytes": 3033,
+        "sha256": "8c5bd8c94a61d79698020fade05512c69f9d996a735b8068e498671c3c7d7dbe"
+      },
+      "events": {
+        "path": "Native/Reports/20261004-234805-955-naval-preview-monitor-harbor-161803-669319fbe9f24a3bbdddaa40b36e5336-quit-events.jsonl",
+        "bytes": 140822,
+        "sha256": "2dc19cabb941bec8426efa208108d2c15877e1862fa1c8eceda044df4f9bc82c"
+      },
+      "matchId": "naval-preview-monitor-harbor-161803-669319fbe9f24a3bbdddaa40b36e5336",
+      "reason": "quit",
+      "eventCount": 211,
+      "worldTime": 197.5028533935547,
+      "winner": -1,
+      "maxAge": 4
+    }
+  ],
+  "f9Identity": {
+    "status": "identity_verified",
+    "pairCount": 27,
+    "captures": [
+      {
+        "json": "Frontier-20261004-232122-026-f2094-4419ec7d03ed4970a0b171abf7219f2b.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 1885,
+        "jsonSha256": "93e07da3ad139fa5aab41a7e46d28702075b9ad00e051d55d221109223f8ceb8",
+        "png": "Frontier-20261004-232122-026-f2094-4419ec7d03ed4970a0b171abf7219f2b.png",
+        "pngBytes": 190919,
+        "pngSha256": "563eb3260b4a14102b955832c5bf2d4c6bc86b6f667c0482eb587b9a21780e51",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:21:21.9743350Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "",
+        "inMenu": true,
+        "paused": false,
+        "seed": 0,
+        "mapId": "",
+        "worldTime": 0.0,
+        "requestWorldTime": 0.0,
+        "requestFrame": 2094,
+        "captureFrame": 2094,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 25.0,
+            "y": 25.0
+          },
+          "pointer": {
+            "x": 532.0,
+            "y": 351.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 26.0
+        },
+        "hudResources": "",
+        "hudUpdatedFrame": -1,
+        "hudWorldTime": 0.0,
+        "hudMatchId": "",
+        "hudConsistency": "not_applicable_menu_resource_HUD_can_be_stale"
+      },
+      {
+        "json": "Frontier-20261004-232153-681-f3958-fb96e2c3cf3d469fbd47c32a120de9bb.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 6443,
+        "jsonSha256": "75c02675b42dcde65e83650d542e07f2337a5dbafa5f64d3532c860c7646e4dd",
+        "png": "Frontier-20261004-232153-681-f3958-fb96e2c3cf3d469fbd47c32a120de9bb.png",
+        "pngBytes": 987910,
+        "pngSha256": "19563e9bb5feb6a1f760d18da69d0aade1d7edaa56d6abefb83edfcdcd956689",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:21:53.6170840Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "304202dad14646b38f6ed823c2377714",
+        "inMenu": false,
+        "paused": false,
+        "seed": 161803,
+        "mapId": "generated_river",
+        "worldTime": 0.8000000715255737,
+        "requestWorldTime": 0.8000000715255737,
+        "requestFrame": 3958,
+        "captureFrame": 3958,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 26.0,
+            "y": 28.0
+          },
+          "pointer": {
+            "x": 1227.0,
+            "y": 302.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 26.0
+        },
+        "hudResources": "FOOD  300     WOOD  300     COIN  100     POP  6+0/20     AGE  1     XP  0/150     SHIP  0",
+        "hudUpdatedFrame": 3958,
+        "hudWorldTime": 0.8000000715255737,
+        "hudMatchId": "304202dad14646b38f6ed823c2377714",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 1,
+        "objectiveMode": "defend_bridge",
+        "objectiveStatus": "active"
+      },
+      {
+        "json": "Frontier-20261004-232219-271-f5419-704e7cfd9cb1498cac815c903bd7e07e.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 10540,
+        "jsonSha256": "6b4e6194f92f1160a7fb4c860772b49dea01031b4fd0ead066ff48cbf5dc013d",
+        "png": "Frontier-20261004-232219-271-f5419-704e7cfd9cb1498cac815c903bd7e07e.png",
+        "pngBytes": 1249720,
+        "pngSha256": "7b4cb35076ccd14441d27f52ba4fa724c78a3fde41a8e30ce760b635a227c55d",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:22:19.1950670Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 475.5198059082031,
+        "requestWorldTime": 475.5198059082031,
+        "requestFrame": 5419,
+        "captureFrame": 5419,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 34.21526336669922,
+            "y": 41.642127990722656
+          },
+          "pointer": {
+            "x": 819.0,
+            "y": 424.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 23.0
+        },
+        "hudResources": "FOOD  8165     WOOD  7025     COIN  7650     POP  20+0/30     AGE  3     XP  13/225     SHIP  1",
+        "hudUpdatedFrame": 5419,
+        "hudWorldTime": 475.5198059082031,
+        "hudMatchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive"
+      },
+      {
+        "json": "Frontier-20261004-232311-783-f8547-e09ab24e7f7d4d9f8c8a2eb873529519.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 10572,
+        "jsonSha256": "8bdeb5ea730785c5cbd488f52d522c9ba111b2190b6530140259ecaed03b431c",
+        "png": "Frontier-20261004-232311-783-f8547-e09ab24e7f7d4d9f8c8a2eb873529519.png",
+        "pngBytes": 627270,
+        "pngSha256": "b450b556733699e24166c3e3c8afb6cda1b45282e0dffae993dfae6da5784ad2",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:23:11.7294630Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 528.0181274414062,
+        "requestWorldTime": 528.0181274414062,
+        "requestFrame": 8547,
+        "captureFrame": 8547,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 34.21526336669922,
+            "y": 41.642127990722656
+          },
+          "pointer": {
+            "x": 1332.0,
+            "y": 120.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 23.0
+        },
+        "hudResources": "FOOD  8165     WOOD  7025     COIN  7650     POP  20+0/30     AGE  3     XP  13/225     SHIP  1",
+        "hudUpdatedFrame": 8547,
+        "hudWorldTime": 528.0181274414062,
+        "hudMatchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive"
+      },
+      {
+        "json": "Frontier-20261004-232552-490-f2169-ea2a3f21783d4b73bc84777d1a40c163.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 10570,
+        "jsonSha256": "3fa1aae479b4a61a8fdf62304492703fff5db8a4ff651bbe3ae8f6b8c65d44b7",
+        "png": "Frontier-20261004-232552-490-f2169-ea2a3f21783d4b73bc84777d1a40c163.png",
+        "pngBytes": 559823,
+        "pngSha256": "7b1bfacf54eff212b1f48cc7f1e0bf4475853285a6b6fa5dcafe47a9fdd74054",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:25:52.4376170Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "inMenu": false,
+        "paused": true,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 556.8110961914062,
+        "requestWorldTime": 556.8110961914062,
+        "requestFrame": 2169,
+        "captureFrame": 2169,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 34.21526336669922,
+            "y": 41.642127990722656
+          },
+          "pointer": {
+            "x": 743.0,
+            "y": 544.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 23.0
+        },
+        "hudResources": "FOOD  8165     WOOD  7025     COIN  7650     POP  20+0/30     AGE  3     XP  13/225     SHIP  1",
+        "hudUpdatedFrame": 2169,
+        "hudWorldTime": 556.8110961914062,
+        "hudMatchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive"
+      },
+      {
+        "json": "Frontier-20261004-232629-493-f4339-550eb16df3994b7590dac3ea88d48723.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 10571,
+        "jsonSha256": "2cf40742ab416fcec2f073a96aaf11065f465194980768770e48ad73ff08230b",
+        "png": "Frontier-20261004-232629-493-f4339-550eb16df3994b7590dac3ea88d48723.png",
+        "pngBytes": 1241742,
+        "pngSha256": "971b295e5374dd713c4faa8781004795fb6b1b3253699015a5bc0b95885ee358",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:26:29.4177900Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 558.3107299804688,
+        "requestWorldTime": 558.3107299804688,
+        "requestFrame": 4339,
+        "captureFrame": 4339,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 34.21526336669922,
+            "y": 41.642127990722656
+          },
+          "pointer": {
+            "x": 560.0,
+            "y": 722.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 23.0
+        },
+        "hudResources": "FOOD  8165     WOOD  7025     COIN  7650     POP  20+0/30     AGE  3     XP  13/225     SHIP  1",
+        "hudUpdatedFrame": 4339,
+        "hudWorldTime": 558.3107299804688,
+        "hudMatchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive"
+      },
+      {
+        "json": "Frontier-20261004-232645-887-f5308-bfe17e51df2f4eaaaef9948e2ad27de7.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 10581,
+        "jsonSha256": "9d79a61c63af27318245754d733ad9d5f4bdc2da26a84abf61a137402449627b",
+        "png": "Frontier-20261004-232645-887-f5308-bfe17e51df2f4eaaaef9948e2ad27de7.png",
+        "pngBytes": 1239607,
+        "pngSha256": "feb723b34753bf64a894dbb88c7ad548d1e896030a3905674598487f7665dfa1",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:26:45.8106640Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 574.6067504882812,
+        "requestWorldTime": 574.6067504882812,
+        "requestFrame": 5308,
+        "captureFrame": 5308,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 34.21526336669922,
+            "y": 41.642127990722656
+          },
+          "pointer": {
+            "x": 1237.0,
+            "y": 474.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 23.0
+        },
+        "hudResources": "FOOD  8165     WOOD  7025     COIN  7650     POP  20+0/30     AGE  3     XP  13/225     SHIP  1",
+        "hudUpdatedFrame": 5308,
+        "hudWorldTime": 574.6067504882812,
+        "hudMatchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive"
+      },
+      {
+        "json": "Frontier-20261004-232724-281-f7585-e73515ca936d48df83907331fbc0780c.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 10811,
+        "jsonSha256": "e9f4f0e617fcc200133e94f539065ca27d6c690b282971ea357fb4922871f1ef",
+        "png": "Frontier-20261004-232724-281-f7585-e73515ca936d48df83907331fbc0780c.png",
+        "pngBytes": 1387561,
+        "pngSha256": "5a0a0e5005f319b52dabd01c47123305685f56e5cae4b2ffabd9dc2b8c0dd09a",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:27:24.1884700Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 612.9973754882812,
+        "requestWorldTime": 612.9973754882812,
+        "requestFrame": 7585,
+        "captureFrame": 7585,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 34.21526336669922,
+            "y": 41.642127990722656
+          },
+          "pointer": {
+            "x": 955.0,
+            "y": 425.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 23.0
+        },
+        "hudResources": "FOOD  8165     WOOD  7025     COIN  7650     POP  20+0/30     AGE  3     XP  13/225     SHIP  1",
+        "hudUpdatedFrame": 7585,
+        "hudWorldTime": 612.9973754882812,
+        "hudMatchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive"
+      },
+      {
+        "json": "Frontier-20261004-232749-942-f9108-85d3a3e0875c4220afea8a7c8ad67119.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 10803,
+        "jsonSha256": "0dcc1eeb26410cb950474309ea2ca34a752cdd823c5f1b4c5d3fe4cb59aeca04",
+        "png": "Frontier-20261004-232749-942-f9108-85d3a3e0875c4220afea8a7c8ad67119.png",
+        "pngBytes": 1153218,
+        "pngSha256": "e7bdb283e641d296b5f3db51edf962e780a91b2f90c8d727b2b747196ffd3341",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:27:49.8670070Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 638.6911010742188,
+        "requestWorldTime": 638.6911010742188,
+        "requestFrame": 9108,
+        "captureFrame": 9108,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 53.3172607421875,
+            "y": 40.37144088745117
+          },
+          "pointer": {
+            "x": 955.0,
+            "y": 425.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 23.0
+        },
+        "hudResources": "FOOD  8165     WOOD  7025     COIN  7650     POP  20+0/30     AGE  3     XP  13/225     SHIP  1",
+        "hudUpdatedFrame": 9108,
+        "hudWorldTime": 638.6911010742188,
+        "hudMatchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive"
+      },
+      {
+        "json": "Frontier-20261004-233005-817-f17170-595ba4d1ff9f40c8a23d811fe7a2462f.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 10817,
+        "jsonSha256": "2ee7a1ab0aa475a0f57a54816e110f3a579c3a66192df382287bfabe7eaaab32",
+        "png": "Frontier-20261004-233005-817-f17170-595ba4d1ff9f40c8a23d811fe7a2462f.png",
+        "pngBytes": 844760,
+        "pngSha256": "e63a5a40abd5e6200caae4e7dc151527b48b437c8d4f40aa3d61d30809b59958",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:30:05.7523580Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 737.8668823242188,
+        "requestWorldTime": 737.8668823242188,
+        "requestFrame": 17170,
+        "captureFrame": 17170,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 41.723758697509766,
+            "y": 64.35359191894531
+          },
+          "pointer": {
+            "x": 866.0,
+            "y": 382.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 23.0
+        },
+        "hudResources": "FOOD  8165     WOOD  7025     COIN  7650     POP  20+0/30     AGE  3     XP  13/225     SHIP  1",
+        "hudUpdatedFrame": 17170,
+        "hudWorldTime": 737.8668823242188,
+        "hudMatchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive"
+      },
+      {
+        "json": "Frontier-20261004-233116-526-f21377-cab4ed8ce94448dda7383fbdf309e259.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 11137,
+        "jsonSha256": "83d27bb18288db2d2c48cd83885c4309606f048a2df41babce57eb8b81df0f2d",
+        "png": "Frontier-20261004-233116-526-f21377-cab4ed8ce94448dda7383fbdf309e259.png",
+        "pngBytes": 1007425,
+        "pngSha256": "6f6284d01a1971cdd9ad01cea2620bb892e3dc6db39ea3c27507b70aff57adc2",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:31:16.4612380Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 808.5496215820312,
+        "requestWorldTime": 808.5496215820312,
+        "requestFrame": 21377,
+        "captureFrame": 21377,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 41.723758697509766,
+            "y": 64.35359191894531
+          },
+          "pointer": {
+            "x": 857.0,
+            "y": 559.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 23.0
+        },
+        "hudResources": "FOOD  8165     WOOD  7025     COIN  7650     POP  20+0/30     AGE  3     XP  13/225     SHIP  1",
+        "hudUpdatedFrame": 21377,
+        "hudWorldTime": 808.5496215820312,
+        "hudMatchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive"
+      },
+      {
+        "json": "Frontier-20261004-233130-444-f22202-39601f6d546140f9977ea4ed50301f9d.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 10274,
+        "jsonSha256": "7b39991891b1d4d23a189ae894f20601b2f48e0c735434e6b6d47005f739167b",
+        "png": "Frontier-20261004-233130-444-f22202-39601f6d546140f9977ea4ed50301f9d.png",
+        "pngBytes": 1356437,
+        "pngSha256": "262ffc1181b89855ba765c76ac5652314a9c29a55c50908a555eb156cbdab12e",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:31:30.3693280Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 822.5462036132812,
+        "requestWorldTime": 822.5462036132812,
+        "requestFrame": 22202,
+        "captureFrame": 22202,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 27.580110549926758,
+            "y": 28.28729248046875
+          },
+          "pointer": {
+            "x": 772.0,
+            "y": 523.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 23.0
+        },
+        "hudResources": "FOOD  8165     WOOD  7025     COIN  7650     POP  17+0/30     AGE  3     XP  48/225     SHIP  1",
+        "hudUpdatedFrame": 22202,
+        "hudWorldTime": 822.5462036132812,
+        "hudMatchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive"
+      },
+      {
+        "json": "Frontier-20261004-233340-928-f29936-433e390de338429183d3b549940d722b.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 11137,
+        "jsonSha256": "0e3bd17115653b73ab0a228e273476340e5331238f908ee72a81bd856255b77a",
+        "png": "Frontier-20261004-233340-928-f29936-433e390de338429183d3b549940d722b.png",
+        "pngBytes": 988192,
+        "pngSha256": "8145d7ccd031d2f04552a4c61a71dff88dcda94c20e84182ea4bb3da8972d5a1",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:33:40.8670540Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 719.3713989257812,
+        "requestWorldTime": 719.3713989257812,
+        "requestFrame": 29936,
+        "captureFrame": 29936,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 41.723758697509766,
+            "y": 64.35359191894531
+          },
+          "pointer": {
+            "x": 857.0,
+            "y": 559.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 23.0
+        },
+        "hudResources": "FOOD  8165     WOOD  7025     COIN  7650     POP  20+0/30     AGE  3     XP  13/225     SHIP  1",
+        "hudUpdatedFrame": 29936,
+        "hudWorldTime": 719.3713989257812,
+        "hudMatchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive"
+      },
+      {
+        "json": "Frontier-20261004-233343-239-f30062-5b41eb457eeb41778d1cce42a2d4895d.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 10827,
+        "jsonSha256": "0e914236542662f3231e8b16a7674ad9521d8e7bf8982a8b836f0166d851ff7b",
+        "png": "Frontier-20261004-233343-239-f30062-5b41eb457eeb41778d1cce42a2d4895d.png",
+        "pngBytes": 1358091,
+        "pngSha256": "3ae7a661056a0b23a1286f8367975316bbf7f3e9cf8fec8544644c3a41e20e39",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:33:43.1581670Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 721.6708374023438,
+        "requestWorldTime": 721.6708374023438,
+        "requestFrame": 30062,
+        "captureFrame": 30062,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 27.580110549926758,
+            "y": 28.28729248046875
+          },
+          "pointer": {
+            "x": 772.0,
+            "y": 523.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 23.0
+        },
+        "hudResources": "FOOD  8165     WOOD  7025     COIN  7650     POP  20+0/30     AGE  3     XP  13/225     SHIP  1",
+        "hudUpdatedFrame": 30062,
+        "hudWorldTime": 721.6708374023438,
+        "hudMatchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive"
+      },
+      {
+        "json": "Frontier-20261004-233929-438-f50625-09ccc443d09143eca7ba0b40e0aca269.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 10829,
+        "jsonSha256": "be7b2eb0000a47501a57bdfff799e5956b91017fa434c33fcfc049a5a46e1c33",
+        "png": "Frontier-20261004-233929-438-f50625-09ccc443d09143eca7ba0b40e0aca269.png",
+        "pngBytes": 1349205,
+        "pngSha256": "040422e12227dfc962765191fdaef638ced47b88e96b09b361833490554525c0",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:39:29.3610420Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 1023.0972290039062,
+        "requestWorldTime": 1023.0972290039062,
+        "requestFrame": 50625,
+        "captureFrame": 50625,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 27.580110549926758,
+            "y": 28.28729248046875
+          },
+          "pointer": {
+            "x": 560.0,
+            "y": 722.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 23.0
+        },
+        "hudResources": "FOOD  8165     WOOD  6995     COIN  7630     POP  20+0/30     AGE  3     XP  13/225     SHIP  1",
+        "hudUpdatedFrame": 50625,
+        "hudWorldTime": 1023.0972290039062,
+        "hudMatchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive"
+      },
+      {
+        "json": "Frontier-20261004-234103-434-f56145-d05558a41d0340049db52db7442437f0.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 8634,
+        "jsonSha256": "2abd2fc1b7bfc73136126ac38332f7dfc3f2f586ffc709d37e5af1228e97b545",
+        "png": "Frontier-20261004-234103-434-f56145-d05558a41d0340049db52db7442437f0.png",
+        "pngBytes": 1116729,
+        "pngSha256": "f528b7388672f3acb4bb77a03912538a28c4d9ccd65a42e26a83ae29749e82d4",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:41:03.3598340Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-neutral-delta-271828-db255c7ee98d498882fa5f3fd76c412a",
+        "inMenu": false,
+        "paused": false,
+        "seed": 271828,
+        "mapId": "generated_delta",
+        "worldTime": 325.1106262207031,
+        "requestWorldTime": 325.1106262207031,
+        "requestFrame": 56145,
+        "captureFrame": 56145,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 16.0,
+            "y": 64.0
+          },
+          "pointer": {
+            "x": 560.0,
+            "y": 722.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 19.0
+        },
+        "hudResources": "FOOD  8020     WOOD  7550     COIN  7380     POP  8+0/20     AGE  3     XP  42/225     SHIP  1",
+        "hudUpdatedFrame": 56145,
+        "hudWorldTime": 325.1106262207031,
+        "hudMatchId": "naval-preview-neutral-delta-271828-db255c7ee98d498882fa5f3fd76c412a",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive"
+      },
+      {
+        "json": "Frontier-20261004-234115-580-f56862-d23d1890cea64ae69a601e01b0c51681.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 8634,
+        "jsonSha256": "41fc1042379d5b4816257e11e8b7ea0fe1a91e97f1a41c085d454cb9746966ee",
+        "png": "Frontier-20261004-234115-580-f56862-d23d1890cea64ae69a601e01b0c51681.png",
+        "pngBytes": 486954,
+        "pngSha256": "8dbb725188be703bd388a99786c41e3b8062c97221156a64bf4b4cc2d85f4c98",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:41:15.5263170Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-neutral-delta-271828-db255c7ee98d498882fa5f3fd76c412a",
+        "inMenu": false,
+        "paused": false,
+        "seed": 271828,
+        "mapId": "generated_delta",
+        "worldTime": 337.3113708496094,
+        "requestWorldTime": 337.3113708496094,
+        "requestFrame": 56862,
+        "captureFrame": 56862,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 16.0,
+            "y": 64.0
+          },
+          "pointer": {
+            "x": 844.0,
+            "y": 178.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 19.0
+        },
+        "hudResources": "FOOD  8020     WOOD  7550     COIN  7380     POP  8+0/20     AGE  3     XP  42/225     SHIP  1",
+        "hudUpdatedFrame": 56862,
+        "hudWorldTime": 337.3113708496094,
+        "hudMatchId": "naval-preview-neutral-delta-271828-db255c7ee98d498882fa5f3fd76c412a",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive"
+      },
+      {
+        "json": "Frontier-20261004-234155-941-f59251-ad0d786cf7bb4ad79344ef7c1ce06511.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 9182,
+        "jsonSha256": "ed3171438128e911bd597b3446d0a0a21aa7749011fa6e9e585d44b5f2359c6c",
+        "png": "Frontier-20261004-234155-941-f59251-ad0d786cf7bb4ad79344ef7c1ce06511.png",
+        "pngBytes": 502714,
+        "pngSha256": "1265f2230e1002e22b7949fd807efe861f0e9f8db952ec7651d73be194ae1094",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:41:55.8830380Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-neutral-delta-271828-db255c7ee98d498882fa5f3fd76c412a",
+        "inMenu": false,
+        "paused": false,
+        "seed": 271828,
+        "mapId": "generated_delta",
+        "worldTime": 377.61383056640625,
+        "requestWorldTime": 377.61383056640625,
+        "requestFrame": 59251,
+        "captureFrame": 59251,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 16.0,
+            "y": 64.0
+          },
+          "pointer": {
+            "x": 739.0,
+            "y": 487.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 19.0
+        },
+        "hudResources": "FOOD  7950     WOOD  7550     COIN  7310     POP  9+0/20     AGE  3     XP  50/225     SHIP  1",
+        "hudUpdatedFrame": 59251,
+        "hudWorldTime": 377.61383056640625,
+        "hudMatchId": "naval-preview-neutral-delta-271828-db255c7ee98d498882fa5f3fd76c412a",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive"
+      },
+      {
+        "json": "Frontier-20261004-234211-783-f60185-cc88549acbc54e0fbed077d77650c4cd.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 9179,
+        "jsonSha256": "d25030d2f4a43dc266fefd7e299e37a49a5ece334299fbf2fd4c334f2fc79796",
+        "png": "Frontier-20261004-234211-783-f60185-cc88549acbc54e0fbed077d77650c4cd.png",
+        "pngBytes": 1127273,
+        "pngSha256": "478a2a194e34aa6e1a0ea5ca036fc9efdcb03129b668f745269400ae9646384b",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:42:11.7067820Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-neutral-delta-271828-db255c7ee98d498882fa5f3fd76c412a",
+        "inMenu": false,
+        "paused": false,
+        "seed": 271828,
+        "mapId": "generated_delta",
+        "worldTime": 393.5148010253906,
+        "requestWorldTime": 393.5148010253906,
+        "requestFrame": 60185,
+        "captureFrame": 60185,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 16.0,
+            "y": 64.0
+          },
+          "pointer": {
+            "x": 904.0,
+            "y": 512.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 19.0
+        },
+        "hudResources": "FOOD  7950     WOOD  7550     COIN  7310     POP  9+0/20     AGE  3     XP  90/225     SHIP  1",
+        "hudUpdatedFrame": 60185,
+        "hudWorldTime": 393.5148010253906,
+        "hudMatchId": "naval-preview-neutral-delta-271828-db255c7ee98d498882fa5f3fd76c412a",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive"
+      },
+      {
+        "json": "Frontier-20261004-234319-129-f64143-4e7cf424d4b54cb88203a143460e5737.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 8599,
+        "jsonSha256": "c36738a693f1c91d896415a7ebf1cac6598927ed8000d4704b6ed2d27088dce3",
+        "png": "Frontier-20261004-234319-129-f64143-4e7cf424d4b54cb88203a143460e5737.png",
+        "pngBytes": 1263298,
+        "pngSha256": "982c84e9c5f4ee040f5962313e1fe7fe97ea42632f5bebd8b42657a62a121e3a",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:43:19.0522100Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-bridge-river-161803-921ef4b27b564b5483df73f520993eda",
+        "inMenu": false,
+        "paused": false,
+        "seed": 161803,
+        "mapId": "generated_river",
+        "worldTime": 131.69883728027344,
+        "requestWorldTime": 131.69883728027344,
+        "requestFrame": 64143,
+        "captureFrame": 64143,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 50.500247955322266,
+            "y": 27.048778533935547
+          },
+          "pointer": {
+            "x": 560.0,
+            "y": 722.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 20.0
+        },
+        "hudResources": "FOOD  8105     WOOD  8020     COIN  8075     POP  9+0/20     AGE  3     XP  45/150     SHIP  0",
+        "hudUpdatedFrame": 64143,
+        "hudWorldTime": 131.69883728027344,
+        "hudMatchId": "naval-preview-bridge-river-161803-921ef4b27b564b5483df73f520993eda",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "defend_bridge",
+        "objectiveStatus": "active"
+      },
+      {
+        "json": "Frontier-20261004-234412-731-f67334-3397296a84814ed4a3f59a2c7ba267d0.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 8600,
+        "jsonSha256": "18e6d80b05e40f051d8a8b22c3576ca6310878c11211fbe8853a85e94dac3b49",
+        "png": "Frontier-20261004-234412-731-f67334-3397296a84814ed4a3f59a2c7ba267d0.png",
+        "pngBytes": 1266171,
+        "pngSha256": "e4b479f9de43cea824be143c166ca8dacf6e99533eebddf5c80155bdc758b4eb",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:44:12.6508110Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-bridge-river-161803-921ef4b27b564b5483df73f520993eda",
+        "inMenu": false,
+        "paused": false,
+        "seed": 161803,
+        "mapId": "generated_river",
+        "worldTime": 185.30210876464844,
+        "requestWorldTime": 185.30210876464844,
+        "requestFrame": 67334,
+        "captureFrame": 67334,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 50.500247955322266,
+            "y": 27.048778533935547
+          },
+          "pointer": {
+            "x": 560.0,
+            "y": 722.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 20.0
+        },
+        "hudResources": "FOOD  8105     WOOD  8020     COIN  8075     POP  9+0/20     AGE  3     XP  45/150     SHIP  0",
+        "hudUpdatedFrame": 67334,
+        "hudWorldTime": 185.30210876464844,
+        "hudMatchId": "naval-preview-bridge-river-161803-921ef4b27b564b5483df73f520993eda",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "defend_bridge",
+        "objectiveStatus": "active"
+      },
+      {
+        "json": "Frontier-20261004-234507-582-f70609-bbf058b2fa834a5d8edca3db6851eaf6.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 8600,
+        "jsonSha256": "d0bdb698cb1d476b7cd10ef642492292af121e34c2be9b0da0ace44908473e05",
+        "png": "Frontier-20261004-234507-582-f70609-bbf058b2fa834a5d8edca3db6851eaf6.png",
+        "pngBytes": 1258362,
+        "pngSha256": "7c8b15de512247774512076f2378ed733a5d7edef84576ee0186e92e27f583c7",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:45:07.5023620Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-bridge-river-161803-921ef4b27b564b5483df73f520993eda",
+        "inMenu": false,
+        "paused": false,
+        "seed": 161803,
+        "mapId": "generated_river",
+        "worldTime": 240.10545349121094,
+        "requestWorldTime": 240.10545349121094,
+        "requestFrame": 70609,
+        "captureFrame": 70609,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 50.500247955322266,
+            "y": 27.048778533935547
+          },
+          "pointer": {
+            "x": 560.0,
+            "y": 722.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 20.0
+        },
+        "hudResources": "FOOD  8105     WOOD  8020     COIN  8075     POP  9+0/20     AGE  3     XP  45/150     SHIP  0",
+        "hudUpdatedFrame": 70609,
+        "hudWorldTime": 240.10545349121094,
+        "hudMatchId": "naval-preview-bridge-river-161803-921ef4b27b564b5483df73f520993eda",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "defend_bridge",
+        "objectiveStatus": "active"
+      },
+      {
+        "json": "Frontier-20261004-234541-023-f72601-cfd6c9e0e3894fdb884ad456e8b8922e.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 8600,
+        "jsonSha256": "b8ea9e7928a6618285bf51935937d0d9d01f03dde3a779bf6d3f2883be3d877c",
+        "png": "Frontier-20261004-234541-023-f72601-cfd6c9e0e3894fdb884ad456e8b8922e.png",
+        "pngBytes": 1262143,
+        "pngSha256": "9b56d545eb9ae2fbff8ee9964b830439a00dfaa9dd6a31b22150a2b3117f4d64",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:45:40.9431830Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-bridge-river-161803-921ef4b27b564b5483df73f520993eda",
+        "inMenu": false,
+        "paused": false,
+        "seed": 161803,
+        "mapId": "generated_river",
+        "worldTime": 273.60748291015625,
+        "requestWorldTime": 273.60748291015625,
+        "requestFrame": 72601,
+        "captureFrame": 72601,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 50.500247955322266,
+            "y": 27.048778533935547
+          },
+          "pointer": {
+            "x": 560.0,
+            "y": 722.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 20.0
+        },
+        "hudResources": "FOOD  8105     WOOD  8020     COIN  8075     POP  9+0/20     AGE  3     XP  45/150     SHIP  0",
+        "hudUpdatedFrame": 72601,
+        "hudWorldTime": 273.60748291015625,
+        "hudMatchId": "naval-preview-bridge-river-161803-921ef4b27b564b5483df73f520993eda",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "defend_bridge",
+        "objectiveStatus": "active"
+      },
+      {
+        "json": "Frontier-20261004-234625-211-f75224-f8e162a030e24dad90224e885d704e0e.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 8600,
+        "jsonSha256": "18f3b803e965e11fe59a31ca6ee406dccb30f85769dea9ed5e2ed23550debbde",
+        "png": "Frontier-20261004-234625-211-f75224-f8e162a030e24dad90224e885d704e0e.png",
+        "pngBytes": 620619,
+        "pngSha256": "7facffcd283d128ed10a4abafa5b0087ae61245de7b1c67b7b7791cf8a143a50",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:46:25.1524920Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-bridge-river-161803-921ef4b27b564b5483df73f520993eda",
+        "inMenu": false,
+        "paused": false,
+        "seed": 161803,
+        "mapId": "generated_river",
+        "worldTime": 301.60919189453125,
+        "requestWorldTime": 301.60919189453125,
+        "requestFrame": 75224,
+        "captureFrame": 75224,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 50.500247955322266,
+            "y": 27.048778533935547
+          },
+          "pointer": {
+            "x": 560.0,
+            "y": 722.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 20.0
+        },
+        "hudResources": "FOOD  8105     WOOD  8020     COIN  8075     POP  9+0/20     AGE  3     XP  45/150     SHIP  0",
+        "hudUpdatedFrame": 75224,
+        "hudWorldTime": 301.60919189453125,
+        "hudMatchId": "naval-preview-bridge-river-161803-921ef4b27b564b5483df73f520993eda",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "defend_bridge",
+        "objectiveStatus": "won"
+      },
+      {
+        "json": "Frontier-20261004-234712-095-f77980-23090109f15c4991bdcc66bf1403a788.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 8027,
+        "jsonSha256": "bc2c0d214a469454a6844bb8177f02f35111228294799de999b1e64d240b7f26",
+        "png": "Frontier-20261004-234712-095-f77980-23090109f15c4991bdcc66bf1403a788.png",
+        "pngBytes": 1246732,
+        "pngSha256": "7440837f9f693dc235bbca2888cea95e1da93f040472305a5d5e4f096dd8ed0e",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:47:12.0166760Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-monitor-harbor-161803-669319fbe9f24a3bbdddaa40b36e5336",
+        "inMenu": false,
+        "paused": false,
+        "seed": 161803,
+        "mapId": "river",
+        "worldTime": 170.3011932373047,
+        "requestWorldTime": 170.3011932373047,
+        "requestFrame": 77980,
+        "captureFrame": 77980,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 63.82044219970703,
+            "y": 18.78070640563965
+          },
+          "pointer": {
+            "x": 560.0,
+            "y": 722.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 13.0
+        },
+        "hudResources": "FOOD  8300     WOOD  7565     COIN  7750     POP  13+0/30     AGE  4     XP  90/150     SHIP  0",
+        "hudUpdatedFrame": 77980,
+        "hudWorldTime": 170.3011932373047,
+        "hudMatchId": "naval-preview-monitor-harbor-161803-669319fbe9f24a3bbdddaa40b36e5336",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 4,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive"
+      },
+      {
+        "json": "Frontier-20261004-234724-740-f78724-441007a069374268affa420b70e75952.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 8033,
+        "jsonSha256": "d6e0edfffd7a00c2f41b41ddf4f1b105aba326046ee9abe57743f344fba3d806",
+        "png": "Frontier-20261004-234724-740-f78724-441007a069374268affa420b70e75952.png",
+        "pngBytes": 1255432,
+        "pngSha256": "2b217bdc3898cb283f542f46e73c894e0838f307574eaaf371585423247d68c5",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:47:24.6567570Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-monitor-harbor-161803-669319fbe9f24a3bbdddaa40b36e5336",
+        "inMenu": false,
+        "paused": false,
+        "seed": 161803,
+        "mapId": "river",
+        "worldTime": 182.90196228027344,
+        "requestWorldTime": 182.90196228027344,
+        "requestFrame": 78724,
+        "captureFrame": 78724,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 63.82044219970703,
+            "y": 18.78070640563965
+          },
+          "pointer": {
+            "x": 908.0,
+            "y": 340.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 13.0
+        },
+        "hudResources": "FOOD  8300     WOOD  7565     COIN  7750     POP  13+0/30     AGE  4     XP  90/150     SHIP  0",
+        "hudUpdatedFrame": 78724,
+        "hudWorldTime": 182.90196228027344,
+        "hudMatchId": "naval-preview-monitor-harbor-161803-669319fbe9f24a3bbdddaa40b36e5336",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 4,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive"
+      },
+      {
+        "json": "Frontier-20261004-234739-108-f79568-7e0f1a9aef0741c3a1403bc03ee32067.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 8030,
+        "jsonSha256": "5fc8c190e0c4d009a4344ec23af270deaf68e05a7567d794f7038df514b5dc93",
+        "png": "Frontier-20261004-234739-108-f79568-7e0f1a9aef0741c3a1403bc03ee32067.png",
+        "pngBytes": 1264673,
+        "pngSha256": "461c072bb23ab44651d9096ff079c2c95d462bfc2823238aef528a1b38601631",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:47:39.0256990Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-monitor-harbor-161803-669319fbe9f24a3bbdddaa40b36e5336",
+        "inMenu": false,
+        "paused": false,
+        "seed": 161803,
+        "mapId": "river",
+        "worldTime": 197.30284118652344,
+        "requestWorldTime": 197.30284118652344,
+        "requestFrame": 79568,
+        "captureFrame": 79568,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 63.82044219970703,
+            "y": 18.78070640563965
+          },
+          "pointer": {
+            "x": 908.0,
+            "y": 340.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 13.0
+        },
+        "hudResources": "FOOD  8300     WOOD  7565     COIN  7750     POP  13+0/30     AGE  4     XP  90/150     SHIP  0",
+        "hudUpdatedFrame": 79568,
+        "hudWorldTime": 197.30284118652344,
+        "hudMatchId": "naval-preview-monitor-harbor-161803-669319fbe9f24a3bbdddaa40b36e5336",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 4,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive"
+      }
+    ],
+    "helper": {
+      "path": "verify-native-captures.py",
+      "bytes": 14597,
+      "sha256": "05a2877acac10f30430225463cb9b7ecaa1e3d0786186cbf60d1792e680cd3de"
+    },
+    "scope": "JSON/PNG file identity and metadata consistency only. PNG SHA-256 binds the exact same-stem image bytes; frame, camera and HUD values are recorded metadata, not independently observed pixels. No OCR or visual review, native-input/gameplay acceptance, continuous focus, save restoration, performance, test execution or build provenance verification is performed.",
+    "otherMatchFilesExcluded": [
+      "Frontier-20261004-234909-304-f919-ec2bf5608e7b4a4192db768ad8f43669.json"
+    ],
+    "normalMatchNotBehaviorAudited": true,
+    "syncReceipt": {
+      "path": "Diagnostics/native-sync-controlled-audit-20261004T234920426556Z.json",
+      "bytes": 90052,
+      "sha256": "39d239192f37ea260ca89254f50e7c6d94f5dee7e7634d709f450c3ddf283340"
+    }
+  },
+  "visualReviewNew": [
+    {
+      "capture": "Frontier-20261004-234115-580-f56862-d23d1890cea64ae69a601e01b0c51681.json",
+      "observed": "RIVERBANK MERCHANTS service modal with recruit70F70C/research150F150C, existing treaty."
+    },
+    {
+      "capture": "Frontier-20261004-234211-783-f60185-cc88549acbc54e0fbed077d77650c4cd.json",
+      "observed": "River Guild Marksman selected; resources7950/7550/7310 POP9. Saved selection old129."
+    },
+    {
+      "capture": "Frontier-20261004-234625-211-f75224-f8e162a030e24dad90224e885d704e0e.json",
+      "observed": "VICTORY/Bridge defended/5m1s; background ACTIVE179/180 remains."
+    },
+    {
+      "capture": "Frontier-20261004-234724-740-f78724-441007a069374268affa420b70e75952.json",
+      "observed": "Monitor850HP Moving Orders1; Move accepted; low metal casemate/large bore, trailing wake visible."
+    },
+    {
+      "capture": "Frontier-20261004-234739-108-f79568-7e0f1a9aef0741c3a1403bc03ee32067.json",
+      "observed": "Holding Orders0/Hold accepted, changed position, moving trailing wake no longer visible."
+    }
+  ],
+  "frozenControlledLog": {
+    "path": "Diagnostics/native-controlled-completed.log",
+    "bytes": 86965,
+    "sha256": "181a95771253e774f13bfcaa30e74ffebe4eabf5d89ee7193704bfd4e2c40a9f",
+    "lineCount": 694,
+    "priorFleetLogExactPrefix": true,
+    "exceptionPattern": "(?:NullReferenceException|MissingReferenceException|IndexOutOfRangeException|Argument\\w*Exception|Assertion failed|Unhandled Exception|[A-Za-z][A-Za-z0-9.]*Exception:)",
+    "exceptionMatches": [],
+    "relevantLines": [
+      {
+        "line": 39,
+        "text": "FRONTIER_LOAD slot=3 match=naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21 time=556.8111"
+      },
+      {
+        "line": 73,
+        "text": "FRONTIER_SAVE slot=3 match=naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21 time=556.8111"
+      },
+      {
+        "line": 95,
+        "text": "FRONTIER_PAUSE paused=False reason=manual_resume world=556.811100 realtime=76.054565 frame=4255"
+      },
+      {
+        "line": 144,
+        "text": "FRONTIER_PAUSE paused=True reason=manual_pause world=684.779800 realtime=204.104072 frame=11848"
+      },
+      {
+        "line": 145,
+        "text": "FRONTIER_SAVE slot=3 match=naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21 time=684.7798"
+      },
+      {
+        "line": 167,
+        "text": "FRONTIER_PAUSE paused=False reason=manual_resume world=684.779800 realtime=240.753966 frame=14007"
+      },
+      {
+        "line": 204,
+        "text": "FRONTIER_PAUSE paused=True reason=manual_pause world=889.829800 realtime=445.852546 frame=26209"
+      },
+      {
+        "line": 205,
+        "text": "FRONTIER_REPORT /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261004-233239-458-naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21-load_exit.json"
+      },
+      {
+        "line": 228,
+        "text": "FRONTIER_LOAD slot=3 match=naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21 time=684.7798"
+      },
+      {
+        "line": 250,
+        "text": "FRONTIER_PAUSE paused=False reason=manual_resume world=684.779800 realtime=448.652970 frame=26336"
+      },
+      {
+        "line": 251,
+        "text": "FRONTIER_PAUSE paused=True reason=manual_pause world=717.771800 realtime=481.636822 frame=28302"
+      },
+      {
+        "line": 252,
+        "text": "FRONTIER_PAUSE paused=False reason=manual_resume world=717.771800 realtime=507.431014 frame=29844"
+      },
+      {
+        "line": 277,
+        "text": "FRONTIER_PAUSE paused=True reason=manual_pause world=721.770800 realtime=511.368852 frame=30063"
+      },
+      {
+        "line": 278,
+        "text": "FRONTIER_SAVE slot=3 match=naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21 time=721.7708"
+      },
+      {
+        "line": 300,
+        "text": "FRONTIER_PAUSE paused=False reason=manual_resume world=721.770800 realtime=556.023347 frame=32710"
+      },
+      {
+        "line": 313,
+        "text": "FRONTIER_PAUSE paused=True reason=manual_pause world=1023.197000 realtime=857.584896 frame=50627"
+      },
+      {
+        "line": 314,
+        "text": "FRONTIER_SAVE slot=3 match=naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21 time=1023.197"
+      },
+      {
+        "line": 336,
+        "text": "FRONTIER_REPORT /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261004-234049-515-naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21-load_exit.json"
+      },
+      {
+        "line": 359,
+        "text": "FRONTIER_LOAD slot=3 match=naval-preview-neutral-delta-271828-db255c7ee98d498882fa5f3fd76c412a time=325.1106"
+      },
+      {
+        "line": 381,
+        "text": "FRONTIER_PAUSE paused=False reason=manual_resume world=325.110600 realtime=951.405108 frame=56142"
+      },
+      {
+        "line": 430,
+        "text": "FRONTIER_PAUSE paused=True reason=manual_pause world=393.614800 realtime=1019.935858 frame=60187"
+      },
+      {
+        "line": 431,
+        "text": "FRONTIER_SAVE slot=3 match=naval-preview-neutral-delta-271828-db255c7ee98d498882fa5f3fd76c412a time=393.6148"
+      },
+      {
+        "line": 453,
+        "text": "FRONTIER_REPORT /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261004-234318-615-naval-preview-neutral-delta-271828-db255c7ee98d498882fa5f3fd76c412a-load_exit.json"
+      },
+      {
+        "line": 476,
+        "text": "FRONTIER_LOAD slot=3 match=naval-preview-bridge-river-161803-921ef4b27b564b5483df73f520993eda time=131.6988"
+      },
+      {
+        "line": 498,
+        "text": "FRONTIER_PAUSE paused=False reason=manual_resume world=131.698800 realtime=1087.122370 frame=64141"
+      },
+      {
+        "line": 547,
+        "text": "FRONTIER_REPORT /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261004-234608-904-naval-preview-bridge-river-161803-921ef4b27b564b5483df73f520993eda-match_finished.json"
+      },
+      {
+        "line": 571,
+        "text": "FRONTIER_REPORT /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261004-234649-050-naval-preview-bridge-river-161803-921ef4b27b564b5483df73f520993eda-menu_exit.json"
+      },
+      {
+        "line": 594,
+        "text": "FRONTIER_LOAD slot=3 match=naval-preview-monitor-harbor-161803-669319fbe9f24a3bbdddaa40b36e5336 time=170.3012"
+      },
+      {
+        "line": 616,
+        "text": "FRONTIER_PAUSE paused=False reason=manual_resume world=170.301200 realtime=1320.058157 frame=77977"
+      },
+      {
+        "line": 653,
+        "text": "FRONTIER_PAUSE paused=True reason=manual_pause world=197.502900 realtime=1347.269395 frame=79571"
+      },
+      {
+        "line": 654,
+        "text": "FRONTIER_SAVE slot=3 match=naval-preview-monitor-harbor-161803-669319fbe9f24a3bbdddaa40b36e5336 time=197.5029"
+      },
+      {
+        "line": 676,
+        "text": "FRONTIER_REPORT /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261004-234805-955-naval-preview-monitor-harbor-161803-669319fbe9f24a3bbdddaa40b36e5336-quit.json"
+      }
+    ],
+    "exitTelemetry": [
+      {
+        "line": 688,
+        "text": "Thread 0x171873000 may have been prematurely finalized"
+      },
+      {
+        "line": 689,
+        "text": "Thread 0x171223000 may have been prematurely finalized"
+      },
+      {
+        "line": 692,
+        "text": "Input System module state changed to: ShutdownInProgress."
+      },
+      {
+        "line": 693,
+        "text": "Input Polling Thread exited."
+      },
+      {
+        "line": 694,
+        "text": "Input System module state changed to: Shutdown."
+      }
+    ],
+    "exitScope": "Shutdown lines verified. Operator reports CmdQ and process count0; this audit did not independently record count or OS exit code. Thread-finalization warning retained without diagnosis."
+  },
+  "materialFunctionalFailuresFoundInCompletedScope": [],
+  "knownDisplayLimitations": [
+    "Bridge modal background retains ACTIVE179/180."
+  ],
+  "pending": [
+    "Normal-opening bothAI final audit",
+    "ManagedSlot3 cleanup and userSlots1/2 preservation receipts",
+    "Final complete evidence/package/Drive verification",
+    "Performance requirements if applicable"
+  ],
+  "mutationScope": "Only authorized finalGUID capture copies, unique sync receipt and this new report. Prior evidence/source/playerSaves unchanged; no GUI/Unity."
+}

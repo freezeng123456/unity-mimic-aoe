@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="21" result="Failed(Child)" total="21" passed="20" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-06 15:09:27Z" end-time="2026-10-06 15:09:29Z" duration="2.7235213">
+  <test-suite type="TestSuite" id="1000" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="1179" result="Failed" site="Child" start-time="2026-10-06 15:09:27Z" end-time="2026-10-06 15:09:29Z" duration="2.723521" total="21" passed="20" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="2394" name="Frontier.EditMode.dll" fullname="/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Library/ScriptAssemblies/Frontier.EditMode.dll" runstate="Runnable" testcasecount="1179" result="Failed" site="Child" start-time="2026-10-06 15:09:27Z" end-time="2026-10-06 15:09:29Z" duration="2.713811" total="21" passed="20" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="131" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="2395" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="1173" result="Failed" site="Child" start-time="2026-10-06 15:09:27Z" end-time="2026-10-06 15:09:29Z" duration="2.710649" total="21" passed="20" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="2396" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="1173" result="Failed" site="Child" start-time="2026-10-06 15:09:27Z" end-time="2026-10-06 15:09:29Z" duration="2.707724" total="21" passed="20" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1610" name="Market073Tests" fullname="Frontier.Tests.Market073Tests" classname="Frontier.Tests.Market073Tests" runstate="Runnable" testcasecount="21" result="Failed" site="Child" start-time="2026-10-06 15:09:27Z" end-time="2026-10-06 15:09:29Z" duration="2.692401" total="21" passed="20" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1633" name="AiCannotSellProtectedFoodOrTradeWithoutARealMarket" fullname="Frontier.Tests.Market073Tests.AiCannotSellProtectedFoodOrTradeWithoutARealMarket" methodname="AiCannotSellProtectedFoodOrTradeWithoutARealMarket" classname="Frontier.Tests.Market073Tests" runstate="Runnable" seed="2061317956" result="Passed" start-time="2026-10-06 15:09:27Z" end-time="2026-10-06 15:09:27Z" duration="0.929522" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1632" name="AiSellsSurplusFoodForCoinAndPreservesTownWoodAndFoodObligations" fullname="Frontier.Tests.Market073Tests.AiSellsSurplusFoodForCoinAndPreservesTownWoodAndFoodObligations" methodname="AiSellsSurplusFoodForCoinAndPreservesTownWoodAndFoodObligations" classname="Frontier.Tests.Market073Tests" runstate="Runnable" seed="708362277" result="Passed" start-time="2026-10-06 15:09:27Z" end-time="2026-10-06 15:09:28Z" duration="0.025613" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1614" name="BatchAndFiveSinglesHaveEqualWalletAndPrices" fullname="Frontier.Tests.Market073Tests.BatchAndFiveSinglesHaveEqualWalletAndPrices" methodname="BatchAndFiveSinglesHaveEqualWalletAndPrices" classname="Frontier.Tests.Market073Tests" runstate="Runnable" seed="541535805" result="Passed" start-time="2026-10-06 15:09:28Z" end-time="2026-10-06 15:09:28Z" duration="0.069436" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1613" name="BatchChargesTheSumOfMarginalPricesAndRecordsRealDebitAndReceipt" fullname="Frontier.Tests.Market073Tests.BatchChargesTheSumOfMarginalPricesAndRecordsRealDebitAndReceipt" classname="Frontier.Tests.Market073Tests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-06 15:09:28Z" end-time="2026-10-06 15:09:28Z" duration="0.040947" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1611" name="BatchChargesTheSumOfMarginalPricesAndRecordsRealDebitAndReceipt(False,320,85)" fullname="Frontier.Tests.Market073Tests.BatchChargesTheSumOfMarginalPricesAndRecordsRealDebitAndReceipt(False,320,85)" methodname="BatchChargesTheSumOfMarginalPricesAndRecordsRealDebitAndReceipt" classname="Frontier.Tests.Market073Tests" runstate="Runnable" seed="481991999" result="Passed" start-time="2026-10-06 15:09:28Z" end-time="2026-10-06 15:09:28Z" duration="0.020128" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1612" name="BatchChargesTheSumOfMarginalPricesAndRecordsRealDebitAndReceipt(True,680,115)" fullname="Frontier.Tests.Market073Tests.BatchChargesTheSumOfMarginalPricesAndRecordsRealDebitAndReceipt(True,680,115)" methodname="BatchChargesTheSumOfMarginalPricesAndRecordsRealDebitAndReceipt" classname="Frontier.Tests.Market073Tests" runstate="Runnable" seed="1419426790" result="Passed" start-time="2026-10-06 15:09:28Z" end-time="2026-10-06 15:09:28Z" duration="0.019564" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1631" name="CoinOnlyShortageProtectsCompleteTradeStartupBeforeMilitaryConsumesLedgerFee" fullname="Frontier.Tests.Market073Tests.CoinOnlyShortageProtectsCompleteTradeStartupBeforeMilitaryConsumesLedgerFee" methodname="CoinOnlyShortageProtectsCompleteTradeStartupBeforeMilitaryConsumesLedgerFee" classname="Frontier.Tests.Market073Tests" runstate="Runnable" seed="1947383791" result="Failed" start-time="2026-10-06 15:09:28Z" end-time="2026-10-06 15:09:28Z" duration="0.056322" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.Market073Tests.CoinOnlyShortageProtectsCompleteTradeStartupBeforeMilitaryConsumesLedgerFee () [0x000ae] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/Market073Tests.cs:133
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1619" name="InvalidLotCountsAreRejectedWithoutAnyMutation" fullname="Frontier.Tests.Market073Tests.InvalidLotCountsAreRejectedWithoutAnyMutation" classname="Frontier.Tests.Market073Tests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-06 15:09:28Z" end-time="2026-10-06 15:09:28Z" duration="0.240085" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1615" name="InvalidLotCountsAreRejectedWithoutAnyMutation(0)" fullname="Frontier.Tests.Market073Tests.InvalidLotCountsAreRejectedWithoutAnyMutation(0)" methodname="InvalidLotCountsAreRejectedWithoutAnyMutation" classname="Frontier.Tests.Market073Tests" runstate="Runnable" seed="1881436472" result="Passed" start-time="2026-10-06 15:09:28Z" end-time="2026-10-06 15:09:28Z" duration="0.068919" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1616" name="InvalidLotCountsAreRejectedWithoutAnyMutation(-1)" fullname="Frontier.Tests.Market073Tests.InvalidLotCountsAreRejectedWithoutAnyMutation(-1)" methodname="InvalidLotCountsAreRejectedWithoutAnyMutation" classname="Frontier.Tests.Market073Tests" runstate="Runnable" seed="1228883229" result="Passed" start-time="2026-10-06 15:09:28Z" end-time="2026-10-06 15:09:28Z" duration="0.054076" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1617" name="InvalidLotCountsAreRejectedWithoutAnyMutation(6)" fullname="Frontier.Tests.Market073Tests.InvalidLotCountsAreRejectedWithoutAnyMutation(6)" methodname="InvalidLotCountsAreRejectedWithoutAnyMutation" classname="Frontier.Tests.Market073Tests" runstate="Runnable" seed="1562372825" result="Passed" start-time="2026-10-06 15:09:28Z" end-time="2026-10-06 15:09:28Z" duration="0.054068" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1618" name="InvalidLotCountsAreRejectedWithoutAnyMutation(int.MaxValue)" fullname="Frontier.Tests.Market073Tests.InvalidLotCountsAreRejectedWithoutAnyMutation(int.MaxValue)" methodname="InvalidLotCountsAreRejectedWithoutAnyMutation" classname="Frontier.Tests.Market073Tests" runstate="Runnable" seed="2095725788" result="Passed" start-time="2026-10-06 15:09:28Z" end-time="2026-10-06 15:09:28Z" duration="0.062376" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1628" name="InvalidSavedMarketPressureIsRejected" fullname="Frontier.Tests.Market073Tests.InvalidSavedMarketPressureIsRejected" methodname="InvalidSavedMarketPressureIsRejected" classname="Frontier.Tests.Market073Tests" runstate="Runnable" seed="933009129" result="Passed" start-time="2026-10-06 15:09:28Z" end-time="2026-10-06 15:09:28Z" duration="0.035401" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1630" name="LanRetransmissionExecutesMarketPaymentOnlyOnce" fullname="Frontier.Tests.Market073Tests.LanRetransmissionExecutesMarketPaymentOnlyOnce" methodname="LanRetransmissionExecutesMarketPaymentOnlyOnce" classname="Frontier.Tests.Market073Tests" runstate="Runnable" seed="3041176" result="Passed" start-time="2026-10-06 15:09:28Z" end-time="2026-10-06 15:09:28Z" duration="0.053093" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1622" name="MalformedDirectionResourceAndSelectionAreAtomic" fullname="Frontier.Tests.Market073Tests.MalformedDirectionResourceAndSelectionAreAtomic" methodname="MalformedDirectionResourceAndSelectionAreAtomic" classname="Frontier.Tests.Market073Tests" runstate="Runnable" seed="2130891142" result="Passed" start-time="2026-10-06 15:09:28Z" end-time="2026-10-06 15:09:28Z" duration="0.161242" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1629" name="MarketCommandsReplayFromColdJsonThroughAllStepsAndBothSeekDirections" fullname="Frontier.Tests.Market073Tests.MarketCommandsReplayFromColdJsonThroughAllStepsAndBothSeekDirections" methodname="MarketCommandsReplayFromColdJsonThroughAllStepsAndBothSeekDirections" classname="Frontier.Tests.Market073Tests" runstate="Runnable" seed="1150238447" result="Passed" start-time="2026-10-06 15:09:28Z" end-time="2026-10-06 15:09:29Z" duration="0.529531" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1625" name="MultipleMarketsAndReplacementsRetainPlayerPriceButOpponentsHaveIndependentQuotes" fullname="Frontier.Tests.Market073Tests.MultipleMarketsAndReplacementsRetainPlayerPriceButOpponentsHaveIndependentQuotes" methodname="MultipleMarketsAndReplacementsRetainPlayerPriceButOpponentsHaveIndependentQuotes" classname="Frontier.Tests.Market073Tests" runstate="Runnable" seed="1699797424" result="Passed" start-time="2026-10-06 15:09:29Z" end-time="2026-10-06 15:09:29Z" duration="0.019478" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1623" name="PauseAndEliminationRejectExchange" fullname="Frontier.Tests.Market073Tests.PauseAndEliminationRejectExchange" methodname="PauseAndEliminationRejectExchange" classname="Frontier.Tests.Market073Tests" runstate="Runnable" seed="259565402" result="Passed" start-time="2026-10-06 15:09:29Z" end-time="2026-10-06 15:09:29Z" duration="0.086437" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1624" name="PriceFloorsCeilingsAndSpreadPreventRoundTripProfit" fullname="Frontier.Tests.Market073Tests.PriceFloorsCeilingsAndSpreadPreventRoundTripProfit" methodname="PriceFloorsCeilingsAndSpreadPreventRoundTripProfit" classname="Frontier.Tests.Market073Tests" runstate="Runnable" seed="672944716" result="Passed" start-time="2026-10-06 15:09:29Z" end-time="2026-10-06 15:09:29Z" duration="0.024401" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1627" name="QuotesAreReadOnlyAndColdDiskRestoreRetainsNextActualPriceAndLedger" fullname="Frontier.Tests.Market073Tests.QuotesAreReadOnlyAndColdDiskRestoreRetainsNextActualPriceAndLedger" methodname="QuotesAreReadOnlyAndColdDiskRestoreRetainsNextActualPriceAndLedger" classname="Frontier.Tests.Market073Tests" runstate="Runnable" seed="1563666110" result="Passed" start-time="2026-10-06 15:09:29Z" end-time="2026-10-06 15:09:29Z" duration="0.145003" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1626" name="SaturatedWalletCannotGenerateCoinsWithoutSpendingFood" fullname="Frontier.Tests.Market073Tests.SaturatedWalletCannotGenerateCoinsWithoutSpendingFood" methodname="SaturatedWalletCannotGenerateCoinsWithoutSpendingFood" classname="Frontier.Tests.Market073Tests" runstate="Runnable" seed="355291893" result="Passed" start-time="2026-10-06 15:09:29Z" end-time="2026-10-06 15:09:29Z" duration="0.060710" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1620" name="UnaffordableBatchDoesNotPartiallySellOrChangeQuotes" fullname="Frontier.Tests.Market073Tests.UnaffordableBatchDoesNotPartiallySellOrChangeQuotes" methodname="UnaffordableBatchDoesNotPartiallySellOrChangeQuotes" classname="Frontier.Tests.Market073Tests" runstate="Runnable" seed="1246347243" result="Passed" start-time="2026-10-06 15:09:29Z" end-time="2026-10-06 15:09:29Z" duration="0.051892" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1621" name="WrongOwnerUnfinishedDestroyedAndWrongProducerCannotExchange" fullname="Frontier.Tests.Market073Tests.WrongOwnerUnfinishedDestroyedAndWrongProducerCannotExchange" methodname="WrongOwnerUnfinishedDestroyedAndWrongProducerCannotExchange" classname="Frontier.Tests.Market073Tests" runstate="Runnable" seed="1933452957" result="Passed" start-time="2026-10-06 15:09:29Z" end-time="2026-10-06 15:09:29Z" duration="0.156320" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

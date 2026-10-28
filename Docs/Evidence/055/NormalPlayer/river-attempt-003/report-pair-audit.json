@@ -1,0 +1,40 @@
+{
+  "generatedAtUtc": "2026-10-03T06:00:33.373830+00:00",
+  "status": "passed",
+  "checks": {
+    "eventFilesByteIdentical": true,
+    "onlyReportReasonAndManagedBytesDiffer": true,
+    "sameMatchId": true,
+    "reportCountMatchesRaw": true,
+    "matchFinishedReason": true,
+    "menuExitReason": true
+  },
+  "differences": {
+    "reason": {
+      "match_finished": "match_finished",
+      "menu_exit": "menu_exit"
+    },
+    "managedBytes": {
+      "match_finished": 23908352,
+      "menu_exit": 23687168
+    }
+  },
+  "sources": {
+    "20261003-054153-740-8fb300efbc1a4169a953d9dab2b7caad-match_finished.json": {
+      "bytes": 3344,
+      "sha256": "2f0e3d5fc6b3dc4d38d2e5b69cf50bcb451d87fde9274c948643b79d1b97144e"
+    },
+    "20261003-054457-232-8fb300efbc1a4169a953d9dab2b7caad-menu_exit.json": {
+      "bytes": 3339,
+      "sha256": "01fbeb079e6bb462cdf32257059c2ae67089623c8ab1a505a16edaae9e7cb604"
+    },
+    "20261003-054153-740-8fb300efbc1a4169a953d9dab2b7caad-match_finished-events.jsonl": {
+      "bytes": 58799582,
+      "sha256": "d9b81e185434b55f84314f104995a38b240494e0a1a908cc9bc6f06ec89f48bc"
+    },
+    "20261003-054457-232-8fb300efbc1a4169a953d9dab2b7caad-menu_exit-events.jsonl": {
+      "bytes": 58799582,
+      "sha256": "d9b81e185434b55f84314f104995a38b240494e0a1a908cc9bc6f06ec89f48bc"
+    }
+  }
+}

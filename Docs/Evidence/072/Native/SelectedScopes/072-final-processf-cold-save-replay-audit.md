@@ -1,0 +1,15 @@
+# ProcessF independent cold-state and continuation audit
+
+Status: selected cold full initial state and native continuation verified with scope limits. No all-native or release acceptance claim.
+
+- Fresh PID **85449**, final GUID `3288d9fe24e844748a1183f756874fbf`, exited **0**. Command has no scenario or autoplay argument. Player.log line 55 records an actual slot-1 load of match `68c69480797e47e3850953863ce58aa9` at 549.013; HUD SaveSlots load stack is present.
+- Original slot bytes remain SHA-256 `c46875d4883e887d330fee45f97cd34d6fe79487ef5fd469b4530fd4376db8f8`. Cold segment `b846573eff774fa288e857856988738e` starts `loaded_checkpoint`, step 5490, time 549.0130004882812, paused.
+- Full initial cold World, simulation, and guided state equal the E slot after only recorder-prescribed normalization: `world.events=[]`, `simulation.accumulator=0`. No additional differences were removed. Initial state digest equals E final digest `2515c890b10d64b0c6ef3119fbd33de4754f1239dd51b28109b35f7aad01c3e7`. The 367-event prefix is identical in original serialized JSON bytes to both slot and E replay.
+- Cold initial government queue is paid 400 F / 0 W / 400 C, elapsed **0.10000000149011612 / 60 seconds**, wallet 100 / 0 / 0. Initial phase is Revolutionary (1), revolutionAt 507.22174072265625. Original IDs 3–8 retain revolutionary definitions and HP 190.
+- Native continuation completes government at **608.9983520507812** (CivilianRebuilt index 369, ResearchComplete index 370), then accepts one Train villager command at step **6381**. Payment index 371 debits **100 F**, queue index 372 reserves one population; Spawn index 373 / UnitTrained index 375 produce new villager **89**, HP **150**, at **658.0863647460938**. Final phase CivilianRebuilt (2), age IV, six revolutionary originals retained, population 20/20, wallet 0/0/0, town queue empty.
+- Independently recomputed all **11** anchor state digests and event/input prefix chains over **379** events and **5** records. Quit report events.jsonl exactly matches all replay event serialization. Final step 8338, time 833.7434692382812, winner -1, quit.
+- Paused F9 frame 1273 and resumed F9 frame 1695 preserve match/GUID, wallet, six IDs, and queue projection. Both are at the saved time; the resumed capture itself does not prove later time advancement. PNG CRC and decoded RGBA scanlines match metadata. F9 omits full simulation and political state; full cold equality comes from the stored initial anchor.
+
+Only 12 selected originals were checked before and after; ProfileE is not a frozen tree. Hash/digest checks do not substitute for forward Viewer execution. Player hotkey groups are empty in the original slot and absent from replay/F9, so UI group restoration is not claimed. Pixel review belongs to parent. MemoryLeaks closure output is retained; no leak-free closure, measured performance improvement, host networking proof, normal-opening balance, moving-worker combat, nativeAllPassed, or final release approval is asserted.
+
+397 checks passed. Exact SHA-256 references, all anchor/record indices, continuation events, initial/final political state, and capture projections are in the JSON.

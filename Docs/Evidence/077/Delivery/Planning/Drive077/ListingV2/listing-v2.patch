@@ -1,0 +1,56 @@
+--- /Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Planning/Drive077/tool-orchestration077.js	2026-10-10 07:44:44
++++ /Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.20.0/Candidate1/Planning/Drive077/ListingV2/tool-orchestration077.js	2026-10-10 08:31:42
+@@ -58,18 +58,29 @@
+     need(m.id === id, 'Returned metadata ID differs'); return m;
+   }
+   async function children(id) {
+-    const all = [], tokens = new Set(); let token;
+-    do {
+-      const args = {special_filter_query_str:"'"+id+"' in parents and trashed = false",topn:100,best_effort_fetch:false};
+-      if (token) args.page_token = token;
+-      const page = unwrap(await tools.mcp__codex_apps__google_drive_search(args));
+-      need(Array.isArray(page.results), 'Search rows missing');
+-      need(page.results.every(x => x.id && Array.isArray(x.parent_ids) && x.parent_ids.length === 1 && x.parent_ids[0] === id), 'Search scope differs');
+-      all.push(...page.results); token = page.next_page_token || null;
+-      need(token || page.results.length < 100, 'Complete listing ambiguous at page ceiling');
+-      if (token) { need(!tokens.has(token), 'Repeated search cursor'); tokens.add(token); }
+-    } while (token);
+-    need(new Set(all.map(x=>x.id)).size === all.length, 'Duplicate search IDs'); return all;
++    // Legacy search omitted binary/JSON C1 children. Default folder fetch is bounded;
++    // verify the actual wrapper, preserve nullable row parents and stop at its ceiling.
++    const m = await metadata(id);
++    need(m.mime_type === 'application/vnd.google-apps.folder' && m.url, 'Folder metadata/URL required');
++    const fetched = unwrap(await tools.mcp__codex_apps__google_drive_fetch({url:m.url}));
++    const wrappers = [fetched, fetched.structuredContent].filter(x=>x && typeof x==='object');
++    need(wrappers.some(x=>x.id===id && x.mime_type==='application/vnd.google-apps.folder'), 'Folder fetch wrapper identity missing');
++    for (const x of wrappers) {
++      if (x.id !== undefined) need(x.id===id, 'Folder fetch wrapper ID differs');
++      if (x.mime_type !== undefined) need(x.mime_type==='application/vnd.google-apps.folder', 'Folder fetch wrapper type differs');
++    }
++    const bodies = wrappers.filter(x=>x.content!==undefined).map(x=>typeof x.content==='string' ? JSON.parse(x.content) : x.content);
++    need(bodies.length>0 && bodies.every(x=>x && typeof x==='object' && Array.isArray(x.files)), 'Folder fetch content.files missing');
++    for (const x of [...wrappers,...bodies]) {
++      const flagged = Object.entries(x).some(([k,v])=>/^(next|continuation|hasmore|hasnext|truncated|istruncated|incomplete|isincomplete|partial|ispartial|pagination|pagetoken)/i.test(k.replaceAll('_','').replaceAll('-','')) && v!==null && v!==false && v!=='');
++      need(!flagged, 'Folder fetch indicates pagination/truncation/incompleteness');
++    }
++    const all = bodies[0].files;
++    need(all.length<100, 'Folder fetch at 100-row ceiling is incomplete/ambiguous');
++    need(bodies.every(x=>JSON.stringify(x.files)===JSON.stringify(all)), 'Nested folder fetch bodies disagree');
++    need(all.every(x=>x && typeof x.id==='string' && x.id && (x.parent_ids==null || (Array.isArray(x.parent_ids) && x.parent_ids.length===1 && x.parent_ids[0]===id))), 'Folder row ID/declared parent differs');
++    need(new Set(all.map(x=>x.id)).size===all.length, 'Duplicate folder fetch IDs');
++    return all; // No invented parent_ids: separately hydrated fresh file metadata binds them.
+   }
+   async function candidate(p, state) {
+     need(state.folder && state.folder.id !== PARENT && state.folder.id !== C1, 'Protected folder is not the candidate');
+@@ -137,7 +148,10 @@
+     await plan(); const parent = await metadata(PARENT), folder = await candidate(p,state), filesMetadata = {};
+     need(state.uploads.length===p.files.length && Object.keys(state.readbacks).length===p.files.length, 'Every planned file needs whole-byte readback');
+     for (const row of state.uploads) filesMetadata[row.id] = await metadata(row.id);
+-    const proof = {parent,folder,filesMetadata,readbacks:state.readbacks,folderChildren:await children(folder.id),c1Before:state.c1Before,c1After:await children(C1),projectBefore:state.projectBefore,projectAfter:await children(PARENT)};
++    const listed = await children(folder.id);
++    const folderChildren = listed.map(row=>filesMetadata[row.id] || row);
++    // Unknown extras retain observed rows; Python's exact child-ID set rejects them.
++    const proof = {parent,folder,filesMetadata,readbacks:state.readbacks,folderChildren,c1Before:state.c1Before,c1After:await children(C1),projectBefore:state.projectBefore,projectAfter:await children(PARENT)};
+     await journal('final-live-metadata',proof);
+     return local(['finish','--plan',config.planPath,'--directory',finalDirectory],proof);
+   }

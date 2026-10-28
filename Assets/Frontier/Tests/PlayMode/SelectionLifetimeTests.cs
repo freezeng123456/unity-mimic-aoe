@@ -72,5 +72,39 @@ namespace Frontier.Tests
             var p=ButtonCenter(queue);Down(p);yield return Ready();KeyEdge(Key.V);Up(p);yield return Ready();yield return Ready();
             Assert.IsTrue(game.Controls.FirstSelected.Worker);Assert.AreEqual(1,Town().queue.Count);Assert.AreEqual(0,Events("Refund"));
         }
+        [UnityTest] public IEnumerator HeldQueueCancelCannotCancelSuccessorAfterProductionCompletes()
+        {
+            var town=Town();game.Controls.Select(town);yield return Ready();
+            var train=ButtonCenter(FindButton("Settler"));Down(train);Up(train);Down(train);Up(train);yield return Ready();yield return Ready();
+            Assert.AreEqual(2,town.queue.Count);Assert.AreEqual(2,Events("Payment"));
+            var first=town.queue[0];var successor=town.queue[1];first.elapsed=first.duration-.1f;
+            var queue=session.GetComponentsInChildren<Button>().Where(b=>b.transform.parent.name=="Production queue").OrderBy(b=>b.transform.GetSiblingIndex()).ToArray();
+            var p=ButtonCenter(queue[0]);Down(p);yield return Ready();
+            int trained=game.World.Players[0].trained;game.World.Tick(.2f);yield return Ready();
+            Assert.AreEqual(trained+1,game.World.Players[0].trained,"The held click must cross an actual production completion");
+            Assert.AreEqual(1,town.queue.Count);Assert.AreSame(successor,town.queue[0]);
+            var food=game.World.Players[0].resources.food;int reserved=game.World.Players[0].reservedPopulation;
+            Up(p);yield return Ready();yield return Ready();
+            Assert.AreEqual(1,town.queue.Count,"Releasing a completed order's button must leave its successor queued");
+            Assert.AreSame(successor,town.queue[0]);Assert.AreEqual(0,Events("Refund"));
+            Assert.AreEqual(food,game.World.Players[0].resources.food,.001f);Assert.AreEqual(reserved,game.World.Players[0].reservedPopulation);
+        }
+        [UnityTest] public IEnumerator HeldQueueCancelFollowsClickedJobWhenEarlierProductionCompletes()
+        {
+            var town=Town();game.Controls.Select(town);yield return Ready();
+            var train=ButtonCenter(FindButton("Settler"));Down(train);Up(train);Down(train);Up(train);yield return Ready();yield return Ready();
+            Assert.AreEqual(2,town.queue.Count);Assert.AreEqual(2,Events("Payment"));
+            var first=town.queue[0];var clicked=town.queue[1];first.elapsed=first.duration-.1f;
+            var queue=session.GetComponentsInChildren<Button>().Where(b=>b.transform.parent.name=="Production queue").OrderBy(b=>b.transform.GetSiblingIndex()).ToArray();
+            var p=ButtonCenter(queue[1]);Down(p);yield return Ready();
+            int trained=game.World.Players[0].trained;game.World.Tick(.2f);yield return Ready();
+            Assert.AreEqual(trained+1,game.World.Players[0].trained,"The earlier order must complete while the later order's button is held");
+            Assert.AreEqual(1,town.queue.Count);Assert.AreSame(clicked,town.queue[0]);
+            var food=game.World.Players[0].resources.food;int reserved=game.World.Players[0].reservedPopulation;
+            Up(p);yield return Ready();yield return Ready();
+            Assert.IsEmpty(town.queue,"The originally clicked order must remain cancellable after moving to the front");
+            Assert.AreEqual(1,Events("Refund"));Assert.AreEqual(food+clicked.paid.food,game.World.Players[0].resources.food,.001f);
+            Assert.AreEqual(reserved-clicked.population,game.World.Players[0].reservedPopulation);
+        }
     }
 }

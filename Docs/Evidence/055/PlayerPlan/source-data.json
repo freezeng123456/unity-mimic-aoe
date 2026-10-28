@@ -1,0 +1,866 @@
+{
+  "schemaVersion": 1,
+  "scope": "Static planning calculations from frozen rules; not native match proof or guaranteed victory",
+  "appVersion": "0.2.31",
+  "sourceFingerprint": "1b45f97f3d90c9b76388419492a83c5622ccb2cf3a365030044403ccd309c1c7",
+  "sourceFileCount": 357,
+  "sources": {
+    "Assets/Resources/Rules.json": "a438291dbb42e0996485fb069031b24a95b5323d9d180135a0aba44cb272c064",
+    "Assets/Frontier/Simulation/DeckLibrary.cs": "0dc49c90ca098a88df08ecbd0e5ff809774f7a6b02e784fbff1fbc27c105b8f9",
+    "Assets/Frontier/Simulation/World.cs": "a1865889ddbe93c9371492f22c2ec6b63bd0b1b149d330490a1b8a125388ad22",
+    "Assets/Frontier/Simulation/Economy.cs": "44e6169fea7164213b9b3eb148ad796ef1d77662c77d91b91315f8e44d863e8f",
+    "Assets/Frontier/Simulation/Progression.cs": "ef71826e9ff89493585695eb067968bb6c41339d7bf177be4a3f531604ab4fea",
+    "Assets/Frontier/Simulation/Model.cs": "db39ce7a919e3040c193fda8fbf58794bf4af4368f5538099b4912c7d8903a43",
+    "Assets/Frontier/Simulation/ResourceRally.cs": "ebaf5a1ff4a980b06e24b6150ecd266d2174b3331bcc228db7f68214fda0918f",
+    "Assets/Frontier/Simulation/SkirmishAI.cs": "8e52488def4d599823617ff0b532e9bf5679587ab49f1c8b79156d7313d6940f",
+    "Assets/Frontier/Simulation/AiAgePlan.cs": "ae1c59f2798c54c44387d5348dbd42c8bbe2f0d3ab66c594bf581d8a19baad09",
+    "Assets/Frontier/Simulation/AiWorkforce.cs": "5ce25e118bb8e65b7410fe32b2583544da33bd2cfc4fcfe72585bbd08256b935",
+    "Assets/Frontier/Simulation/Landmarks.cs": "219b8057c59de325716e3a8dcbf79f1d3d586cfde271af75c784c25cdcf18789",
+    "Assets/Frontier/Presentation/GameController.cs": "2b52dd0fecda27b58bf500e5dc989264a7915a38b40a0508536a7b8825568dd7",
+    "Assets/Frontier/Presentation/FrontierHud.cs": "378db2404311bbce8d319cfa312d765253c3b303b228cc9b4cf09784406bf785"
+  },
+  "deckSelection": "Economy preset, priority nonmilitary then age then ordinal id, first25. A user-edited deck must be checked separately.",
+  "economy25": {
+    "coast": [
+      {
+        "id": "field_tools",
+        "name": "Improved Tools",
+        "description": "Foraging technology",
+        "civilization": "coast",
+        "tech": "survival",
+        "age": 1,
+        "count": 1,
+        "unit": "",
+        "repeatable": false,
+        "crates": {
+          "food": 0,
+          "wood": 0,
+          "coin": 0
+        },
+        "travel": 35
+      },
+      {
+        "id": "food_crates",
+        "name": "Field Rations",
+        "description": "Food crate",
+        "civilization": "coast",
+        "age": 1,
+        "count": 1,
+        "crates": {
+          "food": 300
+        },
+        "repeatable": true,
+        "unit": "",
+        "tech": "",
+        "travel": 35
+      },
+      {
+        "id": "settlers",
+        "name": "New Settlers",
+        "description": "Two settlers",
+        "civilization": "coast",
+        "unit": "villager",
+        "age": 1,
+        "count": 2,
+        "tech": "",
+        "repeatable": false,
+        "crates": {
+          "food": 0,
+          "wood": 0,
+          "coin": 0
+        },
+        "travel": 35
+      },
+      {
+        "id": "wood_crates",
+        "name": "Timber Shipment",
+        "description": "Wood crate",
+        "civilization": "coast",
+        "age": 1,
+        "count": 1,
+        "crates": {
+          "wood": 300
+        },
+        "repeatable": false,
+        "unit": "",
+        "tech": "",
+        "travel": 35
+      },
+      {
+        "id": "coin_crates",
+        "name": "Minted Chest",
+        "description": "Coin crate",
+        "civilization": "coast",
+        "age": 2,
+        "count": 1,
+        "crates": {
+          "coin": 300
+        },
+        "repeatable": false,
+        "unit": "",
+        "tech": "",
+        "travel": 35
+      },
+      {
+        "id": "coin_supply_2",
+        "name": "Coin Convoy 2",
+        "description": "Collect 600 coin from arriving crates.",
+        "age": 2,
+        "crates": {
+          "coin": 600
+        },
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "food_supply_2",
+        "name": "Food Convoy 2",
+        "description": "Collect 600 food from arriving crates.",
+        "age": 2,
+        "crates": {
+          "food": 600
+        },
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "reserve_villager",
+        "name": "Settler Reserves",
+        "description": "Military or economic reinforcement.",
+        "unit": "villager",
+        "count": 3,
+        "age": 2,
+        "civilization": "",
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "wood_supply_2",
+        "name": "Wood Convoy 2",
+        "description": "Collect 600 wood from arriving crates.",
+        "age": 2,
+        "crates": {
+          "wood": 600
+        },
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "coin_supply_3",
+        "name": "Coin Convoy 3",
+        "description": "Collect 1000 coin from arriving crates.",
+        "age": 3,
+        "crates": {
+          "coin": 1000
+        },
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "estate",
+        "name": "Stone Foundations",
+        "description": "Buildings gain 10% base health.",
+        "age": 3,
+        "count": 1,
+        "tech": "masonry",
+        "civilization": "",
+        "unit": "",
+        "repeatable": false,
+        "crates": {
+          "food": 0,
+          "wood": 0,
+          "coin": 0
+        },
+        "travel": 35
+      },
+      {
+        "id": "food_supply_3",
+        "name": "Food Convoy 3",
+        "description": "Collect 1000 food from arriving crates.",
+        "age": 3,
+        "crates": {
+          "food": 1000
+        },
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "wood_supply_3",
+        "name": "Wood Convoy 3",
+        "description": "Collect 1000 wood from arriving crates.",
+        "age": 3,
+        "crates": {
+          "wood": 1000
+        },
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "coin_supply_4",
+        "name": "Coin Convoy 4",
+        "description": "Collect 1400 coin from arriving crates.",
+        "age": 4,
+        "crates": {
+          "coin": 1400
+        },
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "food_supply_4",
+        "name": "Food Convoy 4",
+        "description": "Collect 1400 food from arriving crates.",
+        "age": 4,
+        "crates": {
+          "food": 1400
+        },
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "wood_supply_4",
+        "name": "Wood Convoy 4",
+        "description": "Collect 1400 wood from arriving crates.",
+        "age": 4,
+        "crates": {
+          "wood": 1400
+        },
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "coin_supply_5",
+        "name": "Coin Convoy 5",
+        "description": "Collect 2000 coin from arriving crates.",
+        "age": 5,
+        "crates": {
+          "coin": 2000
+        },
+        "repeatable": true,
+        "travel": 35
+      },
+      {
+        "id": "food_supply_5",
+        "name": "Food Convoy 5",
+        "description": "Collect 2000 food from arriving crates.",
+        "age": 5,
+        "crates": {
+          "food": 2000
+        },
+        "repeatable": true,
+        "travel": 35
+      },
+      {
+        "id": "wood_supply_5",
+        "name": "Wood Convoy 5",
+        "description": "Collect 2000 wood from arriving crates.",
+        "age": 5,
+        "crates": {
+          "wood": 2000
+        },
+        "repeatable": true,
+        "travel": 35
+      },
+      {
+        "id": "hussars",
+        "name": "Mounted Guard",
+        "description": "Two hussars",
+        "age": 2,
+        "count": 2,
+        "unit": "hussar",
+        "civilization": "",
+        "tech": "",
+        "repeatable": false,
+        "crates": {
+          "food": 0,
+          "wood": 0,
+          "coin": 0
+        },
+        "travel": 35
+      },
+      {
+        "id": "muskets",
+        "name": "Musketeer Company",
+        "description": "Three musketeers",
+        "civilization": "coast",
+        "unit": "musketeer",
+        "age": 2,
+        "count": 3,
+        "tech": "",
+        "repeatable": false,
+        "crates": {
+          "food": 0,
+          "wood": 0,
+          "coin": 0
+        },
+        "travel": 35
+      },
+      {
+        "id": "pikes",
+        "name": "Pike Company",
+        "description": "Three pikemen",
+        "civilization": "coast",
+        "unit": "pike",
+        "age": 2,
+        "count": 3,
+        "tech": "",
+        "repeatable": false,
+        "crates": {
+          "food": 0,
+          "wood": 0,
+          "coin": 0
+        },
+        "travel": 35
+      },
+      {
+        "id": "cannon_support",
+        "name": "Cannon Support",
+        "description": "One field cannon",
+        "age": 3,
+        "count": 1,
+        "unit": "cannon",
+        "civilization": "",
+        "tech": "",
+        "repeatable": false,
+        "crates": {
+          "food": 0,
+          "wood": 0,
+          "coin": 0
+        },
+        "travel": 35
+      },
+      {
+        "id": "dragoons",
+        "name": "Dragoon Escort",
+        "description": "Two dragoons",
+        "age": 3,
+        "count": 2,
+        "unit": "dragoon",
+        "civilization": "",
+        "tech": "",
+        "repeatable": false,
+        "crates": {
+          "food": 0,
+          "wood": 0,
+          "coin": 0
+        },
+        "travel": 35
+      },
+      {
+        "id": "reserve_hussar",
+        "name": "Hussar Reserves",
+        "description": "Military or economic reinforcement.",
+        "unit": "hussar",
+        "count": 4,
+        "age": 3,
+        "civilization": "",
+        "repeatable": false,
+        "travel": 35
+      }
+    ],
+    "river": [
+      {
+        "id": "river_coin",
+        "name": "River Coin",
+        "description": "Coin crate",
+        "civilization": "river",
+        "age": 1,
+        "count": 1,
+        "crates": {
+          "coin": 250
+        },
+        "repeatable": false,
+        "unit": "",
+        "tech": "",
+        "travel": 35
+      },
+      {
+        "id": "bankers",
+        "name": "Bank Charter",
+        "description": "One additional counting house slot.",
+        "civilization": "river",
+        "unit": "",
+        "age": 2,
+        "count": 0,
+        "tech": "bank_charter",
+        "repeatable": false,
+        "crates": {
+          "food": 0,
+          "wood": 0,
+          "coin": 0
+        },
+        "travel": 35
+      },
+      {
+        "id": "coin_supply_2",
+        "name": "Coin Convoy 2",
+        "description": "Collect 600 coin from arriving crates.",
+        "age": 2,
+        "crates": {
+          "coin": 600
+        },
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "food_supply_2",
+        "name": "Food Convoy 2",
+        "description": "Collect 600 food from arriving crates.",
+        "age": 2,
+        "crates": {
+          "food": 600
+        },
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "reserve_villager",
+        "name": "Settler Reserves",
+        "description": "Military or economic reinforcement.",
+        "unit": "villager",
+        "count": 3,
+        "age": 2,
+        "civilization": "",
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "wood_supply_2",
+        "name": "Wood Convoy 2",
+        "description": "Collect 600 wood from arriving crates.",
+        "age": 2,
+        "crates": {
+          "wood": 600
+        },
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "coin_supply_3",
+        "name": "Coin Convoy 3",
+        "description": "Collect 1000 coin from arriving crates.",
+        "age": 3,
+        "crates": {
+          "coin": 1000
+        },
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "estate",
+        "name": "Stone Foundations",
+        "description": "Buildings gain 10% base health.",
+        "age": 3,
+        "count": 1,
+        "tech": "masonry",
+        "civilization": "",
+        "unit": "",
+        "repeatable": false,
+        "crates": {
+          "food": 0,
+          "wood": 0,
+          "coin": 0
+        },
+        "travel": 35
+      },
+      {
+        "id": "food_supply_3",
+        "name": "Food Convoy 3",
+        "description": "Collect 1000 food from arriving crates.",
+        "age": 3,
+        "crates": {
+          "food": 1000
+        },
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "wood_supply_3",
+        "name": "Wood Convoy 3",
+        "description": "Collect 1000 wood from arriving crates.",
+        "age": 3,
+        "crates": {
+          "wood": 1000
+        },
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "coin_supply_4",
+        "name": "Coin Convoy 4",
+        "description": "Collect 1400 coin from arriving crates.",
+        "age": 4,
+        "crates": {
+          "coin": 1400
+        },
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "food_supply_4",
+        "name": "Food Convoy 4",
+        "description": "Collect 1400 food from arriving crates.",
+        "age": 4,
+        "crates": {
+          "food": 1400
+        },
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "river_ledgers",
+        "name": "Ledger Dispatch",
+        "description": "Counting houses gain 25% coin income.",
+        "tech": "bank_ledgers",
+        "civilization": "river",
+        "age": 4,
+        "travel": 35
+      },
+      {
+        "id": "wood_supply_4",
+        "name": "Wood Convoy 4",
+        "description": "Collect 1400 wood from arriving crates.",
+        "age": 4,
+        "crates": {
+          "wood": 1400
+        },
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "coin_supply_5",
+        "name": "Coin Convoy 5",
+        "description": "Collect 2000 coin from arriving crates.",
+        "age": 5,
+        "crates": {
+          "coin": 2000
+        },
+        "repeatable": true,
+        "travel": 35
+      },
+      {
+        "id": "food_supply_5",
+        "name": "Food Convoy 5",
+        "description": "Collect 2000 food from arriving crates.",
+        "age": 5,
+        "crates": {
+          "food": 2000
+        },
+        "repeatable": true,
+        "travel": 35
+      },
+      {
+        "id": "wood_supply_5",
+        "name": "Wood Convoy 5",
+        "description": "Collect 2000 wood from arriving crates.",
+        "age": 5,
+        "crates": {
+          "wood": 2000
+        },
+        "repeatable": true,
+        "travel": 35
+      },
+      {
+        "id": "hussars",
+        "name": "Mounted Guard",
+        "description": "Two hussars",
+        "age": 2,
+        "count": 2,
+        "unit": "hussar",
+        "civilization": "",
+        "tech": "",
+        "repeatable": false,
+        "crates": {
+          "food": 0,
+          "wood": 0,
+          "coin": 0
+        },
+        "travel": 35
+      },
+      {
+        "id": "cannon_support",
+        "name": "Cannon Support",
+        "description": "One field cannon",
+        "age": 3,
+        "count": 1,
+        "unit": "cannon",
+        "civilization": "",
+        "tech": "",
+        "repeatable": false,
+        "crates": {
+          "food": 0,
+          "wood": 0,
+          "coin": 0
+        },
+        "travel": 35
+      },
+      {
+        "id": "dragoons",
+        "name": "Dragoon Escort",
+        "description": "Two dragoons",
+        "age": 3,
+        "count": 2,
+        "unit": "dragoon",
+        "civilization": "",
+        "tech": "",
+        "repeatable": false,
+        "crates": {
+          "food": 0,
+          "wood": 0,
+          "coin": 0
+        },
+        "travel": 35
+      },
+      {
+        "id": "reserve_carabineer",
+        "name": "River Carabineer Reserves",
+        "description": "Military or economic reinforcement.",
+        "unit": "carabineer",
+        "count": 6,
+        "age": 3,
+        "civilization": "river",
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "reserve_hussar",
+        "name": "Hussar Reserves",
+        "description": "Military or economic reinforcement.",
+        "unit": "hussar",
+        "count": 4,
+        "age": 3,
+        "civilization": "",
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "reserve_musketeer",
+        "name": "Musketeer Reserves",
+        "description": "Military or economic reinforcement.",
+        "unit": "musketeer",
+        "count": 5,
+        "age": 3,
+        "civilization": "",
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "reserve_pike",
+        "name": "Pikeman Reserves",
+        "description": "Military or economic reinforcement.",
+        "unit": "pike",
+        "count": 6,
+        "age": 3,
+        "civilization": "",
+        "repeatable": false,
+        "travel": 35
+      },
+      {
+        "id": "skirmishers",
+        "name": "Ranger Company",
+        "description": "Three skirmishers",
+        "age": 3,
+        "count": 3,
+        "unit": "skirmisher",
+        "civilization": "",
+        "tech": "",
+        "repeatable": false,
+        "crates": {
+          "food": 0,
+          "wood": 0,
+          "coin": 0
+        },
+        "travel": 35
+      }
+    ]
+  },
+  "ages": [
+    {
+      "age": 1,
+      "name": "Exploration",
+      "cost": {},
+      "time": 0
+    },
+    {
+      "age": 2,
+      "name": "Commerce",
+      "cost": {
+        "food": 800
+      },
+      "time": 90,
+      "economicReward": {
+        "food": 200
+      },
+      "militaryUnit": "pike",
+      "militaryCount": 1
+    },
+    {
+      "age": 3,
+      "name": "Fortress",
+      "cost": {
+        "food": 1200,
+        "coin": 1000
+      },
+      "time": 110,
+      "economicReward": {
+        "wood": 200
+      },
+      "militaryUnit": "musketeer",
+      "militaryCount": 2
+    },
+    {
+      "age": 4,
+      "name": "Industrial",
+      "cost": {
+        "food": 2000,
+        "coin": 1200
+      },
+      "time": 130,
+      "economicReward": {
+        "wood": 600,
+        "coin": 400
+      },
+      "militaryUnit": "cannon",
+      "militaryCount": 2
+    },
+    {
+      "age": 5,
+      "name": "Imperial",
+      "cost": {
+        "food": 4000,
+        "coin": 4000
+      },
+      "time": 160,
+      "economicReward": {
+        "food": 1000,
+        "wood": 1000,
+        "coin": 1000
+      },
+      "militaryUnit": "mortar",
+      "militaryCount": 2
+    }
+  ],
+  "civs": [
+    {
+      "id": "coast",
+      "name": "Coast Compact",
+      "description": "Manors recruit settlers on completion; longbow guards defend an expanding economy.",
+      "houseVillager": true,
+      "startingResources": {
+        "food": 300,
+        "wood": 300,
+        "coin": 100
+      },
+      "houseCost": {
+        "wood": 135
+      },
+      "villagerLimit": 99
+    },
+    {
+      "id": "river",
+      "name": "River League",
+      "description": "Coin-trained settlers, limited counting houses and nimble carbine cavalry.",
+      "coinVillager": true,
+      "bankLimit": 4,
+      "bankRate": 2.5,
+      "startingResources": {
+        "food": 100,
+        "wood": 300,
+        "coin": 400
+      },
+      "houseCost": {
+        "wood": 100
+      },
+      "villagerLimit": 50
+    }
+  ],
+  "budgets": {
+    "coast24Core": {
+      "food": 3575,
+      "wood": 1440,
+      "coin": 1625,
+      "assumptions": "6 initial +4 Manor gifts +2 New Settlers +3 Settler Reserves +9 paid workers; ages II/III,4 Manors,Barracks,Foundry,paid5Pike5Musk2Cannon. Gifts/shipments actually born; no losses, repair, market or optional technology. GUI twoCannon uses2 SINGLE jobs,45s each/90s serial in oneFoundry; paid5Pike and5Musk are oneBATCH5 each,22s/26s respectively. Resource totals unchanged."
+    },
+    "river34Core": {
+      "food": 11275,
+      "wood": 3100,
+      "coin": 10675,
+      "assumptions": "6 initial +3 Settler Reserves +25 paid workers; ages II-V,4Banks,6Houses,Barracks,Stable,Foundry,paid5Pike5Musk5Carabineer2Cannon,one Musketeer veteran/guard/imperial chain. No losses/repair or optional resource/age rewards subtracted. GUI twoCannon uses2 SINGLE jobs,45s each/90s serial in oneFoundry; paid5Pike/5Musk/5Carabineer are oneBATCH5 each,22s/26s/28s. Resource totals unchanged."
+    },
+    "river34WithTwoFarmsMarketFoodTech": {
+      "food": 11275,
+      "wood": 4075,
+      "coin": 10825
+    },
+    "river34WithTwoFarmsMarketFoodTechTradePostCargoLedgers": {
+      "food": 11275,
+      "wood": 4475,
+      "coin": 10975
+    }
+  },
+  "townRepairBaseline": {
+    "workers": 2,
+    "hpPerSecond": 36,
+    "woodPerMinute": 154.28571428571428,
+    "townMaxHp": 3500
+  },
+  "foodNodes": {
+    "nearDeerFood": 7000,
+    "nearBerryFood": 2000,
+    "nearFoodTotal": 9000,
+    "farSameSideDeerFood": 7000,
+    "farFoodAvailability": "Generated locations only; exploration and actual visible safety still required."
+  },
+  "longFood": {
+    "farmCostWood": 300,
+    "singleBuilderSeconds": 50,
+    "age": 2,
+    "effectiveWorkersPerFarm": 8,
+    "baseFoodPerWorkerSecond": 0.5,
+    "withSurvival": 0.55,
+    "withSurvivalAndCropRotation": 0.65
+  },
+  "guiProductionTiming": {
+    "source": "FrontierHud.cs:262-272/300; Economy.cs:130/production queue",
+    "scope": "Static normal GUI planning only; not native match evidence. A source command count2 is not an available GUI train button.",
+    "cannonGuiCountChoices": [
+      1,
+      5
+    ],
+    "twoPaidCannonInOneFoundry": {
+      "guiMode": "SINGLE",
+      "jobs": 2,
+      "countPerJob": 1,
+      "secondsPerJob": 45,
+      "serialProductionSeconds": 90,
+      "wood": 200,
+      "coin": 500,
+      "population": 8
+    },
+    "fiveCannonBatchAlternativeNotInBudget": {
+      "guiMode": "BATCH",
+      "countPerJob": 5,
+      "secondsPerJob": 45,
+      "wood": 500,
+      "coin": 1250,
+      "population": 20
+    },
+    "infantryFivePerBatch": {
+      "pikeSeconds": 22,
+      "musketeerSeconds": 26,
+      "riverCarabineerSeconds": 28,
+      "ifFiveSeparateSinglesSeconds": {
+        "pike": 110,
+        "musketeer": 130,
+        "riverCarabineer": 140
+      }
+    },
+    "river34TownQueueLowerBound": {
+      "paidWorkerJobs": 25,
+      "workerSeconds": 500,
+      "ageSeconds": 490,
+      "totalTownQueueSeconds": 990,
+      "scope": "Town-only lower bound with credited3 shipment workers actually arrived; not overall completion time. Foundry twoSingle cannon jobs require90s on its own queue after ageIII, and can overlap Town progression."
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "generatedAtUtc": "2026-10-02T12:28:10.489474+00:00",
+  "scope": "Only raw frame intervals independently checked at this stage. Match-event identities and memory Spawn/Death counts await B4 final report; not full acceptance.",
+  "status": "pending_associated_match_report",
+  "captureIdentity": {
+    "appVersion": "0.2.31",
+    "buildGuid": "128a731d440e4b7a94abfcc74b88fa97",
+    "matchId": "fd3381d7dfee44cfb12332568c767c10"
+  },
+  "resolution": "3456x1924",
+  "frameAudit": {
+    "checks": {
+      "captureBoundsFiniteAndOrdered": true,
+      "allFrameDurationsFiniteAndNonnegative": true,
+      "rawDurationFitsWallEnvelope": true,
+      "eligibleDurationFitsWallEnvelope": true,
+      "frameCountMatches": true,
+      "eligibleFlagsMatchRecomputation": true,
+      "rawFrameStateAndOrderValid": true,
+      "includedFramesMatch": true,
+      "excludedFramesMatch": true,
+      "allFramesFocusedMatches": true,
+      "meanMatches": true,
+      "floorP95Matches": true,
+      "floorP99Matches": true
+    },
+    "issues": [],
+    "computed": {
+      "totalFrames": 30993,
+      "includedFrames": 11299,
+      "excludedFrames": 19694,
+      "eligibleUnpausedSeconds": 196.09846109247206,
+      "rawFrameIntervalSeconds": 599.9842759683127,
+      "sampledWallSeconds": 599.982374457999,
+      "wallEndpointToleranceSeconds": 0.25,
+      "worldAdvancedSeconds": 196.3066864013672,
+      "wallSeconds": 600.0019946249995,
+      "meanFrameMs": 17.355382919311523,
+      "p95FrameMs": 17.45908546447754,
+      "p99FrameMs": 21.399248123168945,
+      "allFramesFocused": true
+    },
+    "excludedReasonCounts": {
+      "ineligibleStateOrTransition": 19694,
+      "pauseCurrentOrPrevious": 19694,
+      "pauseChangedEvent": 24
+    },
+    "reasonCountScope": "Reasons overlap; their counts are not a sum of excludedFrames",
+    "wallEnvelopeScope": "Summed intervals are bounded by capture realtime with a fixed 0.25-second endpoint phase allowance. The lower bound uses the last sampled realtime, admitting an unsampled stop interval. No individual delta is required to equal a LateUpdate realtime difference; the allowance cannot grow with a frame duration."
+  },
+  "planned300SecondWindowPassed": false,
+  "files": {
+    "Frontier-Performance-20261002-121632-332-5eaa37eb5049440898a7195eafb0673c.json": {
+      "bytes": 7705690,
+      "sha256": "24e1fda0530a004a8684fb9b1451dd5735ccd908e5eb00254fe8d4ae8fd4031b"
+    },
+    "verify_performance.py": {
+      "bytes": 22486,
+      "sha256": "8b00461377c2e2b4cd0b6d66b00363151a66bfe4cdba703e0bea24d34594a57a"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "status": "prepared_not_run",
+  "version": "0.18.0",
+  "method": "Fresh full-path macOS build; actual public Sky input; ordinary age-I starts and original resources",
+  "cases": [
+    {
+      "name": "dutch",
+      "civilization": "river",
+      "expectedInitialWallet": {
+        "food": 100,
+        "wood": 300,
+        "coin": 400
+      },
+      "paidTraining": "envoy",
+      "cost": {
+        "food": 50,
+        "wood": 0,
+        "coin": 0
+      },
+      "seconds": 15,
+      "intendedChecks": [
+        "paid queue and completion",
+        "selected Envoy model",
+        "Auto Scout actual travel",
+        "terrain rally flag",
+        "save and replay"
+      ]
+    },
+    {
+      "name": "french",
+      "civilization": "france",
+      "expectedInitialWallet": {
+        "food": 300,
+        "wood": 300,
+        "coin": 100
+      },
+      "paidTraining": "native_scout",
+      "cost": {
+        "food": 50,
+        "wood": 25,
+        "coin": 0
+      },
+      "seconds": 18,
+      "intendedChecks": [
+        "paid queue and completion",
+        "selected Native Scout model",
+        "Auto Scout actual travel",
+        "actual stealth enter/leave",
+        "save and replay"
+      ]
+    }
+  ],
+  "limits": "Intended checks are not performed results. F9 excludes full unit queue/stealth/orders; original saved state/replay/events must substantiate those. No FPS claim."
+}

@@ -1,0 +1,128 @@
+{
+  "generatedAtUtc": "2026-10-02T16:46:19.300960+00:00",
+  "status": "pending_associated_match_report",
+  "scope": "Completed native F8 frame window and internal-memory validation only; final same-match report/events not yet paired. No whole-match or final performance acceptance.",
+  "captureIdentity": {
+    "appVersion": "0.2.31",
+    "buildGuid": "128a731d440e4b7a94abfcc74b88fa97",
+    "matchId": "7f161abd4f994a1aaf5be762ba4a23f5",
+    "currentMatchId": "7f161abd4f994a1aaf5be762ba4a23f5",
+    "platform": "OSXPlayer",
+    "unityVersion": "6000.6.3f1",
+    "cpu": "Apple M3 Pro",
+    "gpu": "Apple M3 Pro",
+    "resolution": "2560x1440",
+    "utcStart": "2026-10-02T16:35:37.0076320Z",
+    "utcEnd": "2026-10-02T16:41:13.0222210Z",
+    "worldTimeStart": 80.09934997558594,
+    "worldTimeEnd": 416.1161804199219,
+    "stopReason": "f8",
+    "autoplay": false,
+    "benchmark": false,
+    "simulationSpeed": 1.0,
+    "singleSession": true,
+    "truncated": false,
+    "gc0": 235,
+    "gc1": 235,
+    "gc2": 235
+  },
+  "identityChecks": {
+    "expectedMatchId": true,
+    "currentMatchIdMatches": true,
+    "nativePlatform": true,
+    "buildGuid": true,
+    "appVersion": true,
+    "unityVersion": true,
+    "normalPlayerCapture": true,
+    "singleSession": true,
+    "notTruncated": true,
+    "schemaRecognized": true,
+    "gcCountsNonnegative": true
+  },
+  "frameAudit": {
+    "checks": {
+      "captureBoundsFiniteAndOrdered": true,
+      "allFrameDurationsFiniteAndNonnegative": true,
+      "rawDurationFitsWallEnvelope": true,
+      "eligibleDurationFitsWallEnvelope": true,
+      "frameCountMatches": true,
+      "eligibleFlagsMatchRecomputation": true,
+      "rawFrameStateAndOrderValid": true,
+      "includedFramesMatch": true,
+      "excludedFramesMatch": true,
+      "allFramesFocusedMatches": true,
+      "meanMatches": true,
+      "floorP95Matches": true,
+      "floorP99Matches": true
+    },
+    "issues": [],
+    "computed": {
+      "totalFrames": 20003,
+      "includedFrames": 20003,
+      "excludedFrames": 0,
+      "eligibleUnpausedSeconds": 335.999332113266,
+      "rawFrameIntervalSeconds": 335.9993321132678,
+      "sampledWallSeconds": 335.99701670900004,
+      "wallEndpointToleranceSeconds": 0.25,
+      "worldAdvancedSeconds": 336.01683044433594,
+      "wallSeconds": 336.0143781250001,
+      "meanFrameMs": 16.797447204589844,
+      "p95FrameMs": 17.468212127685547,
+      "p99FrameMs": 17.587329864501953,
+      "allFramesFocused": true
+    },
+    "excludedReasonCounts": {},
+    "reasonCountScope": "Reasons overlap; their counts are not a sum of excludedFrames",
+    "wallEnvelopeScope": "Summed intervals are bounded by capture realtime with a fixed 0.25-second endpoint phase allowance. The lower bound uses the last sampled realtime, admitting an unsampled stop interval. No individual delta is required to equal a LateUpdate realtime difference; the allowance cannot grow with a frame duration."
+  },
+  "memoryInternalAudit": {
+    "samples": 335,
+    "hasStartAndEnd": true,
+    "firstWorldMatchesCaptureStart": true,
+    "lastWorldMatchesCaptureEnd": true,
+    "allInternalChecksPassed": true,
+    "failedSampleChecks": [],
+    "managedBytesRange": [
+      8040448,
+      13074432
+    ],
+    "unityAllocatedBytesRange": [
+      113111417,
+      117343497
+    ],
+    "scope": "Internal values and bounds only. Actual Spawn/Death entity counts and camera/fog/viewport visibility not independently verified without final same-match event journal."
+  },
+  "minimumEligibleUnpausedSeconds": {
+    "required": 300,
+    "actual": 335.999332113266,
+    "frameWindowMet": true,
+    "finalAssociatedReportValidated": false
+  },
+  "sources": {
+    "Frontier-Performance-20261002-164113-027-cc8075cd77464c35a52858642f15c364.json": {
+      "path": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/PerformanceCaptures/Frontier-Performance-20261002-164113-027-cc8075cd77464c35a52858642f15c364.json",
+      "bytes": 5136591,
+      "sha256": "08e5fc1e79e12dced3ba35f83c467229723a1c3499fc10b46e0b67f76940f8ba",
+      "copiedBytesMatchSource": true,
+      "sourceUnchangedDuringCopy": true
+    },
+    "verify_performance.py": {
+      "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Docs/Evidence/055/verify_performance.py",
+      "bytes": 22853,
+      "sha256": "887cc94de3515f4be01acdb1085f30b4f198c235b23296bb6c2f6aeb3daaf5cc",
+      "copiedBytesMatchSource": true,
+      "sourceUnchangedDuringCopy": true
+    }
+  },
+  "nativeSavedMarker": {
+    "path": "/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Builds/NativeInput055-B8/Player.log",
+    "readAtUtc": "2026-10-02T16:46:19.300960+00:00",
+    "readBytes": 96342,
+    "readSha256": "dea588e50ec9e35e97f17ee53c6e6e28a11fbb13706f2fbfe7a5f6435db42515",
+    "line": 755,
+    "archivedMarkerFile": "native-performance-saved-marker.txt",
+    "archivedMarkerBytes": 237,
+    "archivedMarkerSha256": "97b15451d5a34eb69a6ae02dde5a55f30d3bd21624e18dba1f30df636b345aff",
+    "scope": "Only matching native performance-saved line retained. Live log may continue appending; this SHA describes bytes read at this moment and does not claim immutable full log. No ongoing match event journal was read."
+  }
+}

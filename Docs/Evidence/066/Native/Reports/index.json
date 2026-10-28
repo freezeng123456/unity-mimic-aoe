@@ -1,0 +1,537 @@
+{
+  "schema": 1,
+  "appVersion": "0.9.0",
+  "buildGuid": "1969c7ee14f944879510f4ca0d0f241d",
+  "runtimeCommit": "c9747695d91fa203b05116a1fc0c15a8aac32de2",
+  "sourceFingerprint": "66cf7cc57e080eb40cfdf98310ee26affd93d690745dde2b457e8fb3eb0ee1ee",
+  "sourceFiles": 573,
+  "recordedUtc": "2026-10-05T03:07:09.447439+00:00",
+  "scope": "Exact-byte copies of three explicitly identified reports and their event streams from the completed 0.9.0 native acceptance. Runtime identity beyond appVersion/buildGuid is bound by ../client-build.json; the source files and tests were not rerun for this archive. No shared Player.log or unrelated personal files were read. No report is a natural skirmish victory. Earlier GUI process attribution is governed by ../native-acceptance.json.",
+  "buildReceipt": {
+    "file": "../client-build.json",
+    "bytes": 1206,
+    "sha256": "9e77edd77eeedaeb7231d60f1f7fef076526ea3777cc555d5d7834ed4958405c"
+  },
+  "reports": [
+    {
+      "id": "guided-selection-completion",
+      "scope": "Selected lesson completed after a real cold load and accepted Move. This is the authored lesson result; winner remains -1 and it is not a natural skirmish victory.",
+      "matchId": "22845495034a44a78e5374874f2950d5",
+      "appVersion": "0.9.0",
+      "buildGuid": "1969c7ee14f944879510f4ca0d0f241d",
+      "mapId": "frontier",
+      "seed": 900101,
+      "reason": "guided_finished",
+      "worldTime": 31.200082778930664,
+      "winner": -1,
+      "eventCount": 193,
+      "simulationSpeed": 1.0,
+      "autoplay": false,
+      "players": [
+        {
+          "player": 0,
+          "team": 0,
+          "civilization": "coast",
+          "resigned": false,
+          "eliminated": false
+        },
+        {
+          "player": 1,
+          "team": 1,
+          "civilization": "france",
+          "resigned": false,
+          "eliminated": false
+        }
+      ],
+      "files": [
+        {
+          "file": "20261005-024608-977-22845495034a44a78e5374874f2950d5-guided_finished.json",
+          "originalBasename": "20261005-024608-977-22845495034a44a78e5374874f2950d5-guided_finished.json",
+          "originalSource": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261005-024608-977-22845495034a44a78e5374874f2950d5-guided_finished.json",
+          "bytes": 5356,
+          "sha256": "3f640bbb427253212bf3c0e11443f20b5977478b054eb1e0976dd258432e3bbe",
+          "byteIdenticalToSource": true
+        },
+        {
+          "file": "20261005-024608-977-22845495034a44a78e5374874f2950d5-guided_finished-events.jsonl",
+          "originalBasename": "20261005-024608-977-22845495034a44a78e5374874f2950d5-guided_finished-events.jsonl",
+          "originalSource": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261005-024608-977-22845495034a44a78e5374874f2950d5-guided_finished-events.jsonl",
+          "bytes": 130516,
+          "sha256": "240a73f0324e86cd656fd58becfa36dc61f561e80c5242299401b80170dbd019",
+          "byteIdenticalToSource": true
+        }
+      ],
+      "checkpointPrefix": {
+        "file": "../guided-checkpoint-slot3.json",
+        "bytes": 17673,
+        "sha256": "0c8109aaf2229f9dc71969c9308375ff91dcdbb302a89f38ff22946e46ca69c7",
+        "rawPayloadSha256": "0c3465a4c83ace460c9507cb6c2f3af1db83c7a94ace6df78991c2b575f6d91e",
+        "matchId": "22845495034a44a78e5374874f2950d5",
+        "worldTime": 21.000043869018555,
+        "eventCount": 188,
+        "exactEventArrayPrefixMatches": true,
+        "firstContinuedEventIndex": 188,
+        "firstContinuedEvent": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": false,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 0,
+            "reserved": 0,
+            "capacity": 0
+          },
+          "time": 21.000043869018555,
+          "kind": "PauseChanged",
+          "message": "manual_resume",
+          "player": 0,
+          "entity": 0,
+          "target": 0,
+          "visibilityMask": 0,
+          "amount": 0.0,
+          "position": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "facing": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "guided": {
+        "definitionId": "lesson_selection",
+        "attemptId": "22845495034a44a78e5374874f2950d5",
+        "status": "Completed",
+        "stageIndex": 2,
+        "stageEventIndexes": [
+          186,
+          191
+        ],
+        "resultEventIndex": 192,
+        "completedSeconds": 31.200082778930664,
+        "movePoint": {
+          "x": 40.0,
+          "y": 37.0
+        },
+        "acceptedCommand": {
+          "command": {
+            "player": 0,
+            "kind": 0,
+            "actors": [
+              8
+            ],
+            "order": 0,
+            "point": {
+              "x": 39.937034606933594,
+              "y": 37.13151168823242
+            },
+            "target": 0,
+            "index": 0,
+            "count": 1,
+            "item": "",
+            "choice": "",
+            "append": false
+          },
+          "eventIndex": 190,
+          "stage": 1
+        },
+        "completionWitness": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": false,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 0,
+            "reserved": 0,
+            "capacity": 0
+          },
+          "time": 31.200082778930664,
+          "kind": "GuidedCompleted",
+          "message": "lesson_selection|22845495034a44a78e5374874f2950d5|目标全部完成；已暂停场景，可继续下一关或重玩。",
+          "player": 0,
+          "entity": 0,
+          "target": 0,
+          "visibilityMask": 0,
+          "amount": 0.0,
+          "position": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "facing": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "accountCompletion": {
+        "file": "../account-after-native-completion.json",
+        "bytes": 341,
+        "sha256": "c902837c295b777828ccab2773916e1353909aa17c3d715b1a365f01e3bcbb79",
+        "record": {
+          "id": "lesson_selection",
+          "lastAttemptId": "22845495034a44a78e5374874f2950d5",
+          "completions": 1,
+          "bestSeconds": 31.200082778930664,
+          "attempts": [
+            "22845495034a44a78e5374874f2950d5"
+          ]
+        }
+      }
+    },
+    {
+      "id": "teams-resign-continuation",
+      "scope": "A four-player 2v2 checkpoint resumed; player 0 resigned while ally slot 2 remained active and the simulation continued. The operator returned to menu at 116.89878845214844 seconds with winner -1; no natural team victory or complete match is claimed.",
+      "matchId": "58062d16dc194299b429a5799fb6170a",
+      "appVersion": "0.9.0",
+      "buildGuid": "1969c7ee14f944879510f4ca0d0f241d",
+      "mapId": "winding",
+      "seed": 314159,
+      "reason": "menu_exit",
+      "worldTime": 116.89878845214844,
+      "winner": -1,
+      "eventCount": 3573,
+      "simulationSpeed": 1.0,
+      "autoplay": false,
+      "players": [
+        {
+          "player": 0,
+          "team": 0,
+          "civilization": "coast",
+          "resigned": true,
+          "eliminated": true
+        },
+        {
+          "player": 1,
+          "team": 1,
+          "civilization": "river",
+          "resigned": false,
+          "eliminated": false
+        },
+        {
+          "player": 2,
+          "team": 0,
+          "civilization": "coast",
+          "resigned": false,
+          "eliminated": false
+        },
+        {
+          "player": 3,
+          "team": 1,
+          "civilization": "france",
+          "resigned": false,
+          "eliminated": false
+        }
+      ],
+      "files": [
+        {
+          "file": "20261005-025205-115-58062d16dc194299b429a5799fb6170a-menu_exit.json",
+          "originalBasename": "20261005-025205-115-58062d16dc194299b429a5799fb6170a-menu_exit.json",
+          "originalSource": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261005-025205-115-58062d16dc194299b429a5799fb6170a-menu_exit.json",
+          "bytes": 6862,
+          "sha256": "4499f98d1a9fcb20333bbe9fe57a4b71407fa9c0d8d64874cc5a5cf3691b1784",
+          "byteIdenticalToSource": true
+        },
+        {
+          "file": "20261005-025205-115-58062d16dc194299b429a5799fb6170a-menu_exit-events.jsonl",
+          "originalBasename": "20261005-025205-115-58062d16dc194299b429a5799fb6170a-menu_exit-events.jsonl",
+          "originalSource": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261005-025205-115-58062d16dc194299b429a5799fb6170a-menu_exit-events.jsonl",
+          "bytes": 2313108,
+          "sha256": "bf561083eba03ae463427ccda6e69862ef8e7b1c1ff983d96cb1f0b0445cb9bb",
+          "byteIdenticalToSource": true
+        }
+      ],
+      "checkpointPrefix": {
+        "file": "../teams-checkpoint-slot3.json",
+        "bytes": 104409,
+        "sha256": "ffcb58da5953ec9df7d1c38ead372c8dc3f872413bd4fff2d9c59337d3fdbfcf",
+        "rawPayloadSha256": "f368ebfa5a517a58442753d3e813b33f580577d559b8c4f265b815895253908f",
+        "matchId": "58062d16dc194299b429a5799fb6170a",
+        "worldTime": 103.49899291992188,
+        "eventCount": 3113,
+        "exactEventArrayPrefixMatches": true,
+        "firstContinuedEventIndex": 3113,
+        "firstContinuedEvent": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": false,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 0,
+            "reserved": 0,
+            "capacity": 0
+          },
+          "time": 103.49899291992188,
+          "kind": "PauseChanged",
+          "message": "resign",
+          "player": 0,
+          "entity": 0,
+          "target": 0,
+          "visibilityMask": 0,
+          "amount": 0.0,
+          "position": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "facing": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "resignEvent": {
+        "index": 3114,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": false,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 0,
+            "reserved": 0,
+            "capacity": 0
+          },
+          "time": 103.49899291992188,
+          "kind": "Resign",
+          "message": "Player resigned",
+          "player": 0,
+          "entity": 0,
+          "target": 0,
+          "visibilityMask": 15,
+          "amount": 0.0,
+          "position": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "facing": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      },
+      "acceptedAttackMove": {
+        "eventIndex": 2036,
+        "event": {
+          "schemaVersion": 2,
+          "hasEconomy": false,
+          "hasPopulation": false,
+          "economy": {
+            "requestedDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "actualDelta": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceBefore": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "balanceAfter": {
+              "food": 0.0,
+              "wood": 0.0,
+              "coin": 0.0
+            },
+            "hasRepair": false,
+            "healthTarget": 0,
+            "hpBefore": 0.0,
+            "hpAfter": 0.0
+          },
+          "population": {
+            "used": 0,
+            "reserved": 0,
+            "capacity": 0
+          },
+          "time": 66.59955596923828,
+          "kind": "Command",
+          "message": "AttackMove ×1",
+          "player": 0,
+          "entity": 8,
+          "target": 0,
+          "visibilityMask": 15,
+          "amount": 1.0,
+          "position": {
+            "x": 25.61652374267578,
+            "y": 37.97981262207031
+          },
+          "facing": {
+            "x": -0.03452315181493759,
+            "y": -0.9994038939476013
+          }
+        },
+        "keyAttributionBoundary": "The event proves an accepted AttackMove, not the physical key used. Q key use comes from operator observations; persisted binding and native screenshots are archived separately."
+      }
+    },
+    {
+      "id": "four-civilization-ffa-opening",
+      "scope": "Four civilizations entered FFA with four distinct teams. The operator returned to menu at 16.100025177001953 seconds with winner -1. This is an opening smoke check, not a natural terminal match or victory.",
+      "matchId": "7e373c278cea45cca5569921d5e0d9ac",
+      "appVersion": "0.9.0",
+      "buildGuid": "1969c7ee14f944879510f4ca0d0f241d",
+      "mapId": "winding",
+      "seed": 314159,
+      "reason": "menu_exit",
+      "worldTime": 16.100025177001953,
+      "winner": -1,
+      "eventCount": 735,
+      "simulationSpeed": 1.0,
+      "autoplay": false,
+      "players": [
+        {
+          "player": 0,
+          "team": 0,
+          "civilization": "coast",
+          "resigned": false,
+          "eliminated": false
+        },
+        {
+          "player": 1,
+          "team": 1,
+          "civilization": "river",
+          "resigned": false,
+          "eliminated": false
+        },
+        {
+          "player": 2,
+          "team": 2,
+          "civilization": "france",
+          "resigned": false,
+          "eliminated": false
+        },
+        {
+          "player": 3,
+          "team": 3,
+          "civilization": "ottoman",
+          "resigned": false,
+          "eliminated": false
+        }
+      ],
+      "files": [
+        {
+          "file": "20261005-025254-547-7e373c278cea45cca5569921d5e0d9ac-menu_exit.json",
+          "originalBasename": "20261005-025254-547-7e373c278cea45cca5569921d5e0d9ac-menu_exit.json",
+          "originalSource": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261005-025254-547-7e373c278cea45cca5569921d5e0d9ac-menu_exit.json",
+          "bytes": 6770,
+          "sha256": "15989c5e37b397dc02e235d8ae3afce07a6e8264a58b35bd7ffdf8754c1c6881",
+          "byteIdenticalToSource": true
+        },
+        {
+          "file": "20261005-025254-547-7e373c278cea45cca5569921d5e0d9ac-menu_exit-events.jsonl",
+          "originalBasename": "20261005-025254-547-7e373c278cea45cca5569921d5e0d9ac-menu_exit-events.jsonl",
+          "originalSource": "/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261005-025254-547-7e373c278cea45cca5569921d5e0d9ac-menu_exit-events.jsonl",
+          "bytes": 486197,
+          "sha256": "bd135da6b9fb5fd1ae3bff8a1a2784426370e4995fbd249c231de44921ac6e50",
+          "byteIdenticalToSource": true
+        }
+      ],
+      "checkpointPrefix": {
+        "applicable": false,
+        "reason": "No FFA checkpoint cold-recovery claim is made."
+      }
+    }
+  ]
+}

@@ -1,0 +1,3031 @@
+{
+  "schema": "frontier-readonly-longrun-performance073-1",
+  "createdUtc": "2026-10-06T15:04:51.715444+00:00",
+  "status": "closed_originals_analyzed_no_profile_executed",
+  "runtimeSourceCommit": "bc127e02638caaeefd2310a1a3eff858f4f4cb2f",
+  "cases": [
+    {
+      "id": "traders_bend070-river-42",
+      "wallSecondsEntireObserverCase": 3303.1905432,
+      "simulationSeconds": 3600.061279296875,
+      "winner": -1,
+      "eventCount": 192512,
+      "eventsBytes": 123630757,
+      "samplesBytes": 4213887,
+      "finalWorldBytes": 298707931,
+      "finalEntityCount": 809,
+      "finalPlayers": [
+        {
+          "player": 0,
+          "alive": 151,
+          "statuses": {
+            "Idle": 115,
+            "Producing wood": 1,
+            "Gathering Food": 17,
+            "Moving": 6,
+            "Gathering Coin": 3,
+            "Route blocked; retrying": 9
+          },
+          "orders": {
+            "3": 26,
+            "0": 9
+          },
+          "actorsWithPaths": 7,
+          "incompleteEntities": []
+        },
+        {
+          "player": 1,
+          "alive": 151,
+          "statuses": {
+            "Idle": 104,
+            "Gathering Food": 17,
+            "Moving": 17,
+            "Gathering Coin": 7,
+            "Producing food": 2,
+            "Route blocked; retrying": 3,
+            "Waiting for passage": 1
+          },
+          "orders": {
+            "3": 39,
+            "0": 6
+          },
+          "actorsWithPaths": 20,
+          "incompleteEntities": []
+        }
+      ],
+      "eventBins300s": [
+        {
+          "begin": 0,
+          "endExclusive": 300,
+          "events": 5693,
+          "kinds": {
+            "StartingResources": 2,
+            "Spawn": 106,
+            "LandmarkReachability": 8,
+            "MatchStarted": 1,
+            "Payment": 18,
+            "ProductionQueued": 14,
+            "Command": 126,
+            "Gather": 5310,
+            "LandmarkDiscovered": 6,
+            "Experience": 16,
+            "UnitTrained": 14,
+            "RallyAssigned": 15,
+            "AttackPrepared": 12,
+            "Damage": 2,
+            "Fire": 2,
+            "Garrison": 1,
+            "Impact": 1,
+            "Ungarrison": 1,
+            "AIStrategy": 4,
+            "ResourceDepleted": 10,
+            "Death": 10,
+            "ShipmentEarned": 2,
+            "ShipmentSent": 2,
+            "ShipmentArrived": 2,
+            "AgeAdvanced": 2,
+            "Technology": 2,
+            "AgeRouteChosen": 2,
+            "AgeRewardArrived": 2
+          }
+        },
+        {
+          "begin": 300,
+          "endExclusive": 600,
+          "events": 12214,
+          "kinds": {
+            "Gather": 10716,
+            "Command": 181,
+            "Experience": 60,
+            "ShipmentEarned": 5,
+            "BuildingComplete": 15,
+            "ShipmentSent": 5,
+            "RallySet": 6,
+            "Payment": 57,
+            "Spawn": 52,
+            "AttackPrepared": 161,
+            "ProductionQueued": 32,
+            "ShipmentArrived": 4,
+            "UnitTrained": 31,
+            "RallyAssigned": 31,
+            "LandmarkDiscovered": 4,
+            "Damage": 141,
+            "Fire": 145,
+            "BankIncome": 427,
+            "DestinationAdjusted": 4,
+            "Technology": 10,
+            "ResearchComplete": 8,
+            "Impact": 74,
+            "ResourceDepleted": 10,
+            "Death": 24,
+            "AIArmyPhase": 9,
+            "AIStrategy": 2
+          }
+        },
+        {
+          "begin": 600,
+          "endExclusive": 900,
+          "events": 13229,
+          "kinds": {
+            "Gather": 11256,
+            "BankIncome": 615,
+            "ResourceDepleted": 23,
+            "Death": 33,
+            "Command": 222,
+            "AIStrategy": 7,
+            "Spawn": 23,
+            "Experience": 35,
+            "UnitTrained": 16,
+            "RallyAssigned": 43,
+            "ShipmentEarned": 3,
+            "ShipmentSent": 3,
+            "Payment": 273,
+            "ProductionQueued": 16,
+            "BuildingComplete": 6,
+            "Technology": 4,
+            "ResearchComplete": 3,
+            "TradeMode": 7,
+            "RallySet": 8,
+            "ShipmentArrived": 4,
+            "TradeDelivery": 9,
+            "AIArmyPhase": 6,
+            "AttackPrepared": 159,
+            "Fire": 155,
+            "Damage": 152,
+            "Impact": 113,
+            "Garrison": 27,
+            "LandmarkDiscovered": 1,
+            "Ungarrison": 5,
+            "DestinationAdjusted": 2
+          }
+        },
+        {
+          "begin": 900,
+          "endExclusive": 1200,
+          "events": 15392,
+          "kinds": {
+            "Gather": 10937,
+            "BankIncome": 819,
+            "AIStrategy": 3,
+            "Payment": 638,
+            "Spawn": 84,
+            "ProductionQueued": 50,
+            "Experience": 119,
+            "UnitTrained": 60,
+            "RallyAssigned": 157,
+            "AIArmyPhase": 25,
+            "Command": 519,
+            "AIConstructionResumed": 1,
+            "AttackPrepared": 511,
+            "Fire": 451,
+            "Damage": 456,
+            "Impact": 286,
+            "ResourceDepleted": 5,
+            "Death": 54,
+            "TradeDelivery": 9,
+            "RallySet": 14,
+            "Garrison": 97,
+            "Ungarrison": 30,
+            "DestinationAdjusted": 19,
+            "BuildingComplete": 8,
+            "AgeAdvanced": 2,
+            "Technology": 6,
+            "AgeRouteChosen": 2,
+            "AgeRewardArrived": 2,
+            "ShipmentEarned": 4,
+            "ShipmentSent": 4,
+            "TradeMode": 11,
+            "ShipmentArrived": 4,
+            "ResearchComplete": 4,
+            "AIArmyReinforcement": 1
+          }
+        },
+        {
+          "begin": 1200,
+          "endExclusive": 1500,
+          "events": 18667,
+          "kinds": {
+            "Gather": 14974,
+            "AttackPrepared": 463,
+            "Fire": 429,
+            "BankIncome": 818,
+            "Damage": 446,
+            "Impact": 344,
+            "AIArmyPhase": 12,
+            "Command": 383,
+            "DestinationAdjusted": 21,
+            "Garrison": 74,
+            "RallyAssigned": 108,
+            "Ungarrison": 26,
+            "TradeDelivery": 10,
+            "TradeMode": 7,
+            "Experience": 88,
+            "Death": 59,
+            "Payment": 216,
+            "Spawn": 52,
+            "AIConstructionResumed": 1,
+            "ProductionQueued": 38,
+            "ResourceDepleted": 18,
+            "ShipmentEarned": 4,
+            "ShipmentSent": 4,
+            "AIStrategy": 2,
+            "RallySet": 5,
+            "BuildingComplete": 3,
+            "UnitTrained": 44,
+            "Technology": 5,
+            "ShipmentArrived": 3,
+            "ResearchComplete": 3,
+            "LandmarkDiscovered": 1,
+            "AttackCancelled": 1,
+            "AgeAdvanced": 1,
+            "AgeRouteChosen": 1,
+            "AgeRewardArrived": 1,
+            "FactoryDeploymentOrdered": 1,
+            "FactoryFoundationStarted": 1
+          }
+        },
+        {
+          "begin": 1500,
+          "endExclusive": 1800,
+          "events": 14979,
+          "kinds": {
+            "Fire": 198,
+            "AttackPrepared": 211,
+            "Gather": 11939,
+            "BankIncome": 1070,
+            "Damage": 222,
+            "Garrison": 96,
+            "Impact": 110,
+            "Technology": 5,
+            "ResearchComplete": 4,
+            "RallyAssigned": 143,
+            "Ungarrison": 34,
+            "Experience": 75,
+            "Death": 35,
+            "DestinationAdjusted": 6,
+            "Spawn": 46,
+            "UnitTrained": 37,
+            "Payment": 177,
+            "ProductionQueued": 26,
+            "Command": 237,
+            "AIArmyPhase": 6,
+            "AgeAdvanced": 1,
+            "AgeRouteChosen": 1,
+            "AgeRewardArrived": 1,
+            "ShipmentArrived": 3,
+            "ResourceDepleted": 4,
+            "TradeDelivery": 9,
+            "TradeMode": 10,
+            "BuildingComplete": 7,
+            "RallySet": 6,
+            "FactoryIncome": 246,
+            "FactoryModeChanged": 7,
+            "ShipmentEarned": 2,
+            "ShipmentSent": 2,
+            "FactoryDeploymentOrdered": 1,
+            "FactoryFoundationStarted": 1,
+            "AIStrategy": 1
+          }
+        },
+        {
+          "begin": 1800,
+          "endExclusive": 2100,
+          "events": 14411,
+          "kinds": {
+            "Gather": 10680,
+            "BankIncome": 1473,
+            "FactoryIncome": 520,
+            "TradeDelivery": 10,
+            "Payment": 312,
+            "RevolutionQueued": 1,
+            "AIStrategy": 3,
+            "TradeMode": 11,
+            "Spawn": 43,
+            "FactoryModeChanged": 7,
+            "Command": 87,
+            "ProductionQueued": 31,
+            "WorkerConverted": 30,
+            "RevolutionCompleted": 1,
+            "Experience": 53,
+            "UnitTrained": 34,
+            "RallyAssigned": 52,
+            "Technology": 6,
+            "CivilianRebuilt": 1,
+            "ResearchComplete": 5,
+            "BuildingComplete": 3,
+            "AIArmyPhase": 8,
+            "ShipmentEarned": 2,
+            "ShipmentSent": 2,
+            "DestinationAdjusted": 16,
+            "AttackPrepared": 311,
+            "Fire": 250,
+            "Damage": 219,
+            "Impact": 190,
+            "Death": 16,
+            "Garrison": 18,
+            "RallySet": 4,
+            "Ungarrison": 4,
+            "ShipmentArrived": 2,
+            "FactoryDeploymentOrdered": 1,
+            "FactoryApproachAdjusted": 1,
+            "FactoryFoundationStarted": 1,
+            "AgeAdvanced": 1,
+            "AgeRouteChosen": 1,
+            "AgeRewardArrived": 1
+          }
+        },
+        {
+          "begin": 2100,
+          "endExclusive": 2400,
+          "events": 19096,
+          "kinds": {
+            "Gather": 11909,
+            "BankIncome": 2008,
+            "FactoryIncome": 422,
+            "Command": 194,
+            "Payment": 529,
+            "ResourceDepleted": 6,
+            "Death": 114,
+            "TradeDelivery": 10,
+            "Spawn": 115,
+            "Experience": 221,
+            "UnitTrained": 106,
+            "RallyAssigned": 135,
+            "TradeMode": 38,
+            "ProductionQueued": 72,
+            "AIArmyPhase": 12,
+            "DestinationAdjusted": 10,
+            "AttackPrepared": 940,
+            "Fire": 812,
+            "BuildingComplete": 5,
+            "Damage": 779,
+            "Impact": 563,
+            "Garrison": 27,
+            "Ungarrison": 17,
+            "AIArmyReinforcement": 5,
+            "FactoryModeChanged": 6,
+            "RallySet": 7,
+            "Technology": 12,
+            "ResearchComplete": 10,
+            "ShipmentEarned": 3,
+            "ShipmentSent": 3,
+            "ShipmentArrived": 3,
+            "AttackCancelled": 1,
+            "FactoryArtilleryProduced": 2
+          }
+        },
+        {
+          "begin": 2400,
+          "endExclusive": 2700,
+          "events": 21056,
+          "kinds": {
+            "Damage": 803,
+            "Impact": 490,
+            "Gather": 12007,
+            "BankIncome": 2259,
+            "FactoryIncome": 821,
+            "Spawn": 141,
+            "Experience": 255,
+            "UnitTrained": 129,
+            "RallyAssigned": 352,
+            "AttackPrepared": 916,
+            "Payment": 791,
+            "ProductionQueued": 78,
+            "Garrison": 222,
+            "Fire": 795,
+            "Ungarrison": 46,
+            "TradeMode": 50,
+            "Death": 125,
+            "DestinationAdjusted": 62,
+            "Command": 595,
+            "AIArmyPhase": 23,
+            "BuildingComplete": 5,
+            "FactoryModeChanged": 46,
+            "ShipmentEarned": 4,
+            "ShipmentSent": 4,
+            "RallySet": 11,
+            "ResourceDepleted": 5,
+            "TradeDelivery": 9,
+            "ShipmentArrived": 4,
+            "RallyFallback": 1,
+            "AttackCancelled": 4,
+            "Technology": 1,
+            "FactoryArtilleryProduced": 1,
+            "AIConstructionResumed": 1
+          }
+        },
+        {
+          "begin": 2700,
+          "endExclusive": 3000,
+          "events": 20618,
+          "kinds": {
+            "Gather": 13292,
+            "BankIncome": 2681,
+            "FactoryIncome": 892,
+            "RallySet": 10,
+            "FactoryModeChanged": 16,
+            "AIArmyPhase": 3,
+            "Experience": 133,
+            "BuildingComplete": 14,
+            "Payment": 1643,
+            "ProductionQueued": 63,
+            "TradeMode": 22,
+            "TradeDelivery": 10,
+            "Command": 154,
+            "AttackPrepared": 371,
+            "Spawn": 113,
+            "UnitTrained": 93,
+            "RallyAssigned": 103,
+            "Fire": 324,
+            "Damage": 310,
+            "Impact": 270,
+            "Death": 25,
+            "DestinationAdjusted": 39,
+            "Technology": 10,
+            "ResearchComplete": 9,
+            "FactoryArtilleryProduced": 1,
+            "ShipmentEarned": 2,
+            "ShipmentSent": 2,
+            "ShipmentArrived": 2,
+            "Garrison": 9,
+            "Ungarrison": 2
+          }
+        },
+        {
+          "begin": 3000,
+          "endExclusive": 3300,
+          "events": 19285,
+          "kinds": {
+            "Payment": 1405,
+            "Gather": 13382,
+            "BankIncome": 2699,
+            "FactoryIncome": 954,
+            "Spawn": 33,
+            "Experience": 38,
+            "UnitTrained": 31,
+            "RallyAssigned": 31,
+            "Fire": 58,
+            "AttackPrepared": 59,
+            "Command": 61,
+            "DestinationAdjusted": 9,
+            "Damage": 56,
+            "Impact": 56,
+            "Death": 4,
+            "RallySet": 302,
+            "ProductionQueued": 13,
+            "BuildingComplete": 3,
+            "FactoryModeChanged": 54,
+            "TradeDelivery": 9,
+            "Technology": 13,
+            "ResearchComplete": 13,
+            "ShipmentEarned": 1,
+            "ShipmentSent": 1
+          }
+        },
+        {
+          "begin": 3300,
+          "endExclusive": 3600,
+          "events": 17795,
+          "kinds": {
+            "Gather": 13605,
+            "BankIncome": 2698,
+            "FactoryIncome": 927,
+            "Technology": 5,
+            "ResearchComplete": 5,
+            "RallySet": 500,
+            "Payment": 2,
+            "TradeDelivery": 11,
+            "FactoryModeChanged": 28,
+            "ShipmentEarned": 1,
+            "ShipmentSent": 1,
+            "Spawn": 1,
+            "ShipmentArrived": 1,
+            "Command": 8,
+            "ResourceDepleted": 1,
+            "Death": 1
+          }
+        },
+        {
+          "begin": 3600,
+          "endExclusive": 3900,
+          "events": 77,
+          "kinds": {
+            "Gather": 65,
+            "BankIncome": 9,
+            "FactoryIncome": 3
+          }
+        }
+      ],
+      "selectedSampleStates": [
+        {
+          "time": 1804.406494140625,
+          "workersP0": 30,
+          "soldiersP0": 10,
+          "buildingsP0": 19,
+          "armyPlans": [
+            {
+              "player": 1,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 9,
+                "stageNavigationVersion": 611,
+                "phase": 0,
+                "hasStage": true,
+                "reviewAt": 1806.7076416015625,
+                "stage": {
+                  "x": 97.0,
+                  "y": 88.0
+                },
+                "lastHome": {
+                  "x": 106.0,
+                  "y": 104.0
+                },
+                "destination": {
+                  "x": 36.4014892578125,
+                  "y": 57.235469818115234
+                },
+                "wave": [],
+                "guards": []
+              }
+            },
+            {
+              "player": 0,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 1,
+                "stageNavigationVersion": 468,
+                "phase": 0,
+                "hasStage": false,
+                "reviewAt": 1806.7076416015625,
+                "stage": {
+                  "x": 31.0,
+                  "y": 44.0
+                },
+                "lastHome": {
+                  "x": 22.0,
+                  "y": 24.0
+                },
+                "destination": {
+                  "x": 92.25578308105469,
+                  "y": 70.38980102539062
+                },
+                "wave": [],
+                "guards": []
+              }
+            }
+          ]
+        },
+        {
+          "time": 2105.202880859375,
+          "workersP0": 4,
+          "soldiersP0": 48,
+          "buildingsP0": 20,
+          "armyPlans": [
+            {
+              "player": 1,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 9,
+                "stageNavigationVersion": 672,
+                "phase": 0,
+                "hasStage": true,
+                "reviewAt": 2109.099853515625,
+                "stage": {
+                  "x": 97.0,
+                  "y": 84.0
+                },
+                "lastHome": {
+                  "x": 106.0,
+                  "y": 104.0
+                },
+                "destination": {
+                  "x": 40.98592758178711,
+                  "y": 42.02292251586914
+                },
+                "wave": [],
+                "guards": []
+              }
+            },
+            {
+              "player": 0,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 1,
+                "stageNavigationVersion": 468,
+                "phase": 0,
+                "hasStage": false,
+                "reviewAt": 2109.099853515625,
+                "stage": {
+                  "x": 31.0,
+                  "y": 44.0
+                },
+                "lastHome": {
+                  "x": 22.0,
+                  "y": 24.0
+                },
+                "destination": {
+                  "x": 92.25578308105469,
+                  "y": 70.38980102539062
+                },
+                "wave": [],
+                "guards": []
+              }
+            }
+          ]
+        },
+        {
+          "time": 2405.495849609375,
+          "workersP0": 19,
+          "soldiersP0": 31,
+          "buildingsP0": 22,
+          "armyPlans": [
+            {
+              "player": 1,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 9,
+                "stageNavigationVersion": 690,
+                "phase": 0,
+                "hasStage": false,
+                "reviewAt": 2411.795166015625,
+                "stage": {
+                  "x": 97.0,
+                  "y": 84.0
+                },
+                "lastHome": {
+                  "x": 106.0,
+                  "y": 104.0
+                },
+                "destination": {
+                  "x": 38.608428955078125,
+                  "y": 64.48148345947266
+                },
+                "wave": [],
+                "guards": []
+              }
+            },
+            {
+              "player": 0,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 1,
+                "stageNavigationVersion": 468,
+                "phase": 2,
+                "hasStage": false,
+                "reviewAt": 2411.795166015625,
+                "stage": {
+                  "x": 31.0,
+                  "y": 44.0
+                },
+                "lastHome": {
+                  "x": 22.0,
+                  "y": 24.0
+                },
+                "destination": {
+                  "x": 92.25578308105469,
+                  "y": 70.38980102539062
+                },
+                "wave": [],
+                "guards": []
+              }
+            }
+          ]
+        },
+        {
+          "time": 2705.788818359375,
+          "workersP0": 33,
+          "soldiersP0": 28,
+          "buildingsP0": 24,
+          "armyPlans": [
+            {
+              "player": 1,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 9,
+                "stageNavigationVersion": 690,
+                "phase": 0,
+                "hasStage": false,
+                "reviewAt": 2707.283447265625,
+                "stage": {
+                  "x": 97.0,
+                  "y": 84.0
+                },
+                "lastHome": {
+                  "x": 106.0,
+                  "y": 104.0
+                },
+                "destination": {
+                  "x": 38.608428955078125,
+                  "y": 64.48148345947266
+                },
+                "wave": [],
+                "guards": []
+              }
+            },
+            {
+              "player": 0,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 1,
+                "stageNavigationVersion": 765,
+                "phase": 0,
+                "hasStage": false,
+                "reviewAt": 2707.283447265625,
+                "stage": {
+                  "x": 31.0,
+                  "y": 44.0
+                },
+                "lastHome": {
+                  "x": 22.0,
+                  "y": 24.0
+                },
+                "destination": {
+                  "x": 92.25578308105469,
+                  "y": 70.38980102539062
+                },
+                "wave": [],
+                "guards": []
+              }
+            }
+          ]
+        },
+        {
+          "time": 3006.081787109375,
+          "workersP0": 42,
+          "soldiersP0": 52,
+          "buildingsP0": 31,
+          "armyPlans": [
+            {
+              "player": 1,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 9,
+                "stageNavigationVersion": 690,
+                "phase": 0,
+                "hasStage": false,
+                "reviewAt": 3009.978759765625,
+                "stage": {
+                  "x": 97.0,
+                  "y": 84.0
+                },
+                "lastHome": {
+                  "x": 106.0,
+                  "y": 104.0
+                },
+                "destination": {
+                  "x": 38.608428955078125,
+                  "y": 64.48148345947266
+                },
+                "wave": [],
+                "guards": []
+              }
+            },
+            {
+              "player": 0,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 1,
+                "stageNavigationVersion": 765,
+                "phase": 0,
+                "hasStage": false,
+                "reviewAt": 3009.978759765625,
+                "stage": {
+                  "x": 31.0,
+                  "y": 44.0
+                },
+                "lastHome": {
+                  "x": 22.0,
+                  "y": 24.0
+                },
+                "destination": {
+                  "x": 92.25578308105469,
+                  "y": 70.38980102539062
+                },
+                "wave": [],
+                "guards": []
+              }
+            }
+          ]
+        },
+        {
+          "time": 3306.374755859375,
+          "workersP0": 42,
+          "soldiersP0": 72,
+          "buildingsP0": 33,
+          "armyPlans": [
+            {
+              "player": 1,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 9,
+                "stageNavigationVersion": 690,
+                "phase": 0,
+                "hasStage": false,
+                "reviewAt": 3312.674072265625,
+                "stage": {
+                  "x": 97.0,
+                  "y": 84.0
+                },
+                "lastHome": {
+                  "x": 106.0,
+                  "y": 104.0
+                },
+                "destination": {
+                  "x": 38.608428955078125,
+                  "y": 64.48148345947266
+                },
+                "wave": [],
+                "guards": []
+              }
+            },
+            {
+              "player": 0,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 1,
+                "stageNavigationVersion": 765,
+                "phase": 0,
+                "hasStage": false,
+                "reviewAt": 3312.674072265625,
+                "stage": {
+                  "x": 31.0,
+                  "y": 44.0
+                },
+                "lastHome": {
+                  "x": 22.0,
+                  "y": 24.0
+                },
+                "destination": {
+                  "x": 92.25578308105469,
+                  "y": 70.38980102539062
+                },
+                "wave": [],
+                "guards": []
+              }
+            }
+          ]
+        },
+        {
+          "time": 3600.061279296875,
+          "workersP0": 42,
+          "soldiersP0": 72,
+          "buildingsP0": 33,
+          "armyPlans": [
+            {
+              "player": 1,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 9,
+                "stageNavigationVersion": 690,
+                "phase": 0,
+                "hasStage": false,
+                "reviewAt": 3600.955322265625,
+                "stage": {
+                  "x": 97.0,
+                  "y": 84.0
+                },
+                "lastHome": {
+                  "x": 106.0,
+                  "y": 104.0
+                },
+                "destination": {
+                  "x": 38.608428955078125,
+                  "y": 64.48148345947266
+                },
+                "wave": [],
+                "guards": []
+              }
+            },
+            {
+              "player": 0,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 1,
+                "stageNavigationVersion": 765,
+                "phase": 0,
+                "hasStage": false,
+                "reviewAt": 3600.955322265625,
+                "stage": {
+                  "x": 31.0,
+                  "y": 44.0
+                },
+                "lastHome": {
+                  "x": 22.0,
+                  "y": 24.0
+                },
+                "destination": {
+                  "x": 92.25578308105469,
+                  "y": 70.38980102539062
+                },
+                "wave": [],
+                "guards": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "traders_bend070-river-43",
+      "wallSecondsEntireObserverCase": 129.8928693,
+      "simulationSeconds": 2107.204833984375,
+      "winner": 1,
+      "eventCount": 94894,
+      "eventsBytes": 60846040,
+      "samplesBytes": 1605119,
+      "finalWorldBytes": 148200595,
+      "finalEntityCount": 421,
+      "finalPlayers": [
+        {
+          "player": 0,
+          "alive": 0,
+          "statuses": {},
+          "orders": {},
+          "actorsWithPaths": 0,
+          "incompleteEntities": []
+        },
+        {
+          "player": 1,
+          "alive": 82,
+          "statuses": {
+            "Idle": 22,
+            "Reloading": 24,
+            "Gathering Food": 11,
+            "Moving": 12,
+            "Gathering Coin": 7,
+            "Holding": 2,
+            "Preparing attack": 3,
+            "Constructing": 1
+          },
+          "orders": {
+            "2": 31,
+            "3": 23,
+            "4": 1,
+            "0": 3
+          },
+          "actorsWithPaths": 13,
+          "incompleteEntities": [
+            {
+              "id": 417,
+              "definition": "house",
+              "construction": 0.5840004682540894
+            }
+          ]
+        }
+      ],
+      "eventBins300s": [
+        {
+          "begin": 0,
+          "endExclusive": 300,
+          "events": 5693,
+          "kinds": {
+            "StartingResources": 2,
+            "Spawn": 106,
+            "LandmarkReachability": 8,
+            "MatchStarted": 1,
+            "Payment": 18,
+            "ProductionQueued": 14,
+            "Command": 126,
+            "Gather": 5310,
+            "LandmarkDiscovered": 6,
+            "Experience": 16,
+            "UnitTrained": 14,
+            "RallyAssigned": 15,
+            "AttackPrepared": 12,
+            "Damage": 2,
+            "Fire": 2,
+            "Garrison": 1,
+            "Impact": 1,
+            "Ungarrison": 1,
+            "AIStrategy": 4,
+            "ResourceDepleted": 10,
+            "Death": 10,
+            "ShipmentEarned": 2,
+            "ShipmentSent": 2,
+            "ShipmentArrived": 2,
+            "AgeAdvanced": 2,
+            "Technology": 2,
+            "AgeRouteChosen": 2,
+            "AgeRewardArrived": 2
+          }
+        },
+        {
+          "begin": 300,
+          "endExclusive": 600,
+          "events": 12214,
+          "kinds": {
+            "Gather": 10716,
+            "Command": 181,
+            "Experience": 60,
+            "ShipmentEarned": 5,
+            "BuildingComplete": 15,
+            "ShipmentSent": 5,
+            "RallySet": 6,
+            "Payment": 57,
+            "Spawn": 52,
+            "AttackPrepared": 161,
+            "ProductionQueued": 32,
+            "ShipmentArrived": 4,
+            "UnitTrained": 31,
+            "RallyAssigned": 31,
+            "LandmarkDiscovered": 4,
+            "Damage": 141,
+            "Fire": 145,
+            "BankIncome": 427,
+            "DestinationAdjusted": 4,
+            "Technology": 10,
+            "ResearchComplete": 8,
+            "Impact": 74,
+            "ResourceDepleted": 10,
+            "Death": 24,
+            "AIArmyPhase": 9,
+            "AIStrategy": 2
+          }
+        },
+        {
+          "begin": 600,
+          "endExclusive": 900,
+          "events": 13229,
+          "kinds": {
+            "Gather": 11256,
+            "BankIncome": 615,
+            "ResourceDepleted": 23,
+            "Death": 33,
+            "Command": 222,
+            "AIStrategy": 7,
+            "Spawn": 23,
+            "Experience": 35,
+            "UnitTrained": 16,
+            "RallyAssigned": 43,
+            "ShipmentEarned": 3,
+            "ShipmentSent": 3,
+            "Payment": 273,
+            "ProductionQueued": 16,
+            "BuildingComplete": 6,
+            "Technology": 4,
+            "ResearchComplete": 3,
+            "TradeMode": 7,
+            "RallySet": 8,
+            "ShipmentArrived": 4,
+            "TradeDelivery": 9,
+            "AIArmyPhase": 6,
+            "AttackPrepared": 159,
+            "Fire": 155,
+            "Damage": 152,
+            "Impact": 113,
+            "Garrison": 27,
+            "LandmarkDiscovered": 1,
+            "Ungarrison": 5,
+            "DestinationAdjusted": 2
+          }
+        },
+        {
+          "begin": 900,
+          "endExclusive": 1200,
+          "events": 15392,
+          "kinds": {
+            "Gather": 10937,
+            "BankIncome": 819,
+            "AIStrategy": 3,
+            "Payment": 638,
+            "Spawn": 84,
+            "ProductionQueued": 50,
+            "Experience": 119,
+            "UnitTrained": 60,
+            "RallyAssigned": 157,
+            "AIArmyPhase": 25,
+            "Command": 519,
+            "AIConstructionResumed": 1,
+            "AttackPrepared": 511,
+            "Fire": 451,
+            "Damage": 456,
+            "Impact": 286,
+            "ResourceDepleted": 5,
+            "Death": 54,
+            "TradeDelivery": 9,
+            "RallySet": 14,
+            "Garrison": 97,
+            "Ungarrison": 30,
+            "DestinationAdjusted": 19,
+            "BuildingComplete": 8,
+            "AgeAdvanced": 2,
+            "Technology": 6,
+            "AgeRouteChosen": 2,
+            "AgeRewardArrived": 2,
+            "ShipmentEarned": 4,
+            "ShipmentSent": 4,
+            "TradeMode": 11,
+            "ShipmentArrived": 4,
+            "ResearchComplete": 4,
+            "AIArmyReinforcement": 1
+          }
+        },
+        {
+          "begin": 1200,
+          "endExclusive": 1500,
+          "events": 18199,
+          "kinds": {
+            "Gather": 14972,
+            "AttackPrepared": 362,
+            "Fire": 347,
+            "BankIncome": 818,
+            "Damage": 365,
+            "Impact": 309,
+            "AIArmyPhase": 12,
+            "Command": 325,
+            "DestinationAdjusted": 21,
+            "Garrison": 55,
+            "RallyAssigned": 91,
+            "Ungarrison": 22,
+            "TradeDelivery": 10,
+            "TradeMode": 6,
+            "Experience": 72,
+            "Death": 51,
+            "Payment": 203,
+            "Spawn": 42,
+            "AIConstructionResumed": 1,
+            "ProductionQueued": 27,
+            "ResourceDepleted": 19,
+            "ShipmentEarned": 4,
+            "ShipmentSent": 4,
+            "AIStrategy": 2,
+            "RallySet": 4,
+            "BuildingComplete": 3,
+            "UnitTrained": 36,
+            "Technology": 5,
+            "ShipmentArrived": 3,
+            "ResearchComplete": 3,
+            "LandmarkDiscovered": 1,
+            "AttackCancelled": 1,
+            "AgeAdvanced": 1,
+            "AgeRouteChosen": 1,
+            "AgeRewardArrived": 1
+          }
+        },
+        {
+          "begin": 1500,
+          "endExclusive": 1800,
+          "events": 13316,
+          "kinds": {
+            "Gather": 8884,
+            "BankIncome": 818,
+            "Garrison": 74,
+            "RallyAssigned": 122,
+            "Ungarrison": 26,
+            "Payment": 48,
+            "ProductionQueued": 38,
+            "Technology": 10,
+            "ResearchComplete": 8,
+            "Spawn": 54,
+            "Experience": 127,
+            "UnitTrained": 48,
+            "Command": 168,
+            "RallySet": 6,
+            "DestinationAdjusted": 17,
+            "AgeAdvanced": 1,
+            "AgeRouteChosen": 1,
+            "AgeRewardArrived": 1,
+            "TradeMode": 10,
+            "ResourceDepleted": 2,
+            "Death": 78,
+            "ShipmentArrived": 3,
+            "TradeDelivery": 9,
+            "BuildingComplete": 2,
+            "RevolutionQueued": 1,
+            "AIStrategy": 2,
+            "WorkerConverted": 30,
+            "RevolutionCompleted": 1,
+            "AIArmyPhase": 7,
+            "AIArmyReinforcement": 2,
+            "AttackPrepared": 829,
+            "Fire": 700,
+            "Damage": 676,
+            "Impact": 507,
+            "ShipmentEarned": 2,
+            "ShipmentSent": 2,
+            "CivilianRebuilt": 1,
+            "FactoryDeploymentOrdered": 1
+          }
+        },
+        {
+          "begin": 1800,
+          "endExclusive": 2100,
+          "events": 16419,
+          "kinds": {
+            "AttackPrepared": 2105,
+            "BankIncome": 738,
+            "Gather": 4386,
+            "Fire": 1958,
+            "Damage": 1913,
+            "Impact": 1562,
+            "Spawn": 57,
+            "Experience": 128,
+            "UnitTrained": 52,
+            "RallyAssigned": 52,
+            "Payment": 51,
+            "ProductionQueued": 47,
+            "Command": 1879,
+            "TradeMode": 3,
+            "TradeDelivery": 8,
+            "Death": 77,
+            "DestinationAdjusted": 1341,
+            "AIArmyReinforcement": 8,
+            "Garrison": 36,
+            "ResourceDepleted": 2,
+            "Technology": 2,
+            "ResearchComplete": 2,
+            "RallySet": 5,
+            "ShipmentEarned": 2,
+            "ShipmentSent": 2,
+            "ShipmentArrived": 1,
+            "Ungarrison": 1,
+            "BuildingComplete": 1
+          }
+        },
+        {
+          "begin": 2100,
+          "endExclusive": 2400,
+          "events": 432,
+          "kinds": {
+            "AttackPrepared": 73,
+            "Damage": 63,
+            "Impact": 41,
+            "Gather": 151,
+            "Fire": 66,
+            "BankIncome": 16,
+            "Spawn": 3,
+            "Experience": 5,
+            "UnitTrained": 3,
+            "RallyAssigned": 3,
+            "Death": 2,
+            "Payment": 2,
+            "Command": 1,
+            "TradeDelivery": 1,
+            "PlayerEliminated": 1,
+            "MatchEnded": 1
+          }
+        }
+      ],
+      "selectedSampleStates": [
+        {
+          "time": 1804.406494140625,
+          "workersP0": 36,
+          "soldiersP0": 2,
+          "buildingsP0": 17,
+          "armyPlans": [
+            {
+              "player": 1,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 19,
+                "anchor": 9,
+                "stageNavigationVersion": 534,
+                "phase": 1,
+                "hasStage": true,
+                "reviewAt": 1806.7076416015625,
+                "stage": {
+                  "x": 97.0,
+                  "y": 88.0
+                },
+                "lastHome": {
+                  "x": 106.0,
+                  "y": 104.0
+                },
+                "destination": {
+                  "x": 72.45124053955078,
+                  "y": 47.102806091308594
+                },
+                "wave": [
+                  12,
+                  14,
+                  15,
+                  16,
+                  124,
+                  136,
+                  212,
+                  243,
+                  279,
+                  280,
+                  293,
+                  340,
+                  350,
+                  351,
+                  353,
+                  354
+                ],
+                "guards": [
+                  343,
+                  344
+                ]
+              }
+            },
+            {
+              "player": 0,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 1,
+                "stageNavigationVersion": 468,
+                "phase": 2,
+                "hasStage": false,
+                "reviewAt": 1806.7076416015625,
+                "stage": {
+                  "x": 31.0,
+                  "y": 44.0
+                },
+                "lastHome": {
+                  "x": 22.0,
+                  "y": 24.0
+                },
+                "destination": {
+                  "x": 92.25578308105469,
+                  "y": 70.38980102539062
+                },
+                "wave": [],
+                "guards": []
+              }
+            }
+          ]
+        },
+        {
+          "time": 2105.202880859375,
+          "workersP0": 0,
+          "soldiersP0": 0,
+          "buildingsP0": 1,
+          "armyPlans": [
+            {
+              "player": 1,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 32,
+                "anchor": 9,
+                "stageNavigationVersion": 758,
+                "phase": 1,
+                "hasStage": true,
+                "reviewAt": 2109.099853515625,
+                "stage": {
+                  "x": 97.0,
+                  "y": 84.0
+                },
+                "lastHome": {
+                  "x": 106.0,
+                  "y": 104.0
+                },
+                "destination": {
+                  "x": 14.0,
+                  "y": 13.0
+                },
+                "wave": [
+                  124,
+                  279,
+                  280,
+                  353,
+                  354,
+                  360,
+                  364,
+                  366,
+                  369,
+                  370,
+                  389,
+                  390,
+                  391,
+                  392,
+                  393,
+                  396,
+                  398,
+                  399,
+                  401,
+                  15,
+                  16,
+                  136,
+                  384,
+                  405,
+                  407,
+                  293,
+                  340,
+                  351,
+                  410,
+                  413,
+                  414,
+                  415
+                ],
+                "guards": [
+                  343,
+                  344
+                ]
+              }
+            },
+            {
+              "player": 0,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 1,
+                "stageNavigationVersion": 468,
+                "phase": 2,
+                "hasStage": false,
+                "reviewAt": 2109.099853515625,
+                "stage": {
+                  "x": 31.0,
+                  "y": 44.0
+                },
+                "lastHome": {
+                  "x": 22.0,
+                  "y": 24.0
+                },
+                "destination": {
+                  "x": 92.25578308105469,
+                  "y": 70.38980102539062
+                },
+                "wave": [],
+                "guards": []
+              }
+            }
+          ]
+        },
+        {
+          "time": 2107.204833984375,
+          "workersP0": 0,
+          "soldiersP0": 0,
+          "buildingsP0": 0,
+          "armyPlans": [
+            {
+              "player": 1,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 32,
+                "anchor": 9,
+                "stageNavigationVersion": 758,
+                "phase": 1,
+                "hasStage": true,
+                "reviewAt": 2109.099853515625,
+                "stage": {
+                  "x": 97.0,
+                  "y": 84.0
+                },
+                "lastHome": {
+                  "x": 106.0,
+                  "y": 104.0
+                },
+                "destination": {
+                  "x": 14.0,
+                  "y": 13.0
+                },
+                "wave": [
+                  124,
+                  279,
+                  280,
+                  353,
+                  354,
+                  360,
+                  364,
+                  366,
+                  369,
+                  370,
+                  389,
+                  390,
+                  391,
+                  392,
+                  393,
+                  396,
+                  398,
+                  399,
+                  401,
+                  15,
+                  16,
+                  136,
+                  384,
+                  405,
+                  407,
+                  293,
+                  340,
+                  351,
+                  410,
+                  413,
+                  414,
+                  415
+                ],
+                "guards": [
+                  343,
+                  344
+                ]
+              }
+            },
+            {
+              "player": 0,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 1,
+                "stageNavigationVersion": 468,
+                "phase": 2,
+                "hasStage": false,
+                "reviewAt": 2109.099853515625,
+                "stage": {
+                  "x": 31.0,
+                  "y": 44.0
+                },
+                "lastHome": {
+                  "x": 22.0,
+                  "y": 24.0
+                },
+                "destination": {
+                  "x": 92.25578308105469,
+                  "y": 70.38980102539062
+                },
+                "wave": [],
+                "guards": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "traders_bend070-france-43",
+      "wallSecondsEntireObserverCase": 557.8640184999999,
+      "simulationSeconds": 2944.922119140625,
+      "winner": 0,
+      "eventCount": 148833,
+      "eventsBytes": 96601393,
+      "samplesBytes": 2695581,
+      "finalWorldBytes": 232099389,
+      "finalEntityCount": 586,
+      "finalPlayers": [
+        {
+          "player": 0,
+          "alive": 141,
+          "statuses": {
+            "Idle": 103,
+            "Gathering Food": 22,
+            "Gathering Coin": 8,
+            "Moving": 5,
+            "Producing coin": 2,
+            "Reloading": 1
+          },
+          "orders": {
+            "3": 35
+          },
+          "actorsWithPaths": 25,
+          "incompleteEntities": []
+        },
+        {
+          "player": 1,
+          "alive": 0,
+          "statuses": {},
+          "orders": {},
+          "actorsWithPaths": 0,
+          "incompleteEntities": []
+        }
+      ],
+      "eventBins300s": [
+        {
+          "begin": 0,
+          "endExclusive": 300,
+          "events": 5732,
+          "kinds": {
+            "StartingResources": 2,
+            "Spawn": 112,
+            "LandmarkReachability": 8,
+            "MatchStarted": 1,
+            "Payment": 27,
+            "ProductionQueued": 16,
+            "Command": 98,
+            "Gather": 5360,
+            "LandmarkDiscovered": 6,
+            "AttackPrepared": 11,
+            "Damage": 1,
+            "Fire": 1,
+            "Experience": 18,
+            "UnitTrained": 14,
+            "RallyAssigned": 14,
+            "ResourceDepleted": 10,
+            "Death": 10,
+            "ShipmentEarned": 4,
+            "ShipmentSent": 3,
+            "AIStrategy": 4,
+            "ShipmentArrived": 2,
+            "AgeAdvanced": 2,
+            "Technology": 2,
+            "AgeRouteChosen": 2,
+            "AgeRewardArrived": 2,
+            "BuildingComplete": 2
+          }
+        },
+        {
+          "begin": 300,
+          "endExclusive": 600,
+          "events": 12830,
+          "kinds": {
+            "Gather": 11583,
+            "Command": 215,
+            "ShipmentSent": 5,
+            "Payment": 58,
+            "ResourceDepleted": 13,
+            "Death": 26,
+            "Experience": 71,
+            "BuildingComplete": 16,
+            "ProductionQueued": 38,
+            "AttackPrepared": 167,
+            "RallySet": 13,
+            "Spawn": 55,
+            "UnitTrained": 37,
+            "RallyAssigned": 60,
+            "LandmarkDiscovered": 6,
+            "Technology": 13,
+            "ResearchComplete": 11,
+            "ShipmentArrived": 6,
+            "Fire": 156,
+            "Damage": 153,
+            "Impact": 76,
+            "ShipmentEarned": 4,
+            "TradeDelivery": 6,
+            "AIConstructionResumed": 2,
+            "AIArmyPhase": 9,
+            "TradeMode": 3,
+            "Garrison": 23,
+            "AIStrategy": 1,
+            "DestinationAdjusted": 2,
+            "Ungarrison": 2
+          }
+        },
+        {
+          "begin": 600,
+          "endExclusive": 900,
+          "events": 14663,
+          "kinds": {
+            "Gather": 11725,
+            "TradeDelivery": 11,
+            "AIArmyPhase": 19,
+            "Command": 424,
+            "Spawn": 47,
+            "Experience": 71,
+            "UnitTrained": 35,
+            "RallyAssigned": 114,
+            "ResourceDepleted": 23,
+            "Death": 54,
+            "RallySet": 13,
+            "Payment": 519,
+            "ProductionQueued": 33,
+            "AttackPrepared": 412,
+            "Fire": 392,
+            "Damage": 392,
+            "Impact": 236,
+            "Garrison": 79,
+            "Ungarrison": 15,
+            "ShipmentEarned": 4,
+            "ShipmentSent": 4,
+            "DestinationAdjusted": 5,
+            "BuildingComplete": 4,
+            "Technology": 2,
+            "ShipmentArrived": 4,
+            "TradeMode": 14,
+            "AIStrategy": 4,
+            "AgeAdvanced": 1,
+            "AgeRouteChosen": 1,
+            "AgeRewardArrived": 1,
+            "MeleeAreaHit": 5
+          }
+        },
+        {
+          "begin": 900,
+          "endExclusive": 1200,
+          "events": 16904,
+          "kinds": {
+            "DestinationAdjusted": 19,
+            "AttackPrepared": 450,
+            "Gather": 13179,
+            "Garrison": 42,
+            "RallyAssigned": 85,
+            "Ungarrison": 8,
+            "Payment": 1230,
+            "Command": 366,
+            "Spawn": 59,
+            "Experience": 82,
+            "UnitTrained": 43,
+            "ProductionQueued": 38,
+            "Fire": 420,
+            "Damage": 439,
+            "Impact": 309,
+            "BuildingComplete": 6,
+            "AIArmyPhase": 14,
+            "TradeDelivery": 9,
+            "Death": 37,
+            "RallySet": 17,
+            "TradeMode": 8,
+            "ShipmentEarned": 4,
+            "ShipmentSent": 4,
+            "AgeAdvanced": 2,
+            "Technology": 6,
+            "AgeRouteChosen": 2,
+            "AgeRewardArrived": 2,
+            "ResourceDepleted": 6,
+            "ShipmentArrived": 3,
+            "AIStrategy": 1,
+            "MeleeAreaHit": 8,
+            "ResearchComplete": 4,
+            "AIConstructionResumed": 2
+          }
+        },
+        {
+          "begin": 1200,
+          "endExclusive": 1500,
+          "events": 19955,
+          "kinds": {
+            "Payment": 1352,
+            "Gather": 15106,
+            "AttackPrepared": 583,
+            "Damage": 595,
+            "MeleeAreaHit": 24,
+            "Fire": 535,
+            "Command": 475,
+            "Impact": 374,
+            "Spawn": 57,
+            "Experience": 106,
+            "UnitTrained": 50,
+            "RallyAssigned": 165,
+            "Death": 64,
+            "ProductionQueued": 32,
+            "BuildingComplete": 4,
+            "TradeDelivery": 10,
+            "ResourceDepleted": 11,
+            "ShipmentEarned": 3,
+            "ShipmentSent": 3,
+            "TradeMode": 8,
+            "ShipmentArrived": 4,
+            "AIArmyReinforcement": 2,
+            "AIStrategy": 4,
+            "DestinationAdjusted": 19,
+            "FactoryDeploymentOrdered": 1,
+            "FactoryFoundationStarted": 1,
+            "Garrison": 115,
+            "Ungarrison": 22,
+            "AIArmyPhase": 16,
+            "RallySet": 10,
+            "FactoryIncome": 182,
+            "FactoryModeChanged": 16,
+            "Technology": 3,
+            "ResearchComplete": 3
+          }
+        },
+        {
+          "begin": 1500,
+          "endExclusive": 1800,
+          "events": 19994,
+          "kinds": {
+            "Gather": 15938,
+            "FactoryIncome": 251,
+            "ResourceDepleted": 8,
+            "Death": 47,
+            "Command": 293,
+            "Payment": 1331,
+            "TradeDelivery": 9,
+            "TradeMode": 24,
+            "AIStrategy": 2,
+            "RallySet": 16,
+            "ProductionQueued": 43,
+            "Spawn": 58,
+            "Experience": 93,
+            "UnitTrained": 51,
+            "RallyAssigned": 107,
+            "ShipmentEarned": 4,
+            "ShipmentSent": 4,
+            "AIArmyPhase": 8,
+            "ShipmentArrived": 4,
+            "Technology": 4,
+            "ResearchComplete": 3,
+            "AttackPrepared": 443,
+            "Fire": 407,
+            "Damage": 406,
+            "Impact": 332,
+            "BuildingComplete": 2,
+            "DestinationAdjusted": 4,
+            "Garrison": 56,
+            "Ungarrison": 18,
+            "AgeAdvanced": 1,
+            "AgeRouteChosen": 1,
+            "AgeRewardArrived": 1,
+            "AIArmyReinforcement": 3,
+            "FactoryModeChanged": 19,
+            "MeleeAreaHit": 1,
+            "FactoryDeploymentOrdered": 1,
+            "FactoryApproachAdjusted": 1
+          }
+        },
+        {
+          "begin": 1800,
+          "endExclusive": 2100,
+          "events": 19949,
+          "kinds": {
+            "Payment": 1413,
+            "Garrison": 195,
+            "Gather": 14328,
+            "AttackPrepared": 623,
+            "Fire": 567,
+            "Spawn": 86,
+            "Death": 72,
+            "FactoryFoundationStarted": 2,
+            "FactoryIncome": 348,
+            "Damage": 629,
+            "Impact": 396,
+            "Experience": 150,
+            "RallyAssigned": 246,
+            "Ungarrison": 57,
+            "UnitTrained": 75,
+            "AgeAdvanced": 1,
+            "Technology": 9,
+            "AgeRouteChosen": 1,
+            "AgeRewardArrived": 1,
+            "Command": 517,
+            "ProductionQueued": 51,
+            "DestinationAdjusted": 35,
+            "FactoryModeChanged": 33,
+            "TradeMode": 27,
+            "ResourceDepleted": 4,
+            "TradeDelivery": 10,
+            "AIArmyPhase": 16,
+            "MeleeAreaHit": 27,
+            "BuildingComplete": 6,
+            "AIArmyReinforcement": 2,
+            "ResearchComplete": 7,
+            "RallySet": 2,
+            "ShipmentEarned": 3,
+            "ShipmentSent": 3,
+            "ShipmentArrived": 3,
+            "FactoryDeploymentOrdered": 1,
+            "FactoryApproachAdjusted": 1,
+            "FactoryArtilleryProduced": 2
+          }
+        },
+        {
+          "begin": 2100,
+          "endExclusive": 2400,
+          "events": 17999,
+          "kinds": {
+            "Gather": 11375,
+            "Fire": 735,
+            "FactoryIncome": 937,
+            "AttackPrepared": 793,
+            "FactoryModeChanged": 99,
+            "Damage": 801,
+            "Experience": 182,
+            "Death": 88,
+            "Impact": 392,
+            "Spawn": 100,
+            "UnitTrained": 88,
+            "RallyAssigned": 313,
+            "DestinationAdjusted": 200,
+            "Command": 907,
+            "Payment": 592,
+            "ProductionQueued": 53,
+            "AttackCancelled": 2,
+            "MeleeAreaHit": 7,
+            "TradeDelivery": 10,
+            "Garrison": 240,
+            "TradeMode": 42,
+            "Technology": 2,
+            "ResearchComplete": 1,
+            "ShipmentEarned": 3,
+            "ShipmentSent": 3,
+            "BuildingComplete": 9,
+            "ShipmentArrived": 3,
+            "Ungarrison": 15,
+            "ResourceDepleted": 3,
+            "AIConstructionResumed": 1,
+            "AIArmyPhase": 2,
+            "RallySet": 1
+          }
+        },
+        {
+          "begin": 2400,
+          "endExclusive": 2700,
+          "events": 12420,
+          "kinds": {
+            "Fire": 586,
+            "DestinationAdjusted": 80,
+            "AttackPrepared": 620,
+            "Gather": 8967,
+            "FactoryIncome": 808,
+            "Damage": 608,
+            "Experience": 48,
+            "Death": 39,
+            "Impact": 233,
+            "Command": 206,
+            "Payment": 17,
+            "ProductionQueued": 3,
+            "MeleeAreaHit": 16,
+            "RallySet": 2,
+            "FactoryModeChanged": 116,
+            "TradeMode": 13,
+            "Spawn": 12,
+            "UnitTrained": 8,
+            "RallyAssigned": 9,
+            "FactoryArtilleryProduced": 1,
+            "TradeDelivery": 3,
+            "ShipmentEarned": 1,
+            "ShipmentSent": 1,
+            "Technology": 10,
+            "ResearchComplete": 10,
+            "BuildingComplete": 1,
+            "ShipmentArrived": 1,
+            "ResourceDepleted": 1
+          }
+        },
+        {
+          "begin": 2700,
+          "endExclusive": 3000,
+          "events": 8387,
+          "kinds": {
+            "Gather": 7373,
+            "FactoryIncome": 568,
+            "AttackPrepared": 82,
+            "Fire": 82,
+            "Damage": 82,
+            "Impact": 82,
+            "TradeDelivery": 3,
+            "Technology": 9,
+            "ResearchComplete": 8,
+            "FactoryModeChanged": 84,
+            "Payment": 7,
+            "ShipmentEarned": 1,
+            "ShipmentSent": 1,
+            "ShipmentArrived": 1,
+            "Experience": 1,
+            "Death": 1,
+            "PlayerEliminated": 1,
+            "MatchEnded": 1
+          }
+        }
+      ],
+      "selectedSampleStates": [
+        {
+          "time": 1804.406494140625,
+          "workersP0": 38,
+          "soldiersP0": 18,
+          "buildingsP0": 21,
+          "armyPlans": [
+            {
+              "player": 1,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 9,
+                "stageNavigationVersion": 470,
+                "phase": 2,
+                "hasStage": false,
+                "reviewAt": 1806.7076416015625,
+                "stage": {
+                  "x": 97.0,
+                  "y": 84.0
+                },
+                "lastHome": {
+                  "x": 106.0,
+                  "y": 104.0
+                },
+                "destination": {
+                  "x": 56.8885612487793,
+                  "y": 59.520164489746094
+                },
+                "wave": [],
+                "guards": []
+              }
+            },
+            {
+              "player": 0,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 1,
+                "stageNavigationVersion": 470,
+                "phase": 0,
+                "hasStage": true,
+                "reviewAt": 1806.7076416015625,
+                "stage": {
+                  "x": 31.0,
+                  "y": 44.0
+                },
+                "lastHome": {
+                  "x": 22.0,
+                  "y": 24.0
+                },
+                "destination": {
+                  "x": 66.6324462890625,
+                  "y": 86.54203033447266
+                },
+                "wave": [],
+                "guards": []
+              }
+            }
+          ]
+        },
+        {
+          "time": 2105.202880859375,
+          "workersP0": 42,
+          "soldiersP0": 21,
+          "buildingsP0": 24,
+          "armyPlans": [
+            {
+              "player": 1,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 9,
+                "stageNavigationVersion": 588,
+                "phase": 2,
+                "hasStage": false,
+                "reviewAt": 2109.099853515625,
+                "stage": {
+                  "x": 97.0,
+                  "y": 84.0
+                },
+                "lastHome": {
+                  "x": 106.0,
+                  "y": 104.0
+                },
+                "destination": {
+                  "x": 56.8885612487793,
+                  "y": 59.520164489746094
+                },
+                "wave": [],
+                "guards": []
+              }
+            },
+            {
+              "player": 0,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 1,
+                "stageNavigationVersion": 588,
+                "phase": 0,
+                "hasStage": false,
+                "reviewAt": 2109.099853515625,
+                "stage": {
+                  "x": 31.0,
+                  "y": 44.0
+                },
+                "lastHome": {
+                  "x": 22.0,
+                  "y": 24.0
+                },
+                "destination": {
+                  "x": 93.59063720703125,
+                  "y": 77.86164855957031
+                },
+                "wave": [],
+                "guards": []
+              }
+            }
+          ]
+        },
+        {
+          "time": 2405.495849609375,
+          "workersP0": 42,
+          "soldiersP0": 55,
+          "buildingsP0": 30,
+          "armyPlans": [
+            {
+              "player": 1,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 574,
+                "stageNavigationVersion": 827,
+                "phase": 2,
+                "hasStage": true,
+                "reviewAt": 2411.795166015625,
+                "stage": {
+                  "x": 107.0,
+                  "y": 15.0
+                },
+                "lastHome": {
+                  "x": 116.0,
+                  "y": 19.0
+                },
+                "destination": {
+                  "x": 56.8885612487793,
+                  "y": 59.520164489746094
+                },
+                "wave": [],
+                "guards": []
+              }
+            },
+            {
+              "player": 0,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 1,
+                "stageNavigationVersion": 588,
+                "phase": 0,
+                "hasStage": false,
+                "reviewAt": 2411.795166015625,
+                "stage": {
+                  "x": 31.0,
+                  "y": 44.0
+                },
+                "lastHome": {
+                  "x": 22.0,
+                  "y": 24.0
+                },
+                "destination": {
+                  "x": 93.59063720703125,
+                  "y": 77.86164855957031
+                },
+                "wave": [],
+                "guards": []
+              }
+            }
+          ]
+        },
+        {
+          "time": 2705.788818359375,
+          "workersP0": 42,
+          "soldiersP0": 63,
+          "buildingsP0": 30,
+          "armyPlans": [
+            {
+              "player": 1,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 574,
+                "stageNavigationVersion": 836,
+                "phase": 2,
+                "hasStage": false,
+                "reviewAt": 2707.283447265625,
+                "stage": {
+                  "x": 98.0,
+                  "y": 18.0
+                },
+                "lastHome": {
+                  "x": 116.0,
+                  "y": 19.0
+                },
+                "destination": {
+                  "x": 56.8885612487793,
+                  "y": 59.520164489746094
+                },
+                "wave": [],
+                "guards": []
+              }
+            },
+            {
+              "player": 0,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 1,
+                "stageNavigationVersion": 588,
+                "phase": 0,
+                "hasStage": false,
+                "reviewAt": 2707.283447265625,
+                "stage": {
+                  "x": 31.0,
+                  "y": 44.0
+                },
+                "lastHome": {
+                  "x": 22.0,
+                  "y": 24.0
+                },
+                "destination": {
+                  "x": 93.59063720703125,
+                  "y": 77.86164855957031
+                },
+                "wave": [],
+                "guards": []
+              }
+            }
+          ]
+        },
+        {
+          "time": 2944.922119140625,
+          "workersP0": 42,
+          "soldiersP0": 63,
+          "buildingsP0": 30,
+          "armyPlans": [
+            {
+              "player": 1,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 574,
+                "stageNavigationVersion": 836,
+                "phase": 2,
+                "hasStage": false,
+                "reviewAt": 2945.115478515625,
+                "stage": {
+                  "x": 98.0,
+                  "y": 18.0
+                },
+                "lastHome": {
+                  "x": 116.0,
+                  "y": 19.0
+                },
+                "destination": {
+                  "x": 56.8885612487793,
+                  "y": 59.520164489746094
+                },
+                "wave": [],
+                "guards": []
+              }
+            },
+            {
+              "player": 0,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 1,
+                "stageNavigationVersion": 588,
+                "phase": 0,
+                "hasStage": false,
+                "reviewAt": 2945.115478515625,
+                "stage": {
+                  "x": 31.0,
+                  "y": 44.0
+                },
+                "lastHome": {
+                  "x": 22.0,
+                  "y": 24.0
+                },
+                "destination": {
+                  "x": 93.59063720703125,
+                  "y": 77.86164855957031
+                },
+                "wave": [],
+                "guards": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "winding-ottoman-44",
+      "wallSecondsEntireObserverCase": 955.807363,
+      "simulationSeconds": 1982.762939453125,
+      "winner": 1,
+      "eventCount": 100055,
+      "eventsBytes": 64259623,
+      "samplesBytes": 1347034,
+      "finalWorldBytes": 156146484,
+      "finalEntityCount": 434,
+      "finalPlayers": [
+        {
+          "player": 0,
+          "alive": 0,
+          "statuses": {},
+          "orders": {},
+          "actorsWithPaths": 0,
+          "incompleteEntities": []
+        },
+        {
+          "player": 1,
+          "alive": 124,
+          "statuses": {
+            "Idle": 27,
+            "Gathering Food": 17,
+            "Gathering Wood": 17,
+            "Moving": 38,
+            "Gathering Coin": 11,
+            "Preparing attack": 5,
+            "Reloading": 3,
+            "Holding": 2,
+            "Producing coin": 1,
+            "Constructing": 2,
+            "Producing Great Bombard": 1
+          },
+          "orders": {
+            "3": 49,
+            "2": 40,
+            "4": 2,
+            "0": 2
+          },
+          "actorsWithPaths": 38,
+          "incompleteEntities": [
+            {
+              "id": 425,
+              "definition": "farm",
+              "construction": 0.7719971537590027
+            },
+            {
+              "id": 429,
+              "definition": "house",
+              "construction": 0.9200011491775513
+            }
+          ]
+        }
+      ],
+      "eventBins300s": [
+        {
+          "begin": 0,
+          "endExclusive": 300,
+          "events": 6253,
+          "kinds": {
+            "StartingResources": 2,
+            "Spawn": 158,
+            "TradeSocket": 3,
+            "TreasurePlaced": 6,
+            "LandmarkReachability": 34,
+            "LandmarkDiscovered": 18,
+            "MatchStarted": 1,
+            "Payment": 14,
+            "Command": 110,
+            "Gather": 5535,
+            "TreasureClaimed": 5,
+            "Death": 18,
+            "AttackPrepared": 98,
+            "Damage": 94,
+            "Fire": 94,
+            "ResourceDepleted": 7,
+            "Experience": 12,
+            "BuildingComplete": 2,
+            "ShipmentEarned": 4,
+            "ShipmentSent": 4,
+            "RallyAssigned": 8,
+            "AutomaticWorkerProduced": 8,
+            "ShipmentArrived": 2,
+            "Technology": 4,
+            "ResearchComplete": 2,
+            "AIStrategy": 4,
+            "AgeAdvanced": 2,
+            "AgeRouteChosen": 2,
+            "AgeRewardArrived": 2
+          }
+        },
+        {
+          "begin": 300,
+          "endExclusive": 600,
+          "events": 10021,
+          "kinds": {
+            "Gather": 8747,
+            "Command": 163,
+            "AttackPrepared": 193,
+            "Damage": 157,
+            "Fire": 175,
+            "ResourceDepleted": 2,
+            "Death": 22,
+            "Technology": 14,
+            "ShipmentArrived": 6,
+            "Experience": 69,
+            "BuildingComplete": 16,
+            "Payment": 58,
+            "ResearchComplete": 12,
+            "Spawn": 67,
+            "RallyAssigned": 49,
+            "AutomaticWorkerProduced": 14,
+            "ProductionQueued": 38,
+            "RallySet": 11,
+            "UnitTrained": 33,
+            "Garrison": 2,
+            "Impact": 139,
+            "Ungarrison": 2,
+            "ShipmentEarned": 4,
+            "ShipmentSent": 4,
+            "AIArmyPhase": 12,
+            "DestinationAdjusted": 9,
+            "LandmarkDiscovered": 2,
+            "AIStrategy": 1
+          }
+        },
+        {
+          "begin": 600,
+          "endExclusive": 900,
+          "events": 14843,
+          "kinds": {
+            "Damage": 407,
+            "Impact": 329,
+            "Gather": 12281,
+            "AttackPrepared": 449,
+            "Fire": 415,
+            "Experience": 65,
+            "Death": 41,
+            "Command": 388,
+            "Spawn": 50,
+            "UnitTrained": 26,
+            "RallyAssigned": 58,
+            "AIStrategy": 5,
+            "AIArmyPhase": 24,
+            "DestinationAdjusted": 9,
+            "AutomaticWorkerProduced": 13,
+            "ResourceDepleted": 9,
+            "RallySet": 9,
+            "ShipmentEarned": 4,
+            "ShipmentSent": 4,
+            "Payment": 155,
+            "ProductionQueued": 26,
+            "ShipmentArrived": 3,
+            "Garrison": 41,
+            "LandmarkDiscovered": 6,
+            "Technology": 4,
+            "ResearchComplete": 3,
+            "Ungarrison": 8,
+            "BuildingComplete": 2,
+            "TradeDelivery": 4,
+            "AgeAdvanced": 1,
+            "AgeRouteChosen": 1,
+            "AgeRewardArrived": 1,
+            "NeutralAllianceStarted": 1,
+            "NeutralAllianceComplete": 1
+          }
+        },
+        {
+          "begin": 900,
+          "endExclusive": 1200,
+          "events": 15995,
+          "kinds": {
+            "AttackPrepared": 863,
+            "Damage": 787,
+            "Impact": 728,
+            "Gather": 11731,
+            "Fire": 812,
+            "Command": 425,
+            "RallyAssigned": 99,
+            "Ungarrison": 14,
+            "ShipmentEarned": 4,
+            "Garrison": 69,
+            "Experience": 74,
+            "BuildingComplete": 8,
+            "ShipmentSent": 4,
+            "AIArmyPhase": 12,
+            "DestinationAdjusted": 12,
+            "Death": 41,
+            "Spawn": 50,
+            "ShipmentArrived": 4,
+            "UnitTrained": 20,
+            "RallySet": 11,
+            "Payment": 157,
+            "ProductionQueued": 16,
+            "NeutralRecruitQueued": 6,
+            "AIStrategy": 4,
+            "TradeDelivery": 8,
+            "AutomaticWorkerProduced": 13,
+            "ResourceDepleted": 3,
+            "NeutralContest": 2,
+            "NeutralRecruitComplete": 5,
+            "Technology": 4,
+            "ResearchComplete": 3,
+            "AIArmyReinforcement": 2,
+            "TradeMode": 4
+          }
+        },
+        {
+          "begin": 1200,
+          "endExclusive": 1500,
+          "events": 19354,
+          "kinds": {
+            "AttackPrepared": 574,
+            "Gather": 16332,
+            "Fire": 570,
+            "Damage": 563,
+            "Impact": 537,
+            "Command": 391,
+            "DestinationAdjusted": 38,
+            "RallySet": 4,
+            "Payment": 23,
+            "ProductionQueued": 6,
+            "Spawn": 40,
+            "Experience": 37,
+            "UnitTrained": 8,
+            "RallyAssigned": 52,
+            "ShipmentArrived": 2,
+            "TradeMode": 2,
+            "AutomaticWorkerProduced": 13,
+            "AIArmyReinforcement": 1,
+            "Death": 20,
+            "TradeDelivery": 8,
+            "NeutralRecruitComplete": 5,
+            "NeutralResearchQueued": 1,
+            "ResourceDepleted": 4,
+            "BuildingComplete": 8,
+            "Garrison": 46,
+            "AIArmyPhase": 4,
+            "Ungarrison": 4,
+            "Technology": 4,
+            "NeutralResearchComplete": 1,
+            "NeutralRecruitQueued": 4,
+            "AgeAdvanced": 1,
+            "AgeRouteChosen": 1,
+            "AgeRewardArrived": 1,
+            "AIStrategy": 6,
+            "ResearchComplete": 2,
+            "ShipmentEarned": 2,
+            "ShipmentSent": 2,
+            "AIConstructionResumed": 1,
+            "FactoryDeploymentOrdered": 1,
+            "FactoryApproachAdjusted": 1,
+            "FactoryFoundationStarted": 1,
+            "FactoryModeChanged": 1,
+            "FactoryIncome": 32
+          }
+        },
+        {
+          "begin": 1500,
+          "endExclusive": 1800,
+          "events": 20240,
+          "kinds": {
+            "Fire": 787,
+            "Gather": 15888,
+            "AttackPrepared": 794,
+            "Damage": 773,
+            "Impact": 739,
+            "FactoryIncome": 169,
+            "DestinationAdjusted": 28,
+            "Command": 468,
+            "Spawn": 28,
+            "RallyAssigned": 163,
+            "AutomaticWorkerProduced": 9,
+            "ResourceDepleted": 4,
+            "Death": 17,
+            "TradeDelivery": 8,
+            "Experience": 30,
+            "BuildingComplete": 10,
+            "Technology": 3,
+            "ShipmentArrived": 4,
+            "Payment": 22,
+            "Garrison": 192,
+            "Ungarrison": 62,
+            "ShipmentEarned": 3,
+            "ShipmentSent": 3,
+            "FactoryModeChanged": 2,
+            "TradeMode": 8,
+            "AIStrategy": 1,
+            "ProductionQueued": 8,
+            "UnitTrained": 6,
+            "ResearchComplete": 2,
+            "AIArmyReinforcement": 2,
+            "NeutralRecruitQueued": 3,
+            "NeutralRecruitComplete": 2,
+            "FactoryDeploymentOrdered": 1,
+            "FactoryFoundationStarted": 1
+          }
+        },
+        {
+          "begin": 1800,
+          "endExclusive": 2100,
+          "events": 13349,
+          "kinds": {
+            "AttackPrepared": 1241,
+            "Damage": 1120,
+            "Impact": 768,
+            "Gather": 7408,
+            "Fire": 1137,
+            "DestinationAdjusted": 403,
+            "ResourceDepleted": 4,
+            "Death": 66,
+            "Spawn": 41,
+            "Experience": 94,
+            "UnitTrained": 22,
+            "RallyAssigned": 26,
+            "Payment": 33,
+            "ProductionQueued": 14,
+            "Command": 791,
+            "AIArmyReinforcement": 6,
+            "TradeDelivery": 5,
+            "Technology": 6,
+            "ResearchComplete": 4,
+            "FactoryIncome": 112,
+            "TradeMode": 8,
+            "NeutralRecruitComplete": 3,
+            "BuildingComplete": 5,
+            "AgeAdvanced": 1,
+            "AgeRouteChosen": 1,
+            "AgeRewardArrived": 1,
+            "NeutralRecruitQueued": 2,
+            "Ungarrison": 1,
+            "RallySet": 8,
+            "AIConstructionResumed": 5,
+            "FactoryModeChanged": 1,
+            "ShipmentEarned": 2,
+            "ShipmentSent": 2,
+            "AutomaticWorkerProduced": 3,
+            "ShipmentArrived": 1,
+            "FactoryArtilleryProduced": 1,
+            "LandmarkDiscovered": 1,
+            "PlayerEliminated": 1,
+            "MatchEnded": 1
+          }
+        }
+      ],
+      "selectedSampleStates": [
+        {
+          "time": 1804.406494140625,
+          "workersP0": 45,
+          "soldiersP0": 0,
+          "buildingsP0": 9,
+          "armyPlans": [
+            {
+              "player": 1,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 14,
+                "anchor": 52,
+                "stageNavigationVersion": 799,
+                "phase": 1,
+                "hasStage": true,
+                "reviewAt": 1806.7076416015625,
+                "stage": {
+                  "x": 89.0,
+                  "y": 86.0
+                },
+                "lastHome": {
+                  "x": 104.0,
+                  "y": 100.0
+                },
+                "destination": {
+                  "x": 4.0,
+                  "y": 48.0
+                },
+                "wave": [
+                  226,
+                  283,
+                  307,
+                  326,
+                  338,
+                  339,
+                  343,
+                  359,
+                  360,
+                  380,
+                  383,
+                  385,
+                  386,
+                  387
+                ],
+                "guards": [
+                  348,
+                  351
+                ]
+              }
+            },
+            {
+              "player": 0,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 1,
+                "stageNavigationVersion": 483,
+                "phase": 2,
+                "hasStage": false,
+                "reviewAt": 1806.7076416015625,
+                "stage": {
+                  "x": 33.0,
+                  "y": 36.0
+                },
+                "lastHome": {
+                  "x": 24.0,
+                  "y": 28.0
+                },
+                "destination": {
+                  "x": 54.201236724853516,
+                  "y": 75.04786682128906
+                },
+                "wave": [],
+                "guards": []
+              }
+            }
+          ]
+        },
+        {
+          "time": 1982.762939453125,
+          "workersP0": 0,
+          "soldiersP0": 0,
+          "buildingsP0": 0,
+          "armyPlans": [
+            {
+              "player": 1,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 37,
+                "anchor": 52,
+                "stageNavigationVersion": 1054,
+                "phase": 1,
+                "hasStage": true,
+                "reviewAt": 1986.6636962890625,
+                "stage": {
+                  "x": 83.0,
+                  "y": 92.0
+                },
+                "lastHome": {
+                  "x": 104.0,
+                  "y": 100.0
+                },
+                "destination": {
+                  "x": 4.0,
+                  "y": 10.0
+                },
+                "wave": [
+                  226,
+                  283,
+                  307,
+                  326,
+                  338,
+                  339,
+                  343,
+                  359,
+                  380,
+                  383,
+                  386,
+                  388,
+                  389,
+                  393,
+                  394,
+                  395,
+                  397,
+                  398,
+                  399,
+                  401,
+                  402,
+                  403,
+                  404,
+                  410,
+                  411,
+                  413,
+                  414,
+                  415,
+                  418,
+                  419,
+                  420,
+                  422,
+                  426,
+                  423,
+                  428,
+                  430,
+                  431
+                ],
+                "guards": [
+                  348,
+                  351
+                ]
+              }
+            },
+            {
+              "player": 0,
+              "plan": {
+                "schema": 1,
+                "initialWaveSize": 0,
+                "anchor": 405,
+                "stageNavigationVersion": 885,
+                "phase": 2,
+                "hasStage": false,
+                "reviewAt": 1986.6636962890625,
+                "stage": {
+                  "x": 32.0,
+                  "y": 5.0
+                },
+                "lastHome": {
+                  "x": 16.0,
+                  "y": 4.0
+                },
+                "destination": {
+                  "x": 54.201236724853516,
+                  "y": 75.04786682128906
+                },
+                "wave": [],
+                "guards": []
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "scope": "No original edits, no Unity launch, no runtime instrumentation, no timing reconstruction from mtime. Existing per-case wall includes setup, simulation, observer I/O and final serialization. No native FPS claim.",
+  "sourceReferences": [
+    {
+      "gitCommit": "bc127e02638caaeefd2310a1a3eff858f4f4cb2f",
+      "path": "Assets/Frontier/Editor/NormalRoutes072.cs",
+      "bytes": 12903,
+      "sha256": "cceb94cf40450031748a3f3fab6620830dcba26190b4a4fa862f0966a6741fb4"
+    },
+    {
+      "gitCommit": "bc127e02638caaeefd2310a1a3eff858f4f4cb2f",
+      "path": "Assets/Frontier/Simulation/AiResourceContinuity072.cs",
+      "bytes": 28179,
+      "sha256": "2e42dea01cf9482027cd3a0473c8dd7ff675338f8302f6c26a9154985efd8e54"
+    },
+    {
+      "gitCommit": "bc127e02638caaeefd2310a1a3eff858f4f4cb2f",
+      "path": "Assets/Frontier/Simulation/AiArmyPlan072.cs",
+      "bytes": 17109,
+      "sha256": "071e424d6a82b1319ed40619e28a8914aae44cd3ffca291e184bae0ff218ea7f"
+    },
+    {
+      "gitCommit": "bc127e02638caaeefd2310a1a3eff858f4f4cb2f",
+      "path": "Assets/Frontier/Simulation/SkirmishAI.cs",
+      "bytes": 37607,
+      "sha256": "37b2cc8da6fc0c8c54d62feacb102888f0af0d9dcc5e3be660833a6827c46da1"
+    },
+    {
+      "gitCommit": "bc127e02638caaeefd2310a1a3eff858f4f4cb2f",
+      "path": "Assets/Frontier/Simulation/MovementRecovery.cs",
+      "bytes": 13139,
+      "sha256": "ec5e9b74f02ef50bedac5b6a80da355488d1f81f042c758c9a60dbe521b66028"
+    },
+    {
+      "gitCommit": "bc127e02638caaeefd2310a1a3eff858f4f4cb2f",
+      "path": "Assets/Frontier/Simulation/GridNavigation.cs",
+      "bytes": 25005,
+      "sha256": "99c2a6edebf649398a588c176adf8d7c21b4f80c5fbe830bdc93f593595eecff"
+    }
+  ],
+  "confirmed": {
+    "dutchVsFranceWallRatio": 5.921139262721602,
+    "dutchVsFranceEventsBytesRatio": 1.2798030459043173,
+    "dutchVsFranceFinalWorldBytesRatio": 1.2869828407863668,
+    "late3300to3600CombatEventCounts": {
+      "AttackPrepared": 0,
+      "Fire": 0,
+      "Damage": 0
+    },
+    "finalIdleEntitiesTotal": 219,
+    "finalAliveOwnedEntitiesTotal": 302,
+    "lateSelectedSamplesBothAiHaveNoStageOrWave": true,
+    "initialThreeBinsRiver42And43KindCountsEqual": true
+  },
+  "hypotheses": [
+    {
+      "priority": 1,
+      "topic": "Repeated construction/source filtered navigation queries",
+      "basis": "Construction worker search includes prospective ordinary navigation plus a separate filtered route and repeated current-threat predicates; up to 6 workers and 8 approaches. Source safety has a query-local connectivity optimization, construction does not.",
+      "verifiedCpuCause": false
+    },
+    {
+      "priority": 2,
+      "topic": "Dense ally movement recovery",
+      "basis": "Dutch final has 12 Route blocked; retrying, 219 Idle, 302 owned alive; MovementRecovery can use a 4x grid (512x512) with per-query ally filters. One reserved fine slot bounds scheduling, not individual search time.",
+      "verifiedCpuCause": false
+    },
+    {
+      "priority": 3,
+      "topic": "Home selection and no-stage army reviews",
+      "basis": "Home scans each eligible worker/facility against all world entities even when an owned Town exists. Late SelectStage repeatedly fails; all 25 stage candidates require visible/safe 7x7 area before cohort dispatch.",
+      "verifiedCpuCause": false
+    },
+    {
+      "priority": 4,
+      "topic": "Per-step repair reserve source survey",
+      "basis": "StopRecoveryRepairs runs before thinkAt decision gate each fixed Step; with any active repair it evaluates fresh source safety. A current branch with repairs is needed to test this hypothesis. Final Dutch states show no Repair order, so final-state profile cannot prove earlier repair overhead.",
+      "verifiedCpuCause": false
+    },
+    {
+      "priority": 5,
+      "topic": "Observer serialization and event accumulation",
+      "basis": "Wall stopwatch includes JSON serialization and writes. Recent trade forecasting scans only the last 60 simulation seconds per eligible post, not all history each Tick. Dutch event/archive size is about 1.3x French, wall about 5.9x; size alone cannot justify attribution.",
+      "verifiedCpuCause": false
+    }
+  ],
+  "originalReferences": [
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/manifest.json",
+      "bytes": 30906,
+      "sha256": "03b47589b776a8b5cf4391bdd2beb960f3397d25df0d1b8bfd6592eb1461a64d",
+      "mtimeNs": 1791294748342285261,
+      "inode": 8044781,
+      "device": 16777230
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/traders_bend070-river-42/result.json",
+      "bytes": 1466,
+      "sha256": "b1bc5e580f2e3ebcc04a90386d4379435056be2ec0a23cc952bbdff76de92ebb",
+      "mtimeNs": 1791290463936058299,
+      "inode": 8066198,
+      "device": 16777230
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/traders_bend070-river-42/events.jsonl",
+      "bytes": 123630757,
+      "sha256": "ba6e8a78ae89100123e58fd3b0552e84577e9078d6a9834db28a7be0add04b5d",
+      "mtimeNs": 1791290459352658485,
+      "inode": 8048396,
+      "device": 16777230
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/traders_bend070-river-42/samples.jsonl",
+      "bytes": 4213887,
+      "sha256": "01aa48e4c5bed239dde829d1c73822c05725017e4cf8c7c153756212b6770bfa",
+      "mtimeNs": 1791290459352839193,
+      "inode": 8048395,
+      "device": 16777230
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/traders_bend070-river-42/final-world.json",
+      "bytes": 298707931,
+      "sha256": "fe2fa3fd050cdc949ac594a91fa99bf9962c87402f38b74640986caca231a51f",
+      "mtimeNs": 1791290463934901424,
+      "inode": 8066194,
+      "device": 16777230
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/traders_bend070-river-43/result.json",
+      "bytes": 1413,
+      "sha256": "2d9448ff2c5baeb43def8712cd682c38b2e785284eca34d9d3b38ac0ba2ebc6c",
+      "mtimeNs": 1791290593833138232,
+      "inode": 8070584,
+      "device": 16777230
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/traders_bend070-river-43/events.jsonl",
+      "bytes": 60846040,
+      "sha256": "8eeafc9f294d636e85d76a6aacab93797ca257061e35bd933e74a30f8837345a",
+      "mtimeNs": 1791290592001084499,
+      "inode": 8066204,
+      "device": 16777230
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/traders_bend070-river-43/samples.jsonl",
+      "bytes": 1605119,
+      "sha256": "4550425bd8cc22370c3abfd30f53446bbbaedfadc2f6ea668a1d8bd8ce9d7f16",
+      "mtimeNs": 1791290592001282041,
+      "inode": 8066203,
+      "device": 16777230
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/traders_bend070-river-43/final-world.json",
+      "bytes": 148200595,
+      "sha256": "3ce27fa9e0ef979c42d0dd88d10e88a74b79823d74768c59aa80b803e3e933fe",
+      "mtimeNs": 1791290593832488065,
+      "inode": 8070581,
+      "device": 16777230
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/traders_bend070-france-43/result.json",
+      "bytes": 1414,
+      "sha256": "2cec9e46dd6c4aed02ab3f36199449bafcc8a5b4ca99be9313f80c7155b8e47f",
+      "mtimeNs": 1791291449554683790,
+      "inode": 8074375,
+      "device": 16777230
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/traders_bend070-france-43/events.jsonl",
+      "bytes": 96601393,
+      "sha256": "ce2e2fb690909bb3112d1ff8169aec75adc48be0ec5b947735fa53da24ae00c2",
+      "mtimeNs": 1791291445675845817,
+      "inode": 8072080,
+      "device": 16777230
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/traders_bend070-france-43/samples.jsonl",
+      "bytes": 2695581,
+      "sha256": "bea2e9b462da3893b37b3421ab51cbc3e7e9bd882f9c59a869ba097335833225",
+      "mtimeNs": 1791291445676129401,
+      "inode": 8072079,
+      "device": 16777230
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/traders_bend070-france-43/final-world.json",
+      "bytes": 232099389,
+      "sha256": "9ee710afca3681f9043b010315315200e2b2aaa1387e5429f5c12897356c9e83",
+      "mtimeNs": 1791291449553340665,
+      "inode": 8074360,
+      "device": 16777230
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/winding-ottoman-44/result.json",
+      "bytes": 1381,
+      "sha256": "3e8a5f5da949d3ea982dd992b262de7254f42c820bea36f840c72adce4094cac",
+      "mtimeNs": 1791294565522875929,
+      "inode": 8113460,
+      "device": 16777230
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/winding-ottoman-44/events.jsonl",
+      "bytes": 64259623,
+      "sha256": "32610e2921a22aabf3e9adb08e73952868a913a5247fc464b0a38604007654be",
+      "mtimeNs": 1791294563441010182,
+      "inode": 8081377,
+      "device": 16777230
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/winding-ottoman-44/samples.jsonl",
+      "bytes": 1347034,
+      "sha256": "8018ade3cecb2b3dc557769d2e7e8371530d82b53f6d15c1ec8f1e6211c17ad0",
+      "mtimeNs": 1791294563441651683,
+      "inode": 8081376,
+      "device": 16777230
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/NormalRoutesFinal1/matrix/winding-ottoman-44/final-world.json",
+      "bytes": 156146484,
+      "sha256": "6c5bbebef2c9bff3172b5c4fa419211f89f191bdac4bf41f8e30642f7f3774bb",
+      "mtimeNs": 1791294565521912511,
+      "inode": 8113458,
+      "device": 16777230
+    }
+  ],
+  "originalsUnchangedDuringAnalysis": true
+}

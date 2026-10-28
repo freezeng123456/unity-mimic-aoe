@@ -1,0 +1,367 @@
+{
+  "schema": 1,
+  "recordedAtUtc": "2026-10-04T20:02:11.805024+00:00",
+  "scope": "Final 0.7.0 automated tests and current-source binding; native build, cold launch, performance, packaging, and cloud delivery require separate evidence.",
+  "runId": "run-LOUCjHNW",
+  "sourceDirectory": "Builds/Tests/run-LOUCjHNW",
+  "runtimeCommit": "5cce74ccf7222133af9bad633923f452b100bfb2",
+  "sourceFingerprint": "8342b85bf835fd48d5c4dfc8f612ed64770fc5b7d026d96c4f539caaa96d79b0",
+  "sourceFileCount": 497,
+  "sourceEvidenceRecordedAtUtc": "2026-10-04T19:55:34.512845+00:00",
+  "total": 796,
+  "passed": 796,
+  "failed": 0,
+  "reports": {
+    "EditMode": {
+      "file": "EditMode.xml",
+      "bytes": 382092,
+      "sha256": "5b2b3220bcf6a7836207c4c1695403473d9cc14733d6e46b08df043c53de6060",
+      "result": "Passed",
+      "total": "466",
+      "passed": "466",
+      "failed": "0",
+      "skipped": "0",
+      "inconclusive": "0",
+      "duration": "118.9930545",
+      "start-time": "2026-10-04 19:51:19Z",
+      "end-time": "2026-10-04 19:53:18Z"
+    },
+    "PlayMode": {
+      "file": "PlayMode.xml",
+      "bytes": 299193,
+      "sha256": "ee496a832dce3d68e130b7c0ef875c32af39d93f4d03c9e3b00f965cd49662de",
+      "result": "Passed",
+      "total": "330",
+      "passed": "330",
+      "failed": "0",
+      "skipped": "0",
+      "inconclusive": "0",
+      "duration": "125.2645935",
+      "start-time": "2026-10-04 19:53:27Z",
+      "end-time": "2026-10-04 19:55:32Z"
+    }
+  },
+  "byteExactCopies": [
+    "EditMode.xml",
+    "PlayMode.xml",
+    "source-evidence.json"
+  ],
+  "sanitization": {
+    "method": "Remove complete lines matching licensing or credential patterns, and complete PEM private-key blocks. Preserve all other bytes and line endings. Raw logs remain local; archive includes only sanitized logs.",
+    "lineNumbers": "One-based raw source line numbers. Removed lines contain no archived raw text.",
+    "licensingRegex": "(?i)(licens(?:ing|e|es|ed)|entitlement|serial(?: number)?\\s*[:=]|signature\\s*[:=])",
+    "credentialRegex": "(?i)(access[ _-]?token|refresh[ _-]?token|id[ _-]?token|authorization|bearer\\s|api[ _-]?key|client[ _-]?secret|password|credential|(?:^|[\\s\\\"\\x27?&])(?:token|secret|sessionkey)\\s*[:=]|-----BEGIN .*PRIVATE KEY-----|github_pat_[A-Za-z0-9_]+|gh[pousr]_[A-Za-z0-9]+|sk-[A-Za-z0-9_-]{16,}|eyJ[A-Za-z0-9_-]{10,}\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+)",
+    "logs": {
+      "EditMode": {
+        "source": "Builds/Tests/run-LOUCjHNW/EditMode.log",
+        "rawSha256": "cb45b4bb8177f7733709bb9b809adfb51a4966a1e6671485fd79786145006421",
+        "rawBytes": 72281,
+        "rawLines": 625,
+        "sanitized": {
+          "file": "EditMode.sanitized.log",
+          "bytes": 70896,
+          "sha256": "f28dbd58089c38adbba1bf8ad3829ef63dbb7dec85aa17c7cd2d212819f3e9f5"
+        },
+        "sanitizedLines": 607,
+        "removedLines": 18,
+        "removedSourceLines": [
+          {
+            "sourceLine": 14,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 15,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 81,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 82,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 88,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 89,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 90,
+            "categories": [
+              "licensing",
+              "credentialPattern"
+            ]
+          },
+          {
+            "sourceLine": 91,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 92,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 97,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 98,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 99,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 100,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 164,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 167,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 310,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 617,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 618,
+            "categories": [
+              "licensing"
+            ]
+          }
+        ],
+        "remainingLicensingMatches": 0,
+        "remainingCredentialMatches": 0
+      },
+      "PlayMode": {
+        "source": "Builds/Tests/run-LOUCjHNW/PlayMode.log",
+        "rawSha256": "37f54e884aacd579ca11c11378c15aebf91aecc7547573f43a0caf6acf683a37",
+        "rawBytes": 489048,
+        "rawLines": 3214,
+        "sanitized": {
+          "file": "PlayMode.sanitized.log",
+          "bytes": 487539,
+          "sha256": "23ee120a910b0c1efafa21c1dd1976c42186e28c5b4360014b09ecb74c11104c"
+        },
+        "sanitizedLines": 3194,
+        "removedLines": 20,
+        "removedSourceLines": [
+          {
+            "sourceLine": 14,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 15,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 88,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 89,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 95,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 96,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 97,
+            "categories": [
+              "licensing",
+              "credentialPattern"
+            ]
+          },
+          {
+            "sourceLine": 98,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 99,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 104,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 105,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 106,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 107,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 169,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 172,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 389,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 743,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 3151,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 3204,
+            "categories": [
+              "licensing"
+            ]
+          },
+          {
+            "sourceLine": 3205,
+            "categories": [
+              "licensing"
+            ]
+          }
+        ],
+        "remainingLicensingMatches": 0,
+        "remainingCredentialMatches": 0
+      }
+    }
+  },
+  "currentSourceVerification": {
+    "command": [
+      "python3",
+      "-B",
+      "Tools/verify-delivery.py",
+      "--reports-dir",
+      "Docs/Evidence/064/Tests",
+      "--require-current-source"
+    ],
+    "exitCode": 0,
+    "output": "verify-current-source.txt",
+    "runtimeTrackedDiffAgainstCommit": []
+  },
+  "artifacts": [
+    {
+      "file": "EditMode.xml",
+      "bytes": 382092,
+      "sha256": "5b2b3220bcf6a7836207c4c1695403473d9cc14733d6e46b08df043c53de6060"
+    },
+    {
+      "file": "PlayMode.xml",
+      "bytes": 299193,
+      "sha256": "ee496a832dce3d68e130b7c0ef875c32af39d93f4d03c9e3b00f965cd49662de"
+    },
+    {
+      "file": "source-evidence.json",
+      "bytes": 63692,
+      "sha256": "d21c660852280aa7262b33f668f8f6b4d8343dcf9144cd0143a0308c8bb23a37"
+    },
+    {
+      "file": "EditMode.sanitized.log",
+      "bytes": 70896,
+      "sha256": "f28dbd58089c38adbba1bf8ad3829ef63dbb7dec85aa17c7cd2d212819f3e9f5"
+    },
+    {
+      "file": "PlayMode.sanitized.log",
+      "bytes": 487539,
+      "sha256": "23ee120a910b0c1efafa21c1dd1976c42186e28c5b4360014b09ecb74c11104c"
+    },
+    {
+      "file": "verify-current-source.txt",
+      "bytes": 681,
+      "sha256": "830fb73e5e5adcbf4ccfea17d24cf90d88579c47fd4237185d117ddb0a1df5a1"
+    }
+  ],
+  "manifestPolicy": "This receipt does not hash itself. README and this receipt hashes are reported externally to avoid self-reference."
+}

@@ -11,7 +11,7 @@ namespace Frontier
 {
     [Serializable] public sealed class CaptureMetadata
     {
-        public int schemaVersion = 1, eventSchemaVersion = SimEvent.CurrentSchemaVersion;
+        public int schemaVersion = 7, eventSchemaVersion = SimEvent.CurrentSchemaVersion;
         public string pngFile, pngSha256, utc, appVersion, buildGuid, unityVersion, matchId, requestMatchId;
         public int requestFrame, captureFrame, width, height, seed;
         public float requestWorldTime, worldTime;
@@ -22,11 +22,22 @@ namespace Frontier
         public int hudUpdatedFrame;
         public float hudWorldTime;
         public CaptureCamera camera;
-        public string aiDifficulty="";
+        public string aiDifficulty="",mapId="";
         public float aiDecisionSeconds,aiArmySeconds;
         public CaptureProduction[] production = Array.Empty<CaptureProduction>();
+        public bool generatedTerrain,requiresTransport;public int mapGeneratorVersion;
+        public MapObjectiveState objective;public CaptureUnit[] units=Array.Empty<CaptureUnit>();
+        public CaptureNeutralService[] neutralServices=Array.Empty<CaptureNeutralService>();
+        public CapturePlayer[] players=Array.Empty<CapturePlayer>();
+        public string skirmishMode="",guidedId="",guidedStatus="",guidedStage="";
+        public PlayerSettings preferences;
+        public int observerPlayer;
+        public CaptureReplay replay;
+        public CaptureLan lan;
+        public CaptureScenario scenario;
 
-        // Detached player-owned state; this does not refresh UI or inspect enemy information.
+        // Detached observer-owned state; this does not refresh UI or inspect
+        // another player's production, units or unseen neutral information.
         public static CaptureMetadata Read(GameController game)
         {
             var w = game.World;
@@ -39,6 +50,9 @@ namespace Frontier
                 paused = game.IsPaused, seed = w?.Seed ?? 0, worldTime = w?.Time ?? 0,
                 hudResources = game.Hud.ResourceSummary, hudUpdatedFrame = game.Hud.ResourceSummaryFrame,
                 hudWorldTime = game.Hud.ResourceSummaryTime, hudMatchId = game.Hud.ResourceSummaryMatchId,
+                skirmishMode=game.SkirmishMode,preferences=game.Settings.Current,
+                observerPlayer=game.ObserverPlayer,replay=CaptureReplay.Read(game),lan=CaptureLan.Read(game),scenario=CaptureScenario.Read(game),
+                guidedId=game.Guided?.Definition.Id??"",guidedStatus=game.Guided?.Status.ToString()??"",guidedStage=game.Guided?.Stage?.Title??"",
                 camera = new CaptureCamera
                 {
                     focus = game.Controls.CameraFocus,
@@ -48,19 +62,24 @@ namespace Frontier
                 }
             };
             if (w == null || game.InMenu) return result;
+            result.mapId=w.MapId;result.generatedTerrain=w.Layout.Generated;result.requiresTransport=w.Layout.RequiresTransport;result.mapGeneratorVersion=w.Layout.Generated?MapGeneration.Version:0;
+            result.objective=SnapshotCodec.Clone(w.MapObjective);
             result.aiDifficulty=game.Simulation?.Difficulty.Id??"";
             result.aiDecisionSeconds=game.Simulation?.Difficulty.DecisionSeconds??0;
             result.aiArmySeconds=game.Simulation?.Difficulty.ArmySeconds??0;
-            result.hasPlayer = true; result.resources = w.Players[0].resources;
-            result.population = PopulationSnapshot.From(w.Players[0]);
+            result.players=new CapturePlayer[w.Players.Length];for(int i=0;i<w.Players.Length;i++){var p=w.Players[i];result.players[i]=new CapturePlayer{slot=i,team=p.team,civilization=p.civilization,resigned=p.resigned,eliminated=p.eliminated,winner=w.IsPlayerWinner(i)};}
+            int observer=game.ObserverPlayer;
+            result.hasPlayer = true; result.resources = w.Players[observer].resources;
+            result.population = PopulationSnapshot.From(w.Players[observer]);
             var buildings = new List<CaptureProduction>();
             foreach (var e in w.Entities)
             {
-                if (!e.Alive || e.owner != 0 || e.def.kind != EntityKind.Building) continue;
+                if (!e.Alive || e.owner != observer || e.def.kind != EntityKind.Building) continue;
                 var b = new CaptureProduction
                 {
                     entity = e.id, definition = e.def.id, position = e.position, hp = e.hp,
-                    construction = e.construction, queue = new CaptureProductionJob[e.queue.Count]
+                    construction = e.construction, factoryMode=e.def.id=="factory"?e.factoryMode:"",
+                    factoryElapsed=e.def.id=="factory"?e.factoryElapsed:0, queue = new CaptureProductionJob[e.queue.Count]
                 };
                 for (int i = 0; i < e.queue.Count; i++)
                 {
@@ -71,13 +90,118 @@ namespace Frontier
                 buildings.Add(b);
             }
             result.production = buildings.ToArray();
+            var units=new List<CaptureUnit>();foreach(var unit in w.Entities)if(unit.Alive&&unit.owner==observer&&unit.def.kind==EntityKind.Unit)
+            {
+                var order=unit.orders.Count>0?unit.orders.Peek():null;
+                var patient=w.Get(unit.healingTarget);bool patientVisible=w.IsVisible(observer,patient);
+                int orderTarget=order?.target??0;
+                if(order?.kind==OrderKind.Heal&&!w.IsVisible(observer,w.Get(orderTarget)))orderTarget=0;
+                units.Add(new CaptureUnit{entity=unit.id,definition=unit.def.id,status=unit.status,position=unit.position,hp=unit.hp,maxHp=w.MaxHp(unit),garrisonedIn=unit.garrisonedIn,cargo=unit.occupants.ToArray(),load=unit.def.transportShip?w.TransportLoad(unit):0,capacity=unit.def.transportCapacity,order=order?.kind.ToString()??"",target=orderTarget,destination=order?.point??unit.position,
+                    healer=unit.Healer,autoHeal=unit.autoHeal,canReceiveHealing=unit.def.canReceiveHealing,
+                    healRate=unit.Healer?w.HealRate(unit):0,healRange=unit.Healer?w.HealRange(unit):0,
+                    healingTarget=patientVisible?unit.healingTarget:0,healingTargetVisible=patientVisible,
+                    healingReviewAt=unit.healingReviewAt,healingBlockedUntil=unit.healingBlockedUntil,
+                    healingRecoverySeconds=Mathf.Max(0,Mathf.Max(unit.healingBlockedUntil,patientVisible?patient.healingBlockedUntil:0)-w.Time),
+                    healingPauseReason=unit.Healer?(patient==null?"":patientVisible?w.HealingPauseReason(unit,patient):"Patient not currently visible"):"",
+                    work=unit.work.kind.ToString(),workTime=unit.work.time});
+            }result.units=units.ToArray();
+            var neutral=new List<CaptureNeutralService>();foreach(var state in w.NeutralAllies)if(w.IsVisible(observer,w.Get(state.site)))
+            {var job=state.owner==observer&&state.jobs.Count>0?state.jobs[0]:null;neutral.Add(new CaptureNeutralService{id=state.id,site=state.site,owner=state.owner,claimant=state.claimant,contested=state.contested,claimProgress=state.claimant==observer?state.claimProgress:0,service=job?.kind??"",item=job?.item??"",elapsed=job?.elapsed??0,duration=job?.duration??0});}result.neutralServices=neutral.ToArray();
             return result;
         }
     }
+    [Serializable] public sealed class CaptureScenario
+    {
+        public bool authored,editorOpen,playtest;
+        public string id="",title="",contentHash="",draftHash="";
+        public int winner=-1;
+        public ScenarioObjectiveState[] objectives=Array.Empty<ScenarioObjectiveState>();
+        public ScenarioTriggerState[] triggers=Array.Empty<ScenarioTriggerState>();
+        public static CaptureScenario Read(GameController game)
+        {
+            var result=new CaptureScenario{authored=game.World?.HasScenario==true,editorOpen=game.ScenarioEditorOpen,playtest=game.IsScenarioPlaytest};
+            if(game.ScenarioEditorOpen&&game.ScenarioEditor!=null)result.draftHash=ScenarioCodec.ContentHash(game.ScenarioEditor.Document);
+            if(!result.authored)return result;
+            var doc=game.World.ScenarioDocument;var state=game.World.ScenarioState;
+            result.id=doc.id;result.title=doc.name;result.contentHash=game.World.ScenarioHash;result.winner=state.winner;
+            var visible=new List<ScenarioObjectiveState>();foreach(var row in state.objectiveStates)
+            {var goal=Array.Find(doc.objectives,o=>o.id==row.id);if(goal!=null&&goal.player==game.ObserverPlayer)visible.Add(row);}
+            result.objectives=visible.ToArray();result.triggers=state.triggerStates;
+            // No entity bindings or hidden actor positions enter observer metadata.
+            return result;
+        }
+    }
+    [Serializable] public sealed class CaptureLan
+    {
+        public string role="",connection="",projectedDigest="";
+        public int localPlayer,pending,completedStep,port;
+        public long revision,eventCursor;
+        public bool connected,localMenuPaused,sharedPaused,hasSimulation,hasRecorder;
+        public double rttMilliseconds;
+        public static CaptureLan Read(GameController game)=>new CaptureLan
+        {
+            role=game.SessionRole.ToString(),connection=game.LanConnectionText,localPlayer=game.LocalPlayerSlot,
+            pending=game.LanPendingCount,completedStep=game.LanCompletedStep,port=game.IsLan?game.LanPort:0,
+            revision=game.LanStateRevision,eventCursor=game.LanEventCursor,projectedDigest=game.LanProjectedDigest,
+            connected=game.IsLanConnected,localMenuPaused=game.LocalMenuPaused,sharedPaused=game.World?.Paused??false,
+            hasSimulation=game.Simulation!=null,hasRecorder=game.Recorder!=null,rttMilliseconds=game.LanRttMilliseconds
+        };
+    }
+    [Serializable] public sealed class CaptureReplay
+    {
+        public bool watching,recording,seek,paused,worldPaused,verified,incomplete;
+        public string segment="",file="",lastSavedFile="",error="",incompleteReason="",fileError="",libraryError="";
+        public int startStep,endStep,currentStep,observerPlayer;
+        public float speed=1;
+        public ReplayIdentity identity;
+        public static CaptureReplay Read(GameController game)
+        {
+            var playback=game.Playback;var recorder=game.Recorder;
+            var result=new CaptureReplay
+            {
+                watching=game.IsWatching,recording=recorder?.IsRecording??false,
+                paused=game.IsPaused,worldPaused=game.World?.Paused??false,
+                currentStep=game.Simulation?.StepCount??0,observerPlayer=game.ObserverPlayer,
+                speed=game.IsWatching?game.ReplaySpeed:game.Autoplay?game.SimulationSpeed:1,
+                fileError=game.ReplayFileError,libraryError=game.ReplayLibraryError,lastSavedFile=game.LastReplayFile,
+                identity=game.CurrentReplayIdentity()
+            };
+            if(playback!=null)
+            {
+                result.segment=game.WatchingDocument.segmentId;result.file=game.ReplayFile;
+                result.startStep=playback.StartStep;result.endStep=playback.EndStep;result.currentStep=playback.CurrentStep;
+                result.seek=playback.IsSeeking;result.verified=playback.Verified;result.error=playback.Error;
+                result.incomplete=game.WatchingDocument.incomplete;result.incompleteReason=game.WatchingDocument.incompleteReason;
+            }
+            else if(recorder!=null)
+            {
+                result.segment=recorder.SegmentId;result.startStep=recorder.StartStep;result.endStep=recorder.RecordedEndStep;
+                result.error=recorder.Error;result.incomplete=!string.IsNullOrEmpty(recorder.Error);result.incompleteReason=recorder.Error;
+                // A previous match's saved path must not be associated with a
+                // fresh recorder. Only a successful save of this segment counts.
+                string candidate=ReplayStore.PathFor(game.ReplayDirectory,recorder.SegmentId);
+                if(game.LastReplayFile==candidate)result.file=game.LastReplayFile;
+            }
+            return result;
+        }
+    }
+    [Serializable] public sealed class CaptureUnit
+    {
+        public int entity,garrisonedIn,load,capacity,target,healingTarget;
+        public string definition,status,order,work,healingPauseReason;
+        public Vector2 position,destination;
+        public float hp,maxHp,healRate,healRange,healingReviewAt,healingBlockedUntil,healingRecoverySeconds,workTime;
+        public bool healer,autoHeal,canReceiveHealing,healingTargetVisible;
+        public int[] cargo;
+    }
+    [Serializable] public sealed class CapturePlayer
+    {public int slot,team;public string civilization;public bool resigned,eliminated,winner;}
+    [Serializable] public sealed class CaptureNeutralService
+    {public string id,service,item;public int site,owner,claimant;public bool contested;public float claimProgress,elapsed,duration;}
     [Serializable] public sealed class CaptureCamera
     { public Vector2 focus, pointer; public bool applicationFocused; public float orthographicSize; }
     [Serializable] public sealed class CaptureProduction
-    { public int entity; public string definition; public Vector2 position; public float hp, construction; public CaptureProductionJob[] queue; }
+    { public int entity; public string definition,factoryMode; public Vector2 position; public float hp, construction,factoryElapsed; public CaptureProductionJob[] queue; }
     [Serializable] public sealed class CaptureProductionJob
     { public string kind, item; public int count, population; public float elapsed, duration; }
 
@@ -118,7 +242,7 @@ namespace Frontier
                     metadata.pngSha256 = BitConverter.ToString(hash.ComputeHash(png)).Replace("-", "").ToLowerInvariant();
                 string stem = "Frontier-" + DateTime.UtcNow.ToString("yyyyMMdd-HHmmss-fff") + "-f" + metadata.captureFrame + "-" + Guid.NewGuid().ToString("N");
                 metadata.pngFile = stem + ".png";
-                string directory = Path.Combine(Application.persistentDataPath, "Captures");
+                string directory = game.CaptureDirectory;
                 Directory.CreateDirectory(directory);
                 // JSON is the completion record. A partial PNG without JSON must not be treated as a valid pair.
                 string path = Path.Combine(directory, stem);

@@ -1,0 +1,41 @@
+{
+  "actualReleasePackaged": false,
+  "checks": [
+    "regular/executable/empty-directory/internal-link ZIP CRC SHA type mode exact headers stable inputs",
+    "exclusive ZIP output",
+    "pending final seal",
+    "unsafe/secret filename ../escape",
+    "unsafe/secret filename /absolute",
+    "unsafe/secret filename root/../escape",
+    "unsafe/secret filename root/back\\slash",
+    "unsafe/secret filename root/.env",
+    "unsafe/secret filename root/id_rsa",
+    "unsafe/secret filename root/key.pem",
+    "case alias",
+    "symlink escape",
+    "symlink cycle",
+    "local central filename mismatch",
+    "Unicode path extra forbidden",
+    "ZIP extra duplicate",
+    "complete passing XML actual cases",
+    "fake XML summary",
+    "skipped XML",
+    "duplicate JSON property",
+    "nonfinite JSON",
+    "only old numeric Evidence batches omitted",
+    "runtime input scope",
+    "immutable Git tree partition blobs executable modes symlink and export-ignore-resistant source ZIP",
+    "symbolic commit refused",
+    "runtime symlink refused",
+    "original input mutation"
+  ],
+  "count": 27,
+  "createdUtc": "2026-10-06T13:07:32.314873+00:00",
+  "scope": "Synthetic local fixture boundaries only; no final source/build/tests/native/matrix acceptance.",
+  "status": "fixture_self_tests_passed",
+  "tool": {
+    "bytes": 67387,
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.15.0/Candidate1/Diagnostics/package072-final1.py",
+    "sha256": "8144e8f5bb75c88e6f77dfedb15fb7f52a7384a27fe4f5845e5655da67b53f4c"
+  }
+}

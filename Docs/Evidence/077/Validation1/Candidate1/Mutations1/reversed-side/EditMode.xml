@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-09 23:09:46Z" end-time="2026-10-09 23:09:47Z" duration="0.9761705">
+  <test-suite type="TestSuite" id="1000" name="Frontier Reckoning" fullname="Frontier Reckoning" runstate="Runnable" testcasecount="1372" result="Failed" site="Child" start-time="2026-10-09 23:09:46Z" end-time="2026-10-09 23:09:47Z" duration="0.976171" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="2626" name="Frontier.EditMode.dll" fullname="/Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Library/ScriptAssemblies/Frontier.EditMode.dll" runstate="Runnable" testcasecount="1372" result="Failed" site="Child" start-time="2026-10-09 23:09:46Z" end-time="2026-10-09 23:09:47Z" duration="0.960418" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="68425" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="2627" name="Frontier" fullname="Frontier" runstate="Runnable" testcasecount="1366" result="Failed" site="Child" start-time="2026-10-09 23:09:46Z" end-time="2026-10-09 23:09:47Z" duration="0.950463" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="2628" name="Tests" fullname="Frontier.Tests" runstate="Runnable" testcasecount="1366" result="Failed" site="Child" start-time="2026-10-09 23:09:46Z" end-time="2026-10-09 23:09:47Z" duration="0.941282" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="2032" name="RiverBankAsymmetry077Tests" fullname="Frontier.Tests.RiverBankAsymmetry077Tests" classname="Frontier.Tests.RiverBankAsymmetry077Tests" runstate="Runnable" testcasecount="17" result="Failed" site="Child" start-time="2026-10-09 23:09:46Z" end-time="2026-10-09 23:09:47Z" duration="0.918817" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="2050" name="LiteralEasternMeanderHasItsInnerBankWestAndOuterBankEastInTheStoredQuery" fullname="Frontier.Tests.RiverBankAsymmetry077Tests.LiteralEasternMeanderHasItsInnerBankWestAndOuterBankEastInTheStoredQuery" methodname="LiteralEasternMeanderHasItsInnerBankWestAndOuterBankEastInTheStoredQuery" classname="Frontier.Tests.RiverBankAsymmetry077Tests" runstate="Runnable" seed="462966609" result="Failed" start-time="2026-10-09 23:09:46Z" end-time="2026-10-09 23:09:47Z" duration="0.912914" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Stored/query west offset must be the known inner side
+  Expected: greater than 0.75f
+  But was:  0.0f
+]]></message>
+                <stack-trace><![CDATA[at Frontier.Tests.RiverBankAsymmetry077Tests.LiteralEasternMeanderHasItsInnerBankWestAndOuterBankEastInTheStoredQuery () [0x00176] in /Users/Apple_501/Documents/Codex/work/frontier-reckoning/project/Assets/Frontier/Tests/EditMode/RiverBankAsymmetry077Tests.cs:202
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[Saving results to: /Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

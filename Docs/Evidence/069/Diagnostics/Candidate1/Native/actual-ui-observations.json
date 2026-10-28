@@ -1,0 +1,165 @@
+{
+  "schema": 1,
+  "buildGuid": "9fe1c3fe57614b13a1fd11bfaf2d9d8f",
+  "appVersion": "0.12.0",
+  "sourceCommit": "7b5c58c",
+  "sourceFingerprint": "fb4be2644846677a24aeb110026c0d47bac627b9fa523c6a758ebe892cbb4983",
+  "recordedAtUtc": "2026-10-05T18:56:25.761588+00:00",
+  "scope": "Root observed native Candidate1 pre-fix diagnostics; not final release acceptance. Immutable stages and process receipts are independently inspected.",
+  "observations": [
+    {
+      "phase": "initial",
+      "screenshot": "UI/01-workshop-open.png",
+      "action": "Launch owned 0.12 app with frontierScenarioEditor/winding; inspect workshop",
+      "result": "Observed terrain canvas, 2 starts, 1 winding river, 100 authored objects."
+    },
+    {
+      "phase": "terrain",
+      "screenshot": "UI/02-terrain-stroke.png",
+      "action": "Sky.drag canvas (384,414)->(409,434), then F9",
+      "result": "A single 50 cm raising stroke was visible; F9 H0->H1."
+    },
+    {
+      "phase": "undo",
+      "screenshot": "UI/03-terrain-undo.png",
+      "action": "Click UNDO then F9",
+      "result": "Original H0 restored with one undo."
+    },
+    {
+      "phase": "redo",
+      "screenshot": "UI/04-terrain-redo.png",
+      "action": "Click REDO then F9",
+      "result": "Edited H1 restored with one redo."
+    },
+    {
+      "phase": "save",
+      "screenshot": "UI/05-terrain-saved.png",
+      "action": "Click SAVE; retain exact portable output",
+      "result": "Saved status visible and owned library file created."
+    },
+    {
+      "phase": "river",
+      "screenshot": "UI/07-move-river-bend.png",
+      "action": "Choose move bend; set radius10; drag (677,574)->(687,574)",
+      "result": "Selected control174 and nearby river controls moved. Saved immutable stage02."
+    },
+    {
+      "phase": "mission",
+      "screenshot": "UI/12-goal-trigger-authored.png",
+      "action": "GUI add manual required goal, set title; add 5s Food+50 and 180s complete_objective triggers",
+      "result": "Two finite single-use triggers authored in real InputFields and choices."
+    },
+    {
+      "phase": "validation-rejection",
+      "screenshot": "UI/13-ready-to-play.png",
+      "action": "Click VALIDATE after river change",
+      "result": "Rejected object95 on changed river bank. This screenshot is a rejection, not readiness."
+    },
+    {
+      "phase": "shore-adaptation",
+      "screenshot": "UI/14-shore-tree-relocated.png",
+      "action": "Drag object95; then object96/101 after actual validation rejections",
+      "result": "Three resource positions moved onto dry bank."
+    },
+    {
+      "phase": "treasure-adaptation",
+      "screenshot": "UI/18-treasure-with-guards-relocated.png",
+      "action": "Choose treasure pointer, drag treasure5 X90->96",
+      "result": "Both guards moved together with treasure; original rewards retained."
+    },
+    {
+      "phase": "ready",
+      "screenshot": "UI/19-map-ready.png",
+      "action": "Click SAVE and VALIDATE then F9",
+      "result": "Ready to play shown; accepted draft H=1cf6f7b7565f5cdc09696c1b2fe13cee267c2c54adb0240067c4651a385c42b4."
+    },
+    {
+      "phase": "playtest",
+      "screenshot": "UI/20-custom-playtest-start.png",
+      "action": "Click PLAYTEST; F9; Escape pause",
+      "result": "Owned World copy opened at 0.9s with active objective, original editor draft retained."
+    },
+    {
+      "phase": "real-order",
+      "screenshot": "UI/22-real-move-order.png",
+      "action": "Resume; T; select worker at (898,575); right click (670,520); F9",
+      "result": "Move order accepted; worker moved. Food50 reward had occurred, balance350 with no P0 economic spending."
+    },
+    {
+      "phase": "checkpoint",
+      "screenshot": "UI/24-slot1-saved.png",
+      "action": "Pause at23s; SAVE MATCH; click empty SLOT1",
+      "result": "Actual pre-end checkpoint saved after reward."
+    },
+    {
+      "phase": "return",
+      "screenshot": "UI/25-returned-to-original-draft.png",
+      "action": "BACK; RETURN TO EDITOR; F9",
+      "result": "Returned to original authored layout/hash."
+    },
+    {
+      "phase": "history",
+      "screenshot": "UI/26-returned-draft-undo-redo.png",
+      "action": "UNDO/F9; REDO/F9",
+      "result": "Original session undo history remained usable; redo restored saved mission H."
+    },
+    {
+      "phase": "normal-exit",
+      "screenshot": "UI/26-returned-draft-undo-redo.png",
+      "action": "super+q; wait owned process34769",
+      "result": "Normal exitCode0; latest portable draft persisted."
+    },
+    {
+      "phase": "source-absence",
+      "screenshot": "UI/27-cold-process-menu.png",
+      "action": "Move library map and latest into retained Protected files; launch new PID35193 without ScenarioPath/editor",
+      "result": "Both original source paths absent at cold restore. Main menu LOAD label was obscured by WORKSHOP."
+    },
+    {
+      "phase": "cold-load",
+      "screenshot": "UI/29-cold-checkpoint-restored.png",
+      "action": "BEGIN builtin only to access pause LOAD; choose SLOT1",
+      "result": "Embedded custom map and runtime restored at step230/time23.00005, paused, with source files absent."
+    },
+    {
+      "phase": "continued",
+      "screenshot": "UI/31-cold-continued-world.png",
+      "action": "RESUME; begin F8 observational capture; normal actual simulation",
+      "result": "Advanced to step823/time82.299316; Food350, once trigger fires1."
+    },
+    {
+      "phase": "goal",
+      "screenshot": "UI/32-cold-goal-progress.png",
+      "action": "Continue at1x to actual180s goal completion; F9",
+      "result": "VICTORY and completed goal visible. Result reason incorrectly said Elimination or resignation, a genuine UI defect."
+    },
+    {
+      "phase": "after-event-proof",
+      "screenshot": "UI/34-slot2-after-continuation.png",
+      "action": "Return menu; load SLOT1 again in same process; resume to38s; pause and SAVE SLOT2",
+      "result": "Additional same-process continuation checkpoint for full event-prefix comparison; distinct from first cold run to180s."
+    },
+    {
+      "phase": "cold-editor",
+      "screenshot": "UI/35-cold-latest-draft-open.png",
+      "action": "Normal quit PID35193 exit0; copy unmodified native latest back; new PID35646 frontierScenarioEditor with no ScenarioPath; F9",
+      "result": "Cold editor read persisted latest H correctly; normal exit0."
+    }
+  ],
+  "failures": [
+    {
+      "id": "menu-load-workshop-overlap",
+      "impact": "The left third of LOAD opened workshop and obscured LOAD text. Candidate1 excluded from final release."
+    },
+    {
+      "id": "scenario-result-reason",
+      "impact": "Real goal victory used elimination text. Fixed in next runtime commit."
+    }
+  ],
+  "limitations": [
+    "Controlled small custom scenario; no natural full-match or hardware portability claim.",
+    "Both library JSON and latest absent during cold restore; retained copies and event fixtures were preserved.",
+    "Editor undo history persists only in same process; cold process restores document, not historical undo stack.",
+    "No private Account or Preferences files existed before/after the cold-read checks."
+  ]
+}

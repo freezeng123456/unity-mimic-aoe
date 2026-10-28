@@ -1,0 +1,51 @@
+# Frontier Reckoning — private development candidate 076
+
+## Paid medical support and army recovery
+- Four classic civilizations: Ottoman Mosque/Imam and British/Dutch/French Church/Priest; original procedural silhouettes, healing gesture, HUD/manual Heal/AutoHeal, combat lock, navigation, non-stacking receipts, lifecycle cleanup and paid research.
+- AI pays for doctors after military/economic reserves and uses real retreat/heal/85%-return orders; persistent retry prevents immediate recovery-loop reentry.
+- Current schema5 save, replay receipts, authority/LAN full/delta and visibility validation are covered separately from native GUI evidence.
+
+## Exact validation identity
+- Runtime commit: `b1a9b6a977a60b63cd3e9f9632179c1787f3d00d`.
+- Immutable source ZIP snapshot: `f0f829bc2ae5550fb13f3c1ebab403652c921065`.
+- 774-input fingerprint: `dabf34d26490cece872959764b8b9e515749584b180f3d7899f38d79b69a6f8f`.
+- Actual macOS 0.19.0 Build1 GUID: `a86c515f3ab040649ea505e507193ff3`.
+- Focused4:83 Edit +29 Play. Full1:1347 Edit +448 Play =1795 passing, unchanged source; first failed focused attempts remain original diagnostics.
+- Two default ordinary AI observations:5 paid doctors,34 strict same-patient retreat→positive healing→85% return→Fire chains. Frontier natural P0 win; Winding2400s observation cap is not a win. No matched-seed balance or native FPS claim.
+- Actual British Winding42 GUI:150W Church,800F LocalDefence AgeII,100C Priest;87 automatic+2 manual HP before save297; old PID quit, new PID loaded same order and continued153HP to450/Idle. Thirty exact F9 pairs retained; first unsuccessful restarted human run remains visible, not a natural loss.
+- Actual recording-library playback: opening0→3813 at4x and cold3813→4004 at1x continuously verified without seek. Not a whole human match win.
+
+## Private Google Drive delivery
+[Owner-only 0.19.0 Candidate1 folder](https://drive.google.com/drive/folders/1CgcNrTzLaVKXoDwtBTaYJ1I2mD7Wegnv) — 12 actual files, 294999523 bytes. Every file was read back completely and byte/SHA matched; folder child ID set and owner-only permission metadata matched, with no ACL changes.
+
+Original complete evidence.zip is122090550 bytes, so original Delivery1 exit2 and its size-only audit FAIL remain unchanged. A separate lossless transport audit passed all four ZIP member CRC/EOF/SHA/modes and the strict per-transfer-file limit. The cloud uses two ordered binary fragments; all evidence is retained, not trimmed.
+
+```sh
+cat evidence.zip.part01 evidence.zip.part02 > evidence.zip
+shasum -a 256 evidence.zip
+```
+
+Expected full evidence SHA:`101a05650de14ccb5588bd577ae130318d5ee544537767c3880b4deb2428bb7a`. README and manifests inside immutable packages are pre-upload snapshots; subsequent delivery records stay outside them.
+
+## Remaining work and boundaries
+- Actual medical bridge/railing, garrison and paid embark/disembark cold lifecycles; Ottoman native UI; native out-of-range approach and healed return-to-fire.
+- More civilizations/maps and matched medical-off balance comparisons; isolate observed2.2s headless slow steps; actual native frame-time, whole manual match and two physical Macs remain independent.
+- Retains 075 source/build/test/native and nine-file delivery identities; no renaming old results into076.
+- Existing private `codex/land-rts-completion` branch and this open draft PR only. No main merge, public release, deployment or sharing change. Overall AoE3-content-gap goal remains active.
+
+
+---
+
+## 077 / 0.20.0 - Winding asymmetric banks (private Candidate1)
+
+- Frozen portable-source snapshot: `a6a50c3c8827c248762eb5fde292dd7a9cc8cb31`; runtime/test/build source: `a74fc436dc08c50f9d23dc506df92f7ff2942d76`, 784 inputs / SHA256 `8c858fe82932c1c4909af27aea8dab71a183812902c937ee4931003f33840335`. Later documentation-only receipts do not rebuild the frozen ZIPs.
+- Winding inner-bend sediment shoulder, narrowed outer wet bank/low slope, shared bank-layer query and separate warm-sand material cache. Protected bridge/harbor-pad heights and layer weights remain, but Winding sand tint deliberately changes. Other river layouts/navigation/water/resources and harbor/ship models remain unchanged. Strict version 0.20.0; no cross-version save migration claim.
+- Final actual Full2: 1372 EditMode + 452 PlayMode = **1824/1824**, exit0/source stable; exact old1803 cases plus21 new cases retained. Bank2 20/20. Original Full1 (1823 pass/1 fail, exact Color comparison) remains intact; test-only RGBA1e-6 precision correction, no production palette change from Render2. Actual mutation failures, compatibility runs, both URP studies and all60 original URP PNGs retain their own source identities.
+- Actual macOS arm64 Development Mono Build1 exit0, GUID `6d3fd495bd8f48be852c1e6c62bcb02f`; all298 app files and strict codesign verified. Not notarized Release/FPS acceptance.
+- Ordinary British/Ottoman Winding42 native PID10729: Explorer8 actual Move arrival, **after-arrival** Hold, 26/16/26 camera and seven original F9 pairs; menu_exit520-event ledger matches the recorded segment, visible Quit/log/PID absence. OS exit code unknown; no replay playback/Verified claim. Bounded independent native audit accepted; no multi-army/targeted-attack, paid-harbor, medical, full-human-match or FPS acceptance.
+- Three immutable logical ZIPs and ordered lossless evidence transport passed independent local audit. Source36387734B, Mac75998128B, evidence181144431B; evidence parts67108863/67108863/46926705B, never independently extractable ZIPs. First package preflight and first independent-audit predicate failure remain diagnostic originals.
+- **Private Google Drive:** https://drive.google.com/drive/folders/19LXjSvkWNkk8KbRMSKqLR1K0c3G0RLZt . All17 planned files /297226713B were actually downloaded in full with exact SHA, owner-only/parent/name and exact folder child-ID checks; remote evidence parts reassemble byte-for-byte to the original ZIP. Existing076 C1 twelve child IDs and all previous release folders remain unchanged. Connector materialized filename/MIME differences are separately bounded; remote filenames and original content hashes remain exact.
+- Historical0.19 C2: River3 8/8, Full1803/1803 and BuildGUIDed29410c2b27484abeac486c8f57b81b preserved. Ottoman native only completed paid100W Mosque; Explorer died,0Heal, so Imam/age/medical-return chain remains incomplete. This is not reclassified as077 success.
+- Remaining sequence: resolve outer water-contact polygon notches with an independently tested geometry slice; curved-map bridge/army/harbor gameplay; harbor/ship silhouettes; tropical bay, tributaries and estuary. The four-part river refinement and broader AoE-inspired content goal are **not complete**.
+
+Existing private development branch/open draft PR only; no main merge, public release, deployment, visibility or permission changes. See Docs/Content-077.md, Verification-077.md, Native-077.md, Delivery-077.md and Next-Shoreline078-Plan.md.

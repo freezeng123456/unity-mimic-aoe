@@ -1,0 +1,262 @@
+{
+  "schema": "scouting075-observation-detail-v1",
+  "consistencyAudit": {
+    "path": "/Users/Apple_501/Documents/Codex/outputs/frontier-reckoning-0.18.0/Candidate1/Diagnostics/check075-observed-001.json",
+    "sha256": "bc1765a911ba0f04d47d77784ecdd17ebab72a026112ec53688503de33b3c1e3"
+  },
+  "scope": "Closed ordinary AI observations only; Native1 was not inspected. Event and sample extraction supplements the consistency audit.",
+  "cases": [
+    {
+      "id": "river-bend-dutch42",
+      "worldTime": 2400.090576171875,
+      "winner": -1,
+      "terminalEvents": [],
+      "players": [
+        {
+          "player": 0,
+          "paidBirths": [
+            {
+              "time": 180.60182189941406,
+              "producer": 2,
+              "unit": 97,
+              "definition": "envoy"
+            },
+            {
+              "time": 294.6087646484375,
+              "producer": 2,
+              "unit": 109,
+              "definition": "envoy"
+            },
+            {
+              "time": 447.01806640625,
+              "producer": 2,
+              "unit": 136,
+              "definition": "envoy"
+            }
+          ],
+          "scoutDeathEvents": [
+            {
+              "time": 276.5076599121094,
+              "id": 97
+            },
+            {
+              "time": 431.21710205078125,
+              "id": 109
+            },
+            {
+              "time": 948.1155395507812,
+              "id": 136
+            }
+          ],
+          "stealthEntries": [],
+          "finalScoutEntities": [
+            {
+              "id": 97,
+              "definition": "envoy",
+              "dead": true,
+              "hp": 0.0,
+              "status": "Waiting for scout frontier",
+              "stealth": false,
+              "position": {
+                "x": 102.3516616821289,
+                "y": 102.23757934570312
+              },
+              "orders": [
+                16
+              ]
+            },
+            {
+              "id": 109,
+              "definition": "envoy",
+              "dead": true,
+              "hp": 0.0,
+              "status": "Waiting for scout frontier",
+              "stealth": false,
+              "position": {
+                "x": 84.11200714111328,
+                "y": 98.22181701660156
+              },
+              "orders": [
+                16
+              ]
+            },
+            {
+              "id": 136,
+              "definition": "envoy",
+              "dead": true,
+              "hp": 0.0,
+              "status": "Scouting",
+              "stealth": false,
+              "position": {
+                "x": 110.31443786621094,
+                "y": 12.317169189453125
+              },
+              "orders": [
+                16
+              ]
+            }
+          ],
+          "exploredCellsOpening": 2356,
+          "exploredCellsFinal": 16326,
+          "peakSampledConcealedScouts": 0,
+          "finalAge": 4,
+          "resigned": false,
+          "eliminated": false
+        },
+        {
+          "player": 1,
+          "paidBirths": [
+            {
+              "time": 181.80189514160156,
+              "producer": 10,
+              "unit": 98,
+              "definition": "envoy"
+            }
+          ],
+          "scoutDeathEvents": [],
+          "stealthEntries": [],
+          "finalScoutEntities": [
+            {
+              "id": 98,
+              "definition": "envoy",
+              "dead": false,
+              "hp": 120.0,
+              "status": "Waiting for scout frontier",
+              "stealth": false,
+              "position": {
+                "x": 122.0,
+                "y": 48.0
+              },
+              "orders": [
+                16
+              ]
+            }
+          ],
+          "exploredCellsOpening": 2296,
+          "exploredCellsFinal": 16378,
+          "peakSampledConcealedScouts": 0,
+          "finalAge": 5,
+          "resigned": false,
+          "eliminated": false
+        }
+      ]
+    },
+    {
+      "id": "winding-french44",
+      "worldTime": 1907.38134765625,
+      "winner": 1,
+      "terminalEvents": [
+        {
+          "time": 1907.38134765625,
+          "kind": "PlayerEliminated",
+          "player": 0,
+          "entity": 0,
+          "message": "All units and buildings eliminated",
+          "amount": 0.0,
+          "target": 0
+        },
+        {
+          "time": 1907.38134765625,
+          "kind": "MatchEnded",
+          "player": 1,
+          "entity": 0,
+          "message": "All opposing factions eliminated",
+          "amount": 0.0,
+          "target": 0
+        }
+      ],
+      "players": [
+        {
+          "player": 0,
+          "paidBirths": [
+            {
+              "time": 483.62030029296875,
+              "producer": 1,
+              "unit": 216,
+              "definition": "native_scout"
+            }
+          ],
+          "scoutDeathEvents": [
+            {
+              "time": 1907.38134765625,
+              "id": 216
+            }
+          ],
+          "stealthEntries": [
+            {
+              "time": 486.02044677734375,
+              "id": 216
+            }
+          ],
+          "finalScoutEntities": [
+            {
+              "id": 216,
+              "definition": "native_scout",
+              "dead": true,
+              "hp": 0.0,
+              "status": "Eliminated",
+              "stealth": false,
+              "position": {
+                "x": 125.43392181396484,
+                "y": 67.01432037353516
+              },
+              "orders": []
+            }
+          ],
+          "exploredCellsOpening": 1859,
+          "exploredCellsFinal": 15427,
+          "peakSampledConcealedScouts": 1,
+          "finalAge": 4,
+          "resigned": false,
+          "eliminated": true
+        },
+        {
+          "player": 1,
+          "paidBirths": [
+            {
+              "time": 1743.9212646484375,
+              "producer": 52,
+              "unit": 479,
+              "definition": "native_scout"
+            }
+          ],
+          "scoutDeathEvents": [],
+          "stealthEntries": [
+            {
+              "time": 1745.7208251953125,
+              "id": 479
+            }
+          ],
+          "finalScoutEntities": [
+            {
+              "id": 479,
+              "definition": "native_scout",
+              "dead": false,
+              "hp": 100.0,
+              "status": "Scouting",
+              "stealth": true,
+              "position": {
+                "x": 40.67797088623047,
+                "y": 112.57742309570312
+              },
+              "orders": [
+                16
+              ]
+            }
+          ],
+          "exploredCellsOpening": 1859,
+          "exploredCellsFinal": 16384,
+          "peakSampledConcealedScouts": 1,
+          "finalAge": 5,
+          "resigned": false,
+          "eliminated": false
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    "Payment/refund float32 accumulations match final spent/refunded; final wallet matches final sample. The aggregate income-minus-spend identity is not exact (per-tick float32 additions are not reconstructible from grouped income events), and the residuals are preserved by the consistency audit.",
+    "Dutch reached the declared 2400-second cap without a winner; French ended naturally with player 1 winner.",
+    "These are two standard both-AI runs, not native gameplay, full-map exploration, balance proof, native FPS, or cold-load acceptance."
+  ]
+}

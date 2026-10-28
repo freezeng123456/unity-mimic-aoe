@@ -1,0 +1,6570 @@
+{
+  "schema": 1,
+  "recordedAtUtc": "2026-10-04T23:45:21.628406+00:00",
+  "status": "partial_fleet_flow_evidence_verified",
+  "scope": "Completed native controlled fleet continuation only: prior cold/boarding/landing audit retained; first combat death preserved as failed repair attempt; reload branch target Attack and paid repair independently traced through actual events, checkpoint state, final-GUID F9 and frozen Player log. No final all-scenario/native/performance/delivery claim.",
+  "build": {
+    "path": "Native/client-build.json",
+    "bytes": 1147,
+    "sha256": "65016b7f95f8a6226dd4b78b93edde3bb039747da0b2a0471f54d18e4990dbd6",
+    "appVersion": "0.8.0",
+    "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+    "runtimeCommit": "eb19da3e9cad898240a52db152574b2e762410c9",
+    "sourceFingerprint": "fdf7e8ff5976a4e8235f86282d2f8e3ea1537d33ba2388839ebb516fdce1a60c"
+  },
+  "priorAudit": {
+    "path": "native-flow-audit-partial.json",
+    "bytes": 42503,
+    "sha256": "c6f643a953ca04a558847e455ae1d58fc4295ca91b7f1ab17a73a9b0e323120c"
+  },
+  "fixtureScope": {
+    "mapId": "generated_strait",
+    "seed": 314159,
+    "controlledAge": 3,
+    "maxAge": 3,
+    "AI": false,
+    "autoplay": false,
+    "normalOpening": false,
+    "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+    "sameMatchIdAcrossReloadBranches": true,
+    "branchRule": "Separate by wall-clock F9 timestamps and frozen-log load event, not simulation time or matchId alone."
+  },
+  "sourceCheckpoints": {
+    "landed": {
+      "path": "Native/Checkpoints/fleet-landed-recalled.json",
+      "bytes": 855190,
+      "sha256": "750ee2b23761c95ef3ba72f970e6e75ec2ce78cacebed86116c1a625e24ea532",
+      "payloadSha256": "b891f35024923abf289e177cdd1e3921aa911c3ab9ab8dd732f7f78a5fee36ef"
+    },
+    "repairDeparture": {
+      "path": "Native/Checkpoints/fleet-repair-departure.json",
+      "bytes": 913093,
+      "sha256": "5d8b8bccfae10e18c32bc1309e5c90896b59e37fb24913edd884c7087a42d72f",
+      "payloadSha256": "31b0a2db0a79af0fbc447683c1b207cdd753e2f3e5bd5972aa2d4b3ac0927752"
+    },
+    "repaired": {
+      "path": "Native/Checkpoints/fleet-repaired.json",
+      "bytes": 1003159,
+      "sha256": "d8ff7eb11129913209ac4af78b19e47c40ba01ef5a21c91edb404d1a7b72be9a",
+      "payloadSha256": "842eeb2ae462a1261785a50cfb1fe839e3c174ad03828f00fbdd32de84f26b0e"
+    }
+  },
+  "failedFirstCombatBranch": {
+    "status": "ship_death_not_repair_pass",
+    "sourceReport": {
+      "path": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261004-233239-458-naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21-load_exit.json",
+      "bytes": 3140,
+      "sha256": "3c85375344eab9563a2187aef59fa6769689be3214bca4d64519f9468296ecec"
+    },
+    "sourceEvents": {
+      "path": "/Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261004-233239-458-naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21-load_exit-events.jsonl",
+      "bytes": 295710,
+      "sha256": "97ba9bb30620baf197ee278763ff7ec3c397f229dfcb26d0479817ef8d0cfa94"
+    },
+    "report": {
+      "mapId": "generated_strait",
+      "aiDifficulty": "standard",
+      "aiDecisionSeconds": 1.2000000476837158,
+      "aiArmySeconds": 7.0,
+      "eventSchemaVersion": 2,
+      "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+      "appVersion": "0.8.0",
+      "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+      "version": "6000.6.3f1",
+      "platform": "OSXPlayer",
+      "device": "Apple M3 Pro",
+      "gpu": "Apple M3 Pro",
+      "resolution": "1600x1000",
+      "reason": "load_exit",
+      "seed": 314159,
+      "winner": -1,
+      "eventCount": 452,
+      "maxAge": 3,
+      "time": 889.8297729492188,
+      "meanFrameMs": 16.830177307128906,
+      "p95FrameMs": 17.394954681396484,
+      "simulationSpeed": 1.0,
+      "autoplay": false,
+      "managedBytes": 9957376,
+      "players": [
+        {
+          "civilization": "coast",
+          "age": 3,
+          "kills": 1,
+          "losses": 1,
+          "shipments": 0,
+          "population": 17,
+          "treasures": 0,
+          "guardians": 0,
+          "gathered": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "spent": {
+            "food": 135.0,
+            "wood": 1275.0,
+            "coin": 450.0
+          },
+          "passiveIncome": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "tradeIncome": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "resources": {
+            "food": 8165.0,
+            "wood": 7025.0,
+            "coin": 7650.0
+          },
+          "refunded": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "ageHistory": [
+            "I @ 0s",
+            "Controlled native preview: III @ 0s; no age advancement claim"
+          ]
+        },
+        {
+          "civilization": "coast",
+          "age": 3,
+          "kills": 1,
+          "losses": 1,
+          "shipments": 0,
+          "population": 6,
+          "treasures": 0,
+          "guardians": 0,
+          "gathered": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "spent": {
+            "food": 0.0,
+            "wood": 350.0,
+            "coin": 100.0
+          },
+          "passiveIncome": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "tradeIncome": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "resources": {
+            "food": 2300.0,
+            "wood": 1950.0,
+            "coin": 2000.0
+          },
+          "refunded": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "ageHistory": [
+            "I @ 0s",
+            "Controlled native preview: III @ 0s; no age advancement claim"
+          ]
+        }
+      ]
+    },
+    "eventsCount": 452,
+    "deathEvents": [
+      {
+        "eventIndexZeroBased": 445,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 17,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 813.4484252929688,
+        "kind": "Death",
+        "message": "Gunboat lost",
+        "player": 0,
+        "entity": 136,
+        "target": 1,
+        "visibilityMask": 3,
+        "amount": 0.0,
+        "position": {
+          "x": 44.759761810302734,
+          "y": 57.558441162109375
+        },
+        "facing": {
+          "x": -0.04047399014234543,
+          "y": 0.9991806149482727
+        }
+      },
+      {
+        "eventIndexZeroBased": 449,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 6,
+          "reserved": 0,
+          "capacity": 20
+        },
+        "time": 813.5484008789062,
+        "kind": "Death",
+        "message": "Gunboat lost",
+        "player": 1,
+        "entity": 138,
+        "target": 0,
+        "visibilityMask": 3,
+        "amount": 0.0,
+        "position": {
+          "x": 44.34916305541992,
+          "y": 67.69488525390625
+        },
+        "facing": {
+          "x": 0.04047399014234543,
+          "y": -0.9991806149482727
+        }
+      }
+    ],
+    "repairPaymentCount": 0,
+    "outcome": "Both gunboats died; player136 death813.4484s. No successful harbor repair. Frozen log reload at line228 resets to landed checkpoint684.7798s.",
+    "captures": [
+      "Frontier-20261004-233005-817-f17170-595ba4d1ff9f40c8a23d811fe7a2462f.json",
+      "Frontier-20261004-233116-526-f21377-cab4ed8ce94448dda7383fbdf309e259.json",
+      "Frontier-20261004-233130-444-f22202-39601f6d546140f9977ea4ed50301f9d.json"
+    ],
+    "rawSourceDisposition": "Original report/events remain untouched at recorded paths; selected failure evidence and hashes retained here. Raw files still need inclusion in final evidence archive if it must be self-contained."
+  },
+  "retryCombat": {
+    "status": "explicit_target_command_followed_by_actual_hit_verified",
+    "reloadLogLine": 228,
+    "attackCommand": {
+      "eventIndexZeroBased": 328,
+      "schemaVersion": 2,
+      "hasEconomy": false,
+      "hasPopulation": false,
+      "economy": {
+        "requestedDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "actualDelta": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceBefore": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "balanceAfter": {
+          "food": 0.0,
+          "wood": 0.0,
+          "coin": 0.0
+        },
+        "hasRepair": false,
+        "healthTarget": 0,
+        "hpBefore": 0.0,
+        "hpAfter": 0.0
+      },
+      "population": {
+        "used": 0,
+        "reserved": 0,
+        "capacity": 0
+      },
+      "time": 718.6715698242188,
+      "kind": "Command",
+      "message": "Attack ×1",
+      "player": 0,
+      "entity": 136,
+      "target": 138,
+      "visibilityMask": 3,
+      "amount": 1.0,
+      "position": {
+        "x": 44.059574127197266,
+        "y": 56.05561065673828
+      },
+      "facing": {
+        "x": 0.02487262710928917,
+        "y": 0.9996906518936157
+      }
+    },
+    "postCommandShotSequence": [
+      {
+        "eventIndexZeroBased": 329,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 718.9714965820312,
+        "kind": "AttackPrepared",
+        "message": "Attack prepared",
+        "player": 0,
+        "entity": 136,
+        "target": 138,
+        "visibilityMask": 3,
+        "amount": 0.0,
+        "position": {
+          "x": 44.059574127197266,
+          "y": 56.05561065673828
+        },
+        "facing": {
+          "x": 0.02487262710928917,
+          "y": 0.9996906518936157
+        }
+      },
+      {
+        "eventIndexZeroBased": 330,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 719.3713989257812,
+        "kind": "Fire",
+        "message": "Ranged",
+        "player": 0,
+        "entity": 136,
+        "target": 138,
+        "visibilityMask": 3,
+        "amount": 20.0,
+        "position": {
+          "x": 44.059574127197266,
+          "y": 56.05561065673828
+        },
+        "facing": {
+          "x": 0.02487262710928917,
+          "y": 0.9996906518936157
+        }
+      },
+      {
+        "eventIndexZeroBased": 333,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 719.8712768554688,
+        "kind": "Damage",
+        "message": "Ranged",
+        "player": 0,
+        "entity": 136,
+        "target": 138,
+        "visibilityMask": 3,
+        "amount": 20.0,
+        "position": {
+          "x": 44.34916305541992,
+          "y": 67.69488525390625
+        },
+        "facing": {
+          "x": 0.02487262710928917,
+          "y": 0.9996906518936157
+        }
+      },
+      {
+        "eventIndexZeroBased": 334,
+        "schemaVersion": 2,
+        "hasEconomy": false,
+        "hasPopulation": false,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceAfter": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "hasRepair": false,
+          "healthTarget": 0,
+          "hpBefore": 0.0,
+          "hpAfter": 0.0
+        },
+        "population": {
+          "used": 0,
+          "reserved": 0,
+          "capacity": 0
+        },
+        "time": 719.8712768554688,
+        "kind": "Impact",
+        "message": "Projectile impact",
+        "player": 0,
+        "entity": 136,
+        "target": 138,
+        "visibilityMask": 3,
+        "amount": 20.0,
+        "position": {
+          "x": 44.34916305541992,
+          "y": 67.69488525390625
+        },
+        "facing": {
+          "x": 0.02487262710928917,
+          "y": 0.9996906518936157
+        }
+      }
+    ],
+    "allOutgoingDamage": {
+      "hits": 9,
+      "damage": 180.0
+    },
+    "allIncomingDamage": {
+      "hits": 9,
+      "damage": 180.0
+    },
+    "damageAfterExplicitCommand": 20,
+    "damageBeforeExplicitCommand": 160,
+    "attribution": "Eight previous shots occurred during automatic engagement. Only final20damage follows explicit target Attack.",
+    "gunboatAtDeparture": {
+      "hp": 270.0,
+      "position": {
+        "x": 43.120182037353516,
+        "y": 53.333106994628906
+      },
+      "orders": [
+        {
+          "kind": 15,
+          "point": {
+            "x": 34.29440689086914,
+            "y": 27.75436019897461
+          },
+          "target": 128,
+          "elapsed": 0.0,
+          "resolvedPoint": {
+            "x": 34.29440689086914,
+            "y": 27.75436019897461
+          },
+          "hasResolvedPoint": true,
+          "destinationVersion": 0,
+          "destinationCursor": 0,
+          "destinationRetryAt": 0.0
+        }
+      ]
+    },
+    "noSpawnOrDeathInRetryContinuation": true
+  },
+  "paidRepair": {
+    "status": "actual_cost_hp_movement_and_completion_verified",
+    "ship": 136,
+    "dock": 128,
+    "existingPaidDockConstruction": {
+      "food": 0.0,
+      "wood": 200.0,
+      "coin": 0.0
+    },
+    "departureWorldTime": 721.7708129882812,
+    "firstPaymentTime": 729.2689819335938,
+    "lastPaymentTime": 739.2665405273438,
+    "finalCheckpointWorldTime": 1023.1972045898438,
+    "paymentCount": 101,
+    "hpBefore": 270,
+    "hpAfter": 450,
+    "actualHpRestored": 180,
+    "resourcesBefore": {
+      "food": 8165.0,
+      "wood": 7025.0,
+      "coin": 7650.0
+    },
+    "resourcesAfter": {
+      "food": 8165.0,
+      "wood": 6995.01953125,
+      "coin": 7629.98046875
+    },
+    "actualPaid": {
+      "food": -0.0,
+      "wood": 29.98046875,
+      "coin": 20.01953125
+    },
+    "summedRequestedCost": {
+      "food": -0.0,
+      "wood": 30.00020464262343,
+      "coin": 20.000135931710247
+    },
+    "nominalProportionalCost": {
+      "wood": 30,
+      "coin": 20
+    },
+    "actualMinusNominal": {
+      "wood": -0.01953125,
+      "coin": 0.01953125
+    },
+    "quantizationNote": "100 regular single-precision ticks request about0.3W/0.2C each. At current balances each actual debit is0.2998046875W/0.2001953125C. Final0.001220703125HP correction requests0.00020345053053461015W/0.00013563368702307343C but actual debit rounds to0. Actual cost is recorded, not replaced by nominal30/20.",
+    "wholeResourceLedgerTelescopesExactly": true,
+    "hpLedgerContinuousAndSumsExactly": true,
+    "finalPosition": {
+      "x": 34.29440689086914,
+      "y": 27.75436019897461
+    },
+    "finalOrders": [],
+    "populationUnchanged": {
+      "used": 20,
+      "reserved": 0,
+      "capacity": 30
+    },
+    "payments": [
+      {
+        "eventIndexZeroBased": 339,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7025.0,
+            "coin": 7650.0
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7024.7001953125,
+            "coin": 7649.7998046875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 270.0,
+          "hpAfter": 271.79998779296875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 729.2689819335938,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.3134880065918,
+          "y": 27.80965805053711
+        },
+        "facing": {
+          "x": -0.32616668939590454,
+          "y": -0.9453122615814209
+        }
+      },
+      {
+        "eventIndexZeroBased": 340,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7024.7001953125,
+            "coin": 7649.7998046875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7024.400390625,
+            "coin": 7649.599609375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 271.79998779296875,
+          "hpAfter": 273.5999755859375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 729.3689575195312,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 341,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7024.400390625,
+            "coin": 7649.599609375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7024.1005859375,
+            "coin": 7649.3994140625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 273.5999755859375,
+          "hpAfter": 275.39996337890625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 729.4689331054688,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 342,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7024.1005859375,
+            "coin": 7649.3994140625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7023.80078125,
+            "coin": 7649.19921875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 275.39996337890625,
+          "hpAfter": 277.199951171875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 729.5689086914062,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 343,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7023.80078125,
+            "coin": 7649.19921875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7023.5009765625,
+            "coin": 7648.9990234375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 277.199951171875,
+          "hpAfter": 278.99993896484375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 729.6688842773438,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 344,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7023.5009765625,
+            "coin": 7648.9990234375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7023.201171875,
+            "coin": 7648.798828125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 278.99993896484375,
+          "hpAfter": 280.7999267578125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 729.7688598632812,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 345,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7023.201171875,
+            "coin": 7648.798828125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7022.9013671875,
+            "coin": 7648.5986328125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 280.7999267578125,
+          "hpAfter": 282.59991455078125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 729.8688354492188,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 346,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7022.9013671875,
+            "coin": 7648.5986328125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7022.6015625,
+            "coin": 7648.3984375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 282.59991455078125,
+          "hpAfter": 284.39990234375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 729.9688110351562,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 347,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7022.6015625,
+            "coin": 7648.3984375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7022.3017578125,
+            "coin": 7648.1982421875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 284.39990234375,
+          "hpAfter": 286.19989013671875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 730.0687866210938,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 348,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7022.3017578125,
+            "coin": 7648.1982421875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7022.001953125,
+            "coin": 7647.998046875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 286.19989013671875,
+          "hpAfter": 287.9998779296875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 730.1687622070312,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 349,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7022.001953125,
+            "coin": 7647.998046875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7021.7021484375,
+            "coin": 7647.7978515625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 287.9998779296875,
+          "hpAfter": 289.79986572265625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 730.2687377929688,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 350,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7021.7021484375,
+            "coin": 7647.7978515625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7021.40234375,
+            "coin": 7647.59765625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 289.79986572265625,
+          "hpAfter": 291.599853515625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 730.3687133789062,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 351,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7021.40234375,
+            "coin": 7647.59765625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7021.1025390625,
+            "coin": 7647.3974609375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 291.599853515625,
+          "hpAfter": 293.39984130859375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 730.4686889648438,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 352,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7021.1025390625,
+            "coin": 7647.3974609375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7020.802734375,
+            "coin": 7647.197265625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 293.39984130859375,
+          "hpAfter": 295.1998291015625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 730.5686645507812,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 353,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7020.802734375,
+            "coin": 7647.197265625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7020.5029296875,
+            "coin": 7646.9970703125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 295.1998291015625,
+          "hpAfter": 296.99981689453125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 730.6686401367188,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 354,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7020.5029296875,
+            "coin": 7646.9970703125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7020.203125,
+            "coin": 7646.796875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 296.99981689453125,
+          "hpAfter": 298.7998046875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 730.7686157226562,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 355,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7020.203125,
+            "coin": 7646.796875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7019.9033203125,
+            "coin": 7646.5966796875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 298.7998046875,
+          "hpAfter": 300.59979248046875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 730.8685913085938,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 356,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7019.9033203125,
+            "coin": 7646.5966796875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7019.603515625,
+            "coin": 7646.396484375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 300.59979248046875,
+          "hpAfter": 302.3997802734375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 730.9685668945312,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 357,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7019.603515625,
+            "coin": 7646.396484375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7019.3037109375,
+            "coin": 7646.1962890625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 302.3997802734375,
+          "hpAfter": 304.19976806640625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 731.0685424804688,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 358,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7019.3037109375,
+            "coin": 7646.1962890625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7019.00390625,
+            "coin": 7645.99609375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 304.19976806640625,
+          "hpAfter": 305.999755859375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 731.1685180664062,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 359,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7019.00390625,
+            "coin": 7645.99609375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7018.7041015625,
+            "coin": 7645.7958984375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 305.999755859375,
+          "hpAfter": 307.79974365234375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 731.2684936523438,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 360,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7018.7041015625,
+            "coin": 7645.7958984375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7018.404296875,
+            "coin": 7645.595703125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 307.79974365234375,
+          "hpAfter": 309.5997314453125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 731.3684692382812,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 361,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7018.404296875,
+            "coin": 7645.595703125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7018.1044921875,
+            "coin": 7645.3955078125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 309.5997314453125,
+          "hpAfter": 311.39971923828125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 731.4684448242188,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 362,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7018.1044921875,
+            "coin": 7645.3955078125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7017.8046875,
+            "coin": 7645.1953125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 311.39971923828125,
+          "hpAfter": 313.19970703125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 731.5684204101562,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 363,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7017.8046875,
+            "coin": 7645.1953125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7017.5048828125,
+            "coin": 7644.9951171875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 313.19970703125,
+          "hpAfter": 314.99969482421875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 731.6683959960938,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 364,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7017.5048828125,
+            "coin": 7644.9951171875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7017.205078125,
+            "coin": 7644.794921875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 314.99969482421875,
+          "hpAfter": 316.7996826171875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 731.7683715820312,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 365,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7017.205078125,
+            "coin": 7644.794921875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7016.9052734375,
+            "coin": 7644.5947265625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 316.7996826171875,
+          "hpAfter": 318.59967041015625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 731.8683471679688,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 366,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7016.9052734375,
+            "coin": 7644.5947265625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7016.60546875,
+            "coin": 7644.39453125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 318.59967041015625,
+          "hpAfter": 320.399658203125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 731.9683227539062,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 367,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7016.60546875,
+            "coin": 7644.39453125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7016.3056640625,
+            "coin": 7644.1943359375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 320.399658203125,
+          "hpAfter": 322.19964599609375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 732.0682983398438,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 368,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7016.3056640625,
+            "coin": 7644.1943359375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7016.005859375,
+            "coin": 7643.994140625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 322.19964599609375,
+          "hpAfter": 323.9996337890625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 732.1682739257812,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 369,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7016.005859375,
+            "coin": 7643.994140625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7015.7060546875,
+            "coin": 7643.7939453125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 323.9996337890625,
+          "hpAfter": 325.79962158203125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 732.2682495117188,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 370,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7015.7060546875,
+            "coin": 7643.7939453125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7015.40625,
+            "coin": 7643.59375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 325.79962158203125,
+          "hpAfter": 327.599609375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 732.3682250976562,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 371,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7015.40625,
+            "coin": 7643.59375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7015.1064453125,
+            "coin": 7643.3935546875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 327.599609375,
+          "hpAfter": 329.39959716796875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 732.4682006835938,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 372,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7015.1064453125,
+            "coin": 7643.3935546875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7014.806640625,
+            "coin": 7643.193359375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 329.39959716796875,
+          "hpAfter": 331.1995849609375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 732.5681762695312,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 373,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7014.806640625,
+            "coin": 7643.193359375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7014.5068359375,
+            "coin": 7642.9931640625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 331.1995849609375,
+          "hpAfter": 332.99957275390625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 732.6681518554688,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 374,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7014.5068359375,
+            "coin": 7642.9931640625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7014.20703125,
+            "coin": 7642.79296875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 332.99957275390625,
+          "hpAfter": 334.799560546875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 732.7681274414062,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 375,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7014.20703125,
+            "coin": 7642.79296875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7013.9072265625,
+            "coin": 7642.5927734375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 334.799560546875,
+          "hpAfter": 336.59954833984375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 732.8681030273438,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 376,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7013.9072265625,
+            "coin": 7642.5927734375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7013.607421875,
+            "coin": 7642.392578125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 336.59954833984375,
+          "hpAfter": 338.3995361328125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 732.9680786132812,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 377,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7013.607421875,
+            "coin": 7642.392578125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7013.3076171875,
+            "coin": 7642.1923828125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 338.3995361328125,
+          "hpAfter": 340.19952392578125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 733.0680541992188,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 378,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7013.3076171875,
+            "coin": 7642.1923828125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7013.0078125,
+            "coin": 7641.9921875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 340.19952392578125,
+          "hpAfter": 341.99951171875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 733.1680297851562,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 379,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7013.0078125,
+            "coin": 7641.9921875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7012.7080078125,
+            "coin": 7641.7919921875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 341.99951171875,
+          "hpAfter": 343.79949951171875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 733.2680053710938,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 380,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7012.7080078125,
+            "coin": 7641.7919921875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7012.408203125,
+            "coin": 7641.591796875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 343.79949951171875,
+          "hpAfter": 345.5994873046875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 733.3679809570312,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 381,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7012.408203125,
+            "coin": 7641.591796875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7012.1083984375,
+            "coin": 7641.3916015625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 345.5994873046875,
+          "hpAfter": 347.39947509765625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 733.4679565429688,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 382,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7012.1083984375,
+            "coin": 7641.3916015625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7011.80859375,
+            "coin": 7641.19140625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 347.39947509765625,
+          "hpAfter": 349.199462890625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 733.5679321289062,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 383,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7011.80859375,
+            "coin": 7641.19140625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7011.5087890625,
+            "coin": 7640.9912109375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 349.199462890625,
+          "hpAfter": 350.99945068359375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 733.6679077148438,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 384,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7011.5087890625,
+            "coin": 7640.9912109375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7011.208984375,
+            "coin": 7640.791015625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 350.99945068359375,
+          "hpAfter": 352.7994384765625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 733.7678833007812,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 385,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7011.208984375,
+            "coin": 7640.791015625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7010.9091796875,
+            "coin": 7640.5908203125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 352.7994384765625,
+          "hpAfter": 354.59942626953125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 733.8678588867188,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 386,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7010.9091796875,
+            "coin": 7640.5908203125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7010.609375,
+            "coin": 7640.390625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 354.59942626953125,
+          "hpAfter": 356.3994140625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 733.9678344726562,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 387,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7010.609375,
+            "coin": 7640.390625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7010.3095703125,
+            "coin": 7640.1904296875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 356.3994140625,
+          "hpAfter": 358.19940185546875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 734.0678100585938,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 388,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7010.3095703125,
+            "coin": 7640.1904296875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7010.009765625,
+            "coin": 7639.990234375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 358.19940185546875,
+          "hpAfter": 359.9993896484375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 734.1677856445312,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 389,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7010.009765625,
+            "coin": 7639.990234375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7009.7099609375,
+            "coin": 7639.7900390625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 359.9993896484375,
+          "hpAfter": 361.79937744140625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 734.2677612304688,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 390,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7009.7099609375,
+            "coin": 7639.7900390625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7009.41015625,
+            "coin": 7639.58984375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 361.79937744140625,
+          "hpAfter": 363.599365234375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 734.3677368164062,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 391,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7009.41015625,
+            "coin": 7639.58984375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7009.1103515625,
+            "coin": 7639.3896484375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 363.599365234375,
+          "hpAfter": 365.39935302734375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 734.4677124023438,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 392,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7009.1103515625,
+            "coin": 7639.3896484375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7008.810546875,
+            "coin": 7639.189453125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 365.39935302734375,
+          "hpAfter": 367.1993408203125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 734.5676879882812,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 393,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7008.810546875,
+            "coin": 7639.189453125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7008.5107421875,
+            "coin": 7638.9892578125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 367.1993408203125,
+          "hpAfter": 368.99932861328125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 734.6676635742188,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 394,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7008.5107421875,
+            "coin": 7638.9892578125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7008.2109375,
+            "coin": 7638.7890625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 368.99932861328125,
+          "hpAfter": 370.79931640625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 734.7676391601562,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 395,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7008.2109375,
+            "coin": 7638.7890625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7007.9111328125,
+            "coin": 7638.5888671875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 370.79931640625,
+          "hpAfter": 372.59930419921875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 734.8676147460938,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 396,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7007.9111328125,
+            "coin": 7638.5888671875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7007.611328125,
+            "coin": 7638.388671875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 372.59930419921875,
+          "hpAfter": 374.3992919921875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 734.9675903320312,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 397,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7007.611328125,
+            "coin": 7638.388671875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7007.3115234375,
+            "coin": 7638.1884765625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 374.3992919921875,
+          "hpAfter": 376.19927978515625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 735.0675659179688,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 398,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7007.3115234375,
+            "coin": 7638.1884765625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7007.01171875,
+            "coin": 7637.98828125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 376.19927978515625,
+          "hpAfter": 377.999267578125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 735.1675415039062,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 399,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7007.01171875,
+            "coin": 7637.98828125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7006.7119140625,
+            "coin": 7637.7880859375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 377.999267578125,
+          "hpAfter": 379.79925537109375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 735.2675170898438,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 400,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7006.7119140625,
+            "coin": 7637.7880859375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7006.412109375,
+            "coin": 7637.587890625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 379.79925537109375,
+          "hpAfter": 381.5992431640625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 735.3674926757812,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 401,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7006.412109375,
+            "coin": 7637.587890625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7006.1123046875,
+            "coin": 7637.3876953125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 381.5992431640625,
+          "hpAfter": 383.39923095703125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 735.4674682617188,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 402,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7006.1123046875,
+            "coin": 7637.3876953125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7005.8125,
+            "coin": 7637.1875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 383.39923095703125,
+          "hpAfter": 385.19921875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 735.5674438476562,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 403,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7005.8125,
+            "coin": 7637.1875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7005.5126953125,
+            "coin": 7636.9873046875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 385.19921875,
+          "hpAfter": 386.99920654296875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 735.6674194335938,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 404,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7005.5126953125,
+            "coin": 7636.9873046875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7005.212890625,
+            "coin": 7636.787109375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 386.99920654296875,
+          "hpAfter": 388.7991943359375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 735.7673950195312,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 405,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7005.212890625,
+            "coin": 7636.787109375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7004.9130859375,
+            "coin": 7636.5869140625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 388.7991943359375,
+          "hpAfter": 390.59918212890625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 735.8673706054688,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 406,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7004.9130859375,
+            "coin": 7636.5869140625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7004.61328125,
+            "coin": 7636.38671875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 390.59918212890625,
+          "hpAfter": 392.399169921875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 735.9673461914062,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 407,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7004.61328125,
+            "coin": 7636.38671875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7004.3134765625,
+            "coin": 7636.1865234375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 392.399169921875,
+          "hpAfter": 394.19915771484375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 736.0673217773438,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 408,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7004.3134765625,
+            "coin": 7636.1865234375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7004.013671875,
+            "coin": 7635.986328125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 394.19915771484375,
+          "hpAfter": 395.9991455078125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 736.1672973632812,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 409,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7004.013671875,
+            "coin": 7635.986328125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7003.7138671875,
+            "coin": 7635.7861328125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 395.9991455078125,
+          "hpAfter": 397.79913330078125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 736.2672729492188,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 410,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7003.7138671875,
+            "coin": 7635.7861328125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7003.4140625,
+            "coin": 7635.5859375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 397.79913330078125,
+          "hpAfter": 399.59912109375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 736.3672485351562,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 411,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7003.4140625,
+            "coin": 7635.5859375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7003.1142578125,
+            "coin": 7635.3857421875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 399.59912109375,
+          "hpAfter": 401.39910888671875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 736.4672241210938,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 412,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7003.1142578125,
+            "coin": 7635.3857421875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7002.814453125,
+            "coin": 7635.185546875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 401.39910888671875,
+          "hpAfter": 403.1990966796875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 736.5671997070312,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 413,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7002.814453125,
+            "coin": 7635.185546875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7002.5146484375,
+            "coin": 7634.9853515625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 403.1990966796875,
+          "hpAfter": 404.99908447265625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 736.6671752929688,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 414,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7002.5146484375,
+            "coin": 7634.9853515625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7002.21484375,
+            "coin": 7634.78515625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 404.99908447265625,
+          "hpAfter": 406.799072265625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 736.7671508789062,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 415,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7002.21484375,
+            "coin": 7634.78515625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7001.9150390625,
+            "coin": 7634.5849609375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 406.799072265625,
+          "hpAfter": 408.59906005859375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 736.8671264648438,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 416,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7001.9150390625,
+            "coin": 7634.5849609375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7001.615234375,
+            "coin": 7634.384765625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 408.59906005859375,
+          "hpAfter": 410.3990478515625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 736.9671020507812,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 417,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7001.615234375,
+            "coin": 7634.384765625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7001.3154296875,
+            "coin": 7634.1845703125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 410.3990478515625,
+          "hpAfter": 412.19903564453125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 737.0670776367188,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 418,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7001.3154296875,
+            "coin": 7634.1845703125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7001.015625,
+            "coin": 7633.984375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 412.19903564453125,
+          "hpAfter": 413.9990234375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 737.1670532226562,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 419,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7001.015625,
+            "coin": 7633.984375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7000.7158203125,
+            "coin": 7633.7841796875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 413.9990234375,
+          "hpAfter": 415.79901123046875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 737.2670288085938,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 420,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7000.7158203125,
+            "coin": 7633.7841796875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7000.416015625,
+            "coin": 7633.583984375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 415.79901123046875,
+          "hpAfter": 417.5989990234375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 737.3670043945312,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 421,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7000.416015625,
+            "coin": 7633.583984375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 7000.1162109375,
+            "coin": 7633.3837890625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 417.5989990234375,
+          "hpAfter": 419.39898681640625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 737.4669799804688,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 422,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 7000.1162109375,
+            "coin": 7633.3837890625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 6999.81640625,
+            "coin": 7633.18359375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 419.39898681640625,
+          "hpAfter": 421.198974609375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 737.5669555664062,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 423,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 6999.81640625,
+            "coin": 7633.18359375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 6999.5166015625,
+            "coin": 7632.9833984375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 421.198974609375,
+          "hpAfter": 422.99896240234375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 737.6669311523438,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 424,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 6999.5166015625,
+            "coin": 7632.9833984375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 6999.216796875,
+            "coin": 7632.783203125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 422.99896240234375,
+          "hpAfter": 424.7989501953125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 737.7669067382812,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 425,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 6999.216796875,
+            "coin": 7632.783203125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 6998.9169921875,
+            "coin": 7632.5830078125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 424.7989501953125,
+          "hpAfter": 426.59893798828125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 737.8668823242188,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 426,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 6998.9169921875,
+            "coin": 7632.5830078125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 6998.6171875,
+            "coin": 7632.3828125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 426.59893798828125,
+          "hpAfter": 428.39892578125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 737.9668579101562,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 427,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 6998.6171875,
+            "coin": 7632.3828125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 6998.3173828125,
+            "coin": 7632.1826171875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 428.39892578125,
+          "hpAfter": 430.19891357421875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 738.0668334960938,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 428,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 6998.3173828125,
+            "coin": 7632.1826171875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 6998.017578125,
+            "coin": 7631.982421875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 430.19891357421875,
+          "hpAfter": 431.9989013671875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 738.1668090820312,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 429,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 6998.017578125,
+            "coin": 7631.982421875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 6997.7177734375,
+            "coin": 7631.7822265625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 431.9989013671875,
+          "hpAfter": 433.79888916015625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 738.2667846679688,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 430,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 6997.7177734375,
+            "coin": 7631.7822265625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 6997.41796875,
+            "coin": 7631.58203125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 433.79888916015625,
+          "hpAfter": 435.598876953125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 738.3667602539062,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 431,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 6997.41796875,
+            "coin": 7631.58203125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 6997.1181640625,
+            "coin": 7631.3818359375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 435.598876953125,
+          "hpAfter": 437.39886474609375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 738.4667358398438,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 432,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 6997.1181640625,
+            "coin": 7631.3818359375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 6996.818359375,
+            "coin": 7631.181640625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 437.39886474609375,
+          "hpAfter": 439.1988525390625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 738.5667114257812,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 433,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 6996.818359375,
+            "coin": 7631.181640625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 6996.5185546875,
+            "coin": 7630.9814453125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 439.1988525390625,
+          "hpAfter": 440.99884033203125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 738.6666870117188,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 434,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 6996.5185546875,
+            "coin": 7630.9814453125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 6996.21875,
+            "coin": 7630.78125
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 440.99884033203125,
+          "hpAfter": 442.798828125
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 738.7666625976562,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 435,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 6996.21875,
+            "coin": 7630.78125
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 6995.9189453125,
+            "coin": 7630.5810546875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 442.798828125,
+          "hpAfter": 444.59881591796875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 738.8666381835938,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 436,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 6995.9189453125,
+            "coin": 7630.5810546875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 6995.619140625,
+            "coin": 7630.380859375
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 444.59881591796875,
+          "hpAfter": 446.3988037109375
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 738.9666137695312,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 437,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 6995.619140625,
+            "coin": 7630.380859375
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 6995.3193359375,
+            "coin": 7630.1806640625
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 446.3988037109375,
+          "hpAfter": 448.19879150390625
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 739.0665893554688,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 438,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.30000001192092896,
+            "coin": -0.20000000298023224
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": -0.2998046875,
+            "coin": -0.2001953125
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 6995.3193359375,
+            "coin": 7630.1806640625
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 6995.01953125,
+            "coin": 7629.98046875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 448.19879150390625,
+          "hpAfter": 449.998779296875
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 739.1665649414062,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      },
+      {
+        "eventIndexZeroBased": 439,
+        "schemaVersion": 2,
+        "hasEconomy": true,
+        "hasPopulation": true,
+        "economy": {
+          "requestedDelta": {
+            "food": 0.0,
+            "wood": -0.00020345053053461015,
+            "coin": -0.00013563368702307343
+          },
+          "actualDelta": {
+            "food": 0.0,
+            "wood": 0.0,
+            "coin": 0.0
+          },
+          "balanceBefore": {
+            "food": 8165.0,
+            "wood": 6995.01953125,
+            "coin": 7629.98046875
+          },
+          "balanceAfter": {
+            "food": 8165.0,
+            "wood": 6995.01953125,
+            "coin": 7629.98046875
+          },
+          "hasRepair": true,
+          "healthTarget": 136,
+          "hpBefore": 449.998779296875,
+          "hpAfter": 450.0
+        },
+        "population": {
+          "used": 20,
+          "reserved": 0,
+          "capacity": 30
+        },
+        "time": 739.2665405273438,
+        "kind": "Payment",
+        "message": "Dock repair 136: 0 F / 0 W / 0 C",
+        "player": 0,
+        "entity": 136,
+        "target": 128,
+        "visibilityMask": 1,
+        "amount": 0.0,
+        "position": {
+          "x": 34.29440689086914,
+          "y": 27.75436019897461
+        },
+        "facing": {
+          "x": -0.3261876404285431,
+          "y": -0.9453050494194031
+        }
+      }
+    ]
+  },
+  "f9Identity": {
+    "status": "identity_verified",
+    "newFleetPairs": 6,
+    "scope": "JSON/PNG file identity and metadata consistency only. PNG SHA-256 binds the exact same-stem image bytes; frame, camera and HUD values are recorded metadata, not independently observed pixels. No OCR or visual review, native-input/gameplay acceptance, continuous focus, save restoration, performance, test execution or build provenance verification is performed.",
+    "captures": [
+      {
+        "json": "Frontier-20261004-233005-817-f17170-595ba4d1ff9f40c8a23d811fe7a2462f.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 10817,
+        "jsonSha256": "2ee7a1ab0aa475a0f57a54816e110f3a579c3a66192df382287bfabe7eaaab32",
+        "png": "Frontier-20261004-233005-817-f17170-595ba4d1ff9f40c8a23d811fe7a2462f.png",
+        "pngBytes": 844760,
+        "pngSha256": "e63a5a40abd5e6200caae4e7dc151527b48b437c8d4f40aa3d61d30809b59958",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:30:05.7523580Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 737.8668823242188,
+        "requestWorldTime": 737.8668823242188,
+        "requestFrame": 17170,
+        "captureFrame": 17170,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 41.723758697509766,
+            "y": 64.35359191894531
+          },
+          "pointer": {
+            "x": 866.0,
+            "y": 382.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 23.0
+        },
+        "hudResources": "FOOD  8165     WOOD  7025     COIN  7650     POP  20+0/30     AGE  3     XP  13/225     SHIP  1",
+        "hudUpdatedFrame": 17170,
+        "hudWorldTime": 737.8668823242188,
+        "hudMatchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive",
+        "gunboat": [
+          {
+            "entity": 136,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "gunboat",
+            "status": "Moving",
+            "order": "Move",
+            "position": {
+              "x": 35.07869338989258,
+              "y": 36.43408203125
+            },
+            "destination": {
+              "x": 44.759761810302734,
+              "y": 57.558441162109375
+            },
+            "hp": 450.0,
+            "cargo": []
+          }
+        ]
+      },
+      {
+        "json": "Frontier-20261004-233116-526-f21377-cab4ed8ce94448dda7383fbdf309e259.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 11137,
+        "jsonSha256": "83d27bb18288db2d2c48cd83885c4309606f048a2df41babce57eb8b81df0f2d",
+        "png": "Frontier-20261004-233116-526-f21377-cab4ed8ce94448dda7383fbdf309e259.png",
+        "pngBytes": 1007425,
+        "pngSha256": "6f6284d01a1971cdd9ad01cea2620bb892e3dc6db39ea3c27507b70aff57adc2",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:31:16.4612380Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 808.5496215820312,
+        "requestWorldTime": 808.5496215820312,
+        "requestFrame": 21377,
+        "captureFrame": 21377,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 41.723758697509766,
+            "y": 64.35359191894531
+          },
+          "pointer": {
+            "x": 857.0,
+            "y": 559.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 23.0
+        },
+        "hudResources": "FOOD  8165     WOOD  7025     COIN  7650     POP  20+0/30     AGE  3     XP  13/225     SHIP  1",
+        "hudUpdatedFrame": 21377,
+        "hudWorldTime": 808.5496215820312,
+        "hudMatchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive",
+        "gunboat": [
+          {
+            "entity": 136,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 138,
+            "definition": "gunboat",
+            "status": "Reloading",
+            "order": "Attack",
+            "position": {
+              "x": 44.759761810302734,
+              "y": 57.558441162109375
+            },
+            "destination": {
+              "x": 44.34916305541992,
+              "y": 67.69488525390625
+            },
+            "hp": 30.0,
+            "cargo": []
+          }
+        ]
+      },
+      {
+        "json": "Frontier-20261004-233130-444-f22202-39601f6d546140f9977ea4ed50301f9d.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 10274,
+        "jsonSha256": "7b39991891b1d4d23a189ae894f20601b2f48e0c735434e6b6d47005f739167b",
+        "png": "Frontier-20261004-233130-444-f22202-39601f6d546140f9977ea4ed50301f9d.png",
+        "pngBytes": 1356437,
+        "pngSha256": "262ffc1181b89855ba765c76ac5652314a9c29a55c50908a555eb156cbdab12e",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:31:30.3693280Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 822.5462036132812,
+        "requestWorldTime": 822.5462036132812,
+        "requestFrame": 22202,
+        "captureFrame": 22202,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 27.580110549926758,
+            "y": 28.28729248046875
+          },
+          "pointer": {
+            "x": 772.0,
+            "y": 523.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 23.0
+        },
+        "hudResources": "FOOD  8165     WOOD  7025     COIN  7650     POP  17+0/30     AGE  3     XP  48/225     SHIP  1",
+        "hudUpdatedFrame": 22202,
+        "hudWorldTime": 822.5462036132812,
+        "hudMatchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive",
+        "gunboat": []
+      },
+      {
+        "json": "Frontier-20261004-233340-928-f29936-433e390de338429183d3b549940d722b.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 11137,
+        "jsonSha256": "0e3bd17115653b73ab0a228e273476340e5331238f908ee72a81bd856255b77a",
+        "png": "Frontier-20261004-233340-928-f29936-433e390de338429183d3b549940d722b.png",
+        "pngBytes": 988192,
+        "pngSha256": "8145d7ccd031d2f04552a4c61a71dff88dcda94c20e84182ea4bb3da8972d5a1",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:33:40.8670540Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 719.3713989257812,
+        "requestWorldTime": 719.3713989257812,
+        "requestFrame": 29936,
+        "captureFrame": 29936,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 41.723758697509766,
+            "y": 64.35359191894531
+          },
+          "pointer": {
+            "x": 857.0,
+            "y": 559.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 23.0
+        },
+        "hudResources": "FOOD  8165     WOOD  7025     COIN  7650     POP  20+0/30     AGE  3     XP  13/225     SHIP  1",
+        "hudUpdatedFrame": 29936,
+        "hudWorldTime": 719.3713989257812,
+        "hudMatchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive",
+        "gunboat": [
+          {
+            "entity": 136,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 138,
+            "definition": "gunboat",
+            "status": "Reloading",
+            "order": "Attack",
+            "position": {
+              "x": 44.059574127197266,
+              "y": 56.05561065673828
+            },
+            "destination": {
+              "x": 44.34916305541992,
+              "y": 67.69488525390625
+            },
+            "hp": 290.0,
+            "cargo": []
+          }
+        ]
+      },
+      {
+        "json": "Frontier-20261004-233343-239-f30062-5b41eb457eeb41778d1cce42a2d4895d.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 10827,
+        "jsonSha256": "0e914236542662f3231e8b16a7674ad9521d8e7bf8982a8b836f0166d851ff7b",
+        "png": "Frontier-20261004-233343-239-f30062-5b41eb457eeb41778d1cce42a2d4895d.png",
+        "pngBytes": 1358091,
+        "pngSha256": "3ae7a661056a0b23a1286f8367975316bbf7f3e9cf8fec8544644c3a41e20e39",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:33:43.1581670Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 721.6708374023438,
+        "requestWorldTime": 721.6708374023438,
+        "requestFrame": 30062,
+        "captureFrame": 30062,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 27.580110549926758,
+            "y": 28.28729248046875
+          },
+          "pointer": {
+            "x": 772.0,
+            "y": 523.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 23.0
+        },
+        "hudResources": "FOOD  8165     WOOD  7025     COIN  7650     POP  20+0/30     AGE  3     XP  13/225     SHIP  1",
+        "hudUpdatedFrame": 30062,
+        "hudWorldTime": 721.6708374023438,
+        "hudMatchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive",
+        "gunboat": [
+          {
+            "entity": 136,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 128,
+            "definition": "gunboat",
+            "status": "Moving",
+            "order": "DockRepair",
+            "position": {
+              "x": 43.237606048583984,
+              "y": 53.67341995239258
+            },
+            "destination": {
+              "x": 34.29440689086914,
+              "y": 27.75436019897461
+            },
+            "hp": 270.0,
+            "cargo": []
+          }
+        ]
+      },
+      {
+        "json": "Frontier-20261004-233929-438-f50625-09ccc443d09143eca7ba0b40e0aca269.json",
+        "status": "identity_verified",
+        "errors": [],
+        "jsonBytes": 10829,
+        "jsonSha256": "be7b2eb0000a47501a57bdfff799e5956b91017fa434c33fcfc049a5a46e1c33",
+        "png": "Frontier-20261004-233929-438-f50625-09ccc443d09143eca7ba0b40e0aca269.png",
+        "pngBytes": 1349205,
+        "pngSha256": "040422e12227dfc962765191fdaef638ced47b88e96b09b361833490554525c0",
+        "width": 1600,
+        "height": 1000,
+        "utc": "2026-10-04T23:39:29.3610420Z",
+        "appVersion": "0.8.0",
+        "buildGuid": "ac217fb5b02c4077acce8f43dae02aab",
+        "matchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "inMenu": false,
+        "paused": false,
+        "seed": 314159,
+        "mapId": "generated_strait",
+        "worldTime": 1023.0972290039062,
+        "requestWorldTime": 1023.0972290039062,
+        "requestFrame": 50625,
+        "captureFrame": 50625,
+        "requestCaptureSameFrame": true,
+        "camera": {
+          "focus": {
+            "x": 27.580110549926758,
+            "y": 28.28729248046875
+          },
+          "pointer": {
+            "x": 560.0,
+            "y": 722.0
+          },
+          "applicationFocused": true,
+          "orthographicSize": 23.0
+        },
+        "hudResources": "FOOD  8165     WOOD  6995     COIN  7630     POP  20+0/30     AGE  3     XP  13/225     SHIP  1",
+        "hudUpdatedFrame": 50625,
+        "hudWorldTime": 1023.0972290039062,
+        "hudMatchId": "naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21",
+        "hudConsistency": "same_match_frame_world_time_resources_population",
+        "hudAgeObserved": 3,
+        "objectiveMode": "elimination",
+        "objectiveStatus": "inactive",
+        "gunboat": [
+          {
+            "entity": 136,
+            "garrisonedIn": 0,
+            "load": 0,
+            "capacity": 0,
+            "target": 0,
+            "definition": "gunboat",
+            "status": "Idle",
+            "order": "",
+            "position": {
+              "x": 34.29440689086914,
+              "y": 27.75436019897461
+            },
+            "destination": {
+              "x": 34.29440689086914,
+              "y": 27.75436019897461
+            },
+            "hp": 450.0,
+            "cargo": []
+          }
+        ]
+      }
+    ],
+    "synchronizationReceipt": {
+      "path": "Diagnostics/native-sync-fleet-audit-20261004T234134976803Z.json",
+      "bytes": 75872,
+      "sha256": "0fd27d82df97d200a54f0a8f367d7dcd0ee45f4b4a6cdffb25551471e0c35c33"
+    },
+    "otherFixtureCapturesNotBehaviorAudited": true
+  },
+  "visualReview": [
+    {
+      "capture": "Frontier-20261004-233340-928-f29936-433e390de338429183d3b549940d722b.json",
+      "observed": "Attack order accepted; selected Gunboat290/450HP Reloading Orders1; red enemy target ring."
+    },
+    {
+      "capture": "Frontier-20261004-233343-239-f30062-5b41eb457eeb41778d1cce42a2d4895d.json",
+      "observed": "Ships sailing to dock repairs; selected Gunboat270/450HP Moving Orders1; owned dock visible."
+    },
+    {
+      "capture": "Frontier-20261004-233929-438-f50625-09ccc443d09143eca7ba0b40e0aca269.json",
+      "observed": "Gunboat450/450HP Idle Orders0 at dock; HUD wood6995/coin7630 rounded from exact stored balances."
+    }
+  ],
+  "frozenLog": {
+    "path": "Diagnostics/native-fleet-completed.log",
+    "bytes": 40622,
+    "sha256": "dad5b6f7529c731ef868902fdc258eef9e54678acc7954aacae05f08d5116396",
+    "lineCount": 335,
+    "scope": "Restarted native process snapshot through completed fleet repair save; not later fixture sessions or process exit.",
+    "exceptionPattern": "(?:NullReferenceException|MissingReferenceException|IndexOutOfRangeException|Argument\\w*Exception|Assertion failed|Unhandled Exception|[A-Za-z][A-Za-z0-9.]*Exception:)",
+    "exceptionMatches": [],
+    "relevantLines": [
+      {
+        "line": 39,
+        "text": "FRONTIER_LOAD slot=3 match=naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21 time=556.8111"
+      },
+      {
+        "line": 61,
+        "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-232552-490-f2169-ea2a3f21783d4b73bc84777d1a40c163.json"
+      },
+      {
+        "line": 73,
+        "text": "FRONTIER_SAVE slot=3 match=naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21 time=556.8111"
+      },
+      {
+        "line": 95,
+        "text": "FRONTIER_PAUSE paused=False reason=manual_resume world=556.811100 realtime=76.054565 frame=4255"
+      },
+      {
+        "line": 96,
+        "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-232629-493-f4339-550eb16df3994b7590dac3ea88d48723.json"
+      },
+      {
+        "line": 108,
+        "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-232645-887-f5308-bfe17e51df2f4eaaaef9948e2ad27de7.json"
+      },
+      {
+        "line": 120,
+        "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-232724-281-f7585-e73515ca936d48df83907331fbc0780c.json"
+      },
+      {
+        "line": 132,
+        "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-232749-942-f9108-85d3a3e0875c4220afea8a7c8ad67119.json"
+      },
+      {
+        "line": 144,
+        "text": "FRONTIER_PAUSE paused=True reason=manual_pause world=684.779800 realtime=204.104072 frame=11848"
+      },
+      {
+        "line": 145,
+        "text": "FRONTIER_SAVE slot=3 match=naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21 time=684.7798"
+      },
+      {
+        "line": 167,
+        "text": "FRONTIER_PAUSE paused=False reason=manual_resume world=684.779800 realtime=240.753966 frame=14007"
+      },
+      {
+        "line": 168,
+        "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-233005-817-f17170-595ba4d1ff9f40c8a23d811fe7a2462f.json"
+      },
+      {
+        "line": 180,
+        "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-233116-526-f21377-cab4ed8ce94448dda7383fbdf309e259.json"
+      },
+      {
+        "line": 192,
+        "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-233130-444-f22202-39601f6d546140f9977ea4ed50301f9d.json"
+      },
+      {
+        "line": 204,
+        "text": "FRONTIER_PAUSE paused=True reason=manual_pause world=889.829800 realtime=445.852546 frame=26209"
+      },
+      {
+        "line": 205,
+        "text": "FRONTIER_REPORT /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Reports/20261004-233239-458-naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21-load_exit.json"
+      },
+      {
+        "line": 228,
+        "text": "FRONTIER_LOAD slot=3 match=naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21 time=684.7798"
+      },
+      {
+        "line": 250,
+        "text": "FRONTIER_PAUSE paused=False reason=manual_resume world=684.779800 realtime=448.652970 frame=26336"
+      },
+      {
+        "line": 251,
+        "text": "FRONTIER_PAUSE paused=True reason=manual_pause world=717.771800 realtime=481.636822 frame=28302"
+      },
+      {
+        "line": 252,
+        "text": "FRONTIER_PAUSE paused=False reason=manual_resume world=717.771800 realtime=507.431014 frame=29844"
+      },
+      {
+        "line": 253,
+        "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-233340-928-f29936-433e390de338429183d3b549940d722b.json"
+      },
+      {
+        "line": 265,
+        "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-233343-239-f30062-5b41eb457eeb41778d1cce42a2d4895d.json"
+      },
+      {
+        "line": 277,
+        "text": "FRONTIER_PAUSE paused=True reason=manual_pause world=721.770800 realtime=511.368852 frame=30063"
+      },
+      {
+        "line": 278,
+        "text": "FRONTIER_SAVE slot=3 match=naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21 time=721.7708"
+      },
+      {
+        "line": 300,
+        "text": "FRONTIER_PAUSE paused=False reason=manual_resume world=721.770800 realtime=556.023347 frame=32710"
+      },
+      {
+        "line": 301,
+        "text": "FRONTIER_CAPTURE_OK /Volumes/Macintosh HD/Users/Apple_501/Library/Application Support/Frontier Workshop/Frontier Reckoning/Captures/Frontier-20261004-233929-438-f50625-09ccc443d09143eca7ba0b40e0aca269.json"
+      },
+      {
+        "line": 313,
+        "text": "FRONTIER_PAUSE paused=True reason=manual_pause world=1023.197000 realtime=857.584896 frame=50627"
+      },
+      {
+        "line": 314,
+        "text": "FRONTIER_SAVE slot=3 match=naval-preview-naval-strait-314159-f0949a4e50624b1abc92d8cd3c474f21 time=1023.197"
+      }
+    ],
+    "priorColdEvidenceNowCorroborated": [
+      "Load slot3 at556.8111 line39",
+      "Immediate save slot3 at556.8111 line73",
+      "Save landed at684.7798 line145"
+    ],
+    "rawKeyPointerTelemetry": "not present; UI operations operator-attested, states/events/captures independently checked"
+  },
+  "materialFailuresInCompletedRetryScope": [],
+  "pending": [
+    "Delta settlement native service",
+    "Bridge objective actual victory and result reason",
+    "Monitor native movement/hold and visual scope",
+    "Normal-opening autoplay result",
+    "All sessions final logs and capture completeness",
+    "Final slot3 cleanup/user-slot preservation",
+    "Final archive of failed first combat branch original report/events",
+    "Performance and package/Drive delivery"
+  ],
+  "mutations": "Only authorized final-GUID capture copies, unique sync stdout receipt and this new audit report; no source, GUI, Unity or save mutation."
+}
