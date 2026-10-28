@@ -1,10 +1,10 @@
 # 项目交接
 
-这是私有的 Unity 即时战略游戏源码项目。当前开发版本位于 GitHub 的 `codex/land-rts-completion` 分支；仓库默认 `main` 是较早的起点，不代表该开发版本。项目仍是开发候选，不是经过完整发布验收的商业成品。
+这是 Unity 即时战略游戏源码项目。GitHub 的 `main` 已合入 `codex/land-rts-completion` 开发分支；项目仍是开发候选，不是经过完整发布验收的商业成品。
 
 ## 下载和运行
 
-1. 克隆仓库并切换到 `codex/land-rts-completion`，用 Unity Hub 打开项目目录，选择 Unity **6000.6.3f1**。
+1. 克隆仓库，用 Unity Hub 打开项目目录，选择 Unity **6000.6.3f1**。
 2. 打开 `Assets/Frontier/Scenes/FrontierSkirmish.unity` 并在编辑器运行；源码和项目设置在仓库中，Unity 包管理器可能需要网络获取依赖。
 3. `Builds/`、`Library/`、`Logs/` 和用户设置不纳入 Git。已有[私有云盘客户端](https://drive.google.com/drive/folders/135YyVrETv164RbU0spprFQ0Rh-eogfnV)中的 Preview91 早于 085/087/089 改动，不能当作当前源码的发布包。当前源码曾另建本地开发构建，但尚未完成原生完整试玩与发布验证。
 
